@@ -149,6 +149,13 @@ p{text-wrap:pretty}
 .site-header.scrolled{background:rgba(6,9,20,.95);box-shadow:0 1px 0 rgba(255,255,255,.06)}
 .nav{display:flex;align-items:center;gap:34px;padding-block:16px;position:relative}
 .brand img{height:34px;width:auto}
+.nav-brandwrap{display:flex;align-items:center;gap:16px}
+.hp-divider{width:1px;height:26px;background:rgba(255,255,255,.16);flex:none}
+.header-partners{display:flex;align-items:center;gap:16px}
+.hp-logo{width:auto;display:block;opacity:.95;transition:opacity .25s}
+.hp-logo:hover{opacity:1}
+.hp-nba{height:27px}
+.hp-porsche{height:21px}
 .nav-menu{display:flex;align-items:center;gap:6px;margin-right:auto}
 .nav-item{position:relative}
 .nav-link{
@@ -845,6 +852,9 @@ html.is-animate [data-reveal-stagger]>*{opacity:0;transform:translateY(28px)}
 html.is-animate .head [data-reveal]{will-change:transform,opacity}
 
 /* ---------- Responsive ---------- */
+@media (max-width:1200px){
+  .header-partners,.hp-divider{display:none}
+}
 @media (max-width:1080px){
   :root{--gutter:20px}
   .plat-grid{grid-template-columns:1fr 1fr;grid-template-areas:"app app" "web web" "mt4 mt5"}
