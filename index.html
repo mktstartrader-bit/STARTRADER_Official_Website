@@ -120,6 +120,10 @@
   <symbol id="i-cfd" viewBox="0 0 24 24"><path d="M4 15l4.5-4.5 3 3L19 6M14.5 6H19v4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-droplet" viewBox="0 0 24 24"><path d="M12 3.5s6 6.2 6 10.5a6 6 0 0 1-12 0c0-4.3 6-10.5 6-10.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
   <symbol id="i-pie" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M12 3v9h9A9 9 0 0 0 12 3Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 11.5a7.5 7.5 0 0 1-10.9 6.7L4 20l1.8-5.1A7.5 7.5 0 1 1 21 11.5Z" fill="currentColor"/><circle cx="8.5" cy="11.5" r="1.15" fill="#0a2a6b"/><circle cx="12" cy="11.5" r="1.15" fill="#0a2a6b"/><circle cx="15.5" cy="11.5" r="1.15" fill="#0a2a6b"/></symbol>
+  <symbol id="i-cookie" viewBox="0 0 24 24"><path d="M12 2.5a9.5 9.5 0 1 0 9.5 9.5 4 4 0 0 1-4-4 3.2 3.2 0 0 1-3.4-3.4A9.6 9.6 0 0 0 12 2.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="9" cy="12" r="1" fill="currentColor"/><circle cx="13" cy="15" r="1" fill="currentColor"/><circle cx="14.5" cy="10" r="1" fill="currentColor"/><circle cx="8.5" cy="16" r=".8" fill="currentColor"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M4 12 20 4l-6 16-3-6-7-2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
 </svg>
 
 <a class="skip-link" href="#main">Skip to content</a>
@@ -412,7 +416,7 @@
             <a href="#" aria-label="Download on the App Store"><img src="assets/img/badge-appstore.png" alt="Download on the App Store" width="140" height="41" loading="lazy"></a>
           </div>
         </div>
-        <img class="plat-phone" src="assets/img/appScreenshot.png" alt="STARTRADER mobile trading app" width="493" height="498" loading="lazy">
+        <img class="plat-phone" src="assets/img/appScreenshot.jpg" alt="STARTRADER mobile trading app" width="880" height="1034" loading="lazy">
       </article>
 
       <!-- Web trader (blue) -->
@@ -422,7 +426,7 @@
           <p>The full terminal in your browser — charts, one-click orders and account management on any device.</p>
         </div>
         <a href="#" class="link-ur">Launch web trader <svg class="ico"><use href="#i-arrow-ur"/></svg></a>
-        <img class="plat-tablet" src="assets/img/webtraderScreenShot.png" alt="Web Trader terminal on a tablet" width="324" height="345" loading="lazy">
+        <img class="plat-tablet" src="assets/img/webtraderScreenShot.webp" alt="Web Trader terminal on a tablet" width="760" height="833" loading="lazy">
       </article>
 
       <!-- MT4 -->
@@ -967,6 +971,45 @@
 </footer>
 
 <button class="to-top" id="toTop" aria-label="Back to top"><svg><use href="#i-caret-up"/></svg></button>
+
+<!-- ============ CHAT WIDGET ============ -->
+<button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
+  <svg class="chat-fab-ico"><use href="#i-chat"/></svg>
+  <span class="chat-badge">1</span>
+</button>
+<div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
+  <div class="chat-head">
+    <span class="chat-avatar"><svg><use href="#i-headset"/></svg><i class="chat-online"></i></span>
+    <div class="chat-head-txt"><b>STARTRADER Support</b><em>Typically replies in a few minutes</em></div>
+    <button class="chat-close" id="chatClose" aria-label="Close chat"><svg><use href="#i-close"/></svg></button>
+  </div>
+  <div class="chat-body">
+    <div class="chat-msg">👋 Hi there! Welcome to STARTRADER. How can we help you today?</div>
+    <div class="chat-quick">
+      <a href="#" class="chat-chip">Open a live account</a>
+      <a href="#platforms" class="chat-chip">Download a platform</a>
+      <a href="#markets" class="chat-chip">View spreads &amp; markets</a>
+      <a href="#footer" class="chat-chip">Contact us</a>
+    </div>
+  </div>
+  <form class="chat-input" id="chatForm">
+    <input type="text" id="chatText" placeholder="Type your message…" aria-label="Message" autocomplete="off">
+    <button type="submit" class="chat-send" aria-label="Send"><svg><use href="#i-send"/></svg></button>
+  </form>
+</div>
+
+<!-- ============ COOKIE CONSENT ============ -->
+<div class="cookie" id="cookie" role="dialog" aria-label="Cookie consent">
+  <div class="cookie-ic"><svg><use href="#i-cookie"/></svg></div>
+  <div class="cookie-body">
+    <h4>We value your privacy</h4>
+    <p>We use cookies to enhance your browsing experience, analyze site traffic, and personalize content. Read our <a href="#">Cookie Policy</a>.</p>
+    <div class="cookie-actions">
+      <button class="btn btn-primary btn-sm" id="cookieAccept">Accept all</button>
+      <button class="cookie-decline" id="cookieDecline">Decline</button>
+    </div>
+  </div>
+</div>
 
 <script src="assets/js/vendor/gsap.min.js" defer></script>
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
