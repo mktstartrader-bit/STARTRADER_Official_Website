@@ -254,7 +254,6 @@
 <section class="hero" aria-labelledby="hero-title">
   <div class="hero-glow" aria-hidden="true"></div>
   <div class="hero-shape" aria-hidden="true"></div>
-  <div class="hero-stars" id="heroStars" aria-hidden="true"></div>
   <div class="container hero-inner">
     <h1 class="hero-title" id="hero-title" data-reveal>
       <span class="line-1">Trade with a</span>
@@ -263,52 +262,6 @@
     <p class="hero-sub" data-reveal>Access global markets on your terms today.</p>
     <div class="hero-cta" data-reveal>
       <a href="#" class="btn btn-primary btn-lg magnetic">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
-    </div>
-
-    <div class="hero-viz" aria-hidden="true" data-net data-reveal>
-      <svg class="cta-traces" viewBox="0 0 720 460" fill="none" preserveAspectRatio="none">
-        <g class="tr-base">
-          <path d="M360 230 H150 V82"/><path d="M360 230 H70 V236"/><path d="M360 230 H150 V388 H96"/>
-          <path d="M360 230 H600 V104"/><path d="M360 230 H656 V210"/><path d="M360 230 H560 V348"/>
-        </g>
-        <g class="tr-flow">
-          <path d="M360 230 H150 V82"/><path d="M360 230 H70 V236"/><path d="M360 230 H150 V388 H96"/>
-          <path d="M360 230 H600 V104"/><path d="M360 230 H656 V210"/><path d="M360 230 H560 V348"/>
-        </g>
-        <g class="tr-nodes" fill="#2f6fe0">
-          <circle cx="150" cy="82" r="3.5"/><circle cx="70" cy="236" r="3.5"/><circle cx="96" cy="388" r="3.5"/>
-          <circle cx="600" cy="104" r="3.5"/><circle cx="656" cy="210" r="3.5"/><circle cx="560" cy="348" r="3.5"/>
-        </g>
-      </svg>
-
-      <div class="cta-hub">
-        <span class="hub-ring"></span><span class="hub-ring r2"></span>
-        <span class="hub-core"><img src="assets/img/logo-mark.svg" alt="" width="34" height="44"><b>STARTRADER</b></span>
-      </div>
-
-      <div class="cta-card cc-conn" data-float>
-        <span class="cc-ic"><svg><use href="#i-globe"/></svg></span>
-        <span class="cc-h">Connections</span>
-        <b class="cc-big">140+ Countries</b>
-        <span class="cc-sub">50+ liquidity partners</span>
-      </div>
-
-      <div class="cta-card cc-vol is-active" data-float>
-        <div class="cc-row"><span class="coin coin-idx">ST</span><span class="cc-h">Traded Volume</span></div>
-        <b class="cc-big"><span data-count="3.1" data-dec="1" data-prefix="$" data-suffix="T+">$3.1T+</span></b>
-        <span class="cc-sub up">+8% in the last 7 days</span>
-      </div>
-
-      <div class="cta-card cc-price" data-float>
-        <div class="cc-row"><span class="coin coin-gold">Au</span><span class="cc-name">XAU/USD <em>· Gold</em></span></div>
-        <div class="cc-row cc-price-row"><b class="cc-price-val">3,241.80</b><span class="cc-sub up">+0.82%</span></div>
-        <svg class="cc-chart" viewBox="0 0 120 34" preserveAspectRatio="none"><path d="M0 26 L18 20 L34 24 L52 12 L70 17 L88 7 L104 12 L120 4" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-
-      <div class="cta-bubble" data-float>New trader just joined <b>✦</b></div>
-
-      <div class="cta-chip cx1" data-float><svg><use href="#i-chart"/></svg></div>
-      <div class="cta-chip cx2" data-float><svg><use href="#i-bolt"/></svg></div>
     </div>
 
     <p class="hero-strip-label" data-reveal>Fast, Regulated, and Ready for Every Market</p>
@@ -356,21 +309,43 @@
       <span class="eyebrow" data-reveal>WHY STARTRADER</span>
       <h2 class="h2" id="why-title" data-reveal>Built different, by the numbers.</h2>
     </div>
-    <ul class="why-stats" data-reveal-stagger>
-      <li>
+    <ul class="why-bento" data-reveal-stagger>
+      <li class="bento-card">
+        <div class="bento-top">
+          <span class="bento-label">Fund Safety</span>
+          <span class="bento-chip up">▲ 340% YoY</span>
+        </div>
         <span class="stat-num" data-count="1" data-suffix="M" data-prefix="$">$1M</span>
         <span class="stat-title">Client fund insurance</span>
         <span class="stat-desc">Up 340% year on year.</span>
+        <svg class="bento-spark" viewBox="0 0 200 46" preserveAspectRatio="none" aria-hidden="true">
+          <path class="bs-area" d="M0 38 L28 34 L56 36 L84 26 L112 28 L140 16 L168 19 L200 7 L200 46 L0 46 Z"/>
+          <path class="bs-line" d="M0 38 L28 34 L56 36 L84 26 L112 28 L140 16 L168 19 L200 7"/>
+        </svg>
       </li>
-      <li>
+      <li class="bento-card">
+        <div class="bento-top">
+          <span class="bento-label">Segregation</span>
+          <span class="bento-chip"><svg class="ico"><use href="#i-shield"/></svg> Insured</span>
+        </div>
         <span class="stat-num">Tier&#8209;1</span>
         <span class="stat-title">Segregated funds</span>
         <span class="stat-desc">Insured per client account.</span>
+        <div class="bento-bars" aria-hidden="true">
+          <span style="height:42%"></span><span style="height:60%"></span><span style="height:52%"></span><span style="height:76%"></span><span style="height:66%"></span><span style="height:88%"></span><span style="height:100%"></span>
+        </div>
       </li>
-      <li>
+      <li class="bento-card">
+        <div class="bento-top">
+          <span class="bento-label">Execution</span>
+          <span class="bento-chip up"><svg class="ico"><use href="#i-bolt"/></svg> 18ms fill</span>
+        </div>
         <span class="stat-num" data-count="100" data-suffix="%">100%</span>
         <span class="stat-title">Negative-balance protection</span>
         <span class="stat-desc">18ms average fill speed.</span>
+        <div class="bento-gauge" aria-hidden="true">
+          <div class="bg-track"><span class="bg-fill"></span></div>
+        </div>
       </li>
     </ul>
   </div>
@@ -388,7 +363,7 @@
     <div class="markets-grid" data-reveal-stagger data-live-markets>
       <!-- METALS (wide) -->
       <article class="mkt-card mkt-wide">
-        <header class="mkt-head"><h3>METALS</h3><a href="#" class="view-all">View all</a></header>
+        <header class="mkt-head"><h3>METALS</h3><svg class="mkt-spark" viewBox="0 0 80 24" preserveAspectRatio="none" aria-hidden="true"><path d="M0 18 L16 15 L32 17 L48 10 L64 12 L80 5"/></svg><a href="#" class="view-all">View all</a></header>
         <ul class="mkt-list">
           <li><a class="mkt-row" href="#markets"><span class="coin coin-gold">Au</span><span class="mkt-name">XAU/USD <em>· Gold</em></span><span class="mkt-price">3,241.80</span><span class="chg up">+0.82%</span><svg class="mkt-arrow"><use href="#i-chevron-right"/></svg></a></li>
           <li><a class="mkt-row" href="#markets"><span class="coin coin-silver">Ag</span><span class="mkt-name">XAG/USD <em>· Silver</em></span><span class="mkt-price">38.42</span><span class="chg up">+1.14%</span><svg class="mkt-arrow"><use href="#i-chevron-right"/></svg></a></li>
@@ -399,7 +374,7 @@
 
       <!-- FOREX -->
       <article class="mkt-card">
-        <header class="mkt-head"><h3>FOREX</h3><a href="#" class="view-all">View all</a></header>
+        <header class="mkt-head"><h3>FOREX</h3><svg class="mkt-spark" viewBox="0 0 80 24" preserveAspectRatio="none" aria-hidden="true"><path d="M0 12 L16 14 L32 9 L48 13 L64 10 L80 8"/></svg><a href="#" class="view-all">View all</a></header>
         <ul class="mkt-list">
           <li><a class="mkt-row" href="#markets"><span class="coin coin-eur">€</span><span class="mkt-name">EUR/USD</span><span class="mkt-price">1.0842</span><span class="chg up">+0.13%</span><svg class="mkt-arrow"><use href="#i-chevron-right"/></svg></a></li>
           <li><a class="mkt-row" href="#markets"><span class="coin coin-gbp">£</span><span class="mkt-name">GBP/USD</span><span class="mkt-price">1.2715</span><span class="chg down">-0.11%</span><svg class="mkt-arrow"><use href="#i-chevron-right"/></svg></a></li>
@@ -410,7 +385,7 @@
 
       <!-- SHARES -->
       <article class="mkt-card">
-        <header class="mkt-head"><h3>SHARES</h3><a href="#" class="view-all">View all</a></header>
+        <header class="mkt-head"><h3>SHARES</h3><svg class="mkt-spark" viewBox="0 0 80 24" preserveAspectRatio="none" aria-hidden="true"><path d="M0 19 L16 16 L32 17 L48 11 L64 13 L80 6"/></svg><a href="#" class="view-all">View all</a></header>
         <ul class="mkt-list">
           <li><a class="mkt-row" href="#markets"><span class="coin coin-aapl">A</span><span class="mkt-name">AAPL <em>· Apple</em></span><span class="mkt-price">228.11</span><span class="chg up">+0.63%</span><svg class="mkt-arrow"><use href="#i-chevron-right"/></svg></a></li>
           <li><a class="mkt-row" href="#markets"><span class="coin coin-tsla">T</span><span class="mkt-name">TSLA <em>· Tesla</em></span><span class="mkt-price">334.09</span><span class="chg down">-1.02%</span><svg class="mkt-arrow"><use href="#i-chevron-right"/></svg></a></li>
@@ -421,7 +396,7 @@
 
       <!-- INDICES -->
       <article class="mkt-card">
-        <header class="mkt-head"><h3>INDICES</h3><a href="#" class="view-all">View all</a></header>
+        <header class="mkt-head"><h3>INDICES</h3><svg class="mkt-spark" viewBox="0 0 80 24" preserveAspectRatio="none" aria-hidden="true"><path d="M0 16 L16 17 L32 12 L48 14 L64 9 L80 7"/></svg><a href="#" class="view-all">View all</a></header>
         <ul class="mkt-list">
           <li><a class="mkt-row" href="#markets"><span class="coin coin-idx">US</span><span class="mkt-name">US500</span><span class="mkt-price">5,732.3</span><span class="chg up">+0.90%</span><svg class="mkt-arrow"><use href="#i-chevron-right"/></svg></a></li>
           <li><a class="mkt-row" href="#markets"><span class="coin coin-idx">NQ</span><span class="mkt-name">NAS100</span><span class="mkt-price">29,971.3</span><span class="chg down">-0.62%</span><svg class="mkt-arrow"><use href="#i-chevron-right"/></svg></a></li>
@@ -432,7 +407,7 @@
 
       <!-- ETF -->
       <article class="mkt-card">
-        <header class="mkt-head"><h3>ETF</h3><a href="#" class="view-all">View all</a></header>
+        <header class="mkt-head"><h3>ETF</h3><svg class="mkt-spark" viewBox="0 0 80 24" preserveAspectRatio="none" aria-hidden="true"><path d="M0 17 L16 15 L32 16 L48 12 L64 13 L80 8"/></svg><a href="#" class="view-all">View all</a></header>
         <ul class="mkt-list">
           <li><a class="mkt-row" href="#markets"><span class="coin coin-etf">S</span><span class="mkt-name">SPY</span><span class="mkt-price">571.28</span><span class="chg up">+0.55%</span><svg class="mkt-arrow"><use href="#i-chevron-right"/></svg></a></li>
           <li><a class="mkt-row" href="#markets"><span class="coin coin-etf">Q</span><span class="mkt-name">QQQ</span><span class="mkt-price">492.11</span><span class="chg up">+0.72%</span><svg class="mkt-arrow"><use href="#i-chevron-right"/></svg></a></li>

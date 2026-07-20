@@ -415,19 +415,6 @@
     });
   }
 
-  /* ---------------- Hero starfield ---------------- */
-  function initHeroStars() {
-    var el = document.getElementById('heroStars');
-    if (!el) return;
-    var n = prefersReduced ? 18 : 54, html = '';
-    for (var i = 0; i < n; i++) {
-      var x = (i * 37 + 11) % 100, y = (i * 53 + 7) % 100;
-      var s = 1 + (i % 3) * 0.7, d = (i % 6) * 0.7;
-      html += '<span class="hero-star" style="left:' + x + '%;top:' + y + '%;width:' + s + 'px;height:' + s + 'px;animation-delay:' + d + 's"></span>';
-    }
-    el.innerHTML = html;
-  }
-
   /* ---------------- Boot ---------------- */
   function boot() {
     if (!prefersReduced && hasGSAP && hasST) doc.classList.add('is-animate');
@@ -446,7 +433,6 @@
     initMagnetic();
     initCookie();
     initChat();
-    initHeroStars();
     if (hasST) ScrollTrigger.refresh();
     window.addEventListener('load', function () { if (hasST) ScrollTrigger.refresh(); });
   }
