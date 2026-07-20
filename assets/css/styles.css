@@ -150,12 +150,12 @@ p{text-wrap:pretty}
 .nav{display:flex;align-items:center;gap:34px;padding-block:16px;position:relative}
 .brand img{height:34px;width:auto}
 .nav-brandwrap{display:flex;align-items:center;gap:16px}
-.hp-divider{width:1px;height:30px;background:rgba(255,255,255,.16);flex:none}
+.hp-divider{width:1px;height:22px;background:rgba(255,255,255,.16);flex:none}
 .header-partners{display:flex;align-items:center;gap:16px}
 .hp-logo{width:auto;display:block;opacity:.95;transition:opacity .25s}
 .hp-logo:hover{opacity:1}
-.hp-nba{height:28px}
-.hp-porsche{height:30px}
+.hp-nba{height:20px}
+.hp-porsche{height:20px}
 .nav-menu{display:flex;align-items:center;gap:6px;margin-right:auto}
 .nav-item{position:relative}
 .nav-link{
@@ -633,13 +633,17 @@ p{text-wrap:pretty}
 .media-logos li{display:flex;flex-direction:column;align-items:center;gap:12px}
 .media-rate{font-size:22px;font-weight:700;color:var(--text)}
 .media-logo{display:flex;align-items:center;justify-content:center;height:30px;width:132px}
-.media-logos img{max-height:26px;max-width:124px;width:auto;height:auto;object-fit:contain;transition:opacity .3s,filter .3s,transform .3s}
+.media-logos img{max-height:26px;max-width:124px;width:auto;height:auto;object-fit:contain}
 .m-white{opacity:.9;filter:grayscale(1) brightness(.6)}
-.media-logos li:hover .m-white{filter:grayscale(1) brightness(.32);transform:translateY(-2px)}
 .media-logo.has-color{position:relative}
-.media-logo.has-color .m-color{position:absolute;inset:0;margin:auto;opacity:0;filter:none}
-.media-logos li:hover .has-color .m-white{opacity:0;transform:none}
-.media-logos li:hover .has-color .m-color{opacity:1;transform:translateY(-2px)}
+.media-logo.has-color .m-white{animation:mCycleWhite 12s ease-in-out infinite}
+.media-logo.has-color .m-color{position:absolute;inset:0;margin:auto;opacity:0;filter:none;animation:mCycleColor 12s ease-in-out infinite}
+.media-logos li:nth-child(2) .m-white,.media-logos li:nth-child(2) .m-color{animation-delay:0s}
+.media-logos li:nth-child(3) .m-white,.media-logos li:nth-child(3) .m-color{animation-delay:3s}
+.media-logos li:nth-child(4) .m-white,.media-logos li:nth-child(4) .m-color{animation-delay:6s}
+.media-logos li:nth-child(5) .m-white,.media-logos li:nth-child(5) .m-color{animation-delay:9s}
+@keyframes mCycleColor{0%{opacity:0}5%{opacity:1}20%{opacity:1}25%{opacity:0}100%{opacity:0}}
+@keyframes mCycleWhite{0%{opacity:.9}5%{opacity:0}20%{opacity:0}25%{opacity:.9}100%{opacity:.9}}
 .media-url{font-size:12.5px;color:var(--text-mute)}
 
 /* ---------- Academy ---------- */
