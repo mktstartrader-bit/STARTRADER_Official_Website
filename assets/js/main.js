@@ -402,11 +402,14 @@
       var body = panel.querySelector('.chat-body');
       var u = document.createElement('div'); u.className = 'chat-msg chat-msg-user'; u.textContent = t.value; body.appendChild(u);
       t.value = ''; body.scrollTop = body.scrollHeight;
+      var typing = document.createElement('div'); typing.className = 'chat-typing'; typing.innerHTML = '<i></i><i></i><i></i>';
+      body.appendChild(typing); body.scrollTop = body.scrollHeight;
       setTimeout(function () {
+        typing.remove();
         var r = document.createElement('div'); r.className = 'chat-msg';
         r.textContent = 'Thanks for reaching out! A support agent will be with you shortly. For anything urgent, try the quick links above.';
         body.appendChild(r); body.scrollTop = body.scrollHeight;
-      }, 700);
+      }, 1100);
     });
   }
 

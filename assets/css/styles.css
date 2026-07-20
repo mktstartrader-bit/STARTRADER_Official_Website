@@ -340,8 +340,15 @@ p{text-wrap:pretty}
 .mkt-head h3{font-size:13px;letter-spacing:.08em;color:var(--text);font-weight:700}
 .view-all{font-size:12.5px;color:var(--blue);font-weight:600;transition:opacity .2s}
 .view-all:hover{opacity:.7}
-.mkt-list li{display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid #f0f3f7}
+.mkt-list li{border-bottom:1px solid #eef1f6}
 .mkt-list li:last-child{border-bottom:none}
+.mkt-row{display:grid;grid-template-columns:26px 1fr auto auto 16px;align-items:center;gap:12px;padding:13px 10px;margin:0 -10px;border-radius:11px;color:inherit;transition:background .25s var(--ease)}
+.mkt-row:hover{background:rgba(0,71,187,.06)}
+.mkt-row:hover .mkt-name{color:var(--blue)}
+.mkt-row:hover .coin{transform:scale(1.08)}
+.coin{transition:transform .25s var(--ease)}
+.mkt-arrow{width:16px;height:16px;color:var(--blue);opacity:0;transform:translateX(-5px);transition:opacity .25s var(--ease),transform .25s var(--ease);justify-self:end}
+.mkt-row:hover .mkt-arrow{opacity:1;transform:translateX(0)}
 .coin{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:700;color:#fff;flex:none;box-shadow:inset 0 0 0 1px rgba(255,255,255,.15)}
 .coin-gold{background:linear-gradient(145deg,#f7b733,#e08c1a)}
 .coin-silver{background:linear-gradient(145deg,#9aa7b8,#6a7688)}
@@ -400,8 +407,9 @@ p{text-wrap:pretty}
 .plat-mt:nth-of-type(3){grid-area:mt4}
 .plat-mt:nth-of-type(4){grid-area:mt5}
 .plat-mt .plat-copy{max-width:225px;position:relative;z-index:2}
-.plat-mt-ico{position:absolute;right:14px;bottom:0;width:122px;height:auto;transition:transform .5s var(--ease);z-index:1}
-.plat-mt:hover .plat-mt-ico{transform:translateY(-6px) rotate(-3deg)}
+.plat-mt-ico{position:absolute;right:14px;bottom:0;width:122px;height:auto;z-index:1;animation:floaty 5s ease-in-out infinite;will-change:transform}
+.plat-mt:nth-of-type(4) .plat-mt-ico{animation-duration:5.6s;animation-delay:-2.4s}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
 
 /* ---------- Tools (dark) ---------- */
 .tools{
@@ -451,7 +459,7 @@ p{text-wrap:pretty}
 .lb-head{margin-top:22px}
 .leaderboard{margin-top:12px;display:flex;flex-direction:column;gap:6px;flex:1}
 .leaderboard li{display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:12px;padding:8px 0}
-.lb-avatar{width:38px;height:38px;border-radius:50%;flex:none;background:#243049 center/cover}
+.lb-avatar{width:38px;height:38px;border-radius:50%;flex:none;display:grid;place-items:center;font-size:13px;font-weight:700;color:#fff;letter-spacing:.02em;background:#243049 center/cover}
 .lb-avatar[data-av="1"]{background-image:linear-gradient(135deg,#3a4a6b,#1e2740)}
 .lb-avatar[data-av="2"]{background-image:linear-gradient(135deg,#4b3a6b,#281e40)}
 .lb-avatar[data-av="3"]{background-image:linear-gradient(135deg,#3a5a6b,#1e3340)}
@@ -477,7 +485,8 @@ p{text-wrap:pretty}
 .tcard-foot{display:flex;justify-content:space-between;align-items:center;margin-top:18px}
 .foot-traders{display:flex;align-items:center;gap:10px;font-size:13px;color:#c2ccdd}
 .ava-stack{display:flex}
-.ava-stack i{width:24px;height:24px;border-radius:50%;border:2px solid #0b1120;margin-left:-8px;background:#2a3350}
+.ava-stack i{width:24px;height:24px;border-radius:50%;border:2px solid #0b1120;margin-left:-8px;background:#2a3350;display:grid;place-items:center;color:rgba(255,255,255,.78)}
+.ava-stack i svg{width:13px;height:13px}
 .ava-stack i:first-child{margin-left:0}
 .ava-stack i[data-av="1"]{background:linear-gradient(135deg,#3a4a6b,#1e2740)}
 .ava-stack i[data-av="2"]{background:linear-gradient(135deg,#4b3a6b,#281e40)}
@@ -614,6 +623,13 @@ p{text-wrap:pretty}
 .ac-tag{position:absolute;font-size:12px;font-weight:600;padding:6px 13px;border-radius:30px;background:rgba(10,16,28,.55);color:#fff;backdrop-filter:blur(6px)}
 .ac-tag.tl{top:14px;left:14px}
 .ac-tag.tr{top:14px;right:14px}
+.ac-play{position:absolute;inset:0;margin:auto;width:66px;height:66px;border-radius:50%;background:rgba(255,255,255,.92);color:var(--blue);display:grid;place-items:center;box-shadow:0 12px 30px -8px rgba(0,0,0,.45);transition:transform .3s var(--ease),background .3s}
+.ac-play svg{width:26px;height:26px;margin-left:3px}
+.ac-play:hover{transform:scale(1.09);background:#fff}
+.ac-play.sm{width:44px;height:44px}
+.ac-play.sm svg{width:17px;height:17px;margin-left:2px}
+.ac-feature:hover .ac-play,.ac-mini:hover .ac-play{transform:scale(1.06)}
+.ac-duration{position:absolute;right:14px;bottom:14px;background:rgba(6,10,20,.72);color:#fff;font-size:12px;font-weight:600;padding:4px 9px;border-radius:7px;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
 .ac-body{display:flex;flex-direction:column;flex:1 1 auto;padding:24px 18px 14px}
 .ac-body h3{font-size:22px;margin-bottom:8px}
 .ac-body p{font-size:14px;color:#c3d2ee}
@@ -727,7 +743,14 @@ p{text-wrap:pretty}
 .chat-close:hover{background:rgba(255,255,255,.1);color:#fff}
 .chat-body{padding:20px 18px;max-height:340px;overflow-y:auto}
 .chat-msg{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08);color:#e6eaf1;font-size:13.5px;line-height:1.55;padding:12px 14px;border-radius:4px 16px 16px 16px;max-width:88%}
-.chat-msg-user{margin-left:auto;margin-top:10px;background:var(--blue);border-color:transparent;color:#fff;border-radius:16px 4px 16px 16px}
+.chat-msg-user{margin-left:auto;margin-top:10px;background:radial-gradient(140% 180% at 50% -40%,var(--blue),var(--blue-800));border-color:transparent;color:#fff;border-radius:16px 4px 16px 16px}
+.chat-msg,.chat-msg-user{animation:chatIn .32s var(--ease) both}
+@keyframes chatIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.chat-typing{display:flex;gap:5px;align-items:center;width:max-content;padding:15px 16px;margin-top:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08);border-radius:4px 16px 16px 16px;animation:chatIn .3s var(--ease) both}
+.chat-typing i{width:7px;height:7px;border-radius:50%;background:#9aa6bd;animation:typingdot 1.2s infinite}
+.chat-typing i:nth-child(2){animation-delay:.18s}
+.chat-typing i:nth-child(3){animation-delay:.36s}
+@keyframes typingdot{0%,60%,100%{opacity:.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-4px)}}
 .chat-quick{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 .chat-chip{font-size:12.5px;font-weight:500;color:#cfe0ff;padding:8px 13px;border-radius:30px;border:1px solid rgba(0,120,255,.4);background:rgba(0,71,187,.16);transition:background .2s,color .2s}
 .chat-chip:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
