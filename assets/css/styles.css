@@ -325,31 +325,13 @@ p{text-wrap:pretty}
 .markets,.academy,.sponsors{background:var(--bg-light-2)}
 .platforms{background:linear-gradient(180deg,var(--bg-light-2),#fff)}
 
-/* ---------- Why stats (bento) ---------- */
+/* ---------- Why stats ---------- */
+.why-stats{display:grid;grid-template-columns:repeat(3,1fr);max-width:1000px;margin:0 auto}
+.why-stats li{padding:6px 44px;position:relative}
+.why-stats li+li::before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:1px;background:var(--line)}
 .stat-num{display:block;font-size:clamp(44px,6vw,64px);font-weight:800;letter-spacing:-.03em;color:var(--text);line-height:1}
 .stat-title{display:block;margin-top:14px;font-size:17px;font-weight:600;color:var(--blue)}
 .stat-desc{display:block;margin-top:7px;font-size:13.5px;color:var(--text-mute)}
-.why-bento{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:1060px;margin:0 auto}
-.bento-card{position:relative;display:flex;flex-direction:column;padding:24px 26px 22px;background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);overflow:hidden;transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s}
-.bento-card:hover{transform:translateY(-6px);box-shadow:0 26px 56px -26px rgba(20,44,96,.3);border-color:#d6dfea}
-.bento-card::after{content:"";position:absolute;inset:0;background:radial-gradient(130% 90% at 100% 0,rgba(0,71,187,.05),transparent 55%);pointer-events:none}
-.bento-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:20px;position:relative;z-index:1}
-.bento-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mute)}
-.bento-chip{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:999px;background:rgba(0,71,187,.08);color:var(--blue);white-space:nowrap}
-.bento-chip svg{width:12px;height:12px}
-.bento-chip.up{background:rgba(16,185,129,.12);color:#0f9d6f}
-.why-bento .stat-num{font-size:clamp(36px,4.4vw,52px)}
-.why-bento .stat-title{margin-top:12px;font-size:16px}
-.why-bento .stat-desc{margin-top:6px;margin-bottom:20px}
-.bento-spark{width:100%;height:44px;margin-top:auto;display:block}
-.bs-area{fill:rgba(16,185,129,.10)}
-.bs-line{fill:none;stroke:var(--green);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
-.bento-bars{display:flex;align-items:flex-end;gap:6px;height:44px;margin-top:auto}
-.bento-bars span{flex:1;border-radius:4px 4px 0 0;background:linear-gradient(180deg,rgba(0,71,187,.72),rgba(0,71,187,.24))}
-.bento-bars span:last-child{background:linear-gradient(180deg,#16E9D7,rgba(22,233,215,.35))}
-.bento-gauge{margin-top:auto;height:44px;display:flex;flex-direction:column;justify-content:flex-end}
-.bg-track{height:9px;border-radius:999px;background:rgba(0,71,187,.12);overflow:hidden}
-.bg-fill{display:block;height:100%;width:100%;border-radius:999px;background:linear-gradient(90deg,var(--blue),#16E9D7)}
 
 /* ---------- Markets (glassmorphism) ---------- */
 .markets{position:relative;overflow:hidden}
@@ -370,11 +352,8 @@ p{text-wrap:pretty}
 @keyframes flashUp{0%{color:var(--green)}100%{color:#3a4353}}
 @keyframes flashDown{0%{color:var(--red)}100%{color:#3a4353}}
 .mkt-wide{grid-column:span 2}
-.mkt-head{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.mkt-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
 .mkt-head h3{font-size:13px;letter-spacing:.08em;color:var(--text);font-weight:700}
-.mkt-spark{width:78px;height:22px;margin-left:auto;flex:none}
-.mkt-spark path{fill:none;stroke:var(--blue);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;opacity:.5;vector-effect:non-scaling-stroke}
-.mkt-card:hover .mkt-spark path{opacity:.85}
 .view-all{font-size:12.5px;color:var(--blue);font-weight:600;transition:opacity .2s}
 .view-all:hover{opacity:.7}
 .mkt-list li{border-bottom:1px solid #eef1f6}
@@ -677,7 +656,7 @@ p{text-wrap:pretty}
 .ac-side{display:flex;flex-direction:column;gap:24px}
 .ac-mini{flex:1;background:rgba(255,255,255,.46);-webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6);border:1px solid rgba(255,255,255,.75);border-radius:var(--radius-xl);padding:18px;display:flex;gap:18px;box-shadow:0 12px 34px -18px rgba(20,44,96,.26),inset 0 1px 0 rgba(255,255,255,.9);transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s}
 .ac-mini:hover{transform:translateY(-4px);box-shadow:0 24px 54px -22px rgba(20,44,96,.34),inset 0 1px 0 rgba(255,255,255,.95);border-color:#fff}
-.ac-thumb{position:relative;flex:0 0 128px;height:100%;min-height:150px;border-radius:14px;overflow:hidden}
+.ac-thumb{position:relative;flex:0 0 178px;height:100%;min-height:150px;border-radius:14px;overflow:hidden}
 .ac-thumb img{width:100%;height:100%;object-fit:cover}
 .ac-thumb .ac-tag{bottom:12px;left:12px;font-size:11px;padding:4px 10px}
 .ac-mini-body{display:flex;flex-direction:column;flex:1;padding:4px 4px 4px 0}
@@ -892,7 +871,9 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
   .hero-strip{gap:26px 0}
   .hero-strip li{flex:0 0 44%;min-width:44%;padding:0 10px}
   .hero-strip li+li::before{display:none}
-  .why-bento{grid-template-columns:1fr;gap:16px;max-width:400px}
+  .why-stats{grid-template-columns:1fr;gap:12px;max-width:340px}
+  .why-stats li{padding:20px 0;text-align:center}
+  .why-stats li+li::before{left:20%;right:20%;top:0;bottom:auto;width:auto;height:1px}
   .markets-grid{grid-template-columns:1fr}
   .mkt-wide{grid-column:span 1}
   .plat-grid{grid-template-columns:1fr;grid-template-areas:"app" "web" "mt4" "mt5"}
