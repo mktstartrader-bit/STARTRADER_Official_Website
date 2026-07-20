@@ -243,6 +243,23 @@
     track.addEventListener('mouseleave', function () { gsap.to(tween, { timeScale: 1, duration: 0.4 }); });
   }
 
+  /* ---------------- Reviews marquee (auto-scroll) ---------------- */
+  function initReviewsMarquee() {
+    var track = document.getElementById('reviewsTrack');
+    if (!track) return;
+    var cards = Array.prototype.slice.call(track.children);
+    cards.forEach(function (c) { track.appendChild(c.cloneNode(true)); }); // duplicate for seamless loop
+    if (prefersReduced || !hasGSAP) return;
+    var half = track.scrollWidth / 2;
+    var speed = 34; // px/s
+    var tween = gsap.to(track, {
+      x: -half, duration: half / speed, ease: 'none', repeat: -1,
+      modifiers: { x: function (x) { return (parseFloat(x) % half) + 'px'; } }
+    });
+    track.addEventListener('mouseenter', function () { gsap.to(tween, { timeScale: 0.15, duration: 0.4 }); });
+    track.addEventListener('mouseleave', function () { gsap.to(tween, { timeScale: 1, duration: 0.4 }); });
+  }
+
   /* ---------------- Live market data (simulated) ---------------- */
   function initLiveMarkets() {
     var grid = document.querySelector('[data-live-markets]');
@@ -429,6 +446,7 @@
     initHowtoScrub();
     initAwards();
     initCountryMarquee();
+    initReviewsMarquee();
     initLiveMarkets();
     initMagnetic();
     initCookie();
