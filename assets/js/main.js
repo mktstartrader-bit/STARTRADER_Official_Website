@@ -369,13 +369,12 @@
     try { stored = localStorage.getItem('st_cookie_consent'); } catch (e) { stored = null; }
     if (stored) return;
     setTimeout(function () { el.classList.add('show'); }, 1300);
-    function choose(v) {
-      try { localStorage.setItem('st_cookie_consent', v); } catch (e) {}
+    function dismiss() {
+      try { localStorage.setItem('st_cookie_consent', 'accepted'); } catch (e) {}
       el.classList.remove('show');
     }
-    var a = document.getElementById('cookieAccept'), d = document.getElementById('cookieDecline');
-    if (a) a.addEventListener('click', function () { choose('accepted'); });
-    if (d) d.addEventListener('click', function () { choose('declined'); });
+    var x = document.getElementById('cookieClose');
+    if (x) x.addEventListener('click', dismiss);
   }
 
   /* ---------------- Chat widget ---------------- */
