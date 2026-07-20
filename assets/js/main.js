@@ -74,16 +74,18 @@
   function initHeader() {
     var header = document.getElementById('siteHeader');
     var toTop = document.getElementById('toTop');
-    var last = 0;
+    var topbar = document.querySelector('.topbar');
+    function setTopbarH() {
+      if (topbar) document.documentElement.style.setProperty('--topbar-h', topbar.offsetHeight + 'px');
+      if (hasST) ScrollTrigger.refresh();
+    }
+    setTopbarH();
+    window.addEventListener('resize', setTopbarH);
+    window.addEventListener('load', setTopbarH);
     function update() {
       var y = window.scrollY || window.pageYOffset;
-      if (header) {
-        header.classList.toggle('scrolled', y > 24);
-        if (y > last && y > 480) header.classList.add('hide');
-        else header.classList.remove('hide');
-      }
+      if (header) header.classList.toggle('scrolled', y > 24);
       if (toTop) toTop.classList.toggle('show', y > 760);
-      last = y;
     }
     window.addEventListener('scroll', update, { passive: true });
     if (lenis) lenis.on('scroll', update);
@@ -117,7 +119,7 @@
 
   /* ---------------- Smooth anchor links ---------------- */
   function initAnchors() {
-    var headerH = 84;
+    var tb = document.querySelector('.topbar'), hd = document.getElementById('siteHeader');
     document.querySelectorAll('a[href^="#"]').forEach(function (a) {
       var href = a.getAttribute('href');
       if (href === '#' || href.length < 2) return;
@@ -125,7 +127,8 @@
         var target = document.querySelector(href);
         if (!target) return;
         e.preventDefault();
-        scrollToTarget(target, -headerH);
+        var off = (tb ? tb.offsetHeight : 0) + (hd ? hd.offsetHeight : 0) + 14;
+        scrollToTarget(target, -off);
       });
     });
   }

@@ -123,20 +123,18 @@ p{text-wrap:pretty}
 .btn-navy:hover{box-shadow:0 18px 40px -16px rgba(0,0,0,.55)}
 
 /* ---------- Topbar ---------- */
-.topbar{background:var(--slate);color:#c4c9d4;font-size:12.5px}
+.topbar{background:var(--slate);color:#c4c9d4;font-size:12.5px;position:sticky;top:0;z-index:901}
 .topbar .container{padding-block:13px}
 .topbar p{text-align:center;line-height:1.4}
 .topbar strong{color:#eef1f6;font-weight:600}
 
 /* ---------- Header / nav ---------- */
 .site-header{
-  position:sticky;top:0;z-index:900;
+  position:sticky;top:var(--topbar-h,44px);z-index:900;
   background:transparent;
-  transition:background .4s var(--ease),backdrop-filter .4s var(--ease),box-shadow .4s var(--ease);
+  transition:background .4s var(--ease),box-shadow .4s var(--ease);
 }
 .site-header.scrolled{background:rgba(6,9,20,.95);box-shadow:0 1px 0 rgba(255,255,255,.06)}
-.site-header.hide{transform:translateY(-100%)}
-.site-header{transition:transform .45s var(--ease),background .4s var(--ease),backdrop-filter .4s var(--ease)}
 .nav{display:flex;align-items:center;gap:34px;padding-block:16px;position:relative}
 .brand img{height:34px;width:auto}
 .nav-menu{display:flex;align-items:center;gap:6px;margin-right:auto}
@@ -398,7 +396,7 @@ p{text-wrap:pretty}
 .plat-web .plat-copy{max-width:46%}
 .plat-web .plat-copy h3{color:#fff}
 .plat-web .plat-copy p{color:#c6d6f5}
-.plat-tablet{position:absolute;right:0;bottom:0;width:392px;height:auto;filter:drop-shadow(0 34px 56px rgba(0,0,0,.5));z-index:3;pointer-events:none}
+.plat-tablet{position:absolute;right:0;bottom:0;width:300px;height:auto;filter:drop-shadow(0 30px 50px rgba(0,0,0,.5));z-index:3;pointer-events:none}
 .link-ur{position:absolute;bottom:26px;left:34px;display:inline-flex;align-items:center;gap:7px;font-size:14px;font-weight:600;color:#dbe6ff}
 .plat-mt .link-ur{color:var(--blue)}
 .link-ur .ico{width:16px;height:16px;transition:transform .3s var(--ease)}
@@ -407,9 +405,7 @@ p{text-wrap:pretty}
 .plat-mt:nth-of-type(3){grid-area:mt4}
 .plat-mt:nth-of-type(4){grid-area:mt5}
 .plat-mt .plat-copy{max-width:225px;position:relative;z-index:2}
-.plat-mt-ico{position:absolute;right:14px;bottom:0;width:122px;height:auto;z-index:1;animation:floaty 5s ease-in-out infinite;will-change:transform}
-.plat-mt:nth-of-type(4) .plat-mt-ico{animation-duration:5.6s;animation-delay:-2.4s}
-@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.plat-mt-ico{position:absolute;right:14px;bottom:0;width:122px;height:auto;z-index:1}
 
 /* ---------- Tools (dark) ---------- */
 .tools{
@@ -716,7 +712,7 @@ p{text-wrap:pretty}
 .to-top:hover{background:var(--blue)}
 
 /* ---------- Chat widget ---------- */
-.chat-fab{position:fixed;right:24px;bottom:24px;z-index:850;width:58px;height:58px;border-radius:50%;color:#fff;display:grid;place-items:center;background:radial-gradient(120% 180% at 50% -30%,var(--blue),var(--blue-700) 55%,var(--blue-800));border:1.5px solid rgba(0,71,187,.9);box-shadow:var(--shadow-blue);transition:transform .35s var(--ease),box-shadow .35s}
+.chat-fab{position:fixed;right:24px;bottom:24px;z-index:850;width:60px;height:60px;border-radius:50%;color:#fff;display:grid;place-items:center;background:linear-gradient(145deg,rgba(0,71,187,.5),rgba(0,20,137,.55));-webkit-backdrop-filter:blur(16px) saturate(1.5);backdrop-filter:blur(16px) saturate(1.5);border:1.5px solid rgba(255,255,255,.3);box-shadow:0 14px 36px -10px rgba(0,71,187,.55),inset 0 1px 0 rgba(255,255,255,.4);transition:transform .35s var(--ease),box-shadow .35s,background .35s}
 .chat-fab-ico{width:27px;height:27px}
 .chat-fab:hover{transform:translateY(-3px) scale(1.05)}
 .chat-fab::after{content:"";position:absolute;inset:-2px;border-radius:50%;box-shadow:0 0 0 0 rgba(0,71,187,.45);animation:chatpulse 2.6s infinite}
@@ -791,7 +787,7 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
   :root{--gutter:20px}
   .plat-grid{grid-template-columns:1fr 1fr;grid-template-areas:"app app" "web web" "mt4 mt5"}
   .plat-app{min-height:440px}
-  .plat-tablet{right:0;width:min(40%,392px)}
+  .plat-tablet{right:0;width:min(36%,300px)}
   .tools-grid{grid-template-columns:1fr 1fr;grid-template-areas:"copy web" "copy pro" "ct syn"}
   .reviews-grid{grid-template-columns:repeat(2,1fr)}
   .foot-cols{grid-template-columns:repeat(3,1fr);gap:28px 24px}
