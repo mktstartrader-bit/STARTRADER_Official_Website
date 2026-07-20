@@ -264,7 +264,7 @@ p{text-wrap:pretty}
 }
 .hero-sub{margin-top:20px;font-size:clamp(15px,1.6vw,18px);color:#aeb8c8;font-weight:400}
 .hero-cta{margin-top:34px}
-.hero-strip-label{margin-top:120px;font-size:13px;color:#7d879a;font-style:italic;font-weight:400}
+.hero-strip-label{margin-top:64px;font-size:13px;color:#7d879a;font-style:italic;font-weight:400}
 .hero-strip{
   margin-top:34px;display:flex;justify-content:center;align-items:flex-start;flex-wrap:wrap;
   gap:0;width:100%;
@@ -659,20 +659,20 @@ p{text-wrap:pretty}
 .sponsor-card span{font-size:13.5px;color:var(--text-soft)}
 
 /* ---------- CTA banner ---------- */
-.cta-banner{position:relative;color:#fff;overflow:hidden;isolation:isolate;background:#05070e}
+.cta-banner{position:relative;color:#fff;overflow:hidden;isolation:isolate}
 .cta-bg{position:absolute;inset:0;z-index:-2;background:
-  radial-gradient(55% 75% at 74% 52%,rgba(0,71,187,.4),transparent 62%),
-  radial-gradient(60% 55% at 50% -10%,rgba(90,140,255,.16),transparent 60%),
-  linear-gradient(180deg,#080b16 0%,#05070e 100%)}
-.cta-stars{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
-.cta-star{position:absolute;width:2px;height:2px;border-radius:50%;background:#cfe0ff;opacity:.5;animation:twinkle 4s ease-in-out infinite}
+  radial-gradient(75% 130% at 50% -28%,rgba(168,205,255,.9),rgba(120,170,255,.15) 46%,rgba(120,170,255,0) 62%),
+  linear-gradient(180deg,#1358dd 0%,#0b43c6 60%,#0937b2 100%)}
+.cta-bg::after{content:"";position:absolute;left:50%;top:-40%;width:120%;height:120%;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(255,255,255,.28),transparent 70%);pointer-events:none}
+.cta-inner{text-align:center;padding:104px 0}
+.cta-inner h2{font-size:clamp(26px,4.6vw,46px);font-weight:800;letter-spacing:-.03em;line-height:1.12}
+.cta-inner p{max-width:620px;margin:18px auto 0;font-size:15px;color:#d3e2ff}
+.cta-inner .btn{margin-top:30px}
+/* ---------- Hero network graphic ---------- */
+.hero-stars{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.hero-star{position:absolute;width:2px;height:2px;border-radius:50%;background:#cfe0ff;opacity:.5;animation:twinkle 4s ease-in-out infinite}
 @keyframes twinkle{0%,100%{opacity:.18}50%{opacity:.85}}
-.cta-inner{display:grid;grid-template-columns:1.05fr 1fr;align-items:center;gap:40px;padding:92px 0}
-.cta-copy h2{font-size:clamp(28px,4vw,46px);font-weight:800;letter-spacing:-.03em;line-height:1.12}
-.cta-copy p{max-width:470px;margin:20px 0 0;font-size:15px;color:#aeb8cc;line-height:1.6}
-.cta-copy .btn{margin-top:30px}
-/* network graphic */
-.cta-net{position:relative;height:470px;width:100%}
+.hero-viz{position:relative;z-index:1;width:min(100%,720px);aspect-ratio:720/468;margin:48px auto 4px}
 .cta-traces{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 .cta-traces path{fill:none}
 .tr-base path{stroke:rgba(120,150,220,.16);stroke-width:1.4}
@@ -701,16 +701,16 @@ p{text-wrap:pretty}
 .cc-price-row{justify-content:space-between;margin-top:8px}
 .cc-price-val{font-size:17px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums}
 .cc-chart{width:100%;height:30px;margin-top:8px}
-.cc-conn{top:2px;left:-24px;width:186px}
-.cc-vol{top:42%;left:-48px;width:212px}
+.cc-conn{top:0;left:6%;width:190px}
+.cc-vol{top:37%;left:0;width:214px}
 .cc-vol.is-active{border-color:rgba(0,120,255,.6);box-shadow:0 0 0 1px rgba(0,120,255,.35),0 22px 50px -20px rgba(0,60,180,.6)}
-.cc-price{bottom:2px;left:6px;width:214px}
-.cta-bubble{position:absolute;z-index:2;top:12%;right:-6px;background:rgba(20,28,48,.72);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.14);border-radius:14px 14px 14px 4px;padding:10px 14px;font-size:12.5px;color:#dfe6f2;font-weight:500;white-space:nowrap;box-shadow:0 16px 34px -16px rgba(0,0,0,.6)}
+.cc-price{bottom:0;left:7%;width:216px}
+.cta-bubble{position:absolute;z-index:2;top:6%;right:6%;background:rgba(20,28,48,.72);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.14);border-radius:14px 14px 14px 4px;padding:10px 14px;font-size:12.5px;color:#dfe6f2;font-weight:500;white-space:nowrap;box-shadow:0 16px 34px -16px rgba(0,0,0,.6)}
 .cta-bubble b{color:#7fb0ff}
 .cta-chip{position:absolute;z-index:2;width:46px;height:46px;border-radius:13px;display:grid;place-items:center;color:#9fc2ff;background:rgba(18,26,46,.6);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.12);box-shadow:0 16px 34px -18px rgba(0,0,0,.6)}
 .cta-chip svg{width:20px;height:20px}
-.cta-chip.cx1{top:40%;right:-26px}
-.cta-chip.cx2{bottom:16%;right:34px}
+.cta-chip.cx1{top:37%;right:0}
+.cta-chip.cx2{bottom:19%;right:16%}
 [data-float]{animation:floaty2 6s ease-in-out infinite;will-change:transform}
 .cc-vol[data-float]{animation-duration:7s;animation-delay:-1.2s}
 .cc-price[data-float]{animation-duration:6.6s;animation-delay:-2.4s}
@@ -844,16 +844,14 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
   .markets-grid{grid-template-columns:1fr 1fr}
   .mkt-wide{grid-column:span 2}
   .howto{min-height:auto;display:block}
-  .cta-inner{grid-template-columns:1fr;text-align:center;gap:16px;padding:74px 0}
-  .cta-copy{max-width:560px;margin-inline:auto}
-  .cta-copy p{margin-inline:auto}
-  .cta-net{margin:10px auto 0;max-width:500px;height:440px}
+  .hero-viz{margin-top:40px}
 }
 @media (max-width:720px){
   .section{padding:68px 0}
   .head{margin-bottom:40px}
   .hero{padding:64px 0 72px}
-  .hero-strip-label{margin-top:72px}
+  .hero-viz{display:none}
+  .hero-strip-label{margin-top:36px}
   .hero-strip{gap:26px 0}
   .hero-strip li{flex:0 0 44%;min-width:44%;padding:0 10px}
   .hero-strip li+li::before{display:none}
@@ -883,8 +881,6 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
   .cookie.show{transform:translateY(0)}
   .cookie-text{font-size:13px;flex:1 1 100%}
   .chat-panel{left:12px;right:12px;width:auto}
-  .cta-net{display:none}
-  .cta-inner{padding:64px 0}
 }
 @media (max-width:460px){
   .foot-cols{grid-template-columns:1fr}

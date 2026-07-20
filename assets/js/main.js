@@ -415,15 +415,15 @@
     });
   }
 
-  /* ---------------- CTA banner starfield ---------------- */
-  function initCtaStars() {
-    var el = document.getElementById('ctaStars');
+  /* ---------------- Hero starfield ---------------- */
+  function initHeroStars() {
+    var el = document.getElementById('heroStars');
     if (!el) return;
-    var n = prefersReduced ? 16 : 46, html = '';
+    var n = prefersReduced ? 18 : 54, html = '';
     for (var i = 0; i < n; i++) {
       var x = (i * 37 + 11) % 100, y = (i * 53 + 7) % 100;
       var s = 1 + (i % 3) * 0.7, d = (i % 6) * 0.7;
-      html += '<span class="cta-star" style="left:' + x + '%;top:' + y + '%;width:' + s + 'px;height:' + s + 'px;animation-delay:' + d + 's"></span>';
+      html += '<span class="hero-star" style="left:' + x + '%;top:' + y + '%;width:' + s + 'px;height:' + s + 'px;animation-delay:' + d + 's"></span>';
     }
     el.innerHTML = html;
   }
@@ -446,7 +446,7 @@
     initMagnetic();
     initCookie();
     initChat();
-    initCtaStars();
+    initHeroStars();
     if (hasST) ScrollTrigger.refresh();
     window.addEventListener('load', function () { if (hasST) ScrollTrigger.refresh(); });
   }
