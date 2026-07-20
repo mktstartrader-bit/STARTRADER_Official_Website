@@ -415,6 +415,19 @@
     });
   }
 
+  /* ---------------- CTA banner starfield ---------------- */
+  function initCtaStars() {
+    var el = document.getElementById('ctaStars');
+    if (!el) return;
+    var n = prefersReduced ? 16 : 46, html = '';
+    for (var i = 0; i < n; i++) {
+      var x = (i * 37 + 11) % 100, y = (i * 53 + 7) % 100;
+      var s = 1 + (i % 3) * 0.7, d = (i % 6) * 0.7;
+      html += '<span class="cta-star" style="left:' + x + '%;top:' + y + '%;width:' + s + 'px;height:' + s + 'px;animation-delay:' + d + 's"></span>';
+    }
+    el.innerHTML = html;
+  }
+
   /* ---------------- Boot ---------------- */
   function boot() {
     if (!prefersReduced && hasGSAP && hasST) doc.classList.add('is-animate');
@@ -433,6 +446,7 @@
     initMagnetic();
     initCookie();
     initChat();
+    initCtaStars();
     if (hasST) ScrollTrigger.refresh();
     window.addEventListener('load', function () { if (hasST) ScrollTrigger.refresh(); });
   }
