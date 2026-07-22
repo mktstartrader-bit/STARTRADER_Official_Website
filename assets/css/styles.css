@@ -1329,3 +1329,92 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
 /* stat hover accent */
 .pe-stat b{transition:color .3s}
 .pe-stat:hover b{color:var(--blue)}
+
+/* ================= FUNDING PAGE ================= */
+.fund-hero .acct-hero-sub{max-width:600px}
+
+/* ---- Methods (light, tabbed) ---- */
+.fund-methods{background:radial-gradient(56% 60% at 90% 2%,rgba(0,71,187,.07),transparent 60%),var(--bg-light)}
+.fund-tabs{display:flex;width:296px;margin:0 auto 44px;padding:5px;border-radius:70px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow-sm);position:relative}
+.fund-tab{flex:1;padding:12px 10px;border-radius:70px;font-size:14px;font-weight:600;color:var(--text-soft);position:relative;z-index:1;transition:color .3s var(--ease)}
+.fund-tab.active{color:#fff}
+.fund-tab-ind{position:absolute;top:5px;left:5px;width:calc(50% - 5px);bottom:5px;border-radius:70px;background:var(--blue);box-shadow:0 8px 20px -8px rgba(0,71,187,.7);transition:transform .42s var(--ease);z-index:0}
+.fund-tabs.is-withdraw .fund-tab-ind{transform:translateX(100%)}
+
+.pay-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.pay-grid[hidden]{display:none}
+@keyframes payIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.pay-in .pay-card{animation:payIn .5s var(--ease) both}
+.pay-in .pay-card:nth-child(2){animation-delay:.05s}
+.pay-in .pay-card:nth-child(3){animation-delay:.1s}
+.pay-in .pay-card:nth-child(4){animation-delay:.15s}
+.pay-in .pay-card:nth-child(5){animation-delay:.2s}
+.pay-in .pay-card:nth-child(6){animation-delay:.25s}
+.pay-in .pay-card:nth-child(7){animation-delay:.3s}
+.pay-in .pay-card:nth-child(8){animation-delay:.35s}
+.pay-card{display:flex;flex-direction:column;gap:14px;min-height:150px;background:rgba(255,255,255,.6);-webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6);border:1px solid rgba(255,255,255,.8);border-radius:var(--radius-lg);padding:22px 22px 18px;box-shadow:0 12px 34px -18px rgba(20,44,96,.24),inset 0 1px 0 rgba(255,255,255,.9);transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s}
+.pay-card:hover{transform:translateY(-6px);box-shadow:0 26px 56px -26px rgba(20,44,96,.3),inset 0 1px 0 rgba(255,255,255,.95);border-color:#fff}
+.pay-logo{height:34px;display:flex;align-items:center;transition:transform .4s var(--ease)}
+.pay-card:hover .pay-logo{transform:scale(1.04)}
+.pay-logo svg{height:100%;width:auto;display:block}
+.pay-name{font-size:15px;font-weight:700;color:var(--text);letter-spacing:-.01em}
+.pay-meta{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:var(--text-mute);margin-top:auto}
+.pay-fee{color:#0f9d6f;font-weight:600;background:rgba(16,185,129,.12);padding:3px 10px;border-radius:70px}
+/* brand logo marks */
+.lg-visa{font-family:Arial,Helvetica,sans-serif;font-style:italic;font-weight:800;font-size:25px;color:#1434CB;letter-spacing:.5px;line-height:1}
+.lg-word{font-weight:800;font-size:19px;letter-spacing:-.01em;line-height:1}
+.lg-word.sm{font-size:15px;letter-spacing:.02em}
+.lg-wise{display:inline-block;background:#9FE870;color:#163300;font-weight:800;font-size:15px;padding:6px 12px;border-radius:8px;line-height:1}
+.lg-mc{height:30px}
+.lg-usdt{display:inline-flex;align-items:center;gap:9px;font-weight:800;font-size:17px;color:#26A17B}
+.lg-usdt svg{height:30px;width:30px}
+.pay-note{max-width:760px;margin:34px auto 0;text-align:center;font-size:13.5px;color:var(--text-mute)}
+
+/* ---- Deposit calculator (dark, interactive) ---- */
+.fund-calc{background:radial-gradient(80% 70% at 50% 0%,rgba(0,40,120,.4),transparent 66%),linear-gradient(180deg,#04060e,#080b16 60%,#04060e);color:#fff}
+.calc-card{max-width:720px;margin:0 auto;border-radius:var(--radius-xl);padding:34px 36px;background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.1);box-shadow:0 40px 90px -40px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.07)}
+.calc-label{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#8fb8ff;margin-bottom:14px}
+.calc-input{display:flex;align-items:center;gap:6px;background:rgba(0,0,0,.32);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:14px 20px;transition:border-color .25s}
+.calc-input:focus-within{border-color:rgba(90,150,255,.6)}
+.calc-cur{font-size:30px;font-weight:800;color:#5b9dff}
+.calc-input input{flex:1;min-width:0;background:none;border:none;outline:none;color:#fff;font-size:30px;font-weight:800;font-family:inherit;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.calc-chips{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 26px}
+.calc-chip{font-size:13px;font-weight:600;color:#aeb8cc;padding:9px 16px;border-radius:70px;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.04);transition:color .25s,background .25s,border-color .25s}
+.calc-chip:hover{color:#fff;border-color:rgba(255,255,255,.28)}
+.calc-chip.active{color:#fff;background:rgba(0,71,187,.3);border-color:rgba(90,150,255,.55)}
+.calc-out{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.calc-cell{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:13px;padding:15px 16px}
+.calc-cell small{display:block;font-size:11.5px;color:#8b95a8;margin-bottom:6px}
+.calc-cell b{font-size:19px;font-weight:800;color:#fff;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.calc-cell.ok b{color:#34d99b}
+.calc-cell .chk{display:inline-flex;align-items:center;gap:7px;color:#34d99b;font-weight:700;font-size:15px}
+.calc-cell .chk svg{width:18px;height:18px}
+@keyframes calcFlash{0%{color:#34d99b}100%{color:#fff}}
+.calc-credited.flash{animation:calcFlash .55s ease}
+
+/* ---- Important information (two-column: icon rows + image) ---- */
+.fund-info{background:var(--bg-light-2)}
+.fund-info-grid2{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
+.fund-info-copy{max-width:560px}
+.fund-info-copy .h2{margin-top:6px;margin-bottom:16px}
+.fund-info-intro{font-size:15px;color:var(--text-soft);line-height:1.7;margin-bottom:32px;max-width:480px}
+.fund-info-list{display:flex;flex-direction:column;gap:14px}
+.fund-info-row{display:flex;align-items:center;gap:16px;background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6);border:1px solid rgba(255,255,255,.8);border-radius:16px;padding:18px 22px;box-shadow:0 12px 30px -20px rgba(20,44,96,.28),inset 0 1px 0 rgba(255,255,255,.9);transition:transform .35s var(--ease),box-shadow .35s,border-color .3s}
+.fund-info-row:hover{transform:translateX(5px);border-color:#fff;box-shadow:0 18px 36px -22px rgba(20,44,96,.34),inset 0 1px 0 rgba(255,255,255,.95)}
+.fund-info-ic{flex:none;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:rgba(0,71,187,.09);color:var(--blue)}
+.fund-info-ic svg{width:21px;height:21px}
+.fund-info-row p{font-size:14px;color:var(--text);line-height:1.5}
+.fund-info-figure{border-radius:var(--radius-xl);overflow:hidden;aspect-ratio:1614/1782;box-shadow:0 30px 70px -30px rgba(16,30,54,.4)}
+.fund-info-figure img{width:100%;height:100%;object-fit:cover;object-position:center}
+
+@media (max-width:980px){
+  .pay-grid{grid-template-columns:repeat(2,1fr)}
+  .fund-info-grid2{grid-template-columns:1fr;gap:40px}
+  .fund-info-copy{max-width:100%}
+  .fund-info-figure{max-width:520px;margin-inline:auto;width:100%}
+}
+@media (max-width:560px){
+  .pay-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .calc-out{grid-template-columns:1fr}
+  .calc-card{padding:26px 20px}
+}

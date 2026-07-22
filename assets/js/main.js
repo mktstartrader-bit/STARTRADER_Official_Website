@@ -643,6 +643,55 @@
     }
   }
 
+  /* ---------------- Funding page interactions ---------------- */
+  function initFunding() {
+    // Deposit / Withdrawal tabs
+    var tabs = document.querySelector('[data-fund-tabs]');
+    if (tabs) {
+      var btns = Array.prototype.slice.call(tabs.querySelectorAll('.fund-tab'));
+      var grids = Array.prototype.slice.call(document.querySelectorAll('[data-pay-grid]'));
+      btns.forEach(function (b) {
+        b.addEventListener('click', function () {
+          var t = b.dataset.tab;
+          tabs.classList.toggle('is-withdraw', t === 'withdraw');
+          btns.forEach(function (x) { var on = x === b; x.classList.toggle('active', on); x.setAttribute('aria-selected', on ? 'true' : 'false'); });
+          grids.forEach(function (g) {
+            var show = g.dataset.payGrid === t;
+            g.hidden = !show;
+            if (show && !prefersReduced) { g.classList.remove('pay-in'); void g.offsetWidth; g.classList.add('pay-in'); }
+          });
+        });
+      });
+    }
+
+    // Fee-free deposit calculator
+    var calc = document.querySelector('[data-calc]');
+    if (calc) {
+      var input = calc.querySelector('[data-el="amt"]');
+      var chips = Array.prototype.slice.call(calc.querySelectorAll('[data-amt]'));
+      var out = calc.querySelector('[data-el="credited"]');
+      var money = function (n) { return '$' + Number(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); };
+      var syncChips = function (v) { chips.forEach(function (c) { c.classList.toggle('active', parseFloat(c.dataset.amt) === v); }); };
+      var flash = function () { if (out && !prefersReduced) { out.classList.remove('flash'); void out.offsetWidth; out.classList.add('flash'); } };
+      var commit = function (v) {
+        v = Math.max(0, Math.round(v || 0));
+        if (input) input.value = Number(v).toLocaleString('en-US');
+        if (out) out.textContent = money(v);
+        syncChips(v); flash();
+      };
+      if (input) {
+        input.addEventListener('input', function () {
+          var v = parseFloat(this.value.replace(/[^0-9.]/g, '')) || 0;
+          if (out) out.textContent = money(v);
+          syncChips(Math.round(v));
+        });
+        input.addEventListener('blur', function () { commit(parseFloat(this.value.replace(/[^0-9.]/g, '')) || 0); });
+      }
+      chips.forEach(function (c) { c.addEventListener('click', function () { commit(parseFloat(c.dataset.amt)); }); });
+      commit(1000);
+    }
+  }
+
   /* ---------------- Boot ---------------- */
   function boot() {
     if (!prefersReduced && hasGSAP && hasST) doc.classList.add('is-animate');
@@ -665,6 +714,7 @@
     initChat();
     initTradingAccount();
     initPrimeEcn();
+    initFunding();
     if (hasST) ScrollTrigger.refresh();
     window.addEventListener('load', function () { if (hasST) ScrollTrigger.refresh(); });
   }
