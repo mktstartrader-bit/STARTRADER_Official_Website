@@ -339,7 +339,8 @@
 
   /* ---------------- Magnetic buttons ---------------- */
   function initMagnetic() {
-    if (!finePointer || prefersReduced || !hasGSAP) return;
+    return; // disabled — buttons stay static for a professional feel
+    /* eslint-disable no-unreachable */
     document.querySelectorAll('.magnetic').forEach(function (btn) {
       btn.addEventListener('pointermove', function (e) {
         var r = btn.getBoundingClientRect();
