@@ -194,7 +194,7 @@ p{text-wrap:pretty}
 }
 .mega::before{content:"";position:absolute;left:0;right:0;top:-16px;height:18px}
 .nav-item.has-mega:hover .mega{opacity:1;visibility:visible;transform:translateY(0)}
-.mega-main{display:grid;grid-template-columns:repeat(3,272px);flex:none}
+.mega-main{display:grid;grid-template-columns:repeat(3,300px);flex:none}
 .mega-col{padding:0 22px}
 .mega-col+.mega-col{border-left:1px solid rgba(255,255,255,.08)}
 .mega-head{display:block;font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#8592ad;margin-bottom:16px;padding-left:10px}
@@ -204,15 +204,15 @@ p{text-wrap:pretty}
 .mega-item:hover .mega-ico,.mega-item.active .mega-ico{color:#5b9dff;border-color:rgba(0,120,255,.4);background:rgba(0,71,187,.16)}
 .mega-ico svg{width:20px;height:20px}
 .mega-txt{display:flex;flex-direction:column;line-height:1.3;min-width:0}
-.mega-txt b{font-size:14.5px;font-weight:600;color:#eef1f6;display:flex;align-items:center;gap:8px}
+.mega-txt b{font-size:14px;font-weight:600;color:#eef1f6;display:flex;align-items:center;gap:8px;white-space:nowrap}
 .mega-txt em{font-style:normal;font-size:12.5px;color:#a6b0c4;margin-top:3px}
 .mega-badge{font-size:9px;font-weight:700;letter-spacing:.04em;padding:2px 7px;border-radius:20px;background:rgba(0,71,187,.28);color:#7fb0ff;border:1px solid rgba(0,120,255,.45);text-transform:uppercase}
 .mega-chev{width:16px;height:16px;margin-left:auto;color:#6d7893;transition:transform .3s var(--ease),color .2s}
 .mega-item-parent.active .mega-chev{transform:rotate(90deg);color:#5b9dff}
 /* Commodities flyout */
 .mega-flyout{width:0;overflow:hidden;flex:none;transition:width .38s var(--ease)}
-.mega.flyout-open .mega-flyout{width:266px}
-.fly-inner{width:252px;margin-left:14px;height:100%;padding:20px 22px;border-radius:14px;border:1px solid rgba(255,255,255,.09);background:linear-gradient(165deg,rgba(26,42,78,.85),rgba(4,7,16,.96))}
+.mega.flyout-open .mega-flyout{width:250px}
+.fly-inner{width:236px;margin-left:14px;height:100%;padding:20px 22px;border-radius:14px;border:1px solid rgba(255,255,255,.09);background:linear-gradient(165deg,rgba(26,42,78,.85),rgba(4,7,16,.96))}
 .fly-title{display:block;font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#6d7893;margin-bottom:14px}
 .fly-group{margin-bottom:16px}
 .fly-group:last-child{margin-bottom:0}
@@ -1007,7 +1007,7 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
 .vb-img-photo{background:#fff}
 .vb-img-photo::before,.vb-img-photo::after{display:none}
 .vb-img-photo img{position:relative;z-index:1;width:100%;height:100%;object-fit:contain;object-position:center;padding:14px}
-.vb-img-id img{object-fit:contain;object-position:left bottom;padding:0}
+.vb-img-address img{width:88%;height:88%;padding:0;align-self:end;justify-self:start;object-position:left bottom}
 .vb-wide{grid-column:1/-1;position:relative;overflow:hidden;display:flex;align-items:center;gap:24px;border-radius:var(--radius-lg);padding:34px 40px;color:#fff;background:linear-gradient(120deg,#0a1020 0%,#0f1a3a 60%,#122455 100%);border:1px solid rgba(255,255,255,.08)}
 .vb-wide::after{content:"";position:absolute;right:80px;top:50%;transform:translateY(-50%);width:320px;height:320px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,95,255,.45),transparent 70%);filter:blur(8px)}
 .vb-wide-copy{position:relative;z-index:1;max-width:660px}
@@ -1032,7 +1032,7 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
 .faq-list{max-width:1000px;margin:0 auto}
 .faq-item{background:none;border:none;border-bottom:1px solid rgba(20,40,80,.12);border-radius:0}
 .faq-item:first-child{border-top:1px solid rgba(20,40,80,.12)}
-.faq-item summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:28px;padding:27px 4px;font-size:clamp(16px,1.65vw,19px);font-weight:600;color:var(--text);transition:color .2s}
+.faq-item summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:28px;padding:27px 4px;font-size:clamp(16px,1.65vw,19px);font-weight:400;color:var(--text);transition:color .2s}
 .faq-item summary:hover{color:var(--blue)}
 .faq-item summary::-webkit-details-marker{display:none}
 .faq-q-ic{flex:none;width:46px;height:46px;border-radius:50%;border:1px solid rgba(20,40,80,.28);display:grid;place-items:center;color:var(--text-soft);transition:transform .3s var(--ease),border-color .25s,color .25s,background .25s}
