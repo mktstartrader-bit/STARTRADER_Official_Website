@@ -314,9 +314,11 @@
       lines.forEach(function (el, i) { el.style.transform = 'scaleX(' + Math.max(0, Math.min(1, lp - i)) + ')'; });
     }
 
-    // Fallback: no pin on touch / small screens / short viewports / reduced motion
-    if (prefersReduced || !hasGSAP || !hasST || window.innerWidth < 900 || window.innerHeight < 720) {
-      setState(0, 0);
+    // Fallback: no pin on mobile / very short viewports / reduced motion —
+    // show all steps as clean, equal cards (no scroll animation).
+    if (prefersReduced || !hasGSAP || !hasST || window.innerWidth < 900 || window.innerHeight < 560) {
+      section.classList.add('howto-static');
+      setState(-1, 0);
       return;
     }
 

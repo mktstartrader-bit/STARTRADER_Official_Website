@@ -602,6 +602,13 @@ p{text-wrap:pretty}
 .step-active{background:#fff;border-color:#fff;transform:translateY(-6px);box-shadow:0 30px 60px -26px rgba(0,60,180,.6)}
 .step-active h3{color:#0d1424}
 .step-active p{color:#5a6472}
+/* static fallback (mobile / short viewports): all steps as equal white cards, no stepper */
+.howto-static{min-height:auto;display:block}
+.howto-static .stepper{display:none}
+.howto-static .steps{margin-bottom:26px}
+.howto-static .step{background:#fff;border-color:#fff}
+.howto-static .step h3{color:#0d1424}
+.howto-static .step p{color:#5a6472}
 .howto-cta{transition:opacity .4s var(--ease)}
 
 /* ---------- Trusted worldwide ---------- */
@@ -1042,7 +1049,7 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
 .faq-q-ic{flex:none;width:46px;height:46px;border-radius:50%;border:1px solid rgba(20,40,80,.28);display:grid;place-items:center;color:var(--text-soft);transition:transform .3s var(--ease),border-color .25s,color .25s,background .25s}
 .faq-q-ic svg{width:22px;height:22px}
 .faq-item summary:hover .faq-q-ic{border-color:var(--blue);color:var(--blue)}
-.faq-item[open] .faq-q-ic{transform:rotate(45deg);background:var(--blue);border-color:var(--blue);color:#fff}
+.faq-item[open] summary .faq-q-ic,.faq-item[open] summary:hover .faq-q-ic{transform:rotate(45deg);background:var(--blue);border-color:var(--blue);color:#fff}
 .faq-a{padding:0 4px 28px;max-width:860px;font-size:15px;color:var(--text-soft);line-height:1.7}
 
 @media (max-width:900px){
