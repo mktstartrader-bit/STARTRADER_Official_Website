@@ -509,6 +509,93 @@
     });
   }
 
+  /* ---------------- Trading-account interactive panel ---------------- */
+  function initTradingAccount() {
+    var panel = document.querySelector('[data-ta-panel]');
+    if (!panel) return;
+
+    var accounts = {
+      standard: { name: 'Standard', comm: '$0.00', commNote: 'commission-free*', spreadAdd: 1.0 },
+      ecn:      { name: 'ECN',       comm: '$3.50', commNote: 'per lot / side',   spreadAdd: 0.3 },
+      prime:    { name: 'Prime ECN', comm: '$2.00', commNote: 'per lot / side',   spreadAdd: 0.0 }
+    };
+    var products = {
+      forex:       { sym: 'EUR/USD',  name: 'Euro / US Dollar', price: '1.0842',   dir: 'up',   chg: '+0.13%', base: 0.0,  lev: '1:500', dec: 4 },
+      indices:     { sym: 'US500',    name: 'S&P 500 Index',    price: '5,732.3',  dir: 'up',   chg: '+0.90%', base: 0.4,  lev: '1:200', dec: 1 },
+      metals:      { sym: 'XAU/USD',  name: 'Gold / US Dollar', price: '3,279.96', dir: 'up',   chg: '+1.18%', base: 0.12, lev: '1:500', dec: 2 },
+      commodities: { sym: 'WTI',      name: 'Crude Oil',        price: '78.42',    dir: 'down', chg: '-0.32%', base: 0.03, lev: '1:200', dec: 2 },
+      shares:      { sym: 'AAPL',     name: 'Apple Inc.',       price: '228.11',   dir: 'down', chg: '-0.21%', base: 0.05, lev: '1:20',  dec: 2 }
+    };
+
+    var state = { acct: 'prime', prod: 'forex' };
+
+    var segBtns = Array.prototype.slice.call(panel.querySelectorAll('[data-acct]'));
+    var tabBtns = Array.prototype.slice.call(panel.querySelectorAll('[data-prod]'));
+    var elSym   = panel.querySelector('[data-el="sym"]');
+    var elName  = panel.querySelector('[data-el="name"]');
+    var elPrice = panel.querySelector('[data-el="price"]');
+    var elChg   = panel.querySelector('[data-el="chg"]');
+    var elSpread = panel.querySelector('[data-el="spread"]');
+    var elComm  = panel.querySelector('[data-el="comm"]');
+    var elCommNote = panel.querySelector('[data-el="comm-note"]');
+    var elLev   = panel.querySelector('[data-el="lev"]');
+    var elSpark = panel.querySelector('[data-el="spark"]');
+    var elCta   = panel.querySelector('[data-el="cta"]');
+    var mSpread = panel.querySelector('[data-metric="spread"]');
+    var mComm   = panel.querySelector('[data-metric="comm"]');
+
+    function flash(el) {
+      if (!el || prefersReduced) return;
+      el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash');
+    }
+
+    function render(changed) {
+      var a = accounts[state.acct], p = products[state.prod];
+      var spread = (p.base + a.spreadAdd);
+      var spreadTxt = spread <= 0.001 ? 'from 0.0' : spread.toFixed(1);
+      if (elSym) elSym.textContent = p.sym;
+      if (elName) elName.textContent = p.name;
+      if (elPrice) elPrice.textContent = p.price;
+      if (elChg) { elChg.textContent = p.chg; elChg.className = 'ta-quote-chg ' + p.dir; }
+      if (elSpread) elSpread.innerHTML = spreadTxt + ' <em>pips</em>';
+      if (elComm) elComm.textContent = a.comm;
+      if (elCommNote) elCommNote.textContent = a.commNote;
+      if (elLev) elLev.textContent = p.lev;
+      if (elCta) elCta.innerHTML = 'Open ' + a.name + ' Account <svg class="ico"><use href="#i-arrow-right"/></svg>';
+      if (elSpark) {
+        elSpark.setAttribute('stroke', p.dir === 'up' ? '#34d99b' : '#ff6b6b');
+        // re-trigger draw animation
+        var np = elSpark.cloneNode(true); elSpark.parentNode.replaceChild(np, elSpark); elSpark = np;
+      }
+      segBtns.forEach(function (b) { b.classList.toggle('active', b.dataset.acct === state.acct); });
+      tabBtns.forEach(function (b) { b.classList.toggle('active', b.dataset.prod === state.prod); });
+      if (changed === 'prod' || changed === 'both') flash(mSpread);
+      if (changed === 'acct' || changed === 'both') { flash(mSpread); flash(mComm); }
+    }
+
+    segBtns.forEach(function (b) { b.addEventListener('click', function () { state.acct = b.dataset.acct; render('acct'); }); });
+    tabBtns.forEach(function (b) { b.addEventListener('click', function () { state.prod = b.dataset.prod; render('prod'); }); });
+    render();
+
+    // gentle live price tick on the currently shown instrument
+    if (!prefersReduced) {
+      var bases = {};
+      Object.keys(products).forEach(function (k) { bases[k] = parseFloat(products[k].price.replace(/,/g, '')); });
+      var cur = {}; Object.keys(bases).forEach(function (k) { cur[k] = bases[k]; });
+      setInterval(function () {
+        var p = products[state.prod], k = state.prod, b = bases[k];
+        var step = b * 0.0009 * (Math.random() * 2 - 1);
+        cur[k] = cur[k] + step + (b - cur[k]) * 0.05;
+        var val = cur[k].toLocaleString('en-US', { minimumFractionDigits: p.dec, maximumFractionDigits: p.dec });
+        if (elPrice) {
+          elPrice.textContent = val;
+          elPrice.classList.remove('fup', 'fdown'); void elPrice.offsetWidth;
+          elPrice.classList.add(step >= 0 ? 'fup' : 'fdown');
+        }
+      }, 2200);
+    }
+  }
+
   /* ---------------- Boot ---------------- */
   function boot() {
     if (!prefersReduced && hasGSAP && hasST) doc.classList.add('is-animate');
@@ -529,6 +616,7 @@
     initMagnetic();
     initCookie();
     initChat();
+    initTradingAccount();
     if (hasST) ScrollTrigger.refresh();
     window.addEventListener('load', function () { if (hasST) ScrollTrigger.refresh(); });
   }

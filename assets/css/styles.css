@@ -1049,3 +1049,143 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
   .acct-hero-cta,.acct-hero-points{justify-content:center}
   .acct-hero-sub br{display:none}
 }
+
+/* ================= TRADING ACCOUNT PAGE ================= */
+/* ---- Hero (two-column: copy + interactive panel over video) ---- */
+.ta-hero{min-height:min(780px,calc(100vh - var(--topbar-h,44px)))}
+.ta-hero .acct-hero-bg::after{background:linear-gradient(90deg,rgba(4,6,14,.96) 0%,rgba(4,6,14,.82) 34%,rgba(4,6,14,.5) 60%,rgba(4,6,14,.28) 100%),linear-gradient(180deg,transparent 60%,rgba(4,6,14,.55))}
+.ta-hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:56px;align-items:center;width:100%}
+.ta-hero-copy{max-width:600px;min-width:0}
+.ta-hero .acct-hero-sub{max-width:640px}
+.ta-panel{min-width:0}
+.ta-hero-metrics{display:flex;flex-wrap:wrap;gap:14px 0;margin-top:38px}
+.ta-hero-metrics li{padding:0 26px;position:relative}
+.ta-hero-metrics li:first-child{padding-left:0}
+.ta-hero-metrics li+li::before{content:"";position:absolute;left:0;top:4px;bottom:4px;width:1px;background:rgba(255,255,255,.16)}
+.ta-hero-metrics b{display:block;font-size:clamp(21px,2.3vw,28px);font-weight:800;letter-spacing:-.02em;color:#fff;line-height:1}
+.ta-hero-metrics span{display:block;margin-top:6px;font-size:12px;color:#9fb0cc;letter-spacing:.01em}
+
+/* Interactive account panel */
+.ta-panel{position:relative;border-radius:var(--radius-xl);padding:22px 22px 24px;
+  background:linear-gradient(180deg,rgba(21,29,52,.74),rgba(9,13,24,.86));
+  -webkit-backdrop-filter:blur(28px) saturate(1.5);backdrop-filter:blur(28px) saturate(1.5);
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 44px 100px -36px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.14)}
+.ta-panel::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:linear-gradient(140deg,rgba(120,160,255,.4),transparent 40%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:.7}
+.ta-panel-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.ta-panel-head b{font-size:15px;color:#fff;font-weight:600;letter-spacing:-.01em}
+.ta-status{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;color:#34d99b;padding:5px 12px 5px 10px;border-radius:70px;background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.32)}
+.ta-status i{width:7px;height:7px;border-radius:50%;background:#34d99b;animation:pulse 2.4s infinite}
+
+.ta-seg{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:5px;border-radius:14px;background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.08)}
+.ta-seg button{padding:11px 8px;border-radius:10px;font-size:13px;font-weight:600;color:#aeb8cc;white-space:nowrap;transition:color .25s var(--ease),background .25s var(--ease),box-shadow .25s}
+.ta-seg button:hover{color:#fff}
+.ta-seg button.active{background:linear-gradient(180deg,#0b57e6,#0740b8);color:#fff;box-shadow:0 12px 26px -12px rgba(3,72,205,.95)}
+
+.ta-tabs{display:flex;flex-wrap:wrap;gap:7px;margin:18px 0 16px}
+.ta-tabs button{font-size:12.5px;font-weight:600;color:#aeb8cc;padding:7px 14px;border-radius:70px;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.04);transition:color .25s,background .25s,border-color .25s}
+.ta-tabs button:hover{color:#fff;border-color:rgba(255,255,255,.28)}
+.ta-tabs button.active{color:#fff;background:rgba(0,71,187,.3);border-color:rgba(90,150,255,.55)}
+
+.ta-quote{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 16px;border-radius:14px;background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.08)}
+.ta-quote-l{min-width:0}
+.ta-quote-sym{font-size:15px;font-weight:700;color:#fff;letter-spacing:-.01em}
+.ta-quote-name{font-size:12px;color:#8b95a8;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ta-spark{width:78px;height:34px;flex:none}
+.ta-spark path{fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:240;stroke-dashoffset:240;animation:taSpark 1.4s var(--ease) forwards}
+@keyframes taSpark{to{stroke-dashoffset:0}}
+.ta-quote-r{text-align:right;flex:none}
+.ta-quote-price{font-size:18px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums}
+.ta-quote-chg{font-size:12.5px;font-weight:600;margin-top:2px}
+.ta-quote-chg.up{color:#34d99b}
+.ta-quote-chg.down{color:#ff6b6b}
+@keyframes taUp{0%{color:#34d99b}100%{color:#fff}}
+@keyframes taDown{0%{color:#ff6b6b}100%{color:#fff}}
+.ta-quote-price.fup{animation:taUp .7s ease}
+.ta-quote-price.fdown{animation:taDown .7s ease}
+
+.ta-metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0 18px}
+.ta-metric{padding:13px 15px;border-radius:13px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08)}
+.ta-metric small{display:flex;align-items:center;gap:6px;font-size:11.5px;color:#8b95a8;margin-bottom:6px}
+.ta-metric small svg{width:13px;height:13px;color:#7fb0ff}
+.ta-metric b{font-size:17px;color:#fff;font-weight:700;letter-spacing:-.01em}
+.ta-metric em{font-style:normal;font-size:10.5px;color:#8b95a8;display:block;margin-top:2px}
+@keyframes taMetric{0%{background:rgba(0,71,187,.2);border-color:rgba(90,150,255,.4)}100%{background:rgba(255,255,255,.045);border-color:rgba(255,255,255,.08)}}
+.ta-metric.flash{animation:taMetric .55s ease}
+.ta-panel .btn{width:100%}
+.ta-panel-note{margin-top:12px;font-size:11px;color:#7d879a;text-align:center}
+
+/* ---- Account type cards (dark, multi-shade, equal height) ---- */
+.ta-types{background:radial-gradient(90% 68% at 50% 0%,rgba(0,46,138,.34),transparent 60%),linear-gradient(180deg,#04060e 0%,#060a18 52%,#04060e 100%);color:#fff;position:relative;overflow:hidden}
+.ta-types>.container{position:relative;z-index:1}
+.ta-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;align-items:stretch}
+.ta-card{position:relative;display:flex;flex-direction:column;height:100%;border-radius:var(--radius-xl);padding:32px 28px;
+  background:
+    radial-gradient(130% 74% at 50% -10%,var(--ray,rgba(120,160,255,.2)),transparent 60%),
+    linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.09);
+  box-shadow:0 26px 62px -34px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.06);
+  transition:transform .45s var(--ease),border-color .35s,box-shadow .45s var(--ease)}
+/* thin glowing colour line along the top edge, per card (homepage tools-card treatment) */
+.ta-card::after{content:"";position:absolute;top:0;left:16%;right:16%;height:2px;border-radius:2px;background:var(--ray-line,rgba(120,160,255,.7));box-shadow:0 0 18px 1px var(--ray-line,rgba(120,160,255,.7));opacity:.85;transition:opacity .35s,left .45s var(--ease),right .45s var(--ease)}
+.ta-card:hover{transform:translateY(-6px);border-color:var(--ray-line,rgba(0,120,255,.45));box-shadow:0 36px 78px -34px rgba(0,60,180,.55)}
+.ta-card:hover::after{opacity:1;left:6%;right:6%}
+/* per-card gradient colour */
+.ta-card--s1{--ray:rgba(22,233,215,.20);--ray-line:rgba(22,233,215,.85)}   /* Demo — teal */
+.ta-card--s2{--ray:rgba(150,110,255,.22);--ray-line:rgba(160,120,255,.9)}  /* Standard — purple */
+.ta-card--s3{--ray:rgba(16,200,140,.20);--ray-line:rgba(30,210,150,.9)}    /* ECN — green */
+.ta-card--dark{--ray:rgba(0,110,255,.3);--ray-line:rgba(80,150,255,.95);border-color:rgba(90,150,255,.26)} /* Prime ECN — brand blue */
+.ta-card--dark::after{display:none} /* badge is the top accent — no line behind it */
+.ta-card-ic{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#e6ecf6;margin-bottom:20px}
+.ta-card-ic svg{width:23px;height:23px}
+.ta-card h3{font-size:21px;color:#fff;letter-spacing:-.01em}
+.ta-card-tag{font-size:13.5px;color:#9aa6bd;margin-top:8px;margin-bottom:26px;line-height:1.55;min-height:42px}
+.ta-card .btn{width:100%}
+.ta-card--dark .btn{background:#fff;color:var(--blue)}
+.ta-card--dark .btn:hover{background:#eaf1fc}
+.ta-feat{margin-top:28px;padding-top:26px;border-top:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;gap:17px}
+.ta-feat li{display:flex;align-items:flex-start;gap:12px;font-size:13.5px;color:#c4cee0;line-height:1.5}
+.ta-feat-ic{flex:none;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.07);color:var(--ray-line,#8fb8ff);margin-top:1px}
+.ta-feat-ic svg{width:11px;height:11px}
+.ta-rec{position:absolute;top:-11px;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#fff;padding:6px 14px;border-radius:70px;background:linear-gradient(90deg,#2f7bff,#0740b8);box-shadow:0 12px 26px -10px rgba(3,72,205,.95)}
+
+/* ---- Comparison table (airy, brand-highlighted column) ---- */
+.ta-compare{background:var(--bg-light)}
+.ta-spec-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.ta-table{width:100%;min-width:820px;max-width:1080px;margin:0 auto;border-collapse:collapse;font-size:15px}
+.ta-table th,.ta-table td{padding:21px 26px;text-align:left;vertical-align:middle}
+.ta-table thead th{font-size:17px;font-weight:700;color:var(--text);letter-spacing:-.01em;padding-bottom:20px;border-bottom:1px solid var(--line)}
+.ta-table thead th:first-child{font-size:14px;color:var(--text-mute);font-weight:600}
+.spec-feat{display:flex;align-items:center;gap:14px}
+.spec-ic{flex:none;width:24px;height:24px;color:var(--text-mute)}
+.spec-ic svg{width:24px;height:24px}
+.ta-table tbody td:first-child{color:var(--text);font-weight:500}
+.ta-table tbody td{color:var(--text-soft);line-height:1.45}
+.ta-table tbody tr td{border-bottom:1px solid var(--line)}
+.ta-table tbody tr:last-child td{border-bottom:none}
+/* brand-highlighted column (Prime ECN) */
+.ta-table th.ta-col-rec{color:var(--blue);background:rgba(0,71,187,.06);border-top-left-radius:14px;border-top-right-radius:14px}
+.ta-table td.ta-col-rec{color:var(--blue);font-weight:600;background:rgba(0,71,187,.05)}
+.ta-table tbody tr:last-child td.ta-col-rec{border-bottom-left-radius:14px;border-bottom-right-radius:14px}
+.ta-rec-badge{display:inline-block;margin-left:9px;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;padding:3px 9px;border-radius:70px;background:var(--blue);vertical-align:middle}
+.spec-yes,.spec-no{display:inline-grid;place-items:center;width:24px;height:24px}
+.spec-yes svg{width:21px;height:21px;color:#1f2a3d;stroke-width:2.4}
+.ta-col-rec .spec-yes svg{color:var(--blue)}
+.spec-no svg{width:17px;height:17px;color:#b8c0cc}
+
+/* ---- Closing CTA: two actions ---- */
+.cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:34px}
+.cta-inner .cta-actions .btn{margin-top:0}
+
+@media (max-width:980px){
+  .ta-hero-grid{grid-template-columns:minmax(0,1fr);gap:38px;text-align:center}
+  .ta-hero .acct-hero-bg::after{background:linear-gradient(180deg,rgba(4,6,14,.72),rgba(4,6,14,.92))}
+  .ta-hero-copy{max-width:600px;margin-inline:auto}
+  .acct-hero-cta{justify-content:center}
+  .ta-panel{width:100%;max-width:480px;margin-inline:auto}
+  .ta-cards{grid-template-columns:1fr 1fr}
+}
+@media (max-width:620px){
+  .ta-cards{grid-template-columns:1fr;max-width:420px;margin-inline:auto}
+  .ta-card-tag{min-height:0}
+}
