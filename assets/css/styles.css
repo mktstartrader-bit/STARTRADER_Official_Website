@@ -580,7 +580,11 @@ p{text-wrap:pretty}
 .blue{color:var(--blue)}
 
 /* ---------- How it works (dark navy, pinned scrub) ---------- */
-.howto{background:linear-gradient(180deg,#00102c,#001333);color:#fff;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+.howto{background:
+  radial-gradient(92% 72% at 50% 6%,rgba(0,46,138,.42),transparent 60%),
+  radial-gradient(80% 60% at 50% 100%,rgba(0,32,96,.34),transparent 66%),
+  linear-gradient(180deg,#04060e 0%,#050a1c 50%,#04060e 100%);
+  color:#fff;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
 .stepper{display:flex;align-items:center;justify-content:center;max-width:640px;margin:0 auto 50px;gap:0}
 .stp{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;flex:none;font-weight:700;font-size:15px;background:rgba(255,255,255,.08);color:#8b97ae;border:1px solid rgba(255,255,255,.12);transition:background .35s var(--ease),color .35s var(--ease),border-color .35s var(--ease),box-shadow .35s var(--ease),transform .35s var(--ease)}
 .stp .stp-num{display:block}
