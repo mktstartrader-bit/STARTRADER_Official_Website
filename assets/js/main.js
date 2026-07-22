@@ -396,6 +396,62 @@
     });
   }
 
+  /* ---------------- Language popup ---------------- */
+  function initLangPop() {
+    var btn = document.getElementById('langBtn');
+    var pop = document.getElementById('langPop');
+    if (!btn || !pop) return;
+    var closeBtn = document.getElementById('langClose');
+    var search = document.getElementById('langSearch');
+    var codeEl = document.getElementById('langCode');
+    var items = Array.prototype.slice.call(pop.querySelectorAll('.lp-item'));
+    var empty = pop.querySelector('.lp-empty');
+
+    function open() {
+      pop.classList.add('open');
+      pop.setAttribute('aria-hidden', 'false');
+      btn.setAttribute('aria-expanded', 'true');
+      setTimeout(function () { if (search) search.focus(); }, 80);
+    }
+    function close() {
+      pop.classList.remove('open');
+      pop.setAttribute('aria-hidden', 'true');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      pop.classList.contains('open') ? close() : open();
+    });
+    if (closeBtn) closeBtn.addEventListener('click', close);
+    document.addEventListener('click', function (e) {
+      if (pop.classList.contains('open') && !pop.contains(e.target) && !btn.contains(e.target)) close();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && pop.classList.contains('open')) { close(); btn.focus(); }
+    });
+
+    if (search) search.addEventListener('input', function () {
+      var q = this.value.trim().toLowerCase(), any = false;
+      items.forEach(function (it) {
+        var match = it.textContent.toLowerCase().indexOf(q) > -1;
+        it.style.display = match ? '' : 'none';
+        if (match) any = true;
+      });
+      if (empty) empty.hidden = any;
+    });
+
+    items.forEach(function (it) {
+      it.addEventListener('click', function () {
+        items.forEach(function (x) { x.classList.remove('is-active'); });
+        it.classList.add('is-active');
+        if (codeEl) codeEl.textContent = it.getAttribute('data-code') || codeEl.textContent;
+        btn.setAttribute('aria-label', 'Language: ' + it.textContent.trim());
+        close();
+      });
+    });
+  }
+
   /* ---------------- Cookie consent ---------------- */
   function initCookie() {
     var el = document.getElementById('cookie');
@@ -460,6 +516,7 @@
     initAnchors();
     initDropdowns();
     initMega();
+    initLangPop();
     initReveals();
     initHowtoScrub();
     initAwards();

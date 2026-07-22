@@ -228,10 +228,44 @@
     </nav>
 
     <div class="nav-right">
-      <button class="lang" aria-label="Language: English">
-        <svg class="flag" viewBox="0 0 20 14" aria-hidden="true"><rect width="20" height="14" rx="2" fill="#012169"/><path d="M0 0l20 14M20 0L0 14" stroke="#fff" stroke-width="2.4"/><path d="M0 0l20 14M20 0L0 14" stroke="#C8102E" stroke-width="1.1"/><path d="M10 0v14M0 7h20" stroke="#fff" stroke-width="3.4"/><path d="M10 0v14M0 7h20" stroke="#C8102E" stroke-width="1.8"/></svg>
-        <span>EN</span>
+      <button class="lang" id="langBtn" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="langPop" aria-label="Select language">
+        <svg class="lang-globe" aria-hidden="true"><use href="#i-globe"/></svg>
+        <span class="lang-code" id="langCode">EN</span>
+        <svg class="lang-caret" aria-hidden="true"><use href="#i-chevron-down"/></svg>
       </button>
+      <div class="lang-pop" id="langPop" role="dialog" aria-label="Select language" aria-hidden="true">
+        <div class="lp-head">
+          <span class="lp-title">Languages</span>
+          <button class="lp-close" id="langClose" type="button" aria-label="Close language menu"><svg><use href="#i-close"/></svg></button>
+        </div>
+        <div class="lp-search">
+          <svg class="lp-search-ic" viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="6.4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M13.8 13.8L18 18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          <input type="text" id="langSearch" placeholder="Search Language" autocomplete="off" spellcheck="false">
+        </div>
+        <div class="lp-grid" id="langGrid">
+          <button class="lp-item is-active" type="button" data-code="EN"><b>English</b></button>
+          <button class="lp-item" type="button" data-code="ZH"><b>简体中文</b> Simplified Chinese</button>
+          <button class="lp-item" type="button" data-code="ZH"><b>繁體中文</b> Traditional Chinese</button>
+          <button class="lp-item" type="button" data-code="JA"><b>日本語</b> Japanese</button>
+          <button class="lp-item" type="button" data-code="KO"><b>한국어</b> Korean</button>
+          <button class="lp-item" type="button" data-code="MS"><b>Melayu</b> Malay</button>
+          <button class="lp-item" type="button" data-code="VI"><b>Việt</b> Vietnamese</button>
+          <button class="lp-item" type="button" data-code="TH"><b>ภาษาไทย</b> Thai</button>
+          <button class="lp-item" type="button" data-code="ID"><b>Indonesian</b> Indonesian</button>
+          <button class="lp-item" type="button" data-code="FR"><b>Français</b> French</button>
+          <button class="lp-item" type="button" data-code="ES"><b>Español</b> Spanish</button>
+          <button class="lp-item" type="button" data-code="PL"><b>Polski</b> Polish</button>
+          <button class="lp-item" type="button" data-code="PT"><b>Português</b> Portuguese</button>
+          <button class="lp-item" type="button" data-code="RU"><b>Русский язык</b> Russian</button>
+          <button class="lp-item" type="button" data-code="AR"><b>العربية</b> Arabic</button>
+          <button class="lp-item" type="button" data-code="IT"><b>Italiano</b> Italian</button>
+          <button class="lp-item" type="button" data-code="FA"><b>فارسی</b> Persian</button>
+          <button class="lp-item" type="button" data-code="TR"><b>Türkçe</b> Turkish</button>
+          <button class="lp-item" type="button" data-code="DE"><b>Deutsch</b> German</button>
+          <button class="lp-item" type="button" data-code="HI"><b>हिंदी</b> Hindi</button>
+        </div>
+        <p class="lp-empty" hidden>No languages found</p>
+      </div>
       <a href="#" class="login">Login</a>
       <a href="#" class="btn btn-primary btn-sm nav-cta">Open Live Account</a>
       <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
