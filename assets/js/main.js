@@ -596,6 +596,53 @@
     }
   }
 
+  /* ---------------- Prime ECN page interactions ---------------- */
+  function initPrimeEcn() {
+    // Live execution widget — tick the bid/ask and vary the fill latency
+    var exec = document.querySelector('[data-pe-exec]');
+    if (exec && !prefersReduced) {
+      var bidEl = exec.querySelector('[data-el="bid"]');
+      var askEl = exec.querySelector('[data-el="ask"]');
+      var msEl = exec.querySelector('[data-el="ms"]');
+      var base = 3279.95;
+      var fmt = function (n) { return n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); };
+      setInterval(function () {
+        var mid = base + (Math.random() * 2 - 1) * 0.12;
+        var up = Math.random() > 0.5;
+        if (bidEl) bidEl.textContent = fmt(mid - 0.01);
+        if (askEl) askEl.textContent = fmt(mid + 0.01);
+        [bidEl, askEl].forEach(function (el) {
+          if (!el) return;
+          el.classList.remove('up', 'down'); void el.offsetWidth; el.classList.add(up ? 'up' : 'down');
+        });
+        if (msEl) msEl.textContent = 'Executed in ' + (32 + Math.floor(Math.random() * 13)) + ' ms';
+      }, 1900);
+    }
+
+    // Vertical progress line through the upgrade steps
+    var steps = document.querySelector('.pe-steps');
+    if (steps) {
+      var fill = steps.querySelector('.pe-steps-line i');
+      var nums = Array.prototype.slice.call(steps.querySelectorAll('.pe-step-n'));
+      if (prefersReduced || !hasGSAP || !hasST) {
+        if (fill) fill.style.transform = 'scaleY(1)';
+        nums.forEach(function (n) { n.classList.add('is-on'); });
+      } else {
+        if (nums[0]) nums[0].classList.add('is-on');
+        gsap.to(fill, {
+          scaleY: 1, ease: 'none',
+          scrollTrigger: {
+            trigger: steps, start: 'top 72%', end: 'bottom 62%', scrub: 0.5,
+            onUpdate: function (self) {
+              var k = Math.ceil(self.progress * nums.length);
+              nums.forEach(function (n, i) { n.classList.toggle('is-on', i < Math.max(1, k)); });
+            }
+          }
+        });
+      }
+    }
+  }
+
   /* ---------------- Boot ---------------- */
   function boot() {
     if (!prefersReduced && hasGSAP && hasST) doc.classList.add('is-animate');
@@ -617,6 +664,7 @@
     initCookie();
     initChat();
     initTradingAccount();
+    initPrimeEcn();
     if (hasST) ScrollTrigger.refresh();
     window.addEventListener('load', function () { if (hasST) ScrollTrigger.refresh(); });
   }

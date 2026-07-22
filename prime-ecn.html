@@ -315,8 +315,8 @@
     </div>
     <div class="pe-stats" data-reveal-stagger>
       <div class="pe-stat"><b>0.0</b><span>Starting spreads (pips)</span></div>
-      <div class="pe-stat"><b>$2</b><span>Minimum commission</span></div>
-      <div class="pe-stat"><b>$10,000</b><span>Minimum deposit</span></div>
+      <div class="pe-stat"><b data-count="2" data-prefix="$">$2</b><span>Minimum commission</span></div>
+      <div class="pe-stat"><b data-count="10000" data-comma data-prefix="$">$10,000</b><span>Minimum deposit</span></div>
     </div>
     <p class="pe-metrics-note" data-reveal>Prime ECN offers highly competitive commissions from just USD 2 per standard FX or gold lot, per side — giving you the freedom to trade more efficiently and maximise every opportunity.</p>
   </div>
@@ -337,18 +337,18 @@
           <p>Trade with millisecond precision and zero requotes — execution engineered for professionals.</p>
         </div>
         <div class="pe-card-viz">
-          <div class="pe-exec">
+          <div class="pe-exec" data-pe-exec>
             <div class="pe-exec-top">
               <span class="pe-exec-sym">XAU/USD</span>
               <span class="pe-tag">Prime ECN</span>
             </div>
             <div class="pe-quote-row">
-              <div class="pe-bidask"><small>Bid</small><b>3,279.94</b></div>
-              <div class="pe-bidask"><small>Ask</small><b>3,279.96</b></div>
+              <div class="pe-bidask"><small>Bid</small><b data-el="bid">3,279.94</b></div>
+              <div class="pe-bidask"><small>Ask</small><b data-el="ask">3,279.96</b></div>
             </div>
             <div class="pe-filled">
               <span class="ok"><i></i> Filled</span>
-              <em>Executed in 38 ms</em>
+              <em data-el="ms">Executed in 38 ms</em>
             </div>
           </div>
         </div>
@@ -408,6 +408,7 @@
         <span class="eyebrow">How to upgrade</span>
         <h2 id="pe-upgrade-title">Upgrading to Prime ECN</h2>
         <div class="pe-steps">
+          <span class="pe-steps-line" aria-hidden="true"><i></i></span>
           <div class="pe-step">
             <span class="pe-step-n">1</span>
             <div class="pe-step-b"><h4>Upgrade requirement</h4><p>Maintain a minimum of USD 10,000 in your trading account.</p></div>
@@ -429,7 +430,7 @@
       </div>
 
       <div class="pe-figure" data-reveal>
-        <div class="pe-figure-img"><img src="assets/img/prime-upgrade.webp" alt="A professional trader in a glass elevator" loading="lazy"></div>
+        <div class="pe-figure-img"><img src="assets/img/prime-upgrade.webp" alt="A professional trader checking markets on mobile" loading="lazy"></div>
       </div>
     </div>
   </div>

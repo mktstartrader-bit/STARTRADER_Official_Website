@@ -1266,13 +1266,13 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
 .pe-upgrade{background:var(--bg-light-2)}
 .pe-upgrade-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
 .pe-upgrade h2{font-size:clamp(28px,4.2vw,44px);color:var(--text);letter-spacing:-.02em;line-height:1.12;margin-bottom:36px}
-.pe-steps{display:flex;flex-direction:column;gap:24px;margin-bottom:38px}
+.pe-steps{display:flex;flex-direction:column;gap:36px;margin-bottom:40px}
 .pe-step{display:flex;gap:18px}
 .pe-step-n{flex:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-size:15px;font-weight:700;color:var(--blue);background:#fff}
 .pe-step-b h4{font-size:16px;color:var(--text);margin-bottom:5px;letter-spacing:-.01em}
 .pe-step-b p{font-size:14px;color:var(--text-soft);line-height:1.6;max-width:430px}
 .pe-figure{position:relative}
-.pe-figure-img{border-radius:var(--radius-xl);overflow:hidden;aspect-ratio:1060/1280;box-shadow:0 30px 70px -30px rgba(16,30,54,.4)}
+.pe-figure-img{border-radius:var(--radius-xl);overflow:hidden;aspect-ratio:1076/1440;box-shadow:0 30px 70px -30px rgba(16,30,54,.4)}
 .pe-figure-img img{width:100%;height:100%;object-fit:cover;object-position:center}
 .pe-float{position:absolute;left:-24px;bottom:36px;display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:15px 20px;box-shadow:0 24px 54px -22px rgba(16,30,54,.34);min-width:290px}
 .pe-float-ic{width:44px;height:44px;flex:none;border-radius:12px;display:grid;place-items:center;background:rgba(16,185,129,.12);color:var(--green)}
@@ -1296,3 +1296,36 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
   .pe-card p,.pe-step-b p{max-width:none}
   .pe-float{left:12px;right:12px;min-width:0}
 }
+
+/* ---- Prime ECN micro-interactions ---- */
+.pe-spread-bars span{animation:peBar 1.9s ease-in-out infinite}
+.pe-spread-bars span:nth-child(2){animation-delay:.16s}
+.pe-spread-bars span:nth-child(3){animation-delay:.32s}
+.pe-spread-bars span:nth-child(4){animation-delay:.48s}
+@keyframes peBar{0%,100%{opacity:.4}30%{opacity:1;box-shadow:0 0 10px rgba(91,157,255,.7)}}
+.pe-spread-val{animation:peGlow 3.2s ease-in-out infinite}
+@keyframes peGlow{0%,100%{text-shadow:0 0 0 rgba(91,157,255,0)}50%{text-shadow:0 0 22px rgba(91,157,255,.45)}}
+.pe-comm-rt{position:relative;overflow:hidden}
+.pe-comm-rt::after{content:"";position:absolute;top:0;left:-60%;width:45%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.2),transparent);transform:skewX(-18deg);animation:peSheen 3.6s ease-in-out infinite;pointer-events:none}
+@keyframes peSheen{0%{left:-60%}55%,100%{left:135%}}
+.pe-plat svg{transition:transform .3s var(--ease),color .3s}
+.pe-plat:hover svg{transform:scale(1.14) translateY(-2px);color:#7fb0ff}
+.pe-bidask b{transition:color .35s}
+.pe-bidask b.up{color:#34d99b}
+.pe-bidask b.down{color:#ff6b6b}
+.pe-filled .ok i{animation:pulse 2.2s infinite}
+.pe-tag{transition:box-shadow .3s}
+.pe-exec:hover .pe-tag{box-shadow:0 0 16px -2px rgba(0,120,255,.6)}
+
+/* vertical progress line through the upgrade steps */
+.pe-steps{position:relative}
+.pe-steps-line{position:absolute;left:21px;top:22px;bottom:22px;width:2px;background:var(--line);border-radius:2px;overflow:hidden}
+.pe-steps-line i{position:absolute;inset:0;transform:scaleY(0);transform-origin:top;background:linear-gradient(180deg,#2f7bff,#0740b8)}
+.pe-step{position:relative;z-index:1}
+.pe-step-n{transition:background .4s var(--ease),color .4s,border-color .4s,box-shadow .4s,transform .35s}
+.pe-step-n.is-on{background:var(--blue);color:#fff;border-color:transparent;box-shadow:0 0 0 5px rgba(0,71,187,.14)}
+.pe-step:hover .pe-step-n{transform:scale(1.06)}
+
+/* stat hover accent */
+.pe-stat b{transition:color .3s}
+.pe-stat:hover b{color:var(--blue)}
