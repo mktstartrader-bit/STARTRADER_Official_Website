@@ -102,9 +102,9 @@ p{text-wrap:pretty}
 .btn .ico{width:17px;height:17px}
 .btn:hover{background:var(--blue-700)}
 .btn:active{background:var(--blue-800)}
-/* on blue-background sections, use a white button */
-.cta-banner .btn{background:#fff;color:var(--blue)}
-.cta-banner .btn:hover{background:#eaf1fc}
+/* CTA sits on a dark broker image — keep the primary blue button */
+.cta-banner .btn{background:var(--blue-bright);color:#fff}
+.cta-banner .btn:hover{background:var(--blue)}
 .btn-lg{padding:16px 30px;font-size:15px}
 .btn-sm{padding:12px 20px}
 .btn-block{width:100%;padding:15px}
@@ -718,12 +718,11 @@ p{text-wrap:pretty}
 .sponsor-card span{font-size:13.5px;color:var(--text-soft)}
 
 /* ---------- CTA banner ---------- */
-.cta-banner{position:relative;color:#fff;overflow:hidden;isolation:isolate}
-.cta-bg{position:absolute;inset:0;z-index:-2;background:
-  radial-gradient(75% 130% at 50% -28%,rgba(168,205,255,.9),rgba(120,170,255,.15) 46%,rgba(120,170,255,0) 62%),
-  linear-gradient(180deg,#1358dd 0%,#0b43c6 60%,#0937b2 100%)}
-.cta-bg::after{content:"";position:absolute;left:50%;top:-40%;width:120%;height:120%;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(255,255,255,.28),transparent 70%);pointer-events:none}
-.cta-inner{text-align:center;padding:104px 0}
+.cta-banner{position:relative;color:#fff;overflow:hidden;isolation:isolate;background:#04060d}
+.cta-bg{position:absolute;inset:0;z-index:-2;
+  background:#04060d url("../img/cta-broker.webp") center bottom/cover no-repeat}
+.cta-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,6,13,.55) 0%,rgba(4,6,13,0) 30%);pointer-events:none}
+.cta-inner{text-align:center;padding:112px 0 clamp(300px,25vw,560px)}
 .cta-inner h2{font-size:clamp(26px,4.6vw,46px);font-weight:800;letter-spacing:-.03em;line-height:1.12}
 .cta-inner p{max-width:620px;margin:18px auto 0;font-size:15px;color:#d3e2ff}
 .cta-inner .btn{margin-top:30px}
@@ -934,7 +933,7 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
   .academy-grid{grid-template-columns:1fr}
   .foot-cols{grid-template-columns:repeat(2,1fr)}
   .foot-bottom{flex-direction:column;align-items:flex-start;gap:18px}
-  .cta-inner{padding:76px 0}
+  .cta-inner{padding:84px 0 150px}
 }
 @media (max-width:560px){
   .cookie{left:12px;right:12px;max-width:none;bottom:92px;border-radius:20px;padding:14px 14px 14px 18px;transform:translateY(170%);flex-wrap:wrap}
