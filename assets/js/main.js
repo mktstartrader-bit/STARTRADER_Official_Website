@@ -321,11 +321,15 @@
     }
 
     setState(0, 0);
+    // short pin + snap so each scroll gesture advances one step (1 -> 2 -> 3)
+    var snapPts = [];
+    for (var s = 0; s < n; s++) snapPts.push(s / (n - 1)); // [0, 0.5, 1]
     ScrollTrigger.create({
-      trigger: section, start: 'top top', end: '+=1900', pin: true, scrub: 0.5, anticipatePin: 1,
+      trigger: section, start: 'top top', end: '+=' + (n - 1) * 320, pin: true, scrub: 0.35, anticipatePin: 1,
+      snap: { snapTo: snapPts, duration: { min: 0.18, max: 0.4 }, delay: 0.03, ease: 'power2.inOut' },
       onUpdate: function (self) {
         var p = self.progress;
-        var active = Math.min(n - 1, Math.floor(p * n));
+        var active = Math.min(n - 1, Math.floor(p * n + 0.0001));
         setState(active, p * n);
       }
     });
@@ -364,16 +368,30 @@
       var parent = item.querySelector('.mega-item-parent');
       if (!mega || !parent) return;
       var fly = mega.querySelector('.mega-flyout');
-      parent.addEventListener('click', function (e) {
-        e.preventDefault();
-        var open = mega.classList.toggle('flyout-open');
-        parent.classList.toggle('active', open);
-        if (fly) fly.setAttribute('aria-hidden', open ? 'false' : 'true');
-      });
-      item.addEventListener('mouseleave', function () {
+      function openFly() {
+        mega.classList.add('flyout-open');
+        parent.classList.add('active');
+        if (fly) fly.setAttribute('aria-hidden', 'false');
+      }
+      function closeFly() {
         mega.classList.remove('flyout-open');
         parent.classList.remove('active');
         if (fly) fly.setAttribute('aria-hidden', 'true');
+      }
+      // open on hovering Commodities; keep open while over the flyout
+      parent.addEventListener('mouseenter', openFly);
+      parent.addEventListener('focus', openFly);
+      if (fly) fly.addEventListener('mouseenter', openFly);
+      // close when hovering any other menu item
+      mega.querySelectorAll('.mega-item').forEach(function (it) {
+        if (it !== parent) it.addEventListener('mouseenter', closeFly);
+      });
+      // reset when leaving the whole Trading menu
+      item.addEventListener('mouseleave', closeFly);
+      // keyboard / click toggle for a11y
+      parent.addEventListener('click', function (e) {
+        e.preventDefault();
+        mega.classList.contains('flyout-open') ? closeFly() : openFly();
       });
     });
   }
