@@ -1631,8 +1631,7 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
 .fx-tx-core svg{width:40px;height:40px}
 .fx-tx-badge{position:absolute;right:20px;bottom:22px;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--blue);border:3px solid #eef3fb;color:#fff}
 .fx-tx-badge svg{width:12px;height:12px}
-.fx-tx-chip{position:absolute;left:50%;bottom:2px;transform:translateX(-50%);display:flex;align-items:center;gap:9px;max-width:100%;background:#fff;padding:8px 13px;border-radius:11px;box-shadow:0 12px 26px -12px rgba(20,44,96,.45)}
-.fx-tx-chip .tx{min-width:0}
+.fx-tx-chip{position:absolute;left:50%;bottom:2px;transform:translateX(-50%);display:flex;align-items:center;gap:9px;white-space:nowrap;background:#fff;padding:8px 14px;border-radius:11px;box-shadow:0 12px 26px -12px rgba(20,44,96,.45)}
 .fx-tx-chip .ok{flex:none;width:16px;height:16px;border-radius:50%;display:grid;place-items:center;background:var(--blue);color:#fff}
 .fx-tx-chip .ok svg{width:10px;height:10px}
 .fx-tx-chip b{display:block;font-size:11px;color:#0f1830;font-weight:700;line-height:1.25}
@@ -1640,18 +1639,18 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
 
 /* 2 — Competitive Spreads */
 .fx-cs{position:relative;width:100%;height:100%;display:grid;place-items:center}
-.fx-cs-meter{width:84%;max-width:268px;border-radius:16px;padding:18px 22px 16px;text-align:center;background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.9);box-shadow:inset 0 1px 0 #fff,0 12px 28px -18px rgba(20,44,96,.3);-webkit-backdrop-filter:blur(8px) saturate(1.4);backdrop-filter:blur(8px) saturate(1.4)}
-.fx-cs-meter .sym{display:block;margin-top:13px;font-size:11px;color:var(--text-mute);font-weight:600}
-.fx-cs-meter .big{font-size:40px;font-weight:800;color:#0f1830;letter-spacing:-.03em;line-height:1}
+.fx-cs-meter{width:74%;max-width:236px;border-radius:16px;padding:22px 22px 18px;text-align:center;background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.9);box-shadow:inset 0 1px 0 #fff,0 12px 28px -18px rgba(20,44,96,.3);-webkit-backdrop-filter:blur(8px) saturate(1.4);backdrop-filter:blur(8px) saturate(1.4)}
+.fx-cs-meter .sym{display:block;margin-top:16px;font-size:11px;color:var(--text-mute);font-weight:600}
+.fx-cs-meter .big{font-size:34px;font-weight:800;color:#0f1830;letter-spacing:-.03em;line-height:1;margin-bottom:18px}
 .fx-cs-meter .big em{font-style:normal;font-size:14px;color:var(--blue);font-weight:700;margin-left:5px}
-.fx-cs-bars{display:flex;gap:7px}
-.fx-cs-bars span{flex:1;height:7px;border-radius:4px;background:linear-gradient(90deg,#1e4fb8,#5b9dff)}
+.fx-cs-bars{display:flex;gap:8px}
+.fx-cs-bars span{flex:1;height:6px;border-radius:4px;background:linear-gradient(90deg,#1e4fb8,#5b9dff)}
 .fx-cs-chip{position:absolute;display:flex;align-items:center;gap:7px;font-size:11px;font-weight:600;color:#0f1830;background:#fff;padding:7px 11px;border-radius:10px;box-shadow:0 10px 22px -12px rgba(20,44,96,.4)}
 .fx-cs-chip .ok{flex:none;width:15px;height:15px;border-radius:50%;display:grid;place-items:center;background:var(--blue);color:#fff}
 .fx-cs-chip .ok svg{width:10px;height:10px}
-.fx-cs-chip.c1{top:0;right:4px}
-.fx-cs-chip.c2{left:-8px;top:6px}
-.fx-cs-chip.c3{bottom:2px;right:14px}
+.fx-cs-chip.c1{top:0;right:0}
+.fx-cs-chip.c2{top:0;left:0}
+.fx-cs-chip.c3{bottom:4px;right:18px}
 
 /* 3 — Ultra-Fast Execution */
 .fx-uf{position:relative;width:100%;height:100%;display:grid;place-items:center}
@@ -1687,7 +1686,8 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
 @media (prefers-reduced-motion:no-preference){
   .fx-tx-core::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid rgba(0,71,187,.4);animation:fxPingR 2.8s ease-out infinite}
   .fx-tx-badge{animation:fxPop 2.8s ease-in-out infinite}
-  .fx-tx-chip{animation:fxFloat 5s ease-in-out infinite}
+  .fx-tx-chip{animation:fxTxFloat 5s ease-in-out infinite}
+  @keyframes fxTxFloat{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,-5px)}}
   @keyframes fxPop{0%,58%,100%{transform:scale(1)}70%{transform:scale(1.16)}}
   .fx-cs-bars span{animation:fxCsBar 1.9s ease-in-out infinite}
   .fx-cs-bars span:nth-child(2){animation-delay:.16s}.fx-cs-bars span:nth-child(3){animation-delay:.32s}.fx-cs-bars span:nth-child(4){animation-delay:.48s}
