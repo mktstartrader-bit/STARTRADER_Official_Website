@@ -692,6 +692,189 @@
     }
   }
 
+  /* ---------------- Forex page interactions ---------------- */
+  function initForex() {
+    initForexPairs();
+    initForexHours();
+    initForexHeroQuotes();
+    initForexWhy();
+  }
+
+  function initForexWhy() {
+    var counters = Array.prototype.slice.call(document.querySelectorAll('.fx-why [data-fx-count]'));
+    if (!counters.length) return;
+
+    function countUp(el, end, suf) {
+      var dur = 1300, t0 = null;
+      function step(ts) {
+        if (t0 === null) t0 = ts;
+        var p = Math.min(1, (ts - t0) / dur);
+        el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3))) + suf;
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    function start(el) {
+      var end = parseFloat(el.dataset.fxCount), suf = el.dataset.suffix || '';
+      if (isNaN(end)) return;
+      if (prefersReduced || !window.requestAnimationFrame) { el.textContent = end + suf; return; }
+      countUp(el, end, suf);
+      // replay the count on a calm loop so the card never reads as static
+      setInterval(function () { el.textContent = '0' + suf; countUp(el, end, suf); }, 4600);
+    }
+
+    if (!('IntersectionObserver' in window)) { counters.forEach(start); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { start(e.target); io.unobserve(e.target); } });
+    }, { threshold: 0.4 });
+    counters.forEach(function (el) { io.observe(el); });
+  }
+
+  function initForexPairs() {
+    var root = document.querySelector('[data-fx-pairs]');
+    if (!root) return;
+    var body = root.querySelector('[data-fx-body]');
+    var cats = Array.prototype.slice.call(root.querySelectorAll('[data-fx-cat]'));
+    if (!body) return;
+
+    // mid price + typical spread (in pips) per pair
+    var data = {
+      major: [
+        { sym: 'EUR/USD', name: 'Euro / US Dollar', mid: 1.08420, dec: 5, spread: 0.2 },
+        { sym: 'GBP/USD', name: 'British Pound / US Dollar', mid: 1.27180, dec: 5, spread: 0.4 },
+        { sym: 'USD/JPY', name: 'US Dollar / Japanese Yen', mid: 156.820, dec: 3, spread: 0.5 },
+        { sym: 'USD/CHF', name: 'US Dollar / Swiss Franc', mid: 0.89340, dec: 5, spread: 0.6 },
+        { sym: 'AUD/USD', name: 'Australian Dollar / US Dollar', mid: 0.66120, dec: 5, spread: 0.5 },
+        { sym: 'USD/CAD', name: 'US Dollar / Canadian Dollar', mid: 1.36890, dec: 5, spread: 0.7 }
+      ],
+      minor: [
+        { sym: 'EUR/GBP', name: 'Euro / British Pound', mid: 0.85240, dec: 5, spread: 1.2 },
+        { sym: 'EUR/JPY', name: 'Euro / Japanese Yen', mid: 170.040, dec: 3, spread: 1.5 },
+        { sym: 'GBP/JPY', name: 'British Pound / Japanese Yen', mid: 199.480, dec: 3, spread: 2.2 },
+        { sym: 'AUD/JPY', name: 'Australian Dollar / Japanese Yen', mid: 103.690, dec: 3, spread: 1.8 },
+        { sym: 'EUR/AUD', name: 'Euro / Australian Dollar', mid: 1.63980, dec: 5, spread: 2.0 },
+        { sym: 'NZD/JPY', name: 'NZ Dollar / Japanese Yen', mid: 95.420, dec: 3, spread: 2.4 }
+      ],
+      exotic: [
+        { sym: 'USD/TRY', name: 'US Dollar / Turkish Lira', mid: 32.6400, dec: 4, spread: 18 },
+        { sym: 'USD/ZAR', name: 'US Dollar / South African Rand', mid: 18.2400, dec: 4, spread: 22 },
+        { sym: 'USD/MXN', name: 'US Dollar / Mexican Peso', mid: 17.0800, dec: 4, spread: 20 },
+        { sym: 'USD/SGD', name: 'US Dollar / Singapore Dollar', mid: 1.34860, dec: 5, spread: 6 },
+        { sym: 'USD/HKD', name: 'US Dollar / Hong Kong Dollar', mid: 7.80910, dec: 5, spread: 8 },
+        { sym: 'EUR/TRY', name: 'Euro / Turkish Lira', mid: 35.3900, dec: 4, spread: 28 }
+      ]
+    };
+
+    var live = [];
+    function pipOf(sym) { return sym.indexOf('JPY') > -1 ? 0.01 : 0.0001; }
+    function fmt(n, d) { return n.toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d }); }
+
+    function render(cat) {
+      var rows = data[cat] || data.major;
+      var html = rows.map(function (p) {
+        var pip = pipOf(p.sym);
+        var half = (p.spread * pip) / 2;
+        var bid = p.mid - half, ask = p.mid + half;
+        var base = p.sym.split('/')[0];
+        return '<tr>' +
+          '<td><span class="spec-feat"><span class="fx-pair-badge">' + base + '</span>' +
+          '<span class="fx-pair-name">' + p.sym + '<em>' + p.name + '</em></span></span></td>' +
+          '<td><span class="fx-px" data-el="bid">' + fmt(bid, p.dec) + '</span></td>' +
+          '<td><span class="fx-px" data-el="ask">' + fmt(ask, p.dec) + '</span></td>' +
+          '<td><span class="fx-spread-pill" data-el="spread">' + p.spread.toFixed(1) + '</span></td>' +
+          '</tr>';
+      }).join('');
+      body.innerHTML = html;
+
+      // collect live refs
+      live = [];
+      var trs = body.querySelectorAll('tr');
+      rows.forEach(function (p, i) {
+        var tr = trs[i]; if (!tr) return;
+        live.push({
+          p: p, pip: pipOf(p.sym), cur: p.mid, spread: p.spread,
+          bidEl: tr.querySelector('[data-el="bid"]'),
+          askEl: tr.querySelector('[data-el="ask"]'),
+          spreadEl: tr.querySelector('[data-el="spread"]')
+        });
+      });
+    }
+
+    function tick() {
+      if (prefersReduced) return;
+      live.forEach(function (r) {
+        if (Math.random() > 0.6) return;
+        var step = r.p.mid * 0.00035 * (Math.random() * 2 - 1);
+        r.cur = r.cur + step + (r.p.mid - r.cur) * 0.06;
+        // occasional spread widening for realism
+        var sp = Math.max(0.1, r.p.spread * (0.85 + Math.random() * 0.5));
+        var half = (sp * r.pip) / 2;
+        if (r.bidEl) r.bidEl.textContent = fmt(r.cur - half, r.p.dec);
+        if (r.askEl) r.askEl.textContent = fmt(r.cur + half, r.p.dec);
+        if (r.spreadEl) r.spreadEl.textContent = sp.toFixed(1);
+        [r.bidEl, r.askEl].forEach(function (el) {
+          if (!el) return;
+          el.classList.remove('fup', 'fdown'); void el.offsetWidth;
+          el.classList.add(step >= 0 ? 'fup' : 'fdown');
+        });
+      });
+    }
+
+    cats.forEach(function (c) {
+      c.addEventListener('click', function () {
+        cats.forEach(function (x) { x.classList.toggle('active', x === c); x.setAttribute('aria-selected', x === c ? 'true' : 'false'); });
+        render(c.dataset.fxCat);
+      });
+    });
+
+    render('major');
+    setInterval(tick, 1500);
+  }
+
+  function initForexHours() {
+    var panel = document.querySelector('[data-fx-hours]');
+    if (!panel) return;
+    var clockEl = panel.querySelector('[data-fx-clock]');
+    var sessEls = Array.prototype.slice.call(panel.querySelectorAll('[data-sess]'));
+    if (!sessEls.length && !clockEl) return;
+
+    function inSession(h, o, c) { return o < c ? (h >= o && h < c) : (h >= o || h < c); }
+
+    function update() {
+      var d = new Date();
+      var h = d.getUTCHours(), m = d.getUTCMinutes();
+      var frac = h + m / 60;
+      sessEls.forEach(function (el) {
+        var o = parseFloat(el.dataset.open), c = parseFloat(el.dataset.close);
+        el.classList.toggle('is-open', inSession(frac, o, c));
+      });
+      if (clockEl) clockEl.textContent = 'GMT ' + ('0' + h).slice(-2) + ':' + ('0' + m).slice(-2);
+    }
+    update();
+    setInterval(update, 30000);
+  }
+
+  function initForexHeroQuotes() {
+    if (prefersReduced) return;
+    var quotes = Array.prototype.slice.call(document.querySelectorAll('[data-fx-quote]'));
+    if (!quotes.length) return;
+    var refs = quotes.map(function (q) {
+      var pxEl = q.querySelector('.q-px');
+      var base = parseFloat((pxEl ? pxEl.textContent : '0').replace(/,/g, '')) || 0;
+      return { pxEl: pxEl, chgEl: q.querySelector('.q-chg'), base: base, cur: base, dec: (pxEl && pxEl.textContent.split('.')[1] || '').length };
+    });
+    setInterval(function () {
+      refs.forEach(function (r) {
+        if (!r.pxEl || Math.random() > 0.7) return;
+        var step = r.base * 0.0006 * (Math.random() * 2 - 1);
+        r.cur = r.cur + step + (r.base - r.cur) * 0.05;
+        r.pxEl.textContent = r.cur.toLocaleString('en-US', { minimumFractionDigits: r.dec, maximumFractionDigits: r.dec });
+        var chg = ((r.cur - r.base) / r.base) * 100;
+        if (r.chgEl) { r.chgEl.textContent = (chg >= 0 ? '+' : '') + chg.toFixed(2) + '%'; r.chgEl.className = 'q-chg ' + (chg >= 0 ? 'up' : 'down'); }
+      });
+    }, 2000);
+  }
+
   /* ---------------- Boot ---------------- */
   function boot() {
     if (!prefersReduced && hasGSAP && hasST) doc.classList.add('is-animate');
@@ -715,6 +898,7 @@
     initTradingAccount();
     initPrimeEcn();
     initFunding();
+    initForex();
     if (hasST) ScrollTrigger.refresh();
     window.addEventListener('load', function () { if (hasST) ScrollTrigger.refresh(); });
   }
