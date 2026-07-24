@@ -875,6 +875,57 @@
     }, 2000);
   }
 
+  /* ---------------- Company — global presence map ---------------- */
+  function initCompany() {
+    var root = document.getElementById('coGlobal');
+    if (!root) return;
+    var cards = Array.prototype.slice.call(root.querySelectorAll('.co-reg'));
+    var pins = Array.prototype.slice.call(root.querySelectorAll('.co-pin'));
+
+    // Regulator card <-> map pin cross-highlighting
+    function setActive(r) {
+      if (!r) return;
+      cards.forEach(function (c) { c.classList.toggle('is-active', c.dataset.r === r); });
+      pins.forEach(function (p) { p.classList.toggle('active', p.dataset.r === r); });
+    }
+    cards.forEach(function (c) {
+      c.addEventListener('mouseenter', function () { setActive(c.dataset.r); });
+      c.addEventListener('focusin', function () { setActive(c.dataset.r); });
+      c.addEventListener('click', function () { setActive(c.dataset.r); });
+    });
+    pins.forEach(function (p) {
+      p.addEventListener('mouseenter', function () { setActive(p.dataset.r); });
+      p.addEventListener('click', function () { setActive(p.dataset.r); });
+    });
+
+    // Count-up stats when the strip scrolls into view
+    var nums = Array.prototype.slice.call(root.querySelectorAll('.co-statstrip .num[data-count]'));
+    function runCount(el) {
+      var end = parseFloat(el.dataset.count);
+      if (isNaN(end)) return;
+      var dec = parseInt(el.dataset.dec || '0', 10);
+      if (prefersReduced || !window.requestAnimationFrame) { el.textContent = end.toFixed(dec); return; }
+      var dur = 1400, t0 = null;
+      function step(ts) {
+        if (t0 === null) t0 = ts;
+        var p = Math.min(1, (ts - t0) / dur);
+        var val = end * (1 - Math.pow(1 - p, 3));
+        el.textContent = dec ? val.toFixed(dec) : Math.round(val).toString();
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    if (nums.length) {
+      if (!('IntersectionObserver' in window)) { nums.forEach(runCount); }
+      else {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) { if (e.isIntersecting) { runCount(e.target); io.unobserve(e.target); } });
+        }, { threshold: 0.5 });
+        nums.forEach(function (el) { io.observe(el); });
+      }
+    }
+  }
+
   /* ---------------- Boot ---------------- */
   function boot() {
     if (!prefersReduced && hasGSAP && hasST) doc.classList.add('is-animate');
@@ -899,6 +950,7 @@
     initPrimeEcn();
     initFunding();
     initForex();
+    initCompany();
     if (hasST) ScrollTrigger.refresh();
     window.addEventListener('load', function () { if (hasST) ScrollTrigger.refresh(); });
   }
