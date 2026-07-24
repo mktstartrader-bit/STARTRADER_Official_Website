@@ -200,6 +200,18 @@ p{text-wrap:pretty}
 .fly-group h5{font-size:12px;font-weight:700;color:#dfe6f2;margin-bottom:6px}
 .fly-group a{display:block;font-size:13px;color:#9aa6bd;padding:5px 0;transition:color .2s,transform .2s}
 .fly-group a:hover{color:#fff;transform:translateX(3px)}
+/* Mega variants for Education / Promotions / Company */
+.mega--center{left:50%;right:auto;transform:translate(-50%,10px)}
+.nav-item.has-mega:hover .mega--center{transform:translate(-50%,0)}
+.mega--promo .mega-main{grid-template-columns:300px}
+/* inline expandable sub-menu (e.g. Sponsorship) — expands below the item, not a side box */
+.mega-subchev{width:15px;height:15px;margin-left:auto;color:#6d7893;transition:transform .3s var(--ease),color .2s}
+.mega-sub:hover .mega-subchev{transform:rotate(180deg);color:#5b9dff}
+.mega-subitems{overflow:hidden;max-height:0;transition:max-height .42s var(--ease);padding-left:54px}
+.mega-sub:hover .mega-subitems{max-height:360px}
+.mega-subitems a{display:block;font-size:13px;color:#9aa6bd;padding:6px 0;transition:color .2s,transform .2s}
+.mega-subitems a:hover{color:#5b9dff;transform:translateX(3px)}
+.mega-item--tight{padding-top:9px;padding-bottom:9px}
 
 .nav-right{display:flex;align-items:center;gap:18px}
 .lang{display:flex;align-items:center;gap:7px;color:#dfe4ee;font-size:14px;font-weight:500;cursor:pointer;transition:color .2s}
@@ -268,10 +280,13 @@ p{text-wrap:pretty}
 
 /* ---------- Hero ---------- */
 .hero{
-  position:relative;background:var(--hero);color:#fff;overflow:hidden;
+  position:relative;background:#04060e url(../img/company-hero.png) center 62%/cover no-repeat;color:#fff;overflow:hidden;
   margin-top:calc(-1 * var(--nav-h));
   padding:calc(60px + var(--nav-h)) 0 88px;isolation:isolate;
+  min-height:min(780px, calc(100vh - var(--topbar-h,44px)));display:flex;align-items:center;
 }
+.hero>.container{width:100%}
+.hero-glow,.hero-shape{display:none}
 .hero-glow{
   position:absolute;top:-160px;left:50%;transform:translateX(-50%);
   width:1280px;height:820px;z-index:-2;pointer-events:none;
@@ -290,12 +305,7 @@ p{text-wrap:pretty}
 }
 .hero::before{
   content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
-  background:
-    radial-gradient(13% 44% at 50% -4%,rgba(198,224,255,.42),transparent 66%),
-    radial-gradient(34% 54% at 50% -6%,rgba(120,170,255,.22),transparent 62%),
-    radial-gradient(60% 50% at 50% 0%,rgba(3,72,205,.16),transparent 70%),
-    linear-gradient(180deg,transparent 58%,rgba(0,0,0,.42));
-  opacity:.95;
+  background:linear-gradient(180deg,rgba(4,6,14,.62) 0%,rgba(4,6,14,.2) 26%,rgba(4,6,14,0) 52%,rgba(4,6,14,.3) 100%);
 }
 .hero-inner{display:flex;flex-direction:column;align-items:center;text-align:center}
 .hero-title{width:100%;max-width:100%;font-size:clamp(29px,6.4vw,66px);font-weight:800;letter-spacing:-.03em;line-height:1.14;overflow-wrap:break-word}
@@ -963,7 +973,7 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
 .btn-ghost:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.42);box-shadow:none}
 
 /* ---- Banner ---- */
-.acct-hero{position:relative;color:#fff;overflow:hidden;isolation:isolate;background:#04060e;margin-top:calc(-1 * var(--nav-h));min-height:min(750px, calc(100vh - var(--topbar-h,44px)));display:flex;align-items:center;padding:calc(var(--nav-h) + 40px) 0 56px}
+.acct-hero{position:relative;color:#fff;overflow:hidden;isolation:isolate;background:#04060e;margin-top:calc(-1 * var(--nav-h));min-height:min(780px, calc(100vh - var(--topbar-h,44px)));display:flex;align-items:center;padding:calc(var(--nav-h) + 40px) 0 56px}
 .acct-hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:-2}
 .acct-hero-bg{position:absolute;inset:0;z-index:-1;background:transparent}
 .acct-hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,6,14,.95) 0%,rgba(4,6,14,.78) 38%,rgba(4,6,14,.32) 64%,rgba(4,6,14,.04) 100%)}
@@ -1043,6 +1053,7 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
 }
 @media (max-width:720px){
   .acct-hero{min-height:auto;padding:calc(var(--nav-h) + 40px) 0 54px;text-align:center}
+  .hero,.co-hero{min-height:auto}
   .acct-hero-bg::after{background:linear-gradient(180deg,rgba(4,6,14,.68),rgba(4,6,14,.93))}
   .acct-hero-inner{max-width:100%}
   .acct-hero-sub{margin-inline:auto}
@@ -1419,7 +1430,7 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
   .calc-card{padding:26px 20px}
 }/* ================= FOREX PAGE ================= */
 /* ---- Hero (dark; render bleeds from the disclaimer bar to the base) ---- */
-.fx-hero{position:relative;min-height:min(750px,calc(100vh - var(--topbar-h,44px)));display:flex;align-items:center;padding:calc(var(--nav-h) + 30px) 0 44px;overflow:hidden;background:
+.fx-hero{position:relative;min-height:min(780px,calc(100vh - var(--topbar-h,44px)));display:flex;align-items:center;padding:calc(var(--nav-h) + 30px) 0 44px;overflow:hidden;background:
   radial-gradient(90% 80% at 76% 30%,rgba(0,71,187,.32),transparent 60%),
   radial-gradient(60% 70% at 10% 6%,rgba(3,72,205,.20),transparent 58%),
   linear-gradient(180deg,#04060e 0%,#050a1c 46%,#04060e 100%)}
@@ -1808,15 +1819,10 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
 .co-mkt--etf{--ray:rgba(16,200,140,.18);--ray-line:rgba(32,212,152,.92)}
 .co-mkt--inst{--ray:rgba(0,120,255,.32);--ray-line:rgba(96,164,255,.98);border-color:rgba(96,158,255,.3);background:radial-gradient(130% 78% at 50% -12%,rgba(0,120,255,.34),transparent 60%),linear-gradient(180deg,rgba(12,26,58,.7),rgba(8,16,38,.6))}
 
-/* ---- Hero (center-aligned, home-banner gradient) ---- */
-.co-hero{position:relative;color:#fff;overflow:hidden;isolation:isolate;text-align:center;margin-top:calc(-1 * var(--nav-h));padding:calc(60px + var(--nav-h)) 0 100px;background:var(--hero)}
+/* ---- Hero (center-aligned, blue-wave banner image) ---- */
+.co-hero{position:relative;color:#fff;overflow:hidden;isolation:isolate;text-align:center;margin-top:calc(-1 * var(--nav-h));padding:calc(var(--nav-h) + 40px) 0 56px;background:#04060e url(../img/company-hero.png) center 62%/cover no-repeat;min-height:min(780px, calc(100vh - var(--topbar-h,44px)));display:flex;align-items:center}
 .co-hero::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
-  background:
-    radial-gradient(13% 44% at 50% -4%,rgba(198,224,255,.42),transparent 66%),
-    radial-gradient(34% 54% at 50% -6%,rgba(120,170,255,.22),transparent 62%),
-    radial-gradient(60% 50% at 50% 0%,rgba(3,72,205,.16),transparent 70%),
-    linear-gradient(180deg,transparent 58%,rgba(0,0,0,.42));
-  opacity:.95}
+  background:linear-gradient(180deg,rgba(4,6,14,.62) 0%,rgba(4,6,14,.2) 26%,rgba(4,6,14,0) 52%,rgba(4,6,14,.28) 100%)}
 .co-hero-inner{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;width:100%;max-width:860px;margin-inline:auto}
 .co-badge{display:inline-flex;align-items:center;gap:9px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#bcd2ff;padding:8px 15px;border-radius:70px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 .co-badge .dot{width:7px;height:7px;border-radius:50%;background:#34d99b;box-shadow:0 0 0 0 rgba(52,217,155,.5);animation:pulse 2.4s infinite;flex:none}
