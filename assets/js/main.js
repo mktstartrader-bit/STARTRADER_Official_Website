@@ -898,8 +898,8 @@
       p.addEventListener('click', function () { setActive(p.dataset.r); });
     });
 
-    // Count-up stats when the strip scrolls into view
-    var nums = Array.prototype.slice.call(root.querySelectorAll('.co-statstrip .num[data-count]'));
+    // Count-up stats when they scroll into view (key-stats bento + any stat strip)
+    var nums = Array.prototype.slice.call(document.querySelectorAll('.num[data-count]'));
     function runCount(el) {
       var end = parseFloat(el.dataset.count);
       if (isNaN(end)) return;
