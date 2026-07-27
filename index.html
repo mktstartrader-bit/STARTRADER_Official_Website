@@ -399,14 +399,10 @@
       </li>
     </ul>
   </div>
-</section>
-
-<!-- ============ TICKER ============ -->
-<div class="ticker" aria-label="Live market prices">
-  <div class="ticker-track" id="tickerTrack">
-    <!-- populated + duplicated by JS for seamless loop -->
+  <div class="hero-ticker" aria-label="Live market prices">
+    <div class="hero-ticker-track" id="heroTicker"><!-- populated by JS --></div>
   </div>
-</div>
+</section>
 
 <!-- ============ WHY STARTRADER ============ -->
 <section class="section why" id="why" aria-labelledby="why-title">
@@ -444,62 +440,21 @@
       <h2 class="h2" id="markets-title" data-reveal>Explore 1,000+ instruments</h2>
     </div>
 
-    <div class="markets-grid" data-reveal-stagger data-live-markets>
-      <!-- METALS (wide) -->
-      <article class="mkt-card mkt-wide">
-        <header class="mkt-head"><h3>METALS</h3><a href="#" class="view-all">View all</a></header>
-        <ul class="mkt-list">
-          <li><a class="mkt-row" href="#markets"><span class="coin coin-gold">Au</span><span class="mkt-name">XAU/USD <em>· Gold</em></span><span class="mkt-price">3,241.80</span><span class="chg up">+0.82%</span><svg class="mkt-arrow"><use href="#i-chevron-right"/></svg></a></li>
-          <li><a class="mkt-row" href="#markets"><span class="coin coin-silver">Ag</span><span class="mkt-name">XAG/USD <em>· Silver</em></span><span class="mkt-price">38.42</span><span class="chg up">+1.14%</span><svg class="mkt-arrow"><use href="#i-chevron-right"/></svg></a></li>
-          <li><a class="mkt-row" href="#markets"><span class="coin coin-copper">Cu</span><span class="mkt-name">Copper</span><span class="mkt-price">6.068</span><span class="chg down">-1.48%</span><svg class="mkt-arrow"><use href="#i-chevron-right"/></svg></a></li>
-          <li><a class="mkt-row" href="#markets"><span class="coin coin-plat">Pt</span><span class="mkt-name">XPT/USD <em>· Platinum</em></span><span class="mkt-price">1,012.5</span><span class="chg up">+0.30%</span><svg class="mkt-arrow"><use href="#i-chevron-right"/></svg></a></li>
-        </ul>
-      </article>
-
-      <!-- FOREX -->
-      <article class="mkt-card">
-        <header class="mkt-head"><h3>FOREX</h3><a href="#" class="view-all">View all</a></header>
-        <ul class="mkt-list">
-          <li><a class="mkt-row" href="#markets"><span class="coin coin-eur">€</span><span class="mkt-name">EUR/USD</span><span class="mkt-price">1.0842</span><span class="chg up">+0.13%</span><svg class="mkt-arrow"><use href="#i-chevron-right"/></svg></a></li>
-          <li><a class="mkt-row" href="#markets"><span class="coin coin-gbp">£</span><span class="mkt-name">GBP/USD</span><span class="mkt-price">1.2715</span><span class="chg down">-0.11%</span><svg class="mkt-arrow"><use href="#i-chevron-right"/></svg></a></li>
-          <li><a class="mkt-row" href="#markets"><span class="coin coin-jpy">¥</span><span class="mkt-name">USD/JPY</span><span class="mkt-price">156.82</span><span class="chg up">+0.24%</span><svg class="mkt-arrow"><use href="#i-chevron-right"/></svg></a></li>
-          <li><a class="mkt-row" href="#markets"><span class="coin coin-aud">A$</span><span class="mkt-name">AUD/USD</span><span class="mkt-price">0.6612</span><span class="chg down">-0.08%</span><svg class="mkt-arrow"><use href="#i-chevron-right"/></svg></a></li>
-        </ul>
-      </article>
-
-      <!-- SHARES -->
-      <article class="mkt-card">
-        <header class="mkt-head"><h3>SHARES</h3><a href="#" class="view-all">View all</a></header>
-        <ul class="mkt-list">
-          <li><a class="mkt-row" href="#markets"><span class="coin coin-aapl">A</span><span class="mkt-name">AAPL <em>· Apple</em></span><span class="mkt-price">228.11</span><span class="chg up">+0.63%</span><svg class="mkt-arrow"><use href="#i-chevron-right"/></svg></a></li>
-          <li><a class="mkt-row" href="#markets"><span class="coin coin-tsla">T</span><span class="mkt-name">TSLA <em>· Tesla</em></span><span class="mkt-price">334.09</span><span class="chg down">-1.02%</span><svg class="mkt-arrow"><use href="#i-chevron-right"/></svg></a></li>
-          <li><a class="mkt-row" href="#markets"><span class="coin coin-nvda">N</span><span class="mkt-name">NVDA <em>· Nvidia</em></span><span class="mkt-price">126.40</span><span class="chg up">+2.18%</span><svg class="mkt-arrow"><use href="#i-chevron-right"/></svg></a></li>
-          <li><a class="mkt-row" href="#markets"><span class="coin coin-amzn">a</span><span class="mkt-name">AMZN <em>· Amazon</em></span><span class="mkt-price">219.75</span><span class="chg up">+0.41%</span><svg class="mkt-arrow"><use href="#i-chevron-right"/></svg></a></li>
-        </ul>
-      </article>
-
-      <!-- INDICES -->
-      <article class="mkt-card">
-        <header class="mkt-head"><h3>INDICES</h3><a href="#" class="view-all">View all</a></header>
-        <ul class="mkt-list">
-          <li><a class="mkt-row" href="#markets"><span class="coin coin-idx">US</span><span class="mkt-name">US500</span><span class="mkt-price">5,732.3</span><span class="chg up">+0.90%</span><svg class="mkt-arrow"><use href="#i-chevron-right"/></svg></a></li>
-          <li><a class="mkt-row" href="#markets"><span class="coin coin-idx">NQ</span><span class="mkt-name">NAS100</span><span class="mkt-price">29,971.3</span><span class="chg down">-0.62%</span><svg class="mkt-arrow"><use href="#i-chevron-right"/></svg></a></li>
-          <li><a class="mkt-row" href="#markets"><span class="coin coin-idx">DJ</span><span class="mkt-name">US30</span><span class="mkt-price">42,503</span><span class="chg up">+0.76%</span><svg class="mkt-arrow"><use href="#i-chevron-right"/></svg></a></li>
-          <li><a class="mkt-row" href="#markets"><span class="coin coin-idx">DE</span><span class="mkt-name">GER40</span><span class="mkt-price">18,411</span><span class="chg up">+0.34%</span><svg class="mkt-arrow"><use href="#i-chevron-right"/></svg></a></li>
-        </ul>
-      </article>
-
-      <!-- ETF -->
-      <article class="mkt-card">
-        <header class="mkt-head"><h3>ETF</h3><a href="#" class="view-all">View all</a></header>
-        <ul class="mkt-list">
-          <li><a class="mkt-row" href="#markets"><span class="coin coin-etf">S</span><span class="mkt-name">SPY</span><span class="mkt-price">571.28</span><span class="chg up">+0.55%</span><svg class="mkt-arrow"><use href="#i-chevron-right"/></svg></a></li>
-          <li><a class="mkt-row" href="#markets"><span class="coin coin-etf">Q</span><span class="mkt-name">QQQ</span><span class="mkt-price">492.11</span><span class="chg up">+0.72%</span><svg class="mkt-arrow"><use href="#i-chevron-right"/></svg></a></li>
-          <li><a class="mkt-row" href="#markets"><span class="coin coin-gold">G</span><span class="mkt-name">GLD</span><span class="mkt-price">301.60</span><span class="chg down">-0.19%</span><svg class="mkt-arrow"><use href="#i-chevron-right"/></svg></a></li>
-          <li><a class="mkt-row" href="#markets"><span class="coin coin-etf">I</span><span class="mkt-name">IVV</span><span class="mkt-price">598.44</span><span class="chg up">+0.51%</span><svg class="mkt-arrow"><use href="#i-chevron-right"/></svg></a></li>
-        </ul>
-      </article>
+    <div class="mkx-tabs" data-reveal role="tablist" aria-label="Market categories">
+      <button class="mkx-tab is-active" type="button" role="tab" aria-selected="true" data-cat="popular">Popular</button>
+      <button class="mkx-tab" type="button" role="tab" aria-selected="false" data-cat="forex">Forex</button>
+      <button class="mkx-tab" type="button" role="tab" aria-selected="false" data-cat="indices">Indices</button>
+      <button class="mkx-tab" type="button" role="tab" aria-selected="false" data-cat="crypto">Crypto</button>
+      <button class="mkx-tab" type="button" role="tab" aria-selected="false" data-cat="stocks">Stocks</button>
+      <button class="mkx-tab" type="button" role="tab" aria-selected="false" data-cat="etfs">ETFs</button>
+      <button class="mkx-tab" type="button" role="tab" aria-selected="false" data-cat="commodities">Commodities</button>
     </div>
+    <div class="mkx-rows" id="mkxRows" data-reveal>
+      <div class="mkx-row"><div class="mkx-track" data-dir="-1"><!-- cards by JS --></div></div>
+      <div class="mkx-row"><div class="mkx-track" data-dir="1"><!-- cards by JS --></div></div>
+    </div>
+    <p class="mkx-note">The prices shown above are indicative and delayed by up to <b>5 minutes</b>. Please refer to our trading platform for live prices before placing any trades.</p>
+    <div class="mkx-more"><a href="#markets" class="btn btn-primary btn-lg magnetic">Browse All Markets <svg class="ico"><use href="#i-arrow-right"/></svg></a></div>
   </div>
 </section>
 

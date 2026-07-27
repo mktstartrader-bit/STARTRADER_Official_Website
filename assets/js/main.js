@@ -45,6 +45,40 @@
     { sym: 'GER40', price: '18,411', chg: '+0.34%', dir: 'up' },
     { sym: 'AAPL', price: '228.11', chg: '-0.21%', dir: 'down' }
   ];
+  var heroPairs = [
+    { n: 'Euro vs Swiss Franc', a: 'eu', b: 'ch', p: '0.92963/0.92980', dir: 'down' },
+    { n: 'Euro vs Australian Dollar', a: 'eu', b: 'au', p: '1.62889/1.62915', dir: 'up' },
+    { n: 'Great Britain Pound vs Swiss Franc', a: 'gb', b: 'ch', p: '1.08842/1.08858', dir: 'down' },
+    { n: 'New Zealand Dollar vs Swiss Franc', a: 'nz', b: 'ch', p: '0.47272/0.47287', dir: 'up' },
+    { n: 'Great Britain Pound vs Canadian Dollar', a: 'gb', b: 'ca', p: '1.88057/1.88083', dir: 'down' },
+    { n: 'US Dollar vs Japanese Yen', a: 'us', b: 'jp', p: '163.562/163.588', dir: 'up' },
+    { n: 'Euro vs US Dollar', a: 'eu', b: 'us', p: '1.08420/1.08435', dir: 'up' },
+    { n: 'Great Britain Pound vs US Dollar', a: 'gb', b: 'us', p: '1.27180/1.27201', dir: 'down' }
+  ];
+  function initHeroTicker() {
+    var track = document.getElementById('heroTicker');
+    if (!track) return;
+    var arrows = { down: 'M12 5v14M6 13l6 6 6-6', up: 'M12 19V5M6 11l6-6 6 6' };
+    var html = heroPairs.map(function (m) {
+      return '<a class="mkt-pill" href="#">' +
+        '<span class="mkt-flags"><img src="assets/img/flags/' + m.a + '.svg" alt="" loading="lazy"><img src="assets/img/flags/' + m.b + '.svg" alt="" loading="lazy"></span>' +
+        '<span class="mkt-txt"><b>' + m.n + '</b><em>' + m.p + '</em></span>' +
+        '<span class="mkt-dir ' + m.dir + '"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="' + arrows[m.dir] + '"/></svg></span>' +
+        '<span class="mkt-trade">Trade</span>' +
+        '</a>';
+    }).join('');
+    track.innerHTML = html + html; // duplicate for seamless loop
+    if (prefersReduced || !hasGSAP) return;
+    var half = track.scrollWidth / 2;
+    var speed = 62; // px/s
+    var tween = gsap.to(track, {
+      x: -half, duration: half / speed, ease: 'none', repeat: -1,
+      modifiers: { x: function (x) { return (parseFloat(x) % half) + 'px'; } }
+    });
+    track.addEventListener('mouseenter', function () { tween.timeScale(0.12); });
+    track.addEventListener('mouseleave', function () { tween.timeScale(1); });
+  }
+
   function buildTicker() {
     var track = document.getElementById('tickerTrack');
     if (!track) return;
@@ -261,6 +295,132 @@
   }
 
   /* ---------------- Live market data (simulated) ---------------- */
+  var mkxData = [
+    { s: 'USDCAD', n: 'US Dollar vs Canadian Dollar', c: 'forex', ic: { t: 'flags', a: 'us', b: 'ca' }, p: 1.40855, d: 5, chg: -0.08, pop: true },
+    { s: 'GBPUSD', n: 'Great Britain Pound vs US Dollar', c: 'forex', ic: { t: 'flags', a: 'gb', b: 'us' }, p: 1.3355, d: 4, chg: 0.26, pop: true },
+    { s: 'EURUSD', n: 'Euro vs US Dollar', c: 'forex', ic: { t: 'flags', a: 'eu', b: 'us' }, p: 1.0842, d: 4, chg: 0.13, pop: true },
+    { s: 'AUDUSD', n: 'Australian Dollar vs US Dollar', c: 'forex', ic: { t: 'flags', a: 'au', b: 'us' }, p: 0.6612, d: 4, chg: -0.08 },
+    { s: 'USDJPY', n: 'US Dollar vs Japanese Yen', c: 'forex', ic: { t: 'flags', a: 'us', b: 'jp' }, p: 156.82, d: 2, chg: 0.24 },
+    { s: 'NZDCHF', n: 'New Zealand Dollar vs Swiss Franc', c: 'forex', ic: { t: 'flags', a: 'nz', b: 'ch' }, p: 0.47272, d: 5, chg: 0.32 },
+    { s: 'CAC40', n: 'France 40 Cash Index', c: 'indices', ic: { t: 'flag', a: 'fr' }, p: 8438.7, d: 1, chg: 0.93, pop: true },
+    { s: 'US500', n: 'US 500 Cash Index', c: 'indices', ic: { t: 'flag', a: 'us' }, p: 5732.3, d: 1, chg: 0.90 },
+    { s: 'GER40', n: 'Germany 40 Cash Index', c: 'indices', ic: { t: 'flag', a: 'de' }, p: 18411, d: 0, chg: 0.34 },
+    { s: 'NAS100', n: 'US Tech 100 Cash Index', c: 'indices', ic: { t: 'flag', a: 'us' }, p: 29971.3, d: 1, chg: -0.62 },
+    { s: 'SOLUSD', n: 'Solana vs US Dollar', c: 'crypto', ic: { t: 'sym', v: 'S', bg: '#7b5cff' }, p: 76.53, d: 2, chg: 3.59, pop: true },
+    { s: 'BTCUSD', n: 'Bitcoin vs US Dollar', c: 'crypto', ic: { t: 'sym', v: '₿', bg: '#f7931a' }, p: 64230, d: 0, chg: 2.14 },
+    { s: 'ETHUSD', n: 'Ethereum vs US Dollar', c: 'crypto', ic: { t: 'sym', v: 'Ξ', bg: '#627eea' }, p: 3402.5, d: 1, chg: 1.12 },
+    { s: 'AAPL', n: 'Apple Inc', c: 'stocks', ic: { t: 'sym', v: 'A', bg: '#111418' }, p: 228.11, d: 2, chg: 0.63 },
+    { s: 'TSLA', n: 'Tesla Inc', c: 'stocks', ic: { t: 'sym', v: 'T', bg: '#e82127' }, p: 334.09, d: 2, chg: -1.02 },
+    { s: 'NVDA', n: 'NVIDIA Corp', c: 'stocks', ic: { t: 'sym', v: 'N', bg: '#76b900' }, p: 126.40, d: 2, chg: 2.18 },
+    { s: 'SPXS.ETF', n: 'Direxion Daily S&P 500 Bear 3x Shares', c: 'etfs', ic: { t: 'etf' }, p: 27.61, d: 2, chg: -0.61, pop: true },
+    { s: 'RSP.ETF', n: 'Invesco S&P 500 Equal Weight ETF', c: 'etfs', ic: { t: 'etf' }, p: 213.7, d: 1, chg: 1.03, pop: true },
+    { s: 'LQD.ETF', n: 'iShares iBoxx IG Corp Bond ETF', c: 'etfs', ic: { t: 'etf' }, p: 106.35, d: 2, chg: 0.05, pop: true },
+    { s: 'SPY.ETF', n: 'SPDR S&P 500 ETF Trust', c: 'etfs', ic: { t: 'etf' }, p: 571.28, d: 2, chg: 0.55 },
+    { s: 'XAUUSD', n: 'Gold vs US Dollar', c: 'commodities', ic: { t: 'sym', v: 'Au', bg: '#c9a53a' }, p: 3241.80, d: 2, chg: 0.82 },
+    { s: 'XAGUSD', n: 'Silver vs US Dollar', c: 'commodities', ic: { t: 'sym', v: 'Ag', bg: '#8b96a1' }, p: 38.42, d: 2, chg: 1.14 },
+    { s: 'WTI', n: 'US Crude Oil Spot', c: 'commodities', ic: { t: 'sym', v: 'Oil', bg: '#2b2f36' }, p: 71.28, d: 2, chg: -0.34 }
+  ];
+  function mkxSpark(sym, up) {
+    var seed = 0, i;
+    for (i = 0; i < sym.length; i++) seed = (seed * 31 + sym.charCodeAt(i)) >>> 0;
+    function rnd() { seed = (seed * 1103515245 + 12345) >>> 0; return seed / 4294967296; }
+    var N = 13, W = 100, H = 40, pad = 6, vals = [], v = 0.5, drift = up ? 0.032 : -0.032;
+    for (i = 0; i < N; i++) { v += drift + (rnd() - 0.5) * 0.22; vals.push(v); }
+    var mn = Math.min.apply(null, vals), mx = Math.max.apply(null, vals), rng = (mx - mn) || 1, xs = [], ys = [];
+    for (i = 0; i < N; i++) { xs.push((i / (N - 1)) * W); ys.push(H - pad - ((vals[i] - mn) / rng) * (H - 2 * pad)); }
+    // smooth curve (Catmull-Rom -> cubic bezier) for a modern rounded look
+    var line = 'M' + xs[0].toFixed(1) + ' ' + ys[0].toFixed(1);
+    for (i = 0; i < N - 1; i++) {
+      var x0 = xs[i > 0 ? i - 1 : 0], y0 = ys[i > 0 ? i - 1 : 0], x1 = xs[i], y1 = ys[i];
+      var x2 = xs[i + 1], y2 = ys[i + 1], x3 = xs[i + 2 < N ? i + 2 : N - 1], y3 = ys[i + 2 < N ? i + 2 : N - 1];
+      var c1x = x1 + (x2 - x0) / 6, c1y = y1 + (y2 - y0) / 6, c2x = x2 - (x3 - x1) / 6, c2y = y2 - (y3 - y1) / 6;
+      line += ' C' + c1x.toFixed(1) + ' ' + c1y.toFixed(1) + ' ' + c2x.toFixed(1) + ' ' + c2y.toFixed(1) + ' ' + x2.toFixed(1) + ' ' + y2.toFixed(1);
+    }
+    return { line: line, area: line + ' L' + W + ' ' + H + ' L0 ' + H + ' Z', baseY: ys[0].toFixed(1) };
+  }
+  function mkxIcon(m) {
+    var ic = m.ic;
+    if (ic.t === 'flags') return '<span class="mkx-ic mkx-ic-flags"><img src="assets/img/flags/' + ic.a + '.svg" alt="" loading="lazy"><img src="assets/img/flags/' + ic.b + '.svg" alt="" loading="lazy"></span>';
+    if (ic.t === 'flag') return '<span class="mkx-ic mkx-ic-flag"><img src="assets/img/flags/' + ic.a + '.svg" alt="" loading="lazy"></span>';
+    if (ic.t === 'etf') return '<span class="mkx-ic mkx-ic-etf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l5-6 3.5 3.5L20 7"/><path d="M4 20h16"/></svg></span>';
+    return '<span class="mkx-ic mkx-ic-sym" style="background:' + (ic.bg || '#0a2a6b') + '">' + ic.v + '</span>';
+  }
+  function mkxCard(m) {
+    var up = m.chg >= 0, col = up ? '#12b76a' : '#e5484d', sp = mkxSpark(m.s, up);
+    var gid = 'gsp-' + m.s.replace(/[^A-Za-z0-9]/g, '');
+    var price = m.p.toLocaleString('en-US', { minimumFractionDigits: m.d, maximumFractionDigits: m.d });
+    return '<article class="mkx-card" data-cat="' + m.c + '" data-sym="' + m.s + '">' +
+      '<div class="mkx-top">' + mkxIcon(m) + '<div class="mkx-name"><b>' + m.s + '</b><em>' + m.n + '</em></div></div>' +
+      '<div class="mkx-spark"><svg viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">' +
+        '<defs><linearGradient id="' + gid + '" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="' + col + '" stop-opacity=".26"/><stop offset="1" stop-color="' + col + '" stop-opacity="0"/></linearGradient></defs>' +
+        '<line class="mkx-base" x1="0" y1="' + sp.baseY + '" x2="100" y2="' + sp.baseY + '"/>' +
+        '<path d="' + sp.area + '" fill="url(#' + gid + ')"/>' +
+        '<path d="' + sp.line + '" fill="none" stroke="' + col + '" stroke-width="1.4" vector-effect="non-scaling-stroke"/>' +
+      '</svg></div>' +
+      '<div class="mkx-foot"><span class="mkx-price">' + price + '</span><span class="mkx-chg ' + (up ? 'up' : 'down') + '">' + (up ? '+' : '') + m.chg.toFixed(2) + '%</span><a class="mkx-trade" href="#">Trade</a></div>' +
+      '</article>';
+  }
+  var mkxLive = {};
+  function initMarkets() {
+    var rows = document.getElementById('mkxRows');
+    if (!rows) return;
+    mkxData.forEach(function (m) { if (!mkxLive[m.s]) mkxLive[m.s] = { base: m.p, cur: m.p, d: m.d }; });
+    var tracks = Array.prototype.slice.call(rows.querySelectorAll('.mkx-track'));
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('.mkx-tab'));
+
+    function fillRow(track, items) {
+      var dir = parseInt(track.dataset.dir, 10) || -1, cardW = 338;
+      var row = track.closest('.mkx-row');
+      var need = Math.ceil(((row ? row.clientWidth : 1200) + 420) / cardW);
+      var set = [];
+      while (set.length < Math.max(need, items.length)) set = set.concat(items);
+      track.innerHTML = set.concat(set).map(mkxCard).join('');
+      if (track._tw) { track._tw.kill(); track._tw = null; }
+      if (prefersReduced || !hasGSAP) { gsap && gsap.set(track, { x: 0 }); return; }
+      var half = track.scrollWidth / 2, dur = half / 42;
+      if (dir < 0) { gsap.set(track, { x: 0 }); track._tw = gsap.to(track, { x: -half, duration: dur, ease: 'none', repeat: -1 }); }
+      else { gsap.set(track, { x: -half }); track._tw = gsap.to(track, { x: 0, duration: dur, ease: 'none', repeat: -1 }); }
+      track.onmouseenter = function () { if (track._tw) track._tw.timeScale(0.18); };
+      track.onmouseleave = function () { if (track._tw) track._tw.timeScale(1); };
+    }
+    function render(cat) {
+      var items = mkxData.filter(function (m) { return cat === 'popular' ? m.pop : m.c === cat; });
+      if (tracks[0]) fillRow(tracks[0], items);
+      if (tracks[1]) fillRow(tracks[1], items.slice().reverse());
+    }
+    tabs.forEach(function (t) {
+      t.addEventListener('click', function () {
+        tabs.forEach(function (x) { x.classList.toggle('is-active', x === t); x.setAttribute('aria-selected', x === t ? 'true' : 'false'); });
+        render(t.dataset.cat);
+      });
+    });
+    render('popular');
+
+    // live prices — updates every card sharing a symbol (incl. duplicated marquee copies)
+    if (!prefersReduced) {
+      setInterval(function () {
+        var cards = rows.querySelectorAll('.mkx-card');
+        if (!cards.length) return;
+        var bySym = {};
+        cards.forEach(function (c) { var s = c.getAttribute('data-sym'); if (s) (bySym[s] = bySym[s] || []).push(c); });
+        Object.keys(bySym).forEach(function (s) {
+          var st = mkxLive[s]; if (!st) return;
+          if (Math.random() > 0.5) return;
+          var step = st.base * 0.0009 * (Math.random() * 2 - 1);
+          st.cur = st.cur + step + (st.base - st.cur) * 0.05;
+          var chg = ((st.cur - st.base) / st.base) * 100;
+          var ps = st.cur.toLocaleString('en-US', { minimumFractionDigits: st.d, maximumFractionDigits: st.d });
+          var cs = (chg >= 0 ? '+' : '') + chg.toFixed(2) + '%';
+          bySym[s].forEach(function (c) {
+            var pe = c.querySelector('.mkx-price'), ce = c.querySelector('.mkx-chg');
+            if (pe) { pe.textContent = ps; pe.classList.remove('mkx-flash-up', 'mkx-flash-down'); void pe.offsetWidth; pe.classList.add(step >= 0 ? 'mkx-flash-up' : 'mkx-flash-down'); }
+            if (ce) { ce.textContent = cs; ce.classList.toggle('up', chg >= 0); ce.classList.toggle('down', chg < 0); }
+          });
+        });
+      }, 1600);
+    }
+  }
+
   function initLiveMarkets() {
     var grid = document.querySelector('[data-live-markets]');
     if (!grid) return;
@@ -951,6 +1111,8 @@
     initFunding();
     initForex();
     initCompany();
+    initHeroTicker();
+    initMarkets();
     if (hasST) ScrollTrigger.refresh();
     window.addEventListener('load', function () { if (hasST) ScrollTrigger.refresh(); });
   }
