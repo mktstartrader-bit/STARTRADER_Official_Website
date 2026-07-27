@@ -1174,6 +1174,218 @@
     });
   }
 
+  /* ---------------- Glossary — A–Z index + live search ---------------- */
+  function initGlossary() {
+    var root = document.getElementById('glossary');
+    if (!root) return;
+
+    var input = document.getElementById('glSearch');
+    var clear = document.getElementById('glClear');
+    var status = document.getElementById('glStatus');
+    var empty = document.getElementById('glEmpty');
+    var emptyQ = document.getElementById('glEmptyQ');
+    var reset = document.getElementById('glReset');
+    var pager = document.getElementById('glPage');
+    var letters = Array.prototype.slice.call(root.querySelectorAll('.gl-ltr'));
+    var groups = Array.prototype.slice.call(root.querySelectorAll('.gl-group'));
+    var cards = Array.prototype.slice.call(root.querySelectorAll('.gl-term'));
+
+    var total = cards.length;
+    var totalEl = document.getElementById('glTotal');
+    if (totalEl) totalEl.textContent = total;
+
+    var letter = 'all';
+    var query = '';
+
+    // cache the original label markup so highlighting can be undone cleanly
+    cards.forEach(function (c) {
+      c._t = c.querySelector('.gl-t');
+      c._e = c.querySelector('.gl-ex');
+      c._tRaw = c._t ? c._t.textContent : '';
+      c._eRaw = c._e ? c._e.textContent : '';
+    });
+
+    function esc(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+    function mark(el, raw, q) {
+      if (!el) return;
+      if (!q) { el.textContent = raw; return; }
+      var re = new RegExp('(' + esc(q) + ')', 'ig');
+      el.innerHTML = raw.replace(re, '<mark>$1</mark>');
+    }
+
+    function apply() {
+      var q = query.trim().toLowerCase();
+      var shown = 0;
+
+      cards.forEach(function (c) {
+        var okL = letter === 'all' || c.closest('.gl-group').getAttribute('data-l') === letter;
+        var okQ = !q || (c.dataset.name || '').indexOf(q) > -1 || (c.dataset.def || '').indexOf(q) > -1;
+        var on = okL && okQ;
+        c.hidden = !on;
+        if (on) shown++;
+        mark(c._t, c._tRaw, q);
+        mark(c._e, c._eRaw, q);
+      });
+
+      // a letter group disappears once every card inside it is filtered out,
+      // and its badge counts what is actually on screen
+      groups.forEach(function (g) {
+        var n = g.querySelectorAll('.gl-term:not([hidden])').length;
+        g.hidden = n === 0;
+        var badge = g.querySelector('.gl-count');
+        if (badge) badge.textContent = n;
+      });
+
+      if (empty) empty.hidden = shown !== 0;
+      if (emptyQ) emptyQ.textContent = q ? '“' + query.trim() + '”' : 'that filter';
+      if (pager) pager.hidden = shown === 0 || !!q;
+      if (clear) clear.hidden = !query;
+
+      if (status) {
+        if (q) status.textContent = shown + (shown === 1 ? ' term matches ' : ' terms match ') + '“' + query.trim() + '”';
+        else if (letter !== 'all') status.textContent = 'Showing ' + shown + (shown === 1 ? ' term' : ' terms') + ' under ' + letter;
+        else status.textContent = '';
+      }
+      if (hasST) ScrollTrigger.refresh();
+    }
+
+    letters.forEach(function (b) {
+      if (b.classList.contains('is-off')) return;
+      b.addEventListener('click', function () {
+        letter = b.dataset.l;
+        letters.forEach(function (x) { x.classList.toggle('is-on', x === b); });
+        apply();
+        // keep the chosen letter in view under the sticky index
+        var g = letter !== 'all' && root.querySelector('.gl-group[data-l="' + letter + '"]');
+        if (g && window.scrollY > g.offsetTop) g.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+      });
+    });
+
+    if (input) {
+      var t;
+      input.addEventListener('input', function () {
+        query = input.value;
+        clearTimeout(t);
+        t = setTimeout(apply, 120);
+      });
+      // Esc clears the field the way a search box should
+      input.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && input.value) { input.value = ''; query = ''; apply(); }
+      });
+    }
+    function clearAll() {
+      if (input) { input.value = ''; input.focus(); }
+      query = '';
+      letter = 'all';
+      letters.forEach(function (x) { x.classList.toggle('is-on', x.dataset.l === 'all'); });
+      apply();
+    }
+    if (clear) clear.addEventListener('click', clearAll);
+    if (reset) reset.addEventListener('click', clearAll);
+
+    // ?q= pre-fills the search so a filtered view can be linked to directly
+    var q0 = new URLSearchParams(window.location.search).get('q');
+    if (q0 && input) { input.value = q0; query = q0; }
+
+    apply();
+  }
+
+  /* ---------------- Glossary — single term view (?term=slug) ---------------- */
+  function initGlossaryTerm() {
+    var host = document.getElementById('gtDef');
+    var DATA = window.STAR_GLOSSARY;
+    if (!host || !DATA) return;
+
+    var slugs = Object.keys(DATA).sort(function (a, b) {
+      return DATA[a].t.localeCompare(DATA[b].t);
+    });
+    var slug = (new URLSearchParams(window.location.search).get('term') || '').toLowerCase();
+    var term = DATA[slug];
+
+    function txt(id, v) { var el = document.getElementById(id); if (el) el.textContent = v; }
+
+    if (!term) {
+      host.innerHTML = '<p>We couldn’t find that term. It may have been renamed or removed — ' +
+        '<a href="glossary.html">browse the full A–Z</a> to find what you need.</p>';
+      txt('gt-title', 'Term not found');
+      txt('gtLead', 'That entry isn’t in the glossary.');
+      txt('gtCrumbTerm', 'Not found');
+      document.title = 'Term not found — Trading Glossary | STARTRADER';
+      ['gtPager', 'gtExample', 'gtKeys'].forEach(function (id) {
+        var el = document.getElementById(id); if (el) el.hidden = true;
+      });
+      // no term means nothing to relate to — drop the empty card, keep the A–Z link
+      var rc = document.querySelector('.gt-relcard'); if (rc) rc.hidden = true;
+      // drop the letter crumb and its separator — there is no letter to point at
+      var lc = document.getElementById('gtCrumbLetter');
+      if (lc) {
+        var sep = lc.nextElementSibling;
+        if (sep && sep.classList.contains('sep')) sep.remove();
+        lc.remove();
+      }
+      return;
+    }
+
+    // head + hero
+    document.title = term.t + ' — Trading Glossary | STARTRADER';
+    var md = document.querySelector('meta[name="description"]');
+    if (md) md.setAttribute('content', term.lead + ' Part of the STARTRADER trading glossary.');
+    var canon = document.querySelector('link[rel="canonical"]');
+    if (canon) canon.setAttribute('href', 'https://www.startrader.com/glossary-term.html?term=' + slug);
+
+    txt('gt-title', term.t);
+    txt('gtLead', term.lead);
+    txt('gtCrumbTerm', term.t);
+    var cl = document.getElementById('gtCrumbLetter');
+    if (cl) { cl.textContent = term.l; cl.href = 'glossary.html#gl-h-' + term.l; }
+
+    // body
+    host.innerHTML = (term.def || []).map(function (p) { return '<p>' + p + '</p>'; }).join('');
+
+    var ex = document.getElementById('gtExample');
+    if (ex && term.ex) { document.getElementById('gtExBody').textContent = term.ex; ex.hidden = false; }
+
+    var keys = document.getElementById('gtKeys');
+    if (keys && term.keys && term.keys.length) {
+      document.getElementById('gtKeysList').innerHTML =
+        term.keys.map(function (k) { return '<li>' + k + '</li>'; }).join('');
+      keys.hidden = false;
+    }
+
+    // related
+    var rel = document.getElementById('gtRelated');
+    if (rel) {
+      var items = (term.rel || []).filter(function (s) { return DATA[s]; });
+      rel.innerHTML = items.length
+        ? items.map(function (s) {
+            return '<a class="gt-rel" href="glossary-term.html?term=' + s + '"><b>' + DATA[s].t + '</b>' +
+              '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></a>';
+          }).join('')
+        : '<p class="gt-relempty">No related terms yet.</p>';
+    }
+
+    // prev / next through the alphabetical list
+    var i = slugs.indexOf(slug);
+    [['gtPrev', slugs[i - 1]], ['gtNext', slugs[i + 1]]].forEach(function (pair) {
+      var el = document.getElementById(pair[0]), s = pair[1];
+      if (!el) return;
+      if (!s) { el.hidden = true; return; }
+      el.href = 'glossary-term.html?term=' + s;
+      el.querySelector('.ttl').textContent = DATA[s].t;
+    });
+
+    // structured data
+    var ld = document.getElementById('gtLd');
+    if (ld) {
+      ld.textContent = JSON.stringify({
+        '@context': 'https://schema.org', '@type': 'DefinedTerm',
+        name: term.t, description: term.lead + ' ' + (term.def || []).join(' '),
+        url: 'https://www.startrader.com/glossary-term.html?term=' + slug,
+        inDefinedTermSet: { '@type': 'DefinedTermSet', name: 'STARTRADER Trading Glossary', url: 'https://www.startrader.com/glossary.html' }
+      });
+    }
+  }
+
   /* ---------------- Company — global presence map ---------------- */
   function initCompany() {
     var root = document.getElementById('coGlobal');
@@ -1251,6 +1463,8 @@
     initForex();
     initCommodities();
     initHowToTrade();
+    initGlossary();
+    initGlossaryTerm();
     initCompany();
     initHeroTicker();
     initMarkets();
