@@ -180,9 +180,9 @@ p{text-wrap:pretty}
 .mega-col+.mega-col{border-left:1px solid rgba(255,255,255,.08)}
 .mega-head{display:block;font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#8592ad;margin-bottom:16px;padding-left:10px}
 .mega-item{width:100%;text-align:left;background:none;display:flex;align-items:center;gap:14px;padding:11px 10px;border-radius:12px;transition:background .2s;cursor:pointer}
-.mega-item:hover,.mega-item.active{background:rgba(255,255,255,.06)}
+.mega-item:hover,.mega-item.active,.mega-item.is-current{background:rgba(255,255,255,.06)}
 .mega-ico{width:40px;height:40px;flex:none;border-radius:11px;display:grid;place-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);color:#aeb8cc;transition:color .2s,background .2s,border-color .2s}
-.mega-item:hover .mega-ico,.mega-item.active .mega-ico{color:#5b9dff;border-color:rgba(0,120,255,.4);background:rgba(0,71,187,.16)}
+.mega-item:hover .mega-ico,.mega-item.active .mega-ico,.mega-item.is-current .mega-ico{color:#5b9dff;border-color:rgba(0,120,255,.4);background:rgba(0,71,187,.16)}
 .mega-ico svg{width:20px;height:20px}
 .mega-txt{display:flex;flex-direction:column;line-height:1.3;min-width:0}
 .mega-txt b{font-size:14px;font-weight:600;color:#eef1f6;display:flex;align-items:center;gap:8px;white-space:nowrap}
@@ -195,6 +195,10 @@ p{text-wrap:pretty}
 .mega.flyout-open .mega-flyout{width:250px}
 .fly-inner{width:236px;margin-left:14px;height:100%;padding:20px 22px;border-radius:14px;border:1px solid rgba(255,255,255,.09);background:linear-gradient(165deg,rgba(26,42,78,.85),rgba(4,7,16,.96))}
 .fly-title{display:block;font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#6d7893;margin-bottom:14px}
+.fly-title-link{display:inline-flex;align-items:center;gap:7px;transition:color .25s}
+.fly-title-link:hover{color:var(--blue)}
+.fly-title-go{width:12px;height:12px;transition:transform .3s var(--ease)}
+.fly-title-link:hover .fly-title-go{transform:translateX(3px)}
 .fly-group{margin-bottom:16px}
 .fly-group:last-child{margin-bottom:0}
 .fly-group h5{font-size:12px;font-weight:700;color:#dfe6f2;margin-bottom:6px}
@@ -313,11 +317,14 @@ p{text-wrap:pretty}
 .hero-title{width:100%;max-width:100%;font-size:clamp(29px,6.4vw,66px);font-weight:800;letter-spacing:-.03em;line-height:1.14;overflow-wrap:break-word}
 .hero-title .line-1,.hero-title .line-2{display:block}
 .hero-title .line-2{
-  background:linear-gradient(90deg,rgba(255,255,255,.62),#dae3ed);
+  background:linear-gradient(90deg,rgba(255,255,255,.8),#eef3f9);
   -webkit-background-clip:text;background-clip:text;color:transparent;
   padding-bottom:.14em;
 }
-.hero-sub{margin-top:20px;font-size:clamp(15px,1.6vw,18px);color:#aeb8c8;font-weight:400}
+.hero-sub{
+  margin-top:20px;font-size:clamp(15px,1.6vw,18px);color:#d8e1ee;font-weight:400;
+  text-shadow:0 1px 12px rgba(3,7,20,.55);
+}
 .hero-cta{margin-top:34px}
 /* Hero CTA sits on the dark banner — white pill */
 .hero-cta .btn{background:#fff;color:#08122a;box-shadow:0 16px 36px -16px rgba(0,0,0,.6)}
@@ -347,8 +354,8 @@ p{text-wrap:pretty}
 }
 .hero-strip li:hover .hs-ico{transform:translateY(-4px);border-color:rgba(0,120,255,.6);color:#fff}
 .hs-ico svg{width:22px;height:22px}
-.hs-val{font-size:15px;font-weight:700;color:#fff;letter-spacing:-.01em}
-.hs-lbl{font-size:12.5px;color:#8b95a8;margin-top:5px}
+.hs-val{font-size:15px;font-weight:700;color:#fff;letter-spacing:-.01em;text-shadow:0 1px 12px rgba(3,7,20,.55)}
+.hs-lbl{font-size:12.5px;color:#c5d0e0;margin-top:5px;text-shadow:0 1px 10px rgba(3,7,20,.55)}
 
 /* ---------- Ticker ---------- */
 .ticker{background:var(--slate);overflow:hidden;border-block:1px solid rgba(255,255,255,.04)}
@@ -404,6 +411,8 @@ p{text-wrap:pretty}
 .mkx-ic-flags img{position:absolute;top:50%;border-radius:50%;object-fit:cover;border:2px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.22)}
 .mkx-ic-flags img:first-child{width:29px;height:29px;left:0;transform:translateY(-50%);z-index:1}
 .mkx-ic-flags img:last-child{width:25px;height:25px;right:0;transform:translateY(-50%);z-index:2}
+.mkx-ic-inst{overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,.16)}
+.mkx-ic-inst img{width:100%;height:100%;display:block}
 .mkx-ic-etf{background:#e6edf6;color:#5c6c86}
 .mkx-ic-etf svg{width:22px;height:22px}
 .mkx-name{min-width:0}
@@ -1547,7 +1556,24 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
 .fx-cat .cat-count b{color:var(--text);font-weight:700}
 .fx-pairs .ta-spec-wrap{background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6);border:1px solid rgba(255,255,255,.8);border-radius:var(--radius-lg);box-shadow:0 14px 40px -24px rgba(20,44,96,.24),inset 0 1px 0 rgba(255,255,255,.9)}
 .fx-pairs .ta-table{min-width:640px}
-.fx-pair-badge{flex:none;width:38px;height:30px;border-radius:8px;display:grid;place-items:center;font-size:10px;font-weight:800;color:#fff;letter-spacing:.02em;background:linear-gradient(145deg,#3b6fe0,#1b3fa8);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16)}
+/* instrument marks — overlapping currency flags on forex, a single
+   commodity icon on commodities */
+.fx-pair-flags{position:relative;flex:none;width:50px;height:32px}
+.fx-pair-flags img{
+  position:absolute;top:50%;border-radius:50%;object-fit:cover;background:#fff;
+  border:2px solid #fff;box-shadow:0 2px 7px rgba(20,44,96,.3);
+  transition:transform .35s var(--ease);
+}
+.fx-pair-flags img:first-child{width:29px;height:29px;left:0;transform:translateY(-50%);z-index:1}
+.fx-pair-flags img:last-child{width:25px;height:25px;right:0;transform:translateY(-50%);z-index:2}
+.ta-table tbody tr:hover .fx-pair-flags img:first-child{transform:translateY(-50%) translateX(-2px)}
+.ta-table tbody tr:hover .fx-pair-flags img:last-child{transform:translateY(-50%) translateX(2px)}
+.fx-inst-ic{
+  flex:none;width:34px;height:34px;border-radius:50%;overflow:hidden;display:block;
+  box-shadow:0 2px 8px rgba(20,44,96,.26);transition:transform .35s var(--ease)
+}
+.fx-inst-ic img{display:block;width:100%;height:100%}
+.ta-table tbody tr:hover .fx-inst-ic{transform:scale(1.08)}
 .fx-pair-name{font-weight:700;color:var(--text);letter-spacing:-.01em}
 .fx-pair-name em{display:block;font-style:normal;font-size:12px;color:var(--text-mute);font-weight:500;margin-top:1px}
 .fx-px{color:var(--text);font-weight:600;font-variant-numeric:tabular-nums}
@@ -1819,6 +1845,145 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
   .fx-stats{grid-template-columns:1fr;max-width:340px;margin-inline:auto}
   .fx-more-grid{grid-template-columns:1fr;max-width:380px;margin-inline:auto}
   .fx-hero-visual{max-width:400px}
+}
+
+/* ================= HOW-TO-TRADE STEPS (shared component) ================= */
+.htrade-sec{background:radial-gradient(60% 60% at 92% 0%,rgba(0,71,187,.05),transparent 60%),var(--bg-light)}
+.htrade{display:grid;grid-template-columns:.86fr 1.14fr;gap:24px;align-items:stretch}
+.htrade-intro,.htrade-steps{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius-xl);
+  box-shadow:0 18px 44px -34px rgba(20,44,96,.45);
+}
+.htrade-intro{display:flex;flex-direction:column;justify-content:center;padding:46px 44px}
+.htrade-title{font-size:clamp(34px,4.4vw,54px);font-weight:800;letter-spacing:-.035em;line-height:1.04;color:var(--text)}
+.htrade-title span{color:#b3bcc9}
+.htrade-sub{margin-top:20px;font-size:15.5px;color:var(--text-soft)}
+.htrade-btn{align-self:flex-start;margin-top:38px;padding-right:9px;gap:16px}
+.htrade-go{
+  width:32px;height:32px;border-radius:50%;flex:none;display:grid;place-items:center;
+  background:rgba(255,255,255,.18);transition:transform .45s var(--ease),background .3s;
+}
+.htrade-go svg{width:15px;height:15px}
+.htrade-btn:hover .htrade-go{transform:translateX(3px);background:rgba(255,255,255,.28)}
+
+.htrade-steps{position:relative;list-style:none;margin:0;padding:34px 42px 34px 40px;display:flex;flex-direction:column;justify-content:center;gap:6px}
+/* progress rail behind the number pills — filled on scroll */
+/* connector rail — spans first pill centre to last pill centre (measured in JS) */
+.htrade-steps::before,.htrade-steps::after{
+  content:"";position:absolute;left:var(--htrade-x,66px);top:var(--htrade-y,52px);
+  width:2px;height:var(--htrade-h,0);margin-left:-1px;border-radius:2px;
+}
+.htrade-steps::before{background:var(--line)}
+.htrade-steps::after{
+  background:linear-gradient(180deg,var(--blue),#5b9dff);
+  transform:scaleY(var(--htrade-rail,0));transform-origin:top;
+}
+.htrade-step{position:relative;z-index:1;display:flex;align-items:flex-start;gap:22px;padding:18px 16px;border-radius:18px;
+  transition:background .35s var(--ease),transform .4s var(--ease)}
+.htrade-step:hover,.htrade-step.is-on{background:rgba(0,71,187,.045);transform:translateX(4px)}
+.htrade-num{
+  flex:none;width:54px;height:38px;border-radius:70px;display:grid;place-items:center;
+  font-size:14px;font-weight:700;letter-spacing:.02em;color:var(--text-mute);
+  background:#fff;border:1px solid var(--line);font-variant-numeric:tabular-nums;
+  transition:background .35s,color .35s,border-color .35s,transform .45s var(--ease),box-shadow .35s;
+}
+.htrade-step:hover .htrade-num,.htrade-step.is-on .htrade-num{
+  background:var(--blue);border-color:var(--blue);color:#fff;transform:scale(1.06);
+  box-shadow:0 12px 26px -12px rgba(0,71,187,.7);
+}
+.htrade-txt h3{font-size:19px;letter-spacing:-.02em;color:var(--text);margin-bottom:6px;transition:color .3s}
+.htrade-step:hover .htrade-txt h3,.htrade-step.is-on .htrade-txt h3{color:var(--blue)}
+.htrade-txt p{font-size:14.5px;line-height:1.55;color:var(--text-soft);max-width:52ch}
+
+/* ================= COMMODITIES PAGE ================= */
+/* Hero reuses .fx-hero wholesale (same banner render and floating quote chips) */
+
+/* ================= LEARN CARD (shared: dark takeaway card) ================= */
+.learn-sec{background:var(--bg-light-2)}
+.learn-card{
+  position:relative;overflow:hidden;isolation:isolate;border-radius:clamp(24px,3vw,40px);
+  display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,.94fr);align-items:center;gap:clamp(24px,3vw,48px);
+  padding:clamp(38px,4.6vw,68px) clamp(28px,4vw,64px);
+  /* near-black so the illustration's own black background blends into the card */
+  background:
+    radial-gradient(58% 116% at 6% 0%,rgba(0,71,187,.22),transparent 62%),
+    linear-gradient(150deg,#0c0f14 0%,#08090d 58%,#040507 100%);
+  box-shadow:0 40px 90px -50px rgba(8,16,38,.6);
+}
+.learn-copy{position:relative;z-index:1;min-width:0}
+.learn-copy h2{
+  font-size:clamp(25px,2.9vw,40px);font-weight:800;letter-spacing:-.028em;line-height:1.12;color:#fff;
+}
+.learn-lead{margin-top:18px;font-size:clamp(14.5px,1.45vw,16.5px);line-height:1.6;color:#e3e8f0}
+.learn-list{list-style:none;margin:22px 0 0;display:flex;flex-direction:column;gap:14px}
+.learn-list li{
+  display:flex;align-items:center;gap:13px;
+  font-size:clamp(14px,1.4vw,16px);color:#98a1b0;transition:color .3s var(--ease),transform .35s var(--ease);
+}
+.learn-list li:hover{color:#e8edf5;transform:translateX(4px)}
+.learn-tick{
+  flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(0,71,187,.22);color:#6fa4ff;transition:background .3s,color .3s;
+}
+.learn-tick svg{width:12px;height:12px}
+.learn-list li:hover .learn-tick{background:var(--blue);color:#fff}
+.learn-copy .btn{margin-top:32px}
+
+/* right-hand illustration — the asset's plate is crushed to true black and
+   screen-blended, so it composites onto the card with no visible edge.
+   The mask only feathers the outermost dashed guides. */
+.learn-viz{position:relative;display:grid;place-items:center}
+.learn-viz img{
+  display:block;width:min(162%,790px);height:auto;
+  mix-blend-mode:screen;
+  -webkit-mask-image:radial-gradient(78% 78% at 50% 50%,#000 62%,transparent 100%);
+  mask-image:radial-gradient(78% 78% at 50% 50%,#000 62%,transparent 100%);
+}
+@media (prefers-reduced-motion:no-preference){
+  .learn-viz img{animation:learnFloat 7s ease-in-out infinite}
+}
+@keyframes learnFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+
+/* ---- Account tiers visual (Why card 6) ---- */
+.cm-acc{width:90%;max-width:270px;display:flex;flex-direction:column;gap:10px}
+.cm-acc-row{
+  position:relative;display:grid;grid-template-columns:1fr auto;align-items:center;row-gap:2px;
+  padding:12px 44px 12px 15px;border-radius:12px;
+  background:rgba(255,255,255,.72);border:1px solid #fff;
+  box-shadow:0 10px 22px -15px rgba(20,44,96,.4),inset 0 1px 0 #fff;
+  -webkit-backdrop-filter:blur(8px) saturate(1.4);backdrop-filter:blur(8px) saturate(1.4);
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease);
+}
+.cm-acc-row b{grid-column:1;font-size:13px;font-weight:700;color:#0f1830}
+.cm-acc-row em{grid-column:1;font-style:normal;font-size:11px;color:var(--text-mute)}
+.cm-acc-row i{
+  position:absolute;right:15px;top:50%;margin-top:-8px;width:16px;height:16px;border-radius:50%;
+  border:2px solid #c9d4e4;transition:border-color .35s,background .35s,box-shadow .35s;
+}
+.cm-acc-row i::after{
+  content:"";position:absolute;inset:3px;border-radius:50%;background:#fff;opacity:0;transition:opacity .35s;
+}
+.cm-acc-row.is-on{transform:translateX(4px);box-shadow:0 16px 30px -16px rgba(0,71,187,.5),inset 0 1px 0 #fff}
+.cm-acc-row.is-on i{border-color:var(--blue);background:var(--blue);box-shadow:0 0 0 4px rgba(0,71,187,.12)}
+.cm-acc-row.is-on i::after{opacity:1}
+
+@media (max-width:1080px){
+  .htrade{grid-template-columns:1fr;gap:20px}
+  .htrade-intro{padding:40px 38px}
+  .htrade-title br{display:none}
+  .htrade-title span{margin-left:.28em}
+}
+@media (max-width:900px){
+  .learn-card{grid-template-columns:1fr;gap:22px}
+  .learn-viz{order:-1}
+  .learn-viz img{width:min(72%,330px)}
+}
+@media (max-width:720px){
+  .htrade-intro{padding:34px 26px}
+  .htrade-steps{padding:22px 22px 22px 20px}
+  .htrade-step{gap:16px;padding:15px 10px}
+  .htrade-num{width:48px;height:34px;font-size:13px}
+  .htrade-btn{align-self:stretch;justify-content:space-between}
 }
 
 /* ================= COMPANY PAGE ================= */

@@ -316,9 +316,9 @@
     { s: 'RSP.ETF', n: 'Invesco S&P 500 Equal Weight ETF', c: 'etfs', ic: { t: 'etf' }, p: 213.7, d: 1, chg: 1.03, pop: true },
     { s: 'LQD.ETF', n: 'iShares iBoxx IG Corp Bond ETF', c: 'etfs', ic: { t: 'etf' }, p: 106.35, d: 2, chg: 0.05, pop: true },
     { s: 'SPY.ETF', n: 'SPDR S&P 500 ETF Trust', c: 'etfs', ic: { t: 'etf' }, p: 571.28, d: 2, chg: 0.55 },
-    { s: 'XAUUSD', n: 'Gold vs US Dollar', c: 'commodities', ic: { t: 'sym', v: 'Au', bg: '#c9a53a' }, p: 3241.80, d: 2, chg: 0.82 },
-    { s: 'XAGUSD', n: 'Silver vs US Dollar', c: 'commodities', ic: { t: 'sym', v: 'Ag', bg: '#8b96a1' }, p: 38.42, d: 2, chg: 1.14 },
-    { s: 'WTI', n: 'US Crude Oil Spot', c: 'commodities', ic: { t: 'sym', v: 'Oil', bg: '#2b2f36' }, p: 71.28, d: 2, chg: -0.34 }
+    { s: 'XAUUSD', n: 'Gold vs US Dollar', c: 'commodities', ic: { t: 'inst', a: 'xau' }, p: 3241.80, d: 2, chg: 0.82 },
+    { s: 'XAGUSD', n: 'Silver vs US Dollar', c: 'commodities', ic: { t: 'inst', a: 'xag' }, p: 38.42, d: 2, chg: 1.14 },
+    { s: 'WTI', n: 'US Crude Oil Spot', c: 'commodities', ic: { t: 'inst', a: 'xti' }, p: 71.28, d: 2, chg: -0.34 }
   ];
   function mkxSpark(sym, up) {
     var seed = 0, i;
@@ -342,6 +342,7 @@
     var ic = m.ic;
     if (ic.t === 'flags') return '<span class="mkx-ic mkx-ic-flags"><img src="assets/img/flags/' + ic.a + '.svg" alt="" loading="lazy"><img src="assets/img/flags/' + ic.b + '.svg" alt="" loading="lazy"></span>';
     if (ic.t === 'flag') return '<span class="mkx-ic mkx-ic-flag"><img src="assets/img/flags/' + ic.a + '.svg" alt="" loading="lazy"></span>';
+    if (ic.t === 'inst') return '<span class="mkx-ic mkx-ic-inst"><img src="assets/img/commodities/' + ic.a + '.svg" alt="" loading="lazy"></span>';
     if (ic.t === 'etf') return '<span class="mkx-ic mkx-ic-etf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l5-6 3.5 3.5L20 7"/><path d="M4 20h16"/></svg></span>';
     return '<span class="mkx-ic mkx-ic-sym" style="background:' + (ic.bg || '#0a2a6b') + '">' + ic.v + '</span>';
   }
@@ -551,8 +552,11 @@
       });
       // reset when leaving the whole Trading menu
       item.addEventListener('mouseleave', closeFly);
-      // keyboard / click toggle for a11y
+      // The parent is a link to its own hub page: clicking the label navigates,
+      // clicking the chevron toggles the flyout instead. Non-link parents always toggle.
       parent.addEventListener('click', function (e) {
+        var chev = e.target && e.target.closest ? e.target.closest('.mega-chev') : null;
+        if (parent.tagName === 'A' && parent.getAttribute('href') && !chev) return;
         e.preventDefault();
         mega.classList.contains('flyout-open') ? closeFly() : openFly();
       });
@@ -897,7 +901,63 @@
     var cats = Array.prototype.slice.call(root.querySelectorAll('[data-fx-cat]'));
     if (!body) return;
 
-    // mid price + typical spread (in pips) per pair
+    // mid price + typical spread per instrument.
+    // forex: `spread` is in pips (converted with the pair's pip size).
+    // commodities: `spread` is already in price units, so the pip size is 1.
+    // currency -> flag file, and commodity symbol -> instrument icon file
+    var FLAG = {
+      EUR: 'eu', USD: 'us', GBP: 'gb', JPY: 'jp', CHF: 'ch', AUD: 'au', CAD: 'ca',
+      NZD: 'nz', TRY: 'tr', ZAR: 'south-africa', MXN: 'mx', SGD: 'sg', HKD: 'hk'
+    };
+    function flagImg(code) {
+      var f = FLAG[code];
+      return f ? '<img src="assets/img/flags/' + f + '.svg" alt="" loading="lazy">' : '';
+    }
+
+    var SETS = {
+      forex: {
+        pip: function (p) { return p.sym.indexOf('JPY') > -1 ? 0.01 : 0.0001; },
+        badge: function (p) {
+          var c = p.sym.split('/');
+          return '<span class="fx-pair-flags">' + flagImg(c[0]) + flagImg(c[1]) + '</span>';
+        },
+        spread: function (s) { return s.toFixed(1); },
+        floor: function () { return 0.1; },
+        data: null
+      },
+      commodities: {
+        pip: function () { return 1; },
+        badge: function (p) {
+          return '<span class="fx-inst-ic"><img src="assets/img/commodities/' + p.icon + '.svg" alt="" loading="lazy"></span>';
+        },
+        spread: function (s, p) { return s.toFixed(p.sdec); },
+        floor: function (p) { return p.spread * 0.6; },
+        data: {
+          metals: [
+            { sym: 'XAU/USD', name: 'Gold Spot / US Dollar', icon: 'xau', badge: 'AU', mid: 2338.50, dec: 2, spread: 0.18, sdec: 2 },
+            { sym: 'XAG/USD', name: 'Silver Spot / US Dollar', icon: 'xag', badge: 'AG', mid: 27.420, dec: 3, spread: 0.016, sdec: 3 },
+            { sym: 'XPT/USD', name: 'Platinum Spot / US Dollar', icon: 'xpt', badge: 'PT', mid: 985.40, dec: 2, spread: 1.80, sdec: 2 },
+            { sym: 'XPD/USD', name: 'Palladium Spot / US Dollar', icon: 'xpd', badge: 'PD', mid: 1012.00, dec: 2, spread: 3.50, sdec: 2 },
+            { sym: 'COPPER', name: 'Copper Futures CFD', icon: 'copper', badge: 'CU', mid: 4.4820, dec: 4, spread: 0.0035, sdec: 4 }
+          ],
+          energy: [
+            { sym: 'XTI/USD', name: 'WTI Crude Oil', icon: 'xti', badge: 'WTI', mid: 78.42, dec: 2, spread: 0.030, sdec: 3 },
+            { sym: 'XBR/USD', name: 'Brent Crude Oil', icon: 'xbr', badge: 'BRN', mid: 82.15, dec: 2, spread: 0.030, sdec: 3 },
+            { sym: 'XNG/USD', name: 'Natural Gas', icon: 'xng', badge: 'GAS', mid: 2.7480, dec: 4, spread: 0.0060, sdec: 4 },
+            { sym: 'HOIL', name: 'Heating Oil Futures CFD', icon: 'hoil', badge: 'HO', mid: 2.4180, dec: 4, spread: 0.0045, sdec: 4 }
+          ],
+          agriculture: [
+            { sym: 'WHEAT', name: 'Wheat Futures CFD', icon: 'wheat', badge: 'WHT', mid: 578.25, dec: 2, spread: 1.20, sdec: 2 },
+            { sym: 'CORN', name: 'Corn Futures CFD', icon: 'corn', badge: 'CRN', mid: 442.50, dec: 2, spread: 1.00, sdec: 2 },
+            { sym: 'SOYBEAN', name: 'Soybean Futures CFD', icon: 'soybean', badge: 'SOY', mid: 1148.50, dec: 2, spread: 1.50, sdec: 2 },
+            { sym: 'COFFEE', name: 'Coffee Futures CFD', icon: 'coffee', badge: 'KC', mid: 231.40, dec: 2, spread: 0.90, sdec: 2 },
+            { sym: 'SUGAR', name: 'Sugar Futures CFD', icon: 'sugar', badge: 'SB', mid: 19.85, dec: 2, spread: 0.060, sdec: 3 },
+            { sym: 'COCOA', name: 'Cocoa Futures CFD', icon: 'cocoa', badge: 'CC', mid: 7420.0, dec: 1, spread: 12.0, sdec: 1 }
+          ]
+        }
+      }
+    };
+
     var data = {
       major: [
         { sym: 'EUR/USD', name: 'Euro / US Dollar', mid: 1.08420, dec: 5, spread: 0.2 },
@@ -925,23 +985,26 @@
       ]
     };
 
+    SETS.forex.data = data;
+    var set = SETS[root.dataset.fxPairs] || SETS.forex;
+    var firstCat = (cats.filter(function (c) { return c.classList.contains('active'); })[0] || cats[0] || {}).dataset;
+    var defaultCat = (firstCat && firstCat.fxCat) || Object.keys(set.data)[0];
+
     var live = [];
-    function pipOf(sym) { return sym.indexOf('JPY') > -1 ? 0.01 : 0.0001; }
     function fmt(n, d) { return n.toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d }); }
 
     function render(cat) {
-      var rows = data[cat] || data.major;
+      var rows = set.data[cat] || set.data[defaultCat];
       var html = rows.map(function (p) {
-        var pip = pipOf(p.sym);
+        var pip = set.pip(p);
         var half = (p.spread * pip) / 2;
         var bid = p.mid - half, ask = p.mid + half;
-        var base = p.sym.split('/')[0];
         return '<tr>' +
-          '<td><span class="spec-feat"><span class="fx-pair-badge">' + base + '</span>' +
+          '<td><span class="spec-feat">' + set.badge(p) +
           '<span class="fx-pair-name">' + p.sym + '<em>' + p.name + '</em></span></span></td>' +
           '<td><span class="fx-px" data-el="bid">' + fmt(bid, p.dec) + '</span></td>' +
           '<td><span class="fx-px" data-el="ask">' + fmt(ask, p.dec) + '</span></td>' +
-          '<td><span class="fx-spread-pill" data-el="spread">' + p.spread.toFixed(1) + '</span></td>' +
+          '<td><span class="fx-spread-pill" data-el="spread">' + set.spread(p.spread, p) + '</span></td>' +
           '</tr>';
       }).join('');
       body.innerHTML = html;
@@ -952,7 +1015,7 @@
       rows.forEach(function (p, i) {
         var tr = trs[i]; if (!tr) return;
         live.push({
-          p: p, pip: pipOf(p.sym), cur: p.mid, spread: p.spread,
+          p: p, pip: set.pip(p), cur: p.mid, spread: p.spread,
           bidEl: tr.querySelector('[data-el="bid"]'),
           askEl: tr.querySelector('[data-el="ask"]'),
           spreadEl: tr.querySelector('[data-el="spread"]')
@@ -966,12 +1029,13 @@
         if (Math.random() > 0.6) return;
         var step = r.p.mid * 0.00035 * (Math.random() * 2 - 1);
         r.cur = r.cur + step + (r.p.mid - r.cur) * 0.06;
-        // occasional spread widening for realism
-        var sp = Math.max(0.1, r.p.spread * (0.85 + Math.random() * 0.5));
+        // occasional spread widening for realism (floor is per-set: 0.1 pip on forex,
+        // relative on commodities where a spread can legitimately be well under 0.1)
+        var sp = Math.max(set.floor(r.p), r.p.spread * (0.85 + Math.random() * 0.5));
         var half = (sp * r.pip) / 2;
         if (r.bidEl) r.bidEl.textContent = fmt(r.cur - half, r.p.dec);
         if (r.askEl) r.askEl.textContent = fmt(r.cur + half, r.p.dec);
-        if (r.spreadEl) r.spreadEl.textContent = sp.toFixed(1);
+        if (r.spreadEl) r.spreadEl.textContent = set.spread(sp, r.p);
         [r.bidEl, r.askEl].forEach(function (el) {
           if (!el) return;
           el.classList.remove('fup', 'fdown'); void el.offsetWidth;
@@ -987,7 +1051,7 @@
       });
     });
 
-    render('major');
+    render(defaultCat);
     setInterval(tick, 1500);
   }
 
@@ -1033,6 +1097,81 @@
         if (r.chgEl) { r.chgEl.textContent = (chg >= 0 ? '+' : '') + chg.toFixed(2) + '%'; r.chgEl.className = 'q-chg ' + (chg >= 0 ? 'up' : 'down'); }
       });
     }, 2000);
+  }
+
+  /* ---------------- How-to-trade steps (shared component) ---------------- */
+  function initHowToTrade() {
+    var list = document.querySelector('[data-htrade]');
+    if (!list) return;
+    var steps = Array.prototype.slice.call(list.querySelectorAll('.htrade-step'));
+    if (!steps.length) return;
+
+    function setActive(i) {
+      steps.forEach(function (s, n) { s.classList.toggle('is-on', n === i); });
+    }
+
+    // the connector rail runs from the first pill's centre to the last pill's centre
+    function layoutRail() {
+      var first = steps[0].querySelector('.htrade-num');
+      var last = steps[steps.length - 1].querySelector('.htrade-num');
+      if (!first || !last) return;
+      var lr = list.getBoundingClientRect(), fr = first.getBoundingClientRect(), sr = last.getBoundingClientRect();
+      var top = fr.top - lr.top + fr.height / 2;
+      list.style.setProperty('--htrade-x', (fr.left - lr.left + fr.width / 2) + 'px');
+      list.style.setProperty('--htrade-y', top + 'px');
+      list.style.setProperty('--htrade-h', ((sr.top - lr.top + sr.height / 2) - top) + 'px');
+    }
+    layoutRail();
+    var railT;
+    window.addEventListener('resize', function () {
+      clearTimeout(railT);
+      railT = setTimeout(layoutRail, 150);
+    });
+
+    if (prefersReduced || !hasGSAP || !hasST) {
+      list.style.setProperty('--htrade-rail', '1');
+      return;
+    }
+
+    // rail fills as the list scrolls through the viewport
+    gsap.to(list, {
+      '--htrade-rail': 1, ease: 'none',
+      scrollTrigger: { trigger: list, start: 'top 76%', end: 'bottom 74%', scrub: 0.6 }
+    });
+
+    // one step highlighted at a time, following the scroll position
+    steps.forEach(function (s, i) {
+      ScrollTrigger.create({
+        trigger: s, start: 'top 66%', end: 'bottom 44%',
+        onEnter: function () { setActive(i); },
+        onEnterBack: function () { setActive(i); }
+      });
+    });
+  }
+
+  /* ---------------- Commodities page interactions ---------------- */
+  function initCommodities() {
+    // account-tier visual cycles through Demo → Standard → ECN
+    var acc = document.querySelector('.cm-acc');
+    if (acc) {
+      var rows = Array.prototype.slice.call(acc.querySelectorAll('.cm-acc-row'));
+      if (rows.length) {
+        var i = 0;
+        var mark = function () { rows.forEach(function (r, n) { r.classList.toggle('is-on', n === i); }); };
+        mark();
+        if (!prefersReduced) {
+          setInterval(function () { i = (i + 1) % rows.length; mark(); }, 2200);
+        }
+      }
+    }
+
+    // market cards jump to the instrument table with their category already selected
+    document.querySelectorAll('[data-fx-goto]').forEach(function (card) {
+      card.addEventListener('click', function () {
+        var tab = document.querySelector('[data-fx-cat="' + card.dataset.fxGoto + '"]');
+        if (tab && !tab.classList.contains('active')) tab.click();
+      });
+    });
   }
 
   /* ---------------- Company — global presence map ---------------- */
@@ -1110,6 +1249,8 @@
     initPrimeEcn();
     initFunding();
     initForex();
+    initCommodities();
+    initHowToTrade();
     initCompany();
     initHeroTicker();
     initMarkets();
