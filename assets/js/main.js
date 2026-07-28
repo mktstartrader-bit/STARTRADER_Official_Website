@@ -1827,6 +1827,369 @@
     setInterval(function () { renderTimes(); apply(); }, 60000);
   }
 
+  /* ---------------- Economic calendar ---------------- */
+  // Sample week. `d` is an offset in days from today and `t` is the GMT release
+  // time, so the schedule always reads as the current week; swap this array for
+  // a live feed when one is wired up.
+  var ecData = [
+    { d: -1, t: '08:00', c: 'EUR', n: 'German Ifo Business Climate', i: 'med', p: '88.6', f: '88.9', a: '89.2',
+      w: 'A monthly survey of around 9,000 German firms on current conditions and expectations for the next six months.',
+      y: 'Germany is the euro area’s largest economy, so the Ifo index is treated as an early read on euro-zone growth.',
+      e: 'A reading above forecast tends to support the euro; a sharp miss weighs on it and on European indices.' },
+    { d: -1, t: '14:00', c: 'USD', n: 'CB Consumer Confidence', i: 'med', p: '100.4', f: '100.9', a: '101.6',
+      w: 'A survey of 3,000 US households on business conditions, employment prospects and spending intentions.',
+      y: 'Consumer spending is roughly two thirds of US output, so confidence hints at the direction of demand.',
+      e: 'Stronger confidence supports the dollar and equities; weakness raises expectations of rate cuts.' },
+    { d: -1, t: '23:50', c: 'JPY', n: 'Retail Sales y/y', i: 'low', p: '2.8%', f: '2.5%', a: '2.9%',
+      w: 'The change in the total value of sales at the retail level, compared with the same month a year earlier.',
+      y: 'A gauge of Japanese household demand, which the Bank of Japan watches for signs of durable inflation.',
+      e: 'Rarely moves the yen alone, but adds to the picture ahead of Bank of Japan meetings.' },
+
+    { d: 0, t: '06:00', c: 'GBP', n: 'Nationwide House Price Index m/m', i: 'low', p: '0.3%', f: '0.2%', a: '0.1%',
+      w: 'The monthly change in the price of homes financed by Nationwide, the UK’s largest building society.',
+      y: 'Housing is a fast-moving read on how households are coping with the level of interest rates.',
+      e: 'A minor mover for sterling unless it diverges sharply from expectations.' },
+    { d: 0, t: '08:55', c: 'EUR', n: 'German Unemployment Change', v: -1, i: 'med', p: '12K', f: '15K', a: '9K',
+      w: 'The change in the number of unemployed people in Germany during the previous month.',
+      y: 'A tightening or loosening German labour market feeds directly into euro-area wage and inflation forecasts.',
+      e: 'Fewer unemployed than forecast is euro-positive; a large rise pressures the euro.' },
+    { d: 0, t: '12:30', c: 'USD', n: 'Core PCE Price Index m/m', i: 'high', p: '0.2%', f: '0.2%', a: '',
+      w: 'The change in the price of goods and services bought by consumers, excluding food and energy.',
+      y: 'This is the Federal Reserve’s preferred inflation measure, which makes it the most important US price print.',
+      e: 'A hot number lifts the dollar and hits gold and indices as rate-cut hopes fade; a soft number does the reverse.' },
+    { d: 0, t: '14:00', c: 'USD', n: 'JOLTS Job Openings', i: 'med', p: '8.14M', f: '8.02M', a: '',
+      w: 'The number of job openings on the last business day of the month, excluding the farm sector.',
+      y: 'Openings per unemployed worker is one of the Fed’s favourite measures of labour-market slack.',
+      e: 'A large drop in openings is read as cooling demand for labour and tends to soften the dollar.' },
+    { d: 0, t: '22:45', c: 'NZD', n: 'Building Consents m/m', i: 'low', p: '-1.1%', f: '', a: '',
+      w: 'The change in the number of new building permits issued in New Zealand.',
+      y: 'An early indicator of construction activity, a large component of New Zealand’s domestic economy.',
+      e: 'A limited mover for the New Zealand dollar outside of very large surprises.' },
+
+    { d: 1, t: '01:30', c: 'AUD', n: 'CPI q/q', i: 'high', p: '0.9%', f: '0.8%', a: '',
+      w: 'The quarterly change in the price of a basket of goods and services bought by Australian households.',
+      y: 'The Reserve Bank of Australia sets policy against a 2–3% inflation target, so this print drives rate expectations.',
+      e: 'An upside surprise lifts the Australian dollar sharply; a miss can price in cuts within minutes.' },
+    { d: 1, t: '09:00', c: 'EUR', n: 'Flash GDP q/q', i: 'high', p: '0.3%', f: '0.3%', a: '',
+      w: 'The first estimate of the change in the euro area’s total output over the quarter.',
+      y: 'Growth sets the constraint on how long the European Central Bank can hold rates at a given level.',
+      e: 'A contraction weighs heavily on the euro and European indices.' },
+    { d: 1, t: '12:15', c: 'USD', n: 'ADP Non-Farm Employment Change', i: 'med', p: '152K', f: '145K', a: '',
+      w: 'The estimated change in private-sector employment, compiled from ADP payroll records.',
+      y: 'Published two days before the official payrolls report and traded as a preview of it.',
+      e: 'Moves the dollar on the day, though it often diverges from the official figure.' },
+    { d: 1, t: '18:00', c: 'USD', n: 'FOMC Statement &amp; Federal Funds Rate', i: 'high', p: '4.50%', f: '4.50%', a: '',
+      w: 'The Federal Reserve’s decision on its target interest rate, published with the policy statement.',
+      y: 'The single most important scheduled event for the dollar, and through it for gold, oil and global indices.',
+      e: 'Even when the rate is unchanged, wording changes in the statement can move every major pair in seconds.' },
+    { d: 1, t: '18:30', c: 'USD', n: 'FOMC Press Conference', i: 'high', p: '', f: '', a: '',
+      w: 'The Fed chair takes questions on the decision, the outlook and the balance of risks.',
+      y: 'Tone and guidance here often matter more than the decision itself.',
+      e: 'Expect a second, sometimes larger, wave of volatility 30 minutes after the statement.' },
+
+    { d: 2, t: '05:00', c: 'JPY', n: 'BoJ Policy Rate', i: 'high', p: '0.50%', f: '0.50%', a: '',
+      w: 'The Bank of Japan’s decision on its short-term policy rate, with the accompanying outlook report.',
+      y: 'After decades of ultra-loose policy, every Bank of Japan meeting is a potential regime shift for the yen.',
+      e: 'A surprise move can produce some of the largest single-day swings in yen pairs.' },
+    { d: 2, t: '09:00', c: 'EUR', n: 'Core CPI Flash y/y', i: 'high', p: '2.4%', f: '2.3%', a: '',
+      w: 'The first estimate of euro-area consumer inflation, excluding energy, food, alcohol and tobacco.',
+      y: 'Core inflation is what the European Central Bank targets when judging whether to cut or hold.',
+      e: 'A print above forecast supports the euro and lifts European yields.' },
+    { d: 2, t: '12:30', c: 'CAD', n: 'GDP m/m', i: 'med', p: '0.2%', f: '0.1%', a: '',
+      w: 'The monthly change in the total value of goods and services produced in Canada.',
+      y: 'Canada publishes monthly GDP, giving an unusually timely read for a G7 economy.',
+      e: 'Feeds Bank of Canada expectations and moves the Canadian dollar, often alongside oil.' },
+    { d: 2, t: '12:30', c: 'USD', n: 'Initial Jobless Claims', v: -1, i: 'med', p: '221K', f: '224K', a: '',
+      w: 'The number of people filing for unemployment benefits for the first time in the past week.',
+      y: 'The most frequent read on the US labour market, and the fastest to show a turn.',
+      e: 'A single week rarely moves markets, but a clear trend higher pressures the dollar.' },
+    { d: 2, t: '14:00', c: 'USD', n: 'ISM Manufacturing PMI', i: 'med', p: '48.9', f: '49.4', a: '',
+      w: 'A survey of purchasing managers at around 300 manufacturing firms; 50 separates growth from contraction.',
+      y: 'A forward-looking gauge of industrial demand, watched for early signs of recession.',
+      e: 'A move back above 50 is dollar-supportive and tends to lift cyclical indices.' },
+
+    { d: 3, t: '06:00', c: 'GBP', n: 'BoE Bank Rate &amp; Vote Split', i: 'high', p: '4.00%', f: '3.75%', a: '',
+      w: 'The Bank of England’s interest rate decision, published with the Monetary Policy Committee vote split.',
+      y: 'The vote split is often the real signal: it shows how close the committee is to the next move.',
+      e: 'Sterling can move sharply on the split alone, even when the rate matches the forecast.' },
+    { d: 3, t: '06:30', c: 'GBP', n: 'BoE Press Conference', i: 'high', p: '', f: '', a: '',
+      w: 'The Governor explains the decision and answers questions on the inflation and growth outlook.',
+      y: 'Guidance on the pace of future cuts drives the front end of the UK curve.',
+      e: 'A second burst of sterling volatility shortly after the decision.' },
+    { d: 3, t: '12:30', c: 'USD', n: 'Non-Farm Payrolls', i: 'high', p: '147K', f: '175K', a: '',
+      w: 'The change in the number of employed people during the previous month, excluding the farming sector.',
+      y: 'The month’s headline US labour report, and historically the largest scheduled mover of the dollar.',
+      e: 'Expect an immediate move in every dollar pair, in gold and in US indices; spreads widen around the print.' },
+    { d: 3, t: '12:30', c: 'USD', n: 'Unemployment Rate', v: -1, i: 'high', p: '4.1%', f: '4.1%', a: '',
+      w: 'The share of the total workforce that is unemployed and actively seeking work.',
+      y: 'Read alongside payrolls to judge whether job growth is keeping pace with the labour force.',
+      e: 'A rise against a strong payrolls number muddies the picture and can reverse the initial move.' },
+    { d: 3, t: '14:00', c: 'USD', n: 'Michigan Consumer Sentiment', i: 'low', p: '68.2', f: '69.0', a: '',
+      w: 'A survey of around 500 US consumers on their financial position and view of the economy.',
+      y: 'Includes inflation expectations, which the Fed monitors closely.',
+      e: 'A modest mover, though the inflation-expectations component can catch attention.' }
+  ];
+
+  function initEcon() {
+    var root = document.getElementById('calendar');
+    if (!root) return;
+
+    var FLAG = { USD: 'us', EUR: 'eu', GBP: 'gb', JPY: 'jp', AUD: 'au', CAD: 'ca', CHF: 'ch', NZD: 'nz' };
+    var IMP = { high: 'High impact', med: 'Medium impact', low: 'Low impact' };
+    var MAJORS = { USD: 1, EUR: 1, GBP: 1, JPY: 1 };
+
+    var body = root.querySelector('[data-ec-body]');
+    var daysWrap = root.querySelector('[data-ec-days]');
+    var statusEl = root.querySelector('[data-ec-status]');
+    var emptyEl = root.querySelector('[data-ec-empty]');
+    var resetBtn = root.querySelector('[data-ec-reset]');
+    var tzInput = document.getElementById('ecTz');
+    var tzNameEl = root.querySelector('[data-ec-tzname]');
+    var impChips = Array.prototype.slice.call(root.querySelectorAll('[data-ec-imp]'));
+    var ccyChips = Array.prototype.slice.call(root.querySelectorAll('[data-ec-ccy]'));
+
+    var day = 0, imp = 'all', ccy = 'all';
+    var local = !!(tzInput && tzInput.checked);
+
+    var TZ = (function () {
+      try {
+        var p = new Intl.DateTimeFormat(undefined, { timeZoneName: 'short' }).formatToParts(new Date());
+        for (var i = 0; i < p.length; i++) if (p[i].type === 'timeZoneName') return p[i].value;
+      } catch (e) { }
+      return 'local time';
+    })();
+
+    function fmt(d, opts, useLocal) {
+      var o = {}, k;
+      for (k in opts) o[k] = opts[k];
+      if (!useLocal) o.timeZone = 'UTC';
+      try { return new Intl.DateTimeFormat('en-GB', o).format(d); }
+      catch (e) { return d.toUTCString().slice(5, 16); }
+    }
+
+    // midnight UTC today, so a day offset lands on the right date
+    function baseDay() {
+      var n = new Date();
+      return Date.UTC(n.getUTCFullYear(), n.getUTCMonth(), n.getUTCDate());
+    }
+    var base = baseDay();
+
+    // resolve every row to a real instant
+    var rows = ecData.map(function (e) {
+      var hm = e.t.split(':');
+      var when = new Date(base + e.d * 864e5 + (+hm[0]) * 36e5 + (+hm[1]) * 6e4);
+      return {
+        e: e, when: when, day: e.d,
+        ccyGroup: MAJORS[e.c] ? e.c : 'other'
+      };
+    }).sort(function (a, b) { return a.when - b.when; });
+
+    var dayOffsets = rows.map(function (r) { return r.day; }).filter(function (v, i, a) { return a.indexOf(v) === i; }).sort(function (a, b) { return a - b; });
+
+    /* ---- day chips ---- */
+    function buildDays() {
+      if (!daysWrap) return;
+      daysWrap.innerHTML = '';
+      dayOffsets.forEach(function (off) {
+        var d = new Date(base + off * 864e5);
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'ec-day' + (off === day ? ' is-on' : '');
+        b.setAttribute('role', 'tab');
+        b.setAttribute('aria-selected', off === day ? 'true' : 'false');
+        b.setAttribute('data-ec-day', off);
+        var rel = off === 0 ? 'Today' : off === -1 ? 'Yesterday' : off === 1 ? 'Tomorrow' : '';
+        b.innerHTML = '<em>' + fmt(d, { weekday: 'short' }, false) + '</em>' +
+          '<b>' + fmt(d, { day: 'numeric', month: 'short' }, false) + '</b>' +
+          (rel ? '<i>' + rel + '</i>' : '');
+        b.addEventListener('click', function () { day = off; buildDays(); render(); });
+        daysWrap.appendChild(b);
+      });
+    }
+
+    /* ---- rows ---- */
+    function cell(v) { return v ? v : '<span class="ec-dash">&mdash;</span>'; }
+    // green/red reads as good/bad, so releases where a lower number is the
+    // better outcome (claims, unemployment) carry v:-1 and invert
+    function surprise(r) {
+      var a = parseFloat(String(r.e.a).replace(/[^\d.-]/g, ''));
+      var f = parseFloat(String(r.e.f).replace(/[^\d.-]/g, ''));
+      if (isNaN(a) || isNaN(f)) return { cls: '', tip: '' };
+      if (a === f) return { cls: '', tip: 'In line with forecast' };
+      var better = (r.e.v === -1) ? a < f : a > f;
+      return { cls: better ? ' ec-beat' : ' ec-miss', tip: (a > f ? 'Above' : 'Below') + ' forecast' };
+    }
+
+    function render() {
+      var now = new Date();
+      var list = rows.filter(function (r) {
+        return r.day === day &&
+          (imp === 'all' || r.e.i === imp) &&
+          (ccy === 'all' || r.ccyGroup === ccy);
+      });
+
+      // the first release still ahead of us on this day
+      var nextIdx = -1;
+      for (var i = 0; i < list.length; i++) { if (list[i].when > now) { nextIdx = i; break; } }
+
+      body.innerHTML = '';
+      if (!list.length) {
+        if (emptyEl) emptyEl.hidden = false;
+        root.querySelector('.ec-wrap').hidden = true;
+      } else {
+        if (emptyEl) emptyEl.hidden = true;
+        root.querySelector('.ec-wrap').hidden = false;
+
+        var head = document.createElement('tr');
+        head.className = 'ec-dayrow';
+        head.innerHTML = '<td colspan="8">' + fmt(new Date(base + day * 864e5), { weekday: 'long', day: 'numeric', month: 'long' }, false) +
+          ' &middot; ' + list.length + (list.length === 1 ? ' release' : ' releases') + '</td>';
+        body.appendChild(head);
+
+        list.forEach(function (r, n) {
+          var past = r.when <= now;
+          var sp = surprise(r);
+          var tr = document.createElement('tr');
+          tr.className = 'ec-row' + (past ? ' is-past' : '') + (n === nextIdx ? ' is-next' : '');
+          var id = 'ec-det-' + r.day + '-' + n;
+          tr.innerHTML =
+            '<td><span class="ec-time">' +
+              (past ? '<span class="ec-tick" aria-label="Released"><svg><use href="#i-check"/></svg></span>' : '') +
+              fmt(r.when, { hour: '2-digit', minute: '2-digit', hour12: false }, local) +
+              (n === nextIdx ? ' <span class="ec-soon">Next</span>' : '') +
+            '</span></td>' +
+            '<td><span class="ec-ccy"><span class="ec-flag"><img src="assets/img/flags/' + (FLAG[r.e.c] || 'us') + '.svg" alt="" width="22" height="22" loading="lazy"></span>' + r.e.c + '</span></td>' +
+            '<td><span class="ec-ev">' + r.e.n + '</span></td>' +
+            '<td class="ec-c-imp"><span class="ec-imp" data-lvl="' + r.e.i + '" title="' + IMP[r.e.i] + '" aria-label="' + IMP[r.e.i] + '"><i></i><i></i><i></i></span></td>' +
+            '<td class="ec-num" data-l="Previous">' + cell(r.e.p) + '</td>' +
+            '<td class="ec-num" data-l="Forecast">' + cell(r.e.f) + '</td>' +
+            '<td class="ec-num ec-act' + sp.cls + '" data-l="Actual"' + (sp.tip ? ' title="' + sp.tip + '"' : '') + '>' + cell(r.e.a) + '</td>' +
+            '<td><button class="ec-toggle" type="button" aria-expanded="false" aria-controls="' + id + '" aria-label="Details for ' + r.e.n.replace(/&amp;/g, 'and') + '"><svg><use href="#i-chevron-down"/></svg></button></td>';
+          body.appendChild(tr);
+
+          var det = document.createElement('tr');
+          det.className = 'ec-det';
+          det.id = id;
+          det.hidden = true;
+          det.innerHTML = '<td colspan="8"><div class="ec-det-in">' +
+            '<div class="ec-det-b"><h4>What it measures</h4><p>' + r.e.w + '</p></div>' +
+            '<div class="ec-det-b"><h4>Why it matters</h4><p>' + r.e.y + '</p></div>' +
+            '<div class="ec-det-b"><h4>Usual effect</h4><p>' + r.e.e + '</p></div>' +
+            '</div></td>';
+          body.appendChild(det);
+
+          tr.querySelector('.ec-toggle').addEventListener('click', function () {
+            var open = this.getAttribute('aria-expanded') === 'true';
+            this.setAttribute('aria-expanded', open ? 'false' : 'true');
+            det.hidden = open;
+            if (hasST) ScrollTrigger.refresh();
+          });
+        });
+      }
+
+      impChips.forEach(function (b) {
+        var on = b.getAttribute('data-ec-imp') === imp;
+        b.classList.toggle('is-on', on);
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      ccyChips.forEach(function (b) {
+        var on = b.getAttribute('data-ec-ccy') === ccy;
+        b.classList.toggle('is-on', on);
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      if (tzNameEl) tzNameEl.textContent = local ? 'my timezone (' + TZ + ')' : 'GMT';
+
+      if (statusEl) {
+        var bits = [];
+        if (imp !== 'all') bits.push(IMP[imp].toLowerCase());
+        if (ccy !== 'all') bits.push(ccy === 'other' ? 'other currencies' : ccy);
+        statusEl.textContent = list.length
+          ? 'Showing ' + list.length + (list.length === 1 ? ' release' : ' releases') +
+            (bits.length ? ' · ' + bits.join(' · ') : '') + ' · times in ' + (local ? TZ : 'GMT')
+          : '';
+      }
+    }
+
+    impChips.forEach(function (b) { b.addEventListener('click', function () { imp = b.getAttribute('data-ec-imp'); render(); }); });
+    ccyChips.forEach(function (b) { b.addEventListener('click', function () { ccy = b.getAttribute('data-ec-ccy'); render(); }); });
+    if (resetBtn) resetBtn.addEventListener('click', function () { imp = 'all'; ccy = 'all'; render(); });
+    if (tzInput) {
+      tzInput.addEventListener('change', function () {
+        local = tzInput.checked;
+        render();
+        paintNext();
+      });
+    }
+
+    /* ---- banner: countdown to the next high-impact release ---- */
+    var strip = document.querySelector('[data-ec-next]');
+    var cd = strip && strip.querySelector('[data-ec-cd]');
+    var nextEv = null;
+
+    function pickNext() {
+      var now = new Date();
+      for (var i = 0; i < rows.length; i++) {
+        if (rows[i].when > now && rows[i].e.i === 'high') return rows[i];
+      }
+      for (var j = 0; j < rows.length; j++) if (rows[j].when > now) return rows[j];
+      return null;
+    }
+    function paintNext() {
+      if (!strip || !nextEv) return;
+      var set = function (sel, v) { var el = strip.querySelector(sel); if (el) el.innerHTML = v; };
+      set('[data-ec-next-title]', nextEv.e.n);
+      set('[data-ec-next-time]', fmt(nextEv.when, { weekday: 'short', day: 'numeric', month: 'short' }, local).replace(/,/g, '') +
+        ' · ' + fmt(nextEv.when, { hour: '2-digit', minute: '2-digit', hour12: false }, local) + ' ' + (local ? TZ : 'GMT'));
+      set('[data-ec-next-ccy]', nextEv.e.c);
+      set('[data-ec-next-imp]', IMP[nextEv.e.i]);
+      var flag = strip.querySelector('[data-ec-next-flag]');
+      if (flag) flag.innerHTML = '<img src="assets/img/flags/' + (FLAG[nextEv.e.c] || 'us') + '.svg" alt="" width="22" height="22">';
+    }
+    function pad(n) { return (n < 10 ? '0' : '') + n; }
+    function tick() {
+      if (!strip) return;
+      var now = new Date();
+      if (!nextEv || nextEv.when <= now) {
+        nextEv = pickNext();
+        if (!nextEv) {
+          if (cd) cd.hidden = true;
+          var l0 = strip.querySelector('[data-ec-next-lbl]');
+          if (l0) l0.textContent = 'Next week’s schedule is being published';
+          return;
+        }
+        paintNext();
+        // a release landing while the page is open should also refresh the table
+        render();
+      }
+      if (!cd) return;
+      var ms = Math.max(0, nextEv.when - now);
+      var s = Math.floor(ms / 1000);
+      var parts = { d: Math.floor(s / 86400), h: Math.floor((s % 86400) / 3600), m: Math.floor((s % 3600) / 60), s: s % 60 };
+      Object.keys(parts).forEach(function (k) {
+        var el = cd.querySelector('[data-ecd="' + k + '"]');
+        if (!el) return;
+        var v = pad(parts[k]);
+        if (el.textContent === v) return;
+        el.textContent = v;
+        if (prefersReduced) return;
+        el.classList.remove('is-tick');
+        void el.offsetWidth;
+        el.classList.add('is-tick');
+      });
+    }
+
+    /* ---- boot ---- */
+    if (prefersReduced) {
+      var film = document.querySelector('.wb-hero-video');
+      if (film) { film.removeAttribute('autoplay'); film.pause(); }
+    }
+    buildDays();
+    render();
+    tick();
+    setInterval(tick, 1000);
+    setInterval(render, 60000);
+  }
+
   /* ---------------- Company — global presence map ---------------- */
   function initCompany() {
     var root = document.getElementById('coGlobal');
@@ -1907,6 +2270,7 @@
     initGlossary();
     initGlossaryTerm();
     initWebinars();
+    initEcon();
     initCompany();
     initHeroTicker();
     initMarkets();
