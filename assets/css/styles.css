@@ -2944,8 +2944,12 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
 }
 
 /* ================= ECONOMIC CALENDAR PAGE ================= */
-/* the banner reuses the .wb-hero video shell and .wb-next strip */
-.ec-next .wb-next-title{display:flex;align-items:center;justify-content:center;gap:10px}
+/* the banner reuses the .wb-hero video shell, but its copy is left-aligned
+   and there is no session strip beneath it */
+.ec-hero{justify-content:center}
+.ec-hero .wb-hero-inner{text-align:left}
+.ec-hero .wb-lead{margin-left:0;margin-right:0}
+.ec-hero .wb-hact{justify-content:flex-start}
 
 /* ---- Calendar section (live third-party feed) ---- */
 .ec-sec{

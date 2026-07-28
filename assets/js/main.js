@@ -1828,58 +1828,13 @@
   }
 
   /* ---------------- Economic calendar ---------------- */
-  // The schedule itself is a live third-party feed in an iframe, which is
-  // cross-origin and can't be read from here — so this only drives the banner:
-  // a GMT market clock and the visitor's own offset.
+  // The schedule is a live third-party widget, so there is nothing to drive
+  // here beyond holding the banner film still for reduced-motion visitors.
   function initEcon() {
-    var root = document.getElementById('calendar');
-    if (!root) return;
-
-    if (prefersReduced) {
-      var film = document.querySelector('.wb-hero-video');
-      if (film) { film.removeAttribute('autoplay'); film.pause(); }
-    }
-
-    var strip = document.querySelector('[data-ec-clock]');
-    if (!strip) return;
-    var cd = strip.querySelector('[data-ec-cd]');
-    var localEl = strip.querySelector('[data-ec-localtime]');
-
-    var TZ = (function () {
-      try {
-        var p = new Intl.DateTimeFormat(undefined, { timeZoneName: 'short' }).formatToParts(new Date());
-        for (var i = 0; i < p.length; i++) if (p[i].type === 'timeZoneName') return p[i].value;
-      } catch (e) { }
-      return 'local time';
-    })();
-
-    function pad(n) { return (n < 10 ? '0' : '') + n; }
-    function tick() {
-      var now = new Date();
-      var parts = { h: now.getUTCHours(), m: now.getUTCMinutes(), s: now.getUTCSeconds() };
-      if (cd) {
-        Object.keys(parts).forEach(function (k) {
-          var el = cd.querySelector('[data-ecd="' + k + '"]');
-          if (!el) return;
-          var v = pad(parts[k]);
-          if (el.textContent === v) return;
-          el.textContent = v;
-          if (prefersReduced) return;
-          el.classList.remove('is-tick');
-          void el.offsetWidth;
-          el.classList.add('is-tick');
-        });
-      }
-      if (localEl) {
-        var t;
-        try { t = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false }).format(now); }
-        catch (e) { t = pad(now.getHours()) + ':' + pad(now.getMinutes()); }
-        localEl.textContent = t + ' ' + TZ + ' where you are';
-      }
-    }
-
-    tick();
-    setInterval(tick, 1000);
+    if (!document.getElementById('calendar')) return;
+    if (!prefersReduced) return;
+    var film = document.querySelector('.wb-hero-video');
+    if (film) { film.removeAttribute('autoplay'); film.pause(); }
   }
 
   /* ---------------- Company — global presence map ---------------- */
