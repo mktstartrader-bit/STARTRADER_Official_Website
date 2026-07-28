@@ -2946,10 +2946,8 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
 /* ================= ECONOMIC CALENDAR PAGE ================= */
 /* the banner reuses the .wb-hero video shell and .wb-next strip */
 .ec-next .wb-next-title{display:flex;align-items:center;justify-content:center;gap:10px}
-.ec-next-flag{width:22px;height:22px;flex:none;border-radius:50%;overflow:hidden;background:rgba(255,255,255,.12);box-shadow:0 2px 8px rgba(0,0,0,.45)}
-.ec-next-flag img{width:100%;height:100%;object-fit:cover}
 
-/* ---- Calendar section ---- */
+/* ---- Calendar section (live third-party feed) ---- */
 .ec-sec{
   background:
     radial-gradient(58% 46% at 6% 0%,rgba(0,71,187,.08),transparent 62%),
@@ -2958,174 +2956,82 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
     var(--bg-light);
   scroll-margin-top:calc(var(--chrome-h) + var(--chrome-gap));
 }
-
-/* toolbar */
-.ec-bar{
-  position:sticky;top:calc(var(--chrome-h) + var(--chrome-gap));z-index:20;
-  padding:12px 14px;border-radius:24px;background:rgba(255,255,255,.78);
+.ec-embed{border-radius:var(--radius-lg);overflow:hidden;padding:0}
+.ec-embed-bar{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  padding:14px 20px;border-bottom:1px solid rgba(20,40,80,.09);
 }
-.ec-days{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-.ec-days::-webkit-scrollbar{display:none}
-.ec-day{
-  flex:none;display:flex;flex-direction:column;align-items:center;gap:2px;min-width:74px;
-  padding:9px 14px;border-radius:16px;cursor:pointer;
-  font-weight:600;color:var(--text-soft);
-  transition:background .25s,color .25s,transform .35s var(--ease),box-shadow .3s;
+.ec-live{
+  display:inline-flex;align-items:center;gap:9px;font-size:11px;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:#b0342f;
 }
-.ec-day em{font-style:normal;font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mute);transition:color .25s}
-.ec-day b{font-size:15px;font-weight:700;letter-spacing:-.01em;color:var(--text);font-variant-numeric:tabular-nums;transition:color .25s}
-.ec-day i{font-style:normal;font-size:10px;font-weight:700;color:var(--blue);letter-spacing:.06em;text-transform:uppercase}
-.ec-day:hover{background:rgba(0,71,187,.07);transform:translateY(-1px)}
-.ec-day.is-on{background:var(--blue);box-shadow:0 12px 24px -12px rgba(0,71,187,.85)}
-.ec-day.is-on em,.ec-day.is-on b,.ec-day.is-on i{color:#fff}
-.ec-day.is-on i{opacity:.8}
-
-.ec-tools{display:flex;align-items:center;flex-wrap:wrap;gap:12px 20px;margin-top:12px;padding-top:12px;border-top:1px solid rgba(20,40,80,.08)}
-.ec-filters{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-.ec-filt-lbl{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mute);margin-right:2px}
-.ec-chip{
-  display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border-radius:70px;
-  font-size:12.5px;font-weight:600;color:var(--text-soft);cursor:pointer;
-  border:1px solid var(--line);background:rgba(255,255,255,.62);
-  transition:border-color .25s,color .25s,background .25s,transform .3s var(--ease);
-}
-.ec-chip i{width:7px;height:7px;border-radius:50%;flex:none}
-.ec-chip--high i{background:#ef4444}
-.ec-chip--med i{background:#f59e0b}
-.ec-chip--low i{background:#94a3b8}
-.ec-chip:hover{color:var(--blue);border-color:rgba(0,71,187,.35);transform:translateY(-1px)}
-.ec-chip.is-on{background:rgba(0,71,187,.1);border-color:rgba(0,71,187,.45);color:var(--blue)}
-.ec-tz{margin-left:auto}
-
-/* table */
-.ec-wrap{margin-top:20px;border-radius:var(--radius-lg);overflow-x:auto;-webkit-overflow-scrolling:touch}
-.ec-table{width:100%;min-width:860px;border-collapse:collapse;font-size:14.5px}
-.ec-table thead th{
-  padding:15px 18px;text-align:left;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--text-mute);border-bottom:1px solid rgba(20,40,80,.1);white-space:nowrap;
-}
-.ec-table .ec-c-num,.ec-table .ec-c-imp{text-align:right}
-.ec-table .ec-c-time{width:112px}
-.ec-table .ec-c-ccy{width:112px}
-.ec-table .ec-c-num{width:104px}
-.ec-table tbody td{padding:15px 18px;vertical-align:middle;border-bottom:1px solid rgba(20,40,80,.06)}
-.ec-table tbody tr:last-child td{border-bottom:none}
-.ec-loading td{color:var(--text-mute);text-align:center;padding:34px 18px}
-
-/* day divider row */
-.ec-dayrow td{
-  padding:13px 18px;background:rgba(0,71,187,.045);
-  font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);
-}
-/* event row */
-.ec-row{transition:background .22s}
-.ec-row:hover{background:rgba(0,71,187,.035)}
-.ec-row.is-past{color:var(--text-mute)}
-.ec-row.is-past .ec-ev{color:var(--text-soft)}
-.ec-row.is-next{background:rgba(0,71,187,.06);box-shadow:inset 3px 0 0 var(--blue)}
-.ec-time{display:flex;align-items:center;gap:8px;font-weight:600;color:var(--text);font-variant-numeric:tabular-nums;white-space:nowrap}
-.ec-row.is-past .ec-time{color:var(--text-mute);font-weight:500}
-.ec-tick{width:16px;height:16px;flex:none;border-radius:50%;display:grid;place-items:center;background:rgba(16,185,129,.16);color:#0f7d5c}
-.ec-tick svg{width:10px;height:10px}
-.ec-soon{
-  font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--blue);
-  padding:3px 8px;border-radius:70px;background:rgba(0,71,187,.1);white-space:nowrap;
-}
-.ec-ccy{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--text);letter-spacing:-.01em}
-.ec-flag{width:22px;height:22px;flex:none;border-radius:50%;overflow:hidden;background:#eef2f7;box-shadow:0 1px 5px rgba(20,44,96,.2)}
-.ec-flag img{width:100%;height:100%;object-fit:cover;display:block}
-.ec-ev{color:var(--text);font-weight:500;line-height:1.35}
-.ec-imp{display:inline-flex;align-items:center;gap:3px}
-.ec-imp i{width:6px;height:6px;border-radius:50%;background:#dfe5ee}
-.ec-imp[data-lvl="low"] i:nth-child(1){background:#94a3b8}
-.ec-imp[data-lvl="med"] i:nth-child(-n+2){background:#f59e0b}
-.ec-imp[data-lvl="high"] i{background:#ef4444}
-.ec-num{text-align:right;font-variant-numeric:tabular-nums;color:var(--text-soft);white-space:nowrap}
-.ec-num.ec-act{font-weight:700;color:var(--text)}
-.ec-num.ec-beat{color:#0f7d5c}
-.ec-num.ec-miss{color:#c0392f}
-.ec-toggle{
-  width:30px;height:30px;border-radius:50%;display:grid;place-items:center;cursor:pointer;
-  color:var(--blue);background:rgba(0,71,187,.08);transition:background .25s,transform .3s var(--ease);
-}
-.ec-toggle svg{width:14px;height:14px;transition:transform .3s var(--ease)}
-.ec-toggle:hover{background:rgba(0,71,187,.16)}
-.ec-toggle[aria-expanded="true"] svg{transform:rotate(180deg)}
-
-/* detail row */
-.ec-det td{padding:0;border-bottom:1px solid rgba(20,40,80,.06)}
-.ec-det-in{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;padding:20px 18px 24px 18px;background:rgba(0,71,187,.03)}
-.ec-det-b h4{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:7px}
-.ec-det-b p{font-size:13.5px;line-height:1.6;color:var(--text-soft)}
-
-.ec-empty{text-align:center;padding:54px 20px 8px}
-.ec-empty h3{font-size:20px;color:var(--text);letter-spacing:-.02em}
-.ec-empty p{max-width:520px;margin:10px auto 0;font-size:14.5px;line-height:1.6;color:var(--text-soft)}
-.ec-empty .btn{margin-top:24px}
+.ec-live i{width:7px;height:7px;border-radius:50%;flex:none;background:#ef4444;box-shadow:0 0 0 0 rgba(239,68,68,.6);animation:ecPing 2.2s infinite}
+@keyframes ecPing{0%{box-shadow:0 0 0 0 rgba(239,68,68,.55)}70%{box-shadow:0 0 0 8px rgba(239,68,68,0)}100%{box-shadow:0 0 0 0 rgba(239,68,68,0)}}
+.ec-embed-hint{font-size:12.5px;color:var(--text-mute)}
+/* the widget is its own light UI — give it a clean white stage to sit on */
+.ec-embed-frame{background:#fff;height:clamp(520px,66vh,760px)}
+.ec-embed-frame iframe{display:block;width:100%;height:100%;border:0}
+.ec-credit{padding:12px 20px;font-size:12px;color:var(--text-mute);border-top:1px solid rgba(20,40,80,.07);background:rgba(255,255,255,.5)}
+.ec-credit a{color:var(--blue);font-weight:600}
+.ec-credit a:hover{text-decoration:underline;text-underline-offset:2px}
 .ec-note{margin-top:22px;text-align:center;font-size:12.5px;line-height:1.6;color:var(--text-mute)}
 
-/* ---- How to read it ---- */
-.ec-read{background:radial-gradient(58% 56% at 90% 4%,rgba(0,71,187,.06),transparent 60%),var(--bg-light-2)}
+/* ---- Reading the calendar (dark: black-to-navy, glow from below) ---- */
+.ec-read{
+  position:relative;color:#fff;
+  background:
+    radial-gradient(90% 60% at 50% 100%,rgba(0,40,120,.5),transparent 70%),
+    linear-gradient(180deg,#000 0%,#00102c 100%);
+}
+.ec-read .head-sub{color:#a9b7cf}
 .ec-read-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
-.ec-read-card{
+.ec-read .ec-read-card{
+  position:relative;padding:26px 24px 24px;border-radius:22px;
+  background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.025));
+  -webkit-backdrop-filter:blur(20px) saturate(1.4);backdrop-filter:blur(20px) saturate(1.4);
+  border:1px solid rgba(255,255,255,.11);box-shadow:inset 0 1px 0 rgba(255,255,255,.07);
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
+}
+.ec-read .ec-read-card:hover{transform:translateY(-5px);border-color:rgba(90,150,255,.42);box-shadow:0 30px 64px -34px rgba(0,60,180,.6)}
+.ec-read .ec-read-n{
+  display:inline-grid;place-items:center;min-width:42px;height:30px;padding:0 12px;margin-bottom:16px;
+  border-radius:70px;font-size:12.5px;font-weight:800;color:#bcd6ff;
+  background:rgba(90,150,255,.16);border:1px solid rgba(120,175,255,.28);font-variant-numeric:tabular-nums;
+}
+.ec-read .ec-read-card h3{font-size:17px;letter-spacing:-.02em;color:#fff;line-height:1.3}
+.ec-read .ec-read-card p{margin-top:9px;font-size:13.5px;line-height:1.6;color:#b7c4da}
+.ec-read .ec-read-card p b{color:#fff;font-weight:700}
+
+/* ---- Why STARTRADER (light frosted cards) ---- */
+.ec-why{background:radial-gradient(58% 56% at 90% 4%,rgba(0,71,187,.06),transparent 60%),var(--bg-light-2)}
+.ec-why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.ec-why-wide{grid-column:span 2}
+.ec-why-card{
   position:relative;padding:26px 24px 24px;border-radius:22px;
   transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
 }
-.ec-read-card:hover{transform:translateY(-5px);border-color:#fff;box-shadow:0 28px 56px -30px rgba(20,44,96,.42),inset 0 1px 0 #fff}
-.ec-read-n{
-  display:inline-grid;place-items:center;min-width:42px;height:30px;padding:0 12px;margin-bottom:16px;
-  border-radius:70px;font-size:12.5px;font-weight:800;letter-spacing:.02em;color:var(--blue);
-  background:rgba(0,71,187,.09);font-variant-numeric:tabular-nums;
+.ec-why-card:hover{transform:translateY(-5px);border-color:#fff;box-shadow:0 28px 56px -30px rgba(20,44,96,.42),inset 0 1px 0 #fff}
+.ec-why-ic{
+  display:grid;place-items:center;width:46px;min-width:0;height:46px;padding:0;margin-bottom:16px;
+  border-radius:14px;background:rgba(0,71,187,.09);color:var(--blue);
+  transition:background .3s,transform .4s var(--ease);
 }
-.ec-read-card h3{font-size:17px;letter-spacing:-.02em;color:var(--text);line-height:1.3}
-.ec-read-card p{margin-top:9px;font-size:13.5px;line-height:1.6;color:var(--text-soft)}
-.ec-read-card p b{color:var(--text);font-weight:700}
+.ec-why-ic svg{width:22px;height:22px}
+.ec-why-card:hover .ec-why-ic{background:var(--blue);color:#fff;transform:translateY(-2px)}
+.ec-why-card h3{font-size:17px;letter-spacing:-.02em;color:var(--text);line-height:1.3}
+.ec-why-card p{margin-top:9px;font-size:13.5px;line-height:1.6;color:var(--text-soft)}
+.ec-why-card p a{color:var(--blue);font-weight:600}
+.ec-why-card p a:hover{text-decoration:underline;text-underline-offset:2px}
 
 /* ---- Responsive ---- */
 @media (max-width:1080px){
-  .ec-read-grid{grid-template-columns:repeat(2,1fr)}
-  .ec-det-in{grid-template-columns:1fr;gap:16px}
-}
-@media (max-width:900px){
-  .ec-bar{position:static;border-radius:22px}
-  .ec-tz{margin-left:0}
-}
-/* small screens: rows read as blocks rather than a table that has to be dragged.
-   selectors carry .ec-table so they outrank the desktop table rules */
-@media (max-width:760px){
-  .ec-wrap{overflow:visible}
-  .ec-table{min-width:0;display:block}
-  .ec-table thead{display:none}
-  .ec-table tbody{display:block}
-  .ec-table .ec-dayrow,.ec-table .ec-det,.ec-table .ec-loading{display:block}
-  .ec-table .ec-dayrow td,.ec-table .ec-det td,.ec-table .ec-loading td{display:block;border:none}
-  .ec-table .ec-dayrow td{padding:12px 16px}
-  .ec-table .ec-det td{padding:0}
-  .ec-table .ec-row{
-    display:grid;grid-template-columns:auto auto 1fr auto;
-    grid-template-areas:"time ccy . imp" "ev ev ev ev" "prev fc act tog";
-    align-items:center;gap:9px 14px;padding:15px 16px;
-    border-bottom:1px solid rgba(20,40,80,.07);
-  }
-  .ec-table .ec-row td{display:block;padding:0;border:none}
-  .ec-table .ec-row td:nth-child(1){grid-area:time}
-  .ec-table .ec-row td:nth-child(2){grid-area:ccy}
-  .ec-table .ec-row td:nth-child(3){grid-area:ev}
-  .ec-table .ec-row td:nth-child(4){grid-area:imp;text-align:right}
-  .ec-table .ec-row td:nth-child(5){grid-area:prev}
-  .ec-table .ec-row td:nth-child(6){grid-area:fc}
-  .ec-table .ec-row td:nth-child(7){grid-area:act}
-  .ec-table .ec-row td:nth-child(8){grid-area:tog;justify-self:end}
-  .ec-table .ec-num{text-align:left}
-  .ec-table .ec-num::before{
-    content:attr(data-l);display:block;margin-bottom:2px;
-    font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-mute);
-  }
-  .ec-table .ec-ev{font-weight:600;font-size:15px}
-  .ec-det-in{padding:16px}
+  .ec-read-grid,.ec-why-grid{grid-template-columns:repeat(2,1fr)}
+  .ec-why-wide{grid-column:span 2}
 }
 @media (max-width:720px){
-  .ec-read-grid{grid-template-columns:1fr;max-width:420px;margin-inline:auto}
-  .ec-tools{gap:12px}
-  .ec-filt-lbl{width:100%}
+  .ec-read-grid,.ec-why-grid{grid-template-columns:1fr;max-width:420px;margin-inline:auto}
+  .ec-why-wide{grid-column:auto}
+  .ec-embed-frame{height:clamp(460px,72vh,620px)}
+  .ec-embed-bar{padding:12px 16px}
+  .ec-credit{padding:11px 16px}
 }

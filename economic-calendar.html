@@ -71,7 +71,7 @@
     {
       "@type": "Question",
       "name": "Are the calendar times shown in my timezone?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Yes. The calendar detects your device timezone and converts every release time to it, and you can switch the whole calendar back to GMT with one toggle if you prefer to work in market time." }
+      "acceptedAnswer": { "@type": "Answer", "text": "The calendar has its own timezone control &mdash; set it once and every release time is shown in the zone you pick. The banner clock at the top of the page stays on GMT, which is the reference most market commentary uses." }
     },
     {
       "@type": "Question",
@@ -86,7 +86,7 @@
     {
       "@type": "Question",
       "name": "Which releases matter most for the pairs I trade?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Match the release to the currency in your pair. Interest rate decisions and inflation drive the biggest moves in majors, employment data such as Non-Farm Payrolls dominates the US dollar, and commodity currencies react to Chinese data and to energy and metals inventories. Filter the calendar by currency to see only what affects your instruments." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Match the release to the currency in your pair. Interest rate decisions and inflation drive the biggest moves in majors, employment data such as Non-Farm Payrolls dominates the US dollar, and commodity currencies react to Chinese data and to energy and metals inventories. Scan the currency column for the pairs you trade and note the high-impact rows first." }
     },
     {
       "@type": "Question",
@@ -393,12 +393,10 @@
     </div>
   </div>
 
-  <aside class="container wb-next ec-next" aria-labelledby="ec-next-title" data-reveal data-ec-next>
+  <aside class="container wb-next ec-next" aria-labelledby="ec-next-title" data-reveal data-ec-clock>
     <div class="wb-next-head">
-      <p class="wb-next-lbl" data-ec-next-lbl>Next high-impact release in:</p>
+      <p class="wb-next-lbl">Market time &middot; GMT</p>
       <div class="wb-cd" data-ec-cd aria-hidden="true">
-        <span class="wb-cd-u"><b data-ecd="d">--</b><em>d</em></span>
-        <span class="wb-cd-sep">:</span>
         <span class="wb-cd-u"><b data-ecd="h">--</b><em>h</em></span>
         <span class="wb-cd-sep">:</span>
         <span class="wb-cd-u"><b data-ecd="m">--</b><em>m</em></span>
@@ -408,16 +406,11 @@
     </div>
 
     <div class="wb-next-mid">
-      <h2 class="wb-next-title" id="ec-next-title">
-        <span class="ec-next-flag" data-ec-next-flag aria-hidden="true"></span>
-        <span data-ec-next-title>Loading the schedule&hellip;</span>
-      </h2>
+      <h2 class="wb-next-title" id="ec-next-title">This week&rsquo;s releases, rated for impact</h2>
       <p class="wb-next-meta">
-        <span data-ec-next-time>&mdash;</span>
+        <span data-ec-localtime>&mdash;</span>
         <i aria-hidden="true"></i>
-        <span data-ec-next-ccy>&mdash;</span>
-        <i aria-hidden="true"></i>
-        <span data-ec-next-imp>High impact</span>
+        <span>Live feed</span>
       </p>
     </div>
 
@@ -427,78 +420,30 @@
   </aside>
 </section>
 
-<!-- ============ CALENDAR ============ -->
+<!-- ============ CALENDAR (live feed) ============ -->
 <section class="section ec-sec" id="calendar" aria-labelledby="ec-cal-title">
   <div class="container">
     <div class="head center">
       <span class="eyebrow" data-reveal>This week</span>
       <h2 class="h2" id="ec-cal-title" data-reveal>Every release that moves a market</h2>
-      <p class="head-sub" data-reveal>Pick a day, filter to the currencies you trade, and open any row for what the number measures and why it matters.</p>
+      <p class="head-sub" data-reveal>A live feed of scheduled releases with impact ratings, consensus forecasts and the figures as they land. Use the calendar&rsquo;s own date picker and timezone control to set it to the week and clock you work in.</p>
     </div>
 
-    <div class="ec-bar glass" data-reveal>
-      <div class="ec-days" role="tablist" aria-label="Choose a day" data-ec-days>
-        <!-- day chips are built from the schedule -->
+    <div class="ec-embed glass" data-reveal>
+      <div class="ec-embed-bar">
+        <span class="ec-live"><i aria-hidden="true"></i> Live data</span>
+        <span class="ec-embed-hint">Impact &middot; previous &middot; forecast &middot; actual, updated as each figure is published</span>
       </div>
-
-      <div class="ec-tools">
-        <div class="ec-filters" role="group" aria-label="Filter by impact">
-          <span class="ec-filt-lbl">Impact</span>
-          <button class="ec-chip is-on" type="button" data-ec-imp="all" aria-pressed="true">All</button>
-          <button class="ec-chip ec-chip--high" type="button" data-ec-imp="high" aria-pressed="false"><i aria-hidden="true"></i>High</button>
-          <button class="ec-chip ec-chip--med" type="button" data-ec-imp="med" aria-pressed="false"><i aria-hidden="true"></i>Medium</button>
-          <button class="ec-chip ec-chip--low" type="button" data-ec-imp="low" aria-pressed="false"><i aria-hidden="true"></i>Low</button>
-        </div>
-
-        <div class="ec-filters" role="group" aria-label="Filter by currency">
-          <span class="ec-filt-lbl">Currency</span>
-          <button class="ec-chip is-on" type="button" data-ec-ccy="all" aria-pressed="true">All</button>
-          <button class="ec-chip" type="button" data-ec-ccy="USD" aria-pressed="false">USD</button>
-          <button class="ec-chip" type="button" data-ec-ccy="EUR" aria-pressed="false">EUR</button>
-          <button class="ec-chip" type="button" data-ec-ccy="GBP" aria-pressed="false">GBP</button>
-          <button class="ec-chip" type="button" data-ec-ccy="JPY" aria-pressed="false">JPY</button>
-          <button class="ec-chip" type="button" data-ec-ccy="other" aria-pressed="false">Other</button>
-        </div>
-
-        <label class="wb-tz ec-tz" for="ecTz">
-          <input type="checkbox" id="ecTz" checked>
-          <span class="wb-tz-track" aria-hidden="true"><i></i></span>
-          <span class="wb-tz-lbl">Times in <b data-ec-tzname>my timezone</b></span>
-        </label>
+      <div class="ec-embed-frame">
+        <iframe
+          src="https://sslecal2.investing.com?columns=exc_flags,exc_currency,exc_importance,exc_actual,exc_forecast,exc_previous&features=datepicker,timezone&countries=25,32,6,37,72,22,17,39,14,10,35,43,56,36,110,11,26,12,4,5&calType=week&timeZone=8&lang=1"
+          title="Economic calendar — this week&rsquo;s scheduled releases"
+          loading="lazy" frameborder="0" marginwidth="0" marginheight="0"></iframe>
       </div>
+      <p class="ec-credit">Real-time economic calendar provided by <a href="https://www.investing.com/" rel="nofollow noopener" target="_blank">Investing.com</a>.</p>
     </div>
 
-    <p class="wb-status" data-ec-status role="status" aria-live="polite"></p>
-
-    <div class="ec-wrap glass" data-reveal>
-      <table class="ec-table">
-        <caption class="sr-only">Scheduled economic releases with impact rating, previous, forecast and actual figures</caption>
-        <thead>
-          <tr>
-            <th scope="col" class="ec-c-time">Time</th>
-            <th scope="col" class="ec-c-ccy">Currency</th>
-            <th scope="col" class="ec-c-event">Event</th>
-            <th scope="col" class="ec-c-imp">Impact</th>
-            <th scope="col" class="ec-c-num">Previous</th>
-            <th scope="col" class="ec-c-num">Forecast</th>
-            <th scope="col" class="ec-c-num">Actual</th>
-            <th scope="col"><span class="sr-only">Details</span></th>
-          </tr>
-        </thead>
-        <tbody data-ec-body>
-          <tr class="ec-loading"><td colspan="8">Loading this week&rsquo;s releases&hellip;</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="ec-empty" data-ec-empty hidden>
-      <span class="gl-empty-ic" aria-hidden="true"><svg><use href="#i-clock"/></svg></span>
-      <h3>Nothing scheduled for that filter</h3>
-      <p>There are no releases matching this combination. Try another day, or widen the impact and currency filters.</p>
-      <button class="btn btn-primary" type="button" data-ec-reset>Show the full day <svg class="ico"><use href="#i-arrow-right"/></svg></button>
-    </div>
-
-    <p class="ec-note">Times, forecasts and figures are indicative and may be revised or rescheduled by the issuing institution. Shown for information only &mdash; not investment advice.</p>
+    <p class="ec-note">Times, forecasts and figures are supplied by a third party and may be revised or rescheduled by the issuing institution. Shown for information only &mdash; not investment advice.</p>
   </div>
 </section>
 
@@ -506,31 +451,31 @@
 <section class="section ec-read" aria-labelledby="ec-read-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>How to use it</span>
-      <h2 class="h2" id="ec-read-title" data-reveal>Reading the calendar</h2>
+      <span class="eyebrow eyebrow-blue" data-reveal>How to use it</span>
+      <h2 class="h2 h2-light" id="ec-read-title" data-reveal>Reading the calendar</h2>
       <p class="head-sub" data-reveal>Four things worth knowing before you trade around a release.</p>
     </div>
 
     <div class="ec-read-grid" data-reveal-stagger>
-      <article class="ec-read-card glass">
+      <article class="ec-read-card">
         <span class="ec-read-n">01</span>
         <h3>Impact tells you what to expect</h3>
-        <p>Three dots means a release that regularly moves a currency the moment it lands &mdash; rate decisions, inflation, payrolls. One dot is background colour. Filter to high impact when you only want the events that matter.</p>
+        <p>Three bars means a release that regularly moves a currency the moment it lands &mdash; rate decisions, inflation, payrolls. One bar is background colour, worth noting but rarely worth trading.</p>
       </article>
 
-      <article class="ec-read-card glass">
+      <article class="ec-read-card">
         <span class="ec-read-n">02</span>
         <h3>The surprise is the story</h3>
         <p>Markets have already priced the forecast. What moves price is the gap between <b>forecast</b> and <b>actual</b> &mdash; so a strong number that undershoots expectations can still send a currency lower.</p>
       </article>
 
-      <article class="ec-read-card glass">
+      <article class="ec-read-card">
         <span class="ec-read-n">03</span>
         <h3>Work in your own clock</h3>
-        <p>Every time on this page is converted to your device&rsquo;s timezone, so 12:30 GMT reads as your local time. Flip the toggle to work in GMT instead when you are comparing notes with market commentary.</p>
+        <p>Set the calendar to your own timezone with its timezone control, so 12:30 GMT reads as your local time &mdash; and use the date picker to jump to another week. The banner clock above stays on GMT for reference.</p>
       </article>
 
-      <article class="ec-read-card glass">
+      <article class="ec-read-card">
         <span class="ec-read-n">04</span>
         <h3>Respect the first few seconds</h3>
         <p>Spreads widen and liquidity thins around a major print, and price can spike both ways before settling. Size positions with that in mind, or wait for the initial reaction to pass.</p>
@@ -540,61 +485,54 @@
 </section>
 
 <!-- ============ WHY STARTRADER ============ -->
-<section class="section fx-hours ec-why" aria-labelledby="ec-why-title">
+<section class="section ec-why" aria-labelledby="ec-why-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow eyebrow-blue" data-reveal>Why STARTRADER</span>
-      <h2 class="h2 h2-light" id="ec-why-title" data-reveal>Why trade with STARTRADER</h2>
+      <span class="eyebrow" data-reveal>Why STARTRADER</span>
+      <h2 class="h2" id="ec-why-title" data-reveal>Why trade with STARTRADER</h2>
     </div>
 
-    <div class="fx-mh" data-reveal-stagger>
-      <article class="fx-mh-card fx-mh--blue fx-mh--wide">
-        <span class="fx-mh-ic"><svg><use href="#i-wallet"/></svg></span>
+    <div class="ec-why-grid" data-reveal-stagger>
+      <article class="ec-read-card ec-why-card ec-why-wide glass">
+        <span class="ec-read-n ec-why-ic"><svg aria-hidden="true"><use href="#i-wallet"/></svg></span>
         <h3>Hassle-free transactions</h3>
         <p>Multiple deposit and withdrawal methods, with zero deposit fees on most of them &mdash; so funding an account never gets in the way of a trade.</p>
-        <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="wb-tp-list"><i>Cards</i><i>Bank transfer</i><i>e-Wallets</i><i>Local methods</i></span></div></div>
       </article>
 
-      <article class="fx-mh-card fx-mh--teal">
-        <span class="fx-mh-ic"><svg><use href="#i-bolt"/></svg></span>
+      <article class="ec-read-card ec-why-card glass">
+        <span class="ec-read-n ec-why-ic"><svg aria-hidden="true"><use href="#i-bolt"/></svg></span>
         <h3>100-millisecond execution</h3>
         <p>Orders fill in milliseconds &mdash; the edge that matters when a release lands.</p>
-        <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="fx-mh-status"><i></i> Average fill 100&thinsp;ms</span></div></div>
       </article>
 
-      <article class="fx-mh-card fx-mh--purple">
-        <span class="fx-mh-ic"><svg><use href="#i-globe"/></svg></span>
+      <article class="ec-read-card ec-why-card glass">
+        <span class="ec-read-n ec-why-ic"><svg aria-hidden="true"><use href="#i-globe"/></svg></span>
         <h3>Expanding global server network</h3>
         <p>Stable, ultra-fast trading on a server footprint that keeps growing closer to you.</p>
-        <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="wb-tp-list"><i>London</i><i>New York</i><i>Tokyo</i><i>Singapore</i></span></div></div>
       </article>
 
-      <article class="fx-mh-card fx-mh--orange">
-        <span class="fx-mh-ic"><svg><use href="#i-cfd"/></svg></span>
+      <article class="ec-read-card ec-why-card glass">
+        <span class="ec-read-n ec-why-ic"><svg aria-hidden="true"><use href="#i-cfd"/></svg></span>
         <h3>Ultra-tight spreads</h3>
         <p>Spreads from 0.0 pips on the <a href="prime-ecn.html">Prime ECN</a> account, held tight through the busiest sessions.</p>
-        <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="wb-tp-list"><i>From 0.0 pips</i><i>Prime ECN</i></span></div></div>
       </article>
 
-      <article class="fx-mh-card fx-mh--green">
-        <span class="fx-mh-ic"><svg><use href="#i-layers"/></svg></span>
+      <article class="ec-read-card ec-why-card glass">
+        <span class="ec-read-n ec-why-ic"><svg aria-hidden="true"><use href="#i-layers"/></svg></span>
         <h3>Leverage up to 1:1000</h3>
         <p>Flexible leverage for greater potential &mdash; and, just as importantly, greater risk to manage.</p>
-        <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="wb-tp-list"><i>1:1 to 1:1000</i><i>Set per account</i></span></div></div>
       </article>
 
-      <article class="fx-mh-card fx-mh--blue fx-mh--wide">
-        <span class="fx-mh-ic"><svg><use href="#i-droplet"/></svg></span>
+      <article class="ec-read-card ec-why-card glass">
+        <span class="ec-read-n ec-why-ic"><svg aria-hidden="true"><use href="#i-droplet"/></svg></span>
         <h3>Top institutional liquidity</h3>
-        <p>Pricing drawn from institutional-grade liquidity providers, which is what keeps spreads tight and slippage contained when volatility spikes around a major print.</p>
-        <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="wb-tp-list"><i>Tier-1 providers</i><i>Aggregated pricing</i><i>Deep books</i></span></div></div>
+        <p>Institutional-grade liquidity keeps spreads tight and slippage contained when volatility spikes around a major print.</p>
       </article>
 
-      <article class="fx-mh-card fx-mh--teal">
-        <span class="fx-mh-ic"><svg><use href="#i-headset"/></svg></span>
+      <article class="ec-read-card ec-why-card glass">
+        <span class="ec-read-n ec-why-ic"><svg aria-hidden="true"><use href="#i-headset"/></svg></span>
         <h3>24/7 multilingual support</h3>
         <p>Professional assistance in 20+ languages, whenever you need it.</p>
-        <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="fx-mh-status"><i></i> Support online now</span></div></div>
       </article>
     </div>
   </div>
@@ -622,7 +560,7 @@
       </details>
       <details class="faq-item">
         <summary>Are the calendar times shown in my timezone?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Yes. The calendar detects your device timezone and converts every release time to it, and you can switch the whole calendar back to GMT with one toggle if you prefer to work in market time.</div>
+        <div class="faq-a">The calendar has its own timezone control &mdash; set it once and every release time is shown in the zone you pick. The banner clock at the top of the page stays on GMT, which is the reference most market commentary uses.</div>
       </details>
       <details class="faq-item">
         <summary>How should I trade around a high-impact release?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
@@ -634,7 +572,7 @@
       </details>
       <details class="faq-item">
         <summary>Which releases matter most for the pairs I trade?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Match the release to the currency in your pair. Interest rate decisions and inflation drive the biggest moves in majors, employment data such as Non-Farm Payrolls dominates the US dollar, and commodity currencies react to Chinese data and to energy and metals inventories. Filter the calendar by currency to see only what affects your instruments.</div>
+        <div class="faq-a">Match the release to the currency in your pair. Interest rate decisions and inflation drive the biggest moves in majors, employment data such as Non-Farm Payrolls dominates the US dollar, and commodity currencies react to Chinese data and to energy and metals inventories. Scan the currency column for the pairs you trade and note the high-impact rows first.</div>
       </details>
       <details class="faq-item">
         <summary>Is the calendar data guaranteed to be accurate?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
