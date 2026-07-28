@@ -2600,10 +2600,11 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
     linear-gradient(180deg,rgba(4,6,14,.6) 0%,rgba(4,6,14,.04) 22%,rgba(4,6,14,.12) 56%,rgba(4,6,14,.86) 92%,#04060e 100%);
 }
 
-.wb-hero-inner{position:relative;z-index:1;width:100%}
+/* banner copy is centred on the same axis as the session strip below it */
+.wb-hero-inner{position:relative;z-index:1;width:100%;text-align:center}
 .wb-h1{font-size:clamp(38px,6.4vw,74px);font-weight:800;letter-spacing:-.038em;line-height:1.02;margin-top:12px}
-.wb-lead{margin-top:18px;max-width:53ch;font-size:clamp(15px,1.55vw,17.5px);line-height:1.62;color:#c9d5ea}
-.wb-hact{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+.wb-lead{margin:18px auto 0;max-width:53ch;font-size:clamp(15px,1.55vw,17.5px);line-height:1.62;color:#c9d5ea}
+.wb-hact{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:30px}
 
 /* next-session strip — bottom-centred on the banner, no panel; the fading
    rules between rows match the home banner's stat dividers */
@@ -2872,10 +2873,8 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
   .wb-tools{justify-content:space-between}
 }
 @media (max-width:720px){
-  .wb-hero{min-height:auto;padding:calc(var(--nav-h) + 46px) 0 52px;text-align:center}
+  .wb-hero{min-height:auto;padding:calc(var(--nav-h) + 46px) 0 52px}
   .wb-next{margin-top:38px}
-  .wb-lead{margin-inline:auto}
-  .wb-hact{justify-content:center}
   .wb-card{grid-template-columns:1fr;gap:14px;padding:20px}
   .wb-tags{flex-wrap:wrap}
   .wb-date{display:flex;align-items:baseline;gap:8px;width:auto;justify-self:start;align-self:start;padding:8px 15px;border-radius:70px}
