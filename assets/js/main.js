@@ -2094,6 +2094,9 @@
       });
     }
 
+    var printBtn = document.querySelector('[data-ar-print]');
+    if (printBtn) printBtn.addEventListener('click', function () { window.print(); });
+
     if (prefersReduced) {
       var film = document.querySelector('.wb-hero-video');
       if (film) { film.removeAttribute('autoplay'); film.pause(); }
