@@ -2633,16 +2633,12 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
   text-transform:uppercase;color:#9dbdff;text-shadow:0 1px 12px rgba(3,7,20,.7);
 }
 /* the clock — plain type with a faint blue bloom, like a live readout */
-.wb-cd{position:relative;display:inline-flex;align-items:baseline;gap:7px;isolation:isolate}
-.wb-cd::after{
-  content:"";position:absolute;inset:-26px -34px;z-index:-1;pointer-events:none;
-  background:radial-gradient(closest-side,rgba(60,120,255,.24),transparent 76%);
-}
+.wb-cd{display:inline-flex;align-items:baseline;gap:7px}
 .wb-cd-u{display:inline-flex;align-items:baseline;gap:2px}
 .wb-cd-u b{
   font-size:clamp(21px,2.1vw,26px);font-weight:800;letter-spacing:-.03em;color:#fff;
   font-variant-numeric:tabular-nums;line-height:1;
-  text-shadow:0 0 24px rgba(120,175,255,.4),0 1px 14px rgba(3,7,20,.7);
+  text-shadow:0 1px 14px rgba(3,7,20,.75);
 }
 .wb-cd-u em{
   font-style:normal;font-size:9.5px;font-weight:700;letter-spacing:.08em;
@@ -2753,42 +2749,54 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
 .wb-ics:hover{background:rgba(0,71,187,.08);color:var(--blue-700)}
 .wb-ics.is-done{color:#0f7d5c}
 
-/* replays */
-.wb-rep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
-.wb-rep{display:flex;flex-direction:column}
-.wb-rep-media{position:relative;display:block;border-radius:18px;overflow:hidden;aspect-ratio:16/9;box-shadow:0 14px 34px -22px rgba(20,44,96,.4);transition:transform .45s var(--ease),box-shadow .45s var(--ease)}
-.wb-rep:hover .wb-rep-media{transform:translateY(-5px);box-shadow:0 30px 58px -28px rgba(20,44,96,.5)}
+/* replays — frosted cards: meta header, copy, then the still filling the foot */
+.wb-rep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.wb-rep{
+  position:relative;overflow:hidden;display:flex;flex-direction:column;border-radius:20px;
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
+}
+.wb-rep:hover{transform:translateY(-5px);border-color:rgba(0,71,187,.28);box-shadow:0 30px 58px -32px rgba(20,44,96,.5),inset 0 1px 0 #fff}
+.wb-rep-head{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:13px 18px;border-bottom:1px solid rgba(20,40,80,.09);
+}
+.wb-rep-cat{display:flex;align-items:center;gap:9px;min-width:0;font-size:13px;font-weight:600;color:var(--text)}
+.wb-rep-cat svg{width:17px;height:17px;flex:none;color:var(--blue)}
+.wb-rep-cat i{width:3px;height:3px;border-radius:50%;background:var(--text-mute);flex:none;margin-inline:1px}
+.wb-rep-date{flex:none;font-size:12.5px;color:var(--text-mute);font-variant-numeric:tabular-nums}
+.wb-rep-body{padding:17px 18px 19px}
+.wb-rep-title{font-size:17.5px;letter-spacing:-.022em;line-height:1.3;color:var(--text)}
+.wb-rep-title a{transition:color .25s}
+.wb-rep:hover .wb-rep-title a{color:var(--blue)}
+.wb-rep-desc{
+  margin-top:8px;font-size:13.5px;line-height:1.55;color:var(--text-soft);
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+/* the still sits flush to the card's lower edge, corners clipped by the card */
+.wb-rep-media{position:relative;display:block;margin-top:auto;aspect-ratio:16/10;overflow:hidden}
 .wb-rep-media img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
 .wb-rep:hover .wb-rep-media img{transform:scale(1.05)}
-/* photo thumbnail — a scrim keeps the pill, play button and duration legible
-   whatever the frame underneath is doing */
+/* scrim keeps the play button and chips legible over any frame */
 .wb-rep-media::after{
   content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(4,8,18,.34) 0%,rgba(4,8,18,.1) 34%,rgba(4,8,18,.2) 62%,rgba(4,8,18,.66) 100%);
-}
-.wb-thumb-lbl{
-  position:absolute;top:13px;left:13px;z-index:2;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-  color:#fff;padding:5px 11px;border-radius:70px;background:rgba(8,14,26,.5);border:1px solid rgba(255,255,255,.24);
-  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  background:linear-gradient(180deg,rgba(4,8,18,.12) 0%,rgba(4,8,18,.08) 46%,rgba(4,8,18,.5) 100%);
 }
 .wb-play{
-  position:absolute;inset:0;margin:auto;z-index:2;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;
+  position:absolute;inset:0;margin:auto;z-index:2;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;
   background:rgba(255,255,255,.94);color:var(--blue);box-shadow:0 12px 30px -8px rgba(0,0,0,.5);
   transition:transform .35s var(--ease),background .3s;
 }
-.wb-play svg{width:20px;height:20px;margin-left:3px}
+.wb-play svg{width:19px;height:19px;margin-left:3px}
 .wb-rep:hover .wb-play{transform:scale(1.08);background:#fff}
-.wb-dur{
-  position:absolute;left:13px;bottom:13px;z-index:2;font-size:11.5px;font-weight:600;color:#fff;
-  padding:4px 10px;border-radius:8px;background:rgba(6,10,20,.68);
-  -webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);
+.wb-dur,.wb-lvl{
+  position:absolute;bottom:12px;z-index:2;font-size:11px;font-weight:600;color:#fff;
+  padding:5px 11px;border-radius:70px;background:rgba(8,14,26,.56);border:1px solid rgba(255,255,255,.2);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
 }
-.wb-rep-body{padding-top:16px;display:flex;flex-direction:column;flex:1}
-.wb-rep-title{font-size:16.5px;letter-spacing:-.02em;line-height:1.3;color:var(--text)}
-.wb-rep-title a{transition:color .25s}
-.wb-rep:hover .wb-rep-title a{color:var(--blue)}
-.wb-rep-body .wb-metarow{margin-top:10px}
-.wb-rep-body .wb-textlink{margin-top:16px;align-self:flex-start}
+.wb-dur{left:12px;font-variant-numeric:tabular-nums}
+.wb-lvl{right:12px;letter-spacing:.06em;text-transform:uppercase;font-size:10px}
+
+.wb-textlink{margin-top:16px;align-self:flex-start}
 
 .wb-textlink{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;color:var(--blue);cursor:pointer}
 .wb-textlink svg{width:15px;height:15px;transition:transform .3s var(--ease)}
