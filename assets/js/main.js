@@ -1554,6 +1554,7 @@
       tzInput.addEventListener('change', function () {
         local = tzInput.checked;
         renderTimes();
+        if (heroIt) heroFrom(heroIt);
         buildSessionOptions();
         apply();
       });
@@ -1657,7 +1658,14 @@
       var parts = { d: d, h: h, m: m, s: s % 60 };
       Object.keys(parts).forEach(function (k) {
         var el = cd.querySelector('[data-cd="' + k + '"]');
-        if (el) el.textContent = pad(parts[k]);
+        if (!el) return;
+        var v = pad(parts[k]);
+        if (el.textContent === v) return;
+        el.textContent = v;
+        if (prefersReduced) return;
+        el.classList.remove('is-tick');
+        void el.offsetWidth;   // restart the lift animation
+        el.classList.add('is-tick');
       });
     }
 
