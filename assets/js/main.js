@@ -1386,6 +1386,460 @@
     }
   }
 
+  /* ---------------- Webinars — schedule, timezone, countdown, subscribe ---------------- */
+  function initWebinars() {
+    var root = document.getElementById('schedule');
+    if (!root) return;
+
+    var LANGS = { en: 'English', ar: 'العربية', zh: '简体中文', th: 'ไทย' };
+    var items = Array.prototype.slice.call(document.querySelectorAll('[data-wb-item]'));
+    var tabs = Array.prototype.slice.call(root.querySelectorAll('.wb-tab'));
+    var chips = Array.prototype.slice.call(root.querySelectorAll('.wb-chip'));
+    var panels = Array.prototype.slice.call(root.querySelectorAll('.wb-panel'));
+    var statusEl = root.querySelector('[data-wb-status]');
+    var emptyEl = root.querySelector('[data-wb-empty]');
+    var emptyLang = root.querySelector('[data-wb-empty-lang]');
+    var resetBtn = root.querySelector('[data-wb-reset]');
+    var tzInput = document.getElementById('wbTz');
+    var tzNameEl = root.querySelector('[data-wb-tzname]');
+    var sessionSel = document.getElementById('wbSession');
+
+    var cat = 'upcoming';
+    var lastShown = -1;
+    var lang = 'all';
+    var local = !!(tzInput && tzInput.checked);
+
+    /* ---- time helpers ---- */
+    var TZ = (function () {
+      try {
+        var p = new Intl.DateTimeFormat(undefined, { timeZoneName: 'short' }).formatToParts(new Date());
+        for (var i = 0; i < p.length; i++) if (p[i].type === 'timeZoneName') return p[i].value;
+      } catch (e) { }
+      return 'local time';
+    })();
+
+    function fmt(d, opts, useLocal) {
+      var o = {}, k;
+      for (k in opts) o[k] = opts[k];
+      if (!useLocal) o.timeZone = 'UTC';
+      try { return new Intl.DateTimeFormat('en-GB', o).format(d); }
+      catch (e) { return d.toUTCString().slice(5, 16); }
+    }
+    // "Tue 4 Aug · 15:00 GMT" — or the same instant in the visitor's own zone
+    function fmtSession(d, useLocal) {
+      var day = fmt(d, { weekday: 'short', day: 'numeric', month: 'short' }, useLocal).replace(/,/g, '');
+      var time = fmt(d, { hour: '2-digit', minute: '2-digit', hour12: false }, useLocal);
+      return day + ' · ' + time + ' ' + (useLocal ? TZ : 'GMT');
+    }
+    function fmtDate(d, useLocal) {
+      return fmt(d, { day: 'numeric', month: 'short', year: 'numeric' }, useLocal).replace(/,/g, '');
+    }
+    // relative label — drives the pill on each card and in the hero
+    function relOf(it, now) {
+      if (now >= it.start && now <= it.end) return { t: 'Live now', c: 'is-now' };
+      var ms = it.start - now;
+      if (ms < 0) return null;
+      var mins = Math.round(ms / 6e4);
+      if (mins < 60) return { t: 'In ' + mins + ' min', c: 'is-now' };
+      var hrs = Math.round(mins / 60);
+      if (hrs < 24) return { t: 'In ' + hrs + (hrs === 1 ? ' hour' : ' hours'), c: 'is-soon' };
+      var days = Math.round(hrs / 24);
+      if (days === 1) return { t: 'Tomorrow', c: 'is-soon' };
+      if (days < 14) return { t: 'In ' + days + ' days', c: '' };
+      var wks = Math.round(days / 7);
+      return { t: 'In ' + wks + ' weeks', c: '' };
+    }
+
+    /* ---- read the schedule out of the markup ---- */
+    items.forEach(function (el) {
+      var start = new Date(el.getAttribute('data-start'));
+      var dur = parseInt(el.getAttribute('data-dur'), 10) || 60;
+      el._wb = {
+        el: el,
+        cat: el.getAttribute('data-cat'),
+        lang: el.getAttribute('data-lang') || 'en',
+        title: el.getAttribute('data-title') || '',
+        host: el.getAttribute('data-host') || 'STARTRADER Analyst',
+        topic: el.getAttribute('data-topic') || '',
+        level: (el.querySelector('.wb-tag--lvl') || {}).textContent || '',
+        start: start,
+        end: new Date(start.getTime() + dur * 6e4),
+        dur: dur,
+        dateOnly: el.getAttribute('data-datefmt') === 'date',
+        timeEl: el.querySelector('[data-wb-time]'),
+        relEl: el.querySelector('[data-wb-rel]'),
+        dayEl: el.querySelector('[data-wb-day]'),
+        monEl: el.querySelector('[data-wb-mon]')
+      };
+    });
+    var sessions = items.map(function (el) { return el._wb; }).filter(function (it) { return it.cat !== 'replay'; });
+    sessions.sort(function (a, b) { return a.start - b.start; });
+
+    function upcomingSessions() {
+      var now = new Date();
+      return sessions.filter(function (it) { return it.end > now; });
+    }
+
+    /* ---- render times on every card ---- */
+    function renderTimes() {
+      var now = new Date();
+      items.forEach(function (el) {
+        var it = el._wb;
+        if (it.timeEl) {
+          it.timeEl.textContent = it.dateOnly ? fmtDate(it.start, false) : fmtSession(it.start, local);
+        }
+        if (it.dayEl) it.dayEl.textContent = fmt(it.start, { day: 'numeric' }, local);
+        if (it.monEl) it.monEl.textContent = fmt(it.start, { month: 'short' }, local);
+        if (it.relEl) {
+          var r = relOf(it, now);
+          it.relEl.textContent = r ? r.t : '';
+          it.relEl.className = 'wb-rel' + (r && r.c ? ' ' + r.c : '');
+        }
+      });
+      if (tzNameEl) tzNameEl.textContent = local ? 'my timezone (' + TZ + ')' : 'GMT';
+    }
+
+    /* ---- filtering ---- */
+    function apply() {
+      var now = new Date();
+      var shown = 0;
+
+      items.forEach(function (el) {
+        var it = el._wb;
+        var onCat = it.cat === cat;
+        var onLang = lang === 'all' || it.lang === lang;
+        // a live session that has already finished drops out of the schedule
+        var stale = it.cat !== 'replay' && it.end < now;
+        var on = onCat && onLang && !stale;
+        el.hidden = !on;
+        if (on) shown++;
+      });
+
+      panels.forEach(function (p) { p.hidden = p.id !== 'wb-panel-' + cat; });
+
+      tabs.forEach(function (t) {
+        var c = t.getAttribute('data-wb-tab');
+        var on = c === cat;
+        t.classList.toggle('is-on', on);
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.tabIndex = on ? 0 : -1;
+        var badge = t.querySelector('.wb-tab-n');
+        if (badge) {
+          badge.textContent = items.filter(function (el) {
+            var it = el._wb;
+            return it.cat === c && (lang === 'all' || it.lang === lang) && !(it.cat !== 'replay' && it.end < now);
+          }).length;
+        }
+      });
+
+      chips.forEach(function (b) {
+        var on = b.getAttribute('data-wb-lang') === lang;
+        b.classList.toggle('is-on', on);
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+
+      if (emptyEl) emptyEl.hidden = shown !== 0;
+      if (emptyLang) emptyLang.textContent = lang === 'all' ? 'this section' : LANGS[lang] || 'that language';
+
+      if (statusEl) {
+        var label = cat === 'replay' ? (shown === 1 ? 'replay' : 'replays') : (shown === 1 ? 'session' : 'sessions');
+        statusEl.textContent = shown === 0 ? ''
+          : 'Showing ' + shown + ' ' + label + (lang === 'all' ? '' : ' in ' + (LANGS[lang] || lang))
+            + (local && cat !== 'replay' ? ' · times in ' + TZ : '');
+      }
+      if (hasST && shown !== lastShown) ScrollTrigger.refresh();
+      lastShown = shown;
+    }
+
+    /* ---- tabs (click + keyboard) ---- */
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { cat = t.getAttribute('data-wb-tab'); apply(); });
+      t.addEventListener('keydown', function (e) {
+        var n = -1;
+        if (e.key === 'ArrowRight') n = (i + 1) % tabs.length;
+        else if (e.key === 'ArrowLeft') n = (i - 1 + tabs.length) % tabs.length;
+        else if (e.key === 'Home') n = 0;
+        else if (e.key === 'End') n = tabs.length - 1;
+        if (n < 0) return;
+        e.preventDefault();
+        cat = tabs[n].getAttribute('data-wb-tab');
+        apply();
+        tabs[n].focus();
+      });
+    });
+
+    chips.forEach(function (b) {
+      b.addEventListener('click', function () { lang = b.getAttribute('data-wb-lang'); apply(); });
+    });
+    if (resetBtn) resetBtn.addEventListener('click', function () { lang = 'all'; apply(); });
+
+    if (tzInput) {
+      tzInput.addEventListener('change', function () {
+        local = tzInput.checked;
+        renderTimes();
+        buildSessionOptions();
+        apply();
+      });
+    }
+
+    /* ---- "View all replays" jumps to the replay tab ---- */
+    var allRow = root.querySelector('.wb-allrow .wb-textlink');
+    if (allRow) {
+      allRow.addEventListener('click', function (e) {
+        e.preventDefault();
+        cat = 'replay';
+        apply();
+      });
+    }
+
+    /* ---- calendar file (.ics) ---- */
+    function pad(n) { return (n < 10 ? '0' : '') + n; }
+    function icsStamp(d) {
+      return d.getUTCFullYear() + pad(d.getUTCMonth() + 1) + pad(d.getUTCDate()) + 'T' +
+        pad(d.getUTCHours()) + pad(d.getUTCMinutes()) + '00Z';
+    }
+    function slug(s) { return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 60) || 'webinar'; }
+    function esc(s) { return String(s).replace(/([,;\\])/g, '\\$1').replace(/\n/g, '\\n'); }
+    function downloadIcs(it) {
+      if (!it) return;
+      var url = window.location.href.split('#')[0];
+      var lines = [
+        'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//STARTRADER//Webinars//EN', 'CALSCALE:GREGORIAN',
+        'METHOD:PUBLISH', 'BEGIN:VEVENT',
+        'UID:' + slug(it.title) + '-' + icsStamp(it.start) + '@startrader.com',
+        'DTSTAMP:' + icsStamp(new Date()),
+        'DTSTART:' + icsStamp(it.start),
+        'DTEND:' + icsStamp(it.end),
+        'SUMMARY:' + esc('STARTRADER Webinar: ' + it.title),
+        'DESCRIPTION:' + esc('Free live webinar presented by the STARTRADER ' + it.host +
+          ' in ' + (LANGS[it.lang] || 'English') + '. Joining link is emailed before the session. ' + url),
+        'LOCATION:Online — STARTRADER Webinar',
+        'URL:' + url,
+        'BEGIN:VALARM', 'TRIGGER:-PT60M', 'ACTION:DISPLAY',
+        'DESCRIPTION:' + esc(it.title + ' starts in one hour'),
+        'END:VALARM', 'END:VEVENT', 'END:VCALENDAR'
+      ];
+      var blob = new Blob([lines.join('\r\n')], { type: 'text/calendar;charset=utf-8' });
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'startrader-' + slug(it.title) + '.ics';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(function () { URL.revokeObjectURL(a.href); }, 4000);
+    }
+    function flagDone(btn) {
+      if (!btn || btn._busy) return;
+      btn._busy = true;
+      var was = btn.innerHTML;
+      btn.classList.add('is-done');
+      btn.innerHTML = 'Added to calendar';
+      setTimeout(function () { btn.innerHTML = was; btn.classList.remove('is-done'); btn._busy = false; }, 2600);
+    }
+
+    /* ---- the hero card mirrors the next live session ---- */
+    var hero = document.querySelector('[data-wb-next]');
+    var heroIt = null;
+    var cd = hero && hero.querySelector('[data-wb-cd]');
+
+    function heroFrom(it) {
+      heroIt = it;
+      if (!hero || !it) return;
+      var set = function (sel, v) { var el = hero.querySelector(sel); if (el) el.textContent = v; };
+      set('[data-wb-next-title]', it.title);
+      set('[data-wb-next-host]', 'STARTRADER ' + it.host);
+      set('[data-wb-next-cat]', it.topic + (it.level ? ' · ' + it.level : ''));
+      set('[data-wb-next-time]', fmtSession(it.start, local));
+      set('[data-wb-next-dur]', it.dur + ' minutes');
+      set('[data-wb-next-lang]', LANGS[it.lang] || 'English');
+    }
+
+    function tick() {
+      var now = new Date();
+      // once a session ends, the hero rolls forward to the next one on the schedule
+      if (!heroIt || heroIt.end < now) {
+        var next = upcomingSessions()[0];
+        if (!next) {
+          if (cd) cd.hidden = true;
+          var rel0 = hero && hero.querySelector('[data-wb-next-rel]');
+          if (rel0) rel0.textContent = 'Schedule coming soon';
+          return;
+        }
+        heroFrom(next);
+      }
+      var r = relOf(heroIt, now);
+      var relEl = hero && hero.querySelector('[data-wb-next-rel]');
+      if (relEl) relEl.textContent = r ? (r.t === 'Live now' ? 'Live now' : 'Starts ' + r.t.toLowerCase()) : '';
+
+      if (!cd) return;
+      var ms = Math.max(0, heroIt.start - now);
+      var s = Math.floor(ms / 1000);
+      var d = Math.floor(s / 86400), h = Math.floor((s % 86400) / 3600), m = Math.floor((s % 3600) / 60);
+      var parts = { d: d, h: h, m: m, s: s % 60 };
+      Object.keys(parts).forEach(function (k) {
+        var el = cd.querySelector('[data-cd="' + k + '"]');
+        if (el) el.textContent = pad(parts[k]);
+      });
+    }
+
+    /* ---- subscribe form ---- */
+    function buildSessionOptions() {
+      if (!sessionSel) return;
+      var keep = sessionSel.value;
+      sessionSel.innerHTML = '';
+      var any = document.createElement('option');
+      any.value = 'all';
+      any.textContent = 'Any session — send me the full schedule';
+      sessionSel.appendChild(any);
+      upcomingSessions().forEach(function (it) {
+        var o = document.createElement('option');
+        o.value = it.start.toISOString();
+        o.textContent = it.title + ' — ' + fmtSession(it.start, local);
+        sessionSel.appendChild(o);
+      });
+      if (keep) sessionSel.value = keep;
+      if (!sessionSel.value) sessionSel.value = 'all';
+    }
+    function sessionByIso(iso) {
+      for (var i = 0; i < sessions.length; i++) {
+        if (sessions[i].start.toISOString() === iso) return sessions[i];
+      }
+      return null;
+    }
+    function chosenSession() {
+      if (!sessionSel || sessionSel.value === 'all') return upcomingSessions()[0] || heroIt;
+      return sessionByIso(sessionSel.value) || heroIt;
+    }
+
+    // "Register free" pre-selects that session in the form, then the anchor scrolls to it
+    document.querySelectorAll('[data-wb-register]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var card = btn.closest('[data-wb-item]') || btn.closest('[data-wb-next]');
+        var it = card === hero ? heroIt : (card && card._wb);
+        if (it && sessionSel) {
+          buildSessionOptions();
+          sessionSel.value = it.start.toISOString();
+          if (sessionSel.value !== it.start.toISOString()) sessionSel.value = 'all';
+        }
+        var name = document.getElementById('wbName');
+        if (name) setTimeout(function () { name.focus({ preventScroll: true }); }, prefersReduced ? 0 : 700);
+      });
+    });
+
+    document.querySelectorAll('[data-wb-ics]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var card = btn.closest('[data-wb-item]') || btn.closest('[data-wb-next]');
+        var it = card === hero ? heroIt : (card && card._wb);
+        if (!it) it = chosenSession();
+        downloadIcs(it);
+        flagDone(btn);
+      });
+    });
+
+    var form = document.getElementById('wbForm');
+    var okBox = document.getElementById('wbOk');
+    if (form) {
+      var fields = {
+        name: { el: document.getElementById('wbName'), test: function (v) { return v.trim().length >= 2; } },
+        email: { el: document.getElementById('wbEmail'), test: function (v) { return /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(v.trim()); } },
+        phone: { el: document.getElementById('wbPhone'), test: function (v) { return !v.trim() || /^\+?[\d\s()-]{6,20}$/.test(v.trim()); } }
+      };
+      var consent = document.getElementById('wbConsent');
+
+      function bad(field, on) {
+        var el = field.el;
+        if (!el) return;
+        var wrap = el.closest('.wb-field');
+        var err = document.getElementById(el.id + 'Err');
+        if (wrap) wrap.classList.toggle('is-bad', on);
+        if (err) err.hidden = !on;
+        el.setAttribute('aria-invalid', on ? 'true' : 'false');
+      }
+
+      Object.keys(fields).forEach(function (k) {
+        var f = fields[k];
+        if (!f.el) return;
+        // clear the error as soon as the visitor fixes it — never nag mid-typing
+        f.el.addEventListener('input', function () { if (f.test(f.el.value)) bad(f, false); });
+        f.el.addEventListener('blur', function () { if (f.el.value.trim()) bad(f, !f.test(f.el.value)); });
+      });
+      if (consent) {
+        consent.addEventListener('change', function () {
+          var err = document.getElementById('wbConsentErr');
+          var wrap = consent.closest('.wb-check');
+          if (consent.checked) { if (err) err.hidden = true; if (wrap) wrap.classList.remove('is-bad'); }
+        });
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var first = null;
+        Object.keys(fields).forEach(function (k) {
+          var f = fields[k];
+          if (!f.el) return;
+          var ok = f.test(f.el.value);
+          bad(f, !ok);
+          if (!ok && !first) first = f.el;
+        });
+        var cErr = document.getElementById('wbConsentErr');
+        var cWrap = consent && consent.closest('.wb-check');
+        var cOk = !consent || consent.checked;
+        if (cErr) cErr.hidden = cOk;
+        if (cWrap) cWrap.classList.toggle('is-bad', !cOk);
+        if (!cOk && !first) first = consent;
+
+        if (first) { first.focus(); return; }
+
+        var it = chosenSession();
+        var langSel = document.getElementById('wbLang');
+        var langLabel = LANGS[langSel && langSel.value] || 'English';
+        var msg = okBox && okBox.querySelector('[data-wb-ok-msg]');
+        if (msg) {
+          msg.textContent = sessionSel && sessionSel.value !== 'all' && it
+            ? 'You’re registered for “' + it.title + '” on ' + fmtSession(it.start, local) +
+              '. We’ll email the joining link, plus a reminder an hour before it starts.'
+            : 'We’ll email you the full ' + langLabel + ' schedule, a reminder before each session, and every replay as it is published.';
+        }
+        form.hidden = true;
+        if (okBox) {
+          okBox.hidden = false;
+          var h = okBox.querySelector('h3');
+          if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); }
+        }
+      });
+
+      var again = document.getElementById('wbAgain');
+      if (again) {
+        again.addEventListener('click', function () {
+          form.reset();
+          Object.keys(fields).forEach(function (k) { bad(fields[k], false); });
+          var cErr = document.getElementById('wbConsentErr');
+          if (cErr) cErr.hidden = true;
+          buildSessionOptions();
+          if (okBox) okBox.hidden = true;
+          form.hidden = false;
+          var name = document.getElementById('wbName');
+          if (name) name.focus();
+        });
+      }
+    }
+
+    /* ---- boot ---- */
+    // a looping banner film is decoration — hold it on the poster frame for
+    // visitors who asked for less motion
+    if (prefersReduced) {
+      var film = document.querySelector('.wb-hero-video');
+      if (film) { film.autoplay = false; film.removeAttribute('autoplay'); film.pause(); }
+    }
+    renderTimes();
+    buildSessionOptions();
+    apply();
+    tick();
+    setInterval(tick, 1000);
+    // cards and the hero re-label themselves as the day rolls on
+    setInterval(function () { renderTimes(); apply(); }, 60000);
+  }
+
   /* ---------------- Company — global presence map ---------------- */
   function initCompany() {
     var root = document.getElementById('coGlobal');
@@ -1465,6 +1919,7 @@
     initHowToTrade();
     initGlossary();
     initGlossaryTerm();
+    initWebinars();
     initCompany();
     initHeroTicker();
     initMarkets();
