@@ -2995,3 +2995,95 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
   .ec-embed-bar{padding:12px 16px}
   .ec-credit{padding:11px 16px}
 }
+
+/* ---- Why-card additions for features the product pages don't cover.
+   Same vocabulary as .fx-tx / .fx-cs / .fx-su: white chips on soft shadow,
+   the blue gradient disc, frosted panels — only the composition is new. ---- */
+.fx-w2--wide{grid-column:span 2}
+/* two columns: keep only the chart card wide, so 7 cards make 4 full rows */
+@media (max-width:1080px){
+  .fx-w2--wide:not(.fx-w2--lev){grid-column:auto}
+}
+/* single column: nothing may span */
+@media (max-width:720px){
+  .fx-w2--wide{grid-column:auto}
+}
+
+/* Expanding global server network — a rack broadcasting to its regions */
+.fx-sv{position:relative;width:100%;height:100%;display:grid;place-items:center}
+.fx-sv-core{
+  position:relative;z-index:2;width:82px;height:82px;border-radius:50%;display:grid;place-items:center;color:#fff;
+  background:radial-gradient(130% 130% at 50% 16%,#2074ff,#0740b8);
+  box-shadow:0 20px 40px -14px rgba(0,71,187,.6),inset 0 1px 0 rgba(255,255,255,.3);
+  margin-top:-18px;
+}
+.fx-sv-core svg{width:34px;height:34px}
+.fx-sv-wave{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,calc(-50% - 18px));
+  border-radius:50%;border:1px solid rgba(0,71,187,.22);pointer-events:none;
+}
+.fx-sv-wave.w1{width:132px;height:132px}
+.fx-sv-wave.w2{width:186px;height:186px}
+.fx-sv-wave.w3{width:240px;height:240px;border-color:rgba(0,71,187,.13)}
+.fx-sv-rack{
+  position:absolute;left:50%;bottom:34px;transform:translateX(-50%);z-index:2;
+  display:flex;flex-direction:column;gap:4px;padding:9px 12px;border-radius:11px;
+  background:#fff;box-shadow:0 12px 26px -12px rgba(20,44,96,.45);
+}
+.fx-sv-rack i{display:block;width:44px;height:5px;border-radius:3px;background:linear-gradient(90deg,#1e4fb8,#5b9dff)}
+.fx-sv-chip{
+  position:absolute;left:50%;bottom:0;transform:translateX(-50%);white-space:nowrap;
+  font-size:11px;font-weight:700;color:#0f1830;background:#fff;padding:7px 13px;border-radius:70px;
+  box-shadow:0 12px 26px -12px rgba(20,44,96,.45);
+}
+
+/* Top institutional liquidity — an aggregated depth ladder */
+.fx-lq{position:relative;width:100%;height:100%;display:grid;place-items:center}
+.fx-lq-book{
+  width:88%;max-width:340px;display:flex;flex-direction:column;gap:7px;padding:16px 18px;border-radius:16px;
+  background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.9);
+  box-shadow:inset 0 1px 0 #fff,0 12px 28px -18px rgba(20,44,96,.3);
+  -webkit-backdrop-filter:blur(8px) saturate(1.4);backdrop-filter:blur(8px) saturate(1.4);
+}
+.fx-lq-row{display:grid;grid-template-columns:1fr 34px 1fr;align-items:center;gap:8px}
+.fx-lq-row b{font-size:10.5px;font-weight:700;color:var(--text-mute);text-align:center;font-variant-numeric:tabular-nums}
+.fx-lq-row i{display:block;height:7px;border-radius:4px;width:var(--w,60%)}
+.fx-lq-row i.bid{margin-left:auto;background:linear-gradient(270deg,#1e4fb8,rgba(30,79,184,.28))}
+.fx-lq-row i.ask{background:linear-gradient(90deg,#5b9dff,rgba(91,157,255,.26))}
+.fx-lq-chip{
+  position:absolute;display:flex;align-items:center;gap:7px;white-space:nowrap;
+  font-size:11px;font-weight:600;color:#0f1830;background:#fff;padding:7px 11px;border-radius:10px;
+  box-shadow:0 10px 22px -12px rgba(20,44,96,.4);
+}
+.fx-lq-chip .ok{flex:none;width:15px;height:15px;border-radius:50%;display:grid;place-items:center;background:var(--blue);color:#fff}
+.fx-lq-chip .ok svg{width:10px;height:10px}
+.fx-lq-chip.c1{top:2px;left:2%}
+.fx-lq-chip.c2{bottom:4px;right:2%}
+
+.fx-why-note{
+  margin:38px auto 0;max-width:760px;text-align:center;
+  font-size:12.5px;font-style:italic;line-height:1.6;color:var(--text-mute);
+}
+.fx-why-note b{font-style:normal;font-weight:700;color:var(--text-soft)}
+
+@media (prefers-reduced-motion:no-preference){
+  /* the rack broadcasts outward, one ring at a time */
+  .fx-sv-wave{animation:fxSvWave 3.6s ease-out infinite}
+  .fx-sv-wave.w2{animation-delay:.6s}
+  .fx-sv-wave.w3{animation-delay:1.2s}
+  @keyframes fxSvWave{0%{opacity:0;transform:translate(-50%,calc(-50% - 18px)) scale(.72)}30%{opacity:1}100%{opacity:0;transform:translate(-50%,calc(-50% - 18px)) scale(1.08)}}
+  .fx-sv-rack i{animation:fxSvBar 1.8s ease-in-out infinite}
+  .fx-sv-rack i:nth-child(2){animation-delay:.18s}
+  .fx-sv-rack i:nth-child(3){animation-delay:.36s}
+  @keyframes fxSvBar{0%,100%{opacity:.42}45%{opacity:1;box-shadow:0 0 9px rgba(91,157,255,.75)}}
+  .fx-sv-chip{animation:fxFloat 5.4s ease-in-out infinite}
+  /* depth keeps refilling on both sides of the book */
+  .fx-lq-row i{animation:fxLqDepth 3.2s ease-in-out infinite}
+  .fx-lq-row:nth-child(2) i{animation-delay:.24s}
+  .fx-lq-row:nth-child(3) i{animation-delay:.48s}
+  .fx-lq-row:nth-child(4) i{animation-delay:.72s}
+  .fx-lq-row:nth-child(5) i{animation-delay:.96s}
+  @keyframes fxLqDepth{0%,100%{width:calc(var(--w) * .72);opacity:.75}50%{width:var(--w);opacity:1}}
+  .fx-lq-chip.c1{animation:fxFloat 5.2s ease-in-out infinite}
+  .fx-lq-chip.c2{animation:fxFloat 5.8s ease-in-out infinite -2.1s}
+}
