@@ -287,7 +287,7 @@ p{text-wrap:pretty}
 
 /* ---------- Hero ---------- */
 .hero{
-  position:relative;background:#04060e url(../img/home-hero.webp) center center/cover no-repeat;color:#fff;overflow:hidden;
+  position:relative;background:#04060e url(../img/home-hero-wave.jpg) center center/cover no-repeat;color:#fff;overflow:hidden;
   margin-top:calc(-1 * var(--nav-h));
   padding:calc(60px + var(--nav-h)) 0 40px;isolation:isolate;
   min-height:min(760px, calc(100vh - var(--topbar-h,44px)));
@@ -313,8 +313,8 @@ p{text-wrap:pretty}
 .hero::before{
   content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
   background:
-    radial-gradient(76% 62% at 50% 42%,rgba(3,7,20,.3) 0%,rgba(3,7,20,.14) 52%,rgba(3,7,20,0) 80%),
-    linear-gradient(180deg,rgba(3,7,20,.6) 0%,rgba(3,7,20,.22) 18%,rgba(3,7,20,.08) 40%,rgba(3,7,20,.2) 62%,rgba(3,7,20,.4) 82%,rgba(3,7,20,.66) 100%);
+    radial-gradient(70% 58% at 50% 44%,rgba(3,7,20,.22) 0%,rgba(3,7,20,.1) 54%,rgba(3,7,20,0) 82%),
+    linear-gradient(180deg,rgba(3,7,20,.62) 0%,rgba(3,7,20,.24) 18%,rgba(3,7,20,.06) 42%,rgba(3,7,20,.18) 64%,rgba(3,7,20,.42) 84%,rgba(3,7,20,.7) 100%);
 }
 .hero-inner{display:flex;flex-direction:column;align-items:center;text-align:center}
 .hero-title{width:100%;max-width:100%;font-size:clamp(29px,6.4vw,66px);font-weight:800;letter-spacing:-.03em;line-height:1.14;overflow-wrap:break-word}
@@ -986,7 +986,7 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
 @media (max-width:720px){
   .section{padding:68px 0}
   .head{margin-bottom:40px}
-  .hero{padding:64px 0 72px}
+  .hero{padding:calc(var(--nav-h) + 26px) 0 72px}
   .hero-strip-label{margin-top:64px}
   .hero-strip{gap:26px 0}
   .hero-strip li{flex:0 0 44%;min-width:44%;padding:0 10px}
