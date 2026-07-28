@@ -1434,22 +1434,6 @@
     function fmtDate(d, useLocal) {
       return fmt(d, { day: 'numeric', month: 'short', year: 'numeric' }, useLocal).replace(/,/g, '');
     }
-    // relative label — drives the pill on each card and in the hero
-    function relOf(it, now) {
-      if (now >= it.start && now <= it.end) return { t: 'Live now', c: 'is-now' };
-      var ms = it.start - now;
-      if (ms < 0) return null;
-      var mins = Math.round(ms / 6e4);
-      if (mins < 60) return { t: 'In ' + mins + ' min', c: 'is-now' };
-      var hrs = Math.round(mins / 60);
-      if (hrs < 24) return { t: 'In ' + hrs + (hrs === 1 ? ' hour' : ' hours'), c: 'is-soon' };
-      var days = Math.round(hrs / 24);
-      if (days === 1) return { t: 'Tomorrow', c: 'is-soon' };
-      if (days < 14) return { t: 'In ' + days + ' days', c: '' };
-      var wks = Math.round(days / 7);
-      return { t: 'In ' + wks + ' weeks', c: '' };
-    }
-
     /* ---- read the schedule out of the markup ---- */
     items.forEach(function (el) {
       var start = new Date(el.getAttribute('data-start'));
@@ -1467,7 +1451,6 @@
         dur: dur,
         dateOnly: el.getAttribute('data-datefmt') === 'date',
         timeEl: el.querySelector('[data-wb-time]'),
-        relEl: el.querySelector('[data-wb-rel]'),
         dayEl: el.querySelector('[data-wb-day]'),
         monEl: el.querySelector('[data-wb-mon]')
       };
@@ -1482,7 +1465,6 @@
 
     /* ---- render times on every card ---- */
     function renderTimes() {
-      var now = new Date();
       items.forEach(function (el) {
         var it = el._wb;
         if (it.timeEl) {
@@ -1490,11 +1472,6 @@
         }
         if (it.dayEl) it.dayEl.textContent = fmt(it.start, { day: 'numeric' }, local);
         if (it.monEl) it.monEl.textContent = fmt(it.start, { month: 'short' }, local);
-        if (it.relEl) {
-          var r = relOf(it, now);
-          it.relEl.textContent = r ? r.t : '';
-          it.relEl.className = 'wb-rel' + (r && r.c ? ' ' + r.c : '');
-        }
       });
       if (tzNameEl) tzNameEl.textContent = local ? 'my timezone (' + TZ + ')' : 'GMT';
     }
@@ -1661,15 +1638,17 @@
         var next = upcomingSessions()[0];
         if (!next) {
           if (cd) cd.hidden = true;
-          var rel0 = hero && hero.querySelector('[data-wb-next-rel]');
-          if (rel0) rel0.textContent = 'Schedule coming soon';
+          var lbl0 = hero.querySelector('[data-wb-next-lbl]');
+          if (lbl0) lbl0.textContent = 'New sessions are being scheduled';
           return;
         }
         heroFrom(next);
       }
-      var r = relOf(heroIt, now);
-      var relEl = hero && hero.querySelector('[data-wb-next-rel]');
-      if (relEl) relEl.textContent = r ? (r.t === 'Live now' ? 'Live now' : 'Starts ' + r.t.toLowerCase()) : '';
+      var lbl = hero.querySelector('[data-wb-next-lbl]');
+      if (lbl) {
+        lbl.textContent = (now >= heroIt.start && now <= heroIt.end)
+          ? 'Live now — the session is on air' : 'Next live session starts in:';
+      }
 
       if (!cd) return;
       var ms = Math.max(0, heroIt.start - now);
