@@ -448,91 +448,161 @@
 </section>
 
 <!-- ============ HOW TO READ IT ============ -->
-<section class="section ec-read" aria-labelledby="ec-read-title">
+<section class="section fx-hours ec-read" aria-labelledby="ec-read-title">
   <div class="container">
     <div class="head center">
       <span class="eyebrow eyebrow-blue" data-reveal>How to use it</span>
       <h2 class="h2 h2-light" id="ec-read-title" data-reveal>Reading the calendar</h2>
-      <p class="head-sub" data-reveal>Four things worth knowing before you trade around a release.</p>
     </div>
 
-    <div class="ec-read-grid" data-reveal-stagger>
-      <article class="ec-read-card">
-        <span class="ec-read-n">01</span>
-        <h3>Impact tells you what to expect</h3>
-        <p>Three bars means a release that regularly moves a currency the moment it lands &mdash; rate decisions, inflation, payrolls. One bar is background colour, worth noting but rarely worth trading.</p>
+    <div class="fx-mh" data-reveal-stagger data-fx-hours>
+      <article class="fx-mh-card fx-mh--teal">
+        <span class="fx-mh-ic"><svg><use href="#i-gauge"/></svg></span>
+        <h3>Impact sets the stakes</h3>
+        <p>Three bars is a release that moves a currency the moment it lands. One bar is background colour.</p>
+        <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="ec-legend">
+          <span class="ec-lg ec-lg--high"><i></i><i></i><i></i> High</span>
+          <span class="ec-lg ec-lg--med"><i></i><i></i><i></i> Medium</span>
+          <span class="ec-lg ec-lg--low"><i></i><i></i><i></i> Low</span>
+        </span></div></div>
       </article>
 
-      <article class="ec-read-card">
-        <span class="ec-read-n">02</span>
+      <article class="fx-mh-card fx-mh--wide fx-mh--blue">
+        <span class="fx-mh-ic"><svg><use href="#i-chart"/></svg></span>
         <h3>The surprise is the story</h3>
-        <p>Markets have already priced the forecast. What moves price is the gap between <b>forecast</b> and <b>actual</b> &mdash; so a strong number that undershoots expectations can still send a currency lower.</p>
+        <p>Markets have already priced the forecast. What moves price is the gap between forecast and actual &mdash; so a strong number that undershoots expectations can still send a currency lower.</p>
+        <div class="fx-mh-viz">
+          <div class="fx-mh-live">
+            <span class="fx-mh-sess"><i></i> Previous 0.2%</span>
+            <span class="fx-mh-sess"><i></i> Forecast 0.2%</span>
+            <span class="fx-mh-sess is-open"><i></i> Actual 0.4%</span>
+            <span class="fx-mh-clock-lbl ec-beat-lbl">Beat &#9650;</span>
+          </div>
+        </div>
       </article>
 
-      <article class="ec-read-card">
-        <span class="ec-read-n">03</span>
+      <article class="fx-mh-card fx-mh--purple">
+        <span class="fx-mh-ic"><svg><use href="#i-clock"/></svg></span>
         <h3>Work in your own clock</h3>
-        <p>Set the calendar to your own timezone with its timezone control, so 12:30 GMT reads as your local time &mdash; and use the date picker to jump to another week. The banner clock above stays on GMT for reference.</p>
+        <p>Set the calendar&rsquo;s timezone control once and every release reads in your local time.</p>
+        <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="fx-mh-status"><i></i> <span data-fx-clock>GMT 00:00</span> market time</span></div></div>
       </article>
 
-      <article class="ec-read-card">
-        <span class="ec-read-n">04</span>
-        <h3>Respect the first few seconds</h3>
-        <p>Spreads widen and liquidity thins around a major print, and price can spike both ways before settling. Size positions with that in mind, or wait for the initial reaction to pass.</p>
+      <article class="fx-mh-card fx-mh--green">
+        <span class="fx-mh-ic"><svg><use href="#i-swap"/></svg></span>
+        <h3>Watch the revisions</h3>
+        <p>Figures are restated as fuller data arrives &mdash; a revision can matter as much as the first print.</p>
+        <div class="fx-mh-viz"><div class="fx-mh-panel fx-mh-catch">
+          <span class="fx-mh-mv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l5-5 4 4 7-8"/><path d="M20 10V6h-4"/></svg></span>
+          <span class="fx-mh-catch-t">Revised &middot; <b>+0.1pp &#9650;</b></span>
+        </div></div>
+      </article>
+
+      <article class="fx-mh-card fx-mh--orange">
+        <span class="fx-mh-ic"><svg><use href="#i-bolt"/></svg></span>
+        <h3>Respect the first seconds</h3>
+        <p>Spreads widen and price can spike both ways before settling. Size accordingly, or wait it out.</p>
+        <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="fx-mh-alert"><span class="fx-mh-ping"><i></i></span> <span><b>Volatile</b> &middot; around the print</span></span></div></div>
       </article>
     </div>
   </div>
 </section>
 
 <!-- ============ WHY STARTRADER ============ -->
-<section class="section ec-why" aria-labelledby="ec-why-title">
+<section class="section fx-why ec-why" aria-labelledby="ec-why-title">
   <div class="container">
     <div class="head center">
       <span class="eyebrow" data-reveal>Why STARTRADER</span>
       <h2 class="h2" id="ec-why-title" data-reveal>Why trade with STARTRADER</h2>
     </div>
-
-    <div class="ec-why-grid" data-reveal-stagger>
-      <article class="ec-read-card ec-why-card ec-why-wide glass">
-        <span class="ec-read-n ec-why-ic"><svg aria-hidden="true"><use href="#i-wallet"/></svg></span>
-        <h3>Hassle-free transactions</h3>
-        <p>Multiple deposit and withdrawal methods, with zero deposit fees on most of them &mdash; so funding an account never gets in the way of a trade.</p>
+    <div class="fx-w2-grid" data-reveal-stagger>
+      <!-- Easy Transactions -->
+      <article class="fx-w2">
+        <div class="fx-w2-viz">
+          <div class="fx-tx">
+            <div class="fx-tx-ring">
+              <div class="fx-tx-core"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h13l-3.5-3.5"/><path d="M20 15H7l3.5 3.5"/></svg></div>
+              <span class="fx-tx-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>
+            </div>
+            <span class="fx-tx-chip"><span class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span><span class="tx"><b>Success!</b></span></span>
+          </div>
+        </div>
+        <h3>Hassle-free <span class="hl">Transactions</span></h3>
+        <p>Multiple deposit and withdrawal methods, with zero deposit fees on most of them.</p>
       </article>
 
-      <article class="ec-read-card ec-why-card glass">
-        <span class="ec-read-n ec-why-ic"><svg aria-hidden="true"><use href="#i-bolt"/></svg></span>
-        <h3>100-millisecond execution</h3>
-        <p>Orders fill in milliseconds &mdash; the edge that matters when a release lands.</p>
+      <!-- Ultra-Tight Spreads -->
+      <article class="fx-w2">
+        <div class="fx-w2-viz">
+          <div class="fx-cs">
+            <div class="fx-cs-meter">
+              <div class="big">0.0<em>pips</em></div>
+              <div class="fx-cs-bars"><span></span><span></span><span></span><span></span></div>
+              <span class="sym">Prime ECN live spread</span>
+            </div>
+            <span class="fx-cs-chip c1"><span class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>Tier-1 liquidity</span>
+            <span class="fx-cs-chip c2"><span class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>Transparent</span>
+            <span class="fx-cs-chip c3"><span class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>Tight</span>
+          </div>
+        </div>
+        <h3>Ultra-Tight <span class="hl">Spreads</span></h3>
+        <p>Institutional-grade liquidity holds pricing tight &mdash; spreads from 0.0 pips on <a href="prime-ecn.html">Prime ECN</a>.</p>
       </article>
 
-      <article class="ec-read-card ec-why-card glass">
-        <span class="ec-read-n ec-why-ic"><svg aria-hidden="true"><use href="#i-globe"/></svg></span>
-        <h3>Expanding global server network</h3>
-        <p>Stable, ultra-fast trading on a server footprint that keeps growing closer to you.</p>
+      <!-- Execution -->
+      <article class="fx-w2">
+        <div class="fx-w2-viz">
+          <div class="fx-uf">
+            <div class="fx-uf-speed"><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="fx-uf-core"><svg viewBox="0 0 24 24"><use href="#i-bolt"/></svg></div>
+          </div>
+        </div>
+        <h3>100-Millisecond <span class="hl">Execution</span></h3>
+        <p>Orders filled in milliseconds &mdash; the edge that matters the second a figure lands.</p>
       </article>
 
-      <article class="ec-read-card ec-why-card glass">
-        <span class="ec-read-n ec-why-ic"><svg aria-hidden="true"><use href="#i-cfd"/></svg></span>
-        <h3>Ultra-tight spreads</h3>
-        <p>Spreads from 0.0 pips on the <a href="prime-ecn.html">Prime ECN</a> account, held tight through the busiest sessions.</p>
+      <!-- Leverage -->
+      <article class="fx-w2 fx-w2--lev">
+        <div class="fx-w2-viz">
+          <div class="fx-lv">
+            <svg viewBox="0 0 320 180" preserveAspectRatio="none" aria-hidden="true">
+              <path class="area" d="M0,140 C34,132 52,96 86,98 C120,100 134,58 168,54 C202,50 220,104 256,86 C288,70 306,54 320,46 L320,180 L0,180 Z"/>
+              <path id="ecLvPath" class="ln" d="M0,140 C34,132 52,96 86,98 C120,100 134,58 168,54 C202,50 220,104 256,86 C288,70 306,54 320,46"/>
+              <circle class="dot" r="5"><animateMotion dur="4.5s" repeatCount="indefinite" calcMode="linear"><mpath href="#ecLvPath"/></animateMotion></circle>
+            </svg>
+            <span class="fx-lv-chip"><i></i> Leverage</span>
+          </div>
+        </div>
+        <h3>Flexible <span class="hl">Leverage</span></h3>
+        <p>Up to 1:1000 to match your strategy &mdash; and, just as importantly, your appetite for risk.</p>
       </article>
 
-      <article class="ec-read-card ec-why-card glass">
-        <span class="ec-read-n ec-why-ic"><svg aria-hidden="true"><use href="#i-layers"/></svg></span>
-        <h3>Leverage up to 1:1000</h3>
-        <p>Flexible leverage for greater potential &mdash; and, just as importantly, greater risk to manage.</p>
-      </article>
-
-      <article class="ec-read-card ec-why-card glass">
-        <span class="ec-read-n ec-why-ic"><svg aria-hidden="true"><use href="#i-droplet"/></svg></span>
-        <h3>Top institutional liquidity</h3>
-        <p>Institutional-grade liquidity keeps spreads tight and slippage contained when volatility spikes around a major print.</p>
-      </article>
-
-      <article class="ec-read-card ec-why-card glass">
-        <span class="ec-read-n ec-why-ic"><svg aria-hidden="true"><use href="#i-headset"/></svg></span>
-        <h3>24/7 multilingual support</h3>
+      <!-- Support -->
+      <article class="fx-w2">
+        <div class="fx-w2-viz">
+          <div class="fx-su">
+            <div class="fx-su-core"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.54 5h3.1a1 1 0 0 1 .98.79l.74 3.3a1 1 0 0 1-.28.94l-1.56 1.5a13 13 0 0 0 5.32 5.32l1.5-1.56a1 1 0 0 1 .94-.28l3.3.74a1 1 0 0 1 .79.98v3.1a1 1 0 0 1-1 1A16.5 16.5 0 0 1 5.5 6a1 1 0 0 1 1-1z"/><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" d="M15.5 4.6a5.4 5.4 0 0 1 4 4"/><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" d="M14.9 8.1a2.6 2.6 0 0 1 1.9 1.9"/></svg></div>
+            <span class="fx-su-ch mail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="M4 7.5l8 5.5 8-5.5"/></svg></span>
+            <span class="fx-su-ch x"><svg viewBox="0 0 24 24"><use href="#i-chat"/></svg></span>
+            <span class="fx-su-ch gm"><svg viewBox="0 0 24 24"><use href="#i-globe"/></svg></span>
+          </div>
+        </div>
+        <h3>24/7 <span class="hl">Multilingual Support</span></h3>
         <p>Professional assistance in 20+ languages, whenever you need it.</p>
+      </article>
+
+      <!-- Global servers -->
+      <article class="fx-w2">
+        <div class="fx-w2-viz">
+          <div class="fx-pw">
+            <div class="fx-pw-row"><span class="q-sym">London</span><span class="q-px">4 ms</span><span class="q-chg up">Live</span></div>
+            <div class="fx-pw-row"><span class="q-sym">New York</span><span class="q-px">11 ms</span><span class="q-chg up">Live</span></div>
+            <div class="fx-pw-row"><span class="q-sym">Singapore</span><span class="q-px">18 ms</span><span class="q-chg up">Live</span></div>
+            <div class="fx-pw-more">+ more regions coming</div>
+          </div>
+        </div>
+        <h3>Expanding <span class="hl">Server Network</span></h3>
+        <p>Stable, ultra-fast trading from a global footprint that keeps growing closer to you.</p>
       </article>
     </div>
   </div>
