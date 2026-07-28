@@ -1881,6 +1881,148 @@
     if (film) { film.removeAttribute('autoplay'); film.pause(); }
   }
 
+  /* ---------------- News room — filter, search, load more ---------------- */
+  function initNews() {
+    var root = document.getElementById('latest');
+    if (!root) return;
+
+    var PAGE = 6;                        // stories revealed per step
+    var CATS = { ta: 'Technical Analysis', fa: 'Fundamental Analysis', mkt: 'Market news', co: 'Company' };
+
+    var items = Array.prototype.slice.call(root.querySelectorAll('[data-nr-item]'));
+    var chips = Array.prototype.slice.call(root.querySelectorAll('[data-nr-cat]'));
+    var input = document.getElementById('nrSearch');
+    var clear = document.getElementById('nrClear');
+    var statusEl = root.querySelector('[data-nr-status]');
+    var emptyEl = root.querySelector('[data-nr-empty]');
+    var emptyQ = root.querySelector('[data-nr-empty-q]');
+    var resetBtn = root.querySelector('[data-nr-reset]');
+    var moreBtn = root.querySelector('[data-nr-more]');
+    var moreRow = root.querySelector('.nr-morerow');
+
+    var cat = 'all', query = '', shown = PAGE;
+
+    // cache the searchable text and the original markup for highlighting
+    items.forEach(function (el) {
+      el._h = el.querySelector('.nr-h a');
+      el._e = el.querySelector('.nr-ex');
+      el._hRaw = el._h ? el._h.textContent : '';
+      el._eRaw = el._e ? el._e.textContent : '';
+      el._hay = ((el.getAttribute('data-title') || '') + ' ' + el._eRaw).toLowerCase();
+    });
+
+    function esc(t) { return t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+    function mark(el, raw, q) {
+      if (!el) return;
+      if (!q) { el.textContent = raw; return; }
+      el.innerHTML = raw.replace(new RegExp('(' + esc(q) + ')', 'ig'), '<mark>$1</mark>');
+    }
+
+    function apply() {
+      var q = query.trim().toLowerCase();
+      var matched = items.filter(function (el) {
+        return (cat === 'all' || el.getAttribute('data-cat') === cat) && (!q || el._hay.indexOf(q) > -1);
+      });
+
+      items.forEach(function (el) { el.hidden = true; });
+      matched.forEach(function (el, i) {
+        el.hidden = i >= shown;
+        mark(el._h, el._hRaw, q);
+        mark(el._e, el._eRaw, q);
+      });
+
+      if (emptyEl) emptyEl.hidden = matched.length !== 0;
+      if (emptyQ) emptyQ.textContent = q ? '\u201C' + query.trim() + '\u201D' : 'that filter';
+      if (moreRow) moreRow.hidden = matched.length <= shown;
+      if (clear) clear.hidden = !query;
+
+      chips.forEach(function (b) {
+        var on = b.getAttribute('data-nr-cat') === cat;
+        b.classList.toggle('is-on', on);
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+
+      if (statusEl) {
+        var seen = Math.min(shown, matched.length);
+        statusEl.textContent = matched.length
+          ? 'Showing ' + seen + ' of ' + matched.length + (matched.length === 1 ? ' story' : ' stories') +
+            (cat === 'all' ? '' : ' in ' + CATS[cat]) + (q ? ' matching \u201C' + query.trim() + '\u201D' : '')
+          : '';
+      }
+      if (hasST) ScrollTrigger.refresh();
+    }
+
+    chips.forEach(function (b) {
+      b.addEventListener('click', function () { cat = b.getAttribute('data-nr-cat'); shown = PAGE; apply(); });
+    });
+
+    if (input) {
+      var t;
+      input.addEventListener('input', function () {
+        query = input.value; shown = PAGE;
+        clearTimeout(t); t = setTimeout(apply, 120);
+      });
+      input.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && input.value) { input.value = ''; query = ''; shown = PAGE; apply(); }
+      });
+    }
+    function clearAll() {
+      if (input) input.value = '';
+      query = ''; cat = 'all'; shown = PAGE; apply();
+    }
+    if (clear) clear.addEventListener('click', function () { clearAll(); if (input) input.focus(); });
+    if (resetBtn) resetBtn.addEventListener('click', clearAll);
+
+    if (moreBtn) {
+      moreBtn.addEventListener('click', function () {
+        var first = shown;
+        shown += PAGE;
+        apply();
+        // move focus to the first newly revealed story so keyboard users keep their place
+        var visible = items.filter(function (el) { return !el.hidden; });
+        var target = visible[first];
+        if (target) {
+          var h = target.querySelector('.nr-h a');
+          if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); }
+        }
+      });
+    }
+
+    // ?q= deep-links a filtered view
+    var q0 = new URLSearchParams(window.location.search).get('q');
+    if (q0 && input) { input.value = q0; query = q0; }
+
+    /* ---- daily briefing sign-up ---- */
+    var form = document.getElementById('nrSubForm');
+    if (form) {
+      var email = document.getElementById('nrEmail');
+      var err = document.getElementById('nrEmailErr');
+      var ok = document.getElementById('nrSubOk');
+      var field = email && email.closest('.nr-sub-field');
+      email && email.addEventListener('input', function () {
+        if (/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(email.value.trim())) {
+          if (err) err.hidden = true;
+          if (field) field.classList.remove('is-bad');
+        }
+      });
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var good = email && /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(email.value.trim());
+        if (err) err.hidden = !!good;
+        if (field) field.classList.toggle('is-bad', !good);
+        if (!good) { if (email) email.focus(); return; }
+        if (ok) ok.hidden = false;
+        form.reset();
+      });
+    }
+
+    if (prefersReduced) {
+      var film = document.querySelector('.wb-hero-video');
+      if (film) { film.removeAttribute('autoplay'); film.pause(); }
+    }
+    apply();
+  }
+
   /* ---------------- Company — global presence map ---------------- */
   function initCompany() {
     var root = document.getElementById('coGlobal');
@@ -1963,6 +2105,7 @@
     initGlossaryTerm();
     initWebinars();
     initEcon();
+    initNews();
     initCompany();
     initHeroTicker();
     initMarkets();
