@@ -162,7 +162,10 @@
         if (!target) return;
         e.preventDefault();
         var off = (tb ? tb.offsetHeight : 0) + (hd ? hd.offsetHeight : 0) + 14;
-        scrollToTarget(target, -off);
+        // resolve the absolute document position ourselves — offsetTop-based
+        // resolution under-shoots for targets nested in positioned containers
+        var y = target.getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop || 0) - off;
+        scrollToTarget(Math.max(0, y));
       });
     });
   }
@@ -2023,6 +2026,80 @@
     apply();
   }
 
+  /* ---------------- Article page — progress, TOC, share ---------------- */
+  function initArticle() {
+    var body = document.querySelector('.ar-body');
+    if (!body) return;
+
+    /* reading progress across the article body */
+    var bar = document.querySelector('[data-ar-progress]');
+    if (bar) {
+      var tick = function () {
+        var box = body.getBoundingClientRect();
+        var total = box.height - window.innerHeight * 0.5;
+        var done = -box.top + window.innerHeight * 0.5;
+        var pct = total > 0 ? Math.max(0, Math.min(1, done / total)) : 0;
+        bar.style.width = (pct * 100).toFixed(1) + '%';
+      };
+      tick();
+      window.addEventListener('scroll', tick, { passive: true });
+      window.addEventListener('resize', tick);
+    }
+
+    /* table of contents — highlight the section being read */
+    var toc = document.querySelector('[data-ar-toc]');
+    if (toc) {
+      var links = Array.prototype.slice.call(toc.querySelectorAll('a[href^="#"]'));
+      var targets = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+      // read the line just below the sticky chrome, which is exactly where an
+      // anchor click parks a heading — so clicking a link always lights it up
+      var lineOf = function () {
+        var tb = document.querySelector('.topbar');
+        var hd = document.getElementById('siteHeader');
+        var h = (tb ? tb.offsetHeight : 0) + (hd ? hd.offsetHeight : 0);
+        return h + 44;
+      };
+      var mark = function () {
+        var line = lineOf();
+        var active = 0;
+        targets.forEach(function (t, i) { if (t && t.getBoundingClientRect().top <= line) active = i; });
+        links.forEach(function (a, i) { a.classList.toggle('is-on', i === active); });
+      };
+      mark();
+      window.addEventListener('scroll', mark, { passive: true });
+    }
+
+    /* copy link, with a spoken confirmation */
+    var copyBtn = document.querySelector('[data-ar-copy]');
+    var copied = document.querySelector('[data-ar-copied]');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', function () {
+        var url = window.location.href;
+        var done = function () {
+          if (!copied) return;
+          copied.hidden = false;
+          setTimeout(function () { copied.hidden = true; }, 2200);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(url).then(done, done);
+        } else {
+          var ta = document.createElement('textarea');
+          ta.value = url; ta.setAttribute('readonly', '');
+          ta.style.position = 'absolute'; ta.style.left = '-9999px';
+          document.body.appendChild(ta); ta.select();
+          try { document.execCommand('copy'); } catch (e) { }
+          document.body.removeChild(ta);
+          done();
+        }
+      });
+    }
+
+    if (prefersReduced) {
+      var film = document.querySelector('.wb-hero-video');
+      if (film) { film.removeAttribute('autoplay'); film.pause(); }
+    }
+  }
+
   /* ---------------- Company — global presence map ---------------- */
   function initCompany() {
     var root = document.getElementById('coGlobal');
@@ -2106,6 +2183,7 @@
     initWebinars();
     initEcon();
     initNews();
+    initArticle();
     initCompany();
     initHeroTicker();
     initMarkets();
