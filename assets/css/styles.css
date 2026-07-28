@@ -2601,10 +2601,10 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
 }
 
 /* banner copy is centred on the same axis as the session strip below it */
-.wb-hero-inner{position:relative;z-index:1;width:100%;text-align:center}
+.wb-hero-inner{position:relative;z-index:1;width:100%;text-align:left}
 .wb-h1{font-size:clamp(38px,6.4vw,74px);font-weight:800;letter-spacing:-.038em;line-height:1.02;margin-top:12px}
-.wb-lead{margin:18px auto 0;max-width:53ch;font-size:clamp(15px,1.55vw,17.5px);line-height:1.62;color:#c9d5ea}
-.wb-hact{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:30px}
+.wb-lead{margin:18px 0 0;max-width:53ch;font-size:clamp(15px,1.55vw,17.5px);line-height:1.62;color:#c9d5ea}
+.wb-hact{display:flex;justify-content:flex-start;gap:14px;flex-wrap:wrap;margin-top:30px}
 
 /* next-session strip — bottom-centred on the banner, no panel: countdown,
    title and CTA sit side by side, split by the same fading rules the home
@@ -2947,9 +2947,6 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
 /* the banner reuses the .wb-hero video shell, but its copy is left-aligned
    and there is no session strip beneath it */
 .ec-hero{justify-content:center}
-.ec-hero .wb-hero-inner{text-align:left}
-.ec-hero .wb-lead{margin-left:0;margin-right:0}
-.ec-hero .wb-hact{justify-content:flex-start}
 
 /* ---- Calendar section (live third-party feed) ---- */
 .ec-sec{
@@ -3004,13 +3001,19 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
    Same vocabulary as .fx-tx / .fx-cs / .fx-su: white chips on soft shadow,
    the blue gradient disc, frosted panels — only the composition is new. ---- */
 .fx-w2--wide{grid-column:span 2}
-/* two columns: keep only the chart card wide, so 7 cards make 4 full rows */
+/* the spread meter's chips would drift to the far corners of a wide stage */
+.fx-w2--wide .fx-cs-chip.c1{right:22%}
+.fx-w2--wide .fx-cs-chip.c2{left:22%}
+.fx-w2--wide .fx-cs-chip.c3{right:30%}
+/* two columns: the spans would orphan half-rows mid-list, so they unwind and
+   the first card takes the wide slot instead — 7 cards, 4 full rows */
 @media (max-width:1080px){
-  .fx-w2--wide:not(.fx-w2--lev){grid-column:auto}
+  .fx-w2--wide{grid-column:auto}
+  .ec-why .fx-w2-grid > .fx-w2:first-child{grid-column:span 2}
 }
 /* single column: nothing may span */
 @media (max-width:720px){
-  .fx-w2--wide{grid-column:auto}
+  .fx-w2--wide,.ec-why .fx-w2-grid > .fx-w2:first-child{grid-column:auto}
 }
 
 /* Expanding global server network — a rack broadcasting to its regions */

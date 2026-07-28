@@ -189,7 +189,19 @@
   function initReveals() {
     if (prefersReduced || !hasGSAP || !hasST) { doc.classList.remove('is-animate'); return; }
 
+    // anything already on screen at boot reveals straight away — a trigger line
+    // at 88% leaves content in the lower part of the first screen invisible
+    // until the visitor scrolls, which on a short laptop can hide a whole block
+    function onScreen(el) {
+      var r = el.getBoundingClientRect();
+      return r.top < (window.innerHeight || 0) && r.bottom > 0;
+    }
+
     gsap.utils.toArray('[data-reveal]').forEach(function (el) {
+      if (onScreen(el)) {
+        gsap.to(el, { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out' });
+        return;
+      }
       gsap.to(el, {
         opacity: 1, y: 0, duration: 0.9, ease: 'power3.out',
         scrollTrigger: { trigger: el, start: 'top 88%', once: true }
@@ -197,6 +209,10 @@
     });
 
     gsap.utils.toArray('[data-reveal-stagger]').forEach(function (group) {
+      if (onScreen(group)) {
+        gsap.to(group.children, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', stagger: 0.09 });
+        return;
+      }
       gsap.to(group.children, {
         opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', stagger: 0.09,
         scrollTrigger: { trigger: group, start: 'top 84%', once: true }
@@ -496,6 +512,34 @@
         setState(active, p * n);
       }
     });
+  }
+
+  /* ---------------- Sparkline dot (why-cards) ---------------- */
+  // The leverage chart fills its card with preserveAspectRatio="none", so the
+  // viewBox is scaled unevenly and a round dot renders as an ellipse. Even the
+  // radii back out against the actual scale, on load and on resize.
+  function initLvDots() {
+    var svgs = Array.prototype.slice.call(document.querySelectorAll('.fx-lv svg'));
+    if (!svgs.length) return;
+
+    function size() {
+      svgs.forEach(function (svg) {
+        var dot = svg.querySelector('.dot');
+        var vb = svg.viewBox && svg.viewBox.baseVal;
+        if (!dot || !vb || !vb.width || !vb.height) return;
+        var box = svg.getBoundingClientRect();
+        if (!box.width || !box.height) return;
+        var sx = box.width / vb.width;
+        var sy = box.height / vb.height;
+        var r = 5;
+        dot.setAttribute('rx', (r * (sy / sx)).toFixed(2));
+        dot.setAttribute('ry', r);
+      });
+    }
+
+    size();
+    window.addEventListener('resize', size);
+    window.addEventListener('load', size);
   }
 
   /* ---------------- Magnetic buttons ---------------- */
@@ -1905,6 +1949,7 @@
     initCountryMarquee();
     initReviewsMarquee();
     initLiveMarkets();
+    initLvDots();
     initMagnetic();
     initCookie();
     initChat();
