@@ -61,7 +61,7 @@
     var arrows = { down: 'M12 5v14M6 13l6 6 6-6', up: 'M12 19V5M6 11l6-6 6 6' };
     var html = heroPairs.map(function (m) {
       return '<a class="mkt-pill" href="#">' +
-        '<span class="mkt-flags"><img src="assets/img/flags/' + m.a + '.svg" alt="" loading="lazy"><img src="assets/img/flags/' + m.b + '.svg" alt="" loading="lazy"></span>' +
+        '<span class="mkt-flags"><img src="/assets/img/flags/' + m.a + '.svg" alt="" loading="lazy"><img src="/assets/img/flags/' + m.b + '.svg" alt="" loading="lazy"></span>' +
         '<span class="mkt-txt"><b>' + m.n + '</b><em>' + m.p + '</em></span>' +
         '<span class="mkt-dir ' + m.dir + '"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="' + arrows[m.dir] + '"/></svg></span>' +
         '<span class="mkt-trade">Trade</span>' +
@@ -361,9 +361,9 @@
   }
   function mkxIcon(m) {
     var ic = m.ic;
-    if (ic.t === 'flags') return '<span class="mkx-ic mkx-ic-flags"><img src="assets/img/flags/' + ic.a + '.svg" alt="" loading="lazy"><img src="assets/img/flags/' + ic.b + '.svg" alt="" loading="lazy"></span>';
-    if (ic.t === 'flag') return '<span class="mkx-ic mkx-ic-flag"><img src="assets/img/flags/' + ic.a + '.svg" alt="" loading="lazy"></span>';
-    if (ic.t === 'inst') return '<span class="mkx-ic mkx-ic-inst"><img src="assets/img/commodities/' + ic.a + '.svg" alt="" loading="lazy"></span>';
+    if (ic.t === 'flags') return '<span class="mkx-ic mkx-ic-flags"><img src="/assets/img/flags/' + ic.a + '.svg" alt="" loading="lazy"><img src="/assets/img/flags/' + ic.b + '.svg" alt="" loading="lazy"></span>';
+    if (ic.t === 'flag') return '<span class="mkx-ic mkx-ic-flag"><img src="/assets/img/flags/' + ic.a + '.svg" alt="" loading="lazy"></span>';
+    if (ic.t === 'inst') return '<span class="mkx-ic mkx-ic-inst"><img src="/assets/img/commodities/' + ic.a + '.svg" alt="" loading="lazy"></span>';
     if (ic.t === 'etf') return '<span class="mkx-ic mkx-ic-etf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l5-6 3.5 3.5L20 7"/><path d="M4 20h16"/></svg></span>';
     return '<span class="mkx-ic mkx-ic-sym" style="background:' + (ic.bg || '#0a2a6b') + '">' + ic.v + '</span>';
   }
@@ -960,7 +960,7 @@
     };
     function flagImg(code) {
       var f = FLAG[code];
-      return f ? '<img src="assets/img/flags/' + f + '.svg" alt="" loading="lazy">' : '';
+      return f ? '<img src="/assets/img/flags/' + f + '.svg" alt="" loading="lazy">' : '';
     }
 
     var SETS = {
@@ -977,7 +977,7 @@
       commodities: {
         pip: function () { return 1; },
         badge: function (p) {
-          return '<span class="fx-inst-ic"><img src="assets/img/commodities/' + p.icon + '.svg" alt="" loading="lazy"></span>';
+          return '<span class="fx-inst-ic"><img src="/assets/img/commodities/' + p.icon + '.svg" alt="" loading="lazy"></span>';
         },
         spread: function (s, p) { return s.toFixed(p.sdec); },
         floor: function (p) { return p.spread * 0.6; },
