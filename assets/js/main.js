@@ -2775,18 +2775,6 @@
       });
     });
 
-    /* an entity linked from the hero index gets a brief highlight on arrival */
-    document.querySelectorAll('.rg-jump a').forEach(function (a) {
-      a.addEventListener('click', function () {
-        apply('all');
-        var id = a.getAttribute('href').slice(1);
-        var card = document.getElementById(id);
-        if (!card || prefersReduced || !hasGSAP) return;
-        gsap.fromTo(card, { boxShadow: '0 0 0 0 rgba(0,71,187,.45)' },
-          { boxShadow: '0 0 0 8px rgba(0,71,187,0)', duration: 1.1, ease: 'power2.out', clearProps: 'boxShadow', delay: 0.35 });
-      });
-    });
-
     if (prefersReduced || !hasGSAP || !hasST) return;
     gsap.utils.toArray('[data-rg-aura]').forEach(function (aura) {
       var amt = parseFloat(aura.getAttribute('data-rg-aura'));

@@ -4058,17 +4058,10 @@ html.is-animate [data-ct-cards]>*{opacity:0}
     radial-gradient(50% 60% at 6% 96%,rgba(22,233,215,.09),transparent 64%),
     linear-gradient(180deg,#04060e 0%,#070c1c 58%,#04060e 100%);
 }
-/* a faint ruled field: the visual language of a register, not a marketing hero */
-.rg-grid{
-  position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.5;
-  background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px);
-  background-size:100% 34px;
-  -webkit-mask-image:linear-gradient(180deg,transparent,#000 22%,#000 62%,transparent 96%);
-  mask-image:linear-gradient(180deg,transparent,#000 22%,#000 62%,transparent 96%);
-}
-.rg-hero-in{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(28px,4vw,64px);align-items:end}
+.rg-hero-in{position:relative;z-index:1}
 .rg-h1{font-size:clamp(38px,6vw,66px);font-weight:800;letter-spacing:-.038em;line-height:1.02;margin-top:12px}
-.rg-lead{margin-top:18px;max-width:52ch;font-size:clamp(15px,1.5vw,17px);line-height:1.66;color:#c9d5ea}
+/* measure chosen so the subline lands on two lines at desktop widths */
+.rg-lead{margin-top:18px;max-width:58ch;font-size:clamp(15px,1.5vw,17px);line-height:1.66;color:#c9d5ea}
 .rg-updated{
   display:inline-flex;align-items:center;gap:9px;margin-top:22px;
   font-size:12px;font-weight:600;letter-spacing:.03em;color:#9fc0ff;
@@ -4076,18 +4069,6 @@ html.is-animate [data-ct-cards]>*{opacity:0}
 }
 .rg-updated svg{width:15px;height:15px;flex:none}
 
-/* the five regulators as a quick index into the entity list */
-.rg-jump{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
-.rg-jump a{
-  display:flex;flex-direction:column;gap:4px;padding:14px 15px;border-radius:14px;
-  background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.025));
-  -webkit-backdrop-filter:blur(18px) saturate(1.4);backdrop-filter:blur(18px) saturate(1.4);
-  border:1px solid rgba(255,255,255,.11);box-shadow:inset 0 1px 0 rgba(255,255,255,.07);
-  transition:transform .35s var(--ease),border-color .3s,box-shadow .35s var(--ease);
-}
-.rg-jump a:hover{transform:translateY(-3px);border-color:rgba(90,150,255,.44);box-shadow:0 22px 44px -28px rgba(0,60,180,.6)}
-.rg-jump b{font-size:15px;letter-spacing:-.01em;color:#fff}
-.rg-jump span{font-size:11.5px;line-height:1.35;color:#9db0cf}
 
 /* ---- Entities ---- */
 .rg-ent-sec{
@@ -4252,7 +4233,6 @@ html.is-animate [data-ct-cards]>*{opacity:0}
 
 /* ---- Responsive ---- */
 @media (max-width:1080px){
-  .rg-hero-in{grid-template-columns:1fr;gap:30px;align-items:start}
   .rg-ents{grid-template-columns:1fr}
   .rg-ver-wrap{grid-template-columns:1fr;gap:30px}
   .rg-scope{grid-template-columns:1fr}
@@ -4260,7 +4240,6 @@ html.is-animate [data-ct-cards]>*{opacity:0}
 }
 @media (max-width:720px){
   .rg-hero{padding:calc(var(--nav-h) + 40px) 0 38px}
-  .rg-jump{grid-template-columns:repeat(3,minmax(0,1fr))}
   .rg-ent{padding:22px 20px 20px}
   .rg-ent-facts>div{grid-template-columns:1fr;gap:4px;padding:12px 0}
   .rg-ent-head{gap:11px}
@@ -4268,5 +4247,5 @@ html.is-animate [data-ct-cards]>*{opacity:0}
   .rg-aura{filter:blur(54px)}
 }
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
-  .rg-jump a,.rg-scope-card{background:rgba(12,18,36,.94)}
+  .rg-scope-card{background:rgba(12,18,36,.94)}
 }
