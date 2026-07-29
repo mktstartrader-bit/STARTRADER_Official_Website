@@ -3847,7 +3847,9 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
 .ct-aura.a1{top:-70px;left:-90px;width:min(520px,58vw);aspect-ratio:1;background:radial-gradient(circle,rgba(0,71,187,.27),transparent 68%)}
 .ct-aura.a2{bottom:-140px;right:-80px;width:min(460px,52vw);aspect-ratio:1;background:radial-gradient(circle,rgba(22,233,215,.24),transparent 68%)}
 .ct-aura.a3{top:6%;right:-110px;width:min(440px,50vw);aspect-ratio:1;background:radial-gradient(circle,rgba(0,71,187,.2),transparent 68%)}
-.ct-aura.a4{top:-90px;right:-70px;width:min(500px,54vw);aspect-ratio:1;background:radial-gradient(circle,rgba(22,233,215,.22),transparent 68%)}
+/* a4 lives in the clip-path section, which clips paint but not layout
+   overflow, so this one stays inside the box */
+.ct-aura.a4{top:-90px;right:0;width:min(500px,54vw);aspect-ratio:1;background:radial-gradient(circle,rgba(22,233,215,.22),transparent 68%)}
 .ct-ch-sec,.ct-form-sec,.ct-faq-sec{position:relative;isolation:isolate}
 .ct-ch-sec,.ct-faq-sec{overflow:clip}
 /* the form section clips with clip-path, not overflow: an overflow container
