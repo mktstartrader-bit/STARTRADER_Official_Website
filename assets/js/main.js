@@ -2685,6 +2685,91 @@
       if (film) { film.removeAttribute('autoplay'); film.pause(); }
     }
     show(1);
+    ctMotion();
+  }
+
+  /* Contact — the scroll choreography: hero parallax, masked word reveals,
+     card entrances and a pointer-tracked highlight on each glass pane. */
+  function ctMotion() {
+    /* pointer highlight is cheap and independent of GSAP */
+    if (finePointer && !prefersReduced) {
+      document.querySelectorAll('[data-ct-spot]').forEach(function (card) {
+        card.addEventListener('pointermove', function (e) {
+          var r = card.getBoundingClientRect();
+          card.style.setProperty('--mx', (((e.clientX - r.left) / r.width) * 100).toFixed(1) + '%');
+          card.style.setProperty('--my', (((e.clientY - r.top) / r.height) * 100).toFixed(1) + '%');
+        });
+        card.addEventListener('pointerleave', function () {
+          card.style.setProperty('--mx', '50%');
+          card.style.setProperty('--my', '0%');
+        });
+      });
+    }
+
+    if (prefersReduced || !hasGSAP || !hasST) return;
+
+    function onScreen(el) {
+      var r = el.getBoundingClientRect();
+      return r.top < (window.innerHeight || 0) && r.bottom > 0;
+    }
+
+    /* headings rise word by word out of a mask */
+    document.querySelectorAll('[data-ct-words]').forEach(function (h) {
+      var words = (h.textContent || '').trim().split(/\s+/);
+      if (!words.length) return;
+      h.textContent = '';
+      words.forEach(function (w, i) {
+        var mask = document.createElement('span');
+        mask.className = 'ct-w';
+        var inner = document.createElement('i');
+        inner.textContent = w;
+        mask.appendChild(inner);
+        h.appendChild(mask);
+        if (i < words.length - 1) h.appendChild(document.createTextNode(' '));
+      });
+      var parts = h.querySelectorAll('.ct-w > i');
+      // state the start explicitly: GSAP reads the CSS translateY(105%) as a
+      // px offset, so tweening yPercent alone would leave that offset behind
+      var from = { yPercent: 105, y: 0 };
+      var tween = { yPercent: 0, y: 0, duration: 0.95, ease: 'power4.out', stagger: 0.035 };
+      if (onScreen(h)) gsap.fromTo(parts, from, tween);
+      else gsap.fromTo(parts, from, Object.assign({}, tween, {
+        scrollTrigger: { trigger: h, start: 'top 88%', once: true }
+      }));
+    });
+
+    /* card groups enter as a staggered set rather than all at once */
+    gsap.utils.toArray('[data-ct-cards]').forEach(function (group) {
+      var tween = { opacity: 1, y: 0, duration: 0.85, ease: 'power3.out', stagger: 0.085 };
+      if (onScreen(group)) gsap.to(group.children, tween);
+      else gsap.to(group.children, Object.assign({}, tween, {
+        scrollTrigger: { trigger: group, start: 'top 86%', once: true }
+      }));
+    });
+
+    /* banner: film drifts, copy sinks and dims as the page takes over */
+    var hero = document.querySelector('.ct-hero');
+    if (hero) {
+      var track = { trigger: hero, start: 'top top', end: 'bottom top', scrub: true };
+      var film = hero.querySelector('.wb-hero-video');
+      var inner = hero.querySelector('[data-ct-heroin]');
+      var veil = hero.querySelector('.ct-hero-veil');
+      // the film is over-height and top-anchored; only an upward drift is safe,
+      // moving it down would expose the untreated band under the banner
+      if (film) gsap.to(film, { yPercent: -7, ease: 'none', scrollTrigger: track });
+      if (inner) gsap.to(inner, { y: 58, opacity: 0.2, ease: 'none', scrollTrigger: track });
+      if (veil) gsap.to(veil, { yPercent: 14, ease: 'none', scrollTrigger: track });
+    }
+
+    /* the tinted auras behind each section drift at their own rates */
+    gsap.utils.toArray('[data-ct-aura]').forEach(function (aura) {
+      var amt = parseFloat(aura.getAttribute('data-ct-aura'));
+      if (!amt) return;
+      gsap.to(aura, {
+        yPercent: amt, ease: 'none',
+        scrollTrigger: { trigger: aura.parentNode, start: 'top bottom', end: 'bottom top', scrub: true }
+      });
+    });
   }
 
   /* ---------------- Company — global presence map ---------------- */
