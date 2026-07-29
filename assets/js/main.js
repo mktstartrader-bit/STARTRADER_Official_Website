@@ -2786,6 +2786,154 @@
     });
   }
 
+  /* ---------------- Partner pages — tabbed application, form validation ---------------- */
+  function initPartner() {
+    var form = document.getElementById('ptForm');
+    if (!form) return;
+
+    var MAX = 800;
+    var done = document.querySelector('[data-pt-done]');
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('[data-pt-tab]'));
+    var note = document.querySelector('[data-pt-note]');
+    var progInput = document.getElementById('ptProgram');
+
+    var f = {
+      name: document.getElementById('ptName'),
+      email: document.getElementById('ptEmail'),
+      phone: document.getElementById('ptPhone'),
+      country: document.getElementById('ptCountry'),
+      msg: document.getElementById('ptMsg'),
+      consent: document.getElementById('ptConsent')
+    };
+    var rules = {
+      name: function (v) { return v.trim().length >= 2; },
+      email: function (v) { return /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(v.trim()); },
+      phone: function (v) { return !v.trim() || /^\+?[\d\s()-]{6,20}$/.test(v.trim()); },
+      country: function (v) { return !!v; },
+      msg: function (v) { return !v.trim() || v.trim().length <= MAX; }
+    };
+
+    function bad(el, on) {
+      if (!el) return;
+      var wrap = el.closest('.ct-field') || el.closest('.ct-check');
+      var err = document.getElementById(el.id + 'Err');
+      if (wrap) wrap.classList.toggle('is-bad', on);
+      if (err) err.hidden = !on;
+      el.setAttribute('aria-invalid', on ? 'true' : 'false');
+    }
+    Object.keys(rules).forEach(function (k) {
+      var el = f[k];
+      if (!el) return;
+      el.addEventListener('input', function () { if (rules[k](el.value)) bad(el, false); });
+      el.addEventListener('change', function () { if (rules[k](el.value)) bad(el, false); });
+    });
+    function check() {
+      var first = null;
+      Object.keys(rules).forEach(function (k) {
+        var el = f[k];
+        if (!el) return;
+        var ok = rules[k](el.value);
+        bad(el, !ok);
+        if (!ok && !first) first = el;
+      });
+      return first;
+    }
+
+    /* one form, three programmes — the tab sets what the enquiry is for */
+    function select(key) {
+      var hit = null;
+      tabs.forEach(function (t) {
+        var on = t.getAttribute('data-pt-tab') === key;
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.tabIndex = on ? 0 : -1;
+        if (on) hit = t;
+      });
+      if (hit && note) note.innerHTML = hit.getAttribute('data-pt-desc') || '';
+      if (hit && progInput) progInput.value = hit.textContent.trim();
+    }
+    tabs.forEach(function (t) {
+      t.addEventListener('click', function () { select(t.getAttribute('data-pt-tab')); });
+      // arrow keys move between tabs, as a tablist should
+      t.addEventListener('keydown', function (e) {
+        var i = tabs.indexOf(t);
+        var n = e.key === 'ArrowRight' ? i + 1 : e.key === 'ArrowLeft' ? i - 1 : -1;
+        if (n < 0 || n >= tabs.length) return;
+        e.preventDefault();
+        tabs[n].focus();
+        select(tabs[n].getAttribute('data-pt-tab'));
+      });
+    });
+    // a page can preselect its own programme, and #form?model= deep links work too
+    var initial = form.getAttribute('data-pt-initial') || (tabs[0] && tabs[0].getAttribute('data-pt-tab'));
+    var hashModel = (window.location.hash.match(/model=([a-z]+)/) || [])[1];
+    if (hashModel && tabs.some(function (t) { return t.getAttribute('data-pt-tab') === hashModel; })) initial = hashModel;
+    if (tabs.length) select(initial);
+
+    var count = document.querySelector('[data-pt-count]');
+    if (f.msg && count) {
+      var tick = function () {
+        var n = f.msg.value.length;
+        count.textContent = n + ' / ' + MAX;
+        count.classList.toggle('is-over', n > MAX);
+      };
+      f.msg.addEventListener('input', tick);
+      tick();
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var first = check();
+      var cOk = !f.consent || f.consent.checked;
+      if (f.consent) {
+        var cWrap = f.consent.closest('.ct-check');
+        var cErr = document.getElementById('ptConsentErr');
+        if (cWrap) cWrap.classList.toggle('is-bad', !cOk);
+        if (cErr) cErr.hidden = cOk;
+      }
+      if (!cOk && !first) first = f.consent;
+      if (first) { first.focus(); return; }
+
+      var msg = document.querySelector('[data-pt-done-msg]');
+      if (msg) {
+        // the institutional page is an enquiry to a different desk, not an application
+        var prog = progInput ? progInput.value : 'partnership';
+        var noun = form.getAttribute('data-pt-noun') || 'application';
+        var desk = form.getAttribute('data-pt-desk') || 'partnerships';
+        msg.innerHTML = 'Your <b>' + prog + '</b> ' + noun + ' is with the ' + desk + ' desk. ' +
+          'We\u2019ll reply to <b>' + (f.email ? f.email.value.trim() : 'your email') + '</b> within one business day.';
+      }
+      form.hidden = true;
+      if (done) {
+        done.hidden = false;
+        var h = done.querySelector('[data-pt-done-h]');
+        if (h) h.focus({ preventScroll: true });
+      }
+      if (hasST) ScrollTrigger.refresh();
+    });
+
+    var again = document.querySelector('[data-pt-again]');
+    if (again) again.addEventListener('click', function () {
+      form.reset();
+      Object.keys(rules).forEach(function (k) { bad(f[k], false); });
+      var cErr = document.getElementById('ptConsentErr');
+      if (cErr) cErr.hidden = true;
+      if (done) done.hidden = true;
+      form.hidden = false;
+      if (tabs.length) select(initial);
+      if (hasST) ScrollTrigger.refresh();
+    });
+
+    if (prefersReduced || !hasGSAP || !hasST) return;
+    gsap.utils.toArray('[data-pt-aura]').forEach(function (aura) {
+      var amt = parseFloat(aura.getAttribute('data-pt-aura'));
+      if (!amt) return;
+      gsap.to(aura, {
+        yPercent: amt, ease: 'none',
+        scrollTrigger: { trigger: aura.parentNode, start: 'top bottom', end: 'bottom top', scrub: true }
+      });
+    });
+  }
+
   /* ---------------- Company — global presence map ---------------- */
   function initCompany() {
     var root = document.getElementById('coGlobal');
@@ -2873,6 +3021,7 @@
     initAnnouncements();
     initContact();
     initRegulation();
+    initPartner();
     initCompany();
     initHeroTicker();
     initMarkets();
