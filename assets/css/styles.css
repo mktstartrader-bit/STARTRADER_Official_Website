@@ -1618,6 +1618,13 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
 
 /* ---- Market hours (dark glassmorphic bento with glowing ray-line accents) ---- */
 .fx-hours{background:radial-gradient(90% 68% at 50% 0%,rgba(0,46,138,.34),transparent 60%),linear-gradient(180deg,#04060e 0%,#060a18 52%,#04060e 100%);color:#fff}
+/* the section owns its text colour: .h2 is near-black by default, so a dark
+   section that relied on each page remembering .h2-light rendered the heading
+   invisible, and .head-sub was dark grey on near-black either way */
+.fx-hours .h2,.fx-hours .h2-light{color:#fff}
+.fx-hours .head-sub{color:#a9b7cf}
+/* leave an explicit .eyebrow-blue alone; this only rescues a bare .eyebrow */
+.fx-hours .eyebrow:not(.eyebrow-blue){color:#93b6ff}
 .fx-mh{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .fx-mh-card{position:relative;overflow:hidden;display:flex;flex-direction:column;border-radius:var(--radius-xl);padding:28px 28px 26px;min-height:216px;
   background:radial-gradient(130% 78% at 50% -14%,var(--ray,rgba(120,160,255,.2)),transparent 60%),linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.02));
@@ -4420,7 +4427,7 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
   transition:filter .35s var(--ease),opacity .35s var(--ease),transform .4s var(--ease);
 }
 .cp-lp:hover img{filter:none;opacity:1;transform:scale(1.04)}
-.cp-lp-note{margin-top:22px;text-align:center;font-size:12.5px;line-height:1.7;color:var(--text-mute)}
+.cp-lp-note{margin-top:22px;text-align:center;font-size:12.5px;line-height:1.7;color:var(--text-soft)}
 
 /* ---- spec tables — the site's Account specifications pattern ---- */
 .pt-spec-wrap{margin-top:26px}
@@ -4431,7 +4438,7 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
 .pt-spec tbody td{font-size:14px}
 .pt-spec th,.pt-spec td{padding:18px 22px}
 /* the note needs air under the table, not to butt against the last row */
-.pt-table-note{margin-top:26px;font-size:12.5px;line-height:1.7;color:var(--text-mute)}
+.pt-table-note{margin-top:26px;font-size:12.5px;line-height:1.7;color:var(--text-soft)}
 
 /* ---- tabbed application form ---- */
 .pt-form-wrap{display:grid;grid-template-columns:minmax(0,.84fr) minmax(0,1.16fr);gap:clamp(28px,3.6vw,58px);align-items:start}
@@ -4460,7 +4467,7 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
 }
 
 /* ---- FAQ + closing ---- */
-.pt-cta-note{margin-top:20px;font-size:12.5px;color:var(--text-mute);text-align:center}
+.pt-cta-note{margin-top:20px;font-size:12.5px;color:var(--text-soft);text-align:center}
 
 /* ---- Responsive ---- */
 @media (max-width:1080px){
