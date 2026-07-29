@@ -108,6 +108,10 @@ p{text-wrap:pretty}
 /* CTA sits on a dark broker image — keep the primary blue button */
 .cta-banner .btn{background:var(--blue-bright);color:#fff}
 .cta-banner .btn:hover{background:var(--blue)}
+/* the secondary action is a plain white button — .cta-banner .btn outranks
+   .btn-ghost on specificity, so it has to be restated here */
+.cta-banner .btn-ghost{background:#fff;color:var(--text)}
+.cta-banner .btn-ghost:hover{background:#eaf0fa}
 .btn-lg{padding:16px 30px;font-size:15px}
 .btn-sm{padding:12px 20px}
 .btn-block{width:100%;padding:15px}
@@ -1043,9 +1047,10 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
 }
 
 /* ================= ACCOUNT OPENING PAGE ================= */
-.btn-ghost{background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.24);color:#fff}
+/* the outline treatment read as an unfinished button on dark banners */
+.btn-ghost{background:#fff;border:1.5px solid transparent;color:var(--text)}
 .btn-ghost::after{display:none}
-.btn-ghost:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.42);box-shadow:none}
+.btn-ghost:hover{background:#eaf0fa;border-color:transparent;box-shadow:0 18px 38px -22px rgba(0,0,0,.5)}
 
 /* ---- Banner ---- */
 .acct-hero{position:relative;color:#fff;overflow:hidden;isolation:isolate;background:#04060e;margin-top:calc(-1 * var(--nav-h));min-height:min(780px, calc(100vh - var(--topbar-h,44px)));display:flex;align-items:center;padding:calc(var(--nav-h) + 40px) 0 56px}
@@ -3809,9 +3814,9 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
 /* ================= CONTACT PAGE ================= */
 .ct-hero{
   /* a utility page earns a shorter banner than a product page */
-  min-height:min(600px,calc(100vh - var(--topbar-h,44px)));
+  min-height:min(520px,calc(100vh - var(--topbar-h,44px)));
   justify-content:center;
-  padding:calc(var(--nav-h) + 44px) 0 52px;
+  padding:calc(var(--nav-h) + 36px) 0 44px;
 }
 .ct-hero .wb-hero-video{height:112%}
 /* narrow viewports crop hard off both sides of a 2.48:1 still, which would
@@ -3894,10 +3899,6 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
 .ct-ch--lead h3{font-size:clamp(21px,2vw,25px);letter-spacing:-.03em}
 .ct-ch p{margin-top:8px;font-size:13.5px;line-height:1.62;color:var(--text-soft)}
 .ct-ch--lead p{margin-top:12px;font-size:14.5px;line-height:1.68;max-width:34ch}
-.ct-ch-eta{display:inline-flex;align-items:center;gap:8px;margin-top:15px;font-size:12px;font-weight:600;color:#0f7d5c}
-.ct-ch-eta i{width:7px;height:7px;border-radius:50%;flex:none;background:#12b76a;box-shadow:0 0 0 0 rgba(16,185,129,.5);animation:pulse 2.4s infinite}
-.ct-ch-eta--self{color:var(--blue)}
-.ct-ch-eta--self i{background:var(--blue);animation:none}
 .ct-ch-go{
   margin-top:auto;padding-top:20px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;
   font-size:13.5px;font-weight:700;color:var(--blue);word-break:break-word;text-align:left;
@@ -3905,10 +3906,8 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
 .ct-ch-go svg{width:14px;height:14px;flex:none;transition:transform .3s var(--ease)}
 .ct-ch:hover .ct-ch-go svg{transform:translate(3px,-3px)}
 .ct-ch-go:hover{text-decoration:underline;text-underline-offset:3px}
-/* the featured card's status + action sit as a footer under a hairline */
-.ct-ch--lead .ct-ch-eta{display:flex;width:100%;margin-top:auto;padding-top:22px;border-top:1px solid rgba(20,44,96,.1)}
 .ct-ch--lead .ct-ch-go{
-  align-self:flex-start;margin-top:22px;padding:12px 20px;border-radius:70px;
+  align-self:flex-start;margin-top:auto;padding:12px 20px;border-radius:70px;
   color:#fff;background:var(--blue);box-shadow:0 14px 30px -18px rgba(0,71,187,.6);
   transition:transform .35s var(--ease),box-shadow .35s var(--ease);
 }
@@ -3932,17 +3931,8 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
 .ct-aside-note p{font-size:13px;line-height:1.6;color:var(--text-soft)}
 
 .ct-form-card{padding:clamp(26px,3.2vw,42px);border-radius:var(--radius-xl)}
-/* step marker: one centred pill, as in the reference */
-.ct-steps{text-align:center;padding-bottom:6px}
-.ct-steppill{
-  display:inline-block;padding:9px 20px;border-radius:70px;
-  border:1px solid rgba(20,44,96,.22);color:var(--text-soft);
-  font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
-  transition:border-color .3s,color .3s;
-}
-.ct-stepstatus{margin-top:12px;font-size:12.5px;color:var(--text-mute)}
 
-.ct-panel{margin-top:26px}
+.ct-panel{margin-top:2px}
 @media (prefers-reduced-motion:no-preference){
   .ct-panel{animation:ctPanel .42s var(--ease-out)}
   @keyframes ctPanel{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:none}}
@@ -4003,13 +3993,6 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
 
 .ct-actions{margin-top:32px}
 .ct-submit{width:100%;justify-content:center}
-.ct-back{
-  display:flex;align-items:center;justify-content:center;gap:7px;width:100%;margin-top:16px;
-  font:inherit;font-size:13.5px;font-weight:600;color:var(--text-mute);cursor:pointer;
-  padding:8px 0;transition:color .25s;
-}
-.ct-back svg{width:14px;height:14px}
-.ct-back:hover{color:var(--blue)}
 
 .ct-done{text-align:center;padding:14px 4px 6px}
 .ct-done-ic{
@@ -4023,9 +4006,11 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
 .ct-done-acts{display:flex;flex-direction:column;align-items:center;gap:14px;margin-top:24px}
 
 /* ---- word-by-word heading reveal ---- */
-.ct-w{display:inline-block;overflow:hidden;vertical-align:bottom}
+/* the mask has to be taller than the line box or descenders get cut; the
+   negative margin keeps line spacing exactly as it was */
+.ct-w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.2em;margin-bottom:-.2em}
 .ct-w>i{display:inline-block;font-style:inherit;will-change:transform}
-html.is-animate [data-ct-words] .ct-w>i{transform:translateY(105%)}
+html.is-animate [data-ct-words] .ct-w>i{transform:translateY(130%)}
 html.is-animate [data-ct-cards]>*{opacity:0}
 
 /* ---- Responsive ---- */
@@ -4041,7 +4026,7 @@ html.is-animate [data-ct-cards]>*{opacity:0}
 }
 @media (max-width:860px){
   /* tablets keep a banner with presence; phones let the copy set the height */
-  .ct-hero{min-height:min(500px,calc(100vh - var(--topbar-h,44px)));padding:calc(var(--nav-h) + 40px) 0 46px}
+  .ct-hero{min-height:min(440px,calc(100vh - var(--topbar-h,44px)));padding:calc(var(--nav-h) + 34px) 0 40px}
 }
 @media (max-width:560px){
   .ct-hero{min-height:auto}

@@ -96,7 +96,7 @@
     {
       "@type": "Question",
       "name": "How quickly will I get a reply?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Live chat is answered around the clock, usually in under a minute. Emails to support@startrader.com are answered within two hours, and messages sent through the form on this page are routed straight to the desk you select so they are not passed between teams." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Live chat is answered around the clock, usually in under a minute. Emails to support@startrader.com are answered within two hours, and messages sent through the form on this page go straight to the desk you select, so they are not passed between teams." }
     },
     {
       "@type": "Question",
@@ -451,7 +451,6 @@
         <span class="ct-ch-ic"><svg><use href="#i-bubble"/></svg></span>
         <h3>Live chat</h3>
         <p>The fastest route for anything account-related &mdash; funding, verification, platform trouble or an order you want checked. Staffed around the clock, in more than twenty languages.</p>
-        <span class="ct-ch-eta"><i aria-hidden="true"></i>Usually under a minute</span>
         <button class="ct-ch-go" type="button" data-ct-chat>Open chat <svg><use href="#i-arrow-right"/></svg></button>
       </article>
 
@@ -459,7 +458,6 @@
         <span class="ct-ch-ic"><svg><use href="#i-send"/></svg></span>
         <h3>Email support</h3>
         <p>Attach statements or screenshots and we&rsquo;ll work through the detail with you.</p>
-        <span class="ct-ch-eta"><i aria-hidden="true"></i>Answered within 2 hours</span>
         <a class="ct-ch-go" href="mailto:support@startrader.com">support@startrader.com <svg><use href="#i-arrow-ur"/></svg></a>
       </article>
 
@@ -467,7 +465,6 @@
         <span class="ct-ch-ic"><svg><use href="#i-doc"/></svg></span>
         <h3>Help Centre</h3>
         <p>Step-by-step answers on funding, verification and the platforms &mdash; no waiting.</p>
-        <span class="ct-ch-eta ct-ch-eta--self"><i aria-hidden="true"></i>Answer it yourself, instantly</span>
         <a class="ct-ch-go" href="https://starhelpcenter.com" target="_blank" rel="noopener">Browse articles <svg><use href="#i-arrow-ur"/></svg></a>
       </article>
 
@@ -476,7 +473,6 @@
         <div class="ct-ch-txt">
           <h3>Partnerships</h3>
           <p>Introducing brokers, affiliates, money managers and institutional desks.</p>
-          <span class="ct-ch-eta"><i aria-hidden="true"></i>Reply within 1 business day</span>
         </div>
         <a class="ct-ch-go" href="mailto:partners@startrader.com">partners@startrader.com <svg><use href="#i-arrow-ur"/></svg></a>
       </article>
@@ -492,8 +488,8 @@
 
     <div class="ct-form-aside">
       <span class="eyebrow" data-reveal>Send a message</span>
-      <h2 class="h2" id="ct-form-title" data-ct-words>Two short steps, then the right desk replies</h2>
-      <p class="ct-aside-lead" data-reveal>Pick the team on the second step and your message goes straight there &mdash; nothing gets passed around.</p>
+      <h2 class="h2" id="ct-form-title" data-ct-words>One short form, then the right desk replies</h2>
+      <p class="ct-aside-lead" data-reveal>Pick the team below and your message goes straight there &mdash; nothing gets passed around.</p>
 
       <ul class="ct-aside-list" data-reveal>
         <li><span class="wb-tick"><svg><use href="#i-check"/></svg></span>Routed by department, not a shared inbox</li>
@@ -508,14 +504,8 @@
     </div>
 
     <div class="ct-form-card glass" data-reveal>
-      <div class="ct-steps">
-        <span class="ct-steppill" data-ct-pill aria-hidden="true">Step 1 / 2</span>
-        <p class="ct-stepstatus" data-ct-stepstatus role="status" aria-live="polite">Step 1 of 2 — about you</p>
-      </div>
-
       <form id="ctForm" novalidate>
-        <!-- step 1 -->
-        <div class="ct-panel" data-ct-panel="1">
+        <div class="ct-panel">
           <div class="ct-grid">
             <div class="ct-field">
               <label for="ctName">Full name</label>
@@ -549,27 +539,6 @@
             </div>
           </div>
 
-          <fieldset class="ct-radios">
-            <legend>Do you already have an account with us?</legend>
-            <div class="ct-seg">
-              <label class="ct-segbtn"><input type="radio" name="client" value="yes"><span>Yes, I&rsquo;m a client</span></label>
-              <label class="ct-segbtn"><input type="radio" name="client" value="no" checked><span>Not yet</span></label>
-            </div>
-          </fieldset>
-
-          <div class="ct-field ct-acct" data-ct-acct hidden>
-            <label for="ctAcct">Account number <em>optional</em></label>
-            <input type="text" id="ctAcct" name="account" inputmode="numeric" placeholder="e.g. 5301234">
-            <p class="ct-hint">Adding it lets support answer on the first reply.</p>
-          </div>
-
-          <div class="ct-actions">
-            <button class="btn btn-primary btn-lg ct-submit" type="button" data-ct-next>Continue <svg class="ico"><use href="#i-arrow-right"/></svg></button>
-          </div>
-        </div>
-
-        <!-- step 2 -->
-        <div class="ct-panel" data-ct-panel="2" hidden>
           <div class="ct-field">
             <label for="ctDept">Which team do you need?</label>
             <div class="wb-selwrap">
@@ -601,6 +570,20 @@
             </div>
           </div>
 
+          <fieldset class="ct-radios">
+            <legend>Do you already have an account with us?</legend>
+            <div class="ct-seg">
+              <label class="ct-segbtn"><input type="radio" name="client" value="yes"><span>Yes, I&rsquo;m a client</span></label>
+              <label class="ct-segbtn"><input type="radio" name="client" value="no" checked><span>Not yet</span></label>
+            </div>
+          </fieldset>
+
+          <div class="ct-field ct-acct" data-ct-acct hidden>
+            <label for="ctAcct">Account number <em>optional</em></label>
+            <input type="text" id="ctAcct" name="account" inputmode="numeric" placeholder="e.g. 5301234">
+            <p class="ct-hint">Adding it lets support answer on the first reply.</p>
+          </div>
+
           <label class="ct-check" for="ctConsent">
             <input type="checkbox" id="ctConsent" name="consent" aria-describedby="ctConsentErr">
             <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
@@ -610,7 +593,6 @@
 
           <div class="ct-actions">
             <button class="btn btn-primary btn-lg ct-submit" type="submit">Send message <svg class="ico"><use href="#i-arrow-right"/></svg></button>
-            <button class="ct-back" type="button" data-ct-back><svg aria-hidden="true"><use href="#i-chevron-left"/></svg> Back to your details</button>
           </div>
         </div>
       </form>
@@ -640,7 +622,7 @@
     <div class="faq-list" data-reveal>
       <details class="faq-item">
         <summary>How quickly will I get a reply?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Live chat is answered around the clock, usually in under a minute. Emails to <a href="mailto:support@startrader.com">support@startrader.com</a> are answered within two hours, and messages sent through the form on this page are routed straight to the desk you select so they aren&rsquo;t passed between teams.</div>
+        <div class="faq-a">Live chat is answered around the clock, usually in under a minute. Emails to <a href="mailto:support@startrader.com">support@startrader.com</a> are answered within two hours, and messages sent through the form on this page go straight to the desk you select, so they aren&rsquo;t passed between teams.</div>
       </details>
       <details class="faq-item">
         <summary>Is support really available 24 hours a day?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
@@ -664,7 +646,7 @@
       </details>
       <details class="faq-item">
         <summary>Where do partnership and institutional enquiries go?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Introducing broker, affiliate, money manager and institutional enquiries are handled by the partnerships desk at <a href="mailto:partners@startrader.com">partners@startrader.com</a>, or select Partnerships on the form above and it&rsquo;s routed there.</div>
+        <div class="faq-a">Introducing broker, affiliate, money manager and institutional enquiries are handled by the partnerships desk at <a href="mailto:partners@startrader.com">partners@startrader.com</a>, or select Partnerships on the form on this page and it&rsquo;s routed there.</div>
       </details>
       <details class="faq-item">
         <summary>Do you offer support in my language?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>

@@ -2495,17 +2495,13 @@
     openFromHash();
   }
 
-  /* ---------------- Contact — two-step form, routing, chat hooks ---------------- */
+  /* ---------------- Contact — enquiry form, routing, chat hooks ---------------- */
   function initContact() {
     var form = document.getElementById('ctForm');
     if (!form) return;
 
     var MAX = 1200;
-    var panels = Array.prototype.slice.call(form.querySelectorAll('[data-ct-panel]'));
-    var pill = document.querySelector('[data-ct-pill]');
-    var stepStatus = document.querySelector('[data-ct-stepstatus]');
     var done = document.querySelector('[data-ct-done]');
-    var step = 1;
 
     var f = {
       name: document.getElementById('ctName'),
@@ -2552,36 +2548,6 @@
       return first;
     }
 
-    function show(n) {
-      step = n;
-      panels.forEach(function (p) { p.hidden = p.getAttribute('data-ct-panel') !== String(n); });
-      if (pill) pill.textContent = 'Step ' + n + ' / 2';
-      if (stepStatus) stepStatus.textContent = n === 1 ? 'Step 1 of 2 — about you' : 'Step 2 of 2 — your enquiry';
-      var panel = panels.filter(function (p) { return !p.hidden; })[0];
-      if (panel) {
-        var firstField = panel.querySelector('input:not([type=radio]):not([type=checkbox]),select,textarea');
-        if (firstField) firstField.focus({ preventScroll: true });
-      }
-      if (hasST) ScrollTrigger.refresh();
-    }
-
-    var next = form.querySelector('[data-ct-next]');
-    if (next) next.addEventListener('click', function () {
-      var first = check(['name', 'email', 'phone']);
-      if (first) { first.focus(); return; }
-      show(2);
-    });
-    var back = form.querySelector('[data-ct-back]');
-    if (back) back.addEventListener('click', function () { show(1); });
-
-    // Enter on step 1 moves on rather than submitting a half-filled form
-    form.addEventListener('keydown', function (e) {
-      if (e.key !== 'Enter' || step !== 1) return;
-      if (e.target.tagName === 'TEXTAREA') return;
-      e.preventDefault();
-      if (next) next.click();
-    });
-
     /* account number only matters for existing clients */
     var acct = document.querySelector('[data-ct-acct]');
     form.querySelectorAll('input[name="client"]').forEach(function (r) {
@@ -2614,7 +2580,7 @@
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var first = check(['subject', 'msg']);
+      var first = check(['name', 'email', 'phone', 'subject', 'msg']);
       var cOk = !f.consent || f.consent.checked;
       if (f.consent) {
         var cWrap = f.consent.closest('.ct-check');
@@ -2633,10 +2599,6 @@
           '. We\u2019ll reply to <b>' + (f.email ? f.email.value.trim() : 'your email') + '</b>.';
       }
       form.hidden = true;
-      var steps = document.querySelector('.ct-steps');
-      var ss = document.querySelector('[data-ct-stepstatus]');
-      if (steps) steps.hidden = true;
-      if (ss) ss.hidden = true;
       if (done) {
         done.hidden = false;
         var h = done.querySelector('[data-ct-done-h]');
@@ -2653,12 +2615,8 @@
       if (acct) acct.hidden = true;
       if (done) done.hidden = true;
       form.hidden = false;
-      var steps2 = document.querySelector('.ct-steps');
-      var ss2 = document.querySelector('[data-ct-stepstatus]');
-      if (steps2) steps2.hidden = false;
-      if (ss2) ss2.hidden = false;
       route();
-      show(1);
+      if (hasST) ScrollTrigger.refresh();
     });
 
     /* every "live chat" affordance opens the existing chat panel */
@@ -2682,7 +2640,6 @@
       var film = document.querySelector('.wb-hero-video');
       if (film && typeof film.pause === 'function') { film.removeAttribute('autoplay'); film.pause(); }
     }
-    show(1);
     ctMotion();
   }
 
@@ -2713,7 +2670,7 @@
       var parts = h.querySelectorAll('.ct-w > i');
       // state the start explicitly: GSAP reads the CSS translateY(105%) as a
       // px offset, so tweening yPercent alone would leave that offset behind
-      var from = { yPercent: 105, y: 0 };
+      var from = { yPercent: 130, y: 0 };
       var tween = { yPercent: 0, y: 0, duration: 0.95, ease: 'power4.out', stagger: 0.035 };
       if (onScreen(h)) gsap.fromTo(parts, from, tween);
       else gsap.fromTo(parts, from, Object.assign({}, tween, {
