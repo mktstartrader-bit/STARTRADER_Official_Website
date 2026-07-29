@@ -2632,7 +2632,7 @@
       var opt = f.dept ? f.dept.options[f.dept.selectedIndex] : null;
       var msg = document.querySelector('[data-ct-done-msg]');
       if (msg) {
-        msg.innerHTML = 'Your message is with the <b>' + (opt ? opt.textContent.split('—')[0].trim().toLowerCase() : 'support') +
+        msg.innerHTML = 'Your message is with the <b>' + ((opt && opt.getAttribute('data-desk')) || 'client support') +
           '</b> desk and will be answered ' + (opt ? opt.getAttribute('data-eta') : 'within 2 hours') +
           '. We\u2019ll reply to <b>' + (f.email ? f.email.value.trim() : 'your email') + '</b>.';
       }
