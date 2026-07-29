@@ -4308,6 +4308,8 @@ html.is-animate [data-ct-cards]>*{opacity:0}
 
 /* ---- the three programme models ---- */
 .pt-models{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+/* two routes rather than three, so they share the row instead of leaving a hole */
+.pt-models--2{grid-template-columns:repeat(2,minmax(0,1fr));max-width:860px;margin-inline:auto}
 .pt-model{
   position:relative;display:flex;flex-direction:column;padding:30px 28px 28px;border-radius:22px;min-width:0;
   transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .3s;
@@ -4360,6 +4362,48 @@ html.is-animate [data-ct-cards]>*{opacity:0}
 /* only hidden while JS is going to drop them in; no-JS shows the list as-is */
 html.is-animate [data-pt-drop] .pt-cty{opacity:0}
 
+/* ---- document list (legal documents) ---- */
+.cp-docs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.cp-doc{
+  display:flex;flex-direction:column;padding:24px 22px 22px;border-radius:20px;min-width:0;
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
+}
+.cp-doc:hover{transform:translateY(-5px);border-color:rgba(0,71,187,.26);box-shadow:0 30px 58px -32px rgba(20,44,96,.5),inset 0 1px 0 #fff}
+.cp-doc-ic{
+  width:46px;height:46px;border-radius:14px;display:grid;place-items:center;margin-bottom:17px;
+  background:rgba(0,71,187,.09);color:var(--blue);transition:transform .4s var(--ease);
+}
+.cp-doc-ic svg{width:22px;height:22px}
+.cp-doc:hover .cp-doc-ic{transform:translateY(-3px) scale(1.05)}
+.cp-doc h3{font-size:16.5px;letter-spacing:-.02em;color:var(--text)}
+.cp-doc p{margin-top:9px;font-size:13.5px;line-height:1.62;color:var(--text-soft)}
+.cp-doc-go{
+  margin-top:auto;padding-top:20px;display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:700;color:var(--blue);
+}
+.cp-doc-go svg{width:14px;height:14px;flex:none;transition:transform .3s var(--ease)}
+.cp-doc:hover .cp-doc-go svg{transform:translateY(2px)}
+.cp-doc-go:hover{text-decoration:underline;text-underline-offset:3px}
+
+/* ---- liquidity providers ---- */
+.cp-lps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.cp-lp{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+  min-height:112px;padding:20px 16px;border-radius:18px;text-align:center;
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
+}
+.cp-lp:hover{transform:translateY(-4px);border-color:rgba(0,71,187,.26);box-shadow:0 26px 50px -30px rgba(20,44,96,.46),inset 0 1px 0 #fff}
+/* the provider's initials stand in for a logo we do not hold the rights to */
+.cp-lp-mark{
+  width:38px;height:38px;border-radius:11px;display:grid;place-items:center;flex:none;
+  font-size:13px;font-weight:800;letter-spacing:-.02em;color:var(--blue);
+  background:rgba(0,71,187,.08);border:1px solid rgba(0,71,187,.14);
+  transition:background .3s,color .3s,transform .4s var(--ease);
+}
+.cp-lp:hover .cp-lp-mark{background:var(--blue);color:#fff;border-color:transparent;transform:translateY(-2px)}
+.cp-lp b{font-size:13.5px;letter-spacing:-.015em;color:var(--text);line-height:1.3}
+.cp-lp-note{margin-top:22px;text-align:center;font-size:12.5px;line-height:1.7;color:var(--text-mute)}
+
 /* ---- spec tables — the site's Account specifications pattern ---- */
 .pt-spec-wrap{margin-top:26px}
 .pt-spec{min-width:760px}
@@ -4402,6 +4446,8 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
 
 /* ---- Responsive ---- */
 @media (max-width:1080px){
+  .cp-docs{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cp-lps{grid-template-columns:repeat(3,minmax(0,1fr))}
   .pt-models{grid-template-columns:1fr}
   .pt-tiers{grid-template-columns:1fr}
   .pt-form-wrap{grid-template-columns:1fr;gap:30px}
@@ -4411,6 +4457,8 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
   .pt-hero{min-height:min(500px,calc(100vh - var(--topbar-h,44px)));padding:calc(var(--nav-h) + 40px) 0 42px}
 }
 @media (max-width:720px){
+  .cp-docs{grid-template-columns:1fr}
+  .cp-lps{grid-template-columns:repeat(2,minmax(0,1fr))}
   .pt-hero{min-height:auto}
   .pt-tabs{flex-wrap:wrap}
   .pt-tab{flex:1 1 100%}
