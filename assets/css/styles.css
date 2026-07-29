@@ -155,8 +155,10 @@ body.light-top .site-header{background:rgba(6,9,20,.95);box-shadow:0 1px 0 rgba(
 }
 .nav-link .caret{width:15px;height:15px;transition:transform .3s var(--ease)}
 .nav-link:hover{color:#fff}
-.nav-item.has-drop:hover .nav-link{color:#fff}
-.nav-item.has-drop:hover .caret{transform:rotate(180deg)}
+.nav-item.has-drop:hover .nav-link,
+.nav-item.has-drop:focus-within .nav-link{color:#fff}
+.nav-item.has-drop:hover .caret,
+.nav-item.has-drop:focus-within .caret{transform:rotate(180deg)}
 .drop{
   position:absolute;top:calc(100% + 10px);left:0;min-width:210px;
   background:rgba(12,16,28,.96);backdrop-filter:blur(16px);
@@ -166,7 +168,8 @@ body.light-top .site-header{background:rgba(6,9,20,.95);box-shadow:0 1px 0 rgba(
   transition:opacity .28s var(--ease),transform .28s var(--ease),visibility .28s;
   box-shadow:0 24px 50px -20px rgba(0,0,0,.7);
 }
-.nav-item.has-drop:hover .drop{opacity:1;visibility:visible;transform:translateY(0)}
+.nav-item.has-drop:hover .drop,
+.nav-item.has-drop:focus-within .drop{opacity:1;visibility:visible;transform:translateY(0)}
 .drop a{padding:10px 13px;border-radius:9px;color:#c7cddb;font-size:14px;transition:background .2s,color .2s}
 .drop a:hover{background:rgba(255,255,255,.07);color:#fff}
 
@@ -184,7 +187,10 @@ body.light-top .site-header{background:rgba(6,9,20,.95);box-shadow:0 1px 0 rgba(
   transition:opacity .3s var(--ease),transform .3s var(--ease),visibility .3s;z-index:50;
 }
 .mega::before{content:"";position:absolute;left:0;right:0;top:-16px;height:18px}
-.nav-item.has-mega:hover .mega{opacity:1;visibility:visible;transform:translateY(0)}
+/* focus-within as well as hover: without it, tabbing lands focus inside a
+   panel that is still visibility:hidden */
+.nav-item.has-mega:hover .mega,
+.nav-item.has-mega:focus-within .mega{opacity:1;visibility:visible;transform:translateY(0)}
 .mega-main{display:grid;grid-template-columns:repeat(3,300px);flex:none}
 .mega-col{padding:0 22px}
 .mega-col+.mega-col{border-left:1px solid rgba(255,255,255,.08)}
@@ -220,11 +226,16 @@ body.light-top .site-header{background:rgba(6,9,20,.95);box-shadow:0 1px 0 rgba(
 .mega--promo .mega-main{grid-template-columns:300px}
 /* inline expandable sub-menu (e.g. Sponsorship) — expands below the item, not a side box */
 .mega-subchev{width:15px;height:15px;margin-left:auto;color:#6d7893;transition:transform .3s var(--ease),color .2s}
-.mega-sub:hover .mega-subchev{transform:rotate(180deg);color:#5b9dff}
+.mega-sub:hover .mega-subchev,
+.mega-sub:focus-within .mega-subchev{transform:rotate(180deg);color:#5b9dff}
 .mega-subitems{overflow:hidden;max-height:0;transition:max-height .42s var(--ease);padding-left:54px}
-.mega-sub:hover .mega-subitems{max-height:360px}
+/* focus-within so the children are reachable by keyboard, not hover only */
+.mega-sub:hover .mega-subitems,
+.mega-sub:focus-within .mega-subitems{max-height:360px}
 .mega-subitems a{display:block;font-size:13px;color:#9aa6bd;padding:6px 0;transition:color .2s,transform .2s}
-.mega-subitems a:hover{color:#5b9dff;transform:translateX(3px)}
+.mega-subitems a:hover,.mega-subitems a:focus-visible{color:#5b9dff;transform:translateX(3px)}
+/* the child page you are on is marked, as top-level items are */
+.mega-subitems a.is-current{color:#5b9dff;font-weight:600}
 .mega-item--tight{padding-top:9px;padding-bottom:9px}
 
 .nav-right{display:flex;align-items:center;gap:18px}
@@ -1258,17 +1269,6 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
 .ta-table th.ta-col-rec{color:var(--blue);background:rgba(0,71,187,.06);border-top-left-radius:14px;border-top-right-radius:14px}
 .ta-table td.ta-col-rec{color:var(--blue);font-weight:600;background:rgba(0,71,187,.05)}
 .ta-table tbody tr:last-child td.ta-col-rec{border-bottom-left-radius:14px;border-bottom-right-radius:14px}
-/* sub-items sit under their parent in the mega panel — indented, with a short
-   tick marking the relationship rather than a full tree line */
-.mega-item--sub{position:relative;padding-left:30px}
-.mega-item--sub::before{
-  content:"";position:absolute;left:14px;top:50%;width:8px;height:1px;
-  background:rgba(255,255,255,.22);
-}
-.mega-item--sub .mega-ico{width:26px;height:26px;border-radius:8px}
-.mega-item--sub .mega-ico svg{width:14px;height:14px}
-.mega-item--sub .mega-txt b{font-size:12.5px}
-
 .ta-rec-badge{display:inline-block;margin-left:9px;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;padding:3px 9px;border-radius:70px;background:var(--blue);vertical-align:middle}
 .spec-yes,.spec-no{display:inline-grid;place-items:center;width:24px;height:24px}
 .spec-yes svg{width:21px;height:21px;color:#1f2a3d;stroke-width:2.4}
@@ -4396,22 +4396,30 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
 .cp-doc:hover .cp-doc-go svg{transform:translateY(2px)}
 .cp-doc-go:hover{text-decoration:underline;text-underline-offset:3px}
 
-/* ---- liquidity providers ---- */
-.cp-lps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+/* ---- liquidity providers ----
+   One pane divided by hairlines rather than ten separate cards: ten logos in
+   ten boxes reads as clutter, and the shared frame is what makes it a wall. */
+.cp-wall{padding:8px;border-radius:24px;overflow:hidden}
+.cp-lps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr))}
 .cp-lp{
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
-  min-height:112px;padding:20px 16px;border-radius:18px;text-align:center;
-  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
+  position:relative;display:grid;place-items:center;
+  min-height:118px;padding:26px 22px;border-radius:16px;
+  transition:background .35s var(--ease);
 }
-.cp-lp:hover{transform:translateY(-4px);border-color:rgba(0,71,187,.26);box-shadow:0 26px 50px -30px rgba(20,44,96,.46),inset 0 1px 0 #fff}
+/* hairlines drawn per cell, suppressed on the last column and last row */
+.cp-lp::after,.cp-lp::before{content:"";position:absolute;background:rgba(20,44,96,.09)}
+.cp-lp::after{top:18%;bottom:18%;right:0;width:1px}
+.cp-lp::before{left:14%;right:14%;bottom:0;height:1px}
+.cp-lp:nth-child(5n)::after,.cp-lp:nth-last-child(-n+5)::before{display:none}
+.cp-lp:hover{background:rgba(255,255,255,.5)}
 /* logos are supplied at mixed heights, so cap both axes and let the box centre
    them; greyscale at rest keeps ten different brand palettes from fighting */
 .cp-lp img{
-  max-width:100%;max-height:34px;width:auto;height:auto;object-fit:contain;
-  filter:grayscale(1);opacity:.72;
+  max-width:100%;max-height:30px;width:auto;height:auto;object-fit:contain;
+  filter:grayscale(1);opacity:.6;
   transition:filter .35s var(--ease),opacity .35s var(--ease),transform .4s var(--ease);
 }
-.cp-lp:hover img{filter:none;opacity:1;transform:translateY(-2px)}
+.cp-lp:hover img{filter:none;opacity:1;transform:scale(1.04)}
 .cp-lp-note{margin-top:22px;text-align:center;font-size:12.5px;line-height:1.7;color:var(--text-mute)}
 
 /* ---- spec tables — the site's Account specifications pattern ---- */
@@ -4458,6 +4466,10 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
 @media (max-width:1080px){
   .cp-docs{grid-template-columns:repeat(2,minmax(0,1fr))}
   .cp-lps{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .cp-lp:nth-child(5n)::after{display:block}
+  .cp-lp:nth-child(3n)::after{display:none}
+  .cp-lp:nth-last-child(-n+5)::before{display:block}
+  .cp-lp:nth-last-child(-n+1)::before{display:none}
   .pt-models{grid-template-columns:1fr}
   .pt-tiers{grid-template-columns:1fr}
   .pt-form-wrap{grid-template-columns:1fr;gap:30px}
@@ -4469,6 +4481,10 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
 @media (max-width:720px){
   .cp-docs{grid-template-columns:1fr}
   .cp-lps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cp-lp:nth-child(3n)::after{display:block}
+  .cp-lp:nth-child(2n)::after{display:none}
+  .cp-lp:nth-last-child(-n+2)::before{display:none}
+  .cp-lp{min-height:96px;padding:20px 16px}
   .pt-hero{min-height:auto}
   .pt-tabs{flex-wrap:wrap}
   .pt-tab{flex:1 1 100%}
