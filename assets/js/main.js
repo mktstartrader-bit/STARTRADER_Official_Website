@@ -2493,6 +2493,200 @@
     openFromHash();
   }
 
+  /* ---------------- Contact — two-step form, routing, chat hooks ---------------- */
+  function initContact() {
+    var form = document.getElementById('ctForm');
+    if (!form) return;
+
+    var MAX = 1200;
+    var panels = Array.prototype.slice.call(form.querySelectorAll('[data-ct-panel]'));
+    var dots = Array.prototype.slice.call(document.querySelectorAll('[data-ct-dot]'));
+    var rail = document.querySelector('[data-ct-rail]');
+    var stepStatus = document.querySelector('[data-ct-stepstatus]');
+    var done = document.querySelector('[data-ct-done]');
+    var step = 1;
+
+    var f = {
+      name: document.getElementById('ctName'),
+      email: document.getElementById('ctEmail'),
+      phone: document.getElementById('ctPhone'),
+      subject: document.getElementById('ctSubject'),
+      msg: document.getElementById('ctMsg'),
+      consent: document.getElementById('ctConsent'),
+      dept: document.getElementById('ctDept')
+    };
+    var rules = {
+      name: function (v) { return v.trim().length >= 2; },
+      email: function (v) { return /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(v.trim()); },
+      phone: function (v) { return !v.trim() || /^\+?[\d\s()-]{6,20}$/.test(v.trim()); },
+      subject: function (v) { return v.trim().length >= 3; },
+      msg: function (v) { return v.trim().length >= 15 && v.trim().length <= MAX; }
+    };
+
+    function bad(el, on) {
+      if (!el) return;
+      var wrap = el.closest('.ct-field') || el.closest('.ct-check');
+      var err = document.getElementById(el.id + 'Err');
+      if (wrap) wrap.classList.toggle('is-bad', on);
+      if (err) err.hidden = !on;
+      el.setAttribute('aria-invalid', on ? 'true' : 'false');
+    }
+    // clear an error the moment it is fixed, never nag mid-typing
+    Object.keys(rules).forEach(function (k) {
+      var el = f[k];
+      if (!el) return;
+      el.addEventListener('input', function () { if (rules[k](el.value)) bad(el, false); });
+      el.addEventListener('blur', function () { if (el.value.trim()) bad(el, !rules[k](el.value)); });
+    });
+
+    function check(keys) {
+      var first = null;
+      keys.forEach(function (k) {
+        var el = f[k];
+        if (!el) return;
+        var ok = rules[k](el.value);
+        bad(el, !ok);
+        if (!ok && !first) first = el;
+      });
+      return first;
+    }
+
+    function show(n) {
+      step = n;
+      panels.forEach(function (p) { p.hidden = p.getAttribute('data-ct-panel') !== String(n); });
+      dots.forEach(function (d) {
+        var i = +d.getAttribute('data-ct-dot');
+        d.classList.toggle('is-on', i === n);
+        d.classList.toggle('is-done', i < n);
+      });
+      if (rail) rail.style.width = n > 1 ? '100%' : '0';
+      if (stepStatus) stepStatus.textContent = n === 1 ? 'Step 1 of 2 — about you' : 'Step 2 of 2 — your enquiry';
+      var panel = panels.filter(function (p) { return !p.hidden; })[0];
+      if (panel) {
+        var firstField = panel.querySelector('input:not([type=radio]):not([type=checkbox]),select,textarea');
+        if (firstField) firstField.focus({ preventScroll: true });
+      }
+      if (hasST) ScrollTrigger.refresh();
+    }
+
+    var next = form.querySelector('[data-ct-next]');
+    if (next) next.addEventListener('click', function () {
+      var first = check(['name', 'email', 'phone']);
+      if (first) { first.focus(); return; }
+      show(2);
+    });
+    var back = form.querySelector('[data-ct-back]');
+    if (back) back.addEventListener('click', function () { show(1); });
+
+    // Enter on step 1 moves on rather than submitting a half-filled form
+    form.addEventListener('keydown', function (e) {
+      if (e.key !== 'Enter' || step !== 1) return;
+      if (e.target.tagName === 'TEXTAREA') return;
+      e.preventDefault();
+      if (next) next.click();
+    });
+
+    /* account number only matters for existing clients */
+    var acct = document.querySelector('[data-ct-acct]');
+    form.querySelectorAll('input[name="client"]').forEach(function (r) {
+      r.addEventListener('change', function () {
+        if (acct) acct.hidden = r.value !== 'yes' || !r.checked;
+      });
+    });
+
+    /* say where the message goes and when to expect a reply */
+    function route() {
+      var el = document.querySelector('[data-ct-route]');
+      if (!el || !f.dept) return;
+      var opt = f.dept.options[f.dept.selectedIndex];
+      el.innerHTML = 'Goes to <b>' + opt.getAttribute('data-to') + '</b> · replied ' + opt.getAttribute('data-eta');
+    }
+    if (f.dept) f.dept.addEventListener('change', route);
+    route();
+
+    /* message length */
+    var count = document.querySelector('[data-ct-count]');
+    if (f.msg && count) {
+      var tick = function () {
+        var n = f.msg.value.length;
+        count.textContent = n + ' / ' + MAX;
+        count.classList.toggle('is-over', n > MAX);
+      };
+      f.msg.addEventListener('input', tick);
+      tick();
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var first = check(['subject', 'msg']);
+      var cOk = !f.consent || f.consent.checked;
+      if (f.consent) {
+        var cWrap = f.consent.closest('.ct-check');
+        var cErr = document.getElementById('ctConsentErr');
+        if (cWrap) cWrap.classList.toggle('is-bad', !cOk);
+        if (cErr) cErr.hidden = cOk;
+      }
+      if (!cOk && !first) first = f.consent;
+      if (first) { first.focus(); return; }
+
+      var opt = f.dept ? f.dept.options[f.dept.selectedIndex] : null;
+      var msg = document.querySelector('[data-ct-done-msg]');
+      if (msg) {
+        msg.innerHTML = 'Your message is with the <b>' + (opt ? opt.textContent.split('—')[0].trim().toLowerCase() : 'support') +
+          '</b> desk and will be answered ' + (opt ? opt.getAttribute('data-eta') : 'within 2 hours') +
+          '. We\u2019ll reply to <b>' + (f.email ? f.email.value.trim() : 'your email') + '</b>.';
+      }
+      form.hidden = true;
+      var steps = document.querySelector('.ct-steps');
+      var ss = document.querySelector('[data-ct-stepstatus]');
+      if (steps) steps.hidden = true;
+      if (ss) ss.hidden = true;
+      if (done) {
+        done.hidden = false;
+        var h = done.querySelector('[data-ct-done-h]');
+        if (h) h.focus({ preventScroll: true });
+      }
+    });
+
+    var again = document.querySelector('[data-ct-again]');
+    if (again) again.addEventListener('click', function () {
+      form.reset();
+      Object.keys(rules).forEach(function (k) { bad(f[k], false); });
+      var cErr = document.getElementById('ctConsentErr');
+      if (cErr) cErr.hidden = true;
+      if (acct) acct.hidden = true;
+      if (done) done.hidden = true;
+      form.hidden = false;
+      var steps2 = document.querySelector('.ct-steps');
+      var ss2 = document.querySelector('[data-ct-stepstatus]');
+      if (steps2) steps2.hidden = false;
+      if (ss2) ss2.hidden = false;
+      route();
+      show(1);
+    });
+
+    /* every "live chat" affordance opens the existing chat panel */
+    document.querySelectorAll('[data-ct-chat]').forEach(function (b) {
+      b.addEventListener('click', function (e) {
+        e.preventDefault();
+        var fab = document.getElementById('chatFab');
+        var panel = document.getElementById('chatPanel');
+        if (panel && panel.classList.contains('open')) {
+          var text = document.getElementById('chatText');
+          if (text) text.focus();
+          return;
+        }
+        if (fab) fab.click();
+      });
+    });
+
+    if (prefersReduced) {
+      var film = document.querySelector('.wb-hero-video');
+      if (film) { film.removeAttribute('autoplay'); film.pause(); }
+    }
+    show(1);
+  }
+
   /* ---------------- Company — global presence map ---------------- */
   function initCompany() {
     var root = document.getElementById('coGlobal');
@@ -2578,6 +2772,7 @@
     initNews();
     initArticle();
     initAnnouncements();
+    initContact();
     initCompany();
     initHeroTicker();
     initMarkets();
