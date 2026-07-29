@@ -2056,15 +2056,19 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
 .co-mkt--inst{--ray:rgba(0,120,255,.32);--ray-line:rgba(96,164,255,.98);border-color:rgba(96,158,255,.3);background:radial-gradient(130% 78% at 50% -12%,rgba(0,120,255,.34),transparent 60%),linear-gradient(180deg,rgba(12,26,58,.7),rgba(8,16,38,.6))}
 
 /* ---- Hero (center-aligned, blue-wave banner image) ---- */
-.co-hero{position:relative;color:#fff;overflow:hidden;isolation:isolate;text-align:center;margin-top:calc(-1 * var(--nav-h));padding:calc(var(--nav-h) + 40px) 0 56px;background:#04060e url(../img/company-hero.png) center 62%/cover no-repeat;min-height:min(780px, calc(100vh - var(--topbar-h,44px)));display:flex;align-items:center}
+.co-hero{position:relative;color:#fff;overflow:hidden;isolation:isolate;text-align:center;margin-top:calc(-1 * var(--nav-h));padding:calc(var(--nav-h) + 40px) 0 56px;background:#04060e url(../img/company-hero.jpg) center center/cover no-repeat;min-height:min(780px, calc(100vh - var(--topbar-h,44px)));display:flex;align-items:center}
+/* the artwork's bright ribbon crosses the copy column, so a soft pool sits
+   behind the text — the linear ramp alone left the lead unreadable */
 .co-hero::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
-  background:linear-gradient(180deg,rgba(4,6,14,.62) 0%,rgba(4,6,14,.2) 26%,rgba(4,6,14,0) 52%,rgba(4,6,14,.28) 100%)}
+  background:
+    radial-gradient(58% 46% at 46% 54%,rgba(4,6,14,.8) 0%,rgba(4,6,14,.5) 56%,rgba(4,6,14,0) 88%),
+    linear-gradient(180deg,rgba(4,6,14,.62) 0%,rgba(4,6,14,.2) 26%,rgba(4,6,14,.04) 52%,rgba(4,6,14,.3) 100%)}
 .co-hero-inner{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;width:100%;max-width:860px;margin-inline:auto}
 .co-badge{display:inline-flex;align-items:center;gap:9px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#bcd2ff;padding:8px 15px;border-radius:70px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 .co-badge .dot{width:7px;height:7px;border-radius:50%;background:#34d99b;box-shadow:0 0 0 0 rgba(52,217,155,.5);animation:pulse 2.4s infinite;flex:none}
 .co-h1{font-size:clamp(30px,6vw,68px);font-weight:800;letter-spacing:-.035em;line-height:1.05;margin-top:22px;overflow-wrap:break-word}
 .co-h1 .g{background:linear-gradient(92deg,#7fb0ff,#dfeaff 60%,#a9c6ff);-webkit-background-clip:text;background-clip:text;color:transparent}
-.co-lead{margin:22px auto 0;width:100%;max-width:600px;font-size:clamp(15px,1.5vw,18px);color:#c4cedf;line-height:1.66}
+.co-lead{margin:22px auto 0;width:100%;max-width:600px;font-size:clamp(15px,1.5vw,18px);color:#d8e1ee;line-height:1.66;text-shadow:0 1px 14px rgba(4,6,14,.8)}
 .co-hact{margin-top:34px;max-width:100%;display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
 .co-ghost{color:#e7eefc;border-color:rgba(255,255,255,.24);background:rgba(255,255,255,.04)}
 .co-ghost:hover{border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.09)}
