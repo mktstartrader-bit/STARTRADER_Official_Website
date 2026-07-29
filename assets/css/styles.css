@@ -960,8 +960,10 @@ body.light-top .site-header{background:rgba(6,9,20,.95);box-shadow:0 1px 0 rgba(
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(16,185,129,.55)}70%{box-shadow:0 0 0 8px rgba(16,185,129,0)}100%{box-shadow:0 0 0 0 rgba(16,185,129,0)}}
 
 /* reveal initial states (only when JS animation active) */
+/* only the fade is declared here — the 28px rise is set by GSAP in initReveals,
+   so once the tween clears its inline transform nothing overrides :hover */
 html.is-animate [data-reveal],
-html.is-animate [data-reveal-stagger]>*{opacity:0;transform:translateY(28px)}
+html.is-animate [data-reveal-stagger]>*{opacity:0}
 html.is-animate .head [data-reveal]{will-change:transform,opacity}
 
 /* ---------- Responsive ---------- */
@@ -3804,9 +3806,7 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
 .an-chip--clear{background:none;border-color:var(--line);color:var(--text-soft);padding:6px 13px;cursor:pointer}
 .an-chip--clear:hover{color:var(--blue);border-color:rgba(0,71,187,.35)}
 
-/* ================= CONTACT PAGE =================
-   Glass-first: every card is a translucent pane, so each section carries a
-   tinted aura behind it for the blur to actually pick something up. */
+/* ================= CONTACT PAGE ================= */
 .ct-hero{
   /* a utility page earns a shorter banner than a product page */
   min-height:min(600px,calc(100vh - var(--topbar-h,44px)));
@@ -3817,12 +3817,12 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
 .ct-hero .wb-h1{font-size:clamp(40px,5.6vw,68px)}
 .ct-hero .wb-lead{max-width:46ch;margin-top:16px}
 .ct-hero .wb-hact{margin-top:30px}
-/* a slow diagonal sheen over the film — the luxury cue, not a decoration */
+/* a slow diagonal sheen over the film */
 .ct-hero-veil{
-  position:absolute;inset:-30% -10%;z-index:-1;pointer-events:none;opacity:.5;
+  position:absolute;inset:-30% -10%;z-index:-1;pointer-events:none;opacity:.42;
   background:
-    radial-gradient(38% 44% at 22% 44%,rgba(0,71,187,.4),transparent 68%),
-    radial-gradient(30% 36% at 74% 26%,rgba(22,233,215,.14),transparent 70%);
+    radial-gradient(38% 44% at 22% 44%,rgba(0,71,187,.34),transparent 68%),
+    radial-gradient(30% 36% at 74% 26%,rgba(22,233,215,.1),transparent 70%);
   filter:blur(28px);
 }
 @media (prefers-reduced-motion:no-preference){
@@ -3830,56 +3830,37 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
   @keyframes ctVeil{from{transform:translate3d(-3%,-2%,0) scale(1)}to{transform:translate3d(4%,3%,0) scale(1.12)}}
 }
 
-/* ---- shared glass recipe ---------------------------------------------
-   A hairline gradient border (padding-box + border-box trick) reads as a
-   lit edge rather than a flat 1px line, which is what makes a pane look
-   like glass instead of a white box. */
-.ct-pane{
-  position:relative;border-radius:22px;border:1px solid transparent;
+/* section backdrops stay at the same weight as every other card section */
+.ct-ch-sec{background:radial-gradient(58% 46% at 6% 0%,rgba(0,71,187,.08),transparent 62%),var(--bg-light)}
+.ct-form-sec{
   background:
-    linear-gradient(158deg,rgba(255,255,255,.82),rgba(255,255,255,.5)) padding-box,
-    linear-gradient(150deg,rgba(255,255,255,.98),rgba(0,71,187,.24) 46%,rgba(255,255,255,.7)) border-box;
-  -webkit-backdrop-filter:blur(22px) saturate(1.7);backdrop-filter:blur(22px) saturate(1.7);
-  box-shadow:0 30px 68px -42px rgba(16,38,84,.42),inset 0 1px 0 rgba(255,255,255,.9);
+    radial-gradient(52% 44% at 96% 10%,rgba(22,233,215,.07),transparent 62%),
+    radial-gradient(56% 40% at 40% 104%,rgba(0,71,187,.06),transparent 62%),
+    var(--bg-light-2);
+  scroll-margin-top:calc(var(--chrome-h) + var(--chrome-gap));
 }
-/* the aura layers each section sits on */
-.ct-aura{position:absolute;z-index:0;pointer-events:none;border-radius:50%;filter:blur(70px)}
-.ct-aura.a1{top:-70px;left:-90px;width:min(520px,58vw);aspect-ratio:1;background:radial-gradient(circle,rgba(0,71,187,.27),transparent 68%)}
-.ct-aura.a2{bottom:-140px;right:-80px;width:min(460px,52vw);aspect-ratio:1;background:radial-gradient(circle,rgba(22,233,215,.24),transparent 68%)}
-.ct-aura.a3{top:6%;right:-110px;width:min(440px,50vw);aspect-ratio:1;background:radial-gradient(circle,rgba(0,71,187,.2),transparent 68%)}
-/* a4 lives in the clip-path section, which clips paint but not layout
-   overflow, so this one stays inside the box */
-.ct-aura.a4{top:-90px;right:0;width:min(500px,54vw);aspect-ratio:1;background:radial-gradient(circle,rgba(22,233,215,.22),transparent 68%)}
-.ct-ch-sec,.ct-form-sec,.ct-faq-sec{position:relative;isolation:isolate}
-.ct-ch-sec,.ct-faq-sec{overflow:clip}
-/* the form section clips with clip-path, not overflow: an overflow container
-   would stop the aside's position:sticky from pinning to the viewport */
+.ct-ch-sec,.ct-form-sec{position:relative;isolation:isolate}
+.ct-ch-sec{overflow:clip}
+/* clip-path, not overflow: an overflow container would stop the aside pinning */
 .ct-form-sec{clip-path:inset(0)}
-/* give the blur something to bend: a fine dot field behind the panes, masked
-   off at the edges so it never reads as a texture swatch */
-.ct-ch-sec::before,.ct-form-sec::before,.ct-faq-sec::before{
-  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
-  background-image:radial-gradient(rgba(20,44,96,.085) 1.1px,transparent 1.1px);
-  background-size:19px 19px;
-  -webkit-mask-image:radial-gradient(72% 62% at 50% 42%,#000,transparent 74%);
-  mask-image:radial-gradient(72% 62% at 50% 42%,#000,transparent 74%);
-}
-.ct-ch-sec>.container,.ct-form-sec>.container,.ct-faq-sec>.container{position:relative;z-index:1}
+.ct-ch-sec>.container,.ct-form-sec>.container{position:relative;z-index:1}
+/* drifting tint behind the panes, kept at the same strength as the section
+   gradients above so it reads as depth rather than colour */
+.ct-aura{position:absolute;z-index:0;pointer-events:none;border-radius:50%;filter:blur(70px)}
+.ct-aura.a1{top:-70px;left:-90px;width:min(520px,58vw);aspect-ratio:1;background:radial-gradient(circle,rgba(0,71,187,.08),transparent 68%)}
+.ct-aura.a2{bottom:-140px;right:-80px;width:min(460px,52vw);aspect-ratio:1;background:radial-gradient(circle,rgba(22,233,215,.07),transparent 68%)}
+.ct-aura.a4{top:-90px;right:0;width:min(500px,54vw);aspect-ratio:1;background:radial-gradient(circle,rgba(22,233,215,.07),transparent 68%)}
 
-/* ---- Channels — bento, with live chat carrying the weight ---- */
-.ct-ch-sec{
-  background:
-    radial-gradient(70% 50% at 8% -6%,rgba(0,71,187,.09),transparent 62%),
-    linear-gradient(180deg,#f7faff,var(--bg-light) 62%);
-}
+/* ---- Channels — bento, same glass + hover as the news and webinars cards ---- */
 .ct-channels{
   display:grid;grid-template-columns:1.16fr 1fr 1fr;grid-template-rows:auto auto;
   gap:18px;align-items:stretch;
 }
 .ct-ch{
-  display:flex;flex-direction:column;padding:26px 24px 24px;min-width:0;
-  transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .35s;
+  display:flex;flex-direction:column;padding:26px 24px 24px;min-width:0;border-radius:20px;
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
 }
+.ct-ch:hover{transform:translateY(-5px);border-color:rgba(0,71,187,.26);box-shadow:0 30px 58px -32px rgba(20,44,96,.5),inset 0 1px 0 #fff}
 .ct-ch--lead{grid-column:1;grid-row:1 / span 2;padding:32px 30px 28px}
 .ct-ch:nth-of-type(2){grid-column:2;grid-row:1}
 .ct-ch:nth-of-type(3){grid-column:3;grid-row:1}
@@ -3887,31 +3868,13 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
 .ct-ch:nth-of-type(4) .ct-ch-ic{margin-bottom:0;flex:none}
 .ct-ch:nth-of-type(4) .ct-ch-txt{flex:1 1 260px;min-width:0}
 .ct-ch:nth-of-type(4) .ct-ch-go{margin-top:0;padding-top:0}
-
-/* cursor spotlight — a soft highlight that tracks the pointer across the pane */
-.ct-ch::after{
-  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
-  background:radial-gradient(340px circle at var(--mx,50%) var(--my,0%),rgba(0,71,187,.11),transparent 62%);
-  opacity:0;transition:opacity .45s var(--ease);
-}
-.ct-ch:hover::after,.ct-ch:focus-within::after{opacity:1}
-.ct-ch:hover,.ct-ch:focus-within{
-  transform:translateY(-6px);
-  box-shadow:0 44px 84px -48px rgba(16,38,84,.55),inset 0 1px 0 rgba(255,255,255,.96);
-}
-.ct-ch>*{position:relative;z-index:1}
 .ct-ch-ic{
   width:48px;height:48px;border-radius:15px;display:grid;place-items:center;margin-bottom:18px;
-  color:var(--blue);border:1px solid rgba(0,71,187,.16);
-  background:linear-gradient(160deg,rgba(255,255,255,.92),rgba(0,71,187,.09));
-  box-shadow:inset 0 1px 0 #fff;
-  transition:background .4s,color .4s,transform .5s var(--ease),box-shadow .4s;
+  background:rgba(0,71,187,.09);color:var(--blue);
+  transition:transform .4s var(--ease);
 }
 .ct-ch-ic svg{width:22px;height:22px}
-.ct-ch:hover .ct-ch-ic{
-  background:linear-gradient(160deg,#0b58d8,var(--blue));color:#fff;border-color:transparent;
-  transform:translateY(-3px) rotate(-4deg);box-shadow:0 16px 30px -16px rgba(0,71,187,.7);
-}
+.ct-ch:hover .ct-ch-ic{transform:translateY(-3px) scale(1.05)}
 .ct-ch--lead .ct-ch-ic{width:56px;height:56px;border-radius:17px}
 .ct-ch--lead .ct-ch-ic svg{width:26px;height:26px}
 .ct-ch h3{font-size:17px;letter-spacing:-.02em;color:var(--text)}
@@ -3926,30 +3889,21 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
   margin-top:auto;padding-top:20px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;
   font-size:13.5px;font-weight:700;color:var(--blue);word-break:break-word;text-align:left;
 }
-.ct-ch-go svg{width:14px;height:14px;flex:none;transition:transform .35s var(--ease)}
+.ct-ch-go svg{width:14px;height:14px;flex:none;transition:transform .3s var(--ease)}
 .ct-ch:hover .ct-ch-go svg{transform:translate(3px,-3px)}
 .ct-ch-go:hover{text-decoration:underline;text-underline-offset:3px}
-/* the featured card's action is a filled pill, not a text link */
-/* the featured card is two rows tall, so its status + action sit as a footer
-   under a hairline rather than floating in the middle of the pane */
+/* the featured card's status + action sit as a footer under a hairline */
 .ct-ch--lead .ct-ch-eta{display:flex;width:100%;margin-top:auto;padding-top:22px;border-top:1px solid rgba(20,44,96,.1)}
 .ct-ch--lead .ct-ch-go{
   align-self:flex-start;margin-top:22px;padding:12px 20px;border-radius:70px;
-  color:#fff;background:linear-gradient(140deg,#0b58d8,var(--blue));
-  box-shadow:0 18px 34px -18px rgba(0,71,187,.65);
-  transition:transform .4s var(--ease),box-shadow .4s var(--ease);
+  color:#fff;background:var(--blue);box-shadow:0 14px 30px -18px rgba(0,71,187,.6);
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease);
 }
-.ct-ch--lead .ct-ch-go:hover{text-decoration:none;transform:translateY(-2px);box-shadow:0 24px 44px -20px rgba(0,71,187,.8)}
+.ct-ch--lead .ct-ch-go:hover{text-decoration:none;transform:translateY(-2px);box-shadow:0 20px 40px -20px rgba(0,71,187,.75)}
 .ct-ch--lead .ct-ch-go svg{width:15px;height:15px}
 .ct-ch--lead:hover .ct-ch-go svg{transform:translateX(4px)}
 
 /* ---- Form ---- */
-.ct-form-sec{
-  background:
-    radial-gradient(56% 46% at 96% 8%,rgba(0,71,187,.07),transparent 62%),
-    linear-gradient(180deg,var(--bg-light) 0%,#f4f8ff 55%,var(--bg-light-2) 100%);
-  scroll-margin-top:calc(var(--chrome-h) + var(--chrome-gap));
-}
 .ct-form-wrap{display:grid;grid-template-columns:minmax(0,.84fr) minmax(0,1.16fr);gap:clamp(28px,3.6vw,58px);align-items:start}
 .ct-form-aside{position:sticky;top:calc(var(--chrome-h) + 26px)}
 .ct-aside-lead{margin-top:16px;font-size:15px;line-height:1.65;color:var(--text-soft)}
@@ -3960,93 +3914,94 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
   font:inherit;font-size:inherit;font-weight:700;color:var(--blue);cursor:pointer;padding:0;
   border-bottom:1px solid rgba(0,71,187,.35);transition:border-color .25s}
 .ct-inline-chat:hover{border-color:var(--blue)}
-.ct-aside-note{
-  margin-top:28px;padding:20px 22px;border-radius:18px;border:1px solid transparent;
-  background:
-    linear-gradient(158deg,rgba(255,255,255,.78),rgba(255,255,255,.44)) padding-box,
-    linear-gradient(150deg,rgba(255,255,255,.95),rgba(0,71,187,.2)) border-box;
-  -webkit-backdrop-filter:blur(16px) saturate(1.5);backdrop-filter:blur(16px) saturate(1.5);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.9);
-}
+.ct-aside-note{margin-top:28px;padding:20px 22px;border-radius:16px;background:rgba(0,71,187,.05);border:1px solid rgba(0,71,187,.14)}
 .ct-aside-note b{display:block;font-size:13px;color:var(--text);margin-bottom:6px}
 .ct-aside-note p{font-size:13px;line-height:1.6;color:var(--text-soft)}
 
-.ct-form-card{padding:clamp(24px,3vw,38px);border-radius:26px;overflow:hidden}
-/* a lit top edge that traces the card's width */
-.ct-form-card::before{
-  content:"";position:absolute;top:0;left:8%;right:8%;height:1px;pointer-events:none;
-  background:linear-gradient(90deg,transparent,rgba(0,71,187,.5),transparent);
+.ct-form-card{padding:clamp(26px,3.2vw,42px);border-radius:var(--radius-xl)}
+/* step marker: one centred pill, as in the reference */
+.ct-steps{text-align:center;padding-bottom:6px}
+.ct-steppill{
+  display:inline-block;padding:9px 20px;border-radius:70px;
+  border:1px solid rgba(20,44,96,.22);color:var(--text-soft);
+  font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  transition:border-color .3s,color .3s;
 }
-/* two-step meter */
-.ct-steps{display:flex;align-items:center;gap:14px;position:relative;z-index:1}
-.ct-step{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;color:var(--text-mute);white-space:nowrap;transition:color .3s}
-.ct-step b{
-  width:28px;height:28px;border-radius:50%;display:grid;place-items:center;flex:none;
-  font-size:13px;font-weight:700;color:var(--text-mute);background:rgba(255,255,255,.7);border:1px solid var(--line);
-  transition:background .3s,color .3s,border-color .3s,transform .35s var(--ease),box-shadow .3s;
-}
-.ct-step.is-on{color:var(--text)}
-.ct-step.is-on b{background:var(--blue);border-color:var(--blue);color:#fff;transform:scale(1.06);box-shadow:0 10px 22px -12px rgba(0,71,187,.8)}
-.ct-step.is-done b{background:rgba(0,71,187,.12);border-color:rgba(0,71,187,.3);color:var(--blue)}
-.ct-rail{flex:1;height:2px;border-radius:2px;background:var(--line);overflow:hidden;min-width:24px}
-.ct-rail i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--blue),#5b9dff);transition:width .45s var(--ease)}
-.ct-stepstatus{margin-top:14px;font-size:12.5px;color:var(--text-mute)}
+.ct-stepstatus{margin-top:12px;font-size:12.5px;color:var(--text-mute)}
 
-.ct-panel{margin-top:20px;position:relative;z-index:1}
+.ct-panel{margin-top:26px}
 @media (prefers-reduced-motion:no-preference){
   .ct-panel{animation:ctPanel .42s var(--ease-out)}
   @keyframes ctPanel{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:none}}
 }
-.ct-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.ct-field{display:flex;flex-direction:column;gap:8px;min-width:0}
-.ct-field label{font-size:12.5px;font-weight:700;color:var(--text-soft)}
-.ct-field label em{font-style:normal;font-weight:500;color:var(--text-mute)}
-/* translucent inputs so the pane reads as one piece of glass, not glass with white holes */
+/* fields carry a single rule under them rather than a boxed input */
+.ct-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px 30px}
+.ct-field{display:flex;flex-direction:column;gap:4px;min-width:0}
+.ct-field label{font-size:12.5px;font-weight:600;letter-spacing:.02em;color:var(--text-soft)}
+.ct-field label em{font-style:normal;font-weight:400;color:var(--text-mute)}
 .ct-field input,.ct-field textarea,.ct-form-card .wb-selwrap select{
-  width:100%;font:inherit;font-size:14.5px;color:var(--text);padding:13px 15px;border-radius:14px;
-  background:rgba(255,255,255,.66);border:1px solid rgba(20,44,96,.13);outline:none;
-  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.8);
-  transition:border-color .25s,box-shadow .25s,background .25s;
+  width:100%;font:inherit;font-size:16px;color:var(--text);padding:11px 2px;
+  background:transparent;border:0;border-bottom:1px solid rgba(20,44,96,.2);border-radius:0;outline:none;
+  transition:border-color .25s,box-shadow .25s;
 }
-.ct-field input:hover,.ct-field textarea:hover,.ct-form-card .wb-selwrap select:hover{background:rgba(255,255,255,.82)}
-.ct-field textarea{resize:vertical;min-height:124px;line-height:1.6}
+.ct-field textarea{resize:vertical;min-height:104px;line-height:1.6}
 .ct-field input::placeholder,.ct-field textarea::placeholder{color:var(--text-mute)}
+.ct-field input:hover,.ct-field textarea:hover,.ct-form-card .wb-selwrap select:hover{border-bottom-color:rgba(20,44,96,.4)}
 .ct-field input:focus,.ct-field textarea:focus,.ct-form-card .wb-selwrap select:focus{
-  background:#fff;border-color:rgba(0,71,187,.55);box-shadow:0 0 0 4px rgba(0,71,187,.12);
+  border-bottom-color:var(--blue);box-shadow:0 1px 0 0 var(--blue);
 }
-.ct-form-card .wb-selwrap select{cursor:pointer;appearance:none;-webkit-appearance:none;padding-right:42px}
-.ct-form-card .wb-selchev{color:var(--text-mute)}
-.ct-field.is-bad input,.ct-field.is-bad textarea{border-color:rgba(239,68,68,.6);box-shadow:0 0 0 4px rgba(239,68,68,.13)}
-.ct-err{font-size:12.5px;color:#c0392f}
-.ct-hint{font-size:12px;color:var(--text-mute)}
-.ct-below{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.ct-form-card .wb-selwrap{position:relative}
+.ct-form-card .wb-selwrap select{cursor:pointer;appearance:none;-webkit-appearance:none;padding-right:32px}
+.ct-form-card .wb-selchev{color:var(--text-mute);right:2px}
+.ct-field.is-bad input,.ct-field.is-bad textarea{border-bottom-color:#d0453b;box-shadow:0 1px 0 0 #d0453b}
+.ct-err{font-size:12.5px;color:#c0392f;margin-top:2px}
+.ct-hint{font-size:12px;color:var(--text-mute);margin-top:2px}
+.ct-below{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-top:2px}
 .ct-count{font-size:12px;color:var(--text-mute);font-variant-numeric:tabular-nums;margin-left:auto}
 .ct-count.is-over{color:#c0392f;font-weight:700}
 .ct-route{
-  display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--text-soft);
-  padding:11px 14px;border-radius:12px;background:rgba(0,71,187,.06);border:1px solid rgba(0,71,187,.14);
+  display:flex;align-items:center;gap:8px;margin-top:12px;font-size:12.5px;color:var(--text-soft);
+  padding:11px 14px;border-radius:12px;background:rgba(0,71,187,.055);border:1px solid rgba(0,71,187,.13);
 }
 .ct-route b{color:var(--blue)}
+.ct-panel>.ct-field+.ct-field,.ct-panel>.ct-grid+*,.ct-panel>*+.ct-radios{margin-top:26px}
 
-.ct-radios{border:0;padding:0;margin-top:20px;display:flex;align-items:center;gap:10px 22px;flex-wrap:wrap}
-.ct-radios legend{font-size:12.5px;font-weight:700;color:var(--text-soft);padding:0;margin-bottom:10px;width:100%}
-.ct-radio,.ct-check{display:flex;align-items:flex-start;gap:11px;font-size:14px;color:var(--text);cursor:pointer}
-.ct-radio{align-items:center}
-.ct-radio input,.ct-check input{position:absolute;opacity:0;width:0;height:0}
-.ct-check{margin-top:20px;font-size:13.5px;line-height:1.55;color:var(--text-soft)}
+/* two choices as an underlined pair, as in the reference */
+.ct-radios{border:0;padding:0;margin-top:28px}
+.ct-radios legend{font-size:12.5px;font-weight:600;color:var(--text-soft);padding:0;margin-bottom:6px}
+.ct-seg{display:flex;align-items:stretch;gap:28px;border-bottom:1px solid rgba(20,44,96,.2)}
+.ct-segbtn{position:relative;cursor:pointer;padding:11px 2px;font-size:15px;color:var(--text-mute);transition:color .25s}
+.ct-segbtn input{position:absolute;opacity:0;width:0;height:0}
+.ct-segbtn:hover{color:var(--text-soft)}
+.ct-segbtn span{display:block;position:relative}
+.ct-segbtn span::after{
+  content:"";position:absolute;left:0;right:0;bottom:-12px;height:2px;border-radius:2px;
+  background:var(--blue);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease);
+}
+.ct-segbtn input:checked~span{color:var(--blue);font-weight:600}
+.ct-segbtn input:checked~span::after{transform:scaleX(1)}
+.ct-segbtn input:focus-visible~span{outline:2px solid var(--blue);outline-offset:4px;border-radius:3px}
+.ct-acct{margin-top:26px}
+
+.ct-check{display:flex;align-items:flex-start;gap:11px;cursor:pointer;margin-top:28px;font-size:13.5px;line-height:1.55;color:var(--text-soft)}
+.ct-check input{position:absolute;opacity:0;width:0;height:0}
 .ct-check a{color:var(--blue);font-weight:600}
 .ct-check.is-bad .an-box{border-color:rgba(239,68,68,.65)}
-.ct-acct{margin-top:18px}
-.ct-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:26px}
-.ct-actions .btn-navy{background:rgba(255,255,255,.7);border:1px solid var(--line);color:var(--text-soft)}
-.ct-actions .btn-navy:hover{background:#fff;color:var(--text);box-shadow:none}
 
-.ct-done{text-align:center;padding:14px 4px 6px;position:relative;z-index:1}
+.ct-actions{margin-top:32px}
+.ct-submit{width:100%;justify-content:center}
+.ct-back{
+  display:flex;align-items:center;justify-content:center;gap:7px;width:100%;margin-top:16px;
+  font:inherit;font-size:13.5px;font-weight:600;color:var(--text-mute);cursor:pointer;
+  padding:8px 0;transition:color .25s;
+}
+.ct-back svg{width:14px;height:14px}
+.ct-back:hover{color:var(--blue)}
+
+.ct-done{text-align:center;padding:14px 4px 6px}
 .ct-done-ic{
   width:64px;height:64px;margin:0 auto 20px;border-radius:50%;display:grid;place-items:center;
   background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.3);color:#0f7d5c;
-  box-shadow:0 0 0 8px rgba(16,185,129,.06);
 }
 .ct-done-ic svg{width:28px;height:28px}
 .ct-done h3{font-size:23px;letter-spacing:-.025em;color:var(--text)}
@@ -4054,32 +4009,11 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
 .ct-done p{margin-top:12px;font-size:14.5px;line-height:1.65;color:var(--text-soft)}
 .ct-done-acts{display:flex;flex-direction:column;align-items:center;gap:14px;margin-top:24px}
 
-/* ---- FAQ as a glass stack ---- */
-.ct-faq-sec{
-  background:
-    radial-gradient(60% 44% at 50% -8%,rgba(0,71,187,.07),transparent 62%),
-    linear-gradient(180deg,var(--bg-light-2),#f6f9ff);
-}
-.ct-faq{display:flex;flex-direction:column;gap:12px;border:0;background:none}
-.ct-faq .faq-item{
-  border:1px solid transparent;border-radius:18px;overflow:hidden;
-  background:
-    linear-gradient(158deg,rgba(255,255,255,.76),rgba(255,255,255,.46)) padding-box,
-    linear-gradient(150deg,rgba(255,255,255,.95),rgba(0,71,187,.16)) border-box;
-  -webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);
-  box-shadow:0 18px 44px -34px rgba(16,38,84,.4),inset 0 1px 0 rgba(255,255,255,.9);
-  transition:box-shadow .4s var(--ease),border-color .35s,transform .4s var(--ease);
-}
-.ct-faq .faq-item:hover{transform:translateY(-2px);box-shadow:0 26px 56px -36px rgba(16,38,84,.5)}
-.ct-faq .faq-item[open]{box-shadow:0 30px 60px -38px rgba(16,38,84,.52)}
-.ct-faq .faq-item summary{padding:20px 22px}
-.ct-faq .faq-a{padding:0 22px 20px}
-
 /* ---- word-by-word heading reveal ---- */
 .ct-w{display:inline-block;overflow:hidden;vertical-align:bottom}
 .ct-w>i{display:inline-block;font-style:inherit;will-change:transform}
 html.is-animate [data-ct-words] .ct-w>i{transform:translateY(105%)}
-html.is-animate [data-ct-cards]>*{opacity:0;transform:translateY(30px)}
+html.is-animate [data-ct-cards]>*{opacity:0}
 
 /* ---- Responsive ---- */
 @media (max-width:1080px){
@@ -4106,13 +4040,6 @@ html.is-animate [data-ct-cards]>*{opacity:0;transform:translateY(30px)}
   .ct-ch:nth-of-type(4) .ct-ch-ic{margin-bottom:18px}
   .ct-ch:nth-of-type(4) .ct-ch-go{margin-top:auto;padding-top:20px}
   .ct-grid{grid-template-columns:1fr}
-  .ct-actions{flex-direction:column-reverse;align-items:stretch}
-  .ct-actions .btn{width:100%}
-  .ct-step span,.ct-step{font-size:12px}
+  .ct-seg{gap:22px}
   .ct-aura{filter:blur(54px)}
-}
-/* backdrop-filter is the whole effect; where it is unsupported fall back to
-   a solid-enough pane so the copy never sits on bare gradient */
-@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
-  .ct-pane,.ct-faq .faq-item,.ct-aside-note{background:rgba(255,255,255,.94);border-color:var(--line)}
 }

@@ -201,23 +201,25 @@
     }
 
     gsap.utils.toArray('[data-reveal]').forEach(function (el) {
+      // clearProps drops the inline transform GSAP would otherwise leave at
+      // translate(0,0) — inline beats the CSS :hover lift on every card
       if (onScreen(el)) {
-        gsap.to(el, { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out' });
+        gsap.fromTo(el, { y: 28 }, { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', clearProps: 'transform' });
         return;
       }
-      gsap.to(el, {
-        opacity: 1, y: 0, duration: 0.9, ease: 'power3.out',
+      gsap.fromTo(el, { y: 28 }, {
+        opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', clearProps: 'transform',
         scrollTrigger: { trigger: el, start: 'top 88%', once: true }
       });
     });
 
     gsap.utils.toArray('[data-reveal-stagger]').forEach(function (group) {
       if (onScreen(group)) {
-        gsap.to(group.children, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', stagger: 0.09 });
+        gsap.fromTo(group.children, { y: 28 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', stagger: 0.09, clearProps: 'transform' });
         return;
       }
-      gsap.to(group.children, {
-        opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', stagger: 0.09,
+      gsap.fromTo(group.children, { y: 28 }, {
+        opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', stagger: 0.09, clearProps: 'transform',
         scrollTrigger: { trigger: group, start: 'top 84%', once: true }
       });
     });
@@ -2500,8 +2502,7 @@
 
     var MAX = 1200;
     var panels = Array.prototype.slice.call(form.querySelectorAll('[data-ct-panel]'));
-    var dots = Array.prototype.slice.call(document.querySelectorAll('[data-ct-dot]'));
-    var rail = document.querySelector('[data-ct-rail]');
+    var pill = document.querySelector('[data-ct-pill]');
     var stepStatus = document.querySelector('[data-ct-stepstatus]');
     var done = document.querySelector('[data-ct-done]');
     var step = 1;
@@ -2554,12 +2555,7 @@
     function show(n) {
       step = n;
       panels.forEach(function (p) { p.hidden = p.getAttribute('data-ct-panel') !== String(n); });
-      dots.forEach(function (d) {
-        var i = +d.getAttribute('data-ct-dot');
-        d.classList.toggle('is-on', i === n);
-        d.classList.toggle('is-done', i < n);
-      });
-      if (rail) rail.style.width = n > 1 ? '100%' : '0';
+      if (pill) pill.textContent = 'Step ' + n + ' / 2';
       if (stepStatus) stepStatus.textContent = n === 1 ? 'Step 1 of 2 — about you' : 'Step 2 of 2 — your enquiry';
       var panel = panels.filter(function (p) { return !p.hidden; })[0];
       if (panel) {
@@ -2691,21 +2687,6 @@
   /* Contact — the scroll choreography: hero parallax, masked word reveals,
      card entrances and a pointer-tracked highlight on each glass pane. */
   function ctMotion() {
-    /* pointer highlight is cheap and independent of GSAP */
-    if (finePointer && !prefersReduced) {
-      document.querySelectorAll('[data-ct-spot]').forEach(function (card) {
-        card.addEventListener('pointermove', function (e) {
-          var r = card.getBoundingClientRect();
-          card.style.setProperty('--mx', (((e.clientX - r.left) / r.width) * 100).toFixed(1) + '%');
-          card.style.setProperty('--my', (((e.clientY - r.top) / r.height) * 100).toFixed(1) + '%');
-        });
-        card.addEventListener('pointerleave', function () {
-          card.style.setProperty('--mx', '50%');
-          card.style.setProperty('--my', '0%');
-        });
-      });
-    }
-
     if (prefersReduced || !hasGSAP || !hasST) return;
 
     function onScreen(el) {
@@ -2740,9 +2721,9 @@
 
     /* card groups enter as a staggered set rather than all at once */
     gsap.utils.toArray('[data-ct-cards]').forEach(function (group) {
-      var tween = { opacity: 1, y: 0, duration: 0.85, ease: 'power3.out', stagger: 0.085 };
-      if (onScreen(group)) gsap.to(group.children, tween);
-      else gsap.to(group.children, Object.assign({}, tween, {
+      var tween = { opacity: 1, y: 0, duration: 0.85, ease: 'power3.out', stagger: 0.085, clearProps: 'transform' };
+      if (onScreen(group)) gsap.fromTo(group.children, { y: 30 }, tween);
+      else gsap.fromTo(group.children, { y: 30 }, Object.assign({}, tween, {
         scrollTrigger: { trigger: group, start: 'top 86%', once: true }
       }));
     });

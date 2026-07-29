@@ -448,7 +448,7 @@
     <h2 class="sr-only" id="ct-ch-title">Ways to reach us</h2>
 
     <div class="ct-channels" data-ct-cards>
-      <article class="ct-ch ct-ch--lead ct-pane" data-ct-spot>
+      <article class="ct-ch ct-ch--lead glass">
         <span class="ct-ch-ic"><svg><use href="#i-bubble"/></svg></span>
         <h3>Live chat</h3>
         <p>The fastest route for anything account-related &mdash; funding, verification, platform trouble or an order you want checked. Staffed around the clock, in more than twenty languages.</p>
@@ -456,7 +456,7 @@
         <button class="ct-ch-go" type="button" data-ct-chat>Open chat <svg><use href="#i-arrow-right"/></svg></button>
       </article>
 
-      <article class="ct-ch ct-pane" data-ct-spot>
+      <article class="ct-ch glass">
         <span class="ct-ch-ic"><svg><use href="#i-send"/></svg></span>
         <h3>Email support</h3>
         <p>Attach statements or screenshots and we&rsquo;ll work through the detail with you.</p>
@@ -464,7 +464,7 @@
         <a class="ct-ch-go" href="mailto:support@startrader.com">support@startrader.com <svg><use href="#i-arrow-ur"/></svg></a>
       </article>
 
-      <article class="ct-ch ct-pane" data-ct-spot>
+      <article class="ct-ch glass">
         <span class="ct-ch-ic"><svg><use href="#i-doc"/></svg></span>
         <h3>Help Centre</h3>
         <p>Step-by-step answers on funding, verification and the platforms &mdash; no waiting.</p>
@@ -472,7 +472,7 @@
         <a class="ct-ch-go" href="https://starhelpcenter.com" target="_blank" rel="noopener">Browse articles <svg><use href="#i-arrow-ur"/></svg></a>
       </article>
 
-      <article class="ct-ch ct-pane" data-ct-spot>
+      <article class="ct-ch glass">
         <span class="ct-ch-ic"><svg><use href="#i-user-plus"/></svg></span>
         <div class="ct-ch-txt">
           <h3>Partnerships</h3>
@@ -508,13 +508,11 @@
       </div>
     </div>
 
-    <div class="ct-form-card ct-pane" data-reveal>
-      <div class="ct-steps" aria-hidden="true">
-        <span class="ct-step is-on" data-ct-dot="1"><b>1</b>About you</span>
-        <span class="ct-rail"><i data-ct-rail></i></span>
-        <span class="ct-step" data-ct-dot="2"><b>2</b>Your enquiry</span>
+    <div class="ct-form-card glass" data-reveal>
+      <div class="ct-steps">
+        <span class="ct-steppill" data-ct-pill aria-hidden="true">Step 1 / 2</span>
+        <p class="ct-stepstatus" data-ct-stepstatus role="status" aria-live="polite">Step 1 of 2 — about you</p>
       </div>
-      <p class="ct-stepstatus" data-ct-stepstatus role="status" aria-live="polite">Step 1 of 2 — about you</p>
 
       <form id="ctForm" novalidate>
         <!-- step 1 -->
@@ -554,8 +552,10 @@
 
           <fieldset class="ct-radios">
             <legend>Do you already have an account with us?</legend>
-            <label class="ct-radio"><input type="radio" name="client" value="yes"><span class="an-box an-box--r" aria-hidden="true"></span>Yes, I&rsquo;m a client</label>
-            <label class="ct-radio"><input type="radio" name="client" value="no" checked><span class="an-box an-box--r" aria-hidden="true"></span>Not yet</label>
+            <div class="ct-seg">
+              <label class="ct-segbtn"><input type="radio" name="client" value="yes"><span>Yes, I&rsquo;m a client</span></label>
+              <label class="ct-segbtn"><input type="radio" name="client" value="no" checked><span>Not yet</span></label>
+            </div>
           </fieldset>
 
           <div class="ct-field ct-acct" data-ct-acct hidden>
@@ -565,7 +565,7 @@
           </div>
 
           <div class="ct-actions">
-            <button class="btn btn-primary btn-lg" type="button" data-ct-next>Continue <svg class="ico"><use href="#i-arrow-right"/></svg></button>
+            <button class="btn btn-primary btn-lg ct-submit" type="button" data-ct-next>Continue <svg class="ico"><use href="#i-arrow-right"/></svg></button>
           </div>
         </div>
 
@@ -610,8 +610,8 @@
           <p class="ct-err" id="ctConsentErr" hidden>Please confirm before sending.</p>
 
           <div class="ct-actions">
-            <button class="btn btn-navy btn-lg" type="button" data-ct-back><svg class="ico"><use href="#i-chevron-left"/></svg> Back</button>
-            <button class="btn btn-primary btn-lg" type="submit">Send message <svg class="ico"><use href="#i-arrow-right"/></svg></button>
+            <button class="btn btn-primary btn-lg ct-submit" type="submit">Send message <svg class="ico"><use href="#i-arrow-right"/></svg></button>
+            <button class="ct-back" type="button" data-ct-back><svg aria-hidden="true"><use href="#i-chevron-left"/></svg> Back to your details</button>
           </div>
         </div>
       </form>
@@ -632,14 +632,13 @@
 
 
 <!-- ============ FAQ ============ -->
-<section class="section faq-sec fx-faq ct-faq-sec" aria-labelledby="ct-faq-title">
-  <span class="ct-aura a3" aria-hidden="true" data-ct-aura="-8"></span>
+<section class="section faq-sec fx-faq" aria-labelledby="ct-faq-title">
   <div class="container">
     <div class="head center">
       <span class="eyebrow" data-reveal>FAQ</span>
       <h2 class="h2" id="ct-faq-title" data-ct-words>Before you get in touch</h2>
     </div>
-    <div class="faq-list ct-faq" data-ct-cards>
+    <div class="faq-list" data-reveal>
       <details class="faq-item">
         <summary>How quickly will I get a reply?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a">Live chat is answered around the clock, usually in under a minute. Emails to <a href="mailto:support@startrader.com">support@startrader.com</a> are answered within two hours, and messages sent through the form on this page are routed straight to the desk you select so they aren&rsquo;t passed between teams.</div>
