@@ -2923,6 +2923,36 @@
       if (hasST) ScrollTrigger.refresh();
     });
 
+    /* country chips drop into the bottom of their box under gravity as the
+       tier cards scroll in — each one from a random height, drift and spin */
+    document.querySelectorAll('[data-pt-drop]').forEach(function (box, bi) {
+      var chips = Array.prototype.slice.call(box.querySelectorAll('.pt-cty'));
+      if (!chips.length) return;
+      if (prefersReduced || !hasGSAP || !hasST) {
+        // nothing to animate: show them where they already sit
+        chips.forEach(function (c) { c.style.opacity = '1'; });
+        return;
+      }
+      // deterministic pseudo-random so the layout is identical on every load
+      function rnd(i, salt) {
+        var x = Math.sin((i + 1) * 12.9898 + bi * 4.1414 + salt * 78.233) * 43758.5453;
+        return x - Math.floor(x);
+      }
+      var tl = gsap.timeline({
+        scrollTrigger: { trigger: box, start: 'top 84%', once: true }
+      });
+      chips.forEach(function (c, i) {
+        var drop = -90 - rnd(i, 1) * 130;          // start well above the box
+        var drift = (rnd(i, 2) - 0.5) * 46;        // sideways scatter
+        var spin = (rnd(i, 3) - 0.5) * 34;         // tumble on the way down
+        tl.fromTo(c,
+          { opacity: 0, y: drop, x: drift, rotate: spin },
+          { opacity: 1, y: 0, x: 0, rotate: 0, duration: 0.9 + rnd(i, 4) * 0.35,
+            ease: 'bounce.out' },
+          rnd(i, 5) * 0.5);                        // staggered release, not a wave
+      });
+    });
+
     if (prefersReduced || !hasGSAP || !hasST) return;
     gsap.utils.toArray('[data-pt-aura]').forEach(function (aura) {
       var amt = parseFloat(aura.getAttribute('data-pt-aura'));
