@@ -1258,6 +1258,17 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
 .ta-table th.ta-col-rec{color:var(--blue);background:rgba(0,71,187,.06);border-top-left-radius:14px;border-top-right-radius:14px}
 .ta-table td.ta-col-rec{color:var(--blue);font-weight:600;background:rgba(0,71,187,.05)}
 .ta-table tbody tr:last-child td.ta-col-rec{border-bottom-left-radius:14px;border-bottom-right-radius:14px}
+/* sub-items sit under their parent in the mega panel — indented, with a short
+   tick marking the relationship rather than a full tree line */
+.mega-item--sub{position:relative;padding-left:30px}
+.mega-item--sub::before{
+  content:"";position:absolute;left:14px;top:50%;width:8px;height:1px;
+  background:rgba(255,255,255,.22);
+}
+.mega-item--sub .mega-ico{width:26px;height:26px;border-radius:8px}
+.mega-item--sub .mega-ico svg{width:14px;height:14px}
+.mega-item--sub .mega-txt b{font-size:12.5px}
+
 .ta-rec-badge{display:inline-block;margin-left:9px;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;padding:3px 9px;border-radius:70px;background:var(--blue);vertical-align:middle}
 .spec-yes,.spec-no{display:inline-grid;place-items:center;width:24px;height:24px}
 .spec-yes svg{width:21px;height:21px;color:#1f2a3d;stroke-width:2.4}
@@ -4393,15 +4404,14 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
   transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
 }
 .cp-lp:hover{transform:translateY(-4px);border-color:rgba(0,71,187,.26);box-shadow:0 26px 50px -30px rgba(20,44,96,.46),inset 0 1px 0 #fff}
-/* the provider's initials stand in for a logo we do not hold the rights to */
-.cp-lp-mark{
-  width:38px;height:38px;border-radius:11px;display:grid;place-items:center;flex:none;
-  font-size:13px;font-weight:800;letter-spacing:-.02em;color:var(--blue);
-  background:rgba(0,71,187,.08);border:1px solid rgba(0,71,187,.14);
-  transition:background .3s,color .3s,transform .4s var(--ease);
+/* logos are supplied at mixed heights, so cap both axes and let the box centre
+   them; greyscale at rest keeps ten different brand palettes from fighting */
+.cp-lp img{
+  max-width:100%;max-height:34px;width:auto;height:auto;object-fit:contain;
+  filter:grayscale(1);opacity:.72;
+  transition:filter .35s var(--ease),opacity .35s var(--ease),transform .4s var(--ease);
 }
-.cp-lp:hover .cp-lp-mark{background:var(--blue);color:#fff;border-color:transparent;transform:translateY(-2px)}
-.cp-lp b{font-size:13.5px;letter-spacing:-.015em;color:var(--text);line-height:1.3}
+.cp-lp:hover img{filter:none;opacity:1;transform:translateY(-2px)}
 .cp-lp-note{margin-top:22px;text-align:center;font-size:12.5px;line-height:1.7;color:var(--text-mute)}
 
 /* ---- spec tables — the site's Account specifications pattern ---- */
