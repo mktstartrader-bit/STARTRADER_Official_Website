@@ -2712,6 +2712,92 @@
     });
   }
 
+  /* ---------------- Regulation — entity filter, licence copy ---------------- */
+  function initRegulation() {
+    var wrap = document.querySelector('[data-rg-cards]');
+    if (!wrap) return;
+
+    var cards = Array.prototype.slice.call(wrap.querySelectorAll('.rg-ent'));
+    var chips = Array.prototype.slice.call(document.querySelectorAll('[data-rg-f]'));
+    var count = document.querySelector('[data-rg-count]');
+    var empty = document.querySelector('[data-rg-empty]');
+
+    function apply(key) {
+      var shown = 0;
+      cards.forEach(function (c) {
+        var hit = key === 'all' || c.getAttribute('data-rg-r') === key;
+        c.hidden = !hit;
+        if (hit) shown++;
+      });
+      chips.forEach(function (b) { b.classList.toggle('is-on', b.getAttribute('data-rg-f') === key); });
+      if (count) {
+        count.textContent = key === 'all'
+          ? 'Showing all ' + shown + ' entities'
+          : 'Showing ' + shown + ' of ' + cards.length + ' entities';
+      }
+      if (empty) empty.hidden = shown > 0;
+      if (hasST) ScrollTrigger.refresh();
+    }
+
+    chips.forEach(function (b) {
+      b.addEventListener('click', function () { apply(b.getAttribute('data-rg-f')); });
+    });
+    var reset = document.querySelector('[data-rg-reset]');
+    if (reset) reset.addEventListener('click', function () { apply('all'); });
+
+    /* a licence number is only useful if you can take it to the register */
+    wrap.querySelectorAll('[data-rg-copy]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var host = btn.closest('.rg-num');
+        var val = host && host.querySelector('[data-rg-val]');
+        if (!val) return;
+        var text = val.textContent.trim();
+        var done = function () {
+          btn.classList.add('is-done');
+          var was = btn.getAttribute('aria-label');
+          btn.setAttribute('aria-label', 'Copied ' + text);
+          setTimeout(function () {
+            btn.classList.remove('is-done');
+            if (was) btn.setAttribute('aria-label', was);
+          }, 1800);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done, done);
+        } else {
+          var ta = document.createElement('textarea');
+          ta.value = text; ta.setAttribute('readonly', '');
+          ta.style.position = 'absolute'; ta.style.left = '-9999px';
+          document.body.appendChild(ta); ta.select();
+          try { document.execCommand('copy'); } catch (e) {}
+          document.body.removeChild(ta);
+          done();
+        }
+      });
+    });
+
+    /* an entity linked from the hero index gets a brief highlight on arrival */
+    document.querySelectorAll('.rg-jump a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        apply('all');
+        var id = a.getAttribute('href').slice(1);
+        var card = document.getElementById(id);
+        if (!card || prefersReduced || !hasGSAP) return;
+        gsap.fromTo(card, { boxShadow: '0 0 0 0 rgba(0,71,187,.45)' },
+          { boxShadow: '0 0 0 8px rgba(0,71,187,0)', duration: 1.1, ease: 'power2.out', clearProps: 'boxShadow', delay: 0.35 });
+      });
+    });
+
+    if (prefersReduced || !hasGSAP || !hasST) return;
+    gsap.utils.toArray('[data-rg-aura]').forEach(function (aura) {
+      var amt = parseFloat(aura.getAttribute('data-rg-aura'));
+      if (!amt) return;
+      gsap.to(aura, {
+        yPercent: amt, ease: 'none',
+        scrollTrigger: { trigger: aura.parentNode, start: 'top bottom', end: 'bottom top', scrub: true }
+      });
+    });
+  }
+
   /* ---------------- Company — global presence map ---------------- */
   function initCompany() {
     var root = document.getElementById('coGlobal');
@@ -2798,6 +2884,7 @@
     initArticle();
     initAnnouncements();
     initContact();
+    initRegulation();
     initCompany();
     initHeroTicker();
     initMarkets();
