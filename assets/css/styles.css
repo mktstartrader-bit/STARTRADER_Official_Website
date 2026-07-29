@@ -4215,9 +4215,13 @@ html.is-animate [data-ct-cards]>*{opacity:0}
 /* ---- Risk + restrictions ---- */
 .rg-risk-sec{background:var(--bg-light);scroll-margin-top:calc(var(--chrome-h) + var(--chrome-gap))}
 .rg-risk-wrap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:start}
+/* glass, like every other card on the site */
 .rg-risk{
-  padding:28px 28px 26px;border-radius:20px;background:#fff;border:1px solid var(--line);
-  box-shadow:0 14px 34px -26px rgba(20,44,96,.3);
+  padding:28px 28px 26px;border-radius:20px;
+  background:rgba(255,255,255,.6);
+  -webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6);
+  border:1px solid rgba(255,255,255,.9);
+  box-shadow:0 14px 34px -24px rgba(20,44,96,.34),inset 0 1px 0 rgba(255,255,255,.92);
 }
 .rg-risk-h{display:flex;align-items:center;gap:12px;font-size:19px;letter-spacing:-.02em;color:var(--text)}
 .rg-risk-ic{
@@ -4271,10 +4275,16 @@ html.is-animate [data-ct-cards]>*{opacity:0}
 }
 .pt-lead{margin-top:18px;max-width:58ch;font-size:clamp(15px,1.5vw,17px);line-height:1.66;color:#c9d5ea}
 .pt-hact{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
-/* the three programme routes, restated in the banner as a quick chooser */
-.pt-hstrip{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,.1)}
-.pt-hstrip li{display:flex;align-items:center;gap:9px;font-size:13px;color:#a9bcdb}
-.pt-hstrip svg{width:16px;height:16px;flex:none;color:#7fb2ff}
+
+/* the value + dark grids reuse the forex section shells; these only supply
+   the partner pages' own backdrop so the shells stay untouched elsewhere */
+/* the aura layer lives in here, so it has to clip and stack like .pt-sec does */
+.pt-why{
+  position:relative;isolation:isolate;overflow:clip;
+  background:radial-gradient(58% 46% at 6% 0%,rgba(0,71,187,.08),transparent 62%),var(--bg-light);
+}
+.pt-why>.container{position:relative;z-index:1}
+.pt-hours{scroll-margin-top:calc(var(--chrome-h) + var(--chrome-gap))}
 
 /* ---- shared section shells ---- */
 .pt-sec{position:relative;isolation:isolate;overflow:clip}
@@ -4292,42 +4302,7 @@ html.is-animate [data-ct-cards]>*{opacity:0}
 .pt-aura.a1{top:-80px;right:-70px;width:min(500px,54vw);aspect-ratio:1;background:radial-gradient(circle,rgba(0,71,187,.08),transparent 68%)}
 .pt-aura.a2{bottom:-130px;left:-80px;width:min(440px,50vw);aspect-ratio:1;background:radial-gradient(circle,rgba(22,233,215,.07),transparent 68%)}
 
-/* ---- value cards (light) ---- */
-.pt-vals{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-.pt-vals--4{grid-template-columns:repeat(4,minmax(0,1fr))}
-.pt-val{
-  display:flex;flex-direction:column;padding:26px 24px 24px;border-radius:20px;min-width:0;
-  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
-}
-.pt-val:hover{transform:translateY(-5px);border-color:rgba(0,71,187,.26);box-shadow:0 30px 58px -32px rgba(20,44,96,.5),inset 0 1px 0 #fff}
-.pt-val-ic{
-  width:48px;height:48px;border-radius:15px;display:grid;place-items:center;margin-bottom:18px;
-  background:rgba(0,71,187,.09);color:var(--blue);transition:transform .4s var(--ease);
-}
-.pt-val-ic svg{width:22px;height:22px}
-.pt-val:hover .pt-val-ic{transform:translateY(-3px) scale(1.05)}
-.pt-val h3{font-size:17px;letter-spacing:-.02em;color:var(--text)}
-.pt-val p{margin-top:9px;font-size:13.5px;line-height:1.65;color:var(--text-soft)}
 
-/* ---- value cards (dark) ---- */
-.pt-dvals{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
-.pt-dval{
-  padding:26px 24px 24px;border-radius:20px;
-  background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.024));
-  -webkit-backdrop-filter:blur(20px) saturate(1.4);backdrop-filter:blur(20px) saturate(1.4);
-  border:1px solid rgba(255,255,255,.11);box-shadow:inset 0 1px 0 rgba(255,255,255,.07);
-  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
-}
-.pt-dval:hover{transform:translateY(-4px);border-color:rgba(90,150,255,.42);box-shadow:0 28px 56px -32px rgba(0,60,180,.6)}
-.pt-dval-ic{
-  width:46px;height:46px;border-radius:14px;display:grid;place-items:center;margin-bottom:17px;
-  color:#9fc0ff;background:rgba(90,150,255,.12);border:1px solid rgba(120,175,255,.22);
-  transition:transform .4s var(--ease);
-}
-.pt-dval:hover .pt-dval-ic{transform:translateY(-3px) scale(1.05)}
-.pt-dval-ic svg{width:22px;height:22px}
-.pt-dval h3{font-size:17px;letter-spacing:-.02em;color:#fff}
-.pt-dval p{margin-top:9px;font-size:13.5px;line-height:1.65;color:#a7b6d0}
 
 /* ---- the three programme models ---- */
 .pt-models{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
@@ -4363,38 +4338,26 @@ html.is-animate [data-ct-cards]>*{opacity:0}
 .pt-model:hover .pt-model-go svg{transform:translateX(4px)}
 .pt-model-go:hover{text-decoration:underline;text-underline-offset:3px}
 
-/* ---- numbered steps ---- */
-.pt-steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;counter-reset:pt}
-.pt-steps--4{grid-template-columns:repeat(4,minmax(0,1fr))}
-.pt-steps--3{grid-template-columns:repeat(3,minmax(0,1fr))}
-.pt-step{position:relative;padding:24px 20px 22px;border-radius:18px;min-width:0}
-.pt-step-n{
-  width:34px;height:34px;border-radius:50%;display:grid;place-items:center;margin-bottom:15px;
-  font-size:14px;font-weight:700;color:#fff;background:var(--blue);
-  box-shadow:0 12px 26px -14px rgba(0,71,187,.8);
-}
-.pt-step h3{font-size:15.5px;letter-spacing:-.015em;color:var(--text)}
-.pt-step p{margin-top:8px;font-size:13px;line-height:1.6;color:var(--text-soft)}
-/* the connector only makes sense while the steps sit on one row */
-.pt-step::after{
-  content:"";position:absolute;top:41px;right:-11px;width:22px;height:1px;
-  background:linear-gradient(90deg,rgba(0,71,187,.4),rgba(0,71,187,.08));
-}
-.pt-step:last-child::after{display:none}
 
 /* ---- MAM / PAMM comparison, tier tables ---- */
-.pt-table-wrap{overflow-x:auto;border-radius:18px;border:1px solid var(--line);background:#fff;box-shadow:0 14px 34px -26px rgba(20,44,96,.3)}
+.pt-table-wrap{
+  overflow-x:auto;border-radius:18px;
+  background:rgba(255,255,255,.6);
+  -webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6);
+  border:1px solid rgba(255,255,255,.9);
+  box-shadow:0 14px 34px -24px rgba(20,44,96,.34),inset 0 1px 0 rgba(255,255,255,.92);
+}
 .pt-table{width:100%;border-collapse:collapse;min-width:620px}
 .pt-table th,.pt-table td{padding:15px 20px;text-align:left;font-size:13.5px;border-bottom:1px solid var(--line)}
 .pt-table thead th{
   font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--text-mute);
-  background:var(--bg-light);white-space:nowrap;
+  background:rgba(255,255,255,.5);white-space:nowrap;
 }
 .pt-table tbody th{font-weight:700;color:var(--text);white-space:nowrap}
 .pt-table td{color:var(--text-soft)}
 .pt-table tbody tr:last-child th,.pt-table tbody tr:last-child td{border-bottom:0}
 .pt-table tbody tr{transition:background .25s}
-.pt-table tbody tr:hover{background:rgba(0,71,187,.03)}
+.pt-table tbody tr:hover{background:rgba(255,255,255,.45)}
 .pt-table .num{font-weight:700;color:var(--text);font-variant-numeric:tabular-nums}
 .pt-table-note{margin-top:14px;font-size:12.5px;line-height:1.6;color:var(--text-mute)}
 
@@ -4438,10 +4401,7 @@ html.is-animate [data-ct-cards]>*{opacity:0}
 
 /* ---- Responsive ---- */
 @media (max-width:1080px){
-  .pt-vals,.pt-vals--4,.pt-dvals{grid-template-columns:repeat(2,minmax(0,1fr))}
   .pt-models{grid-template-columns:1fr}
-  .pt-steps,.pt-steps--4,.pt-steps--3{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .pt-step::after{display:none}
   .pt-tiers{grid-template-columns:1fr}
   .pt-form-wrap{grid-template-columns:1fr;gap:30px}
   .pt-form-aside{position:static}
@@ -4451,12 +4411,7 @@ html.is-animate [data-ct-cards]>*{opacity:0}
 }
 @media (max-width:720px){
   .pt-hero{min-height:auto}
-  .pt-vals,.pt-vals--4,.pt-dvals{grid-template-columns:1fr}
-  .pt-steps,.pt-steps--4,.pt-steps--3{grid-template-columns:1fr}
   .pt-tabs{flex-wrap:wrap}
   .pt-tab{flex:1 1 100%}
   .pt-aura{filter:blur(54px)}
-}
-@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
-  .pt-dval{background:rgba(12,18,36,.94)}
 }
