@@ -2677,8 +2677,10 @@
     });
 
     if (prefersReduced) {
+      // contact's banner is a still, so there is nothing to pause here — the
+      // guard keeps this working if the banner ever goes back to footage
       var film = document.querySelector('.wb-hero-video');
-      if (film) { film.removeAttribute('autoplay'); film.pause(); }
+      if (film && typeof film.pause === 'function') { film.removeAttribute('autoplay'); film.pause(); }
     }
     show(1);
     ctMotion();
