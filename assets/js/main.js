@@ -2397,9 +2397,42 @@
         });
       });
 
+      /* one tap anywhere on the date field opens the browser's picker */
+      var field = dlg.querySelector('[data-an-datefield]');
+      var canPick = !!(mFrom && typeof mFrom.showPicker === 'function');
+      if (field && canPick) {
+        field.classList.add('has-picker');
+        field.addEventListener('click', function (e) {
+          var target = e.target === mTo ? mTo : (e.target === mFrom ? mFrom : (mFrom.value && !mTo.value ? mTo : mFrom));
+          try { target.showPicker(); } catch (err) { target.focus(); }
+        });
+      }
+
+      /* the draft state previews how many notices will survive it */
+      function preview() {
+        var el = dlg.querySelector('[data-an-preview]');
+        if (!el) return;
+        var dCats = mCats.filter(function (c) { return c.checked && c.getAttribute('data-an-mcat') !== 'all'; })
+          .map(function (c) { return c.getAttribute('data-an-mcat'); });
+        var dFrom = mFrom ? mFrom.value : '', dTo = mTo ? mTo.value : '';
+        var dMonth = (dFrom || dTo) ? 'all' : month;
+        var q = query.trim().toLowerCase();
+        var n = items.filter(function (it) {
+          var d = it.getAttribute('data-date') || '';
+          return (!dCats.length || dCats.indexOf(it.getAttribute('data-cat')) > -1) &&
+            (dMonth === 'all' || it.getAttribute('data-month') === dMonth) &&
+            (!dFrom || d >= dFrom) && (!dTo || d <= dTo) &&
+            (!q || it._hay.indexOf(q) > -1);
+        }).length;
+        el.textContent = n + (n === 1 ? ' notice' : ' notices');
+      }
+      dlg.addEventListener('change', preview);
+      dlg.addEventListener('input', preview);
+
       if (openBtn) openBtn.addEventListener('click', function () {
         syncModal();
         if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+        preview();
       });
       var close = function () { if (dlg.close) dlg.close(); else dlg.removeAttribute('open'); };
       dlg.querySelectorAll('[data-an-close],[data-an-cancel]').forEach(function (b) {
@@ -2414,6 +2447,7 @@
         mSorts.forEach(function (r) { r.checked = r.getAttribute('data-an-sort') === 'latest'; });
         if (mFrom) mFrom.value = '';
         if (mTo) mTo.value = '';
+        preview();
       });
 
       var applyBtn = dlg.querySelector('[data-an-apply]');

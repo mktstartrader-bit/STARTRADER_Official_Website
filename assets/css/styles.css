@@ -3678,84 +3678,122 @@ html.is-animate .head [data-reveal]{will-change:transform,opacity}
   background:var(--blue);color:#fff;font-variant-numeric:tabular-nums;
 }
 
-/* dialog */
+/* dialog — clean white sheet, airy rows, one date field */
 .an-modal{
   /* a sized dialog needs the margin restated, or it parks at the top-left */
   inset:0;margin:auto;
-  width:min(720px,calc(100vw - 32px));max-height:min(86vh,760px);padding:0;border:0;overflow:visible;
-  border-radius:var(--radius-xl);background:rgba(255,255,255,.86);
-  -webkit-backdrop-filter:blur(26px) saturate(1.6);backdrop-filter:blur(26px) saturate(1.6);
-  box-shadow:0 50px 110px -40px rgba(10,24,60,.6),inset 0 1px 0 #fff;color:var(--text);
+  width:min(660px,calc(100vw - 28px));max-height:min(88vh,780px);padding:0;border:0;overflow:visible;
+  border-radius:26px;background:#fff;color:var(--text);
+  box-shadow:0 60px 120px -40px rgba(8,20,52,.55),0 2px 8px rgba(8,20,52,.08);
 }
-.an-modal::backdrop{background:rgba(4,8,20,.62);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.an-modal::backdrop{background:rgba(4,8,20,.55);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}
 @media (prefers-reduced-motion:no-preference){
-  .an-modal[open]{animation:anModalIn .34s var(--ease-out)}
-  .an-modal[open]::backdrop{animation:anFadeIn .34s ease}
-  @keyframes anModalIn{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:none}}
+  .an-modal[open]{animation:anModalIn .32s var(--ease-out)}
+  .an-modal[open]::backdrop{animation:anFadeIn .32s ease}
+  @keyframes anModalIn{from{opacity:0;transform:translateY(12px) scale(.99)}to{opacity:1;transform:none}}
   @keyframes anFadeIn{from{opacity:0}to{opacity:1}}
 }
 .an-modal-in{display:flex;flex-direction:column;max-height:inherit}
-.an-modal-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 24px 0}
-.an-modal-head h2{font-size:22px;letter-spacing:-.025em;color:var(--text)}
+.an-modal-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:26px 30px 0}
+.an-modal-head h2{font-size:24px;letter-spacing:-.028em;color:var(--text)}
 .an-modal-x{
   width:34px;height:34px;border-radius:50%;display:grid;place-items:center;cursor:pointer;
-  color:var(--text-soft);background:var(--bg-light);transition:background .25s,color .25s,transform .3s var(--ease);
+  color:var(--text-mute);background:var(--bg-light);transition:background .25s,color .25s,transform .3s var(--ease);
 }
-.an-modal-x svg{width:15px;height:15px}
+.an-modal-x svg{width:14px;height:14px}
 .an-modal-x:hover{background:rgba(0,71,187,.1);color:var(--blue);transform:rotate(90deg)}
-.an-modal-body{padding:20px 24px 4px;overflow-y:auto}
-.an-fld-h{display:block;font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--text-soft);margin-bottom:9px}
-.an-daterow{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.an-modal-body{padding:22px 30px 6px;overflow-y:auto}
+
+.an-fld-top{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:10px}
+.an-fld-h{display:block;font-size:12.5px;font-weight:700;letter-spacing:.02em;color:var(--text-soft)}
+.an-clearall{
+  display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:var(--text-mute);cursor:pointer;
+  padding:6px 10px;border-radius:70px;transition:color .25s,background .25s;
+}
+.an-clearall svg{width:11px;height:11px}
+.an-clearall:hover{color:var(--blue);background:rgba(0,71,187,.07)}
+/* reads as a single control, though it holds two real date inputs */
 .an-dates{
-  display:flex;align-items:center;gap:8px;flex:1 1 320px;min-width:0;
-  padding:10px 14px;border-radius:14px;background:#fff;border:1px solid var(--line);
+  display:flex;align-items:center;gap:10px;width:100%;
+  padding:13px 16px;border-radius:14px;background:#fff;border:1px solid var(--line);cursor:text;
   transition:border-color .25s,box-shadow .25s;
 }
-.an-dates:focus-within{border-color:rgba(0,71,187,.5);box-shadow:0 0 0 4px rgba(0,71,187,.12)}
+.an-dates:hover{border-color:rgba(0,71,187,.32)}
+.an-dates:focus-within{border-color:rgba(0,71,187,.55);box-shadow:0 0 0 4px rgba(0,71,187,.11)}
 .an-cal{flex:none;display:grid;place-items:center;color:var(--blue)}
-.an-cal svg{width:17px;height:17px}
+.an-cal svg{width:18px;height:18px}
 .an-dates input{
-  flex:1 1 0;min-width:0;border:0;outline:none;background:none;font:inherit;font-size:14px;color:var(--text);
-  font-variant-numeric:tabular-nums;
+  flex:1 1 0;min-width:0;border:0;outline:none;background:none;font:inherit;font-size:14.5px;color:var(--text);
+  font-variant-numeric:tabular-nums;cursor:pointer;
 }
-.an-dash{color:var(--text-mute);flex:none}
-.an-clearall{
-  display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--text-soft);cursor:pointer;
-  padding:8px 12px;border-radius:70px;transition:color .25s,background .25s;
-}
-.an-clearall svg{width:12px;height:12px}
-.an-clearall:hover{color:var(--blue);background:rgba(0,71,187,.07)}
+.an-dates input:invalid{color:var(--text-mute)}
+/* where the browser can open the picker for us, drop its duplicate glyph */
+.an-dates.has-picker input::-webkit-calendar-picker-indicator{display:none}
+.an-dash{color:var(--text-mute);flex:none;font-size:15px}
 
-.an-modal-cols{display:grid;grid-template-columns:1fr 1fr;gap:20px 26px;margin-top:22px}
+.an-modal-cols{display:grid;grid-template-columns:1fr 1fr;gap:24px 30px;margin-top:26px}
 .an-fset{border:0;padding:0;min-width:0}
-.an-fset legend{padding:0}
-.an-check{display:flex;align-items:center;gap:11px;padding:9px 2px;font-size:14.5px;color:var(--text);cursor:pointer}
+.an-fset legend{padding:0;margin-bottom:6px}
+.an-check{
+  display:flex;align-items:flex-start;gap:12px;padding:10px 10px 10px 8px;margin-left:-8px;border-radius:12px;
+  font-size:14.5px;color:var(--text);cursor:pointer;transition:background .2s;
+}
+.an-check:hover{background:rgba(0,71,187,.045)}
+.an-check.is-off,.an-check.is-off:hover{color:var(--text-mute);cursor:not-allowed;background:none}
 .an-check input{position:absolute;opacity:0;width:0;height:0}
 .an-box{
-  flex:none;width:20px;height:20px;border-radius:6px;display:grid;place-items:center;
-  background:#fff;border:1.5px solid rgba(20,40,80,.22);color:transparent;
+  flex:none;width:21px;height:21px;margin-top:1px;border-radius:6px;display:grid;place-items:center;
+  background:var(--bg-light);border:1.5px solid rgba(20,40,80,.18);color:transparent;
   transition:background .2s,border-color .2s,color .2s;
 }
 .an-box svg{width:12px;height:12px}
 .an-box--r{border-radius:50%}
-.an-box--r::after{content:"";width:8px;height:8px;border-radius:50%;background:#fff;transition:background .2s}
+.an-check:hover .an-box{border-color:rgba(0,71,187,.4)}
 .an-check input:checked+.an-box{background:var(--blue);border-color:var(--blue);color:#fff}
-.an-check input:checked+.an-box--r::after{background:#fff}
+.an-check input:checked+.an-box--r{box-shadow:inset 0 0 0 4px #fff}
 .an-check input:focus-visible+.an-box{outline:2px solid var(--blue);outline-offset:3px}
-.an-check.is-off{color:var(--text-mute);cursor:not-allowed}
 .an-check.is-off .an-box{background:var(--bg-light);border-color:var(--line)}
-.an-hint{display:block;font-style:normal;font-size:11px;color:var(--text-mute);margin-top:1px}
+.an-check-t{line-height:1.35}
+.an-hint{display:block;font-style:normal;font-size:11.5px;color:var(--text-mute);margin-top:2px}
 
-.an-modal-foot{display:flex;gap:12px;padding:18px 24px 22px;border-top:1px solid rgba(20,40,80,.08);margin-top:14px}
-.an-modal-foot .btn{flex:1 1 0}
+.an-modal-foot{display:flex;align-items:center;justify-content:center;gap:12px;padding:22px 30px 26px}
+.an-apply{min-width:170px;padding:15px 26px}
+.an-apply span:not(:empty){opacity:.8;font-weight:500}
+.an-apply span:not(:empty)::before{content:" · "}
+.an-cancel{
+  min-width:120px;padding:15px 24px;border-radius:70px;cursor:pointer;
+  font-size:14px;font-weight:600;color:var(--text-soft);background:var(--bg-light);border:1px solid var(--line);
+  transition:color .25s,border-color .25s,background .25s;
+}
+.an-cancel:hover{color:var(--text);border-color:rgba(20,40,80,.25);background:#fff}
 
 @media (max-width:720px){
   .an-item summary{grid-template-columns:auto minmax(0,1fr);grid-template-areas:"date tags" "date title" "date meta" "acts acts"}
   .an-acts{justify-content:flex-end;padding-top:4px}
-  .an-modal-cols{grid-template-columns:1fr;gap:8px}
+  .an-modal-cols{grid-template-columns:1fr;gap:10px}
   .an-modal-foot{flex-direction:column-reverse}
-  .an-daterow{gap:8px}
-  .an-clearall{margin-left:auto}
+  .an-apply,.an-cancel{width:100%}
+}
+/* phones: a bottom sheet beats a centred box that nearly fills the screen */
+@media (max-width:560px){
+  .an-modal{
+    inset:auto 0 0;margin:0;width:100%;max-width:none;max-height:90vh;
+    border-radius:26px 26px 0 0;
+  }
+  .an-modal-head{padding:20px 20px 0}
+  .an-modal-body{padding:18px 20px 6px}
+  .an-modal-foot{padding:16px 20px calc(18px + env(safe-area-inset-bottom,0px))}
+  /* a grab handle signals the sheet */
+  .an-modal-head::before{
+    content:"";position:absolute;top:9px;left:50%;transform:translateX(-50%);
+    width:42px;height:4px;border-radius:4px;background:rgba(20,40,80,.16);
+  }
+  .an-modal-head{position:relative;padding-top:26px}
+  .an-check{padding:11px 10px 11px 8px}
+  @media (prefers-reduced-motion:no-preference){
+    .an-modal[open]{animation:anSheetIn .34s var(--ease-out)}
+    @keyframes anSheetIn{from{opacity:.4;transform:translateY(100%)}to{opacity:1;transform:none}}
+  }
 }
 
 /* active-filter chips — every constraint is visible and clearable in one click */
