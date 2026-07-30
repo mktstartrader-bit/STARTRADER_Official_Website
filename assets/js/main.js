@@ -1438,7 +1438,9 @@
   /* ---------------- Webinars — schedule, timezone, countdown, subscribe ---------------- */
   function initWebinars() {
     var root = document.getElementById('schedule');
-    if (!root) return;
+    // the id is generic enough that another page can legitimately use it, so
+    // confirm this really is the webinar schedule before touching its children
+    if (!root || !root.querySelector('[data-wb-item]')) return;
 
     var LANGS = { en: 'English', ar: 'العربية', zh: '简体中文', th: 'ไทย' };
     var items = Array.prototype.slice.call(document.querySelectorAll('[data-wb-item]'));
@@ -3312,6 +3314,129 @@
     })();
   }
 
+
+  /* ---------------- Listing filters (CSR / events / media / achievements) ---------------- */
+  function initPageList() {
+    var root = document.getElementById('latest');
+    if (!root || !root.querySelector('[data-pg-item]')) return;
+    var items = Array.prototype.slice.call(root.querySelectorAll('[data-pg-item]'));
+    var chips = Array.prototype.slice.call(root.querySelectorAll('[data-pg-cat]'));
+    var statusEl = root.querySelector('[data-pg-status]');
+    var emptyEl = root.querySelector('[data-pg-empty]');
+    var resetBtn = root.querySelector('[data-pg-reset]');
+    var cat = 'all';
+
+    function apply() {
+      var shown = 0;
+      items.forEach(function (el) {
+        var on = cat === 'all' || el.getAttribute('data-cat') === cat;
+        el.hidden = !on;
+        if (on) shown++;
+      });
+      chips.forEach(function (b) {
+        var on = b.getAttribute('data-pg-cat') === cat;
+        b.classList.toggle('is-on', on);
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      if (emptyEl) emptyEl.hidden = shown !== 0;
+      if (statusEl) statusEl.textContent = shown ? 'Showing ' + shown + (shown === 1 ? ' item' : ' items') : '';
+      if (hasST) ScrollTrigger.refresh();
+    }
+    chips.forEach(function (b) {
+      b.addEventListener('click', function () { cat = b.getAttribute('data-pg-cat'); apply(); });
+    });
+    if (resetBtn) resetBtn.addEventListener('click', function () { cat = 'all'; apply(); });
+    apply();
+  }
+
+  /* ---------------- Help centre topic search ---------------- */
+  function initHelpCentre() {
+    var input = document.getElementById('hcSearch');
+    if (!input) return;
+    var wrap = document.querySelector('.hc-topics');
+    var topics = Array.prototype.slice.call(document.querySelectorAll('.hc-topic'));
+    var clear = document.getElementById('hcClear');
+    var statusEl = document.querySelector('[data-hc-status]');
+    var emptyEl = document.querySelector('[data-hc-empty]');
+    var resetBtn = document.querySelector('[data-hc-reset]');
+    topics.forEach(function (t) { t._hay = t.textContent.toLowerCase(); });
+
+    function apply() {
+      var q = input.value.trim().toLowerCase();
+      var shown = 0;
+      topics.forEach(function (t) {
+        var on = !q || t._hay.indexOf(q) > -1;
+        t.hidden = !on;
+        if (on) shown++;
+      });
+      if (clear) clear.hidden = !input.value;
+      if (emptyEl) emptyEl.hidden = shown !== 0;
+      if (wrap) wrap.hidden = shown === 0;
+      if (statusEl) statusEl.textContent = q ? (shown ? shown + (shown === 1 ? ' topic' : ' topics') + ' matching “' + input.value.trim() + '”' : '') : '';
+      if (hasST) ScrollTrigger.refresh();
+    }
+    var t;
+    input.addEventListener('input', function () { clearTimeout(t); t = setTimeout(apply, 110); });
+    input.addEventListener('keydown', function (e) { if (e.key === 'Escape' && input.value) { input.value = ''; apply(); } });
+    if (clear) clear.addEventListener('click', function () { input.value = ''; apply(); input.focus(); });
+    if (resetBtn) resetBtn.addEventListener('click', function () { input.value = ''; apply(); });
+  }
+
+  /* ---------------- PCCME telemetry (this page only) ---------------- */
+  function initTelemetry() {
+    var root = document.querySelector('[data-tel]');
+    if (!root) return;
+    // speed / throttle / brake / gear per phase — narrative numbers, not a simulation
+    var LAPS = [
+      { title: 'Preparation', sub: 'Setup and simulation', v: 90,  thr: 25, brk: 10, gear: 2,
+        note: 'Before the lights, the work is already done. The same is true of a trade you have planned.' },
+      { title: 'Qualifying',  sub: 'Finding the limit',    v: 205, thr: 82, brk: 34, gear: 5,
+        note: 'Qualifying is where you learn where the limit is — cheaply, before it costs you the race.' },
+      { title: 'Race start',  sub: 'Committing to the plan', v: 168, thr: 64, brk: 58, gear: 4,
+        note: 'The plan survives contact or it was never a plan. Position sizing is decided before the lights, not after.' },
+      { title: 'Final lap',   sub: 'Holding the line',     v: 246, thr: 96, brk: 18, gear: 6,
+        note: 'Holding a lead is a different skill from taking one. So is holding a winning position.' }
+    ];
+    var MAX = 300, ARC = 315;
+    var els = {
+      title: root.querySelector('[data-tel-title]'), sub: root.querySelector('[data-tel-sub]'),
+      gear: root.querySelector('[data-tel-gear]'), arc: root.querySelector('[data-tel-arc]'),
+      val: root.querySelector('[data-tel-val]'), thr: root.querySelector('[data-tel-thr]'),
+      brk: root.querySelector('[data-tel-brk]'), lap: root.querySelector('[data-tel-lapno]'),
+      note: root.querySelector('[data-tel-note]')
+    };
+    var buttons = Array.prototype.slice.call(root.querySelectorAll('[data-tel-lap]'));
+    var tween = null;
+
+    function count(el, to) {
+      if (!el) return;
+      if (prefersReduced || !hasGSAP) { el.textContent = to; return; }
+      var obj = { v: parseFloat(el.textContent) || 0 };
+      gsap.to(obj, { v: to, duration: .9, ease: 'power2.out',
+        onUpdate: function () { el.textContent = Math.round(obj.v); } });
+    }
+    function select(i) {
+      var L = LAPS[i];
+      buttons.forEach(function (b, n) {
+        b.classList.toggle('is-on', n === i);
+        b.setAttribute('aria-pressed', n === i ? 'true' : 'false');
+      });
+      if (els.title) els.title.textContent = L.title;
+      if (els.sub) els.sub.textContent = L.sub;
+      if (els.gear) els.gear.textContent = L.gear;
+      if (els.note) els.note.textContent = L.note;
+      if (els.lap) els.lap.textContent = i + 1;
+      if (els.arc) els.arc.style.strokeDashoffset = String(ARC - ARC * (L.v / MAX));
+      count(els.val, L.v); count(els.thr, L.thr); count(els.brk, L.brk);
+    }
+    buttons.forEach(function (b, i) { b.addEventListener('click', function () { select(i); }); });
+
+    // run the first phase only once the dial is actually on screen
+    if (!prefersReduced && hasST) {
+      ScrollTrigger.create({ trigger: root, start: 'top 78%', once: true, onEnter: function () { select(0); } });
+    } else { select(0); }
+  }
+
   /* ---------------- Boot ---------------- */
   function boot() {
     if (!prefersReduced && hasGSAP && hasST) doc.classList.add('is-animate');
@@ -3354,6 +3479,9 @@
     initMarkets();
     initMarketAnalysis();
     initKnowledge();
+    initPageList();
+    initHelpCentre();
+    initTelemetry();
     if (hasST) ScrollTrigger.refresh();
     window.addEventListener('load', function () { if (hasST) ScrollTrigger.refresh(); });
   }
