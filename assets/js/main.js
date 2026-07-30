@@ -3471,6 +3471,84 @@
     sync();
   }
 
+
+  /* ---------------- Copy trading: journey tabs + provider ranking ---------------- */
+  function initCopyTrade() {
+    var jr = document.getElementById('journey');
+    if (jr) {
+      var tabs = Array.prototype.slice.call(jr.querySelectorAll('[data-ct-tab]'));
+      var panels = Array.prototype.slice.call(jr.querySelectorAll('[data-ct-panel]'));
+      var ind = jr.querySelector('[data-ct-ind]');
+
+      function moveInd() {
+        if (!ind) return;
+        var on = tabs.filter(function (t) { return t.classList.contains('is-on'); })[0];
+        if (!on) return;
+        ind.style.width = on.offsetWidth + 'px';
+        ind.style.transform = 'translateX(' + on.offsetLeft + 'px)';
+      }
+      function select(key) {
+        tabs.forEach(function (t) {
+          var on = t.getAttribute('data-ct-tab') === key;
+          t.classList.toggle('is-on', on);
+          t.setAttribute('aria-selected', on ? 'true' : 'false');
+          t.tabIndex = on ? 0 : -1;
+        });
+        panels.forEach(function (pn) { pn.hidden = pn.getAttribute('data-ct-panel') !== key; });
+        moveInd();
+        if (hasST) ScrollTrigger.refresh();
+      }
+      tabs.forEach(function (t, i) {
+        t.addEventListener('click', function () { select(t.getAttribute('data-ct-tab')); });
+        t.addEventListener('keydown', function (e) {
+          var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+          if (!d) return;
+          e.preventDefault();
+          var nx = tabs[(i + d + tabs.length) % tabs.length];
+          nx.click(); nx.focus();
+        });
+      });
+      moveInd();
+      window.addEventListener('resize', moveInd);
+      window.addEventListener('load', moveInd);
+    }
+
+    var rank = document.querySelector('[data-ct-rows]');
+    if (!rank) return;
+    var rows = Array.prototype.slice.call(rank.querySelectorAll('[data-ct-row]'));
+    var sorts = Array.prototype.slice.call(document.querySelectorAll('[data-ct-sort]'));
+
+    function apply(key) {
+      // drawdown sorts ascending — a small number is the good one there
+      var asc = key === 'dd';
+      rows.slice().sort(function (a, b) {
+        var av = parseFloat(a.getAttribute('data-' + key)), bv = parseFloat(b.getAttribute('data-' + key));
+        return asc ? av - bv : bv - av;
+      }).forEach(function (el, i) {
+        rank.appendChild(el);
+        var n = el.querySelector('.ct-rank');
+        if (n) n.textContent = (i + 1 < 10 ? '0' : '') + (i + 1);
+      });
+      sorts.forEach(function (b) {
+        var on = b.getAttribute('data-ct-sort') === key;
+        b.classList.toggle('is-on', on);
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+    }
+    sorts.forEach(function (b) {
+      b.addEventListener('click', function () { apply(b.getAttribute('data-ct-sort')); });
+    });
+
+    // draw the curves once the board is on screen
+    var board = document.querySelector('.ct-rank');
+    if (!board) return;
+    if (prefersReduced || !('IntersectionObserver' in window)) { board.classList.add('is-seen'); return; }
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { board.classList.add('is-seen'); io.unobserve(e.target); } });
+    }, { threshold: 0.2 });
+    io.observe(board);
+  }
+
   /* ---------------- Boot ---------------- */
   function boot() {
     if (!prefersReduced && hasGSAP && hasST) doc.classList.add('is-animate');
@@ -3517,6 +3595,7 @@
     initHelpCentre();
     initTelemetry();
     initMtRail();
+    initCopyTrade();
     if (hasST) ScrollTrigger.refresh();
     window.addEventListener('load', function () { if (hasST) ScrollTrigger.refresh(); });
   }
