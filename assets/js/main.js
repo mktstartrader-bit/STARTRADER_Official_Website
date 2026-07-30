@@ -3526,8 +3526,8 @@
         return asc ? av - bv : bv - av;
       }).forEach(function (el, i) {
         rank.appendChild(el);
-        var n = el.querySelector('.ct-rank');
-        if (n) n.textContent = (i + 1 < 10 ? '0' : '') + (i + 1);
+        var n = el.querySelector('.ct-rank-n');
+        if (n) n.textContent = i + 1;
       });
       sorts.forEach(function (b) {
         var on = b.getAttribute('data-ct-sort') === key;
@@ -3540,7 +3540,7 @@
     });
 
     // draw the curves once the board is on screen
-    var board = document.querySelector('.ct-rank');
+    var board = document.querySelector('.ct-cards');
     if (!board) return;
     if (prefersReduced || !('IntersectionObserver' in window)) { board.classList.add('is-seen'); return; }
     var io = new IntersectionObserver(function (es) {
