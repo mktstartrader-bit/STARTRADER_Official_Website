@@ -1355,7 +1355,7 @@
 
     if (!term) {
       host.innerHTML = '<p>We couldn’t find that term. It may have been renamed or removed — ' +
-        '<a href="glossary.html">browse the full A–Z</a> to find what you need.</p>';
+        '<a href="index.html">browse the full A–Z</a> to find what you need.</p>';
       txt('gt-title', 'Term not found');
       txt('gtLead', 'That entry isn’t in the glossary.');
       txt('gtCrumbTerm', 'Not found');
@@ -1386,7 +1386,7 @@
     txt('gtLead', term.lead);
     txt('gtCrumbTerm', term.t);
     var cl = document.getElementById('gtCrumbLetter');
-    if (cl) { cl.textContent = term.l; cl.href = 'glossary.html#gl-h-' + term.l; }
+    if (cl) { cl.textContent = term.l; cl.href = 'index.html#gl-h-' + term.l; }
 
     // body
     host.innerHTML = (term.def || []).map(function (p) { return '<p>' + p + '</p>'; }).join('');
@@ -1430,7 +1430,7 @@
         '@context': 'https://schema.org', '@type': 'DefinedTerm',
         name: term.t, description: term.lead + ' ' + (term.def || []).join(' '),
         url: 'https://www.startrader.com/glossary-term.html?term=' + slug,
-        inDefinedTermSet: { '@type': 'DefinedTermSet', name: 'STARTRADER Trading Glossary', url: 'https://www.startrader.com/glossary.html' }
+        inDefinedTermSet: { '@type': 'DefinedTermSet', name: 'STARTRADER Trading Glossary', url: 'https://www.startrader.com/education/learn/glossary/' }
       });
     }
   }
@@ -3015,6 +3015,370 @@
     }
   }
 
+
+  /* ---------------- Cursor spotlight on bento cards ---------------- */
+  function initSpotlight() {
+    var cards = Array.prototype.slice.call(document.querySelectorAll('[data-spot]'));
+    if (!cards.length || prefersReduced) return;
+    // pointer-only: on touch the gradient would stick wherever the last tap was
+    if (!window.matchMedia || !window.matchMedia('(hover:hover)').matches) return;
+    cards.forEach(function (c) {
+      c.addEventListener('mousemove', function (e) {
+        var r = c.getBoundingClientRect();
+        c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
+    });
+  }
+
+  /* ---------------- Market analysis ---------------- */
+  function initMarketAnalysis() {
+    var page = document.querySelector('.ma-hero');
+    if (!page) return;
+
+    /* --- hero terminal: nudge the quote so the panel reads as live --- */
+    (function () {
+      var term = document.querySelector('[data-ma-term]');
+      if (!term || prefersReduced) return;
+      var pxEl = term.querySelector('[data-ma-px]');
+      var chgEl = term.querySelector('[data-ma-chg]');
+      var agoEl = term.querySelector('[data-ma-ago]');
+      if (!pxEl) return;
+      var base = parseFloat(pxEl.textContent.replace(/,/g, '')) || 0;
+      var cur = base, t0 = Date.now();
+      setInterval(function () {
+        cur = cur + base * 0.0004 * (Math.random() * 2 - 1) + (base - cur) * 0.06;
+        pxEl.textContent = cur.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        var chg = ((cur - base) / base) * 100 + 1.24;
+        if (chgEl) {
+          chgEl.textContent = (chg >= 0 ? '▲ ' : '▼ ') + Math.abs(chg).toFixed(2) + '%';
+          chgEl.className = 'ma-term-chg ' + (chg >= 0 ? 'up' : 'down');
+        }
+        if (agoEl) {
+          var s = Math.round((Date.now() - t0) / 1000);
+          agoEl.textContent = s < 5 ? 'just now' : s + 's ago';
+        }
+      }, 2200);
+    })();
+
+    /* --- pulse ticker: duplicate the track, then loop it --- */
+    (function () {
+      var track = document.querySelector('[data-ma-ticker]');
+      if (!track) return;
+      var items = Array.prototype.slice.call(track.children);
+      items.forEach(function (n) { track.appendChild(n.cloneNode(true)); });
+
+      // each quote drifts around its own base so the strip never looks frozen
+      var live = Array.prototype.slice.call(track.querySelectorAll('[data-ma-t]')).map(function (el) {
+        var base = parseFloat(el.getAttribute('data-base')) || 0;
+        return { el: el, base: base, cur: base, dec: parseInt(el.getAttribute('data-dec') || '2', 10) };
+      });
+      if (!prefersReduced) {
+        setInterval(function () {
+          live.forEach(function (q) {
+            if (Math.random() > 0.55) return;
+            q.cur = q.cur + q.base * 0.0005 * (Math.random() * 2 - 1) + (q.base - q.cur) * 0.05;
+            var px = q.el.querySelector('[data-px]');
+            var chg = q.el.querySelector('[data-chg]');
+            if (px) px.textContent = q.cur.toLocaleString('en-US', { minimumFractionDigits: q.dec, maximumFractionDigits: q.dec });
+            if (chg) {
+              var d = ((q.cur - q.base) / q.base) * 100;
+              chg.textContent = (d >= 0 ? '+' : '') + d.toFixed(2) + '%';
+              chg.className = d >= 0 ? 'up' : 'down';
+            }
+          });
+        }, 2000);
+      }
+
+      if (prefersReduced || !hasGSAP) return;
+      var half = track.scrollWidth / 2;
+      if (!half) return;
+      var tween = gsap.to(track, {
+        x: -half, duration: half / 55, ease: 'none', repeat: -1,
+        modifiers: { x: function (x) { return (parseFloat(x) % half) + 'px'; } }
+      });
+      track.parentElement.addEventListener('mouseenter', function () { tween.timeScale(0.25); });
+      track.parentElement.addEventListener('mouseleave', function () { tween.timeScale(1); });
+    })();
+
+    /* --- hero quick-jump preselects a filter --- */
+    Array.prototype.slice.call(document.querySelectorAll('[data-ma-jump]')).forEach(function (a) {
+      a.addEventListener('click', function () {
+        var chip = document.querySelector('[data-ma-cat="' + a.getAttribute('data-ma-jump') + '"]');
+        if (chip) setTimeout(function () { chip.click(); }, 260);
+      });
+    });
+
+    /* --- report filtering --- */
+    (function () {
+      var root = document.getElementById('reports');
+      if (!root) return;
+      var PAGE = 6;
+      var NAMES = { ta: 'Technical', fa: 'Fundamental', wk: 'Weekly', mo: 'Monthly' };
+
+      var items = Array.prototype.slice.call(root.querySelectorAll('[data-ma-item]'));
+      var chips = Array.prototype.slice.call(root.querySelectorAll('[data-ma-cat]'));
+      var input = document.getElementById('maSearch');
+      var clear = document.getElementById('maClear');
+      var statusEl = root.querySelector('[data-ma-status]');
+      var emptyEl = root.querySelector('[data-ma-empty]');
+      var emptyQ = root.querySelector('[data-ma-empty-q]');
+      var resetBtn = root.querySelector('[data-ma-reset]');
+      var moreRow = root.querySelector('[data-ma-morerow]');
+      var moreBtn = root.querySelector('[data-ma-more]');
+      var cat = 'all', query = '', shown = PAGE;
+
+      items.forEach(function (el) {
+        el._h = el.querySelector('h3 a');
+        el._p = el.querySelector('p');
+        el._hRaw = el._h ? el._h.textContent : '';
+        el._pRaw = el._p ? el._p.textContent : '';
+        el._hay = ((el.getAttribute('data-title') || '') + ' ' + el._pRaw).toLowerCase();
+      });
+
+      function esc(t) { return t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+      function mark(el, raw, q) {
+        if (!el) return;
+        if (!q) { el.textContent = raw; return; }
+        el.innerHTML = raw.replace(new RegExp('(' + esc(q) + ')', 'ig'), '<mark>$1</mark>');
+      }
+
+      function apply() {
+        var q = query.trim().toLowerCase();
+        var matched = items.filter(function (el) {
+          return (cat === 'all' || el.getAttribute('data-cat') === cat) && (!q || el._hay.indexOf(q) > -1);
+        });
+        items.forEach(function (el) { el.hidden = true; });
+        matched.forEach(function (el, i) {
+          el.hidden = i >= shown;
+          mark(el._h, el._hRaw, q);
+          mark(el._p, el._pRaw, q);
+        });
+        if (emptyEl) emptyEl.hidden = matched.length !== 0;
+        if (emptyQ) emptyQ.textContent = q ? '“' + query.trim() + '”' : 'that filter';
+        if (moreRow) moreRow.hidden = matched.length <= shown;
+        if (clear) clear.hidden = !query;
+        chips.forEach(function (b) {
+          var on = b.getAttribute('data-ma-cat') === cat;
+          b.classList.toggle('is-on', on);
+          b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+        if (statusEl) {
+          var seen = Math.min(shown, matched.length);
+          statusEl.textContent = matched.length
+            ? 'Showing ' + seen + ' of ' + matched.length + (matched.length === 1 ? ' report' : ' reports') +
+              (cat === 'all' ? '' : ' in ' + NAMES[cat]) + (q ? ' matching “' + query.trim() + '”' : '')
+            : '';
+        }
+        if (hasST) ScrollTrigger.refresh();
+      }
+
+      chips.forEach(function (b) {
+        b.addEventListener('click', function () { cat = b.getAttribute('data-ma-cat'); shown = PAGE; apply(); });
+      });
+      if (input) {
+        var t;
+        input.addEventListener('input', function () {
+          query = input.value; shown = PAGE;
+          clearTimeout(t); t = setTimeout(apply, 120);
+        });
+        input.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && input.value) { input.value = ''; query = ''; shown = PAGE; apply(); }
+        });
+      }
+      function reset() { if (input) input.value = ''; query = ''; cat = 'all'; shown = PAGE; apply(); }
+      if (clear) clear.addEventListener('click', function () { reset(); if (input) input.focus(); });
+      if (resetBtn) resetBtn.addEventListener('click', reset);
+      if (moreBtn) moreBtn.addEventListener('click', function () { shown += PAGE; apply(); });
+
+      apply();
+    })();
+
+    /* --- method: the sticky visual follows whichever step is in view --- */
+    (function () {
+      var meth = document.querySelector('[data-ma-meth]');
+      if (!meth) return;
+      var steps = Array.prototype.slice.call(meth.querySelectorAll('[data-ma-meth-item]'));
+      var lbl = meth.querySelector('[data-ma-meth-lbl]');
+      var num = meth.querySelector('[data-ma-meth-n]');
+      var cap = meth.querySelector('[data-ma-meth-cap]');
+      if (!steps.length) return;
+
+      function setActive(i) {
+        steps.forEach(function (s, n) { s.classList.toggle('is-on', n === i); });
+        var s = steps[i];
+        if (lbl) lbl.textContent = s.getAttribute('data-lbl');
+        if (num) num.textContent = s.getAttribute('data-n');
+        if (cap) cap.innerHTML = s.getAttribute('data-cap');
+        meth.setAttribute('data-on', String(i + 1));
+      }
+      setActive(0);
+
+      if (prefersReduced || !hasGSAP || !hasST) {
+        // no scroll driver — let a click or focus move the visual instead
+        steps.forEach(function (s, i) {
+          s.addEventListener('mouseenter', function () { setActive(i); });
+          s.addEventListener('focusin', function () { setActive(i); });
+        });
+        return;
+      }
+      steps.forEach(function (s, i) {
+        ScrollTrigger.create({
+          trigger: s, start: 'top 62%', end: 'bottom 42%',
+          onEnter: function () { setActive(i); },
+          onEnterBack: function () { setActive(i); }
+        });
+      });
+    })();
+
+    /* --- subscribe --- */
+    (function () {
+      var form = document.querySelector('[data-ma-sub]');
+      if (!form) return;
+      var note = form.querySelector('[data-ma-sub-note]');
+      var input = form.querySelector('input[type="email"]');
+      var base = note ? note.textContent : '';
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var v = (input && input.value || '').trim();
+        var ok = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+        if (!note) return;
+        note.textContent = ok
+          ? 'Thanks — the next briefing will land in your inbox before the London open.'
+          : 'That email address does not look right. Check it and try again.';
+        note.className = 'ma-sub-note ' + (ok ? 'is-ok' : 'is-err');
+        if (ok && input) input.value = '';
+        if (ok) setTimeout(function () { note.textContent = base; note.className = 'ma-sub-note'; }, 6000);
+      });
+    })();
+  }
+
+  /* ---------------- Knowledge centre ---------------- */
+  function initKnowledge() {
+    var page = document.querySelector('.kc-hero');
+    if (!page) return;
+
+    /* --- learning path: the line fills and the nodes light as you scroll --- */
+    (function () {
+      var road = document.querySelector('[data-kc-road]');
+      if (!road) return;
+      var fill = road.querySelector('[data-kc-road-fill]');
+      var nodes = Array.prototype.slice.call(road.querySelectorAll('[data-kc-node]'));
+
+      if (prefersReduced || !hasGSAP || !hasST) {
+        nodes.forEach(function (n) { n.classList.add('is-on'); });
+        if (fill) fill.style.transform = 'scaleX(1)';
+      } else {
+        if (fill) {
+          gsap.fromTo(fill, { scaleX: 0 }, {
+            scaleX: 1, ease: 'none',
+            scrollTrigger: { trigger: road, start: 'top 76%', end: 'bottom 70%', scrub: 0.6 }
+          });
+        }
+        nodes.forEach(function (n) {
+          ScrollTrigger.create({
+            trigger: n, start: 'top 78%', once: true,
+            onEnter: function () { n.classList.add('is-on'); }
+          });
+        });
+      }
+
+      // "Start here" jumps to the guides with that level already selected
+      Array.prototype.slice.call(road.querySelectorAll('[data-kc-goto]')).forEach(function (b) {
+        b.addEventListener('click', function () {
+          var lvl = b.getAttribute('data-kc-goto');
+          var tab = document.querySelector('[data-kc-level="' + lvl + '"]');
+          if (tab) tab.click();
+          var target = document.getElementById('guides');
+          if (target) scrollToTarget(target, -90);
+        });
+      });
+    })();
+
+    /* --- guides: level tabs + product chips --- */
+    (function () {
+      var root = document.getElementById('guides');
+      if (!root) return;
+      var PRODS = { forex: 'Forex', commodities: 'Commodities', indices: 'Indices', shares: 'Shares', crypto: 'Crypto' };
+      var LEVELS = { basics: 'Basics', intermediate: 'Intermediate', advanced: 'Advanced' };
+
+      var items = Array.prototype.slice.call(root.querySelectorAll('[data-kc-item]'));
+      var levels = Array.prototype.slice.call(root.querySelectorAll('[data-kc-level]'));
+      var prods = Array.prototype.slice.call(root.querySelectorAll('[data-kc-prod]'));
+      var ind = root.querySelector('[data-kc-ind]');
+      var statusEl = root.querySelector('[data-kc-status]');
+      var emptyEl = root.querySelector('[data-kc-empty]');
+      var resetBtn = root.querySelector('[data-kc-reset]');
+      var level = 'basics', prod = 'all';
+
+      function moveInd() {
+        if (!ind) return;
+        var on = levels.filter(function (b) { return b.classList.contains('is-on'); })[0];
+        if (!on) return;
+        ind.style.width = on.offsetWidth + 'px';
+        ind.style.transform = 'translateX(' + on.offsetLeft + 'px)';
+      }
+
+      function apply() {
+        var matched = items.filter(function (el) {
+          return el.getAttribute('data-level') === level &&
+                 (prod === 'all' || el.getAttribute('data-prod') === prod);
+        });
+        items.forEach(function (el) { el.hidden = true; });
+        matched.forEach(function (el) { el.hidden = false; });
+
+        // the featured card only earns two columns when it is actually shown
+        var feat = matched.filter(function (el) { return el.classList.contains('kc-guide--feat'); })[0];
+        items.forEach(function (el) { el.style.gridColumn = ''; });
+        if (feat && matched.length < 3) feat.style.gridColumn = 'span 1';
+
+        if (emptyEl) emptyEl.hidden = matched.length !== 0;
+        levels.forEach(function (b) {
+          var on = b.getAttribute('data-kc-level') === level;
+          b.classList.toggle('is-on', on);
+          b.setAttribute('aria-selected', on ? 'true' : 'false');
+          b.tabIndex = on ? 0 : -1;
+        });
+        prods.forEach(function (b) {
+          var on = b.getAttribute('data-kc-prod') === prod;
+          b.classList.toggle('is-on', on);
+          b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+        if (statusEl) {
+          statusEl.textContent = matched.length
+            ? 'Showing ' + matched.length + (matched.length === 1 ? ' guide' : ' guides') +
+              ' at ' + LEVELS[level] + (prod === 'all' ? '' : ' in ' + PRODS[prod])
+            : '';
+        }
+        moveInd();
+        if (hasST) ScrollTrigger.refresh();
+      }
+
+      levels.forEach(function (b) {
+        b.addEventListener('click', function () { level = b.getAttribute('data-kc-level'); apply(); });
+      });
+      prods.forEach(function (b) {
+        b.addEventListener('click', function () { prod = b.getAttribute('data-kc-prod'); apply(); });
+      });
+      if (resetBtn) resetBtn.addEventListener('click', function () { prod = 'all'; apply(); });
+
+      // arrow-key support on the level tablist
+      levels.forEach(function (b, i) {
+        b.addEventListener('keydown', function (e) {
+          var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+          if (!d) return;
+          e.preventDefault();
+          var next = levels[(i + d + levels.length) % levels.length];
+          next.click(); next.focus();
+        });
+      });
+
+      apply();
+      window.addEventListener('resize', moveInd);
+      window.addEventListener('load', moveInd);
+    })();
+  }
+
   /* ---------------- Boot ---------------- */
   function boot() {
     if (!prefersReduced && hasGSAP && hasST) doc.classList.add('is-animate');
@@ -3055,6 +3419,9 @@
     initCompany();
     initHeroTicker();
     initMarkets();
+    initSpotlight();
+    initMarketAnalysis();
+    initKnowledge();
     if (hasST) ScrollTrigger.refresh();
     window.addEventListener('load', function () { if (hasST) ScrollTrigger.refresh(); });
   }
