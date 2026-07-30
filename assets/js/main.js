@@ -3438,56 +3438,37 @@
   }
 
 
-  /* ---------------- MT pages: horizontal rail driven by page scroll ---------------- */
+  /* ---------------- MT pages: horizontal rail with its own controls ---------------- */
   function initMtRail() {
     var sec = document.querySelector('[data-mt-rail]');
     if (!sec) return;
-    var vp = sec.querySelector('.mt-rail-vp');
+    var vp = sec.querySelector('[data-mt-rail-vp]');
     var track = sec.querySelector('[data-mt-rail-track]');
     var bar = sec.querySelector('[data-mt-rail-bar]');
+    var prev = sec.querySelector('[data-mt-rail-prev]');
+    var next = sec.querySelector('[data-mt-rail-next]');
     if (!vp || !track) return;
 
-    // no scroll driver available: leave it as a swipeable row rather than a
-    // track the visitor cannot move
-    if (prefersReduced || !hasGSAP || !hasST) {
-      vp.classList.add('is-static');
-      if (bar) bar.style.transform = 'scaleX(1)';
-      return;
+    function step() {
+      var card = track.querySelector('.mt-rail-card');
+      var gap = parseFloat(getComputedStyle(track).gap) || 20;
+      return card ? card.getBoundingClientRect().width + gap : vp.clientWidth * 0.8;
     }
-
-    function chromeH() {
-      var v = parseFloat(getComputedStyle(doc).getPropertyValue('--nav-h')) || 70;
-      var tb = document.querySelector('.topbar');
-      return Math.round(v + (tb ? tb.offsetHeight : 0)) + 8;
+    function maxScroll() { return Math.max(0, vp.scrollWidth - vp.clientWidth); }
+    function sync() {
+      var max = maxScroll();
+      if (bar) bar.style.transform = 'scaleX(' + (max ? vp.scrollLeft / max : 1) + ')';
+      if (prev) prev.disabled = vp.scrollLeft <= 2;
+      if (next) next.disabled = vp.scrollLeft >= max - 2;
     }
-
-    var st = null;
-    function build() {
-      if (st) { st.kill(); st = null; }
-      gsap.set(track, { x: 0 });
-      var overflow = track.scrollWidth - vp.clientWidth;
-      if (overflow <= 20) {                       // everything already fits
-        vp.classList.add('is-static');
-        if (bar) gsap.set(bar, { scaleX: 1 });
-        return;
-      }
-      vp.classList.remove('is-static');
-      var tl = gsap.timeline({
-        scrollTrigger: {
-          // pin below the sticky chrome, or the section head sits under the nav
-          trigger: sec,
-          start: function () { return 'top ' + chromeH() + 'px'; },
-          end: '+=' + overflow,
-          pin: true, scrub: 0.6, invalidateOnRefresh: true,
-          onUpdate: function (self) { if (bar) gsap.set(bar, { scaleX: self.progress }); }
-        }
-      });
-      tl.to(track, { x: -overflow, ease: 'none' });
-      st = tl.scrollTrigger;
+    function go(dir) {
+      vp.scrollBy({ left: dir * step(), behavior: prefersReduced ? 'auto' : 'smooth' });
     }
-    build();
-    var t;
-    window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(build, 180); });
+    if (prev) prev.addEventListener('click', function () { go(-1); });
+    if (next) next.addEventListener('click', function () { go(1); });
+    vp.addEventListener('scroll', sync, { passive: true });
+    window.addEventListener('resize', sync);
+    sync();
   }
 
   /* ---------------- Boot ---------------- */

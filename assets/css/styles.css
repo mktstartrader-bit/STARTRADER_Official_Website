@@ -5864,6 +5864,9 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
 .mt-why>.container{position:relative;z-index:1}
 .mt-why .head-sub{max-width:74ch}
 .mt-fgroups{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+/* one gradient across all three — the blue reads best against the section */
+.mt-fgroup--a,.mt-fgroup--b,.mt-fgroup--c{background:linear-gradient(180deg,rgba(0,71,187,.09),rgba(255,255,255,.62) 46%)}
+.mt-fgroup-ic{background:rgba(0,71,187,.11);color:var(--blue)}
 .mt-fgroup{
   display:flex;flex-direction:column;border-radius:22px;padding:28px 26px 24px;
   transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
@@ -5891,7 +5894,13 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
 }
 .mt-beyond .h2,.mt-beyond .h2-light{color:#fff}
 .mt-beyond .head-sub{color:#a9bcdb}
-.mt-rail-vp{overflow:hidden;padding-block:6px}
+/* no scroll-snap: the rail's inline padding aligns the first card with the
+   container, and snap immediately pulled past it so "previous" never disabled */
+.mt-rail-vp{
+  overflow-x:auto;overflow-y:hidden;padding-block:6px;scroll-behavior:smooth;
+  scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior-x:contain;
+}
+.mt-rail-vp::-webkit-scrollbar{display:none}
 .mt-rail{display:flex;gap:20px;width:max-content;padding-inline:max(24px,calc((100vw - var(--maxw)) / 2 + 24px));will-change:transform}
 .mt-rail-card{
   position:relative;flex:none;width:clamp(280px,26vw,360px);min-height:clamp(320px,30vw,400px);
@@ -5943,12 +5952,20 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
 .mt-rail-go svg{width:15px;height:15px;transition:transform .35s var(--ease)}
 .mt-rail-card--end:hover .mt-rail-go svg{transform:translateX(5px)}
 
-.mt-rail-progress{height:3px;border-radius:3px;background:rgba(255,255,255,.1);overflow:hidden;margin-top:34px}
-.mt-rail-progress i{display:block;height:100%;width:100%;border-radius:3px;transform:scaleX(0);transform-origin:left;background:linear-gradient(90deg,#0047BB,#6fa8ff 60%,#16e9d7)}
+.mt-rail-foot{display:flex;align-items:center;gap:24px;margin-top:32px}
+.mt-rail-progress{flex:1;height:3px;border-radius:3px;background:rgba(255,255,255,.1);overflow:hidden}
+.mt-rail-progress i{display:block;height:100%;width:100%;border-radius:3px;transform:scaleX(0);transform-origin:left;background:linear-gradient(90deg,#0047BB,#6fa8ff 60%,#16e9d7);transition:transform .25s var(--ease)}
+.mt-rail-nav{display:flex;gap:10px;flex:none}
+.mt-rail-btn{
+  width:46px;height:46px;border-radius:50%;display:grid;place-items:center;color:#fff;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  transition:background .3s,border-color .3s,transform .3s var(--ease),opacity .3s;
+}
+.mt-rail-btn svg{width:19px;height:19px}
+.mt-rail-btn:hover:not(:disabled){background:rgba(0,71,187,.55);border-color:rgba(120,175,255,.5);transform:translateY(-2px)}
+.mt-rail-btn:disabled{opacity:.32;cursor:default}
 
-/* without the scroll driver the rail is a normal swipeable row */
-.mt-rail-vp.is-static{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
-.mt-rail-vp.is-static::-webkit-scrollbar{display:none}
 
 /* ---- Download: centred render composited into the section ---- */
 .mt-dl{
