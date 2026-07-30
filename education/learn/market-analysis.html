@@ -392,99 +392,25 @@
 <main id="main">
 
 <!-- ============ HERO ============ -->
+<!-- Content only: heading, subline, one button. The live strip is the same
+     component the home page banner uses (#heroTicker, built in main.js). -->
 <section class="ma-hero" aria-labelledby="ma-hero-title">
   <span class="ma-hero-aura a1" aria-hidden="true"></span>
   <span class="ma-hero-aura a2" aria-hidden="true"></span>
-  <span class="ma-hero-grid" aria-hidden="true"></span>
 
   <div class="container ma-hero-in">
     <div class="ma-hero-copy">
       <span class="eyebrow eyebrow-blue" data-reveal>Market Analysis</span>
       <h1 class="ma-h1" id="ma-hero-title" data-reveal>Decode market secrets<br> to unlock opportunities.</h1>
       <p class="ma-lead" data-reveal>Understand the forces shaping the market and spot potential setups &mdash;<br> so you can refine your strategy and trade on evidence rather than instinct.</p>
-
       <div class="ma-hact" data-reveal>
         <a href="#reports" class="btn btn-primary btn-lg magnetic">Explore analysis <svg class="ico"><use href="#i-arrow-right"/></svg></a>
-        <a href="#method" class="btn btn-ghost btn-lg">How we read it</a>
       </div>
-
-      <nav class="ma-jump" aria-label="Analysis types" data-reveal>
-        <a href="#reports" data-ma-jump="ta"><span class="ma-jump-ic"><svg><use href="#i-cfd"/></svg></span>Technical</a>
-        <a href="#reports" data-ma-jump="fa"><span class="ma-jump-ic"><svg><use href="#i-globe"/></svg></span>Fundamental</a>
-        <a href="#reports" data-ma-jump="wk"><span class="ma-jump-ic"><svg><use href="#i-calendar"/></svg></span>Weekly</a>
-        <a href="#reports" data-ma-jump="mo"><span class="ma-jump-ic"><svg><use href="#i-layers"/></svg></span>Monthly</a>
-      </nav>
-    </div>
-
-    <div class="ma-hero-stage" data-reveal>
-      <div class="ma-term glass-dark" data-ma-term>
-        <div class="ma-term-top">
-          <span class="ma-term-sym">
-            <b>XAU/USD</b>
-            <em>Gold &middot; H1</em>
-          </span>
-          <span class="ma-term-chg up" data-ma-chg>&#9650; 1.24%</span>
-        </div>
-
-        <div class="ma-term-px">
-          <b data-ma-px>2,338.50</b>
-          <span class="ma-term-sub">Bias <i class="is-bull">Bullish</i> &middot; updated <span data-ma-ago>just now</span></span>
-        </div>
-
-        <div class="ma-term-chart">
-          <svg viewBox="0 0 420 170" preserveAspectRatio="none" aria-hidden="true">
-            <defs>
-              <linearGradient id="maFill" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#4d94ff" stop-opacity=".42"/>
-                <stop offset="100%" stop-color="#4d94ff" stop-opacity="0"/>
-              </linearGradient>
-            </defs>
-            <g class="ma-term-rules">
-              <line x1="0" y1="42" x2="420" y2="42"/>
-              <line x1="0" y1="85" x2="420" y2="85"/>
-              <line x1="0" y1="128" x2="420" y2="128"/>
-            </g>
-            <path class="ma-term-fill" d="M0 132 30 124 60 130 90 106 120 114 150 88 180 96 210 70 240 80 270 54 300 62 330 40 360 48 390 26 420 32V170H0Z" fill="url(#maFill)"/>
-            <path class="ma-term-line" d="M0 132 30 124 60 130 90 106 120 114 150 88 180 96 210 70 240 80 270 54 300 62 330 40 360 48 390 26 420 32" fill="none" stroke="#6fa8ff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle class="ma-term-dot" cx="420" cy="32" r="4.5" fill="#6fa8ff"/>
-          </svg>
-          <span class="ma-lvl ma-lvl-r"><i></i>Resistance 2,352</span>
-          <span class="ma-lvl ma-lvl-s"><i></i>Support 2,318</span>
-        </div>
-
-        <div class="ma-term-foot">
-          <a class="ma-term-btn is-on" href="#reports"><svg><use href="#i-bolt"/></svg>Signal</a>
-          <a class="ma-term-btn" href="#reports"><svg><use href="#i-doc"/></svg>Report</a>
-        </div>
-      </div>
-
-      <span class="ma-chip c1" data-float>
-        <span class="ma-chip-ic ok"><svg><use href="#i-check"/></svg></span>
-        <span class="ma-chip-tx"><b>Published daily</b><em>before the London open</em></span>
-      </span>
-      <span class="ma-chip c2" data-float>
-        <span class="ma-chip-ic"><svg><use href="#i-target"/></svg></span>
-        <span class="ma-chip-tx"><b>Levels marked</b><em>support &amp; resistance</em></span>
-      </span>
     </div>
   </div>
-</section>
 
-<!-- ============ LIVE PULSE TICKER ============ -->
-<section class="ma-pulse" aria-label="Live market pulse">
-  <div class="ma-pulse-fade l" aria-hidden="true"></div>
-  <div class="ma-pulse-fade r" aria-hidden="true"></div>
-  <div class="ma-pulse-track" data-ma-ticker>
-    <span class="ma-tick" data-ma-t data-base="2338.50" data-dec="2"><b>XAU/USD</b><i data-px>2,338.50</i><u data-chg class="up">+0.42%</u></span>
-    <span class="ma-tick" data-ma-t data-base="1.08420" data-dec="5"><b>EUR/USD</b><i data-px>1.08420</i><u data-chg class="up">+0.13%</u></span>
-    <span class="ma-tick" data-ma-t data-base="17234.75" data-dec="2"><b>NAS100</b><i data-px>17,234.75</i><u data-chg class="up">+0.30%</u></span>
-    <span class="ma-tick" data-ma-t data-base="78.42" data-dec="2"><b>WTI</b><i data-px>78.42</i><u data-chg class="down">-0.31%</u></span>
-    <span class="ma-tick" data-ma-t data-base="1.27180" data-dec="5"><b>GBP/USD</b><i data-px>1.27180</i><u data-chg class="down">-0.08%</u></span>
-    <span class="ma-tick" data-ma-t data-base="18412.60" data-dec="2"><b>GER40</b><i data-px>18,412.60</i><u data-chg class="up">+0.19%</u></span>
-    <span class="ma-tick" data-ma-t data-base="156.820" data-dec="3"><b>USD/JPY</b><i data-px>156.820</i><u data-chg class="up">+0.24%</u></span>
-    <span class="ma-tick" data-ma-t data-base="29.140" data-dec="3"><b>XAG/USD</b><i data-px>29.140</i><u data-chg class="up">+0.61%</u></span>
-    <span class="ma-tick" data-ma-t data-base="5263.40" data-dec="2"><b>SPX500</b><i data-px>5,263.40</i><u data-chg class="up">+0.23%</u></span>
-    <span class="ma-tick" data-ma-t data-base="0.67085" data-dec="5"><b>AUD/USD</b><i data-px>0.67085</i><u data-chg class="up">+0.20%</u></span>
+  <div class="hero-ticker" aria-label="Live market prices">
+    <div class="hero-ticker-track" id="heroTicker"><!-- populated by JS --></div>
   </div>
 </section>
 
@@ -496,11 +422,11 @@
     <div class="head center">
       <span class="eyebrow" data-reveal>Analysis</span>
       <h2 class="h2" id="ma-choose-title" data-reveal>Choose your analysis.</h2>
-      <p class="head-sub" data-reveal>Four cadences, one desk &mdash; from the intraday chart to the quarter-defining theme.<br> Read the one that matches the horizon you actually trade.</p>
+      <p class="head-sub" data-reveal>Four cadences, one desk &mdash; from the intraday chart to the quarter-defining theme,<br> so you read the one that matches the horizon you actually trade.</p>
     </div>
 
     <div class="ma-bento" data-reveal-stagger data-ma-spot>
-      <article class="ma-card ma-card--feat glass" data-spot>
+      <article class="ma-card ma-card--feat glass">
         <div class="ma-feat-copy">
         <span class="ma-ribbon">Featured</span>
         <span class="ma-card-ic"><svg><use href="#i-cfd"/></svg></span>
@@ -515,16 +441,18 @@
             <span class="ma-feat-tag">Today &middot; XAU/USD</span>
             <span class="ma-feat-chg up">&#9650; 1.24%</span>
           </div>
-          <svg class="ma-spark" viewBox="0 0 300 80" preserveAspectRatio="none" aria-hidden="true">
-            <defs>
-              <linearGradient id="maSpark" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#0047BB" stop-opacity=".26"/>
-                <stop offset="100%" stop-color="#0047BB" stop-opacity="0"/>
-              </linearGradient>
-            </defs>
-            <path class="ma-spark-fill" d="M0 62 25 56 50 60 75 44 100 50 125 34 150 40 175 24 200 30 225 16 250 22 275 10 300 14V80H0Z" fill="url(#maSpark)"/>
-            <path class="ma-spark-line" d="M0 62 25 56 50 60 75 44 100 50 125 34 150 40 175 24 200 30 225 16 250 22 275 10 300 14" fill="none" stroke="#0047BB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          <div class="ma-spark-wrap">
+            <svg class="ma-spark" viewBox="0 0 300 80" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="maSpark" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#0047BB" stop-opacity=".26"/>
+                  <stop offset="100%" stop-color="#0047BB" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path class="ma-spark-fill" d="M0 62 25 56 50 60 75 44 100 50 125 34 150 40 175 24 200 30 225 16 250 22 275 10 300 14V80H0Z" fill="url(#maSpark)"/>
+              <path class="ma-spark-line" d="M0 62 25 56 50 60 75 44 100 50 125 34 150 40 175 24 200 30 225 16 250 22 275 10 300 14" fill="none" stroke="#0047BB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
           <div class="ma-feat-rows">
             <div><span>Resistance</span><b>2,352.00</b></div>
             <div><span>Support</span><b>2,318.40</b></div>
@@ -533,7 +461,7 @@
         </div>
       </article>
 
-      <article class="ma-card glass" data-spot>
+      <article class="ma-card glass">
         <span class="ma-card-ic"><svg><use href="#i-globe"/></svg></span>
         <h3>Daily Fundamental Analysis</h3>
         <p>The prints, speeches and headlines that may move your positions before the chart catches up.</p>
@@ -545,21 +473,21 @@
         <a class="ma-more" href="#reports">Know more <svg><use href="#i-arrow-right"/></svg></a>
       </article>
 
-      <article class="ma-card glass" data-spot>
+      <article class="ma-card glass">
         <span class="ma-card-ic"><svg><use href="#i-calendar"/></svg></span>
         <h3>Weekly Analysis</h3>
         <p>The shifts that defined the week and the levels carried into the next one.</p>
-        <div class="ma-week" aria-hidden="true">
-          <i style="--h:38%"><em>M</em></i>
-          <i style="--h:62%"><em>T</em></i>
-          <i style="--h:48%"><em>W</em></i>
-          <i style="--h:78%"><em>T</em></i>
-          <i style="--h:94%"><em>F</em></i>
+        <div class="ma-wk">
+          <div class="ma-wk-row"><span>Mon</span><i class="up" style="--w:34%"></i><b>+0.34%</b></div>
+          <div class="ma-wk-row"><span>Tue</span><i class="up" style="--w:61%"></i><b>+0.61%</b></div>
+          <div class="ma-wk-row"><span>Wed</span><i class="down" style="--w:22%"></i><b>&minus;0.22%</b></div>
+          <div class="ma-wk-row"><span>Thu</span><i class="up" style="--w:77%"></i><b>+0.77%</b></div>
+          <div class="ma-wk-row is-best"><span>Fri</span><i class="up" style="--w:96%"></i><b>+0.96%</b></div>
         </div>
         <a class="ma-more" href="#reports">Know more <svg><use href="#i-arrow-right"/></svg></a>
       </article>
 
-      <article class="ma-card glass" data-spot>
+      <article class="ma-card glass">
         <span class="ma-card-ic"><svg><use href="#i-layers"/></svg></span>
         <h3>Monthly Analysis</h3>
         <p>Step back for the bigger picture &mdash; the themes, flows and cycles shaping the months ahead.</p>
@@ -614,7 +542,12 @@
           <span class="ma-rep-tags"><span>XAU/USD</span><span>H1</span></span>
           <span class="ma-rep-read">4 min</span>
         </div>
-        <svg class="ma-rep-spark" viewBox="0 0 120 28" preserveAspectRatio="none" aria-hidden="true"><path d="M0 22 15 18 30 20 45 12 60 15 75 8 90 11 105 5 120 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="ma-rep-trend" aria-hidden="true">
+          <svg viewBox="0 0 240 44" preserveAspectRatio="none">
+            <path class="rt-fill" d="M0 34 30 28 60 31 90 19 120 23 150 12 180 16 210 7 240 10 L240 44 L0 44Z"/>
+            <path class="rt-line" d="M0 34 30 28 60 31 90 19 120 23 150 12 180 16 210 7 240 10"/>
+          </svg>
+        </div>
       </article>
 
       <article class="ma-rep glass" data-ma-item data-cat="fa" data-title="Core CPI cools again and the dollar gives back the week">
@@ -628,7 +561,12 @@
           <span class="ma-rep-tags"><span>DXY</span><span>Rates</span></span>
           <span class="ma-rep-read">5 min</span>
         </div>
-        <svg class="ma-rep-spark" viewBox="0 0 120 28" preserveAspectRatio="none" aria-hidden="true"><path d="M0 8 15 11 30 9 45 15 60 13 75 19 90 17 105 22 120 21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="ma-rep-trend" aria-hidden="true">
+          <svg viewBox="0 0 240 44" preserveAspectRatio="none">
+            <path class="rt-fill" d="M0 11 30 15 60 13 90 21 120 19 150 27 180 25 210 32 240 30 L240 44 L0 44Z"/>
+            <path class="rt-line" d="M0 11 30 15 60 13 90 21 120 19 150 27 180 25 210 32 240 30"/>
+          </svg>
+        </div>
       </article>
 
       <article class="ma-rep glass" data-ma-item data-cat="ta" data-title="EUR/USD grinds into the range high with momentum fading">
@@ -642,7 +580,12 @@
           <span class="ma-rep-tags"><span>EUR/USD</span><span>H4</span></span>
           <span class="ma-rep-read">4 min</span>
         </div>
-        <svg class="ma-rep-spark" viewBox="0 0 120 28" preserveAspectRatio="none" aria-hidden="true"><path d="M0 20 15 15 30 17 45 10 60 12 75 9 90 11 105 10 120 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="ma-rep-trend" aria-hidden="true">
+          <svg viewBox="0 0 240 44" preserveAspectRatio="none">
+            <path class="rt-fill" d="M0 31 30 23 60 26 90 15 120 18 150 13 180 16 210 14 240 17 L240 44 L0 44Z"/>
+            <path class="rt-line" d="M0 31 30 23 60 26 90 15 120 18 150 13 180 16 210 14 240 17"/>
+          </svg>
+        </div>
       </article>
 
       <article class="ma-rep glass" data-ma-item data-cat="wk" data-title="Weekly outlook: three central banks and one payrolls print">
@@ -656,7 +599,12 @@
           <span class="ma-rep-tags"><span>Macro</span><span>FX</span></span>
           <span class="ma-rep-read">7 min</span>
         </div>
-        <svg class="ma-rep-spark" viewBox="0 0 120 28" preserveAspectRatio="none" aria-hidden="true"><path d="M0 18 15 20 30 12 45 14 60 8 75 12 90 6 105 9 120 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="ma-rep-trend" aria-hidden="true">
+          <svg viewBox="0 0 240 44" preserveAspectRatio="none">
+            <path class="rt-fill" d="M0 28 30 31 60 19 90 22 120 12 150 17 180 9 210 13 240 6 L240 44 L0 44Z"/>
+            <path class="rt-line" d="M0 28 30 31 60 19 90 22 120 12 150 17 180 9 210 13 240 6"/>
+          </svg>
+        </div>
       </article>
 
       <article class="ma-rep glass" data-ma-item data-cat="ta" data-title="WTI slips out of the month-long range as the risk premium drains">
@@ -670,7 +618,12 @@
           <span class="ma-rep-tags"><span>XTI/USD</span><span>D1</span></span>
           <span class="ma-rep-read">4 min</span>
         </div>
-        <svg class="ma-rep-spark" viewBox="0 0 120 28" preserveAspectRatio="none" aria-hidden="true"><path d="M0 6 15 9 30 7 45 13 60 11 75 17 90 16 105 21 120 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="ma-rep-trend" aria-hidden="true">
+          <svg viewBox="0 0 240 44" preserveAspectRatio="none">
+            <path class="rt-fill" d="M0 8 30 13 60 10 90 19 120 16 150 25 180 23 210 31 240 36 L240 44 L0 44Z"/>
+            <path class="rt-line" d="M0 8 30 13 60 10 90 19 120 16 150 25 180 23 210 31 240 36"/>
+          </svg>
+        </div>
       </article>
 
       <article class="ma-rep glass" data-ma-item data-cat="mo" data-title="Monthly review: the rotation out of defensives finally showed up">
@@ -684,7 +637,12 @@
           <span class="ma-rep-tags"><span>Indices</span><span>Flows</span></span>
           <span class="ma-rep-read">9 min</span>
         </div>
-        <svg class="ma-rep-spark" viewBox="0 0 120 28" preserveAspectRatio="none" aria-hidden="true"><path d="M0 24 15 21 30 22 45 16 60 18 75 11 90 13 105 7 120 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="ma-rep-trend" aria-hidden="true">
+          <svg viewBox="0 0 240 44" preserveAspectRatio="none">
+            <path class="rt-fill" d="M0 37 30 32 60 34 90 24 120 27 150 17 180 20 210 10 240 7 L240 44 L0 44Z"/>
+            <path class="rt-line" d="M0 37 30 32 60 34 90 24 120 27 150 17 180 20 210 10 240 7"/>
+          </svg>
+        </div>
       </article>
 
       <article class="ma-rep glass" data-ma-item data-cat="fa" data-title="The BoJ blinks and the yen carry trade gets its first real test">
@@ -698,7 +656,12 @@
           <span class="ma-rep-tags"><span>USD/JPY</span><span>Rates</span></span>
           <span class="ma-rep-read">6 min</span>
         </div>
-        <svg class="ma-rep-spark" viewBox="0 0 120 28" preserveAspectRatio="none" aria-hidden="true"><path d="M0 10 15 8 30 12 45 9 60 16 75 14 90 20 105 18 120 23" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="ma-rep-trend" aria-hidden="true">
+          <svg viewBox="0 0 240 44" preserveAspectRatio="none">
+            <path class="rt-fill" d="M0 14 30 11 60 17 90 13 120 23 150 20 180 29 210 26 240 33 L240 44 L0 44Z"/>
+            <path class="rt-line" d="M0 14 30 11 60 17 90 13 120 23 150 20 180 29 210 26 240 33"/>
+          </svg>
+        </div>
       </article>
 
       <article class="ma-rep glass" data-ma-item data-cat="wk" data-title="Weekly outlook: indices carry the momentum into month end">
@@ -712,7 +675,12 @@
           <span class="ma-rep-tags"><span>NAS100</span><span>SPX500</span></span>
           <span class="ma-rep-read">6 min</span>
         </div>
-        <svg class="ma-rep-spark" viewBox="0 0 120 28" preserveAspectRatio="none" aria-hidden="true"><path d="M0 21 15 17 30 19 45 13 60 14 75 9 90 10 105 6 120 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="ma-rep-trend" aria-hidden="true">
+          <svg viewBox="0 0 240 44" preserveAspectRatio="none">
+            <path class="rt-fill" d="M0 32 30 26 60 29 90 20 120 22 150 14 180 15 210 9 240 12 L240 44 L0 44Z"/>
+            <path class="rt-line" d="M0 32 30 26 60 29 90 20 120 22 150 14 180 15 210 9 240 12"/>
+          </svg>
+        </div>
       </article>
 
       <article class="ma-rep glass" data-ma-item data-cat="mo" data-title="Monthly review: gold's quiet quarter was anything but quiet underneath">
@@ -726,7 +694,12 @@
           <span class="ma-rep-tags"><span>XAU/USD</span><span>Flows</span></span>
           <span class="ma-rep-read">8 min</span>
         </div>
-        <svg class="ma-rep-spark" viewBox="0 0 120 28" preserveAspectRatio="none" aria-hidden="true"><path d="M0 14 15 12 30 16 45 13 60 15 75 11 90 14 105 10 120 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="ma-rep-trend" aria-hidden="true">
+          <svg viewBox="0 0 240 44" preserveAspectRatio="none">
+            <path class="rt-fill" d="M0 21 30 18 60 24 90 20 120 23 150 16 180 21 210 15 240 18 L240 44 L0 44Z"/>
+            <path class="rt-line" d="M0 21 30 18 60 24 90 20 120 23 150 16 180 21 210 15 240 18"/>
+          </svg>
+        </div>
       </article>
 
     </div>
@@ -735,11 +708,11 @@
       <span class="ma-empty-ic"><svg><use href="#i-search"/></svg></span>
       <h3>Nothing matched <span data-ma-empty-q>that filter</span></h3>
       <p>Try a different cadence, or clear the search to see the whole archive.</p>
-      <button class="btn btn-navy" type="button" data-ma-reset>Reset filters</button>
+      <button class="btn btn-primary" type="button" data-ma-reset>Reset filters</button>
     </div>
 
     <div class="ma-morerow" data-ma-morerow hidden>
-      <button class="btn btn-navy btn-lg" type="button" data-ma-more>Load more reports <svg class="ico"><use href="#i-chevron-down"/></svg></button>
+      <button class="btn btn-primary btn-lg" type="button" data-ma-more>Load more reports <svg class="ico"><use href="#i-chevron-down"/></svg></button>
     </div>
   </div>
 </section>
@@ -755,28 +728,59 @@
 
     <div class="ma-meth" data-ma-meth>
       <div class="ma-meth-stage">
-        <div class="ma-meth-viz glass-dark">
+        <div class="ma-meth-viz">
           <div class="ma-meth-viz-top">
-            <span data-ma-meth-lbl>Structure</span>
-            <span class="ma-meth-step"><b data-ma-meth-n>01</b>/03</span>
+            <span class="ma-meth-sym"><b>XAU/USD</b><em>H1 &middot; live</em></span>
+            <span class="ma-meth-prog" aria-hidden="true"><i></i><i></i><i></i></span>
           </div>
 
           <div class="ma-meth-canvas">
-            <svg viewBox="0 0 380 190" preserveAspectRatio="none" aria-hidden="true">
-              <path class="mv-line" d="M0 150 27 140 54 146 81 118 108 128 135 96 162 106 189 74 216 86 243 56 270 66 297 40 324 50 351 24 380 30" fill="none" stroke="#6fa8ff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-              <g class="mv-struct"><path d="M0 158 380 22" stroke="#6fa8ff" stroke-width="1.4" stroke-dasharray="5 6" opacity=".85"/></g>
-              <g class="mv-cat"><rect x="238" y="0" width="52" height="190" fill="rgba(255,196,68,.16)"/><path d="M264 0V190" stroke="#ffc244" stroke-width="1.4" stroke-dasharray="4 5"/></g>
+            <svg viewBox="0 0 460 250" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="mvArea" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#6fa8ff" stop-opacity=".28"/>
+                  <stop offset="100%" stop-color="#6fa8ff" stop-opacity="0"/>
+                </linearGradient>
+                <linearGradient id="mvBand" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#ffc244" stop-opacity="0"/>
+                  <stop offset="50%" stop-color="#ffc244" stop-opacity=".2"/>
+                  <stop offset="100%" stop-color="#ffc244" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+
+              <g class="mv-grid">
+                <line x1="0" y1="62" x2="460" y2="62"/><line x1="0" y1="125" x2="460" y2="125"/><line x1="0" y1="188" x2="460" y2="188"/>
+              </g>
+
+              <path class="mv-area" d="M0 196 33 184 66 190 99 158 132 168 165 132 198 144 231 104 264 118 297 82 330 94 363 58 396 70 429 36 460 44 L460 250 L0 250Z" fill="url(#mvArea)"/>
+              <path class="mv-price" d="M0 196 33 184 66 190 99 158 132 168 165 132 198 144 231 104 264 118 297 82 330 94 363 58 396 70 429 36 460 44"/>
+
+              <g class="mv-struct">
+                <path class="mv-ch" d="M0 214 460 54"/>
+                <path class="mv-ch" d="M0 168 460 8"/>
+              </g>
+
+              <g class="mv-cat">
+                <rect x="252" y="0" width="56" height="250" fill="url(#mvBand)"/>
+                <path class="mv-catline" d="M280 0V250"/>
+              </g>
+
               <g class="mv-lvl">
-                <path d="M0 48 380 48" stroke="#ff8078" stroke-width="1.5" stroke-dasharray="6 6"/>
-                <path d="M0 128 380 128" stroke="#3fd9a8" stroke-width="1.5" stroke-dasharray="6 6"/>
+                <path class="mv-res" d="M0 56 460 56"/>
+                <path class="mv-sup" d="M0 172 460 172"/>
               </g>
             </svg>
-            <span class="mv-tag mv-tag-r">Resistance</span>
-            <span class="mv-tag mv-tag-s">Support</span>
-            <span class="mv-tag mv-tag-c">Catalyst 13:30</span>
+
+            <span class="mv-tag mv-tag-r"><i></i>2,352.00</span>
+            <span class="mv-tag mv-tag-s"><i></i>2,318.40</span>
+            <span class="mv-tag mv-tag-c"><i></i>CPI &middot; 13:30</span>
+            <span class="mv-tag mv-tag-t"><i></i>Higher highs</span>
           </div>
 
-          <p class="ma-meth-cap" data-ma-meth-cap>Trend, range or transition &mdash; before anything else, what regime is price actually in?</p>
+          <div class="ma-meth-foot">
+            <span class="ma-meth-badge" data-ma-meth-lbl>Structure</span>
+            <p class="ma-meth-cap" data-ma-meth-cap>Trend, range or transition &mdash; before anything else, what regime is price actually in?</p>
+          </div>
         </div>
       </div>
 
@@ -811,28 +815,28 @@
     </div>
 
     <div class="ma-cov-grid" data-reveal-stagger>
-      <a class="ma-cov glass" href="../../trading/products/forex.html" data-spot>
+      <a class="ma-cov glass" href="../../trading/products/forex.html">
         <span class="ma-cov-ic"><svg><use href="#i-swap"/></svg></span>
         <b data-count="28" data-suffix="">28</b>
         <span class="ma-cov-l">Forex pairs</span>
         <em>Majors, minors and the crosses that actually move.</em>
         <svg class="ma-cov-go"><use href="#i-arrow-ur"/></svg>
       </a>
-      <a class="ma-cov glass" href="../../trading/products/commodities.html" data-spot>
+      <a class="ma-cov glass" href="../../trading/products/commodities.html">
         <span class="ma-cov-ic"><svg><use href="#i-droplet"/></svg></span>
         <b data-count="12">12</b>
         <span class="ma-cov-l">Commodities</span>
         <em>Gold, silver, crude and gas &mdash; daily and weekly.</em>
         <svg class="ma-cov-go"><use href="#i-arrow-ur"/></svg>
       </a>
-      <a class="ma-cov glass" href="../../index.html#markets" data-spot>
+      <a class="ma-cov glass" href="../../index.html#markets">
         <span class="ma-cov-ic"><svg><use href="#i-chart"/></svg></span>
         <b data-count="9">9</b>
         <span class="ma-cov-l">Indices</span>
         <em>The benchmarks that set the risk tone each session.</em>
         <svg class="ma-cov-go"><use href="#i-arrow-ur"/></svg>
       </a>
-      <a class="ma-cov glass" href="../analysis/economic-calendar.html" data-spot>
+      <a class="ma-cov glass" href="../analysis/economic-calendar.html">
         <span class="ma-cov-ic"><svg><use href="#i-clock"/></svg></span>
         <b data-count="40" data-suffix="+">40+</b>
         <span class="ma-cov-l">Events a week</span>
@@ -924,6 +928,11 @@
         <span class="fx-more-media"><img src="../../assets/img/webtrader-laptop.webp" alt="News room covering market and company stories" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">The stories moving the instruments you hold, written as they break.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">News room</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
+      </a>
+      <a class="fx-more-card" href="../academy/webinars.html">
+        <span class="fx-more-media"><img src="../../assets/img/learn-cta.webp" alt="Live trading webinars with market analysts" width="640" height="349" loading="lazy" decoding="async"></span>
+        <p class="fx-more-desc">Live sessions with analysts every week, plus replays if the timing does not suit you.</p>
+        <span class="fx-more-foot"><span class="fx-more-tag">Webinars</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
     </div>
   </div>

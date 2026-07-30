@@ -3016,98 +3016,31 @@
   }
 
 
-  /* ---------------- Cursor spotlight on bento cards ---------------- */
-  function initSpotlight() {
-    var cards = Array.prototype.slice.call(document.querySelectorAll('[data-spot]'));
-    if (!cards.length || prefersReduced) return;
-    // pointer-only: on touch the gradient would stick wherever the last tap was
-    if (!window.matchMedia || !window.matchMedia('(hover:hover)').matches) return;
-    cards.forEach(function (c) {
-      c.addEventListener('mousemove', function (e) {
-        var r = c.getBoundingClientRect();
-        c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-        c.style.setProperty('--my', (e.clientY - r.top) + 'px');
-      });
-    });
-  }
-
   /* ---------------- Market analysis ---------------- */
   function initMarketAnalysis() {
     var page = document.querySelector('.ma-hero');
     if (!page) return;
 
-    /* --- hero terminal: nudge the quote so the panel reads as live --- */
+    /* --- reveal-driven chart animations (bar widths, trend draw) --- */
     (function () {
-      var term = document.querySelector('[data-ma-term]');
-      if (!term || prefersReduced) return;
-      var pxEl = term.querySelector('[data-ma-px]');
-      var chgEl = term.querySelector('[data-ma-chg]');
-      var agoEl = term.querySelector('[data-ma-ago]');
-      if (!pxEl) return;
-      var base = parseFloat(pxEl.textContent.replace(/,/g, '')) || 0;
-      var cur = base, t0 = Date.now();
-      setInterval(function () {
-        cur = cur + base * 0.0004 * (Math.random() * 2 - 1) + (base - cur) * 0.06;
-        pxEl.textContent = cur.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        var chg = ((cur - base) / base) * 100 + 1.24;
-        if (chgEl) {
-          chgEl.textContent = (chg >= 0 ? '▲ ' : '▼ ') + Math.abs(chg).toFixed(2) + '%';
-          chgEl.className = 'ma-term-chg ' + (chg >= 0 ? 'up' : 'down');
-        }
-        if (agoEl) {
-          var s = Math.round((Date.now() - t0) / 1000);
-          agoEl.textContent = s < 5 ? 'just now' : s + 's ago';
-        }
-      }, 2200);
-    })();
-
-    /* --- pulse ticker: duplicate the track, then loop it --- */
-    (function () {
-      var track = document.querySelector('[data-ma-ticker]');
-      if (!track) return;
-      var items = Array.prototype.slice.call(track.children);
-      items.forEach(function (n) { track.appendChild(n.cloneNode(true)); });
-
-      // each quote drifts around its own base so the strip never looks frozen
-      var live = Array.prototype.slice.call(track.querySelectorAll('[data-ma-t]')).map(function (el) {
-        var base = parseFloat(el.getAttribute('data-base')) || 0;
-        return { el: el, base: base, cur: base, dec: parseInt(el.getAttribute('data-dec') || '2', 10) };
-      });
-      if (!prefersReduced) {
-        setInterval(function () {
-          live.forEach(function (q) {
-            if (Math.random() > 0.55) return;
-            q.cur = q.cur + q.base * 0.0005 * (Math.random() * 2 - 1) + (q.base - q.cur) * 0.05;
-            var px = q.el.querySelector('[data-px]');
-            var chg = q.el.querySelector('[data-chg]');
-            if (px) px.textContent = q.cur.toLocaleString('en-US', { minimumFractionDigits: q.dec, maximumFractionDigits: q.dec });
-            if (chg) {
-              var d = ((q.cur - q.base) / q.base) * 100;
-              chg.textContent = (d >= 0 ? '+' : '') + d.toFixed(2) + '%';
-              chg.className = d >= 0 ? 'up' : 'down';
-            }
-          });
-        }, 2000);
+      var seen = Array.prototype.slice.call(document.querySelectorAll('.ma-card, .ma-rep'));
+      var meth = document.querySelector('[data-ma-meth]');
+      if (prefersReduced || !('IntersectionObserver' in window)) {
+        seen.forEach(function (el) { el.classList.add('is-seen'); });
+        if (meth) meth.setAttribute('data-seen', '');
+        return;
       }
-
-      if (prefersReduced || !hasGSAP) return;
-      var half = track.scrollWidth / 2;
-      if (!half) return;
-      var tween = gsap.to(track, {
-        x: -half, duration: half / 55, ease: 'none', repeat: -1,
-        modifiers: { x: function (x) { return (parseFloat(x) % half) + 'px'; } }
-      });
-      track.parentElement.addEventListener('mouseenter', function () { tween.timeScale(0.25); });
-      track.parentElement.addEventListener('mouseleave', function () { tween.timeScale(1); });
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          if (e.target === meth) e.target.setAttribute('data-seen', '');
+          else e.target.classList.add('is-seen');
+          io.unobserve(e.target);
+        });
+      }, { threshold: 0.25 });
+      seen.forEach(function (el) { io.observe(el); });
+      if (meth) io.observe(meth);
     })();
-
-    /* --- hero quick-jump preselects a filter --- */
-    Array.prototype.slice.call(document.querySelectorAll('[data-ma-jump]')).forEach(function (a) {
-      a.addEventListener('click', function () {
-        var chip = document.querySelector('[data-ma-cat="' + a.getAttribute('data-ma-jump') + '"]');
-        if (chip) setTimeout(function () { chip.click(); }, 260);
-      });
-    });
 
     /* --- report filtering --- */
     (function () {
@@ -3419,7 +3352,6 @@
     initCompany();
     initHeroTicker();
     initMarkets();
-    initSpotlight();
     initMarketAnalysis();
     initKnowledge();
     if (hasST) ScrollTrigger.refresh();
