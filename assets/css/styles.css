@@ -5473,14 +5473,16 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
 .pf-hero-bg{
   position:absolute;inset:0;z-index:-1;
   background-image:url("../img/platform-hero.webp");
-  background-size:cover;background-position:62% 50%;
+  background-size:cover;background-position:50% 45%;
 }
-/* the copy sits on the darkest third; the swirl keeps the right */
+/* the render is already near-black under the copy, so this is a light safety
+   wash rather than the heavy scrim a bright image would need — anything more
+   and the ribbons go flat */
 .pf-hero-bg::after{
   content:"";position:absolute;inset:0;
   background:
-    linear-gradient(90deg,rgba(4,6,14,.94) 0%,rgba(4,6,14,.82) 34%,rgba(4,6,14,.42) 62%,rgba(4,6,14,.16) 100%),
-    linear-gradient(180deg,rgba(4,6,14,.6) 0%,transparent 26%,transparent 74%,rgba(4,6,14,.72) 100%);
+    linear-gradient(90deg,rgba(4,6,14,.72) 0%,rgba(4,6,14,.46) 30%,rgba(4,6,14,.12) 58%,rgba(4,6,14,0) 84%),
+    linear-gradient(180deg,rgba(4,6,14,.5) 0%,transparent 22%,transparent 78%,rgba(4,6,14,.55) 100%);
 }
 .pf-hero-in{position:relative;z-index:1;width:100%}
 .pf-hero-copy{max-width:720px;min-width:0}
@@ -5576,8 +5578,8 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
 }
 @media (max-width:860px){
   .pf-hero{min-height:auto;padding:calc(var(--nav-h) + 44px) 0 54px}
-  .pf-hero-bg{background-position:70% 50%}
-  .pf-hero-bg::after{background:linear-gradient(180deg,rgba(4,6,14,.86) 0%,rgba(4,6,14,.74) 46%,rgba(4,6,14,.92) 100%)}
+  .pf-hero-bg{background-position:66% 50%}
+  .pf-hero-bg::after{background:linear-gradient(180deg,rgba(4,6,14,.74) 0%,rgba(4,6,14,.6) 46%,rgba(4,6,14,.88) 100%)}
 }
 @media (max-width:720px){
   .pf-h1 br,.pf-lead br,.pf-split .h2 br{display:none}
