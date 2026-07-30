@@ -221,6 +221,9 @@
   <symbol id="i-send" viewBox="0 0 24 24"><path d="M4 12 20 4l-6 16-3-6-7-2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
   <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
   <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8.2" r="3.8" fill="currentColor"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0Z" fill="currentColor"/></symbol>
+  <symbol id="i-apple" viewBox="0 0 24 24"><path fill="currentColor" d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></symbol>
+  <symbol id="i-gplay" viewBox="0 0 24 24"><path fill="#00A0FF" d="M3.6 2.1c-.31.33-.49.83-.49 1.49v16.82c0 .66.18 1.16.49 1.49l.06.05 9.42-9.42v-.22L3.66 2.05l-.06.05Z"/><path fill="#FFBC00" d="m16.66 15.72-3.58-3.29v-.22l3.59-3.59.08.05 4.25 2.42c1.21.69 1.21 1.81 0 2.5l-4.25 2.42-.09.05Z"/><path fill="#FF3A44" d="m16.75 15.67-3.67-3.68-9.48 9.48c.4.42 1.06.47 1.8.05l11.35-6.45Z"/><path fill="#00C853" d="M16.75 8.31 5.4 1.86c-.74-.42-1.4-.37-1.8.05l9.48 9.47 3.67-3.67Z"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v11m0 0 4.2-4.2M12 14l-4.2-4.2M4 17v2.5A1.5 1.5 0 0 0 5.5 21h13a1.5 1.5 0 0 0 1.5-1.5V17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 </svg>
 
 <a class="skip-link" href="#main">Skip to content</a>
@@ -458,228 +461,211 @@
 <main id="main">
 
 <!-- ============ BANNER ============ -->
-<section class="ap-hero" aria-labelledby="ap-title">
-  <span class="gl-orb o1" aria-hidden="true"></span>
-  <span class="gl-orb o3" aria-hidden="true"></span>
+<!-- Same shell as the forex / commodities banners: copy left, render bleeding
+     from the disclaimer bar to the base on the right. -->
+<section class="acct-hero ap-hero" aria-labelledby="ap-title">
+  <div class="acct-hero-bg" aria-hidden="true"></div>
 
-  <div class="container ap-hero-in">
+  <div class="container ap-hero-copy-wrap">
     <div class="ap-hero-copy">
-      <span class="ap-proof" data-reveal>
-        <span class="ap-proof-st" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="m12 2 2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.8 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="m12 2 2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.8 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="m12 2 2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.8 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="m12 2 2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.8 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="m12 2 2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.8 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg></span>
-        <b>MT4 &amp; MT5</b><span>in one app</span>
-      </span>
-      <h1 class="ap-h1" id="ap-title" data-reveal>Ascend to stellar heights with the <span class="g">STARTRADER app</span></h1>
-      <p class="ap-lead" data-reveal>Trade 200+ instruments on MT4 and MT5 from one app &mdash; real-time pricing, full technical analysis, watchlists and risk management, on iOS and Android.</p>
-      <div class="ap-get" data-reveal>
-      <a class="ap-store ap-store--badge" href="https://startrader.onelink.me/PWbI/canpg4vy" target="_blank" rel="noopener" aria-label="Download the STARTRADER app on the App Store">
-        <img src="../../assets/img/badge-appstore.png" alt="Download on the App Store" width="140" height="41">
-      </a>
-      <a class="ap-store" href="https://play.google.com/store/apps/details?id=cn.com.startrader" target="_blank" rel="noopener">
-        <img src="../../assets/img/badge-googleplay.svg" alt="" width="22" height="22">
-        <span class="ap-store-tx"><em>Get it on</em><b>Google Play</b></span>
-      </a>
-      <p class="ap-get-note">Free to download. Trading involves risk &mdash; leveraged products can cost more than your initial deposit.</p>
-    </div>
-    </div>
+      <span class="eyebrow eyebrow-blue" data-reveal>Mobile App</span>
+      <h1 class="acct-hero-title" id="ap-title" data-reveal>Ascend to stellar heights<br>with the STARTRADER app</h1>
+      <p class="acct-hero-sub" data-reveal>Trade 200+ instruments on MT4 and MT5 from a single app &mdash;<br> live pricing, full charting and risk management built in.</p>
 
-    <div class="ap-stage" data-reveal>
-      <span class="ap-glow" aria-hidden="true"></span>
-
-      <span class="ap-chip c1">
-        <span class="ap-chip-ic"><svg><use href="#i-bolt"/></svg></span>
-        <span class="ap-chip-tx"><b>100&thinsp;ms</b><em>order execution</em></span>
-      </span>
-      <span class="ap-chip c2">
-        <span class="ap-chip-ic"><svg><use href="#i-shield"/></svg></span>
-        <span class="ap-chip-tx"><b>Regulated</b><em>in 5 jurisdictions</em></span>
-      </span>
-
-      <div class="ap-phone" role="img" aria-label="The STARTRADER app showing a live watchlist of forex, metals and index instruments">
-        <div class="ap-screen">
-          <div class="ap-status"><span>9:41</span><span class="ap-status-r"><i></i><i></i><i></i></span></div>
-          <div class="ap-appbar"><b>Watchlist</b><span>8 of 15 &middot; live</span></div>
-          <div class="ap-cols"><span>Instrument</span><span>Price</span><span>Chg</span></div>
-          <div class="ap-rows">
-          <div class="ap-row is-hot">
-            <span class="ap-row-sym"><b>EURUSD</b><em>Euro / US Dollar</em></span>
-            <span class="ap-row-px">1.08420</span>
-            <span class="ap-row-chg up">+0.13%</span>
-          </div>
-          <div class="ap-row">
-            <span class="ap-row-sym"><b>XAUUSD</b><em>Gold / US Dollar</em></span>
-            <span class="ap-row-px">2,338.50</span>
-            <span class="ap-row-chg up">+0.42%</span>
-          </div>
-          <div class="ap-row">
-            <span class="ap-row-sym"><b>GBPUSD</b><em>British Pound / USD</em></span>
-            <span class="ap-row-px">1.27180</span>
-            <span class="ap-row-chg down">-0.08%</span>
-          </div>
-          <div class="ap-row is-hot">
-            <span class="ap-row-sym"><b>NAS100</b><em>US Tech 100</em></span>
-            <span class="ap-row-px">17,234.75</span>
-            <span class="ap-row-chg up">+0.30%</span>
-          </div>
-          <div class="ap-row">
-            <span class="ap-row-sym"><b>USDJPY</b><em>US Dollar / Yen</em></span>
-            <span class="ap-row-px">156.820</span>
-            <span class="ap-row-chg up">+0.24%</span>
-          </div>
-          <div class="ap-row">
-            <span class="ap-row-sym"><b>XTIUSD</b><em>WTI Crude Oil</em></span>
-            <span class="ap-row-px">78.42</span>
-            <span class="ap-row-chg down">-0.31%</span>
-          </div>
-          <div class="ap-row">
-            <span class="ap-row-sym"><b>GER40</b><em>Germany 40</em></span>
-            <span class="ap-row-px">18,412.60</span>
-            <span class="ap-row-chg up">+0.19%</span>
-          </div>
-          </div>
-          <div class="ap-tabs">
-            <span class="ap-tab is-on"><svg><use href="#i-cm-bars"/></svg>Markets</span>
-            <span class="ap-tab"><svg><use href="#i-chart"/></svg>Trades</span>
-            <span class="ap-tab"><svg><use href="#i-globe"/></svg>Discover</span>
-            <span class="ap-tab"><svg><use href="#i-bolt"/></svg>Promo</span>
-            <span class="ap-tab"><svg><use href="#i-user"/></svg>Profile</span>
-          </div>
-        </div>
+      <div class="st-btns" data-reveal>
+        <a class="st-btn" href="https://startrader.onelink.me/PWbI/canpg4vy" target="_blank" rel="noopener" aria-label="Download the STARTRADER app on the App Store">
+          <svg class="st-btn-ic" aria-hidden="true"><use href="#i-apple"/></svg>
+          <span class="st-btn-tx"><em>Download on the</em><b>App Store</b></span>
+        </a>
+        <a class="st-btn" href="https://play.google.com/store/apps/details?id=cn.com.startrader" target="_blank" rel="noopener" aria-label="Get the STARTRADER app on Google Play">
+          <svg class="st-btn-ic" aria-hidden="true"><use href="#i-gplay"/></svg>
+          <span class="st-btn-tx"><em>Get it on</em><b>Google Play</b></span>
+        </a>
       </div>
+    </div>
+  </div>
+
+  <div class="ap-hero-visual" aria-hidden="true">
+    <img class="ap-hero-img" src="../../assets/img/app-hero-phone.webp" alt="" width="1072" height="1052" fetchpriority="high" decoding="async">
+
+    <span class="ap-chip c1" data-float>
+      <span class="ap-chip-ic"><svg><use href="#i-bolt"/></svg></span>
+      <span class="ap-chip-tx"><b>100&thinsp;ms</b><em>average execution</em></span>
+    </span>
+    <div class="fx-quote ap-q1" data-fx-quote data-float>
+      <span class="q-sym">EUR/USD</span>
+      <span class="q-row"><span class="q-px">1.08420</span><span class="q-chg up">+0.13%</span></span>
     </div>
   </div>
 </section>
 
 <!-- ============ FEATURES ============ -->
-<section class="section fx-why pt-why" id="features" aria-labelledby="ap-f-title">
-  <span class="pt-aura a1" aria-hidden="true" data-pt-aura="-9"></span>
-  <span class="pt-aura a2" aria-hidden="true" data-pt-aura="7"></span>
+<!-- Editorial spec grid: hairline rules, one figure per cell, no card chrome.
+     Numbers count up on scroll; cells wash and lift on hover. -->
+<section class="section ap-spec" id="features" aria-labelledby="ap-f-title">
+  <span class="ap-spec-aura a1" aria-hidden="true"></span>
+  <span class="ap-spec-aura a2" aria-hidden="true"></span>
   <div class="container">
     <div class="head center">
       <span class="eyebrow" data-reveal>What is inside</span>
-      <h2 class="h2" id="ap-f-title" data-reveal>Everything you need, in your pocket</h2>
-      <p class="head-sub" data-reveal>The desktop terminal's capability on a screen you actually carry — the same instruments, the same pricing, the same order types.</p>
+      <h2 class="h2" id="ap-f-title" data-reveal>Everything you need,<br> in your pocket</h2>
+      <p class="head-sub" data-reveal>The desktop terminal's capability on a screen you actually carry &mdash;<br> the same instruments, the same feed, the same order types.</p>
     </div>
 
-    <div class="ap-bento" data-reveal-stagger>
-      <article class="ap-card glass ap-card--wide">
-        <span class="ap-card-ic"><svg><use href="#i-monitor"/></svg></span>
-        <h3>MT4 and MT5 <span class="hl">support</span></h3>
-        <p>Experience comprehensive functionality and seamless trading. Both platforms come in the same download, so you pick the one your strategy needs rather than the one your phone allows.</p>
-        <div class="ap-pills"><span>MT4</span><span>MT5</span><span>iOS</span><span>Android</span><span>Tablet</span></div>
-      </article>
+    <div class="spec-grid">
 
-      <article class="ap-card glass">
-        <span class="ap-card-ic"><svg><use href="#i-bolt"/></svg></span>
-        <h3>Ultra-fast <span class="hl">execution</span></h3>
-        <p>Orders fill in around 100 milliseconds against institutional liquidity.</p>
-        <div class="ap-mini">
-          <div class="ap-mini-h"><span>Order execution</span></div>
-          <div class="ap-mini-big">100<em>ms</em></div>
-          <div class="ap-bars" aria-hidden="true"><i style="height:42%"></i><i style="height:58%"></i><i style="height:71%"></i><i style="height:62%"></i><i style="height:84%"></i><i style="height:76%"></i><i style="height:94%"></i></div>
-        </div>
-      </article>
-
-      <article class="ap-card glass">
-        <span class="ap-card-ic"><svg><use href="#i-pie"/></svg></span>
-        <h3>200+ <span class="hl">instruments</span></h3>
-        <p>Forex, bonds, metals, indices, commodities and shares — the full book, on mobile.</p>
-        <div class="ap-mini">
-          <div class="ap-mini-h"><span>Available on mobile</span></div>
-          <div class="ap-mini-rows">
-            <div class="ap-mini-row"><span>Forex</span><b>80+</b></div>
-            <div class="ap-mini-row"><span>Metals &amp; energies</span><b>25+</b></div>
-            <div class="ap-mini-row"><span>Indices &amp; shares</span><b>95+</b></div>
+      <div class="spec-row spec-row--a" data-reveal-stagger>
+        <article class="spec">
+          <span class="spec-lbl">Available on mobile</span>
+          <p class="spec-n"><span data-count="200" data-suffix="+">200+</span></p>
+          <h3 class="spec-h">instruments, the whole book</h3>
+          <p class="spec-c">Forex, metals, energies, indices, shares and bonds &mdash; priced off the same aggregated tier-1 feed the desktop terminal uses.</p>
+          <div class="spec-split">
+            <div><b>80+</b><span>Forex pairs</span></div>
+            <div><b>25+</b><span>Metals &amp; energies</span></div>
+            <div><b>95+</b><span>Indices &amp; shares</span></div>
           </div>
-        </div>
-      </article>
+        </article>
 
-      <article class="ap-card glass">
-        <span class="ap-card-ic"><svg><use href="#i-chart"/></svg></span>
-        <h3>Technical analysis <span class="hl">tools</span></h3>
-        <p>Indicators, drawing tools and multiple timeframes, so a chart you open on the phone is the same chart you left on the desktop.</p>
-        <div class="ap-mini">
-          <div class="ap-mini-h"><span>On every chart</span></div>
-          <div class="ap-mini-rows">
-            <div class="ap-mini-row"><span>Timeframes</span><b>9</b></div>
-            <div class="ap-mini-row"><span>Indicators</span><b>30+</b></div>
-            <div class="ap-mini-row"><span>Drawing tools</span><b>24</b></div>
+        <article class="spec">
+          <span class="spec-lbl">One download</span>
+          <h3 class="spec-h spec-h--lead">MT4 and MT5,<br>in the same app</h3>
+          <p class="spec-c">Pick the platform your strategy needs rather than the one your phone allows. Charts, orders and history stay in sync with desktop.</p>
+          <div class="spec-pills"><span>MT4</span><span>MT5</span><span>iOS</span><span>Android</span><span>Tablet</span></div>
+        </article>
+      </div>
+
+      <div class="spec-row spec-row--b" data-reveal-stagger>
+        <article class="spec">
+          <span class="spec-lbl">Around</span>
+          <p class="spec-n"><span data-count="100">100</span> <i>ms</i></p>
+          <h3 class="spec-h">order execution</h3>
+          <p class="spec-c">Orders route to institutional liquidity, so the price you tapped is the price you are far more likely to get.</p>
+          <div class="spec-bars" aria-hidden="true"><i style="--h:44%"></i><i style="--h:58%"></i><i style="--h:71%"></i><i style="--h:63%"></i><i style="--h:84%"></i><i style="--h:76%"></i><i style="--h:95%"></i><i style="--h:68%"></i></div>
+        </article>
+
+        <article class="spec">
+          <span class="spec-lbl">From</span>
+          <p class="spec-n">0.0 <i>pips</i></p>
+          <h3 class="spec-h">on ECN accounts</h3>
+          <p class="spec-c">The cost you pay per trade is the same on mobile as on desktop &mdash; the spread, plus commission on commission-based accounts.</p>
+        </article>
+
+        <article class="spec">
+          <span class="spec-lbl">Up to</span>
+          <p class="spec-n">1:1000</p>
+          <h3 class="spec-h">leverage available</h3>
+          <p class="spec-c">Subject to your account type and jurisdiction. Leverage amplifies losses as well as profits.</p>
+        </article>
+      </div>
+
+      <div class="spec-row spec-row--c" data-reveal-stagger>
+        <article class="spec">
+          <span class="spec-lbl">On every chart</span>
+          <h3 class="spec-h spec-h--lead">The same analysis<br>you run on desktop</h3>
+          <p class="spec-c">A chart you open on the phone is the chart you left on the terminal.</p>
+          <dl class="spec-rows">
+            <div><dt>Timeframes</dt><dd>9</dd></div>
+            <div><dt>Indicators</dt><dd>30+</dd></div>
+            <div><dt>Drawing tools</dt><dd>24</dd></div>
+            <div><dt>Chart types</dt><dd>3</dd></div>
+          </dl>
+        </article>
+
+        <article class="spec">
+          <span class="spec-lbl">Risk management</span>
+          <h3 class="spec-h spec-h--lead">Your exit is set the moment you enter</h3>
+          <p class="spec-c">Market, limit, stop-loss and trailing stop orders are built into the ticket, so protection is part of opening the position rather than something you go back for.</p>
+          <div class="spec-ticket">
+            <div class="spec-ticket-h"><b>EURUSD</b><span>Buy &middot; 1.00 lot</span></div>
+            <div class="spec-ticket-rows">
+              <div><span>Entry</span><b>1.08420</b></div>
+              <div class="is-sl"><span>Stop loss</span><b>1.08120</b></div>
+              <div class="is-tp"><span>Take profit</span><b>1.09010</b></div>
+            </div>
+            <div class="spec-ticket-tags"><span>Market</span><span>Limit</span><span>Stop-loss</span><span>Trailing</span></div>
           </div>
-        </div>
-      </article>
+        </article>
+      </div>
 
-      <article class="ap-card glass">
-        <span class="ap-card-ic"><svg><use href="#i-gauge"/></svg></span>
-        <h3>Risk management <span class="hl">tools</span></h3>
-        <p>Market, limit, stop-loss and trailing stop orders, so you can set your exit as you open the position.</p>
-        <div class="ap-pills"><span>Market</span><span>Limit</span><span>Stop-loss</span><span>Trailing stop</span></div>
-      </article>
+      <div class="spec-row spec-row--b" data-reveal-stagger>
+        <article class="spec">
+          <span class="spec-lbl">Around the clock</span>
+          <p class="spec-n">24/7</p>
+          <h3 class="spec-h">support, in 20+ languages</h3>
+          <p class="spec-c">The same desk that answers on desktop answers in the app.</p>
+        </article>
 
-      <article class="ap-card glass">
-        <span class="ap-card-ic"><svg><use href="#i-swap"/></svg></span>
-        <h3>Real-time <span class="hl">data</span></h3>
-        <p>Live prices streamed to the watchlist, with the change column updating as the market moves.</p>
-        <div class="ap-mini">
-          <div class="ap-mini-h"><span>Watchlist refresh</span></div>
-          <div class="ap-mini-big">Live<em>stream</em></div>
-        </div>
-      </article>
+        <article class="spec">
+          <span class="spec-lbl">Works with</span>
+          <p class="spec-n"><span data-count="3">3</span></p>
+          <h3 class="spec-h">account types</h3>
+          <p class="spec-c">STP, ECN and Demo &mdash; commission-free on the applicable types, raw spread on ECN, virtual funds on Demo.</p>
+        </article>
 
-      <article class="ap-card glass">
-        <span class="ap-card-ic"><svg><use href="#i-layers"/></svg></span>
-        <h3>Multiple account <span class="hl">types</span></h3>
-        <p>STP, ECN and Demo accounts all work with the app, with commission-free trading on the applicable types and leverage up to 1:1000.</p>
-        <div class="ap-mini">
-          <div class="ap-mini-h"><span>Works with</span></div>
-          <div class="ap-mini-rows">
-            <div class="ap-mini-row"><span>STP</span><b>commission-free</b></div>
-            <div class="ap-mini-row"><span>ECN</span><b>raw spread</b></div>
-            <div class="ap-mini-row"><span>Demo</span><b>virtual funds</b></div>
-          </div>
-        </div>
-      </article>
+        <article class="spec">
+          <span class="spec-lbl">On most methods</span>
+          <p class="spec-n">Zero</p>
+          <h3 class="spec-h">deposit fees</h3>
+          <p class="spec-c">Fund and withdraw from inside the app by card, bank transfer or e-wallet.</p>
+        </article>
+      </div>
 
-      <article class="ap-card glass">
-        <span class="ap-card-ic"><svg><use href="#i-star"/></svg></span>
-        <h3>Personalised <span class="hl">watchlists</span></h3>
-        <p>Build the list you actually trade and it follows you across devices, so the app opens on your markets rather than a default set.</p>
-        <div class="ap-mini">
-          <div class="ap-mini-h"><span>Your list</span></div>
-          <div class="ap-mini-big">15<em>instruments</em></div>
-        </div>
-      </article>
-
-      <article class="ap-card glass">
-        <span class="ap-card-ic"><svg><use href="#i-wallet"/></svg></span>
-        <h3>Deposits and <span class="hl">withdrawals</span></h3>
-        <p>Fund and withdraw from inside the app, with zero deposit fees on most methods.</p>
-        <div class="ap-pills"><span>Cards</span><span>Bank transfer</span><span>e-wallets</span><span>Zero deposit fees</span></div>
-      </article>
     </div>
   </div>
 </section>
 
 <!-- ============ DOWNLOAD ============ -->
-<section class="section pt-sec pt-light-2" id="download" aria-labelledby="ap-d-title">
-  <div class="container">
-    <div class="ap-dl" data-reveal>
-      <div>
-        <h2 id="ap-d-title">Reach for success with the STARTRADER app</h2>
-        <p>Available on tablet and mobile. Download it free, open a demo inside the app, and trade live pricing before you fund anything.</p>
-        <div class="ap-get" data-reveal>
-      <a class="ap-store ap-store--badge" href="https://startrader.onelink.me/PWbI/canpg4vy" target="_blank" rel="noopener" aria-label="Download the STARTRADER app on the App Store">
-        <img src="../../assets/img/badge-appstore.png" alt="Download on the App Store" width="140" height="41">
-      </a>
-      <a class="ap-store" href="https://play.google.com/store/apps/details?id=cn.com.startrader" target="_blank" rel="noopener">
-        <img src="../../assets/img/badge-googleplay.svg" alt="" width="22" height="22">
-        <span class="ap-store-tx"><em>Get it on</em><b>Google Play</b></span>
-      </a>
+<!-- Full-bleed light-blue band. The render is shot on white, so it composites
+     with mix-blend-mode:multiply — nothing between .ap-dl2 (which isolates)
+     and the image may create a stacking context. -->
+<section class="ap-dl2" id="download" aria-labelledby="ap-d-title">
+  <span class="ap-dl2-aura a1" aria-hidden="true"></span>
+  <span class="ap-dl2-aura a2" aria-hidden="true"></span>
+
+  <div class="container ap-dl2-in">
+    <div class="ap-dl2-copy">
+      <span class="eyebrow" data-reveal>Get the app</span>
+      <h2 class="h2" id="ap-d-title" data-reveal>Reach for success with<br> the STARTRADER app</h2>
+      <p class="ap-dl2-lead" data-reveal>Free on iOS, Android and tablet. Open a demo inside the app<br> and trade live pricing before you fund anything.</p>
+
+      <div class="st-btns" data-reveal>
+        <a class="st-btn st-btn--ink" href="https://startrader.onelink.me/PWbI/canpg4vy" target="_blank" rel="noopener" aria-label="Download the STARTRADER app on the App Store">
+          <svg class="st-btn-ic" aria-hidden="true"><use href="#i-apple"/></svg>
+          <span class="st-btn-tx"><em>Download on the</em><b>App Store</b></span>
+        </a>
+        <a class="st-btn st-btn--ink" href="https://play.google.com/store/apps/details?id=cn.com.startrader" target="_blank" rel="noopener" aria-label="Get the STARTRADER app on Google Play">
+          <svg class="st-btn-ic" aria-hidden="true"><use href="#i-gplay"/></svg>
+          <span class="st-btn-tx"><em>Get it on</em><b>Google Play</b></span>
+        </a>
+      </div>
+
+      <p class="ap-dl2-note" data-reveal>Leveraged products carry a high level of risk and can cost more than your initial deposit.</p>
     </div>
-      </div>
-      <div class="ap-dl-side">
-        <div class="ap-dl-stat"><b>200+</b><span>instruments across forex, metals, indices, shares and bonds</span></div>
-        <div class="ap-dl-stat"><b>1:1000</b><span>maximum leverage, subject to your account and jurisdiction</span></div>
-        <div class="ap-dl-stat"><b>24/7</b><span>customer service in more than twenty languages</span></div>
-      </div>
+
+    <div class="ap-dl2-visual" aria-hidden="true">
+      <img class="ap-dl2-img" src="../../assets/img/app-download-phone.webp" alt="" width="876" height="1396" loading="lazy" decoding="async">
+
+      <span class="gcard g1 gcard--l" data-float>
+        <span class="gcard-ic ok"><svg><use href="#i-check"/></svg></span>
+        <span class="gcard-tx"><b>Order filled</b><em>1.00 lot &middot; 0.09s</em></span>
+      </span>
+
+      <span class="gcard gcard--quote g2 gcard--r" data-float>
+        <span class="gcard-tx"><b>EUR/USD</b><em>Aggregated tier-1</em></span>
+        <span class="gcard-px"><i>1.08420</i><u class="up">+0.13%</u></span>
+      </span>
+
+      <span class="gcard g3 gcard--l" data-float>
+        <span class="gcard-ic"><svg><use href="#i-wallet"/></svg></span>
+        <span class="gcard-tx"><b>Demo account</b><em>$50,000 virtual</em></span>
+      </span>
+
+      <span class="gcard g4 gcard--r" data-float>
+        <span class="gcard-ic"><svg><use href="#i-bolt"/></svg></span>
+        <span class="gcard-tx"><b>100&thinsp;ms</b><em>average execution</em></span>
+      </span>
+
     </div>
   </div>
 </section>

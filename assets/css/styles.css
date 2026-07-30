@@ -4499,204 +4499,359 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
 }
 
 /* ================= TRADING APP PAGE =================
-   The banner phone is built rather than photographed: no hand-holding-phone
-   render exists in the asset library, and a built device lets the screen show
-   real instruments and animate. */
-.ap-hero{
-  position:relative;overflow:hidden;isolation:isolate;color:#fff;
-  margin-top:calc(-1 * var(--nav-h));
-  min-height:min(700px,calc(100vh - var(--topbar-h,44px)));
-  display:flex;align-items:center;
-  padding:calc(var(--nav-h) + 40px) 0 44px;
-  background:
-    radial-gradient(64% 70% at 78% 12%,rgba(0,71,187,.34),transparent 62%),
-    radial-gradient(46% 52% at 6% 92%,rgba(22,233,215,.1),transparent 64%),
-    linear-gradient(180deg,#04060e 0%,#070c1c 54%,#04060e 100%);
-}
-.ap-hero-in{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:clamp(30px,4vw,64px);align-items:center;width:100%}
-.ap-h1{font-size:clamp(36px,5vw,60px);font-weight:800;letter-spacing:-.038em;line-height:1.05;margin-top:14px}
-.ap-h1 .g{background:linear-gradient(90deg,#7fb2ff,#dbe8ff);-webkit-background-clip:text;background-clip:text;color:transparent;padding-bottom:.06em}
-.ap-lead{margin-top:18px;max-width:50ch;font-size:clamp(15px,1.5vw,17.5px);line-height:1.66;color:#c9d5ea}
-/* social proof row, as in the reference */
-.ap-proof{display:inline-flex;align-items:center;gap:12px;padding:7px 15px;border-radius:70px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
-.ap-proof-st{display:flex;align-items:center;gap:3px;color:#ffc244}
-.ap-proof-st svg{width:13px;height:13px}
-.ap-proof b{font-size:12.5px;font-weight:700;color:#fff}
-.ap-proof span{font-size:12px;color:#a9bcdb}
+   Banner follows the forex / commodities pattern: copy left, photographic
+   render on the right bleeding from the disclaimer bar to the section base.
+   The render is shot on pure black, so it is composited with mix-blend-mode
+   rather than masked — the background dissolves into the banner exactly.
+   For that to work nothing between .acct-hero (which isolates) and the image
+   may create a stacking context, hence no z-index / filter on .ap-hero-visual. */
 
-/* store buttons */
-.ap-get{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:32px}
-.ap-store{
-  display:inline-flex;align-items:center;gap:11px;height:52px;padding:0 20px;border-radius:14px;
-  background:#fff;color:#08122a;transition:transform .35s var(--ease),box-shadow .35s var(--ease);
-  box-shadow:0 16px 36px -18px rgba(0,0,0,.6);
+/* ---- Store buttons (shared by the banner and the download panel) ---- */
+.st-btns{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:32px}
+.st-btn{
+  position:relative;overflow:hidden;
+  display:inline-flex;align-items:center;gap:12px;
+  height:56px;padding:0 22px;border-radius:15px;
+  background:#fff;color:#0a1020;
+  box-shadow:0 16px 34px -18px rgba(0,0,0,.66),inset 0 0 0 1px rgba(255,255,255,.9);
+  transition:transform .38s var(--ease),box-shadow .38s var(--ease);
 }
-.ap-store:hover{transform:translateY(-2px);box-shadow:0 22px 46px -20px rgba(0,0,0,.7)}
-.ap-store img{width:22px;height:22px;flex:none}
-.ap-store-tx{display:flex;flex-direction:column;line-height:1.15;text-align:left}
-.ap-store-tx em{font-style:normal;font-size:9.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#5a6472}
-.ap-store-tx b{font-size:14.5px;font-weight:700;letter-spacing:-.015em}
-.ap-store--badge{padding:0;background:none;box-shadow:none;height:auto}
-.ap-store--badge:hover{box-shadow:none}
-.ap-store--badge img{width:auto;height:52px}
-.ap-get-note{width:100%;margin-top:2px;font-size:12px;color:#8ea4c6}
+.st-btn:hover{transform:translateY(-3px);box-shadow:0 26px 48px -20px rgba(0,0,0,.72),inset 0 0 0 1px #fff}
+.st-btn:active{transform:translateY(-1px)}
+.st-btn-ic{width:23px;height:23px;flex:none}
+.st-btn-tx{display:flex;flex-direction:column;line-height:1.14;text-align:left}
+.st-btn-tx em{font-style:normal;font-size:9.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#5b6678}
+.st-btn-tx b{font-size:16px;font-weight:700;letter-spacing:-.022em}
+/* ink variant for light backgrounds */
+.st-btn--ink{background:#0b1020;color:#fff;box-shadow:0 18px 38px -20px rgba(11,16,32,.62),inset 0 0 0 1px rgba(255,255,255,.06)}
+.st-btn--ink:hover{box-shadow:0 26px 50px -22px rgba(11,16,32,.7),inset 0 0 0 1px rgba(255,255,255,.12)}
+.st-btn--ink .st-btn-tx em{color:#93a2ba}
+.st-btn--ink::after{background:linear-gradient(100deg,transparent,rgba(255,255,255,.22),transparent)}
 
-/* ---- the device ---- */
-.ap-stage{position:relative;display:grid;place-items:center;min-height:520px}
-.ap-glow{position:absolute;inset:8% 6%;z-index:0;border-radius:50%;pointer-events:none;filter:blur(64px);
-  background:radial-gradient(circle,rgba(0,71,187,.5),transparent 68%)}
-.ap-phone{
-  position:relative;z-index:1;width:clamp(238px,23vw,286px);aspect-ratio:9/19.2;
-  border-radius:44px;padding:9px;
-  background:linear-gradient(150deg,#59657d,#1b2130 40%,#0a0e16);
-  box-shadow:
-    0 60px 120px -44px rgba(0,0,0,.92),
-    0 0 0 1px rgba(255,255,255,.2),
-    0 0 60px -12px rgba(90,150,255,.34),
-    inset 0 1px 0 rgba(255,255,255,.4),
-    inset 0 -1px 0 rgba(255,255,255,.12);
-  transform:rotate(-7deg) translateY(-4px);
+/* a light sweep on hover — the only motion these need */
+.st-btn::after{
+  content:"";position:absolute;top:0;left:-70%;width:45%;height:100%;pointer-events:none;
+  background:linear-gradient(100deg,transparent,rgba(0,71,187,.16),transparent);
+  transform:skewX(-18deg);opacity:0;
 }
 @media (prefers-reduced-motion:no-preference){
-  .ap-phone{animation:apFloat 7s var(--ease) infinite alternate}
-  @keyframes apFloat{from{transform:rotate(-7deg) translateY(-4px)}to{transform:rotate(-5.4deg) translateY(6px)}}
+  .st-btn:hover::after{animation:stSheen .8s var(--ease)}
+  @keyframes stSheen{from{left:-70%;opacity:1}to{left:120%;opacity:0}}
 }
-.ap-screen{
-  position:relative;height:100%;border-radius:36px;overflow:hidden;
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.07);
-  background:linear-gradient(180deg,#0a0f1b,#070b14);
-  display:flex;flex-direction:column;
-}
-/* the pill cut-out */
-.ap-screen::before{
-  content:"";position:absolute;top:11px;left:50%;transform:translateX(-50%);
-  width:74px;height:21px;border-radius:20px;background:#04060c;z-index:3;
-}
-.ap-status{display:flex;align-items:center;justify-content:space-between;padding:14px 18px 6px;font-size:10.5px;font-weight:700;color:#e6edf8;letter-spacing:.02em}
-.ap-status-r{display:flex;align-items:center;gap:5px}
-.ap-status-r i{display:block;width:13px;height:9px;border-radius:2px;background:rgba(255,255,255,.5)}
-.ap-appbar{display:flex;align-items:center;justify-content:space-between;padding:12px 18px 10px}
-.ap-appbar b{font-size:13.5px;letter-spacing:-.02em;color:#fff}
-.ap-appbar span{font-size:10px;color:#7d8ca6}
-.ap-cols{display:grid;grid-template-columns:1fr auto 54px;gap:8px;padding:0 18px 8px;font-size:8.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#5f6d85}
-.ap-rows{flex:1;overflow:hidden;padding:0 12px}
-.ap-row{
-  display:grid;grid-template-columns:1fr auto 54px;gap:8px;align-items:center;
-  padding:9px 6px;border-radius:10px;transition:background .3s;
-}
-.ap-row+.ap-row{border-top:1px solid rgba(255,255,255,.05)}
-.ap-row.is-hot{background:rgba(255,255,255,.045)}
-.ap-row-sym{display:flex;flex-direction:column;gap:2px;min-width:0}
-.ap-row-sym b{font-size:11.5px;font-weight:700;letter-spacing:-.01em;color:#fff}
-.ap-row-sym em{font-style:normal;font-size:8.5px;color:#6c7b93;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.ap-row-px{font-size:11.5px;font-weight:700;color:#e6edf8;font-variant-numeric:tabular-nums;text-align:right}
-.ap-row-chg{
-  font-size:9.5px;font-weight:700;text-align:center;padding:4px 0;border-radius:6px;
-  font-variant-numeric:tabular-nums;
-}
-.ap-row-chg.up{color:#0b1f18;background:#2ed3a3}
-.ap-row-chg.down{color:#fff;background:#e0483f}
-.ap-tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;padding:9px 10px 14px;border-top:1px solid rgba(255,255,255,.06)}
-.ap-tab{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:7.5px;color:#5f6d85}
-.ap-tab svg{width:15px;height:15px}
-.ap-tab.is-on{color:#4d94ff}
 
-/* floating glass chips beside the device, as in the references */
+/* ---- Banner ---- */
+.ap-hero{
+  min-height:min(720px,calc(100vh - var(--topbar-h,44px)));
+  padding:calc(var(--nav-h) + 34px) 0 48px;
+  background:
+    radial-gradient(84% 76% at 74% 26%,rgba(0,71,187,.30),transparent 62%),
+    radial-gradient(52% 58% at 4% 92%,rgba(22,233,215,.09),transparent 62%),
+    linear-gradient(180deg,#04060e 0%,#060b1a 48%,#04060e 100%);
+}
+/* left wash keeps the copy legible; the radial darkens the render's footprint
+   so the blue haze cannot bleed through the phone screen when it composites */
+.ap-hero .acct-hero-bg::after{background:
+  linear-gradient(90deg,rgba(4,6,14,.92) 0%,rgba(4,6,14,.66) 32%,rgba(4,6,14,.18) 60%,rgba(4,6,14,0) 88%),
+  radial-gradient(44% 56% at 79% 58%,rgba(1,2,7,.94),rgba(1,2,7,0) 74%)}
+.ap-hero-copy-wrap{position:relative;z-index:2;width:100%}
+.ap-hero-copy{max-width:560px}
+.ap-hero .acct-hero-sub{max-width:560px;color:#c2cfe4}
+
+
+.ap-hero-visual{position:absolute;top:0;right:0;bottom:0;width:min(700px,50%);pointer-events:none}
+/* height is capped so the device clears the nav while the wrist still runs off
+   the base of the banner */
+.ap-hero-img{
+  position:absolute;right:2%;bottom:0;
+  width:auto;height:min(88%,690px);max-width:none;
+  object-fit:contain;object-position:right bottom;
+  mix-blend-mode:lighten;
+  transform-origin:bottom center;
+}
+@media (prefers-reduced-motion:no-preference){
+  /* pinned at the base, so the breathing is a scale rather than a lift */
+  .ap-hero-img{animation:apBreathe 9s var(--ease) infinite alternate}
+  @keyframes apBreathe{from{transform:scale(1)}to{transform:scale(1.022)}}
+}
+
+/* floating glass chips beside the render */
 .ap-chip{
   position:absolute;z-index:2;display:flex;align-items:center;gap:10px;
-  padding:11px 14px;border-radius:15px;
+  padding:11px 15px;border-radius:15px;
   background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.17);
   -webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);
   box-shadow:0 22px 44px -22px rgba(0,0,0,.7);
 }
-.ap-chip-ic{width:30px;height:30px;flex:none;border-radius:9px;display:grid;place-items:center;background:rgba(0,71,187,.32);color:#bcd6ff}
+.ap-chip-ic{width:30px;height:30px;flex:none;border-radius:9px;display:grid;place-items:center;background:rgba(0,71,187,.34);color:#bcd6ff}
 .ap-chip-ic svg{width:15px;height:15px}
 .ap-chip-tx{display:flex;flex-direction:column;line-height:1.25}
 .ap-chip-tx b{font-size:12.5px;color:#fff;letter-spacing:-.015em}
 .ap-chip-tx em{font-style:normal;font-size:10px;color:#a9bcdb}
-.ap-chip.c1{top:9%;left:-6%}
-.ap-chip.c2{bottom:15%;right:-4%}
-@media (prefers-reduced-motion:no-preference){
-  .ap-chip.c1{animation:apChip 6s var(--ease) infinite alternate}
-  .ap-chip.c2{animation:apChip 6s var(--ease) .8s infinite alternate-reverse}
-  @keyframes apChip{from{transform:translateY(0)}to{transform:translateY(-9px)}}
-}
+.ap-hero-visual .ap-chip.c1{top:21%;left:26%}
+.ap-hero-visual .fx-quote.ap-q1{z-index:2;left:16%;bottom:27%}
 
-/* ---- feature bento ---- */
-.ap-bento{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-.ap-card{
-  display:flex;flex-direction:column;padding:26px 24px 24px;border-radius:20px;min-width:0;
-  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
-}
-.ap-card:hover{transform:translateY(-5px);border-color:rgba(0,71,187,.26);box-shadow:0 30px 58px -32px rgba(20,44,96,.5),inset 0 1px 0 #fff}
-.ap-card--wide{grid-column:span 2}
-.ap-card-ic{
-  width:46px;height:46px;border-radius:14px;display:grid;place-items:center;margin-bottom:16px;
-  background:rgba(0,71,187,.09);color:var(--blue);transition:transform .4s var(--ease);
-}
-.ap-card-ic svg{width:22px;height:22px}
-.ap-card:hover .ap-card-ic{transform:translateY(-3px) scale(1.05)}
-.ap-card h3{font-size:17px;letter-spacing:-.02em;color:var(--text)}
-.ap-card h3 .hl{color:var(--blue)}
-.ap-card p{margin-top:9px;font-size:13.5px;line-height:1.62;color:var(--text-soft)}
-/* the in-card mini panels the references use */
-.ap-mini{margin-top:auto;padding:14px 15px;border-radius:14px;background:rgba(255,255,255,.62);border:1px solid #fff;box-shadow:inset 0 1px 0 #fff,0 10px 22px -16px rgba(20,44,96,.34)}
-.ap-card p+.ap-mini{margin-top:18px}
-.ap-mini-h{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-mute)}
-.ap-mini-big{margin-top:8px;font-size:26px;font-weight:800;letter-spacing:-.03em;color:#0f1830;line-height:1}
-.ap-mini-big em{font-style:normal;font-size:13px;color:var(--blue);margin-left:5px}
-.ap-bars{display:flex;gap:4px;margin-top:12px;align-items:flex-end;height:34px}
-.ap-bars i{flex:1;border-radius:3px;background:linear-gradient(180deg,#5b9dff,#1e4fb8);opacity:.85}
-.ap-mini-rows{display:flex;flex-direction:column;gap:7px;margin-top:10px}
-.ap-mini-row{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:11.5px}
-.ap-mini-row span{color:var(--text-soft)}
-.ap-mini-row b{color:#0f1830;font-variant-numeric:tabular-nums}
-.ap-pills{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
-.ap-pills span{font-size:11px;font-weight:600;color:var(--text-soft);background:rgba(20,44,96,.05);border:1px solid rgba(20,44,96,.1);padding:5px 11px;border-radius:70px}
-
-/* ---- download strip ---- */
-.ap-dl{
-  position:relative;overflow:hidden;border-radius:26px;padding:clamp(28px,3.4vw,46px);
-  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.72fr);gap:clamp(24px,3vw,48px);align-items:center;
-  color:#fff;
+/* ---- Feature spec grid (editorial hairlines, no card chrome) ---- */
+.ap-spec{
+  position:relative;isolation:isolate;overflow:clip;
   background:
-    radial-gradient(70% 80% at 88% 14%,rgba(0,71,187,.4),transparent 62%),
-    linear-gradient(150deg,#0a1020,#04060e);
-  border:1px solid rgba(255,255,255,.11);
-  box-shadow:0 40px 90px -44px rgba(0,20,70,.8),inset 0 1px 0 rgba(255,255,255,.13);
+    radial-gradient(50% 44% at 94% 2%,rgba(0,71,187,.07),transparent 62%),
+    radial-gradient(44% 44% at 3% 98%,rgba(22,233,215,.07),transparent 62%),
+    var(--bg-light-2);
 }
-.ap-dl h2{font-size:clamp(24px,2.6vw,34px);letter-spacing:-.03em;line-height:1.14}
-.ap-dl p{margin-top:14px;font-size:14.5px;line-height:1.66;color:#a9bcdb;max-width:44ch}
-.ap-dl .ap-get{margin-top:26px}
-.ap-dl-side{display:flex;flex-direction:column;gap:12px}
-.ap-dl-stat{
-  display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:16px;
-  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
-  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+.ap-spec>.container{position:relative;z-index:1}
+.ap-spec-aura{position:absolute;z-index:0;border-radius:50%;filter:blur(90px);pointer-events:none}
+.ap-spec-aura.a1{width:520px;height:520px;top:-14%;right:-8%;background:radial-gradient(circle,rgba(0,71,187,.13),transparent 68%)}
+.ap-spec-aura.a2{width:460px;height:460px;bottom:-16%;left:-10%;background:radial-gradient(circle,rgba(22,233,215,.12),transparent 68%)}
+
+.spec-grid{border-top:1px solid var(--line)}
+.spec-row{display:grid;border-bottom:1px solid var(--line)}
+.spec-row--a{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}
+.spec-row--b{grid-template-columns:repeat(3,minmax(0,1fr))}
+.spec-row--c{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
+
+.spec{
+  position:relative;display:flex;flex-direction:column;
+  padding:40px 40px 42px;min-width:0;
+  transition:transform .45s var(--ease);
 }
-.ap-dl-stat b{font-size:21px;font-weight:800;letter-spacing:-.03em;color:#fff;min-width:78px}
-.ap-dl-stat span{font-size:12.5px;line-height:1.45;color:#a9bcdb}
+.spec:first-child{padding-left:0}
+.spec:last-child{padding-right:0}
+/* inset vertical hairline between cells */
+.spec+.spec::before{content:"";position:absolute;left:0;top:30px;bottom:30px;width:1px;background:var(--line)}
+/* hover wash — the cell warms rather than lifting into a card */
+.spec::after{
+  content:"";position:absolute;inset:14px -10px;z-index:-1;border-radius:18px;pointer-events:none;
+  background:linear-gradient(180deg,rgba(0,71,187,.062),rgba(0,71,187,.012) 58%,transparent);
+  opacity:0;transition:opacity .45s var(--ease);
+}
+.spec:hover::after{opacity:1}
+.spec:hover{transform:translateY(-3px)}
+
+.spec-lbl{
+  display:block;font-size:12px;font-weight:600;letter-spacing:.02em;color:var(--text-mute);
+  transition:color .35s var(--ease);
+}
+.spec:hover .spec-lbl{color:var(--blue)}
+.spec-n{
+  margin-top:6px;font-size:clamp(38px,4.6vw,62px);font-weight:800;letter-spacing:-.045em;
+  line-height:1;color:var(--ink);font-variant-numeric:tabular-nums;
+}
+.spec-n i{font-style:normal;font-size:.4em;font-weight:700;letter-spacing:-.02em;color:var(--blue);margin-left:2px}
+.spec-h{margin-top:10px;font-size:19px;font-weight:700;letter-spacing:-.025em;color:var(--text);line-height:1.28}
+.spec-h--lead{margin-top:12px;font-size:clamp(22px,2.2vw,29px);line-height:1.16}
+.spec-c{margin-top:12px;font-size:13.5px;line-height:1.68;color:var(--text-soft);max-width:44ch}
+
+/* three-up figure split inside a cell */
+.spec-split{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:auto;padding-top:26px}
+.spec-split div{display:flex;flex-direction:column;gap:3px;padding-left:14px;border-left:2px solid rgba(0,71,187,.16);transition:border-color .35s var(--ease)}
+.spec:hover .spec-split div{border-left-color:rgba(0,71,187,.42)}
+.spec-split b{font-size:19px;font-weight:800;letter-spacing:-.03em;color:var(--ink)}
+.spec-split span{font-size:11.5px;color:var(--text-mute)}
+
+.spec-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:26px}
+.spec-pills span{
+  font-size:11.5px;font-weight:600;color:var(--text-soft);
+  background:rgba(255,255,255,.7);border:1px solid var(--line);
+  padding:6px 13px;border-radius:70px;transition:border-color .3s,color .3s,transform .3s var(--ease);
+}
+.spec:hover .spec-pills span{border-color:rgba(0,71,187,.24);color:var(--blue)}
+
+/* execution histogram — grows on reveal */
+/* content-box so the 26px lead-in does not eat the bar height */
+.spec-bars{box-sizing:content-box;display:flex;align-items:flex-end;gap:6px;height:58px;max-width:250px;margin-top:auto;padding-top:26px}
+.spec-bars i{
+  flex:1;height:var(--h);border-radius:4px;transform-origin:bottom;
+  background:linear-gradient(180deg,#5b9dff,#1e4fb8);opacity:.5;
+  transition:opacity .4s var(--ease),transform .5s var(--ease);
+}
+.spec:hover .spec-bars i{opacity:1}
+.spec:hover .spec-bars i:nth-child(odd){transform:scaleY(1.09)}
+@media (prefers-reduced-motion:no-preference){
+  .spec-bars i{animation:apBar 2.6s var(--ease) infinite alternate}
+  .spec-bars i:nth-child(2){animation-delay:-.4s}
+  .spec-bars i:nth-child(3){animation-delay:-.8s}
+  .spec-bars i:nth-child(4){animation-delay:-1.2s}
+  .spec-bars i:nth-child(5){animation-delay:-1.6s}
+  .spec-bars i:nth-child(6){animation-delay:-2s}
+  .spec-bars i:nth-child(7){animation-delay:-2.4s}
+  .spec-bars i:nth-child(8){animation-delay:-2.8s}
+  @keyframes apBar{from{transform:scaleY(.86)}to{transform:scaleY(1)}}
+}
+
+/* key/value list */
+.spec-rows{margin-top:auto;padding-top:26px;display:flex;flex-direction:column}
+.spec-rows>div{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:11px 0;border-top:1px solid var(--line)}
+.spec-rows>div:last-child{border-bottom:1px solid var(--line)}
+.spec-rows dt{font-size:13px;color:var(--text-soft)}
+.spec-rows dd{font-size:15px;font-weight:800;letter-spacing:-.02em;color:var(--ink);font-variant-numeric:tabular-nums}
+
+/* miniature order ticket */
+.spec-ticket{
+  margin-top:auto;padding:16px 18px;border-radius:16px;
+  background:linear-gradient(160deg,#0b1224,#060a15);
+  border:1px solid rgba(255,255,255,.09);
+  box-shadow:0 26px 52px -30px rgba(4,16,48,.6);
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease);
+}
+.spec:hover .spec-ticket{transform:translateY(-2px);box-shadow:0 32px 60px -30px rgba(4,16,48,.7)}
+.spec-ticket-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-bottom:11px;border-bottom:1px solid rgba(255,255,255,.08)}
+.spec-ticket-h b{font-size:13.5px;color:#fff;letter-spacing:-.02em}
+.spec-ticket-h span{font-size:11px;color:#8ea4c6}
+.spec-ticket-rows{display:flex;flex-direction:column;gap:8px;padding:12px 0 14px}
+.spec-ticket-rows>div{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.spec-ticket-rows span{font-size:11.5px;color:#8ea4c6}
+.spec-ticket-rows b{font-size:12.5px;color:#e6edf8;font-variant-numeric:tabular-nums}
+.spec-ticket-rows .is-sl b,.spec-ticket-rows div.is-sl b{color:#ff8078}
+.spec-ticket-rows div.is-tp b{color:#3fd9a8}
+.spec-ticket-tags{display:flex;flex-wrap:wrap;gap:6px}
+.spec-ticket-tags span{
+  font-size:10.5px;font-weight:600;color:#b9cbe8;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);
+  padding:4px 10px;border-radius:70px;
+}
+/* ---- Download band (full-bleed, light blue) ----
+   The render is photographed on white, so it composites with multiply: white
+   dissolves into the gradient and the device keeps its own values. Nothing
+   between .ap-dl2 and the image may create a stacking context, so the auras
+   sit at z-index:-1 rather than the content being lifted above them. */
+.ap-dl2{
+  position:relative;isolation:isolate;overflow:hidden;
+  padding:clamp(72px,7vw,104px) 0 0;
+  background:
+    radial-gradient(58% 46% at 78% 0%,rgba(120,178,255,.13),transparent 66%),
+    radial-gradient(48% 44% at 4% 92%,rgba(140,226,255,.11),transparent 66%),
+    linear-gradient(178deg,#fcfdff 0%,#f5f9fe 44%,#eef5fd 76%,#eaf2fd 100%);
+}
+.ap-dl2-aura{position:absolute;z-index:-1;border-radius:50%;pointer-events:none;filter:blur(78px)}
+.ap-dl2-aura.a1{width:560px;height:560px;top:-16%;right:6%;background:radial-gradient(circle,rgba(0,110,255,.08),transparent 68%)}
+.ap-dl2-aura.a2{width:460px;height:460px;bottom:-14%;left:-8%;background:radial-gradient(circle,rgba(22,233,215,.09),transparent 68%)}
+
+.ap-dl2-in{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.82fr);
+  gap:clamp(28px,4vw,64px);align-items:end;
+}
+.ap-dl2-copy{align-self:center;padding-bottom:clamp(40px,4vw,64px);min-width:0}
+.ap-dl2-copy .eyebrow{margin-bottom:14px}
+.ap-dl2-copy .h2{letter-spacing:-.032em}
+.ap-dl2-lead{margin-top:18px;font-size:clamp(15px,1.5vw,16.5px);line-height:1.68;color:var(--text-soft)}
+.ap-dl2 .st-btns{margin-top:32px}
+
+.ap-dl2-note{margin-top:26px;font-size:12px;line-height:1.55;color:var(--text-mute);max-width:52ch}
+
+/* the render — bottom-aligned in the grid, so the wrist meets the section base */
+.ap-dl2-visual{--cw:212px;--ov:46px;position:relative;justify-self:center;width:100%;max-width:470px}
+.ap-dl2-img{display:block;width:100%;height:auto;mix-blend-mode:multiply}
+
+/* ---- Glass cards riding over the device ---- */
+.gcard{
+  position:absolute;z-index:2;display:flex;align-items:center;gap:11px;
+  width:var(--cw);padding:12px 15px;border-radius:17px;
+  background:rgba(255,255,255,.8);
+  border:1px solid rgba(255,255,255,.96);
+  -webkit-backdrop-filter:blur(24px) saturate(1.8);backdrop-filter:blur(24px) saturate(1.8);
+  box-shadow:0 26px 52px -26px rgba(20,44,96,.42),inset 0 1px 0 rgba(255,255,255,.96);
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease),background .35s;
+}
+.gcard:hover{background:rgba(255,255,255,.93);box-shadow:0 32px 60px -26px rgba(20,44,96,.48),inset 0 1px 0 #fff}
+.gcard-ic{width:30px;height:30px;flex:none;border-radius:10px;display:grid;place-items:center;background:rgba(0,71,187,.11);color:var(--blue)}
+.gcard-ic.ok{background:rgba(16,185,129,.14);color:#0f9d76}
+.gcard-ic svg{width:15px;height:15px}
+.gcard-tx{display:flex;flex-direction:column;line-height:1.28;min-width:0;overflow:hidden}
+.gcard-tx b{font-size:12.5px;font-weight:700;letter-spacing:-.015em;color:var(--ink);white-space:nowrap;text-overflow:ellipsis;overflow:hidden}
+.gcard-tx em{font-style:normal;font-size:10.5px;color:var(--text-mute);white-space:nowrap;text-overflow:ellipsis;overflow:hidden}
+.gcard--quote{justify-content:space-between;gap:14px}
+.gcard-px{display:flex;flex-direction:column;align-items:flex-end;gap:2px;line-height:1.2}
+.gcard-px i{font-style:normal;font-size:13.5px;font-weight:800;letter-spacing:-.02em;color:var(--ink);font-variant-numeric:tabular-nums}
+.gcard-px u{text-decoration:none;font-size:10.5px;font-weight:700}
+.gcard-px u.up{color:#0f9d76}
+.gcard-px u.down{color:#d14a41}
+
+/* two tidy columns riding the device edges: three left, two interleaved right */
+.gcard--l{left:calc(12% + var(--ov) - var(--cw))}
+.gcard--r{left:calc(75% - var(--ov))}
+.gcard.g1{top:13%}
+.gcard.g2{top:31%}
+.gcard.g3{top:57%}
+.gcard.g4{top:75%}
+@media (prefers-reduced-motion:no-preference){
+  .gcard.g2{animation-duration:6.6s;animation-delay:-1.1s}
+  .gcard.g3{animation-duration:7.2s;animation-delay:-2.6s}
+  .gcard.g4{animation-duration:6.2s;animation-delay:-3.4s}
+}
 
 /* ---- Responsive ---- */
+@media (max-width:1180px){
+  .ap-hero-visual{width:min(640px,50%)}
+  .ap-dl2-visual{--cw:188px;--ov:56px}
+}
 @media (max-width:1080px){
-  .ap-hero-in{grid-template-columns:1fr;gap:40px}
-  .ap-stage{min-height:440px}
-  .ap-lead{max-width:60ch}
-  .ap-bento{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .ap-dl{grid-template-columns:1fr;gap:30px}
+  .spec-row--a,.spec-row--c{grid-template-columns:1fr 1fr}
+  .spec-c{max-width:none}
+  .ap-dl2-in{gap:clamp(20px,2.6vw,36px)}
+  .ap-dl2-visual{max-width:400px}
+  .gcard{padding:10px 13px;border-radius:15px}
+  .gcard-tx b{font-size:11.5px}
+  .gcard-tx em{font-size:10px}
+}
+/* below this the copy column can no longer hold the buttons and the fact row
+   beside the render, so the band stacks */
+@media (max-width:900px){
+  .ap-dl2-in{grid-template-columns:1fr;gap:0;text-align:center}
+  .ap-dl2-copy{padding-bottom:0}
+  .ap-dl2-lead{margin-inline:auto;max-width:56ch}
+  .ap-dl2 .st-btns{justify-content:center}
+  .ap-dl2-note{margin-inline:auto}
+  .ap-dl2-visual{--cw:200px;--ov:46px;max-width:430px;margin:36px auto 0}
+}
+@media (max-width:980px){
+  /* .acct-hero is a flex row — it has to become a block before the render can
+     stack under the copy instead of sitting beside it */
+  .ap-hero{display:block;min-height:auto;padding:calc(var(--nav-h) + 34px) 0 0;text-align:center}
+  .ap-hero .acct-hero-bg::after{background:linear-gradient(180deg,rgba(4,6,14,.72) 0%,rgba(4,6,14,.2) 30%,rgba(4,6,14,0) 62%)}
+  .ap-hero-copy{max-width:640px;margin-inline:auto}
+  .ap-hero .acct-hero-sub{margin-inline:auto}
+  .st-btns{justify-content:center}
+  .ap-hero-visual{position:relative;top:auto;right:auto;bottom:auto;width:100%;max-width:520px;margin:26px auto 0;aspect-ratio:1072/1052}
+  .ap-hero-img{position:absolute;right:0;left:0;margin-inline:auto;height:100%;width:100%}
+  .ap-hero-visual .ap-chip.c1{top:12%;left:4%}
+  /* .fx-quote is already hidden below 980 by the forex rules — one chip is
+     enough once the render is stacked under the copy */
 }
 @media (max-width:860px){
-  .ap-hero{min-height:auto;padding:calc(var(--nav-h) + 40px) 0 46px}
+  .spec{padding:32px 26px 34px}
+  .spec-split{grid-template-columns:1fr;gap:12px}
 }
 @media (max-width:720px){
-  .ap-bento{grid-template-columns:1fr}
-  .ap-card--wide{grid-column:span 1}
-  .ap-chip.c1{left:-2%;top:4%}
-  .ap-chip.c2{right:-2%;bottom:10%}
-  .ap-phone{width:min(268px,74vw)}
-  .ap-store--badge img{height:48px}
-  .ap-store{height:48px}
+  /* the hand-set line breaks in the headings only hold at desktop measure */
+  .ap-spec .head-sub br,.ap-spec .h2 br,.ap-dl2 .h2 br,.ap-dl2-lead br{display:none}
+  .spec-row--a,.spec-row--b,.spec-row--c{grid-template-columns:1fr}
+  .spec{padding:30px 0 32px}
+  .spec+.spec::before{left:0;right:0;top:0;bottom:auto;width:auto;height:1px}
+  .spec::after{inset:8px -14px}
+  .spec-n{font-size:clamp(36px,11vw,50px)}
+  .st-btn{height:52px;padding:0 18px}
+  .st-btn-tx b{font-size:15px}
+  .ap-dl2{padding-top:clamp(56px,9vw,72px)}
+  .ap-dl2-visual{--cw:172px;--ov:40px;max-width:330px;margin-top:30px}
+  /* two of the four would hang off the viewport at this width */
+  .gcard.g2,.gcard.g4{display:none}
+  .gcard{padding:9px 12px;gap:9px}
+  .gcard-ic{width:26px;height:26px;border-radius:8px}
+  .gcard-ic svg{width:13px;height:13px}
+  .gcard.g1{top:10%}
+  .gcard.g3{top:62%}
+  .ap-hero-visual{max-width:400px}
+  .ap-hero-visual .ap-chip.c1{padding:9px 12px}
+}
+@media (max-width:520px){
+  /* keeps "with the STARTRADER app" on one line instead of orphaning "app" */
+  .ap-hero .acct-hero-title{font-size:26px}
+  .st-btns{gap:10px}
+  .st-btn{flex:1 1 100%;justify-content:center}
+  .ap-dl2-visual{--cw:146px;--ov:70px;max-width:280px}
+  .gcard-tx b{font-size:11px}
 }
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
-  .ap-chip,.ap-dl-stat{background:rgba(14,20,38,.95)}
+  .ap-chip{background:rgba(14,20,38,.95)}
+  .gcard{background:rgba(255,255,255,.94)}
 }
