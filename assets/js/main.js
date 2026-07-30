@@ -3437,6 +3437,59 @@
     } else { select(0); }
   }
 
+
+  /* ---------------- MT pages: horizontal rail driven by page scroll ---------------- */
+  function initMtRail() {
+    var sec = document.querySelector('[data-mt-rail]');
+    if (!sec) return;
+    var vp = sec.querySelector('.mt-rail-vp');
+    var track = sec.querySelector('[data-mt-rail-track]');
+    var bar = sec.querySelector('[data-mt-rail-bar]');
+    if (!vp || !track) return;
+
+    // no scroll driver available: leave it as a swipeable row rather than a
+    // track the visitor cannot move
+    if (prefersReduced || !hasGSAP || !hasST) {
+      vp.classList.add('is-static');
+      if (bar) bar.style.transform = 'scaleX(1)';
+      return;
+    }
+
+    function chromeH() {
+      var v = parseFloat(getComputedStyle(doc).getPropertyValue('--nav-h')) || 70;
+      var tb = document.querySelector('.topbar');
+      return Math.round(v + (tb ? tb.offsetHeight : 0)) + 8;
+    }
+
+    var st = null;
+    function build() {
+      if (st) { st.kill(); st = null; }
+      gsap.set(track, { x: 0 });
+      var overflow = track.scrollWidth - vp.clientWidth;
+      if (overflow <= 20) {                       // everything already fits
+        vp.classList.add('is-static');
+        if (bar) gsap.set(bar, { scaleX: 1 });
+        return;
+      }
+      vp.classList.remove('is-static');
+      var tl = gsap.timeline({
+        scrollTrigger: {
+          // pin below the sticky chrome, or the section head sits under the nav
+          trigger: sec,
+          start: function () { return 'top ' + chromeH() + 'px'; },
+          end: '+=' + overflow,
+          pin: true, scrub: 0.6, invalidateOnRefresh: true,
+          onUpdate: function (self) { if (bar) gsap.set(bar, { scaleX: self.progress }); }
+        }
+      });
+      tl.to(track, { x: -overflow, ease: 'none' });
+      st = tl.scrollTrigger;
+    }
+    build();
+    var t;
+    window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(build, 180); });
+  }
+
   /* ---------------- Boot ---------------- */
   function boot() {
     if (!prefersReduced && hasGSAP && hasST) doc.classList.add('is-animate');
@@ -3482,6 +3535,7 @@
     initPageList();
     initHelpCentre();
     initTelemetry();
+    initMtRail();
     if (hasST) ScrollTrigger.refresh();
     window.addEventListener('load', function () { if (hasST) ScrollTrigger.refresh(); });
   }

@@ -181,6 +181,8 @@
   <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
   <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8.2" r="3.8" fill="currentColor"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0Z" fill="currentColor"/></symbol>
   <symbol id="i-apple" viewBox="0 0 24 24"><path fill="currentColor" d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></symbol>
+  <symbol id="i-windows" viewBox="0 0 24 24"><path fill="#00A4EF" d="M2.8 5.6 11.1 4.4v7.1H2.8zM12.1 4.25 21.2 3v8.5h-9.1zM2.8 12.5h8.3v7.1L2.8 18.5zM12.1 12.5h9.1V21l-9.1-1.25z"/></symbol>
+  <symbol id="i-android" viewBox="0 0 24 24"><path fill="#3DDC84" d="M17.55 9.52l1.83-3.17a.38.38 0 0 0-.66-.38l-1.85 3.21a11.4 11.4 0 0 0-9.74 0L5.28 5.97a.38.38 0 1 0-.66.38l1.83 3.17A10.75 10.75 0 0 0 1.1 18h21.8a10.75 10.75 0 0 0-5.35-8.48M7.05 15.2a.93.93 0 1 1 .93-.93.93.93 0 0 1-.93.93m9.9 0a.93.93 0 1 1 .93-.93.93.93 0 0 1-.93.93"/></symbol>
   <symbol id="i-gplay" viewBox="0 0 24 24"><path fill="#00A0FF" d="M3.6 2.1c-.31.33-.49.83-.49 1.49v16.82c0 .66.18 1.16.49 1.49l.06.05 9.42-9.42v-.22L3.66 2.05l-.06.05Z"/><path fill="#FFBC00" d="m16.66 15.72-3.58-3.29v-.22l3.59-3.59.08.05 4.25 2.42c1.21.69 1.21 1.81 0 2.5l-4.25 2.42-.09.05Z"/><path fill="#FF3A44" d="m16.75 15.67-3.67-3.68-9.48 9.48c.4.42 1.06.47 1.8.05l11.35-6.45Z"/><path fill="#00C853" d="M16.75 8.31 5.4 1.86c-.74-.42-1.4-.37-1.8.05l9.48 9.47 3.67-3.67Z"/></symbol>
   <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v11m0 0 4.2-4.2M12 14l-4.2-4.2M4 17v2.5A1.5 1.5 0 0 0 5.5 21h13a1.5 1.5 0 0 0 1.5-1.5V17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 </svg>
@@ -421,9 +423,6 @@
 
 <!-- ============ BANNER ============ -->
 <section class="pf-hero pf-hero--mt" aria-labelledby="pf-hero-title">
-  <span class="mt-hero-aura a1" aria-hidden="true"></span>
-  <span class="mt-hero-aura a2" aria-hidden="true"></span>
-
   <div class="container pf-hero-in">
     <div class="pf-hero-copy">
       <span class="eyebrow eyebrow-blue" data-reveal>MetaTrader 5</span>
@@ -436,7 +435,7 @@
   </div>
 
   <div class="mt-hero-visual" aria-hidden="true">
-    <img class="mt-hero-img" src="../../assets/img/mt-laptop-hero.webp" alt="" width="1233" height="1066" fetchpriority="high" decoding="async">
+    <img class="mt-hero-img" src="../../assets/img/mt-laptop-hero.webp" alt="" width="1190" height="1046" fetchpriority="high" decoding="async">
     <span class="mt-chip c1" data-float>
       <span class="mt-chip-ic"><svg><use href="#i-bolt"/></svg></span>
       <span class="mt-chip-tx"><b>One-click trading</b><em>straight from the chart</em></span>
@@ -493,29 +492,60 @@
   </div>
 </section>
 
-<!-- ============ BEYOND ============ -->
-<section class="section mt-beyond" aria-labelledby="mt-beyond-title">
-  <span class="mt-beyond-aura" aria-hidden="true"></span>
-  <div class="container mt-beyond-in">
-    <div class="mt-beyond-viz" data-reveal aria-hidden="true">
-      <img src="../../assets/img/mt-laptop-feature.webp" alt="" width="960" height="780" loading="lazy" decoding="async">
-    </div>
-    <div class="mt-beyond-copy">
+<!-- ============ BEYOND (scroll rail) ============ -->
+<section class="section mt-beyond" aria-labelledby="mt-beyond-title" data-mt-rail>
+  <div class="container">
+    <div class="head center">
       <span class="eyebrow eyebrow-blue" data-reveal>MT4 vs MT5</span>
       <h2 class="h2 h2-light" id="mt-beyond-title" data-reveal>Beyond the classic, discover<br> the <span class="hl">cutting edge of MT5</span></h2>
-      <div class="mt-beyond-body" data-reveal>
-        <p>The main difference between MT4 and MT5 lies in the versatility the latter provides to traders.</p>
-        <p>While MT4 is often the choice of forex traders, MT5 expands the horizons and allows investors to trade a wide range of assets like stocks, commodities and futures. In the comparison of MT5 vs MT4, several important features stand out: the platform empowers traders with advanced features that help automate trades and provide in-depth analysis.</p>
-        <p>MT5 traders can download the platform for Windows or Mac to trade from the desktop, or install it on an Android or iOS device for more convenience.</p>
-      </div>
-      <ul class="mt-beyond-pts" data-reveal>
-          <li><svg><use href="#i-check"/></svg><span>Multi-asset from one terminal</span></li>
-          <li><svg><use href="#i-check"/></svg><span>Faster 64-bit, multi-threaded core</span></li>
-          <li><svg><use href="#i-check"/></svg><span>Full strategy tester with real ticks</span></li>
-          <li><svg><use href="#i-check"/></svg><span>Economic calendar built in</span></li>
-      </ul>
-      <a class="mt-beyond-go" href="mt4.html" data-reveal>Compare with MT4 <svg><use href="#i-arrow-right"/></svg></a>
+      <p class="head-sub" data-reveal>Scroll through what the newer terminal adds &mdash; or watch the short version.</p>
     </div>
+  </div>
+
+  <div class="mt-rail-vp">
+    <div class="mt-rail" data-mt-rail-track>
+      <a class="mt-rail-card mt-rail-card--video" href="#" aria-label="Play: What is MT5?">
+        <img src="../../assets/img/mt-laptop-feature.webp" alt="The MetaTrader 5 platform" width="870" height="720" loading="lazy" decoding="async">
+        <span class="mt-rail-scrim" aria-hidden="true"></span>
+        <span class="mt-rail-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
+        <span class="mt-rail-vmeta"><span class="mt-rail-tag">Watch</span><span class="mt-rail-dur"><svg><use href="#i-clock"/></svg>3:48</span></span>
+        <span class="mt-rail-vtx"><b>What is MT5?</b><em>A short tour of the terminal and where its newer tools live.</em></span>
+      </a>
+        <article class="mt-rail-card glass-dark">
+          <span class="mt-rail-n">02</span>
+          <span class="mt-rail-ic"><svg><use href="#i-layers"/></svg></span>
+          <h3>Multi-asset from one terminal</h3>
+          <p>MT4 became the forex trader’s default. MT5 keeps that foundation and opens it out to shares, indices, commodities and futures from the same window.</p>
+        </article>
+        <article class="mt-rail-card glass-dark">
+          <span class="mt-rail-n">03</span>
+          <span class="mt-rail-ic"><svg><use href="#i-gauge"/></svg></span>
+          <h3>A strategy tester with real ticks</h3>
+          <p>Run a rule set against actual tick history and see the drawdown before it costs you anything. The tester is why most systematic traders move across.</p>
+        </article>
+        <article class="mt-rail-card glass-dark">
+          <span class="mt-rail-n">04</span>
+          <span class="mt-rail-ic"><svg><use href="#i-chart"/></svg></span>
+          <h3>Depth of Market</h3>
+          <p>See the resting orders behind the spread rather than a single top-of-book quote, and size an entry against liquidity that actually exists.</p>
+        </article>
+        <article class="mt-rail-card glass-dark">
+          <span class="mt-rail-n">05</span>
+          <span class="mt-rail-ic"><svg><use href="#i-clock"/></svg></span>
+          <h3>21 timeframes, 38 indicators</h3>
+          <p>Nine timeframes become twenty-one, thirty-plus indicators become thirty-eight, and twenty-four drawing objects become forty-four.</p>
+        </article>
+      <a class="mt-rail-card mt-rail-card--end" href="mt4.html">
+        <span class="mt-rail-ic"><svg><use href="#i-swap"/></svg></span>
+        <h3>Prefer the classic?</h3>
+        <p>MT4 is still the right answer for plenty of strategies. Compare the two side by side.</p>
+        <span class="mt-rail-go">Compare with MT4 <svg><use href="#i-arrow-right"/></svg></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="mt-rail-progress" aria-hidden="true"><i data-mt-rail-bar></i></div>
   </div>
 </section>
 
@@ -530,24 +560,24 @@
     </div>
 
     <div class="mt-dl-stage" data-reveal aria-hidden="true">
-      <img class="mt-dl-img" src="../../assets/img/mt-laptop-dl.webp" alt="" width="1060" height="680" loading="lazy" decoding="async">
+      <img class="mt-dl-img" src="../../assets/img/mt-laptop-dl.webp" alt="" width="1200" height="940" loading="lazy" decoding="async">
     </div>
 
     <div class="mt-dl-btns" data-reveal-stagger>
         <a class="mt-dl-btn" href="#">
-          <svg class="mt-dl-ic"><use href="#i-apple"/></svg>
+          <span class="mt-dl-tile apple"><svg class="mt-dl-ic"><use href="#i-apple"/></svg></span>
           <span class="mt-dl-tx"><em>Download on the</em><b>App Store</b></span>
         </a>
         <a class="mt-dl-btn" href="#">
-          <svg class="mt-dl-ic"><use href="#i-monitor"/></svg>
+          <span class="mt-dl-tile win"><svg class="mt-dl-ic"><use href="#i-windows"/></svg></span>
           <span class="mt-dl-tx"><em>Download for</em><b>Windows</b></span>
         </a>
         <a class="mt-dl-btn" href="#">
-          <svg class="mt-dl-ic"><use href="#i-phone"/></svg>
+          <span class="mt-dl-tile droid"><svg class="mt-dl-ic"><use href="#i-android"/></svg></span>
           <span class="mt-dl-tx"><em>Download on</em><b>Android</b></span>
         </a>
         <a class="mt-dl-btn" href="#">
-          <svg class="mt-dl-ic"><use href="#i-apple"/></svg>
+          <span class="mt-dl-tile apple"><svg class="mt-dl-ic"><use href="#i-apple"/></svg></span>
           <span class="mt-dl-tx"><em>Download for</em><b>Mac OS</b></span>
         </a>
     </div>
