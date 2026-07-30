@@ -5807,3 +5807,137 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
   .pg-fix{flex-direction:column;align-items:flex-start;gap:12px}
   .hc-assist-act .btn{flex:1 1 100%;justify-content:center}
 }
+
+/* =================================================================
+   MT4 / MT5 PAGES
+   ================================================================= */
+
+/* ---- Banner: gradient rather than a photo, with the render bleeding
+        into the bottom-right corner of the section ---- */
+.pf-hero--mt{
+  background:
+    radial-gradient(80% 74% at 74% 18%,rgba(0,71,187,.34),transparent 62%),
+    radial-gradient(52% 58% at 4% 92%,rgba(22,233,215,.09),transparent 62%),
+    linear-gradient(180deg,#04060e 0%,#070c1c 50%,#04060e 100%);
+  overflow:hidden;
+}
+.pf-hero--mt .pf-hero-copy{max-width:min(560px,52%)}
+.mt-hero-aura{position:absolute;z-index:0;border-radius:50%;pointer-events:none;filter:blur(92px)}
+.mt-hero-aura.a1{width:560px;height:560px;top:-16%;right:6%;background:radial-gradient(circle,rgba(0,110,255,.32),transparent 68%)}
+.mt-hero-aura.a2{width:420px;height:420px;bottom:-18%;left:-6%;background:radial-gradient(circle,rgba(22,233,215,.14),transparent 68%)}
+
+/* the render is shot on pure black, so it composites instead of being masked;
+   nothing between .pf-hero--mt and the image may create a stacking context */
+.pf-hero--mt{isolation:isolate}
+.mt-hero-visual{position:absolute;right:0;bottom:0;width:min(60%,940px);pointer-events:none}
+.mt-hero-img{
+  display:block;width:100%;height:auto;
+  mix-blend-mode:lighten;transform-origin:bottom right;
+}
+@media (prefers-reduced-motion:no-preference){
+  .mt-hero-img{animation:mtBreathe 9s var(--ease) infinite alternate}
+  @keyframes mtBreathe{from{transform:scale(1)}to{transform:scale(1.018)}}
+}
+.mt-chip{
+  position:absolute;z-index:2;display:flex;align-items:center;gap:10px;
+  padding:11px 15px;border-radius:15px;
+  background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);
+  -webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6);
+  box-shadow:0 24px 48px -24px rgba(0,0,0,.75);
+}
+.mt-chip-ic{width:30px;height:30px;flex:none;border-radius:9px;display:grid;place-items:center;background:rgba(0,71,187,.4);color:#bcd6ff}
+.mt-chip-ic svg{width:15px;height:15px}
+.mt-chip-tx{display:flex;flex-direction:column;line-height:1.25}
+.mt-chip-tx b{font-size:12.5px;color:#fff;letter-spacing:-.015em;white-space:nowrap}
+.mt-chip-tx em{font-style:normal;font-size:10px;color:#a9bcdb;white-space:nowrap}
+.mt-chip.c1{top:11%;left:14%}
+.mt-chip.c2{bottom:20%;left:1%}
+
+/* ---- Why choose: two-column checklist ---- */
+.mt-why{
+  position:relative;isolation:isolate;overflow:clip;
+  background:radial-gradient(50% 44% at 94% 2%,rgba(0,71,187,.07),transparent 62%),var(--bg-light-2);
+}
+.mt-why>.container{position:relative;z-index:1}
+.mt-why .head-sub{max-width:74ch}
+.mt-feats{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px clamp(24px,4vw,64px);
+  padding:clamp(26px,3vw,40px);border-radius:24px;
+}
+.mt-feats-col{display:flex;flex-direction:column}
+.mt-feats-col li{
+  display:flex;align-items:flex-start;gap:12px;padding:13px 0;font-size:14px;line-height:1.5;color:var(--text);
+  border-bottom:1px solid var(--line);transition:color .3s var(--ease),transform .3s var(--ease);
+}
+.mt-feats-col li:last-child{border-bottom:0}
+.mt-feats-col li:hover{color:var(--blue);transform:translateX(4px)}
+.mt-feats-col svg{width:16px;height:16px;flex:none;margin-top:2px;color:var(--blue)}
+
+/* ---- Download band ---- */
+.mt-dl{
+  position:relative;overflow:clip;color:#fff;
+  background:radial-gradient(74% 66% at 22% 8%,rgba(0,71,187,.3),transparent 62%),linear-gradient(180deg,#04060e,#070c1c 52%,#04060e);
+}
+.mt-dl .h2,.mt-dl .h2-light{color:#fff}
+.mt-dl-aura{position:absolute;z-index:0;width:520px;height:520px;top:-14%;left:6%;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(0,110,255,.26),transparent 68%);filter:blur(84px)}
+.mt-dl-in{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,.94fr);gap:clamp(30px,4vw,64px);align-items:center}
+/* the render is a studio shot on grey, so it lives in a framed, clipped panel
+   with the edges feathered — dropping it straight on the section showed the
+   backdrop as a grey rectangle */
+.mt-dl-viz{
+  position:relative;border-radius:24px;overflow:hidden;
+  border:1px solid rgba(255,255,255,.1);
+  box-shadow:0 44px 90px -46px rgba(0,0,0,.9);
+}
+.mt-dl-viz img{display:block;width:100%;height:auto;transition:transform 1.2s var(--ease)}
+.mt-dl-viz:hover img{transform:scale(1.03)}
+.mt-dl-viz::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(4,6,14,.16) 0%,transparent 20%,transparent 70%,rgba(4,6,14,.58) 100%),
+             linear-gradient(90deg,rgba(4,6,14,.3) 0%,transparent 16%,transparent 86%,rgba(4,6,14,.24) 100%);
+}
+.mt-dl-copy{min-width:0}
+.mt-dl-sub{margin-top:16px;font-size:14.5px;line-height:1.7;color:#a9bcdb;max-width:52ch}
+.mt-dl-btns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:30px}
+.mt-dl-btn{
+  position:relative;overflow:hidden;display:flex;align-items:center;gap:12px;
+  padding:14px 18px;border-radius:15px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13);
+  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+  transition:transform .4s var(--ease),background .3s,border-color .3s,box-shadow .4s var(--ease);
+}
+.mt-dl-btn:hover{transform:translateY(-3px);background:rgba(255,255,255,.1);border-color:rgba(120,175,255,.44);box-shadow:0 22px 44px -22px rgba(0,60,180,.6)}
+.mt-dl-ic{width:24px;height:24px;flex:none;color:#fff}
+.mt-dl-tx{display:flex;flex-direction:column;line-height:1.16;min-width:0}
+.mt-dl-tx em{font-style:normal;font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#8ea4c6}
+.mt-dl-tx b{font-size:15px;font-weight:700;letter-spacing:-.02em;color:#fff;white-space:nowrap}
+
+/* ---- Why STARTRADER: the gradient ray boxes, three up ---- */
+.mt-whyst-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.mt-whyst-grid .fx-mh-card{min-height:0}
+
+/* ---- Responsive ---- */
+@media (max-width:1180px){
+  .mt-hero-visual{width:min(64%,780px)}
+  .mt-chip.c1{left:8%}
+  .mt-chip.c2{left:-2%}
+}
+@media (max-width:1080px){
+  .pf-hero--mt{padding-bottom:clamp(280px,34vw,420px)}
+  .pf-hero--mt .pf-hero-copy{max-width:none}
+  .mt-hero-visual{width:min(88%,720px);right:-4%}
+  .mt-dl-in{grid-template-columns:1fr;gap:34px}
+  .mt-whyst-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:860px){
+  .mt-feats{grid-template-columns:1fr;gap:0}
+  .mt-feats-col:first-child li:last-child{border-bottom:1px solid var(--line)}
+}
+@media (max-width:720px){
+  .pf-hero--mt{padding-bottom:clamp(220px,58vw,340px)}
+  .mt-hero-visual{width:112%;right:-10%}
+  .mt-chip{display:none}
+  .mt-dl-btns{grid-template-columns:1fr}
+  .mt-whyst-grid{grid-template-columns:1fr}
+  .mt-dl .h2 br{display:none}
+}
