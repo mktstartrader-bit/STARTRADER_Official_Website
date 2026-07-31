@@ -3712,6 +3712,66 @@
     bio.observe(board);
   }
 
+  /* ---------------- Events: stage gallery ---------------- */
+  function initEvents() {
+    var gal = document.querySelector('[data-ev-gal]');
+    if (!gal) return;
+    var imgs = Array.prototype.slice.call(gal.querySelectorAll('[data-ev-img]'));
+    var thumbs = Array.prototype.slice.call(gal.querySelectorAll('[data-ev-thumb]'));
+    if (!imgs.length) return;
+
+    var tag = gal.querySelector('[data-ev-tag]');
+    var ttl = gal.querySelector('[data-ev-title]');
+    var dsc = gal.querySelector('[data-ev-desc]');
+    var count = gal.querySelector('[data-ev-count]');
+    var bar = document.querySelector('[data-ev-bar]');
+    var prevB = document.querySelector('[data-ev-prev]');
+    var nextB = document.querySelector('[data-ev-next]');
+    var at = 0, timer = null, held = false;
+
+    function pad(n) { return (n < 10 ? '0' : '') + n; }
+    function show(i) {
+      at = (i + imgs.length) % imgs.length;
+      imgs.forEach(function (im, k) { im.classList.toggle('is-on', k === at); });
+      thumbs.forEach(function (t, k) { t.classList.toggle('is-on', k === at); t.setAttribute('aria-pressed', k === at ? 'true' : 'false'); });
+      var src = thumbs[at] || imgs[at];
+      var alt = imgs[at].getAttribute('alt') || '';
+      if (tag) tag.textContent = imgs[at].getAttribute('data-tag') || tag.textContent;
+      if (ttl) ttl.textContent = alt;
+      if (dsc) dsc.textContent = imgs[at].getAttribute('data-desc') || dsc.textContent;
+      if (count) count.textContent = pad(at + 1) + ' / ' + pad(imgs.length);
+      if (bar) bar.style.width = ((at + 1) / imgs.length * 100) + '%';
+      if (src && src.scrollIntoView && thumbs.length) {
+        // keep the active frame in view when the rail is a horizontal strip
+        var rail = gal.querySelector('[data-ev-rail]');
+        if (rail && rail.scrollWidth > rail.clientWidth) {
+          var r = src.getBoundingClientRect(), box = rail.getBoundingClientRect();
+          rail.scrollTo({ left: rail.scrollLeft + (r.left - box.left) - (box.width - r.width) / 2, behavior: prefersReduced ? 'auto' : 'smooth' });
+        }
+      }
+    }
+    thumbs.forEach(function (t, i) {
+      t.addEventListener('click', function () { held = true; show(i); });
+    });
+    if (prevB) prevB.addEventListener('click', function () { held = true; show(at - 1); });
+    if (nextB) nextB.addEventListener('click', function () { held = true; show(at + 1); });
+    show(0);
+
+    // it advances itself until someone takes over, and only while on screen
+    if (prefersReduced) return;
+    function tick() { if (!held) show(at + 1); }
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.isIntersecting && !timer) timer = setInterval(tick, 4200);
+          else if (!e.isIntersecting && timer) { clearInterval(timer); timer = null; }
+        });
+      }, { threshold: 0.3 }).observe(gal);
+    } else {
+      timer = setInterval(tick, 4200);
+    }
+  }
+
   /* ---------------- CSR: gallery lightbox + the timeline rail ---------------- */
   function initCsr() {
     // the milestone scrubber: nodes drive the panel, and the active node centres itself
@@ -4034,6 +4094,7 @@
     initStarWeb();
     initSeen();
     initCsr();
+    initEvents();
     if (hasST) ScrollTrigger.refresh();
     window.addEventListener('load', function () { if (hasST) ScrollTrigger.refresh(); });
   }
