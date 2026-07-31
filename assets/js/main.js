@@ -1175,6 +1175,9 @@
           '<td><span class="fx-px" data-el="bid">' + fmt(bid, p.dec) + '</span></td>' +
           '<td><span class="fx-px" data-el="ask">' + fmt(ask, p.dec) + '</span></td>' +
           '<td><span class="fx-spread-pill" data-el="spread">' + set.spread(p.spread, p) + '</span></td>' +
+          '<td class="ta-td-act"><a class="fx-trade" href="/trading/getting-started/account-opening.html">' +
+          'Trade<svg aria-hidden="true"><use href="#i-arrow-right"/></svg>' +
+          '<span class="sr-only"> ' + p.sym + '</span></a></td>' +
           '</tr>';
       }).join('');
       body.innerHTML = html;
