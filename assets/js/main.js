@@ -3600,6 +3600,73 @@
     bio.observe(board);
   }
 
+  /* ---------------- STAR Web Trading: dashboard pins + feature switcher ---------------- */
+  function initStarWeb() {
+    // the annotated screenshot: a pin and its note are one control in two places
+    var stage = document.querySelector('[data-sw-stage]');
+    if (stage) {
+      var pins = Array.prototype.slice.call(stage.querySelectorAll('[data-sw-pin]'));
+      var notes = Array.prototype.slice.call(stage.querySelectorAll('[data-sw-note]'));
+      var keys = notes.map(function (n) { return n.getAttribute('data-sw-note'); });
+      var held = false, timer = null;
+
+      function show(key) {
+        pins.forEach(function (p) { p.classList.toggle('is-on', p.getAttribute('data-sw-pin') === key); });
+        notes.forEach(function (n) { n.classList.toggle('is-on', n.getAttribute('data-sw-note') === key); });
+      }
+      function step() {
+        if (held) return;
+        var on = notes.filter(function (n) { return n.classList.contains('is-on'); })[0];
+        var i = on ? keys.indexOf(on.getAttribute('data-sw-note')) : -1;
+        show(keys[(i + 1) % keys.length]);
+      }
+      pins.concat(notes).forEach(function (el) {
+        var key = el.getAttribute('data-sw-pin') || el.getAttribute('data-sw-note');
+        el.addEventListener('mouseenter', function () { show(key); });
+        el.addEventListener('focus', function () { show(key); });
+        el.addEventListener('click', function () { show(key); });
+      });
+      // the tour runs itself until someone takes over, and only while on screen
+      stage.addEventListener('pointerenter', function () { held = true; });
+      stage.addEventListener('pointerleave', function () { held = false; });
+      stage.addEventListener('focusin', function () { held = true; });
+      if (!prefersReduced) {
+        if ('IntersectionObserver' in window) {
+          new IntersectionObserver(function (es) {
+            es.forEach(function (e) {
+              if (e.isIntersecting && !timer) timer = setInterval(step, 3400);
+              else if (!e.isIntersecting && timer) { clearInterval(timer); timer = null; }
+            });
+          }, { threshold: 0.3 }).observe(stage);
+        } else {
+          timer = setInterval(step, 3400);
+        }
+      }
+    }
+
+    var feat = document.querySelector('[data-sw-feat]');
+    if (!feat) return;
+    var rows = Array.prototype.slice.call(feat.querySelectorAll('[data-sw-key]'));
+    var views = Array.prototype.slice.call(feat.querySelectorAll('[data-sw-view]'));
+    var label = feat.querySelector('[data-sw-label]');
+    rows.forEach(function (row) {
+      var hd = row.querySelector('.sw-row-hd');
+      if (!hd) return;
+      hd.addEventListener('click', function () {
+        var key = row.getAttribute('data-sw-key');
+        rows.forEach(function (r) {
+          var on = r === row;
+          r.classList.toggle('is-on', on);
+          var h = r.querySelector('.sw-row-hd');
+          if (h) h.setAttribute('aria-expanded', on ? 'true' : 'false');
+        });
+        views.forEach(function (v) { v.classList.toggle('is-on', v.getAttribute('data-sw-view') === key); });
+        var name = hd.querySelector('b');
+        if (label && name) label.textContent = name.textContent;
+      });
+    });
+  }
+
   /* ---------------- Boot ---------------- */
   function boot() {
     if (!prefersReduced && hasGSAP && hasST) doc.classList.add('is-animate');
@@ -3648,6 +3715,7 @@
     initMtRail();
     initCopyTrade();
     initStarCopy();
+    initStarWeb();
     if (hasST) ScrollTrigger.refresh();
     window.addEventListener('load', function () { if (hasST) ScrollTrigger.refresh(); });
   }
