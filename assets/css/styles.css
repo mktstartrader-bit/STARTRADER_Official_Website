@@ -6717,24 +6717,41 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
 /* ---- ten reasons: a spec sheet, not ten boxes ---- */
 .wt-why{position:relative;isolation:isolate;overflow:clip;background:radial-gradient(52% 44% at 50% -6%,rgba(0,71,187,.08),transparent 62%),var(--bg-light-2)}
 .wt-why>.container{position:relative;z-index:1}
-.wt-mark{display:block;width:96px;height:auto;margin:0 auto 22px;filter:drop-shadow(0 20px 26px rgba(20,44,96,.22))}
-.wt-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:8px}
+.wt-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:10px}
 .wt-card{
   position:relative;display:flex;flex-direction:column;overflow:hidden;
   border-radius:22px;padding:26px 26px 24px;
   background:linear-gradient(180deg,rgba(0,71,187,.07),rgba(255,255,255,.6) 50%);
   transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
 }
+/* twelve column-units over four rows: the first and last claim two each, so
+   ten cards land on a full grid with no orphan */
+.wt-card:first-child,.wt-card:last-child{grid-column:span 2}
 .wt-card:nth-child(3n+2){background:linear-gradient(180deg,rgba(223,197,174,.44),rgba(255,255,255,.6) 52%)}
 .wt-card:hover{transform:translateY(-4px);border-color:rgba(0,71,187,.28);box-shadow:0 28px 52px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff}
 .wt-card:nth-child(3n+2):hover{border-color:rgba(138,100,64,.34)}
-.wt-card-n{position:absolute;top:24px;right:26px;font-size:11px;font-weight:800;letter-spacing:.12em;color:var(--text-mute)}
+/* a light ray opens along the top edge on hover — the card's only decoration */
+.wt-card::after{
+  content:"";position:absolute;top:0;left:24%;right:24%;height:2px;border-radius:2px;
+  background:var(--blue);opacity:0;
+  transition:opacity .35s,left .55s var(--ease),right .55s var(--ease);
+}
+.wt-card:nth-child(3n+2)::after{background:#8a6440}
+.wt-card:hover::after{opacity:.9;left:7%;right:7%}
+.wt-card-n{
+  position:absolute;top:14px;right:20px;pointer-events:none;
+  font-size:46px;font-weight:800;line-height:1;letter-spacing:-.05em;
+  color:rgba(0,71,187,.09);transition:color .4s;
+}
+.wt-card:nth-child(3n+2) .wt-card-n{color:rgba(138,100,64,.13)}
+.wt-card:hover .wt-card-n{color:rgba(0,71,187,.17)}
+.wt-card:nth-child(3n+2):hover .wt-card-n{color:rgba(138,100,64,.22)}
 .wt-card-ic{width:42px;height:42px;flex:none;border-radius:13px;display:grid;place-items:center;background:rgba(0,71,187,.1);color:var(--blue);transition:transform .35s var(--ease)}
 .wt-card:nth-child(3n+2) .wt-card-ic{background:rgba(223,197,174,.55);color:#8a6440}
 .wt-card-ic svg{width:20px;height:20px}
 .wt-card:hover .wt-card-ic{transform:scale(1.07)}
-.wt-card h3{margin-top:18px;padding-right:34px;font-size:17px;letter-spacing:-.028em;line-height:1.26;color:var(--text)}
-.wt-card p{margin-top:9px;font-size:13.5px;line-height:1.66;color:var(--text-soft)}
+.wt-card h3{margin-top:20px;padding-right:52px;font-size:17px;letter-spacing:-.028em;line-height:1.26;color:var(--text)}
+.wt-card p{margin-top:9px;font-size:13.5px;line-height:1.66;color:var(--text-soft);max-width:46ch}
 .wt-why-act{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:44px}
 
 /* ---- the stage: one framed screen, one aligned strip, nothing floating ---- */
@@ -6778,14 +6795,14 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
 .wt-ui-tabs,.wt-ui-tfs{display:flex;gap:5px}
 .wt-ui-tabs span,.wt-ui-tfs span{font-size:9.5px;font-weight:700;color:#8ea4c6;padding:5px 9px;border-radius:6px;background:rgba(255,255,255,.05)}
 .wt-ui-tabs span.on,.wt-ui-tfs span.on{color:#fff;background:rgba(61,139,255,.34)}
-.wt-ui-main{display:grid;grid-template-columns:168px minmax(0,1fr);gap:10px}
+.wt-ui-main{display:grid;grid-template-columns:214px minmax(0,1fr);gap:10px}
 .wt-ui-mw,.wt-ui-plot,.wt-ui-term{border-radius:11px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.08);padding:11px}
 .wt-ui-hd{display:block;font-size:9px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#6f86ad;margin-bottom:9px}
-.wt-ui-q{display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:center;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:10.5px}
+.wt-ui-q{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:7px;align-items:center;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:10px;white-space:nowrap}
 .wt-ui-q:last-child{border-bottom:0}
-.wt-ui-q b{color:#e6edf8;font-weight:600}
+.wt-ui-q b{color:#e6edf8;font-weight:600;overflow:hidden;text-overflow:ellipsis}
 .wt-ui-q em{font-style:normal;color:#c8d6ec}
-.wt-ui-q u{text-decoration:none;font-weight:700;min-width:52px;text-align:right}
+.wt-ui-q u{text-decoration:none;font-weight:700;text-align:right}
 .wt-ui-q u.up{color:#3fd9a8}
 .wt-ui-q u.down{color:#ff7a7a}
 .wt-ui-plot{position:relative;padding-right:56px}
@@ -6843,12 +6860,17 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
   .wt-cap:nth-child(4){border-left:0}
   .wt-cap:nth-child(n+4){border-top:1px solid rgba(255,255,255,.08)}
 }
+@media (max-width:1080px){
+  .wt-cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .wt-card:first-child,.wt-card:last-child{grid-column:span 2}
+}
 @media (max-width:980px){
   .wt-ui-main{grid-template-columns:1fr}
   .wt-ui-chart{height:170px}
 }
 @media (max-width:720px){
   .wt-cards{grid-template-columns:1fr}
+  .wt-card:first-child,.wt-card:last-child{grid-column:auto}
   /* keep four columns and drop the two mid ones, so profit stays on its row */
   .wt-ui-th,.wt-ui-tr{grid-template-columns:1.1fr .8fr .7fr .9fr;gap:8px}
   .wt-ui-th span:nth-child(4),.wt-ui-th span:nth-child(5),
