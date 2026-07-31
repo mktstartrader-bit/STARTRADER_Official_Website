@@ -458,47 +458,101 @@
 
 <!-- ============ DASHBOARD ============ -->
 <section class="section sw-stage-sec" id="dashboard" aria-labelledby="sw-dash-title">
-  <span class="sw-aura" aria-hidden="true"></span>
-  <div class="container sw-stage" data-sw-stage>
-    <div class="head sw-stage-head">
+  <div class="container">
+    <div class="head center">
       <span class="eyebrow eyebrow-blue" data-reveal>Your trading dashboard</span>
       <h2 class="h2 h2-light" id="sw-dash-title" data-reveal>Five panels,<br> one browser tab</h2>
-      <p class="head-sub" data-reveal>Take the tour &mdash; pick a panel below, or a marker on the screen.</p>
+      <p class="head-sub" data-reveal>Pick a panel to see what it does. Everything below is one screen &mdash; no windows to arrange.</p>
     </div>
 
-    <div class="sw-lap" data-reveal>
-      <img src="../../assets/img/webtrader-laptop-crop.webp" alt="STAR Web Trading open in a browser on a laptop" width="590" height="336" loading="lazy" decoding="async">
-      <button class="sw-pin is-on" type="button" style="--x:10%;--y:16%" data-sw-pin="1" aria-label="Market Watch">1</button>
-      <button class="sw-pin" type="button" style="--x:41%;--y:23%" data-sw-pin="2" aria-label="Chart Panel">2</button>
-      <button class="sw-pin" type="button" style="--x:29%;--y:6%" data-sw-pin="3" aria-label="Trading Panel">3</button>
-      <button class="sw-pin" type="button" style="--x:64%;--y:55%" data-sw-pin="4" aria-label="Account Overview">4</button>
-      <button class="sw-pin" type="button" style="--x:35%;--y:59%" data-sw-pin="5" aria-label="Positions and Orders">5</button>
+    <div class="swx" data-sw-stage data-reveal>
+      <div class="swx-bar" aria-hidden="true">
+        <i></i><i></i><i></i>
+        <span class="swx-url"><svg><use href="#i-shield"/></svg>web.startrader.com</span>
+        <span class="swx-live"><b></b>Live</span>
+      </div>
+
+      <div class="swx-grid" data-swx-grid>
+        <button class="swx-zone is-on" type="button" data-swx-zone="1"
+          data-name="Market Watch" data-desc="Real-time quotes with search across every instrument you can trade, ordered however you like to read them.">
+          <span class="swx-zone-hd"><span class="swx-n">1</span><b>Market Watch</b></span>
+          <span class="swx-rows">
+            <span class="swx-r"><b>EUR/USD</b><em>1.08420</em><u class="up">+0.13%</u></span>
+            <span class="swx-r"><b>XAU/USD</b><em>2,318.65</em><u class="up">+0.42%</u></span>
+            <span class="swx-r"><b>US30</b><em>39,142.0</em><u class="down">&minus;0.18%</u></span>
+            <span class="swx-r"><b>GBP/JPY</b><em>197.284</em><u class="up">+0.26%</u></span>
+            <span class="swx-r"><b>USOIL</b><em>78.94</em><u class="down">&minus;0.61%</u></span>
+            <span class="swx-r"><b>GER40</b><em>18,214.7</em><u class="up">+0.34%</u></span>
+            <span class="swx-r"><b>AUD/USD</b><em>0.65842</em><u class="down">&minus;0.09%</u></span>
+            <span class="swx-r"><b>SPX500</b><em>5,263.40</em><u class="up">+0.21%</u></span>
+          </span>
+        </button>
+
+        <button class="swx-zone" type="button" data-swx-zone="2"
+          data-name="Chart Panel" data-desc="Professional charting with 100+ indicators, drawing tools and every timeframe from one minute to one month.">
+          <span class="swx-zone-hd"><span class="swx-n">2</span><b>Chart Panel</b></span>
+          <span class="swx-plot">
+            <span class="swx-tfs"><span>M15</span><span>H1</span><span class="on">H4</span><span>D1</span></span>
+            <svg viewBox="0 0 420 132" preserveAspectRatio="none" aria-hidden="true">
+              <defs><linearGradient id="swxFill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#3fd9a8" stop-opacity=".34"/><stop offset="100%" stop-color="#3fd9a8" stop-opacity="0"/>
+              </linearGradient></defs>
+              <path class="swx-plot-fill" d="M0 108 L28 100 L56 104 L84 86 L112 78 L140 84 L168 62 L196 54 L224 60 L252 40 L280 32 L308 38 L336 24 L364 16 L392 22 L420 10 L420 132 L0 132 Z"/>
+              <path class="swx-plot-line" d="M0 108 L28 100 L56 104 L84 86 L112 78 L140 84 L168 62 L196 54 L224 60 L252 40 L280 32 L308 38 L336 24 L364 16 L392 22 L420 10"/>
+            </svg>
+          </span>
+        </button>
+
+        <button class="swx-zone" type="button" data-swx-zone="3"
+          data-name="Trading Panel" data-desc="Quick order placement without leaving the chart you are reading &mdash; market, limit or stop, with a stop loss and a target attached.">
+          <span class="swx-zone-hd"><span class="swx-n">3</span><b>Trading Panel</b></span>
+          <span class="swx-ticket">
+            <span class="fld">Volume <b>0.50 lots</b></span>
+            <span class="sell">Sell 1.08418</span>
+            <span class="buy">Buy 1.08420</span>
+          </span>
+        </button>
+
+        <button class="swx-zone" type="button" data-swx-zone="4"
+          data-name="Account Overview" data-desc="Balance, equity and free margin, recalculated as each position moves so you always know what is at risk.">
+          <span class="swx-zone-hd"><span class="swx-n">4</span><b>Account</b></span>
+          <span class="swx-stats">
+            <span class="swx-stat">Balance <b>24,860.40</b></span>
+            <span class="swx-stat">Equity <b>25,112.85</b></span>
+            <span class="swx-stat">Free margin <b>21,940.10</b></span>
+            <span class="swx-stat">Margin used <b>12.4%</b></span>
+            <span class="swx-meter" aria-hidden="true"><i></i></span>
+          </span>
+        </button>
+
+        <button class="swx-zone" type="button" data-swx-zone="5"
+          data-name="Positions &amp; Orders" data-desc="Live portfolio management. Amend a stop, close a slice or hedge in place, without opening a second screen.">
+          <span class="swx-zone-hd"><span class="swx-n">5</span><b>Positions &amp; Orders</b></span>
+          <span class="swx-tbl">
+            <span class="swx-th"><span>Symbol</span><span>Side</span><span>Volume</span><span>Open</span><span>Current</span><span>P&amp;L</span></span>
+            <span class="swx-td"><b>EUR/USD</b><span class="swx-side">Buy</span><span>0.50</span><span>1.08180</span><span>1.08420</span><span class="up">+120.00</span></span>
+            <span class="swx-td"><b>XAU/USD</b><span class="swx-side s">Sell</span><span>0.20</span><span>2,324.10</span><span>2,318.65</span><span class="up">+109.00</span></span>
+            <span class="swx-td"><b>US30</b><span class="swx-side">Buy</span><span>1.00</span><span>39,215.0</span><span>39,142.0</span><span class="down">&minus;73.00</span></span>
+          </span>
+        </button>
+      </div>
     </div>
 
-    <div class="sw-notes">
-      <button class="sw-note is-on" type="button" data-sw-note="1">
-        <span class="sw-note-n">1</span>
-        <span class="sw-note-tx"><b>Market Watch</b><em>Real-time quotes with search across every instrument you can trade.</em></span>
-      </button>
-      <button class="sw-note" type="button" data-sw-note="2">
-        <span class="sw-note-n">2</span>
-        <span class="sw-note-tx"><b>Chart Panel</b><em>Advanced technical analysis &mdash; indicators, drawings and every timeframe.</em></span>
-      </button>
-      <button class="sw-note" type="button" data-sw-note="3">
-        <span class="sw-note-n">3</span>
-        <span class="sw-note-tx"><b>Trading Panel</b><em>Quick order placement without leaving the chart you are reading.</em></span>
-      </button>
-      <button class="sw-note" type="button" data-sw-note="4">
-        <span class="sw-note-n">4</span>
-        <span class="sw-note-tx"><b>Account Overview</b><em>Balance, equity and margin, updated as each position moves.</em></span>
-      </button>
-      <button class="sw-note" type="button" data-sw-note="5">
-        <span class="sw-note-n">5</span>
-        <span class="sw-note-tx"><b>Positions &amp; Orders</b><em>Live portfolio management &mdash; amend, close or hedge in place.</em></span>
-      </button>
+    <div class="swx-foot" data-reveal>
+      <span class="swx-cap" data-swx-cap aria-live="polite">
+        <b>Market Watch</b>
+        <em>Real-time quotes with search across every instrument you can trade, ordered however you like to read them.</em>
+      </span>
+      <span class="swx-dots">
+        <button class="swx-dot is-on" type="button" data-swx-dot="1" aria-label="Market Watch">1</button>
+        <button class="swx-dot" type="button" data-swx-dot="2" aria-label="Chart Panel">2</button>
+        <button class="swx-dot" type="button" data-swx-dot="3" aria-label="Trading Panel">3</button>
+        <button class="swx-dot" type="button" data-swx-dot="4" aria-label="Account Overview">4</button>
+        <button class="swx-dot" type="button" data-swx-dot="5" aria-label="Positions and Orders">5</button>
+      </span>
     </div>
 
-    <p class="sw-stage-note" data-reveal>Interface shown for illustration. Panels and layout vary by account type and jurisdiction.</p>
+    <p class="sw-stage-note" data-reveal>Interface shown for illustration. Panels, figures and layout vary by account type and jurisdiction.</p>
   </div>
 </section>
 

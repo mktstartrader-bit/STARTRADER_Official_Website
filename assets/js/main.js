@@ -3602,30 +3602,50 @@
 
   /* ---------------- STAR Web Trading: dashboard pins + feature switcher ---------------- */
   function initStarWeb() {
-    // the annotated screenshot: a pin and its note are one control in two places
+    // the built workspace: a region, its dot and the caption are one control
     var stage = document.querySelector('[data-sw-stage]');
     if (stage) {
-      var pins = Array.prototype.slice.call(stage.querySelectorAll('[data-sw-pin]'));
-      var notes = Array.prototype.slice.call(stage.querySelectorAll('[data-sw-note]'));
-      var keys = notes.map(function (n) { return n.getAttribute('data-sw-note'); });
+      var grid = stage.querySelector('[data-swx-grid]');
+      var zones = Array.prototype.slice.call(stage.querySelectorAll('[data-swx-zone]'));
+      var dots = Array.prototype.slice.call(document.querySelectorAll('[data-swx-dot]'));
+      var cap = document.querySelector('[data-swx-cap]');
+      var keys = zones.map(function (z) { return z.getAttribute('data-swx-zone'); });
       var held = false, timer = null;
 
       function show(key) {
-        pins.forEach(function (p) { p.classList.toggle('is-on', p.getAttribute('data-sw-pin') === key); });
-        notes.forEach(function (n) { n.classList.toggle('is-on', n.getAttribute('data-sw-note') === key); });
+        var live = null;
+        zones.forEach(function (z) {
+          var on = z.getAttribute('data-swx-zone') === key;
+          z.classList.toggle('is-on', on);
+          if (on) live = z;
+        });
+        dots.forEach(function (d) { d.classList.toggle('is-on', d.getAttribute('data-swx-dot') === key); });
+        if (grid) grid.classList.add('is-live');
+        if (cap && live) {
+          var b = cap.querySelector('b'), e = cap.querySelector('em');
+          if (b) b.innerHTML = live.getAttribute('data-name') || '';
+          if (e) e.innerHTML = live.getAttribute('data-desc') || '';
+        }
       }
       function step() {
         if (held) return;
-        var on = notes.filter(function (n) { return n.classList.contains('is-on'); })[0];
-        var i = on ? keys.indexOf(on.getAttribute('data-sw-note')) : -1;
+        var on = zones.filter(function (z) { return z.classList.contains('is-on'); })[0];
+        var i = on ? keys.indexOf(on.getAttribute('data-swx-zone')) : -1;
         show(keys[(i + 1) % keys.length]);
       }
-      pins.concat(notes).forEach(function (el) {
-        var key = el.getAttribute('data-sw-pin') || el.getAttribute('data-sw-note');
-        el.addEventListener('mouseenter', function () { show(key); });
-        el.addEventListener('focus', function () { show(key); });
-        el.addEventListener('click', function () { show(key); });
+      zones.forEach(function (z) {
+        var key = z.getAttribute('data-swx-zone');
+        z.addEventListener('mouseenter', function () { show(key); });
+        z.addEventListener('focus', function () { show(key); });
+        z.addEventListener('click', function () { show(key); });
       });
+      dots.forEach(function (d) {
+        var key = d.getAttribute('data-swx-dot');
+        d.addEventListener('mouseenter', function () { show(key); });
+        d.addEventListener('focus', function () { show(key); });
+        d.addEventListener('click', function () { show(key); });
+      });
+      show(keys[0]);
       // the tour runs itself until someone takes over, and only while on screen
       stage.addEventListener('pointerenter', function () { held = true; });
       stage.addEventListener('pointerleave', function () { held = false; });
@@ -3634,12 +3654,12 @@
         if ('IntersectionObserver' in window) {
           new IntersectionObserver(function (es) {
             es.forEach(function (e) {
-              if (e.isIntersecting && !timer) timer = setInterval(step, 3400);
+              if (e.isIntersecting && !timer) timer = setInterval(step, 3600);
               else if (!e.isIntersecting && timer) { clearInterval(timer); timer = null; }
             });
-          }, { threshold: 0.3 }).observe(stage);
+          }, { threshold: 0.25 }).observe(stage);
         } else {
-          timer = setInterval(step, 3400);
+          timer = setInterval(step, 3600);
         }
       }
     }
