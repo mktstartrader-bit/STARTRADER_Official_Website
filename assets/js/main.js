@@ -3717,6 +3717,129 @@
     bio.observe(board);
   }
 
+  /* ---------------- NBA partnership: arc deck, tilt, parallax, HUD ---------------- */
+  function initNba() {
+    var hero = document.querySelector('.nb-hero');
+    if (!hero) return;
+
+    /* --- the loading rail tracks how far down the page you are --- */
+    var hud = document.querySelector('[data-nb-hud]');
+    if (hud) {
+      var tick = function () {
+        var max = document.documentElement.scrollHeight - window.innerHeight;
+        hud.style.width = (max > 0 ? Math.min(1, window.scrollY / max) * 100 : 0) + '%';
+      };
+      window.addEventListener('scroll', tick, { passive: true });
+      window.addEventListener('resize', tick);
+      tick();
+    }
+
+    /* --- the spotlight and the subject answer the pointer --- */
+    var float = hero.querySelector('[data-nb-float]');
+    if (!prefersReduced) {
+      hero.addEventListener('pointermove', function (e) {
+        var r = hero.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+        hero.style.setProperty('--mx', (x * 100).toFixed(1) + '%');
+        hero.style.setProperty('--my', (y * 100).toFixed(1) + '%');
+        if (float) float.style.transform = 'translate3d(' + ((x - 0.5) * -26).toFixed(1) + 'px,' + ((y - 0.5) * -22).toFixed(1) + 'px,0)';
+      });
+      hero.addEventListener('pointerleave', function () {
+        if (float) float.style.transform = '';
+      });
+      // the arena drifts up as the hero leaves
+      var bg = hero.querySelector('[data-nb-bg]');
+      if (bg && hasGSAP && hasST) {
+        gsap.to(bg, { yPercent: 14, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
+      }
+      railMarquee(document.getElementById('nbTick'), 46);
+    }
+
+    /* --- the deck: five cards on an arc, reordering around the one you pick --- */
+    var arc = document.querySelector('[data-nb-arc]');
+    if (arc) {
+      var cards = Array.prototype.slice.call(arc.querySelectorAll('[data-nb-card]'));
+      var dots = Array.prototype.slice.call(document.querySelectorAll('[data-nb-dot]'));
+      var at = 2, hold = false, spin = null;
+
+      function lay() {
+        var wide = window.matchMedia('(min-width:721px)').matches;
+        cards.forEach(function (c, i) {
+          c.classList.toggle('is-on', i === at);
+          if (!wide) { c.style.cssText = ''; return; }
+          // shortest way round, so the deck always fans on both sides
+          var n = cards.length, d = i - at;
+          if (d > n / 2) d -= n;
+          if (d < -n / 2) d += n;
+          var ad = Math.abs(d);
+          c.style.setProperty('--x', (d * 70) + '%');
+          c.style.setProperty('--y', (ad * ad * 18) + 'px');
+          c.style.setProperty('--r', (d * 8) + 'deg');
+          c.style.setProperty('--z', (-ad * 130) + 'px');
+          c.style.setProperty('--s', (1 - ad * 0.08).toFixed(3));
+          c.style.opacity = ad > 2 ? 0 : (1 - ad * 0.2);
+          c.style.zIndex = 20 - ad;
+        });
+        dots.forEach(function (d, i) { d.classList.toggle('is-on', i === at); });
+      }
+      function pick(i) { at = (i + cards.length) % cards.length; lay(); }
+
+      cards.forEach(function (c, i) {
+        c.addEventListener('click', function () { hold = true; pick(i); });
+        c.addEventListener('focus', function () { hold = true; pick(i); });
+      });
+      dots.forEach(function (d, i) { d.addEventListener('click', function () { hold = true; pick(i); }); });
+      arc.addEventListener('keydown', function (e) {
+        var k = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (!k) return;
+        e.preventDefault(); hold = true; pick(at + k); cards[at].focus();
+      });
+      window.addEventListener('resize', lay);
+      lay();
+
+      // the deck deals itself until someone reaches for it
+      if (!prefersReduced && 'IntersectionObserver' in window) {
+        new IntersectionObserver(function (es) {
+          es.forEach(function (e) {
+            if (e.isIntersecting && !spin && !hold) spin = setInterval(function () { if (hold) { clearInterval(spin); spin = null; return; } pick(at + 1); }, 3600);
+            else if (!e.isIntersecting && spin) { clearInterval(spin); spin = null; }
+          });
+        }, { threshold: 0.3 }).observe(arc);
+      }
+    }
+
+    /* --- the phone tilts toward the pointer and swaps its wallpaper --- */
+    var phone = document.querySelector('[data-nb-phone]');
+    var wall = document.querySelector('[data-nb-wall]');
+    if (phone && wall && !prefersReduced) {
+      wall.addEventListener('pointermove', function (e) {
+        var r = wall.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+        phone.style.transform = 'rotateY(' + (x * 16).toFixed(1) + 'deg) rotateX(' + (-y * 12).toFixed(1) + 'deg)';
+      });
+      wall.addEventListener('pointerleave', function () { phone.style.transform = ''; });
+    }
+    var swatches = Array.prototype.slice.call(document.querySelectorAll('[data-nb-swatch]'));
+    var papers = Array.prototype.slice.call(document.querySelectorAll('[data-nb-paper]'));
+    var nameEl = document.querySelector('[data-nb-name]');
+    swatches.forEach(function (sw, i) {
+      sw.addEventListener('click', function () {
+        swatches.forEach(function (s, k) { s.classList.toggle('is-on', k === i); });
+        papers.forEach(function (p, k) { p.classList.toggle('is-on', k === i); });
+        if (nameEl) nameEl.textContent = (sw.getAttribute('aria-label') || '').replace(' wallpaper', '');
+      });
+    });
+
+    /* --- the habit panels slide in one after another --- */
+    var reps = document.querySelector('[data-nb-reps]');
+    if (reps && !prefersReduced && hasGSAP && hasST) {
+      gsap.fromTo(reps.children, { x: 64, opacity: 0 }, {
+        x: 0, opacity: 1, duration: 0.8, ease: 'power3.out', stagger: 0.13,
+        scrollTrigger: { trigger: reps, start: 'top 82%', once: true }
+      });
+    }
+  }
+
   /* ---------------- Events: the gallery rail ---------------- */
   function initEvents() {
     var rail = document.querySelector('[data-ev-rail]');
@@ -4103,6 +4226,7 @@
     initCsr();
     initEvents();
     initMedia();
+    initNba();
     if (hasST) ScrollTrigger.refresh();
     window.addEventListener('load', function () { if (hasST) ScrollTrigger.refresh(); });
   }
