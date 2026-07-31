@@ -3729,9 +3729,14 @@
       var nextB = tm.querySelector('[data-ct-next]');
       var cur = 0;
 
+      // measure against the scroll box itself — offsetLeft resolves to the nearest
+      // positioned ancestor, which is not the rail, and lands the node off-centre
       function centre(el) {
         if (!scroll || !el) return;
-        scroll.scrollTo({ left: el.offsetLeft - (scroll.clientWidth - el.offsetWidth) / 2, behavior: prefersReduced ? 'auto' : 'smooth' });
+        var r = el.getBoundingClientRect(), box = scroll.getBoundingClientRect();
+        var to = scroll.scrollLeft + (r.left - box.left) - (box.width - r.width) / 2;
+        if (scroll.scrollTo) scroll.scrollTo({ left: to, behavior: prefersReduced ? 'auto' : 'smooth' });
+        else scroll.scrollLeft = to;
       }
       function pick(i, scrollTo) {
         cur = Math.max(0, Math.min(nodes.length - 1, i));
