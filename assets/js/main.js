@@ -3646,6 +3646,11 @@
     railMarquee(document.getElementById('ctTrack'));
   }
 
+  /* ---------------- Media coverage: the outlet rail ---------------- */
+  function initMedia() {
+    railMarquee(document.getElementById('mcTrack'), 34);
+  }
+
   /* ---------------- Card rail: clone once, scroll forever ---------------- */
   function railMarquee(track, pxPerSec) {
     if (!track) return;
@@ -4097,6 +4102,7 @@
     initSeen();
     initCsr();
     initEvents();
+    initMedia();
     if (hasST) ScrollTrigger.refresh();
     window.addEventListener('load', function () { if (hasST) ScrollTrigger.refresh(); });
   }
