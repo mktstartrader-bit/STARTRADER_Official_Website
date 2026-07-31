@@ -6881,3 +6881,126 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
   .wt-why .h2 br,.wt-stage-sec .h2 br{display:none}
   .wt-req{border-radius:20px;text-align:left;justify-content:flex-start}
 }
+
+/* =================================================================
+   PLATFORM PAGES — shared light cards, each with its own accent
+   (a clean glass base, not a gradient wash)
+   ================================================================= */
+.pl-sec{position:relative;isolation:isolate;overflow:clip;background:radial-gradient(52% 44% at 50% -6%,rgba(0,71,187,.07),transparent 62%),var(--bg-light-2)}
+.pl-sec>.container{position:relative;z-index:1}
+.pl-sec--plain{background:var(--bg-light)}
+
+.pl-intro{display:grid;grid-template-columns:104px minmax(0,1fr);gap:26px;align-items:start;max-width:880px;margin:0 auto 46px}
+.pl-intro img{width:104px;height:auto;filter:drop-shadow(0 20px 26px rgba(20,44,96,.22))}
+.pl-intro p{font-size:15px;line-height:1.76;color:var(--text-soft)}
+
+/* the same shell, top bar and lift as the regulator cards on why-startrader */
+.pl-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.pl-card{
+  position:relative;overflow:hidden;display:flex;flex-direction:column;
+  border-radius:var(--radius-lg);padding:20px 20px 18px;
+  background:rgba(255,255,255,.62);
+  -webkit-backdrop-filter:blur(16px) saturate(1.5);backdrop-filter:blur(16px) saturate(1.5);
+  border:1px solid rgba(255,255,255,.85);
+  box-shadow:0 10px 28px -18px rgba(20,44,96,.24),inset 0 1px 0 rgba(255,255,255,.9);
+  transition:transform .38s var(--ease),box-shadow .38s,border-color .3s;
+}
+.pl-card::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,#2a72ff,#0b43c6);
+  transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease);
+}
+.pl-card:hover{transform:translateY(-5px);border-color:var(--blue);box-shadow:0 24px 46px -24px rgba(0,71,187,.4)}
+.pl-card:hover::before{transform:scaleX(1)}
+.pl-card-hd{display:flex;align-items:center;gap:12px}
+.pl-card-ic{
+  width:38px;height:38px;flex:none;border-radius:12px;display:grid;place-items:center;
+  background:rgba(0,71,187,.1);color:var(--blue);
+  transition:transform .38s var(--ease),background .3s,color .3s;
+}
+.pl-card-ic svg{width:19px;height:19px}
+.pl-card:hover .pl-card-ic{transform:translateY(-2px);background:var(--blue);color:#fff}
+.pl-card-hd h3{font-size:15.5px;font-weight:700;letter-spacing:-.022em;line-height:1.28;color:var(--text)}
+.pl-card p{margin-top:13px;padding-top:13px;border-top:1px solid var(--line);font-size:12.5px;line-height:1.6;color:var(--text-soft)}
+.pl-act{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:42px}
+
+/* the per-step action inside the shared stepper */
+.htrade-txt .ct-path-go{margin-top:12px;padding-top:0}
+.pl-note{max-width:760px;margin:30px auto 0;text-align:center;font-size:12.5px;line-height:1.7;color:var(--text-soft)}
+.pl-note a{color:var(--blue);font-weight:600}
+
+/* ---- strategy managers: the figures animate in once, on scroll ---- */
+.pk-sec{position:relative;overflow:clip;color:#fff;background:radial-gradient(66% 52% at 50% 0%,rgba(0,46,138,.32),transparent 62%),linear-gradient(180deg,#04060e,#080e1e 54%,#04060e)}
+.pk-sec .h2,.pk-sec .h2-light{color:#fff}
+.pk-sec .head-sub{color:#a9bcdb}
+.pk-sec>.container{position:relative;z-index:1}
+.pk-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(286px,1fr));gap:20px}
+.pk-card{
+  position:relative;display:flex;flex-direction:column;padding:24px;border-radius:22px;overflow:hidden;
+  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.022));
+  border:1px solid rgba(255,255,255,.1);
+  transition:transform .4s var(--ease),border-color .3s,background .3s,box-shadow .42s var(--ease);
+}
+.pk-card:hover{transform:translateY(-4px);border-color:rgba(120,175,255,.42);background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.03));box-shadow:0 34px 62px -34px rgba(0,0,0,.85)}
+.pk-hd{display:flex;align-items:center;gap:13px;min-width:0}
+.pk-face{width:52px;height:52px;flex:none;border-radius:16px;object-fit:cover;border:1px solid rgba(120,175,255,.28)}
+.pk-who{display:flex;flex-direction:column;gap:4px;min-width:0;flex:1}
+.pk-who b{font-size:15.5px;letter-spacing:-.024em;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pk-who em{font-style:normal;font-size:11.5px;color:#8ea4c6}
+.pk-rank{flex:none;font-size:10.5px;font-weight:800;letter-spacing:.1em;color:#9fb8dd;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);padding:6px 10px;border-radius:70px}
+.pk-figs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+.pk-fig{display:flex;flex-direction:column;gap:5px}
+.pk-fig b{font-size:clamp(23px,2.4vw,28px);font-weight:800;letter-spacing:-.04em;line-height:1;color:#3fd9a8;font-variant-numeric:tabular-nums}
+.pk-fig.fee b{color:#fff}
+.pk-fig span{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#6f86ad}
+.pk-spark{display:block;width:calc(100% + 48px);margin:16px -24px 0;height:48px}
+.pk-line{fill:none;stroke:#3fd9a8;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.6s .1s var(--ease)}
+[data-seen].is-seen .pk-line{stroke-dashoffset:0}
+.pk-foot{display:flex;align-items:center;gap:12px;margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,.08);font-size:11.5px;color:#8ea4c6}
+.pk-foot .btn{margin-left:auto}
+
+/* where a pooled deposit actually goes — the bar fills on scroll */
+.pk-alloc{max-width:900px;margin:44px auto 0}
+.pk-alloc-hd{display:flex;align-items:baseline;justify-content:space-between;gap:14px;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#6f86ad}
+.pk-alloc-bar{display:flex;height:14px;margin-top:12px;border-radius:70px;overflow:hidden;background:rgba(255,255,255,.07)}
+.pk-alloc-bar i{width:0;transition:width 1.4s var(--ease)}
+[data-seen].is-seen .pk-alloc-bar i{width:var(--w)}
+.pk-alloc-bar i:nth-child(1){background:#3d8bff;transition-delay:.1s}
+.pk-alloc-bar i:nth-child(2){background:#3fd9a8;transition-delay:.22s}
+.pk-alloc-bar i:nth-child(3){background:#8f7bf0;transition-delay:.34s}
+.pk-alloc-bar i:nth-child(4){background:#e3b26a;transition-delay:.46s}
+.pk-alloc-bar i:nth-child(5){background:#5f9dc4;transition-delay:.58s}
+.pk-alloc-key{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:16px}
+.pk-alloc-key span{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:#a9bcdb}
+.pk-alloc-key i{width:9px;height:9px;border-radius:3px;flex:none}
+.pk-alloc-key b{color:#fff;font-weight:700;font-variant-numeric:tabular-nums}
+.pk-note{margin-top:34px;text-align:center;font-size:11.5px;line-height:1.7;color:#7f92b3;max-width:860px;margin-inline:auto}
+
+/* ---- talk to the desk ---- */
+.pl-desk{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:26px;
+  padding:30px 34px;border-radius:26px;
+  background:linear-gradient(110deg,rgba(0,71,187,.08),rgba(255,255,255,.68) 56%);
+  border:1px solid rgba(255,255,255,.94);
+  box-shadow:0 22px 46px -30px rgba(20,44,96,.34),inset 0 1px 0 #fff;
+  -webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
+}
+.pl-desk:hover{transform:translateY(-4px);border-color:rgba(0,71,187,.28);box-shadow:0 28px 52px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff}
+.pl-desk-tx{display:flex;flex-direction:column;gap:7px;min-width:0}
+.pl-desk-tx b{font-size:19px;letter-spacing:-.03em;color:var(--text)}
+.pl-desk-tx em{font-style:normal;font-size:14px;line-height:1.62;color:var(--text-soft)}
+.pl-desk-act{display:flex;flex-wrap:wrap;gap:12px}
+
+@media (max-width:980px){
+  .pl-cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:640px){
+  .pl-cards{grid-template-columns:1fr}
+}
+@media (max-width:720px){
+  .pl-intro{grid-template-columns:1fr;gap:18px}
+  .pl-intro img{width:88px}
+  .pk-figs{grid-template-columns:1fr 1fr}
+  .pl-desk{padding:26px}
+}

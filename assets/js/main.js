@@ -3600,6 +3600,20 @@
     bio.observe(board);
   }
 
+  /* ---------------- Reveal-once hook: [data-seen] gains .is-seen on screen ---------------- */
+  function initSeen() {
+    var els = Array.prototype.slice.call(document.querySelectorAll('[data-seen]'));
+    if (!els.length) return;
+    if (prefersReduced || !('IntersectionObserver' in window)) {
+      els.forEach(function (el) { el.classList.add('is-seen'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-seen'); io.unobserve(e.target); } });
+    }, { threshold: 0.2 });
+    els.forEach(function (el) { io.observe(el); });
+  }
+
   /* ---------------- STAR Web Trading: dashboard pins + feature switcher ---------------- */
   function initStarWeb() {
     // the built workspace: a region, its dot and the caption are one control
@@ -3736,6 +3750,7 @@
     initCopyTrade();
     initStarCopy();
     initStarWeb();
+    initSeen();
     if (hasST) ScrollTrigger.refresh();
     window.addEventListener('load', function () { if (hasST) ScrollTrigger.refresh(); });
   }
