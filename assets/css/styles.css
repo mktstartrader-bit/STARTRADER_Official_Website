@@ -7689,18 +7689,24 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
 .nb-close-in .nb-badge{margin-bottom:26px}
 .nb-close-act{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:34px}
 
-/* court markings and ball seams, as section grounds */
-.nb-court{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.16;
-  background:url("../../../assets/img/court-lines.svg") center bottom / min(1500px,150%) auto no-repeat;
-  -webkit-mask:radial-gradient(78% 78% at 50% 62%,#000 30%,transparent 78%);
-          mask:radial-gradient(78% 78% at 50% 62%,#000 30%,transparent 78%);
+/* court markings and ball seams as section grounds — held back so they read as
+   ground rather than pattern, and faded at the frame so no line ends mid-air */
+.nb-court{
+  position:absolute;left:50%;bottom:0;transform:translateX(-50%);z-index:0;pointer-events:none;
+  width:min(1180px,132%);aspect-ratio:1000/900;opacity:.1;
+  background:url("../../../assets/img/court-lines.svg") center bottom / 100% auto no-repeat;
+  -webkit-mask:linear-gradient(180deg,transparent,#000 34%,#000 82%,transparent);
+          mask:linear-gradient(180deg,transparent,#000 34%,#000 82%,transparent);
 }
-.nb-seams{position:absolute;z-index:0;pointer-events:none;opacity:.1;
-  width:min(760px,86vw);aspect-ratio:1/1;top:-14%;right:-10%;
+.nb-seams{
+  position:absolute;z-index:0;pointer-events:none;opacity:.06;
+  width:min(620px,72vw);aspect-ratio:1/1;top:-10%;right:-8%;
   background:url("../../../assets/img/ball-seams.svg") center / contain no-repeat;
+  -webkit-mask:radial-gradient(closest-side,#000 62%,transparent 96%);
+          mask:radial-gradient(closest-side,#000 62%,transparent 96%);
 }
-@media (prefers-reduced-motion:no-preference){
-  .nb-seams{animation:nbRoll 70s linear infinite}
+.nb-seams--left{top:auto;bottom:-12%;right:auto;left:-9%;width:min(460px,58vw);opacity:.05}
+@media (max-width:720px){
+  .nb-court{width:190%;opacity:.08}
+  .nb-seams{display:none}
 }
-@keyframes nbRoll{to{transform:rotate(360deg)}}
-.nb-seams--left{top:auto;bottom:-18%;right:auto;left:-12%;width:min(560px,70vw);opacity:.07;animation-direction:reverse}
