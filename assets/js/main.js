@@ -3712,63 +3712,65 @@
     bio.observe(board);
   }
 
-  /* ---------------- Events: stage gallery ---------------- */
+  /* ---------------- Events: the gallery rail ---------------- */
   function initEvents() {
-    var gal = document.querySelector('[data-ev-gal]');
-    if (!gal) return;
-    var imgs = Array.prototype.slice.call(gal.querySelectorAll('[data-ev-img]'));
-    var thumbs = Array.prototype.slice.call(gal.querySelectorAll('[data-ev-thumb]'));
-    if (!imgs.length) return;
-
-    var tag = gal.querySelector('[data-ev-tag]');
-    var ttl = gal.querySelector('[data-ev-title]');
-    var dsc = gal.querySelector('[data-ev-desc]');
-    var count = gal.querySelector('[data-ev-count]');
+    var rail = document.querySelector('[data-ev-rail]');
+    if (!rail) return;
+    var frames = Array.prototype.slice.call(rail.querySelectorAll('.ev-frame'));
     var bar = document.querySelector('[data-ev-bar]');
-    var prevB = document.querySelector('[data-ev-prev]');
-    var nextB = document.querySelector('[data-ev-next]');
-    var at = 0, timer = null, held = false;
+    var hint = document.querySelector('[data-ev-hint]');
+    if (!frames.length) return;
 
-    function pad(n) { return (n < 10 ? '0' : '') + n; }
-    function show(i) {
-      at = (i + imgs.length) % imgs.length;
-      imgs.forEach(function (im, k) { im.classList.toggle('is-on', k === at); });
-      thumbs.forEach(function (t, k) { t.classList.toggle('is-on', k === at); t.setAttribute('aria-pressed', k === at ? 'true' : 'false'); });
-      var src = thumbs[at] || imgs[at];
-      var alt = imgs[at].getAttribute('alt') || '';
-      if (tag) tag.textContent = imgs[at].getAttribute('data-tag') || tag.textContent;
-      if (ttl) ttl.textContent = alt;
-      if (dsc) dsc.textContent = imgs[at].getAttribute('data-desc') || dsc.textContent;
-      if (count) count.textContent = pad(at + 1) + ' / ' + pad(imgs.length);
-      if (bar) bar.style.width = ((at + 1) / imgs.length * 100) + '%';
-      if (src && src.scrollIntoView && thumbs.length) {
-        // keep the active frame in view when the rail is a horizontal strip
-        var rail = gal.querySelector('[data-ev-rail]');
-        if (rail && rail.scrollWidth > rail.clientWidth) {
-          var r = src.getBoundingClientRect(), box = rail.getBoundingClientRect();
-          rail.scrollTo({ left: rail.scrollLeft + (r.left - box.left) - (box.width - r.width) / 2, behavior: prefersReduced ? 'auto' : 'smooth' });
-        }
+    enableDrag(rail);
+
+    var raf = 0;
+    function paint() {
+      var max = rail.scrollWidth - rail.clientWidth;
+      if (bar) {
+        var p = max > 0 ? rail.scrollLeft / max : 0;
+        bar.style.transform = 'translateX(' + (p * (100 / 0.22 - 100)) + '%)';
       }
+      // each shot drifts inside its frame as the rail moves, so the row has depth
+      var box = rail.getBoundingClientRect();
+      frames.forEach(function (f) {
+        var r = f.getBoundingClientRect();
+        var t = (r.left + r.width / 2 - box.left) / box.width;
+        var shot = f.querySelector('.ev-shot');
+        if (shot) shot.style.setProperty('--px', Math.max(0, Math.min(1, t)).toFixed(3));
+      });
     }
-    thumbs.forEach(function (t, i) {
-      t.addEventListener('click', function () { held = true; show(i); });
+    rail.addEventListener('scroll', function () {
+      if (raf) return;
+      raf = requestAnimationFrame(function () { raf = 0; paint(); });
     });
-    if (prevB) prevB.addEventListener('click', function () { held = true; show(at - 1); });
-    if (nextB) nextB.addEventListener('click', function () { held = true; show(at + 1); });
-    show(0);
+    window.addEventListener('resize', paint);
+    paint();
 
-    // it advances itself until someone takes over, and only while on screen
-    if (prefersReduced) return;
-    function tick() { if (!held) show(at + 1); }
+    // a slow drift on first view shows the row moves, then it hands over for good
+    if (prefersReduced || !hasGSAP) return;
+    var drift = null, taken = false;
+    function stop() {
+      taken = true;
+      if (drift) { drift.kill(); drift = null; }
+      if (hint) hint.textContent = 'Drag to explore';
+    }
+    ['pointerdown', 'wheel', 'touchstart', 'keydown'].forEach(function (ev) {
+      rail.addEventListener(ev, stop, { passive: true });
+    });
     if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (es) {
+      var io = new IntersectionObserver(function (es) {
         es.forEach(function (e) {
-          if (e.isIntersecting && !timer) timer = setInterval(tick, 4200);
-          else if (!e.isIntersecting && timer) { clearInterval(timer); timer = null; }
+          if (!e.isIntersecting || taken || drift) return;
+          var max = rail.scrollWidth - rail.clientWidth;
+          if (max <= 0) return;
+          drift = gsap.to(rail, {
+            scrollLeft: max, duration: max / 26, ease: 'none',
+            onComplete: function () { drift = null; }
+          });
+          io.unobserve(e.target);
         });
-      }, { threshold: 0.3 }).observe(gal);
-    } else {
-      timer = setInterval(tick, 4200);
+      }, { threshold: 0.35 });
+      io.observe(rail);
     }
   }
 
