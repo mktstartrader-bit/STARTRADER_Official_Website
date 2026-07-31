@@ -210,6 +210,9 @@ body.light-top .site-header{background:rgba(6,9,20,.95);box-shadow:0 1px 0 rgba(
 .mega-flyout{width:0;overflow:hidden;flex:none;transition:width .38s var(--ease)}
 .mega.flyout-open .mega-flyout{width:250px}
 .fly-inner{width:236px;margin-left:14px;height:100%;padding:20px 22px;border-radius:14px;border:1px solid rgba(255,255,255,.09);background:linear-gradient(165deg,rgba(26,42,78,.85),rgba(4,7,16,.96))}
+/* keyed panels share one flyout slot — only the hovered parent's panel shows */
+.mega-flyout [data-fly-panel]{display:none}
+.mega-flyout [data-fly-panel].is-on{display:block}
 .fly-title{display:block;font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#6d7893;margin-bottom:14px}
 .fly-title-link{display:inline-flex;align-items:center;gap:7px;transition:color .25s}
 .fly-title-link:hover{color:var(--blue)}
@@ -6088,8 +6091,16 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
 .ct-path--alt{background:linear-gradient(180deg,rgba(223,197,174,.5),rgba(255,255,255,.62) 50%)}
 .ct-path:hover{transform:translateY(-4px);border-color:rgba(0,71,187,.28);box-shadow:0 28px 52px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff}
 .ct-path--alt:hover,.ct-bpanel--alt:hover{border-color:rgba(138,100,64,.34)}
+/* tag on the left, the 3D shield on the right, both in flow so nothing overlaps the heading */
+.ct-path-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
 .ct-path-tag{align-self:flex-start;font-size:10.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:var(--blue);padding:7px 14px;border-radius:70px}
 .ct-path-tag.alt{background:#8a6440}
+.ct-path-ico{
+  flex:none;width:100px;height:auto;margin:-12px -8px -16px 0;pointer-events:none;
+  filter:drop-shadow(0 16px 22px rgba(20,44,96,.2));
+  transition:transform .5s var(--ease);
+}
+.ct-path:hover .ct-path-ico{transform:translateY(-5px) rotate(-2deg)}
 .ct-path h3{margin-top:18px;font-size:clamp(21px,2.2vw,26px);letter-spacing:-.03em;line-height:1.2;color:var(--text)}
 .ct-path>p{margin-top:14px;font-size:14px;line-height:1.68;color:var(--text-soft)}
 .ct-path-list{display:flex;flex-direction:column;gap:10px;margin-top:20px}
@@ -6240,4 +6251,160 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
   .ct-switch{width:100%}
   .ct-tab{flex:1;padding-inline:10px}
   .ct-steer .h2 br,.ct-video .h2 br,.ct-path h3 br{display:none}
+  .ct-path-ico{width:78px}
+}
+
+/* =================================================================
+   STAR COPY
+   shares the copy-trading language — glass cards, the sand accent for
+   the master side, the same pill switch — with its own section shapes
+   ================================================================= */
+.sc-ben{position:relative;isolation:isolate;overflow:clip;background:radial-gradient(52% 44% at 8% 0%,rgba(0,71,187,.08),transparent 62%),var(--bg-light-2)}
+.sc-ben>.container{position:relative;z-index:1}
+
+/* ---- benefits: one expanding rail, so only the open panel spends space ---- */
+.sc-fan{display:flex;gap:14px;height:372px}
+.sc-panel{
+  position:relative;flex:0 0 96px;min-width:96px;overflow:hidden;border-radius:24px;
+  background:linear-gradient(180deg,rgba(0,71,187,.09),rgba(255,255,255,.62) 48%);
+  transition:flex-grow .62s var(--ease),flex-basis .62s var(--ease),min-width .62s var(--ease),
+             box-shadow .42s var(--ease),border-color .3s;
+}
+.sc-panel:nth-child(even){background:linear-gradient(180deg,rgba(223,197,174,.5),rgba(255,255,255,.62) 50%)}
+.sc-panel.is-on{flex:1 1 0;min-width:0;border-color:rgba(0,71,187,.28);box-shadow:0 28px 52px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff}
+.sc-panel.is-on:nth-child(even){border-color:rgba(138,100,64,.34)}
+.sc-panel-hit{position:absolute;inset:0;z-index:2;width:100%;font-size:0;color:transparent;padding:0}
+.sc-panel-hit:focus-visible{outline:2px solid var(--blue);outline-offset:-4px;border-radius:24px}
+.sc-panel-n{
+  position:absolute;top:24px;left:50%;transform:translateX(-50%);
+  font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--blue);
+  transition:left .55s var(--ease),transform .55s var(--ease);
+}
+.sc-panel:nth-child(even) .sc-panel-n{color:#8a6440}
+.sc-panel.is-on .sc-panel-n{left:28px;transform:none}
+.sc-panel-vt{
+  position:absolute;bottom:26px;left:50%;transform:translateX(-50%) rotate(180deg);
+  writing-mode:vertical-rl;white-space:nowrap;
+  font-size:15px;font-weight:700;letter-spacing:-.02em;color:var(--text);
+  transition:opacity .3s;
+}
+.sc-panel.is-on .sc-panel-vt{opacity:0}
+.sc-panel-in{
+  position:absolute;top:58px;left:28px;right:28px;bottom:30px;min-width:266px;
+  display:flex;flex-direction:column;justify-content:flex-end;gap:11px;
+  opacity:0;transform:translateY(12px);
+  transition:opacity .5s .14s var(--ease),transform .5s .14s var(--ease);
+}
+.sc-panel.is-on .sc-panel-in{opacity:1;transform:none}
+/* the icon takes the right of the open panel so the copy is not marooned in it */
+.sc-panel-ico{position:absolute;right:2px;top:42%;transform:translateY(-50%);width:min(38%,166px);height:auto;filter:drop-shadow(0 20px 26px rgba(20,44,96,.24))}
+.sc-panel-in b{max-width:26ch;font-size:clamp(19px,1.9vw,23px);letter-spacing:-.03em;line-height:1.2;color:var(--text)}
+.sc-panel-in em{max-width:46ch;font-style:normal;font-size:13.5px;line-height:1.68;color:var(--text-soft)}
+/* the dwell bar is the clock — pausing the animation pauses the whole rail */
+.sc-panel-bar{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(20,44,96,.07);opacity:0;transition:opacity .3s}
+.sc-panel.is-on .sc-panel-bar{opacity:1}
+.sc-panel-bar i{display:block;height:100%;transform:scaleX(0);transform-origin:left;background:var(--blue)}
+.sc-panel:nth-child(even) .sc-panel-bar i{background:#8a6440}
+@media (prefers-reduced-motion:no-preference){
+  .sc-panel.is-on .sc-panel-bar i{animation:scDwell 6.5s linear forwards}
+}
+@keyframes scDwell{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.sc-fan:hover .sc-panel.is-on .sc-panel-bar i,
+.sc-fan:focus-within .sc-panel.is-on .sc-panel-bar i,
+.sc-fan:not(.is-live) .sc-panel.is-on .sc-panel-bar i{animation-play-state:paused}
+.sc-ben-note{margin-top:26px;text-align:center;font-size:11.5px;line-height:1.6;color:var(--text-mute)}
+
+/* ---- the two roles: the shared htrade stepper, switched by role ---- */
+/* where the stepper sits in a switchable panel, keep it the height of the intro card */
+.htrade .ct-panel{display:flex}
+.htrade .ct-panel .htrade-steps{height:100%}
+/* the store links get their own band under the stepper rather than being
+   tucked under a button — they read as a step, not an afterthought */
+.sc-getapp{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;
+  margin-top:24px;padding:24px 28px;border-radius:24px;
+  background:linear-gradient(110deg,rgba(0,71,187,.075),rgba(255,255,255,.66) 54%);
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
+}
+.sc-getapp:hover{transform:translateY(-4px);border-color:rgba(0,71,187,.28);box-shadow:0 28px 52px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff}
+.sc-getapp-tx{display:flex;flex-direction:column;gap:6px;min-width:0}
+.sc-getapp-tx b{font-size:17px;letter-spacing:-.028em;color:var(--text)}
+.sc-getapp-tx em{font-style:normal;font-size:13.5px;line-height:1.6;color:var(--text-soft)}
+.sc-getapp-btns{display:flex;flex-wrap:wrap;gap:12px}
+.sc-app{
+  display:inline-flex;align-items:center;gap:13px;padding:11px 22px 11px 17px;border-radius:15px;
+  background:var(--ink);border:1px solid var(--ink);color:#fff;
+  transition:transform .35s var(--ease),background .3s,box-shadow .35s var(--ease);
+}
+.sc-app:hover{transform:translateY(-3px);background:#182135;box-shadow:0 22px 38px -20px rgba(14,21,36,.66)}
+.sc-app-ic{width:22px;height:22px;flex:none}
+.sc-app>span{display:flex;flex-direction:column;line-height:1.16}
+.sc-app em{font-style:normal;font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.sc-app b{font-size:15px;font-weight:700;letter-spacing:-.02em;white-space:nowrap}
+
+/* ---- master board: the figures animate in once, on scroll ---- */
+.sc-strat{position:relative;overflow:clip;color:#fff;background:radial-gradient(66% 54% at 50% 0%,rgba(0,46,138,.32),transparent 62%),linear-gradient(180deg,#04060e,#070c1c 54%,#04060e)}
+.sc-strat .h2,.sc-strat .h2-light{color:#fff}
+.sc-strat .head-sub{color:#a9bcdb}
+.sc-strat-aura{position:absolute;z-index:0;width:680px;height:420px;top:-8%;left:50%;transform:translateX(-50%);border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(0,110,255,.2),transparent 70%);filter:blur(96px)}
+.sc-strat>.container{position:relative;z-index:1}
+/* the board rides the same auto-scrolling rail as the copy-trading ranking */
+.sc-mv{
+  position:relative;flex:0 0 316px;display:flex;flex-direction:column;padding:24px 24px 20px;border-radius:22px;overflow:hidden;
+  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.022));
+  border:1px solid rgba(255,255,255,.1);
+  transition:transform .38s var(--ease),border-color .3s,background .3s,box-shadow .42s var(--ease);
+}
+.sc-mv:hover{transform:translateY(-4px);border-color:rgba(120,175,255,.42);background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.03));box-shadow:0 34px 62px -34px rgba(0,0,0,.85)}
+.sc-mv-hd{display:flex;align-items:center;gap:12px;min-width:0}
+.sc-mv-av{width:44px;height:44px;flex:none;border-radius:14px;display:grid;place-items:center;font-size:13px;font-weight:800;color:#bcd6ff;background:rgba(0,71,187,.36);border:1px solid rgba(120,175,255,.26)}
+.sc-mv-who{display:flex;flex-direction:column;gap:4px;min-width:0;flex:1}
+.sc-mv-who b{font-size:15.5px;letter-spacing:-.024em;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sc-stars{display:inline-flex;gap:3px}
+.sc-stars svg{width:12px;height:12px;color:rgba(255,255,255,.18)}
+.sc-stars svg.on{color:#e3b26a}
+.sc-mv-rank{flex:none;font-size:10.5px;font-weight:800;letter-spacing:.1em;color:#9fb8dd;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);padding:6px 10px;border-radius:70px}
+.sc-mv-ret{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-top:22px}
+.sc-mv-ret b{font-size:clamp(28px,3vw,34px);font-weight:800;letter-spacing:-.045em;line-height:1;color:#3fd9a8;font-variant-numeric:tabular-nums}
+.sc-mv-ret span{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#6f86ad}
+.sc-mv-spark{display:block;width:calc(100% + 48px);margin:14px -24px 0;height:52px}
+.sc-mv-line{
+  fill:none;stroke:#3fd9a8;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;
+  vector-effect:non-scaling-stroke;stroke-dasharray:1;stroke-dashoffset:1;
+  transition:stroke-dashoffset 1.6s .1s var(--ease);
+}
+.sc-mvs.is-seen .sc-mv-line{stroke-dashoffset:0}
+.sc-mv-meter{margin-top:18px}
+.sc-mv-meter-hd{display:flex;align-items:baseline;justify-content:space-between;gap:12px;font-size:11.5px;color:#8ea4c6}
+.sc-mv-meter-hd b{font-size:13.5px;font-weight:700;color:#e6edf8;font-variant-numeric:tabular-nums}
+.sc-mv-track{height:5px;margin-top:9px;border-radius:70px;background:rgba(255,255,255,.09);overflow:hidden}
+.sc-mv-track i{display:block;height:100%;width:0;border-radius:70px;background:linear-gradient(90deg,#0047bb,#5fa3ff);transition:width 1.4s .25s var(--ease)}
+.sc-mvs.is-seen .sc-mv-track i{width:var(--w,0%)}
+.sc-mv-foot{display:flex;align-items:center;gap:10px;margin-top:18px;padding-top:15px;border-top:1px solid rgba(255,255,255,.08);font-size:11.5px;color:#8ea4c6}
+.sc-mv-foot i{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.22)}
+.sc-mv-go{margin-left:auto;display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;color:#6fa8ff}
+.sc-mv-go svg{width:13px;height:13px;transition:transform .35s var(--ease)}
+.sc-mv:hover .sc-mv-go svg{transform:translate(2px,-2px)}
+.sc-strat-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:18px;margin-top:36px}
+.sc-strat-upd{font-size:11.5px;color:#7f92b3}
+.sc-strat-upd b{color:#c8d6ec;font-weight:700}
+.sc-strat-note{margin-top:22px;text-align:center;font-size:11.5px;line-height:1.6;color:#7f92b3}
+
+/* ---- Responsive ---- */
+@media (max-width:1000px){
+  /* the rail becomes a plain stack — every panel open, nothing to click */
+  .sc-fan{display:grid;grid-template-columns:1fr;height:auto}
+  .sc-panel,.sc-panel.is-on{flex:auto;min-width:0;padding:26px 24px;box-shadow:0 18px 40px -26px rgba(20,44,96,.32),inset 0 1px 0 rgba(255,255,255,.96)}
+  .sc-panel-hit,.sc-panel-vt,.sc-panel-bar{display:none}
+  .sc-panel-n,.sc-panel.is-on .sc-panel-n{position:static;left:auto;transform:none;display:block;margin-bottom:16px}
+  .sc-panel-in,.sc-panel.is-on .sc-panel-in{position:static;min-width:0;opacity:1;transform:none}
+  .sc-panel-ico{position:static;top:auto;right:auto;transform:none;width:84px;margin-bottom:6px}
+  .sc-panel-in b,.sc-panel-in em{max-width:none}
+}
+@media (max-width:720px){
+  .sc-ben .h2 br,.sc-strat .h2 br{display:none}
+  .sc-getapp{padding:22px}
+  .sc-getapp-btns{width:100%}
+  .sc-app{flex:1 1 100%;justify-content:center}
+  .sc-mv{flex:0 0 272px}
 }

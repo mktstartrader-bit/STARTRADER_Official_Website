@@ -574,41 +574,53 @@
     });
   }
 
-  /* ---------------- Mega menu — Commodities flyout ---------------- */
+  /* ---------------- Mega menu — item flyouts (Commodities, Web Trader) ---------------- */
   function initMega() {
     document.querySelectorAll('.nav-item.has-mega').forEach(function (item) {
       var mega = item.querySelector('.mega');
-      var parent = item.querySelector('.mega-item-parent');
-      if (!mega || !parent) return;
+      var parents = Array.prototype.slice.call(item.querySelectorAll('.mega-item-parent'));
+      if (!mega || !parents.length) return;
       var fly = mega.querySelector('.mega-flyout');
-      function openFly() {
+      // one panel per parent, paired by key; a flyout with no keyed panels is
+      // a single-panel menu and keeps working untouched
+      var panels = fly ? Array.prototype.slice.call(fly.querySelectorAll('[data-fly-panel]')) : [];
+      var current = null;
+
+      function openFly(parent) {
+        current = parent;
+        var key = parent.getAttribute('data-fly');
         mega.classList.add('flyout-open');
-        parent.classList.add('active');
+        parents.forEach(function (p) { p.classList.toggle('active', p === parent); });
+        panels.forEach(function (p) { p.classList.toggle('is-on', p.getAttribute('data-fly-panel') === key); });
         if (fly) fly.setAttribute('aria-hidden', 'false');
       }
       function closeFly() {
+        current = null;
         mega.classList.remove('flyout-open');
-        parent.classList.remove('active');
+        parents.forEach(function (p) { p.classList.remove('active'); });
         if (fly) fly.setAttribute('aria-hidden', 'true');
       }
-      // open on hovering Commodities; keep open while over the flyout
-      parent.addEventListener('mouseenter', openFly);
-      parent.addEventListener('focus', openFly);
-      if (fly) fly.addEventListener('mouseenter', openFly);
+
+      parents.forEach(function (parent) {
+        // open on hovering the parent; keep open while over the flyout itself
+        parent.addEventListener('mouseenter', function () { openFly(parent); });
+        parent.addEventListener('focus', function () { openFly(parent); });
+        // The parent is a link to its own hub page: clicking the label navigates,
+        // clicking the chevron toggles the flyout instead. Non-link parents always toggle.
+        parent.addEventListener('click', function (e) {
+          var chev = e.target && e.target.closest ? e.target.closest('.mega-chev') : null;
+          if (parent.tagName === 'A' && parent.getAttribute('href') && !chev) return;
+          e.preventDefault();
+          (mega.classList.contains('flyout-open') && parent.classList.contains('active')) ? closeFly() : openFly(parent);
+        });
+      });
+      if (fly) fly.addEventListener('mouseenter', function () { if (current) openFly(current); });
       // close when hovering any other menu item
       mega.querySelectorAll('.mega-item').forEach(function (it) {
-        if (it !== parent) it.addEventListener('mouseenter', closeFly);
+        if (parents.indexOf(it) === -1) it.addEventListener('mouseenter', closeFly);
       });
       // reset when leaving the whole Trading menu
       item.addEventListener('mouseleave', closeFly);
-      // The parent is a link to its own hub page: clicking the label navigates,
-      // clicking the chevron toggles the flyout instead. Non-link parents always toggle.
-      parent.addEventListener('click', function (e) {
-        var chev = e.target && e.target.closest ? e.target.closest('.mega-chev') : null;
-        if (parent.tagName === 'A' && parent.getAttribute('href') && !chev) return;
-        e.preventDefault();
-        mega.classList.contains('flyout-open') ? closeFly() : openFly();
-      });
     });
   }
 
@@ -1150,8 +1162,11 @@
 
   /* ---------------- How-to-trade steps (shared component) ---------------- */
   function initHowToTrade() {
-    var list = document.querySelector('[data-htrade]');
-    if (!list) return;
+    // every stepper on the page, so a switched panel animates like the visible one
+    document.querySelectorAll('[data-htrade]').forEach(htradeList);
+  }
+
+  function htradeList(list) {
     var steps = Array.prototype.slice.call(list.querySelectorAll('.htrade-step'));
     if (!steps.length) return;
 
@@ -1176,6 +1191,8 @@
       clearTimeout(railT);
       railT = setTimeout(layoutRail, 150);
     });
+    // a hidden panel measures as zero, so re-measure when a tab switch refreshes
+    if (hasST) ScrollTrigger.addEventListener('refresh', layoutRail);
 
     if (prefersReduced || !hasGSAP || !hasST) {
       list.style.setProperty('--htrade-rail', '1');
@@ -3514,19 +3531,73 @@
     }
 
     // the ranking is a marquee, built the same way as the awards row
-    var track = document.getElementById('ctTrack');
+    railMarquee(document.getElementById('ctTrack'));
+  }
+
+  /* ---------------- Card rail: clone once, scroll forever ---------------- */
+  function railMarquee(track, pxPerSec) {
     if (!track) return;
-    var cards = Array.prototype.slice.call(track.children);
-    cards.forEach(function (c) { track.appendChild(c.cloneNode(true)); });
+    Array.prototype.slice.call(track.children).forEach(function (c) { track.appendChild(c.cloneNode(true)); });
     if (prefersReduced || !hasGSAP) return;
     var half = track.scrollWidth / 2;
     if (!half) return;
     var tween = gsap.to(track, {
-      x: -half, duration: half / 48, ease: 'none', repeat: -1,
+      x: -half, duration: half / (pxPerSec || 48), ease: 'none', repeat: -1,
       modifiers: { x: function (x) { return (parseFloat(x) % half) + 'px'; } }
     });
     track.addEventListener('mouseenter', function () { tween.timeScale(0.15); });
     track.addEventListener('mouseleave', function () { tween.timeScale(1); });
+  }
+
+  /* ---------------- STAR Copy: benefit rail + master board ---------------- */
+  function initStarCopy() {
+    var fan = document.querySelector('[data-sc-fan]');
+    if (fan) {
+      var panels = Array.prototype.slice.call(fan.querySelectorAll('[data-sc-panel]'));
+
+      var open = function (i) {
+        panels.forEach(function (p, k) {
+          var on = k === i;
+          p.classList.toggle('is-on', on);
+          var hit = p.querySelector('[data-sc-hit]');
+          if (hit) hit.setAttribute('aria-expanded', on ? 'true' : 'false');
+        });
+      };
+
+      panels.forEach(function (p, i) {
+        var hit = p.querySelector('[data-sc-hit]');
+        if (hit) {
+          hit.addEventListener('click', function () { open(i); });
+          hit.addEventListener('focus', function () { open(i); });
+        }
+        p.addEventListener('mouseenter', function () { open(i); });
+        // the dwell bar is the clock: CSS pauses it while the rail is hovered,
+        // so the panels wait with it rather than advancing under the pointer
+        var bar = p.querySelector('.sc-panel-bar i');
+        if (bar) bar.addEventListener('animationend', function () { open((i + 1) % panels.length); });
+      });
+
+      // nothing should tick while the rail is off screen
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (es) {
+          es.forEach(function (e) { fan.classList.toggle('is-live', e.isIntersecting); });
+        }, { threshold: 0.25 }).observe(fan);
+      } else {
+        fan.classList.add('is-live');
+      }
+    }
+
+    // the master board rides the same rail as the copy-trading ranking
+    var board = document.querySelector('[data-sc-board]');
+    if (!board) return;
+    railMarquee(board.hasAttribute('data-sc-track') ? board : null);
+
+    // draw the curves and fill the win-rate meters once the board is on screen
+    if (prefersReduced || !('IntersectionObserver' in window)) { board.classList.add('is-seen'); return; }
+    var bio = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { board.classList.add('is-seen'); bio.unobserve(e.target); } });
+    }, { threshold: 0.2 });
+    bio.observe(board);
   }
 
   /* ---------------- Boot ---------------- */
@@ -3576,6 +3647,7 @@
     initTelemetry();
     initMtRail();
     initCopyTrade();
+    initStarCopy();
     if (hasST) ScrollTrigger.refresh();
     window.addEventListener('load', function () { if (hasST) ScrollTrigger.refresh(); });
   }
