@@ -3727,48 +3727,97 @@
       var dsc = tm.querySelector('[data-ct-desc]');
       var prevB = tm.querySelector('[data-ct-prev]');
       var nextB = tm.querySelector('[data-ct-next]');
-      var cur = 0;
+      var cur = 3, lock = false, raf = 0;
 
       // measure against the scroll box itself — offsetLeft resolves to the nearest
       // positioned ancestor, which is not the rail, and lands the node off-centre
-      function centre(el) {
+      function centre(el, smooth) {
         if (!scroll || !el) return;
         var r = el.getBoundingClientRect(), box = scroll.getBoundingClientRect();
         var to = scroll.scrollLeft + (r.left - box.left) - (box.width - r.width) / 2;
-        if (scroll.scrollTo) scroll.scrollTo({ left: to, behavior: prefersReduced ? 'auto' : 'smooth' });
+        if (scroll.scrollTo) scroll.scrollTo({ left: to, behavior: (smooth && !prefersReduced) ? 'smooth' : 'auto' });
         else scroll.scrollLeft = to;
       }
-      function pick(i, scrollTo) {
-        cur = Math.max(0, Math.min(nodes.length - 1, i));
-        var n = nodes[cur];
-        nodes.forEach(function (x, k) { x.classList.toggle('is-on', k === cur); x.setAttribute('aria-selected', k === cur ? 'true' : 'false'); });
-        dots.forEach(function (d, k) { d.classList.toggle('is-on', k === cur); });
+      function paintPanel(i) {
+        var n = nodes[i];
         if (pill) pill.textContent = n.getAttribute('data-date') || '';
         if (kind) kind.textContent = n.getAttribute('data-kind') || '';
         if (ttl) ttl.innerHTML = n.getAttribute('data-title') || '';
         if (dsc) dsc.innerHTML = n.getAttribute('data-desc') || '';
         if (body) { body.classList.remove('is-swap'); void body.offsetWidth; body.classList.add('is-swap'); }
+      }
+      function mark(i) {
+        if (i === cur) return;
+        cur = i;
+        nodes.forEach(function (x, k) { x.classList.toggle('is-on', k === cur); x.setAttribute('aria-selected', k === cur ? 'true' : 'false'); });
+        dots.forEach(function (d, k) { d.classList.toggle('is-on', k === cur); });
         if (prevB) prevB.disabled = cur === 0;
         if (nextB) nextB.disabled = cur === nodes.length - 1;
-        if (scrollTo !== false) centre(n);
+        paintPanel(cur);
       }
+      // whichever month is nearest the frame is the active one
+      function readScroll() {
+        if (lock) return;
+        var box = scroll.getBoundingClientRect();
+        var mid = box.left + box.width / 2, best = 0, gap = Infinity;
+        nodes.forEach(function (n, i) {
+          var r = n.getBoundingClientRect();
+          var d = Math.abs((r.left + r.width / 2) - mid);
+          if (d < gap) { gap = d; best = i; }
+        });
+        mark(best);
+      }
+      function go(i, smooth) {
+        i = Math.max(0, Math.min(nodes.length - 1, i));
+        mark(i);
+        // hold the reader off while the smooth scroll settles, or it fights the target
+        lock = true;
+        centre(nodes[i], smooth !== false);
+        clearTimeout(go._t);
+        go._t = setTimeout(function () { lock = false; }, smooth === false ? 60 : 620);
+      }
+
       nodes.forEach(function (n, i) {
         n.setAttribute('role', 'tab');
-        n.addEventListener('click', function () { pick(i); });
+        n.addEventListener('click', function () { go(i); });
       });
-      if (prevB) prevB.addEventListener('click', function () { pick(cur - 1); });
-      if (nextB) nextB.addEventListener('click', function () { pick(cur + 1); });
+      if (prevB) prevB.addEventListener('click', function () { go(cur - 1); });
+      if (nextB) nextB.addEventListener('click', function () { go(cur + 1); });
       tm.addEventListener('keydown', function (e) {
         var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
         if (!d) return;
         e.preventDefault();
-        pick(cur + d);
+        go(cur + d);
         nodes[cur].focus();
       });
+      // read continuously while it moves, then settle the nearest month into the frame
+      var settle = 0, dragging = false;
+      scroll.addEventListener('scroll', function () {
+        if (!raf) raf = requestAnimationFrame(function () { raf = 0; readScroll(); });
+        if (lock) return;
+        clearTimeout(settle);
+        settle = setTimeout(function () {
+          if (lock || dragging) return;
+          centre(nodes[cur], true);
+        }, 130);
+      });
+      // a drag writes scrollLeft directly, so hold the settle until the pointer is up
+      scroll.addEventListener('pointerdown', function () { dragging = true; });
+      ['pointerup', 'pointercancel', 'pointerleave'].forEach(function (ev) {
+        scroll.addEventListener(ev, function () {
+          if (!dragging) return;
+          dragging = false;
+          clearTimeout(settle);
+          settle = setTimeout(function () { centre(nodes[cur], true); }, 90);
+        });
+      });
+
       if (scroll) enableDrag(scroll);
-      pick(0, false);
-      // centre the opening node once the rail has its real width
-      window.addEventListener('load', function () { centre(nodes[0]); });
+      if (prevB) prevB.disabled = cur === 0;
+      if (nextB) nextB.disabled = cur === nodes.length - 1;
+      // open balanced, with months either side, once the rail has its real width
+      go(cur, false);
+      window.addEventListener('load', function () { go(cur, false); });
     }
 
     var gal = document.querySelector('[data-csr-gal]');
