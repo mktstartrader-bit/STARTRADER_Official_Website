@@ -459,45 +459,43 @@
 <!-- ============ DASHBOARD ============ -->
 <section class="section sw-stage-sec" id="dashboard" aria-labelledby="sw-dash-title">
   <span class="sw-aura" aria-hidden="true"></span>
-  <div class="container">
-    <div class="head center">
+  <div class="container sw-stage" data-sw-stage>
+    <div class="head sw-stage-head">
       <span class="eyebrow eyebrow-blue" data-reveal>Your trading dashboard</span>
       <h2 class="h2 h2-light" id="sw-dash-title" data-reveal>Five panels,<br> one browser tab</h2>
-      <p class="head-sub" data-reveal>Take the tour &mdash; pick a panel on the right, or a marker on the screen.</p>
+      <p class="head-sub" data-reveal>Take the tour &mdash; pick a panel below, or a marker on the screen.</p>
     </div>
 
-    <div class="sw-stage" data-sw-stage data-reveal>
-      <div class="sw-lap">
-        <img src="../../assets/img/webtrader-laptop.webp" alt="STAR Web Trading open in a browser on a laptop" width="619" height="458" loading="lazy" decoding="async">
-        <button class="sw-pin is-on" type="button" style="--x:13%;--y:15%" data-sw-pin="1" aria-label="Market Watch">1</button>
-        <button class="sw-pin" type="button" style="--x:45%;--y:16%" data-sw-pin="2" aria-label="Chart Panel">2</button>
-        <button class="sw-pin" type="button" style="--x:30%;--y:6%" data-sw-pin="3" aria-label="Trading Panel">3</button>
-        <button class="sw-pin" type="button" style="--x:66%;--y:51%" data-sw-pin="4" aria-label="Account Overview">4</button>
-        <button class="sw-pin" type="button" style="--x:40%;--y:43%" data-sw-pin="5" aria-label="Positions and Orders">5</button>
-      </div>
+    <div class="sw-lap" data-reveal>
+      <img src="../../assets/img/webtrader-laptop-crop.webp" alt="STAR Web Trading open in a browser on a laptop" width="590" height="336" loading="lazy" decoding="async">
+      <button class="sw-pin is-on" type="button" style="--x:10%;--y:16%" data-sw-pin="1" aria-label="Market Watch">1</button>
+      <button class="sw-pin" type="button" style="--x:41%;--y:23%" data-sw-pin="2" aria-label="Chart Panel">2</button>
+      <button class="sw-pin" type="button" style="--x:29%;--y:6%" data-sw-pin="3" aria-label="Trading Panel">3</button>
+      <button class="sw-pin" type="button" style="--x:64%;--y:55%" data-sw-pin="4" aria-label="Account Overview">4</button>
+      <button class="sw-pin" type="button" style="--x:35%;--y:59%" data-sw-pin="5" aria-label="Positions and Orders">5</button>
+    </div>
 
-      <div class="sw-notes">
-        <button class="sw-note is-on" type="button" data-sw-note="1">
-          <span class="sw-note-n">1</span>
-          <span class="sw-note-tx"><b>Market Watch</b><em>Real-time quotes with search across every instrument you can trade.</em></span>
-        </button>
-        <button class="sw-note" type="button" data-sw-note="2">
-          <span class="sw-note-n">2</span>
-          <span class="sw-note-tx"><b>Chart Panel</b><em>Advanced technical analysis &mdash; indicators, drawings and every timeframe.</em></span>
-        </button>
-        <button class="sw-note" type="button" data-sw-note="3">
-          <span class="sw-note-n">3</span>
-          <span class="sw-note-tx"><b>Trading Panel</b><em>Quick order placement without leaving the chart you are reading.</em></span>
-        </button>
-        <button class="sw-note" type="button" data-sw-note="4">
-          <span class="sw-note-n">4</span>
-          <span class="sw-note-tx"><b>Account Overview</b><em>Balance, equity and margin, updated as each position moves.</em></span>
-        </button>
-        <button class="sw-note" type="button" data-sw-note="5">
-          <span class="sw-note-n">5</span>
-          <span class="sw-note-tx"><b>Positions &amp; Orders</b><em>Live portfolio management &mdash; amend, close or hedge in place.</em></span>
-        </button>
-      </div>
+    <div class="sw-notes">
+      <button class="sw-note is-on" type="button" data-sw-note="1">
+        <span class="sw-note-n">1</span>
+        <span class="sw-note-tx"><b>Market Watch</b><em>Real-time quotes with search across every instrument you can trade.</em></span>
+      </button>
+      <button class="sw-note" type="button" data-sw-note="2">
+        <span class="sw-note-n">2</span>
+        <span class="sw-note-tx"><b>Chart Panel</b><em>Advanced technical analysis &mdash; indicators, drawings and every timeframe.</em></span>
+      </button>
+      <button class="sw-note" type="button" data-sw-note="3">
+        <span class="sw-note-n">3</span>
+        <span class="sw-note-tx"><b>Trading Panel</b><em>Quick order placement without leaving the chart you are reading.</em></span>
+      </button>
+      <button class="sw-note" type="button" data-sw-note="4">
+        <span class="sw-note-n">4</span>
+        <span class="sw-note-tx"><b>Account Overview</b><em>Balance, equity and margin, updated as each position moves.</em></span>
+      </button>
+      <button class="sw-note" type="button" data-sw-note="5">
+        <span class="sw-note-n">5</span>
+        <span class="sw-note-tx"><b>Positions &amp; Orders</b><em>Live portfolio management &mdash; amend, close or hedge in place.</em></span>
+      </button>
     </div>
 
     <p class="sw-stage-note" data-reveal>Interface shown for illustration. Panels and layout vary by account type and jurisdiction.</p>
@@ -700,7 +698,7 @@
 </section>
 
 <!-- ============ ACCESS FROM ANYWHERE ============ -->
-<section class="section sw-any" aria-labelledby="sw-any-title">
+<section class="section fx-hours sw-any" aria-labelledby="sw-any-title">
   <div class="container">
     <div class="head center">
       <span class="eyebrow eyebrow-blue" data-reveal>Access from anywhere</span>
@@ -708,27 +706,49 @@
       <p class="head-sub" data-reveal>If it runs a current browser, it runs the platform.</p>
     </div>
 
-    <div class="sw-any-grid" data-reveal-stagger>
-      <article class="sw-any-card">
-        <header class="sw-any-hd"><svg><use href="#i-window"/></svg><b>Supported browsers</b></header>
-        <div class="sw-any-list">
-          <span><svg><use href="#i-check"/></svg>Google Chrome <b>Recommended</b></span>
-          <span><svg><use href="#i-check"/></svg>Mozilla Firefox</span>
-          <span><svg><use href="#i-check"/></svg>Microsoft Edge</span>
-          <span><svg><use href="#i-check"/></svg>Safari</span>
+    <div class="fx-mh" data-reveal-stagger>
+      <article class="fx-mh-card fx-mh--wide fx-mh--blue">
+        <span class="fx-mh-ic"><svg><use href="#i-window"/></svg></span>
+        <h3>Supported browsers</h3>
+        <p>Any current version. Chrome is the one we tune against first, but nothing is held back on the others.</p>
+        <div class="fx-mh-viz">
+          <div class="fx-mh-live">
+            <span class="fx-mh-sess is-open"><i></i> Google Chrome</span>
+            <span class="fx-mh-sess is-open"><i></i> Mozilla Firefox</span>
+            <span class="fx-mh-sess is-open"><i></i> Microsoft Edge</span>
+            <span class="fx-mh-sess is-open"><i></i> Safari</span>
+          </div>
         </div>
       </article>
-      <article class="sw-any-card">
-        <header class="sw-any-hd"><svg><use href="#i-monitor"/></svg><b>Supported devices</b></header>
-        <div class="sw-any-list">
-          <span><svg><use href="#i-check"/></svg>Desktop &amp; laptop</span>
-          <span><svg><use href="#i-check"/></svg>Tablets</span>
-          <span><svg><use href="#i-check"/></svg>Mobile devices</span>
-        </div>
+
+      <article class="fx-mh-card fx-mh--teal">
+        <span class="fx-mh-ic"><svg><use href="#i-globe"/></svg></span>
+        <h3>One requirement</h3>
+        <p>A stable internet connection. That is the whole list &mdash; there is no hardware to meet.</p>
+        <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="fx-mh-status"><i></i> Connection is all it asks for</span></div></div>
+      </article>
+
+      <article class="fx-mh-card fx-mh--purple">
+        <span class="fx-mh-ic"><svg><use href="#i-monitor"/></svg></span>
+        <h3>Desktop &amp; laptop</h3>
+        <p>The full layout, every panel open at once, on Windows, macOS, Linux or ChromeOS.</p>
+        <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="fx-mh-status"><i></i> Five panels side by side</span></div></div>
+      </article>
+
+      <article class="fx-mh-card fx-mh--green">
+        <span class="fx-mh-ic"><svg><use href="#i-window"/></svg></span>
+        <h3>Tablets</h3>
+        <p>The same session, reflowed for touch. Charts pinch and pan as you would expect.</p>
+        <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="fx-mh-status"><i></i> Touch charting</span></div></div>
+      </article>
+
+      <article class="fx-mh-card fx-mh--orange">
+        <span class="fx-mh-ic"><svg><use href="#i-phone"/></svg></span>
+        <h3>Mobile devices</h3>
+        <p>Nothing is missing in the browser, though on a phone the STARTRADER app is the easier ride.</p>
+        <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="fx-mh-status"><i></i> Responsive down to a phone</span></div></div>
       </article>
     </div>
-
-    <div class="sw-req" data-reveal><i></i>The only requirement is a <b>stable internet connection</b></div>
   </div>
 </section>
 
