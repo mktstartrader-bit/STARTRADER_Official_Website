@@ -7020,12 +7020,10 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
   .htrade-mark{width:96px;margin-top:26px}
 }
 
-/* the product banner video sits behind the scrim, as texture rather than subject —
-   the right of the frame stays clear for the hero render */
-.fx-hero .acct-hero-video{opacity:.62;object-position:32% center}
-.fx-hero .acct-hero-bg::after{background:
-  linear-gradient(90deg,rgba(4,6,14,.96) 0%,rgba(4,6,14,.82) 34%,rgba(4,6,14,.46) 62%,rgba(4,6,14,.24) 100%),
-  linear-gradient(180deg,rgba(4,6,14,.56) 0%,transparent 26%,transparent 78%,rgba(4,6,14,.52) 100%)}
+/* the video is the banner: no scrim over it, and the frame is set so its subject
+   lands on the right where the copy is not */
+.fx-hero .acct-hero-video{opacity:1;object-position:64% center}
+.fx-hero .acct-hero-bg::after{background:none}
 @media (prefers-reduced-motion:reduce){
   .fx-hero .acct-hero-video{display:none}
 }
