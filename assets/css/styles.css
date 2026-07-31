@@ -7538,6 +7538,7 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
 
 /* ---------------- wallpapers ---------------- */
 .nb-wall-sec{position:relative;overflow:hidden;color:#fff;background:linear-gradient(180deg,#05070d,#070b16)}
+.nb-wall-sec{position:relative;isolation:isolate}
 .nb-wall-sec>.container{position:relative;z-index:1}
 .nb-wall{display:flex;justify-content:center;align-items:flex-end;gap:clamp(12px,2vw,26px);margin-top:clamp(38px,4.6vw,62px);perspective:1600px}
 .nb-slot{
@@ -7591,6 +7592,7 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
   background-image:radial-gradient(rgba(255,255,255,.09) 1px,transparent 1px);background-size:22px 22px;
   -webkit-mask:radial-gradient(70% 70% at 30% 40%,#000,transparent 76%);mask:radial-gradient(70% 70% at 30% 40%,#000,transparent 76%);
 }
+.nb-play{isolation:isolate}
 .nb-play>.container{position:relative;z-index:1}
 .nb-play-head{max-width:760px;margin:0 auto}
 .nb-reps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:clamp(40px,4.6vw,62px)}
@@ -7609,6 +7611,28 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
 .nb-rep:hover .nb-rep-n{color:var(--teal)}
 .nb-rep b{display:block;margin-top:16px;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--teal)}
 .nb-rep p{margin-top:11px;font-size:13.5px;line-height:1.62;color:#e6edf8}
+/* one card holds the floor at a time, and the cycle repeats — which is the point */
+.nb-rep.is-live{
+  transform:translateY(-8px);background:rgba(255,255,255,.13);border-color:rgba(22,233,215,.5);
+  box-shadow:0 36px 68px -28px rgba(10,92,245,.7),inset 0 1px 0 rgba(255,255,255,.32);
+}
+.nb-rep.is-live .nb-rep-n{color:var(--teal)}
+/* the top edge draws across for as long as the card holds it */
+.nb-rep.is-live::before{transform:scaleX(1);transition:transform 3.1s linear}
+.nb-reps-foot{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:clamp(28px,3vw,40px)}
+.nb-reps-bar{display:flex;gap:6px}
+.nb-reps-bar i{width:36px;height:3px;border-radius:2px;background:rgba(255,255,255,.16);transition:background .4s,width .4s var(--ease)}
+.nb-reps-bar i.is-on{width:52px;background:var(--teal);box-shadow:0 0 14px rgba(22,233,215,.8)}
+.nb-loop{
+  display:inline-flex;align-items:baseline;gap:7px;padding:8px 15px;border-radius:70px;
+  font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#8ea4c6;
+  background:var(--glass);border:1px solid rgba(255,255,255,.14);
+}
+.nb-loop b{font-size:14px;letter-spacing:-.02em;color:var(--teal);font-variant-numeric:tabular-nums}
+@media (prefers-reduced-motion:reduce){
+  .nb-rep.is-live{transform:none}
+  .nb-rep.is-live::before{transition:none}
+}
 .nb-play-act{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:clamp(36px,4vw,52px)}
 
 /* ---------------- the CEO word ---------------- */
@@ -7664,3 +7688,19 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
 .nb-close-in{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center}
 .nb-close-in .nb-badge{margin-bottom:26px}
 .nb-close-act{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:34px}
+
+/* court markings and ball seams, as section grounds */
+.nb-court{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.16;
+  background:url("../../../assets/img/court-lines.svg") center bottom / min(1500px,150%) auto no-repeat;
+  -webkit-mask:radial-gradient(78% 78% at 50% 62%,#000 30%,transparent 78%);
+          mask:radial-gradient(78% 78% at 50% 62%,#000 30%,transparent 78%);
+}
+.nb-seams{position:absolute;z-index:0;pointer-events:none;opacity:.1;
+  width:min(760px,86vw);aspect-ratio:1/1;top:-14%;right:-10%;
+  background:url("../../../assets/img/ball-seams.svg") center / contain no-repeat;
+}
+@media (prefers-reduced-motion:no-preference){
+  .nb-seams{animation:nbRoll 70s linear infinite}
+}
+@keyframes nbRoll{to{transform:rotate(360deg)}}
+.nb-seams--left{top:auto;bottom:-18%;right:auto;left:-12%;width:min(560px,70vw);opacity:.07;animation-direction:reverse}
