@@ -3513,40 +3513,20 @@
       window.addEventListener('load', moveInd);
     }
 
-    var rank = document.querySelector('[data-ct-rows]');
-    if (!rank) return;
-    var rows = Array.prototype.slice.call(rank.querySelectorAll('[data-ct-row]'));
-    var sorts = Array.prototype.slice.call(document.querySelectorAll('[data-ct-sort]'));
-
-    function apply(key) {
-      // drawdown sorts ascending — a small number is the good one there
-      var asc = key === 'dd';
-      rows.slice().sort(function (a, b) {
-        var av = parseFloat(a.getAttribute('data-' + key)), bv = parseFloat(b.getAttribute('data-' + key));
-        return asc ? av - bv : bv - av;
-      }).forEach(function (el, i) {
-        rank.appendChild(el);
-        var n = el.querySelector('.ct-rank-n');
-        if (n) n.textContent = i + 1;
-      });
-      sorts.forEach(function (b) {
-        var on = b.getAttribute('data-ct-sort') === key;
-        b.classList.toggle('is-on', on);
-        b.setAttribute('aria-pressed', on ? 'true' : 'false');
-      });
-    }
-    sorts.forEach(function (b) {
-      b.addEventListener('click', function () { apply(b.getAttribute('data-ct-sort')); });
+    // the ranking is a marquee, built the same way as the awards row
+    var track = document.getElementById('ctTrack');
+    if (!track) return;
+    var cards = Array.prototype.slice.call(track.children);
+    cards.forEach(function (c) { track.appendChild(c.cloneNode(true)); });
+    if (prefersReduced || !hasGSAP) return;
+    var half = track.scrollWidth / 2;
+    if (!half) return;
+    var tween = gsap.to(track, {
+      x: -half, duration: half / 48, ease: 'none', repeat: -1,
+      modifiers: { x: function (x) { return (parseFloat(x) % half) + 'px'; } }
     });
-
-    // draw the curves once the board is on screen
-    var board = document.querySelector('.ct-cards');
-    if (!board) return;
-    if (prefersReduced || !('IntersectionObserver' in window)) { board.classList.add('is-seen'); return; }
-    var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (e.isIntersecting) { board.classList.add('is-seen'); io.unobserve(e.target); } });
-    }, { threshold: 0.2 });
-    io.observe(board);
+    track.addEventListener('mouseenter', function () { tween.timeScale(0.15); });
+    track.addEventListener('mouseleave', function () { tween.timeScale(1); });
   }
 
   /* ---------------- Boot ---------------- */

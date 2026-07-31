@@ -6185,75 +6185,49 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
 .ct-brow-tx b{font-size:15px;letter-spacing:-.022em;color:var(--text)}
 .ct-brow-tx em{font-style:normal;font-size:13px;line-height:1.6;color:var(--text-soft)}
 
-/* ---- ranking: cards, not a table ---- */
-.ct-rank-sec{position:relative;overflow:clip;color:#fff;background:radial-gradient(70% 56% at 50% 0%,rgba(0,46,138,.3),transparent 62%),linear-gradient(180deg,#04060e,#070c1c 52%,#04060e)}
+/* ---- ranking: an auto-scrolling rail, same construction as the awards row ---- */
+.ct-rank-sec{position:relative;overflow:hidden;color:#fff;background:radial-gradient(70% 56% at 50% 0%,rgba(0,46,138,.3),transparent 62%),linear-gradient(180deg,#04060e,#070c1c 52%,#04060e)}
 .ct-rank-sec .h2,.ct-rank-sec .h2-light{color:#fff}
 .ct-rank-sec .head-sub{color:#a9bcdb}
 .ct-rank-aura{position:absolute;z-index:0;width:680px;height:420px;top:-8%;left:50%;transform:translateX(-50%);border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(0,110,255,.2),transparent 70%);filter:blur(96px)}
-.ct-rank-bar{position:relative;z-index:1;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;margin-bottom:26px}
-.ct-sorts{display:flex;flex-wrap:wrap;gap:8px}
-.ct-sort{
-  font-size:12.5px;font-weight:600;color:#a9bcdb;padding:10px 18px;border-radius:70px;
-  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
-  transition:color .25s,background .25s,border-color .25s,transform .25s var(--ease);
+.ct-rank-sec>.container{position:relative;z-index:1}
+.ct-rail{
+  position:relative;z-index:1;width:100vw;margin-left:calc(-50vw + 50%);overflow:hidden;
+  -webkit-mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+  mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
 }
-.ct-sort:hover{color:#fff;transform:translateY(-1px)}
-.ct-sort.is-on{color:#0b1220;background:#6fa8ff;border-color:transparent}
-.ct-rank-note{font-size:11.5px;color:#7f92b3}
+.ct-track{display:flex;gap:18px;width:max-content;padding:4px 0;will-change:transform}
 
-.ct-cards{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+/* minimal card: identity, the number, the curve, one stat line */
 .ct-card{
-  position:relative;display:flex;flex-direction:column;border-radius:24px;overflow:hidden;
-  padding:24px 24px 22px;
-  transition:transform .4s var(--ease),border-color .3s,box-shadow .4s var(--ease);
+  flex:0 0 296px;display:flex;flex-direction:column;
+  padding:20px 20px 16px;border-radius:20px;overflow:hidden;
+  background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.022));
+  border:1px solid rgba(255,255,255,.1);
+  transition:transform .35s var(--ease),border-color .3s,background .3s;
 }
-.ct-card:hover{transform:translateY(-4px);border-color:rgba(120,175,255,.42);box-shadow:0 32px 66px -34px rgba(0,60,180,.6)}
-
-/* identity row — rank rides the avatar instead of taking its own line */
-.ct-who{display:flex;align-items:center;gap:13px;min-width:0}
+.ct-card:hover{transform:translateY(-4px);border-color:rgba(120,175,255,.4);background:linear-gradient(180deg,rgba(255,255,255,.085),rgba(255,255,255,.03))}
+.ct-card-hd{display:flex;align-items:center;gap:11px;min-width:0}
 .ct-av{
-  position:relative;width:46px;height:46px;flex:none;border-radius:15px;display:grid;place-items:center;
-  font-size:14px;font-weight:800;color:#bcd6ff;
-  background:rgba(0,71,187,.34);border:1px solid rgba(120,175,255,.28);
+  width:38px;height:38px;flex:none;border-radius:12px;display:grid;place-items:center;
+  font-size:12.5px;font-weight:800;color:#bcd6ff;
+  background:rgba(0,71,187,.34);border:1px solid rgba(120,175,255,.26);
 }
-.ct-card-rank{
-  position:absolute;top:-7px;left:-7px;min-width:22px;height:22px;padding:0 6px;border-radius:70px;
-  display:grid;place-items:center;font-size:10.5px;font-weight:800;color:#0b1220;background:#6fa8ff;
-}
-.ct-who-tx{display:flex;flex-direction:column;gap:3px;min-width:0}
-.ct-who-tx b{font-size:16px;letter-spacing:-.024em;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.ct-who-meta{display:flex;align-items:center;gap:8px;min-width:0}
-.ct-who-meta em{font-style:normal;font-size:11.5px;color:#8ea4c6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.ct-acct{flex:none;font-size:9.5px;font-weight:800;letter-spacing:.09em;color:#bcd6ff;background:rgba(0,71,187,.3);padding:3px 8px;border-radius:70px}
-
-/* the number and the curve read as one block */
-.ct-card-ret{display:flex;align-items:baseline;gap:9px;margin-top:22px}
-.ct-card-ret b{font-size:34px;font-weight:800;letter-spacing:-.045em;line-height:1;color:#3fd9a8;font-variant-numeric:tabular-nums}
-.ct-card-ret em{font-style:normal;font-size:11.5px;color:#6f86ad}
-/* the chart bleeds through a wrapper: a percentage width on the svg itself is
-   a flex item and resolved against the wrong box, leaving a gap on the right */
-.ct-sparkwrap{display:block;align-self:stretch;margin:14px -24px 0}
-.ct-spark{display:block;width:100%;height:78px}
-.ct-spark-line{fill:none;stroke:#3fd9a8;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;
-  stroke-dasharray:520;stroke-dashoffset:520;transition:stroke-dashoffset 1.5s var(--ease)}
-.ct-spark-fill{opacity:0;transition:opacity .8s var(--ease) .4s}
-.ct-cards.is-seen .ct-spark-line{stroke-dashoffset:0}
-.ct-cards.is-seen .ct-spark-fill{opacity:1}
-
-.ct-card-stats{display:flex;gap:26px;margin-top:18px}
-.ct-card-stats div{display:flex;flex-direction:column;gap:3px}
-.ct-card-stats dt{font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#6f86ad}
-.ct-card-stats dd{font-size:15px;font-weight:800;letter-spacing:-.02em;color:#e6edf8;font-variant-numeric:tabular-nums}
-.ct-copy{
-  display:flex;align-items:center;justify-content:center;gap:8px;margin-top:auto;
-  font-size:13px;font-weight:700;color:#fff;padding:13px 18px;border-radius:14px;
-  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);
-  transition:background .3s,border-color .3s;
-}
-.ct-copy{margin-top:20px}
-.ct-copy svg{width:14px;height:14px;transition:transform .3s var(--ease)}
-.ct-card:hover .ct-copy{background:var(--blue);border-color:transparent}
-.ct-card:hover .ct-copy svg{transform:translateX(3px)}
+.ct-who-tx{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1}
+.ct-who-tx b{font-size:14.5px;letter-spacing:-.022em;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ct-who-tx em{font-style:normal;font-size:11px;color:#8ea4c6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ct-card-go{width:15px;height:15px;flex:none;color:#6f86ad;transition:color .3s,transform .35s var(--ease)}
+.ct-card:hover .ct-card-go{color:#6fa8ff;transform:translate(2px,-2px)}
+.ct-card-ret{display:flex;align-items:baseline;gap:8px;margin-top:18px}
+.ct-card-ret b{font-size:27px;font-weight:800;letter-spacing:-.04em;line-height:1;color:#3fd9a8;font-variant-numeric:tabular-nums}
+.ct-card-ret em{font-style:normal;font-size:10.5px;color:#6f86ad}
+.ct-spark{display:block;width:calc(100% + 40px);margin:12px -20px 0;height:44px}
+.ct-spark-line{fill:none;stroke:#3fd9a8;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;opacity:.85}
+.ct-card:hover .ct-spark-line{opacity:1}
+.ct-card-foot{display:flex;align-items:center;gap:10px;margin-top:14px;font-size:11.5px;color:#8ea4c6}
+.ct-card-foot b{color:#e6edf8;font-variant-numeric:tabular-nums;font-weight:700}
+.ct-card-foot i{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.24)}
+.ct-rank-note{position:relative;z-index:1;margin-top:34px;text-align:center;font-size:11.5px;line-height:1.6;color:#7f92b3}
 
 /* ---- Responsive ---- */
 @media (max-width:1080px){
