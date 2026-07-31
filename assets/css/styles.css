@@ -7285,34 +7285,54 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
   -webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
   mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
 }
-.mc-track{display:flex;gap:16px;width:max-content;padding:4px 0;will-change:transform}
+.mc-track{display:flex;gap:14px;width:max-content;padding:4px 0;will-change:transform}
 .mc-outlet{
-  flex:none;display:flex;align-items:center;gap:16px;padding:16px 24px;border-radius:70px;
-  background:rgba(255,255,255,.78);border:1px solid var(--line);
-  box-shadow:0 12px 30px -22px rgba(20,44,96,.3);
-  transition:transform .35s var(--ease),border-color .3s,box-shadow .35s var(--ease);
+  flex:none;width:206px;display:flex;flex-direction:column;align-items:center;gap:13px;
+  padding:22px 20px 18px;border-radius:20px;
+  background:rgba(255,255,255,.84);border:1px solid rgba(255,255,255,.94);
+  box-shadow:0 16px 38px -26px rgba(20,44,96,.34),inset 0 1px 0 #fff;
+  -webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);
+  transition:transform .4s var(--ease),border-color .3s,box-shadow .4s var(--ease);
 }
-.mc-outlet:hover{transform:translateY(-3px);border-color:rgba(0,71,187,.3);box-shadow:0 20px 38px -22px rgba(0,71,187,.4)}
-.mc-outlet img{height:22px;width:auto;display:block}
-.mc-outlet-rate{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:800;color:var(--blue);white-space:nowrap}
-.mc-outlet-rate svg{width:13px;height:13px;color:#e3b26a}
-.mc-outlet-url{font-size:11.5px;color:var(--text-mute);white-space:nowrap}
+.mc-outlet:hover{transform:translateY(-5px);border-color:rgba(0,71,187,.3);box-shadow:0 26px 48px -24px rgba(0,71,187,.4),inset 0 1px 0 #fff}
+.mc-outlet-logo{height:26px;display:grid;place-items:center}
+.mc-outlet-logo img{height:100%;width:auto;max-width:148px;object-fit:contain;display:block}
+/* a real half star, rather than a number standing in for one */
+.mc-outlet-stars{display:inline-flex;align-items:center;gap:3px}
+.mc-outlet-stars svg{width:13px;height:13px;color:#e3b26a}
+.mc-outlet-stars .half{position:relative;display:inline-grid;place-items:center;width:13px;height:13px}
+.mc-outlet-stars .half>svg{color:rgba(20,44,96,.15)}
+.mc-outlet-stars .half i{position:absolute;left:0;top:0;bottom:0;width:50%;overflow:hidden;display:grid;place-items:center start}
+.mc-outlet-stars .half i svg{color:#e3b26a}
+.mc-outlet-score{display:inline-flex;align-items:baseline;gap:2px;font-size:14px;font-weight:800;letter-spacing:-.02em;color:var(--text)}
+.mc-outlet-score em{font-style:normal;font-size:11.5px;font-weight:700;color:var(--text-mute)}
+.mc-outlet-url{
+  width:100%;padding-top:13px;border-top:1px solid var(--line);text-align:center;
+  font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--text-mute);
+  transition:color .3s;
+}
+.mc-outlet:hover .mc-outlet-url{color:var(--blue)}
 
 /* ---- the wall: clippings flowing down columns ---- */
 .mc-wall{columns:3;column-gap:20px}
 .mc-clip{
-  break-inside:avoid;margin:0 0 20px;padding:24px 24px 20px;border-radius:20px;
+  break-inside:avoid;overflow:hidden;margin:0 0 20px;padding:0 24px 20px;border-radius:20px;
   background:rgba(255,255,255,.82);border:1px solid rgba(255,255,255,.94);
   box-shadow:0 16px 40px -28px rgba(20,44,96,.32),inset 0 1px 0 #fff;
   -webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);
   transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
 }
 .mc-clip:hover{transform:translateY(-4px);border-color:rgba(0,71,187,.26);box-shadow:0 28px 52px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff}
+/* the still bleeds to the card edge, then the clipping text sits under it */
+.mc-clip-media{display:block;position:relative;overflow:hidden;margin:0 -24px 20px;aspect-ratio:16/10;background:rgba(20,44,96,.06)}
+.mc-clip-media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s var(--ease)}
+.mc-clip:hover .mc-clip-media img{transform:scale(1.05)}
+.mc-clip--quote .mc-clip-media{aspect-ratio:4/3}
 .mc-clip-top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:14px;border-bottom:1px solid var(--line)}
 .mc-chip{display:inline-flex;align-items:center;gap:7px;font-size:10.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--blue)}
 .mc-chip svg{width:13px;height:13px}
 .mc-clip-top time{font-size:11.5px;color:var(--text-mute);white-space:nowrap}
-.mc-clip h3{margin-top:16px;font-size:17px;letter-spacing:-.028em;line-height:1.32;color:var(--text)}
+.mc-clip h3{margin-top:15px;font-size:17px;letter-spacing:-.028em;line-height:1.32;color:var(--text)}
 .mc-clip p{margin-top:10px;font-size:13.5px;line-height:1.66;color:var(--text-soft)}
 .mc-clip-go{
   display:inline-flex;align-items:center;gap:8px;margin-top:16px;
@@ -7330,6 +7350,9 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
 }
 @media (max-width:680px){
   .mc-wall{columns:1}
-  .mc-outlet{padding:14px 18px;gap:12px}
-  .mc-outlet-url{display:none}
+  .mc-outlet{width:176px;padding:18px 16px 15px}
 }
+/* the award has no photograph, so the laurel sits on a field of its own */
+.mc-clip-media--award{display:grid;place-items:center;background:linear-gradient(150deg,#0b1226,#0a1a3e 58%,#071024)}
+.mc-clip-media--award img{width:44%;height:auto;object-fit:contain;filter:brightness(0) invert(1);opacity:.9}
+.mc-clip:hover .mc-clip-media--award img{transform:scale(1.05)}
