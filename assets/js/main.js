@@ -1046,6 +1046,108 @@
       ]
     };
 
+    // indices, shares, ETFs and the CFD umbrella all quote in price units and
+    // carry a lettered badge rather than a flag pair
+    function txSet(rows) {
+      return {
+        pip: function () { return 1; },
+        badge: function (p) { return '<span class="fx-inst-tx">' + (p.badge || p.sym) + '</span>'; },
+        spread: function (v, p) { return v.toFixed(p.sdec); },
+        floor: function (p) { return p.spread * 0.6; },
+        data: rows
+      };
+    }
+
+    SETS.indices = txSet({
+      americas: [
+        { sym: 'US30', name: 'Dow Jones 30 Index', badge: 'US30', mid: 39142.0, dec: 1, spread: 2.0, sdec: 1 },
+        { sym: 'US500', name: 'S&P 500 Index', badge: 'US500', mid: 5263.40, dec: 2, spread: 0.60, sdec: 2 },
+        { sym: 'NAS100', name: 'Nasdaq 100 Index', badge: 'NAS', mid: 18642.5, dec: 1, spread: 1.20, sdec: 1 },
+        { sym: 'US2000', name: 'Russell 2000 Index', badge: 'RUT', mid: 2085.40, dec: 2, spread: 1.40, sdec: 2 },
+        { sym: 'CA60', name: 'Canada 60 Index', badge: 'CA60', mid: 1284.60, dec: 2, spread: 1.60, sdec: 2 },
+        { sym: 'BRZ60', name: 'Brazil 60 Index', badge: 'BR60', mid: 126480, dec: 0, spread: 40, sdec: 0 }
+      ],
+      europe: [
+        { sym: 'GER40', name: 'Germany 40 Index', badge: 'DE40', mid: 18214.7, dec: 1, spread: 1.00, sdec: 1 },
+        { sym: 'UK100', name: 'UK 100 Index', badge: 'UK100', mid: 8215.40, dec: 2, spread: 1.20, sdec: 2 },
+        { sym: 'FRA40', name: 'France 40 Index', badge: 'FR40', mid: 8062.50, dec: 2, spread: 1.40, sdec: 2 },
+        { sym: 'EUSTX50', name: 'Euro Stoxx 50 Index', badge: 'STX', mid: 5010.20, dec: 2, spread: 1.60, sdec: 2 },
+        { sym: 'SPA35', name: 'Spain 35 Index', badge: 'ES35', mid: 11120.0, dec: 1, spread: 6.00, sdec: 1 },
+        { sym: 'SWI20', name: 'Switzerland 20 Index', badge: 'CH20', mid: 12048.0, dec: 1, spread: 4.00, sdec: 1 }
+      ],
+      asia: [
+        { sym: 'JPN225', name: 'Japan 225 Index', badge: 'JP225', mid: 39980.0, dec: 1, spread: 8.00, sdec: 1 },
+        { sym: 'HK50', name: 'Hong Kong 50 Index', badge: 'HK50', mid: 18320.0, dec: 1, spread: 8.00, sdec: 1 },
+        { sym: 'AUS200', name: 'Australia 200 Index', badge: 'AU200', mid: 7810.50, dec: 2, spread: 1.60, sdec: 2 },
+        { sym: 'CHINA50', name: 'China A50 Index', badge: 'CN50', mid: 12240.0, dec: 1, spread: 12.00, sdec: 1 },
+        { sym: 'IND50', name: 'India 50 Index', badge: 'IN50', mid: 23480.0, dec: 1, spread: 10.00, sdec: 1 }
+      ]
+    });
+
+    SETS.shares = txSet({
+      ustech: [
+        { sym: 'AAPL', name: 'Apple Inc.', badge: 'AAPL', mid: 214.20, dec: 2, spread: 0.06, sdec: 2 },
+        { sym: 'MSFT', name: 'Microsoft Corporation', badge: 'MSFT', mid: 441.50, dec: 2, spread: 0.09, sdec: 2 },
+        { sym: 'NVDA', name: 'NVIDIA Corporation', badge: 'NVDA', mid: 126.40, dec: 2, spread: 0.05, sdec: 2 },
+        { sym: 'GOOGL', name: 'Alphabet Inc. Class A', badge: 'GOOG', mid: 178.30, dec: 2, spread: 0.06, sdec: 2 },
+        { sym: 'AMZN', name: 'Amazon.com Inc.', badge: 'AMZN', mid: 186.10, dec: 2, spread: 0.06, sdec: 2 }
+      ],
+      usbroad: [
+        { sym: 'TSLA', name: 'Tesla Inc.', badge: 'TSLA', mid: 248.60, dec: 2, spread: 0.11, sdec: 2 },
+        { sym: 'JPM', name: 'JPMorgan Chase & Co.', badge: 'JPM', mid: 204.80, dec: 2, spread: 0.08, sdec: 2 },
+        { sym: 'KO', name: 'The Coca-Cola Company', badge: 'KO', mid: 63.40, dec: 2, spread: 0.04, sdec: 2 },
+        { sym: 'BA', name: 'The Boeing Company', badge: 'BA', mid: 178.90, dec: 2, spread: 0.10, sdec: 2 }
+      ],
+      intl: [
+        { sym: 'ASML', name: 'ASML Holding N.V.', badge: 'ASML', mid: 982.50, dec: 2, spread: 0.42, sdec: 2 },
+        { sym: 'SAP', name: 'SAP SE', badge: 'SAP', mid: 188.20, dec: 2, spread: 0.12, sdec: 2 },
+        { sym: 'MC', name: 'LVMH Moet Hennessy', badge: 'LVMH', mid: 712.00, dec: 2, spread: 0.38, sdec: 2 },
+        { sym: 'BABA', name: 'Alibaba Group Holding', badge: 'BABA', mid: 78.40, dec: 2, spread: 0.06, sdec: 2 }
+      ]
+    });
+
+    SETS.etfs = txSet({
+      equity: [
+        { sym: 'SPY', name: 'SPDR S&P 500 ETF Trust', badge: 'SPY', mid: 526.30, dec: 2, spread: 0.07, sdec: 2 },
+        { sym: 'QQQ', name: 'Invesco QQQ Trust', badge: 'QQQ', mid: 455.10, dec: 2, spread: 0.07, sdec: 2 },
+        { sym: 'IWM', name: 'iShares Russell 2000 ETF', badge: 'IWM', mid: 208.40, dec: 2, spread: 0.06, sdec: 2 },
+        { sym: 'EEM', name: 'iShares MSCI Emerging Markets', badge: 'EEM', mid: 43.20, dec: 2, spread: 0.04, sdec: 2 }
+      ],
+      commodity: [
+        { sym: 'GLD', name: 'SPDR Gold Shares', badge: 'GLD', mid: 216.80, dec: 2, spread: 0.07, sdec: 2 },
+        { sym: 'SLV', name: 'iShares Silver Trust', badge: 'SLV', mid: 25.10, dec: 2, spread: 0.04, sdec: 2 },
+        { sym: 'USO', name: 'United States Oil Fund', badge: 'USO', mid: 78.90, dec: 2, spread: 0.06, sdec: 2 }
+      ],
+      bond: [
+        { sym: 'TLT', name: 'iShares 20+ Year Treasury Bond', badge: 'TLT', mid: 94.60, dec: 2, spread: 0.05, sdec: 2 },
+        { sym: 'AGG', name: 'iShares Core US Aggregate Bond', badge: 'AGG', mid: 97.20, dec: 2, spread: 0.04, sdec: 2 },
+        { sym: 'HYG', name: 'iShares High Yield Corporate Bond', badge: 'HYG', mid: 78.50, dec: 2, spread: 0.04, sdec: 2 }
+      ]
+    });
+
+    SETS.cfd = txSet({
+      fx: [
+        { sym: 'EUR/USD', name: 'Euro / US Dollar', badge: 'EUR', mid: 1.08420, dec: 5, spread: 0.00002, sdec: 5 },
+        { sym: 'GBP/USD', name: 'British Pound / US Dollar', badge: 'GBP', mid: 1.27180, dec: 5, spread: 0.00004, sdec: 5 },
+        { sym: 'USD/JPY', name: 'US Dollar / Japanese Yen', badge: 'JPY', mid: 156.820, dec: 3, spread: 0.005, sdec: 3 }
+      ],
+      metals: [
+        { sym: 'XAU/USD', name: 'Gold Spot / US Dollar', badge: 'XAU', mid: 2338.50, dec: 2, spread: 0.18, sdec: 2 },
+        { sym: 'XAG/USD', name: 'Silver Spot / US Dollar', badge: 'XAG', mid: 27.420, dec: 3, spread: 0.016, sdec: 3 },
+        { sym: 'XTI/USD', name: 'WTI Crude Oil', badge: 'WTI', mid: 78.42, dec: 2, spread: 0.030, sdec: 3 }
+      ],
+      indices: [
+        { sym: 'US30', name: 'Dow Jones 30 Index', badge: 'US30', mid: 39142.0, dec: 1, spread: 2.0, sdec: 1 },
+        { sym: 'NAS100', name: 'Nasdaq 100 Index', badge: 'NAS', mid: 18642.5, dec: 1, spread: 1.20, sdec: 1 },
+        { sym: 'GER40', name: 'Germany 40 Index', badge: 'DE40', mid: 18214.7, dec: 1, spread: 1.00, sdec: 1 }
+      ],
+      shares: [
+        { sym: 'AAPL', name: 'Apple Inc.', badge: 'AAPL', mid: 214.20, dec: 2, spread: 0.06, sdec: 2 },
+        { sym: 'TSLA', name: 'Tesla Inc.', badge: 'TSLA', mid: 248.60, dec: 2, spread: 0.11, sdec: 2 },
+        { sym: 'NVDA', name: 'NVIDIA Corporation', badge: 'NVDA', mid: 126.40, dec: 2, spread: 0.05, sdec: 2 }
+      ]
+    });
+
     SETS.forex.data = data;
     var set = SETS[root.dataset.fxPairs] || SETS.forex;
     var firstCat = (cats.filter(function (c) { return c.classList.contains('active'); })[0] || cats[0] || {}).dataset;
