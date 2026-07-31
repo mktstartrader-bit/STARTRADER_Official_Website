@@ -3829,23 +3829,23 @@
     /* --- the habits take turns, and the cycle repeats --- */
     var reps = document.querySelector('[data-nb-reps]');
     if (!reps) return;
-    var cards = Array.prototype.slice.call(reps.children);
+    var repCards = Array.prototype.slice.call(reps.children);
     var bars = Array.prototype.slice.call(document.querySelectorAll('[data-nb-bars] i'));
     var loopEl = document.querySelector('[data-nb-loop]');
     var live = 0, loops = 1, beat = null, held = false;
 
     function light(i) {
-      live = i % cards.length;
-      cards.forEach(function (c, k) { c.classList.toggle('is-live', k === live); });
+      live = i % repCards.length;
+      repCards.forEach(function (c, k) { c.classList.toggle('is-live', k === live); });
       bars.forEach(function (b, k) { b.classList.toggle('is-on', k === live); });
     }
     function step() {
       if (held) return;
       var next = live + 1;
-      if (next >= cards.length) { next = 0; loops += 1; if (loopEl) loopEl.textContent = loops; }
+      if (next >= repCards.length) { next = 0; loops += 1; if (loopEl) loopEl.textContent = loops; }
       light(next);
     }
-    cards.forEach(function (c, i) {
+    repCards.forEach(function (c, i) {
       c.addEventListener('pointerenter', function () { held = true; light(i); });
       c.addEventListener('pointerleave', function () { held = false; });
     });
@@ -3854,7 +3854,7 @@
 
     if (prefersReduced) return;
     if (hasGSAP && hasST) {
-      gsap.fromTo(cards, { y: 46, opacity: 0 }, {
+      gsap.fromTo(repCards, { y: 46, opacity: 0 }, {
         y: 0, opacity: 1, duration: 0.85, ease: 'power3.out', stagger: 0.12,
         scrollTrigger: { trigger: reps, start: 'top 84%', once: true }
       });
