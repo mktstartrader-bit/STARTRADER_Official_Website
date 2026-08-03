@@ -4263,6 +4263,64 @@
     fo.observe(figs);
   }
 
+
+  /* ---------------- Deposit bonus: the switch estimator ---------------- */
+  function initDeposit() {
+    var box = document.querySelector('[data-db-calc]');
+    if (!box) return;
+    var wd = box.querySelector('[data-db-wd]');
+    var dp = box.querySelector('[data-db-dp]');
+    var lots = box.querySelector('[data-db-lots]');
+    var accts = Array.prototype.slice.call(box.querySelectorAll('[data-db-acct]'));
+    var outAllow = box.querySelector('[data-db-out-allow]');
+    var outCash = box.querySelector('[data-db-out-cash]');
+    var noteAllow = box.querySelector('[data-db-note-allow]');
+    var noteCash = box.querySelector('[data-db-note-cash]');
+    var rate = 5, CAP = 200, GATE = 3000;
+
+    function money(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+    function num(el) { var v = parseFloat(el && el.value); return isNaN(v) || v < 0 ? 0 : v; }
+
+    function paint() {
+      var w = num(wd), d = num(dp), l = num(lots);
+      // the allowance is one per cent of the smaller of the two amounts
+      var base = Math.min(w, d);
+      if (outAllow) outAllow.textContent = money(base * 0.01);
+      if (noteAllow) {
+        noteAllow.textContent = base > 0
+          ? '1% of ' + money(base) + ', the lesser of the two'
+          : 'Enter what you withdraw and deposit';
+      }
+      var raw = l * rate;
+      var cash = Math.min(raw, CAP);
+      var eligible = d >= GATE;
+      if (outCash) outCash.textContent = eligible ? money(cash) : money(0);
+      if (noteCash) {
+        if (!eligible) noteCash.textContent = 'Needs a deposit of ' + money(GATE) + ' or more';
+        else if (raw > CAP) noteCash.textContent = l + ' lots at $' + rate + ' reaches the ' + money(CAP) + ' cap';
+        else noteCash.textContent = l + ' lots at $' + rate + ' per lot';
+      }
+    }
+
+    [wd, dp, lots].forEach(function (el) {
+      if (!el) return;
+      el.addEventListener('input', paint);
+      el.addEventListener('change', paint);
+    });
+    accts.forEach(function (b) {
+      b.addEventListener('click', function () {
+        rate = b.getAttribute('data-db-acct') === 'ecn' ? 2 : 5;
+        accts.forEach(function (o) {
+          var on = o === b;
+          o.classList.toggle('is-on', on);
+          o.setAttribute('aria-selected', on ? 'true' : 'false');
+        });
+        paint();
+      });
+    });
+    paint();
+  }
+
   /* ---------------- Events: the gallery rail ---------------- */
   function initEvents() {
     var rail = document.querySelector('[data-ev-rail]');
@@ -4654,6 +4712,7 @@
     initIcc();
     initPfl();
     initMena();
+    initDeposit();
     if (hasST) ScrollTrigger.refresh();
     window.addEventListener('load', function () { if (hasST) ScrollTrigger.refresh(); });
   }

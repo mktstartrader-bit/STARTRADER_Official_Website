@@ -9274,3 +9274,171 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
       linear-gradient(180deg,rgba(244,247,252,.94) 0%,rgba(244,247,252,.8) 48%,rgba(244,247,252,.5) 100%);
   }
 }
+
+/* =================================================================
+   DEPOSIT BONUS / SWITCH REWARDS
+   Shares the promotions palette. The two rewards sit on the blue and
+   sand gradients, and the estimator does the arithmetic in front of you.
+   Scoped to .dbx.
+   ================================================================= */
+.dbx{--acc:#0047bb;--acc-2:#2a72ff;--acc-3:#7fb2ff;--mint:#16e9d7;
+     --sand:#dfc5ae;--sand-ink:#8a6440;--ink:#04060d}
+
+/* ---------------- why switch ---------------- */
+.db-why{position:relative;isolation:isolate;overflow:clip;
+  background:radial-gradient(50% 44% at 88% 0%,rgba(0,71,187,.08),transparent 62%),var(--bg-light-2)}
+.db-why>.container{position:relative;z-index:1}
+.db-points{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.8vw,22px);margin-top:clamp(30px,3.6vw,46px)}
+.db-point{
+  position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;
+  padding:clamp(22px,2.5vw,30px);border-radius:var(--radius-lg);
+  background:rgba(255,255,255,.7);
+  -webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);
+  border:1px solid rgba(255,255,255,.9);
+  box-shadow:0 12px 30px -20px rgba(20,44,96,.26),inset 0 1px 0 #fff;
+  transition:transform .4s var(--ease),box-shadow .4s,border-color .3s;
+}
+.db-point::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--acc-2),var(--mint));
+  transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease);
+}
+.db-point:hover{transform:translateY(-5px);border-color:rgba(0,71,187,.32);
+  box-shadow:0 28px 52px -26px rgba(0,71,187,.3)}
+.db-point:hover::before{transform:scaleX(1)}
+.db-point-ic{
+  display:grid;place-items:center;width:52px;height:52px;border-radius:17px;
+  background:linear-gradient(158deg,var(--acc-2),var(--acc));
+  box-shadow:0 14px 26px -14px rgba(0,71,187,.6),inset 0 1px 0 rgba(255,255,255,.32);
+  transition:transform .42s var(--ease);
+}
+.db-point-ic svg{width:23px;height:23px;color:#fff}
+.db-point:hover .db-point-ic{transform:translateY(-3px) rotate(-6deg)}
+.db-point b{display:block;margin-top:18px;font-size:16.5px;font-weight:700;letter-spacing:-.028em;color:var(--ink)}
+.db-point p{margin-top:9px;font-size:13.6px;line-height:1.68;color:#5a6a83}
+
+/* ---------------- the two rewards ---------------- */
+.db-rewards{position:relative;isolation:isolate;overflow:clip;background:linear-gradient(180deg,#fff,#f2f6fc)}
+.db-rewards>.container{position:relative;z-index:1}
+.db-gate{
+  display:inline-flex;align-items:center;gap:11px;margin:clamp(22px,2.6vw,30px) auto 0;
+  padding:11px 22px;border-radius:70px;
+  font-size:12.5px;font-weight:700;letter-spacing:-.01em;color:var(--ink);
+  background:linear-gradient(180deg,rgba(223,197,174,.5),rgba(255,255,255,.8));
+  border:1px solid rgba(255,255,255,.9);
+  box-shadow:0 14px 32px -22px rgba(20,44,96,.4),inset 0 1px 0 #fff;
+}
+.db-gate i{width:7px;height:7px;border-radius:50%;background:var(--mint);box-shadow:0 0 9px rgba(22,233,215,.9)}
+.db-gate-wrap{text-align:center}
+.db-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2vw,26px);margin-top:clamp(26px,3vw,38px)}
+.db-card{
+  position:relative;overflow:hidden;display:flex;flex-direction:column;
+  border-radius:clamp(20px,2.4vw,30px);padding:clamp(24px,2.8vw,34px);
+  background:linear-gradient(180deg,rgba(0,71,187,.08),rgba(255,255,255,.72) 46%);
+  border:1px solid rgba(255,255,255,.92);
+  box-shadow:0 16px 40px -28px rgba(20,44,96,.44),inset 0 1px 0 #fff;
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .32s;
+}
+.db-card--sand{background:linear-gradient(180deg,rgba(223,197,174,.5),rgba(255,255,255,.72) 48%)}
+.db-card:hover{transform:translateY(-5px);border-color:rgba(0,71,187,.24);
+  box-shadow:0 32px 60px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff}
+.db-card--sand:hover{border-color:rgba(138,100,64,.34)}
+.db-card-n{
+  display:inline-flex;align-items:center;gap:8px;align-self:flex-start;padding:6px 14px;border-radius:70px;
+  font-size:9.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#fff;
+  background:linear-gradient(180deg,var(--acc-2),var(--acc));
+}
+.db-card--sand .db-card-n{background:linear-gradient(180deg,#b98a5d,var(--sand-ink))}
+.db-card h3{margin-top:18px;font-size:clamp(22px,2.6vw,32px);font-weight:800;letter-spacing:-.04em;line-height:1.1;color:var(--ink)}
+.db-card > p{margin-top:11px;font-size:14.2px;line-height:1.7;color:#5a6a83}
+.db-list{margin-top:clamp(18px,2.2vw,24px);display:flex;flex-direction:column}
+.db-li{
+  display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:start;
+  padding:13px 0;border-top:1px solid rgba(20,44,96,.1);font-size:13.8px;line-height:1.6;color:#41506a;
+}
+.db-li:first-child{border-top:0}
+.db-card--sand .db-li{border-top-color:rgba(138,100,64,.18)}
+.db-li-tick{
+  display:grid;place-items:center;width:22px;height:22px;border-radius:50%;flex:none;margin-top:1px;
+  background:rgba(0,71,187,.1);color:var(--acc);
+}
+.db-card--sand .db-li-tick{background:rgba(223,197,174,.6);color:var(--sand-ink)}
+.db-li-tick svg{width:12px;height:12px}
+.db-li b{color:var(--ink);font-weight:700}
+/* the worked example, set like a receipt */
+.db-eg{
+  margin-top:auto;padding-top:clamp(18px,2.2vw,24px);border-top:2px dashed rgba(20,44,96,.16);
+}
+.db-card--sand .db-eg{border-top-color:rgba(138,100,64,.26)}
+.db-eg-lbl{display:block;font-size:9.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#8496b0}
+.db-eg-row{
+  display:block;margin-top:11px;font-size:13.6px;line-height:1.6;color:#41506a;
+}
+.db-eg-row b{font-variant-numeric:tabular-nums;font-weight:800;color:var(--ink)}
+.db-eg-row em{font-style:normal;font-weight:800;color:var(--acc)}
+.db-card--sand .db-eg-row em{color:var(--sand-ink)}
+
+/* ---------------- the estimator ---------------- */
+.db-calc{
+  position:relative;overflow:hidden;margin-top:clamp(20px,2.4vw,30px);
+  border-radius:clamp(20px,2.4vw,28px);padding:clamp(22px,2.8vw,34px);
+  background:linear-gradient(140deg,rgba(0,71,187,.09),rgba(223,197,174,.34) 64%,rgba(255,255,255,.78));
+  border:1px solid rgba(255,255,255,.92);
+  box-shadow:0 22px 50px -32px rgba(20,44,96,.44),inset 0 1px 0 #fff;
+}
+.db-calc-hd{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px}
+.db-calc-hd b{font-size:clamp(17px,2vw,22px);font-weight:800;letter-spacing:-.034em;color:var(--ink)}
+.db-calc-hd span{font-size:11.5px;color:#7a8aa4}
+.db-calc-grid{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.6vw,20px);
+  margin-top:clamp(18px,2.2vw,26px);align-items:end;
+}
+.db-field{display:flex;flex-direction:column;gap:8px}
+.db-field label{font-size:10px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#7a8aa4}
+.db-input{
+  position:relative;display:flex;align-items:center;gap:8px;
+  padding:12px 16px;border-radius:14px;
+  background:rgba(255,255,255,.92);border:1px solid rgba(20,44,96,.12);
+  transition:border-color .3s,box-shadow .3s;
+}
+.db-input:focus-within{border-color:var(--acc-2);box-shadow:0 0 0 3px rgba(42,114,255,.16)}
+.db-input span{font-size:14px;font-weight:700;color:#8496b0}
+.db-input input{
+  width:100%;border:0;background:none;outline:none;
+  font:700 15.5px/1.2 inherit;color:var(--ink);font-variant-numeric:tabular-nums;
+}
+.db-input input::-webkit-outer-spin-button,.db-input input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.db-seg{display:flex;gap:4px;padding:4px;border-radius:70px;background:rgba(255,255,255,.7);border:1px solid rgba(20,44,96,.1)}
+.db-seg button{
+  flex:1;padding:9px 12px;border:0;border-radius:70px;cursor:pointer;background:none;
+  font-size:11.5px;font-weight:800;letter-spacing:.04em;color:#6c7d96;
+  transition:background .32s var(--ease),color .3s;
+}
+.db-seg button.is-on{background:linear-gradient(180deg,var(--acc-2),var(--acc));color:#fff}
+.db-out{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;
+  margin-top:clamp(18px,2.2vw,26px);border-radius:18px;overflow:hidden;background:rgba(20,44,96,.1);
+}
+.db-out div{padding:18px 20px;background:rgba(255,255,255,.92)}
+.db-out em{display:block;font-style:normal;font-size:10px;font-weight:800;letter-spacing:.13em;
+  text-transform:uppercase;color:#7a8aa4}
+.db-out b{display:block;margin-top:9px;font-size:clamp(24px,2.8vw,34px);font-weight:800;
+  letter-spacing:-.05em;line-height:1;font-variant-numeric:tabular-nums;color:var(--acc)}
+.db-out div:nth-child(2) b{color:var(--sand-ink)}
+.db-out i{display:block;margin-top:8px;font-style:normal;font-size:11.5px;color:#7a8aa4}
+.db-calc-note{margin-top:16px;font-size:11.5px;line-height:1.66;color:#7a8aa4}
+
+/* ---------------- how to switch ---------------- */
+.db-how{position:relative;isolation:isolate;overflow:clip;
+  background:radial-gradient(46% 40% at 12% 4%,rgba(223,197,174,.34),transparent 62%),var(--bg-light-2)}
+.db-how>.container{position:relative;z-index:1}
+
+/* ---------------- responsive ---------------- */
+@media (max-width:1000px){
+  .db-points{grid-template-columns:1fr}
+  .db-pair{grid-template-columns:1fr}
+  .db-calc-grid{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .db-out{grid-template-columns:1fr}
+}
