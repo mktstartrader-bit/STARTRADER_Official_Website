@@ -9793,6 +9793,34 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
   transition:transform .6s var(--ease);
 }
 .mall-cat:hover .mall-cat-shot img{transform:translateY(-5px) scale(1.03)}
+/* two of the tiles let the product run off the bottom-right corner */
+.mall-cat--bleed{min-height:clamp(272px,26vw,352px);padding-bottom:clamp(18px,2vw,24px)}
+.mall-cat--bleed .mall-cat-tx{max-width:min(100%,62%)}
+.mall-cat--bleed .mall-cat-shot{
+  position:absolute;right:0;bottom:0;left:auto;top:auto;z-index:0;
+  width:clamp(250px,58%,470px);min-height:0;margin:0;padding:0;
+  display:block;
+}
+.mall-cat--bleed .mall-cat-shot img{
+  display:block;width:100%;height:auto;max-height:none;
+  transform-origin:100% 100%;
+}
+.mall-cat--bleed:hover .mall-cat-shot img{transform:scale(1.04)}
+.mall-cat--bleed.mall-cat--w2 .mall-cat-shot{width:clamp(190px,74%,320px)}
+.mall-cat--bleed.mall-cat--w2 .mall-cat-tx{max-width:100%}
+/* and two let it sit down on the tile's bottom edge inside the row */
+.mall-cat--sink{padding-bottom:0;align-items:stretch}
+.mall-cat--sink .mall-cat-shot{align-items:flex-end;padding-top:0;min-height:0}
+.mall-cat--sink .mall-cat-shot img{max-height:clamp(180px,20vw,258px);display:block}
+/* the photograph fills its own panel, flush to the tile's edges, rather than
+   trying to blend a near-white studio ground into a tinted tile */
+.mall-cat--split{flex-direction:row;align-items:stretch;padding:0;gap:0}
+.mall-cat--split .mall-cat-tx{flex:0 0 52%;align-self:center;padding:clamp(20px,2.4vw,30px)}
+.mall-cat--split .mall-cat-shot{flex:1;min-height:clamp(200px,21vw,270px);margin:0;padding:0;display:block}
+.mall-cat--split .mall-cat-shot img{
+  width:100%;height:100%;max-height:none;object-fit:cover;object-position:50% 30%;
+}
+.mall-cat--split:hover .mall-cat-shot img{transform:scale(1.04)}
 
 /* the deal, stated once, across the full width */
 .mall-lead{
