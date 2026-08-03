@@ -4512,6 +4512,57 @@
     paint();
   }
 
+
+  /* ---------------- Knowledge article: the sign-up ---------------- */
+  function initKbForm() {
+    var form = document.querySelector('[data-kb-signup]');
+    if (!form) return;
+    var card = form.closest ? form.closest('[data-kb-form]') : null;
+    var done = card ? card.querySelector('[data-kb-done]') : null;
+    var name = form.querySelector('[data-kb-name]');
+    var email = form.querySelector('[data-kb-email]');
+    var level = form.querySelector('[data-kb-level]');
+    var check = form.querySelector('[data-kb-check]');
+    var consent = form.querySelector('[data-kb-consent]');
+
+    function mark(el, bad) {
+      var f = el && el.closest ? el.closest('[data-kb-fld]') : null;
+      if (!f) return;
+      f.classList.toggle('is-bad', !!bad);
+      var err = f.querySelector('.ct-err');
+      if (err) err.hidden = !bad;
+    }
+    var okEmail = function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v || ''); };
+
+    [[name, function (v) { return v.trim().length > 1; }],
+     [email, okEmail],
+     [level, function (v) { return !!v; }]].forEach(function (pair) {
+      var el = pair[0], ok = pair[1];
+      if (!el) return;
+      var ev = el.tagName === 'SELECT' ? 'change' : 'input';
+      el.addEventListener(ev, function () { if (ok(el.value)) mark(el, false); });
+    });
+    if (consent) consent.addEventListener('change', function () {
+      if (consent.checked && check) check.classList.remove('is-bad');
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var bad = null;
+      if (name && name.value.trim().length < 2) { mark(name, true); bad = bad || name; }
+      if (email && !okEmail(email.value)) { mark(email, true); bad = bad || email; }
+      if (level && !level.value) { mark(level, true); bad = bad || level; }
+      if (consent && !consent.checked) {
+        if (check) check.classList.add('is-bad');
+        bad = bad || consent;
+      }
+      if (bad) { if (bad.focus) bad.focus(); return; }
+      // nothing is transmitted from a static page; the card confirms and stands down
+      form.hidden = true;
+      if (done) { done.hidden = false; done.scrollIntoView({ block: 'nearest' }); }
+    });
+  }
+
   /* ---------------- Events: the gallery rail ---------------- */
   function initEvents() {
     var rail = document.querySelector('[data-ev-rail]');
@@ -4906,6 +4957,7 @@
     initDeposit();
     initSignup();
     initDeposit5020();
+    initKbForm();
     initVps();
     if (hasST) ScrollTrigger.refresh();
     window.addEventListener('load', function () { if (hasST) ScrollTrigger.refresh(); });
