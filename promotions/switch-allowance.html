@@ -112,8 +112,6 @@
   <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
-  <symbol id="i-eye-off" viewBox="0 0 24 24"><path d="M4 4l16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M9.9 5.7A10.7 10.7 0 0 1 12 5.5c6.4 0 10 6.5 10 6.5a18 18 0 0 1-2.6 3.3M6.6 7.4A17.7 17.7 0 0 0 2 12s3.6 6.5 10 6.5c1 0 1.9-.1 2.7-.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></symbol>
   <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z" fill="currentColor"/></symbol>
@@ -582,110 +580,111 @@
       <img class="db-open-mark" src="../assets/img/icon-shield-3d.png" alt="" width="400" height="490" loading="lazy" decoding="async" data-reveal>
     </div>
 
-    <div class="db-form" data-db-form>
-      <h2>Open <span>Live Account</span></h2>
+    <div class="ct-form-card pt-form-card glass" data-db-form data-reveal>
+      <h3 class="db-form-h">Open <span>Live Account</span></h3>
       <p class="db-form-sub">Claim the 1% switch allowance on the account you open here.</p>
 
-      <form class="db-rows" novalidate data-db-signup>
-        <div class="db-fld" data-db-fld>
-          <label for="db-country">Country<i>*</i></label>
-          <span class="db-ctl">
-            <select id="db-country" data-db-country required>
-              <option value="">Select your country</option>
-              <option>United Arab Emirates</option>
-              <option>United Kingdom</option>
-              <option>Singapore</option>
-              <option>Malaysia</option>
-              <option>Indonesia</option>
-              <option>Thailand</option>
-              <option>Vietnam</option>
-              <option>India</option>
-              <option>South Africa</option>
-              <option>Nigeria</option>
-              <option>Kenya</option>
-              <option>Egypt</option>
-              <option>Saudi Arabia</option>
-              <option>Kuwait</option>
-              <option>Qatar</option>
-              <option>Bahrain</option>
-              <option>Oman</option>
-              <option>Jordan</option>
-              <option>Turkey</option>
-              <option>Spain</option>
-              <option>Italy</option>
-              <option>Germany</option>
-              <option>France</option>
-              <option>Netherlands</option>
-              <option>Poland</option>
-              <option>Brazil</option>
-              <option>Mexico</option>
-              <option>Chile</option>
-              <option>Japan</option>
-              <option>South Korea</option>
-              <option>Hong Kong SAR</option>
-              <option>Taiwan</option>
-              <option>Philippines</option>
-              <option>Other</option>
-            </select>
-            <svg aria-hidden="true"><use href="#i-chevron-down"/></svg>
-          </span>
-          <span class="db-err">Please choose your country</span>
-        </div>
-
-        <div class="db-fld" data-db-fld>
-          <label for="db-email">Email<i>*</i></label>
-          <span class="db-ctl">
-            <input id="db-email" type="email" autocomplete="email" placeholder="you@example.com" data-db-email required>
-          </span>
-          <span class="db-err">Please enter a valid email address</span>
-        </div>
-
-        <div class="db-pair-row">
-          <div class="db-fld" data-db-fld>
-            <label for="db-code">Email verification code<i>*</i></label>
-            <span class="db-ctl">
-              <input id="db-code" type="text" inputmode="numeric" autocomplete="one-time-code" placeholder="6 digits" data-db-code required>
-            </span>
-            <span class="db-err">Enter the six-digit code</span>
+      <form novalidate data-db-signup>
+        <div class="ct-grid">
+          <div class="ct-field" data-db-fld>
+            <label for="dbCountry">Country or region</label>
+            <div class="wb-selwrap">
+              <select id="dbCountry" name="country" data-db-country aria-describedby="dbCountryErr">
+                <option value="">Select&hellip;</option>
+                  <option>United Arab Emirates</option>
+                  <option>United Kingdom</option>
+                  <option>Singapore</option>
+                  <option>Malaysia</option>
+                  <option>Indonesia</option>
+                  <option>Thailand</option>
+                  <option>Vietnam</option>
+                  <option>India</option>
+                  <option>South Africa</option>
+                  <option>Nigeria</option>
+                  <option>Kenya</option>
+                  <option>Egypt</option>
+                  <option>Saudi Arabia</option>
+                  <option>Kuwait</option>
+                  <option>Qatar</option>
+                  <option>Bahrain</option>
+                  <option>Oman</option>
+                  <option>Jordan</option>
+                  <option>Turkey</option>
+                  <option>Spain</option>
+                  <option>Italy</option>
+                  <option>Germany</option>
+                  <option>France</option>
+                  <option>Netherlands</option>
+                  <option>Poland</option>
+                  <option>Brazil</option>
+                  <option>Mexico</option>
+                  <option>Chile</option>
+                  <option>Japan</option>
+                  <option>South Korea</option>
+                  <option>Hong Kong SAR</option>
+                  <option>Taiwan</option>
+                  <option>Philippines</option>
+                  <option>Other</option>
+              </select>
+              <svg class="wb-selchev" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+            </div>
+            <p class="ct-err" id="dbCountryErr" hidden>Please choose your country or region.</p>
           </div>
-          <button class="db-send" type="button" data-db-send>Send code</button>
+
+          <div class="ct-field" data-db-fld>
+            <label for="dbEmail">Email</label>
+            <input type="email" id="dbEmail" name="email" inputmode="email" autocomplete="email"
+              placeholder="you@example.com" data-db-email aria-describedby="dbEmailErr">
+            <p class="ct-err" id="dbEmailErr" hidden>We need a valid email to reply to.</p>
+          </div>
+
+          <div class="ct-field" data-db-fld>
+            <label for="dbCode">Email verification code</label>
+            <input type="text" id="dbCode" name="code" inputmode="numeric" autocomplete="one-time-code"
+              placeholder="6 digits" data-db-code aria-describedby="dbCodeErr">
+            <div class="ct-below">
+              <p class="ct-err" id="dbCodeErr" hidden>Enter the six-digit code.</p>
+              <button class="db-send" type="button" data-db-send>Send code</button>
+            </div>
+          </div>
+
+          <div class="ct-field" data-db-fld>
+            <label for="dbPass">Password</label>
+            <input type="password" id="dbPass" name="password" autocomplete="new-password"
+              placeholder="8&ndash;16 characters" data-db-pass aria-describedby="dbPassErr">
+            <div class="ct-below">
+              <p class="ct-err" id="dbPassErr" hidden>Password does not meet the rules below.</p>
+              <button class="db-send db-send--quiet" type="button" data-db-peek aria-label="Show password">Show</button>
+            </div>
+          </div>
         </div>
 
-        <div class="db-fld" data-db-fld>
-          <label for="db-pass">Password<i>*</i></label>
-          <span class="db-ctl">
-            <input id="db-pass" type="password" autocomplete="new-password" placeholder="8&ndash;16 characters" data-db-pass required>
-            <button type="button" data-db-peek aria-label="Show password"><svg><use href="#i-eye"/></svg></button>
-          </span>
-          <span class="db-rules" aria-hidden="true">
-            <span data-db-rule="len">8&ndash;16 characters</span>
-            <span data-db-rule="num">A number</span>
-            <span data-db-rule="case">Upper and lower case</span>
-            <span data-db-rule="sym">A symbol</span>
-          </span>
-          <span class="db-err">Password does not meet the rules above</span>
+        <span class="db-rules" aria-hidden="true">
+              <span data-db-rule="len">8&ndash;16 characters</span>
+              <span data-db-rule="num">A number</span>
+              <span data-db-rule="case">Upper and lower case</span>
+              <span data-db-rule="sym">A symbol</span>
+            </span>
+        <div class="ct-field" style="margin-top:26px">
+          <label for="dbRef">Referred by <em>optional</em></label>
+          <input type="text" id="dbRef" name="referral" placeholder="Referral code, if you have one" data-db-ref>
         </div>
 
-        <div class="db-fld">
-          <label for="db-ref">Referred by</label>
-          <span class="db-ctl">
-            <input id="db-ref" type="text" placeholder="Optional code" data-db-ref>
-          </span>
-        </div>
-
-        <label class="db-check" data-db-check>
-          <input type="checkbox" data-db-us required>
-          <span class="db-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
-          <span class="db-check-tx">I am not a US resident</span>
+        <label class="ct-check" for="dbUs" data-db-check>
+          <input type="checkbox" id="dbUs" name="us" data-db-us>
+          <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+          <span>I am not a US resident.</span>
         </label>
 
-        <label class="db-check" data-db-check>
-          <input type="checkbox" data-db-consent required>
-          <span class="db-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
-          <span class="db-check-tx">I agree to STARTRADER using my data for product and service information, offers, events and application support. You can unsubscribe at any time &mdash; see our <a href="../company/corporate/legal-documents.html">Privacy Policy</a>.</span>
+        <label class="ct-check" for="dbConsent" data-db-check>
+          <input type="checkbox" id="dbConsent" name="consent" data-db-consent>
+          <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+          <span>I agree that STARTRADER may use these details for product and service information, offers, events and application support. You can unsubscribe at any time, as set out in the <a href="../company/corporate/legal-documents.html">Privacy Policy</a>.</span>
         </label>
 
-        <button class="db-submit" type="submit">Create account</button>
+        <div class="ct-actions">
+          <button class="btn btn-primary btn-lg ct-submit" type="submit">Create account <svg class="ico"><use href="#i-arrow-right"/></svg></button>
+        </div>
       </form>
 
       <p class="db-form-note">Verification and account creation complete on the secure account-opening flow. Nothing is submitted from this page.</p>

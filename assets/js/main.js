@@ -4338,7 +4338,10 @@
     function fld(el) { return el && el.closest ? el.closest('[data-db-fld]') : null; }
     function mark(el, bad) {
       var f = fld(el);
-      if (f) f.classList.toggle('is-bad', !!bad);
+      if (!f) return;
+      f.classList.toggle('is-bad', !!bad);
+      var err = f.querySelector('.ct-err');
+      if (err) err.hidden = !bad;
     }
     var okEmail = function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v || ''); };
     var passRules = {
@@ -4370,9 +4373,8 @@
       peek.addEventListener('click', function () {
         var shown = pass.type === 'text';
         pass.type = shown ? 'password' : 'text';
+        peek.textContent = shown ? 'Show' : 'Hide';
         peek.setAttribute('aria-label', shown ? 'Show password' : 'Hide password');
-        var use = peek.querySelector('use');
-        if (use) use.setAttribute('href', shown ? '#i-eye' : '#i-eye-off');
       });
     }
 
