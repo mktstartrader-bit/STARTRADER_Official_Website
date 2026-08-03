@@ -9950,3 +9950,18 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
   background:linear-gradient(180deg,transparent,rgba(4,8,18,.82));
 }
 @media (max-width:640px){.ev-strip{grid-template-columns:1fr}}
+
+/* ---- coverage page: the outlet run inside the body, and clickable clippings ---- */
+.mc-run{
+  display:flex;flex-wrap:wrap;align-items:center;gap:clamp(18px,3vw,38px);
+  margin:22px 0;padding:20px 24px;border-radius:16px;
+  background:rgba(20,44,96,.04);border:1px solid rgba(20,44,96,.08);
+}
+.mc-run-logo{display:inline-flex;align-items:center}
+.mc-run-logo img{display:block;height:20px;width:auto;opacity:.62;
+  filter:grayscale(1);transition:opacity .3s,filter .3s}
+.mc-run-logo:hover img{opacity:1;filter:none}
+/* the clipping's still and headline both open the story */
+a.mc-clip-media{display:block;cursor:pointer}
+.mc-clip h3 a{color:inherit;transition:color .25s}
+.mc-clip:hover h3 a{color:var(--blue)}
