@@ -3948,7 +3948,6 @@
         gsap.to(bg, { yPercent: 12, ease: 'none',
           scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
       }
-      railMarquee(document.getElementById('pcTick'), 44);
     }
 
     /* --- the circuit: five corners, a pace car and a card that follows --- */
