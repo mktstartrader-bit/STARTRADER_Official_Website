@@ -529,16 +529,16 @@ body.light-top .site-header{background:rgba(6,9,20,.95);box-shadow:0 1px 0 rgba(
 .plat-app .plat-copy h3{font-size:clamp(15px,2.1vw,19px);white-space:nowrap}
 /* the hand sits flush to the card's lower-right corner */
 .plat-hand{
-  position:absolute;right:0;bottom:0;z-index:1;
-  width:auto;height:clamp(300px,88%,486px);max-width:70%;
+  position:absolute;right:clamp(-58px,-4vw,-24px);bottom:0;z-index:1;
+  width:auto;height:clamp(300px,88%,486px);max-width:74%;
   object-fit:contain;object-position:100% 100%;
   filter:drop-shadow(0 26px 40px rgba(20,44,96,.28));
   pointer-events:none;
 }
 /* two glass readouts on the left, overlapping the phone rather than sitting on it */
 .plat-chips{
-  position:absolute;left:clamp(18px,3vw,34px);bottom:clamp(96px,19%,132px);z-index:3;
-  display:flex;flex-direction:column;gap:10px;width:clamp(150px,42%,190px);pointer-events:none;
+  position:absolute;left:34px;bottom:clamp(104px,21%,136px);z-index:3;
+  display:flex;flex-direction:column;gap:10px;width:clamp(152px,40%,184px);pointer-events:none;
 }
 .plat-chip{
   display:flex;flex-direction:column;gap:6px;
@@ -560,8 +560,8 @@ body.light-top .site-header{background:rgba(6,9,20,.95);box-shadow:0 1px 0 rgba(
 .plat-chip--stat b small{font-size:12px;font-weight:800;margin-left:2px;color:var(--text-mute)}
 .plat-chip--stat span{font-size:11.5px;line-height:1.4;color:var(--text-soft)}
 @media (prefers-reduced-motion:no-preference){
-  .plat-chip{animation:platFloat 6.5s var(--ease) infinite}
-  .plat-chip--stat{animation-delay:-3.2s}
+  .plat-app .plat-chip{animation:platFloat 6.5s var(--ease) infinite}
+  .plat-app .plat-chip--stat{animation-delay:-3.2s}
 }
 @keyframes platFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 @media (max-width:900px){
@@ -571,10 +571,10 @@ body.light-top .site-header{background:rgba(6,9,20,.95);box-shadow:0 1px 0 rgba(
 
 /* the web card's readouts sit lower and smaller — it is a short, wide card */
 .plat-chips--web{
-  left:44%;right:auto;bottom:clamp(46px,18%,66px);top:auto;
-  width:clamp(148px,29%,178px);gap:8px;
+  left:auto;right:clamp(150px,30%,240px);top:50%;bottom:auto;transform:translateY(-50%);
+  width:clamp(150px,26%,176px);
 }
-.plat-chips--web .plat-chip{padding:10px 12px;gap:4px}
+.plat-chips--web .plat-chip{padding:11px 13px;gap:5px}
 .plat-chips--web .plat-chip em{font-size:15px}
 .plat-chips--web .plat-chip--stat b{font-size:20px}
 .plat-chips--web .plat-chip--stat span{font-size:11px}
