@@ -8203,13 +8203,6 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
   transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease);
 }
 .ck-cell:hover::before{transform:scaleX(1)}
-/* a faint crease box in the corner */
-.ck-cell::after{
-  content:"";position:absolute;right:-30px;bottom:-30px;width:150px;height:150px;pointer-events:none;
-  border:1px solid rgba(0,71,187,.13);border-radius:8px;
-  transform:rotate(-14deg);opacity:.55;transition:transform .7s var(--ease),opacity .5s;
-}
-.ck-cell:hover::after{transform:rotate(-8deg) translate(-6px,-6px);opacity:.85}
 .ck-cell-n{
   position:relative;z-index:1;display:inline-flex;align-items:center;gap:9px;
   font-size:11px;font-weight:800;letter-spacing:.16em;color:var(--acc);
@@ -8316,23 +8309,10 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
   background:linear-gradient(150deg,#04143a,#0a2a6e 52%,#061a48);
   border-color:rgba(255,255,255,.16);color:#fff;
 }
-.ck-cell--lead::after{border-color:rgba(255,255,255,.16)}
 .ck-cell--lead h3{color:#fff;font-size:clamp(23px,2.8vw,34px);letter-spacing:-.04em;line-height:1.12}
 .ck-cell--lead p{color:#b9c9e4;font-size:14.5px}
 .ck-cell--lead .ck-cell-n{color:var(--acc-3)}
 .ck-cell--lead .ck-cell-n i{background:repeating-linear-gradient(90deg,rgba(255,255,255,.55) 0 2px,transparent 2px 5px)}
-/* a pitch drawn in the corner of the lead cell */
-.ck-pitch{
-  position:absolute;right:clamp(-10px,-1vw,0px);bottom:clamp(-14px,-1.4vw,0px);z-index:0;
-  width:min(46%,220px);aspect-ratio:1/1.6;border-radius:6px;pointer-events:none;
-  border:1px solid rgba(255,255,255,.16);transform:rotate(-16deg);
-  background:linear-gradient(180deg,rgba(255,255,255,.05),transparent);
-  transition:transform .8s var(--ease);
-}
-.ck-cell--lead:hover .ck-pitch{transform:rotate(-11deg) translate(-8px,-10px)}
-.ck-pitch::before,.ck-pitch::after{content:"";position:absolute;left:14%;right:14%;height:1px;background:rgba(255,255,255,.24)}
-.ck-pitch::before{top:16%}
-.ck-pitch::after{bottom:16%}
 .ck-lead-stats{position:relative;z-index:1;display:flex;gap:clamp(18px,2.4vw,34px);margin-top:28px}
 .ck-lead-stats span{display:flex;flex-direction:column;gap:5px}
 .ck-lead-stats b{font-size:clamp(20px,2.3vw,28px);font-weight:800;letter-spacing:-.04em;line-height:1;
