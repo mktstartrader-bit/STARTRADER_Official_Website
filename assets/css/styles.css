@@ -5294,34 +5294,28 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
 .kc-prods-lbl{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--text-mute);margin-right:2px}
 
 .kc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
-.kc-guide{position:relative;display:flex;flex-direction:column;border-radius:20px;padding:24px 22px 22px;overflow:hidden}
-.kc-guide--feat{grid-column:span 2}
-.kc-guide--feat h3{font-size:clamp(21px,2.2vw,27px)}
+
+
+
 .kc-guide--feat>p{font-size:14.5px;max-width:54ch}
-.kc-badge{
-  align-self:flex-start;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#fff;
-  background:linear-gradient(120deg,var(--blue),#3b82f6);padding:6px 12px;border-radius:70px;margin-bottom:12px;
-}
-.kc-tag{
-  align-self:flex-start;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
-  padding:5px 10px;border-radius:70px;
-}
-.kc-tag.forex{color:#0047BB;background:rgba(0,71,187,.1)}
-.kc-tag.commodities{color:#a2650a;background:rgba(255,194,68,.2)}
-.kc-tag.indices{color:#0f9d76;background:rgba(16,185,129,.13)}
-.kc-tag.shares{color:#6d3fd9;background:rgba(109,63,217,.12)}
-.kc-tag.crypto{color:#0a2f8a;background:rgba(234,88,12,.12)}
-.kc-guide h3{margin-top:14px;font-size:17px;line-height:1.32;letter-spacing:-.024em}
-.kc-guide h3 a{color:var(--text);transition:color .25s}
+
+
+
+
+
+
+
+
+
 .kc-guide:hover h3 a{color:var(--blue)}
 .kc-guide h3 a::after{content:"";position:absolute;inset:0;z-index:2}
 .kc-guide>p{margin-top:10px;font-size:13.5px;line-height:1.62;color:var(--text-soft)}
-.kc-guide-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:auto;padding-top:20px}
-.kc-read{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;color:var(--text-mute)}
-.kc-read svg{width:13px;height:13px}
-.kc-go{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:700;color:var(--blue)}
-.kc-go svg{width:14px;height:14px;transition:transform .35s var(--ease)}
-.kc-guide:hover .kc-go svg{transform:translateX(4px)}
+
+
+
+
+
+.kc-guide:hover 
 
 /* ---- videos ---- */
 .kc-videos{
@@ -5432,7 +5426,7 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
   .ma-sub-panel{grid-template-columns:1fr;gap:30px}
   .kc-road{grid-template-columns:1fr;gap:18px}
   .kc-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .kc-guide--feat{grid-column:span 2}
+  
   .kc-theatre{grid-template-columns:1fr}
   .kc-fmt-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
@@ -5447,7 +5441,7 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
   .ma-h1 br,.ma-lead br,.kc-h1 br,.kc-lead br,.ma-choose .head-sub br,.ma-method .head-sub br,.kc-path .head-sub br{display:none}
   .ma-bento,.ma-grid,.ma-cov-grid,.kc-grid,.kc-fmt-grid{grid-template-columns:1fr}
   .kc-pl-thumb{width:70px}
-  .ma-card--feat,.kc-guide--feat{grid-column:span 1}
+  .ma-card--feat,
   .ma-card--feat{grid-template-columns:1fr}
   .ma-card--feat .ma-feat-viz{margin-top:20px}
   .ma-levels,.kc-levels{width:100%}
@@ -9895,3 +9889,50 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
 /* tables sit in the body with the same rhythm as paragraphs */
 .ar-body .an-tablewrap{margin:22px 0}
 .ar-body .faq-list{margin-top:18px}
+
+/* ---- guide cards: the same card the news index uses ---- */
+.kc-guide{
+  display:flex;flex-direction:column;overflow:hidden;border-radius:20px;
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
+}
+.kc-guide:hover{transform:translateY(-4px);border-color:rgba(0,71,187,.28);
+  box-shadow:0 28px 52px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff}
+.kc-head{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:13px 18px;border-bottom:1px solid rgba(20,40,80,.09);
+}
+.kc-cat{display:flex;align-items:center;gap:9px;min-width:0;font-size:13px;font-weight:600;color:var(--text)}
+.kc-cat svg{width:17px;height:17px;flex:none;color:var(--blue)}
+/* each product keeps its own accent on the icon */
+.kc-cat.commodities svg{color:#c9862f}
+.kc-cat.indices svg{color:#0f9d7a}
+.kc-cat.shares svg{color:#7b5cd6}
+.kc-cat.crypto svg{color:#e08a1e}
+.kc-date{flex:none;font-size:12.5px;color:var(--text-mute);font-variant-numeric:tabular-nums}
+.kc-body{display:flex;flex-direction:column;padding:17px 18px 19px}
+.kc-h{font-size:17px;letter-spacing:-.022em;line-height:1.3;color:var(--text)}
+.kc-h a{transition:color .25s}
+.kc-guide:hover .kc-h a{color:var(--blue)}
+.kc-ex{
+  margin-top:8px;font-size:13.5px;line-height:1.55;color:var(--text-soft);
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.kc-read{margin-top:11px;font-size:11.5px;font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--text-mute)}
+/* the plate sits flush to the card's lower edge, corners clipped by the card */
+.kc-media{position:relative;display:block;margin-top:auto;aspect-ratio:16/10;overflow:hidden}
+.kc-media img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
+.kc-guide:hover .kc-media img{transform:scale(1.05)}
+.kc-media::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(4,8,18,.06) 0%,rgba(4,8,18,.04) 46%,rgba(4,8,18,.34) 100%)}
+.kc-readmark{
+  position:absolute;left:12px;bottom:12px;z-index:2;width:34px;height:34px;border-radius:11px;
+  display:grid;place-items:center;background:rgba(255,255,255,.94);color:var(--blue);
+  box-shadow:0 10px 22px -10px rgba(20,44,96,.55);
+  transition:transform .35s var(--ease),background .3s;
+}
+.kc-readmark svg{width:15px;height:15px}
+.kc-guide:hover .kc-readmark{transform:translate(2px,-2px);background:#fff}
+/* every card is the same shape, so the plates line up across a row */
+.kc-guide{height:100%}
+.kc-body{flex:1}
