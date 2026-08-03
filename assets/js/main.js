@@ -4321,6 +4321,93 @@
     paint();
   }
 
+
+  /* ---------------- The account form on the switch page ---------------- */
+  function initSignup() {
+    var form = document.querySelector('[data-db-signup]');
+    if (!form) return;
+    var box = form.closest ? form.closest('[data-db-form]') : null;
+    var email = form.querySelector('[data-db-email]');
+    var code = form.querySelector('[data-db-code]');
+    var pass = form.querySelector('[data-db-pass]');
+    var country = form.querySelector('[data-db-country]');
+    var send = form.querySelector('[data-db-send]');
+    var peek = form.querySelector('[data-db-peek]');
+    var rules = Array.prototype.slice.call(form.querySelectorAll('[data-db-rule]'));
+
+    function fld(el) { return el && el.closest ? el.closest('[data-db-fld]') : null; }
+    function mark(el, bad) {
+      var f = fld(el);
+      if (f) f.classList.toggle('is-bad', !!bad);
+    }
+    var okEmail = function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v || ''); };
+    var passRules = {
+      len: function (v) { return v.length >= 8 && v.length <= 16; },
+      num: function (v) { return /[0-9]/.test(v); },
+      case: function (v) { return /[a-z]/.test(v) && /[A-Z]/.test(v); },
+      sym: function (v) { return /[^A-Za-z0-9]/.test(v); }
+    };
+    function passOk(v) {
+      return passRules.len(v) && passRules.num(v) && passRules.case(v) && passRules.sym(v);
+    }
+
+    // the rules light as they are met
+    if (pass) {
+      pass.addEventListener('input', function () {
+        var v = pass.value || '';
+        rules.forEach(function (r) {
+          var k = r.getAttribute('data-db-rule');
+          r.classList.toggle('is-ok', !!(passRules[k] && passRules[k](v)));
+        });
+        if (fld(pass).classList.contains('is-bad') && passOk(v)) mark(pass, false);
+      });
+    }
+    if (email) email.addEventListener('input', function () { if (okEmail(email.value)) mark(email, false); });
+    if (country) country.addEventListener('change', function () { if (country.value) mark(country, false); });
+    if (code) code.addEventListener('input', function () { if (/^[0-9]{6}$/.test(code.value)) mark(code, false); });
+
+    if (peek) {
+      peek.addEventListener('click', function () {
+        var shown = pass.type === 'text';
+        pass.type = shown ? 'password' : 'text';
+        peek.setAttribute('aria-label', shown ? 'Show password' : 'Hide password');
+        var use = peek.querySelector('use');
+        if (use) use.setAttribute('href', shown ? '#i-eye' : '#i-eye-off');
+      });
+    }
+
+    // verification runs on the real flow, so this hands over rather than pretending
+    if (send) {
+      send.addEventListener('click', function () {
+        if (!okEmail(email && email.value)) { mark(email, true); email.focus(); return; }
+        send.disabled = true;
+        send.textContent = 'Continue on the secure form';
+        setTimeout(function () {
+          window.location.href = '../trading/getting-started/account-opening.html';
+        }, 550);
+      });
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var bad = null;
+      if (country && !country.value) { mark(country, true); bad = bad || country; }
+      if (email && !okEmail(email.value)) { mark(email, true); bad = bad || email; }
+      if (code && !/^[0-9]{6}$/.test(code.value)) { mark(code, true); bad = bad || code; }
+      if (pass && !passOk(pass.value || '')) { mark(pass, true); bad = bad || pass; }
+      Array.prototype.forEach.call(form.querySelectorAll('[data-db-check]'), function (c) {
+        var i = c.querySelector('input');
+        var miss = i && !i.checked;
+        c.classList.toggle('is-bad', !!miss);
+        if (miss) bad = bad || i;
+      });
+      if (bad) { if (bad.focus) bad.focus(); return; }
+      // everything checks out locally; the account itself is created on the secure flow
+      var q = email && email.value ? '?email=' + encodeURIComponent(email.value) : '';
+      window.location.href = '../trading/getting-started/account-opening.html' + q;
+    });
+  }
+
   /* ---------------- Events: the gallery rail ---------------- */
   function initEvents() {
     var rail = document.querySelector('[data-ev-rail]');
@@ -4713,6 +4800,7 @@
     initPfl();
     initMena();
     initDeposit();
+    initSignup();
     if (hasST) ScrollTrigger.refresh();
     window.addEventListener('load', function () { if (hasST) ScrollTrigger.refresh(); });
   }
