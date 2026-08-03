@@ -582,7 +582,6 @@
 
     <div class="ct-form-card pt-form-card glass" data-db-form data-reveal>
       <h3 class="db-form-h">Open <span>Live Account</span></h3>
-      <p class="db-form-sub">Claim the 1% switch allowance on the account you open here.</p>
 
       <form novalidate data-db-signup>
         <div class="ct-grid">
@@ -653,21 +652,19 @@
             <input type="password" id="dbPass" name="password" autocomplete="new-password"
               placeholder="8&ndash;16 characters" data-db-pass aria-describedby="dbPassErr">
             <div class="ct-below">
-              <p class="ct-err" id="dbPassErr" hidden>Password does not meet the rules below.</p>
+              <p class="ct-err" id="dbPassErr" hidden>8&ndash;16 characters, mixed case, a number and a symbol.</p>
+              <p class="db-hint">Mixed case, number, symbol</p>
               <button class="db-send db-send--quiet" type="button" data-db-peek aria-label="Show password">Show</button>
             </div>
           </div>
         </div>
 
-        <span class="db-rules" aria-hidden="true">
-              <span data-db-rule="len">8&ndash;16 characters</span>
-              <span data-db-rule="num">A number</span>
-              <span data-db-rule="case">Upper and lower case</span>
-              <span data-db-rule="sym">A symbol</span>
-            </span>
-        <div class="ct-field" style="margin-top:26px">
+        <button class="db-more" type="button" data-db-more aria-expanded="false" aria-controls="dbRefWrap">
+          Have a referral code? <span aria-hidden="true">+</span>
+        </button>
+        <div class="ct-field db-ref" id="dbRefWrap" data-db-refwrap hidden>
           <label for="dbRef">Referred by <em>optional</em></label>
-          <input type="text" id="dbRef" name="referral" placeholder="Referral code, if you have one" data-db-ref>
+          <input type="text" id="dbRef" name="referral" placeholder="Referral code" data-db-ref>
         </div>
 
         <label class="ct-check" for="dbUs" data-db-check>
@@ -679,7 +676,7 @@
         <label class="ct-check" for="dbConsent" data-db-check>
           <input type="checkbox" id="dbConsent" name="consent" data-db-consent>
           <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
-          <span>I agree that STARTRADER may use these details for product and service information, offers, events and application support. You can unsubscribe at any time, as set out in the <a href="../company/corporate/legal-documents.html">Privacy Policy</a>.</span>
+          <span>I agree to STARTRADER using these details as set out in the <a href="../company/corporate/legal-documents.html">Privacy Policy</a>.</span>
         </label>
 
         <div class="ct-actions">
@@ -687,7 +684,7 @@
         </div>
       </form>
 
-      <p class="db-form-note">Verification and account creation complete on the secure account-opening flow. Nothing is submitted from this page.</p>
+      <p class="db-form-note">Verification completes on the secure account-opening flow.</p>
     </div>
   </div>
 </section>

@@ -4333,7 +4333,8 @@
     var country = form.querySelector('[data-db-country]');
     var send = form.querySelector('[data-db-send]');
     var peek = form.querySelector('[data-db-peek]');
-    var rules = Array.prototype.slice.call(form.querySelectorAll('[data-db-rule]'));
+    var more = form.querySelector('[data-db-more]');
+    var refWrap = form.querySelector('[data-db-refwrap]');
 
     function fld(el) { return el && el.closest ? el.closest('[data-db-fld]') : null; }
     function mark(el, bad) {
@@ -4354,15 +4355,19 @@
       return passRules.len(v) && passRules.num(v) && passRules.case(v) && passRules.sym(v);
     }
 
-    // the rules light as they are met
     if (pass) {
       pass.addEventListener('input', function () {
-        var v = pass.value || '';
-        rules.forEach(function (r) {
-          var k = r.getAttribute('data-db-rule');
-          r.classList.toggle('is-ok', !!(passRules[k] && passRules[k](v)));
-        });
-        if (fld(pass).classList.contains('is-bad') && passOk(v)) mark(pass, false);
+        if (fld(pass).classList.contains('is-bad') && passOk(pass.value || '')) mark(pass, false);
+      });
+    }
+
+    // the referral field is asked for, not offered
+    if (more && refWrap) {
+      more.addEventListener('click', function () {
+        var open = more.getAttribute('aria-expanded') === 'true';
+        more.setAttribute('aria-expanded', open ? 'false' : 'true');
+        refWrap.hidden = open;
+        if (!open) { var i = refWrap.querySelector('input'); if (i) i.focus(); }
       });
     }
     if (email) email.addEventListener('input', function () { if (okEmail(email.value)) mark(email, false); });
