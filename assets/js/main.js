@@ -4110,6 +4110,27 @@
     }
   }
 
+
+  /* ---------------- PFL Road to Dubai Champions Series ---------------- */
+  function initPfl() {
+    var hero = document.querySelector('.fl-hero');
+    if (!hero) return;
+    if (prefersReduced || !hasGSAP || !hasST) return;
+    var bg = hero.querySelector('[data-fl-bg]');
+    if (bg) {
+      gsap.to(bg, { yPercent: 12, ease: 'none',
+        scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
+    }
+    // the strip walks in one frame at a time
+    var shots = document.querySelectorAll('.fl-strip .fl-shot');
+    if (shots.length) {
+      gsap.fromTo(shots, { y: 44, opacity: 0 }, {
+        y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', stagger: 0.12,
+        scrollTrigger: { trigger: '.fl-strip', start: 'top 84%', once: true }
+      });
+    }
+  }
+
   /* ---------------- Events: the gallery rail ---------------- */
   function initEvents() {
     var rail = document.querySelector('[data-ev-rail]');
@@ -4499,6 +4520,7 @@
     initNba();
     initPccme();
     initIcc();
+    initPfl();
     if (hasST) ScrollTrigger.refresh();
     window.addEventListener('load', function () { if (hasST) ScrollTrigger.refresh(); });
   }
