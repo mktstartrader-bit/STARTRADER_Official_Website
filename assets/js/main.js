@@ -3949,30 +3949,6 @@
           scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
       }
       railMarquee(document.getElementById('pcTick'), 44);
-      var jbg = document.querySelector('[data-pc-jbg]');
-      if (jbg && hasGSAP && hasST) {
-        gsap.fromTo(jbg, { yPercent: -8 }, { yPercent: 8, ease: 'none',
-          scrollTrigger: { trigger: jbg.parentNode, start: 'top bottom', end: 'bottom top', scrub: true } });
-      }
-    }
-
-    /* --- the car: the two views trade places on their own --- */
-    var studio = document.querySelector('[data-pc-studio]');
-    if (studio && !prefersReduced) {
-      var views = Array.prototype.slice.call(studio.querySelectorAll('[data-pc-view]'));
-      if (views.length > 1 && 'IntersectionObserver' in window) {
-        var vat = 0, turn = null;
-        new IntersectionObserver(function (es) {
-          es.forEach(function (e) {
-            if (e.isIntersecting && !turn) {
-              turn = setInterval(function () {
-                vat = (vat + 1) % views.length;
-                views.forEach(function (v, k) { v.classList.toggle('is-on', k === vat); });
-              }, 7000);
-            } else if (!e.isIntersecting && turn) { clearInterval(turn); turn = null; }
-          });
-        }, { threshold: 0.35 }).observe(studio);
-      }
     }
 
     /* --- the circuit: five corners, a pace car and a card that follows --- */
