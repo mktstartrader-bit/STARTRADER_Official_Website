@@ -4205,6 +4205,71 @@
     }
   }
 
+
+  /* ---------------- MENA Investment Congress ---------------- */
+  function initMena() {
+    var hero = document.querySelector('.mn-hero');
+    if (!hero) return;
+
+    // the mark leans towards the pointer
+    var art = hero.querySelector('[data-mn-art]');
+    if (art && !prefersReduced) {
+      hero.addEventListener('pointermove', function (e) {
+        var r = hero.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+        art.style.setProperty('--tx', (x * -26).toFixed(1) + 'px');
+        art.style.setProperty('--ty', (y * -18).toFixed(1) + 'px');
+      });
+      hero.addEventListener('pointerleave', function () {
+        art.style.setProperty('--tx', '0px'); art.style.setProperty('--ty', '0px');
+      });
+    }
+
+    if (!prefersReduced) railMarquee(document.getElementById('mnTrack'), 30);
+
+    // the rule down the ledger tracks how far you have read
+    var ledger = document.querySelector('[data-mn-ledger]');
+    var run = document.querySelector('[data-mn-run]');
+    if (ledger && run && !prefersReduced && hasGSAP && hasST) {
+      gsap.fromTo(run, { height: '0%' }, {
+        height: '100%', ease: 'none',
+        scrollTrigger: { trigger: ledger, start: 'top 76%', end: 'bottom 64%', scrub: 0.4 }
+      });
+    }
+
+    /* --- the figures count themselves up once --- */
+    var figs = document.querySelector('[data-mn-figs]');
+    if (!figs) return;
+    var cells = Array.prototype.slice.call(figs.querySelectorAll('[data-mn-count]'));
+    if (prefersReduced || !('IntersectionObserver' in window)) return;
+
+    function run_up(el) {
+      var raw = el.getAttribute('data-mn-count') || '';
+      var num = parseInt(raw.replace(/[^0-9]/g, ''), 10);
+      if (isNaN(num)) return;
+      var suffix = raw.replace(/[0-9]/g, '');   // keeps the +, the th, anything else
+      var from = 0, dur = 1100, t0 = null;
+      function step(t) {
+        if (t0 === null) t0 = t;
+        var p = Math.min(1, (t - t0) / dur);
+        var eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(from + (num - from) * eased) + suffix;
+        if (p < 1) requestAnimationFrame(step);
+        else el.textContent = raw;
+      }
+      requestAnimationFrame(step);
+    }
+
+    var fo = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        cells.forEach(function (c, i) { setTimeout(function () { run_up(c); }, i * 110); });
+        fo.disconnect();
+      });
+    }, { threshold: 0.45 });
+    fo.observe(figs);
+  }
+
   /* ---------------- Events: the gallery rail ---------------- */
   function initEvents() {
     var rail = document.querySelector('[data-ev-rail]');
@@ -4595,6 +4660,7 @@
     initPccme();
     initIcc();
     initPfl();
+    initMena();
     if (hasST) ScrollTrigger.refresh();
     window.addEventListener('load', function () { if (hasST) ScrollTrigger.refresh(); });
   }
