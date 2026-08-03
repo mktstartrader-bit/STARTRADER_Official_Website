@@ -9223,7 +9223,8 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
   border-top:2px dashed rgba(20,44,96,.18);
 }
 .pm-coupon--sand .pm-stub{border-top-color:rgba(138,100,64,.26)}
-.pm-stub-art{width:clamp(74px,9vw,104px);height:auto;display:block;
+.pm-stub-art{width:auto;height:clamp(62px,7vw,84px);display:block;
+  filter:drop-shadow(0 12px 22px rgba(20,44,96,.3));
   transition:transform .55s var(--ease)}
 .pm-coupon:hover .pm-stub-art{transform:translateY(-4px) scale(1.05)}
 .pm-stub-go{
@@ -9256,30 +9257,6 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
 /* ---------------- how a claim works ---------------- */
 .pm-how{position:relative;isolation:isolate;overflow:clip;background:linear-gradient(180deg,#fff,#f2f6fc)}
 .pm-how>.container{position:relative;z-index:1}
-
-/* ---------------- the closing call ---------------- */
-.pm-close{
-  position:relative;overflow:hidden;isolation:isolate;text-align:center;
-  padding:clamp(70px,8vw,120px) 0;color:#fff;
-  background:radial-gradient(58% 68% at 50% 0%,rgba(42,114,255,.4),transparent 62%),
-             linear-gradient(180deg,#04143a,#0a2a6e 54%,#04143a);
-}
-.pm-close::before{
-  content:"";position:absolute;inset:0;pointer-events:none;opacity:.45;
-  background-image:radial-gradient(rgba(255,255,255,.14) 1px,transparent 1px);background-size:24px 24px;
-  -webkit-mask:radial-gradient(62% 62% at 50% 46%,#000,transparent 76%);
-  mask:radial-gradient(62% 62% at 50% 46%,#000,transparent 76%);
-}
-.pm-close-in{position:relative;z-index:1}
-.pm-close img{width:clamp(120px,15vw,190px);height:auto;display:block;margin:0 auto 20px;
-  filter:drop-shadow(0 24px 40px rgba(0,0,0,.5))}
-.pm-close h2{font-size:clamp(28px,3.8vw,50px);font-weight:800;letter-spacing:-.045em;line-height:1.06}
-.pm-close p{margin:16px auto 0;max-width:52ch;font-size:clamp(14.5px,1.5vw,17px);line-height:1.7;color:#c4d3ee}
-.pm-close .pm-hact{justify-content:center;margin-top:28px}
-.pm-close .pm-btn{background:#fff;color:var(--acc);box-shadow:0 18px 38px -16px rgba(0,0,0,.5)}
-.pm-close .pm-btn:hover{box-shadow:0 26px 48px -16px rgba(0,0,0,.6)}
-.pm-close .pm-btn--ghost{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.28)}
-.pm-close .pm-btn--ghost:hover{background:rgba(255,255,255,.18)}
 
 /* ---------------- responsive ---------------- */
 @media (max-width:960px){
