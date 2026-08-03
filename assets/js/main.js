@@ -3956,20 +3956,23 @@
       }
     }
 
-    /* --- the car: two views on one stage --- */
+    /* --- the car: the two views trade places on their own --- */
     var studio = document.querySelector('[data-pc-studio]');
-    if (studio) {
+    if (studio && !prefersReduced) {
       var views = Array.prototype.slice.call(studio.querySelectorAll('[data-pc-view]'));
-      var vbtns = Array.prototype.slice.call(studio.querySelectorAll('[data-pc-viewbtn]'));
-      vbtns.forEach(function (b, i) {
-        b.addEventListener('click', function () {
-          views.forEach(function (v, k) { v.classList.toggle('is-on', k === i); });
-          vbtns.forEach(function (o, k) {
-            o.classList.toggle('is-on', k === i);
-            o.setAttribute('aria-selected', k === i ? 'true' : 'false');
+      if (views.length > 1 && 'IntersectionObserver' in window) {
+        var vat = 0, turn = null;
+        new IntersectionObserver(function (es) {
+          es.forEach(function (e) {
+            if (e.isIntersecting && !turn) {
+              turn = setInterval(function () {
+                vat = (vat + 1) % views.length;
+                views.forEach(function (v, k) { v.classList.toggle('is-on', k === vat); });
+              }, 7000);
+            } else if (!e.isIntersecting && turn) { clearInterval(turn); turn = null; }
           });
-        });
-      });
+        }, { threshold: 0.35 }).observe(studio);
+      }
     }
 
     /* --- the circuit: five corners, a pace car and a card that follows --- */
