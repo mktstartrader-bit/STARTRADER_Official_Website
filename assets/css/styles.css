@@ -9965,3 +9965,18 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
 a.mc-clip-media{display:block;cursor:pointer}
 .mc-clip h3 a{color:inherit;transition:color .25s}
 .mc-clip:hover h3 a{color:var(--blue)}
+
+/* ---- footer brand line ---- */
+.foot-brand{display:inline-flex;align-items:center;gap:clamp(12px,1.6vw,20px);min-width:0;flex-wrap:wrap}
+.foot-tag{
+  font-family:'Zodiak',Georgia,'Times New Roman',serif;
+  font-size:clamp(13px,1.35vw,16px);font-weight:400;font-style:italic;
+  letter-spacing:.01em;line-height:1.25;color:#DAE3ED;opacity:.4;
+}
+@media (max-width:640px){
+  .foot-tag{flex-basis:100%}
+}
+
+/* the intro panel and the steps list share a row, so they share a height */
+.htrade>div{display:flex;min-width:0}
+.htrade>div>.htrade-steps{flex:1}
