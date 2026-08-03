@@ -4415,6 +4415,50 @@
     });
   }
 
+
+  /* ---------------- 50/20 deposit bonus: the estimator ---------------- */
+  function initDeposit5020() {
+    var box = document.querySelector('[data-d5-calc]');
+    if (!box) return;
+    var first = box.querySelector('[data-d5-first]');
+    var next = box.querySelector('[data-d5-next]');
+    var outFirst = box.querySelector('[data-d5-out-first]');
+    var outNext = box.querySelector('[data-d5-out-next]');
+    var outTotal = box.querySelector('[data-d5-out-total]');
+    var noteFirst = box.querySelector('[data-d5-note-first]');
+    var noteTotal = box.querySelector('[data-d5-note-total]');
+    var CAP = 500, MIN = 100;
+
+    function money(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+    function num(el) { var v = parseFloat(el && el.value); return isNaN(v) || v < 0 ? 0 : v; }
+
+    function paint() {
+      var f = num(first), n = num(next);
+      // the first deposit earns half, capped; anything after earns a fifth
+      var raw = f * 0.5;
+      var bf = f >= MIN ? Math.min(raw, CAP) : 0;
+      var bn = n * 0.2;
+      if (outFirst) outFirst.textContent = money(bf);
+      if (outNext) outNext.textContent = money(bn);
+      if (outTotal) outTotal.textContent = money(bf + bn);
+      if (noteFirst) {
+        if (f > 0 && f < MIN) noteFirst.textContent = 'Needs a deposit of ' + money(MIN) + ' or more';
+        else if (raw > CAP) noteFirst.textContent = '50% of ' + money(f) + ', capped at ' + money(CAP);
+        else noteFirst.textContent = '50% of ' + money(f);
+      }
+      if (noteTotal) noteTotal.textContent = 'Credit, not withdrawable cash';
+      var sib = outNext && outNext.parentNode ? outNext.parentNode.querySelector('i') : null;
+      if (sib) sib.textContent = '20% of ' + money(n);
+    }
+
+    [first, next].forEach(function (el) {
+      if (!el) return;
+      el.addEventListener('input', paint);
+      el.addEventListener('change', paint);
+    });
+    paint();
+  }
+
   /* ---------------- Events: the gallery rail ---------------- */
   function initEvents() {
     var rail = document.querySelector('[data-ev-rail]');
@@ -4808,6 +4852,7 @@
     initMena();
     initDeposit();
     initSignup();
+    initDeposit5020();
     if (hasST) ScrollTrigger.refresh();
     window.addEventListener('load', function () { if (hasST) ScrollTrigger.refresh(); });
   }
