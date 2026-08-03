@@ -3934,6 +3934,156 @@
     }
   }
 
+  var PC_CORNERS = [["Performance", "Performance is the outcome, never the plan. On the grid and on the screen it is what is left over once preparation, discipline and equipment have all been accounted for."], ["Strategy", "Every race is a decision tree — tyres, fuel, when to push and when to hold. Every position is the same problem in a different language."], ["Endurance", "Championships are won across a season, not in a single lap. Consistency under repeated pressure beats one heroic afternoon."], ["Precision", "On this circuit the margin between a good lap and a lost one is measured in tenths. Precision is not a flourish; it is the whole job."], ["Control", "Speed without control ends in the barrier. Risk management is what turns raw pace into a finish, and a position into a return."]];
+
+  /* ---------------- Porsche Carrera Cup Middle East ---------------- */
+  function initPccme() {
+    var hero = document.querySelector('.pc-hero');
+    if (!hero) return;
+
+    if (!prefersReduced) {
+      // the banner drifts as it leaves, and the ticker runs along the bottom of it
+      var bg = hero.querySelector('[data-pc-bg]');
+      if (bg && hasGSAP && hasST) {
+        gsap.to(bg, { yPercent: 12, ease: 'none',
+          scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
+      }
+      railMarquee(document.getElementById('pcTick'), 44);
+      var jbg = document.querySelector('[data-pc-jbg]');
+      if (jbg && hasGSAP && hasST) {
+        gsap.fromTo(jbg, { yPercent: -8 }, { yPercent: 8, ease: 'none',
+          scrollTrigger: { trigger: jbg.parentNode, start: 'top bottom', end: 'bottom top', scrub: true } });
+      }
+    }
+
+    /* --- the car: two views on one stage --- */
+    var studio = document.querySelector('[data-pc-studio]');
+    if (studio) {
+      var views = Array.prototype.slice.call(studio.querySelectorAll('[data-pc-view]'));
+      var vbtns = Array.prototype.slice.call(studio.querySelectorAll('[data-pc-viewbtn]'));
+      vbtns.forEach(function (b, i) {
+        b.addEventListener('click', function () {
+          views.forEach(function (v, k) { v.classList.toggle('is-on', k === i); });
+          vbtns.forEach(function (o, k) {
+            o.classList.toggle('is-on', k === i);
+            o.setAttribute('aria-selected', k === i ? 'true' : 'false');
+          });
+        });
+      });
+    }
+
+    /* --- the circuit: five corners, a pace car and a card that follows --- */
+    var cir = document.querySelector('[data-pc-cir]');
+    if (cir) {
+      var pins = Array.prototype.slice.call(cir.querySelectorAll('[data-pc-pin]'));
+      var shots = Array.prototype.slice.call(cir.querySelectorAll('[data-pc-shot]'));
+      var titleEl = cir.querySelector('[data-pc-title]');
+      var copyEl = cir.querySelector('[data-pc-copy]');
+      var numEl = cir.querySelector('[data-pc-num]');
+      var ofEl = cir.querySelector('[data-pc-of]');
+      var barEl = cir.querySelector('[data-pc-bar]');
+      var lap = cir.querySelector('[data-pc-lap]');
+      var pace = cir.querySelector('[data-pc-pace]');
+      var at = 0, held = false, tour = null;
+
+      function turn(i) {
+        at = (i + shots.length) % shots.length;
+        pins.forEach(function (p, k) { p.classList.toggle('is-on', k === at); });
+        shots.forEach(function (sh, k) { sh.classList.toggle('is-on', k === at); });
+        if (numEl) numEl.textContent = ('0' + (at + 1)).slice(-2);
+        if (ofEl) ofEl.textContent = ('0' + (at + 1)).slice(-2) + ' / ' + ('0' + shots.length).slice(-2);
+        if (barEl) barEl.style.transform = 'scaleX(' + ((at + 1) / shots.length).toFixed(3) + ')';
+        // the words change behind a short fade, so the swap reads as one move
+        var t = PC_CORNERS[at];
+        if (titleEl && copyEl && t) {
+          titleEl.classList.add('is-fade');
+          copyEl.classList.add('is-fade');
+          setTimeout(function () {
+            titleEl.textContent = t[0];
+            copyEl.textContent = t[1];
+            titleEl.classList.remove('is-fade');
+            copyEl.classList.remove('is-fade');
+          }, 200);
+        }
+        // the pace car parks at the corner you picked
+        if (lap && pace && lap.getTotalLength) {
+          var len = lap.getTotalLength();
+          var pt = lap.getPointAtLength(len * (at / shots.length));
+          pace.setAttribute('cx', pt.x);
+          pace.setAttribute('cy', pt.y);
+        }
+      }
+
+      pins.forEach(function (p, i) {
+        p.addEventListener('click', function () { held = true; turn(i); });
+        p.addEventListener('focus', function () { held = true; turn(i); });
+      });
+      turn(0);
+
+      if (!prefersReduced && 'IntersectionObserver' in window) {
+        new IntersectionObserver(function (es) {
+          es.forEach(function (e) {
+            if (e.isIntersecting && !tour && !held) {
+              tour = setInterval(function () {
+                if (held) { clearInterval(tour); tour = null; return; }
+                turn(at + 1);
+              }, 4600);
+            } else if (!e.isIntersecting && tour) { clearInterval(tour); tour = null; }
+          });
+        }, { threshold: 0.3 }).observe(cir);
+      }
+
+      // the lit line draws itself the first time the circuit comes into view
+      if (!prefersReduced && lap && lap.getTotalLength && hasGSAP && hasST) {
+        var L = lap.getTotalLength();
+        lap.style.strokeDasharray = L;
+        lap.style.strokeDashoffset = L;
+        gsap.to(lap, {
+          strokeDashoffset: 0, duration: 2.2, ease: 'power2.inOut',
+          scrollTrigger: { trigger: cir, start: 'top 78%', once: true }
+        });
+      }
+    }
+
+    /* --- the wallpapers: a rail that keeps moving, and a screen that follows --- */
+    var wall = document.querySelector('[data-pc-wall]');
+    var track = document.querySelector('[data-pc-track]');
+    if (wall && track) {
+      var shot = wall.querySelector('[data-pc-wpshot]');
+      var idxEl = wall.querySelector('[data-pc-wpidx]');
+      var getEl = wall.querySelector('[data-pc-wpget]');
+      var total = track.querySelectorAll('[data-pc-wp]').length;
+
+      // delegation, so the marquee's cloned frames answer a click too
+      track.addEventListener('click', function (e) {
+        var f = e.target.closest ? e.target.closest('[data-pc-wp]') : null;
+        if (!f) return;
+        var i = parseInt(f.getAttribute('data-pc-wp'), 10);
+        if (isNaN(i)) return;
+        var src = f.querySelector('img') ? f.querySelector('img').getAttribute('src') : '';
+        Array.prototype.forEach.call(track.querySelectorAll('[data-pc-wp]'), function (o) {
+          o.classList.toggle('is-on', o.getAttribute('data-pc-wp') === String(i));
+        });
+        if (idxEl) idxEl.textContent = ('0' + (i + 1)).slice(-2);
+        if (getEl && src) getEl.setAttribute('href', src);
+        if (shot && src && shot.getAttribute('src') !== src) {
+          var pre = new Image();
+          var swap = function () {
+            shot.src = src;
+            shot.alt = 'Porsche Carrera Cup Middle East wallpaper ' + ('0' + (i + 1)).slice(-2);
+            requestAnimationFrame(function () { shot.classList.remove('is-swap'); });
+          };
+          shot.classList.add('is-swap');
+          pre.onload = swap;
+          pre.onerror = swap;
+          pre.src = src;
+        }
+      });
+
+      if (!prefersReduced) railMarquee(track, 34);
+    }
+  }
+
   /* ---------------- Events: the gallery rail ---------------- */
   function initEvents() {
     var rail = document.querySelector('[data-ev-rail]');
@@ -4321,6 +4471,7 @@
     initEvents();
     initMedia();
     initNba();
+    initPccme();
     if (hasST) ScrollTrigger.refresh();
     window.addEventListener('load', function () { if (hasST) ScrollTrigger.refresh(); });
   }
