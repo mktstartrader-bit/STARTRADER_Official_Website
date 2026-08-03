@@ -524,24 +524,110 @@ body.light-top .site-header{background:rgba(6,9,20,.95);box-shadow:0 1px 0 rgba(
 .plat-copy h3{font-size:21px;color:var(--text);margin-bottom:8px}
 .plat-copy p{font-size:14.5px;color:var(--text-soft);max-width:420px}
 .plat-app{grid-area:app;background:linear-gradient(155deg,#e8f0fb 0%,#ffffff 60%);min-height:512px;padding-bottom:0;overflow:hidden}
-.plat-app::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(135deg,rgba(235,242,251,.95) 0%,rgba(235,242,251,.55) 38%,rgba(235,242,251,0) 66%)}
-.plat-app .plat-copy{max-width:none;position:relative;z-index:2}
+.plat-app::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(70% 60% at 8% 6%,rgba(255,255,255,.9),rgba(235,242,251,0) 68%)}
+.plat-app .plat-copy{max-width:min(100%,40%);position:relative;z-index:5}
 .plat-app .plat-copy h3{font-size:clamp(15px,2.1vw,19px);white-space:nowrap}
-.plat-app .avail{display:block;margin-top:26px;font-size:13px;color:var(--text-mute)}
-.plat-app .badges{display:flex;flex-direction:column;gap:9px;margin-top:11px;width:max-content;position:relative;z-index:2}
-.plat-app .badges img{height:32px;width:auto;transition:transform .3s var(--ease)}
-.plat-app .badges a:hover img{transform:translateY(-2px)}
-.plat-phone{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:right bottom;z-index:0}
-.plat-web{grid-area:web;overflow:hidden;background:radial-gradient(130% 180% at 12% 0%,#0a3aa0,#062a6f 58%,#04205a);color:#fff;min-height:240px}
-.plat-web .plat-copy{max-width:44%}
-.plat-web .plat-copy h3{color:#fff}
-.plat-web .plat-copy p{color:#c6d6f5}
-.plat-tablet{position:absolute;right:0;bottom:0;display:block;height:calc(100% - 26px);width:auto;max-width:54%;object-fit:contain;object-position:100% 100%;filter:drop-shadow(0 20px 34px rgba(0,0,0,.45));z-index:3;pointer-events:none}
-.link-ur{position:absolute;bottom:26px;left:34px;display:inline-flex;align-items:center;gap:7px;font-size:14px;font-weight:600;color:#dbe6ff}
+/* the hand sits flush to the card's lower-right corner */
+.plat-hand{
+  position:absolute;right:0;bottom:0;z-index:1;
+  width:auto;height:clamp(300px,88%,486px);max-width:70%;
+  object-fit:contain;object-position:100% 100%;
+  filter:drop-shadow(0 26px 40px rgba(20,44,96,.28));
+  pointer-events:none;
+}
+/* two glass readouts on the left, overlapping the phone rather than sitting on it */
+.plat-chips{
+  position:absolute;left:clamp(18px,3vw,34px);bottom:clamp(96px,19%,132px);z-index:3;
+  display:flex;flex-direction:column;gap:10px;width:clamp(150px,42%,190px);pointer-events:none;
+}
+.plat-chip{
+  display:flex;flex-direction:column;gap:6px;
+  padding:12px 14px;border-radius:14px;
+  background:rgba(255,255,255,.62);
+  -webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);
+  border:1px solid rgba(255,255,255,.86);
+  box-shadow:0 16px 34px -22px rgba(20,44,96,.45),inset 0 1px 0 #fff;
+}
+.plat-chip b{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mute)}
+.plat-chip-row{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.plat-chip em{font-style:normal;font-size:16px;font-weight:700;letter-spacing:-.02em;
+  font-variant-numeric:tabular-nums;color:var(--text)}
+.plat-chip i{font-style:normal;font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px}
+.plat-chip i.up{color:#0f9d76;background:rgba(16,185,129,.14)}
+/* the stat chip leads with the figure */
+.plat-chip--stat b{font-size:23px;font-weight:800;letter-spacing:-.04em;text-transform:none;
+  color:var(--blue);font-variant-numeric:tabular-nums}
+.plat-chip--stat b small{font-size:12px;font-weight:800;margin-left:2px;color:var(--text-mute)}
+.plat-chip--stat span{font-size:11.5px;line-height:1.4;color:var(--text-soft)}
+@media (prefers-reduced-motion:no-preference){
+  .plat-chip{animation:platFloat 6.5s var(--ease) infinite}
+  .plat-chip--stat{animation-delay:-3.2s}
+}
+@keyframes platFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@media (max-width:900px){
+  .plat-chips{width:clamp(132px,44%,168px);bottom:clamp(88px,18%,118px)}
+  .plat-chip--stat b{font-size:20px}
+}
+
+/* the web card's readouts sit lower and smaller — it is a short, wide card */
+.plat-chips--web{
+  left:44%;right:auto;bottom:clamp(46px,18%,66px);top:auto;
+  width:clamp(148px,29%,178px);gap:8px;
+}
+.plat-chips--web .plat-chip{padding:10px 12px;gap:4px}
+.plat-chips--web .plat-chip em{font-size:15px}
+.plat-chips--web .plat-chip--stat b{font-size:20px}
+.plat-chips--web .plat-chip--stat span{font-size:11px}
+@media (max-width:1080px){
+  .plat-chips--web{display:none}
+}
+
+/* a veil of blur climbing off the bottom edge, with the store buttons on it */
+.plat-veil{
+  position:absolute;left:0;right:0;bottom:0;z-index:4;
+  padding:56px 34px 26px;
+  -webkit-backdrop-filter:blur(16px) saturate(1.2);backdrop-filter:blur(16px) saturate(1.2);
+  background:linear-gradient(180deg,rgba(240,245,252,0) 0%,rgba(240,245,252,.62) 42%,rgba(240,245,252,.9) 100%);
+  /* the blur itself fades out towards the top, so there is no hard edge */
+  -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 46%,#000 100%);
+  mask-image:linear-gradient(180deg,transparent 0%,#000 46%,#000 100%);
+}
+.plat-veil .avail{
+  display:block;font-size:10.5px;font-weight:800;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--text-mute);
+}
+.plat-veil .badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:11px}
+.plat-veil .badges img{height:38px;width:auto;display:block;
+  border-radius:8px;box-shadow:0 10px 22px -12px rgba(20,44,96,.5);
+  transition:transform .3s var(--ease),box-shadow .3s}
+.plat-veil .badges a:hover img{transform:translateY(-3px);box-shadow:0 16px 30px -12px rgba(20,44,96,.6)}
+@media (max-width:900px){
+  .plat-hand{height:clamp(240px,78%,400px);max-width:62%}
+  .plat-veil{padding:48px 22px 20px}
+}
+.plat-web{
+  grid-area:web;overflow:hidden;min-height:240px;color:var(--text);
+  background-color:rgba(255,255,255,.5);
+  -webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6);
+  border-color:rgba(255,255,255,.75);
+  box-shadow:0 12px 34px -18px rgba(20,44,96,.26),inset 0 1px 0 rgba(255,255,255,.9);
+  background-image:radial-gradient(62% 70% at 6% 0%,rgba(0,71,187,.08),transparent 64%);
+}
+.plat-web .plat-copy{max-width:44%;position:relative;z-index:5}
+.plat-web .plat-copy h3{color:var(--text)}
+.plat-web .plat-copy p{color:var(--text-soft)}
+.plat-tablet{position:absolute;right:0;bottom:0;display:block;height:calc(100% - 26px);width:auto;max-width:54%;object-fit:contain;object-position:100% 100%;filter:drop-shadow(0 22px 34px rgba(20,44,96,.3));z-index:1;pointer-events:none}
+.link-ur{position:absolute;bottom:26px;left:34px;z-index:5;display:inline-flex;align-items:center;gap:7px;font-size:14px;font-weight:600;color:var(--blue)}
 .plat-mt .link-ur{color:var(--blue)}
 .link-ur .ico{width:16px;height:16px;transition:transform .3s var(--ease)}
 .link-ur:hover .ico{transform:translate(3px,-3px)}
-.plat-mt{min-height:250px;background-color:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6);border-color:rgba(255,255,255,.75);box-shadow:0 12px 34px -18px rgba(20,44,96,.26),inset 0 1px 0 rgba(255,255,255,.9);background-image:radial-gradient(rgba(20,44,96,.09) 1.1px,transparent 1.1px);background-size:15px 15px}
+.plat-mt{
+  min-height:250px;background-color:rgba(255,255,255,.5);
+  -webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6);
+  border-color:rgba(255,255,255,.75);
+  box-shadow:0 12px 34px -18px rgba(20,44,96,.26),inset 0 1px 0 rgba(255,255,255,.9);
+  background-image:radial-gradient(58% 66% at 6% 0%,rgba(0,71,187,.07),transparent 64%);
+}
 .plat-mt:nth-of-type(3){grid-area:mt4}
 .plat-mt:nth-of-type(4){grid-area:mt5}
 .plat-mt .plat-copy{max-width:225px;position:relative;z-index:2}
