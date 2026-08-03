@@ -4211,18 +4211,11 @@
     var hero = document.querySelector('.mn-hero');
     if (!hero) return;
 
-    // the mark leans towards the pointer
-    var art = hero.querySelector('[data-mn-art]');
-    if (art && !prefersReduced) {
-      hero.addEventListener('pointermove', function (e) {
-        var r = hero.getBoundingClientRect();
-        var x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
-        art.style.setProperty('--tx', (x * -26).toFixed(1) + 'px');
-        art.style.setProperty('--ty', (y * -18).toFixed(1) + 'px');
-      });
-      hero.addEventListener('pointerleave', function () {
-        art.style.setProperty('--tx', '0px'); art.style.setProperty('--ty', '0px');
-      });
+    // the plate drifts as the banner leaves
+    var bg = hero.querySelector('[data-mn-bg]');
+    if (bg && !prefersReduced && hasGSAP && hasST) {
+      gsap.to(bg, { yPercent: 12, ease: 'none',
+        scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
     }
 
     if (!prefersReduced) railMarquee(document.getElementById('mnTrack'), 30);
