@@ -9115,3 +9115,185 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
   .mn-hero{min-height:0;padding-bottom:64px}
   .mn-stage-shot{aspect-ratio:4/3}
 }
+
+/* =================================================================
+   PROMOTIONS
+   Light and glassy. The offers are coupons — notched, perforated, with
+   a stub that carries the reward — on the brand's blue and sand
+   gradients. Scoped to .prx.
+   ================================================================= */
+.prx{--acc:#0047bb;--acc-2:#2a72ff;--acc-3:#7fb2ff;--mint:#16e9d7;
+     --sand:#dfc5ae;--sand-ink:#8a6440;--ink:#04060d}
+
+/* ---------------- banner: the video plays light ---------------- */
+.pm-hero{
+  position:relative;isolation:isolate;overflow:hidden;
+  margin-top:calc(-1 * var(--nav-h));
+  min-height:min(760px,calc(100vh - var(--topbar-h,44px)));
+  display:flex;align-items:center;padding:calc(var(--nav-h) + 62px) 0 78px;
+  background:#eef2f8;
+}
+.pm-hero-video{
+  position:absolute;inset:0;z-index:-3;width:100%;height:100%;object-fit:cover;display:block;
+}
+.pm-hero::before{
+  content:"";position:absolute;inset:0;z-index:-2;
+  background:
+    linear-gradient(90deg,rgba(244,247,252,.96) 0%,rgba(244,247,252,.86) 34%,rgba(244,247,252,.4) 58%,transparent 80%),
+    linear-gradient(180deg,rgba(244,247,252,.7),transparent 26%,rgba(238,242,248,.62));
+}
+.pm-hero-in{position:relative;z-index:1;width:100%}
+.pm-hero-copy{max-width:min(100%,700px)}
+.pm-eyebrow{display:block;font-size:10.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--acc)}
+/* two lines: the type gives way rather than wrapping */
+.pm-h1{margin-top:18px;font-size:clamp(31px,3.9vw,55px);font-weight:800;letter-spacing:-.05em;line-height:1.12;color:var(--ink)}
+.pm-h1 span:first-child{white-space:nowrap}
+.pm-h1 span{display:block}
+.pm-h1 .lit{
+  display:inline-block;padding-bottom:.08em;color:transparent;
+  background:linear-gradient(96deg,var(--acc) 6%,var(--acc-2) 52%,#12b9ad 96%);
+  -webkit-background-clip:text;background-clip:text;
+}
+.pm-lead{margin-top:20px;max-width:50ch;font-size:clamp(15px,1.5vw,17px);line-height:1.72;color:#4d5c74}
+.pm-hact{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.pm-btn{
+  display:inline-flex;align-items:center;gap:9px;padding:14px 28px;border-radius:70px;white-space:nowrap;
+  font-size:13.5px;font-weight:700;color:#fff;
+  background:linear-gradient(180deg,var(--acc-2),var(--acc));
+  box-shadow:0 18px 38px -16px rgba(0,71,187,.65);
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease);
+}
+.pm-btn:hover{transform:translateY(-3px);box-shadow:0 26px 48px -16px rgba(42,114,255,.75)}
+.pm-btn svg{width:15px;height:15px;flex:none}
+.pm-btn--ghost{color:var(--ink);background:rgba(255,255,255,.8);border:1px solid rgba(20,44,96,.12);box-shadow:none}
+.pm-btn--ghost:hover{background:#fff;box-shadow:0 16px 32px -18px rgba(20,44,96,.35)}
+
+/* shared headings */
+.pm-eyebrow-c{display:block;font-size:10.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);text-align:center}
+.pm-h2{margin-top:16px;font-size:clamp(28px,3.7vw,50px);font-weight:800;letter-spacing:-.042em;line-height:1.06;text-align:center;color:var(--ink)}
+.pm-sub{margin:18px auto 0;max-width:62ch;font-size:clamp(14.5px,1.45vw,16.5px);line-height:1.7;text-align:center;color:#4d5c74}
+
+/* ---------------- the offers, as coupons ---------------- */
+.pm-offers-sec{position:relative;isolation:isolate;overflow:clip;
+  background:radial-gradient(50% 44% at 90% 0%,rgba(0,71,187,.08),transparent 62%),var(--bg-light-2)}
+.pm-offers-sec>.container{position:relative;z-index:1}
+.pm-offers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,26px);margin-top:clamp(32px,4vw,50px)}
+.pm-coupon{
+  position:relative;overflow:hidden;display:grid;grid-template-rows:auto auto 1fr auto;
+  border-radius:clamp(20px,2.4vw,28px);padding:clamp(22px,2.6vw,30px);
+  background:linear-gradient(180deg,rgba(0,71,187,.08),rgba(255,255,255,.72) 46%);
+  border:1px solid rgba(255,255,255,.92);
+  box-shadow:0 16px 40px -28px rgba(20,44,96,.44),inset 0 1px 0 #fff;
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .32s;
+}
+.pm-coupon--sand{background:linear-gradient(180deg,rgba(223,197,174,.5),rgba(255,255,255,.72) 48%)}
+.pm-coupon:hover{transform:translateY(-6px);border-color:rgba(0,71,187,.24);
+  box-shadow:0 34px 64px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff}
+.pm-coupon--sand:hover{border-color:rgba(138,100,64,.34)}
+/* the notches, punched either side of the perforation */
+.pm-coupon::before,.pm-coupon::after{
+  content:"";position:absolute;top:var(--tear,58%);width:26px;height:26px;border-radius:50%;
+  background:var(--bg-light-2);box-shadow:inset 0 1px 0 rgba(20,44,96,.06);
+}
+.pm-coupon::before{left:-13px}
+.pm-coupon::after{right:-13px}
+/* a light sweeps across when you point at one */
+.pm-coupon-shine{
+  position:absolute;inset:0;z-index:3;pointer-events:none;overflow:hidden;border-radius:inherit;
+}
+.pm-coupon-shine i{
+  position:absolute;top:-40%;bottom:-40%;left:-30%;width:34%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.72),transparent);
+  transform:skewX(-18deg) translateX(-140%);
+}
+.pm-coupon:hover .pm-coupon-shine i{transition:transform 1.05s var(--ease);transform:skewX(-18deg) translateX(420%)}
+.pm-chip{
+  display:inline-flex;align-items:center;gap:7px;padding:6px 13px;border-radius:70px;justify-self:start;
+  font-size:9.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#fff;
+  background:linear-gradient(180deg,var(--acc-2),var(--acc));
+}
+.pm-coupon--sand .pm-chip{background:linear-gradient(180deg,#b98a5d,var(--sand-ink))}
+.pm-chip i{width:6px;height:6px;border-radius:50%;background:var(--mint);box-shadow:0 0 8px rgba(22,233,215,.9)}
+.pm-coupon h3{margin-top:18px;font-size:clamp(19px,2.2vw,25px);font-weight:800;letter-spacing:-.034em;line-height:1.16;color:var(--ink)}
+.pm-coupon p{margin-top:11px;font-size:13.8px;line-height:1.7;color:#5a6a83}
+/* the stub, below the tear */
+.pm-stub{
+  position:relative;margin-top:clamp(18px,2.2vw,24px);padding-top:clamp(18px,2.2vw,24px);
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  border-top:2px dashed rgba(20,44,96,.18);
+}
+.pm-coupon--sand .pm-stub{border-top-color:rgba(138,100,64,.26)}
+.pm-stub-art{width:clamp(74px,9vw,104px);height:auto;display:block;
+  transition:transform .55s var(--ease)}
+.pm-coupon:hover .pm-stub-art{transform:translateY(-4px) scale(1.05)}
+.pm-stub-go{
+  display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:var(--acc);
+  transition:gap .35s var(--ease)}
+.pm-coupon--sand .pm-stub-go{color:var(--sand-ink)}
+.pm-stub-go svg{width:14px;height:14px}
+.pm-coupon:hover .pm-stub-go{gap:13px}
+.pm-offers-note{
+  margin:clamp(24px,3vw,34px) auto 0;max-width:88ch;font-size:11.5px;line-height:1.7;
+  color:#7a8aa4;text-align:center;
+}
+
+/* ---------------- the sign-off band ---------------- */
+.pm-sign{
+  position:relative;overflow:hidden;display:grid;
+  grid-template-columns:auto minmax(0,1fr) auto;gap:clamp(18px,2.6vw,36px);align-items:center;
+  margin-top:clamp(24px,3vw,36px);padding:clamp(22px,2.6vw,32px) clamp(24px,3vw,40px);
+  border-radius:clamp(20px,2.4vw,28px);
+  background:linear-gradient(120deg,rgba(0,71,187,.1),rgba(223,197,174,.34) 62%,rgba(255,255,255,.72));
+  border:1px solid rgba(255,255,255,.92);
+  box-shadow:0 22px 50px -32px rgba(20,44,96,.44),inset 0 1px 0 #fff;
+}
+.pm-sign img{width:clamp(72px,8vw,100px);height:auto;display:block;
+  filter:drop-shadow(0 16px 26px rgba(20,44,96,.34))}
+.pm-sign-tx{display:flex;flex-direction:column;gap:8px}
+.pm-sign-tx b{font-size:clamp(17px,2vw,22px);font-weight:800;letter-spacing:-.034em;color:var(--ink)}
+.pm-sign-tx em{font-style:normal;font-size:13.5px;line-height:1.68;color:#5a6a83}
+
+/* ---------------- how a claim works ---------------- */
+.pm-how{position:relative;isolation:isolate;overflow:clip;background:linear-gradient(180deg,#fff,#f2f6fc)}
+.pm-how>.container{position:relative;z-index:1}
+
+/* ---------------- the closing call ---------------- */
+.pm-close{
+  position:relative;overflow:hidden;isolation:isolate;text-align:center;
+  padding:clamp(70px,8vw,120px) 0;color:#fff;
+  background:radial-gradient(58% 68% at 50% 0%,rgba(42,114,255,.4),transparent 62%),
+             linear-gradient(180deg,#04143a,#0a2a6e 54%,#04143a);
+}
+.pm-close::before{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.45;
+  background-image:radial-gradient(rgba(255,255,255,.14) 1px,transparent 1px);background-size:24px 24px;
+  -webkit-mask:radial-gradient(62% 62% at 50% 46%,#000,transparent 76%);
+  mask:radial-gradient(62% 62% at 50% 46%,#000,transparent 76%);
+}
+.pm-close-in{position:relative;z-index:1}
+.pm-close img{width:clamp(120px,15vw,190px);height:auto;display:block;margin:0 auto 20px;
+  filter:drop-shadow(0 24px 40px rgba(0,0,0,.5))}
+.pm-close h2{font-size:clamp(28px,3.8vw,50px);font-weight:800;letter-spacing:-.045em;line-height:1.06}
+.pm-close p{margin:16px auto 0;max-width:52ch;font-size:clamp(14.5px,1.5vw,17px);line-height:1.7;color:#c4d3ee}
+.pm-close .pm-hact{justify-content:center;margin-top:28px}
+.pm-close .pm-btn{background:#fff;color:var(--acc);box-shadow:0 18px 38px -16px rgba(0,0,0,.5)}
+.pm-close .pm-btn:hover{box-shadow:0 26px 48px -16px rgba(0,0,0,.6)}
+.pm-close .pm-btn--ghost{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.28)}
+.pm-close .pm-btn--ghost:hover{background:rgba(255,255,255,.18)}
+
+/* ---------------- responsive ---------------- */
+@media (max-width:960px){
+  .pm-offers{grid-template-columns:1fr}
+  .pm-sign{grid-template-columns:auto minmax(0,1fr);gap:20px}
+  .pm-sign .pm-btn{grid-column:1 / -1;justify-self:start}
+}
+@media (max-width:760px){
+  .pm-h1 span:first-child{white-space:normal}
+}
+@media (max-width:640px){
+  .pm-hero{min-height:0;padding-bottom:56px}
+  .pm-hero::before{
+    background:
+      linear-gradient(180deg,rgba(244,247,252,.94) 0%,rgba(244,247,252,.8) 48%,rgba(244,247,252,.5) 100%);
+  }
+}
