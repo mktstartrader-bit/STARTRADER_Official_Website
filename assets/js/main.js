@@ -4563,6 +4563,41 @@
     });
   }
 
+
+  /* ---------------- MT4 vs MT5 comparison dialog ---------------- */
+  function initCompare() {
+    var dlg = document.querySelector('[data-cmp]');
+    if (!dlg) return;
+    var openers = Array.prototype.slice.call(document.querySelectorAll('[data-cmp-open]'));
+    if (!openers.length) return;
+    var last = null;
+
+    function open(from) {
+      last = from || null;
+      if (typeof dlg.showModal === 'function') dlg.showModal();
+      else dlg.setAttribute('open', '');            // very old browsers get a plain panel
+      var x = dlg.querySelector('[data-cmp-close]');
+      if (x && x.focus) x.focus();
+    }
+    function close() {
+      if (typeof dlg.close === 'function') dlg.close();
+      else dlg.removeAttribute('open');
+      if (last && last.focus) last.focus();
+    }
+
+    openers.forEach(function (b) {
+      b.addEventListener('click', function (e) { e.preventDefault(); open(b); });
+    });
+    Array.prototype.forEach.call(dlg.querySelectorAll('[data-cmp-close]'), function (b) {
+      b.addEventListener('click', close);
+    });
+    // clicking the backdrop closes it: the dialog fills the viewport, the card does not
+    dlg.addEventListener('click', function (e) {
+      if (e.target === dlg) close();
+    });
+    dlg.addEventListener('cancel', function () { if (last && last.focus) setTimeout(function () { last.focus(); }, 0); });
+  }
+
   /* ---------------- Events: the gallery rail ---------------- */
   function initEvents() {
     var rail = document.querySelector('[data-ev-rail]');
@@ -4958,6 +4993,7 @@
     initSignup();
     initDeposit5020();
     initKbForm();
+    initCompare();
     initVps();
     if (hasST) ScrollTrigger.refresh();
     window.addEventListener('load', function () { if (hasST) ScrollTrigger.refresh(); });

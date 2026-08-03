@@ -534,12 +534,12 @@
           <h3>21 timeframes, 38 indicators</h3>
           <p>Nine timeframes become twenty-one, thirty-plus indicators become thirty-eight, and twenty-four drawing objects become forty-four.</p>
         </article>
-      <a class="mt-rail-card mt-rail-card--end" href="mt4.html">
+      <button class="mt-rail-card mt-rail-card--end" type="button" data-cmp-open aria-haspopup="dialog">
         <span class="mt-rail-ic"><svg><use href="#i-swap"/></svg></span>
         <h3>Prefer the classic?</h3>
         <p>MT4 is still the right answer for plenty of strategies. Compare the two side by side.</p>
-        <span class="mt-rail-go">Compare with MT4 <svg><use href="#i-arrow-right"/></svg></span>
-      </a>
+        <span class="mt-rail-go">Compare with MT4 <svg><use href="#i-swap"/></svg></span>
+      </button>
     </div>
   </div>
 
@@ -657,8 +657,8 @@
         <li class="htrade-step">
           <span class="htrade-num">03</span>
           <div class="htrade-txt">
-            <h3>Download the platform</h3>
-            <p>Select it as your preferred platform and install it on any device.</p>
+            <h3>Download MT5</h3>
+            <p>Download STARTRADER&rsquo;s MT5 with a single click for instant installation.</p>
           </div>
         </li>
       </ol>
@@ -742,6 +742,104 @@
     </div>
   </div>
 </section>
+
+
+<!-- ============ MT4 vs MT5 ============ -->
+<dialog class="cmp" id="cmpDialog" data-cmp data-cmp-current="mt5" aria-labelledby="cmp-title">
+  <div class="cmp-card">
+    <button class="cmp-x" type="button" data-cmp-close aria-label="Close comparison">
+      <svg><use href="#i-close"/></svg>
+    </button>
+
+    <div class="cmp-head">
+      <span class="cmp-eyebrow">Side by side</span>
+      <h2 class="cmp-h" id="cmp-title">MT4 or MT5?</h2>
+      <p class="cmp-sub">Same broker, same account, two terminals. The difference is what each one is built to reach.</p>
+    </div>
+
+    <div class="cmp-tablewrap">
+      <table class="cmp-table">
+        <caption class="sr-only">MetaTrader 4 compared with MetaTrader 5</caption>
+        <thead>
+          <tr>
+            <th scope="col"><span class="sr-only">Feature</span></th>
+            <th scope="col"><span class="cmp-flag">MT4</span></th>
+            <th scope="col"><span class="cmp-flag is-current">MT5<em>You are here</em></span></th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <th scope="row">Markets covered</th>
+              <td>Forex and CFDs</td>
+              <td class="is-current">Forex, CFDs, shares, indices and futures</td>
+            </tr>
+            <tr>
+              <th scope="row">Chart timeframes</th>
+              <td>9</td>
+              <td class="is-current">21</td>
+            </tr>
+            <tr>
+              <th scope="row">Pending order types</th>
+              <td>4</td>
+              <td class="is-current">6, including buy stop limit and sell stop limit</td>
+            </tr>
+            <tr>
+              <th scope="row">Depth of market</th>
+              <td>Not available</td>
+              <td class="is-current">Built in</td>
+            </tr>
+            <tr>
+              <th scope="row">Economic calendar</th>
+              <td>Not available</td>
+              <td class="is-current">Built into the terminal</td>
+            </tr>
+            <tr>
+              <th scope="row">Position accounting</th>
+              <td>Hedging only</td>
+              <td class="is-current">Hedging or netting, set on the account</td>
+            </tr>
+            <tr>
+              <th scope="row">Partial close</th>
+              <td>Not available</td>
+              <td class="is-current">Supported</td>
+            </tr>
+            <tr>
+              <th scope="row">Programming language</th>
+              <td>MQL4</td>
+              <td class="is-current">MQL5</td>
+            </tr>
+            <tr>
+              <th scope="row">Strategy tester</th>
+              <td>Single-threaded, one instrument</td>
+              <td class="is-current">Multi-threaded, multi-currency</td>
+            </tr>
+            <tr>
+              <th scope="row">Built-in indicators</th>
+              <td>30</td>
+              <td class="is-current">38</td>
+            </tr>
+            <tr>
+              <th scope="row">Graphical objects</th>
+              <td>24</td>
+              <td class="is-current">44</td>
+            </tr>
+            <tr>
+              <th scope="row">Best suited to</th>
+              <td>Forex-first strategies and MQL4 EAs</td>
+              <td class="is-current">Multi-asset trading and heavier back-testing</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="cmp-note">Neither replaces the other. MT4 remains the standard for forex-first workflows and the MQL4 library; MT5 is the one to take if you want shares, indices and futures in the same terminal, or a faster tester.</p>
+
+    <div class="cmp-act">
+      <a class="btn btn-primary" href="mt4.html">Open the MT4 page <svg class="ico"><use href="#i-arrow-right"/></svg></a>
+      <button class="btn btn-ghost" type="button" data-cmp-close>Stay on MT5</button>
+    </div>
+  </div>
+</dialog>
 
 </main>
 
