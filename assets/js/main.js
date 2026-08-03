@@ -4112,22 +4112,96 @@
 
 
   /* ---------------- PFL Road to Dubai Champions Series ---------------- */
+  var FL_CORNER = [
+    ['Knowledge', 'Our knowledge centre equips traders with insights \u2014 the reading a corner does before the walk-out, not during it.'],
+    ['Powerful platforms', 'STARTRADER App, STAR Copy and STAR Matrix sharpen execution speed, risk management and strategy tools.'],
+    ['Updates', 'Daily insights, market analysis and tailored updates, so a decision is made on information rather than instinct.'],
+    ['24/7 support staff', 'Multilingual customer care to guide traders, at whatever hour the market decides to move.'],
+    ['Regulators', 'Global licences \u2014 CIMA, ASIC, FSCA, FSA and FSC \u2014 provide a secure, compliant trading environment. Full regulatory disclosures are on our website.']
+  ];
+
   function initPfl() {
     var hero = document.querySelector('.fl-hero');
     if (!hero) return;
-    if (prefersReduced || !hasGSAP || !hasST) return;
-    var bg = hero.querySelector('[data-fl-bg]');
-    if (bg) {
-      gsap.to(bg, { yPercent: 12, ease: 'none',
-        scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
+
+    if (!prefersReduced && hasGSAP && hasST) {
+      var bg = hero.querySelector('[data-fl-bg]');
+      if (bg) {
+        gsap.to(bg, { yPercent: 12, ease: 'none',
+          scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
+      }
+      var shots = document.querySelectorAll('.fl-strip .fl-shot');
+      if (shots.length) {
+        gsap.fromTo(shots, { y: 44, opacity: 0 }, {
+          y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', stagger: 0.12,
+          scrollTrigger: { trigger: '.fl-strip', start: 'top 84%', once: true }
+        });
+      }
     }
-    // the strip walks in one frame at a time
-    var shots = document.querySelectorAll('.fl-strip .fl-shot');
-    if (shots.length) {
-      gsap.fromTo(shots, { y: 44, opacity: 0 }, {
-        y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', stagger: 0.12,
-        scrollTrigger: { trigger: '.fl-strip', start: 'top 84%', once: true }
+
+    /* --- the corner dial: five spokes, one lit at a time --- */
+    var dial = document.querySelector('[data-fl-dial]');
+    if (!dial) return;
+    var nodes = Array.prototype.slice.call(dial.querySelectorAll('[data-fl-node]'));
+    var spokes = Array.prototype.slice.call(dial.querySelectorAll('.fl-spoke'));
+    var dots = Array.prototype.slice.call(dial.querySelectorAll('[data-fl-dot]'));
+    var titleEl = dial.querySelector('[data-fl-title]');
+    var copyEl = dial.querySelector('[data-fl-copy]');
+    var idxEl = dial.querySelector('[data-fl-idx]');
+    var at = 0, held = false, turn = null;
+
+    function light(i) {
+      at = (i + FL_CORNER.length) % FL_CORNER.length;
+      nodes.forEach(function (n) {
+        var k = parseInt(n.getAttribute('data-fl-node'), 10);
+        n.classList.toggle('is-on', k === at);
       });
+      spokes.forEach(function (sp, k) { sp.classList.toggle('is-on', k === at); });
+      dots.forEach(function (d, k) { d.classList.toggle('is-on', k === at); });
+      if (idxEl) idxEl.textContent = ('0' + (at + 1)).slice(-2);
+      var row = FL_CORNER[at];
+      if (titleEl && copyEl && row) {
+        titleEl.classList.add('is-fade');
+        copyEl.classList.add('is-fade');
+        setTimeout(function () {
+          titleEl.textContent = row[0];
+          copyEl.textContent = row[1];
+          titleEl.classList.remove('is-fade');
+          copyEl.classList.remove('is-fade');
+        }, 190);
+      }
+    }
+
+    nodes.forEach(function (n) {
+      n.addEventListener('click', function () {
+        held = true;
+        light(parseInt(n.getAttribute('data-fl-node'), 10));
+      });
+    });
+    dots.forEach(function (d, i) {
+      d.addEventListener('click', function () { held = true; light(i); });
+    });
+    dial.addEventListener('keydown', function (e) {
+      var k = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (!k) return;
+      e.preventDefault();
+      held = true;
+      light(at + k);
+    });
+    light(0);
+
+    // the dial turns on its own until someone takes it
+    if (!prefersReduced && 'IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.isIntersecting && !turn && !held) {
+            turn = setInterval(function () {
+              if (held) { clearInterval(turn); turn = null; return; }
+              light(at + 1);
+            }, 3800);
+          } else if (!e.isIntersecting && turn) { clearInterval(turn); turn = null; }
+        });
+      }, { threshold: 0.3 }).observe(dial);
     }
   }
 
