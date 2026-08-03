@@ -4086,6 +4086,20 @@
       }
     }
 
+    // the run-rate line draws itself once the card arrives
+    var spark = document.querySelector('[data-ck-spark]');
+    if (spark) {
+      if (prefersReduced) spark.classList.add('is-drawn');
+      else if ('IntersectionObserver' in window) {
+        var so = new IntersectionObserver(function (es) {
+          es.forEach(function (e) {
+            if (e.isIntersecting) { spark.classList.add('is-drawn'); so.disconnect(); }
+          });
+        }, { threshold: 0.4 });
+        so.observe(spark);
+      } else spark.classList.add('is-drawn');
+    }
+
     // the stumps rattle once when the lead cell first arrives
     var lead = document.querySelector('.ck-cell--lead .ck-stumps');
     if (lead && !prefersReduced && hasGSAP && hasST) {
