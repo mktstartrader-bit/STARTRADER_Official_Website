@@ -9930,3 +9930,23 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
 .ma-readmark svg{width:15px;height:15px}
 .ma-rep:hover .ma-readmark{transform:translate(2px,-2px);background:#fff}
 .ma-rep mark{background:rgba(255,214,102,.5);color:inherit;border-radius:3px;padding:0 2px}
+
+/* ---- event page: the four stills inside the body ---- */
+.ev-strip{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:24px 0;
+}
+.ev-still{
+  position:relative;margin:0;overflow:hidden;border-radius:16px;background:#0b1018;
+  box-shadow:0 16px 36px -26px rgba(20,44,96,.5);
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease);
+}
+.ev-still img{position:static;display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;
+  transform:none;transition:transform .7s var(--ease)}
+.ev-still:hover{transform:translateY(-4px);box-shadow:0 26px 50px -26px rgba(20,44,96,.55)}
+.ev-still:hover img{transform:scale(1.05)}
+.ev-still figcaption{
+  position:absolute;left:0;right:0;bottom:0;padding:26px 14px 12px;
+  font-size:11.5px;line-height:1.5;color:#fff;
+  background:linear-gradient(180deg,transparent,rgba(4,8,18,.82));
+}
+@media (max-width:640px){.ev-strip{grid-template-columns:1fr}}
