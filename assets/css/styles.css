@@ -10066,8 +10066,12 @@ a.mc-clip-media{display:block;cursor:pointer}
 .cmp-act .btn-ghost{background:rgba(255,255,255,.08);color:#eaf0fa;
   border:1px solid rgba(255,255,255,.2)}
 .cmp-act .btn-ghost:hover{background:rgba(255,255,255,.15);color:#fff}
-/* the rail's last card is a button now, so it needs the card's own reset */
-button.mt-rail-card{width:100%;text-align:left;font:inherit;cursor:pointer;-webkit-appearance:none;appearance:none}
+/* the rail's last card is a button now: reset the control, but never its size —
+   .mt-rail-card already sets width and min-height for the track */
+button.mt-rail-card{
+  text-align:left;font:inherit;color:inherit;cursor:pointer;
+  -webkit-appearance:none;appearance:none;
+}
 @media (max-width:640px){
   .cmp-card{padding:20px 14px}
   .cmp-act .btn{width:100%;justify-content:center}
