@@ -4062,6 +4062,40 @@
     }
   }
 
+
+  /* ---------------- UAE National Cricket Team ---------------- */
+  function initIcc() {
+    var hero = document.querySelector('.ck-hero');
+    if (!hero) return;
+
+    if (!prefersReduced && hasGSAP && hasST) {
+      // the stadium drifts as the banner leaves
+      var bg = hero.querySelector('[data-ck-bg]');
+      if (bg) {
+        gsap.to(bg, { yPercent: 12, ease: 'none',
+          scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
+      }
+      // the run-up stitches fill as the schedule passes
+      var run = document.querySelector('[data-ck-run]');
+      var fill = document.querySelector('[data-ck-runfill]');
+      if (run && fill) {
+        gsap.fromTo(fill, { height: '0%' }, {
+          height: '100%', ease: 'none',
+          scrollTrigger: { trigger: run, start: 'top 78%', end: 'bottom 62%', scrub: 0.4 }
+        });
+      }
+    }
+
+    // the stumps rattle once when the lead cell first arrives
+    var lead = document.querySelector('.ck-cell--lead .ck-stumps');
+    if (lead && !prefersReduced && hasGSAP && hasST) {
+      gsap.fromTo(lead.children, { scaleY: 0.2, opacity: 0 }, {
+        scaleY: 1, opacity: 1, duration: 0.7, ease: 'back.out(2)', stagger: 0.08,
+        scrollTrigger: { trigger: lead, start: 'top 92%', once: true }
+      });
+    }
+  }
+
   /* ---------------- Events: the gallery rail ---------------- */
   function initEvents() {
     var rail = document.querySelector('[data-ev-rail]');
@@ -4450,6 +4484,7 @@
     initMedia();
     initNba();
     initPccme();
+    initIcc();
     if (hasST) ScrollTrigger.refresh();
     window.addEventListener('load', function () { if (hasST) ScrollTrigger.refresh(); });
   }
