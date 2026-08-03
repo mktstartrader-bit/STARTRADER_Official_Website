@@ -9593,3 +9593,146 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
   .d5-strip .btn{grid-column:1 / -1;justify-self:start}
   .d5-out{grid-template-columns:1fr}
 }
+
+/* =================================================================
+   VPS
+   Promotions palette. Six reasons on glass, the two reimbursement tiers
+   as the centrepiece with a checker, then the house case as a hairline
+   list. Scoped with the .prx page class.
+   ================================================================= */
+.vp-why{position:relative;isolation:isolate;overflow:clip;
+  background:radial-gradient(50% 44% at 90% 0%,rgba(0,71,187,.08),transparent 62%),var(--bg-light-2)}
+.vp-why>.container{position:relative;z-index:1}
+.vp-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.8vw,22px);margin-top:clamp(32px,4vw,50px)}
+.vp-card{
+  position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;
+  padding:clamp(22px,2.5vw,30px);border-radius:var(--radius-lg);
+  background:rgba(255,255,255,.7);
+  -webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);
+  border:1px solid rgba(255,255,255,.9);
+  box-shadow:0 12px 30px -20px rgba(20,44,96,.26),inset 0 1px 0 #fff;
+  transition:transform .4s var(--ease),box-shadow .4s,border-color .3s;
+}
+.vp-card::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--blue-bright),var(--mint));
+  transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease);
+}
+.vp-card:hover{transform:translateY(-5px);border-color:rgba(0,71,187,.3);
+  box-shadow:0 28px 52px -26px rgba(0,71,187,.3)}
+.vp-card:hover::before{transform:scaleX(1)}
+.vp-card-ic{
+  display:grid;place-items:center;width:52px;height:52px;border-radius:17px;
+  background:linear-gradient(158deg,var(--blue-bright),var(--blue));
+  box-shadow:0 14px 26px -14px rgba(0,71,187,.6),inset 0 1px 0 rgba(255,255,255,.32);
+  transition:transform .42s var(--ease);
+}
+.vp-card-ic svg{width:23px;height:23px;color:#fff}
+.vp-card:hover .vp-card-ic{transform:translateY(-3px) rotate(-6deg)}
+.vp-card b{display:block;margin-top:18px;font-size:16.5px;font-weight:700;letter-spacing:-.028em;color:var(--ink)}
+.vp-card p{margin-top:9px;font-size:13.6px;line-height:1.68;color:var(--text-soft)}
+
+/* ---------------- the reimbursement tiers ---------------- */
+.vp-tier-sec{position:relative;isolation:isolate;overflow:clip;background:linear-gradient(180deg,#fff,#f2f6fc)}
+.vp-tier-sec>.container{position:relative;z-index:1}
+.vp-tiers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2vw,26px);margin-top:clamp(30px,3.6vw,46px)}
+.vp-tier{
+  position:relative;overflow:hidden;display:flex;flex-direction:column;
+  border-radius:clamp(20px,2.4vw,30px);padding:clamp(24px,2.8vw,34px);
+  background:linear-gradient(180deg,rgba(0,71,187,.08),rgba(255,255,255,.72) 46%);
+  border:1px solid rgba(255,255,255,.92);
+  box-shadow:0 16px 40px -28px rgba(20,44,96,.44),inset 0 1px 0 #fff;
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .32s;
+}
+.vp-tier--sand{background:linear-gradient(180deg,rgba(223,197,174,.5),rgba(255,255,255,.72) 48%)}
+.vp-tier:hover{transform:translateY(-6px);border-color:rgba(0,71,187,.24);
+  box-shadow:0 34px 64px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff}
+.vp-tier--sand:hover{border-color:rgba(138,100,64,.34)}
+.vp-tier.is-hit{border-color:var(--blue);box-shadow:0 30px 58px -28px rgba(0,71,187,.45),inset 0 1px 0 #fff}
+.vp-tier--sand.is-hit{border-color:#8a6440;box-shadow:0 30px 58px -28px rgba(138,100,64,.45),inset 0 1px 0 #fff}
+.vp-tier-hd{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.vp-tier-n{
+  display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:70px;
+  font-size:9.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#fff;
+  background:linear-gradient(180deg,var(--blue-bright),var(--blue));
+}
+.vp-tier--sand .vp-tier-n{background:linear-gradient(180deg,#b98a5d,#8a6440)}
+.vp-tier-live{
+  font-size:9.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--blue);
+  opacity:0;transform:translateY(-3px);transition:opacity .35s,transform .35s var(--ease);
+}
+.vp-tier--sand .vp-tier-live{color:#8a6440}
+.vp-tier.is-hit .vp-tier-live{opacity:1;transform:none}
+.vp-cap{
+  display:flex;align-items:baseline;gap:7px;margin-top:20px;line-height:.9;
+  font-size:clamp(38px,4.6vw,58px);font-weight:800;letter-spacing:-.055em;font-variant-numeric:tabular-nums;
+  color:transparent;background:linear-gradient(168deg,var(--blue-bright),var(--blue) 68%);
+  -webkit-background-clip:text;background-clip:text;
+}
+.vp-tier--sand .vp-cap{background:linear-gradient(168deg,#b98a5d,#8a6440 70%);-webkit-background-clip:text;background-clip:text}
+.vp-cap em{font-style:normal;font-size:.3em;font-weight:800;letter-spacing:.02em;
+  color:var(--text-mute);background:none;-webkit-text-fill-color:var(--text-mute)}
+.vp-cap-lbl{display:block;margin-top:10px;font-size:10px;font-weight:800;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--text-mute)}
+.vp-reqs{margin-top:clamp(20px,2.4vw,26px);display:flex;flex-direction:column}
+.vp-req{
+  display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:start;
+  padding:13px 0;border-top:1px solid rgba(20,44,96,.1);font-size:13.8px;line-height:1.6;color:#41506a;
+}
+.vp-req:first-child{border-top:0}
+.vp-tier--sand .vp-req{border-top-color:rgba(138,100,64,.18)}
+.vp-req-tick{
+  display:grid;place-items:center;width:22px;height:22px;border-radius:50%;flex:none;margin-top:1px;
+  background:rgba(0,71,187,.1);color:var(--blue);
+}
+.vp-tier--sand .vp-req-tick{background:rgba(223,197,174,.6);color:#8a6440}
+.vp-req-tick svg{width:12px;height:12px}
+.vp-req b{color:var(--ink);font-weight:700}
+
+/* the checker says which tier the numbers reach */
+.vp-check{
+  position:relative;overflow:hidden;margin-top:clamp(20px,2.4vw,30px);
+  border-radius:clamp(20px,2.4vw,28px);padding:clamp(22px,2.8vw,34px);
+  background:linear-gradient(140deg,rgba(0,71,187,.09),rgba(223,197,174,.32) 64%,rgba(255,255,255,.78));
+  border:1px solid rgba(255,255,255,.92);
+  box-shadow:0 22px 50px -32px rgba(20,44,96,.44),inset 0 1px 0 #fff;
+}
+.vp-check-hd{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px}
+.vp-check-hd b{font-size:clamp(17px,2vw,22px);font-weight:800;letter-spacing:-.034em;color:var(--ink)}
+.vp-check-hd span{font-size:11.5px;color:var(--text-mute)}
+.vp-check .ct-grid{margin-top:clamp(18px,2.2vw,26px)}
+.vp-verdict{
+  display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:center;
+  margin-top:clamp(18px,2.2vw,26px);padding:18px 22px;border-radius:18px;
+  background:rgba(255,255,255,.92);
+}
+.vp-verdict-fig{
+  display:flex;align-items:baseline;gap:5px;font-size:clamp(24px,2.8vw,34px);font-weight:800;
+  letter-spacing:-.05em;line-height:1;font-variant-numeric:tabular-nums;color:var(--blue);
+}
+.vp-verdict-fig em{font-style:normal;font-size:.4em;font-weight:800;color:var(--text-mute)}
+.vp-verdict-tx b{display:block;font-size:15px;font-weight:700;letter-spacing:-.026em;color:var(--ink)}
+.vp-verdict-tx span{display:block;margin-top:6px;font-size:12.5px;line-height:1.6;color:var(--text-soft)}
+.vp-note{margin:clamp(20px,2.4vw,30px) auto 0;max-width:88ch;font-size:11.5px;line-height:1.7;
+  color:var(--text-mute);text-align:center}
+
+/* the house case rides the shared dark fx-hours treatment; only the seven-card
+   run and the note need saying */
+/* seven cards, spans 2-1-1-2-1-1-1, so the three columns fill exactly */
+.vp-house-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.vp-house-grid .fx-mh-card{min-height:0}
+.vp-house-note{margin:clamp(24px,3vw,34px) auto 0;max-width:88ch;font-size:11.5px;line-height:1.7;
+  color:#8ea4c6;text-align:center}
+
+@media (max-width:1000px){
+  .vp-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  /* at two columns one wide card is enough to keep the grid exact: 2 + 1x6 = 8 */
+  .vp-house-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .vp-house-grid .vp-wide-2{grid-column:span 1}
+}
+@media (max-width:760px){
+  .vp-grid,.vp-house-grid{grid-template-columns:1fr}
+  .vp-house-grid .fx-mh--wide{grid-column:span 1}
+  .vp-tiers{grid-template-columns:1fr}
+  .vp-verdict{grid-template-columns:1fr;gap:10px}
+}

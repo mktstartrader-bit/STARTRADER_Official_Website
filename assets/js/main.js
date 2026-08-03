@@ -4459,6 +4459,59 @@
     paint();
   }
 
+
+  /* ---------------- VPS: which reimbursement tier the numbers reach ---------------- */
+  function initVps() {
+    var box = document.querySelector('[data-vp-check]');
+    if (!box) return;
+    var funds = box.querySelector('[data-vp-funds]');
+    var vol = box.querySelector('[data-vp-vol]');
+    var fig = box.querySelector('[data-vp-fig]');
+    var title = box.querySelector('[data-vp-title]');
+    var why = box.querySelector('[data-vp-why]');
+    var cards = Array.prototype.slice.call(document.querySelectorAll('[data-vp-tier]'));
+    // thresholds exactly as published
+    var TIERS = [
+      { n: 2, cap: 30, funds: 5000, vol: 1000000, volTx: 'USD 1 million' },
+      { n: 1, cap: 20, funds: 3000, vol: 500000, volTx: 'USD 0.5 million' }
+    ];
+
+    function num(el) { var v = parseFloat(el && el.value); return isNaN(v) || v < 0 ? 0 : v; }
+
+    function paint() {
+      var f = num(funds), v = num(vol);
+      var hit = null;
+      TIERS.forEach(function (t) { if (!hit && f > t.funds && v > t.vol) hit = t; });
+      cards.forEach(function (c) {
+        c.classList.toggle('is-hit', !!hit && c.getAttribute('data-vp-tier') === String(hit.n));
+      });
+      if (hit) {
+        if (fig) fig.innerHTML = hit.cap + ' <em>USD / mo</em>';
+        if (title) title.textContent = 'Tier ' + hit.n;
+        if (why) why.textContent = 'Initial funds and monthly volume both clear the Tier ' + hit.n + ' thresholds.';
+        return;
+      }
+      if (fig) fig.innerHTML = '&mdash;';
+      if (title) title.textContent = 'No tier reached yet';
+      // say which of the two is short, since that is the useful part
+      var need = TIERS[1];
+      var missF = f <= need.funds, missV = v <= need.vol;
+      if (why) {
+        why.textContent = missF && missV
+          ? 'Tier 1 needs initial funds over 3,000 USD and monthly volume over ' + need.volTx + ' notional.'
+          : missF ? 'Volume is there; initial funds need to be over 3,000 USD.'
+                  : 'Funds are there; monthly volume needs to be over ' + need.volTx + ' notional.';
+      }
+    }
+
+    [funds, vol].forEach(function (el) {
+      if (!el) return;
+      el.addEventListener('input', paint);
+      el.addEventListener('change', paint);
+    });
+    paint();
+  }
+
   /* ---------------- Events: the gallery rail ---------------- */
   function initEvents() {
     var rail = document.querySelector('[data-ev-rail]');
@@ -4853,6 +4906,7 @@
     initDeposit();
     initSignup();
     initDeposit5020();
+    initVps();
     if (hasST) ScrollTrigger.refresh();
     window.addEventListener('load', function () { if (hasST) ScrollTrigger.refresh(); });
   }
