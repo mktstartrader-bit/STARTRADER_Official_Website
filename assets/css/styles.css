@@ -8574,3 +8574,62 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
   .ck-runup{display:none}
   .ck-lead-stats{gap:14px 20px}
 }
+
+/* ---------------- Asia Cup: the gallery ---------------- */
+.ck-gal-sec{position:relative;overflow:hidden;isolation:isolate;color:#fff;
+  background:linear-gradient(180deg,#04070f,#071026 54%,#04070f)}
+.ck-gal-sec>.container{position:relative;z-index:1}
+.ck-gal-sec .ck-sub{color:#a9bcd8}
+.ck-gal{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.5vw,18px);margin-top:clamp(30px,3.6vw,46px)}
+.ck-shot{
+  position:relative;overflow:hidden;border-radius:clamp(16px,1.8vw,22px);background:#0b1018;
+  aspect-ratio:3/2;border:1px solid rgba(255,255,255,.1);
+  box-shadow:0 24px 50px -30px rgba(0,0,0,.9);
+  transition:transform .5s var(--ease),border-color .35s,box-shadow .5s var(--ease);
+}
+.ck-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .9s var(--ease),filter .5s}
+.ck-shot::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 46%,rgba(4,7,15,.88))}
+.ck-shot:hover{transform:translateY(-6px);border-color:rgba(42,114,255,.5);
+  box-shadow:0 34px 64px -28px rgba(0,71,187,.6)}
+.ck-shot:hover img{transform:scale(1.06)}
+.ck-shot-cap{
+  position:absolute;z-index:2;left:clamp(14px,1.6vw,20px);right:clamp(14px,1.6vw,20px);bottom:clamp(12px,1.4vw,18px);
+  font-size:10px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.84);
+}
+.ck-shot--lead{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
+.ck-shot--lead .ck-shot-cap{display:none}
+.ck-shot-card{
+  position:absolute;z-index:2;left:clamp(16px,2vw,26px);right:clamp(16px,2vw,26px);bottom:clamp(16px,2vw,26px);
+  padding:clamp(18px,2vw,26px);border-radius:clamp(14px,1.6vw,20px);
+  background:rgba(255,255,255,.94);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  box-shadow:0 26px 54px -24px rgba(4,12,32,.7);
+  transition:transform .5s var(--ease);
+}
+.ck-shot--lead:hover .ck-shot-card{transform:translateY(-4px)}
+.ck-shot-card b{display:block;font-size:clamp(17px,1.9vw,22px);font-weight:800;letter-spacing:-.034em;color:var(--ink)}
+.ck-shot-card p{margin-top:10px;font-size:13.4px;line-height:1.68;color:#5a6a83}
+.ck-shot-chip{
+  display:inline-flex;align-items:center;gap:7px;margin-bottom:12px;padding:5px 12px;border-radius:70px;
+  font-size:9.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#fff;
+  background:linear-gradient(180deg,var(--acc-2),var(--acc));
+}
+@media (max-width:900px){
+  .ck-gal{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ck-shot--lead{grid-column:span 2;grid-row:span 1;aspect-ratio:16/10}
+  .ck-shot--lead .ck-shot-card{position:relative;left:auto;right:auto;bottom:auto;margin:0}
+}
+@media (max-width:600px){
+  .ck-gal{grid-template-columns:1fr}
+  .ck-shot--lead{grid-column:span 1}
+}
+
+/* the Asia Cup page shares the frame and swaps the plate */
+.ck-hero--ac .ck-hero-bg{background-image:url("../../../assets/img/ac-banner.jpg")}
+.ck-hero--ac::before{
+  background:
+    linear-gradient(90deg,rgba(3,8,20,.9) 0%,rgba(3,8,20,.72) 32%,rgba(3,8,20,.3) 56%,transparent 84%),
+    linear-gradient(180deg,rgba(3,8,20,.5),transparent 24%,rgba(3,8,20,.86));
+}
