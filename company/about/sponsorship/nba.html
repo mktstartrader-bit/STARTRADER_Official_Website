@@ -122,6 +122,8 @@
 }
   </script>
 
+  <link rel="preload" as="image" href="../../../assets/img/nba-banner.jpg" fetchpriority="high">
+
 </head>
 <body class="nb">
 
@@ -418,9 +420,6 @@
 
 <main id="main">
 
-<!-- ============ HUD ============ -->
-<div class="nb-hud" aria-hidden="true"><i data-nb-hud></i></div>
-
 <!-- ============ HERO ============ -->
 <section class="nb-hero" aria-labelledby="nb-hero-title">
   <span class="nb-hero-bg" data-nb-bg aria-hidden="true"></span>
@@ -445,11 +444,6 @@
           <span><em>Download</em><b>STARTRADER for Android</b></span>
         </a>
       </div>
-    </div>
-
-    <div class="nb-hero-viz" aria-hidden="true">
-      <span class="nb-hero-ring"></span>
-      <img src="../../../assets/img/nba-hero.jpg" alt="" width="1100" height="1100" fetchpriority="high" decoding="async" data-nb-float>
     </div>
   </div>
 
@@ -498,56 +492,152 @@
 
 <!-- ============ WALLPAPERS ============ -->
 <section class="section nb-wall-sec" id="wallpapers" aria-labelledby="nb-wall-title">
-  <span class="nb-seams" aria-hidden="true"></span>
-  <span class="nb-seams nb-seams--left" aria-hidden="true"></span>
   <div class="container">
     <span class="nb-eyebrow" data-reveal>Downloads</span>
     <h2 class="nb-h2" id="nb-wall-title" data-reveal>Game on. Moves ready.<br> Decisions set.</h2>
+    <p class="nb-sub" data-reveal>16 team designs, each carrying the partnership mark. Pick one from the wall &mdash; the screen, and the room around it, change with it.</p>
 
-    <div class="nb-wall" data-nb-wall>
-      <button class="nb-slot is-on" type="button" data-nb-slot="0" aria-label="Boston Celtics wallpaper">
-        <span class="nb-phone-shell" aria-hidden="true"></span>
-        <span class="nb-screen">
-          <img src="../../../assets/img/nba-wp-celtics.jpg" alt="Boston Celtics wallpaper" width="740" height="1600" fetchpriority="high" decoding="async">
-          <span class="nb-notch" aria-hidden="true"></span>
-        </span>
-        <span class="nb-slot-lbl">Boston Celtics</span>
-      </button>
-      <button class="nb-slot" type="button" data-nb-slot="1" aria-label="Brooklyn Nets wallpaper">
-        <span class="nb-phone-shell" aria-hidden="true"></span>
-        <span class="nb-screen">
-          <img src="../../../assets/img/nba-wp-nets.jpg" alt="Brooklyn Nets wallpaper" width="740" height="1600" loading="lazy" decoding="async">
-          <span class="nb-notch" aria-hidden="true"></span>
-        </span>
-        <span class="nb-slot-lbl">Brooklyn Nets</span>
-      </button>
-      <button class="nb-slot" type="button" data-nb-slot="2" aria-label="Charlotte Hornets wallpaper">
-        <span class="nb-phone-shell" aria-hidden="true"></span>
-        <span class="nb-screen">
-          <img src="../../../assets/img/nba-wp-hornets.jpg" alt="Charlotte Hornets wallpaper" width="740" height="1600" loading="lazy" decoding="async">
-          <span class="nb-notch" aria-hidden="true"></span>
-        </span>
-        <span class="nb-slot-lbl">Charlotte Hornets</span>
-      </button>
-      <button class="nb-slot" type="button" data-nb-slot="3" aria-label="Chicago Bulls wallpaper">
-        <span class="nb-phone-shell" aria-hidden="true"></span>
-        <span class="nb-screen">
-          <img src="../../../assets/img/nba-wp-bulls.jpg" alt="Chicago Bulls wallpaper" width="740" height="1600" loading="lazy" decoding="async">
-          <span class="nb-notch" aria-hidden="true"></span>
-        </span>
-        <span class="nb-slot-lbl">Chicago Bulls</span>
-      </button>
-    </div>
+    <div class="nb-locker" data-nb-locker style="--pri:#007a33;--sec:#ffffff">
+      <span class="nb-locker-aura" aria-hidden="true"></span>
 
-    <div class="nb-wall-bar" data-reveal>
-      <span class="nb-wall-bar-tx">
-        <b data-nb-name>Boston Celtics</b>
-        <em>Official Partner of the NBA &middot; 1170 &times; 2532</em>
-      </span>
-      <span class="nb-wall-act">
-        <a class="nb-btn" href="#">Download this <svg><use href="#i-download"/></svg></a>
-        <a class="nb-btn nb-btn--ghost" href="#">Download all <svg><use href="#i-download"/></svg></a>
-      </span>
+      <div class="nb-stage">
+        <div class="nb-phone" data-nb-phone data-reveal>
+          <span class="nb-phone-shell" aria-hidden="true"></span>
+          <span class="nb-screen">
+            <img data-nb-shot src="../../../assets/img/nba-wp-celtics.jpg" alt="Boston Celtics wallpaper" width="740" height="1600" loading="lazy" decoding="async">
+            <span class="nb-glare" aria-hidden="true"></span>
+            <span class="nb-notch" aria-hidden="true"></span>
+          </span>
+          <span class="nb-phone-tag" aria-hidden="true">1170 &times; 2532</span>
+        </div>
+
+        <div class="nb-stage-tx">
+          <span class="nb-count" aria-hidden="true"><b data-nb-idx>02</b><i>/</i><em>16</em></span>
+          <h3 data-nb-name>Boston Celtics</h3>
+          <p class="nb-spec">Official Partner of the NBA &middot; iPhone and Android &middot; PNG</p>
+          <span class="nb-chips" aria-hidden="true"><i style="background:#007a33"></i><i style="background:#ffffff"></i></span>
+          <div class="nb-wall-act">
+            <a class="nb-btn" href="../../../assets/img/nba-wp-celtics.jpg" data-nb-get download>Download this <svg><use href="#i-download"/></svg></a>
+            <a class="nb-btn nb-btn--ghost" href="#">Download all 16 <svg><use href="#i-download"/></svg></a>
+          </div>
+          <span class="nb-hint">Pick a team below, or step through the set with <kbd>&larr;</kbd><kbd>&rarr;</kbd></span>
+        </div>
+      </div>
+
+      <div class="nb-deck" data-nb-deck role="tablist" aria-label="Team wallpapers">
+        <button class="nb-tile" type="button" role="tab" id="nb-tile-0"
+          aria-selected="false" tabindex="-1"
+          data-nb-tile="0" data-name="Atlanta Hawks" data-src="../../../assets/img/nba-wp-hawks.jpg" data-pri="#e03a3e" data-sec="#c1d32f">
+          <img src="../../../assets/img/nba-wp-hawks.jpg" alt="" width="740" height="1600" loading="lazy" decoding="async">
+          <span class="nb-tile-n">01</span>
+          <span class="nb-tile-lbl">Atlanta Hawks</span>
+        </button>
+        <button class="nb-tile is-on" type="button" role="tab" id="nb-tile-1"
+          aria-selected="true" tabindex="0"
+          data-nb-tile="1" data-name="Boston Celtics" data-src="../../../assets/img/nba-wp-celtics.jpg" data-pri="#007a33" data-sec="#ffffff">
+          <img src="../../../assets/img/nba-wp-celtics.jpg" alt="" width="740" height="1600" loading="lazy" decoding="async">
+          <span class="nb-tile-n">02</span>
+          <span class="nb-tile-lbl">Boston Celtics</span>
+        </button>
+        <button class="nb-tile" type="button" role="tab" id="nb-tile-2"
+          aria-selected="false" tabindex="-1"
+          data-nb-tile="2" data-name="Brooklyn Nets" data-src="../../../assets/img/nba-wp-nets.jpg" data-pri="#1f2430" data-sec="#c9ced6">
+          <img src="../../../assets/img/nba-wp-nets.jpg" alt="" width="740" height="1600" loading="lazy" decoding="async">
+          <span class="nb-tile-n">03</span>
+          <span class="nb-tile-lbl">Brooklyn Nets</span>
+        </button>
+        <button class="nb-tile" type="button" role="tab" id="nb-tile-3"
+          aria-selected="false" tabindex="-1"
+          data-nb-tile="3" data-name="Charlotte Hornets" data-src="../../../assets/img/nba-wp-hornets.jpg" data-pri="#00788c" data-sec="#1d1160">
+          <img src="../../../assets/img/nba-wp-hornets.jpg" alt="" width="740" height="1600" loading="lazy" decoding="async">
+          <span class="nb-tile-n">04</span>
+          <span class="nb-tile-lbl">Charlotte Hornets</span>
+        </button>
+        <button class="nb-tile" type="button" role="tab" id="nb-tile-4"
+          aria-selected="false" tabindex="-1"
+          data-nb-tile="4" data-name="Chicago Bulls" data-src="../../../assets/img/nba-wp-bulls.jpg" data-pri="#ce1141" data-sec="#ffffff">
+          <img src="../../../assets/img/nba-wp-bulls.jpg" alt="" width="740" height="1600" loading="lazy" decoding="async">
+          <span class="nb-tile-n">05</span>
+          <span class="nb-tile-lbl">Chicago Bulls</span>
+        </button>
+        <button class="nb-tile" type="button" role="tab" id="nb-tile-5"
+          aria-selected="false" tabindex="-1"
+          data-nb-tile="5" data-name="Cleveland Cavaliers" data-src="../../../assets/img/nba-wp-cavaliers.jpg" data-pri="#860038" data-sec="#fdbb30">
+          <img src="../../../assets/img/nba-wp-cavaliers.jpg" alt="" width="740" height="1600" loading="lazy" decoding="async">
+          <span class="nb-tile-n">06</span>
+          <span class="nb-tile-lbl">Cleveland Cavaliers</span>
+        </button>
+        <button class="nb-tile" type="button" role="tab" id="nb-tile-6"
+          aria-selected="false" tabindex="-1"
+          data-nb-tile="6" data-name="Dallas Mavericks" data-src="../../../assets/img/nba-wp-mavericks.jpg" data-pri="#00538c" data-sec="#b8c4ca">
+          <img src="../../../assets/img/nba-wp-mavericks.jpg" alt="" width="740" height="1600" loading="lazy" decoding="async">
+          <span class="nb-tile-n">07</span>
+          <span class="nb-tile-lbl">Dallas Mavericks</span>
+        </button>
+        <button class="nb-tile" type="button" role="tab" id="nb-tile-7"
+          aria-selected="false" tabindex="-1"
+          data-nb-tile="7" data-name="Denver Nuggets" data-src="../../../assets/img/nba-wp-nuggets.jpg" data-pri="#12315c" data-sec="#fec524">
+          <img src="../../../assets/img/nba-wp-nuggets.jpg" alt="" width="740" height="1600" loading="lazy" decoding="async">
+          <span class="nb-tile-n">08</span>
+          <span class="nb-tile-lbl">Denver Nuggets</span>
+        </button>
+        <button class="nb-tile" type="button" role="tab" id="nb-tile-8"
+          aria-selected="false" tabindex="-1"
+          data-nb-tile="8" data-name="Detroit Pistons" data-src="../../../assets/img/nba-wp-pistons.jpg" data-pri="#c8102e" data-sec="#1d42ba">
+          <img src="../../../assets/img/nba-wp-pistons.jpg" alt="" width="740" height="1600" loading="lazy" decoding="async">
+          <span class="nb-tile-n">09</span>
+          <span class="nb-tile-lbl">Detroit Pistons</span>
+        </button>
+        <button class="nb-tile" type="button" role="tab" id="nb-tile-9"
+          aria-selected="false" tabindex="-1"
+          data-nb-tile="9" data-name="Golden State Warriors" data-src="../../../assets/img/nba-wp-warriors.jpg" data-pri="#1d428a" data-sec="#ffc72c">
+          <img src="../../../assets/img/nba-wp-warriors.jpg" alt="" width="740" height="1600" loading="lazy" decoding="async">
+          <span class="nb-tile-n">10</span>
+          <span class="nb-tile-lbl">Golden State Warriors</span>
+        </button>
+        <button class="nb-tile" type="button" role="tab" id="nb-tile-10"
+          aria-selected="false" tabindex="-1"
+          data-nb-tile="10" data-name="Houston Rockets" data-src="../../../assets/img/nba-wp-rockets.jpg" data-pri="#ce1141" data-sec="#c4ced4">
+          <img src="../../../assets/img/nba-wp-rockets.jpg" alt="" width="740" height="1600" loading="lazy" decoding="async">
+          <span class="nb-tile-n">11</span>
+          <span class="nb-tile-lbl">Houston Rockets</span>
+        </button>
+        <button class="nb-tile" type="button" role="tab" id="nb-tile-11"
+          aria-selected="false" tabindex="-1"
+          data-nb-tile="11" data-name="Indiana Pacers" data-src="../../../assets/img/nba-wp-pacers.jpg" data-pri="#00397e" data-sec="#fdbb30">
+          <img src="../../../assets/img/nba-wp-pacers.jpg" alt="" width="740" height="1600" loading="lazy" decoding="async">
+          <span class="nb-tile-n">12</span>
+          <span class="nb-tile-lbl">Indiana Pacers</span>
+        </button>
+        <button class="nb-tile" type="button" role="tab" id="nb-tile-12"
+          aria-selected="false" tabindex="-1"
+          data-nb-tile="12" data-name="Los Angeles Lakers" data-src="../../../assets/img/nba-wp-lakers.jpg" data-pri="#552583" data-sec="#fdb927">
+          <img src="../../../assets/img/nba-wp-lakers.jpg" alt="" width="740" height="1600" loading="lazy" decoding="async">
+          <span class="nb-tile-n">13</span>
+          <span class="nb-tile-lbl">Los Angeles Lakers</span>
+        </button>
+        <button class="nb-tile" type="button" role="tab" id="nb-tile-13"
+          aria-selected="false" tabindex="-1"
+          data-nb-tile="13" data-name="Miami Heat" data-src="../../../assets/img/nba-wp-heat.jpg" data-pri="#98002e" data-sec="#f9a01b">
+          <img src="../../../assets/img/nba-wp-heat.jpg" alt="" width="740" height="1600" loading="lazy" decoding="async">
+          <span class="nb-tile-n">14</span>
+          <span class="nb-tile-lbl">Miami Heat</span>
+        </button>
+        <button class="nb-tile" type="button" role="tab" id="nb-tile-14"
+          aria-selected="false" tabindex="-1"
+          data-nb-tile="14" data-name="Milwaukee Bucks" data-src="../../../assets/img/nba-wp-bucks.jpg" data-pri="#00551f" data-sec="#eee1c6">
+          <img src="../../../assets/img/nba-wp-bucks.jpg" alt="" width="740" height="1600" loading="lazy" decoding="async">
+          <span class="nb-tile-n">15</span>
+          <span class="nb-tile-lbl">Milwaukee Bucks</span>
+        </button>
+        <button class="nb-tile" type="button" role="tab" id="nb-tile-15"
+          aria-selected="false" tabindex="-1"
+          data-nb-tile="15" data-name="New York Knicks" data-src="../../../assets/img/nba-wp-knicks.jpg" data-pri="#006bb6" data-sec="#f58426">
+          <img src="../../../assets/img/nba-wp-knicks.jpg" alt="" width="740" height="1600" loading="lazy" decoding="async">
+          <span class="nb-tile-n">16</span>
+          <span class="nb-tile-lbl">New York Knicks</span>
+        </button>
+      </div>
     </div>
   </div>
 </section>

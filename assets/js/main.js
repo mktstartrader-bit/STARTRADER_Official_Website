@@ -3722,35 +3722,11 @@
     var hero = document.querySelector('.nb-hero');
     if (!hero) return;
 
-    /* --- the loading rail tracks how far down the page you are --- */
-    var hud = document.querySelector('[data-nb-hud]');
-    if (hud) {
-      var tick = function () {
-        var max = document.documentElement.scrollHeight - window.innerHeight;
-        hud.style.width = (max > 0 ? Math.min(1, window.scrollY / max) * 100 : 0) + '%';
-      };
-      window.addEventListener('scroll', tick, { passive: true });
-      window.addEventListener('resize', tick);
-      tick();
-    }
-
-    /* --- the spotlight and the subject answer the pointer --- */
-    var float = hero.querySelector('[data-nb-float]');
     if (!prefersReduced) {
-      hero.addEventListener('pointermove', function (e) {
-        var r = hero.getBoundingClientRect();
-        var x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
-        hero.style.setProperty('--mx', (x * 100).toFixed(1) + '%');
-        hero.style.setProperty('--my', (y * 100).toFixed(1) + '%');
-        if (float) float.style.transform = 'translate3d(' + ((x - 0.5) * -26).toFixed(1) + 'px,' + ((y - 0.5) * -22).toFixed(1) + 'px,0)';
-      });
-      hero.addEventListener('pointerleave', function () {
-        if (float) float.style.transform = '';
-      });
-      // the arena drifts up as the hero leaves
+      // the banner drifts up as the hero leaves
       var bg = hero.querySelector('[data-nb-bg]');
       if (bg && hasGSAP && hasST) {
-        gsap.to(bg, { yPercent: 14, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
+        gsap.to(bg, { yPercent: 12, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
       }
       railMarquee(document.getElementById('nbTick'), 46);
     }
@@ -3808,23 +3784,110 @@
       }
     }
 
-    /* --- four phones in a row: pick one, and each tilts on its own --- */
-    var slots = Array.prototype.slice.call(document.querySelectorAll('[data-nb-slot]'));
-    var nameEl = document.querySelector('[data-nb-name]');
-    slots.forEach(function (sl, i) {
-      sl.addEventListener('click', function () {
-        slots.forEach(function (s2, k) { s2.classList.toggle('is-on', k === i); s2.setAttribute('aria-pressed', k === i ? 'true' : 'false'); });
-        if (nameEl) nameEl.textContent = (sl.getAttribute('aria-label') || '').replace(' wallpaper', '');
+    /* --- the locker: one screen, and a wall of team designs behind it --- */
+    var locker = document.querySelector('[data-nb-locker]');
+    if (locker) {
+      var deck = locker.querySelector('[data-nb-deck]');
+      var tiles = Array.prototype.slice.call(locker.querySelectorAll('[data-nb-tile]'));
+      var shot = locker.querySelector('[data-nb-shot]');
+      var nameEl = locker.querySelector('[data-nb-name]');
+      var idxEl = locker.querySelector('[data-nb-idx]');
+      var getEl = locker.querySelector('[data-nb-get]');
+      var chips = Array.prototype.slice.call(locker.querySelectorAll('.nb-chips i'));
+      var phone = locker.querySelector('[data-nb-phone]');
+      var wallAt = 0, touched = false, cycle = null;
+
+      tiles.forEach(function (t, i) { if (t.classList.contains('is-on')) wallAt = i; });
+
+      function dress(i) {
+        wallAt = (i + tiles.length) % tiles.length;
+        var t = tiles[wallAt];
+        var pri = t.getAttribute('data-pri'), sec = t.getAttribute('data-sec');
+        var src = t.getAttribute('data-src'), name = t.getAttribute('data-name');
+
+        locker.style.setProperty('--pri', pri);
+        locker.style.setProperty('--sec', sec);
+        tiles.forEach(function (o, k) {
+          var on = k === wallAt;
+          o.classList.toggle('is-on', on);
+          o.setAttribute('aria-selected', on ? 'true' : 'false');
+          o.tabIndex = on ? 0 : -1;
+        });
+        if (nameEl) nameEl.textContent = name;
+        if (idxEl) idxEl.textContent = ('0' + (wallAt + 1)).slice(-2);
+        if (getEl) getEl.setAttribute('href', src);
+        chips.forEach(function (c, k) { c.style.background = k ? sec : pri; });
+
+        // the screen only changes once the next design is decoded, so it never flashes
+        if (shot && shot.getAttribute('src') !== src) {
+          var pre = new Image();
+          var swap = function () {
+            shot.src = src;
+            shot.alt = name + ' wallpaper';
+            requestAnimationFrame(function () { shot.classList.remove('is-swap'); });
+          };
+          shot.classList.add('is-swap');
+          pre.onload = swap;
+          pre.onerror = swap;
+          pre.src = src;
+        }
+
+        // keep the picked tile inside the rail on narrow screens
+        if (deck && deck.scrollWidth > deck.clientWidth + 4) {
+          var dr = deck.getBoundingClientRect(), tr = t.getBoundingClientRect();
+          var by = (tr.left + tr.width / 2) - (dr.left + dr.width / 2);
+          if (deck.scrollTo) deck.scrollTo({ left: deck.scrollLeft + by, behavior: 'smooth' });
+          else deck.scrollLeft += by;
+        }
+      }
+
+      tiles.forEach(function (t, i) {
+        t.addEventListener('click', function () { touched = true; dress(i); });
       });
-      if (prefersReduced) return;
-      sl.addEventListener('pointermove', function (e) {
-        var r = sl.getBoundingClientRect();
-        var x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
-        var lift = sl.classList.contains('is-on') ? 1.06 : 0.92;
-        sl.style.transform = 'scale(' + lift + ') rotateY(' + (x * 18).toFixed(1) + 'deg) rotateX(' + (-y * 12).toFixed(1) + 'deg)';
-      });
-      sl.addEventListener('pointerleave', function () { sl.style.transform = ''; });
-    });
+      if (deck) {
+        deck.addEventListener('keydown', function (e) {
+          var k = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+          if (!k) return;
+          e.preventDefault();
+          touched = true;
+          dress(wallAt + k);
+          tiles[wallAt].focus();
+        });
+        enableDrag(deck);
+      }
+
+      if (!prefersReduced) {
+        // the device answers the pointer, gently
+        if (phone) {
+          var stage = locker.querySelector('.nb-stage') || locker;
+          stage.addEventListener('pointermove', function (e) {
+            var r = phone.getBoundingClientRect();
+            var x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+            phone.style.transform = 'rotateY(' + (x * 13).toFixed(1) + 'deg) rotateX(' + (-y * 9).toFixed(1) + 'deg)';
+          });
+          stage.addEventListener('pointerleave', function () { phone.style.transform = ''; });
+        }
+        // the wall deals itself until someone picks
+        if ('IntersectionObserver' in window) {
+          new IntersectionObserver(function (es) {
+            es.forEach(function (e) {
+              if (e.isIntersecting && !cycle && !touched) {
+                cycle = setInterval(function () {
+                  if (touched) { clearInterval(cycle); cycle = null; return; }
+                  dress(wallAt + 1);
+                }, 4200);
+              } else if (!e.isIntersecting && cycle) { clearInterval(cycle); cycle = null; }
+            });
+          }, { threshold: 0.35 }).observe(locker);
+        }
+        if (hasGSAP && hasST) {
+          gsap.fromTo(tiles, { y: 26, opacity: 0 }, {
+            y: 0, opacity: 1, duration: 0.6, ease: 'power3.out', stagger: 0.035,
+            scrollTrigger: { trigger: deck || locker, start: 'top 88%', once: true }
+          });
+        }
+      }
+    }
 
     /* --- the habits take turns, and the cycle repeats --- */
     var reps = document.querySelector('[data-nb-reps]');
