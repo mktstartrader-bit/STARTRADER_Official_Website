@@ -9745,52 +9745,54 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
 .mall-rew{position:relative;isolation:isolate;overflow:clip;
   background:radial-gradient(50% 44% at 90% 0%,rgba(0,71,187,.08),transparent 62%),var(--bg-light-2)}
 .mall-rew>.container{position:relative;z-index:1}
-/* the four categories run across, each tile a label, a line and the product
-   on a light studio ground */
+/* an asymmetric bento: spans 3+3 then 4+2, so six columns fill exactly.
+   two tiles stack text over image, two set them side by side */
 .mall-cats{
-  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  display:grid;grid-template-columns:repeat(6,minmax(0,1fr));
   gap:clamp(12px,1.5vw,18px);margin-top:clamp(32px,4vw,50px);
 }
 .mall-cat{
-  position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;
-  padding:clamp(20px,2.2vw,26px) clamp(14px,1.6vw,20px) 0;
-  border-radius:clamp(16px,1.9vw,22px);
-  background:linear-gradient(180deg,#fff 0%,#f2f5fa 58%,#e9eef6 100%);
-  border:1px solid rgba(20,44,96,.08);
-  box-shadow:0 14px 36px -26px rgba(20,44,96,.4);
+  position:relative;overflow:hidden;display:flex;flex-direction:column;
+  padding:clamp(20px,2.4vw,30px);border-radius:clamp(16px,1.9vw,24px);
+  background:linear-gradient(180deg,#fff,#f4f7fb);
+  border:1px solid rgba(20,44,96,.07);
+  box-shadow:0 14px 36px -26px rgba(20,44,96,.36);
   transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .32s;
 }
-.mall-cat--sand{background:linear-gradient(180deg,#fff 0%,#f7f2ec 58%,#efe6da 100%)}
-.mall-cat:hover{transform:translateY(-6px);border-color:rgba(0,71,187,.24);
-  box-shadow:0 30px 58px -28px rgba(20,44,96,.45)}
-.mall-cat--sand:hover{border-color:rgba(138,100,64,.3)}
+/* the pale tiles, as in the reference */
+.mall-cat--tint{background:linear-gradient(180deg,#eaf1fb,#dce8f8)}
+.mall-cat:hover{transform:translateY(-6px);border-color:rgba(0,71,187,.22);
+  box-shadow:0 30px 58px -28px rgba(20,44,96,.42)}
+.mall-cat--w3{grid-column:span 3}
+.mall-cat--w4{grid-column:span 4}
+.mall-cat--w2{grid-column:span 2}
+/* text beside the product rather than above it */
+.mall-cat--row{flex-direction:row;align-items:center;gap:clamp(16px,2.4vw,34px)}
+.mall-cat--row .mall-cat-tx{flex:0 0 44%}
+.mall-cat--row.is-flip{flex-direction:row-reverse}
+.mall-cat-tx{position:relative;z-index:1}
 .mall-cat-chip{
-  display:inline-flex;align-items:center;padding:6px 14px;border-radius:9px;
+  display:inline-flex;align-items:center;padding:6px 13px;border-radius:9px;
   font-size:10px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--text-soft);
   background:rgba(255,255,255,.9);border:1px solid rgba(20,44,96,.12);
 }
-.mall-cat--sand .mall-cat-chip{color:#8a6440;border-color:rgba(138,100,64,.22)}
+.mall-cat--tint .mall-cat-chip{background:rgba(255,255,255,.8);border-color:rgba(0,71,187,.16);color:var(--blue)}
 .mall-cat b{
-  margin-top:14px;font-size:clamp(15px,1.7vw,18px);font-weight:700;letter-spacing:-.028em;
-  line-height:1.28;color:var(--ink);text-align:center;
+  display:block;margin-top:13px;font-size:clamp(16px,1.8vw,21px);font-weight:700;
+  letter-spacing:-.03em;line-height:1.22;color:var(--ink);
 }
-/* the product sits in the lower half, never scaled past its own pixels */
+.mall-cat p{margin-top:8px;font-size:12.8px;line-height:1.62;color:var(--text-soft)}
+/* the product stands in the space that is left */
 .mall-cat-shot{
   position:relative;display:flex;align-items:flex-end;justify-content:center;
-  width:100%;margin-top:auto;padding-top:clamp(16px,2vw,24px);
-  min-height:clamp(150px,15vw,196px);
+  flex:1;min-height:clamp(126px,13vw,168px);margin-top:auto;padding-top:clamp(12px,1.6vw,20px);
 }
+.mall-cat--row .mall-cat-shot{margin-top:0;padding-top:0;min-height:clamp(112px,12vw,150px)}
 .mall-cat-shot img{
-  display:block;width:auto;max-width:100%;height:auto;
-  max-height:clamp(148px,15vw,192px);
+  display:block;width:auto;max-width:100%;height:auto;max-height:clamp(120px,13vw,164px);
   transition:transform .6s var(--ease);
 }
-.mall-cat:hover .mall-cat-shot img{transform:translateY(-6px) scale(1.03)}
-/* a soft pool under the product, so it reads as standing on the tile */
-.mall-cat-shot::after{
-  content:"";position:absolute;left:14%;right:14%;bottom:6px;height:16px;border-radius:50%;
-  background:rgba(20,44,96,.14);filter:blur(11px);
-}
+.mall-cat:hover .mall-cat-shot img{transform:translateY(-5px) scale(1.03)}
 
 /* the deal, stated once, across the full width */
 .mall-lead{
@@ -9830,10 +9832,16 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
 
 @media (max-width:1000px){
   .mall-cats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .mall-cat--w3,.mall-cat--w4,.mall-cat--w2{grid-column:span 1}
+  .mall-cat--row{flex-direction:column;align-items:stretch;gap:0}
+  .mall-cat--row.is-flip{flex-direction:column}
+  .mall-cat--row .mall-cat-tx{flex:none}
+  .mall-cat--row .mall-cat-shot{margin-top:auto;padding-top:clamp(12px,1.6vw,20px)}
   .mall-lead{grid-template-columns:1fr;gap:22px}
   .mall-lead-act .pm-btn{width:100%;justify-content:center}
 }
 @media (max-width:560px){
   .mall-cats{grid-template-columns:1fr}
+  .mall-cat--w3,.mall-cat--w4,.mall-cat--w2{grid-column:span 1}
   .mall-pts{gap:14px 22px}
 }
