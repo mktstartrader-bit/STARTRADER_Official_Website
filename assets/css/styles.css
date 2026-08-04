@@ -6018,6 +6018,12 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
   -webkit-mask-image:radial-gradient(78% 84% at 50% 46%,#000 62%,rgba(0,0,0,0) 96%);
   mask-image:radial-gradient(78% 84% at 50% 46%,#000 62%,rgba(0,0,0,0) 96%);
 }
+/* this render sits on near-black navy, so lighten drops its ground on its own;
+   the mask only has to soften the outer corners */
+.mt-dl-img--mt5{
+  -webkit-mask-image:radial-gradient(80% 86% at 52% 46%,#000 66%,rgba(0,0,0,0) 98%);
+  mask-image:radial-gradient(80% 86% at 52% 46%,#000 66%,rgba(0,0,0,0) 98%);
+}
 .mt-dl-btns{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin:10px auto 0}
 .mt-dl-btn{
   position:relative;overflow:hidden;display:flex;align-items:center;gap:14px;
