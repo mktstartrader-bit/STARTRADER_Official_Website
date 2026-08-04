@@ -6018,13 +6018,12 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
   -webkit-mask-image:radial-gradient(78% 84% at 50% 46%,#000 62%,rgba(0,0,0,0) 96%);
   mask-image:radial-gradient(78% 84% at 50% 46%,#000 62%,rgba(0,0,0,0) 96%);
 }
-/* this render is front on, filling its frame on pure black, so lighten drops the
-   ground entirely and the mask only needs to feather the lower corners */
-/* the fade starts below the screen (which ends at 83% of the render) so the
-   terminal stays fully opaque and only the laptop base feathers away */
+/* this render's surround is rgb(2,4,14) — darker than the section on every
+   channel — so lighten alone melts it away. No mask: any fade would only dim
+   the laptop base and the bottom of the terminal. */
 .mt-dl-img--mt5{
-  -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 83%,rgba(0,0,0,0) 100%);
-  mask-image:linear-gradient(180deg,#000 0%,#000 83%,rgba(0,0,0,0) 100%);
+  -webkit-mask-image:none;
+  mask-image:none;
 }
 .mt-dl-stage:has(.mt-dl-img--mt5){max-width:min(1120px,96%)}
 .mt-dl-btns{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin:10px auto 0}
