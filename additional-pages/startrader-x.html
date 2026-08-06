@@ -45,60 +45,69 @@
    between. Every hover is the site's lift; every accent earns it.
    ================================================================= */
 
-/* ---- the four conditions ---- */
-.x-cond-sec{position:relative;isolation:isolate;overflow:clip;
+/* ---- live market tickets ---- */
+.x-mkt-sec{position:relative;isolation:isolate;overflow:clip;
   background:
     radial-gradient(46% 40% at 10% 6%,rgba(0,71,187,.07),transparent 62%),
     radial-gradient(40% 36% at 92% 92%,rgba(22,233,215,.06),transparent 60%),
     var(--bg-light-2)}
-.x-cond-sec>.container{position:relative;z-index:1}
-.x-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(14px,1.8vw,22px);margin-top:clamp(30px,3.6vw,46px)}
-.x-card{display:flex;flex-direction:column;gap:11px;border-radius:clamp(18px,2vw,26px);padding:clamp(20px,2.4vw,30px);
+.x-mkt-sec>.container{position:relative;z-index:1}
+.x-mkt{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.8vw,22px);margin-top:clamp(30px,3.6vw,46px)}
+.x-tkt{display:flex;flex-direction:column;gap:10px;border-radius:clamp(18px,2vw,24px);padding:clamp(18px,2.2vw,26px);
   background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.9);
   -webkit-backdrop-filter:blur(18px) saturate(1.45);backdrop-filter:blur(18px) saturate(1.45);
   box-shadow:0 22px 50px -34px rgba(16,30,54,.3),inset 0 1px 0 rgba(255,255,255,.9);
   transition:transform .45s var(--ease),box-shadow .45s var(--ease)}
-.x-card:hover{transform:translateY(-6px);box-shadow:0 34px 66px -34px rgba(16,30,54,.42)}
-.x-card:hover .x-ic{transform:scale(1.1) rotate(-3deg)}
-.x-ic{display:inline-grid;place-items:center;width:42px;height:42px;border-radius:13px;
-  color:var(--blue);background:rgba(0,71,187,.09);border:1px solid rgba(0,71,187,.16);
-  transition:transform .35s var(--ease)}
-.x-ic svg{width:19px;height:19px}
-.x-card h3{font-size:15.5px;letter-spacing:-.02em}
-.x-card p{font-size:13px;line-height:1.62;color:var(--text-soft)}
+.x-tkt:hover{transform:translateY(-6px);box-shadow:0 34px 66px -34px rgba(16,30,54,.42)}
+.x-tkt-top{display:flex;align-items:center;gap:10px}
+.x-tkt-top b{font-size:14.5px;letter-spacing:-.01em}
+.x-tkt-flags{display:inline-flex}
+.x-tkt-flags img{width:22px;height:22px;border-radius:50%;border:2px solid #fff;object-fit:cover}
+.x-tkt-flags img+img{margin-left:-8px}
+.x-tkt-chg{margin-left:auto;font-size:11.5px;font-weight:800;padding:4px 9px;border-radius:30px;
+  font-variant-numeric:tabular-nums;transition:background .3s,color .3s}
+.x-tkt-chg.up{color:#0f7d5c;background:rgba(16,185,129,.12)}
+.x-tkt-chg.down{color:#b3423f;background:rgba(239,68,68,.1)}
+.x-tkt-px{font-size:clamp(24px,2.2vw,30px);font-weight:800;letter-spacing:-.02em;
+  font-variant-numeric:tabular-nums;transition:color .25s}
+.x-tkt-px.fup{color:#0f9d6a}.x-tkt-px.fdown{color:#d64545}
+.x-tkt-spark{width:100%;height:34px;color:rgba(0,71,187,.55)}
+.x-tkt-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:2px;
+  padding-top:12px;border-top:1px solid var(--line)}
+.x-tkt-spr{font-size:12px;font-weight:600;color:var(--text-mute)}
+.x-tkt-spr b{color:var(--blue);font-variant-numeric:tabular-nums}
+.x-tkt-go{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:700;color:var(--blue)}
+.x-tkt-go svg{width:14px;height:14px;transition:transform .3s var(--ease)}
+.x-tkt:hover .x-tkt-go svg{transform:translateX(4px)}
 
-/* micro elements, one per promise */
-.x-meter{margin-top:auto;padding-top:10px}
-.x-meter-track{position:relative;height:7px;border-radius:6px;overflow:hidden;background:rgba(20,40,80,.08)}
+/* ---- dark micro elements for the condition bento ---- */
+.x-meter-dark{display:block;width:100%}
+.x-meter-track{position:relative;display:block;height:7px;border-radius:6px;overflow:hidden;background:rgba(255,255,255,.12)}
 .x-meter-track i{position:absolute;inset:0;width:38%;border-radius:6px;
   background:linear-gradient(90deg,#2a72ff,#16e9d7);transition:width .7s var(--ease)}
 .x-card:hover .x-meter-track i{width:100%}
-.x-meter em{display:flex;justify-content:space-between;margin-top:7px;font-style:normal;font-size:11px;font-weight:700;
-  letter-spacing:.08em;text-transform:uppercase;color:var(--text-mute)}
-.x-meter em b{color:#0f7d5c;opacity:0;transition:opacity .4s .3s}
-.x-card:hover .x-meter em b{opacity:1}
-.x-spread{margin-top:auto;display:inline-flex;align-items:baseline;gap:7px;padding-top:10px}
-.x-spread b{position:relative;overflow:hidden;font-size:clamp(26px,2.6vw,34px);font-weight:800;letter-spacing:-.03em;color:var(--blue)}
-.x-spread b::after{content:"";position:absolute;inset:0;transform:translateX(-110%);
-  background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.75) 50%,transparent 70%)}
-.x-card:hover .x-spread b::after{animation:xShine .9s var(--ease)}
+.x-meter-dark em{display:flex;justify-content:space-between;margin-top:8px;font-style:normal;font-size:10.5px;
+  font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#8ea4c6}
+.x-meter-dark em b{color:#16e9d7;opacity:0;transition:opacity .4s .3s}
+.x-card:hover .x-meter-dark em b{opacity:1}
+.x-spread--dark{display:inline-flex;align-items:baseline;gap:8px}
+.x-spread--dark b{position:relative;overflow:hidden;font-size:clamp(22px,2.2vw,28px);font-weight:800;letter-spacing:-.03em;color:#8db4ff}
+.x-spread--dark b::after{content:"";position:absolute;inset:0;transform:translateX(-110%);
+  background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.5) 50%,transparent 70%)}
+.x-card:hover .x-spread--dark b::after{animation:xShine .9s var(--ease)}
 @keyframes xShine{to{transform:translateX(110%)}}
-.x-spread em{font-style:normal;font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mute)}
-.x-speed{margin-top:auto;display:flex;align-items:center;gap:10px;padding-top:10px}
-.x-speed b{font-size:clamp(26px,2.6vw,34px);font-weight:800;letter-spacing:-.03em;color:var(--blue);font-variant-numeric:tabular-nums}
-.x-speed span{display:grid;gap:3px}
-.x-speed span i{display:block;height:3px;border-radius:3px;background:linear-gradient(90deg,#2a72ff,transparent);
-  transform-origin:left;transform:scaleX(.4);transition:transform .45s var(--ease)}
-.x-speed span i:nth-child(2){transition-delay:.06s}
-.x-speed span i:nth-child(3){transition-delay:.12s}
-.x-card:hover .x-speed span i{transform:scaleX(1)}
-.x-speed span i{width:46px}
-.x-live{margin-top:auto;display:inline-flex;align-items:center;gap:9px;padding-top:10px;
-  font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#0f7d5c}
-.x-live i{width:9px;height:9px;border-radius:50%;background:#10b981;
-  box-shadow:0 0 0 0 rgba(16,185,129,.35);animation:xPulse 2.2s ease-out infinite}
-@keyframes xPulse{70%{box-shadow:0 0 0 9px rgba(16,185,129,0)}100%{box-shadow:0 0 0 0 rgba(16,185,129,0)}}
-@media (prefers-reduced-motion:reduce){.x-live i{animation:none}.x-card:hover .x-spread b::after{animation:none}}
+.x-spread--dark em{font-style:normal;font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#8ea4c6}
+.x-speed--dark{display:inline-flex;align-items:center;gap:10px}
+.x-speed--dark b{font-size:clamp(22px,2.2vw,28px);font-weight:800;letter-spacing:-.03em;color:#7ef0d2;font-variant-numeric:tabular-nums}
+.x-speed--dark b small{font-size:.55em;font-weight:800;margin-left:2px}
+.x-speed--dark span{display:grid;gap:3px}
+.x-speed--dark span i{display:block;width:44px;height:3px;border-radius:3px;
+  background:linear-gradient(90deg,#16e9d7,transparent);transform-origin:left;transform:scaleX(.4);
+  transition:transform .45s var(--ease)}
+.x-speed--dark span i:nth-child(2){transition-delay:.06s}
+.x-speed--dark span i:nth-child(3){transition-delay:.12s}
+.x-card:hover .x-speed--dark span i{transform:scaleX(1)}
+@media (prefers-reduced-motion:reduce){.x-card:hover .x-spread--dark b::after{animation:none}}
 
 /* ---- device split ---- */
 .x-app-sec{position:relative;isolation:isolate;overflow:clip;color:#fff;
@@ -128,9 +137,30 @@
 .x-partners img{height:34px;width:auto;opacity:.85;transition:opacity .3s,transform .3s var(--ease)}
 .x-partners img:hover{opacity:1;transform:translateY(-2px)}
 
-@media (max-width:1080px){.x-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:900px){.x-app{grid-template-columns:1fr}}
-@media (max-width:560px){.x-grid{grid-template-columns:1fr}}
+/* floating toasts around the handset */
+.x-toast{position:absolute;display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:14px;
+  background:rgba(10,16,30,.66);border:1px solid rgba(255,255,255,.16);
+  -webkit-backdrop-filter:blur(14px) saturate(1.3);backdrop-filter:blur(14px) saturate(1.3);
+  box-shadow:0 18px 40px -18px rgba(0,0,0,.7);white-space:nowrap;
+  animation:xToast 5s ease-in-out infinite}
+.x-toast--a{right:-12%;top:12%}
+.x-toast--b{left:-16%;top:44%;animation-delay:1.2s}
+.x-toast--c{right:-8%;bottom:14%;animation-delay:2.4s}
+@keyframes xToast{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@media (prefers-reduced-motion:reduce){.x-toast{animation:none}}
+.x-toast i{flex:none;width:10px;height:10px;border-radius:50%}
+.x-toast i.up{background:#5b9dff;box-shadow:0 0 0 4px rgba(91,157,255,.18)}
+.x-toast i.ok{background:#10b981;box-shadow:0 0 0 4px rgba(16,185,129,.18)}
+.x-toast i.wd{background:#16e9d7;box-shadow:0 0 0 4px rgba(22,233,215,.16)}
+.x-toast b{display:block;font-size:11.5px;color:#eaf0fa;letter-spacing:-.01em}
+.x-toast em{display:block;font-style:normal;font-size:10.5px;color:#8ea4c6;margin-top:1px}
+
+@media (max-width:1080px){.x-mkt{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:900px){
+  .x-app{grid-template-columns:1fr}
+  .x-toast--a{right:0}.x-toast--b{left:0}.x-toast--c{right:4%}
+}
+@media (max-width:560px){.x-mkt{grid-template-columns:1fr}.x-toast{display:none}}
   </style>
   <script type="application/ld+json">
   {
@@ -461,89 +491,138 @@
   </div>
 </section>
 
-<!-- ============ THE BOARD ============ -->
-<section class="section fx-pairs" id="markets" aria-labelledby="x-mkts-title" data-fx-pairs>
+<!-- ============ THE MARKETS ============ -->
+<section class="section x-mkt-sec" id="markets" aria-labelledby="x-mkts-title">
   <div class="container">
     <div class="head center">
       <span class="eyebrow" data-aos="fade-up">One platform</span>
       <h2 class="h2" id="x-mkts-title" data-aos="fade-up">Access 1,000+ popular<br> global assets</h2>
-      <p class="head-sub" data-aos="fade-up">Forex, gold, indices and more &mdash; with highly competitive spreads<br> on the products traders actually use.</p>
+      <p class="head-sub" data-aos="fade-up">Forex, gold, indices and more &mdash; live tickets below, competitive spreads throughout.</p>
     </div>
 
-    <div class="fx-cats" role="tablist" aria-label="Instrument categories">
-      <button class="fx-cat active" type="button" data-fx-cat="major" role="tab" aria-selected="true" data-aos="fade-up">
-        <span class="cat-tag">Major</span>
-        <h3>Major Pairs</h3>
-        <p>The world&rsquo;s most liquid and heavily traded pairs &mdash; the tightest spreads and deepest liquidity.</p>
-        <span class="cat-count"><svg width="15" height="15"><use href="#i-layers"/></svg><b>8</b> core pairs</span>
-      </button>
-      <button class="fx-cat" type="button" data-fx-cat="minor" role="tab" aria-selected="false" data-aos="fade-up" data-aos-delay="100">
-        <span class="cat-tag">Minor</span>
-        <h3>Minor Pairs</h3>
-        <p>Cross pairs that trade opportunity beyond the dominance of the US dollar.</p>
-        <span class="cat-count"><svg width="15" height="15"><use href="#i-layers"/></svg><b>20+</b> cross pairs</span>
-      </button>
-      <button class="fx-cat" type="button" data-fx-cat="exotic" role="tab" aria-selected="false" data-aos="fade-up" data-aos-delay="200">
-        <span class="cat-tag">Exotic</span>
-        <h3>Exotic Pairs</h3>
-        <p>Currencies from emerging markets, creating unique potential and higher volatility.</p>
-        <span class="cat-count"><svg width="15" height="15"><use href="#i-layers"/></svg><b>50+</b> emerging pairs</span>
-      </button>
-    </div>
+    <div class="x-mkt" data-x-mkt>
+      <article class="x-tkt" data-x-sym="EUR/USD" data-x-mid="1.08420" data-x-dec="5" data-x-spread="0.2" data-aos="fade-up">
+        <div class="x-tkt-top">
+          <span class="x-tkt-flags"><img src="../assets/img/flags/eu.svg" alt="Flag of the European Union" width="22" height="22" loading="lazy"><img src="../assets/img/flags/us.svg" alt="Flag of the United States" width="22" height="22" loading="lazy"></span>
+          <b>EUR/USD</b>
+          <span class="x-tkt-chg" data-x-chg>+0.00%</span>
+        </div>
+        <div class="x-tkt-px" data-x-px>1.08420</div>
+        <svg class="x-tkt-spark" viewBox="0 0 120 34" preserveAspectRatio="none" aria-hidden="true"><path data-x-spark d="M0 22 L12 20 L24 24 L36 17 L48 19 L60 13 L72 16 L84 10 L96 13 L108 8 L120 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="x-tkt-foot">
+          <span class="x-tkt-spr">Spread <b data-x-spr>0.2</b></span>
+          <a class="x-tkt-go" href="https://x.startrader.com" rel="noopener">Trade Now <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </div>
+      </article>
 
-    <div class="ta-spec-wrap" data-aos="fade-up">
-      <table class="ta-table">
-        <thead>
-          <tr>
-            <th scope="col">Instrument</th>
-            <th scope="col">Bid</th>
-            <th scope="col">Ask</th>
-            <th scope="col">Spread (pips)</th>
-          <th scope="col" class="ta-th-act">Trade</th>
-          </tr>
-        </thead>
-        <tbody data-fx-body></tbody>
-      </table>
+      <article class="x-tkt" data-x-sym="GBP/USD" data-x-mid="1.27180" data-x-dec="5" data-x-spread="0.4" data-aos="fade-up" data-aos-delay="100">
+        <div class="x-tkt-top">
+          <span class="x-tkt-flags"><img src="../assets/img/flags/gb.svg" alt="Flag of the United Kingdom" width="22" height="22" loading="lazy"><img src="../assets/img/flags/us.svg" alt="Flag of the United States" width="22" height="22" loading="lazy"></span>
+          <b>GBP/USD</b>
+          <span class="x-tkt-chg" data-x-chg>+0.00%</span>
+        </div>
+        <div class="x-tkt-px" data-x-px>1.27180</div>
+        <svg class="x-tkt-spark" viewBox="0 0 120 34" preserveAspectRatio="none" aria-hidden="true"><path data-x-spark d="M0 12 L12 15 L24 11 L36 18 L48 14 L60 20 L72 17 L84 23 L96 19 L108 24 L120 21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="x-tkt-foot">
+          <span class="x-tkt-spr">Spread <b data-x-spr>0.4</b></span>
+          <a class="x-tkt-go" href="https://x.startrader.com" rel="noopener">Trade Now <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </div>
+      </article>
+
+      <article class="x-tkt" data-x-sym="USD/JPY" data-x-mid="156.820" data-x-dec="3" data-x-spread="0.5" data-aos="fade-up" data-aos-delay="200">
+        <div class="x-tkt-top">
+          <span class="x-tkt-flags"><img src="../assets/img/flags/us.svg" alt="Flag of the United States" width="22" height="22" loading="lazy"><img src="../assets/img/flags/jp.svg" alt="Flag of Japan" width="22" height="22" loading="lazy"></span>
+          <b>USD/JPY</b>
+          <span class="x-tkt-chg" data-x-chg>+0.00%</span>
+        </div>
+        <div class="x-tkt-px" data-x-px>156.820</div>
+        <svg class="x-tkt-spark" viewBox="0 0 120 34" preserveAspectRatio="none" aria-hidden="true"><path data-x-spark d="M0 24 L12 21 L24 23 L36 18 L48 21 L60 15 L72 18 L84 12 L96 15 L108 9 L120 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="x-tkt-foot">
+          <span class="x-tkt-spr">Spread <b data-x-spr>0.5</b></span>
+          <a class="x-tkt-go" href="https://x.startrader.com" rel="noopener">Trade Now <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </div>
+      </article>
+
+      <article class="x-tkt" data-x-sym="XAU/USD" data-x-mid="2338.50" data-x-dec="2" data-x-spread="1.8" data-aos="fade-up">
+        <div class="x-tkt-top">
+          <span class="x-tkt-flags x-tkt-flags--ic"><img src="../assets/img/commodities/xau.svg" alt="Gold icon" width="22" height="22" loading="lazy"><img src="../assets/img/flags/us.svg" alt="Flag of the United States" width="22" height="22" loading="lazy"></span>
+          <b>XAU/USD</b>
+          <span class="x-tkt-chg" data-x-chg>+0.00%</span>
+        </div>
+        <div class="x-tkt-px" data-x-px>2,338.50</div>
+        <svg class="x-tkt-spark" viewBox="0 0 120 34" preserveAspectRatio="none" aria-hidden="true"><path data-x-spark d="M0 26 L12 22 L24 24 L36 19 L48 16 L60 18 L72 12 L84 14 L96 9 L108 11 L120 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="x-tkt-foot">
+          <span class="x-tkt-spr">Spread <b data-x-spr>1.8</b></span>
+          <a class="x-tkt-go" href="https://x.startrader.com" rel="noopener">Trade Now <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </div>
+      </article>
+
+      <article class="x-tkt" data-x-sym="AUD/USD" data-x-mid="0.66120" data-x-dec="5" data-x-spread="0.5" data-aos="fade-up" data-aos-delay="100">
+        <div class="x-tkt-top">
+          <span class="x-tkt-flags"><img src="../assets/img/flags/au.svg" alt="Flag of Australia" width="22" height="22" loading="lazy"><img src="../assets/img/flags/us.svg" alt="Flag of the United States" width="22" height="22" loading="lazy"></span>
+          <b>AUD/USD</b>
+          <span class="x-tkt-chg" data-x-chg>+0.00%</span>
+        </div>
+        <div class="x-tkt-px" data-x-px>0.66120</div>
+        <svg class="x-tkt-spark" viewBox="0 0 120 34" preserveAspectRatio="none" aria-hidden="true"><path data-x-spark d="M0 10 L12 14 L24 12 L36 17 L48 15 L60 20 L72 16 L84 21 L96 18 L108 23 L120 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="x-tkt-foot">
+          <span class="x-tkt-spr">Spread <b data-x-spr>0.5</b></span>
+          <a class="x-tkt-go" href="https://x.startrader.com" rel="noopener">Trade Now <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </div>
+      </article>
+
+      <article class="x-tkt" data-x-sym="USD/CAD" data-x-mid="1.36890" data-x-dec="5" data-x-spread="0.7" data-aos="fade-up" data-aos-delay="200">
+        <div class="x-tkt-top">
+          <span class="x-tkt-flags"><img src="../assets/img/flags/us.svg" alt="Flag of the United States" width="22" height="22" loading="lazy"><img src="../assets/img/flags/ca.svg" alt="Flag of Canada" width="22" height="22" loading="lazy"></span>
+          <b>USD/CAD</b>
+          <span class="x-tkt-chg" data-x-chg>+0.00%</span>
+        </div>
+        <div class="x-tkt-px" data-x-px>1.36890</div>
+        <svg class="x-tkt-spark" viewBox="0 0 120 34" preserveAspectRatio="none" aria-hidden="true"><path data-x-spark d="M0 18 L12 21 L24 17 L36 20 L48 14 L60 17 L72 11 L84 14 L96 10 L108 13 L120 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="x-tkt-foot">
+          <span class="x-tkt-spr">Spread <b data-x-spr>0.7</b></span>
+          <a class="x-tkt-go" href="https://x.startrader.com" rel="noopener">Trade Now <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </div>
+      </article>
     </div>
     <p class="fx-pairs-note">Indicative live pricing shown for illustration. Spreads are variable and depend on market conditions and account type.</p>
   </div>
 </section>
 
 <!-- ============ CONDITIONS ============ -->
-<section class="section x-cond-sec" aria-labelledby="x-cond-title">
+<section class="section fx-hours" aria-labelledby="x-cond-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-aos="fade-up">The conditions</span>
-      <h2 class="h2" id="x-cond-title" data-aos="fade-up">Exceptional conditions that<br> empower every strategy</h2>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">The conditions</span>
+      <h2 class="h2 h2-light" id="x-cond-title" data-aos="fade-up">Exceptional conditions that<br> empower every strategy</h2>
     </div>
-
-    <div class="x-grid">
-      <article class="x-card" data-aos="fade-up">
-        <span class="x-ic"><svg><use href="#i-wallet"/></svg></span>
+    <div class="fx-mh">
+      <article class="fx-mh-card fx-mh--wide fx-mh--blue x-card" data-aos="fade-up">
+        <span class="fx-mh-ic"><svg><use href="#i-wallet"/></svg></span>
         <h3>Fast withdrawals</h3>
         <p>Withdrawal requests are processed promptly, giving you greater control over your funds.</p>
-        <div class="x-meter" aria-hidden="true">
+        <div class="fx-mh-viz"><div class="fx-mh-panel x-meter-dark" aria-hidden="true">
           <span class="x-meter-track"><i></i></span>
           <em>Request <b>Processed ✓</b></em>
-        </div>
+        </div></div>
       </article>
-      <article class="x-card" data-aos="fade-up" data-aos-delay="100">
-        <span class="x-ic"><svg><use href="#i-swap"/></svg></span>
+      <article class="fx-mh-card fx-mh--purple x-card" data-aos="fade-up" data-aos-delay="100">
+        <span class="fx-mh-ic"><svg><use href="#i-swap"/></svg></span>
         <h3>Ultra-low spreads</h3>
-        <p>Highly competitive spreads that help reduce your trading costs, even in volatile market conditions.</p>
-        <span class="x-spread" aria-hidden="true"><b>0.0</b><em>pips, from</em></span>
+        <p>Highly competitive spreads that cut trading costs, even in volatile markets.</p>
+        <div class="fx-mh-viz"><div class="fx-mh-panel" aria-hidden="true"><span class="x-spread x-spread--dark"><b>0.0</b><em>pips, from</em></span></div></div>
       </article>
-      <article class="x-card" data-aos="fade-up" data-aos-delay="200">
-        <span class="x-ic"><svg><use href="#i-bolt"/></svg></span>
+      <article class="fx-mh-card fx-mh--green x-card" data-aos="fade-up" data-aos-delay="150">
+        <span class="fx-mh-ic"><svg><use href="#i-bolt"/></svg></span>
         <h3>Fast execution</h3>
-        <p>A high-speed trading engine that fills orders with minimal slippage &mdash; even when the market runs.</p>
-        <span class="x-speed" aria-hidden="true"><b>100<small>ms</small></b><span><i></i><i></i><i></i></span></span>
+        <p>A high-speed engine that fills orders with minimal slippage &mdash; even when the market runs.</p>
+        <div class="fx-mh-viz"><div class="fx-mh-panel" aria-hidden="true"><span class="x-speed x-speed--dark"><b>100<small>ms</small></b><span><i></i><i></i><i></i></span></span></div></div>
       </article>
-      <article class="x-card" data-aos="fade-up" data-aos-delay="300">
-        <span class="x-ic"><svg><use href="#i-headset"/></svg></span>
-        <h3>24/7 support</h3>
-        <p>A multilingual customer support team, available around the clock &mdash; every day, in your language.</p>
-        <span class="x-live" aria-hidden="true"><i></i>Live now</span>
+      <article class="fx-mh-card fx-mh--wide fx-mh--teal x-card" data-aos="fade-up" data-aos-delay="200">
+        <span class="fx-mh-ic"><svg><use href="#i-headset"/></svg></span>
+        <h3>24/7 multilingual support</h3>
+        <p>A customer support team available around the clock, every day &mdash; in your language, on your channel.</p>
+        <div class="fx-mh-viz"><div class="fx-mh-panel" aria-hidden="true"><span class="fx-mh-status"><i></i> Live now &middot; 20+ languages</span></div></div>
       </article>
     </div>
   </div>
@@ -569,6 +648,9 @@
       </div>
       <div class="x-phone" data-aos="fade-up" data-aos-delay="100">
         <img src="../assets/img/app-hero-phone.webp" alt="STARTRADER X app on a smartphone" width="640" height="1180" loading="lazy" decoding="async">
+        <span class="x-toast x-toast--a" aria-hidden="true"><i class="up"></i><span><b>Price alert &middot; XAU/USD</b><em>2,340.00 touched &mdash; 6s ago</em></span></span>
+        <span class="x-toast x-toast--b" aria-hidden="true"><i class="ok"></i><span><b>Order filled</b><em>0.4 lots EUR/USD &middot; 0.03s</em></span></span>
+        <span class="x-toast x-toast--c" aria-hidden="true"><i class="wd"></i><span><b>Withdrawal sent</b><em>Processed in minutes</em></span></span>
       </div>
     </div>
   </div>
@@ -578,10 +660,6 @@
 <section class="cta-banner" aria-labelledby="x-cta-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <div class="x-partners" data-aos="fade-up">
-      <img src="../assets/img/partner-nba.svg" alt="Official Partner of the NBA" height="34">
-      <img src="../assets/img/partner-porsche.webp" alt="Official Partner of Porsche Carrera Cup Middle East" height="30">
-    </div>
     <h2 id="x-cta-title" data-aos="fade-up">Start your journey<br>with STARTRADER X</h2>
     <p data-aos="fade-up">Simple on the surface, professional underneath &mdash; and ready in minutes.</p>
     <div class="cta-actions" data-aos="fade-up">
@@ -591,6 +669,47 @@
 </section>
 
 </main>
+
+<script>
+/* live market tickets — simulated ticks, page-scoped */
+(function () {
+  var root = document.querySelector('[data-x-mkt]');
+  if (!root) return;
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var tickets = Array.prototype.slice.call(root.querySelectorAll('[data-x-sym]')).map(function (el) {
+    return {
+      el: el,
+      mid: parseFloat(el.getAttribute('data-x-mid')),
+      cur: parseFloat(el.getAttribute('data-x-mid')),
+      dec: parseInt(el.getAttribute('data-x-dec'), 10),
+      px: el.querySelector('[data-x-px]'),
+      chg: el.querySelector('[data-x-chg]')
+    };
+  });
+  function fmt(n, d) { return n.toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d }); }
+  function tick() {
+    tickets.forEach(function (r) {
+      if (Math.random() > 0.55) return;
+      var step = r.mid * 0.00028 * (Math.random() * 2 - 1);
+      r.cur = r.cur + step + (r.mid - r.cur) * 0.05;
+      r.px.textContent = fmt(r.cur, r.dec);
+      var pct = ((r.cur - r.mid) / r.mid) * 100;
+      r.chg.textContent = (pct >= 0 ? '+' : '') + pct.toFixed(2) + '%';
+      r.chg.classList.toggle('up', pct >= 0);
+      r.chg.classList.toggle('down', pct < 0);
+      r.px.classList.remove('fup', 'fdown');
+      void r.px.offsetWidth;
+      r.px.classList.add(step >= 0 ? 'fup' : 'fdown');
+    });
+  }
+  tickets.forEach(function (r) {
+    var pct = 0;
+    r.chg.textContent = '+0.00%';
+    r.chg.classList.add('up');
+  });
+  if (!reduced) setInterval(tick, 1400);
+})();
+</script>
 
 
 <!-- ============ FOOTER ============ -->
