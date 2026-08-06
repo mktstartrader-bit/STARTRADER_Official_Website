@@ -52,10 +52,80 @@
   }
   </script>
   <style>
-/* knowledge videos — the library grid of feature tiles */
-.kv-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,26px);margin-top:clamp(30px,3.6vw,46px)}
-@media (max-width:1080px){.kv-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:640px){.kv-grid{grid-template-columns:1fr}}
+/* =================================================================
+   KNOWLEDGE VIDEOS — a premium glass library.
+   The film gets the frame: media stays clean (play + duration only),
+   the words live on frosted card bodies below, and the section sits
+   on a soft mesh so the glass has something to blur.
+   ================================================================= */
+.kv-sec{position:relative;isolation:isolate;overflow:clip;
+  background:
+    radial-gradient(46% 38% at 12% 6%,rgba(0,71,187,.07),transparent 62%),
+    radial-gradient(40% 34% at 88% 30%,rgba(22,233,215,.06),transparent 60%),
+    radial-gradient(44% 40% at 50% 96%,rgba(0,71,187,.05),transparent 64%),
+    var(--bg-light-2)}
+.kv-sec>.container{position:relative;z-index:1}
+.kv-cats{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:clamp(22px,2.6vw,32px)}
+.kv-feat{display:grid;grid-template-columns:1.25fr .75fr;gap:0;margin-top:clamp(30px,3.6vw,46px);
+  border-radius:clamp(22px,2.6vw,32px);overflow:hidden;
+  background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.9);
+  -webkit-backdrop-filter:blur(20px) saturate(1.45);backdrop-filter:blur(20px) saturate(1.45);
+  box-shadow:0 30px 70px -40px rgba(16,30,54,.35),inset 0 1px 0 rgba(255,255,255,.9);
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease)}
+.kv-feat:hover{transform:translateY(-6px);box-shadow:0 42px 84px -40px rgba(16,30,54,.45)}
+.kv-feat-media{position:relative;display:block;min-height:320px;overflow:hidden}
+.kv-feat-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  transition:transform .7s var(--ease)}
+.kv-feat:hover .kv-feat-media img{transform:scale(1.04)}
+.kv-feat-copy{display:flex;flex-direction:column;justify-content:center;gap:14px;padding:clamp(26px,3vw,44px)}
+.kv-feat-copy h3{font-size:clamp(21px,2.2vw,28px);letter-spacing:-.03em;line-height:1.15}
+.kv-feat-copy p{font-size:14px;line-height:1.7;color:var(--text-soft)}
+.kv-feat-go{display:inline-flex;align-items:center;gap:9px;margin-top:4px;
+  font-size:14px;font-weight:700;color:var(--blue)}
+.kv-feat-go svg{width:16px;height:16px;transition:transform .3s var(--ease)}
+.kv-feat:hover .kv-feat-go svg{transform:translateX(4px)}
+.kv-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:clamp(52px,4.6vw,68px);height:clamp(52px,4.6vw,68px);border-radius:50%;
+  display:grid;place-items:center;color:#fff;
+  background:rgba(10,16,30,.42);border:1px solid rgba(255,255,255,.5);
+  -webkit-backdrop-filter:blur(10px) saturate(1.3);backdrop-filter:blur(10px) saturate(1.3);
+  box-shadow:0 14px 34px -12px rgba(0,0,0,.55);
+  transition:transform .35s var(--ease),background .35s}
+.kv-play svg{width:38%;height:38%;margin-left:6%}
+a:hover>.kv-play,.kv-feat:hover .kv-play{transform:translate(-50%,-50%) scale(1.12);background:var(--blue)}
+.kv-dur{position:absolute;right:14px;bottom:14px;display:inline-flex;align-items:center;gap:6px;
+  padding:6px 12px;border-radius:40px;font-size:12px;font-weight:700;color:#fff;
+  background:rgba(10,16,30,.5);border:1px solid rgba(255,255,255,.28);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.kv-dur svg{width:13px;height:13px}
+.kv-chip{display:inline-flex;align-items:center;gap:7px;width:fit-content;
+  padding:6px 13px;border-radius:40px;font-size:11px;font-weight:800;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--blue);
+  background:rgba(0,71,187,.08);border:1px solid rgba(0,71,187,.16)}
+.kv-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(20px,2.4vw,32px);margin-top:clamp(20px,2.4vw,32px)}
+.kv-card{display:flex;flex-direction:column;border-radius:clamp(20px,2.2vw,28px);overflow:hidden;
+  background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.9);
+  -webkit-backdrop-filter:blur(18px) saturate(1.45);backdrop-filter:blur(18px) saturate(1.45);
+  box-shadow:0 22px 52px -34px rgba(16,30,54,.3),inset 0 1px 0 rgba(255,255,255,.9);
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease)}
+.kv-card:hover{transform:translateY(-6px);box-shadow:0 34px 68px -34px rgba(16,30,54,.42)}
+.kv-media{position:relative;display:block;aspect-ratio:16/9;overflow:hidden}
+.kv-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
+.kv-card:hover .kv-media img{transform:scale(1.05)}
+.kv-body{display:flex;flex-direction:column;gap:10px;padding:clamp(20px,2.2vw,28px)}
+.kv-body h3{font-size:16.5px;letter-spacing:-.022em;line-height:1.3}
+.kv-body h3 a{transition:color .25s}
+.kv-body h3 a:hover{color:var(--blue)}
+.kv-body p{font-size:13.5px;line-height:1.65;color:var(--text-soft)}
+.kv-watch{display:inline-flex;align-items:center;gap:8px;margin-top:4px;
+  font-size:13.5px;font-weight:700;color:var(--blue)}
+.kv-watch svg{width:15px;height:15px;transition:transform .3s var(--ease)}
+.kv-card:hover .kv-watch svg{transform:translateX(4px)}
+@media (max-width:900px){
+  .kv-feat{grid-template-columns:1fr}
+  .kv-feat-media{min-height:0;aspect-ratio:16/9}
+  .kv-grid{grid-template-columns:1fr}
+}
   </style>
 </head>
 
@@ -381,158 +451,140 @@
 </section>
 
 <!-- ============ THE LIBRARY ============ -->
-<section class="section kc-guides" id="library" aria-labelledby="kv-lib-title">
+<section class="section kv-sec" id="library" aria-labelledby="kv-lib-title">
   <div class="container">
     <div class="head center">
       <span class="eyebrow" data-aos="fade-up">The library</span>
       <h2 class="h2" id="kv-lib-title" data-aos="fade-up">Learn by watching.</h2>
-      <p class="head-sub" data-aos="fade-up">Every lesson in one place &mdash; pick a thumbnail and press play.</p>
+      <p class="head-sub" data-aos="fade-up">Short, plain-English lessons &mdash; pick a film, press play,<br> and be back before the coffee cools.</p>
+      <div class="kv-cats" role="group" aria-label="Filter by topic" data-aos="fade-up">
+        <button class="ec-chip is-on" type="button" data-kv-cat="all" aria-pressed="true">All</button>
+        <button class="ec-chip" type="button" data-kv-cat="foundations" aria-pressed="false">Foundations</button>
+        <button class="ec-chip" type="button" data-kv-cat="platform" aria-pressed="false">Platform</button>
+        <button class="ec-chip" type="button" data-kv-cat="strategy" aria-pressed="false">Strategy</button>
+        <button class="ec-chip" type="button" data-kv-cat="fundamentals" aria-pressed="false">Fundamentals</button>
+        <button class="ec-chip" type="button" data-kv-cat="risk" aria-pressed="false">Risk</button>
+      </div>
     </div>
 
+    <article class="kv-feat" data-kv-item data-cat="foundations" data-aos="fade-up">
+      <a class="kv-feat-media" href="../academy/webinars.html" aria-label="Watch: The Basics of Forex" tabindex="-1">
+        <img src="../../assets/img/learn-viz.webp" alt="Trading education illustration" width="1200" height="675" loading="lazy" decoding="async">
+        <span class="kv-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
+        <span class="kv-dur"><svg aria-hidden="true"><use href="#i-clock"/></svg>4:12</span>
+      </a>
+      <div class="kv-feat-copy">
+        <span class="kv-chip">Foundations</span>
+        <h3>The Basics of Forex</h3>
+        <p>How the market works, who trades it and where your price comes from &mdash; the one film to watch before any of the others.</p>
+        <a class="kv-feat-go" href="../academy/webinars.html">Watch the film <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+      </div>
+    </article>
+
     <div class="kv-grid">
-      <article class="kc-feature" data-aos="fade-up">
-        <a class="kc-feature-media" href="../academy/webinars.html" aria-label="Watch: The Basics of Forex">
-          <img src="../../assets/img/learn-viz.webp" alt="Trading education illustration" width="900" height="506" loading="lazy" decoding="async">
-          <span class="kc-feature-scrim" aria-hidden="true"></span>
-          <span class="kc-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
-          <span class="kc-feature-meta">
-            <span class="kc-feature-chip">Foundations</span>
-            <span class="kc-feature-dur"><svg><use href="#i-clock"/></svg>4:12</span>
-          </span>
-          <span class="kc-feature-copy">
-            <b>The Basics of Forex</b>
-            <em>How the market works, who trades it and where your price comes from.</em>
-          </span>
-          <span class="kc-feature-bar" aria-hidden="true"><i></i></span>
-        </a>
-      </article>
-      <article class="kc-feature" data-aos="fade-up" data-aos-delay="100">
-        <a class="kc-feature-media" href="../academy/webinars.html" aria-label="Watch: What Is MT5?">
+      <article class="kv-card" data-kv-item data-cat="platform" data-aos="fade-up">
+        <a class="kv-media" href="../academy/webinars.html" aria-label="Watch: What Is MT5?" tabindex="-1">
           <img src="../../assets/img/webtrader-laptop.webp" alt="STARTRADER Web Trader on a laptop" width="900" height="506" loading="lazy" decoding="async">
-          <span class="kc-feature-scrim" aria-hidden="true"></span>
-          <span class="kc-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
-          <span class="kc-feature-meta">
-            <span class="kc-feature-chip">Platform</span>
-            <span class="kc-feature-dur"><svg><use href="#i-clock"/></svg>2:38</span>
-          </span>
-          <span class="kc-feature-copy">
-            <b>What Is MT5?</b>
-            <em>The terminal, the charts and the order ticket — a tour of the platform you will trade on.</em>
-          </span>
-          <span class="kc-feature-bar" aria-hidden="true"><i></i></span>
+          <span class="kv-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
+          <span class="kv-dur"><svg aria-hidden="true"><use href="#i-clock"/></svg>2:38</span>
         </a>
+        <div class="kv-body">
+          <span class="kv-chip">Platform</span>
+          <h3><a href="../academy/webinars.html">What Is MT5?</a></h3>
+          <p>The terminal, the charts and the order ticket &mdash; a tour of the platform you will trade on.</p>
+          <a class="kv-watch" href="../academy/webinars.html">Watch now <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </div>
       </article>
-      <article class="kc-feature" data-aos="fade-up" data-aos-delay="200">
-        <a class="kc-feature-media" href="../academy/webinars.html" aria-label="Watch: What Is Copy Trading?">
+      <article class="kv-card" data-kv-item data-cat="strategy" data-aos="fade-up" data-aos-delay="100">
+        <a class="kv-media" href="../academy/webinars.html" aria-label="Watch: What Is Copy Trading?" tabindex="-1">
           <img src="../../assets/img/learn-cta.webp" alt="Market learning illustration" width="900" height="506" loading="lazy" decoding="async">
-          <span class="kc-feature-scrim" aria-hidden="true"></span>
-          <span class="kc-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
-          <span class="kc-feature-meta">
-            <span class="kc-feature-chip">Strategy</span>
-            <span class="kc-feature-dur"><svg><use href="#i-clock"/></svg>3:05</span>
-          </span>
-          <span class="kc-feature-copy">
-            <b>What Is Copy Trading?</b>
-            <em>Following a provider, sizing the copy and what the track record does not tell you.</em>
-          </span>
-          <span class="kc-feature-bar" aria-hidden="true"><i></i></span>
+          <span class="kv-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
+          <span class="kv-dur"><svg aria-hidden="true"><use href="#i-clock"/></svg>3:05</span>
         </a>
+        <div class="kv-body">
+          <span class="kv-chip">Strategy</span>
+          <h3><a href="../academy/webinars.html">What Is Copy Trading?</a></h3>
+          <p>Following a provider, sizing the copy and what the track record does not tell you.</p>
+          <a class="kv-watch" href="../academy/webinars.html">Watch now <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </div>
       </article>
-      <article class="kc-feature" data-aos="fade-up">
-        <a class="kc-feature-media" href="../academy/webinars.html" aria-label="Watch: Reading an Economic Calendar">
+      <article class="kv-card" data-kv-item data-cat="fundamentals" data-aos="fade-up">
+        <a class="kv-media" href="../academy/webinars.html" aria-label="Watch: Reading an Economic Calendar" tabindex="-1">
           <img src="../../assets/img/home-hero-wave.webp" alt="Abstract blue light wave" width="900" height="506" loading="lazy" decoding="async">
-          <span class="kc-feature-scrim" aria-hidden="true"></span>
-          <span class="kc-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
-          <span class="kc-feature-meta">
-            <span class="kc-feature-chip">Fundamentals</span>
-            <span class="kc-feature-dur"><svg><use href="#i-clock"/></svg>5:20</span>
-          </span>
-          <span class="kc-feature-copy">
-            <b>Reading an Economic Calendar</b>
-            <em>Which releases matter, what the forecast column means and how the surprise moves price.</em>
-          </span>
-          <span class="kc-feature-bar" aria-hidden="true"><i></i></span>
+          <span class="kv-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
+          <span class="kv-dur"><svg aria-hidden="true"><use href="#i-clock"/></svg>5:20</span>
         </a>
+        <div class="kv-body">
+          <span class="kv-chip">Fundamentals</span>
+          <h3><a href="../academy/webinars.html">Reading an Economic Calendar</a></h3>
+          <p>Which releases matter, what the forecast column means and how the surprise moves price.</p>
+          <a class="kv-watch" href="../academy/webinars.html">Watch now <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </div>
       </article>
-      <article class="kc-feature" data-aos="fade-up" data-aos-delay="100">
-        <a class="kc-feature-media" href="../academy/webinars.html" aria-label="Watch: Setting a Stop Loss That Survives">
+      <article class="kv-card" data-kv-item data-cat="risk" data-aos="fade-up" data-aos-delay="100">
+        <a class="kv-media" href="../academy/webinars.html" aria-label="Watch: Setting a Stop Loss That Survives" tabindex="-1">
           <img src="../../assets/img/prime-upgrade.webp" alt="Prime ECN account upgrade illustration" width="900" height="506" loading="lazy" decoding="async">
-          <span class="kc-feature-scrim" aria-hidden="true"></span>
-          <span class="kc-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
-          <span class="kc-feature-meta">
-            <span class="kc-feature-chip">Risk</span>
-            <span class="kc-feature-dur"><svg><use href="#i-clock"/></svg>4:48</span>
-          </span>
-          <span class="kc-feature-copy">
-            <b>Setting a Stop Loss That Survives</b>
-            <em>Where stops belong, why round numbers get hunted and how to size around the level.</em>
-          </span>
-          <span class="kc-feature-bar" aria-hidden="true"><i></i></span>
+          <span class="kv-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
+          <span class="kv-dur"><svg aria-hidden="true"><use href="#i-clock"/></svg>4:48</span>
         </a>
+        <div class="kv-body">
+          <span class="kv-chip">Risk</span>
+          <h3><a href="../academy/webinars.html">Setting a Stop Loss That Survives</a></h3>
+          <p>Where stops belong, why round numbers get hunted and how to size around the level.</p>
+          <a class="kv-watch" href="../academy/webinars.html">Watch now <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </div>
       </article>
-      <article class="kc-feature" data-aos="fade-up" data-aos-delay="200">
-        <a class="kc-feature-media" href="../academy/webinars.html" aria-label="Watch: Pips, Lots and Leverage">
+      <article class="kv-card" data-kv-item data-cat="foundations" data-aos="fade-up">
+        <a class="kv-media" href="../academy/webinars.html" aria-label="Watch: Pips, Lots and Leverage" tabindex="-1">
           <img src="../../assets/img/stat-blue.webp" alt="Blue lightning-bolt artwork" width="900" height="506" loading="lazy" decoding="async">
-          <span class="kc-feature-scrim" aria-hidden="true"></span>
-          <span class="kc-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
-          <span class="kc-feature-meta">
-            <span class="kc-feature-chip">Foundations</span>
-            <span class="kc-feature-dur"><svg><use href="#i-clock"/></svg>3:44</span>
-          </span>
-          <span class="kc-feature-copy">
-            <b>Pips, Lots and Leverage</b>
-            <em>The three numbers on every ticket, and what each one does to your risk.</em>
-          </span>
-          <span class="kc-feature-bar" aria-hidden="true"><i></i></span>
+          <span class="kv-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
+          <span class="kv-dur"><svg aria-hidden="true"><use href="#i-clock"/></svg>3:44</span>
         </a>
+        <div class="kv-body">
+          <span class="kv-chip">Foundations</span>
+          <h3><a href="../academy/webinars.html">Pips, Lots and Leverage</a></h3>
+          <p>The three numbers on every ticket, and what each one does to your risk.</p>
+          <a class="kv-watch" href="../academy/webinars.html">Watch now <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </div>
       </article>
-      <article class="kc-feature" data-aos="fade-up">
-        <a class="kc-feature-media" href="../academy/webinars.html" aria-label="Watch: Reading a Candlestick Chart">
+      <article class="kv-card" data-kv-item data-cat="foundations" data-aos="fade-up" data-aos-delay="100">
+        <a class="kv-media" href="../academy/webinars.html" aria-label="Watch: Reading a Candlestick Chart" tabindex="-1">
           <img src="../../assets/img/webtraderScreenShot.webp" alt="STARTRADER Web Trader platform interface" width="900" height="506" loading="lazy" decoding="async">
-          <span class="kc-feature-scrim" aria-hidden="true"></span>
-          <span class="kc-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
-          <span class="kc-feature-meta">
-            <span class="kc-feature-chip">Foundations</span>
-            <span class="kc-feature-dur"><svg><use href="#i-clock"/></svg>4:26</span>
-          </span>
-          <span class="kc-feature-copy">
-            <b>Reading a Candlestick Chart</b>
-            <em>Open, high, low, close — and the handful of patterns actually worth knowing.</em>
-          </span>
-          <span class="kc-feature-bar" aria-hidden="true"><i></i></span>
+          <span class="kv-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
+          <span class="kv-dur"><svg aria-hidden="true"><use href="#i-clock"/></svg>4:26</span>
         </a>
+        <div class="kv-body">
+          <span class="kv-chip">Foundations</span>
+          <h3><a href="../academy/webinars.html">Reading a Candlestick Chart</a></h3>
+          <p>Open, high, low, close &mdash; and the handful of patterns actually worth knowing.</p>
+          <a class="kv-watch" href="../academy/webinars.html">Watch now <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </div>
       </article>
-      <article class="kc-feature" data-aos="fade-up" data-aos-delay="100">
-        <a class="kc-feature-media" href="../academy/webinars.html" aria-label="Watch: Placing Your First Order">
+      <article class="kv-card" data-kv-item data-cat="platform" data-aos="fade-up">
+        <a class="kv-media" href="../academy/webinars.html" aria-label="Watch: Placing Your First Order" tabindex="-1">
           <img src="../../assets/img/platform-hero.webp" alt="STARTRADER Web Trader on a laptop" width="900" height="506" loading="lazy" decoding="async">
-          <span class="kc-feature-scrim" aria-hidden="true"></span>
-          <span class="kc-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
-          <span class="kc-feature-meta">
-            <span class="kc-feature-chip">Platform</span>
-            <span class="kc-feature-dur"><svg><use href="#i-clock"/></svg>3:12</span>
-          </span>
-          <span class="kc-feature-copy">
-            <b>Placing Your First Order</b>
-            <em>Market or limit, the ticket fields that matter and checking the fill afterwards.</em>
-          </span>
-          <span class="kc-feature-bar" aria-hidden="true"><i></i></span>
+          <span class="kv-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
+          <span class="kv-dur"><svg aria-hidden="true"><use href="#i-clock"/></svg>3:12</span>
         </a>
+        <div class="kv-body">
+          <span class="kv-chip">Platform</span>
+          <h3><a href="../academy/webinars.html">Placing Your First Order</a></h3>
+          <p>Market or limit, the ticket fields that matter and checking the fill afterwards.</p>
+          <a class="kv-watch" href="../academy/webinars.html">Watch now <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </div>
       </article>
-      <article class="kc-feature" data-aos="fade-up" data-aos-delay="200">
-        <a class="kc-feature-media" href="../academy/webinars.html" aria-label="Watch: Support and Resistance, Properly Drawn">
+      <article class="kv-card" data-kv-item data-cat="strategy" data-aos="fade-up" data-aos-delay="100">
+        <a class="kv-media" href="../academy/webinars.html" aria-label="Watch: Support and Resistance, Properly Drawn" tabindex="-1">
           <img src="../../assets/img/stat-mul.webp" alt="Multicoloured abstract artwork" width="900" height="506" loading="lazy" decoding="async">
-          <span class="kc-feature-scrim" aria-hidden="true"></span>
-          <span class="kc-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
-          <span class="kc-feature-meta">
-            <span class="kc-feature-chip">Strategy</span>
-            <span class="kc-feature-dur"><svg><use href="#i-clock"/></svg>5:02</span>
-          </span>
-          <span class="kc-feature-copy">
-            <b>Support and Resistance, Properly Drawn</b>
-            <em>Zones over lines, the levels the market respects and the ones you imagined.</em>
-          </span>
-          <span class="kc-feature-bar" aria-hidden="true"><i></i></span>
+          <span class="kv-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
+          <span class="kv-dur"><svg aria-hidden="true"><use href="#i-clock"/></svg>5:02</span>
         </a>
+        <div class="kv-body">
+          <span class="kv-chip">Strategy</span>
+          <h3><a href="../academy/webinars.html">Support and Resistance, Properly Drawn</a></h3>
+          <p>Zones over lines, the levels the market respects and the ones you imagined.</p>
+          <a class="kv-watch" href="../academy/webinars.html">Watch now <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </div>
       </article>
     </div>
 
@@ -542,6 +594,28 @@
     </div>
   </div>
 </section>
+
+<script>
+/* topic filter — page-scoped */
+(function () {
+  var chips = Array.prototype.slice.call(document.querySelectorAll('[data-kv-cat]'));
+  var items = Array.prototype.slice.call(document.querySelectorAll('[data-kv-item]'));
+  if (!chips.length || !items.length) return;
+  chips.forEach(function (c) {
+    c.addEventListener('click', function () {
+      var cat = c.getAttribute('data-kv-cat');
+      chips.forEach(function (x) {
+        var on = x === c;
+        x.classList.toggle('is-on', on);
+        x.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      items.forEach(function (el) {
+        el.hidden = cat !== 'all' && el.getAttribute('data-cat') !== cat;
+      });
+    });
+  });
+})();
+</script>
 
 <!-- ============ CLOSING CTA ============ -->
 <section class="cta-banner" aria-labelledby="kv-cta-title">
