@@ -978,7 +978,7 @@
       commodities: {
         pip: function () { return 1; },
         badge: function (p) {
-          return '<span class="fx-inst-ic"><img src="/assets/img/commodities/' + p.icon + '.svg" alt="" loading="lazy"></span>';
+          return '<span class="fx-inst-ic"><img src="/assets/img/commodities/' + p.icon + '.svg" alt="' + p.name + ' icon" loading="lazy"></span>';
         },
         spread: function (s, p) { return s.toFixed(p.sdec); },
         floor: function (p) { return p.spread * 0.6; },
@@ -1002,7 +1002,8 @@
             { sym: 'SOYBEAN', name: 'Soybean Futures CFD', icon: 'soybean', badge: 'SOY', mid: 1148.50, dec: 2, spread: 1.50, sdec: 2 },
             { sym: 'COFFEE', name: 'Coffee Futures CFD', icon: 'coffee', badge: 'KC', mid: 231.40, dec: 2, spread: 0.90, sdec: 2 },
             { sym: 'SUGAR', name: 'Sugar Futures CFD', icon: 'sugar', badge: 'SB', mid: 19.85, dec: 2, spread: 0.060, sdec: 3 },
-            { sym: 'COCOA', name: 'Cocoa Futures CFD', icon: 'cocoa', badge: 'CC', mid: 7420.0, dec: 1, spread: 12.0, sdec: 1 }
+            { sym: 'COCOA', name: 'Cocoa Futures CFD', icon: 'cocoa', badge: 'CC', mid: 7420.0, dec: 1, spread: 12.0, sdec: 1 },
+            { sym: 'COTTON', name: 'Cotton Futures CFD', icon: 'cotton', badge: 'CT', mid: 68.35, dec: 2, spread: 0.25, sdec: 2 }
           ]
         }
       }
