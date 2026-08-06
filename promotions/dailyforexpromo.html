@@ -5,25 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#05070E" />
 
-  <title>50/20 Deposit Bonus | STARTRADER</title>
-  <meta name="description" content="Get 50% credit bonus on your first deposit, up to $500, then 20% on every deposit after. Terms apply." />
+  <title>Daily Forex Promo | 50% + 20% Deposit Bonus | STARTRADER</title>
+  <meta name="description" content="STARTRADER's Daily Forex Promo for Europe, New Zealand and Canada — 50% bonus credit on your first deposit up to $500, then 20% on every deposit after, up to $10,000 in total. Terms apply." />
   <meta name="keywords" content="STARTRADER, forex trading, currency pairs, EUR/USD, tight spreads, 100ms execution, leverage 1:1000, MT4, MT5, major minor exotic pairs" />
   <meta name="author" content="STARTRADER" />
-  <link rel="canonical" href="https://www.startrader.com/promotions/deposit-bonus.html" />
+  <link rel="canonical" href="https://www.startrader.com/promotions/dailyforexpromo.html" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="STARTRADER" />
-  <meta property="og:title" content="50/20 Deposit Bonus | STARTRADER" />
-  <meta property="og:description" content="Get 50% credit bonus on your first deposit, up to $500, then 20% on every deposit after. Terms apply." />
+  <meta property="og:title" content="Daily Forex Promo | 50% + 20% Deposit Bonus | STARTRADER" />
+  <meta property="og:description" content="STARTRADER's Daily Forex Promo for Europe, New Zealand and Canada — 50% bonus credit on your first deposit up to $500, then 20% on every deposit after, up to $10,000 in total. Terms apply." />
   <meta property="og:url" content="https://www.startrader.com/trading/products/forex.html" />
   <meta property="og:image" content="https://www.startrader.com/assets/img/products-video-poster.webp" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="50/20 Deposit Bonus | STARTRADER" />
-  <meta name="twitter:description" content="Get 50% credit bonus on your first deposit, up to $500, then 20% on every deposit after. Terms apply." />
+  <meta name="twitter:title" content="Daily Forex Promo | 50% + 20% Deposit Bonus | STARTRADER" />
+  <meta name="twitter:description" content="STARTRADER's Daily Forex Promo for Europe, New Zealand and Canada — 50% bonus credit on your first deposit up to $500, then 20% on every deposit after, up to $10,000 in total. Terms apply." />
   <meta name="twitter:image" content="https://www.startrader.com/assets/img/products-video-poster.webp" />
 
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
@@ -37,106 +37,175 @@
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* =================================================================
-   DEPOSIT BONUS 50/20
-   Shares the promotions palette and its coupon language. The two tiers
-   carry their percentage as the artwork; the estimator does the sums.
+   DAILY FOREX PROMO
+   The promotions banner up top; below it the campaign gets its own
+   glass instruments — a live credit calculator, a split bar that
+   draws the 50/20 maths, and eligibility panels that read at a
+   glance. Everything hovers and reveals like the rest of the site.
    ================================================================= */
-.d5-tier-sec{position:relative;isolation:isolate;overflow:clip;
-  background:radial-gradient(50% 44% at 90% 0%,rgba(0,71,187,.08),transparent 62%),var(--bg-light-2)}
-.d5-tier-sec>.container{position:relative;z-index:1}
-.d5-tiers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2vw,26px);margin-top:clamp(32px,4vw,50px)}
-.d5-tier{
-  position:relative;overflow:hidden;display:flex;flex-direction:column;
-  border-radius:clamp(20px,2.4vw,30px);padding:clamp(24px,2.8vw,34px);
-  background:linear-gradient(180deg,rgba(0,71,187,.08),rgba(255,255,255,.72) 46%);
-  border:1px solid rgba(255,255,255,.92);
-  box-shadow:0 16px 40px -28px rgba(20,44,96,.44),inset 0 1px 0 #fff;
-  transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .32s;
+
+/* ---- offer at a glance ---- */
+.dfp-glance-sec{position:relative;isolation:isolate;overflow:clip;
+  background:radial-gradient(50% 44% at 12% 0%,rgba(0,71,187,.08),transparent 62%),var(--bg-light-2)}
+.dfp-glance-sec>.container{position:relative;z-index:1}
+.dfp-glance{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.8vw,24px);margin-top:clamp(30px,3.6vw,46px)}
+.dfp-stat{
+  position:relative;overflow:hidden;border-radius:clamp(18px,2vw,26px);padding:clamp(22px,2.6vw,32px);
+  background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.85);
+  -webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4);
+  box-shadow:0 20px 44px -28px rgba(16,30,54,.28),inset 0 1px 0 rgba(255,255,255,.9);
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+.dfp-stat:hover{transform:translateY(-6px);box-shadow:0 30px 58px -28px rgba(16,30,54,.38)}
+.dfp-stat b{display:block;font-size:clamp(34px,4vw,52px);font-weight:800;letter-spacing:-.03em;line-height:1;color:var(--blue)}
+.dfp-stat b sup{font-size:.5em;font-weight:800;vertical-align:super}
+.dfp-stat h3{margin-top:10px;font-size:15.5px;letter-spacing:-.02em}
+.dfp-stat p{margin-top:6px;font-size:13px;line-height:1.6;color:var(--text-soft)}
+.dfp-window{
+  display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;
+  margin-top:clamp(22px,2.6vw,32px);font-size:12.5px;font-weight:600;color:var(--text-soft)}
+.dfp-window i{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);
+  box-shadow:0 0 0 4px rgba(16,185,129,.15);animation:dfpPulse 2.2s ease-out infinite}
+@keyframes dfpPulse{0%{box-shadow:0 0 0 0 rgba(16,185,129,.3)}70%{box-shadow:0 0 0 7px rgba(16,185,129,0)}100%{box-shadow:0 0 0 0 rgba(16,185,129,0)}}
+@media (prefers-reduced-motion:reduce){.dfp-window i{animation:none}}
+
+/* the shared pm-h2 is ink-dark; these two sections sit on navy */
+.dfp-calc-sec .pm-h2,.dfp-fair-sec .pm-h2{color:#fff}
+.dfp-calc-sec .pm-sub,.dfp-fair-sec .pm-sub{color:#a9bcd8}
+
+/* ---- calculator (dark glass) ---- */
+.dfp-calc-sec{position:relative;isolation:isolate;overflow:clip;color:#fff;
+  background:radial-gradient(56% 48% at 82% -10%,rgba(42,114,255,.16),transparent 60%),var(--navy)}
+.dfp-calc-sec>.container{position:relative;z-index:1}
+.dfp-calc{
+  display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(20px,2.6vw,36px);
+  margin-top:clamp(30px,3.6vw,46px);border-radius:clamp(20px,2.4vw,30px);padding:clamp(24px,3vw,40px);
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.11);
+  -webkit-backdrop-filter:blur(18px) saturate(1.3);backdrop-filter:blur(18px) saturate(1.3);
+  box-shadow:0 34px 70px -40px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.08)}
+.dfp-calc-l h3{font-size:clamp(18px,2vw,22px);letter-spacing:-.02em}
+.dfp-calc-l>p{margin-top:8px;font-size:13.5px;line-height:1.65;color:#a9bcd8}
+.dfp-amt{display:flex;align-items:baseline;gap:8px;margin-top:clamp(20px,2.4vw,28px)}
+.dfp-amt em{font-style:normal;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#8ea4c6}
+.dfp-amt b{font-size:clamp(30px,3.4vw,42px);font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.dfp-range{width:100%;margin-top:16px;-webkit-appearance:none;appearance:none;height:6px;border-radius:6px;
+  background:linear-gradient(90deg,var(--blue-bright) var(--fill,10%),rgba(255,255,255,.14) var(--fill,10%));outline-offset:6px}
+.dfp-range::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;
+  background:#fff;border:0;box-shadow:0 0 0 5px rgba(42,114,255,.35),0 6px 16px rgba(0,0,0,.45);cursor:grab;
+  transition:box-shadow .25s var(--ease),transform .25s var(--ease)}
+.dfp-range::-webkit-slider-thumb:hover{transform:scale(1.12);box-shadow:0 0 0 8px rgba(42,114,255,.28),0 6px 16px rgba(0,0,0,.45)}
+.dfp-range::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:#fff;border:0;
+  box-shadow:0 0 0 5px rgba(42,114,255,.35);cursor:grab}
+.dfp-presets{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.dfp-preset{padding:7px 14px;border-radius:40px;font-size:12.5px;font-weight:700;color:#cdd9ec;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);cursor:pointer;
+  transition:background .25s,color .25s,border-color .25s,transform .25s var(--ease)}
+.dfp-preset:hover{transform:translateY(-2px);background:rgba(255,255,255,.13)}
+.dfp-preset.is-on{background:var(--blue-bright);border-color:transparent;color:#fff}
+.dfp-calc-r{display:flex;flex-direction:column;justify-content:center;gap:14px;
+  border-left:1px solid rgba(255,255,255,.1);padding-left:clamp(20px,2.6vw,36px)}
+.dfp-row{display:flex;align-items:baseline;justify-content:space-between;gap:12px;font-size:13.5px;color:#a9bcd8}
+.dfp-row b{font-size:15px;color:#eaf0fa;font-variant-numeric:tabular-nums}
+.dfp-bar{display:flex;height:12px;border-radius:8px;overflow:hidden;background:rgba(255,255,255,.08)}
+.dfp-bar i{display:block;height:100%;transition:width .5s var(--ease)}
+.dfp-bar .b50{background:linear-gradient(90deg,#2a72ff,#5b9dff)}
+.dfp-bar .b20{background:linear-gradient(90deg,#16e9d7,#0fb7a9)}
+.dfp-key{display:flex;gap:16px;font-size:11.5px;font-weight:700;letter-spacing:.06em;color:#8ea4c6}
+.dfp-key i{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.dfp-key .b50{background:#2a72ff}.dfp-key .b20{background:#16e9d7}
+.dfp-total{margin-top:6px;padding-top:16px;border-top:1px solid rgba(255,255,255,.1)}
+.dfp-total em{display:block;font-style:normal;font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#8ea4c6}
+.dfp-total b{display:block;margin-top:6px;font-size:clamp(34px,4vw,50px);font-weight:800;letter-spacing:-.03em;
+  color:#16e9d7;font-variant-numeric:tabular-nums}
+.dfp-total span{display:block;margin-top:4px;font-size:12.5px;color:#a9bcd8}
+.dfp-calc-note{margin-top:16px;font-size:12px;line-height:1.6;color:#8ea4c6}
+
+/* ---- steps ---- */
+.dfp-steps-sec{background:var(--bg-light)}
+.dfp-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(14px,1.8vw,22px);margin-top:clamp(30px,3.6vw,46px);counter-reset:dfp}
+.dfp-step{
+  position:relative;border-radius:clamp(18px,2vw,24px);padding:clamp(20px,2.4vw,28px);
+  background:rgba(255,255,255,.66);border:1px solid rgba(255,255,255,.9);
+  -webkit-backdrop-filter:blur(14px) saturate(1.4);backdrop-filter:blur(14px) saturate(1.4);
+  box-shadow:0 18px 40px -28px rgba(16,30,54,.26);
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+.dfp-step:hover{transform:translateY(-6px);box-shadow:0 28px 54px -28px rgba(16,30,54,.36)}
+.dfp-step:hover .dfp-num{transform:scale(1.08);background:var(--blue);color:#fff}
+.dfp-num{counter-increment:dfp;display:inline-flex;align-items:center;justify-content:center;
+  width:40px;height:40px;border-radius:12px;font-size:14px;font-weight:800;
+  color:var(--blue);background:rgba(0,71,187,.09);transition:transform .35s var(--ease),background .35s,color .35s}
+.dfp-num::before{content:"0" counter(dfp)}
+.dfp-step h3{margin-top:14px;font-size:15.5px;letter-spacing:-.02em}
+.dfp-step p{margin-top:7px;font-size:13px;line-height:1.62;color:var(--text-soft)}
+
+/* ---- worked examples ---- */
+.dfp-ex-sec{background:var(--bg-light-2)}
+.dfp-table-wrap{margin-top:clamp(28px,3.4vw,44px);border-radius:clamp(18px,2vw,26px);overflow:hidden;
+  background:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.9);
+  -webkit-backdrop-filter:blur(14px) saturate(1.4);backdrop-filter:blur(14px) saturate(1.4);
+  box-shadow:0 22px 50px -32px rgba(16,30,54,.3)}
+.dfp-table{width:100%;border-collapse:collapse;font-size:14px}
+.dfp-table th{padding:16px 22px;text-align:left;font-size:11.5px;font-weight:800;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--text-mute);border-bottom:1px solid var(--line)}
+.dfp-table td{padding:16px 22px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+.dfp-table tr:last-child td{border-bottom:0}
+.dfp-table tbody tr{transition:background .25s}
+.dfp-table tbody tr:hover{background:rgba(0,71,187,.045)}
+.dfp-table td b{color:var(--blue)}
+.dfp-table .is-cap td{color:var(--text-soft)}
+.dfp-table-note{margin-top:14px;font-size:12.5px;color:var(--text-mute);text-align:center}
+
+/* ---- eligibility ---- */
+.dfp-eligy{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2vw,26px);margin-top:clamp(30px,3.6vw,46px)}
+.dfp-panel{border-radius:clamp(18px,2.2vw,28px);padding:clamp(22px,2.8vw,34px);
+  background:rgba(255,255,255,.64);border:1px solid rgba(255,255,255,.88);
+  -webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4);
+  box-shadow:0 20px 46px -30px rgba(16,30,54,.28);
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+.dfp-panel:hover{transform:translateY(-6px);box-shadow:0 30px 60px -30px rgba(16,30,54,.38)}
+.dfp-panel h3{font-size:16.5px;letter-spacing:-.02em;display:flex;align-items:center;gap:10px}
+.dfp-panel h3 svg{width:20px;height:20px}
+.dfp-panel--in h3 svg{color:var(--green)}
+.dfp-panel--out h3 svg{color:var(--red)}
+.dfp-panel ul{margin-top:16px;display:grid;gap:11px}
+.dfp-panel li{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;line-height:1.6;color:var(--text-soft)}
+.dfp-panel li svg{flex:none;width:15px;height:15px;margin-top:3px}
+.dfp-panel--in li svg{color:var(--green)}
+.dfp-panel--out li svg{color:var(--red)}
+
+/* ---- fair play strip ---- */
+.dfp-fair-sec{color:#fff;background:linear-gradient(180deg,var(--navy),var(--navy-2))}
+.dfp-fair{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:clamp(24px,3vw,38px)}
+.dfp-pill{padding:9px 16px;border-radius:40px;font-size:12.5px;font-weight:600;color:#cdd9ec;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+  transition:background .3s,transform .3s var(--ease)}
+.dfp-pill:hover{background:rgba(255,255,255,.12);transform:translateY(-2px)}
+.dfp-fair-note{margin-top:18px;text-align:center;font-size:12.5px;line-height:1.7;color:#8ea4c6;max-width:640px;margin-inline:auto}
+
+/* ---- responsive ---- */
+@media (max-width:1080px){
+  .dfp-steps{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
-.d5-tier--sand{background:linear-gradient(180deg,rgba(223,197,174,.5),rgba(255,255,255,.72) 48%)}
-.d5-tier:hover{transform:translateY(-6px);border-color:rgba(0,71,187,.24);
-  box-shadow:0 34px 64px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff}
-.d5-tier--sand:hover{border-color:rgba(138,100,64,.34)}
-/* the percentage is the artwork */
-.d5-pc{
-  display:flex;align-items:baseline;gap:4px;line-height:.86;letter-spacing:-.06em;font-weight:800;
-  font-size:clamp(58px,8vw,104px);font-variant-numeric:tabular-nums;
-  color:transparent;background:linear-gradient(168deg,var(--blue-bright),var(--blue) 68%);
-  -webkit-background-clip:text;background-clip:text;
+@media (max-width:900px){
+  .dfp-calc{grid-template-columns:1fr}
+  .dfp-calc-r{border-left:0;padding-left:0;border-top:1px solid rgba(255,255,255,.1);padding-top:22px}
+  .dfp-glance{grid-template-columns:1fr;max-width:460px;margin-inline:auto}
+  .dfp-eligy{grid-template-columns:1fr}
 }
-.d5-tier--sand .d5-pc{background:linear-gradient(168deg,#b98a5d,#8a6440 70%);-webkit-background-clip:text;background-clip:text}
-.d5-pc sup{font-size:.44em;line-height:1;letter-spacing:-.03em;top:0;position:relative}
-.d5-tier h3{margin-top:16px;font-size:clamp(19px,2.2vw,25px);font-weight:800;letter-spacing:-.036em;line-height:1.16;color:var(--ink)}
-.d5-tier > p{margin-top:11px;font-size:14.2px;line-height:1.7;color:var(--text-soft)}
-.d5-tag{
-  display:inline-flex;align-items:center;gap:7px;align-self:flex-start;
-  margin-top:auto;padding-top:clamp(18px,2.2vw,24px);
-  font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--text-mute);
+@media (max-width:560px){
+  .dfp-steps{grid-template-columns:1fr}
+  .dfp-table th,.dfp-table td{padding:12px 14px;font-size:13px}
 }
-.d5-tag i{width:22px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--blue-bright),var(--mint));
-  transition:width .45s var(--ease)}
-.d5-tier:hover .d5-tag i{width:44px}
-/* the third promise runs as a strip under the two tiers */
-.d5-strip{
-  display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:clamp(16px,2.4vw,32px);align-items:center;
-  margin-top:clamp(16px,2vw,26px);padding:clamp(20px,2.4vw,28px) clamp(22px,2.8vw,36px);
-  border-radius:clamp(18px,2.2vw,26px);
-  background:rgba(255,255,255,.76);border:1px solid rgba(255,255,255,.92);
-  -webkit-backdrop-filter:blur(18px) saturate(1.4);backdrop-filter:blur(18px) saturate(1.4);
-  box-shadow:0 16px 40px -30px rgba(20,44,96,.4),inset 0 1px 0 #fff;
-}
-.d5-strip-ic{
-  display:grid;place-items:center;width:52px;height:52px;border-radius:17px;flex:none;
-  background:linear-gradient(158deg,var(--blue-bright),var(--blue));
-  box-shadow:0 14px 26px -14px rgba(0,71,187,.6),inset 0 1px 0 rgba(255,255,255,.32);
-}
-.d5-strip-ic svg{width:23px;height:23px;color:#fff}
-.d5-strip-tx b{display:block;font-size:17px;font-weight:700;letter-spacing:-.028em;color:var(--ink)}
-.d5-strip-tx p{margin-top:7px;font-size:13.6px;line-height:1.66;color:var(--text-soft)}
-.d5-note{margin:clamp(22px,2.6vw,32px) auto 0;max-width:80ch;font-size:11.5px;line-height:1.7;
-  color:var(--text-mute);text-align:center}
-/* ---------------- the estimator ---------------- */
-.d5-calc{
-  position:relative;overflow:hidden;margin-top:clamp(20px,2.4vw,30px);
-  border-radius:clamp(20px,2.4vw,28px);padding:clamp(22px,2.8vw,34px);
-  background:linear-gradient(140deg,rgba(0,71,187,.09),rgba(223,197,174,.32) 64%,rgba(255,255,255,.78));
-  border:1px solid rgba(255,255,255,.92);
-  box-shadow:0 22px 50px -32px rgba(20,44,96,.44),inset 0 1px 0 #fff;
-}
-.d5-calc-hd{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px}
-.d5-calc-hd b{font-size:clamp(17px,2vw,22px);font-weight:800;letter-spacing:-.034em;color:var(--ink)}
-.d5-calc-hd span{font-size:11.5px;color:var(--text-mute)}
-.d5-calc .ct-grid{margin-top:clamp(18px,2.2vw,26px)}
-.d5-out{
-  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;
-  margin-top:clamp(18px,2.2vw,26px);border-radius:18px;overflow:hidden;background:rgba(20,44,96,.1);
-}
-.d5-out div{padding:18px 20px;background:rgba(255,255,255,.92)}
-.d5-out em{display:block;font-style:normal;font-size:10px;font-weight:800;letter-spacing:.13em;
-  text-transform:uppercase;color:var(--text-mute)}
-.d5-out b{display:block;margin-top:9px;font-size:clamp(22px,2.6vw,32px);font-weight:800;
-  letter-spacing:-.05em;line-height:1;font-variant-numeric:tabular-nums;color:var(--blue)}
-.d5-out div:nth-child(2) b{color:#8a6440}
-.d5-out div:nth-child(3) b{color:var(--ink)}
-.d5-out i{display:block;margin-top:8px;font-style:normal;font-size:11.5px;color:var(--text-mute)}
-/* ---------------- how to get it ---------------- */
-.d5-how{position:relative;isolation:isolate;overflow:clip;background:linear-gradient(180deg,#fff,#f2f6fc)}
-.d5-how>.container{position:relative;z-index:1}
-@media (max-width:900px){.d5-tiers{grid-template-columns:1fr}
-.d5-strip{grid-template-columns:auto minmax(0,1fr);gap:18px}
-.d5-strip .btn{grid-column:1 / -1;justify-self:start}
-.d5-out{grid-template-columns:1fr}}
   </style>
 
   <!-- Structured data -->
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "FinancialProduct",
-    "name": "STARTRADER Forex Trading",
-    "description": "Trade 80+ forex currency pairs with ultra-tight spreads, 100-millisecond execution and leverage up to 1:1000.",
-    "url": "https://www.startrader.com/trading/products/forex.html",
-    "provider": { "@type": "FinancialService", "name": "STARTRADER", "url": "https://www.startrader.com/" }
+    "@type": "WebPage",
+    "name": "Daily Forex Promo | 50% + 20% Deposit Bonus | STARTRADER",
+    "description": "STARTRADER's Daily Forex Promo for Europe, New Zealand and Canada — 50% bonus credit on your first deposit up to $500, then 20% on every deposit after, up to $10,000 in total. Terms apply.",
+    "url": "https://www.startrader.com/promotions/dailyforexpromo.html"
   }
   </script>
   <script type="application/ld+json">
@@ -144,58 +213,15 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      { "@type": "Question", "name": "What is forex trading and how does it work?", "acceptedAnswer": { "@type": "Answer", "text": "Forex trading is the buying and selling of currency pairs to profit from changes in their exchange rate. Trades use lots — a standard lot is 100,000 units — and leverage lets you control a larger position with less capital on the 24/5 foreign-exchange market." } },
-      { "@type": "Question", "name": "How many currency pairs can I trade with STARTRADER?", "acceptedAnswer": { "@type": "Answer", "text": "You can trade 80+ currency pairs across major, minor and exotic categories, all with competitive spreads and fast execution." } },
-      { "@type": "Question", "name": "What are the trading hours for the forex market?", "acceptedAnswer": { "@type": "Answer", "text": "The forex market runs 24 hours a day, 5 days a week, closing only on weekends. Sessions overlap across Sydney, Tokyo, London and New York so there is always an active market." } },
-      { "@type": "Question", "name": "What leverage is available on forex?", "acceptedAnswer": { "@type": "Answer", "text": "Flexible leverage is available up to 1:1000. Higher leverage increases both potential profit and risk, and leverage above 1:30 may not be available in some regions." } },
-      { "@type": "Question", "name": "Which platforms can I use to trade forex?", "acceptedAnswer": { "@type": "Answer", "text": "MetaTrader 4 and MetaTrader 5 are the most popular, alongside the STAR Web Trader and mobile apps — all offering advanced charting, indicators and automated trading." } },
-      { "@type": "Question", "name": "What are the best forex pairs to trade?", "acceptedAnswer": { "@type": "Answer", "text": "It depends on your strategy, but the most-traded pairs include EUR/USD, USD/JPY, GBP/USD, AUD/USD and USD/CAD — highly liquid majors with tight spreads." } },
-      { "@type": "Question", "name": "Are there commissions or hidden fees on forex?", "acceptedAnswer": { "@type": "Answer", "text": "STARTRADER charges 0 commission and 0 deposit fees on most channels for Standard accounts. ECN and Prime ECN accounts pay a low commission in exchange for raw spreads from 0.0 pips." } },
-      { "@type": "Question", "name": "How do I get started with forex trading?", "acceptedAnswer": { "@type": "Answer", "text": "Open an account, verify your identity, fund your wallet and start trading — or practise risk-free on a demo account first to build your strategy." } }
+      { "@type": "Question", "name": "Who can join the Daily Forex Promo?", "acceptedAnswer": { "@type": "Answer", "text": "Clients in Europe, New Zealand and Canada who opt in through the client portal. Accounts with leverage above 1:500, cent accounts, cryptocurrency accounts and PAMM/MAM accounts are not eligible." } },
+      { "@type": "Question", "name": "How is the bonus calculated?", "acceptedAnswer": { "@type": "Answer", "text": "Your first $1,000 of deposits earns 50% bonus credit — up to $500 — and everything above that earns 20%. A $5,000 first deposit earns $1,300 in credit. The total is capped at $10,000 per client for the promotion period." } },
+      { "@type": "Question", "name": "Is there a minimum deposit?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — deposits of $100 or more qualify for the bonus." } },
+      { "@type": "Question", "name": "Can I withdraw the bonus credit?", "acceptedAnswer": { "@type": "Answer", "text": "The credit itself is not withdrawable and cannot be transferred between accounts, but every dollar of profit you make while trading with it is yours to withdraw." } },
+      { "@type": "Question", "name": "What happens if I withdraw my deposit?", "acceptedAnswer": { "@type": "Answer", "text": "A proportional amount of bonus credit is deducted when you withdraw deposits or profits, so keep sufficient margin in the account to support any open positions." } },
+      { "@type": "Question", "name": "Can I combine this with other promotions?", "acceptedAnswer": { "@type": "Answer", "text": "No. The Daily Forex Promo cannot be combined with other promotional privileges, and any previous promotion must be completed before you join this one." } }
     ]
   }
   </script>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How much bonus credit do I get?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Fifty per cent of your first deposit, up to $500 of credit bonus. Every deposit after that earns twenty per cent."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the minimum deposit?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Deposit $100 or more and the bonus credit is applied automatically once you have opted in."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do I have to opt in?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. Activate the deposit bonus from the client portal before you deposit, so the credit can be applied."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I withdraw my profits?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Withdrawals of eligible profits are available, subject to your account terms."
-      }
-    }
-  ]
-}
-  </script>
-
 </head>
 <body class="prx light-top">
 
@@ -495,161 +521,295 @@
 <main id="main">
 
 <!-- ============ BANNER ============ -->
-<section class="pm-hero" aria-labelledby="d5-hero-title">
+<section class="pm-hero" aria-labelledby="dfp-hero-title">
   <video class="pm-hero-video" autoplay muted loop playsinline preload="metadata"
     poster="../assets/img/promotions-video-poster.webp" aria-hidden="true">
     <source src="../assets/video/promotions-banner.mp4" type="video/mp4">
   </video>
   <div class="container pm-hero-in">
     <div class="pm-hero-copy">
-      <span class="pm-eyebrow" data-aos="fade-up">Deposit bonus</span>
-      <h1 class="pm-h1" id="d5-hero-title" data-aos="fade-up">
-        <span>Boost your trades with</span>
-        <span class="lit">the 50/20 deposit bonus.</span>
+      <span class="pm-eyebrow" data-aos="fade-up">Daily Forex Promo</span>
+      <h1 class="pm-h1" id="dfp-hero-title" data-aos="fade-up">
+        <span>Every deposit works harder.</span>
+        <span class="lit">50% first, 20% forever after.</span>
       </h1>
-      <p class="pm-lead" data-aos="fade-up">Fifty per cent credit bonus on your first deposit, up to $500 &mdash; then twenty per cent on every deposit after. Terms and conditions apply.</p>
+      <p class="pm-lead" data-aos="fade-up">Bonus credit on every qualifying deposit &mdash; 50% on your first, up to $500, then 20% on each one after, to a $10,000 total. For clients in Europe, New Zealand and Canada. Terms and conditions apply.</p>
       <div class="pm-hact" data-aos="fade-up">
-        <a class="pm-btn" href="../trading/getting-started/funding.html">Deposit now <svg><use href="#i-arrow-right"/></svg></a>
+        <a class="pm-btn" href="../trading/getting-started/account-opening.html">Claim the bonus <svg><use href="#i-arrow-right"/></svg></a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ THE TWO TIERS ============ -->
-<section class="section d5-tier-sec" id="tiers" aria-labelledby="d5-tier-title">
+<!-- ============ AT A GLANCE ============ -->
+<section class="section dfp-glance-sec" id="glance" aria-labelledby="dfp-glance-title">
   <div class="container">
-    <span class="pm-eyebrow-c" data-aos="fade-up">What you get</span>
-    <h2 class="pm-h2" id="d5-tier-title" data-aos="fade-up">Trade bigger with<br> deposit bonus</h2>
-    <p class="pm-sub" data-aos="fade-up">Two rates, one promotion. The first deposit earns the most, and the credit keeps coming after that.</p>
+    <span class="pm-eyebrow-c" data-aos="fade-up">The offer</span>
+    <h2 class="pm-h2" id="dfp-glance-title" data-aos="fade-up">Three numbers,<br> no small print surprises</h2>
+    <p class="pm-sub" data-aos="fade-up">The whole promotion fits in a sentence: half of your first thousand, a fifth of everything after, capped at ten thousand.</p>
 
-    <div class="d5-tiers">
-      <article class="d5-tier" data-aos="fade-up">
-        <span class="d5-pc" aria-hidden="true">50<sup>%</sup></span>
+    <div class="dfp-glance">
+      <article class="dfp-stat" data-aos="fade-up">
+        <b><span data-count="50">50</span><sup>%</sup></b>
         <h3>On your first deposit</h3>
-        <p>Get up to $500 credit bonus when you make your first deposit.</p>
-        <span class="d5-tag"><i></i>Up to $500</span>
+        <p>Half of your first $1,000 back as bonus credit &mdash; up to $500 &mdash; from a minimum $100 deposit.</p>
       </article>
-
-      <article class="d5-tier d5-tier--sand" data-aos="fade-up">
-        <span class="d5-pc" aria-hidden="true">20<sup>%</sup></span>
+      <article class="dfp-stat" data-aos="fade-up" data-aos-delay="100">
+        <b><span data-count="20">20</span><sup>%</sup></b>
         <h3>On every deposit after</h3>
-        <p>Keep earning bonus credit on all your subsequent deposits.</p>
-        <span class="d5-tag"><i></i>Every top-up</span>
+        <p>Each later deposit &mdash; and anything above $1,000 on the first &mdash; earns twenty per cent credit.</p>
+      </article>
+      <article class="dfp-stat" data-aos="fade-up" data-aos-delay="200">
+        <b>$<span data-count="10000" data-comma>10,000</span></b>
+        <h3>Total credit available</h3>
+        <p>The most bonus credit one client can collect across the whole promotion period.</p>
       </article>
     </div>
 
-    <div class="d5-strip" data-aos="fade-up">
-      <span class="d5-strip-ic"><svg><use href="#i-wallet"/></svg></span>
-      <span class="d5-strip-tx">
-        <b>Profit withdrawals</b>
-        <p>Withdrawals of eligible profits are available, subject to your account terms.</p>
-      </span>
-      <a class="btn btn-primary" href="../trading/getting-started/funding.html">Fund your account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
-    </div>
-
-    <!-- the estimator does the two rates in front of you -->
-    <div class="d5-calc" data-d5-calc data-aos="fade-up">
-      <div class="d5-calc-hd">
-        <b>See what your deposits earn</b>
-        <span>An estimate on the rates above, not a quote.</span>
-      </div>
-
-      <div class="ct-grid">
-        <div class="ct-field">
-          <label for="d5First">First deposit</label>
-          <input type="number" id="d5First" min="0" step="50" value="1000" inputmode="numeric" data-d5-first>
-        </div>
-        <div class="ct-field">
-          <label for="d5Next">Deposits after that, in total</label>
-          <input type="number" id="d5Next" min="0" step="50" value="500" inputmode="numeric" data-d5-next>
-        </div>
-      </div>
-
-      <div class="d5-out">
-        <div><em>First deposit bonus</em><b data-d5-out-first>$500</b><i data-d5-note-first>50% of $1,000</i></div>
-        <div><em>Bonus after that</em><b data-d5-out-next>$100</b><i>20% of $500</i></div>
-        <div><em>Total credit bonus</em><b data-d5-out-total>$600</b><i data-d5-note-total>Credit, not withdrawable cash</i></div>
-      </div>
-
-      <p class="d5-note" style="text-align:left;margin-top:16px">The first-deposit bonus is capped at $500 of credit. A deposit of $100 or more is required, and the promotion must be activated from the client portal before you deposit.</p>
-    </div>
-
-    <p class="d5-note" data-aos="fade-up">Bonus credit is not withdrawable cash. Withdrawals of eligible profits are available, subject to account terms. Terms and conditions apply.</p>
+    <p class="dfp-window" data-aos="fade-up"><i aria-hidden="true"></i>Registration window: 00:00 July 3 &ndash; 23:59 September 30, 2026 (MT4 time) &middot; opt in via the client portal</p>
   </div>
 </section>
 
-<!-- ============ HOW TO GET IT ============ -->
-<section class="section htrade-sec d5-how" id="how" aria-labelledby="d5-how-title">
+<!-- ============ CALCULATOR ============ -->
+<section class="section dfp-calc-sec" id="calculator" aria-labelledby="dfp-calc-title">
   <div class="container">
-    <div class="htrade">
-      <div class="htrade-intro" data-aos="fade-up">
-        <h2 class="htrade-title" id="d5-how-title">Three steps<br><span>to your bonus</span></h2>
-        <p class="htrade-sub">Open the account, opt in, then deposit. The credit lands on its own.</p>
-        <a href="../trading/getting-started/account-opening.html" class="btn btn-primary btn-lg htrade-btn magnetic">Open live account <span class="htrade-go"><svg><use href="#i-arrow-right"/></svg></span></a>
-      </div>
+    <span class="pm-eyebrow-c" data-aos="fade-up">Do the sums</span>
+    <h2 class="pm-h2 h2-light" id="dfp-calc-title" data-aos="fade-up">See your credit<br> before you deposit</h2>
+    <p class="pm-sub" data-aos="fade-up">Drag the slider &mdash; the split updates as you move it, exactly as the credit would land.</p>
 
-      <div>
-        <ol class="htrade-steps" data-htrade>
-          <li class="htrade-step">
-            <span class="htrade-num">01</span>
-            <div class="htrade-txt"><h3>Open a live account</h3><p>Sign up for a STARTRADER trading account to get started.</p></div>
-          </li>
-          <li class="htrade-step">
-            <span class="htrade-num">02</span>
-            <div class="htrade-txt"><h3>Opt in to the promotion</h3><p>Activate the deposit bonus from the client portal.</p></div>
-          </li>
-          <li class="htrade-step">
-            <span class="htrade-num">03</span>
-            <div class="htrade-txt"><h3>Deposit and get rewarded</h3><p>Deposit $100 or more and your bonus credit arrives automatically.</p></div>
-          </li>
-        </ol>
+    <div class="dfp-calc" data-aos="fade-up" data-dfp-calc>
+      <div class="dfp-calc-l">
+        <h3>Your first deposit</h3>
+        <p>The calculator assumes this is your first deposit with STARTRADER, so the 50% tier applies to the first $1,000 of it.</p>
+        <div class="dfp-amt"><em>Deposit</em><b data-dfp-amount>$2,500</b></div>
+        <label class="sr-only" for="dfpRange">Deposit amount</label>
+        <input class="dfp-range" id="dfpRange" type="range" min="100" max="25000" step="100" value="2500" aria-label="Deposit amount in US dollars">
+        <div class="dfp-presets" role="group" aria-label="Preset amounts">
+          <button class="dfp-preset" type="button" data-dfp-preset="500">$500</button>
+          <button class="dfp-preset" type="button" data-dfp-preset="1000">$1,000</button>
+          <button class="dfp-preset is-on" type="button" data-dfp-preset="2500">$2,500</button>
+          <button class="dfp-preset" type="button" data-dfp-preset="5000">$5,000</button>
+          <button class="dfp-preset" type="button" data-dfp-preset="10000">$10,000</button>
+        </div>
+        <p class="dfp-calc-note">Illustration only. Credit lands automatically once a qualifying deposit clears, and the $10,000 promotion cap applies across all deposits.</p>
+      </div>
+      <div class="dfp-calc-r" aria-live="polite">
+        <div class="dfp-row"><span data-dfp-l50>First $1,000 at 50%</span><b data-dfp-b50>$500</b></div>
+        <div class="dfp-row"><span data-dfp-l20>Remaining $1,500 at 20%</span><b data-dfp-b20>$300</b></div>
+        <div class="dfp-bar" aria-hidden="true"><i class="b50" data-dfp-bar50 style="width:62%"></i><i class="b20" data-dfp-bar20 style="width:38%"></i></div>
+        <div class="dfp-key" aria-hidden="true"><span><i class="b50"></i>50% tier</span><span><i class="b20"></i>20% tier</span></div>
+        <div class="dfp-total">
+          <em>Bonus credit</em>
+          <b data-dfp-total>$800</b>
+          <span data-dfp-power>You&rsquo;d trade with $3,300 of buying power.</span>
+        </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="section dfp-steps-sec" id="how" aria-labelledby="dfp-how-title">
+  <div class="container">
+    <span class="pm-eyebrow-c" data-aos="fade-up">How it works</span>
+    <h2 class="pm-h2" id="dfp-how-title" data-aos="fade-up">Four steps,<br> zero paperwork</h2>
+
+    <div class="dfp-steps">
+      <article class="dfp-step" data-aos="fade-up">
+        <span class="dfp-num" aria-hidden="true"></span>
+        <h3>Opt in</h3>
+        <p>Confirm your place in the promotion from the client portal &mdash; one click, once.</p>
+      </article>
+      <article class="dfp-step" data-aos="fade-up" data-aos-delay="100">
+        <span class="dfp-num" aria-hidden="true"></span>
+        <h3>Deposit $100 or more</h3>
+        <p>Any qualifying deposit counts, on any funding method your region supports.</p>
+      </article>
+      <article class="dfp-step" data-aos="fade-up" data-aos-delay="200">
+        <span class="dfp-num" aria-hidden="true"></span>
+        <h3>Credit lands automatically</h3>
+        <p>The bonus is applied as trading credit the moment your deposit clears &mdash; nothing to claim.</p>
+      </article>
+      <article class="dfp-step" data-aos="fade-up" data-aos-delay="300">
+        <span class="dfp-num" aria-hidden="true"></span>
+        <h3>Trade &mdash; profits are yours</h3>
+        <p>The credit supports your margin, and every dollar of profit it helps you make is withdrawable.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WORKED EXAMPLES ============ -->
+<section class="section dfp-ex-sec" id="examples" aria-labelledby="dfp-ex-title">
+  <div class="container">
+    <span class="pm-eyebrow-c" data-aos="fade-up">Worked examples</span>
+    <h2 class="pm-h2" id="dfp-ex-title" data-aos="fade-up">The same maths,<br> at three sizes</h2>
+
+    <div class="dfp-table-wrap" data-aos="fade-up">
+      <table class="dfp-table">
+        <thead>
+          <tr><th scope="col">First deposit</th><th scope="col">50% tier</th><th scope="col">20% tier</th><th scope="col">Bonus credit</th><th scope="col">You trade with</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>$500</td><td>$250</td><td>&mdash;</td><td><b>$250</b></td><td>$750</td></tr>
+          <tr><td>$1,000</td><td>$500</td><td>&mdash;</td><td><b>$500</b></td><td>$1,500</td></tr>
+          <tr><td>$5,000</td><td>$500</td><td>$800</td><td><b>$1,300</b></td><td>$6,300</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="dfp-table-note">Figures in USD (or your account&rsquo;s base-currency equivalent). Credit is capped at $10,000 per client for the promotion.</p>
+  </div>
+</section>
+
+<!-- ============ ELIGIBILITY ============ -->
+<section class="section dfp-glance-sec" id="eligibility" aria-labelledby="dfp-el-title">
+  <div class="container">
+    <span class="pm-eyebrow-c" data-aos="fade-up">Eligibility</span>
+    <h2 class="pm-h2" id="dfp-el-title" data-aos="fade-up">Who&rsquo;s in,<br> and which accounts aren&rsquo;t</h2>
+
+    <div class="dfp-eligy">
+      <article class="dfp-panel dfp-panel--in" data-aos="fade-up">
+        <h3><svg aria-hidden="true"><use href="#i-check"/></svg>You qualify if</h3>
+        <ul>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>You&rsquo;re a client in Europe, New Zealand or Canada</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>You opt in through the client portal during the registration window</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Your deposit is $100 or more</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Your account leverage is 1:500 or below</li>
+        </ul>
+      </article>
+      <article class="dfp-panel dfp-panel--out" data-aos="fade-up" data-aos-delay="100">
+        <h3><svg aria-hidden="true"><use href="#i-close"/></svg>Outside the promotion</h3>
+        <ul>
+          <li><svg aria-hidden="true"><use href="#i-close"/></svg>Accounts with leverage above 1:500</li>
+          <li><svg aria-hidden="true"><use href="#i-close"/></svg>Cent accounts and cryptocurrency accounts</li>
+          <li><svg aria-hidden="true"><use href="#i-close"/></svg>PAMM and MAM accounts</li>
+          <li><svg aria-hidden="true"><use href="#i-close"/></svg>Clients still completing a previous promotion</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAIR PLAY ============ -->
+<section class="section dfp-fair-sec" id="fairplay" aria-labelledby="dfp-fair-title">
+  <div class="container">
+    <span class="pm-eyebrow-c" data-aos="fade-up">Fair play</span>
+    <h2 class="pm-h2 h2-light" id="dfp-fair-title" data-aos="fade-up">One promotion,<br> played straight</h2>
+
+    <div class="dfp-fair" data-aos="fade-up">
+      <span class="dfp-pill">No multi-account arbitrage</span>
+      <span class="dfp-pill">No shared-IP simultaneous trading</span>
+      <span class="dfp-pill">No latency arbitrage</span>
+      <span class="dfp-pill">No abusive scalping or HFT</span>
+      <span class="dfp-pill">No malicious hedging</span>
+      <span class="dfp-pill">No &gt;70% single-product concentration</span>
+    </div>
+    <p class="dfp-fair-note" data-aos="fade-up">STARTRADER reserves the right to disqualify accounts engaging in the behaviours above and to reclaim credit granted under the promotion. The English version of the terms prevails.</p>
   </div>
 </section>
 
 <!-- ============ FAQ ============ -->
-<section class="section faq-sec fx-faq" aria-labelledby="d5-faq-title">
+<section class="section faq-sec fx-faq" aria-labelledby="dfp-faq-title">
   <div class="container">
     <div class="head center">
       <span class="eyebrow" data-aos="fade-up">FAQ</span>
-      <h2 class="h2" id="d5-faq-title" data-aos="fade-up">About the deposit bonus</h2>
+      <h2 class="h2" id="dfp-faq-title" data-aos="fade-up">Daily Forex Promo questions</h2>
     </div>
     <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
-        <summary>How much bonus credit do I get?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Fifty per cent of your first deposit, up to $500 of credit bonus. Every deposit after that earns twenty per cent.</div>
+        <summary>Who can join the Daily Forex Promo?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
+        <div class="faq-a">Clients in Europe, New Zealand and Canada who opt in through the client portal. Accounts with leverage above 1:500, cent accounts, cryptocurrency accounts and PAMM/MAM accounts are not eligible.</div>
       </details>
       <details class="faq-item">
-        <summary>What is the minimum deposit?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Deposit $100 or more and the bonus credit is applied automatically once you have opted in.</div>
+        <summary>How is the bonus calculated?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
+        <div class="faq-a">Your first $1,000 of deposits earns 50% bonus credit — up to $500 — and everything above that earns 20%. A $5,000 first deposit earns $1,300 in credit. The total is capped at $10,000 per client for the promotion period.</div>
       </details>
       <details class="faq-item">
-        <summary>Do I have to opt in?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Yes. Activate the deposit bonus from the client portal before you deposit, so the credit can be applied.</div>
+        <summary>Is there a minimum deposit?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
+        <div class="faq-a">Yes — deposits of $100 or more qualify for the bonus.</div>
       </details>
       <details class="faq-item">
-        <summary>Can I withdraw my profits?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Withdrawals of eligible profits are available, subject to your account terms.</div>
+        <summary>Can I withdraw the bonus credit?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
+        <div class="faq-a">The credit itself is not withdrawable and cannot be transferred between accounts, but every dollar of profit you make while trading with it is yours to withdraw.</div>
+      </details>
+      <details class="faq-item">
+        <summary>What happens if I withdraw my deposit?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
+        <div class="faq-a">A proportional amount of bonus credit is deducted when you withdraw deposits or profits, so keep sufficient margin in the account to support any open positions.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Can I combine this with other promotions?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
+        <div class="faq-a">No. The Daily Forex Promo cannot be combined with other promotional privileges, and any previous promotion must be completed before you join this one.</div>
       </details>
     </div>
   </div>
 </section>
 
-<!-- ============ THE CLOSING CALL ============ -->
-<section class="cta-banner" aria-labelledby="d5-close-title">
+<!-- ============ CLOSING CTA ============ -->
+<section class="cta-banner" aria-labelledby="dfp-cta-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="d5-close-title" data-aos="fade-up">Ready to trade<br>with more behind you?</h2>
-    <p data-aos="fade-up">Open a live account, opt in from the portal, and your first deposit earns fifty per cent in credit bonus.</p>
+    <h2 id="dfp-cta-title" data-aos="fade-up">Make the first deposit<br>the one that counts</h2>
+    <p data-aos="fade-up">Open an account, opt in from the portal and let the 50% tier meet your first deposit.</p>
     <div class="cta-actions" data-aos="fade-up">
-      <a href="../trading/getting-started/account-opening.html" class="btn btn-primary btn-lg">Open live account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
+      <a href="../trading/getting-started/account-opening.html" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
     </div>
   </div>
 </section>
 
-
 </main>
+
+<script>
+/* Daily Forex Promo calculator — page-scoped */
+(function () {
+  var root = document.querySelector('[data-dfp-calc]');
+  if (!root) return;
+  var range = document.getElementById('dfpRange');
+  var el = function (s) { return root.querySelector(s); };
+  var amount = el('[data-dfp-amount]'), l50 = el('[data-dfp-l50]'), l20 = el('[data-dfp-l20]'),
+      b50 = el('[data-dfp-b50]'), b20 = el('[data-dfp-b20]'),
+      bar50 = el('[data-dfp-bar50]'), bar20 = el('[data-dfp-bar20]'),
+      total = el('[data-dfp-total]'), power = el('[data-dfp-power]');
+  var presets = Array.prototype.slice.call(root.querySelectorAll('[data-dfp-preset]'));
+  var CAP = 10000;
+  function usd(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+  function render() {
+    var d = parseInt(range.value, 10);
+    var t50 = Math.min(d, 1000) * 0.5;
+    var t20 = Math.max(d - 1000, 0) * 0.2;
+    var credit = Math.min(t50 + t20, CAP);
+    var pct = ((d - 100) / (25000 - 100)) * 100;
+    range.style.setProperty('--fill', pct + '%');
+    amount.textContent = usd(d);
+    l50.textContent = 'First ' + usd(Math.min(d, 1000)) + ' at 50%';
+    b50.textContent = usd(t50);
+    if (d > 1000) {
+      l20.textContent = 'Remaining ' + usd(d - 1000) + ' at 20%';
+      b20.textContent = usd(t20);
+      l20.parentElement.style.opacity = '1';
+    } else {
+      l20.textContent = 'Nothing in the 20% tier yet';
+      b20.textContent = '\u2014';
+      l20.parentElement.style.opacity = '.55';
+    }
+    var sum = t50 + t20 || 1;
+    bar50.style.width = Math.round((t50 / sum) * 100) + '%';
+    bar20.style.width = Math.round((t20 / sum) * 100) + '%';
+    total.textContent = usd(credit);
+    power.textContent = 'You\u2019d trade with ' + usd(d + credit) + ' of buying power.';
+    presets.forEach(function (b) {
+      b.classList.toggle('is-on', parseInt(b.getAttribute('data-dfp-preset'), 10) === d);
+    });
+  }
+  range.addEventListener('input', render);
+  presets.forEach(function (b) {
+    b.addEventListener('click', function () {
+      range.value = b.getAttribute('data-dfp-preset');
+      render();
+    });
+  });
+  render();
+})();
+</script>
 
 <!-- ============ FOOTER ============ -->
 <footer class="site-footer" id="footer">
