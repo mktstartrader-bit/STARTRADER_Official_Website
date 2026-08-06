@@ -189,6 +189,28 @@
     });
   }
 
+  /* ---------------- Page reveals (AOS) ----------------
+     Entry animations are AOS's job now (data-aos attributes in the markup).
+     The js-aos class gates the hidden initial state, so a visitor without
+     JavaScript still sees every section. Once an element has animated in,
+     its data-aos attribute is stripped — AOS would otherwise pin a
+     transform on it forever and defeat the shared card hover lift. */
+  function initAOS() {
+    if (typeof AOS === 'undefined' || prefersReduced) return;
+    doc.classList.add('js-aos');
+    document.addEventListener('aos:in', function (e) {
+      var el = e.detail;
+      if (!el || el.nodeType !== 1 || !el.hasAttribute('data-aos')) return;
+      var delay = parseInt(el.getAttribute('data-aos-delay') || '0', 10) || 0;
+      setTimeout(function () {
+        el.removeAttribute('data-aos');
+        el.removeAttribute('data-aos-delay');
+        el.classList.remove('aos-init', 'aos-animate');
+      }, 800 + delay + 120);
+    });
+    AOS.init({ duration: 700, easing: 'ease-out-cubic', once: true, offset: 60 });
+  }
+
   function initReveals() {
     if (prefersReduced || !hasGSAP || !hasST) { doc.classList.remove('is-animate'); return; }
 
@@ -199,30 +221,6 @@
       var r = el.getBoundingClientRect();
       return r.top < (window.innerHeight || 0) && r.bottom > 0;
     }
-
-    gsap.utils.toArray('[data-reveal]').forEach(function (el) {
-      // clearProps drops the inline transform GSAP would otherwise leave at
-      // translate(0,0) — inline beats the CSS :hover lift on every card
-      if (onScreen(el)) {
-        gsap.fromTo(el, { y: 28 }, { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', clearProps: 'transform' });
-        return;
-      }
-      gsap.fromTo(el, { y: 28 }, {
-        opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', clearProps: 'transform',
-        scrollTrigger: { trigger: el, start: 'top 88%', once: true }
-      });
-    });
-
-    gsap.utils.toArray('[data-reveal-stagger]').forEach(function (group) {
-      if (onScreen(group)) {
-        gsap.fromTo(group.children, { y: 28 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', stagger: 0.09, clearProps: 'transform' });
-        return;
-      }
-      gsap.fromTo(group.children, { y: 28 }, {
-        opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', stagger: 0.09, clearProps: 'transform',
-        scrollTrigger: { trigger: group, start: 'top 84%', once: true }
-      });
-    });
 
     gsap.utils.toArray('[data-count]').forEach(function (el) {
       ScrollTrigger.create({ trigger: el, start: 'top 90%', once: true, onEnter: function () { animateCount(el); } });
@@ -244,21 +242,44 @@
     if (shape) gsap.to(shape, { yPercent: 18, rotate: 6, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
   }
 
-  /* ---------------- Awards marquee (auto-scroll) ---------------- */
-  function initAwards() {
-    var track = document.getElementById('awardTrack');
-    if (!track) return;
-    var cards = Array.prototype.slice.call(track.children);
-    cards.forEach(function (c) { track.appendChild(c.cloneNode(true)); }); // duplicate for seamless loop
-    if (prefersReduced || !hasGSAP) return;
-    var half = track.scrollWidth / 2;
-    var speed = 50; // px/s
-    var tween = gsap.to(track, {
-      x: -half, duration: half / speed, ease: 'none', repeat: -1,
-      modifiers: { x: function (x) { return (parseFloat(x) % half) + 'px'; } }
+  /* ---------------- Marquee rails (Swiper) ----------------
+     Every auto-scrolling rail is a `.swiper.st-marquee` whose track is the
+     `.swiper-wrapper`; speed comes from data-marquee-speed (px/s). Optional
+     data-marquee-prev/next selectors wire navigation arrows. */
+  function initMarqueeSwipers() {
+    if (typeof Swiper === 'undefined') return;
+    document.querySelectorAll('.st-marquee').forEach(function (el) {
+      if (el.swiper) return; // already initialised
+      var wrapper = el.querySelector('.swiper-wrapper');
+      if (!wrapper) return;
+      var slides = wrapper.children.length;
+      if (!slides) return;
+      // loop mode needs a healthy slide count — clone the set once when short
+      if (slides < 8) {
+        Array.prototype.slice.call(wrapper.children).forEach(function (c) {
+          wrapper.appendChild(c.cloneNode(true));
+        });
+      }
+      var pxPerSec = parseFloat(el.getAttribute('data-marquee-speed')) || 45;
+      var gap = parseFloat(getComputedStyle(wrapper).gap) || 18;
+      var first = wrapper.children[0];
+      var slideW = (first ? first.getBoundingClientRect().width : 300) + gap;
+      var opts = {
+        slidesPerView: 'auto',
+        spaceBetween: gap,
+        loop: !prefersReduced,
+        speed: Math.max(400, Math.round(slideW / pxPerSec * 1000)),
+        grabCursor: true,
+        a11y: { enabled: true }
+      };
+      if (!prefersReduced) {
+        opts.autoplay = { delay: 0, disableOnInteraction: false, pauseOnMouseEnter: true };
+      }
+      var prevSel = el.getAttribute('data-marquee-prev');
+      var nextSel = el.getAttribute('data-marquee-next');
+      if (prevSel && nextSel) opts.navigation = { prevEl: prevSel, nextEl: nextSel };
+      new Swiper(el, opts);
     });
-    track.addEventListener('mouseenter', function () { gsap.to(tween, { timeScale: 0.15, duration: 0.4 }); });
-    track.addEventListener('mouseleave', function () { gsap.to(tween, { timeScale: 1, duration: 0.4 }); });
   }
 
   /* ---------------- Drag-to-scroll (country + awards) ---------------- */
@@ -281,39 +302,7 @@
     el.addEventListener('click', function (e) { if (moved) { e.preventDefault(); } }, true);
   }
 
-  /* ---------------- Trusted country marquee (auto-scroll) ---------------- */
-  function initCountryMarquee() {
-    var track = document.getElementById('countryTrack');
-    if (!track) return;
-    var cards = Array.prototype.slice.call(track.children);
-    cards.forEach(function (c) { track.appendChild(c.cloneNode(true)); }); // duplicate for seamless loop
-    if (prefersReduced || !hasGSAP) return;
-    var half = track.scrollWidth / 2;
-    var speed = 42; // px/s
-    var tween = gsap.to(track, {
-      x: -half, duration: half / speed, ease: 'none', repeat: -1,
-      modifiers: { x: function (x) { return (parseFloat(x) % half) + 'px'; } }
-    });
-    track.addEventListener('mouseenter', function () { gsap.to(tween, { timeScale: 0.15, duration: 0.4 }); });
-    track.addEventListener('mouseleave', function () { gsap.to(tween, { timeScale: 1, duration: 0.4 }); });
-  }
-
-  /* ---------------- Reviews marquee (auto-scroll) ---------------- */
-  function initReviewsMarquee() {
-    var track = document.getElementById('reviewsTrack');
-    if (!track) return;
-    var cards = Array.prototype.slice.call(track.children);
-    cards.forEach(function (c) { track.appendChild(c.cloneNode(true)); }); // duplicate for seamless loop
-    if (prefersReduced || !hasGSAP) return;
-    var half = track.scrollWidth / 2;
-    var speed = 34; // px/s
-    var tween = gsap.to(track, {
-      x: -half, duration: half / speed, ease: 'none', repeat: -1,
-      modifiers: { x: function (x) { return (parseFloat(x) % half) + 'px'; } }
-    });
-    track.addEventListener('mouseenter', function () { gsap.to(tween, { timeScale: 0.15, duration: 0.4 }); });
-    track.addEventListener('mouseleave', function () { gsap.to(tween, { timeScale: 1, duration: 0.4 }); });
-  }
+  /* (country + reviews marquees are handled by initMarqueeSwipers) */
 
   /* ---------------- Live market data (simulated) ---------------- */
   var mkxData = [
@@ -3642,28 +3631,7 @@
       window.addEventListener('load', moveInd);
     }
 
-    // the ranking is a marquee, built the same way as the awards row
-    railMarquee(document.getElementById('ctTrack'));
-  }
-
-  /* ---------------- Media coverage: the outlet rail ---------------- */
-  function initMedia() {
-    railMarquee(document.getElementById('mcTrack'), 34);
-  }
-
-  /* ---------------- Card rail: clone once, scroll forever ---------------- */
-  function railMarquee(track, pxPerSec) {
-    if (!track) return;
-    Array.prototype.slice.call(track.children).forEach(function (c) { track.appendChild(c.cloneNode(true)); });
-    if (prefersReduced || !hasGSAP) return;
-    var half = track.scrollWidth / 2;
-    if (!half) return;
-    var tween = gsap.to(track, {
-      x: -half, duration: half / (pxPerSec || 48), ease: 'none', repeat: -1,
-      modifiers: { x: function (x) { return (parseFloat(x) % half) + 'px'; } }
-    });
-    track.addEventListener('mouseenter', function () { tween.timeScale(0.15); });
-    track.addEventListener('mouseleave', function () { tween.timeScale(1); });
+    // the ranking rail is a Swiper marquee now (see initMarqueeSwipers)
   }
 
   /* ---------------- STAR Copy: benefit rail + master board ---------------- */
@@ -3707,7 +3675,7 @@
     // the master board rides the same rail as the copy-trading ranking
     var board = document.querySelector('[data-sc-board]');
     if (!board) return;
-    railMarquee(board.hasAttribute('data-sc-track') ? board : null);
+    // (the board rail is a Swiper marquee now)
 
     // draw the curves and fill the win-rate meters once the board is on screen
     if (prefersReduced || !('IntersectionObserver' in window)) { board.classList.add('is-seen'); return; }
@@ -3728,7 +3696,7 @@
       if (bg && hasGSAP && hasST) {
         gsap.to(bg, { yPercent: 12, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
       }
-      railMarquee(document.getElementById('nbTick'), 46);
+      // (the ticker rail is a Swiper marquee now)
     }
 
     /* --- the deck: five cards on an arc, reordering around the one you pick --- */
@@ -4058,7 +4026,7 @@
         }
       });
 
-      if (!prefersReduced) railMarquee(track, 34);
+      // (the wallpaper rail is a Swiper marquee now)
     }
   }
 
@@ -4218,7 +4186,7 @@
         scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
     }
 
-    if (!prefersReduced) railMarquee(document.getElementById('mnTrack'), 30);
+    // (the congress rail is a Swiper marquee now)
 
     // the rule down the ledger tracks how far you have read
     var ledger = document.querySelector('[data-mn-ledger]');
@@ -4942,11 +4910,10 @@
     initDropdowns();
     initMega();
     initLangPop();
+    initAOS();
     initReveals();
     initHowtoScrub();
-    initAwards();
-    initCountryMarquee();
-    initReviewsMarquee();
+    initMarqueeSwipers();
     initLiveMarkets();
     initLvDots();
     initMagnetic();
@@ -4983,7 +4950,6 @@
     initSeen();
     initCsr();
     initEvents();
-    initMedia();
     initNba();
     initPccme();
     initIcc();
