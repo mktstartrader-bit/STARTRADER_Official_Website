@@ -209,6 +209,35 @@
       }, 800 + delay + 120);
     });
     AOS.init({ duration: 700, easing: 'ease-out-cubic', once: true, offset: 60 });
+
+    // late media (lazy images, video posters) moves the layout after AOS has
+    // cached its trigger offsets — recalculate once everything has loaded
+    window.addEventListener('load', function () { AOS.refresh(); });
+
+    // safety net: no section may stay hidden. If an element reaches the
+    // viewport and AOS still hasn't animated it (stale offsets), reveal it.
+    if ('IntersectionObserver' in window) {
+      var net = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (!en.isIntersecting) return;
+          var el = en.target;
+          net.unobserve(el);
+          setTimeout(function () {
+            if (el.hasAttribute('data-aos') && !el.classList.contains('aos-animate')) {
+              el.classList.add('aos-animate');
+              setTimeout(function () {
+                el.removeAttribute('data-aos');
+                el.removeAttribute('data-aos-delay');
+                el.classList.remove('aos-init', 'aos-animate');
+              }, 920);
+            }
+          }, 350);
+        });
+      }, { threshold: 0.05 });
+      Array.prototype.forEach.call(document.querySelectorAll('[data-aos]'), function (el) {
+        net.observe(el);
+      });
+    }
   }
 
   function initReveals() {
