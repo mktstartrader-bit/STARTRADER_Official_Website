@@ -9,7 +9,7 @@
   <meta name="description" content="STARTRADER's Daily Forex Promo for Europe, New Zealand and Canada — 50% bonus credit on your first deposit up to $500, then 20% on every deposit after, up to $10,000 in total. Terms apply." />
   <meta name="keywords" content="STARTRADER, forex trading, currency pairs, EUR/USD, tight spreads, 100ms execution, leverage 1:1000, MT4, MT5, major minor exotic pairs" />
   <meta name="author" content="STARTRADER" />
-  <link rel="canonical" href="https://www.startrader.com/promotions/dailyforexpromo.html" />
+  <link rel="canonical" href="https://www.startrader.com/additional-pages/dailyforexpromo.html" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -56,6 +56,10 @@
   box-shadow:0 20px 44px -28px rgba(16,30,54,.28),inset 0 1px 0 rgba(255,255,255,.9);
   transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
 .dfp-stat:hover{transform:translateY(-6px);box-shadow:0 30px 58px -28px rgba(16,30,54,.38)}
+/* the promotions coupons' light gradient washes, one hue per number */
+.dfp-stat--blue{background:linear-gradient(180deg,rgba(0,71,187,.10),rgba(255,255,255,.74) 58%)}
+.dfp-stat--sand{background:linear-gradient(180deg,rgba(223,197,174,.5),rgba(255,255,255,.74) 58%)}
+.dfp-stat--mint{background:linear-gradient(180deg,rgba(16,185,129,.12),rgba(255,255,255,.74) 58%)}
 .dfp-stat b{display:block;font-size:clamp(34px,4vw,52px);font-weight:800;letter-spacing:-.03em;line-height:1;color:var(--blue)}
 .dfp-stat b sup{font-size:.5em;font-weight:800;vertical-align:super}
 .dfp-stat h3{margin-top:10px;font-size:15.5px;letter-spacing:-.02em}
@@ -137,21 +141,8 @@
 .dfp-step h3{margin-top:14px;font-size:15.5px;letter-spacing:-.02em}
 .dfp-step p{margin-top:7px;font-size:13px;line-height:1.62;color:var(--text-soft)}
 
-/* ---- worked examples ---- */
+/* ---- worked examples: the shared ta-table carries this one ---- */
 .dfp-ex-sec{background:var(--bg-light-2)}
-.dfp-table-wrap{margin-top:clamp(28px,3.4vw,44px);border-radius:clamp(18px,2vw,26px);overflow:hidden;
-  background:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.9);
-  -webkit-backdrop-filter:blur(14px) saturate(1.4);backdrop-filter:blur(14px) saturate(1.4);
-  box-shadow:0 22px 50px -32px rgba(16,30,54,.3)}
-.dfp-table{width:100%;border-collapse:collapse;font-size:14px}
-.dfp-table th{padding:16px 22px;text-align:left;font-size:11.5px;font-weight:800;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--text-mute);border-bottom:1px solid var(--line)}
-.dfp-table td{padding:16px 22px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
-.dfp-table tr:last-child td{border-bottom:0}
-.dfp-table tbody tr{transition:background .25s}
-.dfp-table tbody tr:hover{background:rgba(0,71,187,.045)}
-.dfp-table td b{color:var(--blue)}
-.dfp-table .is-cap td{color:var(--text-soft)}
 .dfp-table-note{margin-top:14px;font-size:12.5px;color:var(--text-mute);text-align:center}
 
 /* ---- eligibility ---- */
@@ -172,18 +163,37 @@
 .dfp-panel--in li svg{color:var(--green)}
 .dfp-panel--out li svg{color:var(--red)}
 
-/* ---- fair play strip ---- */
+/* ---- fair play: dark glass tiles with a lit hairline ---- */
 .dfp-fair-sec{color:#fff;background:linear-gradient(180deg,var(--navy),var(--navy-2))}
-.dfp-fair{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:clamp(24px,3vw,38px)}
-.dfp-pill{padding:9px 16px;border-radius:40px;font-size:12.5px;font-weight:600;color:#cdd9ec;
-  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
-  transition:background .3s,transform .3s var(--ease)}
-.dfp-pill:hover{background:rgba(255,255,255,.12);transform:translateY(-2px)}
-.dfp-fair-note{margin-top:18px;text-align:center;font-size:12.5px;line-height:1.7;color:#8ea4c6;max-width:640px;margin-inline:auto}
+.dfp-fair-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.8vw,22px);margin-top:clamp(28px,3.4vw,44px)}
+.dfp-fair-card{
+  position:relative;overflow:hidden;border-radius:clamp(18px,2vw,24px);padding:clamp(22px,2.6vw,30px);
+  background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.03));
+  border:1px solid rgba(255,255,255,.1);
+  -webkit-backdrop-filter:blur(16px) saturate(1.3);backdrop-filter:blur(16px) saturate(1.3);
+  box-shadow:0 24px 50px -34px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.07);
+  transition:transform .4s var(--ease),border-color .4s,box-shadow .4s var(--ease)}
+.dfp-fair-card::before{content:"";position:absolute;top:0;left:10%;right:10%;height:2px;border-radius:2px;
+  background:linear-gradient(90deg,transparent,rgba(42,114,255,.75),rgba(22,233,215,.65),transparent);
+  opacity:.5;transition:opacity .4s,left .5s var(--ease),right .5s var(--ease)}
+.dfp-fair-card:hover{transform:translateY(-6px);border-color:rgba(255,255,255,.2);
+  box-shadow:0 34px 64px -34px rgba(0,0,0,.85),inset 0 1px 0 rgba(255,255,255,.1)}
+.dfp-fair-card:hover::before{opacity:1;left:2%;right:2%}
+.dfp-fair-ic{
+  display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:13px;
+  background:linear-gradient(180deg,rgba(42,114,255,.28),rgba(42,114,255,.1));
+  border:1px solid rgba(42,114,255,.35);color:#8db4ff;
+  transition:transform .35s var(--ease),color .35s,border-color .35s}
+.dfp-fair-ic svg{width:20px;height:20px}
+.dfp-fair-card:hover .dfp-fair-ic{transform:scale(1.1);color:#16e9d7;border-color:rgba(22,233,215,.4)}
+.dfp-fair-card h3{margin-top:16px;font-size:15.5px;letter-spacing:-.02em;color:#eaf0fa}
+.dfp-fair-card p{margin-top:8px;font-size:13px;line-height:1.65;color:#a9bcd8}
+.dfp-fair-note{margin-top:clamp(20px,2.6vw,30px);text-align:center;font-size:12.5px;line-height:1.7;color:#8ea4c6;max-width:640px;margin-inline:auto}
 
 /* ---- responsive ---- */
 @media (max-width:1080px){
   .dfp-steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .dfp-fair-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:900px){
   .dfp-calc{grid-template-columns:1fr}
@@ -193,7 +203,7 @@
 }
 @media (max-width:560px){
   .dfp-steps{grid-template-columns:1fr}
-  .dfp-table th,.dfp-table td{padding:12px 14px;font-size:13px}
+  .dfp-fair-grid{grid-template-columns:1fr}
 }
   </style>
 
@@ -205,7 +215,7 @@
     "@type": "WebPage",
     "name": "Daily Forex Promo | 50% + 20% Deposit Bonus | STARTRADER",
     "description": "STARTRADER's Daily Forex Promo for Europe, New Zealand and Canada — 50% bonus credit on your first deposit up to $500, then 20% on every deposit after, up to $10,000 in total. Terms apply.",
-    "url": "https://www.startrader.com/promotions/dailyforexpromo.html"
+    "url": "https://www.startrader.com/additional-pages/dailyforexpromo.html"
   }
   </script>
   <script type="application/ld+json">
@@ -393,13 +403,13 @@
           <div class="mega-main">
             <div class="mega-col">
               <span class="mega-head">Promotions</span>
-              <a href="index.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-send"/></svg></span><span class="mega-txt"><b>Our Promotions</b></span></a>
+              <a href="../promotions/index.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-send"/></svg></span><span class="mega-txt"><b>Our Promotions</b></span></a>
               <a href="#" class="mega-item"><span class="mega-ico"><svg><use href="#i-star"/></svg></span><span class="mega-txt"><b>STAR Trading League</b></span></a>
               <a href="dailyforexpromo.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-bolt"/></svg></span><span class="mega-txt"><b>Daily Forex Promo</b></span></a>
-              <a href="point-mall.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>Point Mall</b></span></a>
-              <a href="deposit-bonus.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>Deposit Bonuses</b></span></a>
-              <a href="switch-allowance.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-swap"/></svg></span><span class="mega-txt"><b>1% Switch Allowance</b></span></a>
-              <a href="vps.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-plug"/></svg></span><span class="mega-txt"><b>VPS</b></span></a>
+              <a href="../promotions/point-mall.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>Point Mall</b></span></a>
+              <a href="../promotions/deposit-bonus.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>Deposit Bonuses</b></span></a>
+              <a href="../promotions/switch-allowance.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-swap"/></svg></span><span class="mega-txt"><b>1% Switch Allowance</b></span></a>
+              <a href="../promotions/vps.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-plug"/></svg></span><span class="mega-txt"><b>VPS</b></span></a>
             </div>
           </div>
         </div>
@@ -510,7 +520,7 @@
   <nav aria-label="Mobile">
     <a href="../index.html#markets">Trading</a>
     <a href="../index.html#academy">Education</a>
-    <a href="index.html">Promotions</a>
+    <a href="../promotions/index.html">Promotions</a>
     <a href="../index.html#why">Company</a>
     <hr>
     <a href="#" class="login">Login</a>
@@ -549,17 +559,17 @@
     <p class="pm-sub" data-aos="fade-up">The whole promotion fits in a sentence: half of your first thousand, a fifth of everything after, capped at ten thousand.</p>
 
     <div class="dfp-glance">
-      <article class="dfp-stat" data-aos="fade-up">
+      <article class="dfp-stat dfp-stat--blue" data-aos="fade-up">
         <b><span data-count="50">50</span><sup>%</sup></b>
         <h3>On your first deposit</h3>
         <p>Half of your first $1,000 back as bonus credit &mdash; up to $500 &mdash; from a minimum $100 deposit.</p>
       </article>
-      <article class="dfp-stat" data-aos="fade-up" data-aos-delay="100">
+      <article class="dfp-stat dfp-stat--sand" data-aos="fade-up" data-aos-delay="100">
         <b><span data-count="20">20</span><sup>%</sup></b>
         <h3>On every deposit after</h3>
         <p>Each later deposit &mdash; and anything above $1,000 on the first &mdash; earns twenty per cent credit.</p>
       </article>
-      <article class="dfp-stat" data-aos="fade-up" data-aos-delay="200">
+      <article class="dfp-stat dfp-stat--mint" data-aos="fade-up" data-aos-delay="200">
         <b>$<span data-count="10000" data-comma>10,000</span></b>
         <h3>Total credit available</h3>
         <p>The most bonus credit one client can collect across the whole promotion period.</p>
@@ -645,15 +655,15 @@
     <span class="pm-eyebrow-c" data-aos="fade-up">Worked examples</span>
     <h2 class="pm-h2" id="dfp-ex-title" data-aos="fade-up">The same maths,<br> at three sizes</h2>
 
-    <div class="dfp-table-wrap" data-aos="fade-up">
-      <table class="dfp-table">
+    <div class="ta-spec-wrap" data-aos="fade-up">
+      <table class="ta-table">
         <thead>
           <tr><th scope="col">First deposit</th><th scope="col">50% tier</th><th scope="col">20% tier</th><th scope="col">Bonus credit</th><th scope="col">You trade with</th></tr>
         </thead>
         <tbody>
-          <tr><td>$500</td><td>$250</td><td>&mdash;</td><td><b>$250</b></td><td>$750</td></tr>
-          <tr><td>$1,000</td><td>$500</td><td>&mdash;</td><td><b>$500</b></td><td>$1,500</td></tr>
-          <tr><td>$5,000</td><td>$500</td><td>$800</td><td><b>$1,300</b></td><td>$6,300</td></tr>
+          <tr><td>$500</td><td>$250</td><td>&mdash;</td><td><span class="fx-spread-pill">$250</span></td><td>$750</td></tr>
+          <tr><td>$1,000</td><td>$500</td><td>&mdash;</td><td><span class="fx-spread-pill">$500</span></td><td>$1,500</td></tr>
+          <tr><td>$5,000</td><td>$500</td><td>$800</td><td><span class="fx-spread-pill">$1,300</span></td><td>$6,300</td></tr>
         </tbody>
       </table>
     </div>
@@ -696,13 +706,37 @@
     <span class="pm-eyebrow-c" data-aos="fade-up">Fair play</span>
     <h2 class="pm-h2 h2-light" id="dfp-fair-title" data-aos="fade-up">One promotion,<br> played straight</h2>
 
-    <div class="dfp-fair" data-aos="fade-up">
-      <span class="dfp-pill">No multi-account arbitrage</span>
-      <span class="dfp-pill">No shared-IP simultaneous trading</span>
-      <span class="dfp-pill">No latency arbitrage</span>
-      <span class="dfp-pill">No abusive scalping or HFT</span>
-      <span class="dfp-pill">No malicious hedging</span>
-      <span class="dfp-pill">No &gt;70% single-product concentration</span>
+    <div class="dfp-fair-grid">
+      <article class="dfp-fair-card" data-aos="fade-up">
+        <span class="dfp-fair-ic"><svg aria-hidden="true"><use href="#i-copy"/></svg></span>
+        <h3>One client, one account</h3>
+        <p>Opening multiple accounts to farm the credit &mdash; or arbitraging between them &mdash; ends the promotion for all of them.</p>
+      </article>
+      <article class="dfp-fair-card" data-aos="fade-up" data-aos-delay="100">
+        <span class="dfp-fair-ic"><svg aria-hidden="true"><use href="#i-globe"/></svg></span>
+        <h3>One trader per connection</h3>
+        <p>Simultaneous trading from the same IP address across accounts is treated as coordinated abuse.</p>
+      </article>
+      <article class="dfp-fair-card" data-aos="fade-up" data-aos-delay="200">
+        <span class="dfp-fair-ic"><svg aria-hidden="true"><use href="#i-bolt"/></svg></span>
+        <h3>No latency games</h3>
+        <p>Latency arbitrage and quote-lag exploitation sit outside the spirit &mdash; and the letter &mdash; of the offer.</p>
+      </article>
+      <article class="dfp-fair-card" data-aos="fade-up">
+        <span class="dfp-fair-ic"><svg aria-hidden="true"><use href="#i-gauge"/></svg></span>
+        <h3>Trade, don&rsquo;t churn</h3>
+        <p>Abusive scalping and high-frequency patterns designed only to unlock credit are disqualifying.</p>
+      </article>
+      <article class="dfp-fair-card" data-aos="fade-up" data-aos-delay="100">
+        <span class="dfp-fair-ic"><svg aria-hidden="true"><use href="#i-swap"/></svg></span>
+        <h3>No mirrored hedging</h3>
+        <p>Malicious hedging of the same exposure across accounts or brokers voids the bonus.</p>
+      </article>
+      <article class="dfp-fair-card" data-aos="fade-up" data-aos-delay="200">
+        <span class="dfp-fair-ic"><svg aria-hidden="true"><use href="#i-pie"/></svg></span>
+        <h3>Spread the exposure</h3>
+        <p>Keep any single product under 70% of your traded volume while the promotion runs.</p>
+      </article>
     </div>
     <p class="dfp-fair-note" data-aos="fade-up">STARTRADER reserves the right to disqualify accounts engaging in the behaviours above and to reclaim credit granted under the promotion. The English version of the terms prevails.</p>
   </div>
