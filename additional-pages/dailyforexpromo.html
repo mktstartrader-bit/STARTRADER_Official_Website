@@ -44,20 +44,31 @@
    glance. Everything hovers and reveals like the rest of the site.
    ================================================================= */
 
-/* ---- banner: copy + the live-account form card ---- */
-.dfp-hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(26px,4vw,70px);align-items:center}
-.dfp-acct-card{max-width:520px;justify-self:end;width:100%}
+/* ---- open-live-account section: soft blue waves, form centred ---- */
+.dfp-reg-sec{position:relative;isolation:isolate;overflow:clip;
+  background:linear-gradient(118deg,#eef3fc 0%,#e3ecfb 34%,#cfdffb 68%,#c3d7fa 100%)}
+.dfp-reg-sweep{position:absolute;inset:-20%;z-index:0;pointer-events:none;
+  background:linear-gradient(24deg,transparent 43.6%,rgba(255,255,255,.95) 44%,rgba(255,255,255,0) 44.5%,rgba(173,199,245,.35) 47%,transparent 60%)}
+.dfp-reg-arc{position:absolute;z-index:0;border-radius:50%;pointer-events:none;
+  border:2px solid rgba(255,255,255,.9);
+  box-shadow:0 0 34px rgba(255,255,255,.55),inset 0 0 60px rgba(255,255,255,.28)}
+.dfp-reg-arc.a1{width:56vw;height:56vw;left:-24vw;top:-34vw;background:radial-gradient(circle at 70% 70%,rgba(255,255,255,.5),rgba(255,255,255,0) 60%)}
+.dfp-reg-arc.a2{width:48vw;height:48vw;right:-20vw;bottom:-30vw;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.45),rgba(255,255,255,0) 60%)}
+.dfp-reg-sec>.container{position:relative;z-index:1}
+.dfp-reg-card{max-width:760px;margin-inline:auto;background:rgba(255,255,255,.72);
+  -webkit-backdrop-filter:blur(20px) saturate(1.45);backdrop-filter:blur(20px) saturate(1.45);
+  border:1px solid rgba(255,255,255,.95);box-shadow:0 34px 80px -42px rgba(20,44,96,.4)}
+.dfp-reg-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 16px;align-items:start;margin-top:2px}
 .dfp-acct-h{text-align:center;font-size:clamp(21px,2.1vw,27px);font-weight:800;letter-spacing:-.03em;color:var(--text);margin-bottom:clamp(16px,2vw,22px)}
 
-/* segmented email / phone switch */
+
+/* the form's own controls — one language for every input */
 .dfp-seg{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:5px;border-radius:16px;background:var(--bg-light);border:1px solid var(--line)}
 .dfp-seg-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 10px;border-radius:12px;
   font-size:13.5px;font-weight:600;color:var(--text-soft);transition:background .25s,color .25s,box-shadow .25s}
 .dfp-seg-btn svg{width:17px;height:17px}
 .dfp-seg-btn i{font-style:normal;color:var(--blue)}
 .dfp-seg-btn.is-on{background:#fff;color:var(--text);box-shadow:0 4px 14px -6px rgba(16,30,54,.18)}
-
-/* one field language for every input — the select included */
 .dfp-field{position:relative;display:flex;align-items:center;gap:11px;margin-top:12px;padding:0 16px;
   border-radius:16px;background:#fff;border:1px solid var(--line);
   transition:border-color .25s,box-shadow .25s}
@@ -69,24 +80,17 @@
 .dfp-field input::placeholder{color:var(--text-soft)}
 .dfp-field select:invalid,.dfp-field select option[value=""]{color:var(--text-soft)}
 .dfp-field-chev{flex:none;width:14px;height:14px;color:var(--text-mute);pointer-events:none}
-
-/* checks reuse the site checkbox, tightened for the card */
 .dfp-type{display:grid;grid-template-columns:1fr 1fr;gap:4px 14px;margin-top:16px}
 .dfp-check{margin-top:10px;font-size:13px;line-height:1.55}
 .dfp-type .dfp-check{margin-top:0}
 .dfp-req{font-style:normal;color:var(--blue);margin-left:2px}
-.dfp-acct-card .ct-err{margin-top:6px}
-
+.dfp-reg-card .ct-err{margin-top:6px}
 .dfp-acct-btn{width:100%;justify-content:center;margin-top:18px}
 .dfp-acct-note{margin-top:12px;font-size:12px;line-height:1.6;text-align:center;color:var(--text-mute)}
 .dfp-acct-note.is-ok{color:var(--green);font-weight:600}
 .dfp-acct-links{display:flex;justify-content:space-evenly;gap:14px;margin-top:16px}
 .dfp-acct-links a{font-size:13.5px;font-weight:600;color:var(--text-soft);transition:color .25s}
 .dfp-acct-links a:hover{color:var(--blue)}
-@media (max-width:1080px){
-  .dfp-hero-grid{grid-template-columns:1fr;gap:34px}
-  .dfp-acct-card{justify-self:stretch;max-width:640px;margin-inline:auto}
-}
 
 /* ---- offer at a glance ---- */
 .dfp-glance-sec{position:relative;isolation:isolate;overflow:clip;
@@ -530,21 +534,28 @@
     <source src="../assets/video/promotions-banner.mp4" type="video/mp4">
   </video>
   <div class="container pm-hero-in">
-    <div class="dfp-hero-grid">
-      <div class="pm-hero-copy">
-        <span class="pm-eyebrow" data-aos="fade-up">Daily Forex Promo</span>
-        <h1 class="pm-h1" id="dfp-hero-title" data-aos="fade-up">
-          <span>Every deposit works harder.</span>
-          <span class="lit">50% first, 20% forever after.</span>
-        </h1>
-        <p class="pm-lead" data-aos="fade-up">Bonus credit on every qualifying deposit &mdash; 50% on your first, up to $500, then 20% on each one after, to a $10,000 total. For clients in Europe, New Zealand and Canada. Terms and conditions apply.</p>
-        <div class="pm-hact" data-aos="fade-up">
-          <a class="pm-btn" href="#calculator">See your credit <svg><use href="#i-arrow-right"/></svg></a>
-        </div>
+    <div class="pm-hero-copy">
+      <span class="pm-eyebrow" data-aos="fade-up">Daily Forex Promo</span>
+      <h1 class="pm-h1" id="dfp-hero-title" data-aos="fade-up">
+        <span>Every deposit works harder.</span>
+        <span class="lit">50% first, 20% forever after.</span>
+      </h1>
+      <p class="pm-lead" data-aos="fade-up">Bonus credit on every qualifying deposit &mdash; 50% on your first, up to $500, then 20% on each one after, to a $10,000 total. For clients in Europe, New Zealand and Canada. Terms and conditions apply.</p>
+      <div class="pm-hact" data-aos="fade-up">
+        <a class="pm-btn" href="#register">Open your account <svg><use href="#i-arrow-right"/></svg></a>
       </div>
+    </div>
+  </div>
+</section>
 
-      <div class="pt-form-card glass dfp-acct-card" data-aos="fade-up" data-aos-delay="100">
-        <form id="dfpAcct" novalidate>
+<!-- ============ OPEN LIVE ACCOUNT ============ -->
+<section class="section dfp-reg-sec" id="register" aria-label="Open a live account">
+  <span class="dfp-reg-arc a1" aria-hidden="true"></span>
+  <span class="dfp-reg-arc a2" aria-hidden="true"></span>
+  <span class="dfp-reg-sweep" aria-hidden="true"></span>
+  <div class="container">
+    <div class="pt-form-card glass dfp-reg-card" data-aos="fade-up">
+      <form id="dfpAcct" novalidate>
           <h3 class="dfp-acct-h">Open Live Account</h3>
 
           <div class="dfp-seg" role="tablist" aria-label="Register with email or phone">
@@ -556,12 +567,16 @@
               Phone Number<i>*</i></button>
           </div>
 
+          <div class="dfp-reg-grid">
+          <div>
           <div class="dfp-field" data-dfp-idfield>
             <span class="dfp-field-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1Zm.5 2 7.5 5.5L19.5 8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             <label class="sr-only" for="dfpId" data-dfp-idlabel>Email address</label>
             <input type="email" id="dfpId" name="identifier" inputmode="email" autocomplete="email" placeholder="Enter your Email *" aria-describedby="dfpIdErr">
           </div>
           <p class="ct-err" id="dfpIdErr" hidden>We need a valid email to reach you on.</p>
+          </div>
+          <div>
 
           <div class="dfp-field">
             <span class="dfp-field-ic" aria-hidden="true"><svg><use href="#i-globe"/></svg></span>
@@ -581,6 +596,8 @@
             <svg class="dfp-field-chev" aria-hidden="true"><use href="#i-chevron-down"/></svg>
           </div>
           <p class="ct-err" id="dfpCountryErr" hidden>Please choose your country or region.</p>
+          </div>
+          <div>
 
           <div class="dfp-field">
             <span class="dfp-field-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M8 10V7.5a4 4 0 0 1 8 0V10" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="15" r="1.4" fill="currentColor"/></svg></span>
@@ -588,6 +605,8 @@
             <input type="password" id="dfpPass" name="password" autocomplete="new-password" placeholder="Password *" aria-describedby="dfpPassErr">
           </div>
           <p class="ct-err" id="dfpPassErr" hidden>Use at least 8 characters.</p>
+          </div>
+          <div>
 
           <div class="dfp-field">
             <span class="dfp-field-ic" aria-hidden="true"><svg><use href="#i-user-plus"/></svg></span>
@@ -595,6 +614,8 @@
             <input type="text" id="dfpRef" name="referral" autocomplete="off" placeholder="Referred By *" aria-describedby="dfpRefErr">
           </div>
           <p class="ct-err" id="dfpRefErr" hidden>Please tell us who referred you.</p>
+          </div>
+          </div>
 
           <div class="dfp-type" role="radiogroup" aria-label="Account type">
             <label class="ct-check dfp-check" for="dfpTypeInd">
@@ -638,7 +659,6 @@
             <a href="https://myaccount.startrader.com" rel="noopener">Login</a>
           </div>
         </form>
-      </div>
     </div>
   </div>
 </section>
