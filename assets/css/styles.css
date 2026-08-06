@@ -3655,3 +3655,14 @@ html:not(.js-aos) [data-aos]{opacity:1 !important;transform:none !important;tran
 .ev-hint{margin-top:16px;text-align:center;font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text-mute)}
 @media (max-width:720px){.ev-frame{flex:0 0 clamp(210px,62vw,270px)}
 .ev-cap b{font-size:14.5px}}
+
+/* =============================================================
+   CT-CHECK CHECKED STATE (appended batch — banner account form)
+   The an-box never showed its tick anywhere on the site; now every
+   ct-check (contact, partnership, promo forms) fills blue when
+   checked, radios draw round, and keyboard focus is visible.
+   ============================================================= */
+.ct-check input:checked + .an-box{background:var(--blue);border-color:var(--blue);color:#fff}
+.ct-check input:focus-visible + .an-box{outline:2px solid var(--blue);outline-offset:2px}
+.ct-check input[type="radio"] + .an-box{border-radius:50%}
+.ct-check:hover .an-box{border-color:rgba(0,71,187,.45)}

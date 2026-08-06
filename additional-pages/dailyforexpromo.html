@@ -47,12 +47,42 @@
 /* ---- banner: copy + the live-account form card ---- */
 .dfp-hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(26px,4vw,70px);align-items:center}
 .dfp-acct-card{max-width:520px;justify-self:end;width:100%}
-.dfp-acct-h{font-size:clamp(18px,1.8vw,21px);letter-spacing:-.02em;color:var(--text)}
-.dfp-acct-sub{margin:6px 0 18px;font-size:13px;line-height:1.6;color:var(--text-soft)}
-.dfp-acct-grid{gap:14px 16px}
+.dfp-acct-h{text-align:center;font-size:clamp(21px,2.1vw,27px);font-weight:800;letter-spacing:-.03em;color:var(--text);margin-bottom:clamp(16px,2vw,22px)}
+
+/* segmented email / phone switch */
+.dfp-seg{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:5px;border-radius:16px;background:var(--bg-light);border:1px solid var(--line)}
+.dfp-seg-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 10px;border-radius:12px;
+  font-size:13.5px;font-weight:600;color:var(--text-soft);transition:background .25s,color .25s,box-shadow .25s}
+.dfp-seg-btn svg{width:17px;height:17px}
+.dfp-seg-btn i{font-style:normal;color:var(--blue)}
+.dfp-seg-btn.is-on{background:#fff;color:var(--text);box-shadow:0 4px 14px -6px rgba(16,30,54,.18)}
+
+/* one field language for every input — the select included */
+.dfp-field{position:relative;display:flex;align-items:center;gap:11px;margin-top:12px;padding:0 16px;
+  border-radius:16px;background:#fff;border:1px solid var(--line);
+  transition:border-color .25s,box-shadow .25s}
+.dfp-field:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,71,187,.12)}
+.dfp-field-ic{flex:none;display:inline-flex;color:var(--text-mute)}
+.dfp-field-ic svg{width:18px;height:18px}
+.dfp-field input,.dfp-field select{flex:1;min-width:0;border:0;outline:0;background:transparent;
+  font:inherit;font-size:14px;color:var(--text);padding:14px 0;-webkit-appearance:none;appearance:none}
+.dfp-field input::placeholder{color:var(--text-soft)}
+.dfp-field select:invalid,.dfp-field select option[value=""]{color:var(--text-soft)}
+.dfp-field-chev{flex:none;width:14px;height:14px;color:var(--text-mute);pointer-events:none}
+
+/* checks reuse the site checkbox, tightened for the card */
+.dfp-type{display:grid;grid-template-columns:1fr 1fr;gap:4px 14px;margin-top:16px}
+.dfp-check{margin-top:10px;font-size:13px;line-height:1.55}
+.dfp-type .dfp-check{margin-top:0}
+.dfp-req{font-style:normal;color:var(--blue);margin-left:2px}
+.dfp-acct-card .ct-err{margin-top:6px}
+
 .dfp-acct-btn{width:100%;justify-content:center;margin-top:18px}
-.dfp-acct-note{margin-top:12px;font-size:11.5px;line-height:1.6;color:var(--text-mute);text-align:center}
+.dfp-acct-note{margin-top:12px;font-size:12px;line-height:1.6;text-align:center;color:var(--text-mute)}
 .dfp-acct-note.is-ok{color:var(--green);font-weight:600}
+.dfp-acct-links{display:flex;justify-content:space-evenly;gap:14px;margin-top:16px}
+.dfp-acct-links a{font-size:13.5px;font-weight:600;color:var(--text-soft);transition:color .25s}
+.dfp-acct-links a:hover{color:var(--blue)}
 @media (max-width:1080px){
   .dfp-hero-grid{grid-template-columns:1fr;gap:34px}
   .dfp-acct-card{justify-self:stretch;max-width:640px;margin-inline:auto}
@@ -515,51 +545,98 @@
 
       <div class="pt-form-card glass dfp-acct-card" data-aos="fade-up" data-aos-delay="100">
         <form id="dfpAcct" novalidate>
-          <h3 class="dfp-acct-h">Open your live account</h3>
-          <p class="dfp-acct-sub">Register now &mdash; the 50% tier meets your first deposit.</p>
-          <div class="ct-grid dfp-acct-grid">
-            <div class="ct-field">
-              <label for="dfpName">Full name</label>
-              <input type="text" id="dfpName" name="name" autocomplete="name" placeholder="Your full name" aria-describedby="dfpNameErr">
-              <p class="ct-err" id="dfpNameErr" hidden>Please tell us your name.</p>
-            </div>
-            <div class="ct-field">
-              <label for="dfpEmail">Email</label>
-              <input type="email" id="dfpEmail" name="email" inputmode="email" autocomplete="email" placeholder="you@example.com" aria-describedby="dfpEmailErr">
-              <p class="ct-err" id="dfpEmailErr" hidden>We need a valid email to reach you on.</p>
-            </div>
-            <div class="ct-field">
-              <label for="dfpPhone">Phone <em>optional</em></label>
-              <input type="tel" id="dfpPhone" name="phone" inputmode="tel" autocomplete="tel" placeholder="+44 20 0000 0000" aria-describedby="dfpPhoneErr">
-              <p class="ct-err" id="dfpPhoneErr" hidden>Use digits only, with an optional + prefix.</p>
-            </div>
-            <div class="ct-field">
-              <label for="dfpCountry">Country or region</label>
-              <div class="wb-selwrap">
-                <select id="dfpCountry" name="country" aria-describedby="dfpCountryErr">
-                  <option value="">Select&hellip;</option>
-                  <option>United Kingdom</option>
-                  <option>Germany</option>
-                  <option>France</option>
-                  <option>Italy</option>
-                  <option>Spain</option>
-                  <option>Netherlands</option>
-                  <option>New Zealand</option>
-                  <option>Canada</option>
-                  <option>Other</option>
-                </select>
-                <svg class="wb-selchev" aria-hidden="true"><use href="#i-chevron-down"/></svg>
-              </div>
-              <p class="ct-err" id="dfpCountryErr" hidden>Please choose your country or region.</p>
-            </div>
+          <h3 class="dfp-acct-h">Open Live Account</h3>
+
+          <div class="dfp-seg" role="tablist" aria-label="Register with email or phone">
+            <button class="dfp-seg-btn is-on" type="button" role="tab" aria-selected="true" data-dfp-mode="email">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1Zm.5 2 7.5 5.5L19.5 8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Email Address<i>*</i></button>
+            <button class="dfp-seg-btn" type="button" role="tab" aria-selected="false" data-dfp-mode="phone">
+              <svg aria-hidden="true"><use href="#i-phone"/></svg>
+              Phone Number<i>*</i></button>
           </div>
-          <label class="ct-check" for="dfpConsent">
-            <input type="checkbox" id="dfpConsent" name="consent" aria-describedby="dfpConsentErr">
-            <span>I have read the promotion terms and the <a href="../company/corporate/legal-documents.html">legal documents</a>, and I opt in to the Daily Forex Promo.</span>
+
+          <div class="dfp-field" data-dfp-idfield>
+            <span class="dfp-field-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1Zm.5 2 7.5 5.5L19.5 8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <label class="sr-only" for="dfpId" data-dfp-idlabel>Email address</label>
+            <input type="email" id="dfpId" name="identifier" inputmode="email" autocomplete="email" placeholder="Enter your Email *" aria-describedby="dfpIdErr">
+          </div>
+          <p class="ct-err" id="dfpIdErr" hidden>We need a valid email to reach you on.</p>
+
+          <div class="dfp-field">
+            <span class="dfp-field-ic" aria-hidden="true"><svg><use href="#i-globe"/></svg></span>
+            <label class="sr-only" for="dfpCountry">Country</label>
+            <select id="dfpCountry" name="country" aria-describedby="dfpCountryErr">
+              <option value="">Country *</option>
+              <option>United Kingdom</option>
+              <option>Germany</option>
+              <option>France</option>
+              <option>Italy</option>
+              <option>Spain</option>
+              <option>Netherlands</option>
+              <option>New Zealand</option>
+              <option>Canada</option>
+              <option>Other</option>
+            </select>
+            <svg class="dfp-field-chev" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+          </div>
+          <p class="ct-err" id="dfpCountryErr" hidden>Please choose your country or region.</p>
+
+          <div class="dfp-field">
+            <span class="dfp-field-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M8 10V7.5a4 4 0 0 1 8 0V10" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="15" r="1.4" fill="currentColor"/></svg></span>
+            <label class="sr-only" for="dfpPass">Password</label>
+            <input type="password" id="dfpPass" name="password" autocomplete="new-password" placeholder="Password *" aria-describedby="dfpPassErr">
+          </div>
+          <p class="ct-err" id="dfpPassErr" hidden>Use at least 8 characters.</p>
+
+          <div class="dfp-field">
+            <span class="dfp-field-ic" aria-hidden="true"><svg><use href="#i-user-plus"/></svg></span>
+            <label class="sr-only" for="dfpRef">Referred by</label>
+            <input type="text" id="dfpRef" name="referral" autocomplete="off" placeholder="Referred By *" aria-describedby="dfpRefErr">
+          </div>
+          <p class="ct-err" id="dfpRefErr" hidden>Please tell us who referred you.</p>
+
+          <div class="dfp-type" role="radiogroup" aria-label="Account type">
+            <label class="ct-check dfp-check" for="dfpTypeInd">
+              <input type="radio" id="dfpTypeInd" name="acctType" value="Individual">
+              <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+              <span>Individual<i class="dfp-req">*</i></span>
+            </label>
+            <label class="ct-check dfp-check" for="dfpTypeCo">
+              <input type="radio" id="dfpTypeCo" name="acctType" value="Company">
+              <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+              <span>Company<i class="dfp-req">*</i></span>
+            </label>
+          </div>
+          <p class="ct-err" id="dfpTypeErr" hidden>Please choose an account type.</p>
+
+          <label class="ct-check dfp-check" for="dfpUs">
+            <input type="checkbox" id="dfpUs" name="notUs" aria-describedby="dfpUsErr">
+              <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+            <span>I confirm that I am not a U.S. Person.</span>
           </label>
-          <p class="ct-err" id="dfpConsentErr" hidden>Please confirm you accept the terms to continue.</p>
-          <button class="btn btn-primary btn-lg dfp-acct-btn" type="submit">Create account <svg class="ico"><use href="#i-arrow-right"/></svg></button>
-          <p class="dfp-acct-note" data-dfp-acct-note>Your details go to the onboarding desk &mdash; verification and funding happen in the client portal.</p>
+          <p class="ct-err" id="dfpUsErr" hidden>The promotion is not available to U.S. Persons.</p>
+
+          <label class="ct-check dfp-check" for="dfpMkt">
+            <input type="checkbox" id="dfpMkt" name="marketing">
+              <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+            <span>I consent to STARTRADER processing my personal data for marketing and application support. I may withdraw my consent at any time.</span>
+          </label>
+
+          <label class="ct-check dfp-check" for="dfpTerms">
+            <input type="checkbox" id="dfpTerms" name="terms" aria-describedby="dfpTermsErr">
+              <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+            <span>I have read, understood, and agree to the <a href="../company/corporate/legal-documents.html">Client Agreement</a>, <a href="../company/corporate/legal-documents.html">Risk Disclosure</a>, <a href="../company/corporate/legal-documents.html">Privacy Policy</a>, and all other applicable terms and policies.</span>
+          </label>
+          <p class="ct-err" id="dfpTermsErr" hidden>Please accept the agreements to continue.</p>
+
+          <button class="btn btn-primary btn-lg dfp-acct-btn" type="submit">Create Account</button>
+          <p class="dfp-acct-note" data-dfp-acct-note hidden></p>
+
+          <div class="dfp-acct-links">
+            <a href="../trading/getting-started/account-opening.html">Practice Trading</a>
+            <a href="https://myaccount.startrader.com" rel="noopener">Login</a>
+          </div>
         </form>
       </div>
     </div>
@@ -863,36 +940,71 @@
   render();
 })();
 
-/* banner account form — validates inline, then hands over to onboarding */
+/* banner account form — email/phone modes, inline validation, then onboarding */
 (function () {
   var form = document.getElementById('dfpAcct');
   if (!form) return;
   var note = form.querySelector('[data-dfp-acct-note]');
-  function field(id) {
-    return { el: document.getElementById(id), err: document.getElementById(id + 'Err') };
+  var idInput = document.getElementById('dfpId');
+  var idErr = document.getElementById('dfpIdErr');
+  var mode = 'email';
+  var segs = Array.prototype.slice.call(form.querySelectorAll('[data-dfp-mode]'));
+  segs.forEach(function (b) {
+    b.addEventListener('click', function () {
+      mode = b.getAttribute('data-dfp-mode');
+      segs.forEach(function (x) {
+        var on = x === b;
+        x.classList.toggle('is-on', on);
+        x.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      if (mode === 'email') {
+        idInput.type = 'email'; idInput.inputMode = 'email'; idInput.autocomplete = 'email';
+        idInput.placeholder = 'Enter your Email *';
+        idErr.textContent = 'We need a valid email to reach you on.';
+      } else {
+        idInput.type = 'tel'; idInput.inputMode = 'tel'; idInput.autocomplete = 'tel';
+        idInput.placeholder = 'Enter your Phone Number *';
+        idErr.textContent = 'Use digits only, with an optional + prefix.';
+      }
+      idInput.value = ''; idErr.hidden = true; idInput.focus();
+    });
+  });
+  function err(id, bad) {
+    var el = document.getElementById(id);
+    if (el) el.hidden = !bad;
+    return !bad;
   }
-  var name = field('dfpName'), email = field('dfpEmail'),
-      phone = field('dfpPhone'), country = field('dfpCountry'), consent = field('dfpConsent');
-  function flag(f, bad) { if (f.err) f.err.hidden = !bad; return !bad; }
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var ok = true;
-    ok = flag(name, !name.el.value.trim()) && ok;
-    ok = flag(email, !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.el.value.trim())) && ok;
-    ok = flag(phone, phone.el.value.trim() !== '' && !/^\+?[0-9 ()-]{6,}$/.test(phone.el.value.trim())) && ok;
-    ok = flag(country, !country.el.value) && ok;
-    ok = flag(consent, !consent.el.checked) && ok;
+    var idv = idInput.value.trim();
+    var idOk = mode === 'email' ? /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(idv) : /^\+?[0-9 ()-]{6,}$/.test(idv);
+    ok = err('dfpIdErr', !idOk) && ok;
+    ok = err('dfpCountryErr', !document.getElementById('dfpCountry').value) && ok;
+    ok = err('dfpPassErr', document.getElementById('dfpPass').value.length < 8) && ok;
+    ok = err('dfpRefErr', !document.getElementById('dfpRef').value.trim()) && ok;
+    ok = err('dfpTypeErr', !form.querySelector('input[name="acctType"]:checked')) && ok;
+    ok = err('dfpUsErr', !document.getElementById('dfpUs').checked) && ok;
+    ok = err('dfpTermsErr', !document.getElementById('dfpTerms').checked) && ok;
     if (!ok) return;
+    note.hidden = false;
     note.textContent = 'Details received — taking you to account opening…';
     note.classList.add('is-ok');
     setTimeout(function () {
       window.location.href = '../trading/getting-started/account-opening.html';
     }, 900);
   });
-  [name, email, phone, country].forEach(function (f) {
-    f.el.addEventListener('input', function () { if (f.err) f.err.hidden = true; });
+  ['dfpId', 'dfpCountry', 'dfpPass', 'dfpRef'].forEach(function (id) {
+    var el = document.getElementById(id);
+    el.addEventListener('input', function () { err(id + 'Err', false); });
+    el.addEventListener('change', function () { err(id + 'Err', false); });
   });
-  consent.el.addEventListener('change', function () { consent.err.hidden = true; });
+  ['dfpUs', 'dfpTerms'].forEach(function (id) {
+    document.getElementById(id).addEventListener('change', function () { err(id + 'Err', false); });
+  });
+  Array.prototype.slice.call(form.querySelectorAll('input[name="acctType"]')).forEach(function (r) {
+    r.addEventListener('change', function () { err('dfpTypeErr', false); });
+  });
 })();
 </script>
 
