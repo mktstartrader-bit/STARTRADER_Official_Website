@@ -57,6 +57,79 @@
     ]
   }
   </script>
+  <!-- Page-specific styles -->
+  <style>
+/* =================================================================
+   STAR MATRIX — the toolkit bento.
+   Frosted tiles on a soft mesh, each carrying a live-feeling sliver
+   of the tool it describes: a counted figure, calendar rows, idea
+   pills, heat bars, pattern tags.
+   ================================================================= */
+.mx-inside-sec{position:relative;isolation:isolate;overflow:clip;
+  background:
+    radial-gradient(46% 40% at 10% 6%,rgba(0,71,187,.07),transparent 62%),
+    radial-gradient(40% 36% at 90% 90%,rgba(22,233,215,.06),transparent 60%),
+    var(--bg-light-2)}
+.mx-inside-sec>.container{position:relative;z-index:1}
+.mx-inside-cta{justify-content:center;margin-top:22px}
+.mx-bento{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:clamp(14px,1.8vw,22px);margin-top:clamp(30px,3.6vw,46px)}
+.mx-tile{grid-column:span 2;display:flex;flex-direction:column;gap:12px;
+  border-radius:clamp(18px,2vw,26px);padding:clamp(20px,2.4vw,30px);
+  background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.9);
+  -webkit-backdrop-filter:blur(18px) saturate(1.45);backdrop-filter:blur(18px) saturate(1.45);
+  box-shadow:0 22px 50px -34px rgba(16,30,54,.3),inset 0 1px 0 rgba(255,255,255,.9);
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease)}
+.mx-tile:hover{transform:translateY(-6px);box-shadow:0 34px 66px -34px rgba(16,30,54,.42)}
+.mx-tile--wide{grid-column:span 4}
+.mx-tile-top{display:flex;align-items:center;gap:12px}
+.mx-tile-top h3{font-size:16.5px;letter-spacing:-.022em}
+.mx-tile p{font-size:13.5px;line-height:1.65;color:var(--text-soft)}
+.mx-tile-ic{flex:none;display:inline-grid;place-items:center;width:42px;height:42px;border-radius:13px;
+  transition:transform .35s var(--ease)}
+.mx-tile:hover .mx-tile-ic{transform:scale(1.1) rotate(-3deg)}
+.mx-tile-ic svg{width:19px;height:19px}
+.mx-hue-blue{color:var(--blue);background:rgba(0,71,187,.09);border:1px solid rgba(0,71,187,.16)}
+.mx-hue-purple{color:#7c5cff;background:rgba(124,92,255,.1);border:1px solid rgba(124,92,255,.2)}
+.mx-hue-green{color:#0f9d6a;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2)}
+.mx-hue-orange{color:#c2701c;background:rgba(234,148,44,.12);border:1px solid rgba(234,148,44,.22)}
+.mx-hue-teal{color:#0e9e92;background:rgba(22,233,215,.12);border:1px solid rgba(22,233,215,.26)}
+.mx-figure{margin-top:auto;padding-top:8px}
+.mx-figure b{display:block;font-size:clamp(34px,3.8vw,52px);font-weight:800;letter-spacing:-.03em;line-height:1;color:var(--blue);font-variant-numeric:tabular-nums}
+.mx-figure em{display:block;margin-top:6px;font-style:normal;font-size:12.5px;font-weight:600;color:var(--text-mute)}
+.mx-rows{margin-top:auto;display:grid;gap:7px;padding-top:8px}
+.mx-row{display:flex;align-items:center;gap:9px;padding:8px 11px;border-radius:11px;font-size:12px;font-weight:600;color:var(--text-soft);
+  background:rgba(255,255,255,.7);border:1px solid var(--line)}
+.mx-row i{font-style:normal;font-size:10px;font-weight:800;letter-spacing:.08em;color:var(--blue);
+  background:rgba(0,71,187,.08);border-radius:6px;padding:2px 6px}
+.mx-row b{margin-left:auto;font-variant-numeric:tabular-nums;color:var(--text)}
+.mx-pills{margin-top:auto;display:flex;flex-wrap:wrap;gap:8px;padding-top:8px}
+.mx-pill{padding:7px 13px;border-radius:40px;font-size:12px;font-weight:700}
+.mx-pill.up{color:#0f7d5c;background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.26)}
+.mx-pill.down{color:#b3423f;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.24)}
+.mx-heat{margin-top:auto;display:grid;gap:8px;padding-top:8px}
+.mx-heat-row{display:flex;align-items:center;gap:10px;font-size:11.5px;font-weight:700;color:var(--text-mute)}
+.mx-heat-row em{font-style:normal;min-width:56px}
+.mx-heat-row i{flex:1;height:7px;border-radius:6px;position:relative;overflow:hidden;background:rgba(20,40,80,.08)}
+.mx-heat-row i::after{content:"";position:absolute;inset:0;width:var(--w,50%);border-radius:6px;
+  background:linear-gradient(90deg,#2a72ff,#16e9d7);transform-origin:left;
+  animation:mxHeat 1.1s var(--ease-out) both}
+@keyframes mxHeat{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media (prefers-reduced-motion:reduce){.mx-heat-row i::after{animation:none}}
+.mx-tags{margin-top:auto;display:flex;flex-wrap:wrap;gap:8px;padding-top:8px}
+.mx-tag{padding:6px 12px;border-radius:40px;font-size:11.5px;font-weight:700;color:var(--blue);
+  background:rgba(0,71,187,.07);border:1px solid rgba(0,71,187,.15);
+  transition:background .25s,color .25s,transform .25s var(--ease)}
+.mx-tile:hover .mx-tag{background:rgba(0,71,187,.12)}
+@media (max-width:1080px){
+  .mx-bento{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .mx-tile,.mx-tile--wide{grid-column:span 1}
+  .mx-tile--wide{grid-column:span 2}
+}
+@media (max-width:640px){
+  .mx-bento{grid-template-columns:1fr}
+  .mx-tile,.mx-tile--wide{grid-column:span 1}
+}
+  </style>
 </head>
 <body>
 
@@ -378,98 +451,115 @@
 </section>
 
 <!-- ============ DIFFERENTIATORS ============ -->
-<section class="section sc-ben" id="features" aria-labelledby="mx-ben-title">
-  <span class="pf-aura a1" aria-hidden="true"></span>
+<section class="section fx-hours" id="features" aria-labelledby="mx-ben-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-aos="fade-up">Why STAR Matrix</span>
-      <h2 class="h2" id="mx-ben-title" data-aos="fade-up">What makes<br> our tool different?</h2>
-      <p class="head-sub" data-aos="fade-up">Open a panel to see what Matrix adds to each.</p>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">Why STAR Matrix</span>
+      <h2 class="h2 h2-light" id="mx-ben-title" data-aos="fade-up">What makes<br> our tool different?</h2>
+      <p class="head-sub" data-aos="fade-up">Four answers, straight from the workspace.</p>
     </div>
-
-    <div class="sc-fan" data-sc-fan>
-      <article class="sc-panel glass is-on" data-sc-panel data-aos="fade-up">
-        <span class="sc-panel-n">01</span>
-        <span class="sc-panel-vt" aria-hidden="true">Charting</span>
-        <div class="sc-panel-in">
-          <img class="sc-panel-ico" src="../../assets/img/icon-shield-3d.webp" alt="3D shield emblem for insured client funds" width="400" height="490" loading="lazy" decoding="async">
-          <b>Precision charting</b>
-          <em>Chart your way to a galaxy of potential with 12 chart types, hundreds of indicators, and flexible timeframes. No foggy decisions &mdash; our tool equips you with the technical clarity to make informed calls.</em>
-        </div>
-        <button class="sc-panel-hit" type="button" aria-expanded="true" data-sc-hit>Precision charting</button>
-        <span class="sc-panel-bar" aria-hidden="true"><i></i></span>
+    <div class="fx-mh">
+      <article class="fx-mh-card fx-mh--wide fx-mh--blue" data-aos="fade-up">
+        <span class="fx-mh-ic"><svg><use href="#i-chart"/></svg></span>
+        <h3>Precision charting</h3>
+        <p>Chart your way to a galaxy of potential with 12 chart types, hundreds of indicators and flexible timeframes &mdash; no foggy decisions, just technical clarity.</p>
+        <div class="fx-mh-viz"><div class="fx-mh-panel fx-mh-catch"><span class="fx-mh-mv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l5-5 4 4 7-8"/><path d="M20 10V6h-4"/></svg></span> <span class="fx-mh-catch-t"><b>12</b> chart types &middot; <b>100s</b> of indicators</span></div></div>
       </article>
-      <article class="sc-panel glass" data-sc-panel data-aos="fade-up" data-aos-delay="100">
-        <span class="sc-panel-n">02</span>
-        <span class="sc-panel-vt" aria-hidden="true">Workspace</span>
-        <div class="sc-panel-in">
-          <img class="sc-panel-ico" src="../../assets/img/icon-shield-3d.webp" alt="3D shield emblem for insured client funds" width="400" height="490" loading="lazy" decoding="async">
-          <b>Flexible workspace</b>
-          <em>Customise your workspace to suit your trading style. Whether you&rsquo;re tracking pips or converting to your local currency, the layout adapts to your preferences.</em>
-        </div>
-        <button class="sc-panel-hit" type="button" aria-expanded="false" data-sc-hit>Flexible workspace</button>
-        <span class="sc-panel-bar" aria-hidden="true"><i></i></span>
+      <article class="fx-mh-card fx-mh--purple" data-aos="fade-up" data-aos-delay="100">
+        <span class="fx-mh-ic"><svg><use href="#i-window"/></svg></span>
+        <h3>Flexible workspace</h3>
+        <p>Customise the layout to your trading style &mdash; tracking pips or converting to your local currency, it adapts to you.</p>
+        <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="fx-mh-status"><i></i> Layout follows the trader</span></div></div>
       </article>
-      <article class="sc-panel glass" data-sc-panel data-aos="fade-up" data-aos-delay="200">
-        <span class="sc-panel-n">03</span>
-        <span class="sc-panel-vt" aria-hidden="true">Drawing</span>
-        <div class="sc-panel-in">
-          <img class="sc-panel-ico" src="../../assets/img/icon-shield-3d.webp" alt="3D shield emblem for insured client funds" width="400" height="490" loading="lazy" decoding="async">
-          <b>Smart drawing suite</b>
-          <em>Lines, patterns, projections &mdash; you can trace every move with tools built to think like a trader. Whether it&rsquo;s Fibonacci or Elliott, your strategies start with precision.</em>
-        </div>
-        <button class="sc-panel-hit" type="button" aria-expanded="false" data-sc-hit>Smart drawing suite</button>
-        <span class="sc-panel-bar" aria-hidden="true"><i></i></span>
+      <article class="fx-mh-card fx-mh--green" data-aos="fade-up" data-aos-delay="150">
+        <span class="fx-mh-ic"><svg><use href="#i-cfd"/></svg></span>
+        <h3>Smart drawing suite</h3>
+        <p>Lines, patterns, projections &mdash; trace every move with tools built to think like a trader, from Fibonacci to Elliott.</p>
+        <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="fx-mh-status"><i></i> Fibonacci &middot; Elliott &middot; projections</span></div></div>
       </article>
-      <article class="sc-panel glass" data-sc-panel data-aos="fade-up" data-aos-delay="300">
-        <span class="sc-panel-n">04</span>
-        <span class="sc-panel-vt" aria-hidden="true">Market intel</span>
-        <div class="sc-panel-in">
-          <img class="sc-panel-ico" src="../../assets/img/icon-shield-3d.webp" alt="3D shield emblem for insured client funds" width="400" height="490" loading="lazy" decoding="async">
-          <b>Live market intel</b>
-          <em>No more tab switching. Access real-time headlines, insights, and educational snippets in one place &mdash; designed to support your workflow.</em>
-        </div>
-        <button class="sc-panel-hit" type="button" aria-expanded="false" data-sc-hit>Live market intel</button>
-        <span class="sc-panel-bar" aria-hidden="true"><i></i></span>
+      <article class="fx-mh-card fx-mh--wide fx-mh--teal" data-aos="fade-up" data-aos-delay="200">
+        <span class="fx-mh-ic"><svg><use href="#i-bolt"/></svg></span>
+        <h3>Live market intel</h3>
+        <p>No more tab switching &mdash; real-time headlines, insights and educational snippets in one place, designed to support your workflow.</p>
+        <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="fx-mh-alert"><span class="fx-mh-ping"><i></i></span> <span><b>Headlines land in real time</b> &middot; insights &middot; education</span></span></div></div>
       </article>
     </div>
   </div>
 </section>
 
 <!-- ============ INSIDE STAR MATRIX ============ -->
-<section class="section pl-sec" id="inside" aria-labelledby="mx-inside-title">
-  <span class="pf-aura a1" aria-hidden="true"></span>
+<section class="section mx-inside-sec" id="inside" aria-labelledby="mx-inside-title">
   <div class="container">
     <div class="head center">
       <span class="eyebrow" data-aos="fade-up">Inside STAR Matrix</span>
       <h2 class="h2" id="mx-inside-title" data-aos="fade-up">Inside our<br> STAR Matrix</h2>
       <p class="head-sub" data-aos="fade-up">Five tools, one workspace &mdash; everything Trading Central generates, ready when you are.</p>
-      <div class="cta-actions" style="justify-content:center;margin-top:22px" data-aos="fade-up">
+      <div class="cta-actions mx-inside-cta" data-aos="fade-up">
         <a href="../getting-started/account-opening.html" class="btn btn-primary">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
         <a href="../getting-started/account-opening.html" class="btn btn-primary">Open Demo Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       </div>
     </div>
 
-    <div class="pl-cards">
-      <article class="pl-card" data-aos="fade-up">
-        <span class="pl-card-hd"><span class="pl-card-ic"><svg><use href="#i-chart"/></svg></span><h3>Analyst Views</h3></span>
-        <p>Over 80,000 instruments scanned, summarised and served with technical expertise. Stay on top of price trends and key levels, all automatically interpreted for you.</p>
+    <div class="mx-bento">
+      <article class="mx-tile mx-tile--wide" data-aos="fade-up">
+        <div class="mx-tile-top">
+          <span class="mx-tile-ic mx-hue-blue"><svg><use href="#i-chart"/></svg></span>
+          <h3>Analyst Views</h3>
+        </div>
+        <p>Instruments scanned, summarised and served with technical expertise &mdash; price trends and key levels, automatically interpreted for you.</p>
+        <div class="mx-figure">
+          <b><span data-count="80000" data-comma>80,000</span>+</b>
+          <em>instruments under automated coverage</em>
+        </div>
       </article>
-      <article class="pl-card" data-aos="fade-up" data-aos-delay="100">
-        <span class="pl-card-hd"><span class="pl-card-ic"><svg><use href="#i-clock"/></svg></span><h3>Economic Calendar</h3></span>
-        <p>This calendar filters economic events by relevance and region, giving you a clean path to smarter macro-based trades.</p>
+
+      <article class="mx-tile" data-aos="fade-up" data-aos-delay="100">
+        <div class="mx-tile-top">
+          <span class="mx-tile-ic mx-hue-purple"><svg><use href="#i-clock"/></svg></span>
+          <h3>Economic Calendar</h3>
+        </div>
+        <p>Events filtered by relevance and region &mdash; a clean path to smarter macro-based trades.</p>
+        <div class="mx-rows" aria-hidden="true">
+          <span class="mx-row"><i>US</i>Core CPI<b>13:30</b></span>
+          <span class="mx-row"><i>EU</i>ECB speech<b>15:00</b></span>
+          <span class="mx-row"><i>UK</i>GDP q/q<b>07:00</b></span>
+        </div>
       </article>
-      <article class="pl-card" data-aos="fade-up" data-aos-delay="200">
-        <span class="pl-card-hd"><span class="pl-card-ic"><svg><use href="#i-bolt"/></svg></span><h3>Featured Ideas</h3></span>
-        <p>Explore trade ideas generated using technical and fundamental models &mdash; designed to support your market research.</p>
+
+      <article class="mx-tile" data-aos="fade-up">
+        <div class="mx-tile-top">
+          <span class="mx-tile-ic mx-hue-green"><svg><use href="#i-bolt"/></svg></span>
+          <h3>Featured Ideas</h3>
+        </div>
+        <p>Trade ideas generated using technical and fundamental models &mdash; built to support your market research.</p>
+        <div class="mx-pills" aria-hidden="true">
+          <span class="mx-pill up">Long &middot; XAU/USD</span>
+          <span class="mx-pill down">Short &middot; NAS100</span>
+        </div>
       </article>
-      <article class="pl-card" data-aos="fade-up">
-        <span class="pl-card-hd"><span class="pl-card-ic"><svg><use href="#i-bubble"/></svg></span><h3>Market Buzz</h3></span>
-        <p>This tool shows you the news volume, media heat and social buzz around assets &mdash; giving you visibility into market attention.</p>
+
+      <article class="mx-tile" data-aos="fade-up" data-aos-delay="100">
+        <div class="mx-tile-top">
+          <span class="mx-tile-ic mx-hue-orange"><svg><use href="#i-bubble"/></svg></span>
+          <h3>Market Buzz</h3>
+        </div>
+        <p>News volume, media heat and social buzz around assets &mdash; visibility into where attention is building.</p>
+        <div class="mx-heat" aria-hidden="true">
+          <span class="mx-heat-row"><em>Gold</em><i style="--w:86%"></i></span>
+          <span class="mx-heat-row"><em>EUR/USD</em><i style="--w:62%"></i></span>
+          <span class="mx-heat-row"><em>Oil</em><i style="--w:41%"></i></span>
+        </div>
       </article>
-      <article class="pl-card" data-aos="fade-up" data-aos-delay="100">
-        <span class="pl-card-hd"><span class="pl-card-ic"><svg><use href="#i-gauge"/></svg></span><h3>Technical Insights</h3></span>
-        <p>Your radar for patterns, breakouts and technical events. Screener included, so you can move from insight to action, fast.</p>
+
+      <article class="mx-tile" data-aos="fade-up" data-aos-delay="200">
+        <div class="mx-tile-top">
+          <span class="mx-tile-ic mx-hue-teal"><svg><use href="#i-gauge"/></svg></span>
+          <h3>Technical Insights</h3>
+        </div>
+        <p>Your radar for patterns, breakouts and technical events &mdash; screener included, from insight to action, fast.</p>
+        <div class="mx-tags" aria-hidden="true">
+          <span class="mx-tag">Breakout</span><span class="mx-tag">Triangle</span><span class="mx-tag">Channel up</span>
+        </div>
       </article>
     </div>
   </div>
