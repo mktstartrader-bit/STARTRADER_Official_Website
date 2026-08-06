@@ -17,14 +17,14 @@
   <meta property="og:title" content="Regulation — Licences, Entities &amp; Registered Offices | STARTRADER" />
   <meta property="og:description" content="Five regulators, six entities, every licence number and registered office — plus how to check each licence on the regulator's own register." />
   <meta property="og:url" content="https://www.startrader.com/company/corporate/regulation.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/company-hero.jpg" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/company-hero.webp" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Regulation — Licences, Entities &amp; Registered Offices | STARTRADER" />
   <meta name="twitter:description" content="Five regulators, six entities, every licence number and registered office — plus how to check each licence on the regulator's own register." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/company-hero.jpg" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/company-hero.webp" />
 
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../../favicon.svg" />
@@ -33,7 +33,203 @@
   <!-- Fonts (self-hosted) -->
   <link rel="preload" href="../../assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="../../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ================= REGULATION PAGE ================= */
+/* No banner artwork here: a licensing page earns a compact, sober header —
+   the content is the reassurance, not a photograph. */
+.rg-hero{
+  position:relative;overflow:hidden;isolation:isolate;color:#fff;
+  margin-top:calc(-1 * var(--nav-h));
+  padding:calc(var(--nav-h) + 54px) 0 46px;
+  background:
+    radial-gradient(70% 80% at 82% 6%,rgba(0,71,187,.3),transparent 62%),
+    radial-gradient(50% 60% at 6% 96%,rgba(22,233,215,.09),transparent 64%),
+    linear-gradient(180deg,#04060e 0%,#070c1c 58%,#04060e 100%);
+}
+.rg-hero-in{position:relative;z-index:1}
+.rg-h1{font-size:clamp(38px,6vw,66px);font-weight:800;letter-spacing:-.038em;line-height:1.02;margin-top:12px}
+/* measure chosen so the subline lands on two lines at desktop widths */
+.rg-lead{margin-top:18px;max-width:58ch;font-size:clamp(15px,1.5vw,17px);line-height:1.66;color:#c9d5ea}
+.rg-updated{
+  display:inline-flex;align-items:center;gap:9px;margin-top:22px;
+  font-size:12px;font-weight:600;letter-spacing:.03em;color:#9fc0ff;
+  padding:8px 15px;border-radius:70px;background:rgba(90,150,255,.12);border:1px solid rgba(120,175,255,.22);
+}
+.rg-updated svg{width:15px;height:15px;flex:none}
+/* ---- Entities ---- */
+.rg-ent-sec{
+  position:relative;isolation:isolate;overflow:clip;
+  background:radial-gradient(58% 46% at 6% 0%,rgba(0,71,187,.08),transparent 62%),var(--bg-light);
+  scroll-margin-top:calc(var(--chrome-h) + var(--chrome-gap));
+}
+.rg-ent-sec>.container,.rg-ver-sec>.container{position:relative;z-index:1}
+.rg-aura{position:absolute;z-index:0;pointer-events:none;border-radius:50%;filter:blur(70px)}
+.rg-aura.a1{top:-80px;right:-70px;width:min(500px,54vw);aspect-ratio:1;background:radial-gradient(circle,rgba(0,71,187,.08),transparent 68%)}
+.rg-aura.a2{bottom:-130px;left:-80px;width:min(440px,50vw);aspect-ratio:1;background:radial-gradient(circle,rgba(22,233,215,.07),transparent 68%)}
+.rg-aura.a3{top:4%;left:-90px;width:min(460px,52vw);aspect-ratio:1;background:radial-gradient(circle,rgba(0,71,187,.07),transparent 68%)}
+.rg-filter{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin-top:6px}
+.rg-chip{
+  display:inline-flex;align-items:center;gap:8px;cursor:pointer;
+  font:inherit;font-size:13px;font-weight:600;color:var(--text-soft);
+  padding:9px 16px;border-radius:70px;background:rgba(255,255,255,.7);border:1px solid var(--line);
+  transition:background .25s,color .25s,border-color .25s,transform .3s var(--ease);
+}
+.rg-chip i{font-style:normal;font-size:11px;font-weight:700;color:var(--text-mute)}
+.rg-chip:hover{background:#fff;color:var(--text);transform:translateY(-1px)}
+.rg-chip.is-on{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 12px 26px -14px rgba(0,71,187,.7)}
+.rg-chip.is-on i{color:rgba(255,255,255,.72)}
+.rg-count{margin-top:14px;text-align:center;font-size:12.5px;color:var(--text-mute)}
+.rg-ents{margin-top:26px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.rg-ent{
+  position:relative;display:flex;flex-direction:column;padding:26px 26px 24px;border-radius:20px;min-width:0;
+  scroll-margin-top:calc(var(--chrome-h) + 24px);
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
+}
+.rg-ent:hover{transform:translateY(-4px);border-color:rgba(0,71,187,.28);box-shadow:0 28px 52px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff}
+/* the accent rail marks a licensed entity; the muted one has no licence to mark */
+.rg-ent::before{
+  content:"";position:absolute;left:0;top:22px;bottom:22px;width:3px;border-radius:0 3px 3px 0;
+  background:linear-gradient(180deg,var(--blue),#5b9dff);opacity:.9;
+}
+.rg-ent--muted::before{background:linear-gradient(180deg,#98a4bb,#c3ccdb)}
+.rg-ent-head{display:flex;align-items:center;gap:13px;flex-wrap:wrap}
+.rg-flag{
+  width:44px;height:32px;border-radius:8px;overflow:hidden;flex:none;
+  border:1px solid var(--line);background:#fff;display:grid;place-items:center;
+  transition:transform .4s var(--ease);
+}
+.rg-ent:hover .rg-flag{transform:translateY(-2px) scale(1.04)}
+.rg-flag img{width:100%;height:100%;object-fit:cover}
+.rg-ent-reg{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1 1 190px}
+.rg-ent-reg b{font-size:16px;letter-spacing:-.01em;color:var(--text)}
+.rg-ent-reg span{font-size:12px;line-height:1.4;color:var(--text-mute)}
+.rg-ent-tag{
+  flex:none;font-size:10.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--blue);background:rgba(0,71,187,.08);border:1px solid rgba(0,71,187,.18);
+  padding:5px 11px;border-radius:70px;
+}
+.rg-ent-tag--muted{color:#5f6b80;background:rgba(20,44,96,.06);border-color:rgba(20,44,96,.14)}
+.rg-ent-name{margin-top:18px;font-size:16px;line-height:1.45;letter-spacing:-.015em;color:var(--text)}
+.rg-ent-facts{margin-top:18px;display:flex;flex-direction:column;gap:0;border-top:1px solid rgba(20,44,96,.09)}
+.rg-ent-facts>div{
+  display:grid;grid-template-columns:minmax(0,132px) minmax(0,1fr);gap:14px;
+  padding:11px 0;border-bottom:1px solid rgba(20,44,96,.07);
+}
+.rg-ent-facts dt{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--text-mute);padding-top:2px}
+.rg-ent-facts dd{font-size:13.5px;line-height:1.55;color:var(--text)}
+.rg-ent-facts address{font-style:normal;font-size:13.5px;line-height:1.55;color:var(--text-soft)}
+/* licence numbers are what a visitor takes to the register, so they copy in one tap */
+.rg-num{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.rg-num>span{font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:.01em}
+.rg-copy{
+  width:27px;height:27px;flex:none;display:grid;place-items:center;cursor:pointer;border-radius:8px;
+  color:var(--text-mute);background:rgba(20,44,96,.05);border:1px solid rgba(20,44,96,.1);
+  transition:background .25s,color .25s,border-color .25s,transform .25s var(--ease);
+}
+.rg-copy svg{width:14px;height:14px}
+.rg-copy:hover{background:var(--blue);border-color:var(--blue);color:#fff;transform:translateY(-1px)}
+.rg-copy.is-done{background:#0f9d6f;border-color:#0f9d6f;color:#fff}
+.rg-ent-note{
+  display:flex;align-items:flex-start;gap:10px;margin-top:18px;padding:13px 15px;border-radius:13px;
+  font-size:12.5px;line-height:1.55;color:#8a5a12;background:rgba(224,150,20,.08);border:1px solid rgba(224,150,20,.22);
+}
+.rg-ent-note svg{width:16px;height:16px;flex:none;margin-top:1px}
+.rg-ent-note b{color:#7a4d08}
+.rg-ent-verify{
+  display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding-top:20px;
+  font-size:13px;font-weight:700;color:var(--blue);
+}
+.rg-ent-verify svg{width:14px;height:14px;flex:none;transition:transform .3s var(--ease)}
+.rg-ent-verify:hover{text-decoration:underline;text-underline-offset:3px}
+.rg-ent:hover .rg-ent-verify svg{transform:translate(3px,-3px)}
+.rg-empty{margin-top:26px;text-align:center;font-size:14px;color:var(--text-soft)}
+/* ---- Verify ---- */
+.rg-ver-sec{
+  position:relative;isolation:isolate;overflow:clip;
+  background:
+    radial-gradient(52% 44% at 96% 10%,rgba(22,233,215,.07),transparent 62%),
+    var(--bg-light-2);
+}
+.rg-ver-wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.86fr);gap:clamp(28px,3.6vw,56px);align-items:start}
+.rg-ver-lead{margin-top:16px;font-size:15px;line-height:1.68;color:var(--text-soft)}
+.rg-ver-copy .ct-aside-list{margin-top:24px}
+.rg-ver-list{display:flex;flex-direction:column;gap:12px}
+.rg-ver-card{
+  display:flex;align-items:center;gap:14px;padding:17px 19px;border-radius:16px;
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
+}
+.rg-ver-card:hover{transform:translateY(-4px);border-color:rgba(0,71,187,.28);box-shadow:0 28px 52px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff}
+.rg-ver-flag{width:38px;height:27px;border-radius:7px;overflow:hidden;flex:none;border:1px solid var(--line);background:#fff}
+.rg-ver-flag img{width:100%;height:100%;object-fit:cover}
+.rg-ver-txt{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1}
+.rg-ver-txt b{font-size:14.5px;letter-spacing:-.015em;color:var(--text)}
+.rg-ver-txt em{font-style:normal;font-size:12px;color:var(--text-mute)}
+.rg-ver-go{width:15px;height:15px;flex:none;color:var(--blue);transition:transform .3s var(--ease)}
+.rg-ver-card:hover .rg-ver-go{transform:translate(3px,-3px)}
+/* ---- Scope (dark) ---- */
+.rg-scope-sec{
+  position:relative;color:#fff;
+  background:
+    radial-gradient(80% 60% at 12% 0%,rgba(0,44,130,.4),transparent 62%),
+    linear-gradient(180deg,#04060e,#080b16 58%,#04060e);
+}
+.rg-scope-sec .head-sub{color:#a9b7cf}
+.rg-scope{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.rg-scope-card{
+  padding:26px 26px 24px;border-radius:20px;
+  background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.024));
+  -webkit-backdrop-filter:blur(20px) saturate(1.4);backdrop-filter:blur(20px) saturate(1.4);
+  border:1px solid rgba(255,255,255,.11);box-shadow:inset 0 1px 0 rgba(255,255,255,.07);
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
+}
+.rg-scope-card:hover{transform:translateY(-4px);border-color:rgba(90,150,255,.42);box-shadow:0 28px 56px -32px rgba(0,60,180,.6)}
+.rg-scope-ic{
+  width:46px;height:46px;border-radius:14px;display:grid;place-items:center;margin-bottom:17px;
+  color:#9fc0ff;background:rgba(90,150,255,.12);border:1px solid rgba(120,175,255,.22);
+  transition:transform .4s var(--ease);
+}
+.rg-scope-card:hover .rg-scope-ic{transform:translateY(-3px) scale(1.05)}
+.rg-scope-ic svg{width:22px;height:22px}
+.rg-scope-card h3{font-size:17px;letter-spacing:-.02em;color:#fff}
+.rg-scope-card p{margin-top:9px;font-size:13.5px;line-height:1.65;color:#a7b6d0}
+/* ---- Risk + restrictions ---- */
+.rg-risk-sec{background:var(--bg-light);scroll-margin-top:calc(var(--chrome-h) + var(--chrome-gap))}
+.rg-risk-wrap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:start}
+/* glass, like every other card on the site */
+.rg-risk{
+  padding:28px 28px 26px;border-radius:20px;
+  background:rgba(255,255,255,.6);
+  -webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6);
+  border:1px solid rgba(255,255,255,.9);
+  box-shadow:0 14px 34px -24px rgba(20,44,96,.34),inset 0 1px 0 rgba(255,255,255,.92);
+}
+.rg-risk-h{display:flex;align-items:center;gap:12px;font-size:19px;letter-spacing:-.02em;color:var(--text)}
+.rg-risk-ic{
+  width:38px;height:38px;border-radius:11px;flex:none;display:grid;place-items:center;
+  color:var(--blue);background:rgba(0,71,187,.08);border:1px solid rgba(0,71,187,.16);
+}
+.rg-risk-ic svg{width:19px;height:19px}
+.rg-risk p{margin-top:15px;font-size:13.5px;line-height:1.7;color:var(--text-soft)}
+.rg-risk ul{margin-top:14px;display:flex;flex-direction:column;gap:9px}
+.rg-risk li{position:relative;padding-left:17px;font-size:13.5px;line-height:1.6;color:var(--text-soft)}
+.rg-risk li::before{content:"";position:absolute;left:0;top:.62em;width:5px;height:5px;border-radius:50%;background:rgba(0,71,187,.42)}
+.rg-risk-foot{padding-top:15px;margin-top:15px;border-top:1px solid var(--line);font-size:12.5px;color:var(--text-mute)}
+/* ---- Responsive ---- */
+@media (max-width:1080px){.rg-ents{grid-template-columns:1fr}
+.rg-ver-wrap{grid-template-columns:1fr;gap:30px}
+.rg-scope{grid-template-columns:1fr}
+.rg-risk-wrap{grid-template-columns:1fr}}
+@media (max-width:720px){.rg-hero{padding:calc(var(--nav-h) + 40px) 0 38px}
+.rg-ent{padding:22px 20px 20px}
+.rg-ent-facts>div{grid-template-columns:1fr;gap:4px;padding:12px 0}
+.rg-ent-head{gap:11px}
+.rg-ent-tag{order:3}
+.rg-aura{filter:blur(54px)}}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.rg-scope-card{background:rgba(12,18,36,.94)}}
+  </style>
 
   <!-- Structured data — the group and each licensed entity -->
   <script type="application/ld+json">
@@ -448,10 +644,10 @@
   <span class="gl-orb o3" aria-hidden="true"></span>
 
   <div class="container rg-hero-in">
-    <span class="eyebrow eyebrow-blue" data-reveal>Compliance</span>
-    <h1 class="rg-h1" id="rg-title" data-reveal>Regulation</h1>
-    <p class="rg-lead" data-reveal>STARTRADER is regulated by multiple authorities, adhering to industry standards for compliance and transparency.</p>
-    <p class="rg-updated" data-reveal><svg aria-hidden="true"><use href="#i-shield"/></svg>Six entities &middot; five regulators &middot; four continents</p>
+    <span class="eyebrow eyebrow-blue" data-aos="fade-up">Compliance</span>
+    <h1 class="rg-h1" id="rg-title" data-aos="fade-up">Regulation</h1>
+    <p class="rg-lead" data-aos="fade-up">STARTRADER is regulated by multiple authorities, adhering to industry standards for compliance and transparency.</p>
+    <p class="rg-updated" data-aos="fade-up"><svg aria-hidden="true"><use href="#i-shield"/></svg>Six entities &middot; five regulators &middot; four continents</p>
   </div>
 </section>
 
@@ -462,12 +658,12 @@
 
   <div class="container">
     <div class="head">
-      <span class="eyebrow" data-reveal>Licensed entities</span>
-      <h2 class="h2" id="rg-ent-title" data-reveal>Who you are actually trading with</h2>
-      <p class="head-sub" data-reveal>STARTRADER operates under a network of licensed entities, each authorised and regulated by leading international regulatory bodies. The entity that holds your account is named in your client agreement.</p>
+      <span class="eyebrow" data-aos="fade-up">Licensed entities</span>
+      <h2 class="h2" id="rg-ent-title" data-aos="fade-up">Who you are actually trading with</h2>
+      <p class="head-sub" data-aos="fade-up">STARTRADER operates under a network of licensed entities, each authorised and regulated by leading international regulatory bodies. The entity that holds your account is named in your client agreement.</p>
     </div>
 
-    <div class="rg-filter" role="group" aria-label="Filter entities by regulator" data-reveal>
+    <div class="rg-filter" role="group" aria-label="Filter entities by regulator" data-aos="fade-up">
       <button class="rg-chip is-on" type="button" data-rg-f="all">All entities <i>6</i></button>
       <button class="rg-chip" type="button" data-rg-f="cma">CMA</button>
       <button class="rg-chip" type="button" data-rg-f="asic">ASIC</button>
@@ -482,7 +678,7 @@
 
       <article class="rg-ent glass" id="cma" data-rg-r="cma">
         <header class="rg-ent-head">
-          <span class="rg-flag"><img src="../../assets/img/flags/uae.svg" alt="" width="34" height="24" loading="lazy"></span>
+          <span class="rg-flag"><img src="../../assets/img/flags/uae.svg" alt="Flag of the United Arab Emirates" width="34" height="24" loading="lazy"></span>
           <div class="rg-ent-reg">
             <b>CMA</b>
             <span>Capital Market Authority &middot; United Arab Emirates</span>
@@ -504,7 +700,7 @@
 
       <article class="rg-ent glass" id="asic" data-rg-r="asic">
         <header class="rg-ent-head">
-          <span class="rg-flag"><img src="../../assets/img/flags/australia.svg" alt="" width="34" height="24" loading="lazy"></span>
+          <span class="rg-flag"><img src="../../assets/img/flags/australia.svg" alt="Flag of Australia" width="34" height="24" loading="lazy"></span>
           <div class="rg-ent-reg">
             <b>ASIC</b>
             <span>Australian Securities and Investments Commission &middot; Australia</span>
@@ -526,7 +722,7 @@
 
       <article class="rg-ent glass" id="fsca" data-rg-r="fsca">
         <header class="rg-ent-head">
-          <span class="rg-flag"><img src="../../assets/img/flags/south-africa.svg" alt="" width="34" height="24" loading="lazy"></span>
+          <span class="rg-flag"><img src="../../assets/img/flags/south-africa.svg" alt="Flag of South Africa" width="34" height="24" loading="lazy"></span>
           <div class="rg-ent-reg">
             <b>FSCA</b>
             <span>Financial Sector Conduct Authority &middot; South Africa</span>
@@ -548,7 +744,7 @@
 
       <article class="rg-ent glass" id="fsc" data-rg-r="fsc">
         <header class="rg-ent-head">
-          <span class="rg-flag"><img src="../../assets/img/flags/mauritius.svg" alt="" width="34" height="24" loading="lazy"></span>
+          <span class="rg-flag"><img src="../../assets/img/flags/mauritius.svg" alt="Flag of Mauritius" width="34" height="24" loading="lazy"></span>
           <div class="rg-ent-reg">
             <b>FSC</b>
             <span>Financial Services Commission &middot; Mauritius</span>
@@ -570,7 +766,7 @@
 
       <article class="rg-ent glass" id="fsa" data-rg-r="fsa">
         <header class="rg-ent-head">
-          <span class="rg-flag"><img src="../../assets/img/flags/seychelles.svg" alt="" width="34" height="24" loading="lazy"></span>
+          <span class="rg-flag"><img src="../../assets/img/flags/seychelles.svg" alt="Flag of Seychelles" width="34" height="24" loading="lazy"></span>
           <div class="rg-ent-reg">
             <b>FSA</b>
             <span>Financial Services Authority &middot; Seychelles</span>
@@ -592,7 +788,7 @@
 
       <article class="rg-ent rg-ent--muted glass" id="cy" data-rg-r="cy">
         <header class="rg-ent-head">
-          <span class="rg-flag"><img src="../../assets/img/flags/eu.svg" alt="" width="34" height="24" loading="lazy"></span>
+          <span class="rg-flag"><img src="../../assets/img/flags/eu.svg" alt="Flag of the European Union" width="34" height="24" loading="lazy"></span>
           <div class="rg-ent-reg">
             <b>Cyprus</b>
             <span>Registered company &middot; Republic of Cyprus</span>
@@ -623,34 +819,34 @@
   <div class="container">
     <div class="rg-ver-wrap">
       <div class="rg-ver-copy">
-        <span class="eyebrow" data-reveal>Due diligence</span>
-        <h2 class="h2" id="rg-ver-title" data-reveal>Don&rsquo;t take our word for it &mdash; check the register</h2>
-        <p class="rg-ver-lead" data-reveal>A licence number printed on a website proves nothing on its own. Every regulator above publishes a searchable register, and the number we show should match what you find there. If it doesn&rsquo;t, walk away &mdash; from us or from anyone.</p>
-        <ul class="ct-aside-list" data-reveal>
+        <span class="eyebrow" data-aos="fade-up">Due diligence</span>
+        <h2 class="h2" id="rg-ver-title" data-aos="fade-up">Don&rsquo;t take our word for it &mdash; check the register</h2>
+        <p class="rg-ver-lead" data-aos="fade-up">A licence number printed on a website proves nothing on its own. Every regulator above publishes a searchable register, and the number we show should match what you find there. If it doesn&rsquo;t, walk away &mdash; from us or from anyone.</p>
+        <ul class="ct-aside-list" data-aos="fade-up">
           <li><span class="wb-tick"><svg><use href="#i-check"/></svg></span>Copy the licence number from the entity card</li>
           <li><span class="wb-tick"><svg><use href="#i-check"/></svg></span>Search it on the regulator&rsquo;s own site, not a link you were sent</li>
           <li><span class="wb-tick"><svg><use href="#i-check"/></svg></span>Check the legal entity name matches exactly</li>
         </ul>
       </div>
 
-      <div class="rg-ver-list" data-reveal-stagger>
-        <a class="rg-ver-card glass" href="https://asic.gov.au/online-services/search-asics-registers/" target="_blank" rel="noopener">
-          <span class="rg-ver-flag"><img src="../../assets/img/flags/australia.svg" alt="" width="30" height="21" loading="lazy"></span>
+      <div class="rg-ver-list">
+        <a class="rg-ver-card glass" href="https://asic.gov.au/online-services/search-asics-registers/" target="_blank" rel="noopener" data-aos="fade-up">
+          <span class="rg-ver-flag"><img src="../../assets/img/flags/australia.svg" alt="Flag of Australia" width="30" height="21" loading="lazy"></span>
           <span class="rg-ver-txt"><b>ASIC registers</b><em>Australia &middot; AFSL 421210</em></span>
           <svg class="rg-ver-go" aria-hidden="true"><use href="#i-arrow-ur"/></svg>
         </a>
-        <a class="rg-ver-card glass" href="https://www.fsca.co.za/" target="_blank" rel="noopener">
-          <span class="rg-ver-flag"><img src="../../assets/img/flags/south-africa.svg" alt="" width="30" height="21" loading="lazy"></span>
+        <a class="rg-ver-card glass" href="https://www.fsca.co.za/" target="_blank" rel="noopener" data-aos="fade-up" data-aos-delay="100">
+          <span class="rg-ver-flag"><img src="../../assets/img/flags/south-africa.svg" alt="Flag of South Africa" width="30" height="21" loading="lazy"></span>
           <span class="rg-ver-txt"><b>FSCA</b><em>South Africa &middot; FSP 52464</em></span>
           <svg class="rg-ver-go" aria-hidden="true"><use href="#i-arrow-ur"/></svg>
         </a>
-        <a class="rg-ver-card glass" href="https://www.fscmauritius.org/" target="_blank" rel="noopener">
-          <span class="rg-ver-flag"><img src="../../assets/img/flags/mauritius.svg" alt="" width="30" height="21" loading="lazy"></span>
+        <a class="rg-ver-card glass" href="https://www.fscmauritius.org/" target="_blank" rel="noopener" data-aos="fade-up" data-aos-delay="200">
+          <span class="rg-ver-flag"><img src="../../assets/img/flags/mauritius.svg" alt="Flag of Mauritius" width="30" height="21" loading="lazy"></span>
           <span class="rg-ver-txt"><b>FSC Mauritius</b><em>Mauritius &middot; GB24203371</em></span>
           <svg class="rg-ver-go" aria-hidden="true"><use href="#i-arrow-ur"/></svg>
         </a>
-        <a class="rg-ver-card glass" href="https://fsaseychelles.sc/" target="_blank" rel="noopener">
-          <span class="rg-ver-flag"><img src="../../assets/img/flags/seychelles.svg" alt="" width="30" height="21" loading="lazy"></span>
+        <a class="rg-ver-card glass" href="https://fsaseychelles.sc/" target="_blank" rel="noopener" data-aos="fade-up" data-aos-delay="300">
+          <span class="rg-ver-flag"><img src="../../assets/img/flags/seychelles.svg" alt="Flag of Seychelles" width="30" height="21" loading="lazy"></span>
           <span class="rg-ver-txt"><b>FSA Seychelles</b><em>Seychelles &middot; SD049</em></span>
           <svg class="rg-ver-go" aria-hidden="true"><use href="#i-arrow-ur"/></svg>
         </a>
@@ -663,28 +859,28 @@
 <section class="section rg-scope-sec" aria-labelledby="rg-scope-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Read this carefully</span>
-      <h2 class="h2 h2-light" id="rg-scope-title" data-reveal>What a licence does &mdash; and doesn&rsquo;t &mdash; mean</h2>
-      <p class="head-sub" data-reveal>Being licensed is not the same as being endorsed, and not every entity above can do the same things. Both distinctions matter more than a logo wall.</p>
+      <span class="eyebrow" data-aos="fade-up">Read this carefully</span>
+      <h2 class="h2 h2-light" id="rg-scope-title" data-aos="fade-up">What a licence does &mdash; and doesn&rsquo;t &mdash; mean</h2>
+      <p class="head-sub" data-aos="fade-up">Being licensed is not the same as being endorsed, and not every entity above can do the same things. Both distinctions matter more than a logo wall.</p>
     </div>
 
-    <div class="rg-scope" data-reveal-stagger>
-      <article class="rg-scope-card">
+    <div class="rg-scope">
+      <article class="rg-scope-card" data-aos="fade-up">
         <span class="rg-scope-ic"><svg><use href="#i-shield"/></svg></span>
         <h3>A licence is authorisation, not endorsement</h3>
         <p>While the relevant authorities have granted securities or investment dealer licences to the licensees, they do not endorse the products or services offered by STARTRADER. Supervision covers the activities named in the licence.</p>
       </article>
-      <article class="rg-scope-card">
+      <article class="rg-scope-card" data-aos="fade-up" data-aos-delay="100">
         <span class="rg-scope-ic"><svg><use href="#i-id"/></svg></span>
         <h3>Scope differs by entity</h3>
         <p>The UAE entity is licensed for Introduction and Promotion only and cannot execute trades. The Cyprus company is registered but offers no regulated products. Read the entity card before you assume what it covers.</p>
       </article>
-      <article class="rg-scope-card">
+      <article class="rg-scope-card" data-aos="fade-up" data-aos-delay="200">
         <span class="rg-scope-ic"><svg><use href="#i-globe"/></svg></span>
         <h3>Your entity depends on where you live</h3>
         <p>You contract with one entity, named in your client agreement and on your statements, and its regulator is the one you would approach with a complaint. Support will confirm which entity holds your account.</p>
       </article>
-      <article class="rg-scope-card">
+      <article class="rg-scope-card" data-aos="fade-up" data-aos-delay="300">
         <span class="rg-scope-ic"><svg><use href="#i-cfd"/></svg></span>
         <h3>Regulation does not remove market risk</h3>
         <p>Leveraged products carry a high level of risk and can cost more than your initial deposit whichever entity you trade with. Oversight governs conduct; it does not cap what a position can lose.</p>
@@ -696,7 +892,7 @@
 <!-- ============ RISK + RESTRICTIONS ============ -->
 <section class="section rg-risk-sec" id="risk" aria-labelledby="rg-risk-title">
   <div class="container rg-risk-wrap">
-    <article class="rg-risk" data-reveal>
+    <article class="rg-risk" data-aos="fade-up">
       <h2 class="rg-risk-h" id="rg-risk-title"><span class="rg-risk-ic"><svg><use href="#i-bolt"/></svg></span>Risk warning</h2>
       <p>Trading in leveraged derivative products, such as Foreign Exchange (Forex) and Contracts for Difference (CFDs), involves a high level of risk and may result in losses that exceed your initial deposit.</p>
       <ul>
@@ -708,7 +904,7 @@
       </ul>
     </article>
 
-    <article class="rg-risk" data-reveal>
+    <article class="rg-risk" data-aos="fade-up">
       <h2 class="rg-risk-h"><span class="rg-risk-ic"><svg><use href="#i-globe"/></svg></span>Regional restrictions</h2>
       <p>This website is not intended for distribution to, or use by, any person or entity who is a citizen or resident of certain jurisdictions, including, but not limited to the United States, and jurisdictions listed on the FATF &ldquo;blacklist&rdquo; or other major global sanctions lists.</p>
       <p class="rg-risk-foot">Before opening an account, consider whether these products suit your objectives, experience and appetite for risk. If you are unsure, take independent advice.</p>
@@ -720,10 +916,10 @@
 <section class="section faq-sec fx-faq" aria-labelledby="rg-faq-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>FAQ</span>
-      <h2 class="h2" id="rg-faq-title" data-reveal>Questions about our licensing</h2>
+      <span class="eyebrow" data-aos="fade-up">FAQ</span>
+      <h2 class="h2" id="rg-faq-title" data-aos="fade-up">Questions about our licensing</h2>
     </div>
-    <div class="faq-list" data-reveal>
+    <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
         <summary>Which STARTRADER entity holds my account?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a">The entity is named in the client agreement you accepted when you registered, and on your account statements. Each entity, its regulator and its licence number are listed above. If you&rsquo;re not sure which one applies to you, <a href="../about/contact.html">contact support</a> and they&rsquo;ll confirm it.</div>
@@ -764,9 +960,9 @@
 <section class="cta-banner" aria-labelledby="rg-cta-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="rg-cta-title" data-reveal>Start trading with a<br>globally leading broker</h2>
-    <p data-reveal>Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
-    <div class="cta-actions" data-reveal>
+    <h2 id="rg-cta-title" data-aos="fade-up">Start trading with a<br>globally leading broker</h2>
+    <p data-aos="fade-up">Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
+    <div class="cta-actions" data-aos="fade-up">
       <a href="../../trading/getting-started/account-opening.html" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       <a href="../../trading/getting-started/account-opening.html" class="btn btn-ghost btn-lg">Try Free Demo</a>
     </div>
@@ -856,7 +1052,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -890,6 +1086,7 @@
 <script src="../../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../../assets/js/vendor/aos.min.js" defer></script>
 <script src="../../assets/js/main.js" defer></script>
 </body>
 </html>

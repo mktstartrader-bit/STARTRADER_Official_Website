@@ -33,7 +33,214 @@
   <!-- Fonts (self-hosted) -->
   <link rel="preload" href="../../assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="../../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ================= GLOSSARY ================= */
+/* one hover for every card on every page — do not redefine it per component */
+.kc-node,.kc-fmt{
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
+}
+.kc-node:hover,.kc-fmt:hover{
+  transform:translateY(-4px);
+  border-color:rgba(0,71,187,.28);
+  box-shadow:0 28px 52px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff;
+}
+/* ---- reports ---- */
+.kc-empty{
+  max-width:520px;margin:12px auto 0;text-align:center;padding:44px 30px;border-radius:22px;
+  background:var(--bg-light);border:1px dashed var(--line);
+}
+.kc-empty-ic{width:52px;height:52px;margin:0 auto 16px;border-radius:16px;display:grid;place-items:center;background:rgba(0,71,187,.08);color:var(--blue)}
+.kc-empty-ic svg{width:24px;height:24px}
+.kc-empty h3{font-size:19px;letter-spacing:-.022em}
+.kc-empty p{margin:10px 0 20px;font-size:14px;color:var(--text-soft);line-height:1.6}
+/* =================== KNOWLEDGE CENTRE =================== */
+.kc-hero{
+  position:relative;overflow:hidden;isolation:isolate;color:#fff;
+  margin-top:calc(-1 * var(--nav-h));
+  display:flex;align-items:center;
+  min-height:min(660px,calc(100vh - var(--topbar-h,44px)));
+  padding:calc(var(--nav-h) + 56px) 0 60px;
+  background:
+    radial-gradient(72% 68% at 50% 6%,rgba(0,71,187,.36),transparent 62%),
+    radial-gradient(48% 52% at 8% 96%,rgba(22,233,215,.11),transparent 62%),
+    linear-gradient(180deg,#04060e 0%,#070c1c 48%,#04060e 100%);
+}
+.kc-hero-aura{position:absolute;z-index:-1;border-radius:50%;pointer-events:none;filter:blur(96px)}
+.kc-hero-aura.a1{width:600px;height:600px;top:-20%;right:2%;background:radial-gradient(circle,rgba(0,110,255,.34),transparent 68%)}
+.kc-hero-aura.a2{width:440px;height:440px;bottom:-22%;right:-6%;background:radial-gradient(circle,rgba(22,233,215,.16),transparent 68%)}
+.kc-hero-in{position:relative;z-index:1;width:100%}
+.kc-hero-copy{max-width:720px;min-width:0}
+.kc-h1{font-size:clamp(32px,5vw,58px);font-weight:800;letter-spacing:-.038em;line-height:1.06;margin-top:16px}
+.kc-lead{margin-top:20px;max-width:64ch;font-size:clamp(15px,1.5vw,17px);line-height:1.68;color:#c2cfe4}
+.kc-hact{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
+/* ---- learning path ---- */
+.kc-path{
+  position:relative;overflow:clip;color:#fff;
+  background:radial-gradient(90% 68% at 50% 0%,rgba(0,46,138,.34),transparent 60%),linear-gradient(180deg,#04060e 0%,#060a18 52%,#04060e 100%);
+}
+.kc-path .h2,.kc-path .h2-light{color:#fff}
+.kc-path .head-sub{color:#a9bcdb}
+.kc-road{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+/* same construction as the forex "market that never sleeps" cards: a coloured
+   ray behind the top edge plus a glowing rule that widens on hover */
+.kc-node{
+  position:relative;overflow:hidden;display:flex;flex-direction:column;
+  border-radius:var(--radius-xl);padding:28px 28px 26px;
+  background:radial-gradient(130% 78% at 50% -14%,var(--ray,rgba(120,160,255,.2)),transparent 60%),linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.02));
+  -webkit-backdrop-filter:blur(22px) saturate(1.4);backdrop-filter:blur(22px) saturate(1.4);
+  border:1px solid rgba(255,255,255,.1);box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
+}
+.kc-node::after{
+  content:"";position:absolute;top:0;left:16%;right:16%;height:2px;border-radius:2px;
+  background:var(--ray-line,rgba(120,160,255,.85));box-shadow:0 0 18px 1px var(--ray-line,rgba(120,160,255,.85));
+  opacity:.9;transition:opacity .35s,left .45s var(--ease),right .45s var(--ease);
+}
+.kc-node:hover{transform:translateY(-4px);border-color:var(--ray-line,rgba(90,150,255,.4));box-shadow:0 30px 64px -34px rgba(0,60,180,.55)}
+.kc-node:hover::after{left:6%;right:6%;opacity:1}
+.kc-node--teal{--ray:rgba(22,233,215,.2);--ray-line:rgba(22,233,215,.85)}
+.kc-node--blue{--ray:rgba(0,110,255,.28);--ray-line:rgba(80,150,255,.95)}
+.kc-node--purple{--ray:rgba(150,110,255,.22);--ray-line:rgba(160,120,255,.9)}
+.kc-medal{position:relative;width:54px;height:54px;display:grid;place-items:center;margin-bottom:16px}
+.kc-medal svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.kc-medal circle{fill:none;stroke-width:3}
+.kc-medal-bg{stroke:rgba(255,255,255,.12)}
+.kc-medal-fg{stroke:var(--ray-line,#6fa8ff);stroke-linecap:round;stroke-dasharray:132;stroke-dashoffset:132;transition:stroke-dashoffset .9s var(--ease)}
+.kc-node.is-on .kc-medal-fg{stroke-dashoffset:0}
+.kc-medal b{font-size:15px;font-weight:800;letter-spacing:-.02em;color:rgba(255,255,255,.5);transition:color .5s var(--ease)}
+.kc-node.is-on .kc-medal b{color:#fff}
+.kc-node-step{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#8ea4c6}
+.kc-node h3{margin-top:7px;font-size:23px;letter-spacing:-.03em;color:#fff}
+.kc-node>p{margin-top:11px;font-size:13.5px;line-height:1.64;color:#a9bcdb}
+.kc-node-list{display:flex;flex-direction:column;gap:9px;margin-top:18px}
+.kc-node-list li{
+  display:flex;align-items:center;gap:9px;font-size:13px;color:#c2cfe4;
+  opacity:0;transform:translateX(-6px);transition:opacity .5s var(--ease),transform .5s var(--ease);
+}
+.kc-node.is-on .kc-node-list li{opacity:1;transform:none}
+.kc-node.is-on .kc-node-list li:nth-child(2){transition-delay:.09s}
+.kc-node.is-on .kc-node-list li:nth-child(3){transition-delay:.18s}
+.kc-node-list svg{width:15px;height:15px;flex:none;color:var(--ray-line,#6fa8ff)}
+.kc-node-go{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding-top:22px;font-size:13px;font-weight:700;color:#fff}
+.kc-node-go svg{width:15px;height:15px;transition:transform .35s var(--ease)}
+.kc-node:hover .kc-node-go svg{transform:translateX(5px)}
+/* ---- guides ---- */
+.kc-guides{background:#fff}
+.kc-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;padding:14px;border-radius:20px;margin-bottom:22px}
+.kc-levels{position:relative;display:flex;gap:4px;padding:4px;border-radius:70px;background:rgba(20,44,96,.06)}
+.kc-levels-ind{position:absolute;top:4px;bottom:4px;left:0;width:0;border-radius:70px;background:var(--blue);box-shadow:0 12px 26px -14px rgba(0,71,187,.75);transition:transform .42s var(--ease),width .42s var(--ease)}
+.kc-level{position:relative;z-index:1;padding:9px 20px;border-radius:70px;font-size:13px;font-weight:700;color:var(--text-soft);transition:color .3s}
+.kc-level:hover{color:var(--text)}
+.kc-level.is-on{color:#fff}
+.kc-prods{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.kc-prods-lbl{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--text-mute);margin-right:2px}
+/* ---- videos ---- */
+.kc-videos{
+  position:relative;isolation:isolate;overflow:clip;
+  background:radial-gradient(46% 42% at 6% 4%,rgba(22,233,215,.07),transparent 62%),var(--bg-light);
+}
+.kc-videos>.container{position:relative;z-index:1}
+.kc-theatre{display:grid;grid-template-columns:minmax(0,1.34fr) minmax(0,1fr);gap:20px;align-items:stretch}
+.kc-feature{display:flex}
+.kc-feature-media{
+  position:relative;display:block;width:100%;border-radius:22px;overflow:hidden;aspect-ratio:16/9;
+  box-shadow:0 34px 70px -38px rgba(20,44,96,.55);
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease);
+}
+.kc-feature-media:hover{transform:translateY(-4px);box-shadow:0 44px 84px -40px rgba(20,44,96,.62)}
+.kc-playlist{justify-content:flex-start}
+.kc-feature-media img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.kc-feature-media:hover img{transform:scale(1.05)}
+.kc-feature-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,6,14,.1) 0%,rgba(4,6,14,.28) 46%,rgba(4,6,14,.88) 100%)}
+.kc-feature-meta{position:absolute;top:18px;left:18px;right:18px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.kc-feature-chip{font-size:10.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#fff;background:rgba(0,71,187,.86);padding:6px 12px;border-radius:70px}
+.kc-feature-dur{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;color:#fff;background:rgba(4,6,14,.62);padding:6px 11px;border-radius:70px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);font-variant-numeric:tabular-nums}
+.kc-feature-dur svg{width:13px;height:13px}
+.kc-feature-copy{position:absolute;left:22px;right:22px;bottom:26px;display:flex;flex-direction:column;gap:7px}
+.kc-feature-copy b{font-size:clamp(20px,2.2vw,27px);font-weight:700;letter-spacing:-.03em;color:#fff;line-height:1.16}
+.kc-feature-copy em{font-style:normal;font-size:13.5px;line-height:1.55;color:rgba(255,255,255,.78);max-width:46ch}
+.kc-feature-bar{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.16)}
+.kc-feature-bar i{display:block;height:100%;width:26%;background:linear-gradient(90deg,#4d94ff,#16e9d7);transition:width .7s var(--ease)}
+.kc-feature-media:hover .kc-feature-bar i{width:62%}
+.kc-playlist{display:flex;flex-direction:column;gap:8px;padding:18px;border-radius:22px;background:#fff;border:1px solid var(--line);box-shadow:0 14px 34px -24px rgba(20,44,96,.26)}
+.kc-pl-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:2px 6px 12px;border-bottom:1px solid var(--line)}
+.kc-pl-head b{font-size:13px;letter-spacing:-.02em;color:var(--text)}
+.kc-pl-head span{font-size:11.5px;color:var(--text-mute)}
+.kc-pl-row{
+  position:relative;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:13px;
+  padding:9px;border-radius:14px;transition:background .3s var(--ease),transform .35s var(--ease);
+}
+.kc-pl-row:hover{background:rgba(0,71,187,.05);transform:translateX(3px)}
+.kc-pl-row.is-next{background:rgba(0,71,187,.06)}
+.kc-pl-thumb{position:relative;width:84px;aspect-ratio:16/9;border-radius:10px;overflow:hidden;flex:none}
+.kc-pl-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.kc-pl-row:hover .kc-pl-thumb img{transform:scale(1.08)}
+.kc-pl-thumb i{
+  position:absolute;inset:0;display:grid;place-items:center;background:rgba(4,6,14,.34);
+  opacity:0;transition:opacity .3s;
+}
+.kc-pl-thumb i::after{content:"";border-style:solid;border-width:5px 0 5px 9px;border-color:transparent transparent transparent #fff}
+.kc-pl-row:hover .kc-pl-thumb i{opacity:1}
+.kc-pl-tx{display:flex;flex-direction:column;gap:3px;min-width:0}
+.kc-pl-tx em{font-style:normal;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--text-mute)}
+.kc-pl-tx b{font-size:13.5px;font-weight:600;letter-spacing:-.018em;color:var(--text);line-height:1.34;transition:color .25s}
+.kc-pl-row:hover .kc-pl-tx b{color:var(--blue)}
+.kc-pl-dur{font-size:11.5px;color:var(--text-mute);font-variant-numeric:tabular-nums;white-space:nowrap}
+.kc-play{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:64px;height:64px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(255,255,255,.92);color:var(--blue);
+  box-shadow:0 18px 40px -16px rgba(0,0,0,.6);
+  transition:transform .45s var(--ease),background .35s;
+}
+.kc-play svg{width:24px;height:24px;margin-left:3px}
+.kc-feature-media:hover .kc-play{transform:translate(-50%,-50%) scale(1.1);background:#fff}
+@media (prefers-reduced-motion:no-preference){.kc-play::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid rgba(255,255,255,.7);animation:kcPing 2.8s ease-out infinite}}
+.kc-vmore{display:flex;justify-content:center;margin-top:34px}
+/* ---- formats ---- */
+.kc-formats{background:#fff}
+.kc-fmt-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.kc-fmt{position:relative;display:flex;flex-direction:column;border-radius:20px;padding:28px 24px 24px;overflow:hidden}
+.kc-fmt-n{
+  position:absolute;top:12px;right:16px;font-size:58px;font-weight:800;letter-spacing:-.05em;line-height:1;
+  color:rgba(20,44,96,.05);transition:color .5s var(--ease),transform .5s var(--ease);
+}
+.kc-fmt:hover .kc-fmt-n{color:rgba(0,71,187,.12);transform:translateY(-3px)}
+.kc-fmt-ic{
+  width:48px;height:48px;border-radius:15px;display:grid;place-items:center;margin-bottom:18px;
+  background:rgba(0,71,187,.09);color:var(--blue);
+  transition:transform .5s var(--ease),background .35s,color .35s;
+}
+.kc-fmt-ic svg{width:22px;height:22px;transition:transform .5s var(--ease)}
+.kc-fmt:hover .kc-fmt-ic{transform:translateY(-3px) scale(1.05)}
+.kc-fmt:hover .kc-fmt-ic svg{transform:rotate(8deg) scale(1.08)}
+.kc-fmt h3{font-size:20px;letter-spacing:-.028em}
+.kc-fmt p{margin-top:10px;font-size:13.5px;line-height:1.62;color:var(--text-soft)}
+.kc-fmt-go{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding-top:22px;font-size:12.5px;font-weight:700;color:var(--blue)}
+.kc-fmt-go svg{width:14px;height:14px;transition:transform .35s var(--ease)}
+.kc-fmt:hover .kc-fmt-go svg{transform:translateX(5px)}
+/* underline draws in from the left on hover */
+.kc-fmt-line{position:absolute;left:0;right:0;bottom:0;height:3px;background:linear-gradient(90deg,var(--blue),#4d94ff);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.kc-fmt:hover .kc-fmt-line{transform:scaleX(1)}
+/* ---- Responsive ---- */
+@media (max-width:1080px){.kc-hero-copy{max-width:none}
+.kc-road{grid-template-columns:1fr;gap:18px}
+.kc-theatre{grid-template-columns:1fr}
+.kc-fmt-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:860px){.kc-hero{min-height:auto;padding:calc(var(--nav-h) + 44px) 0 56px}
+.kc-bar{padding:12px}
+.kc-bar{justify-content:flex-start}}
+@media (max-width:720px){.kc-hact .btn{width:100%;justify-content:center}
+.kc-h1 br,.kc-lead br,.kc-path .head-sub br{display:none}
+.kc-fmt-grid{grid-template-columns:1fr}
+.kc-pl-thumb{width:70px}
+.kc-levels{width:100%}
+.kc-level{flex:1;padding-inline:10px;text-align:center}}
+@media (max-width:520px){.kc-prods{width:100%}}
+  </style>
 
   <!-- Structured data — page entity -->
   <script type="application/ld+json">
@@ -397,10 +604,10 @@
 
   <div class="container kc-hero-in">
     <div class="kc-hero-copy">
-      <span class="eyebrow eyebrow-blue" data-reveal>STARACADEMY</span>
-      <h1 class="kc-h1" id="kc-hero-title" data-reveal>Welcome to the<br> Knowledge Centre</h1>
-      <p class="kc-lead" data-reveal>Understand the A-to-Z of trading with our educational library &mdash; guides, videos,<br> webinars and a full glossary, from your first order to a strategy you have tested.</p>
-      <div class="kc-hact" data-reveal>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">STARACADEMY</span>
+      <h1 class="kc-h1" id="kc-hero-title" data-aos="fade-up">Welcome to the<br> Knowledge Centre</h1>
+      <p class="kc-lead" data-aos="fade-up">Understand the A-to-Z of trading with our educational library &mdash; guides, videos,<br> webinars and a full glossary, from your first order to a strategy you have tested.</p>
+      <div class="kc-hact" data-aos="fade-up">
         <a href="#guides" class="btn btn-primary btn-lg magnetic">Explore resources <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       </div>
     </div>
@@ -411,14 +618,14 @@
 <section class="section kc-path" id="path" aria-labelledby="kc-path-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow eyebrow-blue" data-reveal>The path</span>
-      <h2 class="h2 h2-light" id="kc-path-title" data-reveal>Three levels, one route</h2>
-      <p class="head-sub" data-reveal>Start where you actually are. Each level assumes the one before it &mdash;<br> so nothing is explained twice and nothing is skipped.</p>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">The path</span>
+      <h2 class="h2 h2-light" id="kc-path-title" data-aos="fade-up">Three levels, one route</h2>
+      <p class="head-sub" data-aos="fade-up">Start where you actually are. Each level assumes the one before it &mdash;<br> so nothing is explained twice and nothing is skipped.</p>
     </div>
 
-    <div class="kc-road" data-kc-road data-reveal-stagger>
+    <div class="kc-road" data-kc-road>
 
-      <article class="kc-node kc-node--teal" data-kc-node data-level="basics">
+      <article class="kc-node kc-node--teal" data-kc-node data-level="basics" data-aos="fade-up">
         <span class="kc-medal" aria-hidden="true">
           <svg viewBox="0 0 48 48"><circle class="kc-medal-bg" cx="24" cy="24" r="21"/><circle class="kc-medal-fg" cx="24" cy="24" r="21"/></svg>
           <b>01</b>
@@ -434,7 +641,7 @@
         <button class="kc-node-go" type="button" data-kc-goto="basics">Start here <svg><use href="#i-arrow-right"/></svg></button>
       </article>
 
-      <article class="kc-node kc-node--blue" data-kc-node data-level="intermediate">
+      <article class="kc-node kc-node--blue" data-kc-node data-level="intermediate" data-aos="fade-up" data-aos-delay="100">
         <span class="kc-medal" aria-hidden="true">
           <svg viewBox="0 0 48 48"><circle class="kc-medal-bg" cx="24" cy="24" r="21"/><circle class="kc-medal-fg" cx="24" cy="24" r="21"/></svg>
           <b>02</b>
@@ -450,7 +657,7 @@
         <button class="kc-node-go" type="button" data-kc-goto="intermediate">Continue <svg><use href="#i-arrow-right"/></svg></button>
       </article>
 
-      <article class="kc-node kc-node--purple" data-kc-node data-level="advanced">
+      <article class="kc-node kc-node--purple" data-kc-node data-level="advanced" data-aos="fade-up" data-aos-delay="200">
         <span class="kc-medal" aria-hidden="true">
           <svg viewBox="0 0 48 48"><circle class="kc-medal-bg" cx="24" cy="24" r="21"/><circle class="kc-medal-fg" cx="24" cy="24" r="21"/></svg>
           <b>03</b>
@@ -473,12 +680,12 @@
 <section class="section kc-guides" id="guides" aria-labelledby="kc-guides-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Resources</span>
-      <h2 class="h2" id="kc-guides-title" data-reveal>Guides for every level.</h2>
-      <p class="head-sub" data-reveal>Pick a level, then narrow by the market you trade.</p>
+      <span class="eyebrow" data-aos="fade-up">Resources</span>
+      <h2 class="h2" id="kc-guides-title" data-aos="fade-up">Guides for every level.</h2>
+      <p class="head-sub" data-aos="fade-up">Pick a level, then narrow by the market you trade.</p>
     </div>
 
-    <div class="kc-bar glass" data-reveal>
+    <div class="kc-bar glass" data-aos="fade-up">
       <div class="kc-levels" role="tablist" aria-label="Difficulty level">
         <span class="kc-levels-ind" aria-hidden="true" data-kc-ind></span>
         <button class="kc-level is-on" type="button" role="tab" aria-selected="true" data-kc-level="basics">Basics</button>
@@ -514,7 +721,7 @@
         </div>
 
         <a class="kc-media" href="knowledge-article.html" aria-label="Read: What Is Forex Trading? A Complete Beginner's Guide">
-          <img src="../../assets/img/home-hero-wave.jpg" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/home-hero-wave.webp" alt="Abstract blue light wave" width="640" height="349" loading="lazy" decoding="async">
           <span class="kc-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
@@ -532,7 +739,7 @@
         </div>
 
         <a class="kc-media" href="knowledge-article.html" aria-label="Read: Understanding Currency Pairs and Pips">
-          <img src="../../assets/img/home-hero-wave.jpg" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/home-hero-wave.webp" alt="Abstract blue light wave" width="640" height="349" loading="lazy" decoding="async">
           <span class="kc-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
@@ -550,7 +757,7 @@
         </div>
 
         <a class="kc-media" href="knowledge-article.html" aria-label="Read: How to Start Trading Gold: A Beginner's Guide">
-          <img src="../../assets/img/stat-tan.png" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/stat-tan.webp" alt="Sculpted bronze abstract artwork" width="640" height="349" loading="lazy" decoding="async">
           <span class="kc-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
@@ -568,7 +775,7 @@
         </div>
 
         <a class="kc-media" href="knowledge-article.html" aria-label="Read: What Are Stock Indices and How Do You Trade Them?">
-          <img src="../../assets/img/webtraderScreenShot.webp" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/webtraderScreenShot.webp" alt="STARTRADER Web Trader platform interface" width="640" height="349" loading="lazy" decoding="async">
           <span class="kc-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
@@ -586,7 +793,7 @@
         </div>
 
         <a class="kc-media" href="knowledge-article.html" aria-label="Read: How to Invest in Stocks: A Step-by-Step Guide">
-          <img src="../../assets/img/stat-awards.png" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/stat-awards.webp" alt="Award trophies backdrop" width="640" height="349" loading="lazy" decoding="async">
           <span class="kc-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
@@ -604,7 +811,7 @@
         </div>
 
         <a class="kc-media" href="knowledge-article.html" aria-label="Read: Crypto Trading Explained for Beginners">
-          <img src="../../assets/img/learn-viz.webp" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/learn-viz.webp" alt="Trading education illustration" width="640" height="349" loading="lazy" decoding="async">
           <span class="kc-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
@@ -622,7 +829,7 @@
         </div>
 
         <a class="kc-media" href="knowledge-article.html" aria-label="Read: Oil Trading Basics: Brent vs WTI">
-          <img src="../../assets/img/stat-tan.png" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/stat-tan.webp" alt="Sculpted bronze abstract artwork" width="640" height="349" loading="lazy" decoding="async">
           <span class="kc-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
@@ -640,7 +847,7 @@
         </div>
 
         <a class="kc-media" href="knowledge-article.html" aria-label="Read: Trading the S'P 500: A Playbook for Index Traders">
-          <img src="../../assets/img/webtraderScreenShot.webp" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/webtraderScreenShot.webp" alt="STARTRADER Web Trader platform interface" width="640" height="349" loading="lazy" decoding="async">
           <span class="kc-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
@@ -658,7 +865,7 @@
         </div>
 
         <a class="kc-media" href="knowledge-article.html" aria-label="Read: Carry Trades and Interest-Rate Differentials">
-          <img src="../../assets/img/home-hero-wave.jpg" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/home-hero-wave.webp" alt="Abstract blue light wave" width="640" height="349" loading="lazy" decoding="async">
           <span class="kc-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
@@ -676,7 +883,7 @@
         </div>
 
         <a class="kc-media" href="knowledge-article.html" aria-label="Read: Hedging with Gold in a Volatile Market">
-          <img src="../../assets/img/stat-tan.png" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/stat-tan.webp" alt="Sculpted bronze abstract artwork" width="640" height="349" loading="lazy" decoding="async">
           <span class="kc-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
@@ -694,7 +901,7 @@
         </div>
 
         <a class="kc-media" href="knowledge-article.html" aria-label="Read: How to Analyse a Company Before You Trade It">
-          <img src="../../assets/img/stat-awards.png" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/stat-awards.webp" alt="Award trophies backdrop" width="640" height="349" loading="lazy" decoding="async">
           <span class="kc-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
@@ -712,7 +919,7 @@
         </div>
 
         <a class="kc-media" href="knowledge-article.html" aria-label="Read: Bitcoin Halving and What It Means for Traders">
-          <img src="../../assets/img/learn-viz.webp" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/learn-viz.webp" alt="Trading education illustration" width="640" height="349" loading="lazy" decoding="async">
           <span class="kc-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
@@ -730,7 +937,7 @@
         </div>
 
         <a class="kc-media" href="knowledge-article.html" aria-label="Read: Reading Central-Bank Policy for Forex Moves">
-          <img src="../../assets/img/home-hero-wave.jpg" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/home-hero-wave.webp" alt="Abstract blue light wave" width="640" height="349" loading="lazy" decoding="async">
           <span class="kc-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
@@ -748,7 +955,7 @@
         </div>
 
         <a class="kc-media" href="knowledge-article.html" aria-label="Read: Sector Rotation and Index Performance">
-          <img src="../../assets/img/webtraderScreenShot.webp" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/webtraderScreenShot.webp" alt="STARTRADER Web Trader platform interface" width="640" height="349" loading="lazy" decoding="async">
           <span class="kc-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
@@ -766,7 +973,7 @@
         </div>
 
         <a class="kc-media" href="knowledge-article.html" aria-label="Read: Advanced Risk Management for Volatile Markets">
-          <img src="../../assets/img/home-hero-wave.jpg" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/home-hero-wave.webp" alt="Abstract blue light wave" width="640" height="349" loading="lazy" decoding="async">
           <span class="kc-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
@@ -784,7 +991,7 @@
         </div>
 
         <a class="kc-media" href="knowledge-article.html" aria-label="Read: Building ' Backtesting a Forex Strategy">
-          <img src="../../assets/img/home-hero-wave.jpg" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/home-hero-wave.webp" alt="Abstract blue light wave" width="640" height="349" loading="lazy" decoding="async">
           <span class="kc-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
@@ -802,7 +1009,7 @@
         </div>
 
         <a class="kc-media" href="knowledge-article.html" aria-label="Read: Trading Commodity Seasonality">
-          <img src="../../assets/img/stat-tan.png" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/stat-tan.webp" alt="Sculpted bronze abstract artwork" width="640" height="349" loading="lazy" decoding="async">
           <span class="kc-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
@@ -820,7 +1027,7 @@
         </div>
 
         <a class="kc-media" href="knowledge-article.html" aria-label="Read: Index Futures vs Index CFDs">
-          <img src="../../assets/img/webtraderScreenShot.webp" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/webtraderScreenShot.webp" alt="STARTRADER Web Trader platform interface" width="640" height="349" loading="lazy" decoding="async">
           <span class="kc-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
@@ -838,7 +1045,7 @@
         </div>
 
         <a class="kc-media" href="knowledge-article.html" aria-label="Read: Hedging a Share Portfolio with CFDs">
-          <img src="../../assets/img/stat-awards.png" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/stat-awards.webp" alt="Award trophies backdrop" width="640" height="349" loading="lazy" decoding="async">
           <span class="kc-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
@@ -856,7 +1063,7 @@
         </div>
 
         <a class="kc-media" href="knowledge-article.html" aria-label="Read: Managing Volatility in Crypto Positions">
-          <img src="../../assets/img/learn-viz.webp" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/learn-viz.webp" alt="Trading education illustration" width="640" height="349" loading="lazy" decoding="async">
           <span class="kc-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
@@ -874,7 +1081,7 @@
         </div>
 
         <a class="kc-media" href="knowledge-article.html" aria-label="Read: Understanding Correlations Across Asset Classes">
-          <img src="../../assets/img/webtraderScreenShot.webp" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/webtraderScreenShot.webp" alt="STARTRADER Web Trader platform interface" width="640" height="349" loading="lazy" decoding="async">
           <span class="kc-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
@@ -894,15 +1101,15 @@
   <span class="kc-soft-aura a2" aria-hidden="true"></span>
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Videos</span>
-      <h2 class="h2" id="kc-vid-title" data-reveal>Learn by watching.</h2>
-      <p class="head-sub" data-reveal>Short, plain-English lessons you can finish in a coffee break.</p>
+      <span class="eyebrow" data-aos="fade-up">Videos</span>
+      <h2 class="h2" id="kc-vid-title" data-aos="fade-up">Learn by watching.</h2>
+      <p class="head-sub" data-aos="fade-up">Short, plain-English lessons you can finish in a coffee break.</p>
     </div>
 
-    <div class="kc-theatre" data-reveal>
+    <div class="kc-theatre" data-aos="fade-up">
       <article class="kc-feature">
         <a class="kc-feature-media" href="../academy/webinars.html" aria-label="Watch: The Basics of Forex">
-          <img src="../../assets/img/learn-viz.webp" alt="" width="900" height="506" loading="lazy" decoding="async">
+          <img src="../../assets/img/learn-viz.webp" alt="Trading education illustration" width="900" height="506" loading="lazy" decoding="async">
           <span class="kc-feature-scrim" aria-hidden="true"></span>
           <span class="kc-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
           <span class="kc-feature-meta">
@@ -923,29 +1130,29 @@
           <span>5 lessons &middot; 20 min</span>
         </div>
         <a class="kc-pl-row is-next" href="../academy/webinars.html">
-          <span class="kc-pl-thumb"><img src="../../assets/img/webtrader-laptop.webp" alt="" width="160" height="90" loading="lazy" decoding="async"><i></i></span>
+          <span class="kc-pl-thumb"><img src="../../assets/img/webtrader-laptop.webp" alt="STARTRADER Web Trader on a laptop" width="160" height="90" loading="lazy" decoding="async"><i></i></span>
           <span class="kc-pl-tx"><em>Platform</em><b>What Is MT5?</b></span>
           <span class="kc-pl-dur">2:38</span>
         </a>
         <a class="kc-pl-row" href="../academy/webinars.html">
-          <span class="kc-pl-thumb"><img src="../../assets/img/learn-cta.webp" alt="" width="160" height="90" loading="lazy" decoding="async"><i></i></span>
+          <span class="kc-pl-thumb"><img src="../../assets/img/learn-cta.webp" alt="Market learning illustration" width="160" height="90" loading="lazy" decoding="async"><i></i></span>
           <span class="kc-pl-tx"><em>Strategy</em><b>What Is Copy Trading?</b></span>
           <span class="kc-pl-dur">3:05</span>
         </a>
         <a class="kc-pl-row" href="../academy/webinars.html">
-          <span class="kc-pl-thumb"><img src="../../assets/img/home-hero-wave.jpg" alt="" width="160" height="90" loading="lazy" decoding="async"><i></i></span>
+          <span class="kc-pl-thumb"><img src="../../assets/img/home-hero-wave.webp" alt="Abstract blue light wave" width="160" height="90" loading="lazy" decoding="async"><i></i></span>
           <span class="kc-pl-tx"><em>Fundamentals</em><b>Reading an Economic Calendar</b></span>
           <span class="kc-pl-dur">5:20</span>
         </a>
         <a class="kc-pl-row" href="../academy/webinars.html">
-          <span class="kc-pl-thumb"><img src="../../assets/img/prime-upgrade.webp" alt="" width="160" height="90" loading="lazy" decoding="async"><i></i></span>
+          <span class="kc-pl-thumb"><img src="../../assets/img/prime-upgrade.webp" alt="Prime ECN account upgrade illustration" width="160" height="90" loading="lazy" decoding="async"><i></i></span>
           <span class="kc-pl-tx"><em>Risk</em><b>Setting a Stop Loss That Survives</b></span>
           <span class="kc-pl-dur">4:48</span>
         </a>
       </div>
     </div>
 
-    <div class="kc-vmore" data-reveal>
+    <div class="kc-vmore" data-aos="fade-up">
       <a class="btn btn-primary btn-lg" href="../academy/webinars.html">See all videos and webinars <svg class="ico"><use href="#i-arrow-right"/></svg></a>
     </div>
   </div>
@@ -955,11 +1162,11 @@
 <section class="section kc-formats" aria-labelledby="kc-fmt-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Every format</span>
-      <h2 class="h2" id="kc-fmt-title" data-reveal>Learn the way that suits you</h2>
+      <span class="eyebrow" data-aos="fade-up">Every format</span>
+      <h2 class="h2" id="kc-fmt-title" data-aos="fade-up">Learn the way that suits you</h2>
     </div>
-    <div class="kc-fmt-grid" data-reveal-stagger>
-      <a class="kc-fmt glass" href="#guides">
+    <div class="kc-fmt-grid">
+      <a class="kc-fmt glass" href="#guides" data-aos="fade-up">
         <span class="kc-fmt-n" aria-hidden="true">01</span>
         <span class="kc-fmt-ic"><svg><use href="#i-doc"/></svg></span>
         <h3>Read</h3>
@@ -967,7 +1174,7 @@
         <span class="kc-fmt-go">Browse guides <svg><use href="#i-arrow-right"/></svg></span>
         <span class="kc-fmt-line" aria-hidden="true"></span>
       </a>
-      <a class="kc-fmt glass" href="#videos">
+      <a class="kc-fmt glass" href="#videos" data-aos="fade-up" data-aos-delay="100">
         <span class="kc-fmt-n" aria-hidden="true">02</span>
         <span class="kc-fmt-ic"><svg><use href="#i-play"/></svg></span>
         <h3>Watch</h3>
@@ -975,7 +1182,7 @@
         <span class="kc-fmt-go">Watch videos <svg><use href="#i-arrow-right"/></svg></span>
         <span class="kc-fmt-line" aria-hidden="true"></span>
       </a>
-      <a class="kc-fmt glass" href="../academy/webinars.html">
+      <a class="kc-fmt glass" href="../academy/webinars.html" data-aos="fade-up" data-aos-delay="200">
         <span class="kc-fmt-n" aria-hidden="true">03</span>
         <span class="kc-fmt-ic"><svg><use href="#i-headset"/></svg></span>
         <h3>Attend</h3>
@@ -983,7 +1190,7 @@
         <span class="kc-fmt-go">See the schedule <svg><use href="#i-arrow-right"/></svg></span>
         <span class="kc-fmt-line" aria-hidden="true"></span>
       </a>
-      <a class="kc-fmt glass" href="glossary/index.html">
+      <a class="kc-fmt glass" href="glossary/index.html" data-aos="fade-up" data-aos-delay="300">
         <span class="kc-fmt-n" aria-hidden="true">04</span>
         <span class="kc-fmt-ic"><svg><use href="#i-book"/></svg></span>
         <h3>Look up</h3>
@@ -999,10 +1206,10 @@
 <section class="section faq-sec fx-faq" aria-labelledby="kc-faq-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>FAQ</span>
-      <h2 class="h2" id="kc-faq-title" data-reveal>Getting started</h2>
+      <span class="eyebrow" data-aos="fade-up">FAQ</span>
+      <h2 class="h2" id="kc-faq-title" data-aos="fade-up">Getting started</h2>
     </div>
-    <div class="faq-list" data-reveal>
+    <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
         <summary>Where should a complete beginner start?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a">Start at the Basics level and read the forex guide first &mdash; it explains what you are actually buying and selling. From there, currency pairs and pips, then risk management before you place a live trade.</div>
@@ -1031,26 +1238,26 @@
 <section class="section fx-more" aria-labelledby="kc-more-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Keep going</span>
-      <h2 class="h2" id="kc-more-title" data-reveal>Where to go next</h2>
+      <span class="eyebrow" data-aos="fade-up">Keep going</span>
+      <h2 class="h2" id="kc-more-title" data-aos="fade-up">Where to go next</h2>
     </div>
-    <div class="fx-more-grid" data-reveal-stagger>
-      <a class="fx-more-card" href="market-analysis.html">
-        <span class="fx-more-media"><img src="../../assets/img/home-hero-wave.jpg" alt="Daily market analysis charts and levels" width="640" height="349" loading="lazy" decoding="async"></span>
+    <div class="fx-more-grid">
+      <a class="fx-more-card" href="market-analysis.html" data-aos="fade-up">
+        <span class="fx-more-media"><img src="../../assets/img/home-hero-wave.webp" alt="Daily market analysis charts and levels" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Daily technical and fundamental reads from the desk, with the levels marked on the chart.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Market analysis</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="../academy/webinars.html">
+      <a class="fx-more-card" href="../academy/webinars.html" data-aos="fade-up" data-aos-delay="100">
         <span class="fx-more-media"><img src="../../assets/img/learn-cta.webp" alt="Live trading webinars with market analysts" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Live sessions with analysts every week, plus replays if the timing does not suit you.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Webinars</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="glossary/index.html">
+      <a class="fx-more-card" href="glossary/index.html" data-aos="fade-up" data-aos-delay="200">
         <span class="fx-more-media"><img src="../../assets/img/learn-viz.webp" alt="Trading glossary of key terms" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Plain-English definitions of every trading term you will meet, from pip to swap.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Glossary</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="../analysis/economic-calendar.html">
+      <a class="fx-more-card" href="../analysis/economic-calendar.html" data-aos="fade-up" data-aos-delay="300">
         <span class="fx-more-media"><img src="../../assets/img/webtrader-laptop.webp" alt="Economic calendar of market-moving releases" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Every release that matters, with forecasts and the numbers as they land.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Economic calendar</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
@@ -1063,9 +1270,9 @@
 <section class="cta-banner" aria-labelledby="kc-cta-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="kc-cta-title" data-reveal>Start trading with a<br>globally leading broker</h2>
-    <p data-reveal>Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
-    <div class="cta-actions" data-reveal>
+    <h2 id="kc-cta-title" data-aos="fade-up">Start trading with a<br>globally leading broker</h2>
+    <p data-aos="fade-up">Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
+    <div class="cta-actions" data-aos="fade-up">
       <a href="../../trading/getting-started/account-opening.html" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       <a href="../../trading/getting-started/account-opening.html" class="btn btn-ghost btn-lg">Try Free Demo</a>
     </div>
@@ -1156,7 +1363,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -1190,6 +1397,7 @@
 <script src="../../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../../assets/js/vendor/aos.min.js" defer></script>
 <script src="../../assets/js/main.js" defer></script>
 </body>
 </html>

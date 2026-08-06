@@ -33,7 +33,305 @@
   <!-- Fonts (self-hosted) -->
   <link rel="preload" href="../../assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="../../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ---------- Buttons ---------- */
+.btn-dark{background:#fff;color:#0d0f13;border-color:#fff}
+.btn-dark:hover{box-shadow:0 16px 34px -16px rgba(0,0,0,.6)}
+/* ---- Hero (dark; copy + next-session card) ---- */
+/* next-session strip — bottom-centred on the banner, no panel: countdown,
+   title and CTA sit side by side, split by the same fading rules the home
+   banner uses between its stat items */
+.wb-next{
+  position:relative;z-index:1;text-align:center;
+  display:flex;align-items:center;justify-content:center;
+}
+/* a single glowing rule anchors the strip to the banner above it */
+.wb-next::before{
+  content:"";position:absolute;top:-30px;left:50%;transform:translateX(-50%);
+  width:132px;height:2px;border-radius:2px;
+  background:linear-gradient(90deg,transparent,rgba(120,175,255,.95),transparent);
+  box-shadow:0 0 20px 1px rgba(90,150,255,.5);
+}
+.wb-next > *{position:relative;padding-inline:clamp(16px,2.6vw,40px)}
+.wb-next > * + *::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:1px;
+  background:linear-gradient(180deg,transparent,rgba(255,255,255,.22),transparent);
+}
+/* left — label with the clock beneath it */
+.wb-next-head{display:flex;flex-direction:column;align-items:center;gap:10px;flex:none}
+.wb-next-lbl{
+  font-size:10.5px;font-weight:700;letter-spacing:.15em;
+  text-transform:uppercase;color:#9dbdff;text-shadow:0 1px 12px rgba(3,7,20,.7);
+}
+/* the clock — plain type with a faint blue bloom, like a live readout */
+.wb-cd{display:inline-flex;align-items:baseline;gap:7px}
+.wb-cd-u{display:inline-flex;align-items:baseline;gap:2px}
+.wb-cd-u b{
+  font-size:clamp(21px,2.1vw,26px);font-weight:800;letter-spacing:-.03em;color:#fff;
+  font-variant-numeric:tabular-nums;line-height:1;
+  text-shadow:0 1px 14px rgba(3,7,20,.75);
+}
+.wb-cd-u em{
+  font-style:normal;font-size:9.5px;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:#8fb0dd;
+}
+.wb-cd-sep{font-size:13px;font-weight:700;color:rgba(150,185,255,.4);line-height:1}
+@media (prefers-reduced-motion:no-preference){.wb-cd-u b.is-tick{animation:wbTick .36s var(--ease-out)}}
+/* middle — session title with its own detail line */
+.wb-next-mid{min-width:0}
+.wb-next-title{
+  font-size:clamp(17px,1.62vw,21px);font-weight:700;letter-spacing:-.024em;line-height:1.26;
+  color:#fff;text-shadow:0 1px 14px rgba(3,7,20,.7);
+}
+.wb-next-meta{
+  display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:4px 10px;margin-top:9px;
+  font-size:12.5px;color:#a6b9d6;text-shadow:0 1px 12px rgba(3,7,20,.7);
+}
+.wb-next-meta i{width:3px;height:3px;border-radius:50%;background:rgba(166,185,214,.5);flex:none}
+/* right — CTA */
+.wb-next-act{display:flex;justify-content:center;flex:none}
+/* ---- Schedule (light, frosted cards) ---- */
+.wb-sched,.wb-sub{scroll-margin-top:calc(var(--chrome-h) + var(--chrome-gap))}
+.wb-sched{
+  background:
+    radial-gradient(58% 46% at 6% 0%,rgba(0,71,187,.08),transparent 62%),
+    radial-gradient(52% 44% at 96% 16%,rgba(22,233,215,.07),transparent 62%),
+    radial-gradient(56% 40% at 48% 104%,rgba(0,71,187,.06),transparent 62%),
+    var(--bg-light);
+}
+.wb-bar{
+  position:sticky;top:calc(var(--chrome-h) + var(--chrome-gap));z-index:20;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;
+  padding:12px 14px;border-radius:24px;background:rgba(255,255,255,.76);
+}
+.wb-tabs{display:flex;gap:4px;flex-wrap:wrap}
+.wb-tab{
+  display:inline-flex;align-items:center;gap:9px;padding:11px 18px;border-radius:70px;cursor:pointer;
+  font-size:14px;font-weight:600;color:var(--text-soft);
+  transition:background .25s,color .25s,transform .35s var(--ease),box-shadow .3s;
+}
+.wb-tab:hover{background:rgba(0,71,187,.08);color:var(--blue);transform:translateY(-1px)}
+.wb-tab.is-on{background:var(--blue);color:#fff;box-shadow:0 12px 24px -12px rgba(0,71,187,.85)}
+.wb-tab-n{font-size:11.5px;font-weight:700;padding:3px 8px;border-radius:70px;background:rgba(0,71,187,.1);color:var(--blue);font-variant-numeric:tabular-nums}
+.wb-tab.is-on .wb-tab-n{background:rgba(255,255,255,.22);color:#fff}
+.wb-tools{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.wb-langs{display:flex;gap:5px;flex-wrap:wrap}
+.wb-chip{
+  padding:8px 14px;border-radius:70px;font-size:12.5px;font-weight:600;color:var(--text-soft);cursor:pointer;
+  border:1px solid var(--line);background:rgba(255,255,255,.6);
+  transition:border-color .25s,color .25s,background .25s,transform .3s var(--ease);
+}
+.wb-chip:hover{color:var(--blue);border-color:rgba(0,71,187,.35);transform:translateY(-1px)}
+.wb-chip.is-on{background:rgba(0,71,187,.1);border-color:rgba(0,71,187,.45);color:var(--blue)}
+.wb-tz{display:inline-flex;align-items:center;gap:10px;cursor:pointer;user-select:none}
+.wb-tz input{position:absolute;opacity:0;width:0;height:0}
+.wb-tz-track{width:40px;height:23px;flex:none;border-radius:70px;background:#d7dee8;position:relative;transition:background .28s}
+.wb-tz-track i{position:absolute;top:3px;left:3px;width:17px;height:17px;border-radius:50%;background:#fff;box-shadow:0 2px 6px rgba(20,44,96,.3);transition:transform .28s var(--ease)}
+.wb-tz input:checked+.wb-tz-track{background:var(--blue)}
+.wb-tz input:checked+.wb-tz-track i{transform:translateX(17px)}
+.wb-tz input:focus-visible+.wb-tz-track{outline:2px solid var(--blue);outline-offset:3px}
+.wb-tz-lbl{font-size:12.5px;color:var(--text-soft)}
+.wb-tz-lbl b{color:var(--text);font-weight:700}
+.wb-note{max-width:760px;margin:0 auto 26px;text-align:center;font-size:14.5px;line-height:1.65;color:var(--text-soft)}
+.wb-note b{color:var(--text)}
+.wb-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.wb-card{
+  position:relative;overflow:hidden;display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 20px;
+  padding:22px;border-radius:22px;
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
+}
+.wb-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--blue);transform:scaleY(0);transform-origin:bottom;transition:transform .4s var(--ease)}
+.wb-card:hover{transform:translateY(-4px);border-color:rgba(0,71,187,.28);box-shadow:0 28px 52px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff}
+.wb-card:hover::before{transform:scaleY(1);transform-origin:top}
+.wb-date{
+  flex:none;width:62px;padding:12px 6px;border-radius:16px;text-align:center;align-self:start;
+  background:linear-gradient(160deg,rgba(0,71,187,.12),rgba(0,71,187,.05));border:1px solid rgba(0,71,187,.16);
+}
+.wb-date b{display:block;font-size:25px;font-weight:800;letter-spacing:-.03em;color:var(--blue);line-height:1;font-variant-numeric:tabular-nums}
+.wb-date em{display:block;margin-top:4px;font-style:normal;font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mute)}
+.wb-card-body{min-width:0}
+.wb-tags{display:flex;flex-wrap:nowrap;gap:6px;margin-bottom:11px}
+.wb-tag{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--text-soft);background:#eaeff5;padding:5px 10px;border-radius:70px}
+.wb-tag--live{color:#b0343a;background:rgba(239,68,68,.1)}
+.wb-tag--live i{width:6px;height:6px;border-radius:50%;background:#ef4444;flex:none}
+.wb-tag--lvl{color:var(--blue);background:rgba(0,71,187,.09)}
+.wb-tag--series{color:#0f7d5c;background:rgba(16,185,129,.12)}
+.wb-card-title{font-size:18.5px;letter-spacing:-.022em;color:var(--text);line-height:1.24}
+.wb-card-desc{margin-top:8px;font-size:13.5px;line-height:1.6;color:var(--text-soft)}
+.wb-metarow{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:14px}
+.wb-metarow li{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--text-mute);font-weight:500}
+.wb-metarow svg{width:14px;height:14px;flex:none;color:var(--blue);opacity:.75}
+.wb-metarow time{font-variant-numeric:tabular-nums}
+.wb-card-act{grid-column:2;display:flex;flex-direction:row;align-items:center;flex-wrap:wrap;gap:8px 14px;margin-top:16px}
+.wb-ics{
+  display:inline-flex;align-items:center;gap:7px;flex:none;font-size:12.5px;font-weight:600;color:var(--blue);
+  padding:7px 12px;border-radius:70px;transition:color .25s,background .25s;
+}
+.wb-ics svg{width:13px;height:13px;flex:none}
+.wb-ics:hover{background:rgba(0,71,187,.08);color:var(--blue-700)}
+.wb-ics.is-done{color:#0f7d5c}
+/* replays — frosted cards: meta header, copy, then the still filling the foot */
+.wb-rep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.wb-rep{
+  position:relative;overflow:hidden;display:flex;flex-direction:column;border-radius:20px;
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
+}
+.wb-rep:hover{transform:translateY(-4px);border-color:rgba(0,71,187,.28);box-shadow:0 28px 52px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff}
+.wb-rep-head{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:13px 18px;border-bottom:1px solid rgba(20,40,80,.09);
+}
+.wb-rep-cat{display:flex;align-items:center;gap:9px;min-width:0;font-size:13px;font-weight:600;color:var(--text)}
+.wb-rep-cat svg{width:17px;height:17px;flex:none;color:var(--blue)}
+.wb-rep-cat i{width:3px;height:3px;border-radius:50%;background:var(--text-mute);flex:none;margin-inline:1px}
+.wb-rep-date{flex:none;font-size:12.5px;color:var(--text-mute);font-variant-numeric:tabular-nums}
+.wb-rep-body{padding:17px 18px 19px}
+.wb-rep-title{font-size:17.5px;letter-spacing:-.022em;line-height:1.3;color:var(--text)}
+.wb-rep-title a{transition:color .25s}
+.wb-rep:hover .wb-rep-title a{color:var(--blue)}
+.wb-rep-desc{
+  margin-top:8px;font-size:13.5px;line-height:1.55;color:var(--text-soft);
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+/* the still sits flush to the card's lower edge, corners clipped by the card */
+.wb-rep-media{position:relative;display:block;margin-top:auto;aspect-ratio:16/10;overflow:hidden}
+.wb-rep-media img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
+.wb-rep:hover .wb-rep-media img{transform:scale(1.05)}
+/* scrim keeps the play button and chips legible over any frame */
+.wb-rep-media::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(4,8,18,.12) 0%,rgba(4,8,18,.08) 46%,rgba(4,8,18,.5) 100%);
+}
+.wb-play{
+  position:absolute;inset:0;margin:auto;z-index:2;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(255,255,255,.94);color:var(--blue);box-shadow:0 12px 30px -8px rgba(0,0,0,.5);
+  transition:transform .35s var(--ease),background .3s;
+}
+.wb-play svg{width:19px;height:19px;margin-left:3px}
+.wb-rep:hover .wb-play{transform:scale(1.08);background:#fff}
+.wb-dur,.wb-lvl{
+  position:absolute;bottom:12px;z-index:2;font-size:11px;font-weight:600;color:#fff;
+  padding:5px 11px;border-radius:70px;background:rgba(8,14,26,.56);border:1px solid rgba(255,255,255,.2);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+}
+.wb-dur{left:12px;font-variant-numeric:tabular-nums}
+.wb-lvl{right:12px;letter-spacing:.06em;text-transform:uppercase;font-size:10px}
+.wb-allrow{display:flex;justify-content:center;margin-top:40px}
+.wb-empty{text-align:center;padding:54px 20px 8px}
+.wb-empty h3{font-size:20px;color:var(--text);letter-spacing:-.02em}
+.wb-empty h3 span{color:var(--blue)}
+.wb-empty p{max-width:520px;margin:10px auto 0;font-size:14.5px;line-height:1.6;color:var(--text-soft)}
+.wb-empty .btn{margin-top:24px}
+/* ---- Curriculum bento (reuses the dark market-hours cards) ---- */
+.wb-tp-list{display:flex;flex-wrap:wrap;gap:6px}
+.wb-tp-list i{font-style:normal;font-size:11.5px;font-weight:600;color:#cfe0ff;padding:5px 11px;border-radius:70px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1)}
+/* ---- Presenters ---- */
+.wb-team{background:radial-gradient(58% 56% at 90% 4%,rgba(0,71,187,.06),transparent 60%),var(--bg-light-2)}
+.wb-team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px}
+.wb-person{padding:20px 20px 22px;border-radius:22px;transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s}
+.wb-person:hover{transform:translateY(-4px);border-color:#fff;box-shadow:0 28px 56px -30px rgba(20,44,96,.42),inset 0 1px 0 #fff}
+.wb-person-ph{display:block;border-radius:16px;overflow:hidden;aspect-ratio:4/3;margin-bottom:18px}
+.wb-person-ph img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
+.wb-person:hover .wb-person-ph img{transform:scale(1.05)}
+.wb-person h3{font-size:17px;letter-spacing:-.02em;color:var(--text)}
+.wb-person p{margin-top:8px;font-size:13.5px;line-height:1.6;color:var(--text-soft)}
+.wb-person-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.wb-person-meta li{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-mute);background:#eef2f7;padding:5px 10px;border-radius:70px}
+/* ---- Subscribe (dark, validated form) ---- */
+.wb-sub{background:radial-gradient(90% 68% at 50% 0%,rgba(0,46,138,.34),transparent 60%),linear-gradient(180deg,#04060e 0%,#060a18 52%,#04060e 100%);color:#fff}
+.wb-sub-wrap{display:grid;grid-template-columns:1fr 1.06fr;gap:clamp(30px,4.4vw,62px);align-items:start}
+.wb-sub-lead{margin-top:18px;font-size:clamp(15px,1.5vw,17px);line-height:1.66;color:#c2cee2}
+.wb-sub-list{margin-top:26px;display:flex;flex-direction:column;gap:13px}
+.wb-sub-list li{display:flex;align-items:flex-start;gap:12px;font-size:14.5px;line-height:1.5;color:#dbe5f5}
+.wb-formwrap{position:relative}
+.wb-form{
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:clamp(22px,2.6vw,32px);border-radius:var(--radius-xl);
+  background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.025));
+  -webkit-backdrop-filter:blur(24px) saturate(1.5);backdrop-filter:blur(24px) saturate(1.5);
+  border:1px solid rgba(255,255,255,.13);box-shadow:0 40px 90px -46px rgba(0,20,70,.95),inset 0 1px 0 rgba(255,255,255,.1);
+}
+.wb-field{display:flex;flex-direction:column;gap:8px;min-width:0}
+.wb-field--wide,.wb-form>.wb-check,.wb-form>.wb-err,.wb-form>.btn,.wb-formnote{grid-column:1 / -1}
+.wb-field label{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#a8bcdc}
+.wb-field label em{font-style:normal;text-transform:none;letter-spacing:0;font-weight:500;color:#7f92b3}
+.wb-field input{
+  width:100%;font:inherit;font-size:14.5px;color:#fff;padding:13px 15px;border-radius:13px;
+  background:rgba(4,8,18,.5);border:1px solid rgba(255,255,255,.14);outline:none;
+  transition:border-color .25s,box-shadow .25s,background .25s;
+}
+.wb-field input::placeholder{color:rgba(190,205,230,.5)}
+.wb-field input:focus{border-color:rgba(110,170,255,.7);background:rgba(4,8,18,.66);box-shadow:0 0 0 4px rgba(0,71,187,.28)}
+.wb-hint{font-size:12px;color:#8ea4c6}
+.wb-err{font-size:12.5px;font-weight:500;color:#ff9d9d}
+.wb-field.is-bad input,.wb-field.is-bad select{border-color:rgba(239,68,68,.65);box-shadow:0 0 0 4px rgba(239,68,68,.16)}
+.wb-check{display:flex;align-items:flex-start;gap:12px;cursor:pointer;margin-top:4px}
+.wb-check input{position:absolute;opacity:0;width:0;height:0}
+.wb-check-box{flex:none;width:22px;height:22px;margin-top:1px;border-radius:7px;display:grid;place-items:center;background:rgba(4,8,18,.5);border:1px solid rgba(255,255,255,.2);color:transparent;transition:background .22s,border-color .22s,color .22s}
+.wb-check-box svg{width:14px;height:14px}
+.wb-check input:checked+.wb-check-box{background:var(--blue);border-color:var(--blue);color:#fff}
+.wb-check input:focus-visible+.wb-check-box{outline:2px solid #6ea8ff;outline-offset:3px}
+.wb-check-tx{font-size:13.5px;line-height:1.55;color:#c8d4e8}
+.wb-check.is-bad .wb-check-box{border-color:rgba(239,68,68,.7)}
+.wb-formnote{font-size:12px;line-height:1.6;color:#8ea4c6}
+.wb-formnote a{color:#b9cdf0;text-decoration:underline;text-underline-offset:2px}
+.wb-ok{
+  text-align:center;padding:clamp(34px,4vw,54px) clamp(22px,3vw,38px);border-radius:var(--radius-xl);
+  background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.025));
+  -webkit-backdrop-filter:blur(24px) saturate(1.5);backdrop-filter:blur(24px) saturate(1.5);
+  border:1px solid rgba(255,255,255,.13);box-shadow:0 40px 90px -46px rgba(0,20,70,.95),inset 0 1px 0 rgba(255,255,255,.1);
+}
+.wb-ok-ic{width:62px;height:62px;margin:0 auto 20px;border-radius:50%;display:grid;place-items:center;background:rgba(16,185,129,.16);border:1px solid rgba(16,185,129,.34);color:#34d99b}
+.wb-ok-ic svg{width:28px;height:28px}
+.wb-ok h3{font-size:24px;letter-spacing:-.025em}
+.wb-ok p{margin-top:12px;font-size:14.5px;line-height:1.65;color:#c2cee2}
+.wb-ok .btn{margin-top:26px}
+.wb-ok .wb-textlink{margin-top:18px;color:#a9c3f0}
+/* ---- Responsive ---- */
+/* too narrow for three columns — stack them, with the rules laid flat */
+@media (max-width:1024px){.wb-next{flex-direction:column}}
+/* too narrow for three columns — stack them, with the rules laid flat */
+@media (max-width:1024px){.wb-next::before{top:-24px;width:104px}}
+/* too narrow for three columns — stack them, with the rules laid flat */
+@media (max-width:1024px){.wb-next > *{padding-inline:0}}
+/* too narrow for three columns — stack them, with the rules laid flat */
+@media (max-width:1024px){.wb-next > * + *{margin-top:14px;padding-top:14px}}
+/* too narrow for three columns — stack them, with the rules laid flat */
+@media (max-width:1024px){.wb-next > * + *::before{
+    left:50%;top:0;bottom:auto;transform:translateX(-50%);
+    width:min(430px,100%);height:1px;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);
+  }}
+/* short windows: tighten the banner so it collapses to the same height as the
+   product-page banners instead of being propped open by the countdown box */
+@media (min-width:721px) and (max-height:880px){.wb-next::before{top:-22px}}
+/* short windows: tighten the banner so it collapses to the same height as the
+   product-page banners instead of being propped open by the countdown box */
+@media (min-width:721px) and (max-height:880px){.wb-next-title{font-size:clamp(16px,1.5vw,19px)}}
+/* short windows: tighten the banner so it collapses to the same height as the
+   product-page banners instead of being propped open by the countdown box */
+@media (min-width:721px) and (max-height:880px){.wb-cd-u b{font-size:clamp(19px,1.9vw,23px)}}
+@media (max-width:1080px){.wb-grid{grid-template-columns:1fr}
+.wb-rep-grid{grid-template-columns:repeat(2,1fr)}
+.wb-sub-wrap{grid-template-columns:1fr;gap:36px}}
+@media (max-width:900px){.wb-bar{position:static;flex-direction:column;align-items:stretch;border-radius:22px}
+.wb-tabs{justify-content:center}
+.wb-tools{justify-content:space-between}}
+@media (max-width:720px){.wb-next{margin-top:38px}
+.wb-card{grid-template-columns:1fr;gap:14px;padding:20px}
+.wb-tags{flex-wrap:wrap}
+.wb-date{display:flex;align-items:baseline;gap:8px;width:auto;justify-self:start;align-self:start;padding:8px 15px;border-radius:70px}
+.wb-date b{font-size:19px}
+.wb-date em{margin-top:0}
+.wb-card-act{grid-column:1}
+.wb-rep-grid{grid-template-columns:1fr;max-width:420px;margin-inline:auto}
+.wb-team-grid{max-width:420px;margin-inline:auto}
+.wb-form{grid-template-columns:1fr}
+.wb-tools{flex-direction:column;align-items:flex-start;gap:14px}}
+@media (max-width:560px){.wb-cd-u b{font-size:20px}}
+  </style>
 
   <!-- Structured data — breadcrumb -->
   <script type="application/ld+json">
@@ -525,21 +823,21 @@
 
 <!-- ============ HERO ============ -->
 <section class="wb-hero" aria-labelledby="wb-hero-title">
-  <video class="wb-hero-video" autoplay muted loop playsinline preload="auto" poster="../../assets/img/webinars-video-poster.jpg" aria-hidden="true">
+  <video class="wb-hero-video" autoplay muted loop playsinline preload="auto" poster="../../assets/img/webinars-video-poster.webp" aria-hidden="true">
     <source src="../../assets/video/webinars-banner.mp4" type="video/mp4">
   </video>
   <div class="wb-hero-scrim" aria-hidden="true"></div>
 
   <div class="container wb-hero-inner">
-    <span class="eyebrow eyebrow-blue" data-reveal>STARACADEMY</span>
-    <h1 class="wb-h1" id="wb-hero-title" data-reveal>Webinars</h1>
-    <p class="wb-lead" data-reveal>Sharpen your trading with live webinars, seminars and workshops led by market experts.</p>
-    <div class="wb-hact" data-reveal>
+    <span class="eyebrow eyebrow-blue" data-aos="fade-up">STARACADEMY</span>
+    <h1 class="wb-h1" id="wb-hero-title" data-aos="fade-up">Webinars</h1>
+    <p class="wb-lead" data-aos="fade-up">Sharpen your trading with live webinars, seminars and workshops led by market experts.</p>
+    <div class="wb-hact" data-aos="fade-up">
       <a href="#schedule" class="btn btn-primary btn-lg magnetic">Browse webinars <svg class="ico"><use href="#i-arrow-right"/></svg></a>
     </div>
   </div>
 
-  <aside class="container wb-next" aria-labelledby="wb-next-title" data-reveal data-wb-next
+  <aside class="container wb-next" aria-labelledby="wb-next-title" data-aos="fade-up" data-wb-next
     data-start="2026-08-04T15:00:00Z" data-dur="60" data-lang="en"
     data-title="Build your own trading &amp; investment strategy" data-host="Senior Market Analyst" data-topic="Market strategy" data-level="All levels">
 
@@ -577,11 +875,11 @@
 <section class="section wb-sched" id="schedule" aria-labelledby="wb-sched-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Programme</span>
-      <h2 class="h2" id="wb-sched-title" data-reveal>Upcoming sessions and on-demand replays</h2>
+      <span class="eyebrow" data-aos="fade-up">Programme</span>
+      <h2 class="h2" id="wb-sched-title" data-aos="fade-up">Upcoming sessions and on-demand replays</h2>
     </div>
 
-    <div class="wb-bar glass" data-reveal>
+    <div class="wb-bar glass" data-aos="fade-up">
       <div class="wb-tabs" role="tablist" aria-label="Webinar types">
         <button class="wb-tab is-on" type="button" role="tab" id="wb-tab-upcoming" aria-selected="true" aria-controls="wb-panel-upcoming" data-wb-tab="upcoming">Upcoming <span class="wb-tab-n" data-wb-count="upcoming">6</span></button>
         <button class="wb-tab" type="button" role="tab" id="wb-tab-masterclass" aria-selected="false" aria-controls="wb-panel-masterclass" tabindex="-1" data-wb-tab="masterclass">Masterclass <span class="wb-tab-n" data-wb-count="masterclass">4</span></button>
@@ -609,9 +907,9 @@
 
     <!-- Upcoming -->
     <div class="wb-panel" id="wb-panel-upcoming" role="tabpanel" aria-labelledby="wb-tab-upcoming" tabindex="0">
-      <div class="wb-grid" data-reveal-stagger>
+      <div class="wb-grid">
 
-        <article class="wb-card glass" data-wb-item data-cat="upcoming" data-lang="en" data-start="2026-08-04T15:00:00Z" data-dur="60" data-title="Build your own trading &amp; investment strategy" data-host="Senior Market Analyst" data-topic="Market strategy">
+        <article class="wb-card glass" data-wb-item data-cat="upcoming" data-lang="en" data-start="2026-08-04T15:00:00Z" data-dur="60" data-title="Build your own trading &amp; investment strategy" data-host="Senior Market Analyst" data-topic="Market strategy" data-aos="fade-up">
           <span class="wb-date" aria-hidden="true"><b data-wb-day>4</b><em data-wb-mon>Aug</em></span>
           <div class="wb-card-body">
             <div class="wb-tags">
@@ -634,7 +932,7 @@
           </div>
         </article>
 
-        <article class="wb-card glass" data-wb-item data-cat="upcoming" data-lang="en" data-start="2026-08-06T13:00:00Z" data-dur="45" data-title="Mastering Fibonacci sequences" data-host="Technical Strategist" data-topic="Technical analysis">
+        <article class="wb-card glass" data-wb-item data-cat="upcoming" data-lang="en" data-start="2026-08-06T13:00:00Z" data-dur="45" data-title="Mastering Fibonacci sequences" data-host="Technical Strategist" data-topic="Technical analysis" data-aos="fade-up" data-aos-delay="100">
           <span class="wb-date" aria-hidden="true"><b data-wb-day>6</b><em data-wb-mon>Aug</em></span>
           <div class="wb-card-body">
             <div class="wb-tags">
@@ -656,7 +954,7 @@
           </div>
         </article>
 
-        <article class="wb-card glass" data-wb-item data-cat="upcoming" data-lang="en" data-start="2026-08-11T15:00:00Z" data-dur="60" data-title="Ichimoku Kinko Hyo explained" data-host="Technical Strategist" data-topic="Technical analysis">
+        <article class="wb-card glass" data-wb-item data-cat="upcoming" data-lang="en" data-start="2026-08-11T15:00:00Z" data-dur="60" data-title="Ichimoku Kinko Hyo explained" data-host="Technical Strategist" data-topic="Technical analysis" data-aos="fade-up" data-aos-delay="200">
           <span class="wb-date" aria-hidden="true"><b data-wb-day>11</b><em data-wb-mon>Aug</em></span>
           <div class="wb-card-body">
             <div class="wb-tags">
@@ -678,7 +976,7 @@
           </div>
         </article>
 
-        <article class="wb-card glass" data-wb-item data-cat="upcoming" data-lang="ar" data-start="2026-08-13T12:00:00Z" data-dur="45" data-title="Reading market sentiment" data-host="MENA Market Analyst" data-topic="Market sentiment">
+        <article class="wb-card glass" data-wb-item data-cat="upcoming" data-lang="ar" data-start="2026-08-13T12:00:00Z" data-dur="45" data-title="Reading market sentiment" data-host="MENA Market Analyst" data-topic="Market sentiment" data-aos="fade-up" data-aos-delay="300">
           <span class="wb-date" aria-hidden="true"><b data-wb-day>13</b><em data-wb-mon>Aug</em></span>
           <div class="wb-card-body">
             <div class="wb-tags">
@@ -700,7 +998,7 @@
           </div>
         </article>
 
-        <article class="wb-card glass" data-wb-item data-cat="upcoming" data-lang="zh" data-start="2026-08-18T15:00:00Z" data-dur="60" data-title="Risk management in volatile markets" data-host="Head of Education" data-topic="Risk management">
+        <article class="wb-card glass" data-wb-item data-cat="upcoming" data-lang="zh" data-start="2026-08-18T15:00:00Z" data-dur="60" data-title="Risk management in volatile markets" data-host="Head of Education" data-topic="Risk management" data-aos="fade-up" data-aos-delay="400">
           <span class="wb-date" aria-hidden="true"><b data-wb-day>18</b><em data-wb-mon>Aug</em></span>
           <div class="wb-card-body">
             <div class="wb-tags">
@@ -722,7 +1020,7 @@
           </div>
         </article>
 
-        <article class="wb-card glass" data-wb-item data-cat="upcoming" data-lang="th" data-start="2026-08-20T11:00:00Z" data-dur="45" data-title="MT5 in 45 minutes: orders, charts and alerts" data-host="Platform Specialist" data-topic="Platform workshop">
+        <article class="wb-card glass" data-wb-item data-cat="upcoming" data-lang="th" data-start="2026-08-20T11:00:00Z" data-dur="45" data-title="MT5 in 45 minutes: orders, charts and alerts" data-host="Platform Specialist" data-topic="Platform workshop" data-aos="fade-up" data-aos-delay="500">
           <span class="wb-date" aria-hidden="true"><b data-wb-day>20</b><em data-wb-mon>Aug</em></span>
           <div class="wb-card-body">
             <div class="wb-tags">
@@ -749,10 +1047,10 @@
 
     <!-- Masterclass -->
     <div class="wb-panel" id="wb-panel-masterclass" role="tabpanel" aria-labelledby="wb-tab-masterclass" tabindex="0" hidden>
-      <p class="wb-note" data-reveal><b>The Beginner&rsquo;s Masterclass</b> is a four-part series that assumes no prior knowledge. Sessions build on each other, so we recommend taking them in order &mdash; but each one also stands on its own.</p>
-      <div class="wb-grid" data-reveal-stagger>
+      <p class="wb-note" data-aos="fade-up"><b>The Beginner&rsquo;s Masterclass</b> is a four-part series that assumes no prior knowledge. Sessions build on each other, so we recommend taking them in order &mdash; but each one also stands on its own.</p>
+      <div class="wb-grid">
 
-        <article class="wb-card glass" data-wb-item data-cat="masterclass" data-lang="en" data-start="2026-08-24T14:00:00Z" data-dur="60" data-title="Beginner's Masterclass 1: Forex basics" data-host="Head of Education" data-topic="Masterclass · part 1">
+        <article class="wb-card glass" data-wb-item data-cat="masterclass" data-lang="en" data-start="2026-08-24T14:00:00Z" data-dur="60" data-title="Beginner's Masterclass 1: Forex basics" data-host="Head of Education" data-topic="Masterclass · part 1" data-aos="fade-up">
           <span class="wb-date" aria-hidden="true"><b data-wb-day>24</b><em data-wb-mon>Aug</em></span>
           <div class="wb-card-body">
             <div class="wb-tags">
@@ -774,7 +1072,7 @@
           </div>
         </article>
 
-        <article class="wb-card glass" data-wb-item data-cat="masterclass" data-lang="en" data-start="2026-08-31T14:00:00Z" data-dur="60" data-title="Beginner's Masterclass 2: Risk management" data-host="Head of Education" data-topic="Masterclass · part 2">
+        <article class="wb-card glass" data-wb-item data-cat="masterclass" data-lang="en" data-start="2026-08-31T14:00:00Z" data-dur="60" data-title="Beginner's Masterclass 2: Risk management" data-host="Head of Education" data-topic="Masterclass · part 2" data-aos="fade-up" data-aos-delay="100">
           <span class="wb-date" aria-hidden="true"><b data-wb-day>31</b><em data-wb-mon>Aug</em></span>
           <div class="wb-card-body">
             <div class="wb-tags">
@@ -796,7 +1094,7 @@
           </div>
         </article>
 
-        <article class="wb-card glass" data-wb-item data-cat="masterclass" data-lang="ar" data-start="2026-09-07T14:00:00Z" data-dur="60" data-title="Beginner's Masterclass 3: Chart patterns" data-host="MENA Market Analyst" data-topic="Masterclass · part 3">
+        <article class="wb-card glass" data-wb-item data-cat="masterclass" data-lang="ar" data-start="2026-09-07T14:00:00Z" data-dur="60" data-title="Beginner's Masterclass 3: Chart patterns" data-host="MENA Market Analyst" data-topic="Masterclass · part 3" data-aos="fade-up" data-aos-delay="200">
           <span class="wb-date" aria-hidden="true"><b data-wb-day>7</b><em data-wb-mon>Sep</em></span>
           <div class="wb-card-body">
             <div class="wb-tags">
@@ -818,7 +1116,7 @@
           </div>
         </article>
 
-        <article class="wb-card glass" data-wb-item data-cat="masterclass" data-lang="en" data-start="2026-09-14T14:00:00Z" data-dur="60" data-title="Beginner's Masterclass 4: Building a trading plan" data-host="Senior Market Analyst" data-topic="Masterclass · part 4">
+        <article class="wb-card glass" data-wb-item data-cat="masterclass" data-lang="en" data-start="2026-09-14T14:00:00Z" data-dur="60" data-title="Beginner's Masterclass 4: Building a trading plan" data-host="Senior Market Analyst" data-topic="Masterclass · part 4" data-aos="fade-up" data-aos-delay="300">
           <span class="wb-date" aria-hidden="true"><b data-wb-day>14</b><em data-wb-mon>Sep</em></span>
           <div class="wb-card-body">
             <div class="wb-tags">
@@ -845,9 +1143,9 @@
 
     <!-- Replays -->
     <div class="wb-panel" id="wb-panel-replay" role="tabpanel" aria-labelledby="wb-tab-replay" tabindex="0" hidden>
-      <div class="wb-rep-grid" data-reveal-stagger>
+      <div class="wb-rep-grid">
 
-        <article class="wb-rep glass" data-wb-item data-cat="replay" data-lang="en" data-start="2026-07-21T14:00:00Z" data-dur="47" data-datefmt="date" data-title="Live Q'A with our analysts">
+        <article class="wb-rep glass" data-wb-item data-cat="replay" data-lang="en" data-start="2026-07-21T14:00:00Z" data-dur="47" data-datefmt="date" data-title="Live Q'A with our analysts" data-aos="fade-up">
           <div class="wb-rep-head">
             <span class="wb-rep-cat"><svg aria-hidden="true"><use href="#i-bubble"/></svg>Live Q&amp;A <i aria-hidden="true"></i> English</span>
             <time class="wb-rep-date" data-wb-time datetime="2026-07-21T14:00:00Z">21 Jul 2026</time>
@@ -859,14 +1157,14 @@
           </div>
 
           <a class="wb-rep-media" href="#" aria-label="Watch the replay: Live Q&amp;A with our analysts">
-            <img src="../../assets/img/company-office.webp" alt="" width="1920" height="1080" loading="lazy" decoding="async">
+            <img src="../../assets/img/company-office.webp" alt="Inside a STARTRADER office" width="1920" height="1080" loading="lazy" decoding="async">
             <span class="wb-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
             <span class="wb-dur">47 min</span>
             <span class="wb-lvl">All levels</span>
           </a>
         </article>
 
-        <article class="wb-rep glass" data-wb-item data-cat="replay" data-lang="en" data-start="2026-07-14T14:00:00Z" data-dur="63" data-datefmt="date" data-title="Ichimoku Kinko Hyo deep dive">
+        <article class="wb-rep glass" data-wb-item data-cat="replay" data-lang="en" data-start="2026-07-14T14:00:00Z" data-dur="63" data-datefmt="date" data-title="Ichimoku Kinko Hyo deep dive" data-aos="fade-up" data-aos-delay="100">
           <div class="wb-rep-head">
             <span class="wb-rep-cat"><svg aria-hidden="true"><use href="#i-cfd"/></svg>Technical analysis <i aria-hidden="true"></i> English</span>
             <time class="wb-rep-date" data-wb-time datetime="2026-07-14T14:00:00Z">14 Jul 2026</time>
@@ -878,14 +1176,14 @@
           </div>
 
           <a class="wb-rep-media" href="#" aria-label="Watch the replay: Ichimoku Kinko Hyo deep dive">
-            <img src="../../assets/img/person-3.jpg" alt="" width="800" height="533" loading="lazy" decoding="async">
+            <img src="../../assets/img/person-3.webp" alt="STARTRADER trader portrait" width="800" height="533" loading="lazy" decoding="async">
             <span class="wb-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
             <span class="wb-dur">63 min</span>
             <span class="wb-lvl">Advanced</span>
           </a>
         </article>
 
-        <article class="wb-rep glass" data-wb-item data-cat="replay" data-lang="ar" data-start="2026-07-07T12:00:00Z" data-dur="52" data-datefmt="date" data-title="Fibonacci in practice">
+        <article class="wb-rep glass" data-wb-item data-cat="replay" data-lang="ar" data-start="2026-07-07T12:00:00Z" data-dur="52" data-datefmt="date" data-title="Fibonacci in practice" data-aos="fade-up" data-aos-delay="200">
           <div class="wb-rep-head">
             <span class="wb-rep-cat"><svg aria-hidden="true"><use href="#i-chart"/></svg>Technical analysis <i aria-hidden="true"></i> العربية</span>
             <time class="wb-rep-date" data-wb-time datetime="2026-07-07T12:00:00Z">7 Jul 2026</time>
@@ -897,14 +1195,14 @@
           </div>
 
           <a class="wb-rep-media" href="#" aria-label="Watch the replay: Fibonacci in practice">
-            <img src="../../assets/img/person-1.jpg" alt="" width="800" height="533" loading="lazy" decoding="async">
+            <img src="../../assets/img/person-1.webp" alt="STARTRADER trader portrait" width="800" height="533" loading="lazy" decoding="async">
             <span class="wb-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
             <span class="wb-dur">52 min</span>
             <span class="wb-lvl">Intermediate</span>
           </a>
         </article>
 
-        <article class="wb-rep glass" data-wb-item data-cat="replay" data-lang="en" data-start="2026-06-20T14:00:00Z" data-dur="58" data-datefmt="date" data-title="Beginner's Masterclass: Forex basics">
+        <article class="wb-rep glass" data-wb-item data-cat="replay" data-lang="en" data-start="2026-06-20T14:00:00Z" data-dur="58" data-datefmt="date" data-title="Beginner's Masterclass: Forex basics" data-aos="fade-up" data-aos-delay="300">
           <div class="wb-rep-head">
             <span class="wb-rep-cat"><svg aria-hidden="true"><use href="#i-box"/></svg>Masterclass <i aria-hidden="true"></i> English</span>
             <time class="wb-rep-date" data-wb-time datetime="2026-06-20T14:00:00Z">20 Jun 2026</time>
@@ -916,14 +1214,14 @@
           </div>
 
           <a class="wb-rep-media" href="#" aria-label="Watch the replay: Beginner&rsquo;s Masterclass, Forex basics">
-            <img src="../../assets/img/learn-cta.webp" alt="" width="1536" height="1024" loading="lazy" decoding="async">
+            <img src="../../assets/img/learn-cta.webp" alt="Market learning illustration" width="1536" height="1024" loading="lazy" decoding="async">
             <span class="wb-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
             <span class="wb-dur">58 min</span>
             <span class="wb-lvl">Beginner</span>
           </a>
         </article>
 
-        <article class="wb-rep glass" data-wb-item data-cat="replay" data-lang="en" data-start="2026-06-13T14:00:00Z" data-dur="61" data-datefmt="date" data-title="Beginner's Masterclass: Risk management">
+        <article class="wb-rep glass" data-wb-item data-cat="replay" data-lang="en" data-start="2026-06-13T14:00:00Z" data-dur="61" data-datefmt="date" data-title="Beginner's Masterclass: Risk management" data-aos="fade-up" data-aos-delay="400">
           <div class="wb-rep-head">
             <span class="wb-rep-cat"><svg aria-hidden="true"><use href="#i-shield"/></svg>Masterclass <i aria-hidden="true"></i> English</span>
             <time class="wb-rep-date" data-wb-time datetime="2026-06-13T14:00:00Z">13 Jun 2026</time>
@@ -935,14 +1233,14 @@
           </div>
 
           <a class="wb-rep-media" href="#" aria-label="Watch the replay: Beginner&rsquo;s Masterclass, Risk management">
-            <img src="../../assets/img/person-2.jpg" alt="" width="800" height="533" loading="lazy" decoding="async">
+            <img src="../../assets/img/person-2.webp" alt="STARTRADER trader portrait" width="800" height="533" loading="lazy" decoding="async">
             <span class="wb-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
             <span class="wb-dur">61 min</span>
             <span class="wb-lvl">Beginner</span>
           </a>
         </article>
 
-        <article class="wb-rep glass" data-wb-item data-cat="replay" data-lang="ar" data-start="2026-06-06T12:00:00Z" data-dur="54" data-datefmt="date" data-title="Beginner's Masterclass: Chart patterns">
+        <article class="wb-rep glass" data-wb-item data-cat="replay" data-lang="ar" data-start="2026-06-06T12:00:00Z" data-dur="54" data-datefmt="date" data-title="Beginner's Masterclass: Chart patterns" data-aos="fade-up" data-aos-delay="500">
           <div class="wb-rep-head">
             <span class="wb-rep-cat"><svg aria-hidden="true"><use href="#i-cfd"/></svg>Masterclass <i aria-hidden="true"></i> العربية</span>
             <time class="wb-rep-date" data-wb-time datetime="2026-06-06T12:00:00Z">6 Jun 2026</time>
@@ -954,7 +1252,7 @@
           </div>
 
           <a class="wb-rep-media" href="#" aria-label="Watch the replay: Beginner&rsquo;s Masterclass, Chart patterns">
-            <img src="../../assets/img/webtrader-laptop.webp" alt="" width="619" height="458" loading="lazy" decoding="async">
+            <img src="../../assets/img/webtrader-laptop.webp" alt="STARTRADER Web Trader on a laptop" width="619" height="458" loading="lazy" decoding="async">
             <span class="wb-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
             <span class="wb-dur">54 min</span>
             <span class="wb-lvl">Beginner</span>
@@ -979,40 +1277,40 @@
 <section class="section fx-hours wb-topics" aria-labelledby="wb-topics-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow eyebrow-blue" data-reveal>Curriculum</span>
-      <h2 class="h2 h2-light" id="wb-topics-title" data-reveal>What you&rsquo;ll learn</h2>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">Curriculum</span>
+      <h2 class="h2 h2-light" id="wb-topics-title" data-aos="fade-up">What you&rsquo;ll learn</h2>
     </div>
 
-    <div class="fx-mh" data-reveal-stagger>
-      <article class="fx-mh-card fx-mh--blue fx-mh--wide">
+    <div class="fx-mh">
+      <article class="fx-mh-card fx-mh--blue fx-mh--wide" data-aos="fade-up">
         <span class="fx-mh-ic"><svg><use href="#i-chart"/></svg></span>
         <h3>Strategy &amp; trade planning</h3>
         <p>Build a plan you can repeat: define your edge, set entry and exit rules, size positions properly and review your results honestly.</p>
         <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="wb-tp-list"><i>Strategy design</i><i>Trade journals</i><i>Back-testing</i><i>Position sizing</i></span></div></div>
       </article>
 
-      <article class="fx-mh-card fx-mh--teal">
+      <article class="fx-mh-card fx-mh--teal" data-aos="fade-up" data-aos-delay="100">
         <span class="fx-mh-ic"><svg><use href="#i-cfd"/></svg></span>
         <h3>Technical analysis</h3>
         <p>Structure, trend, momentum, Fibonacci and Ichimoku &mdash; taught on live charts, not textbook examples.</p>
         <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="wb-tp-list"><i>Price action</i><i>Fibonacci</i><i>Ichimoku</i></span></div></div>
       </article>
 
-      <article class="fx-mh-card fx-mh--purple">
+      <article class="fx-mh-card fx-mh--purple" data-aos="fade-up" data-aos-delay="200">
         <span class="fx-mh-ic"><svg><use href="#i-shield"/></svg></span>
         <h3>Risk management</h3>
         <p>The part that decides whether an edge survives: stops, risk per trade, correlation and drawdown control.</p>
         <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="wb-tp-list"><i>Stop placement</i><i>Risk per trade</i><i>Drawdown</i></span></div></div>
       </article>
 
-      <article class="fx-mh-card fx-mh--orange">
+      <article class="fx-mh-card fx-mh--orange" data-aos="fade-up" data-aos-delay="300">
         <span class="fx-mh-ic"><svg><use href="#i-globe"/></svg></span>
         <h3>Macro &amp; market sentiment</h3>
         <p>Central banks, data releases and positioning &mdash; how the news cycle actually reaches your chart.</p>
         <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="wb-tp-list"><i>Economic calendar</i><i>Rate decisions</i><i>Risk sentiment</i></span></div></div>
       </article>
 
-      <article class="fx-mh-card fx-mh--green">
+      <article class="fx-mh-card fx-mh--green" data-aos="fade-up" data-aos-delay="400">
         <span class="fx-mh-ic"><svg><use href="#i-monitor"/></svg></span>
         <h3>Platform mastery</h3>
         <p>Get fluent in MT4, MT5 and the STAR platforms &mdash; order types, alerts, chart templates, copy trading and Expert Advisors, demonstrated step by step so you can follow along in your own terminal.</p>
@@ -1026,28 +1324,28 @@
 <section class="section wb-team" aria-labelledby="wb-team-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Presenters</span>
-      <h2 class="h2" id="wb-team-title" data-reveal>Led by analysts who trade the same markets</h2>
-      <p class="head-sub" data-reveal>Every session is presented by a member of the STARTRADER research and education team &mdash; analysts, regional education leads and platform specialists, never a scripted narrator.</p>
+      <span class="eyebrow" data-aos="fade-up">Presenters</span>
+      <h2 class="h2" id="wb-team-title" data-aos="fade-up">Led by analysts who trade the same markets</h2>
+      <p class="head-sub" data-aos="fade-up">Every session is presented by a member of the STARTRADER research and education team &mdash; analysts, regional education leads and platform specialists, never a scripted narrator.</p>
     </div>
 
-    <div class="wb-team-grid" data-reveal-stagger>
-      <article class="wb-person glass">
-        <span class="wb-person-ph"><img src="../../assets/img/person-2.jpg" alt="STARTRADER senior market analyst" width="800" height="533" loading="lazy" decoding="async"></span>
+    <div class="wb-team-grid">
+      <article class="wb-person glass" data-aos="fade-up">
+        <span class="wb-person-ph"><img src="../../assets/img/person-2.webp" alt="STARTRADER senior market analyst" width="800" height="533" loading="lazy" decoding="async"></span>
         <h3>Senior Market Analyst</h3>
         <p>Leads the weekly strategy session and the quarterly outlook, with a focus on FX majors and gold.</p>
         <ul class="wb-person-meta"><li>English</li><li>Strategy</li></ul>
       </article>
 
-      <article class="wb-person glass">
-        <span class="wb-person-ph"><img src="../../assets/img/person-3.jpg" alt="STARTRADER technical strategist" width="800" height="533" loading="lazy" decoding="async"></span>
+      <article class="wb-person glass" data-aos="fade-up" data-aos-delay="100">
+        <span class="wb-person-ph"><img src="../../assets/img/person-3.webp" alt="STARTRADER technical strategist" width="800" height="533" loading="lazy" decoding="async"></span>
         <h3>Technical Strategist</h3>
         <p>Runs the chart-craft sessions &mdash; price action, Fibonacci and Ichimoku, always on live markets.</p>
         <ul class="wb-person-meta"><li>English</li><li>Technicals</li></ul>
       </article>
 
-      <article class="wb-person glass">
-        <span class="wb-person-ph"><img src="../../assets/img/person-1.jpg" alt="STARTRADER MENA market analyst" width="800" height="533" loading="lazy" decoding="async"></span>
+      <article class="wb-person glass" data-aos="fade-up" data-aos-delay="200">
+        <span class="wb-person-ph"><img src="../../assets/img/person-1.webp" alt="STARTRADER MENA market analyst" width="800" height="533" loading="lazy" decoding="async"></span>
         <h3>MENA Market Analyst</h3>
         <p>Presents the Arabic programme, covering regional flows, energy markets and sentiment.</p>
         <ul class="wb-person-meta"><li>العربية</li><li>Sentiment</li></ul>
@@ -1061,17 +1359,17 @@
 <section class="section wb-sub" id="subscribe" aria-labelledby="wb-sub-title">
   <div class="container wb-sub-wrap">
     <div class="wb-sub-copy">
-      <span class="eyebrow eyebrow-blue" data-reveal>Stay in the loop</span>
-      <h2 class="h2 h2-light" id="wb-sub-title" data-reveal>Never miss a session</h2>
-      <p class="wb-sub-lead" data-reveal>Subscribe once and we&rsquo;ll send you the schedule for your language, a reminder an hour before each session starts, and the replay link as soon as it is published.</p>
-      <ul class="wb-sub-list" data-reveal>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">Stay in the loop</span>
+      <h2 class="h2 h2-light" id="wb-sub-title" data-aos="fade-up">Never miss a session</h2>
+      <p class="wb-sub-lead" data-aos="fade-up">Subscribe once and we&rsquo;ll send you the schedule for your language, a reminder an hour before each session starts, and the replay link as soon as it is published.</p>
+      <ul class="wb-sub-list" data-aos="fade-up">
         <li><span class="wb-tick"><svg><use href="#i-check"/></svg></span>One email per session &mdash; never more</li>
         <li><span class="wb-tick"><svg><use href="#i-check"/></svg></span>Calendar invite attached to every reminder</li>
         <li><span class="wb-tick"><svg><use href="#i-check"/></svg></span>Unsubscribe in one click, any time</li>
       </ul>
     </div>
 
-    <div class="wb-formwrap" data-reveal>
+    <div class="wb-formwrap" data-aos="fade-up">
       <form class="wb-form" id="wbForm" novalidate>
         <div class="wb-field">
           <label for="wbName">Full name</label>
@@ -1141,10 +1439,10 @@
 <section class="section faq-sec fx-faq" aria-labelledby="wb-faq-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>FAQ</span>
-      <h2 class="h2" id="wb-faq-title" data-reveal>Webinar questions</h2>
+      <span class="eyebrow" data-aos="fade-up">FAQ</span>
+      <h2 class="h2" id="wb-faq-title" data-aos="fade-up">Webinar questions</h2>
     </div>
-    <div class="faq-list" data-reveal>
+    <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
         <summary>Are STARTRADER webinars free to attend?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a">Yes. Every live session and every on-demand replay is free, and you don&rsquo;t need a funded trading account to join. You only register with your name, email and preferred language so we can send you the joining link and the reminder.</div>
@@ -1185,21 +1483,21 @@
 <section class="section fx-more wb-more" aria-labelledby="wb-more-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Keep learning</span>
-      <h2 class="h2" id="wb-more-title" data-reveal>Explore more education</h2>
+      <span class="eyebrow" data-aos="fade-up">Keep learning</span>
+      <h2 class="h2" id="wb-more-title" data-aos="fade-up">Explore more education</h2>
     </div>
-    <div class="fx-more-grid" data-reveal-stagger>
-      <a class="fx-more-card" href="#">
+    <div class="fx-more-grid">
+      <a class="fx-more-card" href="#" data-aos="fade-up">
         <span class="fx-more-media"><img src="../../assets/img/company-1.webp" alt="STARTRADER team at a global trading event" width="640" height="349" loading="lazy"></span>
         <p class="fx-more-desc">Meet the STARTRADER team in person at expos, seminars and client evenings around the world.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Events</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="../../index.html#academy">
+      <a class="fx-more-card" href="../../index.html#academy" data-aos="fade-up" data-aos-delay="100">
         <span class="fx-more-media"><img src="../../assets/img/learn-viz.webp" alt="Knowledge Centre trading guides and courses" width="640" height="349" loading="lazy"></span>
         <p class="fx-more-desc">Guides, courses and lessons for every level &mdash; read at your own pace between sessions.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Knowledge Centre</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="../learn/glossary/index.html">
+      <a class="fx-more-card" href="../learn/glossary/index.html" data-aos="fade-up" data-aos-delay="200">
         <span class="fx-more-media"><img src="../../assets/img/learn-cta.webp" alt="Trading glossary of key terms" width="640" height="349" loading="lazy"></span>
         <p class="fx-more-desc">Plain-English definitions of every trading term you&rsquo;ll hear in a session, from pip to swap.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Glossary</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
@@ -1212,9 +1510,9 @@
 <section class="cta-banner" aria-labelledby="wb-cta-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="wb-cta-title" data-reveal>Start trading with a<br>globally leading broker</h2>
-    <p data-reveal>Put what you learn into practice &mdash; open a live account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution, or rehearse risk-free on a demo.</p>
-    <div class="cta-actions" data-reveal>
+    <h2 id="wb-cta-title" data-aos="fade-up">Start trading with a<br>globally leading broker</h2>
+    <p data-aos="fade-up">Put what you learn into practice &mdash; open a live account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution, or rehearse risk-free on a demo.</p>
+    <div class="cta-actions" data-aos="fade-up">
       <a href="../../trading/getting-started/account-opening.html" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       <a href="../../trading/getting-started/account-opening.html" class="btn btn-ghost btn-lg">Try Free Demo</a>
     </div>
@@ -1304,7 +1602,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -1338,6 +1636,7 @@
 <script src="../../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../../assets/js/vendor/aos.min.js" defer></script>
 <script src="../../assets/js/main.js" defer></script>
 </body>
 </html>

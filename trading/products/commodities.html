@@ -33,7 +33,64 @@
   <!-- Fonts (self-hosted) -->
   <link rel="preload" href="../../assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="../../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ================= LEARN CARD (shared: dark takeaway card) ================= */
+.learn-sec{background:var(--bg-light-2)}
+.learn-card{
+  position:relative;overflow:hidden;isolation:isolate;border-radius:clamp(24px,3vw,40px);
+  display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,.94fr);align-items:center;gap:clamp(24px,3vw,48px);
+  padding:clamp(38px,4.6vw,68px) clamp(28px,4vw,64px);
+  /* near-black so the illustration's own black background blends into the card */
+  background:
+    radial-gradient(58% 116% at 6% 0%,rgba(0,71,187,.22),transparent 62%),
+    linear-gradient(150deg,#0c0f14 0%,#08090d 58%,#040507 100%);
+  box-shadow:0 40px 90px -50px rgba(8,16,38,.6);
+}
+.learn-copy{position:relative;z-index:1;min-width:0}
+.learn-copy h2{
+  font-size:clamp(25px,2.9vw,40px);font-weight:800;letter-spacing:-.028em;line-height:1.12;color:#fff;
+}
+.learn-lead{margin-top:18px;font-size:clamp(14.5px,1.45vw,16.5px);line-height:1.6;color:#e3e8f0}
+.learn-list{list-style:none;margin:22px 0 0;display:flex;flex-direction:column;gap:14px}
+.learn-list li{
+  display:flex;align-items:center;gap:13px;
+  font-size:clamp(14px,1.4vw,16px);color:#98a1b0;transition:color .3s var(--ease),transform .35s var(--ease);
+}
+.learn-list li:hover{color:#e8edf5;transform:translateX(4px)}
+.learn-tick{
+  flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(0,71,187,.22);color:#6fa4ff;transition:background .3s,color .3s;
+}
+.learn-tick svg{width:12px;height:12px}
+.learn-list li:hover .learn-tick{background:var(--blue);color:#fff}
+.learn-copy .btn{margin-top:32px}
+/* ---- Account tiers visual (Why card 6) ---- */
+.cm-acc{width:90%;max-width:270px;display:flex;flex-direction:column;gap:10px}
+.cm-acc-row{
+  position:relative;display:grid;grid-template-columns:1fr auto;align-items:center;row-gap:2px;
+  padding:12px 44px 12px 15px;border-radius:12px;
+  background:rgba(255,255,255,.72);border:1px solid #fff;
+  box-shadow:0 10px 22px -15px rgba(20,44,96,.4),inset 0 1px 0 #fff;
+  -webkit-backdrop-filter:blur(8px) saturate(1.4);backdrop-filter:blur(8px) saturate(1.4);
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease);
+}
+.cm-acc-row b{grid-column:1;font-size:13px;font-weight:700;color:#0f1830}
+.cm-acc-row em{grid-column:1;font-style:normal;font-size:11px;color:var(--text-mute)}
+.cm-acc-row i{
+  position:absolute;right:15px;top:50%;margin-top:-8px;width:16px;height:16px;border-radius:50%;
+  border:2px solid #c9d4e4;transition:border-color .35s,background .35s,box-shadow .35s;
+}
+.cm-acc-row i::after{
+  content:"";position:absolute;inset:3px;border-radius:50%;background:#fff;opacity:0;transition:opacity .35s;
+}
+.cm-acc-row.is-on{transform:translateX(4px);box-shadow:0 16px 30px -16px rgba(0,71,187,.5),inset 0 1px 0 #fff}
+.cm-acc-row.is-on i{border-color:var(--blue);background:var(--blue);box-shadow:0 0 0 4px rgba(0,71,187,.12)}
+.cm-acc-row.is-on i::after{opacity:1}
+@media (max-width:900px){.learn-card{grid-template-columns:1fr;gap:22px}}
+  </style>
 
   <!-- Structured data -->
   <script type="application/ld+json">
@@ -358,16 +415,16 @@
 
 <!-- ============ HERO ============ -->
 <section class="acct-hero fx-hero cm-hero" aria-labelledby="cm-hero-title">
-  <video class="acct-hero-video" autoplay muted loop playsinline preload="metadata" poster="../../assets/img/products-video-poster.jpg" aria-hidden="true">
+  <video class="acct-hero-video" autoplay muted loop playsinline preload="metadata" poster="../../assets/img/products-video-poster.webp" aria-hidden="true">
     <source src="../../assets/video/products-banner.mp4" type="video/mp4">
   </video>
   <div class="acct-hero-bg" aria-hidden="true"></div>
   <div class="container fx-hero-copy-wrap">
     <div class="fx-hero-copy">
-      <span class="eyebrow eyebrow-blue" data-reveal>Commodities</span>
-      <h1 class="acct-hero-title" id="cm-hero-title" data-reveal>Harvest your<br>success</h1>
-      <p class="acct-hero-sub" data-reveal>Trade CFDs on metals, energies and agriculture — from gold and crude oil to wheat and coffee — with ultra-tight spreads, 100-millisecond execution and leverage up to 1:1000.</p>
-      <div class="acct-hero-cta" data-reveal>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">Commodities</span>
+      <h1 class="acct-hero-title" id="cm-hero-title" data-aos="fade-up">Harvest your<br>success</h1>
+      <p class="acct-hero-sub" data-aos="fade-up">Trade CFDs on metals, energies and agriculture — from gold and crude oil to wheat and coffee — with ultra-tight spreads, 100-millisecond execution and leverage up to 1:1000.</p>
+      <div class="acct-hero-cta" data-aos="fade-up">
         <a href="../getting-started/account-opening.html" class="btn btn-primary btn-lg magnetic">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       </div>
     </div>
@@ -378,25 +435,25 @@
 <section class="section fx-pairs cm-inst" id="instruments" aria-labelledby="cm-inst-title" data-fx-pairs="commodities">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Our offering</span>
-      <h2 class="h2" id="cm-inst-title" data-reveal>Explore our commodity offerings</h2>
-      <p class="head-sub" data-reveal>Metals, energies and agriculture quoted spot, so there is no contract month to roll. Switch family below to see the live board for each.</p>
+      <span class="eyebrow" data-aos="fade-up">Our offering</span>
+      <h2 class="h2" id="cm-inst-title" data-aos="fade-up">Explore our commodity offerings</h2>
+      <p class="head-sub" data-aos="fade-up">Metals, energies and agriculture quoted spot, so there is no contract month to roll. Switch family below to see the live board for each.</p>
     </div>
 
-    <div class="fx-cats" data-reveal-stagger role="tablist" aria-label="Commodity categories">
-      <button class="fx-cat active" type="button" data-fx-cat="metals" role="tab" aria-selected="true">
+    <div class="fx-cats" role="tablist" aria-label="Commodity categories">
+      <button class="fx-cat active" type="button" data-fx-cat="metals" role="tab" aria-selected="true" data-aos="fade-up">
         <span class="cat-tag">Metals</span>
         <h3>Precious &amp; base metals</h3>
         <p>Gold, silver, platinum and copper — the classic store of value and the raw material of industry.</p>
         <span class="cat-count"><svg width="15" height="15"><use href="#i-layers"/></svg><b>5</b> metal CFDs</span>
       </button>
-      <button class="fx-cat" type="button" data-fx-cat="energy" role="tab" aria-selected="false">
+      <button class="fx-cat" type="button" data-fx-cat="energy" role="tab" aria-selected="false" data-aos="fade-up" data-aos-delay="100">
         <span class="cat-tag">Energy</span>
         <h3>Energies</h3>
         <p>Crude oil, Brent and natural gas — the most actively traded and headline-driven commodities on earth.</p>
         <span class="cat-count"><svg width="15" height="15"><use href="#i-layers"/></svg><b>4</b> energy CFDs</span>
       </button>
-      <button class="fx-cat" type="button" data-fx-cat="agriculture" role="tab" aria-selected="false">
+      <button class="fx-cat" type="button" data-fx-cat="agriculture" role="tab" aria-selected="false" data-aos="fade-up" data-aos-delay="200">
         <span class="cat-tag">Agriculture</span>
         <h3>Agriculture</h3>
         <p>Wheat, corn, coffee, sugar and cocoa — soft commodities driven by weather, harvests and global demand.</p>
@@ -404,7 +461,7 @@
       </button>
     </div>
 
-    <div class="ta-spec-wrap" data-reveal>
+    <div class="ta-spec-wrap" data-aos="fade-up">
       <table class="ta-table">
         <thead>
           <tr>
@@ -426,18 +483,18 @@
 <section class="section fx-hours cm-hours" aria-labelledby="cm-hours-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow eyebrow-blue" data-reveal>Trading hours</span>
-      <h2 class="h2 h2-light" id="cm-hours-title" data-reveal>A market that moves with the world</h2>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">Trading hours</span>
+      <h2 class="h2 h2-light" id="cm-hours-title" data-aos="fade-up">A market that moves with the world</h2>
     </div>
-    <div class="fx-mh" data-reveal-stagger data-fx-hours>
-      <article class="fx-mh-card fx-mh--teal">
+    <div class="fx-mh" data-fx-hours>
+      <article class="fx-mh-card fx-mh--teal" data-aos="fade-up">
         <span class="fx-mh-ic"><svg><use href="#i-clock"/></svg></span>
         <h3>Nearly 24 / 5</h3>
         <p>Metals and energies trade almost around the clock, five days a week, with only short daily breaks.</p>
         <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="fx-mh-status"><i></i> Metals &amp; energies open</span></div></div>
       </article>
 
-      <article class="fx-mh-card fx-mh--wide fx-mh--blue">
+      <article class="fx-mh-card fx-mh--wide fx-mh--blue" data-aos="fade-up" data-aos-delay="100">
         <span class="fx-mh-ic"><svg><use href="#i-globe"/></svg></span>
         <h3>Follow the sun</h3>
         <p>Shanghai hands over to London, London to New York, and Chicago sets the tone for the grains — so there is nearly always an active market.</p>
@@ -452,7 +509,7 @@
         </div>
       </article>
 
-      <article class="fx-mh-card fx-mh--purple">
+      <article class="fx-mh-card fx-mh--purple" data-aos="fade-up" data-aos-delay="200">
         <span class="fx-mh-ic"><svg><use href="#i-cm-bars"/></svg></span>
         <h3>Metals never rest</h3>
         <p>Gold and silver keep pricing through the Asian, European and US sessions alike.</p>
@@ -462,7 +519,7 @@
         </div></div>
       </article>
 
-      <article class="fx-mh-card fx-mh--green">
+      <article class="fx-mh-card fx-mh--green" data-aos="fade-up" data-aos-delay="300">
         <span class="fx-mh-ic"><svg><use href="#i-cfd"/></svg></span>
         <h3>Trade both directions</h3>
         <p>Go long when supply tightens, short when it loosens — CFDs work either way.</p>
@@ -472,7 +529,7 @@
         </div></div>
       </article>
 
-      <article class="fx-mh-card fx-mh--orange">
+      <article class="fx-mh-card fx-mh--orange" data-aos="fade-up" data-aos-delay="400">
         <span class="fx-mh-ic"><svg><use href="#i-bolt"/></svg></span>
         <h3>React to the headlines</h3>
         <p>Inventory data, OPEC decisions and crop reports move these markets fast.</p>
@@ -487,11 +544,11 @@
 <section class="section htrade-sec" aria-labelledby="cm-steps-title">
   <div class="container">
     <div class="htrade">
-      <div class="htrade-intro" data-reveal>
+      <div class="htrade-intro" data-aos="fade-up">
         <h2 class="htrade-title" id="cm-steps-title">How to trade<br><span>commodities</span></h2>
         <p class="htrade-sub">Start trading in 4 simple steps</p>
         <a href="../getting-started/account-opening.html" class="btn btn-primary btn-lg htrade-btn magnetic">Start Trading <span class="htrade-go"><svg><use href="#i-arrow-right"/></svg></span></a>
-        <img class="htrade-mark" src="../../assets/img/icon-shield-3d.png" alt="" width="400" height="490" loading="lazy" decoding="async">
+        <img class="htrade-mark" src="../../assets/img/icon-shield-3d.webp" alt="3D shield emblem for insured client funds" width="400" height="490" loading="lazy" decoding="async">
       </div>
 
       <ol class="htrade-steps" data-htrade>
@@ -532,12 +589,12 @@
 <section class="section fx-why cm-why" aria-labelledby="cm-why-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Why STARTRADER</span>
-      <h2 class="h2" id="cm-why-title" data-reveal>Why trade commodities with STARTRADER</h2>
+      <span class="eyebrow" data-aos="fade-up">Why STARTRADER</span>
+      <h2 class="h2" id="cm-why-title" data-aos="fade-up">Why trade commodities with STARTRADER</h2>
     </div>
-    <div class="fx-w2-grid" data-reveal-stagger>
+    <div class="fx-w2-grid">
       <!-- Wide range of assets -->
-      <article class="fx-w2">
+      <article class="fx-w2" data-aos="fade-up">
         <div class="fx-w2-viz">
           <div class="fx-pw">
             <div class="fx-pw-row" data-fx-quote><span class="q-sym">XAU/USD</span><span class="q-px">2,338.50</span><span class="q-chg up">+0.42%</span></div>
@@ -551,7 +608,7 @@
       </article>
 
       <!-- Execution -->
-      <article class="fx-w2">
+      <article class="fx-w2" data-aos="fade-up" data-aos-delay="100">
         <div class="fx-w2-viz">
           <div class="fx-uf">
             <div class="fx-uf-speed"><i></i><i></i><i></i><i></i><i></i></div>
@@ -563,7 +620,7 @@
       </article>
 
       <!-- Spreads -->
-      <article class="fx-w2">
+      <article class="fx-w2" data-aos="fade-up" data-aos-delay="200">
         <div class="fx-w2-viz">
           <div class="fx-cs">
             <div class="fx-cs-meter">
@@ -581,7 +638,7 @@
       </article>
 
       <!-- Support -->
-      <article class="fx-w2">
+      <article class="fx-w2" data-aos="fade-up" data-aos-delay="300">
         <div class="fx-w2-viz">
           <div class="fx-su">
             <div class="fx-su-core"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.54 5h3.1a1 1 0 0 1 .98.79l.74 3.3a1 1 0 0 1-.28.94l-1.56 1.5a13 13 0 0 0 5.32 5.32l1.5-1.56a1 1 0 0 1 .94-.28l3.3.74a1 1 0 0 1 .79.98v3.1a1 1 0 0 1-1 1A16.5 16.5 0 0 1 5.5 6a1 1 0 0 1 1-1z"/><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" d="M15.5 4.6a5.4 5.4 0 0 1 4 4"/><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" d="M14.9 8.1a2.6 2.6 0 0 1 1.9 1.9"/></svg></div>
@@ -595,7 +652,7 @@
       </article>
 
       <!-- Leverage -->
-      <article class="fx-w2 fx-w2--lev">
+      <article class="fx-w2 fx-w2--lev" data-aos="fade-up" data-aos-delay="400">
         <div class="fx-w2-viz">
           <div class="fx-lv">
             <svg viewBox="0 0 320 180" preserveAspectRatio="none" aria-hidden="true">
@@ -611,7 +668,7 @@
       </article>
 
       <!-- Multiple accounts -->
-      <article class="fx-w2">
+      <article class="fx-w2" data-aos="fade-up" data-aos-delay="500">
         <div class="fx-w2-viz">
           <div class="cm-acc">
             <span class="cm-acc-row"><b>Demo</b><em>Practise risk-free</em><i></i></span>
@@ -631,26 +688,26 @@
 <section class="section fx-more" aria-labelledby="cm-more-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>More markets</span>
-      <h2 class="h2" id="cm-more-title" data-reveal>Explore our products</h2>
+      <span class="eyebrow" data-aos="fade-up">More markets</span>
+      <h2 class="h2" id="cm-more-title" data-aos="fade-up">Explore our products</h2>
     </div>
-    <div class="fx-more-grid" data-reveal-stagger>
-      <a class="fx-more-card" href="forex.html">
-        <span class="fx-more-media"><img src="../../assets/img/home-hero-wave.jpg" alt="Forex market panel" width="640" height="349" loading="lazy" decoding="async"></span>
+    <div class="fx-more-grid">
+      <a class="fx-more-card" href="forex.html" data-aos="fade-up">
+        <span class="fx-more-media"><img src="../../assets/img/home-hero-wave.webp" alt="Forex market panel" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Speculate on 80+ currency pairs with ultra-tight spreads and fast execution.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Forex</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="cfd.html">
+      <a class="fx-more-card" href="cfd.html" data-aos="fade-up" data-aos-delay="100">
         <span class="fx-more-media"><img src="../../assets/img/platform-hero.webp" alt="CFDs market panel" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">One account, every asset class — long or short, with leverage you control.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">CFDs</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="indices.html">
-        <span class="fx-more-media"><img src="../../assets/img/stat-blue.png" alt="Indices market panel" width="640" height="349" loading="lazy" decoding="async"></span>
+      <a class="fx-more-card" href="indices.html" data-aos="fade-up" data-aos-delay="200">
+        <span class="fx-more-media"><img src="../../assets/img/stat-blue.webp" alt="Indices market panel" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Speculate on the world's leading stock indices — US500, NAS100 and more.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Indices</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="shares.html">
+      <a class="fx-more-card" href="shares.html" data-aos="fade-up" data-aos-delay="300">
         <span class="fx-more-media"><img src="../../assets/img/learn-viz.webp" alt="Shares market panel" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Go long or short on leading global companies across the US, Europe and Asia.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Shares</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
@@ -662,7 +719,7 @@
 <!-- ============ LEARN / KNOWLEDGE CENTRE ============ -->
 <section class="section learn-sec" aria-labelledby="cm-learn-title">
   <div class="container">
-    <div class="learn-card" data-reveal>
+    <div class="learn-card" data-aos="fade-up">
       <div class="learn-copy">
         <h2 id="cm-learn-title">Learn commodities trading<br>and shoot for success</h2>
         <p class="learn-lead">Visit our Knowledge Centre and explore the world of commodities trading through:</p>
@@ -675,7 +732,7 @@
       </div>
 
       <div class="learn-viz" aria-hidden="true">
-        <img src="../../assets/img/learn-viz.webp" alt="" width="1200" height="900" loading="lazy" decoding="async">
+        <img src="../../assets/img/learn-viz.webp" alt="Trading education illustration" width="1200" height="900" loading="lazy" decoding="async">
       </div>
     </div>
   </div>
@@ -685,10 +742,10 @@
 <section class="section faq-sec fx-faq" aria-labelledby="cm-faq-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>FAQ</span>
-      <h2 class="h2" id="cm-faq-title" data-reveal>Commodities trading questions</h2>
+      <span class="eyebrow" data-aos="fade-up">FAQ</span>
+      <h2 class="h2" id="cm-faq-title" data-aos="fade-up">Commodities trading questions</h2>
     </div>
-    <div class="faq-list" data-reveal>
+    <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
         <summary>What is commodity trading and how does it work?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a">Commodity trading is speculating on the price of raw materials — metals such as gold and copper, energies such as crude oil and natural gas, and agricultural products such as wheat and coffee. With CFDs you never take delivery of the physical goods: you open a position on the price direction, go long or short, and settle the difference in cash when you close.</div>
@@ -729,9 +786,9 @@
 <section class="cta-banner" aria-labelledby="cm-cta-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="cm-cta-title" data-reveal>Start trading with a<br>globally leading broker</h2>
-    <p data-reveal>Open an account and trade 25+ commodity CFDs across metals, energies and agriculture — with ultra-tight spreads and 100-millisecond execution.</p>
-    <div class="cta-actions" data-reveal>
+    <h2 id="cm-cta-title" data-aos="fade-up">Start trading with a<br>globally leading broker</h2>
+    <p data-aos="fade-up">Open an account and trade 25+ commodity CFDs across metals, energies and agriculture — with ultra-tight spreads and 100-millisecond execution.</p>
+    <div class="cta-actions" data-aos="fade-up">
       <a href="../getting-started/account-opening.html" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
     </div>
   </div>
@@ -818,7 +875,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -852,6 +909,7 @@
 <script src="../../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../../assets/js/vendor/aos.min.js" defer></script>
 <script src="../../assets/js/main.js" defer></script>
 </body>
 </html>

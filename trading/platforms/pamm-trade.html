@@ -16,14 +16,14 @@
   <meta property="og:title" content="Pro-Link PAMM | Invest With a Professional Money Manager | STARTRADER" />
   <meta property="og:description" content="Pro-Link is the STARTRADER PAMM account — pool with other investors, allocate to vetted strategy managers, and pay a fee tied to their performance." />
   <meta property="og:url" content="https://www.startrader.com/trading/platforms/pamm-trade.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/platform-hero.jpg" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/platform-hero.webp" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Pro-Link PAMM | Invest With a Professional Money Manager | STARTRADER" />
   <meta name="twitter:description" content="Pro-Link is the STARTRADER PAMM account — pool with other investors, allocate to vetted strategy managers, and pay a fee tied to their performance." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/platform-hero.jpg" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/platform-hero.webp" />
 
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../../favicon.svg" />
@@ -32,7 +32,79 @@
   <link rel="preload" href="../../assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" as="image" href="../../assets/img/platform-hero.webp" />
   <link rel="stylesheet" href="../../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* =================================================================
+   PLATFORM PAGES — shared light cards, each with its own accent
+   (a clean glass base, not a gradient wash)
+   ================================================================= */
+.pl-note{max-width:760px;margin:30px auto 0;text-align:center;font-size:12.5px;line-height:1.7;color:var(--text-soft)}
+.pl-note a{color:var(--blue);font-weight:600}
+/* ---- strategy managers: the figures animate in once, on scroll ---- */
+.pk-sec{position:relative;overflow:clip;color:#fff;background:radial-gradient(66% 52% at 50% 0%,rgba(0,46,138,.32),transparent 62%),linear-gradient(180deg,#04060e,#080e1e 54%,#04060e)}
+.pk-sec .h2,.pk-sec .h2-light{color:#fff}
+.pk-sec .head-sub{color:#a9bcdb}
+.pk-sec>.container{position:relative;z-index:1}
+.pk-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(286px,1fr));gap:20px}
+.pk-card{
+  position:relative;display:flex;flex-direction:column;padding:24px;border-radius:22px;overflow:hidden;
+  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.022));
+  border:1px solid rgba(255,255,255,.1);
+  transition:transform .4s var(--ease),border-color .3s,background .3s,box-shadow .42s var(--ease);
+}
+.pk-card:hover{transform:translateY(-4px);border-color:rgba(120,175,255,.42);background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.03));box-shadow:0 34px 62px -34px rgba(0,0,0,.85)}
+.pk-hd{display:flex;align-items:center;gap:13px;min-width:0}
+.pk-face{width:52px;height:52px;flex:none;border-radius:16px;object-fit:cover;border:1px solid rgba(120,175,255,.28)}
+.pk-who{display:flex;flex-direction:column;gap:4px;min-width:0;flex:1}
+.pk-who b{font-size:15.5px;letter-spacing:-.024em;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pk-who em{font-style:normal;font-size:11.5px;color:#8ea4c6}
+.pk-rank{flex:none;font-size:10.5px;font-weight:800;letter-spacing:.1em;color:#9fb8dd;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);padding:6px 10px;border-radius:70px}
+.pk-figs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+.pk-fig{display:flex;flex-direction:column;gap:5px}
+.pk-fig b{font-size:clamp(23px,2.4vw,28px);font-weight:800;letter-spacing:-.04em;line-height:1;color:#3fd9a8;font-variant-numeric:tabular-nums}
+.pk-fig.fee b{color:#fff}
+.pk-fig span{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#6f86ad}
+.pk-spark{display:block;width:calc(100% + 48px);margin:16px -24px 0;height:48px}
+.pk-line{fill:none;stroke:#3fd9a8;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.6s .1s var(--ease)}
+[data-seen].is-seen .pk-line{stroke-dashoffset:0}
+.pk-foot{display:flex;align-items:center;gap:12px;margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,.08);font-size:11.5px;color:#8ea4c6}
+.pk-foot .btn{margin-left:auto}
+/* where a pooled deposit actually goes — the bar fills on scroll */
+.pk-alloc{max-width:900px;margin:44px auto 0}
+.pk-alloc-hd{display:flex;align-items:baseline;justify-content:space-between;gap:14px;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#6f86ad}
+.pk-alloc-bar{display:flex;height:14px;margin-top:12px;border-radius:70px;overflow:hidden;background:rgba(255,255,255,.07)}
+.pk-alloc-bar i{width:0;transition:width 1.4s var(--ease)}
+[data-seen].is-seen .pk-alloc-bar i{width:var(--w)}
+.pk-alloc-bar i:nth-child(1){background:#3d8bff;transition-delay:.1s}
+.pk-alloc-bar i:nth-child(2){background:#3fd9a8;transition-delay:.22s}
+.pk-alloc-bar i:nth-child(3){background:#8f7bf0;transition-delay:.34s}
+.pk-alloc-bar i:nth-child(4){background:#e3b26a;transition-delay:.46s}
+.pk-alloc-bar i:nth-child(5){background:#5f9dc4;transition-delay:.58s}
+.pk-alloc-key{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:16px}
+.pk-alloc-key span{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:#a9bcdb}
+.pk-alloc-key i{width:9px;height:9px;border-radius:3px;flex:none}
+.pk-alloc-key b{color:#fff;font-weight:700;font-variant-numeric:tabular-nums}
+.pk-note{margin-top:34px;text-align:center;font-size:11.5px;line-height:1.7;color:#7f92b3;max-width:860px;margin-inline:auto}
+/* ---- talk to the desk ---- */
+.pl-desk{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:26px;
+  padding:30px 34px;border-radius:26px;
+  background:linear-gradient(110deg,rgba(0,71,187,.08),rgba(255,255,255,.68) 56%);
+  border:1px solid rgba(255,255,255,.94);
+  box-shadow:0 22px 46px -30px rgba(20,44,96,.34),inset 0 1px 0 #fff;
+  -webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
+}
+.pl-desk:hover{transform:translateY(-4px);border-color:rgba(0,71,187,.28);box-shadow:0 28px 52px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff}
+.pl-desk-tx{display:flex;flex-direction:column;gap:7px;min-width:0}
+.pl-desk-tx b{font-size:19px;letter-spacing:-.03em;color:var(--text)}
+.pl-desk-tx em{font-style:normal;font-size:14px;line-height:1.62;color:var(--text-soft)}
+.pl-desk-act{display:flex;flex-wrap:wrap;gap:12px}
+@media (max-width:720px){.pk-figs{grid-template-columns:1fr 1fr}
+.pl-desk{padding:26px}}
+  </style>
 
   <script type="application/ld+json">
 {
@@ -439,10 +511,10 @@
   <div class="pf-hero-bg" aria-hidden="true"></div>
   <div class="container pf-hero-in">
     <div class="pf-hero-copy">
-      <span class="eyebrow eyebrow-blue" data-reveal>Pro-Link &middot; PAMM</span>
-      <h1 class="pf-h1" id="pf-hero-title" data-reveal>Soar high for less.<br> Start a PAMM account</h1>
-      <p class="pf-lead" data-reveal>Pool with other investors, allocate to managers with a record you can inspect,<br> and pay a fee tied to the performance that earned it.</p>
-      <div class="pf-hact" data-reveal>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">Pro-Link &middot; PAMM</span>
+      <h1 class="pf-h1" id="pf-hero-title" data-aos="fade-up">Soar high for less.<br> Start a PAMM account</h1>
+      <p class="pf-lead" data-aos="fade-up">Pool with other investors, allocate to managers with a record you can inspect,<br> and pay a fee tied to the performance that earned it.</p>
+      <div class="pf-hact" data-aos="fade-up">
         <a href="#managers" class="btn btn-primary btn-lg magnetic">See the strategies <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       </div>
     </div>
@@ -454,37 +526,37 @@
   <span class="pf-aura a1" aria-hidden="true"></span>
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Why Pro-Link</span>
-      <h2 class="h2" id="pk-why-title" data-reveal>Your investments,<br> steered by someone watching</h2>
+      <span class="eyebrow" data-aos="fade-up">Why Pro-Link</span>
+      <h2 class="h2" id="pk-why-title" data-aos="fade-up">Your investments,<br> steered by someone watching</h2>
     </div>
 
-    <div class="pl-intro" data-reveal>
-      <img src="../../assets/img/icon-shield-3d.png" alt="" width="400" height="490" loading="lazy" decoding="async">
+    <div class="pl-intro" data-aos="fade-up">
+      <img src="../../assets/img/icon-shield-3d.webp" alt="3D shield emblem for insured client funds" width="400" height="490" loading="lazy" decoding="async">
       <p>With Pro-Link your money is steered toward growth at a lower cost and with less of your time. Resources from several investors are pooled, and strategy managers put that combined book to work across a diversified set of markets. Your risk is spread wider than one account could manage alone, and the manager only earns when you do.</p>
     </div>
 
-    <div class="pl-cards" data-reveal-stagger>
-      <article class="pl-card">
+    <div class="pl-cards">
+      <article class="pl-card" data-aos="fade-up">
         <span class="pl-card-hd"><span class="pl-card-ic"><svg><use href="#i-star"/></svg></span><h3>Guided by our stars</h3></span>
         <p>As a leading PAMM broker we connect you with top-tier strategy managers who hold a record of success you can inspect before committing.</p>
       </article>
-      <article class="pl-card">
+      <article class="pl-card" data-aos="fade-up" data-aos-delay="100">
         <span class="pl-card-hd"><span class="pl-card-ic"><svg><use href="#i-swap"/></svg></span><h3>Easy and flexible navigation</h3></span>
         <p>Allocate across several portfolios and move between them from the investor portal, without opening anything new.</p>
       </article>
-      <article class="pl-card">
+      <article class="pl-card" data-aos="fade-up" data-aos-delay="200">
         <span class="pl-card-hd"><span class="pl-card-ic"><svg><use href="#i-layers"/></svg></span><h3>Diversified routes</h3></span>
         <p>Spread across asset classes — forex, metals and shares through to indices and commodities — inside one account.</p>
       </article>
-      <article class="pl-card">
+      <article class="pl-card" data-aos="fade-up" data-aos-delay="300">
         <span class="pl-card-hd"><span class="pl-card-ic"><svg><use href="#i-chart"/></svg></span><h3>Maximised potential growth</h3></span>
         <p>Take your share of the profit your chosen managers generate, with their fee tied to the performance that earned it.</p>
       </article>
-      <article class="pl-card">
+      <article class="pl-card" data-aos="fade-up" data-aos-delay="400">
         <span class="pl-card-hd"><span class="pl-card-ic"><svg><use href="#i-shield"/></svg></span><h3>Secure and reliable platform</h3></span>
         <p>Segregated client funds, advanced risk tooling, and a managed exposure you can actually see.</p>
       </article>
-      <article class="pl-card">
+      <article class="pl-card" data-aos="fade-up" data-aos-delay="500">
         <span class="pl-card-hd"><span class="pl-card-ic"><svg><use href="#i-headset"/></svg></span><h3>A desk that knows the book</h3></span>
         <p>Account managers who work with PAMM daily, in more than twenty languages, around the clock.</p>
       </article>
@@ -496,7 +568,7 @@
 <section class="section htrade-sec" id="steps" aria-labelledby="pk-steps-title">
   <div class="container">
     <div class="htrade">
-      <div class="htrade-intro" data-reveal>
+      <div class="htrade-intro" data-aos="fade-up">
         <h2 class="htrade-title" id="pk-steps-title">Three steps<br><span>to an investor account</span></h2>
         <p class="htrade-sub">Each step ends in one action, so nothing is left ambiguous</p>
         <a href="../getting-started/account-opening.html" class="btn btn-primary btn-lg htrade-btn magnetic">Open live account <span class="htrade-go"><svg><use href="#i-arrow-right"/></svg></span></a>
@@ -527,7 +599,7 @@
       </ol>
     </div>
 
-    <p class="pl-note" data-reveal>Already hold a live account? Open an additional account and choose <b>PAMM</b> as the account type &mdash; <a href="../getting-started/account-opening.html">start here</a>.</p>
+    <p class="pl-note" data-aos="fade-up">Already hold a live account? Open an additional account and choose <b>PAMM</b> as the account type &mdash; <a href="../getting-started/account-opening.html">start here</a>.</p>
   </div>
 </section>
 
@@ -536,15 +608,15 @@
   <span class="sc-strat-aura" aria-hidden="true"></span>
   <div class="container">
     <div class="head center">
-      <span class="eyebrow eyebrow-blue" data-reveal>Strategy managers</span>
-      <h2 class="h2 h2-light" id="pk-mgr-title" data-reveal>Strategies that work<br> the way you do</h2>
-      <p class="head-sub" data-reveal>Compare the record, the fee and the risk behind it &mdash; then allocate. The return figure means little without the drawdown beside it.</p>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">Strategy managers</span>
+      <h2 class="h2 h2-light" id="pk-mgr-title" data-aos="fade-up">Strategies that work<br> the way you do</h2>
+      <p class="head-sub" data-aos="fade-up">Compare the record, the fee and the risk behind it &mdash; then allocate. The return figure means little without the drawdown beside it.</p>
     </div>
 
-    <div class="pk-grid" data-seen data-reveal-stagger>
-      <article class="pk-card">
+    <div class="pk-grid" data-seen>
+      <article class="pk-card" data-aos="fade-up">
         <div class="pk-hd">
-          <img class="pk-face" src="../../assets/img/person-1.jpg" alt="" width="52" height="52" loading="lazy" decoding="async">
+          <img class="pk-face" src="../../assets/img/person-1.webp" alt="STARTRADER trader portrait" width="52" height="52" loading="lazy" decoding="async">
           <span class="pk-who"><b>Meridian Macro</b><em>Discretionary macro &middot; 4-year record</em></span>
           <span class="pk-rank">#1</span>
         </div>
@@ -560,9 +632,9 @@
           <a class="btn btn-primary" href="../getting-started/account-opening.html">Invest now</a>
         </div>
       </article>
-      <article class="pk-card">
+      <article class="pk-card" data-aos="fade-up" data-aos-delay="100">
         <div class="pk-hd">
-          <img class="pk-face" src="../../assets/img/person-2.jpg" alt="" width="52" height="52" loading="lazy" decoding="async">
+          <img class="pk-face" src="../../assets/img/person-2.webp" alt="STARTRADER trader portrait" width="52" height="52" loading="lazy" decoding="async">
           <span class="pk-who"><b>Vega Systematic</b><em>Rules-based &middot; multi-asset</em></span>
           <span class="pk-rank">#2</span>
         </div>
@@ -578,9 +650,9 @@
           <a class="btn btn-primary" href="../getting-started/account-opening.html">Invest now</a>
         </div>
       </article>
-      <article class="pk-card">
+      <article class="pk-card" data-aos="fade-up" data-aos-delay="200">
         <div class="pk-hd">
-          <img class="pk-face" src="../../assets/img/person-4.jpg" alt="" width="52" height="52" loading="lazy" decoding="async">
+          <img class="pk-face" src="../../assets/img/person-4.webp" alt="STARTRADER trader portrait" width="52" height="52" loading="lazy" decoding="async">
           <span class="pk-who"><b>Sable Carry</b><em>Rates and carry &middot; low turnover</em></span>
           <span class="pk-rank">#3</span>
         </div>
@@ -598,13 +670,13 @@
       </article>
     </div>
 
-    <div class="pk-alloc" data-reveal>
+    <div class="pk-alloc" data-aos="fade-up">
       <div class="pk-alloc-hd"><span>Where a pooled deposit goes</span><span>Illustrative</span></div>
       <div class="pk-alloc-bar"><i style="--w:38%;background:#3d8bff"></i><i style="--w:22%;background:#3fd9a8"></i><i style="--w:18%;background:#8f7bf0"></i><i style="--w:14%;background:#e3b26a"></i><i style="--w:8%;background:#5f9dc4"></i></div>
       <div class="pk-alloc-key"><span><i style="background:#3d8bff"></i>Forex <b>38%</b></span><span><i style="background:#3fd9a8"></i>Metals <b>22%</b></span><span><i style="background:#8f7bf0"></i>Indices <b>18%</b></span><span><i style="background:#e3b26a"></i>Shares <b>14%</b></span><span><i style="background:#5f9dc4"></i>Commodities <b>8%</b></span></div>
     </div>
 
-    <p class="pk-note" data-reveal>Managers, figures and allocations shown are illustrative. Past performance is not a guide to future results, and leveraged products can cost more than your initial deposit.</p>
+    <p class="pk-note" data-aos="fade-up">Managers, figures and allocations shown are illustrative. Past performance is not a guide to future results, and leveraged products can cost more than your initial deposit.</p>
   </div>
 </section>
 
@@ -612,10 +684,10 @@
 <section class="section pl-sec" aria-labelledby="pk-desk-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Talk it through</span>
-      <h2 class="h2" id="pk-desk-title" data-reveal>Not sure which manager fits?</h2>
+      <span class="eyebrow" data-aos="fade-up">Talk it through</span>
+      <h2 class="h2" id="pk-desk-title" data-aos="fade-up">Not sure which manager fits?</h2>
     </div>
-    <div class="pl-desk glass" data-reveal>
+    <div class="pl-desk glass" data-aos="fade-up">
       <span class="pl-desk-tx">
         <b>Speak to the PAMM desk</b>
         <em>Tell us the horizon and the drawdown you can live with, and we will walk you through the managers that match it.</em>
@@ -625,7 +697,7 @@
         <a href="../../company/about/help-center/index.html" class="btn btn-ghost btn-lg">Help centre</a>
       </span>
     </div>
-    <p class="pl-note" data-reveal>Trading leveraged instruments, including through a strategy manager, carries a high level of risk and may not suit every investor. Past performance of a strategy manager is not indicative of future results. You may lose more than you deposit.</p>
+    <p class="pl-note" data-aos="fade-up">Trading leveraged instruments, including through a strategy manager, carries a high level of risk and may not suit every investor. Past performance of a strategy manager is not indicative of future results. You may lose more than you deposit.</p>
   </div>
 </section>
 
@@ -633,10 +705,10 @@
 <section class="section faq-sec fx-faq" aria-labelledby="pf-faq-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>FAQ</span>
-      <h2 class="h2" id="pf-faq-title" data-reveal>Frequently asked questions</h2>
+      <span class="eyebrow" data-aos="fade-up">FAQ</span>
+      <h2 class="h2" id="pf-faq-title" data-aos="fade-up">Frequently asked questions</h2>
     </div>
-    <div class="faq-list" data-reveal>
+    <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
         <summary>What is Pro-Link?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a">Pro-Link is our PAMM offering. It lets you allocate money to vetted strategy managers who trade a combined pool on behalf of several investors, aiming to generate a profit that is then distributed back in proportion to each share.</div>
@@ -669,26 +741,26 @@
 <section class="section fx-more" aria-labelledby="pf-more-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Keep going</span>
-      <h2 class="h2" id="pf-more-title" data-reveal>Where to go next</h2>
+      <span class="eyebrow" data-aos="fade-up">Keep going</span>
+      <h2 class="h2" id="pf-more-title" data-aos="fade-up">Where to go next</h2>
     </div>
-    <div class="fx-more-grid" data-reveal-stagger>
-      <a class="fx-more-card" href="mt5.html">
+    <div class="fx-more-grid">
+      <a class="fx-more-card" href="mt5.html" data-aos="fade-up">
         <span class="fx-more-media"><img src="../../assets/img/platform-hero.webp" alt="MetaTrader 5 trading platform" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">The multi-asset terminal — 38 indicators, depth of market and full automation.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">MT5</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="mt4.html">
-        <span class="fx-more-media"><img src="../../assets/img/mt4Screenshot.png" alt="MetaTrader 4 trading platform" width="640" height="349" loading="lazy" decoding="async"></span>
+      <a class="fx-more-card" href="mt4.html" data-aos="fade-up" data-aos-delay="100">
+        <span class="fx-more-media"><img src="../../assets/img/mt4Screenshot.webp" alt="MetaTrader 4 trading platform" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">The retail standard for currencies, with the largest library of robots and indicators.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">MT4</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="trading-app.html">
+      <a class="fx-more-card" href="trading-app.html" data-aos="fade-up" data-aos-delay="200">
         <span class="fx-more-media"><img src="../../assets/img/app-hero-phone.webp" alt="STARTRADER mobile trading app" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">MT4 and MT5 in one app, with live pricing and full risk management.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Mobile app</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="copy-trade.html">
+      <a class="fx-more-card" href="copy-trade.html" data-aos="fade-up" data-aos-delay="300">
         <span class="fx-more-media"><img src="../../assets/img/learn-cta.webp" alt="Copy trading with STARTRADER" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Follow traders with a record you can inspect, and pay only on profit.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Copy trading</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
@@ -701,9 +773,9 @@
 <section class="cta-banner" aria-labelledby="pf-cta-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="pf-cta-title" data-reveal>Start trading with a<br>globally leading broker</h2>
-    <p data-reveal>Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
-    <div class="cta-actions" data-reveal>
+    <h2 id="pf-cta-title" data-aos="fade-up">Start trading with a<br>globally leading broker</h2>
+    <p data-aos="fade-up">Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
+    <div class="cta-actions" data-aos="fade-up">
       <a href="../getting-started/account-opening.html" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       <a href="../getting-started/account-opening.html" class="btn btn-ghost btn-lg">Try Free Demo</a>
     </div>
@@ -792,7 +864,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -826,6 +898,7 @@
 <script src="../../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../../assets/js/vendor/aos.min.js" defer></script>
 <script src="../../assets/js/main.js" defer></script>
 </body>
 </html>

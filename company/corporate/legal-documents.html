@@ -17,14 +17,14 @@
   <meta property="og:title" content="Legal Documents | STARTRADER Regulatory &amp; Compliance Information" />
   <meta property="og:description" content="Client Agreement, Privacy Policy, Risk Disclosure and the rest of the terms that govern your account." />
   <meta property="og:url" content="https://www.startrader.com/company/corporate/legal-documents.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/company-hero.jpg" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/company-hero.webp" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Legal Documents | STARTRADER Regulatory &amp; Compliance Information" />
   <meta name="twitter:description" content="Client Agreement, Privacy Policy, Risk Disclosure and the rest of the terms that govern your account." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/company-hero.jpg" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/company-hero.webp" />
 
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../../favicon.svg" />
@@ -33,7 +33,36 @@
   <!-- Fonts (self-hosted) -->
   <link rel="preload" href="../../assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="../../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ---- document list (legal documents) ---- */
+.cp-docs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.cp-doc{
+  display:flex;flex-direction:column;padding:24px 22px 22px;border-radius:20px;min-width:0;
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
+}
+.cp-doc:hover{transform:translateY(-4px);border-color:rgba(0,71,187,.28);box-shadow:0 28px 52px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff}
+.cp-doc-ic{
+  width:46px;height:46px;border-radius:14px;display:grid;place-items:center;margin-bottom:17px;
+  background:rgba(0,71,187,.09);color:var(--blue);transition:transform .4s var(--ease);
+}
+.cp-doc-ic svg{width:22px;height:22px}
+.cp-doc:hover .cp-doc-ic{transform:translateY(-3px) scale(1.05)}
+.cp-doc h3{font-size:16.5px;letter-spacing:-.02em;color:var(--text)}
+.cp-doc p{margin-top:9px;font-size:13.5px;line-height:1.62;color:var(--text-soft)}
+.cp-doc-go{
+  margin-top:auto;padding-top:20px;display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:700;color:var(--blue);
+}
+.cp-doc-go svg{width:14px;height:14px;flex:none;transition:transform .3s var(--ease)}
+.cp-doc:hover .cp-doc-go svg{transform:translateY(2px)}
+.cp-doc-go:hover{text-decoration:underline;text-underline-offset:3px}
+/* ---- Responsive ---- */
+@media (max-width:1080px){.cp-docs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:720px){.cp-docs{grid-template-columns:1fr}}
+  </style>
 
   <!-- Structured data — breadcrumb -->
   <script type="application/ld+json">
@@ -419,11 +448,11 @@
   <span class="gl-orb o3" aria-hidden="true"></span>
 
   <div class="container pt-hero-in">
-    <span class="eyebrow eyebrow-blue" data-reveal>Compliance</span>
-    <h1 class="pt-h1" id="lg-title" data-reveal>Legal<br><span class="g">documents</span></h1>
-    <p class="pt-lead" data-reveal>The terms that govern your account, in one place. Which set applies to you depends on the STARTRADER entity you are registered with &mdash; that entity is named in your client agreement.</p>
+    <span class="eyebrow eyebrow-blue" data-aos="fade-up">Compliance</span>
+    <h1 class="pt-h1" id="lg-title" data-aos="fade-up">Legal<br><span class="g">documents</span></h1>
+    <p class="pt-lead" data-aos="fade-up">The terms that govern your account, in one place. Which set applies to you depends on the STARTRADER entity you are registered with &mdash; that entity is named in your client agreement.</p>
 
-    <div class="pt-hact" data-reveal>
+    <div class="pt-hact" data-aos="fade-up">
       <a href="regulation.html" class="btn btn-primary btn-lg magnetic">Check our licences <svg class="ico"><use href="#i-arrow-right"/></svg></a>
     </div>
   </div>
@@ -435,48 +464,48 @@
   <span class="pt-aura a2" aria-hidden="true" data-pt-aura="7"></span>
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>The documents</span>
-      <h2 class="h2" id="lg-d-title" data-reveal>What governs your account</h2>
-      <p class="head-sub" data-reveal>Six documents, each doing a different job. The Client Agreement and the Risk Disclosure are the two that matter most before you trade.</p>
+      <span class="eyebrow" data-aos="fade-up">The documents</span>
+      <h2 class="h2" id="lg-d-title" data-aos="fade-up">What governs your account</h2>
+      <p class="head-sub" data-aos="fade-up">Six documents, each doing a different job. The Client Agreement and the Risk Disclosure are the two that matter most before you trade.</p>
     </div>
 
-    <div class="cp-docs" data-reveal-stagger>
-      <article class="cp-doc glass">
+    <div class="cp-docs">
+      <article class="cp-doc glass" data-aos="fade-up">
         <span class="cp-doc-ic"><svg><use href="#i-doc"/></svg></span>
         <h3>Client Agreement</h3>
         <p>The contract between you and the STARTRADER entity your account is registered with, setting out the terms on which we provide services.</p>
         <a class="cp-doc-go" href="#">Open document <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></a>
       </article>
 
-      <article class="cp-doc glass">
+      <article class="cp-doc glass" data-aos="fade-up" data-aos-delay="100">
         <span class="cp-doc-ic"><svg><use href="#i-headset"/></svg></span>
         <h3>Complaints Procedure Policy</h3>
         <p>How to raise a complaint, who reviews it, and what timescales apply. Complaints go to the compliance team of your entity.</p>
         <a class="cp-doc-go" href="#">Open document <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></a>
       </article>
 
-      <article class="cp-doc glass">
+      <article class="cp-doc glass" data-aos="fade-up" data-aos-delay="200">
         <span class="cp-doc-ic"><svg><use href="#i-shield"/></svg></span>
         <h3>Privacy Policy</h3>
         <p>What personal data we collect, why we hold it, how long we keep it, and the rights you have over it.</p>
         <a class="cp-doc-go" href="#">Open document <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></a>
       </article>
 
-      <article class="cp-doc glass">
+      <article class="cp-doc glass" data-aos="fade-up" data-aos-delay="300">
         <span class="cp-doc-ic"><svg><use href="#i-swap"/></svg></span>
         <h3>Swap-Free Accounts Policy</h3>
         <p>The terms that apply to swap-free (Islamic) accounts, including eligibility and how positions are treated.</p>
         <a class="cp-doc-go" href="#">Open document <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></a>
       </article>
 
-      <article class="cp-doc glass">
+      <article class="cp-doc glass" data-aos="fade-up" data-aos-delay="400">
         <span class="cp-doc-ic"><svg><use href="#i-wallet"/></svg></span>
         <h3>Deposit and Withdrawal Policy</h3>
         <p>Accepted funding methods, processing times, third-party payment rules and the conditions attached to withdrawals.</p>
         <a class="cp-doc-go" href="#">Open document <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></a>
       </article>
 
-      <article class="cp-doc glass">
+      <article class="cp-doc glass" data-aos="fade-up" data-aos-delay="500">
         <span class="cp-doc-ic"><svg><use href="#i-bolt"/></svg></span>
         <h3>Risk Disclosure</h3>
         <p>The risks of trading leveraged derivatives, set out in full. Read this before you open a position, not after.</p>
@@ -484,7 +513,7 @@
       </article>
     </div>
 
-    <p class="cp-lp-note" data-reveal>Documents are issued per entity. If you are not sure which entity holds your account, <a href="../about/contact.html">ask support</a> &mdash; it is named in your client agreement and on your statements.</p>
+    <p class="cp-lp-note" data-aos="fade-up">Documents are issued per entity. If you are not sure which entity holds your account, <a href="../about/contact.html">ask support</a> &mdash; it is named in your client agreement and on your statements.</p>
   </div>
 </section>
 
@@ -492,18 +521,18 @@
 <section class="section fx-hours pt-hours" aria-labelledby="lg-e-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Which set applies</span>
-      <h2 class="h2" id="lg-e-title" data-reveal>One brand, several licensed entities</h2>
-      <p class="head-sub" data-reveal>This matters for the documents you are bound by, so it is worth checking rather than assuming.</p>
+      <span class="eyebrow" data-aos="fade-up">Which set applies</span>
+      <h2 class="h2" id="lg-e-title" data-aos="fade-up">One brand, several licensed entities</h2>
+      <p class="head-sub" data-aos="fade-up">This matters for the documents you are bound by, so it is worth checking rather than assuming.</p>
     </div>
-    <div class="fx-mh" data-reveal-stagger>
-      <article class="fx-mh-card fx-mh--wide fx-mh--teal">
+    <div class="fx-mh">
+      <article class="fx-mh-card fx-mh--wide fx-mh--teal" data-aos="fade-up">
         <span class="fx-mh-ic"><svg><use href="#i-id"/></svg></span>
         <h3>Your entity determines your terms</h3>
         <p>STARTRADER operates through separately licensed entities, and you contract with one of them based on your country of residence. That entity is named in your client agreement, and its regulator is the one you would approach with a regulatory complaint.</p>
         <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="fx-mh-status"><i></i> Six entities &middot; five regulators</span></div></div>
       </article>
-      <article class="fx-mh-card fx-mh--blue">
+      <article class="fx-mh-card fx-mh--blue" data-aos="fade-up" data-aos-delay="100">
         <span class="fx-mh-ic"><svg><use href="#i-shield"/></svg></span>
         <h3>Verify the licence yourself</h3>
         <p>Every licence number is published with a link to the regulator&rsquo;s own register on the <a href="regulation.html">regulation page</a>. Check it there rather than trusting a number on any website.</p>
@@ -517,10 +546,10 @@
 <section class="section faq-sec fx-faq" aria-labelledby="lg-faq-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>FAQ</span>
-      <h2 class="h2" id="lg-faq-title" data-reveal>Legal document questions</h2>
+      <span class="eyebrow" data-aos="fade-up">FAQ</span>
+      <h2 class="h2" id="lg-faq-title" data-aos="fade-up">Legal document questions</h2>
     </div>
-    <div class="faq-list" data-reveal>
+    <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
         <summary>Which entity's documents apply to me?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a">The entity your account is registered with, which is named in the client agreement you accepted and on your account statements. Each STARTRADER entity, its regulator and its licence number are listed on the regulation page.</div>
@@ -553,9 +582,9 @@
 <section class="cta-banner" aria-labelledby="pt-cta-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="pt-cta-title" data-reveal>Start trading with a<br>globally leading broker</h2>
-    <p data-reveal>Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
-    <div class="cta-actions" data-reveal>
+    <h2 id="pt-cta-title" data-aos="fade-up">Start trading with a<br>globally leading broker</h2>
+    <p data-aos="fade-up">Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
+    <div class="cta-actions" data-aos="fade-up">
       <a href="../../trading/getting-started/account-opening.html" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       <a href="../../trading/getting-started/account-opening.html" class="btn btn-ghost btn-lg">Try Free Demo</a>
     </div>
@@ -648,7 +677,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -682,6 +711,7 @@
 <script src="../../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../../assets/js/vendor/aos.min.js" defer></script>
 <script src="../../assets/js/main.js" defer></script>
 </body>
 </html>

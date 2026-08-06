@@ -16,14 +16,14 @@
   <meta property="og:title" content="Sponsorships | The Champions We Stand With | STARTRADER" />
   <meta property="og:description" content="STARTRADER partners with the NBA, the Porsche Carrera Cup Middle East, the UAE National Cricket Team, the PFL Champions Series and more — sponsorships guided by strength, trust, ambition and resilience." />
   <meta property="og:url" content="https://www.startrader.com/company/about/sponsorship/index.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/platform-hero.jpg" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/platform-hero.webp" />
   <meta property="og:image:alt" content="Sponsorship — STARTRADER" />
   <meta property="og:locale" content="en_US" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Sponsorships | The Champions We Stand With | STARTRADER" />
   <meta name="twitter:description" content="STARTRADER partners with the NBA, the Porsche Carrera Cup Middle East, the UAE National Cricket Team, the PFL Champions Series and more — sponsorships guided by strength, trust, ambition and resilience." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/platform-hero.jpg" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/platform-hero.webp" />
 
   <link rel="icon" href="../../../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../../../favicon.svg" />
@@ -32,7 +32,43 @@
   <link rel="preload" href="../../../assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" as="image" href="../../../assets/img/platform-hero.webp" />
   <link rel="stylesheet" href="../../../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../../../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../../../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ---- Feature grid ---- */
+.pf-feat{
+  position:relative;isolation:isolate;overflow:clip;
+  background:radial-gradient(50% 44% at 94% 2%,rgba(0,71,187,.07),transparent 62%),var(--bg-light-2);
+}
+.pf-feat>.container{position:relative;z-index:1}
+/* ---- Partner grid (sponsorship index) ---- */
+.pg-partners{background:var(--bg-light)}
+.pg-partner-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.pg-partner{
+  position:relative;display:flex;flex-direction:column;border-radius:22px;overflow:hidden;
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
+}
+.pg-partner:hover{transform:translateY(-4px);border-color:rgba(0,71,187,.28);box-shadow:0 28px 52px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff}
+.pg-partner-media{display:block;aspect-ratio:640/349;overflow:hidden}
+.pg-partner-media img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
+.pg-partner:hover .pg-partner-media img{transform:scale(1.05)}
+.pg-partner-tx{display:flex;flex-direction:column;gap:8px;padding:22px 22px 20px}
+.pg-partner-tx b{font-size:17px;letter-spacing:-.024em;color:var(--text);transition:color .25s}
+.pg-partner:hover .pg-partner-tx b{color:var(--blue)}
+.pg-partner-tx em{font-style:normal;font-size:13.5px;line-height:1.6;color:var(--text-soft)}
+.pg-partner-go{
+  position:absolute;top:16px;right:16px;width:34px;height:34px;border-radius:50%;
+  display:grid;place-items:center;color:#fff;background:rgba(4,6,14,.5);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  transition:background .3s,transform .35s var(--ease);
+}
+.pg-partner-go svg{width:15px;height:15px}
+.pg-partner:hover .pg-partner-go{background:var(--blue);transform:translateX(3px)}
+/* ---- Responsive ---- */
+@media (max-width:1080px){.pg-partner-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:720px){.pg-partner-grid{grid-template-columns:1fr}}
+  </style>
 
   <script type="application/ld+json">
 {
@@ -424,13 +460,13 @@
   <div class="pf-hero-bg" aria-hidden="true"></div>
   <div class="container pf-hero-in">
     <div class="pf-hero-copy">
-      <span class="eyebrow eyebrow-blue" data-reveal>Sponsorship</span>
-      <h1 class="pf-h1" id="pg-hero-title" data-reveal>Proud to support,<br> ready to partner</h1>
-      <p class="pf-lead" data-reveal>We stand beside champions and we back the stars &mdash; every partnership<br> chosen by the same principles that drive the company forward.</p>
-      <div class="pf-hact" data-reveal>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">Sponsorship</span>
+      <h1 class="pf-h1" id="pg-hero-title" data-aos="fade-up">Proud to support,<br> ready to partner</h1>
+      <p class="pf-lead" data-aos="fade-up">We stand beside champions and we back the stars &mdash; every partnership<br> chosen by the same principles that drive the company forward.</p>
+      <div class="pf-hact" data-aos="fade-up">
         <a href="#partners" class="btn btn-primary btn-lg magnetic">Explore the partnerships <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       </div>
-      <nav class="pf-subnav" aria-label="On this page" data-reveal><a href="#commitments">Values</a><a href="#partners">Sponsorships</a></nav>
+      <nav class="pf-subnav" aria-label="On this page" data-aos="fade-up"><a href="#commitments">Values</a><a href="#partners">Sponsorships</a></nav>
     </div>
   </div>
 </section>
@@ -440,27 +476,27 @@
   <span class="pf-aura a1" aria-hidden="true"></span>
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Our values</span>
-      <h2 class="h2" id="pg-grid-title" data-reveal>Our partnerships reflect our values</h2>
-      <p class="head-sub" data-reveal>Every sponsorship we choose is guided by the same four principles.</p>
+      <span class="eyebrow" data-aos="fade-up">Our values</span>
+      <h2 class="h2" id="pg-grid-title" data-aos="fade-up">Our partnerships reflect our values</h2>
+      <p class="head-sub" data-aos="fade-up">Every sponsorship we choose is guided by the same four principles.</p>
     </div>
-    <div class="pf-grid" data-reveal-stagger>
-      <article class="pf-card glass">
+    <div class="pf-grid">
+      <article class="pf-card glass" data-aos="fade-up">
         <span class="pf-card-ic"><svg><use href="#i-shield"/></svg></span>
         <h3>S &mdash; Strength</h3>
         <p>We back the powerful, ready to take the next challenge.</p>
       </article>
-      <article class="pf-card glass">
+      <article class="pf-card glass" data-aos="fade-up" data-aos-delay="100">
         <span class="pf-card-ic"><svg><use href="#i-check"/></svg></span>
         <h3>T &mdash; Trust</h3>
         <p>We stand by the names people believe in.</p>
       </article>
-      <article class="pf-card glass">
+      <article class="pf-card glass" data-aos="fade-up" data-aos-delay="200">
         <span class="pf-card-ic"><svg><use href="#i-star"/></svg></span>
         <h3>A &mdash; Ambition</h3>
         <p>We support those who always aim high and reach high.</p>
       </article>
-      <article class="pf-card glass">
+      <article class="pf-card glass" data-aos="fade-up" data-aos-delay="300">
         <span class="pf-card-ic"><svg><use href="#i-gauge"/></svg></span>
         <h3>R &mdash; Resilience</h3>
         <p>We endure with our partners, standing strong through every test.</p>
@@ -472,12 +508,12 @@
 <section class="section pg-partners" id="partners" aria-labelledby="pg-partners-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Sponsorships</span>
-      <h2 class="h2" id="pg-partners-title" data-reveal>Where passion meets partnership</h2>
-      <p class="head-sub" data-reveal>Discover the champions we stand with.</p>
+      <span class="eyebrow" data-aos="fade-up">Sponsorships</span>
+      <h2 class="h2" id="pg-partners-title" data-aos="fade-up">Where passion meets partnership</h2>
+      <p class="head-sub" data-aos="fade-up">Discover the champions we stand with.</p>
     </div>
-    <div class="pg-partner-grid" data-reveal-stagger>
-      <a class="pg-partner glass" href="nba.html">
+    <div class="pg-partner-grid">
+      <a class="pg-partner glass" href="nba.html" data-aos="fade-up">
         <span class="pg-partner-media"><img src="../../../assets/img/company-1.webp" alt="NBA Partnership 2026 — STARTRADER sponsorship" width="640" height="349" loading="lazy" decoding="async"></span>
         <span class="pg-partner-tx">
           <b>NBA Partnership 2026</b>
@@ -485,7 +521,7 @@
         </span>
         <span class="pg-partner-go"><svg><use href="#i-arrow-right"/></svg></span>
       </a>
-      <a class="pg-partner glass" href="pccme.html">
+      <a class="pg-partner glass" href="pccme.html" data-aos="fade-up" data-aos-delay="100">
         <span class="pg-partner-media"><img src="../../../assets/img/prime-upgrade.webp" alt="Official Partner of the PCCME — STARTRADER sponsorship" width="640" height="349" loading="lazy" decoding="async"></span>
         <span class="pg-partner-tx">
           <b>Official Partner of the PCCME</b>
@@ -493,7 +529,7 @@
         </span>
         <span class="pg-partner-go"><svg><use href="#i-arrow-right"/></svg></span>
       </a>
-      <a class="pg-partner glass" href="icc.html">
+      <a class="pg-partner glass" href="icc.html" data-aos="fade-up" data-aos-delay="200">
         <span class="pg-partner-media"><img src="../../../assets/img/company-2.webp" alt="ICC Men’s T20 World Cup 2026 — STARTRADER sponsorship" width="640" height="349" loading="lazy" decoding="async"></span>
         <span class="pg-partner-tx">
           <b>ICC Men’s T20 World Cup 2026</b>
@@ -501,7 +537,7 @@
         </span>
         <span class="pg-partner-go"><svg><use href="#i-arrow-right"/></svg></span>
       </a>
-      <a class="pg-partner glass" href="pfl-champions-series.html">
+      <a class="pg-partner glass" href="pfl-champions-series.html" data-aos="fade-up" data-aos-delay="300">
         <span class="pg-partner-media"><img src="../../../assets/img/company-3.webp" alt="PFL Champions Series — STARTRADER sponsorship" width="640" height="349" loading="lazy" decoding="async"></span>
         <span class="pg-partner-tx">
           <b>PFL Champions Series</b>
@@ -509,7 +545,7 @@
         </span>
         <span class="pg-partner-go"><svg><use href="#i-arrow-right"/></svg></span>
       </a>
-      <a class="pg-partner glass" href="asia-cup-2025.html">
+      <a class="pg-partner glass" href="asia-cup-2025.html" data-aos="fade-up" data-aos-delay="400">
         <span class="pg-partner-media"><img src="../../../assets/img/company-office.webp" alt="DP World Asia Cup 2025 — STARTRADER sponsorship" width="640" height="349" loading="lazy" decoding="async"></span>
         <span class="pg-partner-tx">
           <b>DP World Asia Cup 2025</b>
@@ -517,8 +553,8 @@
         </span>
         <span class="pg-partner-go"><svg><use href="#i-arrow-right"/></svg></span>
       </a>
-      <a class="pg-partner glass" href="mena.html">
-        <span class="pg-partner-media"><img src="../../../assets/img/company-hero.jpg" alt="MENA Investment Congress 2025 — STARTRADER sponsorship" width="640" height="349" loading="lazy" decoding="async"></span>
+      <a class="pg-partner glass" href="mena.html" data-aos="fade-up" data-aos-delay="500">
+        <span class="pg-partner-media"><img src="../../../assets/img/company-hero.webp" alt="MENA Investment Congress 2025 — STARTRADER sponsorship" width="640" height="349" loading="lazy" decoding="async"></span>
         <span class="pg-partner-tx">
           <b>MENA Investment Congress 2025</b>
           <em>Supporting dialogue and innovation among the thought leaders shaping regional finance.</em>
@@ -532,27 +568,27 @@
 <section class="section fx-more" aria-labelledby="pg-more-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Keep going</span>
-      <h2 class="h2" id="pg-more-title" data-reveal>Where to go next</h2>
+      <span class="eyebrow" data-aos="fade-up">Keep going</span>
+      <h2 class="h2" id="pg-more-title" data-aos="fade-up">Where to go next</h2>
     </div>
-    <div class="fx-more-grid" data-reveal-stagger>
-      <a class="fx-more-card" href="../why-startrader.html">
-        <span class="fx-more-media"><img src="../../../assets/img/company-hero.jpg" alt="Why STARTRADER — regulation and scale" width="640" height="349" loading="lazy" decoding="async"></span>
+    <div class="fx-more-grid">
+      <a class="fx-more-card" href="../why-startrader.html" data-aos="fade-up">
+        <span class="fx-more-media"><img src="../../../assets/img/company-hero.webp" alt="Why STARTRADER — regulation and scale" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Five regulators, segregated funds and the conditions behind the brand.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Why STARTRADER</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="../csr.html">
+      <a class="fx-more-card" href="../csr.html" data-aos="fade-up" data-aos-delay="100">
         <span class="fx-more-media"><img src="../../../assets/img/company-2.webp" alt="STARCARES community programmes" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Courts rebuilt, families reached and students backed through STARCARES.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">CSR</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="../events.html">
+      <a class="fx-more-card" href="../events.html" data-aos="fade-up" data-aos-delay="200">
         <span class="fx-more-media"><img src="../../../assets/img/company-1.webp" alt="STARTRADER events and expos" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Expos, summits and client evenings where you can meet the team.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Events</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="../achievements.html">
-        <span class="fx-more-media"><img src="../../../assets/img/stat-awards.png" alt="STARTRADER awards and achievements" width="640" height="349" loading="lazy" decoding="async"></span>
+      <a class="fx-more-card" href="../achievements.html" data-aos="fade-up" data-aos-delay="300">
+        <span class="fx-more-media"><img src="../../../assets/img/stat-awards.webp" alt="STARTRADER awards and achievements" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Awards tied to execution, service and cost rather than marketing spend.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Achievements</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
@@ -563,9 +599,9 @@
 <section class="cta-banner" aria-labelledby="pg-cta-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="pg-cta-title" data-reveal>Start trading with a<br>globally leading broker</h2>
-    <p data-reveal>Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
-    <div class="cta-actions" data-reveal>
+    <h2 id="pg-cta-title" data-aos="fade-up">Start trading with a<br>globally leading broker</h2>
+    <p data-aos="fade-up">Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
+    <div class="cta-actions" data-aos="fade-up">
       <a href="../../../trading/getting-started/account-opening.html" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       <a href="../../../trading/getting-started/account-opening.html" class="btn btn-ghost btn-lg">Try Free Demo</a>
     </div>
@@ -653,7 +689,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../../../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../../../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -687,6 +723,7 @@
 <script src="../../../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../../../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../../../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../../../assets/js/vendor/aos.min.js" defer></script>
 <script src="../../../assets/js/main.js" defer></script>
 
 <!-- Company page: robust scroll reveals + hero parallax (self-contained, never leaves content hidden) -->

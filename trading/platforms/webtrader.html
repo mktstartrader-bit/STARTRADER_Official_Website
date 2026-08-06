@@ -16,14 +16,14 @@
   <meta property="og:title" content="Web Trader | Unlimited Trading Without Any Download | STARTRADER" />
   <meta property="og:description" content="Web Trader runs in any current browser with no download — 30 indicators, nine timeframes, one-click trading and the same account as the installed MT4 terminal." />
   <meta property="og:url" content="https://www.startrader.com/trading/platforms/webtrader.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/platform-hero.jpg" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/platform-hero.webp" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Web Trader | Unlimited Trading Without Any Download | STARTRADER" />
   <meta name="twitter:description" content="Web Trader runs in any current browser with no download — 30 indicators, nine timeframes, one-click trading and the same account as the installed MT4 terminal." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/platform-hero.jpg" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/platform-hero.webp" />
 
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../../favicon.svg" />
@@ -32,7 +32,56 @@
   <link rel="preload" href="../../assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" as="image" href="../../assets/img/platform-hero.webp" />
   <link rel="stylesheet" href="../../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ---- ten reasons: a spec sheet, not ten boxes ---- */
+.wt-why{position:relative;isolation:isolate;overflow:clip;background:radial-gradient(52% 44% at 50% -6%,rgba(0,71,187,.08),transparent 62%),var(--bg-light-2)}
+.wt-why>.container{position:relative;z-index:1}
+.wt-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:10px}
+.wt-card{
+  position:relative;display:flex;flex-direction:column;overflow:hidden;
+  border-radius:22px;padding:26px 26px 24px;
+  background:linear-gradient(180deg,rgba(0,71,187,.07),rgba(255,255,255,.6) 50%);
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
+}
+/* twelve column-units over four rows: the first and last claim two each, so
+   ten cards land on a full grid with no orphan */
+.wt-card:first-child,.wt-card:last-child{grid-column:span 2}
+.wt-card:nth-child(3n+2){background:linear-gradient(180deg,rgba(223,197,174,.44),rgba(255,255,255,.6) 52%)}
+.wt-card:hover{transform:translateY(-4px);border-color:rgba(0,71,187,.28);box-shadow:0 28px 52px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff}
+.wt-card:nth-child(3n+2):hover{border-color:rgba(138,100,64,.34)}
+/* a light ray opens along the top edge on hover — the card's only decoration */
+.wt-card::after{
+  content:"";position:absolute;top:0;left:24%;right:24%;height:2px;border-radius:2px;
+  background:var(--blue);opacity:0;
+  transition:opacity .35s,left .55s var(--ease),right .55s var(--ease);
+}
+.wt-card:nth-child(3n+2)::after{background:#8a6440}
+.wt-card:hover::after{opacity:.9;left:7%;right:7%}
+.wt-card-n{
+  position:absolute;top:14px;right:20px;pointer-events:none;
+  font-size:46px;font-weight:800;line-height:1;letter-spacing:-.05em;
+  color:rgba(0,71,187,.09);transition:color .4s;
+}
+.wt-card:nth-child(3n+2) .wt-card-n{color:rgba(138,100,64,.13)}
+.wt-card:hover .wt-card-n{color:rgba(0,71,187,.17)}
+.wt-card:nth-child(3n+2):hover .wt-card-n{color:rgba(138,100,64,.22)}
+.wt-card-ic{width:42px;height:42px;flex:none;border-radius:13px;display:grid;place-items:center;background:rgba(0,71,187,.1);color:var(--blue);transition:transform .35s var(--ease)}
+.wt-card:nth-child(3n+2) .wt-card-ic{background:rgba(223,197,174,.55);color:#8a6440}
+.wt-card-ic svg{width:20px;height:20px}
+.wt-card:hover .wt-card-ic{transform:scale(1.07)}
+.wt-card h3{margin-top:20px;padding-right:52px;font-size:17px;letter-spacing:-.028em;line-height:1.26;color:var(--text)}
+.wt-card p{margin-top:9px;font-size:13.5px;line-height:1.66;color:var(--text-soft);max-width:46ch}
+.wt-why-act{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:44px}
+/* ---- Responsive ---- */
+@media (max-width:1080px){.wt-cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+.wt-card:first-child,.wt-card:last-child{grid-column:span 2}}
+@media (max-width:720px){.wt-cards{grid-template-columns:1fr}
+.wt-card:first-child,.wt-card:last-child{grid-column:auto}
+.wt-why .h2 br{display:none}}
+  </style>
 
   <script type="application/ld+json">
 {
@@ -439,10 +488,10 @@
   <div class="pf-hero-bg" aria-hidden="true"></div>
   <div class="container pf-hero-in">
     <div class="pf-hero-copy">
-      <span class="eyebrow eyebrow-blue" data-reveal>Web Trader</span>
-      <h1 class="pf-h1" id="pf-hero-title" data-reveal>Unlimited trading,<br> without the download</h1>
-      <p class="pf-lead" data-reveal>An interface simple enough for a first trade and deep enough for a hundredth &mdash;<br> in the browser you already have open. Nothing to install, nothing to maintain.</p>
-      <div class="pf-hact" data-reveal>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">Web Trader</span>
+      <h1 class="pf-h1" id="pf-hero-title" data-aos="fade-up">Unlimited trading,<br> without the download</h1>
+      <p class="pf-lead" data-aos="fade-up">An interface simple enough for a first trade and deep enough for a hundredth &mdash;<br> in the browser you already have open. Nothing to install, nothing to maintain.</p>
+      <div class="pf-hact" data-aos="fade-up">
         <a href="#launch" class="btn btn-primary btn-lg magnetic">Launch Web Trader <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       </div>
     </div>
@@ -454,67 +503,67 @@
   <span class="pf-aura a1" aria-hidden="true"></span>
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Why Web Trader</span>
-      <h2 class="h2" id="wt-why-title" data-reveal>Ten reasons it beats<br> an install</h2>
-      <p class="head-sub" data-reveal>Buy and sell in seconds, read live market sentiment, and reach a full library of studies and indicators &mdash; without downloading anything.</p>
+      <span class="eyebrow" data-aos="fade-up">Why Web Trader</span>
+      <h2 class="h2" id="wt-why-title" data-aos="fade-up">Ten reasons it beats<br> an install</h2>
+      <p class="head-sub" data-aos="fade-up">Buy and sell in seconds, read live market sentiment, and reach a full library of studies and indicators &mdash; without downloading anything.</p>
     </div>
 
-    <div class="wt-cards" data-reveal-stagger>
-      <article class="wt-card glass">
+    <div class="wt-cards">
+      <article class="wt-card glass" data-aos="fade-up">
         <span class="wt-card-n">01</span>
         <span class="wt-card-ic"><svg><use href="#i-window"/></svg></span>
         <h3>Trading straight from a browser</h3>
         <p>Open a tab and the terminal is already current. Nothing to install, nothing to patch.</p>
       </article>
-      <article class="wt-card glass">
+      <article class="wt-card glass" data-aos="fade-up" data-aos-delay="100">
         <span class="wt-card-n">02</span>
         <span class="wt-card-ic"><svg><use href="#i-monitor"/></svg></span>
         <h3>Any operating system</h3>
         <p>Windows, macOS, Linux or ChromeOS — a current browser is the only requirement.</p>
       </article>
-      <article class="wt-card glass">
+      <article class="wt-card glass" data-aos="fade-up" data-aos-delay="200">
         <span class="wt-card-n">03</span>
         <span class="wt-card-ic"><svg><use href="#i-shield"/></svg></span>
         <h3>Reliable data protection</h3>
         <p>Every session is encrypted in transit, and no credentials are left on a machine you borrowed.</p>
       </article>
-      <article class="wt-card glass">
+      <article class="wt-card glass" data-aos="fade-up" data-aos-delay="300">
         <span class="wt-card-n">04</span>
         <span class="wt-card-ic"><svg><use href="#i-bolt"/></svg></span>
         <h3>One-click trading</h3>
         <p>Fire an order from the chart you are reading, at the price you are looking at.</p>
       </article>
-      <article class="wt-card glass">
+      <article class="wt-card glass" data-aos="fade-up" data-aos-delay="400">
         <span class="wt-card-n">05</span>
         <span class="wt-card-ic"><svg><use href="#i-doc"/></svg></span>
         <h3>History of every operation</h3>
         <p>Fills, amendments and closes stay on record, so a post-mortem is always possible.</p>
       </article>
-      <article class="wt-card glass">
+      <article class="wt-card glass" data-aos="fade-up" data-aos-delay="500">
         <span class="wt-card-n">06</span>
         <span class="wt-card-ic"><svg><use href="#i-chart"/></svg></span>
         <h3>30 indicators for analysis</h3>
         <p>Plus 24 analytical tools, applied to any chart without a plugin to hunt down.</p>
       </article>
-      <article class="wt-card glass">
+      <article class="wt-card glass" data-aos="fade-up" data-aos-delay="600">
         <span class="wt-card-n">07</span>
         <span class="wt-card-ic"><svg><use href="#i-swap"/></svg></span>
         <h3>Every order type</h3>
         <p>Market, limit, stop and pending orders, amendable without cancelling first.</p>
       </article>
-      <article class="wt-card glass">
+      <article class="wt-card glass" data-aos="fade-up" data-aos-delay="600">
         <span class="wt-card-n">08</span>
         <span class="wt-card-ic"><svg><use href="#i-cfd"/></svg></span>
         <h3>Graphical objects</h3>
         <p>Trendlines, channels, Fibonacci levels and shapes, saved with the layout.</p>
       </article>
-      <article class="wt-card glass">
+      <article class="wt-card glass" data-aos="fade-up" data-aos-delay="600">
         <span class="wt-card-n">09</span>
         <span class="wt-card-ic"><svg><use href="#i-clock"/></svg></span>
         <h3>Nine timeframes</h3>
         <p>One minute through one month, switchable without reloading the chart.</p>
       </article>
-      <article class="wt-card glass">
+      <article class="wt-card glass" data-aos="fade-up" data-aos-delay="600">
         <span class="wt-card-n">10</span>
         <span class="wt-card-ic"><svg><use href="#i-gauge"/></svg></span>
         <h3>Real-time Market Watch</h3>
@@ -522,7 +571,7 @@
       </article>
     </div>
 
-    <div class="wt-why-act" data-reveal>
+    <div class="wt-why-act" data-aos="fade-up">
       <a href="webtrader-mt4.html" class="btn btn-primary btn-lg magnetic">Web Trader MT4 <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       <a href="webtrader-mt5.html" class="btn btn-ghost btn-lg">Web Trader MT5</a>
     </div>
@@ -533,12 +582,12 @@
 <section class="section wt-stage-sec" id="launch" aria-labelledby="wt-stage-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow eyebrow-blue" data-reveal>Introducing Web Trader</span>
-      <h2 class="h2 h2-light" id="wt-stage-title" data-reveal>Your MT4 account,<br> straight from the browser</h2>
-      <p class="head-sub" data-reveal>The same account and the same charts as the installed terminal &mdash; reached without installing it.</p>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">Introducing Web Trader</span>
+      <h2 class="h2 h2-light" id="wt-stage-title" data-aos="fade-up">Your MT4 account,<br> straight from the browser</h2>
+      <p class="head-sub" data-aos="fade-up">The same account and the same charts as the installed terminal &mdash; reached without installing it.</p>
     </div>
 
-    <div class="wt-frame" data-reveal>
+    <div class="wt-frame" data-aos="fade-up">
       <div class="wt-frame-bar" aria-hidden="true">
         <i></i><i></i><i></i>
         <span class="wt-frame-url"><svg><use href="#i-shield"/></svg>web.startrader.com</span>
@@ -568,31 +617,31 @@
       </div>
     </div>
 
-    <ul class="wt-caps" data-reveal-stagger>
-      <li class="wt-cap">
+    <ul class="wt-caps">
+      <li class="wt-cap" data-aos="fade-up">
         <span class="wt-cap-ic"><svg><use href="#i-chart"/></svg></span>
         <b>30 indicators</b><em>and 24 analytical tools</em>
       </li>
-      <li class="wt-cap">
+      <li class="wt-cap" data-aos="fade-up" data-aos-delay="100">
         <span class="wt-cap-ic"><svg><use href="#i-layers"/></svg></span>
         <b>3 chart types</b><em>across nine timeframes</em>
       </li>
-      <li class="wt-cap">
+      <li class="wt-cap" data-aos="fade-up" data-aos-delay="200">
         <span class="wt-cap-ic"><svg><use href="#i-window"/></svg></span>
         <b>Custom layout</b><em>saved as you leave it</em>
       </li>
-      <li class="wt-cap">
+      <li class="wt-cap" data-aos="fade-up" data-aos-delay="300">
         <span class="wt-cap-ic"><svg><use href="#i-shield"/></svg></span>
         <b>Secure transmission</b><em>encrypted end to end</em>
       </li>
-      <li class="wt-cap">
+      <li class="wt-cap" data-aos="fade-up" data-aos-delay="400">
         <span class="wt-cap-ic"><svg><use href="#i-bolt"/></svg></span>
         <b>One-click trading</b><em>straight from the chart</em>
       </li>
     </ul>
 
-    <p class="wt-req" data-reveal><svg><use href="#i-check"/></svg><span>Runs on any current browser on <b>Windows, macOS or Linux</b>. A connection of <b>56 kbps</b> or better is enough.</span></p>
-    <div class="wt-stage-cta" data-reveal>
+    <p class="wt-req" data-aos="fade-up"><svg><use href="#i-check"/></svg><span>Runs on any current browser on <b>Windows, macOS or Linux</b>. A connection of <b>56 kbps</b> or better is enough.</span></p>
+    <div class="wt-stage-cta" data-aos="fade-up">
       <a href="webtrader.html" class="btn btn-primary btn-lg magnetic">Launch Web Trader <svg class="ico"><use href="#i-arrow-right"/></svg></a>
     </div>
   </div>
@@ -602,55 +651,55 @@
 <section class="section fx-hours" aria-labelledby="wt-broker-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow eyebrow-blue" data-reveal>Why STARTRADER</span>
-      <h2 class="h2 h2-light" id="wt-broker-title" data-reveal>The broker behind the browser</h2>
-      <p class="head-sub" data-reveal>The terminal is half of it. These are the conditions the orders actually run on.</p>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">Why STARTRADER</span>
+      <h2 class="h2 h2-light" id="wt-broker-title" data-aos="fade-up">The broker behind the browser</h2>
+      <p class="head-sub" data-aos="fade-up">The terminal is half of it. These are the conditions the orders actually run on.</p>
     </div>
 
-    <div class="fx-mh" data-reveal-stagger>
-      <article class="fx-mh-card fx-mh--wide fx-mh--blue">
+    <div class="fx-mh">
+      <article class="fx-mh-card fx-mh--wide fx-mh--blue" data-aos="fade-up">
         <span class="fx-mh-ic"><svg><use href="#i-bolt"/></svg></span>
         <h3>100-millisecond execution</h3>
         <p>Orders fill in around a tenth of a second, which is where the edge on a fast market actually sits.</p>
         <div class="fx-mh-viz"><div class="fx-mh-panel fx-mh-quote"><span class="q-sym">EUR/USD</span><span class="q-r"><span class="q-px">1.08420</span> <span class="q-chg up">+0.13%</span></span></div></div>
       </article>
 
-      <article class="fx-mh-card fx-mh--teal">
+      <article class="fx-mh-card fx-mh--teal" data-aos="fade-up" data-aos-delay="100">
         <span class="fx-mh-ic"><svg><use href="#i-wallet"/></svg></span>
         <h3>Hassle-free transactions</h3>
         <p>Several deposit and withdrawal routes, with zero deposit fees on most of them.</p>
         <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="fx-mh-status"><i></i> Zero fees on most methods</span></div></div>
       </article>
 
-      <article class="fx-mh-card fx-mh--purple">
+      <article class="fx-mh-card fx-mh--purple" data-aos="fade-up" data-aos-delay="200">
         <span class="fx-mh-ic"><svg><use href="#i-globe"/></svg></span>
         <h3>Expanding server network</h3>
         <p>A growing global footprint, so the route from your browser to the market stays short.</p>
         <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="fx-mh-status"><i></i> Low-latency routing</span></div></div>
       </article>
 
-      <article class="fx-mh-card fx-mh--green">
+      <article class="fx-mh-card fx-mh--green" data-aos="fade-up" data-aos-delay="300">
         <span class="fx-mh-ic"><svg><use href="#i-swap"/></svg></span>
         <h3>Ultra-tight spreads</h3>
         <p>From 0.0 pips on an ECN account, subject to your account type.</p>
         <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="fx-mh-status"><i></i> From 0.0 pips on ECN</span></div></div>
       </article>
 
-      <article class="fx-mh-card fx-mh--orange">
+      <article class="fx-mh-card fx-mh--orange" data-aos="fade-up" data-aos-delay="400">
         <span class="fx-mh-ic"><svg><use href="#i-gauge"/></svg></span>
         <h3>Leverage up to 1:1000</h3>
         <p>Available on eligible accounts. It magnifies a loss exactly as far as it magnifies a gain.</p>
         <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="fx-mh-status"><i></i> Eligibility applies</span></div></div>
       </article>
 
-      <article class="fx-mh-card fx-mh--blue">
+      <article class="fx-mh-card fx-mh--blue" data-aos="fade-up" data-aos-delay="500">
         <span class="fx-mh-ic"><svg><use href="#i-droplet"/></svg></span>
         <h3>Top institutional liquidity</h3>
         <p>Tier-1 pricing aggregated into one book, which is what keeps the spread honest.</p>
         <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="fx-mh-status"><i></i> Aggregated tier-1 pricing</span></div></div>
       </article>
 
-      <article class="fx-mh-card fx-mh--wide fx-mh--teal">
+      <article class="fx-mh-card fx-mh--wide fx-mh--teal" data-aos="fade-up" data-aos-delay="600">
         <span class="fx-mh-ic"><svg><use href="#i-headset"/></svg></span>
         <h3>24/7 multilingual support</h3>
         <p>A desk that answers around the clock in more than twenty languages, whenever the position needs attention.</p>
@@ -658,7 +707,7 @@
       </article>
     </div>
 
-    <p class="mt-pair-note" data-reveal>Leverage is subject to applicable terms and conditions. Restrictions may apply under the rules of your regulator.</p>
+    <p class="mt-pair-note" data-aos="fade-up">Leverage is subject to applicable terms and conditions. Restrictions may apply under the rules of your regulator.</p>
   </div>
 </section>
 
@@ -666,10 +715,10 @@
 <section class="section faq-sec fx-faq" aria-labelledby="pf-faq-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>FAQ</span>
-      <h2 class="h2" id="pf-faq-title" data-reveal>Frequently asked questions</h2>
+      <span class="eyebrow" data-aos="fade-up">FAQ</span>
+      <h2 class="h2" id="pf-faq-title" data-aos="fade-up">Frequently asked questions</h2>
     </div>
-    <div class="faq-list" data-reveal>
+    <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
         <summary>What is the best forex platform for web trading?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a">The one that loads fast, quotes accurately and then gets out of the way. Web Trader carries the same execution, instrument list and analysis tools as the installed terminal, so the convenience of the browser costs you nothing in capability.</div>
@@ -702,26 +751,26 @@
 <section class="section fx-more" aria-labelledby="pf-more-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Keep going</span>
-      <h2 class="h2" id="pf-more-title" data-reveal>Where to go next</h2>
+      <span class="eyebrow" data-aos="fade-up">Keep going</span>
+      <h2 class="h2" id="pf-more-title" data-aos="fade-up">Where to go next</h2>
     </div>
-    <div class="fx-more-grid" data-reveal-stagger>
-      <a class="fx-more-card" href="webtrader-mt5.html">
-        <span class="fx-more-media"><img src="../../assets/img/mt5Screenshot.png" alt="MT5 in the browser" width="640" height="349" loading="lazy" decoding="async"></span>
+    <div class="fx-more-grid">
+      <a class="fx-more-card" href="webtrader-mt5.html" data-aos="fade-up">
+        <span class="fx-more-media"><img src="../../assets/img/mt5Screenshot.webp" alt="MT5 in the browser" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Run the full MetaTrader 5 terminal in a tab, with depth of market and 38 indicators.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">MT5 WebTrader</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="webtrader-mt4.html">
-        <span class="fx-more-media"><img src="../../assets/img/mt4Screenshot.png" alt="MT4 in the browser" width="640" height="349" loading="lazy" decoding="async"></span>
+      <a class="fx-more-card" href="webtrader-mt4.html" data-aos="fade-up" data-aos-delay="100">
+        <span class="fx-more-media"><img src="../../assets/img/mt4Screenshot.webp" alt="MT4 in the browser" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">The MetaTrader 4 platform you know, with nothing to install.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">MT4 WebTrader</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="star-webtrader.html">
+      <a class="fx-more-card" href="star-webtrader.html" data-aos="fade-up" data-aos-delay="200">
         <span class="fx-more-media"><img src="../../assets/img/webtraderScreenShot.webp" alt="STAR Web Trading dashboard" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Watchlist, chart and ticket in one browser window, with a layout that follows your account.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">STAR Web Trading</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="trading-app.html">
+      <a class="fx-more-card" href="trading-app.html" data-aos="fade-up" data-aos-delay="300">
         <span class="fx-more-media"><img src="../../assets/img/app-hero-phone.webp" alt="STARTRADER mobile trading app" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">MT4 and MT5 in one app, with live pricing and full risk management.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Mobile app</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
@@ -734,9 +783,9 @@
 <section class="cta-banner" aria-labelledby="pf-cta-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="pf-cta-title" data-reveal>Start trading with a<br>globally leading broker</h2>
-    <p data-reveal>Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
-    <div class="cta-actions" data-reveal>
+    <h2 id="pf-cta-title" data-aos="fade-up">Start trading with a<br>globally leading broker</h2>
+    <p data-aos="fade-up">Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
+    <div class="cta-actions" data-aos="fade-up">
       <a href="../getting-started/account-opening.html" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       <a href="../getting-started/account-opening.html" class="btn btn-ghost btn-lg">Try Free Demo</a>
     </div>
@@ -825,7 +874,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -859,6 +908,7 @@
 <script src="../../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../../assets/js/vendor/aos.min.js" defer></script>
 <script src="../../assets/js/main.js" defer></script>
 </body>
 </html>

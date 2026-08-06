@@ -17,14 +17,14 @@
   <meta property="og:title" content="1% Switch Allowance | STARTRADER" />
   <meta property="og:description" content="Move from your current broker to STARTRADER and earn a 1% switch allowance plus up to $200 trading cashback. Terms apply." />
   <meta property="og:url" content="https://www.startrader.com/trading/products/forex.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/products-video-poster.jpg" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/products-video-poster.webp" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="1% Switch Allowance | STARTRADER" />
   <meta name="twitter:description" content="Move from your current broker to STARTRADER and earn a 1% switch allowance plus up to $200 trading cashback. Terms apply." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/products-video-poster.jpg" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/products-video-poster.webp" />
 
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../favicon.svg" />
@@ -32,7 +32,219 @@
 
   <!-- Fonts (self-hosted) -->
   <link rel="stylesheet" href="../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* =================================================================
+   DEPOSIT BONUS / SWITCH REWARDS
+   Shares the promotions palette. The two rewards sit on the blue and
+   sand gradients, and the estimator does the arithmetic in front of you.
+   Scoped to .dbx.
+   ================================================================= */
+.dbx{--acc:#0047bb;--acc-2:#2a72ff;--acc-3:#7fb2ff;--mint:#16e9d7;
+     --sand:#dfc5ae;--sand-ink:#8a6440;--ink:#04060d}
+/* ---------------- why switch ---------------- */
+.db-why{position:relative;isolation:isolate;overflow:clip;
+  background:radial-gradient(50% 44% at 88% 0%,rgba(0,71,187,.08),transparent 62%),var(--bg-light-2)}
+.db-why>.container{position:relative;z-index:1}
+.db-points{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.8vw,22px);margin-top:clamp(30px,3.6vw,46px)}
+.db-point{
+  position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;
+  padding:clamp(22px,2.5vw,30px);border-radius:var(--radius-lg);
+  background:rgba(255,255,255,.7);
+  -webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);
+  border:1px solid rgba(255,255,255,.9);
+  box-shadow:0 12px 30px -20px rgba(20,44,96,.26),inset 0 1px 0 #fff;
+  transition:transform .4s var(--ease),box-shadow .4s,border-color .3s;
+}
+.db-point::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--acc-2),var(--mint));
+  transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease);
+}
+.db-point:hover{transform:translateY(-5px);border-color:rgba(0,71,187,.32);
+  box-shadow:0 28px 52px -26px rgba(0,71,187,.3)}
+.db-point:hover::before{transform:scaleX(1)}
+.db-point-ic{
+  display:grid;place-items:center;width:52px;height:52px;border-radius:17px;
+  background:linear-gradient(158deg,var(--acc-2),var(--acc));
+  box-shadow:0 14px 26px -14px rgba(0,71,187,.6),inset 0 1px 0 rgba(255,255,255,.32);
+  transition:transform .42s var(--ease);
+}
+.db-point-ic svg{width:23px;height:23px;color:#fff}
+.db-point:hover .db-point-ic{transform:translateY(-3px) rotate(-6deg)}
+.db-point b{display:block;margin-top:18px;font-size:16.5px;font-weight:700;letter-spacing:-.028em;color:var(--ink)}
+.db-point p{margin-top:9px;font-size:13.6px;line-height:1.68;color:#5a6a83}
+/* ---------------- the two rewards ---------------- */
+.db-rewards{position:relative;isolation:isolate;overflow:clip;background:linear-gradient(180deg,#fff,#f2f6fc)}
+.db-rewards>.container{position:relative;z-index:1}
+.db-gate{
+  display:inline-flex;align-items:center;gap:11px;margin:clamp(22px,2.6vw,30px) auto 0;
+  padding:11px 22px;border-radius:70px;
+  font-size:12.5px;font-weight:700;letter-spacing:-.01em;color:var(--ink);
+  background:linear-gradient(180deg,rgba(223,197,174,.5),rgba(255,255,255,.8));
+  border:1px solid rgba(255,255,255,.9);
+  box-shadow:0 14px 32px -22px rgba(20,44,96,.4),inset 0 1px 0 #fff;
+}
+.db-gate i{width:7px;height:7px;border-radius:50%;background:var(--mint);box-shadow:0 0 9px rgba(22,233,215,.9)}
+.db-gate-wrap{text-align:center}
+.db-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2vw,26px);margin-top:clamp(26px,3vw,38px)}
+.db-card{
+  position:relative;overflow:hidden;display:flex;flex-direction:column;
+  border-radius:clamp(20px,2.4vw,30px);padding:clamp(24px,2.8vw,34px);
+  background:linear-gradient(180deg,rgba(0,71,187,.08),rgba(255,255,255,.72) 46%);
+  border:1px solid rgba(255,255,255,.92);
+  box-shadow:0 16px 40px -28px rgba(20,44,96,.44),inset 0 1px 0 #fff;
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .32s;
+}
+.db-card--sand{background:linear-gradient(180deg,rgba(223,197,174,.5),rgba(255,255,255,.72) 48%)}
+.db-card:hover{transform:translateY(-5px);border-color:rgba(0,71,187,.24);
+  box-shadow:0 32px 60px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff}
+.db-card--sand:hover{border-color:rgba(138,100,64,.34)}
+.db-card-n{
+  display:inline-flex;align-items:center;gap:8px;align-self:flex-start;padding:6px 14px;border-radius:70px;
+  font-size:9.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#fff;
+  background:linear-gradient(180deg,var(--acc-2),var(--acc));
+}
+.db-card--sand .db-card-n{background:linear-gradient(180deg,#b98a5d,var(--sand-ink))}
+.db-card h3{margin-top:18px;font-size:clamp(22px,2.6vw,32px);font-weight:800;letter-spacing:-.04em;line-height:1.1;color:var(--ink)}
+.db-card > p{margin-top:11px;font-size:14.2px;line-height:1.7;color:#5a6a83}
+.db-list{margin-top:clamp(18px,2.2vw,24px);display:flex;flex-direction:column}
+.db-li{
+  display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:start;
+  padding:13px 0;border-top:1px solid rgba(20,44,96,.1);font-size:13.8px;line-height:1.6;color:#41506a;
+}
+.db-li:first-child{border-top:0}
+.db-card--sand .db-li{border-top-color:rgba(138,100,64,.18)}
+.db-li-tick{
+  display:grid;place-items:center;width:22px;height:22px;border-radius:50%;flex:none;margin-top:1px;
+  background:rgba(0,71,187,.1);color:var(--acc);
+}
+.db-card--sand .db-li-tick{background:rgba(223,197,174,.6);color:var(--sand-ink)}
+.db-li-tick svg{width:12px;height:12px}
+.db-li b{color:var(--ink);font-weight:700}
+/* the worked example, set like a receipt */
+.db-eg{
+  margin-top:auto;padding-top:clamp(18px,2.2vw,24px);border-top:2px dashed rgba(20,44,96,.16);
+}
+.db-card--sand .db-eg{border-top-color:rgba(138,100,64,.26)}
+.db-eg-lbl{display:block;font-size:9.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#8496b0}
+.db-eg-row{
+  display:block;margin-top:11px;font-size:13.6px;line-height:1.6;color:#41506a;
+}
+.db-eg-row b{font-variant-numeric:tabular-nums;font-weight:800;color:var(--ink)}
+.db-eg-row em{font-style:normal;font-weight:800;color:var(--acc)}
+.db-card--sand .db-eg-row em{color:var(--sand-ink)}
+/* ---------------- the estimator ---------------- */
+.db-calc{
+  position:relative;overflow:hidden;margin-top:clamp(20px,2.4vw,30px);
+  border-radius:clamp(20px,2.4vw,28px);padding:clamp(22px,2.8vw,34px);
+  background:linear-gradient(140deg,rgba(0,71,187,.09),rgba(223,197,174,.34) 64%,rgba(255,255,255,.78));
+  border:1px solid rgba(255,255,255,.92);
+  box-shadow:0 22px 50px -32px rgba(20,44,96,.44),inset 0 1px 0 #fff;
+}
+.db-calc-hd{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px}
+.db-calc-hd b{font-size:clamp(17px,2vw,22px);font-weight:800;letter-spacing:-.034em;color:var(--ink)}
+.db-calc-hd span{font-size:11.5px;color:#7a8aa4}
+.db-calc-grid{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.6vw,20px);
+  margin-top:clamp(18px,2.2vw,26px);align-items:end;
+}
+.db-field{display:flex;flex-direction:column;gap:8px}
+.db-field label{font-size:10px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#7a8aa4}
+.db-input{
+  position:relative;display:flex;align-items:center;gap:8px;
+  padding:12px 16px;border-radius:14px;
+  background:rgba(255,255,255,.92);border:1px solid rgba(20,44,96,.12);
+  transition:border-color .3s,box-shadow .3s;
+}
+.db-input:focus-within{border-color:var(--acc-2);box-shadow:0 0 0 3px rgba(42,114,255,.16)}
+.db-input span{font-size:14px;font-weight:700;color:#8496b0}
+.db-input input{
+  width:100%;border:0;background:none;outline:none;
+  font:700 15.5px/1.2 inherit;color:var(--ink);font-variant-numeric:tabular-nums;
+}
+.db-input input::-webkit-outer-spin-button,.db-input input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.db-seg{display:flex;gap:4px;padding:4px;border-radius:70px;background:rgba(255,255,255,.7);border:1px solid rgba(20,44,96,.1)}
+.db-seg button{
+  flex:1;padding:9px 12px;border:0;border-radius:70px;cursor:pointer;background:none;
+  font-size:11.5px;font-weight:800;letter-spacing:.04em;color:#6c7d96;
+  transition:background .32s var(--ease),color .3s;
+}
+.db-seg button.is-on{background:linear-gradient(180deg,var(--acc-2),var(--acc));color:#fff}
+.db-out{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;
+  margin-top:clamp(18px,2.2vw,26px);border-radius:18px;overflow:hidden;background:rgba(20,44,96,.1);
+}
+.db-out div{padding:18px 20px;background:rgba(255,255,255,.92)}
+.db-out em{display:block;font-style:normal;font-size:10px;font-weight:800;letter-spacing:.13em;
+  text-transform:uppercase;color:#7a8aa4}
+.db-out b{display:block;margin-top:9px;font-size:clamp(24px,2.8vw,34px);font-weight:800;
+  letter-spacing:-.05em;line-height:1;font-variant-numeric:tabular-nums;color:var(--acc)}
+.db-out div:nth-child(2) b{color:var(--sand-ink)}
+.db-out i{display:block;margin-top:8px;font-style:normal;font-size:11.5px;color:#7a8aa4}
+.db-calc-note{margin-top:16px;font-size:11.5px;line-height:1.66;color:#7a8aa4}
+/* ---------------- how to switch ---------------- */
+.db-how{position:relative;isolation:isolate;overflow:clip;
+  background:radial-gradient(46% 40% at 12% 4%,rgba(0,71,187,.08),transparent 62%),var(--bg-light-2)}
+.db-how>.container{position:relative;z-index:1}
+/* ---------------- open an account: its own section ---------------- */
+.db-open{position:relative;isolation:isolate;overflow:clip;
+  background:radial-gradient(48% 44% at 92% 88%,rgba(0,71,187,.1),transparent 62%),
+             radial-gradient(40% 38% at 6% 8%,rgba(0,71,187,.07),transparent 62%),
+             linear-gradient(180deg,#fff,#f2f6fc)}
+.db-open-in{position:relative;z-index:1;display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,.92fr);gap:clamp(28px,4vw,64px);align-items:center}
+.db-open-tx{position:relative}
+.db-open-tx .pm-eyebrow{text-align:left}
+.db-open-tx h2{margin-top:16px;font-size:clamp(26px,3.3vw,44px);font-weight:800;letter-spacing:-.045em;
+  line-height:1.08;color:var(--ink)}
+.db-open-tx > p{margin-top:18px;max-width:46ch;font-size:15px;line-height:1.74;color:#4d5c74}
+.db-open-pts{display:flex;flex-direction:column;gap:12px;margin-top:clamp(22px,2.6vw,30px)}
+.db-open-pts > span{display:grid;grid-template-columns:auto minmax(0,1fr);gap:11px;align-items:start;
+  font-size:13.8px;line-height:1.6;color:#41506a}
+.db-open-tick{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;flex:none;margin-top:1px;
+  background:linear-gradient(158deg,var(--acc-2),var(--acc));color:#fff}
+.db-open-tick svg{width:12px;height:12px}
+.db-open-mark{width:clamp(84px,10vw,118px);height:auto;display:block;
+  margin-top:clamp(24px,3vw,34px);filter:drop-shadow(0 18px 30px rgba(20,44,96,.32))}
+/* the fields come from the shared ct-* system the partnership pages use;
+   only the card heading, the code/peek buttons and the password rules are new */
+.db-form-h{font-size:clamp(20px,2.3vw,26px);font-weight:800;letter-spacing:-.036em;color:var(--ink);text-align:center}
+.db-form-h span{color:var(--blue)}
+.db-form-h + form{margin-top:clamp(20px,2.4vw,26px)}
+.db-send{
+  border:0;background:none;padding:0;cursor:pointer;margin-left:auto;
+  font-size:11.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);
+  transition:color .3s,opacity .3s;
+}
+.db-send:hover{color:var(--blue-bright)}
+.db-send[disabled]{opacity:.55;cursor:not-allowed}
+.db-send--quiet{color:var(--text-mute);letter-spacing:.06em}
+.db-send--quiet:hover{color:var(--blue)}
+/* a one-line hint instead of a row of rule pills */
+.db-hint{font-size:11.5px;color:var(--text-mute)}
+/* the referral field stays out of the way until it is wanted */
+.db-more{
+  display:inline-flex;align-items:center;gap:7px;margin-top:22px;padding:0;border:0;background:none;cursor:pointer;
+  font-size:12.5px;font-weight:700;color:var(--blue);transition:color .3s;
+}
+.db-more:hover{color:var(--blue-bright)}
+.db-more span{font-size:14px;line-height:1;transition:transform .3s var(--ease)}
+.db-more[aria-expanded="true"] span{transform:rotate(45deg)}
+.db-ref{margin-top:14px}
+.db-form-note{margin-top:14px;font-size:11px;line-height:1.62;color:var(--text-mute);text-align:center}
+.db-open .ct-actions{margin-top:24px}
+.db-open .ct-actions .ct-submit{width:100%;justify-content:center}
+@media (max-width:1000px){.db-open-in{grid-template-columns:1fr;gap:30px}
+.db-open-mark{display:none}}
+/* ---------------- responsive ---------------- */
+@media (max-width:1000px){.db-points{grid-template-columns:1fr}
+.db-pair{grid-template-columns:1fr}
+.db-calc-grid{grid-template-columns:1fr}}
+@media (max-width:640px){.db-out{grid-template-columns:1fr}}
+  </style>
 
   <!-- Structured data -->
   <script type="application/ld+json">
@@ -398,18 +610,18 @@
 <!-- ============ BANNER ============ -->
 <section class="pm-hero" aria-labelledby="db-hero-title">
   <video class="pm-hero-video" autoplay muted loop playsinline preload="metadata"
-    poster="../assets/img/promotions-video-poster.jpg" aria-hidden="true">
+    poster="../assets/img/promotions-video-poster.webp" aria-hidden="true">
     <source src="../assets/video/promotions-banner.mp4" type="video/mp4">
   </video>
   <div class="container pm-hero-in">
     <div class="pm-hero-copy">
-      <span class="pm-eyebrow" data-reveal>1% Switch Allowance</span>
-      <h1 class="pm-h1" id="db-hero-title" data-reveal>
+      <span class="pm-eyebrow" data-aos="fade-up">1% Switch Allowance</span>
+      <h1 class="pm-h1" id="db-hero-title" data-aos="fade-up">
         <span>Still stuck? It&rsquo;s time</span>
         <span class="lit">to switch to success.</span>
       </h1>
-      <p class="pm-lead" data-reveal>The markets move fast &mdash; so should your progress. Earn a 1% cash allowance plus up to $200 cashback when you make the switch. Terms and conditions apply.</p>
-      <div class="pm-hact" data-reveal>
+      <p class="pm-lead" data-aos="fade-up">The markets move fast &mdash; so should your progress. Earn a 1% cash allowance plus up to $200 cashback when you make the switch. Terms and conditions apply.</p>
+      <div class="pm-hact" data-aos="fade-up">
         <a class="pm-btn" href="#open">Claim the allowance <svg><use href="#i-arrow-right"/></svg></a>
       </div>
     </div>
@@ -420,22 +632,22 @@
 <!-- ============ WHY SWITCH ============ -->
 <section class="section db-why" id="why" aria-labelledby="db-why-title">
   <div class="container">
-    <span class="pm-eyebrow-c" data-reveal>The case for moving</span>
-    <h2 class="pm-h2" id="db-why-title" data-reveal>Why switch to<br> STARTRADER?</h2>
-    <p class="pm-sub" data-reveal>Ready to leave your current broker behind? When you withdraw from any other trading platform and deposit with STARTRADER, you receive immediate rewards for making the change.</p>
+    <span class="pm-eyebrow-c" data-aos="fade-up">The case for moving</span>
+    <h2 class="pm-h2" id="db-why-title" data-aos="fade-up">Why switch to<br> STARTRADER?</h2>
+    <p class="pm-sub" data-aos="fade-up">Ready to leave your current broker behind? When you withdraw from any other trading platform and deposit with STARTRADER, you receive immediate rewards for making the change.</p>
 
     <div class="db-points">
-      <article class="db-point" data-reveal>
+      <article class="db-point" data-aos="fade-up">
         <span class="db-point-ic"><svg><use href="#i-bolt"/></svg></span>
         <b>Bonus credited directly</b>
         <p>The reward lands on the account you deposited into. Nothing to chase and nobody to remind.</p>
       </article>
-      <article class="db-point" data-reveal>
+      <article class="db-point" data-aos="fade-up">
         <span class="db-point-ic"><svg><use href="#i-check"/></svg></span>
         <b>No gimmicks or complicated steps</b>
         <p>Withdraw, deposit, send the proof. That is the whole process, and support walks it with you.</p>
       </article>
-      <article class="db-point" data-reveal>
+      <article class="db-point" data-aos="fade-up">
         <span class="db-point-ic"><svg><use href="#i-shield"/></svg></span>
         <b>Built for serious traders making a serious change</b>
         <p>The rewards scale with what you actually move across, not with how many boxes you tick.</p>
@@ -447,14 +659,14 @@
 <!-- ============ THE TWO REWARDS ============ -->
 <section class="section db-rewards" id="rewards" aria-labelledby="db-rw-title">
   <div class="container">
-    <span class="pm-eyebrow-c" data-reveal>Dual rewards</span>
-    <h2 class="pm-h2" id="db-rw-title" data-reveal>Two rewards,<br> one switch</h2>
-    <div class="db-gate-wrap" data-reveal>
+    <span class="pm-eyebrow-c" data-aos="fade-up">Dual rewards</span>
+    <h2 class="pm-h2" id="db-rw-title" data-aos="fade-up">Two rewards,<br> one switch</h2>
+    <div class="db-gate-wrap" data-aos="fade-up">
       <span class="db-gate"><i></i>Deposit $3,000 or more and unlock both</span>
     </div>
 
     <div class="db-pair">
-      <article class="db-card" data-reveal>
+      <article class="db-card" data-aos="fade-up">
         <span class="db-card-n">Reward #1</span>
         <h3>1% Switch Allowance</h3>
         <p>One per cent cashback on your switch, measured against the smaller of what you withdrew and what you deposited.</p>
@@ -470,7 +682,7 @@
         </div>
       </article>
 
-      <article class="db-card db-card--sand" data-reveal>
+      <article class="db-card db-card--sand" data-aos="fade-up">
         <span class="db-card-n">Reward #2</span>
         <h3>Trading Cashback</h3>
         <p>Earn while you trade. Available on deposits of $3,000 or more, paid per lot across the earning period.</p>
@@ -488,7 +700,7 @@
     </div>
 
     <!-- the estimator does both sums in front of you -->
-    <div class="db-calc" data-db-calc data-reveal>
+    <div class="db-calc" data-db-calc data-aos="fade-up">
       <div class="db-calc-hd">
         <b>Work out what the switch is worth</b>
         <span>Figures are an estimate on the terms above, not a quote.</span>
@@ -531,7 +743,7 @@
 <section class="section htrade-sec db-how" id="how" aria-labelledby="db-how-title">
   <div class="container">
     <div class="htrade">
-      <div class="htrade-intro" data-reveal>
+      <div class="htrade-intro" data-aos="fade-up">
         <h2 class="htrade-title" id="db-how-title">Five steps<br><span>to your rewards</span></h2>
         <p class="htrade-sub">Simple, fast, and backed by a dedicated support team at every step.</p>
         <a href="../trading/getting-started/funding.html" class="btn btn-primary btn-lg htrade-btn magnetic">Start the switch <span class="htrade-go"><svg><use href="#i-arrow-right"/></svg></span></a>
@@ -569,18 +781,18 @@
 <section class="section db-open" id="open" aria-labelledby="db-open-title">
   <div class="container db-open-in">
     <div class="db-open-tx">
-      <span class="pm-eyebrow" data-reveal>Claim it</span>
-      <h2 id="db-open-title" data-reveal>Open the account,<br> then send the proof</h2>
-      <p data-reveal>The allowance is measured against the deposit on the account you open here. Set it up in a couple of minutes, fund it, and send support your withdrawal confirmation.</p>
-      <div class="db-open-pts" data-reveal>
+      <span class="pm-eyebrow" data-aos="fade-up">Claim it</span>
+      <h2 id="db-open-title" data-aos="fade-up">Open the account,<br> then send the proof</h2>
+      <p data-aos="fade-up">The allowance is measured against the deposit on the account you open here. Set it up in a couple of minutes, fund it, and send support your withdrawal confirmation.</p>
+      <div class="db-open-pts" data-aos="fade-up">
         <span><span class="db-open-tick"><svg><use href="#i-check"/></svg></span>No maximum on the switch allowance</span>
         <span><span class="db-open-tick"><svg><use href="#i-check"/></svg></span>Applied instantly once verified</span>
         <span><span class="db-open-tick"><svg><use href="#i-check"/></svg></span>Cashback runs 60 days from your first deposit</span>
       </div>
-      <img class="db-open-mark" src="../assets/img/icon-shield-3d.png" alt="" width="400" height="490" loading="lazy" decoding="async" data-reveal>
+      <img class="db-open-mark" src="../assets/img/icon-shield-3d.webp" alt="3D shield emblem for insured client funds" width="400" height="490" loading="lazy" decoding="async" data-aos="fade-up">
     </div>
 
-    <div class="ct-form-card pt-form-card glass" data-db-form data-reveal>
+    <div class="ct-form-card pt-form-card glass" data-db-form data-aos="fade-up">
       <h3 class="db-form-h">Open <span>Live Account</span></h3>
 
       <form novalidate data-db-signup>
@@ -693,10 +905,10 @@
 <section class="section faq-sec fx-faq" aria-labelledby="db-faq-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>FAQ</span>
-      <h2 class="h2" id="db-faq-title" data-reveal>About the switch rewards</h2>
+      <span class="eyebrow" data-aos="fade-up">FAQ</span>
+      <h2 class="h2" id="db-faq-title" data-aos="fade-up">About the switch rewards</h2>
     </div>
-    <div class="faq-list" data-reveal>
+    <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
         <summary>How is the 1% switch allowance worked out?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a">It is one per cent of the smaller of the two amounts — what you withdrew from your old broker and what you deposited with STARTRADER. Withdraw $2,000 and deposit $1,000 and the allowance is $10; withdraw $500 and deposit $1,000 and it is $5.</div>
@@ -721,9 +933,9 @@
 <section class="cta-banner" aria-labelledby="db-close-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="db-close-title" data-reveal>Ready to switch<br>and earn?</h2>
-    <p data-reveal>Don&rsquo;t let another day pass with your current broker. Join the traders who have already made the switch to STARTRADER.</p>
-    <div class="cta-actions" data-reveal>
+    <h2 id="db-close-title" data-aos="fade-up">Ready to switch<br>and earn?</h2>
+    <p data-aos="fade-up">Don&rsquo;t let another day pass with your current broker. Join the traders who have already made the switch to STARTRADER.</p>
+    <div class="cta-actions" data-aos="fade-up">
       <a href="../trading/getting-started/account-opening.html" class="btn btn-primary btn-lg">Claim your switch rewards <svg class="ico"><use href="#i-arrow-right"/></svg></a>
     </div>
   </div>
@@ -811,7 +1023,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -845,6 +1057,7 @@
 <script src="../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../assets/js/vendor/aos.min.js" defer></script>
 <script src="../assets/js/main.js" defer></script>
 </body>
 </html>

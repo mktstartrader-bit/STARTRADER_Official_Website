@@ -16,14 +16,14 @@
   <meta property="og:title" content="Official Partner of the Porsche Carrera Cup Middle East | STARTRADER" />
   <meta property="og:description" content="STARTRADER is an official partner of the Porsche Carrera Cup Middle East — the car, the five corners that decide a season, and fifteen wallpapers to download." />
   <meta property="og:url" content="https://www.startrader.com/company/about/sponsorship/pccme.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/platform-hero.jpg" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/platform-hero.webp" />
   <meta property="og:image:alt" content="Official Partner of the PCCME — STARTRADER" />
   <meta property="og:locale" content="en_US" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Official Partner of the Porsche Carrera Cup Middle East | STARTRADER" />
   <meta name="twitter:description" content="STARTRADER is an official partner of the Porsche Carrera Cup Middle East — the car, the five corners that decide a season, and fifteen wallpapers to download." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/platform-hero.jpg" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/platform-hero.webp" />
 
   <link rel="icon" href="../../../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../../../favicon.svg" />
@@ -32,7 +32,345 @@
   <link rel="preload" href="../../../assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" as="image" href="../../../assets/img/platform-hero.webp" />
   <link rel="stylesheet" href="../../../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../../../assets/css/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="../../../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../../../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ---------- Header / nav ---------- */
+.lang .flag{width:22px;height:15px;border-radius:3px;overflow:hidden}
+/* =================================================================
+   PORSCHE CARRERA CUP MIDDLE EAST
+   A racing page: dark cinema, a studio for the car, a circuit you can
+   read, and the real wallpapers on a moving rail. Scoped to .pcx.
+   ================================================================= */
+.pcx{--liv:#1b2ea8;--liv-2:#3f6bff;--teal:#29d4c8;--ink:#05070d;--glass:rgba(255,255,255,.06)}
+/* ---------------- banner: the same frame as the NBA page ---------------- */
+.pc-hero{
+  position:relative;isolation:isolate;overflow:hidden;color:#fff;
+  margin-top:calc(-1 * var(--nav-h));
+  min-height:min(920px,calc(100vh - var(--topbar-h,44px)));
+  display:flex;align-items:center;padding:calc(var(--nav-h) + 70px) 0 96px;
+  background:var(--ink);
+}
+.pc-hero-bg{
+  position:absolute;inset:-8% 0;z-index:-3;will-change:transform;
+  background:url("../../../assets/img/pccme-banner-hero.webp") center/cover no-repeat;
+}
+.pc-hero::before{
+  content:"";position:absolute;inset:0;z-index:-2;
+  background:
+    linear-gradient(90deg,rgba(4,6,11,.94) 0%,rgba(4,6,11,.8) 34%,rgba(4,6,11,.3) 60%,transparent 82%),
+    linear-gradient(180deg,rgba(4,6,11,.72),transparent 26%,rgba(4,6,11,.9));
+}
+.pc-hero-in{position:relative;z-index:2;width:100%}
+.pc-hero-copy{max-width:min(100%,620px)}
+.pc-badge{
+  display:inline-flex;align-items:center;gap:12px;padding:9px 18px 9px 12px;border-radius:70px;
+  background:var(--glass);border:1px solid rgba(255,255,255,.16);
+  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+}
+.pc-badge img{height:30px;width:auto;display:block}
+.pc-badge span{font-size:10.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#e6edf8}
+.pc-h1{margin-top:26px;font-size:clamp(38px,5.6vw,78px);font-weight:800;letter-spacing:-.05em;line-height:.96}
+.pc-h1 span{display:block}
+.pc-h1 .hollow{
+  color:transparent;-webkit-text-stroke:1.4px rgba(127,233,223,.72);
+  text-shadow:0 0 30px rgba(41,212,200,.5),0 0 70px rgba(63,107,255,.42);
+}
+.pc-h1 span:first-child{text-shadow:0 0 46px rgba(27,46,168,.5)}
+.pc-lead{margin-top:24px;max-width:50ch;font-size:clamp(15px,1.5vw,17px);line-height:1.72;color:#c4cedf}
+.pc-hact{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.pc-btn{
+  display:inline-flex;align-items:center;gap:9px;padding:14px 26px;border-radius:70px;white-space:nowrap;
+  font-size:13.5px;font-weight:700;color:#fff;
+  background:linear-gradient(180deg,var(--liv-2),var(--liv));
+  box-shadow:0 18px 38px -16px rgba(27,46,168,.9);
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease);
+}
+.pc-btn:hover{transform:translateY(-3px);box-shadow:0 26px 48px -16px rgba(63,107,255,.95)}
+.pc-btn svg{width:15px;height:15px;flex:none}
+.pc-btn--ghost{color:#fff;background:var(--glass);border:1px solid rgba(255,255,255,.2);box-shadow:none;
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.pc-btn--ghost:hover{background:rgba(255,255,255,.13);box-shadow:none}
+/* shared headings */
+.pc-eyebrow{display:block;font-size:10.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);text-align:center}
+.pc-h2{margin-top:16px;font-size:clamp(28px,3.7vw,50px);font-weight:800;letter-spacing:-.042em;line-height:1.06;text-align:center}
+.pc-sub{margin:18px auto 0;max-width:64ch;font-size:clamp(14.5px,1.45vw,16.5px);line-height:1.7;text-align:center}
+.pc-hl{color:var(--liv-2)}
+/* ---------------- performance x precision: six reasons, plainly set ---------------- */
+.pc-px{position:relative;overflow:hidden;background:linear-gradient(180deg,#f5f8fc,#eef3fa)}
+.pc-px .pc-eyebrow{color:var(--liv)}
+.pc-px .pc-h2{color:var(--ink)}
+.pc-px .pc-sub{color:#4d5c74}
+.pc-reasons{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(14px,1.8vw,22px);margin-top:clamp(34px,4vw,54px);
+}
+.pc-reason{
+  position:relative;overflow:hidden;display:flex;flex-direction:column;
+  padding:clamp(22px,2.4vw,30px);border-radius:var(--radius-lg);
+  background:rgba(255,255,255,.66);
+  -webkit-backdrop-filter:blur(16px) saturate(1.5);backdrop-filter:blur(16px) saturate(1.5);
+  border:1px solid rgba(255,255,255,.85);
+  box-shadow:0 10px 28px -18px rgba(20,44,96,.24),inset 0 1px 0 rgba(255,255,255,.9);
+  transition:transform .38s var(--ease),box-shadow .38s,border-color .3s;
+}
+/* the rule across the top is a kerb, painted in on hover */
+.pc-reason::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:4px;z-index:2;
+  background:repeating-linear-gradient(90deg,#d2233c 0 11px,#fff 11px 22px);
+  transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease);
+}
+/* and a chequered flag fades in behind the corner */
+.pc-reason::after{
+  content:"";position:absolute;right:-14px;top:-14px;width:132px;height:132px;pointer-events:none;
+  background:repeating-conic-gradient(rgba(11,23,48,.9) 0% 25%,transparent 0% 50%) 0 0/17px 17px;
+  opacity:.045;transition:opacity .45s var(--ease),transform .6s var(--ease);
+  -webkit-mask:radial-gradient(closest-side,#000 30%,transparent);mask:radial-gradient(closest-side,#000 30%,transparent);
+}
+.pc-reason:hover::after{opacity:.1;transform:translate(-4px,4px)}
+.pc-reason:hover{transform:translateY(-5px);border-color:rgba(63,107,255,.55);
+  box-shadow:0 24px 46px -24px rgba(27,46,168,.4)}
+.pc-reason:hover::before{transform:scaleX(1)}
+.pc-reason-n{
+  position:relative;z-index:1;display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;font-weight:800;letter-spacing:.16em;color:var(--liv);
+}
+/* two tread bars, the way a tyre wall is marked */
+.pc-reason-n::after{
+  content:"";width:16px;height:8px;border-radius:2px;
+  background:repeating-linear-gradient(115deg,rgba(27,46,168,.55) 0 2px,transparent 2px 4px);
+}
+.pc-reason h3{position:relative;z-index:1;margin-top:14px;font-size:clamp(17px,1.9vw,21px);font-weight:700;letter-spacing:-.03em;color:var(--ink)}
+.pc-reason p{position:relative;z-index:1;margin-top:11px;font-size:13.8px;line-height:1.68;color:#5a6a83}
+.pc-reason-rule{
+  margin-top:auto;padding-top:18px;display:flex;align-items:center;gap:10px;
+  font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#8496b0;
+}
+.pc-reason-rule i{flex:1;height:1px;background:linear-gradient(90deg,rgba(27,46,168,.28),transparent)}
+/* ---------------- engineered for excellence: the circuit ---------------- */
+.pc-cir-sec{position:relative;overflow:hidden;isolation:isolate;color:#fff;background:var(--ink)}
+.pc-cir-bg{
+  position:absolute;inset:0;z-index:-2;
+  background:url("../../../assets/img/pccme-track.webp") center/cover no-repeat;opacity:.5;
+}
+.pc-cir-sec::before{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(4,6,11,.94),rgba(4,6,11,.66) 40%,rgba(4,6,11,.96));
+}
+.pc-cir-sec>.container{position:relative;z-index:1}
+.pc-cir-sec .pc-sub{color:#a9bcd8}
+.pc-cir{
+  display:grid;grid-template-columns:minmax(0,1.04fr) minmax(0,1fr);
+  gap:clamp(26px,3.6vw,58px);align-items:center;margin-top:clamp(32px,4vw,52px);
+}
+.pc-map{position:relative}
+.pc-map svg{display:block;width:100%;height:auto;overflow:visible}
+.pc-map .lane{fill:none;stroke:rgba(255,255,255,.16);stroke-width:9;stroke-linejoin:round}
+.pc-map .kerb{fill:none;stroke:rgba(41,212,200,.34);stroke-width:1.4;stroke-dasharray:7 9}
+.pc-map .lit{
+  fill:none;stroke:url(#pcLit);stroke-width:3.4;stroke-linecap:round;
+  filter:drop-shadow(0 0 8px rgba(63,107,255,.9));
+}
+.pc-map .pace{fill:var(--teal);filter:drop-shadow(0 0 9px rgba(41,212,200,.95))}
+.pc-pin{
+  position:absolute;transform:translate(-50%,-50%);width:38px;height:38px;padding:0;cursor:pointer;
+  border-radius:50%;border:1px solid rgba(255,255,255,.28);background:rgba(6,10,20,.72);color:#c7d6ee;
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  font-size:11px;font-weight:800;letter-spacing:.02em;
+  transition:transform .4s var(--ease),background .35s,color .3s,border-color .3s,box-shadow .4s;
+}
+.pc-pin:hover{transform:translate(-50%,-50%) scale(1.12);color:#fff;border-color:var(--teal)}
+.pc-pin.is-on{
+  color:#fff;background:linear-gradient(180deg,var(--liv-2),var(--liv));border-color:transparent;
+  transform:translate(-50%,-50%) scale(1.18);
+  box-shadow:0 0 0 6px rgba(63,107,255,.16),0 16px 30px -12px rgba(63,107,255,.9);
+}
+.pc-corner{
+  position:relative;overflow:hidden;border-radius:clamp(20px,2.2vw,28px);
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);
+  -webkit-backdrop-filter:blur(20px) saturate(1.2);backdrop-filter:blur(20px) saturate(1.2);
+  box-shadow:0 50px 100px -50px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.1);
+}
+.pc-corner-shot{position:relative;aspect-ratio:16/9;overflow:hidden;background:#0b1018}
+.pc-corner-shot img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
+  opacity:0;transform:scale(1.05);transition:opacity .5s var(--ease),transform 1s var(--ease);
+}
+.pc-corner-shot img.is-on{opacity:1;transform:scale(1)}
+.pc-corner-shot::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 44%,rgba(6,10,20,.92))}
+.pc-corner-n{
+  position:absolute;z-index:2;right:clamp(14px,1.8vw,22px);top:clamp(12px,1.6vw,18px);
+  font-size:clamp(34px,4.4vw,60px);font-weight:800;line-height:1;letter-spacing:-.05em;
+  color:transparent;-webkit-text-stroke:1.4px rgba(255,255,255,.4);
+}
+.pc-corner-tx{position:relative;padding:clamp(20px,2.4vw,30px)}
+.pc-corner-tx h3{font-size:clamp(20px,2.3vw,28px);font-weight:800;letter-spacing:-.036em;line-height:1.12}
+.pc-corner-tx p{margin-top:12px;font-size:14px;line-height:1.7;color:#a9bcd8}
+.pc-corner-tx p.is-fade{opacity:0;transform:translateY(8px)}
+.pc-corner-tx h3,.pc-corner-tx p{transition:opacity .4s var(--ease),transform .4s var(--ease)}
+.pc-corner-tx h3.is-fade{opacity:0;transform:translateY(8px)}
+.pc-corner-foot{
+  display:flex;align-items:center;gap:12px;margin-top:20px;padding-top:18px;
+  border-top:1px solid rgba(255,255,255,.1);
+}
+.pc-corner-bar{position:relative;flex:1;height:3px;border-radius:70px;background:rgba(255,255,255,.13);overflow:hidden}
+.pc-corner-bar i{
+  position:absolute;inset:0;transform-origin:left;transform:scaleX(0);border-radius:70px;
+  background:linear-gradient(90deg,var(--teal),var(--liv-2));
+}
+.pc-corner-foot span{font-size:10.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#7d92b4}
+/* ---------------- beyond the finish line ---------------- */
+.pc-beyond{position:relative;overflow:hidden;background:linear-gradient(180deg,#fff,#f2f6fc)}
+.pc-beyond .pc-eyebrow{color:var(--liv)}
+.pc-beyond .pc-h2{color:var(--ink)}
+.pc-beyond .pc-sub{color:#4d5c74}
+.pc-bey{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(18px,2.4vw,30px);margin-top:clamp(32px,4vw,52px)}
+.pc-bey-card{
+  position:relative;overflow:hidden;display:flex;flex-direction:column;border-radius:clamp(20px,2.2vw,28px);
+  background:#fff;border:1px solid rgba(20,44,96,.09);
+  box-shadow:0 18px 44px -28px rgba(20,44,96,.3);
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .35s;
+}
+.pc-bey-card:hover{transform:translateY(-6px);border-color:rgba(63,107,255,.4);
+  box-shadow:0 34px 66px -30px rgba(27,46,168,.34)}
+.pc-bey-shot{position:relative;aspect-ratio:16/9;overflow:hidden;background:#0b1018}
+.pc-bey-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .9s var(--ease)}
+.pc-bey-card:hover .pc-bey-shot img{transform:scale(1.05)}
+.pc-bey-chip{
+  position:absolute;z-index:2;left:16px;top:16px;padding:6px 13px;border-radius:70px;
+  font-size:9.5px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:#fff;
+  background:rgba(6,10,20,.58);border:1px solid rgba(255,255,255,.22);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+}
+.pc-bey-tx{padding:clamp(22px,2.6vw,32px)}
+.pc-bey-tx b{display:block;font-size:clamp(19px,2.2vw,26px);font-weight:800;letter-spacing:-.034em;color:var(--ink)}
+.pc-bey-tx p{margin-top:12px;font-size:14px;line-height:1.72;color:#5a6a83}
+.pc-bey-strip{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:clamp(16px,3vw,48px);
+  margin-top:clamp(26px,3vw,40px);padding:22px 28px;border-radius:70px;
+  background:rgba(255,255,255,.72);border:1px solid rgba(20,44,96,.08);
+  box-shadow:0 14px 34px -24px rgba(20,44,96,.28);
+}
+.pc-bey-strip span{display:flex;align-items:baseline;gap:9px}
+.pc-bey-strip b{font-size:clamp(17px,1.9vw,23px);font-weight:800;letter-spacing:-.038em;color:var(--ink)}
+.pc-bey-strip em{font-style:normal;font-size:10.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#7a8aa4}
+/* ---------------- wallpapers on a moving rail ---------------- */
+.pc-wp-sec{position:relative;overflow:hidden;isolation:isolate;color:#fff;background:linear-gradient(180deg,#05070d,#070f1f 54%,#05070d)}
+.pc-wp-sec>.container{position:relative;z-index:1}
+.pc-wp-sec .pc-sub{color:#a9bcd8}
+.pc-stage{
+  display:grid;grid-template-columns:minmax(0,.66fr) minmax(0,1fr);
+  gap:clamp(28px,4vw,62px);align-items:center;margin-top:clamp(32px,4vw,52px);
+}
+.pc-phone{position:relative;justify-self:center;width:min(100%,272px);aspect-ratio:9/19.2;perspective:1200px}
+.pc-phone-shell{
+  position:absolute;inset:0;border-radius:34px;padding:7px;
+  background:linear-gradient(160deg,#39425a,#0c1017 50%,#2a3346);
+  box-shadow:0 56px 100px -40px rgba(0,0,0,.95),0 0 0 1px rgba(41,212,200,.24),
+             0 34px 90px -34px rgba(27,46,168,.8),inset 0 1px 0 rgba(255,255,255,.26);
+}
+.pc-screen{position:absolute;inset:7px;border-radius:28px;overflow:hidden;background:#04060e;display:block}
+.pc-screen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
+  transition:opacity .34s var(--ease),transform .7s var(--ease)}
+.pc-screen img.is-swap{opacity:0;transform:scale(1.04)}
+.pc-notch{position:absolute;z-index:3;top:10px;left:50%;transform:translateX(-50%);width:34%;height:11px;border-radius:70px;background:#04060e}
+.pc-glare{position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:linear-gradient(128deg,rgba(255,255,255,.16) 0%,transparent 34%,transparent 66%,rgba(255,255,255,.06) 100%)}
+.pc-stage-tx{text-align:left}
+.pc-count{display:flex;align-items:baseline;gap:5px;font-variant-numeric:tabular-nums}
+.pc-count b{font-size:clamp(30px,3.4vw,44px);font-weight:800;letter-spacing:-.04em;line-height:1;
+  color:transparent;background:linear-gradient(180deg,#fff,#7f93b5);-webkit-background-clip:text;background-clip:text}
+.pc-count i{font-style:normal;font-size:16px;color:#4d5f7d}
+.pc-count em{font-style:normal;font-size:13px;font-weight:700;color:#7d92b4}
+.pc-stage-tx h3{margin-top:12px;font-size:clamp(22px,2.5vw,32px);font-weight:800;letter-spacing:-.036em;line-height:1.1}
+.pc-stage-tx .pc-spec-line{margin-top:12px;font-size:12.5px;letter-spacing:.02em;color:#8ea4c6}
+.pc-wp-act{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.pc-hint{display:block;margin-top:16px;font-size:11px;letter-spacing:.06em;color:#5c7096}
+.pc-rail{position:relative;margin-top:clamp(34px,4vw,52px);overflow:hidden;
+  -webkit-mask:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+  mask:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.pc-track{display:flex;gap:14px;width:max-content;will-change:transform}
+.pc-frame{
+  position:relative;flex:0 0 auto;width:clamp(88px,8vw,116px);aspect-ratio:9/17;padding:0;border:0;cursor:pointer;
+  border-radius:14px;overflow:hidden;background:#0b1018;
+  box-shadow:0 14px 30px -18px rgba(0,0,0,.9),inset 0 0 0 1px rgba(255,255,255,.08);
+  filter:saturate(.66) brightness(.74);
+  transition:transform .45s var(--ease),filter .45s,box-shadow .45s var(--ease);
+}
+.pc-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.pc-frame-n{position:absolute;z-index:2;left:7px;bottom:6px;font-size:9px;font-weight:800;letter-spacing:.1em;color:rgba(255,255,255,.7)}
+.pc-frame::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 56%,rgba(4,6,11,.86))}
+.pc-frame:hover,.pc-frame:focus-visible{filter:none;transform:translateY(-6px)}
+.pc-frame.is-on{filter:none;transform:translateY(-6px);
+  box-shadow:0 22px 44px -18px rgba(27,46,168,.9),inset 0 0 0 2px var(--teal)}
+/* ---------------- start your journey ---------------- */
+/* the plate carries its own headline, so the band is sized to show all of it */
+.pc-journey{
+  position:relative;overflow:hidden;isolation:isolate;
+  aspect-ratio:1919/878;min-height:clamp(260px,30vw,660px);
+  background:#04070f;
+}
+.pc-journey-bg{
+  position:absolute;inset:0;z-index:-2;
+  background:url("../../../assets/img/pccme-journey.webp") center/cover no-repeat;
+}
+.pc-journey::before{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(4,8,20,.24),transparent 28%,rgba(4,8,20,.34));
+}
+/* ---------------- a word from our CEO ---------------- */
+.pc-ceo{position:relative;overflow:hidden;background:linear-gradient(180deg,#f2f6fc,#fff)}
+.pc-ceo::before{
+  content:"";position:absolute;left:0;right:0;top:0;height:5px;
+  background:repeating-linear-gradient(90deg,#0b1730 0 18px,#e8eef8 18px 36px);opacity:.14;
+}
+.pc-ceo-in{position:relative;max-width:900px;margin-inline:auto;text-align:center}
+.pc-ceo .pc-eyebrow{color:var(--liv)}
+.pc-ceo-mark{
+  display:block;margin:18px auto -6px;font:700 104px/.72 Georgia,"Times New Roman",serif;
+  color:transparent;background:linear-gradient(180deg,var(--liv-2),rgba(41,212,200,.45));
+  -webkit-background-clip:text;background-clip:text;
+}
+.pc-ceo-in blockquote{
+  margin-top:18px;font-size:clamp(18px,2.5vw,30px);font-weight:500;line-height:1.5;
+  letter-spacing:-.03em;color:var(--ink);
+}
+.pc-ceo-by{
+  display:inline-flex;align-items:center;gap:16px;margin-top:clamp(26px,3vw,38px);
+  padding:10px 22px 10px 10px;border-radius:70px;
+  background:rgba(255,255,255,.9);border:1px solid rgba(20,44,96,.09);
+  box-shadow:0 16px 36px -22px rgba(20,44,96,.34);
+}
+.pc-ceo-face{
+  position:relative;flex:none;width:56px;height:56px;border-radius:50%;overflow:hidden;
+  background:#0b1018;box-shadow:0 0 0 2px rgba(63,107,255,.28);
+}
+.pc-ceo-face img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  object-position:36% 24%;display:block}
+.pc-ceo-who{display:flex;flex-direction:column;gap:3px;text-align:left}
+.pc-ceo-who b{font-size:14.5px;font-weight:700;letter-spacing:-.024em;color:var(--ink)}
+.pc-ceo-who em{font-style:normal;font-size:11.5px;color:#7a8aa4}
+.pc-ceo-rules{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:clamp(24px,3vw,34px)}
+.pc-ceo-rules i{width:min(120px,22vw);height:1px;background:linear-gradient(90deg,transparent,rgba(20,44,96,.22),transparent)}
+.pc-ceo-rules span{font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#8496b0}
+/* ---------------- responsive ---------------- */
+@media (max-width:1080px){.pc-cir{grid-template-columns:1fr;gap:34px}}
+@media (max-width:860px){.pc-stage{grid-template-columns:1fr;gap:34px}
+.pc-phone{width:min(74%,258px);margin-bottom:6px}
+.pc-stage-tx{text-align:center}
+.pc-count,.pc-wp-act{justify-content:center}
+.pc-bey{grid-template-columns:1fr}}
+@media (max-width:640px){.pc-hero{min-height:0;padding-bottom:86px}
+.pc-hero{min-height:0;padding-bottom:34px}}
+@media (max-width:1080px){.pc-reasons{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:720px){.pc-hero{min-height:0;padding-bottom:88px}
+.pc-reasons{grid-template-columns:1fr}
+.pc-bey{grid-template-columns:1fr}
+.pc-bey-strip{border-radius:22px}}
+  </style>
 
   <script type="application/ld+json">
 {
@@ -122,7 +460,7 @@
 }
   </script>
 
-  <link rel="preload" as="image" href="../../../assets/img/pccme-banner-hero.jpg" fetchpriority="high">
+  <link rel="preload" as="image" href="../../../assets/img/pccme-banner-hero.webp" fetchpriority="high">
 
 </head>
 <body class="pcx">
@@ -422,16 +760,16 @@
   <span class="pc-hero-bg" data-pc-bg aria-hidden="true"></span>
   <div class="container pc-hero-in">
     <div class="pc-hero-copy">
-      <span class="pc-badge" data-reveal>
+      <span class="pc-badge" data-aos="fade-up">
         <img src="../../../assets/img/partner-porsche.webp" alt="Porsche Carrera Cup Middle East">
         <span>Official Partner</span>
       </span>
-      <h1 class="pc-h1" id="pg-hero-title" data-reveal>
+      <h1 class="pc-h1" id="pg-hero-title" data-aos="fade-up">
         <span>Precision. Performance.</span>
         <span class="hollow">Control.</span>
       </h1>
-      <p class="pc-lead" data-reveal>STARTRADER is an official partner of the Porsche Carrera Cup Middle East. From the track to the markets, excellence is engineered rather than hoped for.</p>
-      <div class="pc-hact" data-reveal>
+      <p class="pc-lead" data-aos="fade-up">STARTRADER is an official partner of the Porsche Carrera Cup Middle East. From the track to the markets, excellence is engineered rather than hoped for.</p>
+      <div class="pc-hact" data-aos="fade-up">
         <a class="pc-btn" href="../../../trading/getting-started/account-opening.html">Open live account <svg><use href="#i-arrow-right"/></svg></a>
       </div>
     </div>
@@ -442,42 +780,42 @@
 <!-- ============ PERFORMANCE X PRECISION ============ -->
 <section class="section pc-px" id="partnership" aria-labelledby="pg-px-title">
   <div class="container">
-    <span class="pc-eyebrow" data-reveal>The partnership</span>
-    <h2 class="pc-h2" id="pg-px-title" data-reveal>Performance <span class="pc-hl">&times;</span> Precision</h2>
-    <p class="pc-sub" data-reveal>Two worlds driven by the same pursuit: mastery through discipline. Six things the circuit and the market ask for in the same order.</p>
+    <span class="pc-eyebrow" data-aos="fade-up">The partnership</span>
+    <h2 class="pc-h2" id="pg-px-title" data-aos="fade-up">Performance <span class="pc-hl">&times;</span> Precision</h2>
+    <p class="pc-sub" data-aos="fade-up">Two worlds driven by the same pursuit: mastery through discipline. Six things the circuit and the market ask for in the same order.</p>
 
     <div class="pc-reasons">
-      <article class="pc-reason" data-reveal>
+      <article class="pc-reason" data-aos="fade-up">
         <span class="pc-reason-n">01</span>
         <h3>Precision engineering</h3>
         <p>A Cup car is built to one specification. Nothing on it is decorative, and nothing is left to chance.</p>
         <span class="pc-reason-rule"><i></i>On the grid</span>
       </article>
-      <article class="pc-reason" data-reveal>
+      <article class="pc-reason" data-aos="fade-up">
         <span class="pc-reason-n">02</span>
         <h3>One set of rules</h3>
         <p>Identical machinery puts the result back on preparation. Regulation does the same for a market.</p>
         <span class="pc-reason-rule"><i></i>On the screen</span>
       </article>
-      <article class="pc-reason" data-reveal>
+      <article class="pc-reason" data-aos="fade-up">
         <span class="pc-reason-n">03</span>
         <h3>Split-second decisions</h3>
         <p>A braking point and an entry price share a problem: you commit before you can be certain.</p>
         <span class="pc-reason-rule"><i></i>Both</span>
       </article>
-      <article class="pc-reason" data-reveal>
+      <article class="pc-reason" data-aos="fade-up">
         <span class="pc-reason-n">04</span>
         <h3>Endurance over a season</h3>
         <p>Championships are decided across rounds, not in one lap. Track records work the same way.</p>
         <span class="pc-reason-rule"><i></i>Both</span>
       </article>
-      <article class="pc-reason" data-reveal>
+      <article class="pc-reason" data-aos="fade-up">
         <span class="pc-reason-n">05</span>
         <h3>Data over instinct</h3>
         <p>Telemetry after every session, analysis after every trade. Both turn a feeling into a number.</p>
         <span class="pc-reason-rule"><i></i>Both</span>
       </article>
-      <article class="pc-reason" data-reveal>
+      <article class="pc-reason" data-aos="fade-up">
         <span class="pc-reason-n">06</span>
         <h3>Talent, developed</h3>
         <p>The Carrera Cup Middle East is where regional champions are made, and where careers begin.</p>
@@ -491,9 +829,9 @@
 <section class="section pc-cir-sec" id="engineered" aria-labelledby="pg-cir-title">
   <span class="pc-cir-bg" aria-hidden="true"></span>
   <div class="container">
-    <span class="pc-eyebrow" data-reveal>Engineered for excellence</span>
-    <h2 class="pc-h2" id="pg-cir-title" data-reveal>Five corners, and what<br> each one asks of you</h2>
-    <p class="pc-sub" data-reveal>Take the lap. Every corner on this circuit has an equivalent on a trading screen &mdash; pick one and see which.</p>
+    <span class="pc-eyebrow" data-aos="fade-up">Engineered for excellence</span>
+    <h2 class="pc-h2" id="pg-cir-title" data-aos="fade-up">Five corners, and what<br> each one asks of you</h2>
+    <p class="pc-sub" data-aos="fade-up">Take the lap. Every corner on this circuit has an equivalent on a trading screen &mdash; pick one and see which.</p>
 
     <div class="pc-cir" data-pc-cir>
       <div class="pc-map">
@@ -521,17 +859,17 @@
           style="left:26%;top:74%" aria-label="Control">05</button>
       </div>
 
-      <div class="pc-corner" data-reveal>
+      <div class="pc-corner" data-aos="fade-up">
         <div class="pc-corner-shot">
-          <img class="is-on" data-pc-shot="0" src="../../../assets/img/pccme-cor-1.jpg" alt="Performance"
+          <img class="is-on" data-pc-shot="0" src="../../../assets/img/pccme-cor-1.webp" alt="Performance"
             width="620" height="358" loading="lazy" decoding="async">
-          <img class="" data-pc-shot="1" src="../../../assets/img/pccme-cor-2.jpg" alt="Strategy"
+          <img class="" data-pc-shot="1" src="../../../assets/img/pccme-cor-2.webp" alt="Strategy"
             width="620" height="358" loading="lazy" decoding="async">
-          <img class="" data-pc-shot="2" src="../../../assets/img/pccme-cor-3.jpg" alt="Endurance"
+          <img class="" data-pc-shot="2" src="../../../assets/img/pccme-cor-3.webp" alt="Endurance"
             width="620" height="358" loading="lazy" decoding="async">
-          <img class="" data-pc-shot="3" src="../../../assets/img/pccme-cor-4.jpg" alt="Precision"
+          <img class="" data-pc-shot="3" src="../../../assets/img/pccme-cor-4.webp" alt="Precision"
             width="620" height="358" loading="lazy" decoding="async">
-          <img class="" data-pc-shot="4" src="../../../assets/img/pccme-cor-5.jpg" alt="Control"
+          <img class="" data-pc-shot="4" src="../../../assets/img/pccme-cor-5.webp" alt="Control"
             width="620" height="358" loading="lazy" decoding="async">
           <span class="pc-corner-n" data-pc-num aria-hidden="true">01</span>
         </div>
@@ -552,28 +890,28 @@
 <!-- ============ BEYOND THE FINISH LINE ============ -->
 <section class="section pc-beyond" id="beyond" aria-labelledby="pg-bey-title">
   <div class="container">
-    <span class="pc-eyebrow" data-reveal>Beyond the finish line</span>
-    <h2 class="pc-h2" id="pg-bey-title" data-reveal>The partnership does not<br> end at the chequered flag</h2>
-    <p class="pc-sub" data-reveal>Success is earned through preparation, precision and perseverance &mdash; and it is worth backing wherever it starts.</p>
+    <span class="pc-eyebrow" data-aos="fade-up">Beyond the finish line</span>
+    <h2 class="pc-h2" id="pg-bey-title" data-aos="fade-up">The partnership does not<br> end at the chequered flag</h2>
+    <p class="pc-sub" data-aos="fade-up">Success is earned through preparation, precision and perseverance &mdash; and it is worth backing wherever it starts.</p>
 
     <div class="pc-bey">
-      <article class="pc-bey-card" data-reveal>
+      <article class="pc-bey-card" data-aos="fade-up">
         <div class="pc-bey-shot">
           <span class="pc-bey-chip">Equal machinery</span>
-          <img src="../../../assets/img/pccme-beyond-1.jpg" alt="A level playing field" width="900" height="506" loading="lazy" decoding="async">
+          <img src="../../../assets/img/pccme-beyond-1.webp" alt="A level playing field" width="900" height="506" loading="lazy" decoding="async">
         </div>
         <div class="pc-bey-tx"><b>A level playing field</b><p>In one-make racing every car is identical. What separates the field is preparation, timing and strategy &mdash; the same three things that separate traders.</p></div>
       </article>
-      <article class="pc-bey-card" data-reveal>
+      <article class="pc-bey-card" data-aos="fade-up">
         <div class="pc-bey-shot">
           <span class="pc-bey-chip">Regional champions</span>
-          <img src="../../../assets/img/pccme-beyond-2.jpg" alt="Nurturing talent" width="900" height="506" loading="lazy" decoding="async">
+          <img src="../../../assets/img/pccme-beyond-2.webp" alt="Nurturing talent" width="900" height="506" loading="lazy" decoding="async">
         </div>
         <div class="pc-bey-tx"><b>Nurturing talent</b><p>The Carrera Cup Middle East is a proving ground for drivers heading to the global stage. STARTRADER backs the same route in the markets: knowledge and access first.</p></div>
       </article>
     </div>
 
-    <div class="pc-bey-strip" data-reveal>
+    <div class="pc-bey-strip" data-aos="fade-up">
       <span><b>15</b><em>Wallpapers</em></span>
       <span><b>5</b><em>Corners</em></span>
       <span><b>No. 7</b><em>Car number</em></span>
@@ -585,15 +923,15 @@
 <!-- ============ WALLPAPERS ============ -->
 <section class="section pc-wp-sec" id="wallpapers" aria-labelledby="pg-wp-title">
   <div class="container">
-    <span class="pc-eyebrow" data-reveal>Downloads</span>
-    <h2 class="pc-h2" id="pg-wp-title" data-reveal>Fast laps. Fast decisions.<br> Same mindset.</h2>
-    <p class="pc-sub" data-reveal>Fifteen wallpapers from the Carrera Cup Middle East season. Take one from the rail &mdash; it loads onto the screen.</p>
+    <span class="pc-eyebrow" data-aos="fade-up">Downloads</span>
+    <h2 class="pc-h2" id="pg-wp-title" data-aos="fade-up">Fast laps. Fast decisions.<br> Same mindset.</h2>
+    <p class="pc-sub" data-aos="fade-up">Fifteen wallpapers from the Carrera Cup Middle East season. Take one from the rail &mdash; it loads onto the screen.</p>
 
     <div class="pc-stage" data-pc-wall>
-      <div class="pc-phone" data-reveal>
+      <div class="pc-phone" data-aos="fade-up">
         <span class="pc-phone-shell" aria-hidden="true"></span>
         <span class="pc-screen">
-          <img data-pc-wpshot src="../../../assets/img/pccme-wp-01.jpg" alt="Porsche Carrera Cup Middle East wallpaper 01" width="740" height="1601" loading="lazy" decoding="async">
+          <img data-pc-wpshot src="../../../assets/img/pccme-wp-01.webp" alt="Porsche Carrera Cup Middle East wallpaper 01" width="740" height="1601" loading="lazy" decoding="async">
           <span class="pc-glare" aria-hidden="true"></span>
           <span class="pc-notch" aria-hidden="true"></span>
         </span>
@@ -604,7 +942,7 @@
         <h3>Porsche wallpapers</h3>
         <p class="pc-spec-line">Official Partner of the Porsche Carrera Cup Middle East &middot; 1170 &times; 2532 &middot; iPhone and Android</p>
         <div class="pc-wp-act">
-          <a class="pc-btn" href="../../../assets/img/pccme-wp-01.jpg" data-pc-wpget download>Download this</a>
+          <a class="pc-btn" href="../../../assets/img/pccme-wp-01.webp" data-pc-wpget download>Download this</a>
           <a class="pc-btn pc-btn--ghost" href="#">Download all 15</a>
         </div>
         <span class="pc-hint">The rail keeps moving until you hover it. Pick any frame to load it.</span>
@@ -612,81 +950,81 @@
     </div>
   </div>
 
-  <div class="pc-rail" aria-label="All fifteen wallpapers">
-    <div class="pc-track" id="pcTrack" data-pc-track>
-        <button class="pc-frame is-on" type="button" data-pc-wp="0"
+  <div class="pc-rail swiper st-marquee" aria-label="All fifteen wallpapers" data-marquee-speed="34">
+    <div class="pc-track swiper-wrapper" id="pcTrack" data-pc-track>
+        <button class="pc-frame is-on swiper-slide" type="button" data-pc-wp="0"
           aria-label="Wallpaper 01">
-          <img src="../../../assets/img/pccme-wp-01.jpg" alt="" width="740" height="1601" loading="lazy" decoding="async">
+          <img src="../../../assets/img/pccme-wp-01.webp" alt="Porsche Carrera Cup Middle East wallpaper 01" width="740" height="1601" loading="lazy" decoding="async">
           <span class="pc-frame-n">01</span>
         </button>
-        <button class="pc-frame" type="button" data-pc-wp="1"
+        <button class="pc-frame swiper-slide" type="button" data-pc-wp="1"
           aria-label="Wallpaper 02">
-          <img src="../../../assets/img/pccme-wp-02.jpg" alt="" width="740" height="1601" loading="lazy" decoding="async">
+          <img src="../../../assets/img/pccme-wp-02.webp" alt="Porsche Carrera Cup Middle East wallpaper 02" width="740" height="1601" loading="lazy" decoding="async">
           <span class="pc-frame-n">02</span>
         </button>
-        <button class="pc-frame" type="button" data-pc-wp="2"
+        <button class="pc-frame swiper-slide" type="button" data-pc-wp="2"
           aria-label="Wallpaper 03">
-          <img src="../../../assets/img/pccme-wp-03.jpg" alt="" width="740" height="1601" loading="lazy" decoding="async">
+          <img src="../../../assets/img/pccme-wp-03.webp" alt="Porsche Carrera Cup Middle East wallpaper 03" width="740" height="1601" loading="lazy" decoding="async">
           <span class="pc-frame-n">03</span>
         </button>
-        <button class="pc-frame" type="button" data-pc-wp="3"
+        <button class="pc-frame swiper-slide" type="button" data-pc-wp="3"
           aria-label="Wallpaper 04">
-          <img src="../../../assets/img/pccme-wp-04.jpg" alt="" width="740" height="1601" loading="lazy" decoding="async">
+          <img src="../../../assets/img/pccme-wp-04.webp" alt="Porsche Carrera Cup Middle East wallpaper 04" width="740" height="1601" loading="lazy" decoding="async">
           <span class="pc-frame-n">04</span>
         </button>
-        <button class="pc-frame" type="button" data-pc-wp="4"
+        <button class="pc-frame swiper-slide" type="button" data-pc-wp="4"
           aria-label="Wallpaper 05">
-          <img src="../../../assets/img/pccme-wp-05.jpg" alt="" width="740" height="1601" loading="lazy" decoding="async">
+          <img src="../../../assets/img/pccme-wp-05.webp" alt="Porsche Carrera Cup Middle East wallpaper 05" width="740" height="1601" loading="lazy" decoding="async">
           <span class="pc-frame-n">05</span>
         </button>
-        <button class="pc-frame" type="button" data-pc-wp="5"
+        <button class="pc-frame swiper-slide" type="button" data-pc-wp="5"
           aria-label="Wallpaper 06">
-          <img src="../../../assets/img/pccme-wp-06.jpg" alt="" width="740" height="1601" loading="lazy" decoding="async">
+          <img src="../../../assets/img/pccme-wp-06.webp" alt="Porsche Carrera Cup Middle East wallpaper 06" width="740" height="1601" loading="lazy" decoding="async">
           <span class="pc-frame-n">06</span>
         </button>
-        <button class="pc-frame" type="button" data-pc-wp="6"
+        <button class="pc-frame swiper-slide" type="button" data-pc-wp="6"
           aria-label="Wallpaper 07">
-          <img src="../../../assets/img/pccme-wp-07.jpg" alt="" width="740" height="1601" loading="lazy" decoding="async">
+          <img src="../../../assets/img/pccme-wp-07.webp" alt="Porsche Carrera Cup Middle East wallpaper 07" width="740" height="1601" loading="lazy" decoding="async">
           <span class="pc-frame-n">07</span>
         </button>
-        <button class="pc-frame" type="button" data-pc-wp="7"
+        <button class="pc-frame swiper-slide" type="button" data-pc-wp="7"
           aria-label="Wallpaper 08">
-          <img src="../../../assets/img/pccme-wp-08.jpg" alt="" width="740" height="1601" loading="lazy" decoding="async">
+          <img src="../../../assets/img/pccme-wp-08.webp" alt="Porsche Carrera Cup Middle East wallpaper 08" width="740" height="1601" loading="lazy" decoding="async">
           <span class="pc-frame-n">08</span>
         </button>
-        <button class="pc-frame" type="button" data-pc-wp="8"
+        <button class="pc-frame swiper-slide" type="button" data-pc-wp="8"
           aria-label="Wallpaper 09">
-          <img src="../../../assets/img/pccme-wp-09.jpg" alt="" width="740" height="1601" loading="lazy" decoding="async">
+          <img src="../../../assets/img/pccme-wp-09.webp" alt="Porsche Carrera Cup Middle East wallpaper 09" width="740" height="1601" loading="lazy" decoding="async">
           <span class="pc-frame-n">09</span>
         </button>
-        <button class="pc-frame" type="button" data-pc-wp="9"
+        <button class="pc-frame swiper-slide" type="button" data-pc-wp="9"
           aria-label="Wallpaper 10">
-          <img src="../../../assets/img/pccme-wp-10.jpg" alt="" width="740" height="1601" loading="lazy" decoding="async">
+          <img src="../../../assets/img/pccme-wp-10.webp" alt="Porsche Carrera Cup Middle East wallpaper 10" width="740" height="1601" loading="lazy" decoding="async">
           <span class="pc-frame-n">10</span>
         </button>
-        <button class="pc-frame" type="button" data-pc-wp="10"
+        <button class="pc-frame swiper-slide" type="button" data-pc-wp="10"
           aria-label="Wallpaper 11">
-          <img src="../../../assets/img/pccme-wp-11.jpg" alt="" width="740" height="1601" loading="lazy" decoding="async">
+          <img src="../../../assets/img/pccme-wp-11.webp" alt="Porsche Carrera Cup Middle East wallpaper 11" width="740" height="1601" loading="lazy" decoding="async">
           <span class="pc-frame-n">11</span>
         </button>
-        <button class="pc-frame" type="button" data-pc-wp="11"
+        <button class="pc-frame swiper-slide" type="button" data-pc-wp="11"
           aria-label="Wallpaper 12">
-          <img src="../../../assets/img/pccme-wp-12.jpg" alt="" width="740" height="1601" loading="lazy" decoding="async">
+          <img src="../../../assets/img/pccme-wp-12.webp" alt="Porsche Carrera Cup Middle East wallpaper 12" width="740" height="1601" loading="lazy" decoding="async">
           <span class="pc-frame-n">12</span>
         </button>
-        <button class="pc-frame" type="button" data-pc-wp="12"
+        <button class="pc-frame swiper-slide" type="button" data-pc-wp="12"
           aria-label="Wallpaper 13">
-          <img src="../../../assets/img/pccme-wp-13.jpg" alt="" width="740" height="1601" loading="lazy" decoding="async">
+          <img src="../../../assets/img/pccme-wp-13.webp" alt="Porsche Carrera Cup Middle East wallpaper 13" width="740" height="1601" loading="lazy" decoding="async">
           <span class="pc-frame-n">13</span>
         </button>
-        <button class="pc-frame" type="button" data-pc-wp="13"
+        <button class="pc-frame swiper-slide" type="button" data-pc-wp="13"
           aria-label="Wallpaper 14">
-          <img src="../../../assets/img/pccme-wp-14.jpg" alt="" width="740" height="1601" loading="lazy" decoding="async">
+          <img src="../../../assets/img/pccme-wp-14.webp" alt="Porsche Carrera Cup Middle East wallpaper 14" width="740" height="1601" loading="lazy" decoding="async">
           <span class="pc-frame-n">14</span>
         </button>
-        <button class="pc-frame" type="button" data-pc-wp="14"
+        <button class="pc-frame swiper-slide" type="button" data-pc-wp="14"
           aria-label="Wallpaper 15">
-          <img src="../../../assets/img/pccme-wp-15.jpg" alt="" width="740" height="1601" loading="lazy" decoding="async">
+          <img src="../../../assets/img/pccme-wp-15.webp" alt="Porsche Carrera Cup Middle East wallpaper 15" width="740" height="1601" loading="lazy" decoding="async">
           <span class="pc-frame-n">15</span>
         </button>
     </div>
@@ -703,14 +1041,14 @@
 <section class="section pc-ceo" aria-labelledby="pg-ceo-title">
   <div class="container">
     <div class="pc-ceo-in">
-      <span class="pc-eyebrow" id="pg-ceo-title" data-reveal>A word from our CEO</span>
+      <span class="pc-eyebrow" id="pg-ceo-title" data-aos="fade-up">A word from our CEO</span>
       <span class="pc-ceo-mark" aria-hidden="true">&ldquo;</span>
-      <blockquote data-reveal>Motorsport represents the pinnacle of precision, performance and preparation. Our partnership with the Porsche Carrera Cup Middle East reflects our commitment to excellence, and our belief that whether on the track or in the markets, success is earned through discipline, strategy and the relentless pursuit of improvement.</blockquote>
-      <div class="pc-ceo-by" data-reveal>
-        <span class="pc-ceo-face"><img src="../../../assets/img/pccme-ceo.jpg" alt="" width="900" height="728" loading="lazy" decoding="async"></span>
+      <blockquote data-aos="fade-up">Motorsport represents the pinnacle of precision, performance and preparation. Our partnership with the Porsche Carrera Cup Middle East reflects our commitment to excellence, and our belief that whether on the track or in the markets, success is earned through discipline, strategy and the relentless pursuit of improvement.</blockquote>
+      <div class="pc-ceo-by" data-aos="fade-up">
+        <span class="pc-ceo-face"><img src="../../../assets/img/pccme-ceo.webp" alt="STARTRADER Chief Executive Officer portrait" width="900" height="728" loading="lazy" decoding="async"></span>
         <span class="pc-ceo-who"><b>Peter Karsten</b><em>Chief Executive Officer</em></span>
       </div>
-      <div class="pc-ceo-rules" data-reveal>
+      <div class="pc-ceo-rules" data-aos="fade-up">
         <i></i><span>Official Partner</span><i></i>
       </div>
     </div>
@@ -721,10 +1059,10 @@
 <section class="section faq-sec fx-faq" aria-labelledby="pg-faq-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>FAQ</span>
-      <h2 class="h2" id="pg-faq-title" data-reveal>About the partnership</h2>
+      <span class="eyebrow" data-aos="fade-up">FAQ</span>
+      <h2 class="h2" id="pg-faq-title" data-aos="fade-up">About the partnership</h2>
     </div>
-    <div class="faq-list" data-reveal>
+    <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
         <summary>What is the Porsche Carrera Cup Middle East?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a">A one-make championship run to Porsche’s own regulations, with every driver in an identical 911 GT3 Cup. Rounds are held across the region, several of them alongside international race weekends.</div>
@@ -748,27 +1086,27 @@
 <section class="section fx-more" aria-labelledby="pg-more-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Keep going</span>
-      <h2 class="h2" id="pg-more-title" data-reveal>Where to go next</h2>
+      <span class="eyebrow" data-aos="fade-up">Keep going</span>
+      <h2 class="h2" id="pg-more-title" data-aos="fade-up">Where to go next</h2>
     </div>
-    <div class="fx-more-grid" data-reveal-stagger>
-      <a class="fx-more-card" href="../why-startrader.html">
-        <span class="fx-more-media"><img src="../../../assets/img/company-hero.jpg" alt="Why STARTRADER — regulation and scale" width="640" height="349" loading="lazy" decoding="async"></span>
+    <div class="fx-more-grid">
+      <a class="fx-more-card" href="../why-startrader.html" data-aos="fade-up">
+        <span class="fx-more-media"><img src="../../../assets/img/company-hero.webp" alt="Why STARTRADER — regulation and scale" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Five regulators, segregated funds and the conditions behind the brand.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Why STARTRADER</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="../csr.html">
+      <a class="fx-more-card" href="../csr.html" data-aos="fade-up" data-aos-delay="100">
         <span class="fx-more-media"><img src="../../../assets/img/company-2.webp" alt="STARCARES community programmes" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Courts rebuilt, families reached and students backed through STARCARES.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">CSR</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="../events.html">
+      <a class="fx-more-card" href="../events.html" data-aos="fade-up" data-aos-delay="200">
         <span class="fx-more-media"><img src="../../../assets/img/company-1.webp" alt="STARTRADER events and expos" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Expos, summits and client evenings where you can meet the team.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Events</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="../achievements.html">
-        <span class="fx-more-media"><img src="../../../assets/img/stat-awards.png" alt="STARTRADER awards and achievements" width="640" height="349" loading="lazy" decoding="async"></span>
+      <a class="fx-more-card" href="../achievements.html" data-aos="fade-up" data-aos-delay="300">
+        <span class="fx-more-media"><img src="../../../assets/img/stat-awards.webp" alt="STARTRADER awards and achievements" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Awards tied to execution, service and cost rather than marketing spend.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Achievements</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
@@ -779,9 +1117,9 @@
 <section class="cta-banner" aria-labelledby="pg-cta-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="pg-cta-title" data-reveal>Start trading with a<br>globally leading broker</h2>
-    <p data-reveal>Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
-    <div class="cta-actions" data-reveal>
+    <h2 id="pg-cta-title" data-aos="fade-up">Start trading with a<br>globally leading broker</h2>
+    <p data-aos="fade-up">Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
+    <div class="cta-actions" data-aos="fade-up">
       <a href="../../../trading/getting-started/account-opening.html" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       <a href="../../../trading/getting-started/account-opening.html" class="btn btn-ghost btn-lg">Try Free Demo</a>
     </div>
@@ -869,7 +1207,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../../../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../../../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -903,6 +1241,8 @@
 <script src="../../../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../../../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../../../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../../../assets/js/vendor/swiper-bundle.min.js" defer></script>
+<script src="../../../assets/js/vendor/aos.min.js" defer></script>
 <script src="../../../assets/js/main.js" defer></script>
 
 <!-- Company page: robust scroll reveals + hero parallax (self-contained, never leaves content hidden) -->

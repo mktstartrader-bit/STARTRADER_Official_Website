@@ -17,14 +17,14 @@
   <meta property="og:title" content="Become an Affiliate: Partner for Rewards | STARTRADER" />
   <meta property="og:description" content="Fixed CPA per qualified client — up to $650 by country tier — plus a monthly performance bonus and settlement on the 15th." />
   <meta property="og:url" content="https://www.startrader.com/company/partnership/affiliate-registration.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/company-hero.jpg" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/company-hero.webp" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Become an Affiliate: Partner for Rewards | STARTRADER" />
   <meta name="twitter:description" content="Fixed CPA per qualified client — up to $650 by country tier — plus a monthly performance bonus and settlement on the 15th." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/company-hero.jpg" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/company-hero.webp" />
 
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../../favicon.svg" />
@@ -33,7 +33,31 @@
   <!-- Fonts (self-hosted) -->
   <link rel="preload" href="../../assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="../../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ---- tier country chips ---- */
+.pt-tiers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:22px}
+.pt-tier{padding:22px 22px 20px;border-radius:18px}
+.pt-tier-h{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.pt-tier-h b{font-size:15px;letter-spacing:-.015em;color:var(--text)}
+.pt-tier-cpa{font-size:12px;font-weight:700;color:var(--blue);background:rgba(0,71,187,.08);border:1px solid rgba(0,71,187,.18);padding:4px 11px;border-radius:70px;white-space:nowrap}
+/* the chips settle to the bottom of the box, so the list is bottom-anchored
+   and tall enough for them to fall through */
+.pt-tier-list{display:flex;flex-wrap:wrap;align-content:flex-end;gap:7px;min-height:136px}
+.pt-cty{
+  display:inline-flex;align-items:center;gap:7px;font-size:11.5px;color:var(--text-soft);
+  background:rgba(255,255,255,.66);border:1px solid rgba(20,44,96,.1);padding:5px 11px 5px 7px;border-radius:70px;
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  box-shadow:0 6px 14px -10px rgba(20,44,96,.3);will-change:transform;
+}
+.pt-cty img{width:18px;height:13px;flex:none;border-radius:2px;object-fit:cover;box-shadow:0 0 0 1px rgba(20,44,96,.09)}
+/* only hidden while JS is going to drop them in; no-JS shows the list as-is */
+html.is-animate [data-pt-drop] .pt-cty{opacity:0}
+/* ---- Responsive ---- */
+@media (max-width:1080px){.pt-tiers{grid-template-columns:1fr}}
+  </style>
 
   <!-- Structured data — the programme -->
   <script type="application/ld+json">
@@ -442,11 +466,11 @@
   <span class="gl-orb o3" aria-hidden="true"></span>
 
   <div class="container pt-hero-in">
-    <span class="eyebrow eyebrow-blue" data-reveal>CPA Affiliate</span>
-    <h1 class="pt-h1" id="af-title" data-reveal>Fixed payouts for<br>every <span class="g">qualified client</span></h1>
-    <p class="pt-lead" data-reveal>Built for performance marketers. Earn a fixed CPA per qualified client, tiered by country, with a monthly performance bonus on top and settlement on a fixed date every month.</p>
+    <span class="eyebrow eyebrow-blue" data-aos="fade-up">CPA Affiliate</span>
+    <h1 class="pt-h1" id="af-title" data-aos="fade-up">Fixed payouts for<br>every <span class="g">qualified client</span></h1>
+    <p class="pt-lead" data-aos="fade-up">Built for performance marketers. Earn a fixed CPA per qualified client, tiered by country, with a monthly performance bonus on top and settlement on a fixed date every month.</p>
 
-    <div class="pt-hact" data-reveal>
+    <div class="pt-hact" data-aos="fade-up">
       <a href="#apply" class="btn btn-primary btn-lg magnetic">Become a CPA Affiliate <svg class="ico"><use href="#i-arrow-right"/></svg></a>
     </div>
 
@@ -457,7 +481,7 @@
 <section class="section htrade-sec" aria-labelledby="affiliate-steps-title">
   <div class="container">
     <div class="htrade">
-      <div class="htrade-intro" data-reveal>
+      <div class="htrade-intro" data-aos="fade-up">
         <h2 class="htrade-title" id="affiliate-steps-title">How to start<br><span>as an affiliate</span></h2>
         <p class="htrade-sub">Three steps to your first payout</p>
         <a href="#apply" class="btn btn-primary btn-lg htrade-btn magnetic">Become a CPA Affiliate <span class="htrade-go"><svg><use href="#i-arrow-right"/></svg></span></a>
@@ -494,12 +518,12 @@
 <section class="section pt-sec pt-light-2" id="tiers" aria-labelledby="af-tier-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Commission structure</span>
-      <h2 class="h2" id="af-tier-title" data-reveal>What a qualified client is worth</h2>
-      <p class="head-sub" data-reveal>CPA depends on where your client is based. Every tier uses the same qualifying conditions, so the only variable is the country.</p>
+      <span class="eyebrow" data-aos="fade-up">Commission structure</span>
+      <h2 class="h2" id="af-tier-title" data-aos="fade-up">What a qualified client is worth</h2>
+      <p class="head-sub" data-aos="fade-up">CPA depends on where your client is based. Every tier uses the same qualifying conditions, so the only variable is the country.</p>
     </div>
 
-    <div class="ta-spec-wrap pt-spec-wrap" data-reveal>
+    <div class="ta-spec-wrap pt-spec-wrap" data-aos="fade-up">
       <table class="ta-table pt-spec">
         <caption class="sr-only">CPA commission by country tier, with qualifying conditions</caption>
         <thead>
@@ -550,60 +574,60 @@
         </tbody>
       </table>
     </div>
-    <p class="pt-table-note" data-reveal>Monthly bonuses require minimum net deposits of 2.5&times; your monthly CPA commission total &mdash; a 250% threshold. Settlement is monthly, on the 15th, for the previous month&rsquo;s activity. All figures are in USD and subject to the partnership agreement.</p>
+    <p class="pt-table-note" data-aos="fade-up">Monthly bonuses require minimum net deposits of 2.5&times; your monthly CPA commission total &mdash; a 250% threshold. Settlement is monthly, on the 15th, for the previous month&rsquo;s activity. All figures are in USD and subject to the partnership agreement.</p>
 
-    <div class="pt-tiers" data-reveal-stagger>
-      <article class="pt-tier glass">
+    <div class="pt-tiers">
+      <article class="pt-tier glass" data-aos="fade-up">
         <div class="pt-tier-h"><b>Tier 1</b><span class="pt-tier-cpa">$650 CPA</span></div>
         <div class="pt-tier-list" data-pt-drop>
-          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/de.svg" alt="" width="18" height="13" loading="lazy">Germany</span>
-          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/dk.svg" alt="" width="18" height="13" loading="lazy">Denmark</span>
-          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/ch.svg" alt="" width="18" height="13" loading="lazy">Switzerland</span>
-          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/ee.svg" alt="" width="18" height="13" loading="lazy">Estonia</span>
-          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/ie.svg" alt="" width="18" height="13" loading="lazy">Ireland</span>
-          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/it.svg" alt="" width="18" height="13" loading="lazy">Italy</span>
-          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/lt.svg" alt="" width="18" height="13" loading="lazy">Lithuania</span>
-          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/fr.svg" alt="" width="18" height="13" loading="lazy">France</span>
-          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/fi.svg" alt="" width="18" height="13" loading="lazy">Finland</span>
-          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/kw.svg" alt="" width="18" height="13" loading="lazy">Kuwait</span>
-          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/no.svg" alt="" width="18" height="13" loading="lazy">Norway</span>
-          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/nl.svg" alt="" width="18" height="13" loading="lazy">Netherlands</span>
-          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/se.svg" alt="" width="18" height="13" loading="lazy">Sweden</span>
-          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/at.svg" alt="" width="18" height="13" loading="lazy">Austria</span>
-          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/nz.svg" alt="" width="18" height="13" loading="lazy">New Zealand</span>
-          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/pt.svg" alt="" width="18" height="13" loading="lazy">Portugal</span>
-          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/gb.svg" alt="" width="18" height="13" loading="lazy">United Kingdom</span>
+          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/de.svg" alt="Flag of Germany" width="18" height="13" loading="lazy">Germany</span>
+          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/dk.svg" alt="Flag of Denmark" width="18" height="13" loading="lazy">Denmark</span>
+          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/ch.svg" alt="Flag of Switzerland" width="18" height="13" loading="lazy">Switzerland</span>
+          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/ee.svg" alt="Flag of Estonia" width="18" height="13" loading="lazy">Estonia</span>
+          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/ie.svg" alt="Flag of Ireland" width="18" height="13" loading="lazy">Ireland</span>
+          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/it.svg" alt="Flag of Italy" width="18" height="13" loading="lazy">Italy</span>
+          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/lt.svg" alt="Flag of Lithuania" width="18" height="13" loading="lazy">Lithuania</span>
+          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/fr.svg" alt="Flag of France" width="18" height="13" loading="lazy">France</span>
+          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/fi.svg" alt="Flag of Finland" width="18" height="13" loading="lazy">Finland</span>
+          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/kw.svg" alt="Flag of Kuwait" width="18" height="13" loading="lazy">Kuwait</span>
+          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/no.svg" alt="Flag of Norway" width="18" height="13" loading="lazy">Norway</span>
+          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/nl.svg" alt="Flag of Netherlands" width="18" height="13" loading="lazy">Netherlands</span>
+          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/se.svg" alt="Flag of Sweden" width="18" height="13" loading="lazy">Sweden</span>
+          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/at.svg" alt="Flag of Austria" width="18" height="13" loading="lazy">Austria</span>
+          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/nz.svg" alt="Flag of New Zealand" width="18" height="13" loading="lazy">New Zealand</span>
+          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/pt.svg" alt="Flag of Portugal" width="18" height="13" loading="lazy">Portugal</span>
+          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/gb.svg" alt="Flag of the United Kingdom" width="18" height="13" loading="lazy">United Kingdom</span>
         </div>
       </article>
 
-      <article class="pt-tier glass">
+      <article class="pt-tier glass" data-aos="fade-up" data-aos-delay="100">
         <div class="pt-tier-h"><b>Tier 2</b><span class="pt-tier-cpa">$400 CPA</span></div>
         <div class="pt-tier-list" data-pt-drop>
-          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/ar.svg" alt="" width="18" height="13" loading="lazy">Argentina</span>
-          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/br.svg" alt="" width="18" height="13" loading="lazy">Brazil</span>
-          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/cl.svg" alt="" width="18" height="13" loading="lazy">Chile</span>
-          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/co.svg" alt="" width="18" height="13" loading="lazy">Colombia</span>
-          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/hk.svg" alt="" width="18" height="13" loading="lazy">Hong Kong</span>
-          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/hu.svg" alt="" width="18" height="13" loading="lazy">Hungary</span>
-          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/my.svg" alt="" width="18" height="13" loading="lazy">Malaysia</span>
-          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/mx.svg" alt="" width="18" height="13" loading="lazy">Mexico</span>
-          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/pe.svg" alt="" width="18" height="13" loading="lazy">Peru</span>
+          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/ar.svg" alt="Flag of Argentina" width="18" height="13" loading="lazy">Argentina</span>
+          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/br.svg" alt="Flag of Brazil" width="18" height="13" loading="lazy">Brazil</span>
+          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/cl.svg" alt="Flag of Chile" width="18" height="13" loading="lazy">Chile</span>
+          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/co.svg" alt="Flag of Colombia" width="18" height="13" loading="lazy">Colombia</span>
+          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/hk.svg" alt="Flag of Hong Kong" width="18" height="13" loading="lazy">Hong Kong</span>
+          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/hu.svg" alt="Flag of Hungary" width="18" height="13" loading="lazy">Hungary</span>
+          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/my.svg" alt="Flag of Malaysia" width="18" height="13" loading="lazy">Malaysia</span>
+          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/mx.svg" alt="Flag of Mexico" width="18" height="13" loading="lazy">Mexico</span>
+          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/pe.svg" alt="Flag of Peru" width="18" height="13" loading="lazy">Peru</span>
         </div>
       </article>
 
-      <article class="pt-tier glass">
+      <article class="pt-tier glass" data-aos="fade-up" data-aos-delay="200">
         <div class="pt-tier-h"><b>Tier 3</b><span class="pt-tier-cpa">$300 CPA</span></div>
         <div class="pt-tier-list" data-pt-drop>
-          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/cr.svg" alt="" width="18" height="13" loading="lazy">Costa Rica</span>
-          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/cz.svg" alt="" width="18" height="13" loading="lazy">Czech Republic</span>
-          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/do.svg" alt="" width="18" height="13" loading="lazy">Dominican Republic</span>
-          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/ec.svg" alt="" width="18" height="13" loading="lazy">Ecuador</span>
-          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/gt.svg" alt="" width="18" height="13" loading="lazy">Guatemala</span>
-          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/pa.svg" alt="" width="18" height="13" loading="lazy">Panama</span>
-          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/sk.svg" alt="" width="18" height="13" loading="lazy">Slovak Republic</span>
-          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/tw.svg" alt="" width="18" height="13" loading="lazy">Taiwan</span>
-          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/th.svg" alt="" width="18" height="13" loading="lazy">Thailand</span>
-          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/uy.svg" alt="" width="18" height="13" loading="lazy">Uruguay</span>
+          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/cr.svg" alt="Flag of Costa Rica" width="18" height="13" loading="lazy">Costa Rica</span>
+          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/cz.svg" alt="Flag of Czech Republic" width="18" height="13" loading="lazy">Czech Republic</span>
+          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/do.svg" alt="Flag of Dominican Republic" width="18" height="13" loading="lazy">Dominican Republic</span>
+          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/ec.svg" alt="Flag of Ecuador" width="18" height="13" loading="lazy">Ecuador</span>
+          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/gt.svg" alt="Flag of Guatemala" width="18" height="13" loading="lazy">Guatemala</span>
+          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/pa.svg" alt="Flag of Panama" width="18" height="13" loading="lazy">Panama</span>
+          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/sk.svg" alt="Flag of Slovakia" width="18" height="13" loading="lazy">Slovak Republic</span>
+          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/tw.svg" alt="Flag of Taiwan" width="18" height="13" loading="lazy">Taiwan</span>
+          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/th.svg" alt="Flag of Thailand" width="18" height="13" loading="lazy">Thailand</span>
+          <span class="pt-cty" data-pt-cty><img src="../../assets/img/flags/uy.svg" alt="Flag of Uruguay" width="18" height="13" loading="lazy">Uruguay</span>
         </div>
       </article>
     </div>
@@ -614,13 +638,13 @@
 <section class="section pt-sec pt-light" aria-labelledby="af-ben-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Why the CPA model</span>
-      <h2 class="h2" id="af-ben-title" data-reveal>Predictable value per conversion</h2>
-      <p class="head-sub" data-reveal>A fixed payout per qualified client makes campaign maths straightforward: you know what a conversion is worth before you buy the traffic.</p>
+      <span class="eyebrow" data-aos="fade-up">Why the CPA model</span>
+      <h2 class="h2" id="af-ben-title" data-aos="fade-up">Predictable value per conversion</h2>
+      <p class="head-sub" data-aos="fade-up">A fixed payout per qualified client makes campaign maths straightforward: you know what a conversion is worth before you buy the traffic.</p>
     </div>
 
-    <div class="fx-w2-grid" data-reveal-stagger>
-      <article class="fx-w2">
+    <div class="fx-w2-grid">
+      <article class="fx-w2" data-aos="fade-up">
         <div class="fx-w2-viz">
           <div class="fx-cs">
             <div class="fx-cs-meter">
@@ -635,7 +659,7 @@
         <p>Earn dual compensation on referred clients: your tier&rsquo;s fixed CPA, plus a monthly performance bonus once the net-deposit threshold is met.</p>
       </article>
 
-      <article class="fx-w2">
+      <article class="fx-w2" data-aos="fade-up" data-aos-delay="100">
         <div class="fx-w2-viz">
           <div class="fx-pw">
             <div class="fx-pw-row"><span class="q-sym">Tier 1</span><span class="q-px">$650</span><span class="q-chg up">CPA</span></div>
@@ -648,7 +672,7 @@
         <p>High-tiered commission that rewards your performance, with the country tiers published above rather than negotiated case by case.</p>
       </article>
 
-      <article class="fx-w2">
+      <article class="fx-w2" data-aos="fade-up" data-aos-delay="200">
         <div class="fx-w2-viz">
           <div class="fx-uf">
             <div class="fx-uf-speed"><i></i><i></i><i></i><i></i><i></i></div>
@@ -659,7 +683,7 @@
         <p>Accurate, detailed and real-time data on clicks, registrations and qualified conversions, so you can cut what isn&rsquo;t working early.</p>
       </article>
 
-      <article class="fx-w2">
+      <article class="fx-w2" data-aos="fade-up" data-aos-delay="300">
         <div class="fx-w2-viz">
           <div class="fx-tx">
             <div class="fx-tx-ring">
@@ -673,7 +697,7 @@
         <p>Fixed monthly settlement on the 15th &mdash; you receive your earnings on time, every time, for the previous month&rsquo;s activity.</p>
       </article>
 
-      <article class="fx-w2">
+      <article class="fx-w2" data-aos="fade-up" data-aos-delay="400">
         <div class="fx-w2-viz">
           <div class="fx-pw">
             <div class="fx-pw-row"><span class="q-sym">Tracking links</span><span class="q-px">live</span><span class="q-chg up">ready</span></div>
@@ -686,7 +710,7 @@
         <p>A dashboard designed for partner success, with tracking links, creatives, landing pages and reporting in one place.</p>
       </article>
 
-      <article class="fx-w2 fx-w2--lev">
+      <article class="fx-w2 fx-w2--lev" data-aos="fade-up" data-aos-delay="500">
         <div class="fx-w2-viz">
           <div class="fx-lv">
             <svg viewBox="0 0 320 180" preserveAspectRatio="none" aria-hidden="true">
@@ -710,11 +734,11 @@
 
   <div class="container pt-form-wrap">
     <div class="pt-form-aside">
-      <span class="eyebrow" data-reveal>Apply</span>
-      <h2 class="h2" id="pt-apply-title" data-reveal>Become a CPA Affiliate</h2>
-      <p class="pt-aside-lead" data-reveal>Tell us about your channels and traffic sources. Approved affiliates receive tracking links, creatives and a portal, with no registration or setup fee.</p>
+      <span class="eyebrow" data-aos="fade-up">Apply</span>
+      <h2 class="h2" id="pt-apply-title" data-aos="fade-up">Become a CPA Affiliate</h2>
+      <p class="pt-aside-lead" data-aos="fade-up">Tell us about your channels and traffic sources. Approved affiliates receive tracking links, creatives and a portal, with no registration or setup fee.</p>
 
-      <ul class="ct-aside-list" data-reveal>
+      <ul class="ct-aside-list" data-aos="fade-up">
         <li><span class="wb-tick"><svg><use href="#i-check"/></svg></span>No registration or setup fee</li>
         <li><span class="wb-tick"><svg><use href="#i-check"/></svg></span>Reviewed by the partnerships desk, not a shared inbox</li>
         <li><span class="wb-tick"><svg><use href="#i-check"/></svg></span>Prefer email? <a href="mailto:partners@startrader.com">partners@startrader.com</a></li>
@@ -726,7 +750,7 @@
       </div>
     </div>
 
-    <div class="pt-form-card glass" data-reveal>
+    <div class="pt-form-card glass" data-aos="fade-up">
       <form id="ptForm" novalidate data-pt-initial="cpa">
         <div class="pt-tabs" role="tablist" aria-label="Choose a partnership model">
           <button class="pt-tab" type="button" role="tab" data-pt-tab="ib" aria-selected="false"
@@ -819,10 +843,10 @@
 <section class="section faq-sec fx-faq" aria-labelledby="af-faq-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>FAQ</span>
-      <h2 class="h2" id="af-faq-title" data-reveal>CPA Affiliate questions</h2>
+      <span class="eyebrow" data-aos="fade-up">FAQ</span>
+      <h2 class="h2" id="af-faq-title" data-aos="fade-up">CPA Affiliate questions</h2>
     </div>
-    <div class="faq-list" data-reveal>
+    <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
         <summary>When does a referred client qualify?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a">A client qualifies once they have deposited the tier minimum of $500 and traded 2 lots across FX, oil, gold or crypto. The CPA is then payable at your tier&rsquo;s rate in the following month&rsquo;s settlement.</div>
@@ -856,9 +880,9 @@
 <section class="cta-banner" aria-labelledby="pt-cta-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="pt-cta-title" data-reveal>Start trading with a<br>globally leading broker</h2>
-    <p data-reveal>Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
-    <div class="cta-actions" data-reveal>
+    <h2 id="pt-cta-title" data-aos="fade-up">Start trading with a<br>globally leading broker</h2>
+    <p data-aos="fade-up">Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
+    <div class="cta-actions" data-aos="fade-up">
       <a href="../../trading/getting-started/account-opening.html" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       <a href="../../trading/getting-started/account-opening.html" class="btn btn-ghost btn-lg">Try Free Demo</a>
     </div>
@@ -950,7 +974,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -984,6 +1008,7 @@
 <script src="../../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../../assets/js/vendor/aos.min.js" defer></script>
 <script src="../../assets/js/main.js" defer></script>
 </body>
 </html>

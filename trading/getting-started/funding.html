@@ -17,14 +17,14 @@
   <meta property="og:title" content="Funding &amp; Withdrawal — STARTRADER" />
   <meta property="og:description" content="Safe, secure and transparent — with fee-free funding for traders in most countries." />
   <meta property="og:url" content="https://www.startrader.com/trading/getting-started/funding.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/cta-banner.jpg" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/cta-banner.webp" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Funding &amp; Withdrawal — STARTRADER" />
   <meta name="twitter:description" content="Safe, secure and transparent — with fee-free funding for traders in most countries." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/cta-banner.jpg" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/cta-banner.webp" />
 
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../../favicon.svg" />
@@ -33,7 +33,87 @@
   <!-- Fonts (self-hosted) -->
   <link rel="preload" href="../../assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="../../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ================= FUNDING PAGE ================= */
+.fund-hero .acct-hero-sub{max-width:600px}
+/* ---- Methods (light, tabbed) ---- */
+.fund-methods{background:radial-gradient(56% 60% at 90% 2%,rgba(0,71,187,.07),transparent 60%),var(--bg-light)}
+.fund-tabs{display:flex;width:296px;margin:0 auto 44px;padding:5px;border-radius:70px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow-sm);position:relative}
+.fund-tab{flex:1;padding:12px 10px;border-radius:70px;font-size:14px;font-weight:600;color:var(--text-soft);position:relative;z-index:1;transition:color .3s var(--ease)}
+.fund-tab.active{color:#fff}
+.fund-tab-ind{position:absolute;top:5px;left:5px;width:calc(50% - 5px);bottom:5px;border-radius:70px;background:var(--blue);box-shadow:0 8px 20px -8px rgba(0,71,187,.7);transition:transform .42s var(--ease);z-index:0}
+.fund-tabs.is-withdraw .fund-tab-ind{transform:translateX(100%)}
+.pay-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.pay-grid[hidden]{display:none}
+.pay-in .pay-card{animation:payIn .5s var(--ease) both}
+.pay-in .pay-card:nth-child(2){animation-delay:.05s}
+.pay-in .pay-card:nth-child(3){animation-delay:.1s}
+.pay-in .pay-card:nth-child(4){animation-delay:.15s}
+.pay-in .pay-card:nth-child(5){animation-delay:.2s}
+.pay-in .pay-card:nth-child(6){animation-delay:.25s}
+.pay-in .pay-card:nth-child(7){animation-delay:.3s}
+.pay-in .pay-card:nth-child(8){animation-delay:.35s}
+.pay-card{display:flex;flex-direction:column;gap:14px;min-height:150px;background:rgba(255,255,255,.6);-webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6);border:1px solid rgba(255,255,255,.8);border-radius:var(--radius-lg);padding:22px 22px 18px;box-shadow:0 12px 34px -18px rgba(20,44,96,.24),inset 0 1px 0 rgba(255,255,255,.9);transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s}
+.pay-card:hover{transform:translateY(-6px);box-shadow:0 26px 56px -26px rgba(20,44,96,.3),inset 0 1px 0 rgba(255,255,255,.95);border-color:#fff}
+.pay-logo{height:34px;display:flex;align-items:center;transition:transform .4s var(--ease)}
+.pay-card:hover .pay-logo{transform:scale(1.04)}
+.pay-logo svg{height:100%;width:auto;display:block}
+.pay-name{font-size:15px;font-weight:700;color:var(--text);letter-spacing:-.01em}
+.pay-meta{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:var(--text-mute);margin-top:auto}
+.pay-fee{color:#0f9d6f;font-weight:600;background:rgba(16,185,129,.12);padding:3px 10px;border-radius:70px}
+/* brand logo marks */
+.lg-visa{font-family:Arial,Helvetica,sans-serif;font-style:italic;font-weight:800;font-size:25px;color:#1434CB;letter-spacing:.5px;line-height:1}
+.lg-word{font-weight:800;font-size:19px;letter-spacing:-.01em;line-height:1}
+.lg-word.sm{font-size:15px;letter-spacing:.02em}
+.lg-wise{display:inline-block;background:#9FE870;color:#163300;font-weight:800;font-size:15px;padding:6px 12px;border-radius:8px;line-height:1}
+.lg-mc{height:30px}
+.lg-usdt{display:inline-flex;align-items:center;gap:9px;font-weight:800;font-size:17px;color:#26A17B}
+.lg-usdt svg{height:30px;width:30px}
+.pay-note{max-width:760px;margin:34px auto 0;text-align:center;font-size:13.5px;color:var(--text-mute)}
+/* ---- Deposit calculator (dark, interactive) ---- */
+.fund-calc{background:radial-gradient(80% 70% at 50% 0%,rgba(0,40,120,.4),transparent 66%),linear-gradient(180deg,#04060e,#080b16 60%,#04060e);color:#fff}
+.calc-card{max-width:720px;margin:0 auto;border-radius:var(--radius-xl);padding:34px 36px;background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.1);box-shadow:0 40px 90px -40px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.07)}
+.calc-label{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#8fb8ff;margin-bottom:14px}
+.calc-input{display:flex;align-items:center;gap:6px;background:rgba(0,0,0,.32);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:14px 20px;transition:border-color .25s}
+.calc-input:focus-within{border-color:rgba(90,150,255,.6)}
+.calc-cur{font-size:30px;font-weight:800;color:#5b9dff}
+.calc-input input{flex:1;min-width:0;background:none;border:none;outline:none;color:#fff;font-size:30px;font-weight:800;font-family:inherit;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.calc-chips{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 26px}
+.calc-chip{font-size:13px;font-weight:600;color:#aeb8cc;padding:9px 16px;border-radius:70px;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.04);transition:color .25s,background .25s,border-color .25s}
+.calc-chip:hover{color:#fff;border-color:rgba(255,255,255,.28)}
+.calc-chip.active{color:#fff;background:rgba(0,71,187,.3);border-color:rgba(90,150,255,.55)}
+.calc-out{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.calc-cell{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:13px;padding:15px 16px}
+.calc-cell small{display:block;font-size:11.5px;color:#8b95a8;margin-bottom:6px}
+.calc-cell b{font-size:19px;font-weight:800;color:#fff;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.calc-cell.ok b{color:#34d99b}
+.calc-cell .chk{display:inline-flex;align-items:center;gap:7px;color:#34d99b;font-weight:700;font-size:15px}
+.calc-cell .chk svg{width:18px;height:18px}
+/* ---- Important information (two-column: icon rows + image) ---- */
+.fund-info{background:var(--bg-light-2)}
+.fund-info-grid2{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
+.fund-info-copy{max-width:560px}
+.fund-info-copy .h2{margin-top:6px;margin-bottom:16px}
+.fund-info-intro{font-size:15px;color:var(--text-soft);line-height:1.7;margin-bottom:32px;max-width:480px}
+.fund-info-list{display:flex;flex-direction:column;gap:14px}
+.fund-info-row{display:flex;align-items:center;gap:16px;background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6);border:1px solid rgba(255,255,255,.8);border-radius:16px;padding:18px 22px;box-shadow:0 12px 30px -20px rgba(20,44,96,.28),inset 0 1px 0 rgba(255,255,255,.9);transition:transform .35s var(--ease),box-shadow .35s,border-color .3s}
+.fund-info-row:hover{transform:translateX(5px);border-color:#fff;box-shadow:0 18px 36px -22px rgba(20,44,96,.34),inset 0 1px 0 rgba(255,255,255,.95)}
+.fund-info-ic{flex:none;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:rgba(0,71,187,.09);color:var(--blue)}
+.fund-info-ic svg{width:21px;height:21px}
+.fund-info-row p{font-size:14px;color:var(--text);line-height:1.5}
+.fund-info-figure{border-radius:var(--radius-xl);overflow:hidden;aspect-ratio:1614/1782;box-shadow:0 30px 70px -30px rgba(16,30,54,.4)}
+.fund-info-figure img{width:100%;height:100%;object-fit:cover;object-position:center}
+@media (max-width:980px){.pay-grid{grid-template-columns:repeat(2,1fr)}
+.fund-info-grid2{grid-template-columns:1fr;gap:40px}
+.fund-info-copy{max-width:100%}
+.fund-info-figure{max-width:520px;margin-inline:auto;width:100%}}
+@media (max-width:560px){.pay-grid{grid-template-columns:1fr 1fr;gap:12px}
+.calc-out{grid-template-columns:1fr}
+.calc-card{padding:26px 20px}}
+  </style>
 
   <!-- Structured data -->
   <script type="application/ld+json">
@@ -44,7 +124,7 @@
     "description": "Globally leading online broker offering CFD trading across Forex, Metals, Indices, Shares and ETFs.",
     "url": "https://www.startrader.com/",
     "logo": "https://www.startrader.com/assets/img/logo-startrader.svg",
-    "image": "https://www.startrader.com/assets/img/cta-banner.jpg",
+    "image": "https://www.startrader.com/assets/img/cta-banner.webp",
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "4.5",
@@ -377,10 +457,10 @@
   </video>
   <div class="acct-hero-bg" aria-hidden="true"></div>
   <div class="container acct-hero-inner">
-    <span class="eyebrow eyebrow-blue" data-reveal>Funding &amp; Withdrawal</span>
-    <h1 class="acct-hero-title" id="fund-hero-title" data-reveal>Funding and withdrawal</h1>
-    <p class="acct-hero-sub" data-reveal>Experience safe, secure and transparent trading with fee-free<br>funding for traders in most countries.</p>
-    <div class="acct-hero-cta" data-reveal>
+    <span class="eyebrow eyebrow-blue" data-aos="fade-up">Funding &amp; Withdrawal</span>
+    <h1 class="acct-hero-title" id="fund-hero-title" data-aos="fade-up">Funding and withdrawal</h1>
+    <p class="acct-hero-sub" data-aos="fade-up">Experience safe, secure and transparent trading with fee-free<br>funding for traders in most countries.</p>
+    <div class="acct-hero-cta" data-aos="fade-up">
       <a href="account-opening.html" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
     </div>
   </div>
@@ -390,17 +470,17 @@
 <section class="section fund-methods" aria-labelledby="fund-methods-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Methods</span>
-      <h2 class="h2" id="fund-methods-title" data-reveal>Funding and withdrawal methods</h2>
+      <span class="eyebrow" data-aos="fade-up">Methods</span>
+      <h2 class="h2" id="fund-methods-title" data-aos="fade-up">Funding and withdrawal methods</h2>
     </div>
 
-    <div class="fund-tabs" data-fund-tabs role="tablist" aria-label="Funding methods" data-reveal>
+    <div class="fund-tabs" data-fund-tabs role="tablist" aria-label="Funding methods" data-aos="fade-up">
       <span class="fund-tab-ind" aria-hidden="true"></span>
       <button class="fund-tab active" role="tab" aria-selected="true" data-tab="deposit">Deposit</button>
       <button class="fund-tab" role="tab" aria-selected="false" data-tab="withdraw">Withdrawal</button>
     </div>
 
-    <div class="pay-grid pay-in" data-pay-grid="deposit" data-reveal>
+    <div class="pay-grid pay-in" data-pay-grid="deposit" data-aos="fade-up">
       <div class="pay-card">
         <div class="pay-logo"><svg viewBox="0 0 40 30" aria-hidden="true"><path d="M4 13 20 5l16 8M6 13v11m6-11v11m8-11v11m8-11v11M4 26h32" fill="none" stroke="#0047BB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <div class="pay-name">Bank Wire Transfer</div>
@@ -476,7 +556,7 @@
       </div>
     </div>
 
-    <p class="pay-note" data-reveal>Any payment made via bank wire transfer can take three to five working days to show on your account.</p>
+    <p class="pay-note" data-aos="fade-up">Any payment made via bank wire transfer can take three to five working days to show on your account.</p>
   </div>
 </section>
 
@@ -484,10 +564,10 @@
 <section class="section fund-calc" aria-labelledby="fund-calc-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow eyebrow-blue" data-reveal>Fee-free</span>
-      <h2 class="h2 h2-light" id="fund-calc-title" data-reveal>No hidden costs, ever</h2>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">Fee-free</span>
+      <h2 class="h2 h2-light" id="fund-calc-title" data-aos="fade-up">No hidden costs, ever</h2>
     </div>
-    <div class="calc-card" data-calc data-reveal>
+    <div class="calc-card" data-calc data-aos="fade-up">
       <div class="calc-label">Deposit amount</div>
       <div class="calc-input">
         <span class="calc-cur">$</span>
@@ -513,17 +593,17 @@
   <div class="container">
     <div class="fund-info-grid2">
       <div class="fund-info-copy">
-        <span class="eyebrow" data-reveal>Important information</span>
-        <h2 class="h2" id="fund-info-title" data-reveal>Good to know before you transact</h2>
-        <p class="fund-info-intro" data-reveal>A few practical details so your deposits and withdrawals always go through smoothly.</p>
-        <div class="fund-info-list" data-reveal-stagger>
-          <div class="fund-info-row"><span class="fund-info-ic"><svg><use href="#i-globe"/></svg></span><p>Withdrawal forms received after 21:00 (GMT) are processed the following working day.</p></div>
-          <div class="fund-info-row"><span class="fund-info-ic"><svg><use href="#i-lock"/></svg></span><p>Funds can only be returned to a bank account in the same name (or joint) as your STARTRADER account.</p></div>
-          <div class="fund-info-row"><span class="fund-info-ic"><svg><use href="#i-wallet"/></svg></span><p>International Telegraphic Transfer (TT) fees are passed on to the client — most are around USD $20.</p></div>
-          <div class="fund-info-row"><span class="fund-info-ic"><svg><use href="#i-swap"/></svg></span><p>Bank wire withdrawals usually take three to five working days to reach your account.</p></div>
+        <span class="eyebrow" data-aos="fade-up">Important information</span>
+        <h2 class="h2" id="fund-info-title" data-aos="fade-up">Good to know before you transact</h2>
+        <p class="fund-info-intro" data-aos="fade-up">A few practical details so your deposits and withdrawals always go through smoothly.</p>
+        <div class="fund-info-list">
+          <div class="fund-info-row" data-aos="fade-up"><span class="fund-info-ic"><svg><use href="#i-globe"/></svg></span><p>Withdrawal forms received after 21:00 (GMT) are processed the following working day.</p></div>
+          <div class="fund-info-row" data-aos="fade-up" data-aos-delay="100"><span class="fund-info-ic"><svg><use href="#i-lock"/></svg></span><p>Funds can only be returned to a bank account in the same name (or joint) as your STARTRADER account.</p></div>
+          <div class="fund-info-row" data-aos="fade-up" data-aos-delay="200"><span class="fund-info-ic"><svg><use href="#i-wallet"/></svg></span><p>International Telegraphic Transfer (TT) fees are passed on to the client — most are around USD $20.</p></div>
+          <div class="fund-info-row" data-aos="fade-up" data-aos-delay="300"><span class="fund-info-ic"><svg><use href="#i-swap"/></svg></span><p>Bank wire withdrawals usually take three to five working days to reach your account.</p></div>
         </div>
       </div>
-      <div class="fund-info-figure" data-reveal>
+      <div class="fund-info-figure" data-aos="fade-up">
         <img src="../../assets/img/funding-info.webp" alt="Secure crypto and fiat funding" loading="lazy">
       </div>
     </div>
@@ -534,10 +614,10 @@
 <section class="section faq-sec ta-faq" aria-labelledby="fund-faq-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>FAQ</span>
-      <h2 class="h2" id="fund-faq-title" data-reveal>Funding questions</h2>
+      <span class="eyebrow" data-aos="fade-up">FAQ</span>
+      <h2 class="h2" id="fund-faq-title" data-aos="fade-up">Funding questions</h2>
     </div>
-    <div class="faq-list" data-reveal>
+    <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
         <summary>How do I add funds to my trading account?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a">Log in to your account with your username and password. Inside the client portal, open the Funds section, choose from the available payment methods, enter the amount and confirm — your deposit is credited in just a few simple steps.</div>
@@ -558,9 +638,9 @@
 <section class="cta-banner" aria-labelledby="fund-cta-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="fund-cta-title" data-reveal>Fee-free funding<br>in most countries</h2>
-    <p data-reveal>Open your account and fund it in minutes with the payment method that works best for you — no deposit fees, ever.</p>
-    <div class="cta-actions" data-reveal>
+    <h2 id="fund-cta-title" data-aos="fade-up">Fee-free funding<br>in most countries</h2>
+    <p data-aos="fade-up">Open your account and fund it in minutes with the payment method that works best for you — no deposit fees, ever.</p>
+    <div class="cta-actions" data-aos="fade-up">
       <a href="account-opening.html" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       <a href="funding.html" class="btn btn-ghost btn-lg">Fund Your Account</a>
     </div>
@@ -648,7 +728,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -682,6 +762,7 @@
 <script src="../../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../../assets/js/vendor/aos.min.js" defer></script>
 <script src="../../assets/js/main.js" defer></script>
 </body>
 </html>

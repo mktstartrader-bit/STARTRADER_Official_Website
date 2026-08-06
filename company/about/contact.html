@@ -17,14 +17,14 @@
   <meta property="og:title" content="Contact Us — 24/7 Support, Offices &amp; Enquiries | STARTRADER" />
   <meta property="og:description" content="24/7 live chat, email answered within two hours, and offices across six jurisdictions. Tell us what you need and the right desk will reply." />
   <meta property="og:url" content="https://www.startrader.com/company/about/contact.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/contact-hero.jpg" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/contact-hero.webp" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Contact Us — 24/7 Support, Offices &amp; Enquiries | STARTRADER" />
   <meta name="twitter:description" content="24/7 live chat, email answered within two hours, and offices across six jurisdictions." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/contact-hero.jpg" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/contact-hero.webp" />
 
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../../favicon.svg" />
@@ -33,7 +33,142 @@
   <!-- Fonts (self-hosted) -->
   <link rel="preload" href="../../assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="../../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ================= CONTACT PAGE ================= */
+.ct-hero{
+  /* a utility page earns a shorter banner than a product page */
+  min-height:min(520px,calc(100vh - var(--topbar-h,44px)));
+  justify-content:center;
+  padding:calc(var(--nav-h) + 36px) 0 44px;
+}
+.ct-hero .wb-hero-video{height:112%}
+/* narrow viewports crop hard off both sides of a 2.48:1 still, which would
+   cut the subject out; bias the crop right so he stays in frame */
+@media (max-width:860px){.ct-hero .wb-hero-video{object-position:74% 0}}
+/* narrow viewports crop hard off both sides of a 2.48:1 still, which would
+   cut the subject out; bias the crop right so he stays in frame */
+@media (max-width:860px){.ct-hero .wb-hero-scrim{
+    background:
+      linear-gradient(90deg,rgba(4,6,14,.9) 0%,rgba(4,6,14,.78) 42%,rgba(4,6,14,.6) 100%),
+      linear-gradient(180deg,rgba(4,6,14,.55) 0%,rgba(4,6,14,.06) 24%,rgba(4,6,14,.2) 60%,rgba(4,6,14,.86) 92%,#04060e 100%);
+  }}
+.ct-hero .wb-h1{font-size:clamp(40px,5.6vw,68px)}
+.ct-hero .wb-lead{max-width:46ch;margin-top:16px}
+.ct-hero .wb-hact{margin-top:30px}
+/* a slow diagonal sheen over the film */
+.ct-hero-veil{
+  position:absolute;inset:-30% -10%;z-index:-1;pointer-events:none;opacity:.42;
+  background:
+    radial-gradient(38% 44% at 22% 44%,rgba(0,71,187,.34),transparent 68%),
+    radial-gradient(30% 36% at 74% 26%,rgba(22,233,215,.1),transparent 70%);
+  filter:blur(28px);
+}
+@media (prefers-reduced-motion:no-preference){.ct-hero-veil{animation:ctVeil 22s var(--ease) infinite alternate}}
+/* section backdrops stay at the same weight as every other card section */
+.ct-ch-sec{background:radial-gradient(58% 46% at 6% 0%,rgba(0,71,187,.08),transparent 62%),var(--bg-light)}
+.ct-ch-sec{position:relative;isolation:isolate}
+.ct-ch-sec{overflow:clip}
+.ct-ch-sec>.container{position:relative;z-index:1}
+/* drifting tint behind the panes, kept at the same strength as the section
+   gradients above so it reads as depth rather than colour */
+.ct-aura{position:absolute;z-index:0;pointer-events:none;border-radius:50%;filter:blur(70px)}
+.ct-aura.a1{top:-70px;left:-90px;width:min(520px,58vw);aspect-ratio:1;background:radial-gradient(circle,rgba(0,71,187,.08),transparent 68%)}
+.ct-aura.a2{bottom:-140px;right:-80px;width:min(460px,52vw);aspect-ratio:1;background:radial-gradient(circle,rgba(22,233,215,.07),transparent 68%)}
+.ct-aura.a4{top:-90px;right:0;width:min(500px,54vw);aspect-ratio:1;background:radial-gradient(circle,rgba(22,233,215,.07),transparent 68%)}
+/* ---- Channels — bento, same glass + hover as the news and webinars cards ---- */
+.ct-channels{
+  display:grid;grid-template-columns:1.16fr 1fr 1fr;grid-template-rows:auto auto;
+  gap:18px;align-items:stretch;
+}
+.ct-ch{
+  display:flex;flex-direction:column;padding:26px 24px 24px;min-width:0;border-radius:20px;
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
+}
+.ct-ch:hover{transform:translateY(-4px);border-color:rgba(0,71,187,.28);box-shadow:0 28px 52px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff}
+.ct-ch--lead{grid-column:1;grid-row:1 / span 2;padding:32px 30px 28px}
+.ct-ch:nth-of-type(2){grid-column:2;grid-row:1}
+.ct-ch:nth-of-type(3){grid-column:3;grid-row:1}
+.ct-ch:nth-of-type(4){grid-column:2 / span 2;grid-row:2;flex-direction:row;align-items:center;flex-wrap:wrap;gap:0 26px}
+.ct-ch:nth-of-type(4) .ct-ch-ic{margin-bottom:0;flex:none}
+.ct-ch:nth-of-type(4) .ct-ch-txt{flex:1 1 260px;min-width:0}
+.ct-ch:nth-of-type(4) .ct-ch-go{margin-top:0;padding-top:0}
+.ct-ch-ic{
+  width:48px;height:48px;border-radius:15px;display:grid;place-items:center;margin-bottom:18px;
+  background:rgba(0,71,187,.09);color:var(--blue);
+  transition:transform .4s var(--ease);
+}
+.ct-ch-ic svg{width:22px;height:22px}
+.ct-ch:hover .ct-ch-ic{transform:translateY(-3px) scale(1.05)}
+.ct-ch--lead .ct-ch-ic{width:56px;height:56px;border-radius:17px}
+.ct-ch--lead .ct-ch-ic svg{width:26px;height:26px}
+.ct-ch h3{font-size:17px;letter-spacing:-.02em;color:var(--text)}
+.ct-ch--lead h3{font-size:clamp(21px,2vw,25px);letter-spacing:-.03em}
+.ct-ch p{margin-top:8px;font-size:13.5px;line-height:1.62;color:var(--text-soft)}
+.ct-ch--lead p{margin-top:12px;font-size:14.5px;line-height:1.68;max-width:34ch}
+.ct-ch-go{
+  margin-top:auto;padding-top:20px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;
+  font-size:13.5px;font-weight:700;color:var(--blue);word-break:break-word;text-align:left;
+}
+.ct-ch-go svg{width:14px;height:14px;flex:none;transition:transform .3s var(--ease)}
+.ct-ch:hover .ct-ch-go svg{transform:translate(3px,-3px)}
+.ct-ch-go:hover{text-decoration:underline;text-underline-offset:3px}
+.ct-ch--lead .ct-ch-go{
+  align-self:flex-start;margin-top:auto;padding:12px 20px;border-radius:70px;
+  color:#fff;background:var(--blue);box-shadow:0 14px 30px -18px rgba(0,71,187,.6);
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease);
+}
+.ct-ch--lead .ct-ch-go:hover{text-decoration:none;transform:translateY(-2px);box-shadow:0 20px 40px -20px rgba(0,71,187,.75)}
+.ct-ch--lead .ct-ch-go svg{width:15px;height:15px}
+.ct-ch--lead:hover .ct-ch-go svg{transform:translateX(4px)}
+/* ---- Form ---- */
+.ct-form-wrap{display:grid;grid-template-columns:minmax(0,.84fr) minmax(0,1.16fr);gap:clamp(28px,3.6vw,58px);align-items:start}
+.ct-form-aside{position:sticky;top:calc(var(--chrome-h) + 26px)}
+.ct-aside-lead{margin-top:16px;font-size:15px;line-height:1.65;color:var(--text-soft)}
+.ct-hint{font-size:12px;color:var(--text-mute);margin-top:2px}
+.ct-route{
+  display:flex;align-items:center;gap:8px;margin-top:12px;font-size:12.5px;color:var(--text-soft);
+  padding:11px 14px;border-radius:12px;background:rgba(0,71,187,.055);border:1px solid rgba(0,71,187,.13);
+}
+.ct-route b{color:var(--blue)}
+.ct-panel>*+.ct-radios{margin-top:26px}
+/* two choices as an underlined pair, as in the reference */
+.ct-radios{border:0;padding:0;margin-top:28px}
+.ct-radios legend{font-size:12.5px;font-weight:600;color:var(--text-soft);padding:0;margin-bottom:6px}
+.ct-seg{display:flex;align-items:stretch;gap:28px;border-bottom:1px solid rgba(20,44,96,.2)}
+.ct-segbtn{position:relative;cursor:pointer;padding:11px 2px;font-size:15px;color:var(--text-mute);transition:color .25s}
+.ct-segbtn input{position:absolute;opacity:0;width:0;height:0}
+.ct-segbtn:hover{color:var(--text-soft)}
+.ct-segbtn span{display:block;position:relative}
+.ct-segbtn span::after{
+  content:"";position:absolute;left:0;right:0;bottom:-12px;height:2px;border-radius:2px;
+  background:var(--blue);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease);
+}
+.ct-segbtn input:checked~span{color:var(--blue);font-weight:600}
+.ct-segbtn input:checked~span::after{transform:scaleX(1)}
+.ct-segbtn input:focus-visible~span{outline:2px solid var(--blue);outline-offset:4px;border-radius:3px}
+.ct-acct{margin-top:26px}
+/* ---- Responsive ---- */
+@media (max-width:1080px){.ct-channels{grid-template-columns:1fr 1fr;grid-template-rows:auto auto auto}
+.ct-ch--lead{grid-column:1 / span 2;grid-row:1}
+.ct-ch:nth-of-type(2){grid-column:1;grid-row:2}
+.ct-ch:nth-of-type(3){grid-column:2;grid-row:2}
+.ct-ch:nth-of-type(4){grid-column:1 / span 2;grid-row:3}
+.ct-ch--lead p{max-width:52ch}
+.ct-form-wrap{grid-template-columns:1fr;gap:30px}
+.ct-form-aside{position:static}}
+@media (max-width:860px){.ct-hero{min-height:min(440px,calc(100vh - var(--topbar-h,44px)));padding:calc(var(--nav-h) + 34px) 0 40px}}
+@media (max-width:560px){.ct-hero{min-height:auto}}
+@media (max-width:720px){.ct-channels{grid-template-columns:1fr;max-width:440px;margin-inline:auto}
+.ct-ch--lead,.ct-ch:nth-of-type(2),.ct-ch:nth-of-type(3),.ct-ch:nth-of-type(4){grid-column:1;grid-row:auto}
+.ct-ch:nth-of-type(4){flex-direction:column;align-items:flex-start;gap:0}
+.ct-ch:nth-of-type(4) .ct-ch-ic{margin-bottom:18px}
+.ct-ch:nth-of-type(4) .ct-ch-go{margin-top:auto;padding-top:20px}
+.ct-seg{gap:22px}
+.ct-aura{filter:blur(54px)}}
+  </style>
 
   <!-- Structured data — organisation, contact points and offices -->
   <script type="application/ld+json">
@@ -434,18 +569,18 @@
 
 <!-- ============ BANNER ============ -->
 <section class="wb-hero ct-hero" aria-labelledby="ct-hero-title">
-  <img class="wb-hero-video" src="../../assets/img/contact-hero.jpg" alt="" width="2000" height="806"
+  <img class="wb-hero-video" src="../../assets/img/contact-hero.webp" alt="STARTRADER support team at work" width="2000" height="806"
        fetchpriority="high" decoding="async">
   <div class="wb-hero-scrim" aria-hidden="true"></div>
 
   <span class="ct-hero-veil" aria-hidden="true"></span>
 
   <div class="container wb-hero-inner" data-ct-heroin>
-    <span class="eyebrow eyebrow-blue" data-reveal>We&rsquo;re here around the clock</span>
-    <h1 class="wb-h1" id="ct-hero-title" data-reveal>Contact us</h1>
-    <p class="wb-lead" data-reveal>Tell us what you need and the right desk answers &mdash; live chat in under a minute, email within two hours.</p>
+    <span class="eyebrow eyebrow-blue" data-aos="fade-up">We&rsquo;re here around the clock</span>
+    <h1 class="wb-h1" id="ct-hero-title" data-aos="fade-up">Contact us</h1>
+    <p class="wb-lead" data-aos="fade-up">Tell us what you need and the right desk answers &mdash; live chat in under a minute, email within two hours.</p>
 
-    <div class="wb-hact" data-reveal>
+    <div class="wb-hact" data-aos="fade-up">
       <a href="#form" class="btn btn-primary btn-lg magnetic" data-ct-chat>Start live chat <svg class="ico"><use href="#i-arrow-right"/></svg></a>
     </div>
   </div>
@@ -500,11 +635,11 @@
   <div class="container ct-form-wrap">
 
     <div class="ct-form-aside">
-      <span class="eyebrow" data-reveal>Send a message</span>
+      <span class="eyebrow" data-aos="fade-up">Send a message</span>
       <h2 class="h2" id="ct-form-title" data-ct-words>One short form, then the right desk replies</h2>
-      <p class="ct-aside-lead" data-reveal>Pick the team below and your message goes straight there &mdash; nothing gets passed around.</p>
+      <p class="ct-aside-lead" data-aos="fade-up">Pick the team below and your message goes straight there &mdash; nothing gets passed around.</p>
 
-      <ul class="ct-aside-list" data-reveal>
+      <ul class="ct-aside-list" data-aos="fade-up">
         <li><span class="wb-tick"><svg><use href="#i-check"/></svg></span>Routed by department, not a shared inbox</li>
         <li><span class="wb-tick"><svg><use href="#i-check"/></svg></span>Reply target shown before you send</li>
         <li><span class="wb-tick"><svg><use href="#i-check"/></svg></span>In a hurry? <button class="ct-inline-chat" type="button" data-ct-chat>use live chat instead</button></li>
@@ -516,7 +651,7 @@
       </div>
     </div>
 
-    <div class="ct-form-card glass" data-reveal>
+    <div class="ct-form-card glass" data-aos="fade-up">
       <form id="ctForm" novalidate>
         <div class="ct-panel">
           <div class="ct-grid">
@@ -629,10 +764,10 @@
 <section class="section faq-sec fx-faq" aria-labelledby="ct-faq-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>FAQ</span>
+      <span class="eyebrow" data-aos="fade-up">FAQ</span>
       <h2 class="h2" id="ct-faq-title" data-ct-words>Before you get in touch</h2>
     </div>
-    <div class="faq-list" data-reveal>
+    <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
         <summary>How quickly will I get a reply?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a">Live chat is answered around the clock, usually in under a minute. Emails to <a href="mailto:support@startrader.com">support@startrader.com</a> are answered within two hours, and messages sent through the form on this page go straight to the desk you select, so they aren&rsquo;t passed between teams.</div>
@@ -673,9 +808,9 @@
 <section class="cta-banner" aria-labelledby="ct-cta-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="ct-cta-title" data-reveal>Start trading with a<br>globally leading broker</h2>
-    <p data-reveal>Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
-    <div class="cta-actions" data-reveal>
+    <h2 id="ct-cta-title" data-aos="fade-up">Start trading with a<br>globally leading broker</h2>
+    <p data-aos="fade-up">Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
+    <div class="cta-actions" data-aos="fade-up">
       <a href="../../trading/getting-started/account-opening.html" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       <a href="../../trading/getting-started/account-opening.html" class="btn btn-ghost btn-lg">Try Free Demo</a>
     </div>
@@ -764,7 +899,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -798,6 +933,7 @@
 <script src="../../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../../assets/js/vendor/aos.min.js" defer></script>
 <script src="../../assets/js/main.js" defer></script>
 </body>
 </html>

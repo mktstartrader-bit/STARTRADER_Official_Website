@@ -17,14 +17,14 @@
   <meta property="og:title" content="STARTRADER — Trade with a Globally Leading Broker" />
   <meta property="og:description" content="Access global markets on your terms. Trade 1,000+ instruments with ultra-tight ECN spreads and 100ms execution." />
   <meta property="og:url" content="https://www.startrader.com/" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/cta-banner.jpg" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/cta-banner.webp" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="STARTRADER — Trade with a Globally Leading Broker" />
   <meta name="twitter:description" content="Access global markets on your terms. Trade 1,000+ instruments with ultra-tight ECN spreads." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/cta-banner.jpg" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/cta-banner.webp" />
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="favicon.svg" />
@@ -33,10 +33,346 @@
   <!-- Fonts (self-hosted) -->
   <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="assets/css/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="assets/css/aos.min.css" />
   <link rel="stylesheet" href="assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ---------- Layout ---------- */
+.ta-r{text-align:right}
+/* ---------- Hero ---------- */
+.hero-inner{display:flex;flex-direction:column;align-items:center;text-align:center}
+.hero-title{width:100%;max-width:100%;font-size:clamp(29px,6.4vw,66px);font-weight:800;letter-spacing:-.03em;line-height:1.14;overflow-wrap:break-word}
+.hero-title .line-1,.hero-title .line-2{display:block}
+.hero-title .line-2{
+  background:linear-gradient(90deg,rgba(255,255,255,.8),#eef3f9);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  padding-bottom:.14em;
+}
+.hero-sub{
+  margin-top:20px;font-size:clamp(15px,1.6vw,18px);color:#d8e1ee;font-weight:400;
+  text-shadow:0 1px 12px rgba(3,7,20,.55);
+}
+.hero-cta{margin-top:34px}
+/* Hero CTA sits on the dark banner — white pill */
+.hero-cta .btn{background:#fff;color:#08122a;box-shadow:0 16px 36px -16px rgba(0,0,0,.6)}
+.hero-cta .btn:hover{background:#e9f0fa}
+.hero-cta .btn:active{background:#d9e4f4}
+.hero-strip-label{
+  margin-top:48px;font-size:13.5px;color:#c2cddd;font-style:italic;font-weight:400;
+  text-shadow:0 1px 14px rgba(3,7,20,.7);
+}
+.hero-strip{
+  margin-top:34px;display:flex;justify-content:center;align-items:flex-start;flex-wrap:wrap;
+  gap:0;width:100%;
+}
+.hero-strip li{
+  flex:1;min-width:150px;max-width:220px;display:flex;flex-direction:column;align-items:center;text-align:center;
+  padding:0 26px;position:relative;
+}
+.hero-strip li+li::before{
+  content:"";position:absolute;left:0;top:8px;bottom:8px;width:1px;
+  background:linear-gradient(180deg,transparent,rgba(255,255,255,.16),transparent);
+}
+.hs-ico{
+  width:48px;height:48px;border-radius:50%;display:grid;place-items:center;margin-bottom:16px;
+  background:radial-gradient(120% 120% at 50% 0%,rgba(255,255,255,.14),rgba(255,255,255,.03));
+  border:1px solid rgba(255,255,255,.12);color:#dfe6f1;
+  transition:transform .4s var(--ease),border-color .3s,color .3s;
+}
+.hero-strip li:hover .hs-ico{transform:translateY(-4px);border-color:rgba(0,120,255,.6);color:#fff}
+.hs-ico svg{width:22px;height:22px}
+.hs-val{font-size:15px;font-weight:700;color:#fff;letter-spacing:-.01em;text-shadow:0 1px 12px rgba(3,7,20,.55)}
+.hs-lbl{font-size:12.5px;color:#c5d0e0;margin-top:5px;text-shadow:0 1px 10px rgba(3,7,20,.55)}
+/* ---------- Why stats ---------- */
+.why-stats{display:grid;grid-template-columns:repeat(3,1fr);max-width:1000px;margin:0 auto}
+.why-stats li{padding:6px 44px;position:relative}
+.why-stats li+li::before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:1px;background:var(--line)}
+.stat-num{display:block;font-size:clamp(44px,6vw,64px);font-weight:800;letter-spacing:-.03em;color:var(--text);line-height:1}
+.stat-title{display:block;margin-top:14px;font-size:17px;font-weight:600;color:var(--blue)}
+.stat-desc{display:block;margin-top:7px;font-size:13.5px;color:var(--text-mute)}
+/* ---------- Markets (glassmorphism) ---------- */
+.mkt-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
+/* faint colour hints behind the glass cards */
+.markets .blob{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none}
+.markets .blob.b1{width:460px;height:460px;left:-6%;top:18%;background:radial-gradient(circle,rgba(0,110,255,.12),transparent 70%)}
+.markets .blob.b2{width:500px;height:500px;right:-6%;top:8%;background:radial-gradient(circle,rgba(20,205,200,.1),transparent 70%)}
+.markets .blob.b3{display:none}
+/* ---- Markets explorer (glassmorphic cards + category tabs) ---- */
+.mkx-tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:6px 0 34px}
+.mkx-tab{font-size:14px;font-weight:600;color:var(--text-soft);padding:9px 20px;border-radius:60px;background:rgba(255,255,255,.6);border:1px solid var(--line);cursor:pointer;transition:background .25s,color .25s,border-color .25s,box-shadow .25s}
+.mkx-tab:hover{color:var(--text);border-color:#c7d3e6}
+.mkx-tab.is-active{background:#0d1420;color:#fff;border-color:transparent;box-shadow:0 12px 26px -14px rgba(13,20,32,.5)}
+.mkx-rows{display:flex;flex-direction:column;gap:16px}
+.mkx-row{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent);mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent)}
+.mkx-track{display:flex;gap:18px;width:max-content;padding:12px 0;will-change:transform}
+.mkx-note{max-width:640px;margin:32px auto 0;text-align:center;font-size:13px;color:var(--text-mute);line-height:1.7}
+.mkx-note b{color:var(--text-soft);font-weight:700}
+.mkx-more{margin-top:28px;text-align:center}
+/* ---------- Platforms ---------- */
+/* the hand sits flush to the card's lower-right corner */
+.plat-hand{
+  position:absolute;right:clamp(-58px,-4vw,-24px);bottom:0;z-index:1;
+  width:auto;height:clamp(300px,88%,486px);max-width:74%;
+  object-fit:contain;object-position:100% 100%;
+  filter:drop-shadow(0 26px 40px rgba(20,44,96,.28));
+  pointer-events:none;
+}
+/* two glass readouts on the left, overlapping the phone rather than sitting on it */
+.plat-chips{
+  position:absolute;left:34px;bottom:clamp(104px,21%,136px);z-index:3;
+  display:flex;flex-direction:column;gap:10px;width:clamp(152px,40%,184px);pointer-events:none;
+}
+.plat-chip{
+  display:flex;flex-direction:column;gap:6px;
+  padding:12px 14px;border-radius:14px;
+  background:rgba(255,255,255,.62);
+  -webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);
+  border:1px solid rgba(255,255,255,.86);
+  box-shadow:0 16px 34px -22px rgba(20,44,96,.45),inset 0 1px 0 #fff;
+}
+.plat-chip b{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mute)}
+.plat-chip-row{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.plat-chip em{font-style:normal;font-size:16px;font-weight:700;letter-spacing:-.02em;
+  font-variant-numeric:tabular-nums;color:var(--text)}
+.plat-chip i{font-style:normal;font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px}
+.plat-chip i.up{color:#0f9d76;background:rgba(16,185,129,.14)}
+/* the stat chip leads with the figure */
+.plat-chip--stat b{font-size:23px;font-weight:800;letter-spacing:-.04em;text-transform:none;
+  color:var(--blue);font-variant-numeric:tabular-nums}
+.plat-chip--stat b small{font-size:12px;font-weight:800;margin-left:2px;color:var(--text-mute)}
+.plat-chip--stat span{font-size:11.5px;line-height:1.4;color:var(--text-soft)}
+@media (prefers-reduced-motion:no-preference){.plat-app .plat-chip{animation:platFloat 6.5s var(--ease) infinite}
+.plat-app .plat-chip--stat{animation-delay:-3.2s}}
+@media (max-width:900px){.plat-chips{width:clamp(132px,44%,168px);bottom:clamp(88px,18%,118px)}
+.plat-chip--stat b{font-size:20px}}
+/* the web card's readouts sit lower and smaller — it is a short, wide card */
+.plat-chips--web{
+  left:auto;right:clamp(150px,30%,240px);top:50%;bottom:auto;transform:translateY(-50%);
+  width:clamp(150px,26%,176px);
+}
+.plat-chips--web .plat-chip{padding:11px 13px;gap:5px}
+.plat-chips--web .plat-chip em{font-size:15px}
+.plat-chips--web .plat-chip--stat b{font-size:20px}
+.plat-chips--web .plat-chip--stat span{font-size:11px}
+@media (max-width:1080px){.plat-chips--web{display:none}}
+/* a veil of blur climbing off the bottom edge, with the store buttons on it */
+.plat-veil{
+  position:absolute;left:0;right:0;bottom:0;z-index:4;
+  padding:56px 34px 26px;
+  -webkit-backdrop-filter:blur(16px) saturate(1.2);backdrop-filter:blur(16px) saturate(1.2);
+  background:linear-gradient(180deg,rgba(240,245,252,0) 0%,rgba(240,245,252,.62) 42%,rgba(240,245,252,.9) 100%);
+  /* the blur itself fades out towards the top, so there is no hard edge */
+  -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 46%,#000 100%);
+  mask-image:linear-gradient(180deg,transparent 0%,#000 46%,#000 100%);
+}
+.plat-veil .avail{
+  display:block;font-size:10.5px;font-weight:800;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--text-mute);
+}
+.plat-veil .badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:11px}
+.plat-veil .badges img{height:38px;width:auto;display:block;
+  border-radius:8px;box-shadow:0 10px 22px -12px rgba(20,44,96,.5);
+  transition:transform .3s var(--ease),box-shadow .3s}
+.plat-veil .badges a:hover img{transform:translateY(-3px);box-shadow:0 16px 30px -12px rgba(20,44,96,.6)}
+@media (max-width:900px){.plat-hand{height:clamp(240px,78%,400px);max-width:62%}
+.plat-veil{padding:48px 22px 20px}}
+/* ---------- Tools (dark) ---------- */
+.tools-grid{
+  display:grid;gap:22px;grid-template-columns:repeat(3,1fr);
+  grid-template-areas:"copy web pro" "copy ct syn";
+  align-items:stretch;
+}
+.tcard{
+  background:
+    radial-gradient(130% 72% at 50% -10%,var(--ray,transparent),transparent 60%),
+    linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.09);border-radius:var(--radius-xl);
+  padding:26px;position:relative;overflow:hidden;
+  transition:transform .45s var(--ease),border-color .35s,box-shadow .45s var(--ease);
+}
+/* thin colored light-ray line at the very top edge, per card */
+.tcard::after{content:"";position:absolute;top:0;left:16%;right:16%;height:2px;border-radius:2px;background:var(--ray-line,rgba(120,160,255,.6));box-shadow:0 0 18px 1px var(--ray-line,rgba(120,160,255,.6));opacity:.8;transition:opacity .35s,left .45s var(--ease),right .45s var(--ease)}
+.tcard:hover::after{opacity:1;left:6%;right:6%}
+.tcard:hover{transform:translateY(-4px);border-color:var(--ray-line,rgba(0,120,255,.45));box-shadow:0 30px 60px -30px rgba(0,60,180,.6)}
+.tcard-copy{grid-area:copy;display:flex;flex-direction:column;--ray:rgba(0,110,255,.24);--ray-line:rgba(70,150,255,.9)}
+.tcard-web{grid-area:web;--ray:rgba(22,233,215,.20);--ray-line:rgba(22,233,215,.85)}
+.tcard-pro{grid-area:pro;--ray:rgba(150,110,255,.22);--ray-line:rgba(160,120,255,.9)}
+.tcard-ct{grid-area:ct;--ray:rgba(16,200,140,.20);--ray-line:rgba(30,210,150,.9)}
+.tcard-syn{grid-area:syn;--ray:rgba(255,170,60,.18);--ray-line:rgba(255,180,80,.9)}
+.tcard h3{font-size:22px;color:#fff;margin-bottom:7px}
+.tcard-sub{font-size:13.5px;color:#9aa6bd;max-width:320px}
+.tcard-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.tcard-tag{font-size:11px;letter-spacing:.1em;color:#7c88a0;font-weight:600}
+.tcard-cornico{width:20px;height:20px;color:#6f7c94}
+.icon-btn{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;color:#aeb8cc;border:1px solid rgba(255,255,255,.1);transition:background .25s,color .25s}
+.icon-btn:hover{background:rgba(255,255,255,.08);color:#fff}
+.icon-btn svg{width:16px;height:16px}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:.05em;padding:6px 11px;border-radius:30px}
+.pill-new{background:rgba(0,71,187,.2);color:#7fb0ff;border:1px solid rgba(0,120,255,.4)}
+.pill-live{background:rgba(16,185,129,.14);color:#34d99b;border:1px solid rgba(16,185,129,.35)}
+.pill-live i{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(16,185,129,.6);animation:pulse 2s infinite}
+.pill-ghost{background:rgba(255,255,255,.06);color:#aab4c8;border:1px solid rgba(255,255,255,.1)}
+.copy-kpis{display:flex;gap:34px;margin-top:20px}
+.kpi-lbl{display:block;font-size:11px;letter-spacing:.06em;color:#7c88a0;font-weight:600;text-transform:uppercase}
+.kpi-val{display:block;font-size:26px;font-weight:800;color:#fff;margin-top:4px;letter-spacing:-.02em}
+.kpi-val.blue{color:#5b9dff}
+.copy-box{margin-top:20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:16px 18px}
+.copy-box .row{display:flex;justify-content:space-between;font-size:13.5px;padding:7px 0;color:#b9c2d4}
+.copy-box .row b{color:#fff;font-weight:600}
+.lb-head{margin-top:22px}
+.leaderboard{margin-top:12px;display:flex;flex-direction:column;gap:6px;flex:1}
+.leaderboard li{display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:12px;padding:8px 0}
+.lb-avatar{width:38px;height:38px;border-radius:50%;flex:none;display:grid;place-items:center;font-size:13px;font-weight:700;color:#fff;letter-spacing:.02em;background:#243049 center/cover}
+.lb-avatar[data-av="1"]{background-image:linear-gradient(135deg,#3a4a6b,#1e2740)}
+.lb-avatar[data-av="2"]{background-image:linear-gradient(135deg,#4b3a6b,#281e40)}
+.lb-avatar[data-av="3"]{background-image:linear-gradient(135deg,#3a5a6b,#1e3340)}
+.lb-meta{display:flex;flex-direction:column;line-height:1.3}
+.lb-meta b{font-size:14px;color:#fff;font-weight:600}
+.lb-meta em{font-style:normal;font-size:11.5px;color:#8390a6}
+.lb-ret{font-size:14px;font-weight:700;color:#5b9dff;font-variant-numeric:tabular-nums}
+.btn-copy{font-size:12px;font-weight:600;color:#7fb0ff;padding:7px 15px;border-radius:30px;border:1px solid rgba(0,120,255,.45);transition:background .25s,color .25s,border-color .25s}
+.btn-copy:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+.tcard-copy .btn{margin-top:20px}
+.mini-terminal{margin-top:20px;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:0 0 12px;overflow:hidden}
+.mt-bar{display:flex;align-items:center;gap:6px;padding:11px 14px;border-bottom:1px solid rgba(255,255,255,.06);position:relative}
+.mt-bar i{width:9px;height:9px;border-radius:50%}
+.mt-bar i:nth-child(1){background:#ff5f57}
+.mt-bar i:nth-child(2){background:#febc2e}
+.mt-bar i:nth-child(3){background:#28c840}
+.mt-lock{width:13px;height:13px;color:#5c677d;margin-left:8px}
+.mt-track{flex:1;height:6px;border-radius:4px;background:rgba(255,255,255,.08)}
+.mt-row{display:grid;grid-template-columns:1fr auto auto;gap:14px;align-items:center;padding:9px 16px;font-size:13px;color:#aab4c8}
+.mt-row b{color:#fff;font-weight:700}
+.mt-head{color:#6d7893;font-size:10.5px;letter-spacing:.08em;padding-top:12px}
+.mt-row .tag{font-size:11.5px;font-weight:600;padding:3px 8px;border-radius:6px}
+.mt-row .tag.up{background:rgba(16,185,129,.16);color:#34d99b}
+.tcard-foot{display:flex;justify-content:space-between;align-items:center;margin-top:18px}
+.foot-traders{display:flex;align-items:center;gap:10px;font-size:13px;color:#c2ccdd}
+.ava-stack{display:flex}
+.ava-stack i{width:24px;height:24px;border-radius:50%;border:2px solid #0b1120;margin-left:-8px;background:#2a3350;display:grid;place-items:center;color:rgba(255,255,255,.78)}
+.ava-stack i svg{width:13px;height:13px}
+.ava-stack i:first-child{margin-left:0}
+.ava-stack i[data-av="1"]{background:linear-gradient(135deg,#3a4a6b,#1e2740)}
+.ava-stack i[data-av="2"]{background:linear-gradient(135deg,#4b3a6b,#281e40)}
+.ava-stack i[data-av="3"]{background:linear-gradient(135deg,#3a5a6b,#1e3340)}
+.foot-rating{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:#fff}
+.foot-rating .star{width:14px;height:14px;color:#ffb400}
+.pro-input{margin-top:20px;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.1);border-radius:11px;padding:13px 15px;font-size:13.5px;color:#c9d2e2;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.pro-latency{display:flex;align-items:center;gap:8px;margin-top:16px;font-size:13.5px;color:#aab4c8;border-top:1px solid rgba(255,255,255,.07);padding-top:16px}
+.pro-latency svg{width:15px;height:15px;color:#5b9dff}
+.pro-latency b{color:#fff}
+.tlink{display:inline-flex;align-items:center;gap:7px;margin-top:18px;font-size:14px;font-weight:600;color:#5b9dff}
+.tlink .ico{width:15px;height:15px;transition:transform .3s var(--ease)}
+.tlink:hover .ico{transform:translateX(4px)}
+.ct-main{display:flex;align-items:center;justify-content:space-between;margin-top:22px;gap:16px}
+.ct-big{font-size:52px;font-weight:800;color:#5b9dff;letter-spacing:-.03em;line-height:1}
+.ct-bars{display:flex;align-items:flex-end;gap:5px;height:56px}
+.ct-bars i{width:8px;border-radius:3px;background:linear-gradient(180deg,#5b9dff,#1e4fb8)}
+.ct-bars i:nth-child(1){height:40%}
+.ct-bars i:nth-child(2){height:62%}
+.ct-bars i:nth-child(3){height:48%}
+.ct-bars i:nth-child(4){height:78%}
+.ct-bars i:nth-child(5){height:56%}
+.ct-bars i:nth-child(6){height:90%}
+.ct-bars i:nth-child(7){height:70%}
+.ct-bars i:nth-child(8){height:100%}
+.ct-foot{display:flex;justify-content:space-between;margin-top:22px;border-top:1px solid rgba(255,255,255,.07);padding-top:16px}
+.ct-foot b{display:block;color:#fff;font-size:15px;font-weight:700;margin-top:3px}
+.syn-load{margin-top:24px}
+.syn-row{display:flex;justify-content:space-between;font-size:13.5px;color:#b9c2d4;margin-bottom:10px}
+.syn-row .blue{color:#5b9dff;font-weight:600}
+.syn-bar{height:8px;border-radius:5px;background:rgba(255,255,255,.08);overflow:hidden}
+.syn-bar i{display:block;height:100%;width:var(--w);border-radius:5px;background:linear-gradient(90deg,#1e4fb8,#5b9dff)}
+/* ---------- Trusted worldwide ---------- */
+.trusted-stats{display:flex;justify-content:center;gap:0;max-width:760px;margin:0 auto 64px;flex-wrap:wrap}
+.trusted-stats li{flex:1;min-width:150px;text-align:center;padding:0 40px;position:relative}
+.trusted-stats li+li::before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:1px;background:rgba(255,255,255,.14)}
+.stat-num.light{color:#fff;font-size:clamp(34px,4.5vw,46px)}
+.stat-cap{display:block;margin-top:10px;font-size:12px;letter-spacing:.08em;color:#8ea0bd;text-transform:uppercase}
+.country-rail{overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.country-track{display:flex;gap:22px;width:max-content;will-change:transform;padding-bottom:6px}
+.country-card{flex:0 0 360px;width:360px;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.09);border-radius:var(--radius-xl);overflow:hidden;transition:transform .4s var(--ease),border-color .3s}
+.country-card:hover{transform:translateY(-4px);border-color:rgba(0,120,255,.4)}
+.cc-media{position:relative;aspect-ratio:386/250;overflow:hidden}
+.cc-media img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.country-card:hover .cc-media img{transform:scale(1.05)}
+.cc-foot{padding:18px 20px 20px}
+.cc-row{display:flex;justify-content:space-between;align-items:center}
+.cc-name{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:600;color:#fff}
+.cc-name .dot{width:8px;height:8px;border-radius:50%;background:var(--green)}
+.cc-country{font-size:13px;color:#9aa8c0}
+.cc-meta{margin-top:16px;align-items:flex-end}
+.cc-meta small{display:block;font-size:11.5px;color:#8494ad;margin-bottom:3px}
+.cc-meta b{font-size:15px;color:#fff;font-weight:700}
+/* ---------- Academy ---------- */
+.academy-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.ac-feature{display:flex;flex-direction:column;background:linear-gradient(180deg,#0a3aa0,#04205a);border-radius:var(--radius-xl);padding:14px;color:#fff;overflow:hidden;transition:transform .45s var(--ease),box-shadow .45s var(--ease)}
+.ac-feature:hover{transform:translateY(-5px);box-shadow:0 30px 60px -28px rgba(0,50,150,.6)}
+.ac-img{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:16/9.4;flex:0 0 auto}
+.ac-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.ac-feature:hover .ac-img img{transform:scale(1.05)}
+.ac-tag{position:absolute;font-size:12px;font-weight:600;padding:6px 13px;border-radius:30px;background:rgba(10,16,28,.55);color:#fff;backdrop-filter:blur(6px)}
+.ac-tag.tl{top:14px;left:14px}
+.ac-tag.tr{top:14px;right:14px}
+.ac-play{position:absolute;inset:0;margin:auto;width:66px;height:66px;border-radius:50%;background:rgba(255,255,255,.92);color:var(--blue);display:grid;place-items:center;box-shadow:0 12px 30px -8px rgba(0,0,0,.45);transition:transform .3s var(--ease),background .3s}
+.ac-play svg{width:26px;height:26px;margin-left:3px}
+.ac-play:hover{transform:scale(1.09);background:#fff}
+.ac-play.sm{width:44px;height:44px}
+.ac-play.sm svg{width:17px;height:17px;margin-left:2px}
+.ac-feature:hover .ac-play,.ac-mini:hover .ac-play{transform:scale(1.06)}
+.ac-duration{position:absolute;right:14px;bottom:14px;background:rgba(6,10,20,.72);color:#fff;font-size:12px;font-weight:600;padding:4px 9px;border-radius:7px;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.ac-body{display:flex;flex-direction:column;flex:1 1 auto;padding:24px 18px 14px}
+.ac-body h3{font-size:22px;margin-bottom:8px}
+.ac-body p{font-size:14px;color:#c3d2ee}
+.ac-foot{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:28px}
+.ac-meta{font-size:13px;color:#a9b7d3}
+.ac-read{display:inline-flex;align-items:center;gap:7px;font-size:14px;font-weight:600;color:#fff}
+.ac-read.blue{color:var(--blue)}
+.ac-read .ico{width:15px;height:15px;transition:transform .3s var(--ease)}
+.ac-read:hover .ico{transform:translateX(4px)}
+.ac-side{display:flex;flex-direction:column;gap:24px}
+.ac-mini{flex:1;background:rgba(255,255,255,.46);-webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6);border:1px solid rgba(255,255,255,.75);border-radius:var(--radius-xl);padding:18px;display:flex;gap:18px;box-shadow:0 12px 34px -18px rgba(20,44,96,.26),inset 0 1px 0 rgba(255,255,255,.9);transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s}
+.ac-mini:hover{transform:translateY(-4px);box-shadow:0 24px 54px -22px rgba(20,44,96,.34),inset 0 1px 0 rgba(255,255,255,.95);border-color:#fff}
+.ac-thumb{position:relative;flex:0 0 178px;height:100%;min-height:150px;border-radius:14px;overflow:hidden}
+.ac-thumb img{width:100%;height:100%;object-fit:cover}
+.ac-thumb .ac-tag{bottom:12px;left:12px;font-size:11px;padding:4px 10px}
+.ac-mini-body{display:flex;flex-direction:column;flex:1;padding:4px 4px 4px 0}
+.ac-mini-body h3{font-size:17px;color:var(--text);margin-bottom:6px;letter-spacing:-.01em}
+.ac-mini-body p{font-size:13.5px;color:var(--text-soft)}
+.ac-mini-body .ac-foot{margin-top:auto}
+.ac-mini-body .ac-meta{color:var(--text-mute)}
+/* ---------- Sponsors ---------- */
+.sponsors-title{text-align:center;font-size:clamp(19px,2.3vw,26px);color:var(--text);font-weight:600;line-height:1.2;margin-bottom:40px}
+.sponsor-cards{display:flex;justify-content:center;gap:24px;flex-wrap:wrap}
+.sponsor-card{width:300px;height:160px;text-decoration:none;cursor:pointer;background:rgba(255,255,255,.46);-webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6);border:1px solid rgba(255,255,255,.75);border-radius:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;box-shadow:0 12px 34px -18px rgba(20,44,96,.26),inset 0 1px 0 rgba(255,255,255,.9);transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s}
+.sponsor-card:hover{transform:translateY(-5px);box-shadow:0 24px 54px -22px rgba(20,44,96,.34),inset 0 1px 0 rgba(255,255,255,.95);border-color:#fff}
+.sponsor-card img{height:44px;width:auto}
+.sponsor-card span{font-size:13.5px;color:var(--text-soft)}
+/* ---------- Hero network graphic ---------- */
+.cc-row{display:flex;align-items:center;gap:8px}
+.cc-name{font-size:13px;font-weight:600;color:#fff}
+.cc-name em{font-style:normal;color:#8b95a8;font-weight:400}
+/* ---------- Responsive ---------- */
+@media (max-width:1080px){.tools-grid{grid-template-columns:1fr 1fr;grid-template-areas:"copy web" "copy pro" "ct syn"}}
+@media (max-width:720px){.hero-strip-label{margin-top:64px}
+.hero-strip{gap:26px 0}
+.hero-strip li{flex:0 0 44%;min-width:44%;padding:0 10px}
+.hero-strip li+li::before{display:none}
+.why-stats{grid-template-columns:1fr;gap:12px;max-width:340px}
+.why-stats li{padding:20px 0;text-align:center}
+.why-stats li+li::before{left:20%;right:20%;top:0;bottom:auto;width:auto;height:1px}
+.tools-grid{grid-template-columns:1fr;grid-template-areas:"copy" "web" "pro" "ct" "syn"}
+.trusted-stats li{flex:1 0 100%;padding:18px 0}
+.trusted-stats li+li::before{display:none}
+.academy-grid{grid-template-columns:1fr}}
+@media (max-width:460px){.sponsor-card{width:100%;max-width:320px}
+.ac-mini{flex-direction:column}
+.ac-thumb{flex-basis:auto;width:100%;height:170px;min-height:0}}
+  </style>
 
   <!-- Hero background (LCP) -->
-  <link rel="preload" href="assets/img/home-hero-bg.jpg" as="image" type="image/jpeg" fetchpriority="high" />
+  <link rel="preload" href="assets/img/home-hero-bg.webp" as="image" type="image/webp" fetchpriority="high" />
 
   <!-- Structured data -->
   <script type="application/ld+json">
@@ -47,7 +383,7 @@
     "description": "Globally leading online broker offering CFD trading across Forex, Metals, Indices, Shares and ETFs.",
     "url": "https://www.startrader.com/",
     "logo": "https://www.startrader.com/assets/img/logo-startrader.svg",
-    "image": "https://www.startrader.com/assets/img/cta-banner.jpg",
+    "image": "https://www.startrader.com/assets/img/cta-banner.webp",
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "4.5",
@@ -379,38 +715,38 @@
   <div class="hero-glow" aria-hidden="true"></div>
   <div class="hero-shape" aria-hidden="true"></div>
   <div class="container hero-inner">
-    <h1 class="hero-title" id="hero-title" data-reveal>
+    <h1 class="hero-title" id="hero-title" data-aos="fade-up">
       <span class="line-1">Trade with a</span>
       <span class="line-2">Globally Leading Broker</span>
     </h1>
-    <p class="hero-sub" data-reveal>Access global markets on your terms today.</p>
-    <div class="hero-cta" data-reveal>
+    <p class="hero-sub" data-aos="fade-up">Access global markets on your terms today.</p>
+    <div class="hero-cta" data-aos="fade-up">
       <a href="trading/getting-started/account-opening.html" class="btn btn-primary btn-lg magnetic">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
     </div>
 
-    <p class="hero-strip-label" data-reveal>Fast, Regulated, and Ready for Every Market</p>
-    <ul class="hero-strip" data-reveal-stagger>
-      <li>
+    <p class="hero-strip-label" data-aos="fade-up">Fast, Regulated, and Ready for Every Market</p>
+    <ul class="hero-strip">
+      <li data-aos="fade-up">
         <span class="hs-ico"><svg><use href="#i-expand"/></svg></span>
         <span class="hs-val">0.0 PIP</span>
         <span class="hs-lbl">Ultra-Tight ECN Spreads</span>
       </li>
-      <li>
+      <li data-aos="fade-up" data-aos-delay="100">
         <span class="hs-ico"><svg><use href="#i-bolt"/></svg></span>
         <span class="hs-val">100 ms EXECUTION</span>
         <span class="hs-lbl">Lightning-Fast Trades</span>
       </li>
-      <li>
+      <li data-aos="fade-up" data-aos-delay="200">
         <span class="hs-ico"><svg><use href="#i-shield"/></svg></span>
         <span class="hs-val">5 REGULATIONS</span>
         <span class="hs-lbl">Globally Trusted &amp; Licensed</span>
       </li>
-      <li>
+      <li data-aos="fade-up" data-aos-delay="300">
         <span class="hs-ico"><svg><use href="#i-box"/></svg></span>
         <span class="hs-val">1000+ PRODUCTS</span>
         <span class="hs-lbl">Multi-Asset Trading</span>
       </li>
-      <li>
+      <li data-aos="fade-up" data-aos-delay="400">
         <span class="hs-ico"><svg><use href="#i-headset"/></svg></span>
         <span class="hs-val">24/7 Support</span>
         <span class="hs-lbl">Multilingual Anytime</span>
@@ -426,21 +762,21 @@
 <section class="section why" id="why" aria-labelledby="why-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>WHY STARTRADER</span>
-      <h2 class="h2" id="why-title" data-reveal>Built different, by numbers</h2>
+      <span class="eyebrow" data-aos="fade-up">WHY STARTRADER</span>
+      <h2 class="h2" id="why-title" data-aos="fade-up">Built different, by numbers</h2>
     </div>
-    <ul class="why-stats" data-reveal-stagger>
-      <li>
+    <ul class="why-stats">
+      <li data-aos="fade-up">
         <span class="stat-num" data-count="1" data-suffix="M" data-prefix="$">$1M</span>
         <span class="stat-title">Client fund insurance</span>
         <span class="stat-desc">Up 340% year on year.</span>
       </li>
-      <li>
+      <li data-aos="fade-up" data-aos-delay="100">
         <span class="stat-num">Tier 1</span>
         <span class="stat-title">Segregated funds</span>
         <span class="stat-desc">Insured per client account.</span>
       </li>
-      <li>
+      <li data-aos="fade-up" data-aos-delay="200">
         <span class="stat-num" data-count="100" data-suffix="%">100%</span>
         <span class="stat-title">Negative-balance protection</span>
         <span class="stat-desc">18ms average fill speed.</span>
@@ -454,11 +790,11 @@
   <div class="mkt-bg" aria-hidden="true"><span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span></div>
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>MARKETS</span>
-      <h2 class="h2" id="markets-title" data-reveal>Explore 1,000+ instruments</h2>
+      <span class="eyebrow" data-aos="fade-up">MARKETS</span>
+      <h2 class="h2" id="markets-title" data-aos="fade-up">Explore 1,000+ instruments</h2>
     </div>
 
-    <div class="mkx-tabs" data-reveal role="tablist" aria-label="Market categories">
+    <div class="mkx-tabs" data-aos="fade-up" role="tablist" aria-label="Market categories">
       <button class="mkx-tab is-active" type="button" role="tab" aria-selected="true" data-cat="popular">Popular</button>
       <button class="mkx-tab" type="button" role="tab" aria-selected="false" data-cat="forex">Forex</button>
       <button class="mkx-tab" type="button" role="tab" aria-selected="false" data-cat="indices">Indices</button>
@@ -467,7 +803,7 @@
       <button class="mkx-tab" type="button" role="tab" aria-selected="false" data-cat="etfs">ETFs</button>
       <button class="mkx-tab" type="button" role="tab" aria-selected="false" data-cat="commodities">Commodities</button>
     </div>
-    <div class="mkx-rows" id="mkxRows" data-reveal>
+    <div class="mkx-rows" id="mkxRows" data-aos="fade-up">
       <div class="mkx-row"><div class="mkx-track" data-dir="-1"><!-- cards by JS --></div></div>
       <div class="mkx-row"><div class="mkx-track" data-dir="1"><!-- cards by JS --></div></div>
     </div>
@@ -480,13 +816,13 @@
 <section class="section platforms" id="platforms" aria-labelledby="platforms-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>PLATFORMS</span>
-      <h2 class="h2" id="platforms-title" data-reveal>Trade your way</h2>
+      <span class="eyebrow" data-aos="fade-up">PLATFORMS</span>
+      <h2 class="h2" id="platforms-title" data-aos="fade-up">Trade your way</h2>
     </div>
 
-    <div class="plat-grid" data-reveal-stagger>
+    <div class="plat-grid">
       <!-- App card -->
-      <article class="plat-card plat-app">
+      <article class="plat-card plat-app" data-aos="fade-up">
         <div class="plat-copy">
           <h3>STARTRADER: Trading &amp; Investing App</h3>
           <p>The full account in your pocket &mdash; iOS &amp; Android.</p>
@@ -504,20 +840,20 @@
           </span>
         </div>
 
-        <img class="plat-hand" src="assets/img/app-hand.png" alt="The STARTRADER app open on a phone" width="1000" height="1364" loading="lazy" decoding="async">
+        <img class="plat-hand" src="assets/img/app-hand.webp" alt="The STARTRADER app open on a phone" width="1000" height="1364" loading="lazy" decoding="async">
 
         <!-- the veil rises off the lower edge, and the buttons sit on it -->
         <div class="plat-veil">
           <span class="avail">Available on</span>
           <div class="badges">
-            <a href="#" aria-label="Download on the App Store"><img src="assets/img/badge-appstore.png" alt="Download on the App Store" width="140" height="41" loading="lazy"></a>
-            <a href="#" aria-label="Get it on Google Play"><img src="assets/img/badge-googleplay.png" alt="Get it on Google Play" width="140" height="41" loading="lazy"></a>
+            <a href="#" aria-label="Download on the App Store"><img src="assets/img/badge-appstore.webp" alt="Download on the App Store" width="140" height="41" loading="lazy"></a>
+            <a href="#" aria-label="Get it on Google Play"><img src="assets/img/badge-googleplay.webp" alt="Get it on Google Play" width="140" height="41" loading="lazy"></a>
           </div>
         </div>
       </article>
 
       <!-- Web trader (blue) -->
-      <article class="plat-card plat-web">
+      <article class="plat-card plat-web" data-aos="fade-up" data-aos-delay="100">
         <div class="plat-copy">
           <h3>Web Trader</h3>
           <p>The full trading terminal in your browser — no download needed.</p>
@@ -535,28 +871,28 @@
       </article>
 
       <!-- MT4 -->
-      <article class="plat-card plat-mt">
+      <article class="plat-card plat-mt" data-aos="fade-up" data-aos-delay="200">
         <div class="plat-copy">
           <h3>MetaTrader 4</h3>
           <p>The classic — EAs, indicators, proven reliability.</p>
         </div>
         <a href="trading/platforms/mt4.html" class="link-ur">Download MT4 <svg class="ico"><use href="#i-arrow-ur"/></svg></a>
 
-        <img class="plat-mt-ico" src="assets/img/mt4-stack.png" alt="MetaTrader 4" width="520" height="498" loading="lazy" decoding="async">
+        <img class="plat-mt-ico" src="assets/img/mt4-stack.webp" alt="MetaTrader 4" width="520" height="498" loading="lazy" decoding="async">
       </article>
 
       <!-- MT5 -->
-      <article class="plat-card plat-mt">
+      <article class="plat-card plat-mt" data-aos="fade-up" data-aos-delay="300">
         <div class="plat-copy">
           <h3>MetaTrader 5</h3>
           <p>Multi-asset, depth of market, full algo support.</p>
         </div>
         <a href="trading/platforms/mt5.html" class="link-ur">Download MT5 <svg class="ico"><use href="#i-arrow-ur"/></svg></a>
-        <img class="plat-mt-ico" src="assets/img/mt5-stack.png" alt="MetaTrader 5" width="520" height="520" loading="lazy" decoding="async">
+        <img class="plat-mt-ico" src="assets/img/mt5-stack.webp" alt="MetaTrader 5" width="520" height="520" loading="lazy" decoding="async">
       </article>
     </div>
 
-    <div class="center" data-reveal>
+    <div class="center" data-aos="fade-up">
       <a href="trading/getting-started/account-opening.html" class="btn btn-primary btn-lg magnetic">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
     </div>
   </div>
@@ -566,13 +902,13 @@
 <section class="section tools" id="tools" aria-labelledby="tools-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow eyebrow-blue" data-reveal>TOOLS</span>
-      <h2 class="h2 h2-light" id="tools-title" data-reveal>Amplify every trade</h2>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">TOOLS</span>
+      <h2 class="h2 h2-light" id="tools-title" data-aos="fade-up">Amplify every trade</h2>
     </div>
 
-    <div class="tools-grid" data-reveal-stagger>
+    <div class="tools-grid">
       <!-- STAR Copy (tall left) -->
-      <article class="tcard tcard-copy">
+      <article class="tcard tcard-copy" data-aos="fade-up">
         <div class="tcard-top">
           <span class="pill pill-new">NEW</span>
           <button class="icon-btn" aria-label="Share"><svg><use href="#i-share"/></svg></button>
@@ -613,7 +949,7 @@
       </article>
 
       <!-- STAR Web Trading -->
-      <article class="tcard tcard-web">
+      <article class="tcard tcard-web" data-aos="fade-up" data-aos-delay="100">
         <div class="tcard-top">
           <span class="pill pill-live"><i></i>LIVE</span>
           <span class="tcard-tag">WEB PLATFORM</span>
@@ -634,7 +970,7 @@
       </article>
 
       <!-- Pro-Link -->
-      <article class="tcard tcard-pro">
+      <article class="tcard tcard-pro" data-aos="fade-up" data-aos-delay="200">
         <div class="tcard-top">
           <span class="pill pill-ghost">API CONNECT</span>
           <svg class="tcard-cornico"><use href="#i-bolt"/></svg>
@@ -647,7 +983,7 @@
       </article>
 
       <!-- Copy Trade 60% -->
-      <article class="tcard tcard-ct">
+      <article class="tcard tcard-ct" data-aos="fade-up" data-aos-delay="300">
         <div class="tcard-top">
           <span class="pill pill-ghost">2,450 TRADERS</span>
           <button class="icon-btn" aria-label="Settings"><svg><use href="#i-gear"/></svg></button>
@@ -665,7 +1001,7 @@
       </article>
 
       <!-- Synthetic Indices -->
-      <article class="tcard tcard-syn">
+      <article class="tcard tcard-syn" data-aos="fade-up" data-aos-delay="400">
         <div class="tcard-top">
           <span class="pill pill-ghost">24/7 MARKETS</span>
           <svg class="tcard-cornico"><use href="#i-chart"/></svg>
@@ -687,7 +1023,7 @@
 <section class="section htrade-sec" id="howto" aria-labelledby="howto-title">
   <div class="container">
     <div class="htrade">
-      <div class="htrade-intro" data-reveal>
+      <div class="htrade-intro" data-aos="fade-up">
         <h2 class="htrade-title" id="howto-title">Get started<br><span>in three simple steps</span></h2>
         <p class="htrade-sub">Register, fund, trade. The whole route takes minutes, and the same account carries every platform.</p>
         <a href="trading/getting-started/account-opening.html" class="btn btn-primary btn-lg htrade-btn magnetic">Open live account <span class="htrade-go"><svg><use href="#i-arrow-right"/></svg></span></a>
@@ -717,56 +1053,56 @@
 <section class="section trusted" aria-labelledby="trusted-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow eyebrow-blue" data-reveal>Trusted Worldwide</span>
-      <h2 class="h2 h2-light" id="trusted-title" data-reveal>Traders in 140+ countries</h2>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">Trusted Worldwide</span>
+      <h2 class="h2 h2-light" id="trusted-title" data-aos="fade-up">Traders in 140+ countries</h2>
     </div>
 
-    <ul class="trusted-stats" data-reveal-stagger>
-      <li><span class="stat-num light" data-count="2" data-suffix="M+">2M+</span><span class="stat-cap">TRADERS WORLDWIDE</span></li>
-      <li><span class="stat-num light" data-count="3.1" data-suffix="T+" data-prefix="$" data-dec="1">$3.1T+</span><span class="stat-cap">TRADED VOLUME</span></li>
-      <li><span class="stat-num light" data-count="4.8" data-suffix="/5" data-dec="1">4.8/5</span><span class="stat-cap">AVERAGE RATING</span></li>
+    <ul class="trusted-stats">
+      <li data-aos="fade-up"><span class="stat-num light" data-count="2" data-suffix="M+">2M+</span><span class="stat-cap">TRADERS WORLDWIDE</span></li>
+      <li data-aos="fade-up" data-aos-delay="100"><span class="stat-num light" data-count="3.1" data-suffix="T+" data-prefix="$" data-dec="1">$3.1T+</span><span class="stat-cap">TRADED VOLUME</span></li>
+      <li data-aos="fade-up" data-aos-delay="200"><span class="stat-num light" data-count="4.8" data-suffix="/5" data-dec="1">4.8/5</span><span class="stat-cap">AVERAGE RATING</span></li>
     </ul>
   </div>
 
-  <div class="country-rail" data-reveal>
-    <div class="country-track" id="countryTrack">
-      <article class="country-card">
-        <div class="cc-media"><img src="assets/img/person-1.jpg" alt="Trader from Algeria" width="800" height="533" loading="lazy"><button class="play" aria-label="Play testimonial"><svg><use href="#i-play"/></svg></button></div>
+  <div class="country-rail swiper st-marquee" data-aos="fade-up" data-marquee-speed="42">
+    <div class="country-track swiper-wrapper" id="countryTrack">
+      <article class="country-card swiper-slide">
+        <div class="cc-media"><img src="assets/img/person-1.webp" alt="Trader from Algeria" width="800" height="533" loading="lazy"><button class="play" aria-label="Play testimonial"><svg><use href="#i-play"/></svg></button></div>
         <div class="cc-foot">
           <div class="cc-row"><span class="cc-name"><i class="dot"></i>Youssef</span><span class="cc-country">Algeria</span></div>
           <div class="cc-row cc-meta"><span><small>Rewards Earned</small><b>$22,500</b></span><span class="ta-r"><small>Trading Style</small><b>Swing Trader</b></span></div>
         </div>
       </article>
-      <article class="country-card">
-        <div class="cc-media"><img src="assets/img/person-2.jpg" alt="Trader from Germany" width="800" height="533" loading="lazy"><button class="play" aria-label="Play testimonial"><svg><use href="#i-play"/></svg></button></div>
+      <article class="country-card swiper-slide">
+        <div class="cc-media"><img src="assets/img/person-2.webp" alt="Trader from Germany" width="800" height="533" loading="lazy"><button class="play" aria-label="Play testimonial"><svg><use href="#i-play"/></svg></button></div>
         <div class="cc-foot">
           <div class="cc-row"><span class="cc-name"><i class="dot"></i>Lukas</span><span class="cc-country">Germany</span></div>
           <div class="cc-row cc-meta"><span><small>Rewards Earned</small><b>$22,500</b></span><span class="ta-r"><small>Trading Style</small><b>Day Trader</b></span></div>
         </div>
       </article>
-      <article class="country-card">
-        <div class="cc-media"><img src="assets/img/person-3.jpg" alt="Trader from England" width="800" height="533" loading="lazy"><button class="play" aria-label="Play testimonial"><svg><use href="#i-play"/></svg></button></div>
+      <article class="country-card swiper-slide">
+        <div class="cc-media"><img src="assets/img/person-3.webp" alt="Trader from England" width="800" height="533" loading="lazy"><button class="play" aria-label="Play testimonial"><svg><use href="#i-play"/></svg></button></div>
         <div class="cc-foot">
           <div class="cc-row"><span class="cc-name"><i class="dot"></i>Oliver</span><span class="cc-country">England</span></div>
           <div class="cc-row cc-meta"><span><small>Rewards Earned</small><b>$42,500</b></span><span class="ta-r"><small>Trading Style</small><b>Swing Trader</b></span></div>
         </div>
       </article>
-      <article class="country-card">
-        <div class="cc-media"><img src="assets/img/person-4.jpg" alt="Trader from Germany" width="800" height="533" loading="lazy"><button class="play" aria-label="Play testimonial"><svg><use href="#i-play"/></svg></button></div>
+      <article class="country-card swiper-slide">
+        <div class="cc-media"><img src="assets/img/person-4.webp" alt="Trader from Germany" width="800" height="533" loading="lazy"><button class="play" aria-label="Play testimonial"><svg><use href="#i-play"/></svg></button></div>
         <div class="cc-foot">
           <div class="cc-row"><span class="cc-name"><i class="dot"></i>Maximilian</span><span class="cc-country">Germany</span></div>
           <div class="cc-row cc-meta"><span><small>Rewards Earned</small><b>$31,000</b></span><span class="ta-r"><small>Trading Style</small><b>Day Trader</b></span></div>
         </div>
       </article>
-      <article class="country-card">
-        <div class="cc-media"><img src="assets/img/person-1.jpg" alt="Trader from the UAE" width="800" height="533" loading="lazy"><button class="play" aria-label="Play testimonial"><svg><use href="#i-play"/></svg></button></div>
+      <article class="country-card swiper-slide">
+        <div class="cc-media"><img src="assets/img/person-1.webp" alt="Trader from the UAE" width="800" height="533" loading="lazy"><button class="play" aria-label="Play testimonial"><svg><use href="#i-play"/></svg></button></div>
         <div class="cc-foot">
           <div class="cc-row"><span class="cc-name"><i class="dot"></i>Khalid</span><span class="cc-country">UAE</span></div>
           <div class="cc-row cc-meta"><span><small>Rewards Earned</small><b>$48,200</b></span><span class="ta-r"><small>Trading Style</small><b>Scalper</b></span></div>
         </div>
       </article>
-      <article class="country-card">
-        <div class="cc-media"><img src="assets/img/person-3.jpg" alt="Trader from Singapore" width="800" height="533" loading="lazy"><button class="play" aria-label="Play testimonial"><svg><use href="#i-play"/></svg></button></div>
+      <article class="country-card swiper-slide">
+        <div class="cc-media"><img src="assets/img/person-3.webp" alt="Trader from Singapore" width="800" height="533" loading="lazy"><button class="play" aria-label="Play testimonial"><svg><use href="#i-play"/></svg></button></div>
         <div class="cc-foot">
           <div class="cc-row"><span class="cc-name"><i class="dot"></i>Chen</span><span class="cc-country">Singapore</span></div>
           <div class="cc-row cc-meta"><span><small>Rewards Earned</small><b>$56,200</b></span><span class="ta-r"><small>Trading Style</small><b>Swing Trader</b></span></div>
@@ -780,22 +1116,22 @@
 <section class="section awards" id="awards" aria-labelledby="awards-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>AWARDS &amp; RECOGNITION</span>
-      <h2 class="h2" id="awards-title" data-reveal>Recognised across the industry</h2>
+      <span class="eyebrow" data-aos="fade-up">AWARDS &amp; RECOGNITION</span>
+      <h2 class="h2" id="awards-title" data-aos="fade-up">Recognised across the industry</h2>
     </div>
 
-    <div class="award-rail">
-      <div class="award-track" id="awardTrack">
-        <article class="award-card"><span class="laurel laurel-l"></span><span class="award-body"><span class="award-txt">AFFILIATE BRAND<br>OF THE YEAR</span><span class="award-sum">DUBAI AFFILIATE SUMMIT 2025</span></span><span class="laurel laurel-r"></span></article>
-        <article class="award-card"><span class="laurel laurel-l"></span><span class="award-body"><span class="award-txt">MOST REPUTABLE<br>FOREX BROKER</span><span class="award-sum">FOREX EXPO DUBAI 2025</span></span><span class="laurel laurel-r"></span></article>
-        <article class="award-card"><span class="laurel laurel-l"></span><span class="award-body"><span class="award-txt">BEST FOREX TRADE<br>EXECUTION</span><span class="award-sum">WIKI FINANCE EXPO CYPRUS 2025</span></span><span class="laurel laurel-r"></span></article>
-        <article class="award-card"><span class="laurel laurel-l"></span><span class="award-body"><span class="award-txt">BEST TRADING<br>CONDITIONS</span><span class="award-sum">MONEY EXPO CHILE 2025</span></span><span class="laurel laurel-r"></span></article>
-        <article class="award-card"><span class="laurel laurel-l"></span><span class="award-body"><span class="award-txt">BEST COPY TRADING<br>BROKER 2025</span><span class="award-sum">FOREX TRADERS SUMMIT 2025</span></span><span class="laurel laurel-r"></span></article>
-        <article class="award-card"><span class="laurel laurel-l"></span><span class="award-body"><span class="award-txt">BEST FX BROKER<br>MIDDLE EAST</span><span class="award-sum">GULF TRADING SUMMIT 2025</span></span><span class="laurel laurel-r"></span></article>
-        <article class="award-card"><span class="laurel laurel-l"></span><span class="award-body"><span class="award-txt">FASTEST GROWING<br>BROKER</span><span class="award-sum">WORLD FINANCE AWARDS 2025</span></span><span class="laurel laurel-r"></span></article>
-        <article class="award-card"><span class="laurel laurel-l"></span><span class="award-body"><span class="award-txt">BEST MOBILE<br>TRADING APP</span><span class="award-sum">FINTECH EXPO SINGAPORE 2025</span></span><span class="laurel laurel-r"></span></article>
-        <article class="award-card"><span class="laurel laurel-l"></span><span class="award-body"><span class="award-txt">MOST TRUSTED<br>BROKER ASIA</span><span class="award-sum">ASIA FOREX AWARDS 2025</span></span><span class="laurel laurel-r"></span></article>
-        <article class="award-card"><span class="laurel laurel-l"></span><span class="award-body"><span class="award-txt">BEST CUSTOMER<br>SUPPORT</span><span class="award-sum">GLOBAL BROKER AWARDS 2025</span></span><span class="laurel laurel-r"></span></article>
+    <div class="award-rail swiper st-marquee" data-marquee-speed="50">
+      <div class="award-track swiper-wrapper" id="awardTrack">
+        <article class="award-card swiper-slide"><span class="laurel laurel-l"></span><span class="award-body"><span class="award-txt">AFFILIATE BRAND<br>OF THE YEAR</span><span class="award-sum">DUBAI AFFILIATE SUMMIT 2025</span></span><span class="laurel laurel-r"></span></article>
+        <article class="award-card swiper-slide"><span class="laurel laurel-l"></span><span class="award-body"><span class="award-txt">MOST REPUTABLE<br>FOREX BROKER</span><span class="award-sum">FOREX EXPO DUBAI 2025</span></span><span class="laurel laurel-r"></span></article>
+        <article class="award-card swiper-slide"><span class="laurel laurel-l"></span><span class="award-body"><span class="award-txt">BEST FOREX TRADE<br>EXECUTION</span><span class="award-sum">WIKI FINANCE EXPO CYPRUS 2025</span></span><span class="laurel laurel-r"></span></article>
+        <article class="award-card swiper-slide"><span class="laurel laurel-l"></span><span class="award-body"><span class="award-txt">BEST TRADING<br>CONDITIONS</span><span class="award-sum">MONEY EXPO CHILE 2025</span></span><span class="laurel laurel-r"></span></article>
+        <article class="award-card swiper-slide"><span class="laurel laurel-l"></span><span class="award-body"><span class="award-txt">BEST COPY TRADING<br>BROKER 2025</span><span class="award-sum">FOREX TRADERS SUMMIT 2025</span></span><span class="laurel laurel-r"></span></article>
+        <article class="award-card swiper-slide"><span class="laurel laurel-l"></span><span class="award-body"><span class="award-txt">BEST FX BROKER<br>MIDDLE EAST</span><span class="award-sum">GULF TRADING SUMMIT 2025</span></span><span class="laurel laurel-r"></span></article>
+        <article class="award-card swiper-slide"><span class="laurel laurel-l"></span><span class="award-body"><span class="award-txt">FASTEST GROWING<br>BROKER</span><span class="award-sum">WORLD FINANCE AWARDS 2025</span></span><span class="laurel laurel-r"></span></article>
+        <article class="award-card swiper-slide"><span class="laurel laurel-l"></span><span class="award-body"><span class="award-txt">BEST MOBILE<br>TRADING APP</span><span class="award-sum">FINTECH EXPO SINGAPORE 2025</span></span><span class="laurel laurel-r"></span></article>
+        <article class="award-card swiper-slide"><span class="laurel laurel-l"></span><span class="award-body"><span class="award-txt">MOST TRUSTED<br>BROKER ASIA</span><span class="award-sum">ASIA FOREX AWARDS 2025</span></span><span class="laurel laurel-r"></span></article>
+        <article class="award-card swiper-slide"><span class="laurel laurel-l"></span><span class="award-body"><span class="award-txt">BEST CUSTOMER<br>SUPPORT</span><span class="award-sum">GLOBAL BROKER AWARDS 2025</span></span><span class="laurel laurel-r"></span></article>
       </div>
     </div>
     <div class="award-nav">
@@ -804,15 +1140,15 @@
     </div>
 
     <div class="head center media-head">
-      <span class="eyebrow" data-reveal>AWARDS &amp; RECOGNITION</span>
-      <h2 class="h2" data-reveal>Highly praised by global media</h2>
+      <span class="eyebrow" data-aos="fade-up">AWARDS &amp; RECOGNITION</span>
+      <h2 class="h2" data-aos="fade-up">Highly praised by global media</h2>
     </div>
-    <ul class="media-logos" data-reveal-stagger>
-      <li><span class="media-rate">4.5/5</span><span class="media-logo"><img src="assets/img/media-wikifx-c.svg" alt="WikiFX" loading="lazy"></span><span class="media-url">wikifx.com</span></li>
-      <li><span class="media-rate">4.5/5</span><span class="media-logo"><img src="assets/img/media-dailyforex-c.svg" alt="DailyForex" loading="lazy"></span><span class="media-url">dailyforex.com</span></li>
-      <li><span class="media-rate">4.5/5</span><span class="media-logo"><img src="assets/img/media-myfxbook-c.svg" alt="Myfxbook" loading="lazy"></span><span class="media-url">myfxbook.com</span></li>
-      <li><span class="media-rate">4.5/5</span><span class="media-logo"><img src="assets/img/media-fxempire-c.svg" alt="FX Empire" loading="lazy"></span><span class="media-url">fxempire.com</span></li>
-      <li><span class="media-rate">4.5/5</span><span class="media-logo"><img src="assets/img/media-tradingde-c.svg" alt="Trading.de" loading="lazy"></span><span class="media-url">tradingde.com</span></li>
+    <ul class="media-logos">
+      <li data-aos="fade-up"><span class="media-rate">4.5/5</span><span class="media-logo"><img src="assets/img/media-wikifx-c.svg" alt="WikiFX" loading="lazy"></span><span class="media-url">wikifx.com</span></li>
+      <li data-aos="fade-up" data-aos-delay="100"><span class="media-rate">4.5/5</span><span class="media-logo"><img src="assets/img/media-dailyforex-c.svg" alt="DailyForex" loading="lazy"></span><span class="media-url">dailyforex.com</span></li>
+      <li data-aos="fade-up" data-aos-delay="200"><span class="media-rate">4.5/5</span><span class="media-logo"><img src="assets/img/media-myfxbook-c.svg" alt="Myfxbook" loading="lazy"></span><span class="media-url">myfxbook.com</span></li>
+      <li data-aos="fade-up" data-aos-delay="300"><span class="media-rate">4.5/5</span><span class="media-logo"><img src="assets/img/media-fxempire-c.svg" alt="FX Empire" loading="lazy"></span><span class="media-url">fxempire.com</span></li>
+      <li data-aos="fade-up" data-aos-delay="400"><span class="media-rate">4.5/5</span><span class="media-logo"><img src="assets/img/media-tradingde-c.svg" alt="Trading.de" loading="lazy"></span><span class="media-url">tradingde.com</span></li>
     </ul>
   </div>
 </section>
@@ -821,12 +1157,12 @@
 <section class="section academy" id="academy" aria-labelledby="academy-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>STARACADEMY</span>
-      <h2 class="h2" id="academy-title" data-reveal>Master the markets, one lesson at a time</h2>
+      <span class="eyebrow" data-aos="fade-up">STARACADEMY</span>
+      <h2 class="h2" id="academy-title" data-aos="fade-up">Master the markets, one lesson at a time</h2>
     </div>
 
-    <div class="academy-grid" data-reveal-stagger>
-      <article class="ac-feature">
+    <div class="academy-grid">
+      <article class="ac-feature" data-aos="fade-up">
         <div class="ac-img">
           <img src="assets/img/academy-1.webp" alt="How to read candlestick charts like a pro" width="1500" height="843" loading="lazy">
           <span class="ac-tag tl">Guide</span>
@@ -841,7 +1177,7 @@
         </div>
       </article>
 
-      <div class="ac-side">
+      <div class="ac-side" data-aos="fade-up" data-aos-delay="100">
         <article class="ac-mini">
           <div class="ac-thumb"><img src="assets/img/academy-2.webp" alt="Risk management basics" width="1500" height="843" loading="lazy"><span class="ac-tag">Strategy</span><button class="ac-play sm" aria-label="Play video"><svg><use href="#i-play"/></svg></button></div>
           <div class="ac-mini-body">
@@ -866,13 +1202,13 @@
 <!-- ============ SPONSORS ============ -->
 <section class="section sponsors" id="sponsors" aria-labelledby="sponsors-title">
   <div class="container">
-    <h2 class="sponsors-title" id="sponsors-title" data-reveal>Official partnerships</h2>
-    <div class="sponsor-cards" data-reveal-stagger>
-      <a href="https://www.nba.com" target="_blank" rel="noopener" class="sponsor-card" aria-label="Official Partner of the NBA">
+    <h2 class="sponsors-title" id="sponsors-title" data-aos="fade-up">Official partnerships</h2>
+    <div class="sponsor-cards">
+      <a href="https://www.nba.com" target="_blank" rel="noopener" class="sponsor-card" aria-label="Official Partner of the NBA" data-aos="fade-up">
         <img src="assets/img/sponsor-nba.svg" alt="NBA" width="108" height="61">
         <span>Official Partner of the NBA</span>
       </a>
-      <a href="https://www.porsche.com" target="_blank" rel="noopener" class="sponsor-card" aria-label="Official Partner of the Porsche Carrera Cup Middle East">
+      <a href="https://www.porsche.com" target="_blank" rel="noopener" class="sponsor-card" aria-label="Official Partner of the Porsche Carrera Cup Middle East" data-aos="fade-up" data-aos-delay="100">
         <img src="assets/img/sponsor-porsche.svg" alt="Porsche Carrera Cup Middle East" width="221" height="61">
         <span>Official Partner of the PCCME</span>
       </a>
@@ -884,9 +1220,9 @@
 <section class="cta-banner" aria-labelledby="cta-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="cta-title" data-reveal>Trade with a<br>Globally Leading Broker</h2>
-    <p data-reveal>STARTRADER is also a member of the Financial Commission, which underscores their commitment to industry integrity and ethical practices.</p>
-    <a href="trading/getting-started/account-opening.html" class="btn btn-primary btn-lg magnetic" data-reveal>Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
+    <h2 id="cta-title" data-aos="fade-up">Trade with a<br>Globally Leading Broker</h2>
+    <p data-aos="fade-up">STARTRADER is also a member of the Financial Commission, which underscores their commitment to industry integrity and ethical practices.</p>
+    <a href="trading/getting-started/account-opening.html" class="btn btn-primary btn-lg magnetic" data-aos="fade-up">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
   </div>
 </section>
 
@@ -971,7 +1307,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -1005,6 +1341,8 @@
 <script src="assets/js/vendor/gsap.min.js" defer></script>
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
+<script src="assets/js/vendor/swiper-bundle.min.js" defer></script>
+<script src="assets/js/vendor/aos.min.js" defer></script>
 <script src="assets/js/main.js" defer></script>
 </body>
 </html>

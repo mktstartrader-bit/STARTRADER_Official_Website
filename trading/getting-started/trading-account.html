@@ -17,14 +17,14 @@
   <meta property="og:title" content="Trading Accounts — STARTRADER" />
   <meta property="og:description" content="Standard, ECN and Prime ECN accounts with spreads from 0.0 pips. Whatever your style, there is an account built for your edge." />
   <meta property="og:url" content="https://www.startrader.com/trading/getting-started/trading-account.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/cta-banner.jpg" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/cta-banner.webp" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Trading Accounts — STARTRADER" />
   <meta name="twitter:description" content="Standard, ECN and Prime ECN accounts with spreads from 0.0 pips across 1,000+ instruments." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/cta-banner.jpg" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/cta-banner.webp" />
 
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../../favicon.svg" />
@@ -33,7 +33,63 @@
   <!-- Fonts (self-hosted) -->
   <link rel="preload" href="../../assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="../../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ---- Hero (two-column: copy + interactive panel over video) ---- */
+.ta-hero{min-height:min(780px,calc(100vh - var(--topbar-h,44px)))}
+.ta-hero .acct-hero-bg::after{background:linear-gradient(90deg,rgba(4,6,14,.96) 0%,rgba(4,6,14,.82) 34%,rgba(4,6,14,.5) 60%,rgba(4,6,14,.28) 100%),linear-gradient(180deg,transparent 60%,rgba(4,6,14,.55))}
+.ta-hero .acct-hero-sub{max-width:640px}
+/* ---- Account type cards (dark, multi-shade, equal height) ---- */
+.ta-types{background:radial-gradient(90% 68% at 50% 0%,rgba(0,46,138,.34),transparent 60%),linear-gradient(180deg,#04060e 0%,#060a18 52%,#04060e 100%);color:#fff;position:relative;overflow:hidden}
+.ta-types>.container{position:relative;z-index:1}
+.ta-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;align-items:stretch}
+.ta-card{position:relative;display:flex;flex-direction:column;height:100%;border-radius:var(--radius-xl);padding:32px 28px;
+  background:
+    radial-gradient(130% 74% at 50% -10%,var(--ray,rgba(120,160,255,.2)),transparent 60%),
+    linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.09);
+  box-shadow:0 26px 62px -34px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.06);
+  transition:transform .45s var(--ease),border-color .35s,box-shadow .45s var(--ease)}
+/* thin glowing colour line along the top edge, per card (homepage tools-card treatment) */
+.ta-card::after{content:"";position:absolute;top:0;left:16%;right:16%;height:2px;border-radius:2px;background:var(--ray-line,rgba(120,160,255,.7));box-shadow:0 0 18px 1px var(--ray-line,rgba(120,160,255,.7));opacity:.85;transition:opacity .35s,left .45s var(--ease),right .45s var(--ease)}
+.ta-card:hover{transform:translateY(-4px);border-color:var(--ray-line,rgba(0,120,255,.45));box-shadow:0 36px 78px -34px rgba(0,60,180,.55)}
+.ta-card:hover::after{opacity:1;left:6%;right:6%}
+/* per-card gradient colour */
+.ta-card--s1{--ray:rgba(22,233,215,.20);--ray-line:rgba(22,233,215,.85)}
+/* Demo — teal */
+.ta-card--s2{--ray:rgba(150,110,255,.22);--ray-line:rgba(160,120,255,.9)}
+/* Standard — purple */
+.ta-card--s3{--ray:rgba(16,200,140,.20);--ray-line:rgba(30,210,150,.9)}
+/* ECN — green */
+.ta-card--dark{--ray:rgba(0,110,255,.3);--ray-line:rgba(80,150,255,.95);border-color:rgba(90,150,255,.26)}
+/* Prime ECN — brand blue */
+.ta-card--dark::after{display:none}
+/* badge is the top accent — no line behind it */
+.ta-card-ic{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#e6ecf6;margin-bottom:20px}
+.ta-card-ic svg{width:23px;height:23px}
+.ta-card h3{font-size:21px;color:#fff;letter-spacing:-.01em}
+.ta-card-tag{font-size:13.5px;color:#9aa6bd;margin-top:8px;margin-bottom:26px;line-height:1.55;min-height:42px}
+.ta-card .btn{width:100%}
+.ta-card--dark .btn{background:#fff;color:var(--blue)}
+.ta-card--dark .btn:hover{background:#eaf1fc}
+.ta-feat{margin-top:28px;padding-top:26px;border-top:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;gap:17px}
+.ta-feat li{display:flex;align-items:flex-start;gap:12px;font-size:13.5px;color:#c4cee0;line-height:1.5}
+.ta-feat-ic{flex:none;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.07);color:var(--ray-line,#8fb8ff);margin-top:1px}
+.ta-feat-ic svg{width:11px;height:11px}
+.ta-rec{position:absolute;top:-11px;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#fff;padding:6px 14px;border-radius:70px;background:linear-gradient(90deg,#2f7bff,#0740b8);box-shadow:0 12px 26px -10px rgba(3,72,205,.95)}
+/* ---- Comparison table (airy, brand-highlighted column) ---- */
+.ta-compare{background:var(--bg-light)}
+.spec-yes{display:inline-grid;place-items:center;width:24px;height:24px}
+.spec-yes svg{width:21px;height:21px;color:#1f2a3d;stroke-width:2.4}
+.ta-col-rec .spec-yes svg{color:var(--blue)}
+/* ---- Closing CTA: two actions ---- */
+@media (max-width:980px){.ta-hero .acct-hero-bg::after{background:linear-gradient(180deg,rgba(4,6,14,.72),rgba(4,6,14,.92))}
+.ta-cards{grid-template-columns:1fr 1fr}}
+@media (max-width:620px){.ta-cards{grid-template-columns:1fr;max-width:420px;margin-inline:auto}
+.ta-card-tag{min-height:0}}
+  </style>
 
   <!-- Structured data -->
   <script type="application/ld+json">
@@ -44,7 +100,7 @@
     "description": "Globally leading online broker offering CFD trading across Forex, Metals, Indices, Shares and ETFs.",
     "url": "https://www.startrader.com/",
     "logo": "https://www.startrader.com/assets/img/logo-startrader.svg",
-    "image": "https://www.startrader.com/assets/img/cta-banner.jpg",
+    "image": "https://www.startrader.com/assets/img/cta-banner.webp",
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "4.5",
@@ -377,10 +433,10 @@
   </video>
   <div class="acct-hero-bg" aria-hidden="true"></div>
   <div class="container acct-hero-inner">
-    <span class="eyebrow eyebrow-blue" data-reveal>Trading Accounts</span>
-    <h1 class="acct-hero-title" id="ta-hero-title" data-reveal>The account built<br>for your edge</h1>
-    <p class="acct-hero-sub" data-reveal>Whatever your style or experience, there's an account for you.<br>Trade 1,000+ instruments with ultra-tight spreads and high leverage.</p>
-    <div class="acct-hero-cta" data-reveal>
+    <span class="eyebrow eyebrow-blue" data-aos="fade-up">Trading Accounts</span>
+    <h1 class="acct-hero-title" id="ta-hero-title" data-aos="fade-up">The account built<br>for your edge</h1>
+    <p class="acct-hero-sub" data-aos="fade-up">Whatever your style or experience, there's an account for you.<br>Trade 1,000+ instruments with ultra-tight spreads and high leverage.</p>
+    <div class="acct-hero-cta" data-aos="fade-up">
       <a href="account-opening.html" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
     </div>
   </div>
@@ -390,12 +446,12 @@
 <section class="section ta-types" aria-labelledby="types-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow eyebrow-blue" data-reveal>Account Types</span>
-      <h2 class="h2 h2-light" id="types-title" data-reveal>Choose the account that suits you</h2>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">Account Types</span>
+      <h2 class="h2 h2-light" id="types-title" data-aos="fade-up">Choose the account that suits you</h2>
     </div>
-    <div class="ta-cards" data-reveal-stagger>
+    <div class="ta-cards">
 
-      <article class="ta-card ta-card--s1">
+      <article class="ta-card ta-card--s1" data-aos="fade-up">
         <span class="ta-card-ic"><svg><use href="#i-monitor"/></svg></span>
         <h3>Demo</h3>
         <p class="ta-card-tag">Practise risk-free with virtual funds</p>
@@ -410,7 +466,7 @@
         </ul>
       </article>
 
-      <article class="ta-card ta-card--s2">
+      <article class="ta-card ta-card--s2" data-aos="fade-up" data-aos-delay="100">
         <span class="ta-card-ic"><svg><use href="#i-user"/></svg></span>
         <h3>Standard</h3>
         <p class="ta-card-tag">For newcomers building confidence</p>
@@ -425,7 +481,7 @@
         </ul>
       </article>
 
-      <article class="ta-card ta-card--s3">
+      <article class="ta-card ta-card--s3" data-aos="fade-up" data-aos-delay="200">
         <span class="ta-card-ic"><svg><use href="#i-chart"/></svg></span>
         <h3>ECN</h3>
         <p class="ta-card-tag">For active traders who want depth</p>
@@ -440,7 +496,7 @@
         </ul>
       </article>
 
-      <article class="ta-card ta-card--dark">
+      <article class="ta-card ta-card--dark" data-aos="fade-up" data-aos-delay="300">
         <span class="ta-rec">Recommended</span>
         <span class="ta-card-ic"><svg><use href="#i-bolt"/></svg></span>
         <h3>Prime ECN</h3>
@@ -464,10 +520,10 @@
 <section class="section ta-compare" id="compare" aria-labelledby="compare-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Compare</span>
-      <h2 class="h2" id="compare-title" data-reveal>Account specifications</h2>
+      <span class="eyebrow" data-aos="fade-up">Compare</span>
+      <h2 class="h2" id="compare-title" data-aos="fade-up">Account specifications</h2>
     </div>
-    <div class="ta-spec-wrap" data-reveal>
+    <div class="ta-spec-wrap" data-aos="fade-up">
       <table class="ta-table">
         <thead>
           <tr>
@@ -560,10 +616,10 @@
 <section class="section faq-sec ta-faq" aria-labelledby="ta-faq-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>FAQ</span>
-      <h2 class="h2" id="ta-faq-title" data-reveal>Account questions, answered</h2>
+      <span class="eyebrow" data-aos="fade-up">FAQ</span>
+      <h2 class="h2" id="ta-faq-title" data-aos="fade-up">Account questions, answered</h2>
     </div>
-    <div class="faq-list" data-reveal>
+    <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
         <summary>What is a forex trading account?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a">A forex trading account is an account held with a regulated broker that lets you buy and sell currency pairs — and other CFDs. You deposit funds, log in to a platform such as MT4 or MT5, and trade on the price movements of instruments like EUR/USD without owning the underlying asset.</div>
@@ -612,9 +668,9 @@
 <section class="cta-banner" aria-labelledby="cta-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="cta-title" data-reveal>Want to<br>start trading?</h2>
-    <p data-reveal>Open a live account in minutes, or practise risk-free with a demo. Either way, you'll be trading 1,000+ instruments with institutional-grade execution.</p>
-    <div class="cta-actions" data-reveal>
+    <h2 id="cta-title" data-aos="fade-up">Want to<br>start trading?</h2>
+    <p data-aos="fade-up">Open a live account in minutes, or practise risk-free with a demo. Either way, you'll be trading 1,000+ instruments with institutional-grade execution.</p>
+    <div class="cta-actions" data-aos="fade-up">
       <a href="account-opening.html" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       <a href="account-opening.html" class="btn btn-ghost btn-lg">Try Free Demo</a>
     </div>
@@ -702,7 +758,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -736,6 +792,7 @@
 <script src="../../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../../assets/js/vendor/aos.min.js" defer></script>
 <script src="../../assets/js/main.js" defer></script>
 </body>
 </html>

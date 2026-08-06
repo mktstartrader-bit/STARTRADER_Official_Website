@@ -17,14 +17,14 @@
   <meta property="og:title" content="Point Mall | STARTRADER" />
   <meta property="og:description" content="Earn points every time you trade and redeem them for electronics, gift cards, home appliances and more in the STARTRADER Point Mall." />
   <meta property="og:url" content="https://www.startrader.com/trading/products/forex.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/products-video-poster.jpg" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/products-video-poster.webp" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Point Mall | STARTRADER" />
   <meta name="twitter:description" content="Earn points every time you trade and redeem them for electronics, gift cards, home appliances and more in the STARTRADER Point Mall." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/products-video-poster.jpg" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/products-video-poster.webp" />
 
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../favicon.svg" />
@@ -32,7 +32,140 @@
 
   <!-- Fonts (self-hosted) -->
   <link rel="stylesheet" href="../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* =================================================================
+   POINT MALL
+   Promotions palette. The rewards read as a bento: one lead cell that
+   states the deal, four category tiles filling the rest exactly.
+   ================================================================= */
+.mall-rew{position:relative;isolation:isolate;overflow:clip;
+  background:radial-gradient(50% 44% at 90% 0%,rgba(0,71,187,.08),transparent 62%),var(--bg-light-2)}
+.mall-rew>.container{position:relative;z-index:1}
+/* an asymmetric bento: spans 3+3 then 4+2, so six columns fill exactly.
+   two tiles stack text over image, two set them side by side */
+.mall-cats{
+  display:grid;grid-template-columns:repeat(6,minmax(0,1fr));
+  gap:clamp(12px,1.5vw,18px);margin-top:clamp(32px,4vw,50px);
+}
+.mall-cat{
+  position:relative;overflow:hidden;display:flex;flex-direction:column;
+  padding:clamp(20px,2.4vw,30px);border-radius:clamp(16px,1.9vw,24px);
+  background:linear-gradient(180deg,#fff,#f4f7fb);
+  border:1px solid rgba(20,44,96,.07);
+  box-shadow:0 14px 36px -26px rgba(20,44,96,.36);
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .32s;
+}
+/* the pale tiles, as in the reference */
+.mall-cat--tint{background:linear-gradient(180deg,#eaf1fb,#dce8f8)}
+.mall-cat:hover{transform:translateY(-6px);border-color:rgba(0,71,187,.22);
+  box-shadow:0 30px 58px -28px rgba(20,44,96,.42)}
+.mall-cat--w3{grid-column:span 3}
+.mall-cat--w4{grid-column:span 4}
+.mall-cat--w2{grid-column:span 2}
+/* text beside the product rather than above it */
+.mall-cat--row{flex-direction:row;align-items:center;gap:clamp(16px,2.4vw,34px)}
+.mall-cat--row .mall-cat-tx{flex:0 0 44%}
+.mall-cat--row.is-flip{flex-direction:row-reverse}
+.mall-cat-tx{position:relative;z-index:1}
+.mall-cat-chip{
+  display:inline-flex;align-items:center;padding:6px 13px;border-radius:9px;
+  font-size:10px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--text-soft);
+  background:rgba(255,255,255,.9);border:1px solid rgba(20,44,96,.12);
+}
+.mall-cat--tint .mall-cat-chip{background:rgba(255,255,255,.8);border-color:rgba(0,71,187,.16);color:var(--blue)}
+.mall-cat b{
+  display:block;margin-top:13px;font-size:clamp(16px,1.8vw,21px);font-weight:700;
+  letter-spacing:-.03em;line-height:1.22;color:var(--ink);
+}
+.mall-cat p{margin-top:8px;font-size:12.8px;line-height:1.62;color:var(--text-soft)}
+/* the product stands in the space that is left */
+.mall-cat-shot{
+  position:relative;display:flex;align-items:flex-end;justify-content:center;
+  flex:1;min-height:clamp(126px,13vw,168px);margin-top:auto;padding-top:clamp(12px,1.6vw,20px);
+}
+.mall-cat--row .mall-cat-shot{margin-top:0;padding-top:0;min-height:clamp(112px,12vw,150px)}
+.mall-cat-shot img{
+  display:block;width:auto;max-width:100%;height:auto;max-height:clamp(120px,13vw,164px);
+  transition:transform .6s var(--ease);
+}
+.mall-cat:hover .mall-cat-shot img{transform:translateY(-5px) scale(1.03)}
+/* two of the tiles let the product run off the bottom-right corner */
+.mall-cat--bleed{min-height:clamp(272px,26vw,352px);padding-bottom:clamp(18px,2vw,24px)}
+.mall-cat--bleed .mall-cat-tx{max-width:min(100%,62%)}
+.mall-cat--bleed .mall-cat-shot{
+  position:absolute;right:0;bottom:0;left:auto;top:auto;z-index:0;
+  width:clamp(250px,58%,470px);min-height:0;margin:0;padding:0;
+  display:block;
+}
+.mall-cat--bleed .mall-cat-shot img{
+  display:block;width:100%;height:auto;max-height:none;
+  transform-origin:100% 100%;
+}
+.mall-cat--bleed:hover .mall-cat-shot img{transform:scale(1.04)}
+.mall-cat--bleed.mall-cat--w2 .mall-cat-shot{width:clamp(190px,74%,320px)}
+.mall-cat--bleed.mall-cat--w2 .mall-cat-tx{max-width:100%}
+/* and two let it sit down on the tile's bottom edge inside the row */
+.mall-cat--sink{padding-bottom:0;align-items:stretch}
+.mall-cat--sink .mall-cat-shot{align-items:flex-end;padding-top:0;min-height:0}
+.mall-cat--sink .mall-cat-shot img{max-height:clamp(180px,20vw,258px);display:block}
+/* the photograph fills its own panel, flush to the tile's edges, rather than
+   trying to blend a near-white studio ground into a tinted tile */
+.mall-cat--split{flex-direction:row;align-items:stretch;padding:0;gap:0}
+.mall-cat--split .mall-cat-tx{flex:0 0 52%;align-self:center;padding:clamp(20px,2.4vw,30px)}
+.mall-cat--split .mall-cat-shot{flex:1;min-height:clamp(200px,21vw,270px);margin:0;padding:0;display:block}
+.mall-cat--split .mall-cat-shot img{
+  width:100%;height:100%;max-height:none;object-fit:cover;object-position:50% 30%;
+}
+.mall-cat--split:hover .mall-cat-shot img{transform:scale(1.04)}
+/* the deal, stated once, across the full width */
+.mall-lead{
+  position:relative;overflow:hidden;display:grid;
+  grid-template-columns:minmax(0,1fr) auto;gap:clamp(20px,3vw,44px);align-items:center;
+  margin-top:clamp(16px,2vw,24px);
+  border-radius:clamp(20px,2.4vw,28px);padding:clamp(24px,2.8vw,34px) clamp(26px,3vw,40px);
+  background:linear-gradient(120deg,#04143a,#0a2a6e 56%,#061a48);
+  box-shadow:0 34px 70px -40px rgba(4,20,58,.85),inset 0 1px 0 rgba(255,255,255,.14);
+  color:#fff;
+}
+.mall-lead::before{
+  content:"";position:absolute;right:-8%;top:-40%;width:48%;height:180%;pointer-events:none;
+  background:radial-gradient(closest-side,rgba(42,114,255,.5),transparent 72%);
+}
+.mall-lead-tx{position:relative}
+.mall-lead-n{
+  display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:70px;
+  font-size:9.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#cfe0ff;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+}
+.mall-lead-n i{width:6px;height:6px;border-radius:50%;background:var(--mint);box-shadow:0 0 8px rgba(22,233,215,.9)}
+.mall-lead h3{margin-top:16px;font-size:clamp(20px,2.4vw,28px);font-weight:800;letter-spacing:-.04em;line-height:1.14}
+.mall-lead p{margin-top:12px;max-width:62ch;font-size:14.2px;line-height:1.72;color:#b9c9e4}
+.mall-pts{display:flex;flex-wrap:wrap;gap:clamp(16px,2.4vw,34px);margin-top:clamp(18px,2.2vw,24px)}
+.mall-pts span{display:flex;flex-direction:column;gap:5px}
+.mall-pts b{font-size:clamp(17px,2vw,23px);font-weight:800;letter-spacing:-.04em;line-height:1;color:#fff}
+.mall-pts em{font-style:normal;font-size:9.5px;font-weight:800;letter-spacing:.14em;
+  text-transform:uppercase;color:#8ea9d6}
+.mall-lead-act{position:relative}
+.mall-note{margin:clamp(22px,2.6vw,32px) auto 0;max-width:80ch;font-size:11.5px;line-height:1.7;
+  color:var(--text-mute);text-align:center}
+/* ---------------- how it works ---------------- */
+.mall-how{position:relative;isolation:isolate;overflow:clip;background:linear-gradient(180deg,#fff,#f2f6fc)}
+.mall-how>.container{position:relative;z-index:1}
+@media (max-width:1000px){.mall-cats{grid-template-columns:repeat(2,minmax(0,1fr))}
+.mall-cat--w3,.mall-cat--w4,.mall-cat--w2{grid-column:span 1}
+.mall-cat--row{flex-direction:column;align-items:stretch;gap:0}
+.mall-cat--row.is-flip{flex-direction:column}
+.mall-cat--row .mall-cat-tx{flex:none}
+.mall-cat--row .mall-cat-shot{margin-top:auto;padding-top:clamp(12px,1.6vw,20px)}
+.mall-lead{grid-template-columns:1fr;gap:22px}
+.mall-lead-act .pm-btn{width:100%;justify-content:center}}
+@media (max-width:560px){.mall-cats{grid-template-columns:1fr}
+.mall-cat--w3,.mall-cat--w4,.mall-cat--w2{grid-column:span 1}
+.mall-pts{gap:14px 22px}}
+  </style>
 
   <!-- Structured data -->
   <script type="application/ld+json">
@@ -414,18 +547,18 @@
 <!-- ============ BANNER ============ -->
 <section class="pm-hero" aria-labelledby="ml-hero-title">
   <video class="pm-hero-video" autoplay muted loop playsinline preload="metadata"
-    poster="../assets/img/promotions-video-poster.jpg" aria-hidden="true">
+    poster="../assets/img/promotions-video-poster.webp" aria-hidden="true">
     <source src="../assets/video/promotions-banner.mp4" type="video/mp4">
   </video>
   <div class="container pm-hero-in">
     <div class="pm-hero-copy">
-      <span class="pm-eyebrow" data-reveal>Point Mall</span>
-      <h1 class="pm-h1" id="ml-hero-title" data-reveal>
+      <span class="pm-eyebrow" data-aos="fade-up">Point Mall</span>
+      <h1 class="pm-h1" id="ml-hero-title" data-aos="fade-up">
         <span>Get rewarded with</span>
         <span class="lit">every trade you make.</span>
       </h1>
-      <p class="pm-lead" data-reveal>Earn points by trading, then spend them on gifts in the Point Mall. Opt in, complete missions, claim, redeem. Terms and conditions apply.</p>
-      <div class="pm-hact" data-reveal>
+      <p class="pm-lead" data-aos="fade-up">Earn points by trading, then spend them on gifts in the Point Mall. Opt in, complete missions, claim, redeem. Terms and conditions apply.</p>
+      <div class="pm-hact" data-aos="fade-up">
         <a class="pm-btn" href="../trading/getting-started/account-opening.html">Join now <svg><use href="#i-arrow-right"/></svg></a>
       </div>
     </div>
@@ -435,9 +568,9 @@
 <!-- ============ THE REWARDS ============ -->
 <section class="section mall-rew" id="rewards" aria-labelledby="ml-rew-title">
   <div class="container">
-    <span class="pm-eyebrow-c" data-reveal>Rewards</span>
-    <h2 class="pm-h2" id="ml-rew-title" data-reveal>What your points<br> are worth</h2>
-    <p class="pm-sub" data-reveal>Use your accumulated points to redeem rewards in the Point Mall. The more you trade, the more you can claim.</p>
+    <span class="pm-eyebrow-c" data-aos="fade-up">Rewards</span>
+    <h2 class="pm-h2" id="ml-rew-title" data-aos="fade-up">What your points<br> are worth</h2>
+    <p class="pm-sub" data-aos="fade-up">Use your accumulated points to redeem rewards in the Point Mall. The more you trade, the more you can claim.</p>
 
     <div class="mall-cats">
       <a class="mall-cat mall-cat--w3 mall-cat--bleed" href="#how">
@@ -445,32 +578,32 @@
           <span class="mall-cat-chip">Electronics</span>
           <b>Phones, tablets and laptops</b>
         </span>
-        <span class="mall-cat-shot"><img src="../assets/img/mall-electronics.png" alt="Electronics rewards in the Point Mall" width="1400" height="919" loading="lazy" decoding="async"></span>
+        <span class="mall-cat-shot"><img src="../assets/img/mall-electronics.webp" alt="Electronics rewards in the Point Mall" width="1400" height="919" loading="lazy" decoding="async"></span>
       </a>
       <a class="mall-cat mall-cat--w3 mall-cat--tint mall-cat--split" href="#how">
         <span class="mall-cat-tx">
           <span class="mall-cat-chip">Gift cards &amp; bonus</span>
           <b>Store cards and bonus credit</b>
         </span>
-        <span class="mall-cat-shot"><img src="../assets/img/mall-giftcards.jpg" alt="Gift cards &amp; bonus rewards in the Point Mall" width="1100" height="1615" loading="lazy" decoding="async"></span>
+        <span class="mall-cat-shot"><img src="../assets/img/mall-giftcards.webp" alt="Gift cards &amp; bonus rewards in the Point Mall" width="1100" height="1615" loading="lazy" decoding="async"></span>
       </a>
       <a class="mall-cat mall-cat--w4 mall-cat--row is-flip mall-cat--sink" href="#how">
         <span class="mall-cat-tx">
           <span class="mall-cat-chip">Home appliances</span>
           <b>Air care, steam and cordless</b>
         </span>
-        <span class="mall-cat-shot"><img src="../assets/img/mall-appliances.png" alt="Home appliances rewards in the Point Mall" width="1200" height="1080" loading="lazy" decoding="async"></span>
+        <span class="mall-cat-shot"><img src="../assets/img/mall-appliances.webp" alt="Home appliances rewards in the Point Mall" width="1200" height="1080" loading="lazy" decoding="async"></span>
       </a>
       <a class="mall-cat mall-cat--w2 mall-cat--tint mall-cat--bleed" href="#how">
         <span class="mall-cat-tx">
           <span class="mall-cat-chip">Valuable items</span>
           <b>Premium mobility and more</b>
         </span>
-        <span class="mall-cat-shot"><img src="../assets/img/mall-valuables.png" alt="Valuable items rewards in the Point Mall" width="1400" height="1178" loading="lazy" decoding="async"></span>
+        <span class="mall-cat-shot"><img src="../assets/img/mall-valuables.webp" alt="Valuable items rewards in the Point Mall" width="1400" height="1178" loading="lazy" decoding="async"></span>
       </a>
     </div>
 
-    <div class="mall-lead" data-reveal>
+    <div class="mall-lead" data-aos="fade-up">
       <div class="mall-lead-tx">
         <span class="mall-lead-n"><i></i>Four categories</span>
         <h3>Points in, gifts out</h3>
@@ -486,7 +619,7 @@
       </span>
     </div>
 
-    <p class="mall-note" data-reveal>Prizes are non-transferable, non-refundable and cannot be exchanged. Redemption is subject to the promotion terms and to stock in the Point Mall.</p>
+    <p class="mall-note" data-aos="fade-up">Prizes are non-transferable, non-refundable and cannot be exchanged. Redemption is subject to the promotion terms and to stock in the Point Mall.</p>
   </div>
 </section>
 
@@ -494,7 +627,7 @@
 <section class="section htrade-sec mall-how" id="how" aria-labelledby="ml-how-title">
   <div class="container">
     <div class="htrade">
-      <div class="htrade-intro" data-reveal>
+      <div class="htrade-intro" data-aos="fade-up">
         <h2 class="htrade-title" id="ml-how-title">Earn points,<br><span>redeem gifts</span></h2>
         <p class="htrade-sub">Join the Point Mall promotion and earn points by trading. Here is how it works.</p>
         <a href="../trading/getting-started/account-opening.html" class="btn btn-primary btn-lg htrade-btn magnetic">Claim points <span class="htrade-go"><svg><use href="#i-arrow-right"/></svg></span></a>
@@ -528,11 +661,11 @@
 <section class="section faq-sec fx-faq" aria-labelledby="ml-faq-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>FAQ</span>
-      <h2 class="h2" id="ml-faq-title" data-reveal>Got questions?</h2>
-      <p class="head-sub" data-reveal>We have answers. These are the ones we are asked most.</p>
+      <span class="eyebrow" data-aos="fade-up">FAQ</span>
+      <h2 class="h2" id="ml-faq-title" data-aos="fade-up">Got questions?</h2>
+      <p class="head-sub" data-aos="fade-up">We have answers. These are the ones we are asked most.</p>
     </div>
-    <div class="faq-list" data-reveal>
+    <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
         <summary>How do I earn points?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a"><ul><li>You must opt in via the client portal.</li><li>Points are awarded on completing a point mission and meeting the required trading volume.</li><li>Points must be claimed manually via the client portal before they can be redeemed.</li><li>Trading volume accumulated before you opted in does not count.</li></ul></div>
@@ -565,9 +698,9 @@
 <section class="cta-banner" aria-labelledby="ml-close-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="ml-close-title" data-reveal>Start trading with a<br>globally leading broker</h2>
-    <p data-reveal>Open an account, opt in from the portal, and every mission you finish adds to your balance.</p>
-    <div class="cta-actions" data-reveal>
+    <h2 id="ml-close-title" data-aos="fade-up">Start trading with a<br>globally leading broker</h2>
+    <p data-aos="fade-up">Open an account, opt in from the portal, and every mission you finish adds to your balance.</p>
+    <div class="cta-actions" data-aos="fade-up">
       <a href="../trading/getting-started/account-opening.html" class="btn btn-primary btn-lg">Open live account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       <a href="../trading/getting-started/account-opening.html" class="btn btn-ghost btn-lg">Open demo account</a>
     </div>
@@ -656,7 +789,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -690,6 +823,7 @@
 <script src="../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../assets/js/vendor/aos.min.js" defer></script>
 <script src="../assets/js/main.js" defer></script>
 </body>
 </html>

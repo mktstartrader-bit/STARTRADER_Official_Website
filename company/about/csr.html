@@ -16,14 +16,14 @@
   <meta property="og:title" content="Corporate Social Responsibility | STARCARES | STARTRADER" />
   <meta property="og:description" content="STARCARES is how STARTRADER shows up in the places it operates — community infrastructure, disaster relief, education and youth leadership, with the work on record." />
   <meta property="og:url" content="https://www.startrader.com/company/about/csr.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/platform-hero.jpg" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/platform-hero.webp" />
   <meta property="og:image:alt" content="CSR — STARTRADER" />
   <meta property="og:locale" content="en_US" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Corporate Social Responsibility | STARCARES | STARTRADER" />
   <meta name="twitter:description" content="STARCARES is how STARTRADER shows up in the places it operates — community infrastructure, disaster relief, education and youth leadership, with the work on record." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/platform-hero.jpg" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/platform-hero.webp" />
 
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../../favicon.svg" />
@@ -32,7 +32,150 @@
   <link rel="preload" href="../../assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" as="image" href="../../assets/img/platform-hero.webp" />
   <link rel="stylesheet" href="../../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* =================================================================
+   CSR — commitments, gallery, initiative timeline
+   ================================================================= */
+.csr-sec{position:relative;isolation:isolate;overflow:clip;background:radial-gradient(52% 44% at 50% -6%,rgba(0,71,187,.07),transparent 62%),var(--bg-light-2)}
+.csr-sec>.container{position:relative;z-index:1}
+/* ---- gallery: a bento of stills, each one opens ---- */
+.csr-gal-sec{position:relative;overflow:clip;color:#fff;background:radial-gradient(66% 52% at 50% 0%,rgba(0,46,138,.3),transparent 62%),linear-gradient(180deg,#04060e,#080e1e 54%,#04060e)}
+.csr-gal-sec .h2,.csr-gal-sec .h2-light{color:#fff}
+.csr-gal-sec .head-sub{color:#a9bcdb}
+.csr-gal-sec>.container{position:relative;z-index:1}
+.csr-gal{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:196px;gap:16px}
+.csr-tile{
+  position:relative;display:block;width:100%;height:100%;padding:0;overflow:hidden;
+  border-radius:20px;cursor:pointer;text-align:left;
+  border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);
+  transition:transform .45s var(--ease),border-color .3s,box-shadow .45s var(--ease);
+}
+.csr-tile:nth-child(1){grid-column:span 2;grid-row:span 2}
+.csr-tile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s var(--ease)}
+.csr-tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 34%,rgba(4,6,14,.86));opacity:.9;transition:opacity .4s}
+.csr-tile:hover{transform:translateY(-4px);border-color:rgba(120,175,255,.44);box-shadow:0 34px 62px -34px rgba(0,0,0,.9)}
+.csr-tile:hover img{transform:scale(1.06)}
+.csr-tile:hover::after{opacity:1}
+.csr-tile-cap{position:absolute;z-index:1;left:18px;right:18px;bottom:16px;display:flex;flex-direction:column;gap:5px}
+.csr-tile-cap b{font-size:14.5px;letter-spacing:-.024em;color:#fff;line-height:1.3}
+.csr-tile-cap em{font-style:normal;font-size:11.5px;color:#a9bcdb}
+.csr-tile-zoom{
+  position:absolute;z-index:1;top:14px;right:14px;width:32px;height:32px;border-radius:50%;
+  display:grid;place-items:center;color:#fff;background:rgba(4,6,14,.6);border:1px solid rgba(255,255,255,.2);
+  opacity:0;transform:scale(.85);transition:opacity .35s,transform .35s var(--ease);
+}
+.csr-tile-zoom svg{width:14px;height:14px}
+.csr-tile:hover .csr-tile-zoom,.csr-tile:focus-visible .csr-tile-zoom{opacity:1;transform:scale(1)}
+/* ---- lightbox ---- */
+.csr-lb{
+  position:fixed;inset:0;z-index:960;display:grid;place-items:center;padding:clamp(16px,4vw,54px);
+  background:rgba(3,5,12,.9);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s;
+}
+.csr-lb.is-open{opacity:1;visibility:visible}
+.csr-lb-fig{position:relative;max-width:min(1080px,100%);margin:0;transform:scale(.97);transition:transform .4s var(--ease)}
+.csr-lb.is-open .csr-lb-fig{transform:none}
+.csr-lb-fig img{display:block;width:100%;max-height:74vh;object-fit:contain;border-radius:18px;box-shadow:0 50px 100px -40px rgba(0,0,0,.9)}
+.csr-lb-cap{display:flex;flex-direction:column;gap:6px;margin-top:18px;color:#fff}
+.csr-lb-cap b{font-size:17px;letter-spacing:-.028em}
+.csr-lb-cap em{font-style:normal;font-size:13.5px;color:#a9bcdb}
+.csr-lb-btn{
+  position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;
+  display:grid;place-items:center;color:#fff;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:background .3s,transform .3s var(--ease);
+}
+.csr-lb-btn:hover{background:rgba(255,255,255,.2)}
+.csr-lb-btn svg{width:20px;height:20px}
+.csr-lb-prev{left:-62px}
+.csr-lb-next{right:-62px}
+.csr-lb-close{position:absolute;top:14px;right:14px;transform:none;width:40px;height:40px;background:rgba(4,6,14,.7)}
+.csr-lb-close{z-index:1}
+.csr-lb-close:hover{transform:rotate(90deg)}
+.csr-lb-count{
+  position:absolute;z-index:1;top:18px;left:16px;padding:7px 13px;border-radius:70px;
+  font-size:11.5px;font-weight:700;letter-spacing:.1em;color:#fff;font-variant-numeric:tabular-nums;
+  background:rgba(4,6,14,.7);border:1px solid rgba(255,255,255,.2);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+}
+/* ---- initiatives: a horizontal milestone scrubber ---- */
+.csr-time{max-width:1000px;margin:0 auto}
+.csr-time-top{display:flex;flex-direction:column;align-items:center;gap:10px}
+.csr-time-pill{
+  display:inline-flex;align-items:center;padding:11px 24px;border-radius:70px;
+  font-size:16px;font-weight:800;letter-spacing:-.02em;color:#fff;background:var(--blue);
+  box-shadow:0 18px 34px -16px rgba(0,71,187,.7);
+}
+.csr-time-kind{font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--text-mute)}
+.csr-time-rail{position:relative;display:grid;grid-template-columns:46px minmax(0,1fr) 46px;align-items:center;gap:14px;margin-top:30px}
+.csr-time-arrow{
+  width:46px;height:46px;border-radius:50%;display:grid;place-items:center;
+  color:var(--text-soft);background:#fff;border:1px solid var(--line);
+  box-shadow:0 10px 24px -16px rgba(20,44,96,.34);
+  transition:color .3s,border-color .3s,transform .3s var(--ease),box-shadow .3s;
+}
+.csr-time-arrow svg{width:18px;height:18px}
+.csr-time-arrow:hover{color:var(--blue);border-color:rgba(0,71,187,.4);transform:translateY(-2px);box-shadow:0 16px 30px -16px rgba(0,71,187,.45)}
+.csr-time-arrow[disabled]{opacity:.35;pointer-events:none}
+/* the card holds the centre; the months scroll through it */
+.csr-time-frame{
+  position:absolute;z-index:0;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:124px;height:118px;border-radius:20px;pointer-events:none;
+  background:#fff;border:1px solid var(--line);
+  box-shadow:0 20px 44px -24px rgba(20,44,96,.4),inset 0 1px 0 #fff;
+}
+.csr-time-scroll{
+  position:relative;z-index:1;
+  overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch;
+  overscroll-behavior-x:contain;cursor:grab;
+  -webkit-mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
+  mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
+}
+.csr-time-scroll::-webkit-scrollbar{display:none}
+.csr-time-scroll.dragging{cursor:grabbing}
+.csr-time-scroll.dragging .csr-time-node{transition:transform .2s var(--ease),opacity .2s}
+.csr-time-track{display:flex;align-items:center;gap:10px;width:max-content;padding:14px 50%}
+.csr-time-node{
+  position:relative;flex:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;
+  width:124px;height:118px;padding:0;background:transparent;border:0;
+  transform-origin:center;
+  transition:transform .32s var(--ease),opacity .28s;
+}
+.csr-time-node b{font-size:19px;font-weight:800;letter-spacing:-.02em;color:var(--text-mute);transition:color .4s}
+.csr-time-node em{font-style:normal;font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text-mute);opacity:.6;transition:color .4s,opacity .4s}
+.csr-time-node i{display:block;width:2px;height:14px;border-radius:2px;background:var(--line);transition:background .4s,height .45s var(--ease)}
+.csr-time-node:not(.is-on){opacity:.62}
+.csr-time-node:not(.is-on):hover{opacity:1;transform:scale(1.05)}
+.csr-time-node.is-on{transform:scale(1.16)}
+.csr-time-node.is-on b{color:var(--text)}
+.csr-time-node.is-on em{color:var(--blue);opacity:1}
+.csr-time-node.is-on i{height:26px;background:var(--blue)}
+.csr-time-body{max-width:720px;margin:34px auto 0;text-align:center}
+.csr-time-body h3{font-size:clamp(21px,2.3vw,27px);letter-spacing:-.032em;line-height:1.24;color:var(--text)}
+.csr-time-body p{margin-top:14px;font-size:15px;line-height:1.74;color:var(--text-soft)}
+.csr-time-body a{display:inline-flex;align-items:center;gap:9px;margin-top:20px;font-size:13.5px;font-weight:700;color:var(--blue)}
+.csr-time-body a svg{width:15px;height:15px;transition:transform .3s var(--ease)}
+.csr-time-body a:hover svg{transform:translateX(4px)}
+.csr-time-body.is-swap{animation:csrSwap .45s var(--ease) both}
+@media (prefers-reduced-motion:reduce){.csr-time-body.is-swap{animation:none}}
+.csr-time-dots{display:flex;justify-content:center;gap:7px;margin-top:28px}
+.csr-time-dots i{width:7px;height:7px;border-radius:50%;background:var(--line);transition:background .3s,width .3s var(--ease)}
+.csr-time-dots i.is-on{width:26px;border-radius:70px;background:var(--blue)}
+@media (max-width:900px){.csr-gal{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:180px}
+.csr-tile:nth-child(1){grid-column:span 2;grid-row:span 1}
+.csr-lb-prev{left:6px}
+.csr-lb-next{right:6px}}
+@media (max-width:720px){.csr-time-track{padding-inline:50%}
+.csr-time-node,.csr-time-frame{width:104px;height:106px}
+.csr-gal{grid-template-columns:1fr;grid-auto-rows:200px}
+.csr-tile:nth-child(n){grid-column:auto;grid-row:auto}}
+/* four commitments divide by four, not three */
+.csr-sec .pl-cards{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:1080px){.csr-sec .pl-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.csr-sec .pl-cards{grid-template-columns:1fr}}
+  </style>
 
   <script type="application/ld+json">
 {
@@ -459,10 +602,10 @@
   <div class="pf-hero-bg" aria-hidden="true"></div>
   <div class="container pf-hero-in">
     <div class="pf-hero-copy">
-      <span class="eyebrow eyebrow-blue" data-reveal>STARCARES</span>
-      <h1 class="pf-h1" id="pg-hero-title" data-reveal>Corporate social<br> responsibility</h1>
-      <p class="pf-lead" data-reveal>A broker is part of the places it operates in. STARCARES is how that shows up &mdash;<br> in courts rebuilt, families reached and students given somewhere to start.</p>
-      <div class="pf-hact" data-reveal>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">STARCARES</span>
+      <h1 class="pf-h1" id="pg-hero-title" data-aos="fade-up">Corporate social<br> responsibility</h1>
+      <p class="pf-lead" data-aos="fade-up">A broker is part of the places it operates in. STARCARES is how that shows up &mdash;<br> in courts rebuilt, families reached and students given somewhere to start.</p>
+      <div class="pf-hact" data-aos="fade-up">
         <a href="#gallery" class="btn btn-primary btn-lg magnetic">See the work <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       </div>
     </div>
@@ -474,32 +617,32 @@
   <span class="pf-aura a1" aria-hidden="true"></span>
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Our core commitments</span>
-      <h2 class="h2" id="pg-grid-title" data-reveal>Four areas, chosen<br> because we can finish them</h2>
-      <p class="head-sub" data-reveal>We work in four areas rather than twelve, because a company our size can change something specific and then stay long enough to maintain it.</p>
+      <span class="eyebrow" data-aos="fade-up">Our core commitments</span>
+      <h2 class="h2" id="pg-grid-title" data-aos="fade-up">Four areas, chosen<br> because we can finish them</h2>
+      <p class="head-sub" data-aos="fade-up">We work in four areas rather than twelve, because a company our size can change something specific and then stay long enough to maintain it.</p>
     </div>
 
-    <div class="pl-cards" data-reveal-stagger>
-      <article class="pl-card">
+    <div class="pl-cards">
+      <article class="pl-card" data-aos="fade-up">
         <span class="pl-card-hd"><span class="pl-card-ic"><svg><use href="#i-user"/></svg></span><h3>Community infrastructure</h3></span>
         <p>Public space a neighbourhood actually uses — courts, facilities, and the maintenance that keeps them usable after the ribbon is cut.</p>
       </article>
-      <article class="pl-card">
+      <article class="pl-card" data-aos="fade-up" data-aos-delay="100">
         <span class="pl-card-hd"><span class="pl-card-ic"><svg><use href="#i-shield"/></svg></span><h3>Disaster relief</h3></span>
         <p>Direct, fast support to families after earthquakes, floods and storms, in the regions where we already have people on the ground.</p>
       </article>
-      <article class="pl-card">
+      <article class="pl-card" data-aos="fade-up" data-aos-delay="200">
         <span class="pl-card-hd"><span class="pl-card-ic"><svg><use href="#i-doc"/></svg></span><h3>Education</h3></span>
         <p>Scholarships, campus sessions and university partnerships on finance, technology and market risk — taught by people who do the work.</p>
       </article>
-      <article class="pl-card">
+      <article class="pl-card" data-aos="fade-up" data-aos-delay="300">
         <span class="pl-card-hd"><span class="pl-card-ic"><svg><use href="#i-star"/></svg></span><h3>Youth leadership</h3></span>
         <p>Backing the programmes that give the next generation of business leaders somewhere to start, and someone to ask.</p>
       </article>
     </div>
 
-    <div class="pl-sign glass" data-reveal>
-      <img src="../../assets/img/icon-shield-3d.png" alt="" width="400" height="490" loading="lazy" decoding="async">
+    <div class="pl-sign glass" data-aos="fade-up">
+      <img src="../../assets/img/icon-shield-3d.webp" alt="3D shield emblem for insured client funds" width="400" height="490" loading="lazy" decoding="async">
       <span class="pl-sign-tx">
         <b>Every project is proposed by the team that will run it</b>
         <em>Regional offices put projects forward, and each one is expected to still be standing a year later. If your organisation is looking for a partner, start with the desk nearest you.</em>
@@ -514,39 +657,39 @@
   <span class="sc-strat-aura" aria-hidden="true"></span>
   <div class="container">
     <div class="head center">
-      <span class="eyebrow eyebrow-blue" data-reveal>Gallery</span>
-      <h2 class="h2 h2-light" id="pg-gal-title" data-reveal>The work, as it<br> actually looked</h2>
-      <p class="head-sub" data-reveal>Open any frame for the full picture. Arrow keys move between them.</p>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">Gallery</span>
+      <h2 class="h2 h2-light" id="pg-gal-title" data-aos="fade-up">The work, as it<br> actually looked</h2>
+      <p class="head-sub" data-aos="fade-up">Open any frame for the full picture. Arrow keys move between them.</p>
     </div>
 
-    <div class="csr-gal" data-csr-gal data-reveal-stagger>
-      <button class="csr-tile" type="button" data-csr-tile="0" aria-label="Open: Community court programmes">
-        <img src="../../assets/img/csr-gal-1.jpg" alt="Community court programmes" width="1600" height="1044" loading="lazy" decoding="async">
+    <div class="csr-gal" data-csr-gal>
+      <button class="csr-tile" type="button" data-csr-tile="0" aria-label="Open: Community court programmes" data-aos="fade-up">
+        <img src="../../assets/img/csr-gal-1.webp" alt="Community court programmes" width="1600" height="1044" loading="lazy" decoding="async">
         <span class="csr-tile-zoom" aria-hidden="true"><svg><use href="#i-plus"/></svg></span>
         <span class="csr-tile-cap"><b>Community court programmes</b><em>Public courts rebuilt and kept in use, with the partnership behind them.</em></span>
       </button>
-      <button class="csr-tile" type="button" data-csr-tile="1" aria-label="Open: Youth leadership">
-        <img src="../../assets/img/csr-gal-2.jpg" alt="Youth leadership" width="1100" height="1422" loading="lazy" decoding="async">
+      <button class="csr-tile" type="button" data-csr-tile="1" aria-label="Open: Youth leadership" data-aos="fade-up" data-aos-delay="100">
+        <img src="../../assets/img/csr-gal-2.webp" alt="Youth leadership" width="1100" height="1422" loading="lazy" decoding="async">
         <span class="csr-tile-zoom" aria-hidden="true"><svg><use href="#i-plus"/></svg></span>
         <span class="csr-tile-cap"><b>Youth leadership</b><em>Backing the programmes that give the next generation somewhere to start.</em></span>
       </button>
-      <button class="csr-tile" type="button" data-csr-tile="2" aria-label="Open: Campus sessions">
-        <img src="../../assets/img/csr-gal-3.jpg" alt="Campus sessions" width="1100" height="733" loading="lazy" decoding="async">
+      <button class="csr-tile" type="button" data-csr-tile="2" aria-label="Open: Campus sessions" data-aos="fade-up" data-aos-delay="200">
+        <img src="../../assets/img/csr-gal-3.webp" alt="Campus sessions" width="1100" height="733" loading="lazy" decoding="async">
         <span class="csr-tile-zoom" aria-hidden="true"><svg><use href="#i-plus"/></svg></span>
         <span class="csr-tile-cap"><b>Campus sessions</b><em>Students and graduates, in sessions run by people who do the work.</em></span>
       </button>
-      <button class="csr-tile" type="button" data-csr-tile="3" aria-label="Open: The communities we work in">
-        <img src="../../assets/img/csr-gal-4.jpg" alt="The communities we work in" width="1600" height="900" loading="lazy" decoding="async">
+      <button class="csr-tile" type="button" data-csr-tile="3" aria-label="Open: The communities we work in" data-aos="fade-up" data-aos-delay="300">
+        <img src="../../assets/img/csr-gal-4.webp" alt="The communities we work in" width="1600" height="900" loading="lazy" decoding="async">
         <span class="csr-tile-zoom" aria-hidden="true"><svg><use href="#i-plus"/></svg></span>
         <span class="csr-tile-cap"><b>The communities we work in</b><em>Projects proposed by the regional teams who live in them.</em></span>
       </button>
-      <button class="csr-tile" type="button" data-csr-tile="4" aria-label="Open: Workshops and mentoring">
-        <img src="../../assets/img/csr-gal-5.jpg" alt="Workshops and mentoring" width="1100" height="734" loading="lazy" decoding="async">
+      <button class="csr-tile" type="button" data-csr-tile="4" aria-label="Open: Workshops and mentoring" data-aos="fade-up" data-aos-delay="400">
+        <img src="../../assets/img/csr-gal-5.webp" alt="Workshops and mentoring" width="1100" height="734" loading="lazy" decoding="async">
         <span class="csr-tile-zoom" aria-hidden="true"><svg><use href="#i-plus"/></svg></span>
         <span class="csr-tile-cap"><b>Workshops and mentoring</b><em>Small rooms, real questions, and someone in the industry to answer them.</em></span>
       </button>
-      <button class="csr-tile" type="button" data-csr-tile="5" aria-label="Open: The teams behind it">
-        <img src="../../assets/img/csr-gal-6.jpg" alt="The teams behind it" width="1100" height="733" loading="lazy" decoding="async">
+      <button class="csr-tile" type="button" data-csr-tile="5" aria-label="Open: The teams behind it" data-aos="fade-up" data-aos-delay="500">
+        <img src="../../assets/img/csr-gal-6.webp" alt="The teams behind it" width="1100" height="733" loading="lazy" decoding="async">
         <span class="csr-tile-zoom" aria-hidden="true"><svg><use href="#i-plus"/></svg></span>
         <span class="csr-tile-cap"><b>The teams behind it</b><em>Regional offices who see a project through past the ribbon-cutting.</em></span>
       </button>
@@ -559,7 +702,7 @@
       <button class="csr-lb-btn csr-lb-close" type="button" data-csr-close aria-label="Close gallery"><svg><use href="#i-close"/></svg></button>
       <button class="csr-lb-btn csr-lb-prev" type="button" data-csr-prev aria-label="Previous image"><svg><use href="#i-chevron-left"/></svg></button>
       <button class="csr-lb-btn csr-lb-next" type="button" data-csr-next aria-label="Next image"><svg><use href="#i-chevron-right"/></svg></button>
-      <img data-csr-img src="" alt="">
+      <img data-csr-img src="" alt="Corporate social responsibility gallery photo">
       <figcaption class="csr-lb-cap"><b data-csr-title></b><em data-csr-cap></em></figcaption>
     </figure>
   </div>
@@ -569,12 +712,12 @@
 <section class="section csr-sec" id="initiatives" aria-labelledby="pg-tl-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Initiatives</span>
-      <h2 class="h2" id="pg-tl-title" data-reveal>What we have been doing</h2>
-      <p class="head-sub" data-reveal>Scrub the months, or use the arrows. Each milestone links to the announcement it came from.</p>
+      <span class="eyebrow" data-aos="fade-up">Initiatives</span>
+      <h2 class="h2" id="pg-tl-title" data-aos="fade-up">What we have been doing</h2>
+      <p class="head-sub" data-aos="fade-up">Scrub the months, or use the arrows. Each milestone links to the announcement it came from.</p>
     </div>
 
-    <div class="csr-time" data-csr-time data-reveal>
+    <div class="csr-time" data-csr-time data-aos="fade-up">
       <div class="csr-time-top">
         <span class="csr-time-pill" data-ct-pill>22 Mar 2026</span>
         <span class="csr-time-kind" data-ct-kind>Education</span>
@@ -634,10 +777,10 @@
 <section class="section faq-sec fx-faq" aria-labelledby="pg-faq-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>FAQ</span>
-      <h2 class="h2" id="pg-faq-title" data-reveal>Questions about STARCARES</h2>
+      <span class="eyebrow" data-aos="fade-up">FAQ</span>
+      <h2 class="h2" id="pg-faq-title" data-aos="fade-up">Questions about STARCARES</h2>
     </div>
-    <div class="faq-list" data-reveal>
+    <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
         <summary>What is STARCARES?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a">STARCARES is the name we give our corporate social responsibility work — community infrastructure, disaster relief, education and youth leadership, run through the regional teams rather than from head office.</div>
@@ -662,15 +805,15 @@
 <section class="section pg-list" id="latest" aria-labelledby="pg-list-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Latest</span>
-      <h2 class="h2" id="pg-list-title" data-reveal>The latest from us</h2>
+      <span class="eyebrow" data-aos="fade-up">Latest</span>
+      <h2 class="h2" id="pg-list-title" data-aos="fade-up">The latest from us</h2>
     </div>
-    <div class="pg-bar glass" data-reveal>
+    <div class="pg-bar glass" data-aos="fade-up">
       <div class="pg-cats" role="group" aria-label="Filter by category"><button class="ec-chip is-on" type="button" data-pg-cat="all" aria-pressed="true">All</button><button class="ec-chip" type="button" data-pg-cat="community" aria-pressed="false">Community</button><button class="ec-chip" type="button" data-pg-cat="education" aria-pressed="false">Education</button><button class="ec-chip" type="button" data-pg-cat="relief" aria-pressed="false">Relief</button></div>
       <p class="pg-status" data-pg-status role="status" aria-live="polite"></p>
     </div>
-    <div class="nr-grid" data-reveal-stagger>
-      <article class="nr-card glass" data-pg-item data-cat="community" data-title="STARTRADER breaks ground on basketball court revamp in Davao City">
+    <div class="nr-grid">
+      <article class="nr-card glass" data-pg-item data-cat="community" data-title="STARTRADER breaks ground on basketball court revamp in Davao City" data-aos="fade-up">
         <div class="nr-head">
           <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Community</span>
           <time class="nr-date" datetime="2026-06-18">18 Jun 2026</time>
@@ -684,7 +827,7 @@
           <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </span>
       </article>
-      <article class="nr-card glass" data-pg-item data-cat="education" data-title="STARCARES partners with B-LEAD 2026 in Vietnam">
+      <article class="nr-card glass" data-pg-item data-cat="education" data-title="STARCARES partners with B-LEAD 2026 in Vietnam" data-aos="fade-up" data-aos-delay="100">
         <div class="nr-head">
           <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Education</span>
           <time class="nr-date" datetime="2026-05-30">30 May 2026</time>
@@ -698,7 +841,7 @@
           <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </span>
       </article>
-      <article class="nr-card glass" data-pg-item data-cat="relief" data-title="Emergency relief delivered to 300 earthquake-affected families">
+      <article class="nr-card glass" data-pg-item data-cat="relief" data-title="Emergency relief delivered to 300 earthquake-affected families" data-aos="fade-up" data-aos-delay="200">
         <div class="nr-head">
           <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Relief</span>
           <time class="nr-date" datetime="2026-04-12">12 Apr 2026</time>
@@ -712,7 +855,7 @@
           <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </span>
       </article>
-      <article class="nr-card glass" data-pg-item data-cat="education" data-title="KTH alumni evening in Dubai on AI, technology and innovation">
+      <article class="nr-card glass" data-pg-item data-cat="education" data-title="KTH alumni evening in Dubai on AI, technology and innovation" data-aos="fade-up" data-aos-delay="300">
         <div class="nr-head">
           <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Education</span>
           <time class="nr-date" datetime="2026-03-22">22 Mar 2026</time>
@@ -726,7 +869,7 @@
           <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </span>
       </article>
-      <article class="nr-card glass" data-pg-item data-cat="education" data-title="CEO Peter Karsten joins University of Europe for three sessions">
+      <article class="nr-card glass" data-pg-item data-cat="education" data-title="CEO Peter Karsten joins University of Europe for three sessions" data-aos="fade-up" data-aos-delay="400">
         <div class="nr-head">
           <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Education</span>
           <time class="nr-date" datetime="2026-02-14">14 Feb 2026</time>
@@ -740,7 +883,7 @@
           <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </span>
       </article>
-      <article class="nr-card glass" data-pg-item data-cat="community" data-title="Local sports facilities upgraded across three regions">
+      <article class="nr-card glass" data-pg-item data-cat="community" data-title="Local sports facilities upgraded across three regions" data-aos="fade-up" data-aos-delay="500">
         <div class="nr-head">
           <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Community</span>
           <time class="nr-date" datetime="2026-01-20">20 Jan 2026</time>
@@ -765,27 +908,27 @@
 <section class="section fx-more" aria-labelledby="pg-more-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Keep going</span>
-      <h2 class="h2" id="pg-more-title" data-reveal>Where to go next</h2>
+      <span class="eyebrow" data-aos="fade-up">Keep going</span>
+      <h2 class="h2" id="pg-more-title" data-aos="fade-up">Where to go next</h2>
     </div>
-    <div class="fx-more-grid" data-reveal-stagger>
-      <a class="fx-more-card" href="why-startrader.html">
-        <span class="fx-more-media"><img src="../../assets/img/company-hero.jpg" alt="Why STARTRADER — regulation and scale" width="640" height="349" loading="lazy" decoding="async"></span>
+    <div class="fx-more-grid">
+      <a class="fx-more-card" href="why-startrader.html" data-aos="fade-up">
+        <span class="fx-more-media"><img src="../../assets/img/company-hero.webp" alt="Why STARTRADER — regulation and scale" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Five regulators, segregated funds and the conditions behind the brand.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Why STARTRADER</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="sponsorship/index.html">
+      <a class="fx-more-card" href="sponsorship/index.html" data-aos="fade-up" data-aos-delay="100">
         <span class="fx-more-media"><img src="../../assets/img/company-1.webp" alt="STARTRADER sponsorships" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">The NBA, the PCCME, the UAE National Cricket Team and more.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Sponsorship</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="announcements.html">
+      <a class="fx-more-card" href="announcements.html" data-aos="fade-up" data-aos-delay="200">
         <span class="fx-more-media"><img src="../../assets/img/company-3.webp" alt="STARTRADER announcements" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Product, licensing and schedule notices as they are published.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Announcements</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="contact.html">
-        <span class="fx-more-media"><img src="../../assets/img/contact-hero.jpg" alt="Contact the STARTRADER team" width="640" height="349" loading="lazy" decoding="async"></span>
+      <a class="fx-more-card" href="contact.html" data-aos="fade-up" data-aos-delay="300">
+        <span class="fx-more-media"><img src="../../assets/img/contact-hero.webp" alt="Contact the STARTRADER team" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">A desk that answers around the clock in more than twenty languages.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Contact us</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
@@ -796,9 +939,9 @@
 <section class="cta-banner" aria-labelledby="pg-cta-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="pg-cta-title" data-reveal>Start trading with a<br>globally leading broker</h2>
-    <p data-reveal>Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
-    <div class="cta-actions" data-reveal>
+    <h2 id="pg-cta-title" data-aos="fade-up">Start trading with a<br>globally leading broker</h2>
+    <p data-aos="fade-up">Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
+    <div class="cta-actions" data-aos="fade-up">
       <a href="../../trading/getting-started/account-opening.html" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       <a href="../../trading/getting-started/account-opening.html" class="btn btn-ghost btn-lg">Try Free Demo</a>
     </div>
@@ -810,32 +953,32 @@
 <script type="application/json" data-csr-data>
 [
   {
-    "src": "../../assets/img/csr-gal-1.jpg",
+    "src": "../../assets/img/csr-gal-1.webp",
     "title": "Community court programmes",
     "cap": "Public courts rebuilt and kept in use, with the partnership behind them."
   },
   {
-    "src": "../../assets/img/csr-gal-2.jpg",
+    "src": "../../assets/img/csr-gal-2.webp",
     "title": "Youth leadership",
     "cap": "Backing the programmes that give the next generation somewhere to start."
   },
   {
-    "src": "../../assets/img/csr-gal-3.jpg",
+    "src": "../../assets/img/csr-gal-3.webp",
     "title": "Campus sessions",
     "cap": "Students and graduates, in sessions run by people who do the work."
   },
   {
-    "src": "../../assets/img/csr-gal-4.jpg",
+    "src": "../../assets/img/csr-gal-4.webp",
     "title": "The communities we work in",
     "cap": "Projects proposed by the regional teams who live in them."
   },
   {
-    "src": "../../assets/img/csr-gal-5.jpg",
+    "src": "../../assets/img/csr-gal-5.webp",
     "title": "Workshops and mentoring",
     "cap": "Small rooms, real questions, and someone in the industry to answer them."
   },
   {
-    "src": "../../assets/img/csr-gal-6.jpg",
+    "src": "../../assets/img/csr-gal-6.webp",
     "title": "The teams behind it",
     "cap": "Regional offices who see a project through past the ribbon-cutting."
   }
@@ -922,7 +1065,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -956,6 +1099,7 @@
 <script src="../../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../../assets/js/vendor/aos.min.js" defer></script>
 <script src="../../assets/js/main.js" defer></script>
 
 <!-- Company page: robust scroll reveals + hero parallax (self-contained, never leaves content hidden) -->

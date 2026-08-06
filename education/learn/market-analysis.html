@@ -17,14 +17,14 @@
   <meta property="og:title" content="Financial Market Analysis | STARTRADER" />
   <meta property="og:description" content="Technical, fundamental, weekly and monthly analysis from the STARTRADER desk." />
   <meta property="og:url" content="https://www.startrader.com/education/learn/market-analysis.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/home-hero-wave.jpg" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/home-hero-wave.webp" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Financial Market Analysis | STARTRADER" />
   <meta name="twitter:description" content="Technical, fundamental, weekly and monthly analysis from the STARTRADER desk." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/home-hero-wave.jpg" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/home-hero-wave.webp" />
 
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../../favicon.svg" />
@@ -33,7 +33,343 @@
   <!-- Fonts (self-hosted) -->
   <link rel="preload" href="../../assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="../../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ================= GLOSSARY ================= */
+/* one hover for every card on every page — do not redefine it per component */
+.ma-card,.ma-rep,.ma-cov{
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
+}
+.ma-card:hover,.ma-rep:hover,.ma-cov:hover{
+  transform:translateY(-4px);
+  border-color:rgba(0,71,187,.28);
+  box-shadow:0 28px 52px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff;
+}
+/* =================== MARKET ANALYSIS =================== */
+.ma-hero{
+  position:relative;overflow:hidden;isolation:isolate;color:#fff;
+  margin-top:calc(-1 * var(--nav-h));
+  min-height:min(660px,calc(100vh - var(--topbar-h,44px)));
+  display:flex;flex-direction:column;justify-content:center;
+  padding:calc(var(--nav-h) + 56px) 0 24px;
+  background:
+    radial-gradient(80% 74% at 76% 16%,rgba(0,71,187,.34),transparent 62%),
+    radial-gradient(54% 58% at 4% 92%,rgba(22,233,215,.1),transparent 62%),
+    linear-gradient(180deg,#04060e 0%,#070c1c 50%,#04060e 100%);
+}
+.ma-hero-aura{position:absolute;z-index:-1;border-radius:50%;pointer-events:none;filter:blur(90px)}
+.ma-hero-aura.a1{width:560px;height:560px;top:-18%;right:2%;background:radial-gradient(circle,rgba(0,110,255,.34),transparent 68%)}
+.ma-hero-aura.a2{width:440px;height:440px;bottom:-14%;left:-6%;background:radial-gradient(circle,rgba(22,233,215,.16),transparent 68%)}
+.ma-hero-in{position:relative;z-index:1;width:100%}
+.ma-hero-copy{max-width:720px;min-width:0}
+.ma-h1{font-size:clamp(30px,4.2vw,50px);font-weight:800;letter-spacing:-.036em;line-height:1.1;margin-top:16px}
+.ma-lead{margin-top:20px;font-size:clamp(15px,1.6vw,17.5px);line-height:1.68;color:#c2cfe4;max-width:62ch}
+.ma-hact{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
+/* ---- choose your analysis (bento) ---- */
+.ma-choose{
+  position:relative;isolation:isolate;overflow:clip;
+  background:
+    radial-gradient(50% 44% at 94% 2%,rgba(0,71,187,.07),transparent 62%),
+    radial-gradient(44% 44% at 3% 98%,rgba(22,233,215,.07),transparent 62%),
+    var(--bg-light-2);
+}
+.ma-choose>.container{position:relative;z-index:1}
+.ma-soft-aura{position:absolute;z-index:0;border-radius:50%;filter:blur(92px);pointer-events:none}
+.ma-soft-aura.a1{width:520px;height:520px;top:-12%;right:-8%;background:radial-gradient(circle,rgba(0,71,187,.12),transparent 68%)}
+.ma-soft-aura.a2{width:460px;height:460px;bottom:-14%;left:-10%;background:radial-gradient(circle,rgba(22,233,215,.12),transparent 68%)}
+.ma-bento{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:20px}
+.ma-card{display:flex;flex-direction:column;border-radius:22px;padding:26px 24px 24px;min-width:0;overflow:hidden}
+/* wide featured card splits into copy + visual; the other three fill 2/3/3 */
+.ma-card--feat{grid-column:span 4;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.02fr);gap:clamp(20px,2.4vw,34px);align-items:start}
+.ma-card--feat>.ma-feat-copy{display:flex;flex-direction:column;height:100%}
+.ma-card--feat .ma-feat-viz{margin-top:0}
+.ma-card--feat .ma-more{margin-top:auto;padding-top:20px}
+.ma-bento>.ma-card:nth-child(2){grid-column:span 2}
+.ma-bento>.ma-card:nth-child(3),.ma-bento>.ma-card:nth-child(4){grid-column:span 3}
+.ma-ribbon{
+  align-self:flex-start;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  color:#fff;background:linear-gradient(120deg,var(--blue),#3b82f6);
+  padding:6px 12px;border-radius:70px;margin-bottom:14px;
+}
+.ma-card-ic{
+  width:46px;height:46px;border-radius:14px;display:grid;place-items:center;margin-bottom:16px;
+  background:rgba(0,71,187,.09);color:var(--blue);transition:transform .4s var(--ease);
+}
+.ma-card-ic svg{width:22px;height:22px}
+.ma-card:hover .ma-card-ic{transform:translateY(-3px) scale(1.05)}
+.ma-card h3{font-size:18px;letter-spacing:-.025em;color:var(--text)}
+.ma-card p{margin-top:10px;font-size:13.5px;line-height:1.64;color:var(--text-soft)}
+.ma-more{
+  display:inline-flex;align-items:center;gap:8px;margin-top:18px;
+  font-size:13px;font-weight:700;color:var(--blue);
+}
+.ma-more svg{width:15px;height:15px;transition:transform .35s var(--ease)}
+.ma-card:hover .ma-more svg{transform:translateX(5px)}
+.ma-feat-viz{margin-top:20px;padding:16px 16px 14px;border-radius:18px;background:#fff;border:1px solid var(--line)}
+.ma-feat-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.ma-feat-tag{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-mute)}
+.ma-feat-chg{font-size:11.5px;font-weight:800}
+.ma-feat-chg.up{color:#0f9d76}
+/* the chart gets its own rounded, clipped plot area */
+.ma-spark-wrap{margin-top:12px;border-radius:14px;overflow:hidden;background:linear-gradient(180deg,rgba(0,71,187,.05),rgba(0,71,187,0));border:1px solid rgba(20,44,96,.07)}
+.ma-spark{width:100%;height:84px;display:block}
+@media (prefers-reduced-motion:no-preference){.ma-spark-line{stroke-dasharray:340;stroke-dashoffset:340;transition:stroke-dashoffset 1.9s var(--ease)}
+.ma-spark-fill{opacity:0;transition:opacity 1s var(--ease) .5s}
+.ma-card.is-seen .ma-spark-line{stroke-dashoffset:0}
+.ma-card.is-seen .ma-spark-fill{opacity:1}}
+.ma-feat-rows{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.ma-feat-rows div{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:12px}
+.ma-feat-rows span{color:var(--text-soft)}
+.ma-feat-rows b{color:var(--ink);font-variant-numeric:tabular-nums}
+.ma-feat-rows .is-bull{color:#0f9d76}
+.ma-mini{display:flex;flex-direction:column;gap:8px;margin-top:auto;padding-top:20px}
+.ma-mini-row{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;padding:9px 12px;border-radius:11px;background:#fff;border:1px solid var(--line);font-size:12px;transition:transform .3s var(--ease),border-color .3s}
+.ma-card:hover .ma-mini-row{border-color:rgba(0,71,187,.2)}
+.ma-mini-row:hover{transform:translateX(3px)}
+.ma-mini-row span:not(.ma-flag){color:var(--text-soft)}
+.ma-mini-row b{color:var(--ink);font-variant-numeric:tabular-nums}
+.ma-mini-row b.hi{color:var(--blue)}
+.ma-flag{font-size:9.5px;font-weight:800;letter-spacing:.05em;color:var(--blue);background:rgba(0,71,187,.1);padding:3px 7px;border-radius:6px}
+.ma-wk{display:flex;flex-direction:column;gap:9px;margin-top:auto;padding-top:22px}
+.ma-wk-row{display:grid;grid-template-columns:34px minmax(0,1fr) 56px;align-items:center;gap:11px;font-size:12px}
+.ma-wk-row>span{color:var(--text-mute);font-weight:600}
+.ma-wk-row>b{text-align:right;font-variant-numeric:tabular-nums;font-weight:700;color:var(--text-soft)}
+.ma-wk-row.is-best>b{color:#0f9d76}
+.ma-wk-row>i{position:relative;height:8px;border-radius:70px;background:rgba(20,44,96,.07);overflow:hidden}
+.ma-wk-row>i::after{
+  content:"";position:absolute;inset:0 auto 0 0;width:var(--w);border-radius:70px;
+  transform-origin:left;transform:scaleX(0);transition:transform .75s var(--ease);
+}
+.ma-wk-row>i.up::after{background:linear-gradient(90deg,#4d94ff,#0047BB)}
+.ma-wk-row>i.down::after{background:linear-gradient(90deg,#ffa39c,#e0483f)}
+.ma-wk-row.is-best>i::after{background:linear-gradient(90deg,#3fd9a8,#0f9d76)}
+.ma-card.is-seen .ma-wk-row>i::after{transform:scaleX(1)}
+.ma-card.is-seen .ma-wk-row:nth-child(2)>i::after{transition-delay:.08s}
+.ma-card.is-seen .ma-wk-row:nth-child(3)>i::after{transition-delay:.16s}
+.ma-card.is-seen .ma-wk-row:nth-child(4)>i::after{transition-delay:.24s}
+.ma-card.is-seen .ma-wk-row:nth-child(5)>i::after{transition-delay:.32s}
+.ma-month{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-top:auto;padding-top:22px}
+.ma-month span{aspect-ratio:1;border-radius:5px;background:rgba(20,44,96,.07);transition:background .4s var(--ease),transform .4s var(--ease)}
+.ma-month span.on{background:rgba(0,71,187,.34)}
+.ma-card:hover .ma-month span.on{background:var(--blue);transform:scale(1.12)}
+/* ---- reports ---- */
+.ma-reports{background:#fff}
+.ma-bar{display:flex;flex-wrap:wrap;align-items:center;gap:16px;padding:14px;border-radius:20px;margin-bottom:22px}
+.ma-search{position:relative;flex:1 1 260px;display:flex;align-items:center}
+.ma-search-ic{position:absolute;left:14px;width:17px;height:17px;color:var(--text-mute);pointer-events:none}
+.ma-search-ic svg{width:100%;height:100%}
+.ma-search input{
+  width:100%;height:44px;padding:0 40px 0 40px;border-radius:70px;
+  background:#fff;border:1px solid var(--line);font:inherit;font-size:14px;color:var(--text);
+  transition:border-color .25s,box-shadow .25s;
+}
+.ma-search input::placeholder{color:var(--text-mute)}
+.ma-search input:focus{outline:none;border-color:rgba(0,71,187,.42);box-shadow:0 0 0 4px rgba(0,71,187,.1)}
+.ma-clear{position:absolute;right:12px;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;color:var(--text-mute);background:rgba(20,44,96,.07)}
+.ma-clear svg{width:12px;height:12px}
+.ma-clear:hover{color:var(--text);background:rgba(20,44,96,.13)}
+.ma-cats{display:flex;flex-wrap:wrap;gap:8px}
+.ma-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.ma-rep mark{background:rgba(255,214,102,.5);color:inherit;border-radius:3px;padding:0 2px}
+.ma-empty{
+  max-width:520px;margin:12px auto 0;text-align:center;padding:44px 30px;border-radius:22px;
+  background:var(--bg-light);border:1px dashed var(--line);
+}
+.ma-empty-ic{width:52px;height:52px;margin:0 auto 16px;border-radius:16px;display:grid;place-items:center;background:rgba(0,71,187,.08);color:var(--blue)}
+.ma-empty-ic svg{width:24px;height:24px}
+.ma-empty h3{font-size:19px;letter-spacing:-.022em}
+.ma-empty p{margin:10px 0 20px;font-size:14px;color:var(--text-soft);line-height:1.6}
+.ma-morerow{display:flex;justify-content:center;margin-top:34px}
+/* ---- method (scroll-linked) ---- */
+.ma-method{
+  position:relative;overflow:clip;color:#fff;
+  background:
+    radial-gradient(64% 60% at 82% 10%,rgba(0,71,187,.3),transparent 62%),
+    linear-gradient(180deg,#04060e,#070c1c 52%,#04060e);
+}
+.ma-method .h2,.ma-method .head-sub{color:#fff}
+.ma-method .head-sub{color:#a9bcdb}
+.ma-method .eyebrow{color:#93b6ff}
+.ma-meth{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,4vw,64px);align-items:start}
+.ma-meth-stage{position:sticky;top:calc(var(--chrome-h) + 26px)}
+.ma-meth-viz{
+  border-radius:24px;padding:20px;
+  background:linear-gradient(168deg,rgba(255,255,255,.075),rgba(255,255,255,.03));
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 40px 80px -44px rgba(0,0,0,.85),inset 0 1px 0 rgba(255,255,255,.16);
+}
+.ma-meth-viz-top{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.ma-meth-sym{display:flex;flex-direction:column;gap:2px}
+.ma-meth-sym b{font-size:14px;color:#fff;letter-spacing:-.02em}
+.ma-meth-sym em{font-style:normal;font-size:11px;color:#8ea4c6}
+.ma-meth-prog{display:flex;gap:5px}
+.ma-meth-prog i{width:22px;height:3px;border-radius:3px;background:rgba(255,255,255,.16);transition:background .45s var(--ease),width .45s var(--ease)}
+.ma-meth[data-on="1"] .ma-meth-prog i:nth-child(1),.ma-meth[data-on="2"] .ma-meth-prog i:nth-child(-n+2),.ma-meth[data-on="3"] .ma-meth-prog i{background:#6fa8ff}
+.ma-meth[data-on="1"] .ma-meth-prog i:nth-child(1),.ma-meth[data-on="2"] .ma-meth-prog i:nth-child(2),.ma-meth[data-on="3"] .ma-meth-prog i:nth-child(3){width:32px}
+.ma-meth-canvas{position:relative;margin-top:16px;border-radius:18px;overflow:hidden;background:rgba(3,5,12,.55);border:1px solid rgba(255,255,255,.07)}
+.ma-meth-canvas svg{width:100%;height:clamp(210px,24vw,270px);display:block}
+.mv-grid line{stroke:rgba(255,255,255,.05);stroke-width:1}
+.mv-price{fill:none;stroke:#6fa8ff;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.mv-area{opacity:0;transition:opacity .7s var(--ease)}
+.ma-meth[data-seen] .mv-area{opacity:1}
+@media (prefers-reduced-motion:no-preference){.mv-price{stroke-dasharray:600;stroke-dashoffset:600}
+.ma-meth[data-seen] .mv-price{transition:stroke-dashoffset 2.2s var(--ease);stroke-dashoffset:0}}
+/* each pass fades its own layer in, and slides it a touch — opacity alone read flat */
+.mv-struct,.mv-cat,.mv-lvl{opacity:0;transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.mv-struct{transform:translateY(10px)}
+.mv-cat{transform:scaleX(.9);transform-origin:280px 0}
+.mv-lvl{transform:translateY(-8px)}
+.ma-meth[data-on="1"] .mv-struct,.ma-meth[data-on="2"] .mv-cat,.ma-meth[data-on="3"] .mv-lvl{opacity:1;transform:none}
+.mv-ch{fill:none;stroke:#6fa8ff;stroke-width:1.3;stroke-dasharray:6 7;opacity:.8;vector-effect:non-scaling-stroke}
+.mv-catline{fill:none;stroke:#ffc244;stroke-width:1.4;stroke-dasharray:5 6;vector-effect:non-scaling-stroke}
+.mv-res{fill:none;stroke:#ff8078;stroke-width:1.5;stroke-dasharray:7 7;vector-effect:non-scaling-stroke}
+.mv-sup{fill:none;stroke:#3fd9a8;stroke-width:1.5;stroke-dasharray:7 7;vector-effect:non-scaling-stroke}
+.mv-tag{
+  position:absolute;display:inline-flex;align-items:center;gap:7px;
+  font-size:10.5px;font-weight:700;padding:5px 10px;border-radius:70px;letter-spacing:-.01em;
+  background:rgba(6,10,22,.82);border:1px solid rgba(255,255,255,.14);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  opacity:0;transform:translateY(6px) scale(.96);
+  transition:opacity .5s var(--ease),transform .5s var(--ease);
+}
+.mv-tag i{width:6px;height:6px;border-radius:50%;flex:none}
+.mv-tag-r{top:15%;left:4%;color:#ffb0a8}
+.mv-tag-r i{background:#ff8078}
+.mv-tag-s{top:62%;left:4%;color:#8fe6c8}
+.mv-tag-s i{background:#3fd9a8}
+.mv-tag-c{top:5%;left:52%;color:#ffd88a}
+.mv-tag-c i{background:#ffc244}
+.mv-tag-t{bottom:8%;right:5%;color:#bcd6ff}
+.mv-tag-t i{background:#6fa8ff}
+.ma-meth[data-on="1"] .mv-tag-t,.ma-meth[data-on="2"] .mv-tag-c,.ma-meth[data-on="3"] .mv-tag-r,.ma-meth[data-on="3"] .mv-tag-s{opacity:1;transform:none}
+.ma-meth-foot{display:flex;align-items:flex-start;gap:12px;margin-top:16px}
+.ma-meth-badge{
+  flex:none;font-size:10px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#0b1220;
+  background:#6fa8ff;padding:6px 11px;border-radius:70px;
+}
+.ma-meth-cap{font-size:13px;line-height:1.6;color:#a9bcdb;min-height:2.9em}
+.ma-meth-steps{list-style:none;display:flex;flex-direction:column;gap:18px}
+.ma-meth-step-item{
+  position:relative;padding:26px 26px 26px 30px;border-radius:20px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+  transition:background .45s var(--ease),border-color .45s var(--ease),transform .45s var(--ease);
+}
+.ma-meth-step-item::before{
+  content:"";position:absolute;left:0;top:22px;bottom:22px;width:3px;border-radius:3px;
+  background:linear-gradient(180deg,#6fa8ff,#0047BB);transform:scaleY(0);transform-origin:top;
+  transition:transform .55s var(--ease);
+}
+.ma-meth-step-item.is-on{background:rgba(255,255,255,.075);border-color:rgba(120,175,255,.32);transform:translateX(4px)}
+.ma-meth-step-item.is-on::before{transform:scaleY(1)}
+.ma-meth-num{font-size:11.5px;font-weight:800;letter-spacing:.14em;color:#6f86ad;transition:color .4s}
+.ma-meth-step-item.is-on .ma-meth-num{color:#6fa8ff}
+.ma-meth-step-item h3{margin-top:8px;font-size:21px;letter-spacing:-.026em;color:#fff}
+.ma-meth-step-item p{margin-top:11px;font-size:14px;line-height:1.7;color:#a9bcdb}
+/* ---- coverage ---- */
+.ma-cover{background:var(--bg-light)}
+.ma-cov-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.ma-cov{position:relative;display:flex;flex-direction:column;border-radius:20px;padding:24px 22px;overflow:hidden}
+.ma-cov-ic{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:rgba(0,71,187,.09);color:var(--blue);transition:transform .4s var(--ease)}
+.ma-cov-ic svg{width:20px;height:20px}
+.ma-cov:hover .ma-cov-ic{transform:translateY(-3px) scale(1.06)}
+.ma-cov b{margin-top:16px;font-size:34px;font-weight:800;letter-spacing:-.04em;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+.ma-cov-l{margin-top:6px;font-size:14px;font-weight:700;color:var(--text)}
+.ma-cov em{margin-top:8px;font-style:normal;font-size:12.5px;line-height:1.55;color:var(--text-soft)}
+.ma-cov-go{position:absolute;top:22px;right:22px;width:16px;height:16px;color:var(--text-mute);transition:color .3s,transform .35s var(--ease)}
+.ma-cov:hover .ma-cov-go{color:var(--blue);transform:translate(3px,-3px)}
+/* ---- subscribe ---- */
+.ma-sub{background:#fff}
+.ma-sub-panel{
+  position:relative;overflow:hidden;border-radius:28px;color:#fff;
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.88fr);gap:clamp(26px,3.4vw,52px);align-items:center;
+  padding:clamp(32px,4vw,54px);
+  background:radial-gradient(74% 84% at 88% 6%,rgba(0,71,187,.46),transparent 62%),linear-gradient(152deg,#0b1224,#050914 56%,#04060e);
+  border:1px solid rgba(255,255,255,.11);
+  box-shadow:0 46px 100px -50px rgba(0,20,70,.82),inset 0 1px 0 rgba(255,255,255,.13);
+}
+.ma-sub-aura{position:absolute;z-index:0;width:460px;height:460px;top:-38%;right:4%;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(0,110,255,.36),transparent 66%);filter:blur(60px)}
+.ma-sub-copy,.ma-sub-form{position:relative;z-index:1;min-width:0}
+.ma-sub-copy h2{font-size:clamp(24px,2.7vw,34px);letter-spacing:-.032em;line-height:1.16}
+.ma-sub-copy>p{margin-top:14px;font-size:14.5px;line-height:1.66;color:#a9bcdb;max-width:46ch}
+.ma-sub-pts{display:flex;flex-direction:column;gap:9px;margin-top:20px}
+.ma-sub-pts li{display:flex;align-items:center;gap:9px;font-size:13px;color:#c2cfe4}
+.ma-sub-pts svg{width:14px;height:14px;flex:none;color:#3fd9a8}
+.ma-sub-field{display:flex;gap:10px;flex-wrap:wrap}
+.ma-sub-field input{
+  flex:1 1 200px;height:52px;padding:0 18px;border-radius:14px;font:inherit;font-size:14.5px;color:#fff;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);
+  transition:border-color .25s,box-shadow .25s,background .25s;
+}
+.ma-sub-field input::placeholder{color:#7f92b3}
+.ma-sub-field input:focus{outline:none;background:rgba(255,255,255,.11);border-color:rgba(120,175,255,.6);box-shadow:0 0 0 4px rgba(0,71,187,.24)}
+.ma-sub-field .btn{height:52px;border-radius:14px;padding-inline:24px}
+.ma-sub-note{margin-top:14px;font-size:11.5px;line-height:1.5;color:#7f92b3}
+.ma-sub-note.is-ok{color:#3fd9a8}
+.ma-sub-note.is-err{color:#ff8078}
+/* ---- Responsive ---- */
+@media (max-width:1080px){.ma-hero-copy{max-width:none}
+.ma-bento{grid-template-columns:repeat(2,minmax(0,1fr))}
+.ma-card--feat,.ma-bento>.ma-card:nth-child(2),.ma-bento>.ma-card:nth-child(3),.ma-bento>.ma-card:nth-child(4){grid-column:span 1}
+.ma-card--feat{grid-column:span 2;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.ma-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.ma-meth{grid-template-columns:1fr;gap:32px}
+.ma-meth-stage{position:relative;top:auto}
+.ma-cov-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.ma-sub-panel{grid-template-columns:1fr;gap:30px}}
+@media (max-width:860px){.ma-hero{min-height:auto;padding:calc(var(--nav-h) + 40px) 0 54px}
+.ma-bar{padding:12px}}
+@media (max-width:720px){.ma-hact .btn{width:100%;justify-content:center}
+.ma-h1 br,.ma-lead br,.ma-choose .head-sub br,.ma-method .head-sub br{display:none}
+.ma-bento,.ma-grid,.ma-cov-grid{grid-template-columns:1fr}
+.ma-card--feat,.ma-card--feat{grid-template-columns:1fr}
+.ma-card--feat .ma-feat-viz{margin-top:20px}
+.ma-meth-step-item{padding:22px 20px 22px 24px}
+.ma-sub-field .btn{flex:1 1 100%}}
+@media (max-width:520px){.ma-cats{width:100%}}
+/* ---- report cards: the same card the news index uses ---- */
+.ma-rep{
+  display:flex;flex-direction:column;overflow:hidden;border-radius:20px;height:100%;padding:0;
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
+}
+.ma-rep:hover{transform:translateY(-4px);border-color:rgba(0,71,187,.28);
+  box-shadow:0 28px 52px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff}
+.ma-head{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:13px 18px;border-bottom:1px solid rgba(20,40,80,.09);
+}
+.ma-cat{display:flex;align-items:center;gap:9px;min-width:0;font-size:13px;font-weight:600;color:var(--text)}
+.ma-cat svg{width:17px;height:17px;flex:none;color:var(--blue)}
+.ma-cat.fa svg{color:#0f9d76}
+.ma-cat.wk svg{color:#a2650a}
+.ma-cat.mo svg{color:#6d3fd9}
+.ma-date{flex:none;font-size:12.5px;color:var(--text-mute);font-variant-numeric:tabular-nums}
+.ma-body{display:flex;flex-direction:column;flex:1;padding:17px 18px 19px}
+.ma-h{font-size:17px;letter-spacing:-.022em;line-height:1.3;color:var(--text)}
+.ma-h a{transition:color .25s}
+.ma-rep:hover .ma-h a{color:var(--blue)}
+.ma-ex{
+  margin-top:8px;font-size:13.5px;line-height:1.55;color:var(--text-soft);
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.ma-read{margin-top:11px;font-size:11.5px;font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--text-mute)}
+.ma-media{position:relative;display:block;margin-top:auto;aspect-ratio:16/10;overflow:hidden}
+.ma-media img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
+.ma-rep:hover .ma-media img{transform:scale(1.05)}
+.ma-media::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(4,8,18,.06) 0%,rgba(4,8,18,.04) 46%,rgba(4,8,18,.34) 100%)}
+.ma-readmark{
+  position:absolute;left:12px;bottom:12px;z-index:2;width:34px;height:34px;border-radius:11px;
+  display:grid;place-items:center;background:rgba(255,255,255,.94);color:var(--blue);
+  box-shadow:0 10px 22px -10px rgba(20,44,96,.55);
+  transition:transform .35s var(--ease),background .3s;
+}
+.ma-readmark svg{width:15px;height:15px}
+.ma-rep:hover .ma-readmark{transform:translate(2px,-2px);background:#fff}
+.ma-rep mark{background:rgba(255,214,102,.5);color:inherit;border-radius:3px;padding:0 2px}
+  </style>
 
   <!-- Structured data — page entity -->
   <script type="application/ld+json">
@@ -407,10 +743,10 @@
 
   <div class="container ma-hero-in">
     <div class="ma-hero-copy">
-      <span class="eyebrow eyebrow-blue" data-reveal>Market Analysis</span>
-      <h1 class="ma-h1" id="ma-hero-title" data-reveal>Decode market secrets<br> to unlock opportunities.</h1>
-      <p class="ma-lead" data-reveal>Understand the forces shaping the market and spot potential setups &mdash;<br> so you can refine your strategy and trade on evidence rather than instinct.</p>
-      <div class="ma-hact" data-reveal>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">Market Analysis</span>
+      <h1 class="ma-h1" id="ma-hero-title" data-aos="fade-up">Decode market secrets<br> to unlock opportunities.</h1>
+      <p class="ma-lead" data-aos="fade-up">Understand the forces shaping the market and spot potential setups &mdash;<br> so you can refine your strategy and trade on evidence rather than instinct.</p>
+      <div class="ma-hact" data-aos="fade-up">
         <a href="#reports" class="btn btn-primary btn-lg magnetic">Explore analysis <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       </div>
     </div>
@@ -427,13 +763,13 @@
   <span class="ma-soft-aura a2" aria-hidden="true"></span>
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Analysis</span>
-      <h2 class="h2" id="ma-choose-title" data-reveal>Choose your analysis.</h2>
-      <p class="head-sub" data-reveal>Four cadences, one desk &mdash; from the intraday chart to the quarter-defining theme,<br> so you read the one that matches the horizon you actually trade.</p>
+      <span class="eyebrow" data-aos="fade-up">Analysis</span>
+      <h2 class="h2" id="ma-choose-title" data-aos="fade-up">Choose your analysis.</h2>
+      <p class="head-sub" data-aos="fade-up">Four cadences, one desk &mdash; from the intraday chart to the quarter-defining theme,<br> so you read the one that matches the horizon you actually trade.</p>
     </div>
 
-    <div class="ma-bento" data-reveal-stagger data-ma-spot>
-      <article class="ma-card ma-card--feat glass">
+    <div class="ma-bento" data-ma-spot>
+      <article class="ma-card ma-card--feat glass" data-aos="fade-up">
         <div class="ma-feat-copy">
         <span class="ma-ribbon">Featured</span>
         <span class="ma-card-ic"><svg><use href="#i-cfd"/></svg></span>
@@ -468,7 +804,7 @@
         </div>
       </article>
 
-      <article class="ma-card glass">
+      <article class="ma-card glass" data-aos="fade-up" data-aos-delay="100">
         <span class="ma-card-ic"><svg><use href="#i-globe"/></svg></span>
         <h3>Daily Fundamental Analysis</h3>
         <p>The prints, speeches and headlines that may move your positions before the chart catches up.</p>
@@ -480,7 +816,7 @@
         <a class="ma-more" href="#reports">Know more <svg><use href="#i-arrow-right"/></svg></a>
       </article>
 
-      <article class="ma-card glass">
+      <article class="ma-card glass" data-aos="fade-up" data-aos-delay="200">
         <span class="ma-card-ic"><svg><use href="#i-calendar"/></svg></span>
         <h3>Weekly Analysis</h3>
         <p>The shifts that defined the week and the levels carried into the next one.</p>
@@ -494,7 +830,7 @@
         <a class="ma-more" href="#reports">Know more <svg><use href="#i-arrow-right"/></svg></a>
       </article>
 
-      <article class="ma-card glass">
+      <article class="ma-card glass" data-aos="fade-up" data-aos-delay="300">
         <span class="ma-card-ic"><svg><use href="#i-layers"/></svg></span>
         <h3>Monthly Analysis</h3>
         <p>Step back for the bigger picture &mdash; the themes, flows and cycles shaping the months ahead.</p>
@@ -513,12 +849,12 @@
 <section class="section ma-reports" id="reports" aria-labelledby="ma-rep-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>The archive</span>
-      <h2 class="h2" id="ma-rep-title" data-reveal>Latest reports from the desk</h2>
-      <p class="head-sub" data-reveal>Filter by cadence, or search for an instrument, a central bank or a theme.</p>
+      <span class="eyebrow" data-aos="fade-up">The archive</span>
+      <h2 class="h2" id="ma-rep-title" data-aos="fade-up">Latest reports from the desk</h2>
+      <p class="head-sub" data-aos="fade-up">Filter by cadence, or search for an instrument, a central bank or a theme.</p>
     </div>
 
-    <div class="ma-bar glass" data-reveal>
+    <div class="ma-bar glass" data-aos="fade-up">
       <form class="ma-search" role="search" onsubmit="return false">
         <span class="ma-search-ic" aria-hidden="true"><svg><use href="#i-search"/></svg></span>
         <input id="maSearch" type="search" autocomplete="off" placeholder="Search reports&hellip;" aria-label="Search analysis reports">
@@ -536,9 +872,9 @@
 
     <p class="wb-status" data-ma-status role="status" aria-live="polite"></p>
 
-    <div class="ma-grid" data-reveal-stagger>
+    <div class="ma-grid">
 
-      <article class="ma-rep glass" data-ma-item data-cat="ta" data-title="Gold holds the breakout as buyers defend 2,318">
+      <article class="ma-rep glass" data-ma-item data-cat="ta" data-title="Gold holds the breakout as buyers defend 2,318" data-aos="fade-up">
         <div class="ma-head">
           <span class="ma-cat ta"><svg aria-hidden="true"><use href="#i-cfd"/></svg>Technical Analysis</span>
           <time class="ma-date" datetime="2026-07-30">30 Jul 2026</time>
@@ -551,11 +887,11 @@
         </div>
 
         <a class="ma-media" href="../analysis/news/news-article.html" aria-label="Read: Gold holds the breakout as buyers defend 2,318">
-          <img src="../../assets/img/webtraderScreenShot.webp" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/webtraderScreenShot.webp" alt="STARTRADER Web Trader platform interface" width="640" height="349" loading="lazy" decoding="async">
           <span class="ma-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
-      <article class="ma-rep glass" data-ma-item data-cat="fa" data-title="Core CPI cools again and the dollar gives back the week">
+      <article class="ma-rep glass" data-ma-item data-cat="fa" data-title="Core CPI cools again and the dollar gives back the week" data-aos="fade-up" data-aos-delay="100">
         <div class="ma-head">
           <span class="ma-cat fa"><svg aria-hidden="true"><use href="#i-globe"/></svg>Fundamental Analysis</span>
           <time class="ma-date" datetime="2026-07-30">30 Jul 2026</time>
@@ -568,11 +904,11 @@
         </div>
 
         <a class="ma-media" href="../analysis/news/news-article.html" aria-label="Read: Core CPI cools again and the dollar gives back the week">
-          <img src="../../assets/img/home-hero-wave.jpg" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/home-hero-wave.webp" alt="Abstract blue light wave" width="640" height="349" loading="lazy" decoding="async">
           <span class="ma-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
-      <article class="ma-rep glass" data-ma-item data-cat="ta" data-title="EUR/USD grinds into the range high with momentum fading">
+      <article class="ma-rep glass" data-ma-item data-cat="ta" data-title="EUR/USD grinds into the range high with momentum fading" data-aos="fade-up" data-aos-delay="200">
         <div class="ma-head">
           <span class="ma-cat ta"><svg aria-hidden="true"><use href="#i-cfd"/></svg>Technical Analysis</span>
           <time class="ma-date" datetime="2026-07-29">29 Jul 2026</time>
@@ -585,11 +921,11 @@
         </div>
 
         <a class="ma-media" href="../analysis/news/news-article.html" aria-label="Read: EUR/USD grinds into the range high with momentum fading">
-          <img src="../../assets/img/webtraderScreenShot.webp" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/webtraderScreenShot.webp" alt="STARTRADER Web Trader platform interface" width="640" height="349" loading="lazy" decoding="async">
           <span class="ma-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
-      <article class="ma-rep glass" data-ma-item data-cat="wk" data-title="Weekly outlook: three central banks and one payrolls print">
+      <article class="ma-rep glass" data-ma-item data-cat="wk" data-title="Weekly outlook: three central banks and one payrolls print" data-aos="fade-up" data-aos-delay="300">
         <div class="ma-head">
           <span class="ma-cat wk"><svg aria-hidden="true"><use href="#i-calendar"/></svg>Weekly Outlook</span>
           <time class="ma-date" datetime="2026-07-28">28 Jul 2026</time>
@@ -602,11 +938,11 @@
         </div>
 
         <a class="ma-media" href="../analysis/news/news-article.html" aria-label="Read: Weekly outlook: three central banks and one payrolls print">
-          <img src="../../assets/img/stat-tan.png" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/stat-tan.webp" alt="Sculpted bronze abstract artwork" width="640" height="349" loading="lazy" decoding="async">
           <span class="ma-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
-      <article class="ma-rep glass" data-ma-item data-cat="ta" data-title="WTI slips out of the month-long range as the risk premium drains">
+      <article class="ma-rep glass" data-ma-item data-cat="ta" data-title="WTI slips out of the month-long range as the risk premium drains" data-aos="fade-up" data-aos-delay="400">
         <div class="ma-head">
           <span class="ma-cat ta"><svg aria-hidden="true"><use href="#i-cfd"/></svg>Technical Analysis</span>
           <time class="ma-date" datetime="2026-07-27">27 Jul 2026</time>
@@ -619,11 +955,11 @@
         </div>
 
         <a class="ma-media" href="../analysis/news/news-article.html" aria-label="Read: WTI slips out of the month-long range as the risk premium drains">
-          <img src="../../assets/img/webtraderScreenShot.webp" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/webtraderScreenShot.webp" alt="STARTRADER Web Trader platform interface" width="640" height="349" loading="lazy" decoding="async">
           <span class="ma-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
-      <article class="ma-rep glass" data-ma-item data-cat="mo" data-title="Monthly review: the rotation out of defensives finally showed up">
+      <article class="ma-rep glass" data-ma-item data-cat="mo" data-title="Monthly review: the rotation out of defensives finally showed up" data-aos="fade-up" data-aos-delay="500">
         <div class="ma-head">
           <span class="ma-cat mo"><svg aria-hidden="true"><use href="#i-layers"/></svg>Monthly Review</span>
           <time class="ma-date" datetime="2026-07-25">25 Jul 2026</time>
@@ -636,11 +972,11 @@
         </div>
 
         <a class="ma-media" href="../analysis/news/news-article.html" aria-label="Read: Monthly review: the rotation out of defensives finally showed up">
-          <img src="../../assets/img/stat-awards.png" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/stat-awards.webp" alt="Award trophies backdrop" width="640" height="349" loading="lazy" decoding="async">
           <span class="ma-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
-      <article class="ma-rep glass" data-ma-item data-cat="fa" data-title="The BoJ blinks and the yen carry trade gets its first real test">
+      <article class="ma-rep glass" data-ma-item data-cat="fa" data-title="The BoJ blinks and the yen carry trade gets its first real test" data-aos="fade-up" data-aos-delay="600">
         <div class="ma-head">
           <span class="ma-cat fa"><svg aria-hidden="true"><use href="#i-globe"/></svg>Fundamental Analysis</span>
           <time class="ma-date" datetime="2026-07-24">24 Jul 2026</time>
@@ -653,11 +989,11 @@
         </div>
 
         <a class="ma-media" href="../analysis/news/news-article.html" aria-label="Read: The BoJ blinks and the yen carry trade gets its first real test">
-          <img src="../../assets/img/home-hero-wave.jpg" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/home-hero-wave.webp" alt="Abstract blue light wave" width="640" height="349" loading="lazy" decoding="async">
           <span class="ma-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
-      <article class="ma-rep glass" data-ma-item data-cat="wk" data-title="Weekly outlook: indices carry the momentum into month end">
+      <article class="ma-rep glass" data-ma-item data-cat="wk" data-title="Weekly outlook: indices carry the momentum into month end" data-aos="fade-up" data-aos-delay="600">
         <div class="ma-head">
           <span class="ma-cat wk"><svg aria-hidden="true"><use href="#i-calendar"/></svg>Weekly Outlook</span>
           <time class="ma-date" datetime="2026-07-21">21 Jul 2026</time>
@@ -670,11 +1006,11 @@
         </div>
 
         <a class="ma-media" href="../analysis/news/news-article.html" aria-label="Read: Weekly outlook: indices carry the momentum into month end">
-          <img src="../../assets/img/stat-tan.png" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/stat-tan.webp" alt="Sculpted bronze abstract artwork" width="640" height="349" loading="lazy" decoding="async">
           <span class="ma-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
-      <article class="ma-rep glass" data-ma-item data-cat="mo" data-title="Monthly review: gold's quiet quarter was anything but quiet underneath">
+      <article class="ma-rep glass" data-ma-item data-cat="mo" data-title="Monthly review: gold's quiet quarter was anything but quiet underneath" data-aos="fade-up" data-aos-delay="600">
         <div class="ma-head">
           <span class="ma-cat mo"><svg aria-hidden="true"><use href="#i-layers"/></svg>Monthly Review</span>
           <time class="ma-date" datetime="2026-07-04">4 Jul 2026</time>
@@ -687,7 +1023,7 @@
         </div>
 
         <a class="ma-media" href="../analysis/news/news-article.html" aria-label="Read: Monthly review: gold's quiet quarter was anything but quiet underneath">
-          <img src="../../assets/img/stat-awards.png" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/stat-awards.webp" alt="Award trophies backdrop" width="640" height="349" loading="lazy" decoding="async">
           <span class="ma-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
@@ -711,9 +1047,9 @@
 <section class="section ma-method" id="method" aria-labelledby="ma-method-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Method</span>
-      <h2 class="h2" id="ma-method-title" data-reveal>How the desk reads a market</h2>
-      <p class="head-sub" data-reveal>Every report follows the same three passes, in the same order.<br> Scroll to walk through them.</p>
+      <span class="eyebrow" data-aos="fade-up">Method</span>
+      <h2 class="h2" id="ma-method-title" data-aos="fade-up">How the desk reads a market</h2>
+      <p class="head-sub" data-aos="fade-up">Every report follows the same three passes, in the same order.<br> Scroll to walk through them.</p>
     </div>
 
     <div class="ma-meth" data-ma-meth>
@@ -799,34 +1135,34 @@
 <section class="section ma-cover" aria-labelledby="ma-cover-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Coverage</span>
-      <h2 class="h2" id="ma-cover-title" data-reveal>The desk covers what you trade</h2>
-      <p class="head-sub" data-reveal>The same instruments the platform quotes &mdash; analysed by the people watching the same feed.</p>
+      <span class="eyebrow" data-aos="fade-up">Coverage</span>
+      <h2 class="h2" id="ma-cover-title" data-aos="fade-up">The desk covers what you trade</h2>
+      <p class="head-sub" data-aos="fade-up">The same instruments the platform quotes &mdash; analysed by the people watching the same feed.</p>
     </div>
 
-    <div class="ma-cov-grid" data-reveal-stagger>
-      <a class="ma-cov glass" href="../../trading/products/forex.html">
+    <div class="ma-cov-grid">
+      <a class="ma-cov glass" href="../../trading/products/forex.html" data-aos="fade-up">
         <span class="ma-cov-ic"><svg><use href="#i-swap"/></svg></span>
         <b data-count="28" data-suffix="">28</b>
         <span class="ma-cov-l">Forex pairs</span>
         <em>Majors, minors and the crosses that actually move.</em>
         <svg class="ma-cov-go"><use href="#i-arrow-ur"/></svg>
       </a>
-      <a class="ma-cov glass" href="../../trading/products/commodities.html">
+      <a class="ma-cov glass" href="../../trading/products/commodities.html" data-aos="fade-up" data-aos-delay="100">
         <span class="ma-cov-ic"><svg><use href="#i-droplet"/></svg></span>
         <b data-count="12">12</b>
         <span class="ma-cov-l">Commodities</span>
         <em>Gold, silver, crude and gas &mdash; daily and weekly.</em>
         <svg class="ma-cov-go"><use href="#i-arrow-ur"/></svg>
       </a>
-      <a class="ma-cov glass" href="../../index.html#markets">
+      <a class="ma-cov glass" href="../../index.html#markets" data-aos="fade-up" data-aos-delay="200">
         <span class="ma-cov-ic"><svg><use href="#i-chart"/></svg></span>
         <b data-count="9">9</b>
         <span class="ma-cov-l">Indices</span>
         <em>The benchmarks that set the risk tone each session.</em>
         <svg class="ma-cov-go"><use href="#i-arrow-ur"/></svg>
       </a>
-      <a class="ma-cov glass" href="../analysis/economic-calendar.html">
+      <a class="ma-cov glass" href="../analysis/economic-calendar.html" data-aos="fade-up" data-aos-delay="300">
         <span class="ma-cov-ic"><svg><use href="#i-clock"/></svg></span>
         <b data-count="40" data-suffix="+">40+</b>
         <span class="ma-cov-l">Events a week</span>
@@ -840,7 +1176,7 @@
 <!-- ============ SUBSCRIBE ============ -->
 <section class="section ma-sub" id="subscribe" aria-labelledby="ma-sub-title">
   <div class="container">
-    <div class="ma-sub-panel" data-reveal>
+    <div class="ma-sub-panel" data-aos="fade-up">
       <span class="ma-sub-aura" aria-hidden="true"></span>
       <div class="ma-sub-copy">
         <span class="eyebrow eyebrow-blue">Daily briefing</span>
@@ -868,10 +1204,10 @@
 <section class="section faq-sec fx-faq" aria-labelledby="ma-faq-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>FAQ</span>
-      <h2 class="h2" id="ma-faq-title" data-reveal>About the analysis</h2>
+      <span class="eyebrow" data-aos="fade-up">FAQ</span>
+      <h2 class="h2" id="ma-faq-title" data-aos="fade-up">About the analysis</h2>
     </div>
-    <div class="faq-list" data-reveal>
+    <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
         <summary>How often is the analysis published?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a">Technical and fundamental notes are published every trading day before the London open. The weekly outlook lands on Monday morning and the monthly review in the first week of each month.</div>
@@ -900,26 +1236,26 @@
 <section class="section fx-more" aria-labelledby="ma-more-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Keep going</span>
-      <h2 class="h2" id="ma-more-title" data-reveal>Where to go next</h2>
+      <span class="eyebrow" data-aos="fade-up">Keep going</span>
+      <h2 class="h2" id="ma-more-title" data-aos="fade-up">Where to go next</h2>
     </div>
-    <div class="fx-more-grid" data-reveal-stagger>
-      <a class="fx-more-card" href="knowledge.html">
+    <div class="fx-more-grid">
+      <a class="fx-more-card" href="knowledge.html" data-aos="fade-up">
         <span class="fx-more-media"><img src="../../assets/img/learn-viz.webp" alt="Knowledge Centre trading guides and courses" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Guides, videos and courses that take you from your first trade to a strategy you have tested.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Knowledge Centre</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="../analysis/economic-calendar.html">
-        <span class="fx-more-media"><img src="../../assets/img/home-hero-wave.jpg" alt="Economic calendar of market-moving releases" width="640" height="349" loading="lazy" decoding="async"></span>
+      <a class="fx-more-card" href="../analysis/economic-calendar.html" data-aos="fade-up" data-aos-delay="100">
+        <span class="fx-more-media"><img src="../../assets/img/home-hero-wave.webp" alt="Economic calendar of market-moving releases" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Every release the desk watches, with forecasts and the numbers as they land.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Economic calendar</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="../analysis/news/index.html">
+      <a class="fx-more-card" href="../analysis/news/index.html" data-aos="fade-up" data-aos-delay="200">
         <span class="fx-more-media"><img src="../../assets/img/webtrader-laptop.webp" alt="News room covering market and company stories" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">The stories moving the instruments you hold, written as they break.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">News room</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="../academy/webinars.html">
+      <a class="fx-more-card" href="../academy/webinars.html" data-aos="fade-up" data-aos-delay="300">
         <span class="fx-more-media"><img src="../../assets/img/learn-cta.webp" alt="Live trading webinars with market analysts" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Live sessions with analysts every week, plus replays if the timing does not suit you.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Webinars</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
@@ -932,9 +1268,9 @@
 <section class="cta-banner" aria-labelledby="ma-cta-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="ma-cta-title" data-reveal>Start trading with a<br>globally leading broker</h2>
-    <p data-reveal>Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
-    <div class="cta-actions" data-reveal>
+    <h2 id="ma-cta-title" data-aos="fade-up">Start trading with a<br>globally leading broker</h2>
+    <p data-aos="fade-up">Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
+    <div class="cta-actions" data-aos="fade-up">
       <a href="../../trading/getting-started/account-opening.html" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       <a href="../../trading/getting-started/account-opening.html" class="btn btn-ghost btn-lg">Try Free Demo</a>
     </div>
@@ -1025,7 +1361,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -1059,6 +1395,7 @@
 <script src="../../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../../assets/js/vendor/aos.min.js" defer></script>
 <script src="../../assets/js/main.js" defer></script>
 </body>
 </html>

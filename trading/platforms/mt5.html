@@ -16,14 +16,14 @@
   <meta property="og:title" content="MetaTrader 5 (MT5) | Download the MT5 Trading Platform | STARTRADER" />
   <meta property="og:description" content="Download MetaTrader 5 with STARTRADER — 38 built-in indicators, 21 timeframes, depth of market, Expert Advisors and one login across every platform, on Windows, Mac, web and mobile." />
   <meta property="og:url" content="https://www.startrader.com/trading/platforms/mt5.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/platform-hero.jpg" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/platform-hero.webp" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="MetaTrader 5 (MT5) | Download the MT5 Trading Platform | STARTRADER" />
   <meta name="twitter:description" content="Download MetaTrader 5 with STARTRADER — 38 built-in indicators, 21 timeframes, depth of market, Expert Advisors and one login across every platform, on Windows, Mac, web and mobile." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/platform-hero.jpg" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/platform-hero.webp" />
 
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../../favicon.svg" />
@@ -32,7 +32,21 @@
   <link rel="preload" href="../../assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" as="image" href="../../assets/img/platform-hero.webp" />
   <link rel="stylesheet" href="../../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ---- Download: centred render composited into the section ---- */
+.mt-dl-aura{display:none}
+/* this render's surround is rgb(2,4,14) — darker than the section on every
+   channel — so lighten alone melts it away. No mask: any fade would only dim
+   the laptop base and the bottom of the terminal. */
+.mt-dl-img--mt5{
+  -webkit-mask-image:none;
+  mask-image:none;
+}
+.mt-dl-stage:has(.mt-dl-img--mt5){max-width:min(1120px,96%)}
+  </style>
 
   <script type="application/ld+json">
 {
@@ -432,17 +446,17 @@
 <section class="pf-hero pf-hero--mt" aria-labelledby="pf-hero-title">
   <div class="container pf-hero-in">
     <div class="pf-hero-copy">
-      <span class="eyebrow eyebrow-blue" data-reveal>MetaTrader 5</span>
-      <h1 class="pf-h1" id="pf-hero-title" data-reveal>Level up your trading<br> and download MT5</h1>
-      <p class="pf-lead" data-reveal>Your journey of MT5 trading is set to be smooth and rewarding &mdash; the<br> robustness of MT4, with a far wider toolkit behind it.</p>
-      <div class="pf-hact" data-reveal>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">MetaTrader 5</span>
+      <h1 class="pf-h1" id="pf-hero-title" data-aos="fade-up">Level up your trading<br> and download MT5</h1>
+      <p class="pf-lead" data-aos="fade-up">Your journey of MT5 trading is set to be smooth and rewarding &mdash; the<br> robustness of MT4, with a far wider toolkit behind it.</p>
+      <div class="pf-hact" data-aos="fade-up">
         <a href="#download" class="btn btn-primary btn-lg magnetic">Download MT5 <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       </div>
     </div>
   </div>
 
   <div class="mt-hero-visual" aria-hidden="true">
-    <img class="mt-hero-img" src="../../assets/img/mt-laptop-hero.webp" alt="" width="1190" height="1046" fetchpriority="high" decoding="async">
+    <img class="mt-hero-img" src="../../assets/img/mt-laptop-hero.webp" alt="MetaTrader terminal on a laptop" width="1190" height="1046" fetchpriority="high" decoding="async">
   </div>
 </section>
 
@@ -451,12 +465,12 @@
   <span class="pf-aura a1" aria-hidden="true"></span>
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>The platform</span>
-      <h2 class="h2" id="mt-why-title" data-reveal>Why choose <span class="hl">MT5</span>?</h2>
-      <p class="head-sub" data-reveal>Our platform offers MT5 traders the robustness and simplicity of its predecessor MT4, along with new and advanced trading features and functions. With its sophisticated tools, the MT5 trading platform opens the door to more possibilities. Investors can use the web trader or the mobile version for more convenience.</p>
+      <span class="eyebrow" data-aos="fade-up">The platform</span>
+      <h2 class="h2" id="mt-why-title" data-aos="fade-up">Why choose <span class="hl">MT5</span>?</h2>
+      <p class="head-sub" data-aos="fade-up">Our platform offers MT5 traders the robustness and simplicity of its predecessor MT4, along with new and advanced trading features and functions. With its sophisticated tools, the MT5 trading platform opens the door to more possibilities. Investors can use the web trader or the mobile version for more convenience.</p>
     </div>
-    <div class="mt-fgroups" data-reveal-stagger>
-      <article class="mt-fgroup mt-fgroup--a glass">
+    <div class="mt-fgroups">
+      <article class="mt-fgroup mt-fgroup--a glass" data-aos="fade-up">
         <span class="mt-fgroup-ic"><svg><use href="#i-chart"/></svg></span>
         <h3>Charting &amp; analysis</h3>
         <ul>
@@ -466,7 +480,7 @@
             <li><svg><use href="#i-check"/></svg>Fully customisable charts</li>
           </ul>
       </article>
-      <article class="mt-fgroup mt-fgroup--b glass">
+      <article class="mt-fgroup mt-fgroup--b glass" data-aos="fade-up" data-aos-delay="100">
         <span class="mt-fgroup-ic"><svg><use href="#i-bolt"/></svg></span>
         <h3>Execution &amp; orders</h3>
         <ul>
@@ -477,7 +491,7 @@
             <li><svg><use href="#i-check"/></svg>Micro lots available</li>
           </ul>
       </article>
-      <article class="mt-fgroup mt-fgroup--c glass">
+      <article class="mt-fgroup mt-fgroup--c glass" data-aos="fade-up" data-aos-delay="200">
         <span class="mt-fgroup-ic"><svg><use href="#i-id"/></svg></span>
         <h3>Account &amp; access</h3>
         <ul>
@@ -495,9 +509,9 @@
 <section class="section mt-beyond" aria-labelledby="mt-beyond-title" data-mt-rail>
   <div class="container">
     <div class="head center">
-      <span class="eyebrow eyebrow-blue" data-reveal>MT4 vs MT5</span>
-      <h2 class="h2 h2-light" id="mt-beyond-title" data-reveal>Beyond the classic, discover<br> the <span class="hl">cutting edge of MT5</span></h2>
-      <p class="head-sub" data-reveal>Browse what the newer terminal adds &mdash; or watch the short version.</p>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">MT4 vs MT5</span>
+      <h2 class="h2 h2-light" id="mt-beyond-title" data-aos="fade-up">Beyond the classic, discover<br> the <span class="hl">cutting edge of MT5</span></h2>
+      <p class="head-sub" data-aos="fade-up">Browse what the newer terminal adds &mdash; or watch the short version.</p>
     </div>
   </div>
 
@@ -557,29 +571,29 @@
   <span class="mt-dl-aura" aria-hidden="true"></span>
   <div class="container">
     <div class="head center">
-      <span class="eyebrow eyebrow-blue" data-reveal>Trade MT5 anywhere</span>
-      <h2 class="h2 h2-light" id="mt-dl-title" data-reveal>Get MT5 on every<br> screen you own</h2>
-      <p class="head-sub" data-reveal>Install the desktop terminal on Windows or Mac, open it in a browser with nothing to install, or carry it on Android and iOS. One account, one login, the same charts on all of them.</p>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">Trade MT5 anywhere</span>
+      <h2 class="h2 h2-light" id="mt-dl-title" data-aos="fade-up">Get MT5 on every<br> screen you own</h2>
+      <p class="head-sub" data-aos="fade-up">Install the desktop terminal on Windows or Mac, open it in a browser with nothing to install, or carry it on Android and iOS. One account, one login, the same charts on all of them.</p>
     </div>
 
-    <div class="mt-dl-stage" data-reveal aria-hidden="true">
-      <img class="mt-dl-img mt-dl-img--mt5" src="../../assets/img/mt5-laptop-dl.webp" alt="" width="1448" height="1086" loading="lazy" decoding="async">
+    <div class="mt-dl-stage" data-aos="fade-up" aria-hidden="true">
+      <img class="mt-dl-img mt-dl-img--mt5" src="../../assets/img/mt5-laptop-dl.webp" alt="MetaTrader 5 terminal on a laptop" width="1448" height="1086" loading="lazy" decoding="async">
     </div>
 
-    <div class="mt-dl-btns" data-reveal-stagger>
-        <a class="mt-dl-btn" href="#">
+    <div class="mt-dl-btns">
+        <a class="mt-dl-btn" href="#" data-aos="fade-up">
           <span class="mt-dl-tile apple"><svg class="mt-dl-ic"><use href="#i-apple"/></svg></span>
           <span class="mt-dl-tx"><em>Download on the</em><b>App Store</b></span>
         </a>
-        <a class="mt-dl-btn" href="#">
+        <a class="mt-dl-btn" href="#" data-aos="fade-up" data-aos-delay="100">
           <span class="mt-dl-tile win"><svg class="mt-dl-ic"><use href="#i-windows"/></svg></span>
           <span class="mt-dl-tx"><em>Download for</em><b>Windows</b></span>
         </a>
-        <a class="mt-dl-btn" href="#">
+        <a class="mt-dl-btn" href="#" data-aos="fade-up" data-aos-delay="200">
           <span class="mt-dl-tile droid"><svg class="mt-dl-ic"><use href="#i-android"/></svg></span>
           <span class="mt-dl-tx"><em>Download on</em><b>Android</b></span>
         </a>
-        <a class="mt-dl-btn" href="#">
+        <a class="mt-dl-btn" href="#" data-aos="fade-up" data-aos-delay="300">
           <span class="mt-dl-tile apple"><svg class="mt-dl-ic"><use href="#i-apple"/></svg></span>
           <span class="mt-dl-tx"><em>Download for</em><b>Mac OS</b></span>
         </a>
@@ -591,37 +605,37 @@
 <section class="section fx-hours mt-whyst" aria-labelledby="mt-whyst-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow eyebrow-blue" data-reveal>The broker</span>
-      <h2 class="h2 h2-light" id="mt-whyst-title" data-reveal>Why STARTRADER MetaTrader 5?</h2>
-      <p class="head-sub" data-reveal>The terminal is only half of it. These are the conditions it runs on.</p>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">The broker</span>
+      <h2 class="h2 h2-light" id="mt-whyst-title" data-aos="fade-up">Why STARTRADER MetaTrader 5?</h2>
+      <p class="head-sub" data-aos="fade-up">The terminal is only half of it. These are the conditions it runs on.</p>
     </div>
-    <div class="fx-mh mt-whyst-grid" data-reveal-stagger>
-      <article class="fx-mh-card fx-mh--teal">
+    <div class="fx-mh mt-whyst-grid">
+      <article class="fx-mh-card fx-mh--teal" data-aos="fade-up">
         <span class="fx-mh-ic"><svg><use href="#i-shield"/></svg></span>
         <h3>Transparent trading environment</h3>
         <p>Flexible and transparent trading conditions with ultra-fast execution. Orders are processed swiftly so clients can act on market opportunities as they appear.</p>
       </article>
-      <article class="fx-mh-card fx-mh--blue">
+      <article class="fx-mh-card fx-mh--blue" data-aos="fade-up" data-aos-delay="100">
         <span class="fx-mh-ic"><svg><use href="#i-headset"/></svg></span>
         <h3>Dedicated customer service</h3>
         <p>A dedicated team is available 24/7 to answer queries, address concerns and listen to feedback, in more than twenty languages.</p>
       </article>
-      <article class="fx-mh-card fx-mh--purple">
+      <article class="fx-mh-card fx-mh--purple" data-aos="fade-up" data-aos-delay="200">
         <span class="fx-mh-ic"><svg><use href="#i-id"/></svg></span>
         <h3>Segregated client accounts</h3>
         <p>To ensure funds are used for trading purposes only, client money is held in segregated accounts separate from company funds.</p>
       </article>
-      <article class="fx-mh-card fx-mh--green">
+      <article class="fx-mh-card fx-mh--green" data-aos="fade-up" data-aos-delay="300">
         <span class="fx-mh-ic"><svg><use href="#i-gauge"/></svg></span>
         <h3>High leverage and tight spreads</h3>
         <p>Leverage up to 1:1000 with ultra-tight spreads, subject to your account type and the jurisdiction your account is registered in.</p>
       </article>
-      <article class="fx-mh-card fx-mh--orange">
+      <article class="fx-mh-card fx-mh--orange" data-aos="fade-up" data-aos-delay="400">
         <span class="fx-mh-ic"><svg><use href="#i-wallet"/></svg></span>
         <h3>Hassle-free transactions</h3>
         <p>Multiple deposit and withdrawal methods with zero fees on most payment channels, for a more rewarding experience.</p>
       </article>
-      <article class="fx-mh-card fx-mh--teal">
+      <article class="fx-mh-card fx-mh--teal" data-aos="fade-up" data-aos-delay="500">
         <span class="fx-mh-ic"><svg><use href="#i-droplet"/></svg></span>
         <h3>Top institutional liquidity</h3>
         <p>Access to institutional-level liquidity, aggregated from tier-1 providers, which is what keeps the spreads where they are.</p>
@@ -634,7 +648,7 @@
 <section class="section htrade-sec" aria-labelledby="mt-steps-title">
   <div class="container">
     <div class="htrade">
-      <div class="htrade-intro" data-reveal>
+      <div class="htrade-intro" data-aos="fade-up">
         <h2 class="htrade-title" id="mt-steps-title">Your trading journey<br><span>takes off</span></h2>
         <p class="htrade-sub">In 3 simple steps</p>
         <a href="../getting-started/account-opening.html" class="btn btn-primary btn-lg htrade-btn magnetic">Open an account <span class="htrade-go"><svg><use href="#i-arrow-right"/></svg></span></a>
@@ -670,10 +684,10 @@
 <section class="section faq-sec fx-faq" aria-labelledby="pf-faq-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>FAQ</span>
-      <h2 class="h2" id="pf-faq-title" data-reveal>Frequently asked questions</h2>
+      <span class="eyebrow" data-aos="fade-up">FAQ</span>
+      <h2 class="h2" id="pf-faq-title" data-aos="fade-up">Frequently asked questions</h2>
     </div>
-    <div class="faq-list" data-reveal>
+    <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
         <summary>What is MetaTrader 5 and how does it work with STARTRADER?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a">MT5 is a multi-asset trading platform covering forex, shares, commodities, metals and indices. Running it with STARTRADER means you get the platform’s charting and analysis alongside our spreads, execution and 24/7 desk — you execute, analyse and manage the account from one window.</div>
@@ -702,26 +716,26 @@
 <section class="section fx-more" aria-labelledby="pf-more-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Keep going</span>
-      <h2 class="h2" id="pf-more-title" data-reveal>Where to go next</h2>
+      <span class="eyebrow" data-aos="fade-up">Keep going</span>
+      <h2 class="h2" id="pf-more-title" data-aos="fade-up">Where to go next</h2>
     </div>
-    <div class="fx-more-grid" data-reveal-stagger>
-      <a class="fx-more-card" href="mt5.html">
+    <div class="fx-more-grid">
+      <a class="fx-more-card" href="mt5.html" data-aos="fade-up">
         <span class="fx-more-media"><img src="../../assets/img/platform-hero.webp" alt="MetaTrader 5 trading platform" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">The multi-asset terminal — 38 indicators, depth of market and full automation.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">MT5</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="mt4.html">
-        <span class="fx-more-media"><img src="../../assets/img/mt4Screenshot.png" alt="MetaTrader 4 trading platform" width="640" height="349" loading="lazy" decoding="async"></span>
+      <a class="fx-more-card" href="mt4.html" data-aos="fade-up" data-aos-delay="100">
+        <span class="fx-more-media"><img src="../../assets/img/mt4Screenshot.webp" alt="MetaTrader 4 trading platform" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">The retail standard for currencies, with the largest library of robots and indicators.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">MT4</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="trading-app.html">
+      <a class="fx-more-card" href="trading-app.html" data-aos="fade-up" data-aos-delay="200">
         <span class="fx-more-media"><img src="../../assets/img/app-hero-phone.webp" alt="STARTRADER mobile trading app" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">MT4 and MT5 in one app, with live pricing and full risk management.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Mobile app</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="copy-trade.html">
+      <a class="fx-more-card" href="copy-trade.html" data-aos="fade-up" data-aos-delay="300">
         <span class="fx-more-media"><img src="../../assets/img/learn-cta.webp" alt="Copy trading with STARTRADER" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Follow traders with a record you can inspect, and pay only on profit.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Copy trading</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
@@ -734,9 +748,9 @@
 <section class="cta-banner" aria-labelledby="pf-cta-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="pf-cta-title" data-reveal>Start trading with a<br>globally leading broker</h2>
-    <p data-reveal>Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
-    <div class="cta-actions" data-reveal>
+    <h2 id="pf-cta-title" data-aos="fade-up">Start trading with a<br>globally leading broker</h2>
+    <p data-aos="fade-up">Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
+    <div class="cta-actions" data-aos="fade-up">
       <a href="../getting-started/account-opening.html" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       <a href="../getting-started/account-opening.html" class="btn btn-ghost btn-lg">Try Free Demo</a>
     </div>
@@ -923,7 +937,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -957,6 +971,7 @@
 <script src="../../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../../assets/js/vendor/aos.min.js" defer></script>
 <script src="../../assets/js/main.js" defer></script>
 </body>
 </html>

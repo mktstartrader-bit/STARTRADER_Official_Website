@@ -17,14 +17,14 @@
   <meta property="og:title" content="Promotions | STARTRADER" />
   <meta property="og:description" content="STARTRADER promotions — redeem points at the Point Mall, take a deposit bonus, or claim the 1% switch allowance. Terms apply to each offer." />
   <meta property="og:url" content="https://www.startrader.com/trading/products/forex.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/products-video-poster.jpg" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/products-video-poster.webp" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Promotions | STARTRADER" />
   <meta name="twitter:description" content="STARTRADER promotions — redeem points at the Point Mall, take a deposit bonus, or claim the 1% switch allowance. Terms apply to each offer." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/products-video-poster.jpg" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/products-video-poster.webp" />
 
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../favicon.svg" />
@@ -32,7 +32,100 @@
 
   <!-- Fonts (self-hosted) -->
   <link rel="stylesheet" href="../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ---------------- banner: the video plays light ---------------- */
+.pm-btn--ghost{color:var(--ink);background:rgba(255,255,255,.8);border:1px solid rgba(20,44,96,.12);box-shadow:none}
+.pm-btn--ghost:hover{background:#fff;box-shadow:0 16px 32px -18px rgba(20,44,96,.35)}
+/* ---------------- the offers, as coupons ---------------- */
+.pm-offers-sec{position:relative;isolation:isolate;overflow:clip;
+  background:radial-gradient(50% 44% at 90% 0%,rgba(0,71,187,.08),transparent 62%),var(--bg-light-2)}
+.pm-offers-sec>.container{position:relative;z-index:1}
+.pm-offers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,26px);margin-top:clamp(32px,4vw,50px)}
+.pm-coupon{
+  position:relative;overflow:hidden;display:grid;grid-template-rows:auto auto 1fr auto;
+  border-radius:clamp(20px,2.4vw,28px);padding:clamp(22px,2.6vw,30px);
+  background:linear-gradient(180deg,rgba(0,71,187,.08),rgba(255,255,255,.72) 46%);
+  border:1px solid rgba(255,255,255,.92);
+  box-shadow:0 16px 40px -28px rgba(20,44,96,.44),inset 0 1px 0 #fff;
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .32s;
+}
+.pm-coupon--sand{background:linear-gradient(180deg,rgba(223,197,174,.5),rgba(255,255,255,.72) 48%)}
+.pm-coupon:hover{transform:translateY(-6px);border-color:rgba(0,71,187,.24);
+  box-shadow:0 34px 64px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff}
+.pm-coupon--sand:hover{border-color:rgba(138,100,64,.34)}
+/* the notches, punched either side of the perforation */
+.pm-coupon::before,.pm-coupon::after{
+  content:"";position:absolute;top:var(--tear,58%);width:26px;height:26px;border-radius:50%;
+  background:var(--bg-light-2);box-shadow:inset 0 1px 0 rgba(20,44,96,.06);
+}
+.pm-coupon::before{left:-13px}
+.pm-coupon::after{right:-13px}
+/* a light sweeps across when you point at one */
+.pm-coupon-shine{
+  position:absolute;inset:0;z-index:3;pointer-events:none;overflow:hidden;border-radius:inherit;
+}
+.pm-coupon-shine i{
+  position:absolute;top:-40%;bottom:-40%;left:-30%;width:34%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.72),transparent);
+  transform:skewX(-18deg) translateX(-140%);
+}
+.pm-coupon:hover .pm-coupon-shine i{transition:transform 1.05s var(--ease);transform:skewX(-18deg) translateX(420%)}
+.pm-chip{
+  display:inline-flex;align-items:center;gap:7px;padding:6px 13px;border-radius:70px;justify-self:start;
+  font-size:9.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#fff;
+  background:linear-gradient(180deg,var(--acc-2),var(--acc));
+}
+.pm-coupon--sand .pm-chip{background:linear-gradient(180deg,#b98a5d,var(--sand-ink))}
+.pm-chip i{width:6px;height:6px;border-radius:50%;background:var(--mint);box-shadow:0 0 8px rgba(22,233,215,.9)}
+.pm-coupon h3{margin-top:18px;font-size:clamp(19px,2.2vw,25px);font-weight:800;letter-spacing:-.034em;line-height:1.16;color:var(--ink)}
+.pm-coupon p{margin-top:11px;font-size:13.8px;line-height:1.7;color:#5a6a83}
+/* the stub, below the tear */
+.pm-stub{
+  position:relative;margin-top:clamp(18px,2.2vw,24px);padding-top:clamp(18px,2.2vw,24px);
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  border-top:2px dashed rgba(20,44,96,.18);
+}
+.pm-coupon--sand .pm-stub{border-top-color:rgba(138,100,64,.26)}
+.pm-stub-art{width:auto;height:clamp(62px,7vw,84px);display:block;
+  filter:drop-shadow(0 12px 22px rgba(20,44,96,.3));
+  transition:transform .55s var(--ease)}
+.pm-coupon:hover .pm-stub-art{transform:translateY(-4px) scale(1.05)}
+.pm-stub-go{
+  display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:var(--acc);
+  transition:gap .35s var(--ease)}
+.pm-coupon--sand .pm-stub-go{color:var(--sand-ink)}
+.pm-stub-go svg{width:14px;height:14px}
+.pm-coupon:hover .pm-stub-go{gap:13px}
+.pm-offers-note{
+  margin:clamp(24px,3vw,34px) auto 0;max-width:88ch;font-size:11.5px;line-height:1.7;
+  color:#7a8aa4;text-align:center;
+}
+/* ---------------- the sign-off band ---------------- */
+.pm-sign{
+  position:relative;overflow:hidden;display:grid;
+  grid-template-columns:auto minmax(0,1fr) auto;gap:clamp(18px,2.6vw,36px);align-items:center;
+  margin-top:clamp(24px,3vw,36px);padding:clamp(22px,2.6vw,32px) clamp(24px,3vw,40px);
+  border-radius:clamp(20px,2.4vw,28px);
+  background:linear-gradient(120deg,rgba(0,71,187,.1),rgba(223,197,174,.34) 62%,rgba(255,255,255,.72));
+  border:1px solid rgba(255,255,255,.92);
+  box-shadow:0 22px 50px -32px rgba(20,44,96,.44),inset 0 1px 0 #fff;
+}
+.pm-sign img{width:clamp(72px,8vw,100px);height:auto;display:block;
+  filter:drop-shadow(0 16px 26px rgba(20,44,96,.34))}
+.pm-sign-tx{display:flex;flex-direction:column;gap:8px}
+.pm-sign-tx b{font-size:clamp(17px,2vw,22px);font-weight:800;letter-spacing:-.034em;color:var(--ink)}
+.pm-sign-tx em{font-style:normal;font-size:13.5px;line-height:1.68;color:#5a6a83}
+/* ---------------- how a claim works ---------------- */
+.pm-how{position:relative;isolation:isolate;overflow:clip;background:linear-gradient(180deg,#fff,#f2f6fc)}
+.pm-how>.container{position:relative;z-index:1}
+/* ---------------- responsive ---------------- */
+@media (max-width:960px){.pm-offers{grid-template-columns:1fr}
+.pm-sign{grid-template-columns:auto minmax(0,1fr);gap:20px}
+.pm-sign .pm-btn{grid-column:1 / -1;justify-self:start}}
+  </style>
 
   <!-- Structured data -->
   <script type="application/ld+json">
@@ -398,18 +491,18 @@
 <!-- ============ BANNER ============ -->
 <section class="pm-hero" aria-labelledby="pm-hero-title">
   <video class="pm-hero-video" autoplay muted loop playsinline preload="metadata"
-    poster="../assets/img/promotions-video-poster.jpg" aria-hidden="true">
+    poster="../assets/img/promotions-video-poster.webp" aria-hidden="true">
     <source src="../assets/video/promotions-banner.mp4" type="video/mp4">
   </video>
   <div class="container pm-hero-in">
     <div class="pm-hero-copy">
-      <span class="pm-eyebrow" data-reveal>Promotions</span>
-      <h1 class="pm-h1" id="pm-hero-title" data-reveal>
+      <span class="pm-eyebrow" data-aos="fade-up">Promotions</span>
+      <h1 class="pm-h1" id="pm-hero-title" data-aos="fade-up">
         <span>Exciting rewards await.</span>
         <span class="lit">Explore STARTRADER.</span>
       </h1>
-      <p class="pm-lead" data-reveal>Points you can redeem, a bonus on what you deposit, and an allowance for bringing your trading across. Three offers, each with its own terms.</p>
-      <div class="pm-hact" data-reveal>
+      <p class="pm-lead" data-aos="fade-up">Points you can redeem, a bonus on what you deposit, and an allowance for bringing your trading across. Three offers, each with its own terms.</p>
+      <div class="pm-hact" data-aos="fade-up">
         <a class="pm-btn" href="../trading/getting-started/funding.html">Deposit now <svg><use href="#i-arrow-right"/></svg></a>
       </div>
     </div>
@@ -419,45 +512,45 @@
 <!-- ============ THE OFFERS ============ -->
 <section class="section pm-offers-sec" id="offers" aria-labelledby="pm-off-title">
   <div class="container">
-    <span class="pm-eyebrow-c" data-reveal>What is on</span>
-    <h2 class="pm-h2" id="pm-off-title" data-reveal>Find the perfect offer<br> for you</h2>
-    <p class="pm-sub" data-reveal>Explore our promotions and maximise your trading experience.</p>
+    <span class="pm-eyebrow-c" data-aos="fade-up">What is on</span>
+    <h2 class="pm-h2" id="pm-off-title" data-aos="fade-up">Find the perfect offer<br> for you</h2>
+    <p class="pm-sub" data-aos="fade-up">Explore our promotions and maximise your trading experience.</p>
 
     <div class="pm-offers">
-      <article class="pm-coupon " data-reveal>
+      <article class="pm-coupon " data-aos="fade-up">
         <span class="pm-coupon-shine" aria-hidden="true"><i></i></span>
         <span class="pm-chip"><i></i>Live now</span>
         <h3>Point Mall</h3>
         <p>Redeem your earned points for exclusive rewards and benefits.</p>
         <div class="pm-stub">
-          <img class="pm-stub-art" src="../assets/img/icon-shield-3d.png" alt="" width="400" height="490" loading="lazy" decoding="async">
+          <img class="pm-stub-art" src="../assets/img/icon-shield-3d.webp" alt="3D shield emblem for insured client funds" width="400" height="490" loading="lazy" decoding="async">
           <span class="pm-stub-go">Browse the mall <svg><use href="#i-arrow-right"/></svg></span>
         </div>
       </article>
-      <article class="pm-coupon pm-coupon--sand" data-reveal>
+      <article class="pm-coupon pm-coupon--sand" data-aos="fade-up">
         <span class="pm-coupon-shine" aria-hidden="true"><i></i></span>
         <span class="pm-chip"><i></i>Ongoing</span>
         <h3>Deposit Bonus</h3>
         <p>Boost your trading capital instantly, the moment your deposit clears.</p>
         <div class="pm-stub">
-          <img class="pm-stub-art" src="../assets/img/icon-shield-3d.png" alt="" width="400" height="490" loading="lazy" decoding="async">
+          <img class="pm-stub-art" src="../assets/img/icon-shield-3d.webp" alt="3D shield emblem for insured client funds" width="400" height="490" loading="lazy" decoding="async">
           <span class="pm-stub-go">See the tiers <svg><use href="#i-arrow-right"/></svg></span>
         </div>
       </article>
-      <article class="pm-coupon " data-reveal>
+      <article class="pm-coupon " data-aos="fade-up">
         <span class="pm-coupon-shine" aria-hidden="true"><i></i></span>
         <span class="pm-chip"><i></i>Ongoing</span>
         <h3>1% Switch Allowance</h3>
         <p>Get rewarded when switching to our platform &mdash; a one per cent allowance on what you bring across.</p>
         <div class="pm-stub">
-          <img class="pm-stub-art" src="../assets/img/icon-shield-3d.png" alt="" width="400" height="490" loading="lazy" decoding="async">
+          <img class="pm-stub-art" src="../assets/img/icon-shield-3d.webp" alt="3D shield emblem for insured client funds" width="400" height="490" loading="lazy" decoding="async">
           <span class="pm-stub-go">Check eligibility <svg><use href="#i-arrow-right"/></svg></span>
         </div>
       </article>
     </div>
 
-    <div class="pm-sign" data-reveal>
-      <img src="../assets/img/icon-shield-3d.png" alt="" width="400" height="490" loading="lazy" decoding="async">
+    <div class="pm-sign" data-aos="fade-up">
+      <img src="../assets/img/icon-shield-3d.webp" alt="3D shield emblem for insured client funds" width="400" height="490" loading="lazy" decoding="async">
       <span class="pm-sign-tx">
         <b>Every offer states its own terms</b>
         <em>Trading volume conditions, whether bonuses stack, and when a reward becomes withdrawable are set per promotion &mdash; so the terms are worth the two minutes before you claim.</em>
@@ -465,7 +558,7 @@
       <a class="pm-btn pm-btn--ghost" href="../company/corporate/legal-documents.html">Read the terms <svg><use href="#i-arrow-right"/></svg></a>
     </div>
 
-    <p class="pm-offers-note" data-reveal>The promotions are not intended for distribution or use in any jurisdiction where such distribution or use would violate local laws or regulations. Terms and conditions apply.</p>
+    <p class="pm-offers-note" data-aos="fade-up">The promotions are not intended for distribution or use in any jurisdiction where such distribution or use would violate local laws or regulations. Terms and conditions apply.</p>
   </div>
 </section>
 
@@ -473,7 +566,7 @@
 <section class="section htrade-sec pm-how" id="how" aria-labelledby="pm-how-title">
   <div class="container">
     <div class="htrade">
-      <div class="htrade-intro" data-reveal>
+      <div class="htrade-intro" data-aos="fade-up">
         <h2 class="htrade-title" id="pm-how-title">Three steps<br><span>to a claimed reward</span></h2>
         <p class="htrade-sub">The route is the same whichever offer you pick. Only the conditions change.</p>
         <a href="../trading/getting-started/account-opening.html" class="btn btn-primary btn-lg htrade-btn magnetic">Open live account <span class="htrade-go"><svg><use href="#i-arrow-right"/></svg></span></a>
@@ -503,10 +596,10 @@
 <section class="section faq-sec fx-faq" aria-labelledby="pm-faq-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>FAQ</span>
-      <h2 class="h2" id="pm-faq-title" data-reveal>Your questions answered</h2>
+      <span class="eyebrow" data-aos="fade-up">FAQ</span>
+      <h2 class="h2" id="pm-faq-title" data-aos="fade-up">Your questions answered</h2>
     </div>
-    <div class="faq-list" data-reveal>
+    <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
         <summary>How do I claim a promotion?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a">Click on the relevant promotion and follow the instructions to participate.</div>
@@ -531,9 +624,9 @@
 <section class="cta-banner" aria-labelledby="pm-close-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="pm-close-title" data-reveal>Ready to boost<br>your trading?</h2>
-    <p data-reveal>Don&rsquo;t miss out on exclusive offers. Open an account, fund it, and claim the promotion that suits how you trade.</p>
-    <div class="cta-actions" data-reveal>
+    <h2 id="pm-close-title" data-aos="fade-up">Ready to boost<br>your trading?</h2>
+    <p data-aos="fade-up">Don&rsquo;t miss out on exclusive offers. Open an account, fund it, and claim the promotion that suits how you trade.</p>
+    <div class="cta-actions" data-aos="fade-up">
       <a href="../trading/getting-started/funding.html" class="btn btn-primary btn-lg">Claim your reward now <svg class="ico"><use href="#i-arrow-right"/></svg></a>
     </div>
   </div>
@@ -620,7 +713,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -654,6 +747,7 @@
 <script src="../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../assets/js/vendor/aos.min.js" defer></script>
 <script src="../assets/js/main.js" defer></script>
 </body>
 </html>

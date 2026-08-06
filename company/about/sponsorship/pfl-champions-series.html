@@ -16,14 +16,14 @@
   <meta property="og:title" content="PFL Champions Series | Road to Dubai | STARTRADER" />
   <meta property="og:description" content="STARTRADER is an official partner of the PFL Road to Dubai Champions Series — strength, speed and stamina, in the cage and in the market." />
   <meta property="og:url" content="https://www.startrader.com/company/about/sponsorship/pfl-champions-series.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/platform-hero.jpg" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/platform-hero.webp" />
   <meta property="og:image:alt" content="PFL Champions Series — STARTRADER" />
   <meta property="og:locale" content="en_US" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="PFL Champions Series | Road to Dubai | STARTRADER" />
   <meta name="twitter:description" content="STARTRADER is an official partner of the PFL Road to Dubai Champions Series — strength, speed and stamina, in the cage and in the market." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/platform-hero.jpg" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/platform-hero.webp" />
 
   <link rel="icon" href="../../../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../../../favicon.svg" />
@@ -32,7 +32,275 @@
   <link rel="preload" href="../../../assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" as="image" href="../../../assets/img/platform-hero.webp" />
   <link rel="stylesheet" href="../../../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../../../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../../../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* =================================================================
+   PFL ROAD TO DUBAI CHAMPIONS SERIES
+   Light throughout bar the banner. The two gradient panels are the
+   STAR Copy pair — blue and sand. The corner is a dial, not a grid of
+   cards. Scoped to .flx.
+   ================================================================= */
+.flx{--acc:#0047bb;--acc-2:#2a72ff;--acc-3:#7fb2ff;
+     --sand:#dfc5ae;--sand-ink:#8a6440;--ink:#04060d}
+/* ---------------- banner ---------------- */
+.fl-hero{
+  position:relative;isolation:isolate;overflow:hidden;color:#fff;
+  margin-top:calc(-1 * var(--nav-h));
+  min-height:min(880px,calc(100vh - var(--topbar-h,44px)));
+  display:flex;align-items:center;padding:calc(var(--nav-h) + 70px) 0 96px;
+  background:var(--ink);
+}
+.fl-hero-bg{
+  position:absolute;inset:-8% 0;z-index:-3;will-change:transform;
+  background:url("../../../assets/img/fl-banner.webp") center/cover no-repeat;
+}
+.fl-hero::before{
+  content:"";position:absolute;inset:0;z-index:-2;
+  background:
+    linear-gradient(90deg,rgba(3,6,14,.95) 0%,rgba(3,6,14,.86) 30%,rgba(3,6,14,.44) 54%,transparent 84%),
+    linear-gradient(180deg,rgba(3,6,14,.6),transparent 24%,rgba(3,6,14,.9));
+}
+.fl-hero-in{position:relative;z-index:2;width:100%}
+.fl-hero-copy{max-width:min(100%,620px)}
+.fl-badge{
+  display:inline-flex;align-items:center;padding:8px 18px;border-radius:70px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.17);
+  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+}
+.fl-badge img{height:34px;width:auto;display:block}
+.fl-h1{margin-top:26px;font-size:clamp(36px,5vw,72px);font-weight:800;letter-spacing:-.05em;line-height:.98}
+.fl-h1 span{display:block}
+.fl-h1 .hollow{
+  color:transparent;-webkit-text-stroke:1.4px rgba(127,178,255,.82);
+  text-shadow:0 0 30px rgba(42,114,255,.5),0 0 70px rgba(0,71,187,.42);
+}
+.fl-h1 span:first-child{text-shadow:0 0 46px rgba(0,71,187,.5)}
+.fl-lead{margin-top:24px;max-width:50ch;font-size:clamp(15px,1.5vw,17px);line-height:1.72;color:#c4cedf}
+.fl-hact{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.fl-btn{
+  display:inline-flex;align-items:center;gap:9px;padding:14px 26px;border-radius:70px;white-space:nowrap;
+  font-size:13.5px;font-weight:700;color:#fff;
+  background:linear-gradient(180deg,var(--acc-2),var(--acc));
+  box-shadow:0 18px 38px -16px rgba(0,71,187,.9);
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease);
+}
+.fl-btn:hover{transform:translateY(-3px);box-shadow:0 26px 48px -16px rgba(42,114,255,.95)}
+.fl-btn svg{width:15px;height:15px;flex:none}
+/* shared headings, on light */
+.fl-eyebrow{display:block;font-size:10.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);text-align:center}
+.fl-h2{margin-top:16px;font-size:clamp(28px,3.7vw,50px);font-weight:800;letter-spacing:-.042em;line-height:1.06;text-align:center;color:var(--ink)}
+.fl-sub{margin:18px auto 0;max-width:64ch;font-size:clamp(14.5px,1.45vw,16.5px);line-height:1.7;text-align:center;color:#4d5c74}
+/* ---------------- the two panels: the cage and the market ---------------- */
+.fl-values{position:relative;isolation:isolate;overflow:clip;
+  background:radial-gradient(52% 46% at 92% 0%,rgba(0,71,187,.08),transparent 62%),var(--bg-light-2)}
+.fl-values>.container{position:relative;z-index:1}
+.fl-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2vw,26px);margin-top:clamp(32px,4vw,50px)}
+.fl-panel{
+  position:relative;overflow:hidden;border-radius:clamp(20px,2.4vw,30px);
+  padding:clamp(24px,2.8vw,36px);
+  background:linear-gradient(180deg,rgba(0,71,187,.07),rgba(255,255,255,.62) 48%);
+  border:1px solid rgba(255,255,255,.9);
+  box-shadow:0 16px 40px -30px rgba(20,44,96,.4),inset 0 1px 0 #fff;
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .32s;
+}
+.fl-panel:hover{transform:translateY(-5px);border-color:rgba(0,71,187,.26);
+  box-shadow:0 32px 60px -32px rgba(20,44,96,.46),inset 0 1px 0 #fff}
+.fl-panel--sand{background:linear-gradient(180deg,rgba(223,197,174,.48),rgba(255,255,255,.62) 50%)}
+.fl-panel--sand:hover{border-color:rgba(138,100,64,.34)}
+.fl-pill{
+  display:inline-flex;align-items:center;padding:9px 19px;border-radius:70px;
+  font-size:10.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#fff;
+  background:var(--acc);
+}
+.fl-panel--sand .fl-pill{background:var(--sand-ink)}
+.fl-panel h3{margin-top:20px;font-size:clamp(20px,2.3vw,28px);font-weight:700;letter-spacing:-.034em;
+  line-height:1.16;color:var(--ink)}
+.fl-rows{margin-top:clamp(20px,2.4vw,28px);display:flex;flex-direction:column}
+.fl-row{
+  display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:start;
+  padding:clamp(16px,1.9vw,22px) 0;border-top:1px solid rgba(20,44,96,.1);
+}
+.fl-row:first-child{border-top:0;padding-top:clamp(6px,.8vw,10px)}
+.fl-panel--sand .fl-row{border-top-color:rgba(138,100,64,.16)}
+.fl-row-ic{
+  width:44px;height:44px;flex:none;border-radius:14px;display:grid;place-items:center;
+  background:rgba(0,71,187,.1);color:var(--acc);
+  transition:transform .38s var(--ease),background .3s;
+}
+.fl-row-ic svg{width:20px;height:20px}
+.fl-panel--sand .fl-row-ic{background:rgba(223,197,174,.55);color:var(--sand-ink)}
+.fl-row:hover .fl-row-ic{transform:scale(1.08) rotate(-6deg)}
+.fl-row b{display:block;font-size:15.5px;font-weight:700;letter-spacing:-.026em;color:var(--ink)}
+.fl-row p{margin-top:7px;font-size:13.6px;line-height:1.68;color:#5a6a83}
+/* ---------------- the corner: a dial, not a grid ---------------- */
+.fl-corner{position:relative;isolation:isolate;overflow:clip;
+  background:radial-gradient(46% 40% at 12% 4%,rgba(0,71,187,.08),transparent 62%),
+             linear-gradient(180deg,#fff,#f2f6fc)}
+.fl-corner>.container{position:relative;z-index:1}
+.fl-dial{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:clamp(28px,4vw,64px);align-items:center;margin-top:clamp(32px,4vw,50px);
+}
+.fl-stage{position:relative;aspect-ratio:1/1;width:min(100%,470px);justify-self:center;
+  --r:clamp(104px,17vw,178px)}
+/* the ring the corner stands on */
+.fl-stage::before,.fl-stage::after{
+  content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:50%;
+  pointer-events:none;
+}
+.fl-stage::before{width:100%;height:100%;border:1px dashed rgba(0,71,187,.2)}
+.fl-stage::after{width:62%;height:62%;border:1px solid rgba(0,71,187,.12)}
+/* five spokes, the live one lit */
+.fl-spoke{
+  position:absolute;left:50%;top:50%;width:2px;height:var(--r);transform-origin:bottom center;
+  transform:translate(-50%,-100%) rotate(var(--a));
+  background:linear-gradient(180deg,rgba(0,71,187,.06),rgba(0,71,187,.24));
+  transition:background .4s,box-shadow .4s;
+}
+.fl-spoke.is-on{
+  background:linear-gradient(180deg,var(--acc-2),var(--acc));
+  box-shadow:0 0 14px rgba(42,114,255,.6);
+}
+.fl-core{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:34%;aspect-ratio:1/1;border-radius:50%;display:grid;place-content:center;text-align:center;
+  background:radial-gradient(120% 120% at 40% 24%,#0a2a6e,#04143a 68%);
+  box-shadow:0 26px 54px -22px rgba(4,20,58,.7),inset 0 1px 0 rgba(255,255,255,.16);
+  color:#fff;z-index:2;
+}
+.fl-core b{display:block;font-size:clamp(17px,2vw,24px);font-weight:800;letter-spacing:-.04em;line-height:1}
+.fl-core em{display:block;margin-top:7px;font-style:normal;font-size:9px;font-weight:800;
+  letter-spacing:.16em;text-transform:uppercase;color:#8ea9d6}
+.fl-node{
+  position:absolute;left:50%;top:50%;z-index:3;padding:0;border:0;cursor:pointer;background:none;
+  /* the radius has to be a length: a percentage here would resolve against the node */
+  transform:translate(-50%,-50%) rotate(var(--a)) translateY(calc(-1 * var(--r)))
+            rotate(calc(-1 * var(--a)));
+}
+.fl-node i{
+  display:grid;place-items:center;width:clamp(48px,6vw,62px);aspect-ratio:1/1;border-radius:50%;
+  background:#fff;border:1px solid rgba(20,44,96,.1);color:var(--acc);
+  box-shadow:0 14px 30px -16px rgba(20,44,96,.45);
+  transition:transform .42s var(--ease),background .35s,color .3s,box-shadow .42s var(--ease);
+}
+.fl-node i svg{width:22px;height:22px}
+.fl-node span{
+  display:block;margin-top:9px;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  color:#6c7d96;white-space:nowrap;transition:color .3s;
+}
+.fl-node:hover i{transform:scale(1.08)}
+.fl-node.is-on i{
+  background:linear-gradient(180deg,var(--acc-2),var(--acc));color:#fff;border-color:transparent;
+  transform:scale(1.14);box-shadow:0 20px 38px -14px rgba(0,71,187,.75);
+}
+.fl-node.is-on span{color:var(--acc)}
+/* what the live spoke says */
+.fl-read{position:relative}
+.fl-read-n{
+  display:inline-flex;align-items:baseline;gap:6px;font-variant-numeric:tabular-nums;
+  font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--acc);
+}
+.fl-read h3{margin-top:14px;font-size:clamp(23px,2.7vw,34px);font-weight:800;letter-spacing:-.04em;
+  line-height:1.12;color:var(--ink);transition:opacity .32s,transform .32s var(--ease)}
+.fl-read p{margin-top:14px;font-size:14.6px;line-height:1.74;color:#5a6a83;max-width:46ch;
+  transition:opacity .32s,transform .32s var(--ease)}
+.fl-read h3.is-fade,.fl-read p.is-fade{opacity:0;transform:translateY(8px)}
+.fl-read-bar{
+  display:flex;align-items:center;gap:7px;margin-top:clamp(22px,2.6vw,32px);
+}
+.fl-read-bar button{
+  width:26px;height:4px;border:0;padding:0;border-radius:70px;cursor:pointer;
+  background:rgba(20,44,96,.16);transition:width .4s var(--ease),background .35s;
+}
+.fl-read-bar button.is-on{width:40px;background:linear-gradient(90deg,var(--acc-2),var(--acc))}
+.fl-read-hint{display:block;margin-top:16px;font-size:11px;letter-spacing:.05em;color:#8496b0}
+/* ---------------- what it means: a staggered strip ---------------- */
+.fl-means{position:relative;isolation:isolate;overflow:clip;background:linear-gradient(180deg,#f2f6fc,#fff)}
+.fl-means>.container{position:relative;z-index:1}
+.fl-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.8vw,22px);
+  margin-top:clamp(30px,3.6vw,46px);align-items:start}
+.fl-shot{
+  position:relative;overflow:hidden;border-radius:clamp(16px,1.8vw,22px);background:#0b1018;
+  aspect-ratio:4/3;box-shadow:0 22px 46px -30px rgba(20,44,96,.55);
+  transition:transform .5s var(--ease),box-shadow .5s var(--ease);
+}
+.fl-shot:nth-child(2){margin-top:clamp(20px,3.4vw,52px)}
+.fl-shot:nth-child(3){margin-top:clamp(40px,6.6vw,104px)}
+.fl-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .9s var(--ease)}
+.fl-shot::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 44%,rgba(4,6,13,.9))}
+.fl-shot:hover{transform:translateY(-8px);box-shadow:0 36px 66px -30px rgba(0,71,187,.5)}
+.fl-shot:hover img{transform:scale(1.07)}
+.fl-shot-cap{
+  position:absolute;z-index:2;left:clamp(14px,1.6vw,20px);right:clamp(14px,1.6vw,20px);bottom:clamp(12px,1.4vw,18px);
+  display:flex;flex-direction:column;gap:6px;
+}
+.fl-shot-cap b{font-size:13.5px;font-weight:700;letter-spacing:-.026em;color:#fff}
+.fl-shot-cap em{font-style:normal;font-size:10px;font-weight:800;letter-spacing:.13em;
+  text-transform:uppercase;color:rgba(255,255,255,.62)}
+.fl-means-note{
+  max-width:760px;margin:clamp(28px,3.4vw,44px) auto 0;padding:clamp(22px,2.6vw,30px);
+  border-radius:clamp(18px,2.2vw,26px);text-align:center;
+  background:linear-gradient(180deg,rgba(223,197,174,.4),rgba(255,255,255,.7) 52%);
+  border:1px solid rgba(255,255,255,.9);
+  box-shadow:0 18px 44px -32px rgba(20,44,96,.4),inset 0 1px 0 #fff;
+}
+.fl-means-note img{width:clamp(150px,18vw,215px);height:auto;display:block;margin:0 auto 16px;
+  filter:brightness(0) saturate(100%) invert(9%) sepia(28%) saturate(2200%) hue-rotate(206deg) brightness(92%) contrast(101%)}
+.fl-means-note p{font-size:13.8px;line-height:1.72;color:#5a6a83}
+/* ---------------- a word from our CEO, as on the cricket pages ---------------- */
+.fl-ceo{position:relative;overflow:hidden;background:linear-gradient(180deg,#fff,#f2f6fc)}
+.fl-ceo-in{position:relative;max-width:900px;margin-inline:auto;text-align:center}
+.fl-ceo-mark{
+  display:block;margin:18px auto -6px;font:700 104px/.72 Georgia,"Times New Roman",serif;
+  color:transparent;background:linear-gradient(180deg,var(--acc-2),rgba(223,197,174,.9));
+  -webkit-background-clip:text;background-clip:text;
+}
+.fl-ceo-in blockquote{
+  margin-top:18px;font-size:clamp(19px,2.6vw,32px);font-weight:500;line-height:1.48;
+  letter-spacing:-.032em;color:var(--ink);
+}
+.fl-ceo-by{
+  display:inline-flex;align-items:center;gap:16px;margin-top:clamp(26px,3vw,38px);
+  padding:10px 22px 10px 10px;border-radius:70px;
+  background:rgba(255,255,255,.92);border:1px solid rgba(20,44,96,.09);
+  box-shadow:0 16px 36px -22px rgba(20,44,96,.34);
+}
+.fl-ceo-face{
+  position:relative;flex:none;width:56px;height:56px;border-radius:50%;overflow:hidden;
+  background:#0b1018;box-shadow:0 0 0 2px rgba(42,114,255,.34);
+}
+.fl-ceo-face img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%;display:block}
+.fl-ceo-who{display:flex;flex-direction:column;gap:3px;text-align:left}
+.fl-ceo-who b{font-size:14.5px;font-weight:700;letter-spacing:-.024em;color:var(--ink)}
+.fl-ceo-who em{font-style:normal;font-size:11.5px;color:#7a8aa4}
+.fl-ceo-rules{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:clamp(24px,3vw,34px)}
+.fl-ceo-rules i{width:min(120px,22vw);height:1px;background:linear-gradient(90deg,transparent,rgba(20,44,96,.22),transparent)}
+.fl-ceo-rules span{font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#8496b0}
+/* ---------------- responsive ---------------- */
+@media (max-width:1000px){.fl-pair{grid-template-columns:1fr}
+.fl-dial{grid-template-columns:1fr;gap:32px}
+.fl-stage{width:min(100%,400px)}
+.fl-read{text-align:center}
+.fl-read p{margin-inline:auto}
+.fl-read-bar{justify-content:center}
+.fl-strip{grid-template-columns:1fr}
+.fl-shot:nth-child(2),.fl-shot:nth-child(3){margin-top:0}}
+@media (max-width:640px){.fl-hero{min-height:0;padding-bottom:80px}
+.fl-stage{display:none}
+.fl-node-list{display:flex}}
+/* on the narrowest screens the dial becomes a row of pills */
+.fl-node-list{display:none;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:22px}
+.fl-node-list button{
+  padding:9px 15px;border-radius:70px;border:1px solid rgba(20,44,96,.12);cursor:pointer;
+  background:#fff;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#6c7d96;
+  transition:background .3s,color .3s,border-color .3s;
+}
+.fl-node-list button.is-on{background:linear-gradient(180deg,var(--acc-2),var(--acc));color:#fff;border-color:transparent}
+  </style>
 
   <script type="application/ld+json">
 {
@@ -122,7 +390,7 @@
 }
   </script>
 
-  <link rel="preload" as="image" href="../../../assets/img/fl-banner.jpg" fetchpriority="high">
+  <link rel="preload" as="image" href="../../../assets/img/fl-banner.webp" fetchpriority="high">
 
 </head>
 <body class="flx">
@@ -422,15 +690,15 @@
   <span class="fl-hero-bg" data-fl-bg aria-hidden="true"></span>
   <div class="container fl-hero-in">
     <div class="fl-hero-copy">
-      <span class="fl-badge" data-reveal>
-        <img src="../../../assets/img/fl-pfl-lockup.png" alt="Official Partner of the Professional Fighters League">
+      <span class="fl-badge" data-aos="fade-up">
+        <img src="../../../assets/img/fl-pfl-lockup.webp" alt="Official Partner of the Professional Fighters League">
       </span>
-      <h1 class="fl-h1" id="pg-hero-title" data-reveal>
+      <h1 class="fl-h1" id="pg-hero-title" data-aos="fade-up">
         <span>Strength. Speed.</span>
         <span class="hollow">Stamina.</span>
       </h1>
-      <p class="fl-lead" data-reveal>From the cage to the markets, one spirit drives us forward. STARTRADER is an official partner of the PFL Road to Dubai Champions Series.</p>
-      <div class="fl-hact" data-reveal>
+      <p class="fl-lead" data-aos="fade-up">From the cage to the markets, one spirit drives us forward. STARTRADER is an official partner of the PFL Road to Dubai Champions Series.</p>
+      <div class="fl-hact" data-aos="fade-up">
         <a class="fl-btn" href="../../../trading/getting-started/account-opening.html">Open live account <svg><use href="#i-arrow-right"/></svg></a>
       </div>
     </div>
@@ -440,12 +708,12 @@
 <!-- ============ SHARED VALUES ============ -->
 <section class="section fl-values" id="values" aria-labelledby="pg-val-title">
   <div class="container">
-    <span class="fl-eyebrow" data-reveal>Shared values</span>
-    <h2 class="fl-h2" id="pg-val-title" data-reveal>Shared values in the cage<br> and in the market</h2>
-    <p class="fl-sub" data-reveal>In the cage, every strike counts. In the market, every decision matters. The same three things decide both &mdash; only the arena changes.</p>
+    <span class="fl-eyebrow" data-aos="fade-up">Shared values</span>
+    <h2 class="fl-h2" id="pg-val-title" data-aos="fade-up">Shared values in the cage<br> and in the market</h2>
+    <p class="fl-sub" data-aos="fade-up">In the cage, every strike counts. In the market, every decision matters. The same three things decide both &mdash; only the arena changes.</p>
 
     <div class="fl-pair">
-      <article class="fl-panel" data-reveal>
+      <article class="fl-panel" data-aos="fade-up">
         <span class="fl-pill">In the cage</span>
         <h3>Every strike counts</h3>
         <div class="fl-rows">
@@ -464,7 +732,7 @@
         </div>
       </article>
 
-      <article class="fl-panel fl-panel--sand" data-reveal>
+      <article class="fl-panel fl-panel--sand" data-aos="fade-up">
         <span class="fl-pill">In the market</span>
         <h3>Every decision matters</h3>
         <div class="fl-rows">
@@ -489,9 +757,9 @@
 <!-- ============ NO CHAMPION STANDS ALONE ============ -->
 <section class="section fl-corner" id="corner" aria-labelledby="pg-corner-title">
   <div class="container">
-    <span class="fl-eyebrow" data-reveal>In your corner</span>
-    <h2 class="fl-h2" id="pg-corner-title" data-reveal>No champion stands alone</h2>
-    <p class="fl-sub" data-reveal>Behind every fighter stand coaches for strategy, trainers for strength and analysts for tactics. Behind every trader should stand the same. Turn the dial.</p>
+    <span class="fl-eyebrow" data-aos="fade-up">In your corner</span>
+    <h2 class="fl-h2" id="pg-corner-title" data-aos="fade-up">No champion stands alone</h2>
+    <p class="fl-sub" data-aos="fade-up">Behind every fighter stand coaches for strategy, trainers for strength and analysts for tactics. Behind every trader should stand the same. Turn the dial.</p>
 
     <div class="fl-dial" data-fl-dial>
       <div class="fl-stage">
@@ -540,27 +808,27 @@
 <!-- ============ WHAT IT MEANS ============ -->
 <section class="section fl-means" id="means" aria-labelledby="pg-means-title">
   <div class="container">
-    <span class="fl-eyebrow" data-reveal>On the night</span>
-    <h2 class="fl-h2" id="pg-means-title" data-reveal>What this sponsorship means</h2>
-    <p class="fl-sub" data-reveal>Not a logo on a canvas. A series spent alongside the fighters, the crew and the crowd.</p>
+    <span class="fl-eyebrow" data-aos="fade-up">On the night</span>
+    <h2 class="fl-h2" id="pg-means-title" data-aos="fade-up">What this sponsorship means</h2>
+    <p class="fl-sub" data-aos="fade-up">Not a logo on a canvas. A series spent alongside the fighters, the crew and the crowd.</p>
 
     <div class="fl-strip">
-      <div class="fl-shot" data-reveal>
-        <img src="../../../assets/img/fl-g1.jpg" alt="The arena, Dubai" width="1400" height="788" loading="lazy" decoding="async">
+      <div class="fl-shot" data-aos="fade-up">
+        <img src="../../../assets/img/fl-g1.webp" alt="The arena, Dubai" width="1400" height="788" loading="lazy" decoding="async">
         <span class="fl-shot-cap"><em>Fight night</em><b>The arena, Dubai</b></span>
       </div>
-      <div class="fl-shot" data-reveal>
-        <img src="../../../assets/img/fl-g2.jpg" alt="Road to Dubai, on the walkway" width="1400" height="788" loading="lazy" decoding="async">
+      <div class="fl-shot" data-aos="fade-up">
+        <img src="../../../assets/img/fl-g2.webp" alt="Road to Dubai, on the walkway" width="1400" height="788" loading="lazy" decoding="async">
         <span class="fl-shot-cap"><em>The series</em><b>Road to Dubai, on the walkway</b></span>
       </div>
-      <div class="fl-shot" data-reveal>
-        <img src="../../../assets/img/fl-g3.jpg" alt="The Champions Series stage" width="1400" height="788" loading="lazy" decoding="async">
+      <div class="fl-shot" data-aos="fade-up">
+        <img src="../../../assets/img/fl-g3.webp" alt="The Champions Series stage" width="1400" height="788" loading="lazy" decoding="async">
         <span class="fl-shot-cap"><em>On the card</em><b>The Champions Series stage</b></span>
       </div>
     </div>
 
-    <div class="fl-means-note" data-reveal>
-      <img src="../../../assets/img/fl-pfl-lockup.png" alt="Official Partner of the Professional Fighters League" width="620" height="217" loading="lazy" decoding="async">
+    <div class="fl-means-note" data-aos="fade-up">
+      <img src="../../../assets/img/fl-pfl-lockup.webp" alt="Official Partner of the Professional Fighters League" width="620" height="217" loading="lazy" decoding="async">
       <p>Official Partner of the PFL Road to Dubai Champions Series. The partnership widens who hears about us; it does not change what you trade on.</p>
     </div>
   </div>
@@ -570,14 +838,14 @@
 <section class="section fl-ceo" aria-labelledby="pg-ceo-title">
   <div class="container">
     <div class="fl-ceo-in">
-      <span class="fl-eyebrow" id="pg-ceo-title" data-reveal>A word from our CEO</span>
+      <span class="fl-eyebrow" id="pg-ceo-title" data-aos="fade-up">A word from our CEO</span>
       <span class="fl-ceo-mark" aria-hidden="true">&ldquo;</span>
-      <blockquote data-reveal>Fighters and traders share one spirit: the will to rise, the will to win.</blockquote>
-      <div class="fl-ceo-by" data-reveal>
-        <span class="fl-ceo-face"><img src="../../../assets/img/fl-ceo.jpg" alt="" width="900" height="900" loading="lazy" decoding="async"></span>
+      <blockquote data-aos="fade-up">Fighters and traders share one spirit: the will to rise, the will to win.</blockquote>
+      <div class="fl-ceo-by" data-aos="fade-up">
+        <span class="fl-ceo-face"><img src="../../../assets/img/fl-ceo.webp" alt="STARTRADER Chief Executive Officer portrait" width="900" height="900" loading="lazy" decoding="async"></span>
         <span class="fl-ceo-who"><b>Peter Karsten</b><em>Chief Executive Officer</em></span>
       </div>
-      <div class="fl-ceo-rules" data-reveal>
+      <div class="fl-ceo-rules" data-aos="fade-up">
         <i></i><span>Official Partner</span><i></i>
       </div>
     </div>
@@ -588,10 +856,10 @@
 <section class="section faq-sec fx-faq" aria-labelledby="pg-faq-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>FAQ</span>
-      <h2 class="h2" id="pg-faq-title" data-reveal>About the partnership</h2>
+      <span class="eyebrow" data-aos="fade-up">FAQ</span>
+      <h2 class="h2" id="pg-faq-title" data-aos="fade-up">About the partnership</h2>
     </div>
-    <div class="faq-list" data-reveal>
+    <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
         <summary>What is the PFL Road to Dubai Champions Series?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a">A Professional Fighters League series staged on the road to Dubai, decided across a season rather than a single night. STARTRADER is an official partner of it.</div>
@@ -615,27 +883,27 @@
 <section class="section fx-more" aria-labelledby="pg-more-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Keep going</span>
-      <h2 class="h2" id="pg-more-title" data-reveal>Where to go next</h2>
+      <span class="eyebrow" data-aos="fade-up">Keep going</span>
+      <h2 class="h2" id="pg-more-title" data-aos="fade-up">Where to go next</h2>
     </div>
-    <div class="fx-more-grid" data-reveal-stagger>
-      <a class="fx-more-card" href="../why-startrader.html">
-        <span class="fx-more-media"><img src="../../../assets/img/company-hero.jpg" alt="Why STARTRADER — regulation and scale" width="640" height="349" loading="lazy" decoding="async"></span>
+    <div class="fx-more-grid">
+      <a class="fx-more-card" href="../why-startrader.html" data-aos="fade-up">
+        <span class="fx-more-media"><img src="../../../assets/img/company-hero.webp" alt="Why STARTRADER — regulation and scale" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Five regulators, segregated funds and the conditions behind the brand.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Why STARTRADER</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="../csr.html">
+      <a class="fx-more-card" href="../csr.html" data-aos="fade-up" data-aos-delay="100">
         <span class="fx-more-media"><img src="../../../assets/img/company-2.webp" alt="STARCARES community programmes" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Courts rebuilt, families reached and students backed through STARCARES.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">CSR</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="../events.html">
+      <a class="fx-more-card" href="../events.html" data-aos="fade-up" data-aos-delay="200">
         <span class="fx-more-media"><img src="../../../assets/img/company-1.webp" alt="STARTRADER events and expos" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Expos, summits and client evenings where you can meet the team.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Events</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="../achievements.html">
-        <span class="fx-more-media"><img src="../../../assets/img/stat-awards.png" alt="STARTRADER awards and achievements" width="640" height="349" loading="lazy" decoding="async"></span>
+      <a class="fx-more-card" href="../achievements.html" data-aos="fade-up" data-aos-delay="300">
+        <span class="fx-more-media"><img src="../../../assets/img/stat-awards.webp" alt="STARTRADER awards and achievements" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Awards tied to execution, service and cost rather than marketing spend.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Achievements</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
@@ -646,9 +914,9 @@
 <section class="cta-banner" aria-labelledby="pg-cta-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="pg-cta-title" data-reveal>Start trading with a<br>globally leading broker</h2>
-    <p data-reveal>Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
-    <div class="cta-actions" data-reveal>
+    <h2 id="pg-cta-title" data-aos="fade-up">Start trading with a<br>globally leading broker</h2>
+    <p data-aos="fade-up">Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
+    <div class="cta-actions" data-aos="fade-up">
       <a href="../../../trading/getting-started/account-opening.html" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       <a href="../../../trading/getting-started/account-opening.html" class="btn btn-ghost btn-lg">Try Free Demo</a>
     </div>
@@ -736,7 +1004,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../../../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../../../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -770,6 +1038,7 @@
 <script src="../../../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../../../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../../../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../../../assets/js/vendor/aos.min.js" defer></script>
 <script src="../../../assets/js/main.js" defer></script>
 
 <!-- Company page: robust scroll reveals + hero parallax (self-contained, never leaves content hidden) -->

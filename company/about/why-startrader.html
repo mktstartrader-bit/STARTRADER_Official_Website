@@ -17,14 +17,14 @@
   <meta property="og:title" content="About STARTRADER — Company, Regulation &amp; Global Presence" />
   <meta property="og:description" content="A globally regulated broker — five regulations, 1000+ instruments, award-winning platforms and 24/7 support." />
   <meta property="og:url" content="https://www.startrader.com/company/about/why-startrader.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/forex-hero.png" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/forex-hero.webp" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="About STARTRADER — Company, Regulation &amp; Global Presence" />
   <meta name="twitter:description" content="Five regulations, 1000+ instruments, award-winning platforms and 24/7 support." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/forex-hero.png" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/forex-hero.webp" />
 
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../../favicon.svg" />
@@ -33,7 +33,219 @@
   <!-- Fonts (self-hosted) -->
   <link rel="preload" href="../../assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="../../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../../assets/css/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="../../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ---- FAQ (minimal divider list) ---- */
+@media (max-width:720px){.co-hero{min-height:auto}}
+/* ---- Scroll reveals (robust — never leaves content hidden; no-JS shows everything) ---- */
+.js-reveal .reveal.reveal-2{transition-delay:.08s}
+.js-reveal .reveal.reveal-3{transition-delay:.16s}
+.js-reveal .reveal.reveal-4{transition-delay:.24s}
+.js-reveal .reveal-stagger > *{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1)}
+.js-reveal .reveal-stagger.in > *{opacity:1;transform:none}
+.js-reveal .reveal-stagger.in > *:nth-child(1){transition-delay:.04s}
+.js-reveal .reveal-stagger.in > *:nth-child(2){transition-delay:.11s}
+.js-reveal .reveal-stagger.in > *:nth-child(3){transition-delay:.18s}
+.js-reveal .reveal-stagger.in > *:nth-child(4){transition-delay:.25s}
+.js-reveal .reveal-stagger.in > *:nth-child(5){transition-delay:.32s}
+.js-reveal .reveal-stagger.in > *:nth-child(6){transition-delay:.39s}
+@media (prefers-reduced-motion: reduce){.js-reveal .reveal-stagger > *{opacity:1 !important;transform:none !important;transition:none}}
+.co-vision .head-sub,.co-world .head-sub,.co-mkt .head-sub{color:#a9b7cf}
+/* ---- Trade & shine (dark bento with colored ray-lines) ---- */
+.co-mkt{position:relative;overflow:hidden;color:#fff;background:radial-gradient(72% 60% at 50% -8%,rgba(0,52,150,.4),transparent 60%),linear-gradient(180deg,#04060e,#070c18 55%,#04060e)}
+.co-mkt .h2,.co-mkt .eyebrow-blue{color:#fff}
+.co-mkt .eyebrow-blue{color:#93b6ff}
+.co-mkt-glow{position:absolute;left:50%;top:-120px;transform:translateX(-50%);width:900px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(0,90,220,.2),transparent 66%);pointer-events:none;filter:blur(8px)}
+.co-mktgrid{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:8px}
+.co-mktcard{position:relative;overflow:hidden;display:flex;flex-direction:column;text-decoration:none;border-radius:var(--radius-xl);padding:30px 28px 26px;
+  background:radial-gradient(130% 74% at 50% -12%,var(--ray,rgba(120,160,255,.16)),transparent 58%),linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.018));
+  border:1px solid rgba(255,255,255,.1);-webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08);transition:transform .45s var(--ease),border-color .35s,box-shadow .45s}
+.co-mktcard::after{content:"";position:absolute;top:0;left:16%;right:16%;height:2px;border-radius:2px;background:var(--ray-line,rgba(120,160,255,.7));box-shadow:0 0 18px 1px var(--ray-line,rgba(120,160,255,.7));opacity:.85;transition:left .45s var(--ease),right .45s var(--ease),opacity .35s}
+.co-mktcard:hover{transform:translateY(-4px);border-color:var(--ray-line,rgba(0,120,255,.45));box-shadow:0 34px 72px -34px rgba(0,60,180,.6)}
+.co-mktcard:hover::after{left:6%;right:6%}
+.co-mktic{width:50px;height:50px;border-radius:14px;display:grid;place-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:var(--ray-line,#8fb8ff);margin-bottom:18px;transition:transform .4s var(--ease)}
+.co-mktcard:hover .co-mktic{transform:translateY(-3px) scale(1.05)}
+.co-mktic svg{width:23px;height:23px}
+.co-mktcard h3{font-size:20px;color:#fff;letter-spacing:-.01em;margin-bottom:8px}
+.co-mktcard p{font-size:14px;color:#b3c0d6;line-height:1.6;flex:1}
+.co-mktmore{margin-top:18px;display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;color:var(--ray-line,#8fb8ff)}
+.co-mktmore .arw{transition:transform .3s var(--ease)}
+.co-mktcard:hover .co-mktmore .arw{transform:translateX(4px)}
+.co-mktbig{font-size:46px;font-weight:800;letter-spacing:-.03em;color:#fff;line-height:1;margin:2px 0 6px}
+.co-mktbig span{color:var(--ray-line,#8fb8ff)}
+.co-mkt--fx{--ray:rgba(0,110,255,.22);--ray-line:rgba(80,150,255,.95)}
+.co-mkt--idx{--ray:rgba(150,110,255,.2);--ray-line:rgba(170,130,255,.92)}
+.co-mkt--shr{--ray:rgba(22,233,215,.18);--ray-line:rgba(34,220,205,.9)}
+.co-mkt--cmd{--ray:rgba(255,170,60,.16);--ray-line:rgba(255,182,84,.92)}
+.co-mkt--etf{--ray:rgba(16,200,140,.18);--ray-line:rgba(32,212,152,.92)}
+.co-mkt--inst{--ray:rgba(0,120,255,.32);--ray-line:rgba(96,164,255,.98);border-color:rgba(96,158,255,.3);background:radial-gradient(130% 78% at 50% -12%,rgba(0,120,255,.34),transparent 60%),linear-gradient(180deg,rgba(12,26,58,.7),rgba(8,16,38,.6))}
+/* ---- Hero (center-aligned, blue-wave banner image) ---- */
+.co-hero{position:relative;color:#fff;overflow:hidden;isolation:isolate;text-align:center;margin-top:calc(-1 * var(--nav-h));padding:calc(var(--nav-h) + 40px) 0 56px;background:#04060e url(../../assets/img/company-hero.webp) center center/cover no-repeat;min-height:min(780px, calc(100vh - var(--topbar-h,44px)));display:flex;align-items:center}
+/* the artwork's bright ribbon crosses the copy column, so a soft pool sits
+   behind the text — the linear ramp alone left the lead unreadable */
+.co-hero::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(58% 46% at 46% 54%,rgba(4,6,14,.8) 0%,rgba(4,6,14,.5) 56%,rgba(4,6,14,0) 88%),
+    linear-gradient(180deg,rgba(4,6,14,.62) 0%,rgba(4,6,14,.2) 26%,rgba(4,6,14,.04) 52%,rgba(4,6,14,.3) 100%)}
+.co-hero-inner{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;width:100%;max-width:860px;margin-inline:auto}
+.co-badge{display:inline-flex;align-items:center;gap:9px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#bcd2ff;padding:8px 15px;border-radius:70px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.co-badge .dot{width:7px;height:7px;border-radius:50%;background:#34d99b;box-shadow:0 0 0 0 rgba(52,217,155,.5);animation:pulse 2.4s infinite;flex:none}
+.co-h1{font-size:clamp(30px,6vw,68px);font-weight:800;letter-spacing:-.035em;line-height:1.05;margin-top:22px;overflow-wrap:break-word}
+.co-h1 .g{background:linear-gradient(92deg,#7fb0ff,#dfeaff 60%,#a9c6ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.co-lead{margin:22px auto 0;width:100%;max-width:600px;font-size:clamp(15px,1.5vw,18px);color:#d8e1ee;line-height:1.66;text-shadow:0 1px 14px rgba(4,6,14,.8)}
+.co-hact{margin-top:34px;max-width:100%;display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+/* ---- Key stats bento (its own light section below the hero) ---- */
+.co-stats{background:var(--bg-light)}
+.co-statgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.co-statx{position:relative;overflow:hidden;border-radius:26px;min-height:210px;padding:34px 40px;display:flex;align-items:center;isolation:isolate;background-size:cover;background-position:center;background-repeat:no-repeat;transition:transform .5s var(--ease),box-shadow .5s}
+.co-statx:hover{transform:translateY(-6px)}
+.sx-body{position:relative;z-index:2;max-width:64%}
+.sx-num{font-size:clamp(48px,6vw,82px);font-weight:800;letter-spacing:-.04em;line-height:.92;font-variant-numeric:tabular-nums}
+.sx-num i{font-style:normal}
+.sx-lab{margin-top:14px;font-size:clamp(14px,1.35vw,17px);font-weight:500;line-height:1.3}
+.sx-blue{background-color:#1b50d4;background-image:url(../../assets/img/stat-blue.webp);color:#fff;box-shadow:0 30px 62px -34px rgba(0,60,180,.7)}
+.sx-blue .sx-lab{color:rgba(255,255,255,.86)}
+.sx-tan{background-color:#bd8560;background-image:url(../../assets/img/stat-tan.webp);color:#3a2415;box-shadow:0 30px 62px -34px rgba(120,80,50,.55)}
+.sx-tan .sx-lab{color:rgba(58,36,21,.72)}
+.sx-dark{background-color:#0c1017;background-image:url(../../assets/img/stat-awards.webp);color:#fff;border:1px solid rgba(90,150,255,.12);box-shadow:0 30px 62px -34px rgba(0,20,60,.8)}
+.sx-dark .sx-lab{color:rgba(200,214,240,.72)}
+.sx-light{background-color:#fff;background-image:url(../../assets/img/stat-light.webp);color:var(--text);border:1px solid var(--line);box-shadow:0 24px 52px -34px rgba(20,44,96,.42)}
+.sx-light .sx-lab{color:var(--text-mute)}
+.sx-logo{position:absolute;z-index:1;right:0;bottom:0;height:128%;width:auto;opacity:.5;pointer-events:none;transition:transform .6s var(--ease),opacity .4s}
+.sx-light:hover .sx-logo{opacity:.62;transform:scale(1.04)}
+/* ---- Global presence (interactive map) ---- */
+.co-global{background:radial-gradient(60% 55% at 88% 4%,rgba(0,71,187,.06),transparent 60%),var(--bg-light-2);position:relative;overflow:hidden}
+/* map (compact) */
+.co-map{position:relative;max-width:720px;margin:34px auto 0}
+.co-mapsvg{width:100%;height:auto;display:block}
+.co-pin{position:absolute;transform:translate(-50%,-50%);z-index:2}
+.co-pin i{display:block;width:12px;height:12px;border-radius:50%;background:#9fb2d6;position:relative;transition:background .3s,transform .3s}
+.co-pin i::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--blue);opacity:0;transform:scale(1)}
+.co-pin .lab{position:absolute;left:50%;bottom:calc(100% + 12px);transform:translateX(-50%) translateY(4px);white-space:nowrap;text-align:left;background:#fff;padding:9px 15px;border-radius:12px;opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s,transform .25s;pointer-events:none;box-shadow:0 16px 38px -14px rgba(20,44,96,.5);border:1px solid var(--line)}
+.co-pin .lab::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#fff}
+.co-pin .lab b{display:block;font-size:12.5px;font-weight:800;letter-spacing:.02em;color:var(--blue);line-height:1.1}
+.co-pin .lab em{display:block;font-style:normal;font-size:12px;color:var(--text-soft);margin-top:2px}
+.co-pin:hover .lab,.co-pin.active .lab{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.co-pin.active{z-index:4}
+.co-pin.active i{background:var(--blue);transform:scale(1.15)}
+.co-pin.active i::after{opacity:1;animation:coPing 2s ease-out infinite}
+/* regulator license cards (all visible) */
+.co-reggrid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:34px}
+.co-reg{position:relative;overflow:hidden;border-radius:var(--radius-lg);padding:18px 18px 16px;background:rgba(255,255,255,.62);-webkit-backdrop-filter:blur(16px) saturate(1.5);backdrop-filter:blur(16px) saturate(1.5);border:1px solid rgba(255,255,255,.85);box-shadow:0 10px 28px -18px rgba(20,44,96,.24),inset 0 1px 0 rgba(255,255,255,.9);cursor:pointer;transition:transform .38s var(--ease),box-shadow .38s,border-color .3s}
+.co-reg::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#2a72ff,#0b43c6);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+.co-reg:hover,.co-reg.is-active{transform:translateY(-5px);border-color:var(--blue);box-shadow:0 24px 46px -24px rgba(0,71,187,.4)}
+.co-reg.is-active::before{transform:scaleX(1)}
+.co-reg-head{display:flex;align-items:center;gap:10px}
+.co-reg-flag{width:30px;height:21px;border-radius:5px;object-fit:cover;box-shadow:0 1px 4px rgba(0,0,0,.22);flex:none}
+.co-reg-head b{font-size:17px;font-weight:800;color:var(--text);letter-spacing:-.01em}
+.co-reg-name{font-size:11.5px;color:var(--text-soft);line-height:1.4;margin-top:11px;min-height:32px}
+.co-reg-foot{margin-top:12px;padding-top:12px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
+.co-reg-loc{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--blue)}
+.co-reg-loc svg{width:14px;height:14px;flex:none}
+.co-reg-lic{font-size:11.5px;color:var(--text-mute)}
+/* ---- Shared card grid (asset classes, advantages, risk) ---- */
+.co-card .more .arw{transition:transform .3s var(--ease)}
+.co-card:hover .more .arw{transform:translateX(4px)}
+/* ---- Vision / Mission (dark, editorial split) ---- */
+.co-vision{position:relative;overflow:hidden;background:radial-gradient(80% 60% at 12% 0%,rgba(0,44,130,.4),transparent 62%),linear-gradient(180deg,#04060e,#080b16 58%,#04060e);color:#fff}
+.co-vision .h2,.co-vision .eyebrow{color:#fff}
+.co-vision .eyebrow{color:#93b6ff}
+.co-vision-glow{position:absolute;right:-8%;top:12%;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(0,90,220,.24),transparent 66%);pointer-events:none;filter:blur(10px)}
+.co-vm2{position:relative;display:grid;grid-template-columns:0.92fr 1.08fr;gap:56px;align-items:center}
+.co-vm2-intro .h2{margin-top:14px;line-height:1.08}
+.co-vm2-lead{margin-top:20px;max-width:430px;font-size:clamp(15px,1.5vw,17px);color:#a9b7cf;line-height:1.7}
+.co-vm2-intro .btn{margin-top:30px}
+.co-vm2-list{display:flex;flex-direction:column;gap:18px}
+.co-vm2-card{position:relative;display:flex;gap:24px;align-items:flex-start;padding:30px 34px 30px 36px;border-radius:var(--radius-xl);
+  background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.1);
+  -webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);box-shadow:inset 0 1px 0 rgba(255,255,255,.07);
+  transition:transform .45s var(--ease),border-color .35s,box-shadow .45s}
+.co-vm2-card::before{content:"";position:absolute;left:0;top:26px;bottom:26px;width:3px;border-radius:0 3px 3px 0;background:linear-gradient(180deg,#7fb0ff,#0b43c6);opacity:.95}
+.co-vm2-card:hover{transform:translateX(6px);border-color:rgba(90,150,255,.42);box-shadow:0 30px 64px -34px rgba(0,60,180,.55)}
+.co-vm2-no{flex:none;font-size:34px;font-weight:800;letter-spacing:-.02em;line-height:1;background:linear-gradient(160deg,#9fc2ff,#2a72ff);-webkit-background-clip:text;background-clip:text;color:transparent;min-width:40px;padding-top:2px}
+.co-vm2-k{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#8fb8ff}
+.co-vm2-k svg{width:14px;height:14px}
+.co-vm2-body h3{font-size:22px;color:#fff;letter-spacing:-.02em;margin:12px 0 10px}
+.co-vm2-body p{font-size:14.5px;color:#a9b4c8;line-height:1.7;max-width:470px}
+/* ---- STAR values (elevated gradient tiles + connector) ---- */
+.co-star{background:#fff}
+.co-starrow{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.co-starrow::before{content:"";position:absolute;top:44px;left:13%;right:13%;height:2px;z-index:0;background:linear-gradient(90deg,transparent,rgba(0,71,187,.2) 18%,rgba(0,71,187,.2) 82%,transparent)}
+.co-starcard{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 14px}
+.co-startile{width:88px;height:88px;border-radius:24px;display:grid;place-items:center;font-size:44px;font-weight:800;letter-spacing:-.02em;color:#fff;background:linear-gradient(160deg,#2a72ff,#0b43c6);box-shadow:0 20px 40px -16px rgba(0,71,187,.6),inset 0 1px 0 rgba(255,255,255,.34);margin-bottom:24px;transition:transform .5s var(--ease),box-shadow .5s}
+.co-starcard:hover .co-startile{transform:translateY(-7px) rotate(-5deg);box-shadow:0 32px 56px -18px rgba(0,71,187,.72)}
+.co-starcard h3{font-size:20px;color:var(--text);letter-spacing:-.01em;margin-bottom:10px}
+.co-starcard p{font-size:14px;color:var(--text-soft);line-height:1.62;max-width:264px}
+/* ---- In the world (events / sponsorships gallery) ---- */
+.co-world{position:relative;overflow:hidden;color:#fff;background:radial-gradient(80% 60% at 12% 0%,rgba(0,40,120,.4),transparent 62%),linear-gradient(180deg,#04060e,#070b16 55%,#04060e)}
+.co-world .h2,.co-world .eyebrow-blue{color:#fff}
+.co-world .eyebrow-blue{color:#93b6ff}
+.co-world-glow{position:absolute;right:-6%;top:20%;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(0,90,220,.28),transparent 66%);pointer-events:none;filter:blur(10px)}
+.co-world-top{display:flex;align-items:flex-end;justify-content:space-between;gap:26px;flex-wrap:wrap}
+.co-world .head{margin-bottom:0;text-align:left;max-width:640px}
+.co-world-link{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:#8fb8ff;white-space:nowrap;transition:gap .3s var(--ease),color .3s}
+.co-world-link .ico{width:16px;height:16px}
+.co-world-link:hover{gap:12px;color:#bcd6ff}
+.co-gallery{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:18px;margin-top:42px}
+.co-gcard{position:relative;margin:0;border-radius:var(--radius-xl);overflow:hidden;min-height:380px;border:1px solid rgba(255,255,255,.1);box-shadow:0 30px 64px -34px rgba(0,20,70,.8);isolation:isolate}
+.co-gcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.22,.61,.36,1),filter .6s;filter:saturate(1.02)}
+.co-gcard::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,7,16,0) 34%,rgba(4,7,16,.5) 62%,rgba(4,7,16,.92));transition:opacity .5s}
+.co-gcard:hover img{transform:scale(1.06)}
+.co-gcard figcaption{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:22px 22px 20px;display:flex;flex-direction:column;gap:9px}
+.co-gtag{align-self:flex-start;font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#cfe0ff;padding:5px 11px;border-radius:70px;background:rgba(120,160,255,.16);border:1px solid rgba(150,185,255,.34);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.co-gcard figcaption b{font-size:18px;font-weight:700;letter-spacing:-.01em;color:#fff;transform:translateY(4px);opacity:.94;transition:transform .5s var(--ease)}
+.co-gcard:hover figcaption b{transform:translateY(0)}
+/* ---- Trust band (peace of mind) ---- */
+.co-trust{background:linear-gradient(180deg,#fff,#eef3fb)}
+.co-trust-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.co-trust-card{position:relative;overflow:hidden;border-radius:var(--radius-xl);padding:8px 32px 30px;background:linear-gradient(180deg,#fff,#f2f6fc);border:1px solid #fff;box-shadow:0 20px 46px -30px rgba(20,44,96,.42),inset 0 1px 0 #fff;transition:transform .45s var(--ease),box-shadow .45s}
+.co-trust-card:hover{transform:translateY(-6px);box-shadow:0 34px 68px -32px rgba(20,44,96,.46)}
+.co-trust-viz{position:relative;height:164px;display:grid;place-items:center}
+.tr-core{position:relative;z-index:2;width:84px;height:84px;border-radius:26px;display:grid;place-items:center;color:#fff;background:linear-gradient(160deg,#2a72ff,#0b43c6);box-shadow:0 22px 42px -14px rgba(0,71,187,.6),inset 0 1px 0 rgba(255,255,255,.32)}
+.tr-core svg{width:40px;height:40px}
+.tr-core-g{background:linear-gradient(160deg,#16c98c,#0a9c6b);box-shadow:0 22px 42px -14px rgba(16,180,120,.55),inset 0 1px 0 rgba(255,255,255,.32)}
+.tr-ring{position:absolute;z-index:1;top:50%;left:50%;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:26px;border:2px solid rgba(0,71,187,.4)}
+.tr-ring-g{border-color:rgba(16,200,140,.45)}
+.tr-chip{position:absolute;z-index:3;display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--text-soft);background:#fff;border:1px solid var(--line);border-radius:70px;padding:7px 13px;box-shadow:0 12px 26px -12px rgba(20,44,96,.42)}
+.tr-chip b{color:var(--text);font-weight:800}
+.tr-chip-a{top:24px;right:12%}
+.tr-chip-b{bottom:24px;left:12%}
+.co-trust-card h3{font-size:20px;color:var(--text);letter-spacing:-.01em;margin-bottom:8px}
+.co-trust-card p{font-size:14.5px;color:var(--text-soft);line-height:1.66}
+.co-trust-badges{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:34px}
+.co-trust-badges span{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:600;color:var(--text-soft);padding:10px 17px;border-radius:70px;background:#fff;border:1px solid var(--line);box-shadow:0 8px 22px -14px rgba(20,44,96,.3);transition:transform .3s var(--ease),box-shadow .3s,color .3s}
+.co-trust-badges span:hover{transform:translateY(-3px);color:var(--text);box-shadow:0 16px 30px -16px rgba(20,44,96,.4)}
+.co-trust-badges svg{width:16px;height:16px;color:var(--blue);flex:none}
+@media (prefers-reduced-motion:no-preference){.tr-ring{animation:trPing 2.6s ease-out infinite}
+.tr-ring-2{animation-delay:1.3s}
+.tr-chip-a{animation:trFloat 4.2s ease-in-out infinite}
+.tr-chip-b{animation:trFloat 4.8s ease-in-out infinite .4s}}
+/* ---- Risk note ---- */
+.co-risknote{max-width:780px;margin:32px auto 0;text-align:center;font-size:13px;color:var(--text-mute);line-height:1.7}
+@media (max-width:1080px){.co-lead{max-width:none}
+.co-starrow{grid-template-columns:repeat(2,1fr);gap:36px 24px}
+.co-starrow::before{display:none}
+.co-mktgrid{grid-template-columns:repeat(2,1fr)}
+.co-reggrid{grid-template-columns:repeat(3,1fr)}
+.co-gallery{grid-template-columns:1fr 1fr}
+.co-gcard-lg{grid-column:1/-1;min-height:320px}}
+@media (max-width:820px){.co-vm2{grid-template-columns:1fr;gap:36px}
+.co-world-top{align-items:flex-start}}
+@media (max-width:620px){.co-hero{padding:calc(var(--nav-h) + 56px) 0 72px}
+.co-hact{width:100%}
+.co-hact .btn{flex:1 1 auto;justify-content:center}
+.co-statx{min-height:150px;padding:26px 28px}
+.sx-body{max-width:66%}
+.co-starrow,.co-mktgrid,.co-trust-grid,.co-statgrid{grid-template-columns:1fr;max-width:420px;margin-inline:auto}
+.co-reggrid{grid-template-columns:repeat(2,1fr);gap:12px}
+.co-reg-name{min-height:0}
+.co-gallery{grid-template-columns:1fr;max-width:420px;margin-inline:auto}
+.co-gcard,.co-gcard-lg{min-height:300px}}
+  </style>
   <script>document.documentElement.classList.add('js-reveal');</script>
 
   <!-- Structured data -->
@@ -361,10 +573,10 @@
   <div class="hero-glow" aria-hidden="true"></div>
   <div class="hero-shape" aria-hidden="true"></div>
   <div class="container co-hero-inner">
-    <span class="co-badge reveal"><span class="dot"></span>About STARTRADER</span>
-    <h1 class="co-h1 reveal reveal-2" id="co-hero-title">Enter the universe of <span class="g">opportunities</span></h1>
-    <p class="co-lead reveal reveal-3">Explore the financial markets with a globally regulated broker &mdash; and grow with the power of possibilities.</p>
-    <div class="co-hact reveal reveal-4">
+    <span class="co-badge" data-aos="fade-up"><span class="dot"></span>About STARTRADER</span>
+    <h1 class="co-h1" id="co-hero-title" data-aos="fade-up">Enter the universe of <span class="g">opportunities</span></h1>
+    <p class="co-lead" data-aos="fade-up">Explore the financial markets with a globally regulated broker &mdash; and grow with the power of possibilities.</p>
+    <div class="co-hact" data-aos="fade-up">
       <a href="../../trading/getting-started/account-opening.html" class="btn btn-primary btn-lg magnetic">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
     </div>
   </div>
@@ -373,7 +585,7 @@
 <!-- ============ KEY STATS (bento) ============ -->
 <section class="section co-stats" aria-label="STARTRADER by the numbers">
   <div class="container">
-    <div class="co-statgrid reveal reveal-stagger">
+    <div class="co-statgrid reveal-stagger" data-aos="fade-up">
       <article class="co-statx sx-blue">
         <div class="sx-body">
           <div class="sx-num"><span class="num" data-count="5">5</span></div>
@@ -397,7 +609,7 @@
           <div class="sx-num">24/7</div>
           <div class="sx-lab">Multilingual support</div>
         </div>
-        <img class="sx-logo" src="../../assets/img/stat-mul.png" alt="" aria-hidden="true">
+        <img class="sx-logo" src="../../assets/img/stat-mul.webp" alt="Multicoloured abstract artwork" aria-hidden="true">
       </article>
     </div>
   </div>
@@ -407,15 +619,15 @@
 <section class="section co-global" id="coGlobal" aria-labelledby="co-global-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow reveal">Global presence</span>
-      <h2 class="h2 reveal reveal-2" id="co-global-title">We&rsquo;re global to empower you</h2>
-      <p class="head-sub reveal reveal-3">Five regulators across four continents keep your capital under trusted oversight &mdash; hover a licence or a pin to see where we operate.</p>
+      <span class="eyebrow" data-aos="fade-up">Global presence</span>
+      <h2 class="h2" id="co-global-title" data-aos="fade-up">We&rsquo;re global to empower you</h2>
+      <p class="head-sub" data-aos="fade-up">Five regulators across four continents keep your capital under trusted oversight &mdash; hover a licence or a pin to see where we operate.</p>
     </div>
-    <div class="co-map reveal reveal-2">
+    <div class="co-map" data-aos="fade-up">
         <svg class="co-mapsvg" viewBox="0 0 600 300" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><g fill="rgba(16,16,20,.2)"><circle cx="26.3" cy="27.8" r="2.1"/><circle cx="26.3" cy="37.1" r="2.1"/><circle cx="34.0" cy="18.5" r="2.1"/><circle cx="34.0" cy="27.8" r="2.1"/><circle cx="34.0" cy="37.1" r="2.1"/><circle cx="34.0" cy="46.3" r="2.1"/><circle cx="41.7" cy="18.5" r="2.1"/><circle cx="41.7" cy="27.8" r="2.1"/><circle cx="41.7" cy="37.1" r="2.1"/><circle cx="41.7" cy="46.3" r="2.1"/><circle cx="49.3" cy="18.5" r="2.1"/><circle cx="49.3" cy="27.8" r="2.1"/><circle cx="49.3" cy="37.1" r="2.1"/><circle cx="49.3" cy="46.3" r="2.1"/><circle cx="57.0" cy="18.5" r="2.1"/><circle cx="57.0" cy="27.8" r="2.1"/><circle cx="57.0" cy="37.1" r="2.1"/><circle cx="57.0" cy="46.3" r="2.1"/><circle cx="64.7" cy="18.5" r="2.1"/><circle cx="64.7" cy="27.8" r="2.1"/><circle cx="64.7" cy="37.1" r="2.1"/><circle cx="64.7" cy="46.3" r="2.1"/><circle cx="72.3" cy="27.8" r="2.1"/><circle cx="72.3" cy="37.1" r="2.1"/><circle cx="80.0" cy="37.1" r="2.1"/><circle cx="80.0" cy="46.3" r="2.1"/><circle cx="87.7" cy="27.8" r="2.1"/><circle cx="87.7" cy="37.1" r="2.1"/><circle cx="87.7" cy="46.3" r="2.1"/><circle cx="87.7" cy="55.6" r="2.1"/><circle cx="87.7" cy="64.9" r="2.1"/><circle cx="87.7" cy="74.1" r="2.1"/><circle cx="87.7" cy="83.4" r="2.1"/><circle cx="95.3" cy="27.8" r="2.1"/><circle cx="95.3" cy="37.1" r="2.1"/><circle cx="95.3" cy="46.3" r="2.1"/><circle cx="95.3" cy="55.6" r="2.1"/><circle cx="95.3" cy="64.9" r="2.1"/><circle cx="95.3" cy="74.1" r="2.1"/><circle cx="95.3" cy="83.4" r="2.1"/><circle cx="95.3" cy="92.6" r="2.1"/><circle cx="103.0" cy="27.8" r="2.1"/><circle cx="103.0" cy="37.1" r="2.1"/><circle cx="103.0" cy="46.3" r="2.1"/><circle cx="103.0" cy="55.6" r="2.1"/><circle cx="103.0" cy="64.9" r="2.1"/><circle cx="103.0" cy="74.1" r="2.1"/><circle cx="103.0" cy="83.4" r="2.1"/><circle cx="103.0" cy="92.6" r="2.1"/><circle cx="103.0" cy="101.9" r="2.1"/><circle cx="110.7" cy="27.8" r="2.1"/><circle cx="110.7" cy="37.1" r="2.1"/><circle cx="110.7" cy="46.3" r="2.1"/><circle cx="110.7" cy="55.6" r="2.1"/><circle cx="110.7" cy="64.9" r="2.1"/><circle cx="110.7" cy="74.1" r="2.1"/><circle cx="110.7" cy="83.4" r="2.1"/><circle cx="110.7" cy="92.6" r="2.1"/><circle cx="110.7" cy="101.9" r="2.1"/><circle cx="118.3" cy="27.8" r="2.1"/><circle cx="118.3" cy="37.1" r="2.1"/><circle cx="118.3" cy="46.3" r="2.1"/><circle cx="118.3" cy="55.6" r="2.1"/><circle cx="118.3" cy="64.9" r="2.1"/><circle cx="118.3" cy="74.1" r="2.1"/><circle cx="118.3" cy="83.4" r="2.1"/><circle cx="118.3" cy="92.6" r="2.1"/><circle cx="118.3" cy="101.9" r="2.1"/><circle cx="126.0" cy="37.1" r="2.1"/><circle cx="126.0" cy="46.3" r="2.1"/><circle cx="126.0" cy="55.6" r="2.1"/><circle cx="126.0" cy="64.9" r="2.1"/><circle cx="126.0" cy="74.1" r="2.1"/><circle cx="126.0" cy="83.4" r="2.1"/><circle cx="126.0" cy="92.6" r="2.1"/><circle cx="126.0" cy="101.9" r="2.1"/><circle cx="133.7" cy="37.1" r="2.1"/><circle cx="133.7" cy="46.3" r="2.1"/><circle cx="133.7" cy="55.6" r="2.1"/><circle cx="133.7" cy="64.9" r="2.1"/><circle cx="133.7" cy="74.1" r="2.1"/><circle cx="133.7" cy="83.4" r="2.1"/><circle cx="133.7" cy="92.6" r="2.1"/><circle cx="133.7" cy="101.9" r="2.1"/><circle cx="133.7" cy="111.2" r="2.1"/><circle cx="133.7" cy="120.4" r="2.1"/><circle cx="141.3" cy="37.1" r="2.1"/><circle cx="141.3" cy="46.3" r="2.1"/><circle cx="141.3" cy="55.6" r="2.1"/><circle cx="141.3" cy="64.9" r="2.1"/><circle cx="141.3" cy="74.1" r="2.1"/><circle cx="141.3" cy="83.4" r="2.1"/><circle cx="141.3" cy="92.6" r="2.1"/><circle cx="141.3" cy="101.9" r="2.1"/><circle cx="141.3" cy="111.2" r="2.1"/><circle cx="141.3" cy="120.4" r="2.1"/><circle cx="141.3" cy="129.7" r="2.1"/><circle cx="149.0" cy="46.3" r="2.1"/><circle cx="149.0" cy="55.6" r="2.1"/><circle cx="149.0" cy="64.9" r="2.1"/><circle cx="149.0" cy="74.1" r="2.1"/><circle cx="149.0" cy="83.4" r="2.1"/><circle cx="149.0" cy="92.6" r="2.1"/><circle cx="149.0" cy="101.9" r="2.1"/><circle cx="149.0" cy="111.2" r="2.1"/><circle cx="149.0" cy="120.4" r="2.1"/><circle cx="149.0" cy="129.7" r="2.1"/><circle cx="156.7" cy="46.3" r="2.1"/><circle cx="156.7" cy="55.6" r="2.1"/><circle cx="156.7" cy="64.9" r="2.1"/><circle cx="156.7" cy="74.1" r="2.1"/><circle cx="156.7" cy="83.4" r="2.1"/><circle cx="156.7" cy="92.6" r="2.1"/><circle cx="156.7" cy="101.9" r="2.1"/><circle cx="156.7" cy="111.2" r="2.1"/><circle cx="156.7" cy="120.4" r="2.1"/><circle cx="156.7" cy="129.7" r="2.1"/><circle cx="164.3" cy="37.1" r="2.1"/><circle cx="164.3" cy="46.3" r="2.1"/><circle cx="164.3" cy="55.6" r="2.1"/><circle cx="164.3" cy="64.9" r="2.1"/><circle cx="164.3" cy="74.1" r="2.1"/><circle cx="164.3" cy="83.4" r="2.1"/><circle cx="164.3" cy="92.6" r="2.1"/><circle cx="164.3" cy="101.9" r="2.1"/><circle cx="164.3" cy="111.2" r="2.1"/><circle cx="164.3" cy="120.4" r="2.1"/><circle cx="164.3" cy="129.7" r="2.1"/><circle cx="172.0" cy="37.1" r="2.1"/><circle cx="172.0" cy="46.3" r="2.1"/><circle cx="172.0" cy="55.6" r="2.1"/><circle cx="172.0" cy="64.9" r="2.1"/><circle cx="172.0" cy="74.1" r="2.1"/><circle cx="172.0" cy="83.4" r="2.1"/><circle cx="172.0" cy="92.6" r="2.1"/><circle cx="172.0" cy="111.2" r="2.1"/><circle cx="172.0" cy="120.4" r="2.1"/><circle cx="179.7" cy="37.1" r="2.1"/><circle cx="179.7" cy="46.3" r="2.1"/><circle cx="179.7" cy="55.6" r="2.1"/><circle cx="179.7" cy="64.9" r="2.1"/><circle cx="179.7" cy="74.1" r="2.1"/><circle cx="179.7" cy="83.4" r="2.1"/><circle cx="179.7" cy="176.0" r="2.1"/><circle cx="179.7" cy="185.3" r="2.1"/><circle cx="179.7" cy="194.6" r="2.1"/><circle cx="179.7" cy="203.8" r="2.1"/><circle cx="179.7" cy="259.4" r="2.1"/><circle cx="179.7" cy="268.7" r="2.1"/><circle cx="179.7" cy="277.9" r="2.1"/><circle cx="187.3" cy="46.3" r="2.1"/><circle cx="187.3" cy="55.6" r="2.1"/><circle cx="187.3" cy="64.9" r="2.1"/><circle cx="187.3" cy="74.1" r="2.1"/><circle cx="187.3" cy="83.4" r="2.1"/><circle cx="187.3" cy="166.8" r="2.1"/><circle cx="187.3" cy="176.0" r="2.1"/><circle cx="187.3" cy="185.3" r="2.1"/><circle cx="187.3" cy="194.6" r="2.1"/><circle cx="187.3" cy="203.8" r="2.1"/><circle cx="187.3" cy="213.1" r="2.1"/><circle cx="187.3" cy="222.4" r="2.1"/><circle cx="187.3" cy="231.6" r="2.1"/><circle cx="187.3" cy="240.9" r="2.1"/><circle cx="187.3" cy="250.1" r="2.1"/><circle cx="187.3" cy="259.4" r="2.1"/><circle cx="187.3" cy="268.7" r="2.1"/><circle cx="187.3" cy="277.9" r="2.1"/><circle cx="195.0" cy="46.3" r="2.1"/><circle cx="195.0" cy="55.6" r="2.1"/><circle cx="195.0" cy="64.9" r="2.1"/><circle cx="195.0" cy="74.1" r="2.1"/><circle cx="195.0" cy="166.8" r="2.1"/><circle cx="195.0" cy="176.0" r="2.1"/><circle cx="195.0" cy="185.3" r="2.1"/><circle cx="195.0" cy="194.6" r="2.1"/><circle cx="195.0" cy="203.8" r="2.1"/><circle cx="195.0" cy="213.1" r="2.1"/><circle cx="195.0" cy="222.4" r="2.1"/><circle cx="195.0" cy="231.6" r="2.1"/><circle cx="195.0" cy="240.9" r="2.1"/><circle cx="195.0" cy="250.1" r="2.1"/><circle cx="195.0" cy="259.4" r="2.1"/><circle cx="202.7" cy="55.6" r="2.1"/><circle cx="202.7" cy="64.9" r="2.1"/><circle cx="202.7" cy="74.1" r="2.1"/><circle cx="202.7" cy="166.8" r="2.1"/><circle cx="202.7" cy="176.0" r="2.1"/><circle cx="202.7" cy="185.3" r="2.1"/><circle cx="202.7" cy="194.6" r="2.1"/><circle cx="202.7" cy="203.8" r="2.1"/><circle cx="202.7" cy="213.1" r="2.1"/><circle cx="202.7" cy="222.4" r="2.1"/><circle cx="202.7" cy="231.6" r="2.1"/><circle cx="202.7" cy="240.9" r="2.1"/><circle cx="202.7" cy="250.1" r="2.1"/><circle cx="210.3" cy="9.3" r="2.1"/><circle cx="210.3" cy="18.5" r="2.1"/><circle cx="210.3" cy="176.0" r="2.1"/><circle cx="210.3" cy="185.3" r="2.1"/><circle cx="210.3" cy="194.6" r="2.1"/><circle cx="210.3" cy="203.8" r="2.1"/><circle cx="218.0" cy="0.0" r="2.1"/><circle cx="218.0" cy="9.3" r="2.1"/><circle cx="218.0" cy="18.5" r="2.1"/><circle cx="218.0" cy="27.8" r="2.1"/><circle cx="218.0" cy="185.3" r="2.1"/><circle cx="225.7" cy="0.0" r="2.1"/><circle cx="225.7" cy="9.3" r="2.1"/><circle cx="225.7" cy="18.5" r="2.1"/><circle cx="225.7" cy="27.8" r="2.1"/><circle cx="233.3" cy="0.0" r="2.1"/><circle cx="233.3" cy="9.3" r="2.1"/><circle cx="233.3" cy="18.5" r="2.1"/><circle cx="233.3" cy="27.8" r="2.1"/><circle cx="241.0" cy="9.3" r="2.1"/><circle cx="241.0" cy="18.5" r="2.1"/><circle cx="287.0" cy="55.6" r="2.1"/><circle cx="294.7" cy="46.3" r="2.1"/><circle cx="294.7" cy="55.6" r="2.1"/><circle cx="294.7" cy="64.9" r="2.1"/><circle cx="294.7" cy="139.0" r="2.1"/><circle cx="294.7" cy="148.2" r="2.1"/><circle cx="294.7" cy="157.5" r="2.1"/><circle cx="302.3" cy="46.3" r="2.1"/><circle cx="302.3" cy="55.6" r="2.1"/><circle cx="302.3" cy="64.9" r="2.1"/><circle cx="302.3" cy="74.1" r="2.1"/><circle cx="302.3" cy="129.7" r="2.1"/><circle cx="302.3" cy="139.0" r="2.1"/><circle cx="302.3" cy="148.2" r="2.1"/><circle cx="302.3" cy="157.5" r="2.1"/><circle cx="302.3" cy="166.8" r="2.1"/><circle cx="310.0" cy="46.3" r="2.1"/><circle cx="310.0" cy="55.6" r="2.1"/><circle cx="310.0" cy="64.9" r="2.1"/><circle cx="310.0" cy="74.1" r="2.1"/><circle cx="310.0" cy="129.7" r="2.1"/><circle cx="310.0" cy="139.0" r="2.1"/><circle cx="310.0" cy="148.2" r="2.1"/><circle cx="310.0" cy="157.5" r="2.1"/><circle cx="310.0" cy="166.8" r="2.1"/><circle cx="310.0" cy="176.0" r="2.1"/><circle cx="317.7" cy="46.3" r="2.1"/><circle cx="317.7" cy="55.6" r="2.1"/><circle cx="317.7" cy="64.9" r="2.1"/><circle cx="317.7" cy="74.1" r="2.1"/><circle cx="317.7" cy="120.4" r="2.1"/><circle cx="317.7" cy="129.7" r="2.1"/><circle cx="317.7" cy="139.0" r="2.1"/><circle cx="317.7" cy="148.2" r="2.1"/><circle cx="317.7" cy="157.5" r="2.1"/><circle cx="317.7" cy="166.8" r="2.1"/><circle cx="317.7" cy="176.0" r="2.1"/><circle cx="317.7" cy="194.6" r="2.1"/><circle cx="317.7" cy="203.8" r="2.1"/><circle cx="317.7" cy="213.1" r="2.1"/><circle cx="325.3" cy="46.3" r="2.1"/><circle cx="325.3" cy="55.6" r="2.1"/><circle cx="325.3" cy="64.9" r="2.1"/><circle cx="325.3" cy="74.1" r="2.1"/><circle cx="325.3" cy="83.4" r="2.1"/><circle cx="325.3" cy="120.4" r="2.1"/><circle cx="325.3" cy="129.7" r="2.1"/><circle cx="325.3" cy="139.0" r="2.1"/><circle cx="325.3" cy="148.2" r="2.1"/><circle cx="325.3" cy="157.5" r="2.1"/><circle cx="325.3" cy="166.8" r="2.1"/><circle cx="325.3" cy="176.0" r="2.1"/><circle cx="325.3" cy="185.3" r="2.1"/><circle cx="325.3" cy="194.6" r="2.1"/><circle cx="325.3" cy="203.8" r="2.1"/><circle cx="325.3" cy="213.1" r="2.1"/><circle cx="325.3" cy="222.4" r="2.1"/><circle cx="333.0" cy="46.3" r="2.1"/><circle cx="333.0" cy="55.6" r="2.1"/><circle cx="333.0" cy="64.9" r="2.1"/><circle cx="333.0" cy="74.1" r="2.1"/><circle cx="333.0" cy="83.4" r="2.1"/><circle cx="333.0" cy="120.4" r="2.1"/><circle cx="333.0" cy="129.7" r="2.1"/><circle cx="333.0" cy="139.0" r="2.1"/><circle cx="333.0" cy="148.2" r="2.1"/><circle cx="333.0" cy="157.5" r="2.1"/><circle cx="333.0" cy="166.8" r="2.1"/><circle cx="333.0" cy="176.0" r="2.1"/><circle cx="333.0" cy="185.3" r="2.1"/><circle cx="333.0" cy="194.6" r="2.1"/><circle cx="333.0" cy="203.8" r="2.1"/><circle cx="333.0" cy="213.1" r="2.1"/><circle cx="333.0" cy="222.4" r="2.1"/><circle cx="333.0" cy="231.6" r="2.1"/><circle cx="340.7" cy="46.3" r="2.1"/><circle cx="340.7" cy="55.6" r="2.1"/><circle cx="340.7" cy="64.9" r="2.1"/><circle cx="340.7" cy="74.1" r="2.1"/><circle cx="340.7" cy="83.4" r="2.1"/><circle cx="340.7" cy="120.4" r="2.1"/><circle cx="340.7" cy="129.7" r="2.1"/><circle cx="340.7" cy="139.0" r="2.1"/><circle cx="340.7" cy="148.2" r="2.1"/><circle cx="340.7" cy="157.5" r="2.1"/><circle cx="340.7" cy="166.8" r="2.1"/><circle cx="340.7" cy="176.0" r="2.1"/><circle cx="340.7" cy="185.3" r="2.1"/><circle cx="340.7" cy="194.6" r="2.1"/><circle cx="340.7" cy="203.8" r="2.1"/><circle cx="340.7" cy="213.1" r="2.1"/><circle cx="340.7" cy="222.4" r="2.1"/><circle cx="340.7" cy="231.6" r="2.1"/><circle cx="348.3" cy="55.6" r="2.1"/><circle cx="348.3" cy="64.9" r="2.1"/><circle cx="348.3" cy="74.1" r="2.1"/><circle cx="348.3" cy="83.4" r="2.1"/><circle cx="348.3" cy="129.7" r="2.1"/><circle cx="348.3" cy="139.0" r="2.1"/><circle cx="348.3" cy="148.2" r="2.1"/><circle cx="348.3" cy="157.5" r="2.1"/><circle cx="348.3" cy="166.8" r="2.1"/><circle cx="348.3" cy="176.0" r="2.1"/><circle cx="348.3" cy="185.3" r="2.1"/><circle cx="348.3" cy="194.6" r="2.1"/><circle cx="348.3" cy="203.8" r="2.1"/><circle cx="348.3" cy="213.1" r="2.1"/><circle cx="348.3" cy="222.4" r="2.1"/><circle cx="348.3" cy="231.6" r="2.1"/><circle cx="356.0" cy="64.9" r="2.1"/><circle cx="356.0" cy="74.1" r="2.1"/><circle cx="356.0" cy="83.4" r="2.1"/><circle cx="356.0" cy="101.9" r="2.1"/><circle cx="356.0" cy="111.2" r="2.1"/><circle cx="356.0" cy="139.0" r="2.1"/><circle cx="356.0" cy="148.2" r="2.1"/><circle cx="356.0" cy="157.5" r="2.1"/><circle cx="356.0" cy="166.8" r="2.1"/><circle cx="356.0" cy="185.3" r="2.1"/><circle cx="356.0" cy="194.6" r="2.1"/><circle cx="356.0" cy="203.8" r="2.1"/><circle cx="356.0" cy="213.1" r="2.1"/><circle cx="356.0" cy="222.4" r="2.1"/><circle cx="363.7" cy="37.1" r="2.1"/><circle cx="363.7" cy="46.3" r="2.1"/><circle cx="363.7" cy="64.9" r="2.1"/><circle cx="363.7" cy="74.1" r="2.1"/><circle cx="363.7" cy="92.6" r="2.1"/><circle cx="363.7" cy="101.9" r="2.1"/><circle cx="363.7" cy="111.2" r="2.1"/><circle cx="363.7" cy="120.4" r="2.1"/><circle cx="363.7" cy="139.0" r="2.1"/><circle cx="363.7" cy="148.2" r="2.1"/><circle cx="363.7" cy="157.5" r="2.1"/><circle cx="363.7" cy="166.8" r="2.1"/><circle cx="363.7" cy="194.6" r="2.1"/><circle cx="363.7" cy="203.8" r="2.1"/><circle cx="363.7" cy="213.1" r="2.1"/><circle cx="371.3" cy="27.8" r="2.1"/><circle cx="371.3" cy="37.1" r="2.1"/><circle cx="371.3" cy="46.3" r="2.1"/><circle cx="371.3" cy="55.6" r="2.1"/><circle cx="371.3" cy="92.6" r="2.1"/><circle cx="371.3" cy="101.9" r="2.1"/><circle cx="371.3" cy="111.2" r="2.1"/><circle cx="371.3" cy="120.4" r="2.1"/><circle cx="371.3" cy="139.0" r="2.1"/><circle cx="371.3" cy="148.2" r="2.1"/><circle cx="371.3" cy="157.5" r="2.1"/><circle cx="371.3" cy="166.8" r="2.1"/><circle cx="379.0" cy="27.8" r="2.1"/><circle cx="379.0" cy="37.1" r="2.1"/><circle cx="379.0" cy="46.3" r="2.1"/><circle cx="379.0" cy="55.6" r="2.1"/><circle cx="379.0" cy="64.9" r="2.1"/><circle cx="379.0" cy="92.6" r="2.1"/><circle cx="379.0" cy="101.9" r="2.1"/><circle cx="379.0" cy="111.2" r="2.1"/><circle cx="379.0" cy="120.4" r="2.1"/><circle cx="379.0" cy="129.7" r="2.1"/><circle cx="379.0" cy="139.0" r="2.1"/><circle cx="379.0" cy="148.2" r="2.1"/><circle cx="379.0" cy="157.5" r="2.1"/><circle cx="379.0" cy="166.8" r="2.1"/><circle cx="386.7" cy="18.5" r="2.1"/><circle cx="386.7" cy="27.8" r="2.1"/><circle cx="386.7" cy="37.1" r="2.1"/><circle cx="386.7" cy="46.3" r="2.1"/><circle cx="386.7" cy="55.6" r="2.1"/><circle cx="386.7" cy="64.9" r="2.1"/><circle cx="386.7" cy="92.6" r="2.1"/><circle cx="386.7" cy="101.9" r="2.1"/><circle cx="386.7" cy="111.2" r="2.1"/><circle cx="386.7" cy="120.4" r="2.1"/><circle cx="386.7" cy="139.0" r="2.1"/><circle cx="386.7" cy="148.2" r="2.1"/><circle cx="386.7" cy="157.5" r="2.1"/><circle cx="386.7" cy="166.8" r="2.1"/><circle cx="394.3" cy="18.5" r="2.1"/><circle cx="394.3" cy="27.8" r="2.1"/><circle cx="394.3" cy="37.1" r="2.1"/><circle cx="394.3" cy="46.3" r="2.1"/><circle cx="394.3" cy="55.6" r="2.1"/><circle cx="394.3" cy="64.9" r="2.1"/><circle cx="394.3" cy="101.9" r="2.1"/><circle cx="394.3" cy="111.2" r="2.1"/><circle cx="394.3" cy="120.4" r="2.1"/><circle cx="402.0" cy="18.5" r="2.1"/><circle cx="402.0" cy="27.8" r="2.1"/><circle cx="402.0" cy="37.1" r="2.1"/><circle cx="402.0" cy="46.3" r="2.1"/><circle cx="402.0" cy="55.6" r="2.1"/><circle cx="402.0" cy="64.9" r="2.1"/><circle cx="402.0" cy="74.1" r="2.1"/><circle cx="409.7" cy="18.5" r="2.1"/><circle cx="409.7" cy="27.8" r="2.1"/><circle cx="409.7" cy="37.1" r="2.1"/><circle cx="409.7" cy="46.3" r="2.1"/><circle cx="409.7" cy="55.6" r="2.1"/><circle cx="409.7" cy="64.9" r="2.1"/><circle cx="409.7" cy="74.1" r="2.1"/><circle cx="409.7" cy="83.4" r="2.1"/><circle cx="409.7" cy="92.6" r="2.1"/><circle cx="417.3" cy="9.3" r="2.1"/><circle cx="417.3" cy="18.5" r="2.1"/><circle cx="417.3" cy="27.8" r="2.1"/><circle cx="417.3" cy="37.1" r="2.1"/><circle cx="417.3" cy="46.3" r="2.1"/><circle cx="417.3" cy="55.6" r="2.1"/><circle cx="417.3" cy="64.9" r="2.1"/><circle cx="417.3" cy="74.1" r="2.1"/><circle cx="417.3" cy="83.4" r="2.1"/><circle cx="417.3" cy="92.6" r="2.1"/><circle cx="417.3" cy="101.9" r="2.1"/><circle cx="417.3" cy="111.2" r="2.1"/><circle cx="417.3" cy="120.4" r="2.1"/><circle cx="417.3" cy="129.7" r="2.1"/><circle cx="417.3" cy="139.0" r="2.1"/><circle cx="425.0" cy="9.3" r="2.1"/><circle cx="425.0" cy="18.5" r="2.1"/><circle cx="425.0" cy="27.8" r="2.1"/><circle cx="425.0" cy="37.1" r="2.1"/><circle cx="425.0" cy="46.3" r="2.1"/><circle cx="425.0" cy="55.6" r="2.1"/><circle cx="425.0" cy="64.9" r="2.1"/><circle cx="425.0" cy="74.1" r="2.1"/><circle cx="425.0" cy="83.4" r="2.1"/><circle cx="425.0" cy="92.6" r="2.1"/><circle cx="425.0" cy="101.9" r="2.1"/><circle cx="425.0" cy="111.2" r="2.1"/><circle cx="425.0" cy="120.4" r="2.1"/><circle cx="425.0" cy="129.7" r="2.1"/><circle cx="425.0" cy="139.0" r="2.1"/><circle cx="432.7" cy="9.3" r="2.1"/><circle cx="432.7" cy="18.5" r="2.1"/><circle cx="432.7" cy="27.8" r="2.1"/><circle cx="432.7" cy="37.1" r="2.1"/><circle cx="432.7" cy="46.3" r="2.1"/><circle cx="432.7" cy="55.6" r="2.1"/><circle cx="432.7" cy="64.9" r="2.1"/><circle cx="432.7" cy="74.1" r="2.1"/><circle cx="432.7" cy="83.4" r="2.1"/><circle cx="432.7" cy="92.6" r="2.1"/><circle cx="432.7" cy="101.9" r="2.1"/><circle cx="432.7" cy="111.2" r="2.1"/><circle cx="432.7" cy="120.4" r="2.1"/><circle cx="432.7" cy="129.7" r="2.1"/><circle cx="432.7" cy="139.0" r="2.1"/><circle cx="440.3" cy="9.3" r="2.1"/><circle cx="440.3" cy="18.5" r="2.1"/><circle cx="440.3" cy="27.8" r="2.1"/><circle cx="440.3" cy="37.1" r="2.1"/><circle cx="440.3" cy="46.3" r="2.1"/><circle cx="440.3" cy="55.6" r="2.1"/><circle cx="440.3" cy="64.9" r="2.1"/><circle cx="440.3" cy="74.1" r="2.1"/><circle cx="440.3" cy="83.4" r="2.1"/><circle cx="440.3" cy="92.6" r="2.1"/><circle cx="440.3" cy="101.9" r="2.1"/><circle cx="440.3" cy="111.2" r="2.1"/><circle cx="440.3" cy="120.4" r="2.1"/><circle cx="440.3" cy="129.7" r="2.1"/><circle cx="440.3" cy="139.0" r="2.1"/><circle cx="448.0" cy="9.3" r="2.1"/><circle cx="448.0" cy="18.5" r="2.1"/><circle cx="448.0" cy="27.8" r="2.1"/><circle cx="448.0" cy="37.1" r="2.1"/><circle cx="448.0" cy="46.3" r="2.1"/><circle cx="448.0" cy="55.6" r="2.1"/><circle cx="448.0" cy="64.9" r="2.1"/><circle cx="448.0" cy="74.1" r="2.1"/><circle cx="448.0" cy="83.4" r="2.1"/><circle cx="448.0" cy="92.6" r="2.1"/><circle cx="448.0" cy="101.9" r="2.1"/><circle cx="448.0" cy="111.2" r="2.1"/><circle cx="448.0" cy="120.4" r="2.1"/><circle cx="448.0" cy="129.7" r="2.1"/><circle cx="455.7" cy="9.3" r="2.1"/><circle cx="455.7" cy="18.5" r="2.1"/><circle cx="455.7" cy="27.8" r="2.1"/><circle cx="455.7" cy="37.1" r="2.1"/><circle cx="455.7" cy="46.3" r="2.1"/><circle cx="455.7" cy="55.6" r="2.1"/><circle cx="455.7" cy="64.9" r="2.1"/><circle cx="455.7" cy="74.1" r="2.1"/><circle cx="455.7" cy="83.4" r="2.1"/><circle cx="455.7" cy="92.6" r="2.1"/><circle cx="455.7" cy="101.9" r="2.1"/><circle cx="455.7" cy="111.2" r="2.1"/><circle cx="463.3" cy="9.3" r="2.1"/><circle cx="463.3" cy="18.5" r="2.1"/><circle cx="463.3" cy="27.8" r="2.1"/><circle cx="463.3" cy="37.1" r="2.1"/><circle cx="463.3" cy="46.3" r="2.1"/><circle cx="463.3" cy="55.6" r="2.1"/><circle cx="463.3" cy="64.9" r="2.1"/><circle cx="463.3" cy="74.1" r="2.1"/><circle cx="463.3" cy="83.4" r="2.1"/><circle cx="463.3" cy="92.6" r="2.1"/><circle cx="463.3" cy="101.9" r="2.1"/><circle cx="463.3" cy="111.2" r="2.1"/><circle cx="463.3" cy="157.5" r="2.1"/><circle cx="463.3" cy="166.8" r="2.1"/><circle cx="471.0" cy="9.3" r="2.1"/><circle cx="471.0" cy="18.5" r="2.1"/><circle cx="471.0" cy="27.8" r="2.1"/><circle cx="471.0" cy="37.1" r="2.1"/><circle cx="471.0" cy="46.3" r="2.1"/><circle cx="471.0" cy="55.6" r="2.1"/><circle cx="471.0" cy="64.9" r="2.1"/><circle cx="471.0" cy="74.1" r="2.1"/><circle cx="471.0" cy="83.4" r="2.1"/><circle cx="471.0" cy="92.6" r="2.1"/><circle cx="471.0" cy="101.9" r="2.1"/><circle cx="471.0" cy="111.2" r="2.1"/><circle cx="471.0" cy="148.2" r="2.1"/><circle cx="471.0" cy="157.5" r="2.1"/><circle cx="471.0" cy="166.8" r="2.1"/><circle cx="471.0" cy="176.0" r="2.1"/><circle cx="471.0" cy="185.3" r="2.1"/><circle cx="478.7" cy="9.3" r="2.1"/><circle cx="478.7" cy="18.5" r="2.1"/><circle cx="478.7" cy="27.8" r="2.1"/><circle cx="478.7" cy="37.1" r="2.1"/><circle cx="478.7" cy="46.3" r="2.1"/><circle cx="478.7" cy="55.6" r="2.1"/><circle cx="478.7" cy="64.9" r="2.1"/><circle cx="478.7" cy="74.1" r="2.1"/><circle cx="478.7" cy="83.4" r="2.1"/><circle cx="478.7" cy="92.6" r="2.1"/><circle cx="478.7" cy="101.9" r="2.1"/><circle cx="478.7" cy="111.2" r="2.1"/><circle cx="478.7" cy="148.2" r="2.1"/><circle cx="478.7" cy="157.5" r="2.1"/><circle cx="478.7" cy="166.8" r="2.1"/><circle cx="478.7" cy="176.0" r="2.1"/><circle cx="478.7" cy="185.3" r="2.1"/><circle cx="486.3" cy="9.3" r="2.1"/><circle cx="486.3" cy="18.5" r="2.1"/><circle cx="486.3" cy="27.8" r="2.1"/><circle cx="486.3" cy="37.1" r="2.1"/><circle cx="486.3" cy="46.3" r="2.1"/><circle cx="486.3" cy="55.6" r="2.1"/><circle cx="486.3" cy="64.9" r="2.1"/><circle cx="486.3" cy="74.1" r="2.1"/><circle cx="486.3" cy="83.4" r="2.1"/><circle cx="486.3" cy="92.6" r="2.1"/><circle cx="486.3" cy="101.9" r="2.1"/><circle cx="486.3" cy="111.2" r="2.1"/><circle cx="486.3" cy="148.2" r="2.1"/><circle cx="486.3" cy="157.5" r="2.1"/><circle cx="486.3" cy="166.8" r="2.1"/><circle cx="486.3" cy="176.0" r="2.1"/><circle cx="486.3" cy="185.3" r="2.1"/><circle cx="494.0" cy="9.3" r="2.1"/><circle cx="494.0" cy="18.5" r="2.1"/><circle cx="494.0" cy="27.8" r="2.1"/><circle cx="494.0" cy="37.1" r="2.1"/><circle cx="494.0" cy="46.3" r="2.1"/><circle cx="494.0" cy="55.6" r="2.1"/><circle cx="494.0" cy="64.9" r="2.1"/><circle cx="494.0" cy="74.1" r="2.1"/><circle cx="494.0" cy="83.4" r="2.1"/><circle cx="494.0" cy="92.6" r="2.1"/><circle cx="494.0" cy="101.9" r="2.1"/><circle cx="494.0" cy="111.2" r="2.1"/><circle cx="494.0" cy="148.2" r="2.1"/><circle cx="494.0" cy="157.5" r="2.1"/><circle cx="494.0" cy="166.8" r="2.1"/><circle cx="494.0" cy="176.0" r="2.1"/><circle cx="494.0" cy="185.3" r="2.1"/><circle cx="501.7" cy="9.3" r="2.1"/><circle cx="501.7" cy="18.5" r="2.1"/><circle cx="501.7" cy="27.8" r="2.1"/><circle cx="501.7" cy="37.1" r="2.1"/><circle cx="501.7" cy="46.3" r="2.1"/><circle cx="501.7" cy="55.6" r="2.1"/><circle cx="501.7" cy="64.9" r="2.1"/><circle cx="501.7" cy="74.1" r="2.1"/><circle cx="501.7" cy="83.4" r="2.1"/><circle cx="501.7" cy="92.6" r="2.1"/><circle cx="501.7" cy="101.9" r="2.1"/><circle cx="501.7" cy="111.2" r="2.1"/><circle cx="501.7" cy="148.2" r="2.1"/><circle cx="501.7" cy="157.5" r="2.1"/><circle cx="501.7" cy="166.8" r="2.1"/><circle cx="501.7" cy="176.0" r="2.1"/><circle cx="501.7" cy="185.3" r="2.1"/><circle cx="501.7" cy="222.4" r="2.1"/><circle cx="501.7" cy="231.6" r="2.1"/><circle cx="509.3" cy="18.5" r="2.1"/><circle cx="509.3" cy="27.8" r="2.1"/><circle cx="509.3" cy="37.1" r="2.1"/><circle cx="509.3" cy="46.3" r="2.1"/><circle cx="509.3" cy="55.6" r="2.1"/><circle cx="509.3" cy="64.9" r="2.1"/><circle cx="509.3" cy="74.1" r="2.1"/><circle cx="509.3" cy="83.4" r="2.1"/><circle cx="509.3" cy="92.6" r="2.1"/><circle cx="509.3" cy="101.9" r="2.1"/><circle cx="509.3" cy="157.5" r="2.1"/><circle cx="509.3" cy="166.8" r="2.1"/><circle cx="509.3" cy="176.0" r="2.1"/><circle cx="509.3" cy="185.3" r="2.1"/><circle cx="509.3" cy="213.1" r="2.1"/><circle cx="509.3" cy="222.4" r="2.1"/><circle cx="509.3" cy="231.6" r="2.1"/><circle cx="509.3" cy="240.9" r="2.1"/><circle cx="517.0" cy="18.5" r="2.1"/><circle cx="517.0" cy="27.8" r="2.1"/><circle cx="517.0" cy="37.1" r="2.1"/><circle cx="517.0" cy="46.3" r="2.1"/><circle cx="517.0" cy="55.6" r="2.1"/><circle cx="517.0" cy="64.9" r="2.1"/><circle cx="517.0" cy="74.1" r="2.1"/><circle cx="517.0" cy="83.4" r="2.1"/><circle cx="517.0" cy="92.6" r="2.1"/><circle cx="517.0" cy="101.9" r="2.1"/><circle cx="517.0" cy="176.0" r="2.1"/><circle cx="517.0" cy="185.3" r="2.1"/><circle cx="517.0" cy="213.1" r="2.1"/><circle cx="517.0" cy="222.4" r="2.1"/><circle cx="517.0" cy="231.6" r="2.1"/><circle cx="517.0" cy="240.9" r="2.1"/><circle cx="524.7" cy="18.5" r="2.1"/><circle cx="524.7" cy="27.8" r="2.1"/><circle cx="524.7" cy="37.1" r="2.1"/><circle cx="524.7" cy="46.3" r="2.1"/><circle cx="524.7" cy="55.6" r="2.1"/><circle cx="524.7" cy="64.9" r="2.1"/><circle cx="524.7" cy="83.4" r="2.1"/><circle cx="524.7" cy="92.6" r="2.1"/><circle cx="524.7" cy="101.9" r="2.1"/><circle cx="524.7" cy="176.0" r="2.1"/><circle cx="524.7" cy="185.3" r="2.1"/><circle cx="524.7" cy="213.1" r="2.1"/><circle cx="524.7" cy="222.4" r="2.1"/><circle cx="524.7" cy="231.6" r="2.1"/><circle cx="524.7" cy="240.9" r="2.1"/><circle cx="532.3" cy="27.8" r="2.1"/><circle cx="532.3" cy="37.1" r="2.1"/><circle cx="532.3" cy="46.3" r="2.1"/><circle cx="532.3" cy="55.6" r="2.1"/><circle cx="532.3" cy="64.9" r="2.1"/><circle cx="532.3" cy="83.4" r="2.1"/><circle cx="532.3" cy="92.6" r="2.1"/><circle cx="532.3" cy="101.9" r="2.1"/><circle cx="532.3" cy="176.0" r="2.1"/><circle cx="532.3" cy="213.1" r="2.1"/><circle cx="532.3" cy="222.4" r="2.1"/><circle cx="532.3" cy="231.6" r="2.1"/><circle cx="532.3" cy="240.9" r="2.1"/><circle cx="540.0" cy="27.8" r="2.1"/><circle cx="540.0" cy="37.1" r="2.1"/><circle cx="540.0" cy="46.3" r="2.1"/><circle cx="540.0" cy="55.6" r="2.1"/><circle cx="540.0" cy="64.9" r="2.1"/><circle cx="540.0" cy="213.1" r="2.1"/><circle cx="540.0" cy="222.4" r="2.1"/><circle cx="540.0" cy="231.6" r="2.1"/><circle cx="540.0" cy="240.9" r="2.1"/><circle cx="547.7" cy="37.1" r="2.1"/><circle cx="547.7" cy="46.3" r="2.1"/><circle cx="547.7" cy="55.6" r="2.1"/><circle cx="547.7" cy="222.4" r="2.1"/><circle cx="547.7" cy="231.6" r="2.1"/></g></svg>
         <span class="co-pin active" data-r="ASIC" style="left:87.2%;top:75.7%"><i></i><span class="lab"><b>ASIC</b></span></span><span class="co-pin" data-r="FSCA" style="left:56.9%;top:79.4%"><i></i><span class="lab"><b>FSCA</b><em>South Africa</em></span></span><span class="co-pin" data-r="CMA" style="left:65.0%;top:39.7%"><i></i><span class="lab"><b>CMA</b><em>United Arab Emirates</em></span></span><span class="co-pin" data-r="FSA" style="left:65.3%;top:61.0%"><i></i><span class="lab"><b>FSA</b><em>Seychelles</em></span></span><span class="co-pin" data-r="FSC" style="left:65.8%;top:72.1%"><i></i><span class="lab"><b>FSC</b><em>Mauritius</em></span></span>
       </div>
-    <div class="co-reggrid reveal reveal-stagger">
+    <div class="co-reggrid reveal-stagger" data-aos="fade-up">
       <div class="co-reg" data-r="ASIC">
         <div class="co-reg-head"><img class="co-reg-flag" src="../../assets/img/flags/australia.svg" alt="Australia" width="30" height="21" loading="lazy"><b>ASIC</b></div>
         <p class="co-reg-name">Australian Securities and Investments Commission</p>
@@ -450,11 +662,11 @@
   <div class="co-mkt-glow" aria-hidden="true"></div>
   <div class="container">
     <div class="head center">
-      <span class="eyebrow eyebrow-blue reveal">Markets</span>
-      <h2 class="h2 h2-light reveal reveal-2" id="co-assets-title">Trade and shine with us</h2>
-      <p class="head-sub reveal reveal-3">One account, five asset classes and over a thousand instruments &mdash; all in a single, secure environment.</p>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">Markets</span>
+      <h2 class="h2 h2-light" id="co-assets-title" data-aos="fade-up">Trade and shine with us</h2>
+      <p class="head-sub" data-aos="fade-up">One account, five asset classes and over a thousand instruments &mdash; all in a single, secure environment.</p>
     </div>
-    <div class="co-mktgrid reveal reveal-stagger">
+    <div class="co-mktgrid reveal-stagger" data-aos="fade-up">
         <a class="co-mktcard co-mkt--fx" href="../../trading/products/forex.html"><span class="co-mktic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2l4 4-4 4M21 6H9a4 4 0 0 0-4 4M7 22l-4-4 4-4M3 18h12a4 4 0 0 0 4-4"/></svg></span><h3>Forex</h3><p>Trade CFDs on 80+ currency pairs with competitive, ultra-tight spreads.</p><span class="co-mktmore">Explore <span class="arw">&rarr;</span></span></a>
         <a class="co-mktcard co-mkt--idx" href="#"><span class="co-mktic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V12M9 20V6M14 20v-9M19 20V4"/></svg></span><h3>Indices</h3><p>Trade CFDs on the world’s most popular indices with tight spreads.</p><span class="co-mktmore">Explore <span class="arw">&rarr;</span></span></a>
         <a class="co-mktcard co-mkt--shr" href="#"><span class="co-mktic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M13 2.5a9.5 9.5 0 0 1 8.5 8.5H13z"/></svg></span><h3>Shares</h3><p>700+ major company stocks from the US, Europe and the UK.</p><span class="co-mktmore">Explore <span class="arw">&rarr;</span></span></a>
@@ -469,11 +681,11 @@
 <section class="section platforms" id="platforms" aria-labelledby="platforms-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow reveal">Platforms &amp; tools</span>
-      <h2 class="h2 reveal reveal-2" id="platforms-title">Our star platforms &amp; tools</h2>
+      <span class="eyebrow" data-aos="fade-up">Platforms &amp; tools</span>
+      <h2 class="h2" id="platforms-title" data-aos="fade-up">Our star platforms &amp; tools</h2>
     </div>
 
-    <div class="plat-grid reveal reveal-2">
+    <div class="plat-grid" data-aos="fade-up">
       <!-- App card -->
       <article class="plat-card plat-app">
         <div class="plat-copy">
@@ -481,11 +693,11 @@
           <p>The full account in your pocket — iOS &amp; Android.</p>
           <span class="avail">Available on:</span>
           <div class="badges">
-            <a href="#" aria-label="Get it on Google Play"><img src="../../assets/img/badge-googleplay.png" alt="Get it on Google Play" width="140" height="41" loading="lazy"></a>
-            <a href="#" aria-label="Download on the App Store"><img src="../../assets/img/badge-appstore.png" alt="Download on the App Store" width="140" height="41" loading="lazy"></a>
+            <a href="#" aria-label="Get it on Google Play"><img src="../../assets/img/badge-googleplay.webp" alt="Get it on Google Play" width="140" height="41" loading="lazy"></a>
+            <a href="#" aria-label="Download on the App Store"><img src="../../assets/img/badge-appstore.webp" alt="Download on the App Store" width="140" height="41" loading="lazy"></a>
           </div>
         </div>
-        <img class="plat-phone" src="../../assets/img/appScreenshot.jpg" alt="STARTRADER mobile trading app" width="880" height="1034" loading="lazy">
+        <img class="plat-phone" src="../../assets/img/appScreenshot.webp" alt="STARTRADER mobile trading app" width="880" height="1034" loading="lazy">
       </article>
 
       <!-- Web trader (blue) -->
@@ -505,7 +717,7 @@
           <p>The classic — EAs, indicators, proven reliability.</p>
         </div>
         <a href="../../trading/platforms/mt4.html" class="link-ur">Download MT4 <svg class="ico"><use href="#i-arrow-ur"/></svg></a>
-        <img class="plat-mt-ico" src="../../assets/img/mt4Screenshot.png" alt="MetaTrader 4" width="152" height="165" loading="lazy">
+        <img class="plat-mt-ico" src="../../assets/img/mt4Screenshot.webp" alt="MetaTrader 4" width="152" height="165" loading="lazy">
       </article>
 
       <!-- MT5 -->
@@ -515,7 +727,7 @@
           <p>Multi-asset, depth of market, full algo support.</p>
         </div>
         <a href="../../trading/platforms/mt5.html" class="link-ur">Download MT5 <svg class="ico"><use href="#i-arrow-ur"/></svg></a>
-        <img class="plat-mt-ico" src="../../assets/img/mt5Screenshot.png" alt="MetaTrader 5" width="163" height="166" loading="lazy">
+        <img class="plat-mt-ico" src="../../assets/img/mt5Screenshot.webp" alt="MetaTrader 5" width="163" height="166" loading="lazy">
       </article>
     </div>
 
@@ -530,12 +742,12 @@
   <div class="co-vision-glow" aria-hidden="true"></div>
   <div class="container co-vm2">
     <div class="co-vm2-intro">
-      <span class="eyebrow eyebrow-blue reveal">What we stand for</span>
-      <h2 class="h2 h2-light reveal reveal-2" id="co-vm-title">Values around which<br>we revolve</h2>
-      <p class="co-vm2-lead reveal reveal-3">Purpose keeps us pointed the same way &mdash; from the platforms we build to the way we support every trader who joins us.</p>
-      <a href="../../trading/getting-started/account-opening.html" class="btn btn-primary btn-lg magnetic reveal reveal-4">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">What we stand for</span>
+      <h2 class="h2 h2-light" id="co-vm-title" data-aos="fade-up">Values around which<br>we revolve</h2>
+      <p class="co-vm2-lead" data-aos="fade-up">Purpose keeps us pointed the same way &mdash; from the platforms we build to the way we support every trader who joins us.</p>
+      <a href="../../trading/getting-started/account-opening.html" class="btn btn-primary btn-lg magnetic" data-aos="fade-up">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
     </div>
-    <div class="co-vm2-list reveal reveal-stagger">
+    <div class="co-vm2-list reveal-stagger" data-aos="fade-up">
       <article class="co-vm2-card">
         <span class="co-vm2-no">01</span>
         <div class="co-vm2-body">
@@ -560,11 +772,11 @@
 <section class="section co-star" aria-labelledby="co-values-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow reveal">STAR values</span>
-      <h2 class="h2 reveal reveal-2" id="co-values-title">The values behind the name</h2>
-      <p class="head-sub reveal reveal-3">Four principles, one acronym &mdash; the promise built into everything we call STARTRADER.</p>
+      <span class="eyebrow" data-aos="fade-up">STAR values</span>
+      <h2 class="h2" id="co-values-title" data-aos="fade-up">The values behind the name</h2>
+      <p class="head-sub" data-aos="fade-up">Four principles, one acronym &mdash; the promise built into everything we call STARTRADER.</p>
     </div>
-    <div class="co-starrow reveal reveal-stagger">
+    <div class="co-starrow reveal-stagger" data-aos="fade-up">
         <article class="co-starcard"><span class="co-startile">S</span><h3>Strength</h3><p>Strong platforms, infrastructure and a regulatory framework empower traders to make clear, informed decisions.</p></article>
         <article class="co-starcard"><span class="co-startile">T</span><h3>Trust</h3><p>Transparency, robust regulation and integrity form the foundation of a trading experience built on reliability.</p></article>
         <article class="co-starcard"><span class="co-startile">A</span><h3>Ambition</h3><p>STARTRADER drives traders’ progress in global markets through reliable, advanced tools.</p></article>
@@ -579,13 +791,13 @@
   <div class="container">
     <div class="co-world-top">
       <div class="head">
-        <span class="eyebrow eyebrow-blue reveal">Beyond the charts</span>
-        <h2 class="h2 h2-light reveal reveal-2" id="co-world-title">STARTRADER, out in the world</h2>
-        <p class="head-sub reveal reveal-3">From the NBA hardwood to the polo lawn, we back the moments that bring people together &mdash; turning a global brand into a global community.</p>
+        <span class="eyebrow eyebrow-blue" data-aos="fade-up">Beyond the charts</span>
+        <h2 class="h2 h2-light" id="co-world-title" data-aos="fade-up">STARTRADER, out in the world</h2>
+        <p class="head-sub" data-aos="fade-up">From the NBA hardwood to the polo lawn, we back the moments that bring people together &mdash; turning a global brand into a global community.</p>
       </div>
-      <a href="../../index.html#sponsors" class="co-world-link reveal reveal-3">See all sponsorships <svg class="ico"><use href="#i-arrow-ur"/></svg></a>
+      <a href="../../index.html#sponsors" class="co-world-link" data-aos="fade-up">See all sponsorships <svg class="ico"><use href="#i-arrow-ur"/></svg></a>
     </div>
-    <div class="co-gallery reveal reveal-stagger">
+    <div class="co-gallery reveal-stagger" data-aos="fade-up">
       <figure class="co-gcard co-gcard-lg">
         <img src="../../assets/img/company-1.webp" alt="STARTRADER at an official NBA partnership event" width="900" height="1325" loading="lazy">
         <figcaption><span class="co-gtag">Official NBA Partner</span><b>On the world&rsquo;s biggest court</b></figcaption>
@@ -606,11 +818,11 @@
 <section class="section fx-why" aria-labelledby="co-adv-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow reveal">Why STARTRADER</span>
-      <h2 class="h2 reveal reveal-2" id="co-adv-title">Our advantages</h2>
-      <p class="head-sub reveal reveal-3">Everything that makes trading with STARTRADER faster, cheaper and simpler &mdash; engineered into one account.</p>
+      <span class="eyebrow" data-aos="fade-up">Why STARTRADER</span>
+      <h2 class="h2" id="co-adv-title" data-aos="fade-up">Our advantages</h2>
+      <p class="head-sub" data-aos="fade-up">Everything that makes trading with STARTRADER faster, cheaper and simpler &mdash; engineered into one account.</p>
     </div>
-    <div class="fx-w2-grid reveal reveal-stagger">
+    <div class="fx-w2-grid reveal-stagger" data-aos="fade-up">
       <!-- Ultra-Fast Execution -->
       <article class="fx-w2">
         <div class="fx-w2-viz">
@@ -707,22 +919,22 @@
 <section class="section awards" id="awards" aria-labelledby="awards-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow reveal">AWARDS &amp; RECOGNITION</span>
-      <h2 class="h2 reveal reveal-2" id="awards-title">Recognised across the industry</h2>
+      <span class="eyebrow" data-aos="fade-up">AWARDS &amp; RECOGNITION</span>
+      <h2 class="h2" id="awards-title" data-aos="fade-up">Recognised across the industry</h2>
     </div>
 
-    <div class="award-rail reveal reveal-2">
-      <div class="award-track" id="awardTrack">
-        <article class="award-card"><span class="laurel laurel-l"></span><span class="award-body"><span class="award-txt">AFFILIATE BRAND<br>OF THE YEAR</span><span class="award-sum">DUBAI AFFILIATE SUMMIT 2025</span></span><span class="laurel laurel-r"></span></article>
-        <article class="award-card"><span class="laurel laurel-l"></span><span class="award-body"><span class="award-txt">MOST REPUTABLE<br>FOREX BROKER</span><span class="award-sum">FOREX EXPO DUBAI 2025</span></span><span class="laurel laurel-r"></span></article>
-        <article class="award-card"><span class="laurel laurel-l"></span><span class="award-body"><span class="award-txt">BEST FOREX TRADE<br>EXECUTION</span><span class="award-sum">WIKI FINANCE EXPO CYPRUS 2025</span></span><span class="laurel laurel-r"></span></article>
-        <article class="award-card"><span class="laurel laurel-l"></span><span class="award-body"><span class="award-txt">BEST TRADING<br>CONDITIONS</span><span class="award-sum">MONEY EXPO CHILE 2025</span></span><span class="laurel laurel-r"></span></article>
-        <article class="award-card"><span class="laurel laurel-l"></span><span class="award-body"><span class="award-txt">BEST COPY TRADING<br>BROKER 2025</span><span class="award-sum">FOREX TRADERS SUMMIT 2025</span></span><span class="laurel laurel-r"></span></article>
-        <article class="award-card"><span class="laurel laurel-l"></span><span class="award-body"><span class="award-txt">BEST FX BROKER<br>MIDDLE EAST</span><span class="award-sum">GULF TRADING SUMMIT 2025</span></span><span class="laurel laurel-r"></span></article>
-        <article class="award-card"><span class="laurel laurel-l"></span><span class="award-body"><span class="award-txt">FASTEST GROWING<br>BROKER</span><span class="award-sum">WORLD FINANCE AWARDS 2025</span></span><span class="laurel laurel-r"></span></article>
-        <article class="award-card"><span class="laurel laurel-l"></span><span class="award-body"><span class="award-txt">BEST MOBILE<br>TRADING APP</span><span class="award-sum">FINTECH EXPO SINGAPORE 2025</span></span><span class="laurel laurel-r"></span></article>
-        <article class="award-card"><span class="laurel laurel-l"></span><span class="award-body"><span class="award-txt">MOST TRUSTED<br>BROKER ASIA</span><span class="award-sum">ASIA FOREX AWARDS 2025</span></span><span class="laurel laurel-r"></span></article>
-        <article class="award-card"><span class="laurel laurel-l"></span><span class="award-body"><span class="award-txt">BEST CUSTOMER<br>SUPPORT</span><span class="award-sum">GLOBAL BROKER AWARDS 2025</span></span><span class="laurel laurel-r"></span></article>
+    <div class="award-rail swiper st-marquee" data-marquee-speed="50" data-marquee-prev="#awardPrev" data-marquee-next="#awardNext" data-aos="fade-up">
+      <div class="award-track swiper-wrapper" id="awardTrack">
+        <article class="award-card swiper-slide"><span class="laurel laurel-l"></span><span class="award-body"><span class="award-txt">AFFILIATE BRAND<br>OF THE YEAR</span><span class="award-sum">DUBAI AFFILIATE SUMMIT 2025</span></span><span class="laurel laurel-r"></span></article>
+        <article class="award-card swiper-slide"><span class="laurel laurel-l"></span><span class="award-body"><span class="award-txt">MOST REPUTABLE<br>FOREX BROKER</span><span class="award-sum">FOREX EXPO DUBAI 2025</span></span><span class="laurel laurel-r"></span></article>
+        <article class="award-card swiper-slide"><span class="laurel laurel-l"></span><span class="award-body"><span class="award-txt">BEST FOREX TRADE<br>EXECUTION</span><span class="award-sum">WIKI FINANCE EXPO CYPRUS 2025</span></span><span class="laurel laurel-r"></span></article>
+        <article class="award-card swiper-slide"><span class="laurel laurel-l"></span><span class="award-body"><span class="award-txt">BEST TRADING<br>CONDITIONS</span><span class="award-sum">MONEY EXPO CHILE 2025</span></span><span class="laurel laurel-r"></span></article>
+        <article class="award-card swiper-slide"><span class="laurel laurel-l"></span><span class="award-body"><span class="award-txt">BEST COPY TRADING<br>BROKER 2025</span><span class="award-sum">FOREX TRADERS SUMMIT 2025</span></span><span class="laurel laurel-r"></span></article>
+        <article class="award-card swiper-slide"><span class="laurel laurel-l"></span><span class="award-body"><span class="award-txt">BEST FX BROKER<br>MIDDLE EAST</span><span class="award-sum">GULF TRADING SUMMIT 2025</span></span><span class="laurel laurel-r"></span></article>
+        <article class="award-card swiper-slide"><span class="laurel laurel-l"></span><span class="award-body"><span class="award-txt">FASTEST GROWING<br>BROKER</span><span class="award-sum">WORLD FINANCE AWARDS 2025</span></span><span class="laurel laurel-r"></span></article>
+        <article class="award-card swiper-slide"><span class="laurel laurel-l"></span><span class="award-body"><span class="award-txt">BEST MOBILE<br>TRADING APP</span><span class="award-sum">FINTECH EXPO SINGAPORE 2025</span></span><span class="laurel laurel-r"></span></article>
+        <article class="award-card swiper-slide"><span class="laurel laurel-l"></span><span class="award-body"><span class="award-txt">MOST TRUSTED<br>BROKER ASIA</span><span class="award-sum">ASIA FOREX AWARDS 2025</span></span><span class="laurel laurel-r"></span></article>
+        <article class="award-card swiper-slide"><span class="laurel laurel-l"></span><span class="award-body"><span class="award-txt">BEST CUSTOMER<br>SUPPORT</span><span class="award-sum">GLOBAL BROKER AWARDS 2025</span></span><span class="laurel laurel-r"></span></article>
       </div>
     </div>
     <div class="award-nav">
@@ -731,10 +943,10 @@
     </div>
 
     <div class="head center media-head">
-      <span class="eyebrow reveal">AWARDS &amp; RECOGNITION</span>
-      <h2 class="h2 reveal reveal-2">Highly praised by global media</h2>
+      <span class="eyebrow" data-aos="fade-up">AWARDS &amp; RECOGNITION</span>
+      <h2 class="h2" data-aos="fade-up">Highly praised by global media</h2>
     </div>
-    <ul class="media-logos reveal reveal-stagger">
+    <ul class="media-logos reveal-stagger" data-aos="fade-up">
       <li><span class="media-rate">4.5/5</span><span class="media-logo"><img src="../../assets/img/media-wikifx-c.svg" alt="WikiFX" loading="lazy"></span><span class="media-url">wikifx.com</span></li>
       <li><span class="media-rate">4.5/5</span><span class="media-logo"><img src="../../assets/img/media-dailyforex-c.svg" alt="DailyForex" loading="lazy"></span><span class="media-url">dailyforex.com</span></li>
       <li><span class="media-rate">4.5/5</span><span class="media-logo"><img src="../../assets/img/media-myfxbook-c.svg" alt="Myfxbook" loading="lazy"></span><span class="media-url">myfxbook.com</span></li>
@@ -748,11 +960,11 @@
 <section class="section co-trust" aria-labelledby="co-risk-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow reveal">Peace of mind</span>
-      <h2 class="h2 reveal reveal-2" id="co-risk-title">Trade without doubts</h2>
-      <p class="head-sub reveal reveal-3">Your capital sits behind bank-grade security and a hard loss floor &mdash; so you can focus on the markets, not the what-ifs.</p>
+      <span class="eyebrow" data-aos="fade-up">Peace of mind</span>
+      <h2 class="h2" id="co-risk-title" data-aos="fade-up">Trade without doubts</h2>
+      <p class="head-sub" data-aos="fade-up">Your capital sits behind bank-grade security and a hard loss floor &mdash; so you can focus on the markets, not the what-ifs.</p>
     </div>
-    <div class="co-trust-grid reveal reveal-stagger">
+    <div class="co-trust-grid reveal-stagger" data-aos="fade-up">
       <article class="co-trust-card">
         <div class="co-trust-viz">
           <span class="tr-ring"></span><span class="tr-ring tr-ring-2"></span>
@@ -772,7 +984,7 @@
         <p>Every session is protected with 256-bit SSL &mdash; the same standard trusted by PayPal, eBay and major banks.</p>
       </article>
     </div>
-    <div class="co-trust-badges reveal reveal-2">
+    <div class="co-trust-badges" data-aos="fade-up">
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v5c0 5-3.4 8.5-8 10-4.6-1.5-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg> Negative balance protection</span>
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg> 256-bit SSL encryption</span>
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V10l7-4 7 4v11M9.5 21v-5h5v5"/></svg> Segregated client funds</span>
@@ -875,7 +1087,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -909,6 +1121,8 @@
 <script src="../../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../../assets/js/vendor/swiper-bundle.min.js" defer></script>
+<script src="../../assets/js/vendor/aos.min.js" defer></script>
 <script src="../../assets/js/main.js" defer></script>
 
 <!-- Company page: robust scroll reveals + hero parallax (self-contained, never leaves content hidden) -->

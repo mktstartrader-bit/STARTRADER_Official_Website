@@ -16,14 +16,14 @@
   <meta property="og:title" content="STAR Web Trading | Trade Global Markets in Your Browser | STARTRADER" />
   <meta property="og:description" content="STAR Web Trading runs entirely in your browser — no download, no install. Full charting, real-time quotes, every order type and the same account as the desktop terminal." />
   <meta property="og:url" content="https://www.startrader.com/trading/platforms/star-webtrader.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/platform-hero.jpg" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/platform-hero.webp" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="STAR Web Trading | Trade Global Markets in Your Browser | STARTRADER" />
   <meta name="twitter:description" content="STAR Web Trading runs entirely in your browser — no download, no install. Full charting, real-time quotes, every order type and the same account as the desktop terminal." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/platform-hero.jpg" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/platform-hero.webp" />
 
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../../favicon.svg" />
@@ -32,7 +32,286 @@
   <link rel="preload" href="../../assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" as="image" href="../../assets/img/platform-hero.webp" />
   <link rel="stylesheet" href="../../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ---- the dashboard, built rather than photographed: the panel you pick is
+   the panel that lights, and the rest step back ---- */
+.sw-stage-sec{
+  position:relative;overflow:clip;color:#fff;
+  background:
+    radial-gradient(58% 42% at 78% 6%,rgba(10,92,245,.26),transparent 62%),
+    radial-gradient(46% 40% at 8% 96%,rgba(22,233,215,.12),transparent 64%),
+    linear-gradient(180deg,#070d1c,#0a1122 46%,#060a15);
+}
+.sw-stage-sec::before{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+  background-size:64px 64px;
+  -webkit-mask:radial-gradient(72% 60% at 50% 40%,#000,transparent 78%);
+  mask:radial-gradient(72% 60% at 50% 40%,#000,transparent 78%);
+}
+.sw-stage-sec .h2,.sw-stage-sec .h2-light{color:#fff}
+.sw-stage-sec .head-sub{color:#a9bcdb}
+.sw-stage-sec>.container{position:relative;z-index:1}
+/* browser chrome */
+.swx{
+  border-radius:22px;overflow:hidden;
+  background:linear-gradient(180deg,#101a30,#0a1120);
+  border:1px solid rgba(255,255,255,.16);
+  box-shadow:0 60px 120px -50px rgba(0,0,0,.95),0 0 0 1px rgba(10,92,245,.14),inset 0 1px 0 rgba(255,255,255,.1);
+}
+.swx-bar{display:flex;align-items:center;gap:9px;padding:14px 18px;background:rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.1)}
+.swx-bar i{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.22)}
+.swx-bar i:first-child{background:#ff6058}
+.swx-bar i:nth-child(2){background:#ffbe2f}
+.swx-bar i:nth-child(3){background:#28ca42}
+.swx-url{
+  flex:1;margin-left:10px;max-width:320px;display:flex;align-items:center;gap:8px;
+  padding:7px 14px;border-radius:70px;font-size:11.5px;color:#c8d6ec;
+  background:rgba(0,0,0,.36);border:1px solid rgba(255,255,255,.1);
+}
+.swx-url svg{width:12px;height:12px;color:#3fd9a8}
+.swx-live{margin-left:auto;display:inline-flex;align-items:center;gap:8px;font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#8ea4c6}
+.swx-live b{position:relative;width:7px;height:7px;border-radius:50%;background:#3fd9a8}
+@media (prefers-reduced-motion:no-preference){.swx-live b::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:1.5px solid rgba(63,217,168,.7);animation:swPing 2.4s ease-out infinite}}
+/* the five regions, laid out like the real thing */
+.swx-grid{
+  display:grid;grid-template-columns:232px minmax(0,1fr) 220px;
+  grid-template-rows:minmax(150px,1fr) auto auto;gap:12px;padding:14px;
+}
+.swx-zone{
+  position:relative;display:flex;flex-direction:column;align-items:stretch;
+  text-align:left;overflow:hidden;border-radius:14px;padding:14px;
+  background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);
+  transition:background .35s,border-color .3s,box-shadow .4s var(--ease),opacity .35s,transform .4s var(--ease);
+}
+.swx-zone:nth-child(1){grid-area:1 / 1 / 3 / 2}
+.swx-zone:nth-child(2){grid-area:1 / 2 / 2 / 3}
+.swx-zone:nth-child(3){grid-area:2 / 2 / 3 / 3}
+.swx-zone:nth-child(4){grid-area:1 / 3 / 3 / 4}
+.swx-zone:nth-child(5){grid-area:3 / 1 / 4 / 4}
+/* one live region at a time: it lifts and glows, the others recede */
+.swx-grid.is-live .swx-zone{opacity:.4}
+.swx-grid.is-live .swx-zone.is-on{
+  opacity:1;transform:translateY(-2px);
+  background:linear-gradient(180deg,rgba(10,92,245,.22),rgba(255,255,255,.05));
+  border-color:#3d8bff;
+  box-shadow:0 0 0 1px rgba(61,139,255,.45),0 24px 46px -22px rgba(10,92,245,.7);
+}
+.swx-zone:hover{opacity:1}
+.swx-zone-hd{display:flex;align-items:center;gap:9px;margin-bottom:12px}
+.swx-n{
+  width:22px;height:22px;flex:none;border-radius:7px;display:grid;place-items:center;
+  font-size:10px;font-weight:800;color:#9fc0ff;
+  background:rgba(61,139,255,.2);border:1px solid rgba(61,139,255,.3);
+  transition:background .3s,color .3s,border-color .3s;
+}
+.swx-zone.is-on .swx-n{background:#0a5cf5;color:#fff;border-color:transparent}
+.swx-zone-hd b{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#8ea4c6;transition:color .3s}
+.swx-zone.is-on .swx-zone-hd b{color:#fff}
+/* region contents */
+.swx-rows{display:flex;flex-direction:column;gap:1px}
+.swx-r{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:11.5px}
+.swx-r:last-child{border-bottom:0}
+.swx-r b{flex:1;color:#e6edf8;font-weight:600}
+.swx-r em{font-style:normal;color:#fff;font-variant-numeric:tabular-nums}
+.swx-r u{text-decoration:none;min-width:48px;text-align:right;font-size:10.5px;font-weight:700;font-variant-numeric:tabular-nums}
+.swx-r u.up{color:#3fd9a8}
+.swx-r u.down{color:#ff7a7a}
+.swx-plot{position:relative;flex:1;min-height:104px}
+.swx-plot svg{display:block;width:100%;height:100%}
+.swx-plot-line{fill:none;stroke:#3fd9a8;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.swx-plot-fill{fill:url(#swxFill);stroke:none}
+.swx-tfs{position:absolute;top:0;right:0;display:flex;gap:5px}
+.swx-tfs span{font-size:9.5px;font-weight:700;color:#8ea4c6;padding:4px 8px;border-radius:6px;background:rgba(255,255,255,.06)}
+.swx-tfs span.on{color:#fff;background:rgba(61,139,255,.32)}
+.swx-ticket{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.swx-ticket span{padding:10px;border-radius:10px;text-align:center;font-size:11.5px;font-weight:700;font-variant-numeric:tabular-nums}
+.swx-ticket .sell{color:#fff;background:rgba(239,68,68,.8)}
+.swx-ticket .buy{color:#08281c;background:#3fd9a8}
+.swx-ticket .fld{grid-column:span 2;display:flex;align-items:center;justify-content:space-between;font-weight:500;color:#8ea4c6;background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.08)}
+.swx-ticket .fld b{color:#fff;font-weight:700}
+.swx-stats{display:flex;flex-direction:column;gap:9px}
+.swx-tbl,.swx-rows,.swx-stats,.swx-ticket{width:100%}
+.swx-stat{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding-bottom:9px;border-bottom:1px solid rgba(255,255,255,.06);font-size:11px;color:#8ea4c6}
+.swx-stat:last-child{border-bottom:0;padding-bottom:0}
+.swx-stat b{font-size:14px;font-weight:800;color:#fff;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.swx-meter{height:4px;margin-top:2px;border-radius:70px;background:rgba(255,255,255,.1);overflow:hidden}
+.swx-meter i{display:block;height:100%;width:38%;border-radius:70px;background:linear-gradient(90deg,#0a5cf5,#5fa3ff)}
+.swx-tbl{display:flex;flex-direction:column}
+.swx-th,.swx-td{display:grid;grid-template-columns:1.1fr .7fr .6fr .8fr .8fr .8fr;gap:10px;align-items:center;font-size:11px}
+.swx-th{padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.09);font-size:9.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#6f86ad}
+.swx-td{padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05);color:#c8d6ec;font-variant-numeric:tabular-nums}
+.swx-td:last-child{border-bottom:0}
+.swx-td b{color:#fff;font-weight:600}
+.swx-td .up{color:#3fd9a8;font-weight:700}
+.swx-td .down{color:#ff7a7a;font-weight:700}
+.swx-side{display:inline-flex;align-items:center;gap:6px}
+.swx-side::before{content:"";width:6px;height:6px;border-radius:2px;background:#3fd9a8}
+.swx-side.s::before{background:#ff7a7a}
+/* the caption under the window carries the words, and the dots drive the tour */
+.swx-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:22px;margin-top:26px}
+.swx-cap{display:flex;flex-direction:column;gap:6px;min-width:0;max-width:620px}
+.swx-cap b{font-size:clamp(19px,2vw,23px);letter-spacing:-.032em;color:#fff}
+.swx-cap em{font-style:normal;font-size:14px;line-height:1.62;color:#a9bcdb}
+.swx-dots{display:flex;gap:8px}
+.swx-dot{
+  width:34px;height:34px;border-radius:11px;display:grid;place-items:center;
+  font-size:11px;font-weight:800;color:#8ea4c6;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+  transition:background .3s,color .3s,border-color .3s,transform .3s var(--ease);
+}
+.swx-dot:hover{transform:translateY(-2px);color:#fff}
+.swx-dot.is-on{background:#0a5cf5;color:#fff;border-color:transparent;box-shadow:0 12px 24px -10px rgba(10,92,245,.9)}
+.sw-stage-note{margin-top:26px;font-size:11.5px;line-height:1.6;color:#7f92b3}
+/* ---- benefits as a bento: the lead cell carries the weight ---- */
+.sw-ben{position:relative;isolation:isolate;overflow:clip;background:radial-gradient(52% 46% at 92% 0%,rgba(0,71,187,.08),transparent 62%),var(--bg-light-2)}
+.sw-ben>.container{position:relative;z-index:1}
+.sw-bento{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.sw-cell{
+  position:relative;display:flex;flex-direction:column;overflow:hidden;
+  border-radius:24px;padding:26px 26px 24px;
+  background:linear-gradient(180deg,rgba(0,71,187,.07),rgba(255,255,255,.62) 48%);
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
+}
+.sw-cell:hover{transform:translateY(-4px);border-color:rgba(0,71,187,.28);box-shadow:0 28px 52px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff}
+.sw-cell--lead{grid-column:span 2;grid-row:span 2;padding:32px}
+.sw-cell--wide{grid-column:span 2}
+.sw-cell--sand{background:linear-gradient(180deg,rgba(223,197,174,.48),rgba(255,255,255,.62) 50%)}
+.sw-cell--sand:hover{border-color:rgba(138,100,64,.34)}
+.sw-cell-ic{width:42px;height:42px;flex:none;border-radius:13px;display:grid;place-items:center;background:rgba(0,71,187,.1);color:var(--blue);transition:transform .35s var(--ease)}
+.sw-cell--sand .sw-cell-ic{background:rgba(223,197,174,.55);color:#8a6440}
+.sw-cell-ic svg{width:20px;height:20px}
+.sw-cell:hover .sw-cell-ic{transform:scale(1.07)}
+.sw-cell h3{margin-top:18px;font-size:17px;letter-spacing:-.028em;line-height:1.24;color:var(--text)}
+.sw-cell--lead h3{margin-top:22px;font-size:clamp(22px,2.3vw,28px);letter-spacing:-.034em;line-height:1.16}
+.sw-cell p{margin-top:9px;font-size:13.5px;line-height:1.66;color:var(--text-soft)}
+.sw-cell--lead p{margin-top:14px;font-size:14.5px;max-width:44ch}
+.sw-cell-ico{width:118px;height:auto;margin-bottom:2px;filter:drop-shadow(0 20px 26px rgba(20,44,96,.24))}
+/* small in-cell props, so a card is not just words */
+.sw-url{
+  display:flex;align-items:center;gap:9px;margin-top:auto;padding:11px 14px;border-radius:12px;
+  background:rgba(255,255,255,.72);border:1px solid var(--line);
+  font-size:12px;font-variant-numeric:tabular-nums;color:var(--text-soft);
+}
+.sw-url i{width:7px;height:7px;flex:none;border-radius:50%;background:#3fd9a8}
+.sw-url b{font-weight:600;color:var(--text)}
+.sw-url span{margin-left:auto;font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue)}
+.sw-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.sw-chips span{
+  display:inline-flex;align-items:center;gap:7px;padding:8px 13px;border-radius:70px;
+  font-size:11.5px;font-weight:600;color:var(--text-soft);
+  background:rgba(255,255,255,.72);border:1px solid var(--line);
+  transition:transform .3s var(--ease),color .3s,border-color .3s;
+}
+.sw-chips svg{width:13px;height:13px;color:var(--blue)}
+.sw-cell--sand .sw-chips svg{color:#8a6440}
+.sw-cell:hover .sw-chips span{transform:translateY(-2px)}
+.sw-bar{margin-top:18px}
+.sw-bar-hd{display:flex;align-items:baseline;justify-content:space-between;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-mute)}
+.sw-bar-track{position:relative;height:6px;margin-top:9px;border-radius:70px;background:rgba(20,44,96,.08);overflow:hidden}
+.sw-bar-track i{position:absolute;top:0;bottom:0;border-radius:70px}
+.sw-bar-track .lo{left:0;width:26%;background:rgba(239,68,68,.55)}
+.sw-bar-track .hi{right:0;width:38%;background:rgba(16,185,129,.6)}
+.sw-bar-track .now{left:52%;width:2px;background:var(--text)}
+/* ---- key features: one list, one panel, kept in step ---- */
+.sw-feat{background:var(--bg-light)}
+.sw-feat-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.06fr);gap:clamp(26px,3.6vw,54px);align-items:center}
+.sw-list{display:flex;flex-direction:column;gap:10px}
+.sw-row{
+  position:relative;overflow:hidden;border-radius:20px;
+  background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.9);
+  transition:background .3s,border-color .3s,box-shadow .4s var(--ease),transform .35s var(--ease);
+}
+.sw-row:hover{transform:translateY(-2px)}
+.sw-row.is-on{
+  background:linear-gradient(180deg,rgba(0,71,187,.08),rgba(255,255,255,.72) 54%);
+  border-color:rgba(0,71,187,.26);box-shadow:0 24px 46px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff;
+}
+.sw-row-hd{display:flex;align-items:center;gap:14px;width:100%;padding:20px 24px;text-align:left}
+.sw-row-hd b{flex:1;font-size:16px;letter-spacing:-.026em;color:var(--text)}
+.sw-row-hd svg{width:16px;height:16px;flex:none;color:var(--text-mute);transition:transform .35s var(--ease),color .3s}
+.sw-row.is-on .sw-row-hd svg{transform:rotate(180deg);color:var(--blue)}
+.sw-row-n{
+  width:28px;height:28px;flex:none;border-radius:9px;display:grid;place-items:center;
+  font-size:10.5px;font-weight:800;color:var(--blue);background:rgba(0,71,187,.1);
+  transition:background .3s,color .3s;
+}
+.sw-row.is-on .sw-row-n{background:var(--blue);color:#fff}
+.sw-row-body{display:block;max-height:0;overflow:hidden;transition:max-height .45s var(--ease)}
+.sw-row.is-on .sw-row-body{max-height:190px}
+.sw-row-body ul{display:flex;flex-direction:column;gap:9px;padding:0 24px 22px 66px}
+.sw-row-body li{display:flex;align-items:flex-start;gap:10px;font-size:13.5px;line-height:1.5;color:var(--text-soft)}
+.sw-row-body svg{width:14px;height:14px;flex:none;margin-top:2px;color:var(--blue)}
+/* the panel beside it is built, not screenshotted, so it can switch cleanly */
+.sw-panel{
+  position:relative;border-radius:26px;padding:22px;overflow:hidden;min-height:352px;
+  color:#fff;background:linear-gradient(168deg,#0b1224,#06090f 62%);
+  border:1px solid rgba(255,255,255,.1);
+  box-shadow:0 44px 84px -44px rgba(20,44,96,.62);
+}
+.sw-panel-bar{display:flex;align-items:center;gap:7px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,.07)}
+.sw-panel-bar i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.16)}
+.sw-panel-bar span{margin-left:8px;font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#6f86ad}
+.sw-view{display:none;padding-top:18px}
+.sw-view.is-on{display:block;animation:swFade .45s var(--ease) both}
+@media (prefers-reduced-motion:reduce){.sw-view.is-on{animation:none}}
+.sw-q{display:flex;align-items:center;gap:12px;padding:12px 4px;border-bottom:1px solid rgba(255,255,255,.06);font-size:13px}
+.sw-q:last-child{border-bottom:0}
+.sw-q b{flex:1;color:#e6edf8;font-weight:600;letter-spacing:-.01em}
+.sw-q em{font-style:normal;color:#fff;font-variant-numeric:tabular-nums}
+.sw-q u{text-decoration:none;font-size:11.5px;font-weight:700;font-variant-numeric:tabular-nums;min-width:58px;text-align:right}
+.sw-q u.up{color:#3fd9a8}
+.sw-q u.down{color:#ff7a7a}
+.sw-grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.sw-tile{
+  display:flex;flex-direction:column;gap:7px;padding:15px;border-radius:14px;
+  background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);
+  transition:background .3s,border-color .3s,transform .35s var(--ease);
+}
+.sw-tile:hover{background:rgba(255,255,255,.08);border-color:rgba(120,175,255,.34);transform:translateY(-2px)}
+.sw-tile svg{width:17px;height:17px;color:#6fa8ff}
+.sw-tile b{font-size:13px;color:#fff;letter-spacing:-.02em}
+.sw-tile em{font-style:normal;font-size:11px;color:#8ea4c6}
+.sw-chart{margin-top:2px}
+.sw-chart svg{display:block;width:100%;height:132px}
+.sw-chart-line{fill:none;stroke:#3fd9a8;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.sw-pills{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
+.sw-pills span{font-size:10.5px;font-weight:700;letter-spacing:.06em;color:#9fc0ff;background:rgba(0,71,187,.28);border:1px solid rgba(120,175,255,.22);padding:6px 11px;border-radius:70px}
+.sw-ticket{display:flex;flex-direction:column;gap:10px}
+.sw-field{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 15px;border-radius:12px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);font-size:12.5px;color:#8ea4c6}
+.sw-field b{color:#fff;font-weight:700;font-variant-numeric:tabular-nums}
+.sw-side{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:2px}
+.sw-side span{padding:12px;border-radius:12px;text-align:center;font-size:12.5px;font-weight:700}
+.sw-side .buy{color:#0b2a1e;background:#3fd9a8}
+.sw-side .sell{color:#fff;background:rgba(239,68,68,.82)}
+/* ---- access from anywhere: the ray-gradient cards from the forex hours grid ---- */
+.sw-any{position:relative;overflow:clip;background:linear-gradient(180deg,#070c18,#04060e)}
+.sw-risk{max-width:900px;margin:34px auto 0;text-align:center;font-size:11.5px;line-height:1.7;color:var(--text-mute)}
+/* ---- Responsive ---- */
+@media (max-width:1080px){.swx-grid{grid-template-columns:200px minmax(0,1fr);grid-template-rows:auto auto auto auto}
+.swx-zone:nth-child(1){grid-area:1 / 1 / 2 / 2}
+.swx-zone:nth-child(2){grid-area:1 / 2 / 2 / 3}
+.swx-zone:nth-child(3){grid-area:2 / 1 / 3 / 2}
+.swx-zone:nth-child(4){grid-area:2 / 2 / 3 / 3}
+.swx-zone:nth-child(5){grid-area:3 / 1 / 4 / 3}
+.sw-feat-in{grid-template-columns:1fr;gap:30px}
+.sw-bento{grid-template-columns:repeat(2,minmax(0,1fr))}
+.sw-cell--lead{grid-column:span 2;grid-row:auto}
+.sw-cell--wide{grid-column:span 2}}
+@media (max-width:720px){.sw-bento{grid-template-columns:1fr}
+.swx-grid{grid-template-columns:1fr;grid-template-rows:none;gap:10px;padding:10px}
+.swx-zone:nth-child(n){grid-area:auto}
+.swx-th,.swx-td{grid-template-columns:1.2fr .8fr .9fr;gap:8px}
+.swx-th span:nth-child(n+4),.swx-td span:nth-child(n+4){display:none}
+.swx-foot{flex-direction:column;align-items:flex-start;gap:18px}
+.sw-cell--lead,.sw-cell--wide{grid-column:span 1}
+.sw-grid2{grid-template-columns:1fr}
+.sw-panel{min-height:0}
+.sw-stage-sec .h2 br,.sw-ben .h2 br,.sw-feat .h2 br{display:none}}
+  </style>
 
   <script type="application/ld+json">
 {
@@ -447,10 +726,10 @@
   <div class="pf-hero-bg" aria-hidden="true"></div>
   <div class="container pf-hero-in">
     <div class="pf-hero-copy">
-      <span class="eyebrow eyebrow-blue" data-reveal>STAR Web Trading</span>
-      <h1 class="pf-h1" id="pf-hero-title" data-reveal>Trade global markets<br> from your browser</h1>
-      <p class="pf-lead" data-reveal>No downloads. No delays. The full terminal in a browser tab &mdash;<br> the same account, the same instruments, nothing to install.</p>
-      <div class="pf-hact" data-reveal>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">STAR Web Trading</span>
+      <h1 class="pf-h1" id="pf-hero-title" data-aos="fade-up">Trade global markets<br> from your browser</h1>
+      <p class="pf-lead" data-aos="fade-up">No downloads. No delays. The full terminal in a browser tab &mdash;<br> the same account, the same instruments, nothing to install.</p>
+      <div class="pf-hact" data-aos="fade-up">
         <a href="#dashboard" class="btn btn-primary btn-lg magnetic">Start trading now <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       </div>
     </div>
@@ -461,12 +740,12 @@
 <section class="section sw-stage-sec" id="dashboard" aria-labelledby="sw-dash-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow eyebrow-blue" data-reveal>Your trading dashboard</span>
-      <h2 class="h2 h2-light" id="sw-dash-title" data-reveal>Five panels,<br> one browser tab</h2>
-      <p class="head-sub" data-reveal>Pick a panel to see what it does. Everything below is one screen &mdash; no windows to arrange.</p>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">Your trading dashboard</span>
+      <h2 class="h2 h2-light" id="sw-dash-title" data-aos="fade-up">Five panels,<br> one browser tab</h2>
+      <p class="head-sub" data-aos="fade-up">Pick a panel to see what it does. Everything below is one screen &mdash; no windows to arrange.</p>
     </div>
 
-    <div class="swx" data-sw-stage data-reveal>
+    <div class="swx" data-sw-stage data-aos="fade-up">
       <div class="swx-bar" aria-hidden="true">
         <i></i><i></i><i></i>
         <span class="swx-url"><svg><use href="#i-shield"/></svg>web.startrader.com</span>
@@ -539,7 +818,7 @@
       </div>
     </div>
 
-    <div class="swx-foot" data-reveal>
+    <div class="swx-foot" data-aos="fade-up">
       <span class="swx-cap" data-swx-cap aria-live="polite">
         <b>Market Watch</b>
         <em>Real-time quotes with search across every instrument you can trade, ordered however you like to read them.</em>
@@ -553,7 +832,7 @@
       </span>
     </div>
 
-    <p class="sw-stage-note" data-reveal>Interface shown for illustration. Panels, figures and layout vary by account type and jurisdiction.</p>
+    <p class="sw-stage-note" data-aos="fade-up">Interface shown for illustration. Panels, figures and layout vary by account type and jurisdiction.</p>
   </div>
 </section>
 
@@ -562,32 +841,32 @@
   <span class="pf-aura a1" aria-hidden="true"></span>
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Benefits of STAR Web Trading</span>
-      <h2 class="h2" id="sw-ben-title" data-reveal>What you gain by<br> dropping the download</h2>
-      <p class="head-sub" data-reveal>Trade directly from the browser, with none of the setup a desktop terminal asks for.</p>
+      <span class="eyebrow" data-aos="fade-up">Benefits of STAR Web Trading</span>
+      <h2 class="h2" id="sw-ben-title" data-aos="fade-up">What you gain by<br> dropping the download</h2>
+      <p class="head-sub" data-aos="fade-up">Trade directly from the browser, with none of the setup a desktop terminal asks for.</p>
     </div>
 
-    <div class="sw-bento" data-reveal-stagger>
-      <article class="sw-cell sw-cell--lead glass">
-        <img class="sw-cell-ico" src="../../assets/img/icon-shield-3d.png" alt="" width="400" height="490" loading="lazy" decoding="async">
+    <div class="sw-bento">
+      <article class="sw-cell sw-cell--lead glass" data-aos="fade-up">
+        <img class="sw-cell-ico" src="../../assets/img/icon-shield-3d.webp" alt="3D shield emblem for insured client funds" width="400" height="490" loading="lazy" decoding="async">
         <h3>Zero installation</h3>
         <p>A browser-based platform with instant access. Nothing to download, nothing to install, and no version to keep patched &mdash; open a tab and the terminal is already current.</p>
         <span class="sw-url"><i></i><b>web.startrader.com</b><span>Ready</span></span>
       </article>
 
-      <article class="sw-cell glass">
+      <article class="sw-cell glass" data-aos="fade-up" data-aos-delay="100">
         <span class="sw-cell-ic"><svg><use href="#i-bolt"/></svg></span>
         <h3>Real-time execution</h3>
         <p>Fast order placement against live market quotes, on the same infrastructure as the desktop terminal.</p>
       </article>
 
-      <article class="sw-cell sw-cell--sand glass">
+      <article class="sw-cell sw-cell--sand glass" data-aos="fade-up" data-aos-delay="200">
         <span class="sw-cell-ic"><svg><use href="#i-chart"/></svg></span>
         <h3>Advanced charting</h3>
         <p>Professional-grade charts with 100+ indicators, drawing tools and every timeframe.</p>
       </article>
 
-      <article class="sw-cell sw-cell--wide glass">
+      <article class="sw-cell sw-cell--wide glass" data-aos="fade-up" data-aos-delay="300">
         <span class="sw-cell-ic"><svg><use href="#i-swap"/></svg></span>
         <h3>Multiple order types</h3>
         <p>Trade your way with market, limit and stop orders, and amend a working order without cancelling it first.</p>
@@ -598,7 +877,7 @@
         </div>
       </article>
 
-      <article class="sw-cell sw-cell--wide sw-cell--sand glass">
+      <article class="sw-cell sw-cell--wide sw-cell--sand glass" data-aos="fade-up" data-aos-delay="400">
         <span class="sw-cell-ic"><svg><use href="#i-shield"/></svg></span>
         <h3>Risk management tools</h3>
         <p>Stop loss and take profit on every ticket, with margin monitored in real time as the market moves.</p>
@@ -608,7 +887,7 @@
         </div>
       </article>
 
-      <article class="sw-cell sw-cell--wide glass">
+      <article class="sw-cell sw-cell--wide glass" data-aos="fade-up" data-aos-delay="500">
         <span class="sw-cell-ic"><svg><use href="#i-monitor"/></svg></span>
         <h3>Multi-device access</h3>
         <p>The same session on a desktop, a tablet or a phone. Close on one screen, pick it up on another.</p>
@@ -626,7 +905,7 @@
 <section class="section htrade-sec" id="steps" aria-labelledby="sw-steps-title">
   <div class="container">
     <div class="htrade">
-      <div class="htrade-intro" data-reveal>
+      <div class="htrade-intro" data-aos="fade-up">
         <h2 class="htrade-title" id="sw-steps-title">Four steps,<br><span>no install</span></h2>
         <p class="htrade-sub">From a cold browser to a live position, in about a minute</p>
         <a href="webtrader.html" class="btn btn-primary btn-lg htrade-btn magnetic">Access platform now <span class="htrade-go"><svg><use href="#i-arrow-right"/></svg></span></a>
@@ -658,12 +937,12 @@
 <section class="section sw-feat" aria-labelledby="sw-feat-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Key features</span>
-      <h2 class="h2" id="sw-feat-title" data-reveal>Global markets,<br> reached seamlessly</h2>
-      <p class="head-sub" data-reveal>Open a feature to see what it puts on the screen.</p>
+      <span class="eyebrow" data-aos="fade-up">Key features</span>
+      <h2 class="h2" id="sw-feat-title" data-aos="fade-up">Global markets,<br> reached seamlessly</h2>
+      <p class="head-sub" data-aos="fade-up">Open a feature to see what it puts on the screen.</p>
     </div>
 
-    <div class="sw-feat-in" data-sw-feat data-reveal>
+    <div class="sw-feat-in" data-sw-feat data-aos="fade-up">
       <div class="sw-list">
         <div class="sw-row is-on" data-sw-key="1">
           <button class="sw-row-hd" type="button" aria-expanded="true"><span class="sw-row-n">01</span><b>Instant market access</b><svg><use href="#i-chevron-down"/></svg></button>
@@ -756,13 +1035,13 @@
 <section class="section fx-hours sw-any" aria-labelledby="sw-any-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow eyebrow-blue" data-reveal>Access from anywhere</span>
-      <h2 class="h2 h2-light" id="sw-any-title" data-reveal>Built for flexibility</h2>
-      <p class="head-sub" data-reveal>If it runs a current browser, it runs the platform.</p>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">Access from anywhere</span>
+      <h2 class="h2 h2-light" id="sw-any-title" data-aos="fade-up">Built for flexibility</h2>
+      <p class="head-sub" data-aos="fade-up">If it runs a current browser, it runs the platform.</p>
     </div>
 
-    <div class="fx-mh" data-reveal-stagger>
-      <article class="fx-mh-card fx-mh--wide fx-mh--blue">
+    <div class="fx-mh">
+      <article class="fx-mh-card fx-mh--wide fx-mh--blue" data-aos="fade-up">
         <span class="fx-mh-ic"><svg><use href="#i-window"/></svg></span>
         <h3>Supported browsers</h3>
         <p>Any current version. Chrome is the one we tune against first, but nothing is held back on the others.</p>
@@ -776,28 +1055,28 @@
         </div>
       </article>
 
-      <article class="fx-mh-card fx-mh--teal">
+      <article class="fx-mh-card fx-mh--teal" data-aos="fade-up" data-aos-delay="100">
         <span class="fx-mh-ic"><svg><use href="#i-globe"/></svg></span>
         <h3>One requirement</h3>
         <p>A stable internet connection. That is the whole list &mdash; there is no hardware to meet.</p>
         <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="fx-mh-status"><i></i> Connection is all it asks for</span></div></div>
       </article>
 
-      <article class="fx-mh-card fx-mh--purple">
+      <article class="fx-mh-card fx-mh--purple" data-aos="fade-up" data-aos-delay="200">
         <span class="fx-mh-ic"><svg><use href="#i-monitor"/></svg></span>
         <h3>Desktop &amp; laptop</h3>
         <p>The full layout, every panel open at once, on Windows, macOS, Linux or ChromeOS.</p>
         <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="fx-mh-status"><i></i> Five panels side by side</span></div></div>
       </article>
 
-      <article class="fx-mh-card fx-mh--green">
+      <article class="fx-mh-card fx-mh--green" data-aos="fade-up" data-aos-delay="300">
         <span class="fx-mh-ic"><svg><use href="#i-window"/></svg></span>
         <h3>Tablets</h3>
         <p>The same session, reflowed for touch. Charts pinch and pan as you would expect.</p>
         <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="fx-mh-status"><i></i> Touch charting</span></div></div>
       </article>
 
-      <article class="fx-mh-card fx-mh--orange">
+      <article class="fx-mh-card fx-mh--orange" data-aos="fade-up" data-aos-delay="400">
         <span class="fx-mh-ic"><svg><use href="#i-phone"/></svg></span>
         <h3>Mobile devices</h3>
         <p>Nothing is missing in the browser, though on a phone the STARTRADER app is the easier ride.</p>
@@ -811,10 +1090,10 @@
 <section class="section faq-sec fx-faq" aria-labelledby="pf-faq-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>FAQ</span>
-      <h2 class="h2" id="pf-faq-title" data-reveal>Frequently asked questions</h2>
+      <span class="eyebrow" data-aos="fade-up">FAQ</span>
+      <h2 class="h2" id="pf-faq-title" data-aos="fade-up">Frequently asked questions</h2>
     </div>
-    <div class="faq-list" data-reveal>
+    <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
         <summary>What is STAR Web Trading?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a">A browser-based platform that reaches global markets directly from a web browser. Nothing is installed. You get forex, indices, commodities and share CFDs with advanced charting, real-time quotes and the risk controls you would expect from the desktop terminal.</div>
@@ -844,7 +1123,7 @@
         <div class="faq-a">Use the online support icon inside the platform for live chat, or email info@startrader.com. Having your account number to hand makes it quicker.</div>
       </details>
     </div>
-    <p class="sw-risk" data-reveal>Trading CFDs involves significant risk and is not suitable for every investor. Leverage works for you and against you in equal measure. Consider whether you understand how CFDs work, and never risk more than you can afford to lose.</p>
+    <p class="sw-risk" data-aos="fade-up">Trading CFDs involves significant risk and is not suitable for every investor. Leverage works for you and against you in equal measure. Consider whether you understand how CFDs work, and never risk more than you can afford to lose.</p>
   </div>
 </section>
 
@@ -852,26 +1131,26 @@
 <section class="section fx-more" aria-labelledby="pf-more-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Keep going</span>
-      <h2 class="h2" id="pf-more-title" data-reveal>Where to go next</h2>
+      <span class="eyebrow" data-aos="fade-up">Keep going</span>
+      <h2 class="h2" id="pf-more-title" data-aos="fade-up">Where to go next</h2>
     </div>
-    <div class="fx-more-grid" data-reveal-stagger>
-      <a class="fx-more-card" href="mt5.html">
+    <div class="fx-more-grid">
+      <a class="fx-more-card" href="mt5.html" data-aos="fade-up">
         <span class="fx-more-media"><img src="../../assets/img/platform-hero.webp" alt="MetaTrader 5 trading platform" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">The multi-asset terminal — 38 indicators, depth of market and full automation.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">MT5</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="mt4.html">
-        <span class="fx-more-media"><img src="../../assets/img/mt4Screenshot.png" alt="MetaTrader 4 trading platform" width="640" height="349" loading="lazy" decoding="async"></span>
+      <a class="fx-more-card" href="mt4.html" data-aos="fade-up" data-aos-delay="100">
+        <span class="fx-more-media"><img src="../../assets/img/mt4Screenshot.webp" alt="MetaTrader 4 trading platform" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">The retail standard for currencies, with the largest library of robots and indicators.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">MT4</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="trading-app.html">
+      <a class="fx-more-card" href="trading-app.html" data-aos="fade-up" data-aos-delay="200">
         <span class="fx-more-media"><img src="../../assets/img/app-hero-phone.webp" alt="STARTRADER mobile trading app" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">MT4 and MT5 in one app, with live pricing and full risk management.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Mobile app</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="copy-trade.html">
+      <a class="fx-more-card" href="copy-trade.html" data-aos="fade-up" data-aos-delay="300">
         <span class="fx-more-media"><img src="../../assets/img/learn-cta.webp" alt="Copy trading with STARTRADER" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Follow traders with a record you can inspect, and pay only on profit.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Copy trading</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
@@ -884,9 +1163,9 @@
 <section class="cta-banner" aria-labelledby="pf-cta-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="pf-cta-title" data-reveal>Start trading with a<br>globally leading broker</h2>
-    <p data-reveal>Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
-    <div class="cta-actions" data-reveal>
+    <h2 id="pf-cta-title" data-aos="fade-up">Start trading with a<br>globally leading broker</h2>
+    <p data-aos="fade-up">Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
+    <div class="cta-actions" data-aos="fade-up">
       <a href="../getting-started/account-opening.html" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       <a href="../getting-started/account-opening.html" class="btn btn-ghost btn-lg">Try Free Demo</a>
     </div>
@@ -975,7 +1254,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -1009,6 +1288,7 @@
 <script src="../../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../../assets/js/vendor/aos.min.js" defer></script>
 <script src="../../assets/js/main.js" defer></script>
 </body>
 </html>

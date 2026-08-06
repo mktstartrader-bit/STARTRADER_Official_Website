@@ -33,7 +33,123 @@
   <!-- Fonts (self-hosted) -->
   <link rel="preload" href="../../../assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="../../../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../../../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../../../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ---- Hero: same blue-on-black gradient as the forex/commodities heroes ---- */
+.gl-hero-meta{margin-top:22px;font-size:13px;color:#a9bfe4}
+.gl-hero-meta b{color:#fff;font-weight:700}
+/* frosted search */
+.gl-search{
+  display:flex;align-items:center;gap:12px;margin:32px auto 0;max-width:600px;
+  padding:7px 7px 7px 20px;border-radius:70px;
+  background:linear-gradient(180deg,rgba(255,255,255,.13),rgba(255,255,255,.055));
+  -webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);
+  border:1px solid rgba(255,255,255,.19);
+  box-shadow:0 26px 58px -26px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.24);
+  transition:border-color .3s,background .3s,box-shadow .35s var(--ease);
+}
+.gl-search:focus-within{
+  background:linear-gradient(180deg,rgba(255,255,255,.17),rgba(255,255,255,.08));
+  border-color:rgba(110,170,255,.62);
+  box-shadow:0 26px 60px -24px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.3),0 0 0 4px rgba(0,71,187,.3);
+}
+.gl-search-ic{flex:none;display:grid;place-items:center;color:#c3d6f5}
+.gl-search-ic svg{width:20px;height:20px}
+.gl-search input{
+  flex:1;min-width:0;background:none;border:0;outline:none;color:#fff;
+  font-size:15.5px;font-family:inherit;padding:14px 0;
+}
+.gl-search input::placeholder{color:rgba(214,228,250,.72)}
+.gl-search input::-webkit-search-cancel-button{display:none}
+.gl-clear{
+  flex:none;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(255,255,255,.16);color:#e6eefb;transition:background .25s,transform .3s var(--ease);
+}
+.gl-clear svg{width:15px;height:15px}
+.gl-clear:hover{background:rgba(255,255,255,.3);transform:rotate(90deg)}
+/* ---- Body: soft mesh so the frosted cards have something to blur ---- */
+.gl-body{
+  padding-top:34px;
+  background:
+    radial-gradient(58% 46% at 8% 0%,rgba(0,71,187,.08),transparent 62%),
+    radial-gradient(52% 42% at 94% 20%,rgba(22,233,215,.07),transparent 62%),
+    radial-gradient(56% 40% at 46% 102%,rgba(0,71,187,.06),transparent 62%),
+    var(--bg-light);
+}
+/* clears the topbar + nav, then holds a standard gap below them */
+.gl-indexbar{position:sticky;top:calc(var(--chrome-h) + var(--chrome-gap));z-index:20;margin-bottom:12px}
+.gl-index{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:5px;padding:10px;border-radius:70px;
+  background:rgba(255,255,255,.74);
+}
+.gl-ltr{
+  width:36px;height:36px;border-radius:50%;flex:none;display:grid;place-items:center;
+  font-size:13px;font-weight:700;color:var(--text-soft);letter-spacing:.01em;cursor:pointer;
+  transition:background .25s,color .25s,transform .35s var(--ease),box-shadow .3s;
+}
+.gl-ltr[data-l="all"]{width:auto;padding:0 16px;border-radius:70px}
+.gl-ltr:hover{background:rgba(0,71,187,.1);color:var(--blue);transform:translateY(-2px)}
+.gl-ltr.is-on{background:var(--blue);color:#fff;box-shadow:0 10px 20px -10px rgba(0,71,187,.85)}
+.gl-ltr.is-off{opacity:.3;pointer-events:none}
+.gl-status{min-height:22px;margin:16px 0 4px;text-align:center;font-size:13px;color:var(--text-mute)}
+.gl-group{scroll-margin-top:calc(var(--chrome-h) + var(--chrome-gap) + 78px)}
+.gl-lh{display:flex;align-items:center;gap:16px;margin:38px 0 18px}
+.gl-big{font-size:clamp(28px,3.6vw,42px);font-weight:800;color:var(--blue);letter-spacing:-.03em;line-height:1}
+.gl-rule{flex:1;height:1px;background:linear-gradient(90deg,rgba(0,71,187,.3),rgba(0,71,187,.04))}
+.gl-count{
+  flex:none;font-size:11.5px;font-weight:700;color:var(--blue);
+  padding:5px 11px;border-radius:70px;background:rgba(0,71,187,.08);
+}
+.gl-terms{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.gl-term{
+  position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:19px 18px 19px 22px;border-radius:18px;text-decoration:none;
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
+}
+/* accent rail that wipes in on hover */
+.gl-term::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--blue);
+  transform:scaleY(0);transform-origin:bottom;transition:transform .4s var(--ease);
+}
+.gl-term:hover{transform:translateY(-4px);border-color:rgba(0,71,187,.28);box-shadow:0 28px 52px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff}
+.gl-term:hover::before{transform:scaleY(1);transform-origin:top}
+.gl-tx{min-width:0}
+.gl-t{display:block;font-size:15.5px;font-weight:700;color:var(--text);letter-spacing:-.015em;transition:color .3s}
+.gl-term:hover .gl-t{color:var(--blue)}
+.gl-ex{display:block;margin-top:5px;font-size:13px;line-height:1.5;color:var(--text-soft)}
+.gl-term mark{background:rgba(255,205,80,.42);color:inherit;border-radius:3px;padding:0 1px}
+.gl-go{
+  flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;
+  color:var(--blue);background:rgba(0,71,187,.08);transition:background .3s,color .3s,transform .35s var(--ease);
+}
+.gl-go svg{width:15px;height:15px}
+.gl-term:hover .gl-go{background:var(--blue);color:#fff;transform:translateX(3px)}
+.gl-empty{text-align:center;padding:58px 20px 10px}
+.gl-empty h3{font-size:20px;color:var(--text);letter-spacing:-.02em}
+.gl-empty h3 span{color:var(--blue)}
+.gl-empty p{margin-top:9px;font-size:14.5px;color:var(--text-soft)}
+.gl-empty .btn{margin-top:24px}
+.gl-page{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:52px}
+.gl-pg{
+  min-width:40px;height:40px;padding:0 12px;border-radius:12px;display:grid;place-items:center;
+  font-size:14px;font-weight:600;color:var(--text-soft);background:rgba(255,255,255,.62);
+  border:1px solid var(--line);cursor:pointer;
+  transition:background .25s,color .25s,transform .35s var(--ease),border-color .25s;
+}
+.gl-pg:hover{color:var(--blue);border-color:rgba(0,71,187,.35);transform:translateY(-2px)}
+.gl-pg.is-on{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 12px 24px -12px rgba(0,71,187,.8)}
+.gl-pg.gl-dots{background:none;border:none;pointer-events:none;color:var(--text-mute)}
+.gl-pg svg{width:15px;height:15px}
+/* ---- Term page ---- */
+@media (max-width:1080px){.gl-terms{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:720px){.gl-terms{grid-template-columns:1fr}
+.gl-indexbar{position:static}
+.gl-index{padding:8px;border-radius:20px}
+.gl-ltr{width:32px;height:32px;font-size:12.5px}
+.gl-page{flex-wrap:wrap}}
+  </style>
 
   <!-- Structured data -->
   <script type="application/ld+json">
@@ -487,17 +603,17 @@
   <span class="gl-orb o3" aria-hidden="true"></span>
 
   <div class="container gl-hero-inner">
-    <span class="eyebrow eyebrow-blue" data-reveal>Education</span>
-    <h1 class="gl-hero-title" id="gl-hero-title" data-reveal>Trading Glossary</h1>
-    <p class="gl-hero-sub" data-reveal>Search and browse plain-English definitions of the trading terms you&rsquo;ll meet along the way &mdash; from account basics to advanced concepts.</p>
+    <span class="eyebrow eyebrow-blue" data-aos="fade-up">Education</span>
+    <h1 class="gl-hero-title" id="gl-hero-title" data-aos="fade-up">Trading Glossary</h1>
+    <p class="gl-hero-sub" data-aos="fade-up">Search and browse plain-English definitions of the trading terms you&rsquo;ll meet along the way &mdash; from account basics to advanced concepts.</p>
 
-    <form class="gl-search glass" role="search" data-reveal onsubmit="return false">
+    <form class="gl-search glass" role="search" data-aos="fade-up" onsubmit="return false">
       <span class="gl-search-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg></span>
       <input id="glSearch" type="search" autocomplete="off" placeholder="Search trading terms&hellip;" aria-label="Search glossary terms">
       <button class="gl-clear" type="button" id="glClear" aria-label="Clear search" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
     </form>
 
-    <p class="gl-hero-meta" data-reveal><b id="glTotal">23</b> terms &middot; plain English &middot; updated regularly</p>
+    <p class="gl-hero-meta" data-aos="fade-up"><b id="glTotal">23</b> terms &middot; plain English &middot; updated regularly</p>
   </div>
 </section>
 
@@ -515,31 +631,31 @@
     <div class="gl-groups" id="glGroups">
       <section class="gl-group" data-l="A" aria-labelledby="gl-h-A">
         <h2 class="gl-lh" id="gl-h-A"><span class="gl-big">A</span><span class="gl-rule"></span><span class="gl-count">6</span></h2>
-        <div class="gl-terms" data-reveal-stagger><a class="gl-term glass" href="glossary-term.html?term=abnormal-return" data-name="abnormal return" data-def="the share of a return that sits above or below what was expected."><span class="gl-tx"><span class="gl-t">Abnormal Return</span><span class="gl-ex">The share of a return that sits above or below what was expected.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a><a class="gl-term glass" href="glossary-term.html?term=absolute-advantage" data-name="absolute advantage" data-def="producing a good or service more efficiently than anyone else."><span class="gl-tx"><span class="gl-t">Absolute Advantage</span><span class="gl-ex">Producing a good or service more efficiently than anyone else.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a><a class="gl-term glass" href="glossary-term.html?term=account" data-name="account" data-def="your registered trading profile with the broker."><span class="gl-tx"><span class="gl-t">Account</span><span class="gl-ex">Your registered trading profile with the broker.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a><a class="gl-term glass" href="glossary-term.html?term=account-balance" data-name="account balance" data-def="the total settled funds in your account, excluding open positions."><span class="gl-tx"><span class="gl-t">Account Balance</span><span class="gl-ex">The total settled funds in your account, excluding open positions.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a><a class="gl-term glass" href="glossary-term.html?term=account-equity" data-name="account equity" data-def="your balance adjusted for the live value of open positions."><span class="gl-tx"><span class="gl-t">Account Equity</span><span class="gl-ex">Your balance adjusted for the live value of open positions.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a><a class="gl-term glass" href="glossary-term.html?term=account-statement" data-name="account statement" data-def="a record of your account activity over a period."><span class="gl-tx"><span class="gl-t">Account Statement</span><span class="gl-ex">A record of your account activity over a period.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a></div>
+        <div class="gl-terms"><a class="gl-term glass" href="glossary-term.html?term=abnormal-return" data-name="abnormal return" data-def="the share of a return that sits above or below what was expected." data-aos="fade-up"><span class="gl-tx"><span class="gl-t">Abnormal Return</span><span class="gl-ex">The share of a return that sits above or below what was expected.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a><a class="gl-term glass" href="glossary-term.html?term=absolute-advantage" data-name="absolute advantage" data-def="producing a good or service more efficiently than anyone else." data-aos="fade-up" data-aos-delay="100"><span class="gl-tx"><span class="gl-t">Absolute Advantage</span><span class="gl-ex">Producing a good or service more efficiently than anyone else.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a><a class="gl-term glass" href="glossary-term.html?term=account" data-name="account" data-def="your registered trading profile with the broker." data-aos="fade-up" data-aos-delay="200"><span class="gl-tx"><span class="gl-t">Account</span><span class="gl-ex">Your registered trading profile with the broker.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a><a class="gl-term glass" href="glossary-term.html?term=account-balance" data-name="account balance" data-def="the total settled funds in your account, excluding open positions." data-aos="fade-up" data-aos-delay="300"><span class="gl-tx"><span class="gl-t">Account Balance</span><span class="gl-ex">The total settled funds in your account, excluding open positions.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a><a class="gl-term glass" href="glossary-term.html?term=account-equity" data-name="account equity" data-def="your balance adjusted for the live value of open positions." data-aos="fade-up" data-aos-delay="400"><span class="gl-tx"><span class="gl-t">Account Equity</span><span class="gl-ex">Your balance adjusted for the live value of open positions.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a><a class="gl-term glass" href="glossary-term.html?term=account-statement" data-name="account statement" data-def="a record of your account activity over a period." data-aos="fade-up" data-aos-delay="500"><span class="gl-tx"><span class="gl-t">Account Statement</span><span class="gl-ex">A record of your account activity over a period.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a></div>
       </section>
       <section class="gl-group" data-l="B" aria-labelledby="gl-h-B">
         <h2 class="gl-lh" id="gl-h-B"><span class="gl-big">B</span><span class="gl-rule"></span><span class="gl-count">4</span></h2>
-        <div class="gl-terms" data-reveal-stagger><a class="gl-term glass" href="glossary-term.html?term=bear-market" data-name="bear market" data-def="a market in a sustained downward trend."><span class="gl-tx"><span class="gl-t">Bear Market</span><span class="gl-ex">A market in a sustained downward trend.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a><a class="gl-term glass" href="glossary-term.html?term=bid-price" data-name="bid price" data-def="the price at which the market will buy from you."><span class="gl-tx"><span class="gl-t">Bid Price</span><span class="gl-ex">The price at which the market will buy from you.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a><a class="gl-term glass" href="glossary-term.html?term=broker" data-name="broker" data-def="a firm that gives you access to the markets."><span class="gl-tx"><span class="gl-t">Broker</span><span class="gl-ex">A firm that gives you access to the markets.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a><a class="gl-term glass" href="glossary-term.html?term=bull-market" data-name="bull market" data-def="a market in a sustained upward trend."><span class="gl-tx"><span class="gl-t">Bull Market</span><span class="gl-ex">A market in a sustained upward trend.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a></div>
+        <div class="gl-terms"><a class="gl-term glass" href="glossary-term.html?term=bear-market" data-name="bear market" data-def="a market in a sustained downward trend." data-aos="fade-up"><span class="gl-tx"><span class="gl-t">Bear Market</span><span class="gl-ex">A market in a sustained downward trend.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a><a class="gl-term glass" href="glossary-term.html?term=bid-price" data-name="bid price" data-def="the price at which the market will buy from you." data-aos="fade-up" data-aos-delay="100"><span class="gl-tx"><span class="gl-t">Bid Price</span><span class="gl-ex">The price at which the market will buy from you.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a><a class="gl-term glass" href="glossary-term.html?term=broker" data-name="broker" data-def="a firm that gives you access to the markets." data-aos="fade-up" data-aos-delay="200"><span class="gl-tx"><span class="gl-t">Broker</span><span class="gl-ex">A firm that gives you access to the markets.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a><a class="gl-term glass" href="glossary-term.html?term=bull-market" data-name="bull market" data-def="a market in a sustained upward trend." data-aos="fade-up" data-aos-delay="300"><span class="gl-tx"><span class="gl-t">Bull Market</span><span class="gl-ex">A market in a sustained upward trend.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a></div>
       </section>
       <section class="gl-group" data-l="C" aria-labelledby="gl-h-C">
         <h2 class="gl-lh" id="gl-h-C"><span class="gl-big">C</span><span class="gl-rule"></span><span class="gl-count">3</span></h2>
-        <div class="gl-terms" data-reveal-stagger><a class="gl-term glass" href="glossary-term.html?term=cfd" data-name="cfd" data-def="a contract to exchange the price difference of an asset."><span class="gl-tx"><span class="gl-t">CFD</span><span class="gl-ex">A contract to exchange the price difference of an asset.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a><a class="gl-term glass" href="glossary-term.html?term=commission" data-name="commission" data-def="a fee charged per trade on some account types."><span class="gl-tx"><span class="gl-t">Commission</span><span class="gl-ex">A fee charged per trade on some account types.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a><a class="gl-term glass" href="glossary-term.html?term=currency-pair" data-name="currency pair" data-def="two currencies quoted against each other."><span class="gl-tx"><span class="gl-t">Currency Pair</span><span class="gl-ex">Two currencies quoted against each other.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a></div>
+        <div class="gl-terms"><a class="gl-term glass" href="glossary-term.html?term=cfd" data-name="cfd" data-def="a contract to exchange the price difference of an asset." data-aos="fade-up"><span class="gl-tx"><span class="gl-t">CFD</span><span class="gl-ex">A contract to exchange the price difference of an asset.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a><a class="gl-term glass" href="glossary-term.html?term=commission" data-name="commission" data-def="a fee charged per trade on some account types." data-aos="fade-up" data-aos-delay="100"><span class="gl-tx"><span class="gl-t">Commission</span><span class="gl-ex">A fee charged per trade on some account types.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a><a class="gl-term glass" href="glossary-term.html?term=currency-pair" data-name="currency pair" data-def="two currencies quoted against each other." data-aos="fade-up" data-aos-delay="200"><span class="gl-tx"><span class="gl-t">Currency Pair</span><span class="gl-ex">Two currencies quoted against each other.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a></div>
       </section>
       <section class="gl-group" data-l="L" aria-labelledby="gl-h-L">
         <h2 class="gl-lh" id="gl-h-L"><span class="gl-big">L</span><span class="gl-rule"></span><span class="gl-count">3</span></h2>
-        <div class="gl-terms" data-reveal-stagger><a class="gl-term glass" href="glossary-term.html?term=leverage" data-name="leverage" data-def="borrowed capital that increases your market exposure."><span class="gl-tx"><span class="gl-t">Leverage</span><span class="gl-ex">Borrowed capital that increases your market exposure.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a><a class="gl-term glass" href="glossary-term.html?term=liquidity" data-name="liquidity" data-def="how easily an asset can be bought or sold."><span class="gl-tx"><span class="gl-t">Liquidity</span><span class="gl-ex">How easily an asset can be bought or sold.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a><a class="gl-term glass" href="glossary-term.html?term=lot" data-name="lot" data-def="a standardised unit of trade size."><span class="gl-tx"><span class="gl-t">Lot</span><span class="gl-ex">A standardised unit of trade size.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a></div>
+        <div class="gl-terms"><a class="gl-term glass" href="glossary-term.html?term=leverage" data-name="leverage" data-def="borrowed capital that increases your market exposure." data-aos="fade-up"><span class="gl-tx"><span class="gl-t">Leverage</span><span class="gl-ex">Borrowed capital that increases your market exposure.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a><a class="gl-term glass" href="glossary-term.html?term=liquidity" data-name="liquidity" data-def="how easily an asset can be bought or sold." data-aos="fade-up" data-aos-delay="100"><span class="gl-tx"><span class="gl-t">Liquidity</span><span class="gl-ex">How easily an asset can be bought or sold.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a><a class="gl-term glass" href="glossary-term.html?term=lot" data-name="lot" data-def="a standardised unit of trade size." data-aos="fade-up" data-aos-delay="200"><span class="gl-tx"><span class="gl-t">Lot</span><span class="gl-ex">A standardised unit of trade size.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a></div>
       </section>
       <section class="gl-group" data-l="M" aria-labelledby="gl-h-M">
         <h2 class="gl-lh" id="gl-h-M"><span class="gl-big">M</span><span class="gl-rule"></span><span class="gl-count">2</span></h2>
-        <div class="gl-terms" data-reveal-stagger><a class="gl-term glass" href="glossary-term.html?term=margin" data-name="margin" data-def="funds required to open a leveraged position."><span class="gl-tx"><span class="gl-t">Margin</span><span class="gl-ex">Funds required to open a leveraged position.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a><a class="gl-term glass" href="glossary-term.html?term=market-order" data-name="market order" data-def="an order executed immediately at the best available price."><span class="gl-tx"><span class="gl-t">Market Order</span><span class="gl-ex">An order executed immediately at the best available price.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a></div>
+        <div class="gl-terms"><a class="gl-term glass" href="glossary-term.html?term=margin" data-name="margin" data-def="funds required to open a leveraged position." data-aos="fade-up"><span class="gl-tx"><span class="gl-t">Margin</span><span class="gl-ex">Funds required to open a leveraged position.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a><a class="gl-term glass" href="glossary-term.html?term=market-order" data-name="market order" data-def="an order executed immediately at the best available price." data-aos="fade-up" data-aos-delay="100"><span class="gl-tx"><span class="gl-t">Market Order</span><span class="gl-ex">An order executed immediately at the best available price.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a></div>
       </section>
       <section class="gl-group" data-l="P" aria-labelledby="gl-h-P">
         <h2 class="gl-lh" id="gl-h-P"><span class="gl-big">P</span><span class="gl-rule"></span><span class="gl-count">2</span></h2>
-        <div class="gl-terms" data-reveal-stagger><a class="gl-term glass" href="glossary-term.html?term=pip" data-name="pip" data-def="the smallest standard price move in a currency pair."><span class="gl-tx"><span class="gl-t">Pip</span><span class="gl-ex">The smallest standard price move in a currency pair.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a><a class="gl-term glass" href="glossary-term.html?term=portfolio" data-name="portfolio" data-def="your collection of open positions and assets."><span class="gl-tx"><span class="gl-t">Portfolio</span><span class="gl-ex">Your collection of open positions and assets.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a></div>
+        <div class="gl-terms"><a class="gl-term glass" href="glossary-term.html?term=pip" data-name="pip" data-def="the smallest standard price move in a currency pair." data-aos="fade-up"><span class="gl-tx"><span class="gl-t">Pip</span><span class="gl-ex">The smallest standard price move in a currency pair.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a><a class="gl-term glass" href="glossary-term.html?term=portfolio" data-name="portfolio" data-def="your collection of open positions and assets." data-aos="fade-up" data-aos-delay="100"><span class="gl-tx"><span class="gl-t">Portfolio</span><span class="gl-ex">Your collection of open positions and assets.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a></div>
       </section>
       <section class="gl-group" data-l="S" aria-labelledby="gl-h-S">
         <h2 class="gl-lh" id="gl-h-S"><span class="gl-big">S</span><span class="gl-rule"></span><span class="gl-count">3</span></h2>
-        <div class="gl-terms" data-reveal-stagger><a class="gl-term glass" href="glossary-term.html?term=spread" data-name="spread" data-def="the difference between the bid and ask price."><span class="gl-tx"><span class="gl-t">Spread</span><span class="gl-ex">The difference between the bid and ask price.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a><a class="gl-term glass" href="glossary-term.html?term=stop-loss" data-name="stop loss" data-def="an order that closes a trade to limit losses."><span class="gl-tx"><span class="gl-t">Stop Loss</span><span class="gl-ex">An order that closes a trade to limit losses.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a><a class="gl-term glass" href="glossary-term.html?term=swap" data-name="swap" data-def="interest paid or earned for holding a position overnight."><span class="gl-tx"><span class="gl-t">Swap</span><span class="gl-ex">Interest paid or earned for holding a position overnight.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a></div>
+        <div class="gl-terms"><a class="gl-term glass" href="glossary-term.html?term=spread" data-name="spread" data-def="the difference between the bid and ask price." data-aos="fade-up"><span class="gl-tx"><span class="gl-t">Spread</span><span class="gl-ex">The difference between the bid and ask price.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a><a class="gl-term glass" href="glossary-term.html?term=stop-loss" data-name="stop loss" data-def="an order that closes a trade to limit losses." data-aos="fade-up" data-aos-delay="100"><span class="gl-tx"><span class="gl-t">Stop Loss</span><span class="gl-ex">An order that closes a trade to limit losses.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a><a class="gl-term glass" href="glossary-term.html?term=swap" data-name="swap" data-def="interest paid or earned for holding a position overnight." data-aos="fade-up" data-aos-delay="200"><span class="gl-tx"><span class="gl-t">Swap</span><span class="gl-ex">Interest paid or earned for holding a position overnight.</span></span><span class="gl-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a></div>
       </section>
     </div>
 
@@ -567,9 +683,9 @@
 <section class="cta-banner" aria-labelledby="gl-cta-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="gl-cta-title" data-reveal>Start trading with a<br>globally leading broker</h2>
-    <p data-reveal>Put the theory to work &mdash; open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution.</p>
-    <div class="cta-actions" data-reveal>
+    <h2 id="gl-cta-title" data-aos="fade-up">Start trading with a<br>globally leading broker</h2>
+    <p data-aos="fade-up">Put the theory to work &mdash; open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution.</p>
+    <div class="cta-actions" data-aos="fade-up">
       <a href="../../../trading/getting-started/account-opening.html" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
     </div>
   </div>
@@ -658,7 +774,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../../../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../../../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -692,6 +808,7 @@
 <script src="../../../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../../../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../../../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../../../assets/js/vendor/aos.min.js" defer></script>
 <script src="../../../assets/js/main.js" defer></script>
 </body>
 </html>

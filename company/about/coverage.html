@@ -16,14 +16,14 @@
   <meta property="og:title" content="24/5 and 24/7 US stock CFDs | STARTRADER" />
   <meta property="og:description" content="STARTRADER now quotes US stock CFDs around the clock — 24/5 across the range with a 24/7 selection, for traders the New York open does not suit." />
   <meta property="og:url" content="https://www.startrader.com/company/about/media-coverage.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/platform-hero.jpg" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/platform-hero.webp" />
   <meta property="og:image:alt" content="Media Coverage — STARTRADER" />
   <meta property="og:locale" content="en_US" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="24/5 and 24/7 US stock CFDs | STARTRADER" />
   <meta name="twitter:description" content="STARTRADER now quotes US stock CFDs around the clock — 24/5 across the range with a 24/7 selection, for traders the New York open does not suit." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/platform-hero.jpg" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/platform-hero.webp" />
 
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../../favicon.svg" />
@@ -32,7 +32,21 @@
   <link rel="preload" href="../../assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" as="image" href="../../assets/img/platform-hero.webp" />
   <link rel="stylesheet" href="../../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ---- coverage page: the outlet run inside the body, and clickable clippings ---- */
+.mc-run{
+  display:flex;flex-wrap:wrap;align-items:center;gap:clamp(18px,3vw,38px);
+  margin:22px 0;padding:20px 24px;border-radius:16px;
+  background:rgba(20,44,96,.04);border:1px solid rgba(20,44,96,.08);
+}
+.mc-run-logo{display:inline-flex;align-items:center}
+.mc-run-logo img{display:block;height:20px;width:auto;opacity:.62;
+  filter:grayscale(1);transition:opacity .3s,filter .3s}
+.mc-run-logo:hover img{opacity:1;filter:none}
+  </style>
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -585,11 +599,11 @@
 <section class="section ar-rel-sec" aria-labelledby="mc-rel-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Keep reading</span>
-      <h2 class="h2" id="mc-rel-title" data-reveal>More coverage</h2>
+      <span class="eyebrow" data-aos="fade-up">Keep reading</span>
+      <h2 class="h2" id="mc-rel-title" data-aos="fade-up">More coverage</h2>
     </div>
-    <div class="nr-grid" data-reveal-stagger>
-      <article class="nr-card glass">
+    <div class="nr-grid">
+      <article class="nr-card glass" data-aos="fade-up">
         <div class="nr-head">
           <span class="nr-cat"><svg aria-hidden="true"><use href="#i-id"/></svg>Regulation</span>
           <time class="nr-date" datetime="2026-06-11">11 Jun 2026</time>
@@ -599,11 +613,11 @@
           <p class="nr-ex">The Securities and Commodities Authority licence adds to an existing set across five jurisdictions.</p>
         </div>
         <a class="nr-media" href="coverage.html" aria-label="Read: SCA licence secured, strengthening our position">
-          <img src="../../assets/img/mc-licence.jpg" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/mc-licence.webp" alt="Regulatory licence document" width="640" height="349" loading="lazy" decoding="async">
           <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
-      <article class="nr-card glass">
+      <article class="nr-card glass" data-aos="fade-up" data-aos-delay="100">
         <div class="nr-head">
           <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Sponsorship</span>
           <time class="nr-date" datetime="2026-04-19">19 Apr 2026</time>
@@ -613,11 +627,11 @@
           <p class="nr-ex">Coverage of the partnership, and what a broker gains from a league with that reach.</p>
         </div>
         <a class="nr-media" href="coverage.html" aria-label="Read: Named Official Partner of the NBA">
-          <img src="../../assets/img/company-1.webp" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/company-1.webp" alt="STARTRADER office" width="640" height="349" loading="lazy" decoding="async">
           <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
-      <article class="nr-card glass">
+      <article class="nr-card glass" data-aos="fade-up" data-aos-delay="200">
         <div class="nr-head">
           <span class="nr-cat"><svg aria-hidden="true"><use href="#i-copy"/></svg>Product</span>
           <time class="nr-date" datetime="2026-02-02">2 Feb 2026</time>
@@ -627,7 +641,7 @@
           <p class="nr-ex">Copy trading moves into the main app rather than living behind a second login.</p>
         </div>
         <a class="nr-media" href="coverage.html" aria-label="Read: STAR Copy arrives inside the STARTRADER app">
-          <img src="../../assets/img/appScreenshot.jpg" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/appScreenshot.webp" alt="STARTRADER trading app screens" width="640" height="349" loading="lazy" decoding="async">
           <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
@@ -717,7 +731,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -751,6 +765,7 @@
 <script src="../../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../../assets/js/vendor/aos.min.js" defer></script>
 <script src="../../assets/js/main.js" defer></script>
 
 <!-- Company page: robust scroll reveals + hero parallax (self-contained, never leaves content hidden) -->

@@ -16,14 +16,14 @@
   <meta property="og:title" content="MENA Investment Congress 2025 | STARTRADER" />
   <meta property="og:description" content="STARTRADER partnered the MENA Investment Congress 2025 — 500+ participants, 30+ speakers, and the dialogue that shapes what we build next." />
   <meta property="og:url" content="https://www.startrader.com/company/about/sponsorship/mena.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/platform-hero.jpg" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/platform-hero.webp" />
   <meta property="og:image:alt" content="MENA Investment Congress 2025 — STARTRADER" />
   <meta property="og:locale" content="en_US" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="MENA Investment Congress 2025 | STARTRADER" />
   <meta name="twitter:description" content="STARTRADER partnered the MENA Investment Congress 2025 — 500+ participants, 30+ speakers, and the dialogue that shapes what we build next." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/platform-hero.jpg" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/platform-hero.webp" />
 
   <link rel="icon" href="../../../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../../../favicon.svg" />
@@ -32,7 +32,204 @@
   <link rel="preload" href="../../../assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" as="image" href="../../../assets/img/platform-hero.webp" />
   <link rel="stylesheet" href="../../../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../../../assets/css/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="../../../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../../../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* =================================================================
+   MENA INVESTMENT CONGRESS 2025
+   A forum, not a fixture: the banner sets the artwork beside the words,
+   the beliefs read as a ledger rather than a grid of cards, and the
+   figures count themselves up. Scoped to .mnx.
+   ================================================================= */
+.mnx{--acc:#0047bb;--acc-2:#2a72ff;--acc-3:#7fb2ff;--mint:#16e9d7;
+     --sand:#dfc5ae;--sand-ink:#8a6440;--ink:#04060d}
+/* ---------------- banner: one plate, the words on the left ---------------- */
+.mn-hero{
+  position:relative;isolation:isolate;overflow:hidden;color:#fff;
+  margin-top:calc(-1 * var(--nav-h));
+  min-height:min(860px,calc(100vh - var(--topbar-h,44px)));
+  display:flex;align-items:center;padding:calc(var(--nav-h) + 66px) 0 88px;
+  background:#000;
+}
+.mn-hero-bg{
+  position:absolute;inset:-8% 0;z-index:-3;will-change:transform;
+  background:url("../../../assets/img/mn-banner-plate.webp") center/cover no-repeat;
+}
+.mn-hero::before{
+  content:"";position:absolute;inset:0;z-index:-2;
+  background:
+    linear-gradient(90deg,rgba(0,2,8,.94) 0%,rgba(0,2,8,.86) 34%,rgba(0,2,8,.42) 56%,transparent 82%),
+    linear-gradient(180deg,rgba(0,2,8,.5),transparent 24%,rgba(0,2,8,.84));
+}
+.mn-hero-in{position:relative;z-index:1;width:100%}
+.mn-hero-copy{max-width:min(100%,660px)}
+.mn-badge{
+  display:inline-flex;align-items:center;gap:11px;padding:9px 18px;border-radius:70px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.17);
+  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+}
+.mn-badge i{width:6px;height:6px;border-radius:50%;background:var(--mint);
+  box-shadow:0 0 10px rgba(22,233,215,.9)}
+.mn-badge span{font-size:10.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#e6edf8}
+/* two lines whatever the width: the first one is the long one.
+   background-clip:text crops to the line box, so the descenders need room */
+.mn-h1{margin-top:26px;font-size:clamp(31px,4vw,56px);font-weight:800;letter-spacing:-.05em;line-height:1.16}
+.mn-h1 span{display:block;white-space:nowrap}
+.mn-h1 .lit{
+  display:inline-block;padding-bottom:.1em;
+  color:transparent;background:linear-gradient(96deg,#fff 4%,var(--acc-3) 46%,var(--mint) 96%);
+  -webkit-background-clip:text;background-clip:text;
+}
+.mn-lead{margin-top:22px;max-width:52ch;font-size:clamp(15px,1.5vw,17px);line-height:1.72;color:#c4cedf}
+.mn-hact{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.mn-btn{
+  display:inline-flex;align-items:center;gap:9px;padding:14px 26px;border-radius:70px;white-space:nowrap;
+  font-size:13.5px;font-weight:700;color:#fff;
+  background:linear-gradient(180deg,var(--acc-2),var(--acc));
+  box-shadow:0 18px 38px -16px rgba(0,71,187,.9);
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease);
+}
+.mn-btn:hover{transform:translateY(-3px);box-shadow:0 26px 48px -16px rgba(42,114,255,.95)}
+.mn-btn svg{width:15px;height:15px;flex:none}
+/* shared headings, on light */
+.mn-eyebrow{display:block;font-size:10.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);text-align:center}
+.mn-h2{margin-top:16px;font-size:clamp(28px,3.7vw,50px);font-weight:800;letter-spacing:-.042em;line-height:1.06;text-align:center;color:var(--ink)}
+.mn-sub{margin:18px auto 0;max-width:64ch;font-size:clamp(14.5px,1.45vw,16.5px);line-height:1.7;text-align:center;color:#4d5c74}
+/* ---------------- the beliefs, as a ledger ---------------- */
+.mn-beliefs{position:relative;isolation:isolate;overflow:clip;
+  background:radial-gradient(48% 42% at 88% 0%,rgba(0,71,187,.08),transparent 62%),var(--bg-light-2)}
+.mn-beliefs>.container{position:relative;z-index:1}
+.mn-ledger{position:relative;margin-top:clamp(30px,3.6vw,46px);border-top:1px solid rgba(20,44,96,.12)}
+/* the rule that tracks how far down the ledger you have read */
+.mn-ledger-run{position:absolute;left:0;top:0;width:2px;height:0;
+  background:linear-gradient(180deg,var(--acc-2),var(--acc));border-radius:2px}
+.mn-line{
+  position:relative;display:grid;grid-template-columns:auto minmax(0,.9fr) minmax(0,1.1fr);
+  gap:clamp(16px,3vw,44px);align-items:start;
+  padding:clamp(22px,2.8vw,34px) clamp(4px,1.4vw,22px);
+  border-bottom:1px solid rgba(20,44,96,.12);
+  transition:background .4s,padding-left .45s var(--ease);
+}
+.mn-line:hover{background:linear-gradient(90deg,rgba(0,71,187,.05),transparent 74%);padding-left:clamp(12px,2.2vw,34px)}
+.mn-line-n{
+  font-size:clamp(28px,3.4vw,44px);font-weight:800;letter-spacing:-.05em;line-height:1;
+  font-variant-numeric:tabular-nums;color:transparent;
+  -webkit-text-stroke:1.2px rgba(0,71,187,.34);transition:-webkit-text-stroke-color .4s,color .4s;
+}
+.mn-line:hover .mn-line-n{color:var(--acc);-webkit-text-stroke-color:transparent}
+.mn-line h3{font-size:clamp(19px,2.2vw,27px);font-weight:700;letter-spacing:-.034em;line-height:1.16;color:var(--ink)}
+.mn-line-tx{display:flex;flex-direction:column;gap:10px}
+.mn-line-tx p{font-size:14.4px;line-height:1.72;color:#5a6a83}
+.mn-line-mark{
+  display:inline-flex;align-items:center;gap:9px;font-size:10px;font-weight:800;
+  letter-spacing:.14em;text-transform:uppercase;color:#8496b0;
+}
+.mn-line-mark i{width:26px;height:2px;border-radius:2px;background:rgba(0,71,187,.28);
+  transition:width .45s var(--ease),background .35s}
+.mn-line:hover .mn-line-mark i{width:52px;background:linear-gradient(90deg,var(--acc-2),var(--mint))}
+/* ---------------- about the congress ---------------- */
+.mn-about{position:relative;isolation:isolate;overflow:clip;background:linear-gradient(180deg,#fff,#f2f6fc)}
+.mn-about>.container{position:relative;z-index:1}
+/* the write-up runs as two editorial columns under the heading */
+.mn-cols{columns:2;column-gap:clamp(26px,4vw,60px);max-width:960px;margin:clamp(26px,3vw,38px) auto 0}
+.mn-cols p{margin:0 0 14px;font-size:14.6px;line-height:1.78;color:#5a6a83;break-inside:avoid}
+.mn-cols p:first-child::first-letter{
+  float:left;margin:2px 12px 0 0;font-size:52px;line-height:.82;font-weight:800;
+  letter-spacing:-.04em;color:var(--acc);
+}
+/* a full-width stage, with the figures on a bar across its lower edge */
+.mn-stage{position:relative;margin-top:clamp(30px,3.6vw,48px)}
+.mn-stage-shot{position:relative;overflow:hidden;aspect-ratio:21/9;background:#0b1018}
+.mn-stage-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform 1.2s var(--ease)}
+.mn-stage:hover .mn-stage-shot img{transform:scale(1.03)}
+.mn-stage-shot::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 40%,rgba(4,8,20,.78))}
+.mn-stage-cap{
+  position:absolute;z-index:2;left:clamp(16px,3vw,44px);top:clamp(16px,2.4vw,30px);
+  padding:7px 14px;border-radius:70px;
+  font-size:9.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#0b1018;
+  background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+}
+.mn-figbar{
+  position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  margin:clamp(-56px,-5vw,-34px) auto 0;max-width:min(100%,960px);
+  border-radius:clamp(16px,2vw,24px);overflow:hidden;
+  background:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.9);
+  -webkit-backdrop-filter:blur(20px) saturate(1.4);backdrop-filter:blur(20px) saturate(1.4);
+  box-shadow:0 34px 70px -34px rgba(20,44,96,.55),inset 0 1px 0 #fff;
+}
+.mn-fig{position:relative;padding:clamp(18px,2.2vw,26px) clamp(14px,1.8vw,22px);text-align:center;
+  transition:background .4s}
+.mn-fig + .mn-fig::before{
+  content:"";position:absolute;left:0;top:22%;bottom:22%;width:1px;background:rgba(20,44,96,.12);
+}
+.mn-fig:hover{background:linear-gradient(180deg,rgba(0,71,187,.07),transparent)}
+.mn-fig:nth-child(2):hover,.mn-fig:nth-child(3):hover{background:linear-gradient(180deg,rgba(223,197,174,.42),transparent)}
+.mn-fig b{display:block;font-size:clamp(26px,3.2vw,42px);font-weight:800;letter-spacing:-.05em;line-height:1;
+  font-variant-numeric:tabular-nums;color:var(--acc)}
+.mn-fig:nth-child(2) b,.mn-fig:nth-child(3) b{color:var(--sand-ink)}
+.mn-fig em{display:block;margin-top:10px;font-style:normal;font-size:10px;font-weight:800;
+  letter-spacing:.14em;text-transform:uppercase;color:#7a8aa4}
+/* the rest of the room, on a rail that keeps moving */
+.mn-rail{position:relative;margin-top:clamp(30px,3.6vw,46px);overflow:hidden;
+  -webkit-mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+  mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.mn-track{display:flex;gap:14px;width:max-content;will-change:transform}
+.mn-slide{
+  position:relative;flex:0 0 auto;width:clamp(210px,24vw,320px);aspect-ratio:16/10;
+  border-radius:16px;overflow:hidden;background:#0b1018;
+  box-shadow:0 18px 40px -26px rgba(20,44,96,.55);
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease);
+}
+.mn-slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.mn-slide:hover{transform:translateY(-5px);box-shadow:0 28px 54px -26px rgba(0,71,187,.5)}
+/* ---------------- a word from our CEO ---------------- */
+.mn-ceo{position:relative;overflow:hidden;background:linear-gradient(180deg,#f2f6fc,#fff)}
+.mn-ceo::before{
+  content:"";position:absolute;left:0;right:0;top:0;height:3px;
+  background:linear-gradient(90deg,transparent,var(--acc-2),var(--mint),transparent);opacity:.5;
+}
+.mn-ceo-in{position:relative;max-width:900px;margin-inline:auto;text-align:center}
+.mn-ceo-mark{
+  display:block;margin:18px auto -6px;font:700 104px/.72 Georgia,"Times New Roman",serif;
+  color:transparent;background:linear-gradient(180deg,var(--acc-2),rgba(22,233,215,.7));
+  -webkit-background-clip:text;background-clip:text;
+}
+.mn-ceo-in blockquote{
+  margin-top:18px;font-size:clamp(17px,2.3vw,27px);font-weight:500;line-height:1.54;
+  letter-spacing:-.03em;color:var(--ink);
+}
+.mn-ceo-by{
+  display:inline-flex;align-items:center;gap:16px;margin-top:clamp(26px,3vw,38px);
+  padding:10px 22px 10px 10px;border-radius:70px;
+  background:rgba(255,255,255,.92);border:1px solid rgba(20,44,96,.09);
+  box-shadow:0 16px 36px -22px rgba(20,44,96,.34);
+}
+.mn-ceo-face{
+  position:relative;flex:none;width:56px;height:56px;border-radius:50%;overflow:hidden;
+  background:#0b1018;box-shadow:0 0 0 2px rgba(42,114,255,.34);
+}
+.mn-ceo-face img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.mn-ceo-who{display:flex;flex-direction:column;gap:3px;text-align:left}
+.mn-ceo-who b{font-size:14.5px;font-weight:700;letter-spacing:-.024em;color:var(--ink)}
+.mn-ceo-who em{font-style:normal;font-size:11.5px;color:#7a8aa4}
+.mn-ceo-rules{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:clamp(24px,3vw,34px)}
+.mn-ceo-rules i{width:min(120px,22vw);height:1px;background:linear-gradient(90deg,transparent,rgba(20,44,96,.22),transparent)}
+.mn-ceo-rules span{font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#8496b0}
+/* ---------------- responsive ---------------- */
+@media (max-width:1000px){.mn-line{grid-template-columns:auto minmax(0,1fr);row-gap:12px}
+.mn-line-tx{grid-column:1 / -1}
+.mn-cols{columns:1}}
+@media (max-width:760px){.mn-h1 span{white-space:normal}
+.mn-figbar{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:clamp(-30px,-4vw,-18px)}
+.mn-fig:nth-child(3)::before{display:none}
+.mn-fig:nth-child(3),.mn-fig:nth-child(4){border-top:1px solid rgba(20,44,96,.12)}}
+@media (max-width:640px){.mn-hero{min-height:0;padding-bottom:64px}
+.mn-stage-shot{aspect-ratio:4/3}}
+  </style>
 
   <script type="application/ld+json">
 {
@@ -122,7 +319,7 @@
 }
   </script>
 
-  <link rel="preload" as="image" href="../../../assets/img/mn-banner.jpg" fetchpriority="high">
+  <link rel="preload" as="image" href="../../../assets/img/mn-banner.webp" fetchpriority="high">
 
 </head>
 <body class="mnx">
@@ -422,13 +619,13 @@
   <span class="mn-hero-bg" data-mn-bg aria-hidden="true"></span>
   <div class="container mn-hero-in">
     <div class="mn-hero-copy">
-      <span class="mn-badge" data-reveal><i></i><span>MENA Investment Congress 2025</span></span>
-      <h1 class="mn-h1" id="pg-hero-title" data-reveal>
+      <span class="mn-badge" data-aos="fade-up"><i></i><span>MENA Investment Congress 2025</span></span>
+      <h1 class="mn-h1" id="pg-hero-title" data-aos="fade-up">
         <span>When visionaries meet,</span>
         <span class="lit">progress follows.</span>
       </h1>
-      <p class="mn-lead" data-reveal>STARTRADER partnered the MENA Investment Congress 2025 to keep that dialogue alive &mdash; between the people allocating capital in the region and the people building the tools they use.</p>
-      <div class="mn-hact" data-reveal>
+      <p class="mn-lead" data-aos="fade-up">STARTRADER partnered the MENA Investment Congress 2025 to keep that dialogue alive &mdash; between the people allocating capital in the region and the people building the tools they use.</p>
+      <div class="mn-hact" data-aos="fade-up">
         <a class="mn-btn" href="../../../trading/getting-started/account-opening.html">Open live account <svg><use href="#i-arrow-right"/></svg></a>
       </div>
     </div>
@@ -438,13 +635,13 @@
 <!-- ============ THE BELIEFS ============ -->
 <section class="section mn-beliefs" id="beliefs" aria-labelledby="pg-bel-title">
   <div class="container">
-    <span class="mn-eyebrow" data-reveal>Our beliefs</span>
-    <h2 class="mn-h2" id="pg-bel-title" data-reveal>A forum that reflects<br> what we believe</h2>
-    <p class="mn-sub" data-reveal>At the MENA Investment Congress 2025, STARTRADER joined leaders who share one goal: building a smarter future of finance. Four things we took into the room.</p>
+    <span class="mn-eyebrow" data-aos="fade-up">Our beliefs</span>
+    <h2 class="mn-h2" id="pg-bel-title" data-aos="fade-up">A forum that reflects<br> what we believe</h2>
+    <p class="mn-sub" data-aos="fade-up">At the MENA Investment Congress 2025, STARTRADER joined leaders who share one goal: building a smarter future of finance. Four things we took into the room.</p>
 
     <div class="mn-ledger" data-mn-ledger>
       <span class="mn-ledger-run" data-mn-run aria-hidden="true"></span>
-      <article class="mn-line" data-reveal>
+      <article class="mn-line" data-aos="fade-up">
         <span class="mn-line-n">01</span>
         <h3>Innovation</h3>
         <div class="mn-line-tx">
@@ -452,7 +649,7 @@
           <span class="mn-line-mark"><i></i>What we build</span>
         </div>
       </article>
-      <article class="mn-line" data-reveal>
+      <article class="mn-line" data-aos="fade-up">
         <span class="mn-line-n">02</span>
         <h3>Dialogue</h3>
         <div class="mn-line-tx">
@@ -460,7 +657,7 @@
           <span class="mn-line-mark"><i></i>How we learn</span>
         </div>
       </article>
-      <article class="mn-line" data-reveal>
+      <article class="mn-line" data-aos="fade-up">
         <span class="mn-line-n">03</span>
         <h3>Vision</h3>
         <div class="mn-line-tx">
@@ -468,7 +665,7 @@
           <span class="mn-line-mark"><i></i>Where we look</span>
         </div>
       </article>
-      <article class="mn-line" data-reveal>
+      <article class="mn-line" data-aos="fade-up">
         <span class="mn-line-n">04</span>
         <h3>Impact</h3>
         <div class="mn-line-tx">
@@ -483,10 +680,10 @@
 <!-- ============ ABOUT THE CONGRESS ============ -->
 <section class="section mn-about" id="about" aria-labelledby="pg-abt-title">
   <div class="container">
-    <span class="mn-eyebrow" data-reveal>The congress</span>
-    <h2 class="mn-h2" id="pg-abt-title" data-reveal>About MENA Investment<br> Congress 2025</h2>
+    <span class="mn-eyebrow" data-aos="fade-up">The congress</span>
+    <h2 class="mn-h2" id="pg-abt-title" data-aos="fade-up">About MENA Investment<br> Congress 2025</h2>
 
-    <div class="mn-cols" data-reveal>
+    <div class="mn-cols" data-aos="fade-up">
       <p>Organised by CFA Society Emirates, the seventh edition brought together more than 500 participants and over 30 speakers to connect regional markets with global capital flows and ideas.</p>
       <p>More than a stage for technical discussion, it serves as a forum where investors, policymakers and thought leaders exchange perspectives on the trends shaping the future of finance &mdash; which is the part a product roadmap cannot supply on its own.</p>
     </div>
@@ -494,7 +691,7 @@
 
   <div class="mn-stage">
     <div class="mn-stage-shot">
-      <img src="../../../assets/img/mn-g1.jpg" alt="Panel discussion: private capital, VC and tech in MENA" width="1400" height="788" loading="lazy" decoding="async">
+      <img src="../../../assets/img/mn-g1.webp" alt="Panel discussion: private capital, VC and tech in MENA" width="1400" height="788" loading="lazy" decoding="async">
       <span class="mn-stage-cap">Dubai, 2025</span>
     </div>
     <div class="container">
@@ -507,12 +704,12 @@
     </div>
   </div>
 
-  <div class="mn-rail" aria-label="From the congress floor">
-    <div class="mn-track" id="mnTrack">
-      <div class="mn-slide"><img src="../../../assets/img/mn-g2.jpg" alt="Panel: private capital, VC and tech in MENA" width="1400" height="788" loading="lazy" decoding="async"></div>
-      <div class="mn-slide"><img src="../../../assets/img/mn-g3.jpg" alt="On stage with Genero Capital" width="1400" height="788" loading="lazy" decoding="async"></div>
-      <div class="mn-slide"><img src="../../../assets/img/mn-g4.jpg" alt="In conversation" width="1400" height="788" loading="lazy" decoding="async"></div>
-      <div class="mn-slide"><img src="../../../assets/img/mn-g5.jpg" alt="Multi-asset solutions panel" width="1400" height="788" loading="lazy" decoding="async"></div>
+  <div class="mn-rail swiper st-marquee" aria-label="From the congress floor" data-marquee-speed="30">
+    <div class="mn-track swiper-wrapper" id="mnTrack">
+      <div class="mn-slide swiper-slide"><img src="../../../assets/img/mn-g2.webp" alt="Panel: private capital, VC and tech in MENA" width="1400" height="788" loading="lazy" decoding="async"></div>
+      <div class="mn-slide swiper-slide"><img src="../../../assets/img/mn-g3.webp" alt="On stage with Genero Capital" width="1400" height="788" loading="lazy" decoding="async"></div>
+      <div class="mn-slide swiper-slide"><img src="../../../assets/img/mn-g4.webp" alt="In conversation" width="1400" height="788" loading="lazy" decoding="async"></div>
+      <div class="mn-slide swiper-slide"><img src="../../../assets/img/mn-g5.webp" alt="Multi-asset solutions panel" width="1400" height="788" loading="lazy" decoding="async"></div>
     </div>
   </div>
 </section>
@@ -521,14 +718,14 @@
 <section class="section mn-ceo" aria-labelledby="pg-ceo-title">
   <div class="container">
     <div class="mn-ceo-in">
-      <span class="mn-eyebrow" id="pg-ceo-title" data-reveal>A word from our CEO</span>
+      <span class="mn-eyebrow" id="pg-ceo-title" data-aos="fade-up">A word from our CEO</span>
       <span class="mn-ceo-mark" aria-hidden="true">&ldquo;</span>
-      <blockquote data-reveal>At STARTRADER we believe innovation is born out of dialogue. Every conversation with our clients inspires us to refine our platforms, expand our vision and embrace technologies like AI that are reshaping the future of finance. Our partnership with MENA reflects that philosophy: it is a stage where ideas meet, evolve and ultimately create lasting value for investors worldwide.</blockquote>
-      <div class="mn-ceo-by" data-reveal>
-        <span class="mn-ceo-face"><img src="../../../assets/img/mn-ceo-face.jpg" alt="" width="240" height="240" loading="lazy" decoding="async"></span>
+      <blockquote data-aos="fade-up">At STARTRADER we believe innovation is born out of dialogue. Every conversation with our clients inspires us to refine our platforms, expand our vision and embrace technologies like AI that are reshaping the future of finance. Our partnership with MENA reflects that philosophy: it is a stage where ideas meet, evolve and ultimately create lasting value for investors worldwide.</blockquote>
+      <div class="mn-ceo-by" data-aos="fade-up">
+        <span class="mn-ceo-face"><img src="../../../assets/img/mn-ceo-face.webp" alt="STARTRADER Chief Executive Officer portrait" width="240" height="240" loading="lazy" decoding="async"></span>
         <span class="mn-ceo-who"><b>Peter Karsten</b><em>Chief Executive Officer</em></span>
       </div>
-      <div class="mn-ceo-rules" data-reveal>
+      <div class="mn-ceo-rules" data-aos="fade-up">
         <i></i><span>Congress partner</span><i></i>
       </div>
     </div>
@@ -539,10 +736,10 @@
 <section class="section faq-sec fx-faq" aria-labelledby="pg-faq-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>FAQ</span>
-      <h2 class="h2" id="pg-faq-title" data-reveal>About the congress</h2>
+      <span class="eyebrow" data-aos="fade-up">FAQ</span>
+      <h2 class="h2" id="pg-faq-title" data-aos="fade-up">About the congress</h2>
     </div>
-    <div class="faq-list" data-reveal>
+    <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
         <summary>What is the MENA Investment Congress?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a">A regional investment forum organised by CFA Society Emirates. The 2025 edition — its seventh — brought together more than 500 participants and over 30 speakers in Dubai to connect regional markets with global capital flows.</div>
@@ -566,27 +763,27 @@
 <section class="section fx-more" aria-labelledby="pg-more-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Keep going</span>
-      <h2 class="h2" id="pg-more-title" data-reveal>Where to go next</h2>
+      <span class="eyebrow" data-aos="fade-up">Keep going</span>
+      <h2 class="h2" id="pg-more-title" data-aos="fade-up">Where to go next</h2>
     </div>
-    <div class="fx-more-grid" data-reveal-stagger>
-      <a class="fx-more-card" href="../why-startrader.html">
-        <span class="fx-more-media"><img src="../../../assets/img/company-hero.jpg" alt="Why STARTRADER — regulation and scale" width="640" height="349" loading="lazy" decoding="async"></span>
+    <div class="fx-more-grid">
+      <a class="fx-more-card" href="../why-startrader.html" data-aos="fade-up">
+        <span class="fx-more-media"><img src="../../../assets/img/company-hero.webp" alt="Why STARTRADER — regulation and scale" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Five regulators, segregated funds and the conditions behind the brand.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Why STARTRADER</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="../csr.html">
+      <a class="fx-more-card" href="../csr.html" data-aos="fade-up" data-aos-delay="100">
         <span class="fx-more-media"><img src="../../../assets/img/company-2.webp" alt="STARCARES community programmes" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Courts rebuilt, families reached and students backed through STARCARES.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">CSR</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="../events.html">
+      <a class="fx-more-card" href="../events.html" data-aos="fade-up" data-aos-delay="200">
         <span class="fx-more-media"><img src="../../../assets/img/company-1.webp" alt="STARTRADER events and expos" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Expos, summits and client evenings where you can meet the team.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Events</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="../achievements.html">
-        <span class="fx-more-media"><img src="../../../assets/img/stat-awards.png" alt="STARTRADER awards and achievements" width="640" height="349" loading="lazy" decoding="async"></span>
+      <a class="fx-more-card" href="../achievements.html" data-aos="fade-up" data-aos-delay="300">
+        <span class="fx-more-media"><img src="../../../assets/img/stat-awards.webp" alt="STARTRADER awards and achievements" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Awards tied to execution, service and cost rather than marketing spend.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Achievements</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
@@ -597,9 +794,9 @@
 <section class="cta-banner" aria-labelledby="pg-cta-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="pg-cta-title" data-reveal>Start trading with a<br>globally leading broker</h2>
-    <p data-reveal>Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
-    <div class="cta-actions" data-reveal>
+    <h2 id="pg-cta-title" data-aos="fade-up">Start trading with a<br>globally leading broker</h2>
+    <p data-aos="fade-up">Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
+    <div class="cta-actions" data-aos="fade-up">
       <a href="../../../trading/getting-started/account-opening.html" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       <a href="../../../trading/getting-started/account-opening.html" class="btn btn-ghost btn-lg">Try Free Demo</a>
     </div>
@@ -687,7 +884,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../../../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../../../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -721,6 +918,8 @@
 <script src="../../../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../../../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../../../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../../../assets/js/vendor/swiper-bundle.min.js" defer></script>
+<script src="../../../assets/js/vendor/aos.min.js" defer></script>
 <script src="../../../assets/js/main.js" defer></script>
 
 <!-- Company page: robust scroll reveals + hero parallax (self-contained, never leaves content hidden) -->

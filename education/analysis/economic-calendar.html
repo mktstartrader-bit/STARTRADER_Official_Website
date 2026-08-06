@@ -17,14 +17,14 @@
   <meta property="og:title" content="Economic Calendar — Live Market Events &amp; Data Releases | STARTRADER" />
   <meta property="og:description" content="Central bank decisions, inflation and jobs data with impact ratings and consensus forecasts — in your own timezone, on the STARTRADER economic calendar." />
   <meta property="og:url" content="https://www.startrader.com/education/analysis/economic-calendar.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/home-hero-wave.jpg" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/home-hero-wave.webp" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Economic Calendar — Live Market Events &amp; Data Releases | STARTRADER" />
   <meta name="twitter:description" content="Central bank decisions, inflation and jobs data with impact ratings and consensus forecasts — in your own timezone, on the STARTRADER economic calendar." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/home-hero-wave.jpg" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/home-hero-wave.webp" />
 
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../../favicon.svg" />
@@ -33,7 +33,140 @@
   <!-- Fonts (self-hosted) -->
   <link rel="preload" href="../../assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="../../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ================= ECONOMIC CALENDAR PAGE ================= */
+/* the banner reuses the .wb-hero video shell, but its copy is left-aligned
+   and there is no session strip beneath it */
+.ec-hero{justify-content:center}
+/* ---- Calendar section (live third-party feed) ---- */
+.ec-sec{
+  background:
+    radial-gradient(58% 46% at 6% 0%,rgba(0,71,187,.08),transparent 62%),
+    radial-gradient(52% 44% at 96% 16%,rgba(22,233,215,.07),transparent 62%),
+    radial-gradient(56% 40% at 48% 104%,rgba(0,71,187,.06),transparent 62%),
+    var(--bg-light);
+  scroll-margin-top:calc(var(--chrome-h) + var(--chrome-gap));
+}
+.ec-embed{border-radius:var(--radius-lg);overflow:hidden;padding:0}
+.ec-embed-bar{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  padding:14px 20px;border-bottom:1px solid rgba(20,40,80,.09);
+}
+.ec-live{
+  display:inline-flex;align-items:center;gap:9px;font-size:11px;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:#b0342f;
+}
+.ec-live i{width:7px;height:7px;border-radius:50%;flex:none;background:#ef4444;box-shadow:0 0 0 0 rgba(239,68,68,.6);animation:ecPing 2.2s infinite}
+.ec-embed-hint{font-size:12.5px;color:var(--text-mute)}
+/* the widget is its own light UI — give it a clean white stage to sit on */
+.ec-embed-frame{background:#fff;height:clamp(520px,66vh,760px)}
+.ec-embed-frame iframe{display:block;width:100%;height:100%;border:0}
+.ec-credit{padding:12px 20px;font-size:12px;color:var(--text-mute);border-top:1px solid rgba(20,40,80,.07);background:rgba(255,255,255,.5)}
+.ec-credit a{color:var(--blue);font-weight:600}
+.ec-credit a:hover{text-decoration:underline;text-underline-offset:2px}
+.ec-note{margin-top:22px;text-align:center;font-size:12.5px;line-height:1.6;color:var(--text-mute)}
+/* ---- Reading the calendar: the market-hours bento, with a calendar legend ---- */
+.ec-legend{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px}
+.ec-lg{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:600;color:#aeb8cc}
+.ec-lg i{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.16)}
+.ec-lg--high i{background:#ff6b6b}
+.ec-lg--med i:nth-child(-n+2){background:#f5a524}
+.ec-lg--low i:nth-child(1){background:#8fa0bd}
+.ec-beat-lbl{color:#34d99b}
+.ec-beat-lbl::before{background:#34d99b}
+/* ---- Responsive ---- */
+@media (max-width:1080px){.ec-embed-frame{height:clamp(500px,60vh,700px)}}
+@media (max-width:720px){.ec-embed-frame{height:clamp(460px,72vh,620px)}
+.ec-embed-bar{padding:12px 16px}
+.ec-credit{padding:11px 16px}}
+/* ---- Why-card additions for features the product pages don't cover.
+   Same vocabulary as .fx-tx / .fx-cs / .fx-su: white chips on soft shadow,
+   the blue gradient disc, frosted panels — only the composition is new. ---- */
+.fx-w2--wide{grid-column:span 2}
+/* the spread meter's chips would drift to the far corners of a wide stage */
+.fx-w2--wide .fx-cs-chip.c1{right:22%}
+.fx-w2--wide .fx-cs-chip.c2{left:22%}
+.fx-w2--wide .fx-cs-chip.c3{right:30%}
+/* two columns: the spans would orphan half-rows mid-list, so they unwind and
+   the first card takes the wide slot instead — 7 cards, 4 full rows */
+@media (max-width:1080px){.fx-w2--wide{grid-column:auto}}
+/* two columns: the spans would orphan half-rows mid-list, so they unwind and
+   the first card takes the wide slot instead — 7 cards, 4 full rows */
+@media (max-width:1080px){.ec-why .fx-w2-grid > .fx-w2:first-child{grid-column:span 2}}
+/* single column: nothing may span */
+@media (max-width:720px){.fx-w2--wide,.ec-why .fx-w2-grid > .fx-w2:first-child{grid-column:auto}}
+/* Expanding global server network — a rack broadcasting to its regions */
+.fx-sv{position:relative;width:100%;height:100%;display:grid;place-items:center}
+.fx-sv-core{
+  position:relative;z-index:2;width:82px;height:82px;border-radius:50%;display:grid;place-items:center;color:#fff;
+  background:radial-gradient(130% 130% at 50% 16%,#2074ff,#0740b8);
+  box-shadow:0 20px 40px -14px rgba(0,71,187,.6),inset 0 1px 0 rgba(255,255,255,.3);
+  margin-top:-18px;
+}
+.fx-sv-core svg{width:34px;height:34px}
+.fx-sv-wave{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,calc(-50% - 18px));
+  border-radius:50%;border:1px solid rgba(0,71,187,.22);pointer-events:none;
+}
+.fx-sv-wave.w1{width:132px;height:132px}
+.fx-sv-wave.w2{width:186px;height:186px}
+.fx-sv-wave.w3{width:240px;height:240px;border-color:rgba(0,71,187,.13)}
+.fx-sv-rack{
+  position:absolute;left:50%;bottom:34px;transform:translateX(-50%);z-index:2;
+  display:flex;flex-direction:column;gap:4px;padding:9px 12px;border-radius:11px;
+  background:#fff;box-shadow:0 12px 26px -12px rgba(20,44,96,.45);
+}
+.fx-sv-rack i{display:block;width:44px;height:5px;border-radius:3px;background:linear-gradient(90deg,#1e4fb8,#5b9dff)}
+.fx-sv-chip{
+  position:absolute;left:50%;bottom:0;transform:translateX(-50%);white-space:nowrap;
+  font-size:11px;font-weight:700;color:#0f1830;background:#fff;padding:7px 13px;border-radius:70px;
+  box-shadow:0 12px 26px -12px rgba(20,44,96,.45);
+}
+/* Top institutional liquidity — an aggregated depth ladder */
+.fx-lq{position:relative;width:100%;height:100%;display:grid;place-items:center}
+.fx-lq-book{
+  width:88%;max-width:340px;display:flex;flex-direction:column;gap:7px;padding:16px 18px;border-radius:16px;
+  background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.9);
+  box-shadow:inset 0 1px 0 #fff,0 12px 28px -18px rgba(20,44,96,.3);
+  -webkit-backdrop-filter:blur(8px) saturate(1.4);backdrop-filter:blur(8px) saturate(1.4);
+}
+.fx-lq-row{display:grid;grid-template-columns:1fr 34px 1fr;align-items:center;gap:8px}
+.fx-lq-row b{font-size:10.5px;font-weight:700;color:var(--text-mute);text-align:center;font-variant-numeric:tabular-nums}
+.fx-lq-row i{display:block;height:7px;border-radius:4px;width:var(--w,60%)}
+.fx-lq-row i.bid{margin-left:auto;background:linear-gradient(270deg,#1e4fb8,rgba(30,79,184,.28))}
+.fx-lq-row i.ask{background:linear-gradient(90deg,#5b9dff,rgba(91,157,255,.26))}
+.fx-lq-chip{
+  position:absolute;display:flex;align-items:center;gap:7px;white-space:nowrap;
+  font-size:11px;font-weight:600;color:#0f1830;background:#fff;padding:7px 11px;border-radius:10px;
+  box-shadow:0 10px 22px -12px rgba(20,44,96,.4);
+}
+.fx-lq-chip .ok{flex:none;width:15px;height:15px;border-radius:50%;display:grid;place-items:center;background:var(--blue);color:#fff}
+.fx-lq-chip .ok svg{width:10px;height:10px}
+.fx-lq-chip.c1{top:2px;left:2%}
+.fx-lq-chip.c2{bottom:4px;right:2%}
+.fx-why-note{
+  margin:38px auto 0;max-width:760px;text-align:center;
+  font-size:12.5px;font-style:italic;line-height:1.6;color:var(--text-mute);
+}
+.fx-why-note b{font-style:normal;font-weight:700;color:var(--text-soft)}
+@media (prefers-reduced-motion:no-preference){.fx-sv-wave{animation:fxSvWave 3.6s ease-out infinite}
+.fx-sv-wave.w2{animation-delay:.6s}
+.fx-sv-wave.w3{animation-delay:1.2s}
+.fx-sv-rack i{animation:fxSvBar 1.8s ease-in-out infinite}
+.fx-sv-rack i:nth-child(2){animation-delay:.18s}
+.fx-sv-rack i:nth-child(3){animation-delay:.36s}
+.fx-sv-chip{animation:fxFloat 5.4s ease-in-out infinite}
+.fx-lq-row i{animation:fxLqDepth 3.2s ease-in-out infinite}
+.fx-lq-row:nth-child(2) i{animation-delay:.24s}
+.fx-lq-row:nth-child(3) i{animation-delay:.48s}
+.fx-lq-row:nth-child(4) i{animation-delay:.72s}
+.fx-lq-row:nth-child(5) i{animation-delay:.96s}
+.fx-lq-chip.c1{animation:fxFloat 5.2s ease-in-out infinite}
+.fx-lq-chip.c2{animation:fxFloat 5.8s ease-in-out infinite -2.1s}}
+  </style>
 
   <!-- Structured data — breadcrumb -->
   <script type="application/ld+json">
@@ -393,16 +526,16 @@
 
 <!-- ============ HERO ============ -->
 <section class="wb-hero ec-hero" aria-labelledby="ec-hero-title">
-  <video class="wb-hero-video" autoplay muted loop playsinline preload="auto" poster="../../assets/img/webinars-video-poster.jpg" aria-hidden="true">
+  <video class="wb-hero-video" autoplay muted loop playsinline preload="auto" poster="../../assets/img/webinars-video-poster.webp" aria-hidden="true">
     <source src="../../assets/video/webinars-banner.mp4" type="video/mp4">
   </video>
   <div class="wb-hero-scrim" aria-hidden="true"></div>
 
   <div class="container wb-hero-inner">
-    <span class="eyebrow eyebrow-blue" data-reveal>Analysis</span>
-    <h1 class="wb-h1" id="ec-hero-title" data-reveal>Economic Calendar</h1>
-    <p class="wb-lead" data-reveal>Trade with a vision &mdash; every market-moving release, rated for impact and set to your own clock.</p>
-    <div class="wb-hact" data-reveal>
+    <span class="eyebrow eyebrow-blue" data-aos="fade-up">Analysis</span>
+    <h1 class="wb-h1" id="ec-hero-title" data-aos="fade-up">Economic Calendar</h1>
+    <p class="wb-lead" data-aos="fade-up">Trade with a vision &mdash; every market-moving release, rated for impact and set to your own clock.</p>
+    <div class="wb-hact" data-aos="fade-up">
       <a href="#calendar" class="btn btn-primary btn-lg magnetic">View this week <svg class="ico"><use href="#i-arrow-right"/></svg></a>
     </div>
   </div>
@@ -413,12 +546,12 @@
 <section class="section ec-sec" id="calendar" aria-labelledby="ec-cal-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>This week</span>
-      <h2 class="h2" id="ec-cal-title" data-reveal>Every release that moves a market</h2>
-      <p class="head-sub" data-reveal>A live feed of scheduled releases with impact ratings, consensus forecasts and the figures as they land. Use the calendar&rsquo;s own date picker and timezone control to set it to the week and clock you work in.</p>
+      <span class="eyebrow" data-aos="fade-up">This week</span>
+      <h2 class="h2" id="ec-cal-title" data-aos="fade-up">Every release that moves a market</h2>
+      <p class="head-sub" data-aos="fade-up">A live feed of scheduled releases with impact ratings, consensus forecasts and the figures as they land. Use the calendar&rsquo;s own date picker and timezone control to set it to the week and clock you work in.</p>
     </div>
 
-    <div class="ec-embed glass" data-reveal>
+    <div class="ec-embed glass" data-aos="fade-up">
       <div class="ec-embed-bar">
         <span class="ec-live"><i aria-hidden="true"></i> Live data</span>
         <span class="ec-embed-hint">Impact &middot; previous &middot; forecast &middot; actual, updated as each figure is published</span>
@@ -452,12 +585,12 @@
 <section class="section fx-hours ec-read" aria-labelledby="ec-read-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow eyebrow-blue" data-reveal>How to use it</span>
-      <h2 class="h2 h2-light" id="ec-read-title" data-reveal>Reading the calendar</h2>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">How to use it</span>
+      <h2 class="h2 h2-light" id="ec-read-title" data-aos="fade-up">Reading the calendar</h2>
     </div>
 
-    <div class="fx-mh" data-reveal-stagger data-fx-hours>
-      <article class="fx-mh-card fx-mh--teal">
+    <div class="fx-mh" data-fx-hours>
+      <article class="fx-mh-card fx-mh--teal" data-aos="fade-up">
         <span class="fx-mh-ic"><svg><use href="#i-gauge"/></svg></span>
         <h3>Impact sets the stakes</h3>
         <p>Three bars is a release that moves a currency the moment it lands. One bar is background colour.</p>
@@ -468,7 +601,7 @@
         </span></div></div>
       </article>
 
-      <article class="fx-mh-card fx-mh--wide fx-mh--blue">
+      <article class="fx-mh-card fx-mh--wide fx-mh--blue" data-aos="fade-up" data-aos-delay="100">
         <span class="fx-mh-ic"><svg><use href="#i-chart"/></svg></span>
         <h3>The surprise is the story</h3>
         <p>Markets have already priced the forecast. What moves price is the gap between forecast and actual &mdash; so a strong number that undershoots expectations can still send a currency lower.</p>
@@ -482,14 +615,14 @@
         </div>
       </article>
 
-      <article class="fx-mh-card fx-mh--purple">
+      <article class="fx-mh-card fx-mh--purple" data-aos="fade-up" data-aos-delay="200">
         <span class="fx-mh-ic"><svg><use href="#i-clock"/></svg></span>
         <h3>Work in your own clock</h3>
         <p>Set the calendar&rsquo;s timezone control once and every release reads in your local time.</p>
         <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="fx-mh-status"><i></i> <span data-fx-clock>GMT 00:00</span> market time</span></div></div>
       </article>
 
-      <article class="fx-mh-card fx-mh--green">
+      <article class="fx-mh-card fx-mh--green" data-aos="fade-up" data-aos-delay="300">
         <span class="fx-mh-ic"><svg><use href="#i-swap"/></svg></span>
         <h3>Watch the revisions</h3>
         <p>Figures are restated as fuller data arrives &mdash; a revision can matter as much as the first print.</p>
@@ -499,7 +632,7 @@
         </div></div>
       </article>
 
-      <article class="fx-mh-card fx-mh--orange">
+      <article class="fx-mh-card fx-mh--orange" data-aos="fade-up" data-aos-delay="400">
         <span class="fx-mh-ic"><svg><use href="#i-bolt"/></svg></span>
         <h3>Respect the first seconds</h3>
         <p>Spreads widen and price can spike both ways before settling. Size accordingly, or wait it out.</p>
@@ -515,11 +648,11 @@
 <section class="section fx-why ec-why" aria-labelledby="ec-why-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Why STARTRADER</span>
-      <h2 class="h2" id="ec-why-title" data-reveal>Why trade with STARTRADER</h2>
+      <span class="eyebrow" data-aos="fade-up">Why STARTRADER</span>
+      <h2 class="h2" id="ec-why-title" data-aos="fade-up">Why trade with STARTRADER</h2>
     </div>
-    <div class="fx-w2-grid" data-reveal-stagger>
-      <article class="fx-w2">
+    <div class="fx-w2-grid">
+      <article class="fx-w2" data-aos="fade-up">
         <div class="fx-w2-viz">
           <div class="fx-tx">
             <div class="fx-tx-ring">
@@ -533,7 +666,7 @@
         <p>Multiple deposit and withdrawal methods, with zero deposit fees on most payment methods.</p>
       </article>
 
-      <article class="fx-w2">
+      <article class="fx-w2" data-aos="fade-up" data-aos-delay="100">
         <div class="fx-w2-viz">
           <div class="fx-uf">
             <div class="fx-uf-speed"><i></i><i></i><i></i><i></i><i></i></div>
@@ -544,7 +677,7 @@
         <p>Execute trades in milliseconds, gaining an edge in the market.</p>
       </article>
 
-      <article class="fx-w2">
+      <article class="fx-w2" data-aos="fade-up" data-aos-delay="200">
         <div class="fx-w2-viz">
           <div class="fx-sv">
             <span class="fx-sv-wave w1"></span>
@@ -559,7 +692,7 @@
         <p>Stable, ultra-fast trading with our growing global server infrastructure.</p>
       </article>
 
-      <article class="fx-w2 fx-w2--wide">
+      <article class="fx-w2 fx-w2--wide" data-aos="fade-up" data-aos-delay="300">
         <div class="fx-w2-viz">
           <div class="fx-cs">
             <div class="fx-cs-meter">
@@ -576,7 +709,7 @@
         <p>Enjoy ultra-tight spreads on the ECN account.</p>
       </article>
 
-      <article class="fx-w2 fx-w2--lev">
+      <article class="fx-w2 fx-w2--lev" data-aos="fade-up" data-aos-delay="400">
         <div class="fx-w2-viz">
           <div class="fx-lv">
             <svg viewBox="0 0 320 180" preserveAspectRatio="none" aria-hidden="true">
@@ -591,7 +724,7 @@
         <p>Leverage up to 1:1000 for higher potential.*</p>
       </article>
 
-      <article class="fx-w2 fx-w2--wide fx-w2--wide-lg">
+      <article class="fx-w2 fx-w2--wide fx-w2--wide-lg" data-aos="fade-up" data-aos-delay="500">
         <div class="fx-w2-viz">
           <div class="fx-lq">
             <div class="fx-lq-book">
@@ -609,7 +742,7 @@
         <p>Institutional-level liquidity access, ensuring ultra-tight spreads.</p>
       </article>
 
-      <article class="fx-w2">
+      <article class="fx-w2" data-aos="fade-up" data-aos-delay="600">
         <div class="fx-w2-viz">
           <div class="fx-su">
             <div class="fx-su-core"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.54 5h3.1a1 1 0 0 1 .98.79l.74 3.3a1 1 0 0 1-.28.94l-1.56 1.5a13 13 0 0 0 5.32 5.32l1.5-1.56a1 1 0 0 1 .94-.28l3.3.74a1 1 0 0 1 .79.98v3.1a1 1 0 0 1-1 1A16.5 16.5 0 0 1 5.5 6a1 1 0 0 1 1-1z"/><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" d="M15.5 4.6a5.4 5.4 0 0 1 4 4"/><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" d="M14.9 8.1a2.6 2.6 0 0 1 1.9 1.9"/></svg></div>
@@ -622,7 +755,7 @@
         <p>Professional assistance in 20+ languages, whenever you need it.</p>
       </article>
     </div>
-    <p class="fx-why-note" data-reveal><b>Important note:</b> leverage is subject to applicable terms and conditions. Leverage restrictions may apply in accordance with regulatory guidelines.</p>
+    <p class="fx-why-note" data-aos="fade-up"><b>Important note:</b> leverage is subject to applicable terms and conditions. Leverage restrictions may apply in accordance with regulatory guidelines.</p>
   </div>
 </section>
 
@@ -630,10 +763,10 @@
 <section class="section faq-sec fx-faq" aria-labelledby="ec-faq-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>FAQ</span>
-      <h2 class="h2" id="ec-faq-title" data-reveal>Economic calendar questions</h2>
+      <span class="eyebrow" data-aos="fade-up">FAQ</span>
+      <h2 class="h2" id="ec-faq-title" data-aos="fade-up">Economic calendar questions</h2>
     </div>
-    <div class="faq-list" data-reveal>
+    <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
         <summary>What is an economic calendar?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a">An economic calendar is a schedule of the data releases and central bank announcements that move markets &mdash; inflation figures, employment reports, GDP, interest rate decisions and sentiment surveys. Each entry shows when the number is published, which currency it affects, how much impact it usually has, and the previous, forecast and actual readings so you can see whether the release beat or missed expectations.</div>
@@ -674,21 +807,21 @@
 <section class="section fx-more wb-more" aria-labelledby="ec-more-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Keep learning</span>
-      <h2 class="h2" id="ec-more-title" data-reveal>Put the data in context</h2>
+      <span class="eyebrow" data-aos="fade-up">Keep learning</span>
+      <h2 class="h2" id="ec-more-title" data-aos="fade-up">Put the data in context</h2>
     </div>
-    <div class="fx-more-grid" data-reveal-stagger>
-      <a class="fx-more-card" href="../academy/webinars.html">
+    <div class="fx-more-grid">
+      <a class="fx-more-card" href="../academy/webinars.html" data-aos="fade-up">
         <span class="fx-more-media"><img src="../../assets/img/company-office.webp" alt="Analyst presenting a live market session" width="640" height="349" loading="lazy"></span>
         <p class="fx-more-desc">Live sessions on reading macro data and trading the calendar, free to join and recorded for replay.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Webinars</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="../../index.html#academy">
+      <a class="fx-more-card" href="../../index.html#academy" data-aos="fade-up" data-aos-delay="100">
         <span class="fx-more-media"><img src="../../assets/img/learn-viz.webp" alt="Knowledge Centre trading guides and courses" width="640" height="349" loading="lazy"></span>
         <p class="fx-more-desc">Guides that explain each indicator in plain English, from CPI to the yield curve.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Knowledge Centre</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="../learn/glossary/index.html">
+      <a class="fx-more-card" href="../learn/glossary/index.html" data-aos="fade-up" data-aos-delay="200">
         <span class="fx-more-media"><img src="../../assets/img/learn-cta.webp" alt="Trading glossary of key terms" width="640" height="349" loading="lazy"></span>
         <p class="fx-more-desc">Every term you will meet in a release note, defined without the jargon.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Glossary</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
@@ -701,9 +834,9 @@
 <section class="cta-banner" aria-labelledby="ec-cta-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="ec-cta-title" data-reveal>Start trading with a<br>globally leading broker</h2>
-    <p data-reveal>Trade the releases that matter across 1,000+ instruments, with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
-    <div class="cta-actions" data-reveal>
+    <h2 id="ec-cta-title" data-aos="fade-up">Start trading with a<br>globally leading broker</h2>
+    <p data-aos="fade-up">Trade the releases that matter across 1,000+ instruments, with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
+    <div class="cta-actions" data-aos="fade-up">
       <a href="../../trading/getting-started/account-opening.html" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       <a href="../../trading/getting-started/account-opening.html" class="btn btn-ghost btn-lg">Try Free Demo</a>
     </div>
@@ -792,7 +925,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -826,6 +959,7 @@
 <script src="../../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../../assets/js/vendor/aos.min.js" defer></script>
 <script src="../../assets/js/main.js" defer></script>
 </body>
 </html>

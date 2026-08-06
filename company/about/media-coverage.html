@@ -16,14 +16,14 @@
   <meta property="og:title" content="Media Coverage | STARTRADER in the Press" />
   <meta property="og:description" content="STARTRADER in the media — the outlets that review us, the stories they cover, and how to reach the press desk." />
   <meta property="og:url" content="https://www.startrader.com/company/about/media-coverage.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/platform-hero.jpg" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/platform-hero.webp" />
   <meta property="og:image:alt" content="Media Coverage — STARTRADER" />
   <meta property="og:locale" content="en_US" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Media Coverage | STARTRADER in the Press" />
   <meta name="twitter:description" content="STARTRADER in the media — the outlets that review us, the stories they cover, and how to reach the press desk." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/platform-hero.jpg" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/platform-hero.webp" />
 
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../../favicon.svg" />
@@ -32,7 +32,93 @@
   <link rel="preload" href="../../assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" as="image" href="../../assets/img/platform-hero.webp" />
   <link rel="stylesheet" href="../../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../../assets/css/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="../../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* =================================================================
+   MEDIA COVERAGE — a rated-outlet rail and a wall of clippings
+   ================================================================= */
+.mc-wall-sec{position:relative;overflow:clip;background:var(--bg-light)}
+.mc-wall-sec>.container{position:relative;z-index:1}
+/* ---- the outlets, on a slow rail ---- */
+.mc-rail{
+  position:relative;width:100vw;margin-left:calc(-50vw + 50%);overflow:hidden;margin-bottom:clamp(34px,4vw,54px);
+  -webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+  mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+}
+.mc-track{display:flex;gap:14px;width:max-content;padding:4px 0;will-change:transform}
+.mc-outlet{
+  flex:none;width:206px;display:flex;flex-direction:column;align-items:center;gap:13px;
+  padding:22px 20px 18px;border-radius:20px;
+  background:rgba(255,255,255,.84);border:1px solid rgba(255,255,255,.94);
+  box-shadow:0 16px 38px -26px rgba(20,44,96,.34),inset 0 1px 0 #fff;
+  -webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);
+  transition:transform .4s var(--ease),border-color .3s,box-shadow .4s var(--ease);
+}
+.mc-outlet:hover{transform:translateY(-5px);border-color:rgba(0,71,187,.3);box-shadow:0 26px 48px -24px rgba(0,71,187,.4),inset 0 1px 0 #fff}
+.mc-outlet-logo{height:26px;display:grid;place-items:center}
+.mc-outlet-logo img{height:100%;width:auto;max-width:148px;object-fit:contain;display:block}
+/* a real half star, rather than a number standing in for one */
+.mc-outlet-stars{display:inline-flex;align-items:center;gap:3px}
+.mc-outlet-stars svg{width:13px;height:13px;color:#e3b26a}
+.mc-outlet-stars .half{position:relative;display:inline-grid;place-items:center;width:13px;height:13px}
+.mc-outlet-stars .half>svg{color:rgba(20,44,96,.15)}
+.mc-outlet-stars .half i{position:absolute;left:0;top:0;bottom:0;width:50%;overflow:hidden;display:grid;place-items:center start}
+.mc-outlet-stars .half i svg{color:#e3b26a}
+.mc-outlet-score{display:inline-flex;align-items:baseline;gap:2px;font-size:14px;font-weight:800;letter-spacing:-.02em;color:var(--text)}
+.mc-outlet-score em{font-style:normal;font-size:11.5px;font-weight:700;color:var(--text-mute)}
+.mc-outlet-url{
+  width:100%;padding-top:13px;border-top:1px solid var(--line);text-align:center;
+  font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--text-mute);
+  transition:color .3s;
+}
+.mc-outlet:hover .mc-outlet-url{color:var(--blue)}
+/* ---- the wall: clippings flowing down columns ---- */
+.mc-wall{columns:3;column-gap:20px}
+.mc-clip{
+  break-inside:avoid;overflow:hidden;margin:0 0 20px;padding:0 24px 20px;border-radius:20px;
+  background:rgba(255,255,255,.82);border:1px solid rgba(255,255,255,.94);
+  box-shadow:0 16px 40px -28px rgba(20,44,96,.32),inset 0 1px 0 #fff;
+  -webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
+}
+.mc-clip:hover{transform:translateY(-4px);border-color:rgba(0,71,187,.26);box-shadow:0 28px 52px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff}
+/* the still bleeds to the card edge, then the clipping text sits under it */
+.mc-clip-media{display:block;position:relative;overflow:hidden;margin:0 -24px 20px;aspect-ratio:16/10;background:rgba(20,44,96,.06)}
+.mc-clip-media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s var(--ease)}
+.mc-clip:hover .mc-clip-media img{transform:scale(1.05)}
+.mc-clip--quote .mc-clip-media{aspect-ratio:4/3}
+.mc-clip-top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.mc-chip{display:inline-flex;align-items:center;gap:7px;font-size:10.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--blue)}
+.mc-chip svg{width:13px;height:13px}
+.mc-clip-top time{font-size:11.5px;color:var(--text-mute);white-space:nowrap}
+.mc-clip h3{margin-top:15px;font-size:17px;letter-spacing:-.028em;line-height:1.32;color:var(--text)}
+.mc-clip p{margin-top:10px;font-size:13.5px;line-height:1.66;color:var(--text-soft)}
+.mc-clip-go{
+  display:inline-flex;align-items:center;gap:8px;margin-top:16px;
+  font-size:12.5px;font-weight:700;color:var(--blue);
+}
+.mc-clip-go svg{width:14px;height:14px;transition:transform .3s var(--ease)}
+.mc-clip:hover .mc-clip-go svg{transform:translate(3px,-3px)}
+/* a pull line, so the wall is not six identical blocks */
+.mc-clip--quote{background:linear-gradient(160deg,rgba(0,71,187,.1),rgba(255,255,255,.84) 52%)}
+.mc-clip--quote h3{font-size:19px;line-height:1.34}
+.mc-note{margin-top:34px;text-align:center;font-size:11.5px;line-height:1.7;color:var(--text-mute)}
+@media (max-width:1000px){.mc-wall{columns:2}}
+@media (max-width:680px){.mc-wall{columns:1}
+.mc-outlet{width:176px;padding:18px 16px 15px}}
+/* the award has no photograph, so the laurel sits on a field of its own */
+.mc-clip-media--award{display:grid;place-items:center;background:linear-gradient(150deg,#0b1226,#0a1a3e 58%,#071024)}
+.mc-clip-media--award img{width:44%;height:auto;object-fit:contain;filter:brightness(0) invert(1);opacity:.9}
+.mc-clip:hover .mc-clip-media--award img{transform:scale(1.05)}
+/* ---- coverage page: the outlet run inside the body, and clickable clippings ---- */
+/* the clipping's still and headline both open the story */
+a.mc-clip-media{display:block;cursor:pointer}
+.mc-clip h3 a{color:inherit;transition:color .25s}
+.mc-clip:hover h3 a{color:var(--blue)}
+  </style>
 
   <script type="application/ld+json">
 {
@@ -459,10 +545,10 @@
   <div class="pf-hero-bg" aria-hidden="true"></div>
   <div class="container pf-hero-in">
     <div class="pf-hero-copy">
-      <span class="eyebrow eyebrow-blue" data-reveal>Media</span>
-      <h1 class="pf-h1" id="pg-hero-title" data-reveal>We are thriving<br> in the media</h1>
-      <p class="pf-lead" data-reveal>Product launches, licences, sponsorships and the occasional argument<br> &mdash; what the press has been writing about us.</p>
-      <div class="pf-hact" data-reveal>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">Media</span>
+      <h1 class="pf-h1" id="pg-hero-title" data-aos="fade-up">We are thriving<br> in the media</h1>
+      <p class="pf-lead" data-aos="fade-up">Product launches, licences, sponsorships and the occasional argument<br> &mdash; what the press has been writing about us.</p>
+      <div class="pf-hact" data-aos="fade-up">
         <a href="#latest" class="btn btn-primary btn-lg magnetic">Read the latest <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       </div>
     </div>
@@ -474,28 +560,28 @@
   <span class="pf-aura a1" aria-hidden="true"></span>
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>In the spotlight</span>
-      <h2 class="h2" id="pg-grid-title" data-reveal>Three subjects account<br> for most of the coverage</h2>
-      <p class="head-sub" data-reveal>What gets written about, and why it is usually one of these three.</p>
+      <span class="eyebrow" data-aos="fade-up">In the spotlight</span>
+      <h2 class="h2" id="pg-grid-title" data-aos="fade-up">Three subjects account<br> for most of the coverage</h2>
+      <p class="head-sub" data-aos="fade-up">What gets written about, and why it is usually one of these three.</p>
     </div>
 
-    <div class="pl-cards" data-reveal-stagger>
-      <article class="pl-card">
+    <div class="pl-cards">
+      <article class="pl-card" data-aos="fade-up">
         <span class="pl-card-hd"><span class="pl-card-ic"><svg><use href="#i-bolt"/></svg></span><h3>Product launches</h3></span>
         <p>New instruments, new platforms and new access — most recently round-the-clock US stock CFDs, which changes who can trade a US name and when.</p>
       </article>
-      <article class="pl-card">
+      <article class="pl-card" data-aos="fade-up" data-aos-delay="100">
         <span class="pl-card-hd"><span class="pl-card-ic"><svg><use href="#i-id"/></svg></span><h3>Regulation and licensing</h3></span>
         <p>Each new licence changes what we can offer and where, which is why it gets written about rather than announced quietly.</p>
       </article>
-      <article class="pl-card">
+      <article class="pl-card" data-aos="fade-up" data-aos-delay="200">
         <span class="pl-card-hd"><span class="pl-card-ic"><svg><use href="#i-star"/></svg></span><h3>Sponsorship</h3></span>
         <p>The NBA, the Porsche Carrera Cup Middle East and the UAE National Cricket Team — and the reasoning behind each one.</p>
       </article>
     </div>
 
-    <div class="pl-sign glass" data-reveal>
-      <img src="../../assets/img/icon-shield-3d.png" alt="" width="400" height="490" loading="lazy" decoding="async">
+    <div class="pl-sign glass" data-aos="fade-up">
+      <img src="../../assets/img/icon-shield-3d.webp" alt="3D shield emblem for insured client funds" width="400" height="490" loading="lazy" decoding="async">
       <span class="pl-sign-tx">
         <b>The press desk answers with a name attached</b>
         <em>Market commentary comes from the research desk and corporate matters from management &mdash; so a quote has someone behind it rather than a company line.</em>
@@ -509,39 +595,39 @@
 <section class="section mc-wall-sec" id="coverage" aria-labelledby="pg-wall-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Where we are reviewed</span>
-      <h2 class="h2" id="pg-wall-title" data-reveal>The clippings wall</h2>
-      <p class="head-sub" data-reveal>Rated by the industry titles that judge brokers on execution, and written up by the press when something changes.</p>
+      <span class="eyebrow" data-aos="fade-up">Where we are reviewed</span>
+      <h2 class="h2" id="pg-wall-title" data-aos="fade-up">The clippings wall</h2>
+      <p class="head-sub" data-aos="fade-up">Rated by the industry titles that judge brokers on execution, and written up by the press when something changes.</p>
     </div>
   </div>
 
-  <div class="mc-rail" aria-label="Outlets that review us">
-    <div class="mc-track" id="mcTrack">
-        <span class="mc-outlet">
+  <div class="mc-rail swiper st-marquee" aria-label="Outlets that review us" data-marquee-speed="34">
+    <div class="mc-track swiper-wrapper" id="mcTrack">
+        <span class="mc-outlet swiper-slide">
           <span class="mc-outlet-logo"><img src="../../assets/img/media-wikifx-c.svg" alt="WikiFX" height="26" loading="lazy" decoding="async"></span>
           <span class="mc-outlet-stars" role="img" aria-label="Rated 4.5 out of 5"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><span class="half"><svg><use href="#i-star"/></svg><i><svg><use href="#i-star"/></svg></i></span></span>
           <span class="mc-outlet-score">4.5<em>/5</em></span>
           <span class="mc-outlet-url">wikifx.com</span>
         </span>
-        <span class="mc-outlet">
+        <span class="mc-outlet swiper-slide">
           <span class="mc-outlet-logo"><img src="../../assets/img/media-dailyforex-c.svg" alt="DailyForex" height="26" loading="lazy" decoding="async"></span>
           <span class="mc-outlet-stars" role="img" aria-label="Rated 4.5 out of 5"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><span class="half"><svg><use href="#i-star"/></svg><i><svg><use href="#i-star"/></svg></i></span></span>
           <span class="mc-outlet-score">4.5<em>/5</em></span>
           <span class="mc-outlet-url">dailyforex.com</span>
         </span>
-        <span class="mc-outlet">
+        <span class="mc-outlet swiper-slide">
           <span class="mc-outlet-logo"><img src="../../assets/img/media-myfxbook-c.svg" alt="Myfxbook" height="26" loading="lazy" decoding="async"></span>
           <span class="mc-outlet-stars" role="img" aria-label="Rated 4.5 out of 5"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><span class="half"><svg><use href="#i-star"/></svg><i><svg><use href="#i-star"/></svg></i></span></span>
           <span class="mc-outlet-score">4.5<em>/5</em></span>
           <span class="mc-outlet-url">myfxbook.com</span>
         </span>
-        <span class="mc-outlet">
+        <span class="mc-outlet swiper-slide">
           <span class="mc-outlet-logo"><img src="../../assets/img/media-fxempire-c.svg" alt="FX Empire" height="26" loading="lazy" decoding="async"></span>
           <span class="mc-outlet-stars" role="img" aria-label="Rated 4.5 out of 5"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><span class="half"><svg><use href="#i-star"/></svg><i><svg><use href="#i-star"/></svg></i></span></span>
           <span class="mc-outlet-score">4.5<em>/5</em></span>
           <span class="mc-outlet-url">fxempire.com</span>
         </span>
-        <span class="mc-outlet">
+        <span class="mc-outlet swiper-slide">
           <span class="mc-outlet-logo"><img src="../../assets/img/media-tradingde-c.svg" alt="Trading.de" height="26" loading="lazy" decoding="async"></span>
           <span class="mc-outlet-stars" role="img" aria-label="Rated 4.5 out of 5"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><span class="half"><svg><use href="#i-star"/></svg><i><svg><use href="#i-star"/></svg></i></span></span>
           <span class="mc-outlet-score">4.5<em>/5</em></span>
@@ -551,8 +637,8 @@
   </div>
 
   <div class="container">
-    <div class="mc-wall" data-reveal-stagger>
-      <article class="mc-clip mc-clip--quote">
+    <div class="mc-wall">
+      <article class="mc-clip mc-clip--quote" data-aos="fade-up">
         <a class="mc-clip-media" href="coverage.html" aria-label="Read: Candlestick chart of a US equity session"><img src="../../assets/img/learn-viz.webp" alt="Candlestick chart of a US equity session" width="640" height="400" loading="lazy" decoding="async"></a>
         <div class="mc-clip-top">
           <span class="mc-chip"><svg><use href="#i-bolt"/></svg>Product</span>
@@ -562,8 +648,8 @@
         <p>Extending US equity access beyond the exchange session, for traders in time zones the New York open does not suit.</p>
         <a class="mc-clip-go" href="coverage.html">Read the coverage <svg><use href="#i-arrow-ur"/></svg></a>
       </article>
-      <article class="mc-clip">
-        <a class="mc-clip-media" href="coverage.html" aria-label="Read: Signing licence documentation"><img src="../../assets/img/mc-licence.jpg" alt="Signing licence documentation" width="640" height="400" loading="lazy" decoding="async"></a>
+      <article class="mc-clip" data-aos="fade-up" data-aos-delay="100">
+        <a class="mc-clip-media" href="coverage.html" aria-label="Read: Signing licence documentation"><img src="../../assets/img/mc-licence.webp" alt="Signing licence documentation" width="640" height="400" loading="lazy" decoding="async"></a>
         <div class="mc-clip-top">
           <span class="mc-chip"><svg><use href="#i-id"/></svg>Regulation</span>
           <time datetime="2026-06-11">11 Jun 2026</time>
@@ -572,7 +658,7 @@
         <p>The Securities and Commodities Authority licence adds to an existing set across five jurisdictions.</p>
         <a class="mc-clip-go" href="coverage.html">Read the coverage <svg><use href="#i-arrow-ur"/></svg></a>
       </article>
-      <article class="mc-clip">
+      <article class="mc-clip" data-aos="fade-up" data-aos-delay="200">
         <a class="mc-clip-media" href="coverage.html" aria-label="Read: UAE squad celebrating on the pitch"><img src="../../assets/img/company-2.webp" alt="UAE squad celebrating on the pitch" width="640" height="400" loading="lazy" decoding="async"></a>
         <div class="mc-clip-top">
           <span class="mc-chip"><svg><use href="#i-star"/></svg>Sponsorship</span>
@@ -582,7 +668,7 @@
         <p>Ahead of the ICC Men’s T20 World Cup, the UAE squad’s new jersey was unveiled in Dubai.</p>
         <a class="mc-clip-go" href="coverage.html">Read the coverage <svg><use href="#i-arrow-ur"/></svg></a>
       </article>
-      <article class="mc-clip mc-clip--quote">
+      <article class="mc-clip mc-clip--quote" data-aos="fade-up" data-aos-delay="300">
         <a class="mc-clip-media" href="coverage.html" aria-label="Read: STARTRADER and the NBA at the partnership announcement"><img src="../../assets/img/company-1.webp" alt="STARTRADER and the NBA at the partnership announcement" width="640" height="400" loading="lazy" decoding="async"></a>
         <div class="mc-clip-top">
           <span class="mc-chip"><svg><use href="#i-star"/></svg>Sponsorship</span>
@@ -592,7 +678,7 @@
         <p>Coverage of the partnership and what a broker gains from a league with that reach.</p>
         <a class="mc-clip-go" href="coverage.html">Read the coverage <svg><use href="#i-arrow-ur"/></svg></a>
       </article>
-      <article class="mc-clip">
+      <article class="mc-clip" data-aos="fade-up" data-aos-delay="400">
         <a class="mc-clip-media mc-clip-media--award" href="coverage.html" aria-label="Read: Best ECN Broker at the Global Forex Awards"><img src="../../assets/img/award-laurel.svg" alt="Global Forex Awards recognition" width="240" height="240" loading="lazy" decoding="async"></a>
         <div class="mc-clip-top">
           <span class="mc-chip"><svg><use href="#i-chart"/></svg>Awards</span>
@@ -602,8 +688,8 @@
         <p>Recognition tied specifically to execution quality and spread consistency, rather than to marketing reach.</p>
         <a class="mc-clip-go" href="coverage.html">Read the coverage <svg><use href="#i-arrow-ur"/></svg></a>
       </article>
-      <article class="mc-clip">
-        <a class="mc-clip-media" href="coverage.html" aria-label="Read: STAR Copy running in the STARTRADER app"><img src="../../assets/img/appScreenshot.jpg" alt="STAR Copy running in the STARTRADER app" width="640" height="400" loading="lazy" decoding="async"></a>
+      <article class="mc-clip" data-aos="fade-up" data-aos-delay="500">
+        <a class="mc-clip-media" href="coverage.html" aria-label="Read: STAR Copy running in the STARTRADER app"><img src="../../assets/img/appScreenshot.webp" alt="STAR Copy running in the STARTRADER app" width="640" height="400" loading="lazy" decoding="async"></a>
         <div class="mc-clip-top">
           <span class="mc-chip"><svg><use href="#i-copy"/></svg>Product</span>
           <time datetime="2026-02-02">2 Feb 2026</time>
@@ -613,7 +699,7 @@
         <a class="mc-clip-go" href="coverage.html">Read the coverage <svg><use href="#i-arrow-ur"/></svg></a>
       </article>
     </div>
-    <p class="mc-note" data-reveal>Ratings are those published by each outlet at the time of writing and are not endorsements. Coverage links open our own announcement of the story.</p>
+    <p class="mc-note" data-aos="fade-up">Ratings are those published by each outlet at the time of writing and are not endorsements. Coverage links open our own announcement of the story.</p>
   </div>
 </section>
 
@@ -621,10 +707,10 @@
 <section class="section faq-sec fx-faq" aria-labelledby="pg-faq-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>FAQ</span>
-      <h2 class="h2" id="pg-faq-title" data-reveal>For journalists</h2>
+      <span class="eyebrow" data-aos="fade-up">FAQ</span>
+      <h2 class="h2" id="pg-faq-title" data-aos="fade-up">For journalists</h2>
     </div>
-    <div class="faq-list" data-reveal>
+    <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
         <summary>Where has STARTRADER been covered?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a">Across the industry titles that review brokers on execution and conditions — WikiFX, DailyForex, Myfxbook, FX Empire and Trading.de among them — as well as regional press on licensing and sponsorship news.</div>
@@ -649,15 +735,15 @@
 <section class="section pg-list" id="latest" aria-labelledby="pg-list-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Latest</span>
-      <h2 class="h2" id="pg-list-title" data-reveal>The latest from us</h2>
+      <span class="eyebrow" data-aos="fade-up">Latest</span>
+      <h2 class="h2" id="pg-list-title" data-aos="fade-up">The latest from us</h2>
     </div>
-    <div class="pg-bar glass" data-reveal>
+    <div class="pg-bar glass" data-aos="fade-up">
       <div class="pg-cats" role="group" aria-label="Filter by category"><button class="ec-chip is-on" type="button" data-pg-cat="all" aria-pressed="true">All</button><button class="ec-chip" type="button" data-pg-cat="award" aria-pressed="false">Award</button><button class="ec-chip" type="button" data-pg-cat="licensing" aria-pressed="false">Licensing</button><button class="ec-chip" type="button" data-pg-cat="product" aria-pressed="false">Product</button><button class="ec-chip" type="button" data-pg-cat="sponsorship" aria-pressed="false">Sponsorship</button></div>
       <p class="pg-status" data-pg-status role="status" aria-live="polite"></p>
     </div>
-    <div class="nr-grid" data-reveal-stagger>
-      <article class="nr-card glass" data-pg-item data-cat="product" data-title="Trade US stocks around the clock: STARTRADER launches 24/5 and 24/7 US stock CFDs">
+    <div class="nr-grid">
+      <article class="nr-card glass" data-pg-item data-cat="product" data-title="Trade US stocks around the clock: STARTRADER launches 24/5 and 24/7 US stock CFDs" data-aos="fade-up">
         <div class="nr-head">
           <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Product</span>
           <time class="nr-date" datetime="2026-07-02">2 Jul 2026</time>
@@ -667,11 +753,11 @@
           <p class="nr-ex">Extending US equity access beyond the exchange session, for traders in time zones the New York open does not suit.</p>
         </div>
         <span class="nr-media">
-          <img src="../../assets/img/stat-mul.png" alt="Trade US stocks around the clock: STARTRADER launches 24/5 and 24/7 US stock CFDs" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/stat-mul.webp" alt="Trade US stocks around the clock: STARTRADER launches 24/5 and 24/7 US stock CFDs" width="640" height="349" loading="lazy" decoding="async">
           <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </span>
       </article>
-      <article class="nr-card glass" data-pg-item data-cat="licensing" data-title="STARTRADER secures SCA licence, strengthening its position">
+      <article class="nr-card glass" data-pg-item data-cat="licensing" data-title="STARTRADER secures SCA licence, strengthening its position" data-aos="fade-up" data-aos-delay="100">
         <div class="nr-head">
           <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Licensing</span>
           <time class="nr-date" datetime="2026-06-11">11 Jun 2026</time>
@@ -681,11 +767,11 @@
           <p class="nr-ex">The Securities and Commodities Authority licence adds to an existing set across five jurisdictions.</p>
         </div>
         <span class="nr-media">
-          <img src="../../assets/img/company-hero.jpg" alt="STARTRADER secures SCA licence, strengthening its position" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/company-hero.webp" alt="STARTRADER secures SCA licence, strengthening its position" width="640" height="349" loading="lazy" decoding="async">
           <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </span>
       </article>
-      <article class="nr-card glass" data-pg-item data-cat="sponsorship" data-title="STARTRADER and Emirates Cricket Board celebrate jersey launch">
+      <article class="nr-card glass" data-pg-item data-cat="sponsorship" data-title="STARTRADER and Emirates Cricket Board celebrate jersey launch" data-aos="fade-up" data-aos-delay="200">
         <div class="nr-head">
           <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Sponsorship</span>
           <time class="nr-date" datetime="2026-05-28">28 May 2026</time>
@@ -699,7 +785,7 @@
           <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </span>
       </article>
-      <article class="nr-card glass" data-pg-item data-cat="sponsorship" data-title="STARTRADER named Official Partner of the NBA">
+      <article class="nr-card glass" data-pg-item data-cat="sponsorship" data-title="STARTRADER named Official Partner of the NBA" data-aos="fade-up" data-aos-delay="300">
         <div class="nr-head">
           <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Sponsorship</span>
           <time class="nr-date" datetime="2026-04-19">19 Apr 2026</time>
@@ -713,7 +799,7 @@
           <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </span>
       </article>
-      <article class="nr-card glass" data-pg-item data-cat="award" data-title="Best ECN Broker at the Global Forex Awards">
+      <article class="nr-card glass" data-pg-item data-cat="award" data-title="Best ECN Broker at the Global Forex Awards" data-aos="fade-up" data-aos-delay="400">
         <div class="nr-head">
           <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Award</span>
           <time class="nr-date" datetime="2026-03-07">7 Mar 2026</time>
@@ -727,7 +813,7 @@
           <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </span>
       </article>
-      <article class="nr-card glass" data-pg-item data-cat="product" data-title="STAR Copy arrives inside the STARTRADER app">
+      <article class="nr-card glass" data-pg-item data-cat="product" data-title="STAR Copy arrives inside the STARTRADER app" data-aos="fade-up" data-aos-delay="500">
         <div class="nr-head">
           <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Product</span>
           <time class="nr-date" datetime="2026-02-02">2 Feb 2026</time>
@@ -752,27 +838,27 @@
 <section class="section fx-more" aria-labelledby="pg-more-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Keep going</span>
-      <h2 class="h2" id="pg-more-title" data-reveal>Where to go next</h2>
+      <span class="eyebrow" data-aos="fade-up">Keep going</span>
+      <h2 class="h2" id="pg-more-title" data-aos="fade-up">Where to go next</h2>
     </div>
-    <div class="fx-more-grid" data-reveal-stagger>
-      <a class="fx-more-card" href="why-startrader.html">
-        <span class="fx-more-media"><img src="../../assets/img/company-hero.jpg" alt="Why STARTRADER — regulation and scale" width="640" height="349" loading="lazy" decoding="async"></span>
+    <div class="fx-more-grid">
+      <a class="fx-more-card" href="why-startrader.html" data-aos="fade-up">
+        <span class="fx-more-media"><img src="../../assets/img/company-hero.webp" alt="Why STARTRADER — regulation and scale" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Five regulators, segregated funds and the conditions behind the brand.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Why STARTRADER</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="sponsorship/index.html">
+      <a class="fx-more-card" href="sponsorship/index.html" data-aos="fade-up" data-aos-delay="100">
         <span class="fx-more-media"><img src="../../assets/img/company-1.webp" alt="STARTRADER sponsorships" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">The NBA, the PCCME, the UAE National Cricket Team and more.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Sponsorship</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="announcements.html">
+      <a class="fx-more-card" href="announcements.html" data-aos="fade-up" data-aos-delay="200">
         <span class="fx-more-media"><img src="../../assets/img/company-3.webp" alt="STARTRADER announcements" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Product, licensing and schedule notices as they are published.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Announcements</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="contact.html">
-        <span class="fx-more-media"><img src="../../assets/img/contact-hero.jpg" alt="Contact the STARTRADER team" width="640" height="349" loading="lazy" decoding="async"></span>
+      <a class="fx-more-card" href="contact.html" data-aos="fade-up" data-aos-delay="300">
+        <span class="fx-more-media"><img src="../../assets/img/contact-hero.webp" alt="Contact the STARTRADER team" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">A desk that answers around the clock in more than twenty languages.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Contact us</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
@@ -783,9 +869,9 @@
 <section class="cta-banner" aria-labelledby="pg-cta-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="pg-cta-title" data-reveal>Start trading with a<br>globally leading broker</h2>
-    <p data-reveal>Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
-    <div class="cta-actions" data-reveal>
+    <h2 id="pg-cta-title" data-aos="fade-up">Start trading with a<br>globally leading broker</h2>
+    <p data-aos="fade-up">Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
+    <div class="cta-actions" data-aos="fade-up">
       <a href="../../trading/getting-started/account-opening.html" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       <a href="../../trading/getting-started/account-opening.html" class="btn btn-ghost btn-lg">Try Free Demo</a>
     </div>
@@ -873,7 +959,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -907,6 +993,8 @@
 <script src="../../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../../assets/js/vendor/swiper-bundle.min.js" defer></script>
+<script src="../../assets/js/vendor/aos.min.js" defer></script>
 <script src="../../assets/js/main.js" defer></script>
 
 <!-- Company page: robust scroll reveals + hero parallax (self-contained, never leaves content hidden) -->

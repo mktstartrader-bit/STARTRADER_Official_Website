@@ -17,14 +17,14 @@
   <meta property="og:title" content="Liquidity Providers | STARTRADER Tier 1 Partnerships" />
   <meta property="og:description" content="Tier-1 liquidity aggregated from major institutions, supporting deep liquidity and competitive execution." />
   <meta property="og:url" content="https://www.startrader.com/company/corporate/liquidity-providers.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/company-hero.jpg" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/company-hero.webp" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Liquidity Providers | STARTRADER Tier 1 Partnerships" />
   <meta name="twitter:description" content="Tier-1 liquidity aggregated from major institutions, supporting deep liquidity and competitive execution." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/company-hero.jpg" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/company-hero.webp" />
 
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../../favicon.svg" />
@@ -33,7 +33,46 @@
   <!-- Fonts (self-hosted) -->
   <link rel="preload" href="../../assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="../../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ---- liquidity providers ----
+   One pane divided by hairlines rather than ten separate cards: ten logos in
+   ten boxes reads as clutter, and the shared frame is what makes it a wall. */
+.cp-wall{padding:8px;border-radius:24px;overflow:hidden}
+.cp-lps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr))}
+.cp-lp{
+  position:relative;display:grid;place-items:center;
+  min-height:118px;padding:26px 22px;border-radius:16px;
+  transition:background .35s var(--ease);
+}
+/* hairlines drawn per cell, suppressed on the last column and last row */
+.cp-lp::after,.cp-lp::before{content:"";position:absolute;background:rgba(20,44,96,.09)}
+.cp-lp::after{top:18%;bottom:18%;right:0;width:1px}
+.cp-lp::before{left:14%;right:14%;bottom:0;height:1px}
+.cp-lp:nth-child(5n)::after,.cp-lp:nth-last-child(-n+5)::before{display:none}
+.cp-lp:hover{background:rgba(255,255,255,.5)}
+/* logos are supplied at mixed heights, so cap both axes and let the box centre
+   them; greyscale at rest keeps ten different brand palettes from fighting */
+.cp-lp img{
+  max-width:100%;max-height:30px;width:auto;height:auto;object-fit:contain;
+  filter:grayscale(1);opacity:.6;
+  transition:filter .35s var(--ease),opacity .35s var(--ease),transform .4s var(--ease);
+}
+.cp-lp:hover img{filter:none;opacity:1;transform:scale(1.04)}
+/* ---- Responsive ---- */
+@media (max-width:1080px){.cp-lps{grid-template-columns:repeat(3,minmax(0,1fr))}
+.cp-lp:nth-child(5n)::after{display:block}
+.cp-lp:nth-child(3n)::after{display:none}
+.cp-lp:nth-last-child(-n+5)::before{display:block}
+.cp-lp:nth-last-child(-n+1)::before{display:none}}
+@media (max-width:720px){.cp-lps{grid-template-columns:repeat(2,minmax(0,1fr))}
+.cp-lp:nth-child(3n)::after{display:block}
+.cp-lp:nth-child(2n)::after{display:none}
+.cp-lp:nth-last-child(-n+2)::before{display:none}
+.cp-lp{min-height:96px;padding:20px 16px}}
+  </style>
 
   <!-- Structured data — breadcrumb -->
   <script type="application/ld+json">
@@ -419,11 +458,11 @@
   <span class="gl-orb o3" aria-hidden="true"></span>
 
   <div class="container pt-hero-in">
-    <span class="eyebrow eyebrow-blue" data-reveal>Execution</span>
-    <h1 class="pt-h1" id="lp-title" data-reveal>Top liquidity<br><span class="g">providers</span></h1>
-    <p class="pt-lead" data-reveal>Tier-1 liquidity enables efficient transactions. STARTRADER aggregates pricing from major institutions so orders meet a deeper pool of prices than any single counterparty could provide.</p>
+    <span class="eyebrow eyebrow-blue" data-aos="fade-up">Execution</span>
+    <h1 class="pt-h1" id="lp-title" data-aos="fade-up">Top liquidity<br><span class="g">providers</span></h1>
+    <p class="pt-lead" data-aos="fade-up">Tier-1 liquidity enables efficient transactions. STARTRADER aggregates pricing from major institutions so orders meet a deeper pool of prices than any single counterparty could provide.</p>
 
-    <div class="pt-hact" data-reveal>
+    <div class="pt-hact" data-aos="fade-up">
       <a href="../../trading/getting-started/account-opening.html" class="btn btn-primary btn-lg magnetic">Open a live account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
     </div>
   </div>
@@ -435,12 +474,12 @@
   <span class="pt-aura a2" aria-hidden="true" data-pt-aura="7"></span>
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Tier 1 partnerships</span>
-      <h2 class="h2" id="lp-p-title" data-reveal>Who supplies the pricing</h2>
-      <p class="head-sub" data-reveal>Aggregating several tier-1 sources is what keeps spreads competitive and fills consistent, rather than depending on one counterparty.</p>
+      <span class="eyebrow" data-aos="fade-up">Tier 1 partnerships</span>
+      <h2 class="h2" id="lp-p-title" data-aos="fade-up">Who supplies the pricing</h2>
+      <p class="head-sub" data-aos="fade-up">Aggregating several tier-1 sources is what keeps spreads competitive and fills consistent, rather than depending on one counterparty.</p>
     </div>
 
-    <div class="cp-wall glass" data-reveal>
+    <div class="cp-wall glass" data-aos="fade-up">
       <div class="cp-lps">
         <div class="cp-lp">
           <img src="../../assets/img/lp/citadel.webp" alt="Citadel" width="171" height="21" loading="lazy" decoding="async">
@@ -475,7 +514,7 @@
       </div>
     </div>
 
-    <p class="cp-lp-note" data-reveal>Institution names are shown for identification only. All trademarks belong to their respective owners, and their inclusion does not imply any endorsement of STARTRADER. You contract with the STARTRADER entity named in your client agreement, not with these institutions.</p>
+    <p class="cp-lp-note" data-aos="fade-up">Institution names are shown for identification only. All trademarks belong to their respective owners, and their inclusion does not imply any endorsement of STARTRADER. You contract with the STARTRADER entity named in your client agreement, not with these institutions.</p>
   </div>
 </section>
 
@@ -483,13 +522,13 @@
 <section class="section fx-why pt-why" aria-labelledby="lp-w-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Why it matters</span>
-      <h2 class="h2" id="lp-w-title" data-reveal>What deep liquidity buys you</h2>
-      <p class="head-sub" data-reveal>Liquidity is not a marketing word &mdash; it decides the spread you pay and whether your order fills where you expected.</p>
+      <span class="eyebrow" data-aos="fade-up">Why it matters</span>
+      <h2 class="h2" id="lp-w-title" data-aos="fade-up">What deep liquidity buys you</h2>
+      <p class="head-sub" data-aos="fade-up">Liquidity is not a marketing word &mdash; it decides the spread you pay and whether your order fills where you expected.</p>
     </div>
 
-    <div class="fx-w2-grid" data-reveal-stagger>
-      <article class="fx-w2">
+    <div class="fx-w2-grid">
+      <article class="fx-w2" data-aos="fade-up">
         <div class="fx-w2-viz">
           <div class="fx-cs">
             <div class="fx-cs-meter">
@@ -504,7 +543,7 @@
         <p>More providers competing for the same order generally means a narrower spread, which is a cost you pay on every trade.</p>
       </article>
 
-      <article class="fx-w2">
+      <article class="fx-w2" data-aos="fade-up" data-aos-delay="100">
         <div class="fx-w2-viz">
           <div class="fx-uf">
             <div class="fx-uf-speed"><i></i><i></i><i></i><i></i><i></i></div>
@@ -515,7 +554,7 @@
         <p>Ultra-low-latency infrastructure fills your orders in milliseconds, so the price you saw is far more likely to be the price you get.</p>
       </article>
 
-      <article class="fx-w2">
+      <article class="fx-w2" data-aos="fade-up" data-aos-delay="200">
         <div class="fx-w2-viz">
           <div class="fx-pw">
             <div class="fx-pw-row"><span class="q-sym">EUR/USD</span><span class="q-px">deep</span><span class="q-chg up">tier 1</span></div>
@@ -528,7 +567,7 @@
         <p>Aggregated liquidity applies across forex, metals, energies, indices and shares &mdash; not only the headline pairs.</p>
       </article>
 
-      <article class="fx-w2">
+      <article class="fx-w2" data-aos="fade-up" data-aos-delay="300">
         <div class="fx-w2-viz">
           <div class="fx-lv">
             <svg viewBox="0 0 320 180" preserveAspectRatio="none" aria-hidden="true">
@@ -543,7 +582,7 @@
         <p>A deeper pool absorbs larger orders with less price impact, which matters for anyone trading in meaningful size.</p>
       </article>
 
-      <article class="fx-w2">
+      <article class="fx-w2" data-aos="fade-up" data-aos-delay="400">
         <div class="fx-w2-viz">
           <div class="fx-tx">
             <div class="fx-tx-ring">
@@ -557,7 +596,7 @@
         <p>Orders route to the aggregated pool rather than being handled against you, and the execution type for each account is published on the trading account page.</p>
       </article>
 
-      <article class="fx-w2">
+      <article class="fx-w2" data-aos="fade-up" data-aos-delay="500">
         <div class="fx-w2-viz">
           <div class="fx-cs">
             <div class="fx-cs-meter">
@@ -579,18 +618,18 @@
 <section class="section fx-hours pt-hours" aria-labelledby="lp-l-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Worth being clear</span>
-      <h2 class="h2" id="lp-l-title" data-reveal>What liquidity does not do</h2>
-      <p class="head-sub" data-reveal>Depth helps. It does not remove market risk or promise an execution price.</p>
+      <span class="eyebrow" data-aos="fade-up">Worth being clear</span>
+      <h2 class="h2" id="lp-l-title" data-aos="fade-up">What liquidity does not do</h2>
+      <p class="head-sub" data-aos="fade-up">Depth helps. It does not remove market risk or promise an execution price.</p>
     </div>
-    <div class="fx-mh" data-reveal-stagger>
-      <article class="fx-mh-card fx-mh--wide fx-mh--teal">
+    <div class="fx-mh">
+      <article class="fx-mh-card fx-mh--wide fx-mh--teal" data-aos="fade-up">
         <span class="fx-mh-ic"><svg><use href="#i-bolt"/></svg></span>
         <h3>Deep liquidity is not a guaranteed price</h3>
         <p>Aggregated tier-1 pricing improves the odds of a good fill, but no broker can guarantee one. In fast markets, gapping and slippage can still occur, and a stop order can be filled worse than the level you set.</p>
         <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="fx-mh-status"><i></i> Market conditions apply</span></div></div>
       </article>
-      <article class="fx-mh-card fx-mh--blue">
+      <article class="fx-mh-card fx-mh--blue" data-aos="fade-up" data-aos-delay="100">
         <span class="fx-mh-ic"><svg><use href="#i-id"/></svg></span>
         <h3>Who your counterparty is</h3>
         <p>You contract with the STARTRADER entity named in your <a href="legal-documents.html">client agreement</a>. These institutions supply pricing to us, not to you.</p>
@@ -604,10 +643,10 @@
 <section class="section faq-sec fx-faq" aria-labelledby="lp-faq-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>FAQ</span>
-      <h2 class="h2" id="lp-faq-title" data-reveal>Liquidity and execution questions</h2>
+      <span class="eyebrow" data-aos="fade-up">FAQ</span>
+      <h2 class="h2" id="lp-faq-title" data-aos="fade-up">Liquidity and execution questions</h2>
     </div>
-    <div class="faq-list" data-reveal>
+    <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
         <summary>What is a tier-1 liquidity provider?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a">A tier-1 provider is a major bank or institutional market maker that quotes prices directly in the interbank market. Aggregating several of them means orders are filled against a deeper pool of prices than a single counterparty could offer.</div>
@@ -640,9 +679,9 @@
 <section class="cta-banner" aria-labelledby="pt-cta-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="pt-cta-title" data-reveal>Start trading with a<br>globally leading broker</h2>
-    <p data-reveal>Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
-    <div class="cta-actions" data-reveal>
+    <h2 id="pt-cta-title" data-aos="fade-up">Start trading with a<br>globally leading broker</h2>
+    <p data-aos="fade-up">Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
+    <div class="cta-actions" data-aos="fade-up">
       <a href="../../trading/getting-started/account-opening.html" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       <a href="../../trading/getting-started/account-opening.html" class="btn btn-ghost btn-lg">Try Free Demo</a>
     </div>
@@ -735,7 +774,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -769,6 +808,7 @@
 <script src="../../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../../assets/js/vendor/aos.min.js" defer></script>
 <script src="../../assets/js/main.js" defer></script>
 </body>
 </html>

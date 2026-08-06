@@ -33,7 +33,25 @@
   <!-- Fonts (self-hosted) -->
   <link rel="preload" href="../../assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="../../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* =================================================================
+   KNOWLEDGE ARTICLE
+   The article furniture is the shared ar-* system; only the sign-up
+   block and two body details are new.
+   ================================================================= */
+.kb-form-sec{margin-top:clamp(30px,4vw,46px)}
+.kb-form-h{font-size:clamp(19px,2.2vw,25px);font-weight:800;letter-spacing:-.036em;color:var(--ink);text-align:center}
+.kb-form-h span{color:var(--blue)}
+.kb-form-sub{margin-top:8px;font-size:12.5px;line-height:1.6;color:var(--text-mute);text-align:center}
+.kb-form-sub + form{margin-top:clamp(20px,2.4vw,26px)}
+.kb-form-sec .ct-actions{margin-top:24px}
+.kb-form-sec .ct-actions .ct-submit{width:100%;justify-content:center}
+/* the fine print under an illustrative table */
+.ar-body .ar-fine{margin-top:10px;font-size:12px;line-height:1.6;color:var(--text-mute)}
+  </style>
 
   <!-- Structured data — page entity -->
 
@@ -733,11 +751,11 @@
 <section class="section ar-rel-sec" aria-labelledby="kb-rel-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Keep reading</span>
-      <h2 class="h2" id="kb-rel-title" data-reveal>More from the Knowledge Centre</h2>
+      <span class="eyebrow" data-aos="fade-up">Keep reading</span>
+      <h2 class="h2" id="kb-rel-title" data-aos="fade-up">More from the Knowledge Centre</h2>
     </div>
-    <div class="kc-grid" data-reveal-stagger>
-      <article class="kc-guide glass">
+    <div class="kc-grid">
+      <article class="kc-guide glass" data-aos="fade-up">
         <div class="kc-head">
           <span class="kc-cat forex"><svg aria-hidden="true"><use href="#i-globe"/></svg>Forex</span>
           <time class="kc-date" datetime="2026-07-27">27 Jul 2026</time>
@@ -750,11 +768,11 @@
         </div>
 
         <a class="kc-media" href="knowledge-article.html" aria-label="Read: What is forex trading? A complete beginner's guide">
-          <img src="../../assets/img/home-hero-wave.jpg" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/home-hero-wave.webp" alt="Abstract blue light wave" width="640" height="349" loading="lazy" decoding="async">
           <span class="kc-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
-      <article class="kc-guide glass">
+      <article class="kc-guide glass" data-aos="fade-up" data-aos-delay="100">
         <div class="kc-head">
           <span class="kc-cat indices"><svg aria-hidden="true"><use href="#i-chart"/></svg>Indices</span>
           <time class="kc-date" datetime="2026-07-22">22 Jul 2026</time>
@@ -767,11 +785,11 @@
         </div>
 
         <a class="kc-media" href="knowledge-article.html" aria-label="Read: Reading an index: what you are actually trading">
-          <img src="../../assets/img/webtraderScreenShot.webp" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/webtraderScreenShot.webp" alt="STARTRADER Web Trader platform interface" width="640" height="349" loading="lazy" decoding="async">
           <span class="kc-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
-      <article class="kc-guide glass">
+      <article class="kc-guide glass" data-aos="fade-up" data-aos-delay="200">
         <div class="kc-head">
           <span class="kc-cat commodities"><svg aria-hidden="true"><use href="#i-droplet"/></svg>Commodities</span>
           <time class="kc-date" datetime="2026-07-16">16 Jul 2026</time>
@@ -784,7 +802,7 @@
         </div>
 
         <a class="kc-media" href="knowledge-article.html" aria-label="Read: Yields, rates and gold: how the three connect">
-          <img src="../../assets/img/stat-tan.png" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/stat-tan.webp" alt="Sculpted bronze abstract artwork" width="640" height="349" loading="lazy" decoding="async">
           <span class="kc-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
@@ -876,7 +894,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -910,6 +928,7 @@
 <script src="../../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../../assets/js/vendor/aos.min.js" defer></script>
 <script src="../../assets/js/main.js" defer></script>
 </body>
 </html>

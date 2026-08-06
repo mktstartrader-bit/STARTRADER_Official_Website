@@ -17,14 +17,14 @@
   <meta property="og:title" content="News Room — Market Analysis, Insight &amp; Company News | STARTRADER" />
   <meta property="og:description" content="Daily technical and fundamental analysis from the STARTRADER research desk, plus company announcements, awards and media coverage." />
   <meta property="og:url" content="https://www.startrader.com/education/analysis/news/" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/home-hero-wave.jpg" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/home-hero-wave.webp" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="News Room — Market Analysis, Insight &amp; Company News | STARTRADER" />
   <meta name="twitter:description" content="Daily technical and fundamental analysis from the STARTRADER research desk, plus company announcements, awards and media coverage." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/home-hero-wave.jpg" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/home-hero-wave.webp" />
 
   <link rel="icon" href="../../../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../../../favicon.svg" />
@@ -33,7 +33,136 @@
   <!-- Fonts (self-hosted) -->
   <link rel="preload" href="../../../assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="../../../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../../../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../../../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ---- Hero (two-column: copy + interactive panel over video) ---- */
+.ta-metric.flash{animation:taMetric .55s ease}
+/* ================= NEWS ROOM PAGE ================= */
+/* banner: the same video shell and left-aligned copy as the calendar */
+.nr-hero{justify-content:center}
+/* ---- Lead story ---- */
+.nr-lead-sec{background:radial-gradient(58% 46% at 6% 0%,rgba(0,71,187,.07),transparent 62%),var(--bg-light)}
+.nr-lead{
+  display:grid;grid-template-columns:1.05fr .95fr;align-items:stretch;gap:0;overflow:hidden;
+  border-radius:var(--radius-xl);background:#fff;border:1px solid var(--line);text-decoration:none;
+  box-shadow:0 18px 44px -34px rgba(20,44,96,.45);
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .3s;
+}
+.nr-lead:hover{transform:translateY(-4px);border-color:rgba(0,71,187,.28);box-shadow:0 28px 52px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff}
+.nr-lead-media{position:relative;display:block;overflow:hidden;min-height:340px}
+.nr-lead-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.nr-lead:hover .nr-lead-media img{transform:scale(1.04)}
+.nr-lead-tag{
+  position:absolute;top:16px;left:16px;z-index:2;font-size:10.5px;font-weight:700;letter-spacing:.11em;
+  text-transform:uppercase;color:#fff;padding:6px 12px;border-radius:70px;background:rgba(8,14,26,.6);
+  border:1px solid rgba(255,255,255,.22);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+}
+.nr-lead-body{display:flex;flex-direction:column;padding:clamp(26px,3vw,44px)}
+.nr-lead-flag{
+  display:inline-flex;align-items:center;gap:9px;align-self:flex-start;
+  font-size:10.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--blue);
+  padding:6px 12px;border-radius:70px;background:rgba(0,71,187,.08);
+}
+.nr-lead-flag i{width:7px;height:7px;border-radius:50%;background:var(--blue);flex:none}
+.nr-lead-h{
+  margin-top:18px;font-size:clamp(22px,2.5vw,32px);font-weight:800;letter-spacing:-.028em;line-height:1.16;color:var(--text);
+  transition:color .3s;
+}
+.nr-lead:hover .nr-lead-h{color:var(--blue)}
+.nr-lead-ex{display:block;margin-top:14px;font-size:15px;line-height:1.65;color:var(--text-soft)}
+.nr-lead .nr-meta{margin-top:20px}
+.nr-lead-go{
+  margin-top:auto;padding-top:24px;display:inline-flex;align-items:center;gap:9px;
+  font-size:14.5px;font-weight:700;color:var(--blue);
+}
+.nr-lead-go svg{width:16px;height:16px;transition:transform .3s var(--ease)}
+.nr-lead:hover .nr-lead-go svg{transform:translateX(4px)}
+/* shared meta line */
+.nr-meta{display:flex;align-items:center;flex-wrap:wrap;gap:5px 10px;font-size:12.5px;color:var(--text-mute)}
+.nr-meta i{width:3px;height:3px;border-radius:50%;background:currentColor;opacity:.55;flex:none}
+.nr-meta time{font-variant-numeric:tabular-nums}
+.nr-meta--light{color:#93a4c2}
+/* ---- The latest ---- */
+.nr-sec{
+  background:
+    radial-gradient(52% 44% at 96% 10%,rgba(22,233,215,.07),transparent 62%),
+    radial-gradient(56% 40% at 46% 104%,rgba(0,71,187,.06),transparent 62%),
+    var(--bg-light-2);
+  scroll-margin-top:calc(var(--chrome-h) + var(--chrome-gap));
+}
+.nr-bar{
+  position:sticky;top:calc(var(--chrome-h) + var(--chrome-gap));z-index:20;
+  display:flex;align-items:center;gap:14px 18px;flex-wrap:wrap;
+  padding:12px 14px;border-radius:24px;background:rgba(255,255,255,.8);
+}
+.nr-search{
+  display:flex;align-items:center;gap:10px;flex:1 1 260px;min-width:0;
+  padding:0 6px 0 16px;border-radius:70px;background:rgba(255,255,255,.7);border:1px solid var(--line);
+  transition:border-color .25s,box-shadow .3s;
+}
+.nr-search:focus-within{border-color:rgba(0,71,187,.45);box-shadow:0 0 0 4px rgba(0,71,187,.12)}
+.nr-search-ic{flex:none;display:grid;place-items:center;color:var(--text-mute)}
+.nr-search-ic svg{width:17px;height:17px}
+.nr-search input{flex:1;min-width:0;border:0;background:none;outline:none;font:inherit;font-size:14.5px;color:var(--text);padding:12px 0}
+.nr-search input::placeholder{color:var(--text-mute)}
+.nr-search input::-webkit-search-cancel-button{display:none}
+.nr-clear{
+  flex:none;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(0,71,187,.08);color:var(--blue);transition:background .25s,transform .3s var(--ease);
+}
+.nr-clear svg{width:13px;height:13px}
+.nr-clear:hover{background:rgba(0,71,187,.16);transform:rotate(90deg)}
+.nr-cats{display:flex;gap:6px;flex-wrap:wrap}
+.nr-empty{text-align:center;padding:54px 20px 8px}
+.nr-empty h3{font-size:20px;color:var(--text);letter-spacing:-.02em}
+.nr-empty h3 span{color:var(--blue)}
+.nr-empty p{max-width:520px;margin:10px auto 0;font-size:14.5px;line-height:1.6;color:var(--text-soft)}
+.nr-empty .btn{margin-top:24px}
+/* ---- In the spotlight ---- */
+.nr-spot{
+  position:relative;color:#fff;
+  background:
+    radial-gradient(80% 60% at 12% 0%,rgba(0,44,130,.42),transparent 62%),
+    linear-gradient(180deg,#04060e,#080b16 58%,#04060e);
+}
+.nr-spot-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.nr-spot-all{color:#9fc0ff}
+.nr-spot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.nr-spot-card{
+  display:flex;flex-direction:column;overflow:hidden;border-radius:22px;text-decoration:none;
+  background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.024));
+  -webkit-backdrop-filter:blur(20px) saturate(1.4);backdrop-filter:blur(20px) saturate(1.4);
+  border:1px solid rgba(255,255,255,.11);box-shadow:inset 0 1px 0 rgba(255,255,255,.07);
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .3s;
+}
+.nr-spot-card:hover{transform:translateY(-4px);border-color:rgba(90,150,255,.42);box-shadow:0 30px 64px -34px rgba(0,60,180,.6)}
+.nr-spot-media{position:relative;display:block;aspect-ratio:16/10;overflow:hidden}
+.nr-spot-media img{width:100%;height:100%;object-fit:cover;transition:transform .55s var(--ease)}
+.nr-spot-card:hover .nr-spot-media img{transform:scale(1.05)}
+.nr-spot-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,8,18,.2) 0%,rgba(4,8,18,.05) 40%,rgba(4,8,18,.62) 100%)}
+.nr-spot-play{
+  position:absolute;inset:0;margin:auto;z-index:2;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(255,255,255,.94);color:var(--blue);box-shadow:0 12px 30px -8px rgba(0,0,0,.55);
+  transition:transform .35s var(--ease),background .3s;
+}
+.nr-spot-play svg{width:19px;height:19px;margin-left:3px}
+.nr-spot-card:hover .nr-spot-play{transform:scale(1.08);background:#fff}
+.nr-spot-body{display:flex;flex-direction:column;padding:18px 20px 22px}
+.nr-spot-body h3{margin-top:10px;font-size:17px;letter-spacing:-.02em;line-height:1.3;color:#fff;transition:color .25s}
+.nr-spot-card:hover .nr-spot-body h3{color:#bcd6ff}
+.nr-spot-body p{margin-top:9px;font-size:13.5px;line-height:1.6;color:#a7b6d0}
+/* ---- Subscribe bar ---- */
+.nr-subsec{background:radial-gradient(58% 56% at 90% 4%,rgba(0,71,187,.06),transparent 60%),var(--bg-light)}
+/* ---- Responsive ---- */
+@media (max-width:1080px){.nr-lead{grid-template-columns:1fr}
+.nr-lead-media{min-height:260px;aspect-ratio:16/9}
+.nr-spot-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:900px){.nr-bar{position:static;border-radius:22px}}
+@media (max-width:720px){.nr-spot-grid{grid-template-columns:1fr;max-width:420px;margin-inline:auto}
+.nr-spot-head{align-items:flex-start}}
+  </style>
 
   <!-- Structured data — breadcrumb -->
   <script type="application/ld+json">
@@ -65,7 +194,7 @@
         "articleSection": "Technical Analysis",
         "author": { "@type": "Organization", "name": "STARTRADER Research" },
         "publisher": { "@type": "Organization", "name": "STARTRADER", "url": "https://www.startrader.com/" },
-        "image": "https://www.startrader.com/assets/img/news-article-hero.jpg",
+        "image": "https://www.startrader.com/assets/img/news-article-hero.webp",
         "url": "https://www.startrader.com/education/analysis/news/"
       }
     },
@@ -79,7 +208,7 @@
         "articleSection": "Fundamental Analysis",
         "author": { "@type": "Organization", "name": "STARTRADER Research" },
         "publisher": { "@type": "Organization", "name": "STARTRADER", "url": "https://www.startrader.com/" },
-        "image": "https://www.startrader.com/assets/img/stat-tan.png",
+        "image": "https://www.startrader.com/assets/img/stat-tan.webp",
         "url": "https://www.startrader.com/education/analysis/news/"
       }
     },
@@ -93,7 +222,7 @@
         "articleSection": "Market News",
         "author": { "@type": "Organization", "name": "STARTRADER Research" },
         "publisher": { "@type": "Organization", "name": "STARTRADER", "url": "https://www.startrader.com/" },
-        "image": "https://www.startrader.com/assets/img/home-hero-wave.jpg",
+        "image": "https://www.startrader.com/assets/img/home-hero-wave.webp",
         "url": "https://www.startrader.com/education/analysis/news/"
       }
     },
@@ -439,16 +568,16 @@
 
 <!-- ============ HERO ============ -->
 <section class="wb-hero nr-hero" aria-labelledby="nr-hero-title">
-  <video class="wb-hero-video" autoplay muted loop playsinline preload="auto" poster="../../../assets/img/webinars-video-poster.jpg" aria-hidden="true">
+  <video class="wb-hero-video" autoplay muted loop playsinline preload="auto" poster="../../../assets/img/webinars-video-poster.webp" aria-hidden="true">
     <source src="../../../assets/video/webinars-banner.mp4" type="video/mp4">
   </video>
   <div class="wb-hero-scrim" aria-hidden="true"></div>
 
   <div class="container wb-hero-inner">
-    <span class="eyebrow eyebrow-blue" data-reveal>Analysis</span>
-    <h1 class="wb-h1" id="nr-hero-title" data-reveal>News Room</h1>
-    <p class="wb-lead" data-reveal>What&rsquo;s trending, what matters and what to watch &mdash; daily analysis and commentary from our research desk.</p>
-    <div class="wb-hact" data-reveal>
+    <span class="eyebrow eyebrow-blue" data-aos="fade-up">Analysis</span>
+    <h1 class="wb-h1" id="nr-hero-title" data-aos="fade-up">News Room</h1>
+    <p class="wb-lead" data-aos="fade-up">What&rsquo;s trending, what matters and what to watch &mdash; daily analysis and commentary from our research desk.</p>
+    <div class="wb-hact" data-aos="fade-up">
       <a href="#latest" class="btn btn-primary btn-lg magnetic">Read the latest <svg class="ico"><use href="#i-arrow-right"/></svg></a>
     </div>
   </div>
@@ -457,9 +586,9 @@
 <!-- ============ LEAD STORY ============ -->
 <section class="section nr-lead-sec" aria-labelledby="nr-lead-title">
   <div class="container">
-    <a class="nr-lead" href="news-article.html" data-reveal>
+    <a class="nr-lead" href="news-article.html" data-aos="fade-up">
       <span class="nr-lead-media">
-        <img src="../../../assets/img/news-article-hero.jpg" alt="Mobile checkout illustration with a Bitcoin coin, the Binance mark and a payment card" width="1600" height="900" loading="eager" fetchpriority="high" decoding="async">
+        <img src="../../../assets/img/news-article-hero.webp" alt="Mobile checkout illustration with a Bitcoin coin, the Binance mark and a payment card" width="1600" height="900" loading="eager" fetchpriority="high" decoding="async">
         <span class="nr-lead-tag">Technical Analysis</span>
       </span>
       <span class="nr-lead-body">
@@ -483,12 +612,12 @@
 <section class="section nr-sec" id="latest" aria-labelledby="nr-latest-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>The latest</span>
-      <h2 class="h2" id="nr-latest-title" data-reveal>Market analysis and company news</h2>
-      <p class="head-sub" data-reveal>Filter by desk, or search the archive for an instrument, a central bank or a theme.</p>
+      <span class="eyebrow" data-aos="fade-up">The latest</span>
+      <h2 class="h2" id="nr-latest-title" data-aos="fade-up">Market analysis and company news</h2>
+      <p class="head-sub" data-aos="fade-up">Filter by desk, or search the archive for an instrument, a central bank or a theme.</p>
     </div>
 
-    <div class="nr-bar glass" data-reveal>
+    <div class="nr-bar glass" data-aos="fade-up">
       <form class="nr-search" role="search" onsubmit="return false">
         <span class="nr-search-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg></span>
         <input id="nrSearch" type="search" autocomplete="off" placeholder="Search headlines&hellip;" aria-label="Search news headlines">
@@ -506,9 +635,9 @@
 
     <p class="wb-status" data-nr-status role="status" aria-live="polite"></p>
 
-    <div class="nr-grid" data-reveal-stagger>
+    <div class="nr-grid">
 
-      <article class="nr-card glass" data-nr-item data-cat="fa" data-title="Today Fundamental Analysis: Oil prices continue to fall as the US and Iran halt attacks">
+      <article class="nr-card glass" data-nr-item data-cat="fa" data-title="Today Fundamental Analysis: Oil prices continue to fall as the US and Iran halt attacks" data-aos="fade-up">
         <div class="nr-head">
           <span class="nr-cat"><svg aria-hidden="true"><use href="#i-globe"/></svg>Fundamental Analysis</span>
           <time class="nr-date" datetime="2026-07-27">27 Jul 2026</time>
@@ -521,12 +650,12 @@
         </div>
 
         <a class="nr-media" href="news-article.html" aria-label="Read: Oil prices continue to fall as the US and Iran halt attacks">
-          <img src="../../../assets/img/stat-tan.png" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../../assets/img/stat-tan.webp" alt="Sculpted bronze abstract artwork" width="640" height="349" loading="lazy" decoding="async">
           <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
 
-      <article class="nr-card glass" data-nr-item data-cat="mkt" data-title="Weekly outlook: central banks back in focus as inflation cools">
+      <article class="nr-card glass" data-nr-item data-cat="mkt" data-title="Weekly outlook: central banks back in focus as inflation cools" data-aos="fade-up" data-aos-delay="100">
         <div class="nr-head">
           <span class="nr-cat"><svg aria-hidden="true"><use href="#i-chart"/></svg>Market News</span>
           <time class="nr-date" datetime="2026-07-26">26 Jul 2026</time>
@@ -539,12 +668,12 @@
         </div>
 
         <a class="nr-media" href="news-article.html" aria-label="Read: Weekly outlook, central banks back in focus as inflation cools">
-          <img src="../../../assets/img/home-hero-wave.jpg" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../../assets/img/home-hero-wave.webp" alt="Abstract blue light wave" width="640" height="349" loading="lazy" decoding="async">
           <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
 
-      <article class="nr-card glass" data-nr-item data-cat="ta" data-title="Today Technical Analysis: Gold jumps back above $4,100 as the Dollar faces selling pressure">
+      <article class="nr-card glass" data-nr-item data-cat="ta" data-title="Today Technical Analysis: Gold jumps back above $4,100 as the Dollar faces selling pressure" data-aos="fade-up" data-aos-delay="200">
         <div class="nr-head">
           <span class="nr-cat"><svg aria-hidden="true"><use href="#i-cfd"/></svg>Technical Analysis</span>
           <time class="nr-date" datetime="2026-07-25">25 Jul 2026</time>
@@ -557,12 +686,12 @@
         </div>
 
         <a class="nr-media" href="news-article.html" aria-label="Read: Gold jumps back above $4,100 as the Dollar faces selling pressure">
-          <img src="../../../assets/img/webtrader-laptop.webp" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../../assets/img/webtrader-laptop.webp" alt="STARTRADER Web Trader on a laptop" width="640" height="349" loading="lazy" decoding="async">
           <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
 
-      <article class="nr-card glass" data-nr-item data-cat="co" data-title="STARTRADER named Best ECN Broker at the 2026 Global Forex Awards">
+      <article class="nr-card glass" data-nr-item data-cat="co" data-title="STARTRADER named Best ECN Broker at the 2026 Global Forex Awards" data-aos="fade-up" data-aos-delay="300">
         <div class="nr-head">
           <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Company</span>
           <time class="nr-date" datetime="2026-07-24">24 Jul 2026</time>
@@ -575,12 +704,12 @@
         </div>
 
         <a class="nr-media" href="news-article.html" aria-label="Read: STARTRADER named Best ECN Broker at the 2026 Global Forex Awards">
-          <img src="../../../assets/img/company-1.webp" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../../assets/img/company-1.webp" alt="STARTRADER office" width="640" height="349" loading="lazy" decoding="async">
           <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
 
-      <article class="nr-card glass" data-nr-item data-cat="co" data-title="Prime ECN spreads tighten across the majors after liquidity upgrade">
+      <article class="nr-card glass" data-nr-item data-cat="co" data-title="Prime ECN spreads tighten across the majors after liquidity upgrade" data-aos="fade-up" data-aos-delay="400">
         <div class="nr-head">
           <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Company</span>
           <time class="nr-date" datetime="2026-07-22">22 Jul 2026</time>
@@ -593,12 +722,12 @@
         </div>
 
         <a class="nr-media" href="news-article.html" aria-label="Read: Prime ECN spreads tighten across the majors after liquidity upgrade">
-          <img src="../../../assets/img/webtraderScreenShot.webp" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../../assets/img/webtraderScreenShot.webp" alt="STARTRADER Web Trader platform interface" width="640" height="349" loading="lazy" decoding="async">
           <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
 
-      <article class="nr-card glass" data-nr-item data-cat="fa" data-title="Crude steadies after OPEC+ signals steady output through the quarter">
+      <article class="nr-card glass" data-nr-item data-cat="fa" data-title="Crude steadies after OPEC+ signals steady output through the quarter" data-aos="fade-up" data-aos-delay="500">
         <div class="nr-head">
           <span class="nr-cat"><svg aria-hidden="true"><use href="#i-globe"/></svg>Fundamental Analysis</span>
           <time class="nr-date" datetime="2026-07-21">21 Jul 2026</time>
@@ -611,12 +740,12 @@
         </div>
 
         <a class="nr-media" href="news-article.html" aria-label="Read: Crude steadies after OPEC+ signals steady output">
-          <img src="../../../assets/img/cta-banner.jpg" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../../assets/img/cta-banner.webp" alt="Trader at a multi-screen trading desk" width="640" height="349" loading="lazy" decoding="async">
           <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
 
-      <article class="nr-card glass" data-nr-item data-cat="mkt" data-title="Indices rally as technology earnings beat expectations">
+      <article class="nr-card glass" data-nr-item data-cat="mkt" data-title="Indices rally as technology earnings beat expectations" data-aos="fade-up" data-aos-delay="600">
         <div class="nr-head">
           <span class="nr-cat"><svg aria-hidden="true"><use href="#i-chart"/></svg>Market News</span>
           <time class="nr-date" datetime="2026-07-18">18 Jul 2026</time>
@@ -629,12 +758,12 @@
         </div>
 
         <a class="nr-media" href="news-article.html" aria-label="Read: Indices rally as technology earnings beat expectations">
-          <img src="../../../assets/img/stat-blue.png" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../../assets/img/stat-blue.webp" alt="Blue lightning-bolt artwork" width="640" height="349" loading="lazy" decoding="async">
           <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
 
-      <article class="nr-card glass" data-nr-item data-cat="ta" data-title="EUR/USD coils below resistance as volatility compresses">
+      <article class="nr-card glass" data-nr-item data-cat="ta" data-title="EUR/USD coils below resistance as volatility compresses" data-aos="fade-up" data-aos-delay="600">
         <div class="nr-head">
           <span class="nr-cat"><svg aria-hidden="true"><use href="#i-cfd"/></svg>Technical Analysis</span>
           <time class="nr-date" datetime="2026-07-17">17 Jul 2026</time>
@@ -647,12 +776,12 @@
         </div>
 
         <a class="nr-media" href="news-article.html" aria-label="Read: EUR/USD coils below resistance as volatility compresses">
-          <img src="../../../assets/img/learn-viz.webp" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../../assets/img/learn-viz.webp" alt="Trading education illustration" width="640" height="349" loading="lazy" decoding="async">
           <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
 
-      <article class="nr-card glass" data-nr-item data-cat="mkt" data-title="Yen strengthens as the Bank of Japan hints at a further step">
+      <article class="nr-card glass" data-nr-item data-cat="mkt" data-title="Yen strengthens as the Bank of Japan hints at a further step" data-aos="fade-up" data-aos-delay="600">
         <div class="nr-head">
           <span class="nr-cat"><svg aria-hidden="true"><use href="#i-chart"/></svg>Market News</span>
           <time class="nr-date" datetime="2026-07-15">15 Jul 2026</time>
@@ -665,12 +794,12 @@
         </div>
 
         <a class="nr-media" href="news-article.html" aria-label="Read: Yen strengthens as the Bank of Japan hints at a further step">
-          <img src="../../../assets/img/home-hero-wave.jpg" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../../assets/img/home-hero-wave.webp" alt="Abstract blue light wave" width="640" height="349" loading="lazy" decoding="async">
           <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
 
-      <article class="nr-card glass" data-nr-item data-cat="co" data-title="Nine new server regions bring execution closer to more traders">
+      <article class="nr-card glass" data-nr-item data-cat="co" data-title="Nine new server regions bring execution closer to more traders" data-aos="fade-up" data-aos-delay="600">
         <div class="nr-head">
           <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Company</span>
           <time class="nr-date" datetime="2026-07-11">11 Jul 2026</time>
@@ -683,12 +812,12 @@
         </div>
 
         <a class="nr-media" href="news-article.html" aria-label="Read: Nine new server regions bring execution closer to more traders">
-          <img src="../../../assets/img/stat-awards.png" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../../assets/img/stat-awards.webp" alt="Award trophies backdrop" width="640" height="349" loading="lazy" decoding="async">
           <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
 
-      <article class="nr-card glass" data-nr-item data-cat="fa" data-title="Copper at a record as the grid build-out collides with tight supply">
+      <article class="nr-card glass" data-nr-item data-cat="fa" data-title="Copper at a record as the grid build-out collides with tight supply" data-aos="fade-up" data-aos-delay="600">
         <div class="nr-head">
           <span class="nr-cat"><svg aria-hidden="true"><use href="#i-globe"/></svg>Fundamental Analysis</span>
           <time class="nr-date" datetime="2026-07-09">9 Jul 2026</time>
@@ -701,12 +830,12 @@
         </div>
 
         <a class="nr-media" href="news-article.html" aria-label="Read: Copper at a record as the grid build-out collides with tight supply">
-          <img src="../../../assets/img/stat-tan.png" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../../assets/img/stat-tan.webp" alt="Sculpted bronze abstract artwork" width="640" height="349" loading="lazy" decoding="async">
           <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
 
-      <article class="nr-card glass" data-nr-item data-cat="ta" data-title="Ichimoku on the indices: reading the cloud through earnings season">
+      <article class="nr-card glass" data-nr-item data-cat="ta" data-title="Ichimoku on the indices: reading the cloud through earnings season" data-aos="fade-up" data-aos-delay="600">
         <div class="nr-head">
           <span class="nr-cat"><svg aria-hidden="true"><use href="#i-cfd"/></svg>Technical Analysis</span>
           <time class="nr-date" datetime="2026-07-07">7 Jul 2026</time>
@@ -719,7 +848,7 @@
         </div>
 
         <a class="nr-media" href="news-article.html" aria-label="Read: Ichimoku on the indices, reading the cloud through earnings season">
-          <img src="../../../assets/img/learn-cta.webp" alt="" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../../assets/img/learn-cta.webp" alt="Market learning illustration" width="640" height="349" loading="lazy" decoding="async">
           <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
@@ -744,14 +873,14 @@
   <div class="container">
     <div class="head nr-spot-head">
       <div>
-        <span class="eyebrow eyebrow-blue" data-reveal>In the spotlight</span>
-        <h2 class="h2 h2-light" id="nr-spot-title" data-reveal>Where you&rsquo;ve seen us</h2>
+        <span class="eyebrow eyebrow-blue" data-aos="fade-up">In the spotlight</span>
+        <h2 class="h2 h2-light" id="nr-spot-title" data-aos="fade-up">Where you&rsquo;ve seen us</h2>
       </div>
-      <a class="wb-textlink wb-textlink--lg nr-spot-all" href="#" data-reveal>View all <svg><use href="#i-arrow-right"/></svg></a>
+      <a class="wb-textlink wb-textlink--lg nr-spot-all" href="#" data-aos="fade-up">View all <svg><use href="#i-arrow-right"/></svg></a>
     </div>
 
-    <div class="nr-spot-grid" data-reveal-stagger>
-      <a class="nr-spot-card" href="#">
+    <div class="nr-spot-grid">
+      <a class="nr-spot-card" href="#" data-aos="fade-up">
         <span class="nr-spot-media">
           <img src="../../../assets/img/company-office.webp" alt="STARTRADER analyst speaking on a broadcast panel" width="1920" height="1080" loading="lazy" decoding="async">
           <span class="nr-spot-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
@@ -763,9 +892,9 @@
         </span>
       </a>
 
-      <a class="nr-spot-card" href="#">
+      <a class="nr-spot-card" href="#" data-aos="fade-up" data-aos-delay="100">
         <span class="nr-spot-media">
-          <img src="../../../assets/img/person-3.jpg" alt="STARTRADER head of research at a conference panel" width="800" height="533" loading="lazy" decoding="async">
+          <img src="../../../assets/img/person-3.webp" alt="STARTRADER head of research at a conference panel" width="800" height="533" loading="lazy" decoding="async">
           <span class="nr-spot-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
         </span>
         <span class="nr-spot-body">
@@ -775,9 +904,9 @@
         </span>
       </a>
 
-      <a class="nr-spot-card" href="#">
+      <a class="nr-spot-card" href="#" data-aos="fade-up" data-aos-delay="200">
         <span class="nr-spot-media">
-          <img src="../../../assets/img/person-1.jpg" alt="STARTRADER analyst in an interview" width="800" height="533" loading="lazy" decoding="async">
+          <img src="../../../assets/img/person-1.webp" alt="STARTRADER analyst in an interview" width="800" height="533" loading="lazy" decoding="async">
           <span class="nr-spot-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
         </span>
         <span class="nr-spot-body">
@@ -793,7 +922,7 @@
 <!-- ============ SUBSCRIBE ============ -->
 <section class="section nr-subsec" id="subscribe" aria-labelledby="nr-sub-title">
   <div class="container">
-    <div class="nr-sub glass" data-reveal>
+    <div class="nr-sub glass" data-aos="fade-up">
       <div class="nr-sub-copy">
         <span class="eyebrow">Daily briefing</span>
         <h2 class="nr-sub-h" id="nr-sub-title">The desk&rsquo;s read, in your inbox</h2>
@@ -817,21 +946,21 @@
 <section class="section fx-more wb-more" aria-labelledby="nr-more-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Keep going</span>
-      <h2 class="h2" id="nr-more-title" data-reveal>Trade the story</h2>
+      <span class="eyebrow" data-aos="fade-up">Keep going</span>
+      <h2 class="h2" id="nr-more-title" data-aos="fade-up">Trade the story</h2>
     </div>
-    <div class="fx-more-grid" data-reveal-stagger>
-      <a class="fx-more-card" href="../economic-calendar.html">
-        <span class="fx-more-media"><img src="../../../assets/img/stat-blue.png" alt="Economic calendar of scheduled releases" width="640" height="349" loading="lazy"></span>
+    <div class="fx-more-grid">
+      <a class="fx-more-card" href="../economic-calendar.html" data-aos="fade-up">
+        <span class="fx-more-media"><img src="../../../assets/img/stat-blue.webp" alt="Economic calendar of scheduled releases" width="640" height="349" loading="lazy"></span>
         <p class="fx-more-desc">Every scheduled release, rated for impact — see what is moving markets next.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Calendar</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="../../academy/webinars.html">
+      <a class="fx-more-card" href="../../academy/webinars.html" data-aos="fade-up" data-aos-delay="100">
         <span class="fx-more-media"><img src="../../../assets/img/company-office.webp" alt="Analyst presenting a live market session" width="640" height="349" loading="lazy"></span>
         <p class="fx-more-desc">Live sessions with the analysts behind this commentary, free to join.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Webinars</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="../../learn/glossary/index.html">
+      <a class="fx-more-card" href="../../learn/glossary/index.html" data-aos="fade-up" data-aos-delay="200">
         <span class="fx-more-media"><img src="../../../assets/img/learn-cta.webp" alt="Trading glossary of key terms" width="640" height="349" loading="lazy"></span>
         <p class="fx-more-desc">Every term used in these notes, defined in plain English.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Glossary</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
@@ -844,9 +973,9 @@
 <section class="cta-banner" aria-labelledby="nr-cta-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="nr-cta-title" data-reveal>Start trading with a<br>globally leading broker</h2>
-    <p data-reveal>Act on the analysis across 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
-    <div class="cta-actions" data-reveal>
+    <h2 id="nr-cta-title" data-aos="fade-up">Start trading with a<br>globally leading broker</h2>
+    <p data-aos="fade-up">Act on the analysis across 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
+    <div class="cta-actions" data-aos="fade-up">
       <a href="../../../trading/getting-started/account-opening.html" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       <a href="../../../trading/getting-started/account-opening.html" class="btn btn-ghost btn-lg">Try Free Demo</a>
     </div>
@@ -935,7 +1064,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../../../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../../../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -969,6 +1098,7 @@
 <script src="../../../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../../../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../../../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../../../assets/js/vendor/aos.min.js" defer></script>
 <script src="../../../assets/js/main.js" defer></script>
 </body>
 </html>

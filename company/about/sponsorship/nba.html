@@ -17,14 +17,14 @@
   <meta property="og:title" content="Official Partner of the NBA | STARTRADER" />
   <meta property="og:description" content="STARTRADER is an Official Partner of the NBA — shared values, exclusive wallpapers, and a partnership built for the long season." />
   <meta property="og:url" content="https://www.startrader.com/company/about/sponsorship/nba.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/platform-hero.jpg" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/platform-hero.webp" />
   <meta property="og:image:alt" content="Official Partner of the NBA — STARTRADER" />
   <meta property="og:locale" content="en_US" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Official Partner of the NBA | STARTRADER" />
   <meta name="twitter:description" content="STARTRADER is an Official Partner of the NBA — shared values, exclusive wallpapers, and a partnership built for the long season." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/platform-hero.jpg" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/platform-hero.webp" />
 
   <link rel="icon" href="../../../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../../../favicon.svg" />
@@ -33,7 +33,319 @@
   <link rel="preload" href="../../../assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" as="image" href="../../../assets/img/platform-hero.webp" />
   <link rel="stylesheet" href="../../../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../../../assets/css/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="../../../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../../../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* =================================================================
+   NBA PARTNERSHIP — an arena page: its own type, its own motion.
+   Nothing here is shared with the other company pages on purpose.
+   ================================================================= */
+.nb{--neon:#0a5cf5;--neon-2:#4f9bff;--teal:#16e9d7;--ink:#04060e;--glass:rgba(255,255,255,.06)}
+/* ---------------- hero ---------------- */
+.nb-hero{
+  position:relative;isolation:isolate;overflow:hidden;color:#fff;
+  margin-top:calc(-1 * var(--nav-h));
+  min-height:min(920px,calc(100vh - var(--topbar-h,44px)));
+  display:flex;align-items:center;padding:calc(var(--nav-h) + 70px) 0 96px;
+  background:var(--ink);
+}
+.nb-hero-bg{position:absolute;inset:-8% 0;z-index:-3;background:url("../../../assets/img/nba-banner.webp") center/cover no-repeat;will-change:transform}
+.nb-hero::before{
+  content:"";position:absolute;inset:0;z-index:-2;
+  background:
+    linear-gradient(90deg,rgba(4,6,11,.86) 0%,rgba(4,6,11,.66) 36%,rgba(4,6,11,.2) 62%,transparent 84%),
+    linear-gradient(180deg,rgba(4,6,11,.6),transparent 24%,rgba(4,6,11,.88));
+}
+.nb-hero-in{position:relative;z-index:2;width:100%}
+.nb-hero-copy{max-width:min(100%,620px)}
+.nb-badge{
+  display:inline-flex;align-items:center;gap:12px;padding:9px 18px 9px 12px;border-radius:70px;
+  background:var(--glass);border:1px solid rgba(255,255,255,.16);
+  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+}
+.nb-badge img{height:32px;width:auto;display:block}
+.nb-badge span{font-size:10.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#e6edf8}
+.nb-h1{margin-top:26px;font-size:clamp(38px,5.6vw,78px);font-weight:800;letter-spacing:-.05em;line-height:.96}
+.nb-h1 span{display:block}
+/* the second line is outlined, the way a game poster stacks a title */
+.nb-h1 .hollow{
+  color:transparent;-webkit-text-stroke:1.4px rgba(127,233,223,.72);
+  text-shadow:0 0 30px rgba(22,233,215,.5),0 0 70px rgba(10,92,245,.42);
+}
+.nb-h1 span:first-child{text-shadow:0 0 46px rgba(10,92,245,.5)}
+.nb-lead{margin-top:24px;max-width:50ch;font-size:clamp(15px,1.5vw,17px);line-height:1.72;color:#c4cedf}
+.nb-hact{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.nb-dl{
+  display:inline-flex;align-items:center;gap:12px;padding:13px 22px 13px 17px;border-radius:16px;
+  color:#fff;background:var(--glass);border:1px solid rgba(255,255,255,.18);
+  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+  transition:transform .35s var(--ease),background .3s,border-color .3s,box-shadow .35s var(--ease);
+}
+.nb-dl:hover{transform:translateY(-3px);background:rgba(255,255,255,.12);border-color:rgba(10,92,245,.6);box-shadow:0 20px 40px -20px rgba(10,92,245,.6)}
+.nb-dl svg{width:22px;height:22px;flex:none}
+.nb-dl span{display:flex;flex-direction:column;line-height:1.18;text-align:left}
+.nb-dl em{font-style:normal;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.62)}
+.nb-dl b{font-size:14.5px;font-weight:700;letter-spacing:-.02em;white-space:nowrap}
+/* the ticker that closes the hero */
+.nb-ticker{position:absolute;left:0;right:0;bottom:0;z-index:3;overflow:hidden;padding:14px 0;border-top:1px solid rgba(255,255,255,.1);background:rgba(5,7,13,.6);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+.nb-ticker-track{display:flex;gap:34px;width:max-content;will-change:transform}
+.nb-ticker span{display:inline-flex;align-items:center;gap:34px;font-size:11.5px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.44);white-space:nowrap}
+.nb-ticker i{width:5px;height:5px;border-radius:50%;background:var(--neon)}
+/* ---------------- the arc of values ---------------- */
+.nb-arc-sec{position:relative;overflow:hidden;color:#fff;background:radial-gradient(60% 50% at 50% 0%,rgba(10,92,245,.14),transparent 60%),linear-gradient(180deg,#05070d,#0a0f1c 54%,#05070d)}
+.nb-arc-sec>.container{position:relative;z-index:1}
+.nb-eyebrow{display:block;text-align:center;font-size:11px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--teal)}
+.nb-h2{margin-top:16px;text-align:center;font-size:clamp(28px,4vw,50px);font-weight:800;letter-spacing:-.042em;line-height:1.06;color:#fff}
+.nb-sub{max-width:62ch;margin:18px auto 0;text-align:center;font-size:15px;line-height:1.74;color:#9fb0cc}
+.nb-arc{position:relative;height:clamp(420px,44vw,540px);margin-top:clamp(40px,5vw,72px);perspective:1400px}
+.nb-card{
+  position:absolute;left:50%;top:0;width:clamp(212px,21vw,268px);aspect-ratio:3/4;
+  margin-left:calc(clamp(212px,21vw,268px) / -2);
+  border-radius:22px;overflow:hidden;cursor:pointer;text-align:left;padding:0;
+  background:#0b1018;border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 40px 80px -40px rgba(0,0,0,.95);
+  transform:translate3d(var(--x,0),var(--y,0),var(--z,0)) rotate(var(--r,0deg)) scale(var(--s,1));
+  transition:transform .7s var(--ease),border-color .4s,box-shadow .6s var(--ease),opacity .5s;
+  will-change:transform;
+}
+.nb-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5;transition:opacity .6s,transform 1.2s var(--ease)}
+.nb-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,7,13,.1) 26%,rgba(5,7,13,.94))}
+.nb-card-tx{position:absolute;z-index:1;left:20px;right:20px;bottom:18px}
+.nb-card-tx b{display:block;font-size:16px;letter-spacing:-.028em;line-height:1.24;color:#fff}
+.nb-card-tx em{
+  display:block;margin-top:8px;font-style:normal;font-size:12.5px;line-height:1.58;color:#b9c6dc;
+  max-height:0;opacity:0;overflow:hidden;transition:max-height .55s var(--ease),opacity .4s,margin-top .5s var(--ease);
+}
+.nb-card-n{
+  position:absolute;z-index:1;top:16px;left:18px;font-size:11px;font-weight:800;letter-spacing:.16em;color:rgba(255,255,255,.5);
+}
+.nb-card.is-on{border-color:rgba(10,92,245,.66);box-shadow:0 50px 96px -38px rgba(10,92,245,.5),0 0 0 1px rgba(10,92,245,.28)}
+.nb-card.is-on img{opacity:.82}
+.nb-card.is-on .nb-card-tx em{max-height:110px;opacity:1;margin-top:10px}
+.nb-card.is-on .nb-card-n{color:var(--teal)}
+.nb-arc-dots{display:flex;justify-content:center;gap:8px;margin-top:clamp(26px,3vw,38px)}
+.nb-arc-dots button{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.2);transition:width .35s var(--ease),background .3s}
+.nb-arc-dots button.is-on{width:30px;border-radius:70px;background:var(--neon)}
+/* ---------------- wallpapers: the locker ---------------- */
+.nb-wall-sec{position:relative;overflow:hidden;isolation:isolate;color:#fff;background:linear-gradient(180deg,#05070d,#070b16)}
+.nb-wall-sec>.container{position:relative;z-index:1}
+.nb-btn{
+  display:inline-flex;align-items:center;gap:9px;padding:13px 24px;border-radius:70px;white-space:nowrap;
+  font-size:13.5px;font-weight:700;color:#04060e;background:linear-gradient(180deg,#4f9bff,var(--neon));
+  box-shadow:0 18px 36px -16px rgba(10,92,245,.85);
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease);
+}
+.nb-btn:hover{transform:translateY(-3px);box-shadow:0 26px 46px -16px rgba(10,92,245,.95)}
+.nb-btn svg{width:15px;height:15px;flex:none}
+.nb-btn--ghost{color:#fff;background:var(--glass);border:1px solid rgba(255,255,255,.2);box-shadow:none;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.nb-btn--ghost:hover{background:rgba(255,255,255,.13);box-shadow:none}
+/* the whole block is themed by the team on screen */
+.nb-locker{
+  --pri:#007a33;--sec:#fff;
+  position:relative;margin-top:clamp(38px,4.6vw,62px);padding:clamp(26px,3.4vw,46px);
+  border-radius:clamp(24px,2.6vw,34px);
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);
+  -webkit-backdrop-filter:blur(20px) saturate(1.2);backdrop-filter:blur(20px) saturate(1.2);
+  box-shadow:0 60px 120px -60px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.1);
+}
+.nb-locker-aura{
+  position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;
+  background:radial-gradient(56% 62% at 24% 22%,color-mix(in srgb,var(--pri) 78%,transparent),transparent 70%),
+             radial-gradient(42% 48% at 86% 78%,color-mix(in srgb,var(--sec) 30%,transparent),transparent 72%);
+  opacity:.7;transition:background .7s var(--ease),opacity .7s;
+}
+@supports not (background:color-mix(in srgb,red,blue)){.nb-locker-aura{background:radial-gradient(52% 58% at 26% 24%,var(--pri),transparent 68%);opacity:.4}}
+.nb-stage{display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1fr);gap:clamp(28px,4vw,62px);align-items:center}
+/* the one device on show */
+.nb-phone{position:relative;justify-self:center;width:min(100%,286px);aspect-ratio:9/19.2;perspective:1200px}
+.nb-phone-shell{
+  position:absolute;inset:0;border-radius:34px;padding:7px;
+  background:linear-gradient(160deg,#39425a,#0c1017 50%,#2a3346);
+  box-shadow:0 56px 100px -40px rgba(0,0,0,.95),
+             0 0 0 1px color-mix(in srgb,var(--sec) 30%,transparent),
+             0 34px 90px -34px color-mix(in srgb,var(--pri) 80%,transparent),
+             inset 0 1px 0 rgba(255,255,255,.26);
+  transition:box-shadow .7s var(--ease);
+}
+.nb-screen{position:absolute;inset:7px;border-radius:28px;overflow:hidden;background:#04060e;display:block}
+.nb-screen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:opacity .34s var(--ease),transform .7s var(--ease)}
+.nb-screen img.is-swap{opacity:0;transform:scale(1.04)}
+.nb-notch{position:absolute;z-index:3;top:10px;left:50%;transform:translateX(-50%);width:34%;height:11px;border-radius:70px;background:#04060e}
+.nb-glare{
+  position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:linear-gradient(128deg,rgba(255,255,255,.18) 0%,transparent 34%,transparent 66%,rgba(255,255,255,.07) 100%);
+}
+.nb-phone-tag{
+  position:absolute;left:50%;bottom:-38px;transform:translateX(-50%);white-space:nowrap;
+  font-size:9.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#6f86ad;
+}
+/* the plate beside it */
+.nb-stage-tx{text-align:left}
+.nb-count{display:flex;align-items:baseline;gap:5px;font-variant-numeric:tabular-nums}
+.nb-count b{font-size:clamp(30px,3.4vw,44px);font-weight:800;letter-spacing:-.04em;line-height:1;
+  color:transparent;background:linear-gradient(180deg,#fff,color-mix(in srgb,var(--sec) 70%,#7f93b5));
+  -webkit-background-clip:text;background-clip:text;transition:background .6s}
+.nb-count i{font-style:normal;font-size:16px;color:#4d5f7d}
+.nb-count em{font-style:normal;font-size:13px;font-weight:700;color:#7d92b4}
+.nb-stage-tx h3{margin-top:12px;font-size:clamp(24px,2.7vw,34px);font-weight:800;letter-spacing:-.035em;line-height:1.1}
+.nb-spec{margin-top:12px;font-size:12.5px;letter-spacing:.02em;color:#8ea4c6}
+.nb-chips{display:flex;gap:8px;margin-top:18px}
+.nb-chips i{width:26px;height:6px;border-radius:70px;transition:background .6s var(--ease);box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)}
+.nb-locker .nb-wall-act{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.nb-hint{display:block;margin-top:16px;font-size:11px;letter-spacing:.06em;color:#5c7096}
+.nb-hint kbd{display:inline-block;padding:1px 6px;margin:0 2px;border-radius:5px;font:inherit;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#a9bcd8}
+/* the wall of tiles underneath */
+.nb-deck{
+  position:relative;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));
+  gap:14px;margin-top:clamp(30px,3.4vw,44px);padding-top:clamp(26px,3vw,36px);
+  border-top:1px solid rgba(255,255,255,.09);
+}
+.nb-tile{
+  position:relative;overflow:hidden;padding:0;border:0;cursor:pointer;background:#0b1018;
+  border-radius:14px;aspect-ratio:9/17;
+  box-shadow:0 14px 30px -18px rgba(0,0,0,.9),inset 0 0 0 1px rgba(255,255,255,.08);
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease),filter .45s;
+  filter:saturate(.62) brightness(.72);
+}
+.nb-tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s var(--ease)}
+.nb-tile::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 34%,rgba(4,6,11,.9) 100%);
+}
+.nb-tile-n{
+  position:absolute;z-index:2;top:7px;left:8px;
+  font-size:9px;font-weight:800;letter-spacing:.1em;color:rgba(255,255,255,.6);
+}
+.nb-tile-lbl{
+  position:absolute;z-index:2;left:8px;right:8px;bottom:8px;text-align:left;
+  font-size:9.5px;font-weight:800;line-height:1.25;letter-spacing:.03em;text-transform:uppercase;color:#fff;
+}
+.nb-tile:hover,.nb-tile:focus-visible{filter:none;transform:translateY(-5px)}
+.nb-tile:hover img{transform:scale(1.07)}
+.nb-tile.is-on{
+  filter:none;transform:translateY(-6px);
+  box-shadow:0 22px 44px -18px color-mix(in srgb,var(--pri) 90%,transparent),
+             inset 0 0 0 2px color-mix(in srgb,var(--sec) 78%,transparent);
+}
+.nb-tile.is-on .nb-tile-n{color:#fff}
+@media (max-width:1080px){.nb-deck{grid-template-columns:repeat(6,minmax(0,1fr))}}
+@media (max-width:860px){.nb-stage{grid-template-columns:1fr;gap:34px}
+.nb-phone{width:min(74%,262px);margin-bottom:34px}
+.nb-stage-tx{text-align:center}
+.nb-count,.nb-chips,.nb-locker .nb-wall-act{justify-content:center}}
+@media (max-width:640px){.nb-locker{padding:20px 16px}
+.nb-deck{
+    display:flex;overflow-x:auto;scroll-behavior:smooth;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;
+    margin-left:-16px;margin-right:-16px;padding:26px 16px 4px;
+  }
+.nb-deck::-webkit-scrollbar{display:none}
+.nb-tile{flex:0 0 auto;width:26vw;max-width:118px}}
+/* ---------------- the repeatedly panels ---------------- */
+.nb-play{position:relative;overflow:hidden;color:#fff;background:linear-gradient(115deg,#0a2f8a 0%,#061c52 30%,#0a0f1c 62%,#05070d)}
+.nb-play::before{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:radial-gradient(rgba(255,255,255,.09) 1px,transparent 1px);background-size:22px 22px;
+  -webkit-mask:radial-gradient(70% 70% at 30% 40%,#000,transparent 76%);mask:radial-gradient(70% 70% at 30% 40%,#000,transparent 76%);
+}
+.nb-play{isolation:isolate}
+.nb-play>.container{position:relative;z-index:1}
+.nb-play-head{max-width:760px;margin:0 auto}
+.nb-reps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:clamp(40px,4.6vw,62px)}
+.nb-rep{
+  position:relative;overflow:hidden;display:flex;flex-direction:column;
+  padding:26px 24px 24px;border-radius:20px;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);
+  -webkit-backdrop-filter:blur(20px) saturate(1.4);backdrop-filter:blur(20px) saturate(1.4);
+  box-shadow:0 24px 52px -30px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.22);
+  transition:transform .5s var(--ease),background .35s,border-color .35s,box-shadow .5s var(--ease);
+}
+.nb-rep::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,var(--teal),var(--neon));transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease)}
+.nb-rep:hover{transform:translateY(-6px);background:rgba(255,255,255,.12);border-color:rgba(22,233,215,.4);box-shadow:0 34px 64px -30px rgba(10,92,245,.66),inset 0 1px 0 rgba(255,255,255,.3)}
+.nb-rep:hover::before{transform:scaleX(1)}
+.nb-rep-n{font-size:44px;font-weight:800;letter-spacing:-.05em;line-height:1;color:rgba(255,255,255,.16);transition:color .4s}
+.nb-rep:hover .nb-rep-n{color:var(--teal)}
+.nb-rep b{display:block;margin-top:16px;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--teal)}
+.nb-rep p{margin-top:11px;font-size:13.5px;line-height:1.62;color:#e6edf8}
+/* one card holds the floor at a time, and the cycle repeats — which is the point */
+.nb-rep.is-live{
+  transform:translateY(-8px);background:rgba(255,255,255,.13);border-color:rgba(22,233,215,.5);
+  box-shadow:0 36px 68px -28px rgba(10,92,245,.7),inset 0 1px 0 rgba(255,255,255,.32);
+}
+.nb-rep.is-live .nb-rep-n{color:var(--teal)}
+/* the top edge draws across for as long as the card holds it */
+.nb-rep.is-live::before{transform:scaleX(1);transition:transform 3.1s linear}
+.nb-reps-foot{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:clamp(28px,3vw,40px)}
+.nb-reps-bar{display:flex;gap:6px}
+.nb-reps-bar i{width:36px;height:3px;border-radius:2px;background:rgba(255,255,255,.16);transition:background .4s,width .4s var(--ease)}
+.nb-reps-bar i.is-on{width:52px;background:var(--teal);box-shadow:0 0 14px rgba(22,233,215,.8)}
+.nb-loop{
+  display:inline-flex;align-items:baseline;gap:7px;padding:8px 15px;border-radius:70px;
+  font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#8ea4c6;
+  background:var(--glass);border:1px solid rgba(255,255,255,.14);
+}
+.nb-loop b{font-size:14px;letter-spacing:-.02em;color:var(--teal);font-variant-numeric:tabular-nums}
+@media (prefers-reduced-motion:reduce){.nb-rep.is-live{transform:none}
+.nb-rep.is-live::before{transition:none}}
+.nb-play-act{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:clamp(36px,4vw,52px)}
+/* ---------------- the CEO word ---------------- */
+.nb-ceo{position:relative;overflow:hidden;background:#05070d;color:#fff}
+.nb-ceo-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:stretch;min-height:min(560px,72vw)}
+.nb-ceo-shot{position:relative;overflow:hidden}
+.nb-ceo-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 18%}
+.nb-ceo-shot::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 50%,rgba(5,7,13,.92))}
+.nb-ceo-tx{display:flex;flex-direction:column;justify-content:center;padding:clamp(34px,5vw,78px) clamp(24px,4vw,62px)}
+.nb-mark{display:block;margin-top:26px;font-size:72px;line-height:.5;color:var(--neon);font-weight:800}
+.nb-ceo-tx blockquote{margin:26px 0 0;font-size:clamp(19px,2.2vw,27px);font-weight:600;letter-spacing:-.03em;line-height:1.4;color:#eaf0fa}
+.nb-ceo-tx cite{display:block;margin-top:22px;font-style:normal;font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#8ea4c6}
+/* ---------------- responsive ---------------- */
+@media (max-width:1080px){.nb-hero-in,.nb-ceo-in{grid-template-columns:1fr}
+.nb-reps{grid-template-columns:repeat(2,minmax(0,1fr))}
+.nb-ceo-shot{min-height:340px}
+.nb-ceo-shot::after{background:linear-gradient(180deg,transparent 46%,rgba(5,7,13,.94))}}
+@media (max-width:720px){.nb-hero{min-height:0;padding-bottom:112px}
+.nb-h1{font-size:clamp(34px,11vw,52px)}
+.nb-arc{height:auto;perspective:none;display:flex;flex-direction:column;gap:14px}
+.nb-card{position:relative;left:auto;top:auto;margin:0;width:100%;aspect-ratio:16/10;transform:none!important;opacity:1!important}
+.nb-card .nb-card-tx em{max-height:110px;opacity:1;margin-top:10px}
+.nb-arc-dots{display:none}
+.nb-reps{grid-template-columns:1fr}}
+/* the wallpapers are artwork now, so the swatches show the crest itself */
+.nb-hl{color:var(--teal);text-shadow:0 0 26px rgba(22,233,215,.5)}
+/* the habit panels get a neon edge that lights left to right */
+.nb-rep{position:relative;overflow:hidden}
+.nb-rep::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--teal),var(--neon));transform:scaleY(0);transform-origin:top;transition:transform .5s var(--ease)}
+.nb-rep:hover::before{transform:scaleY(1)}
+.nb-rep b{color:var(--teal)}
+/* the closing call, lit like the rest of the page */
+.nb-close{position:relative;overflow:hidden;padding:clamp(72px,9vw,128px) 0;color:#fff;background:radial-gradient(58% 70% at 50% 0%,rgba(10,92,245,.34),transparent 62%),linear-gradient(180deg,#04060e,#071026 58%,#04060e)}
+.nb-close::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;background-image:radial-gradient(rgba(22,233,215,.14) 1px,transparent 1px);background-size:26px 26px;-webkit-mask:radial-gradient(60% 60% at 50% 44%,#000,transparent 76%);mask:radial-gradient(60% 60% at 50% 44%,#000,transparent 76%)}
+.nb-close-in{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center}
+.nb-close-in .nb-badge{margin-bottom:26px}
+.nb-close-act{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:34px}
+/* court markings and ball seams as section grounds — held back so they read as
+   ground rather than pattern, and faded at the frame so no line ends mid-air */
+.nb-court{
+  position:absolute;left:50%;bottom:0;transform:translateX(-50%);z-index:0;pointer-events:none;
+  width:min(1180px,132%);aspect-ratio:1000/900;opacity:.1;
+  background:url("../../../assets/img/court-lines.svg") center bottom / 100% auto no-repeat;
+  -webkit-mask:linear-gradient(180deg,transparent,#000 34%,#000 82%,transparent);
+          mask:linear-gradient(180deg,transparent,#000 34%,#000 82%,transparent);
+}
+.nb-seams{
+  position:absolute;z-index:0;pointer-events:none;opacity:.06;
+  width:min(620px,72vw);aspect-ratio:1/1;top:-10%;right:-8%;
+  background:url("../../../assets/img/ball-seams.svg") center / contain no-repeat;
+  -webkit-mask:radial-gradient(closest-side,#000 62%,transparent 96%);
+          mask:radial-gradient(closest-side,#000 62%,transparent 96%);
+}
+.nb-seams--left{top:auto;bottom:-12%;right:auto;left:-9%;width:min(460px,58vw);opacity:.05}
+@media (max-width:720px){.nb-court{width:190%;opacity:.08}
+.nb-seams{display:none}}
+  </style>
 
   <script type="application/ld+json">
 {
@@ -123,7 +435,7 @@
 }
   </script>
 
-  <link rel="preload" as="image" href="../../../assets/img/nba-banner.jpg" fetchpriority="high">
+  <link rel="preload" as="image" href="../../../assets/img/nba-banner.webp" fetchpriority="high">
 
 </head>
 <body class="nb">
@@ -426,16 +738,16 @@
   <span class="nb-hero-bg" data-nb-bg aria-hidden="true"></span>
   <div class="container nb-hero-in">
     <div class="nb-hero-copy">
-      <span class="nb-badge" data-reveal>
+      <span class="nb-badge" data-aos="fade-up">
         <img src="../../../assets/img/partner-nba.svg" alt="Official Partner of the NBA">
         <span>Official Partner</span>
       </span>
-      <h1 class="nb-h1" id="nb-hero-title" data-reveal>
+      <h1 class="nb-h1" id="nb-hero-title" data-aos="fade-up">
         <span>On the Court.</span>
         <span class="hollow">On the World Stage.</span>
       </h1>
-      <p class="nb-lead" data-reveal>As the Official Partner of the NBA, STARTRADER reinforces its role in the global game &mdash; one that spans regions, cultures and markets, and rewards the same habits ours does.</p>
-      <div class="nb-hact" data-reveal>
+      <p class="nb-lead" data-aos="fade-up">As the Official Partner of the NBA, STARTRADER reinforces its role in the global game &mdash; one that spans regions, cultures and markets, and rewards the same habits ours does.</p>
+      <div class="nb-hact" data-aos="fade-up">
         <a class="nb-dl" href="#">
           <svg><use href="#i-apple"/></svg>
           <span><em>Download</em><b>STARTRADER for iOS</b></span>
@@ -448,41 +760,41 @@
     </div>
   </div>
 
-  <div class="nb-ticker" aria-hidden="true">
-    <div class="nb-ticker-track" id="nbTick"><span>OFFICIAL PARTNER OF THE NBA<i></i></span><span>ON THE COURT<i></i></span><span>ON THE WORLD STAGE<i></i></span><span>PREPARATION OVER PREDICTION<i></i></span><span>SEASON AFTER SEASON<i></i></span><span>OFFICIAL PARTNER OF THE NBA<i></i></span><span>ON THE COURT<i></i></span><span>ON THE WORLD STAGE<i></i></span><span>PREPARATION OVER PREDICTION<i></i></span><span>SEASON AFTER SEASON<i></i></span></div>
+  <div class="nb-ticker swiper st-marquee" aria-hidden="true" data-marquee-speed="46">
+    <div class="nb-ticker-track swiper-wrapper" id="nbTick"><span class="swiper-slide">OFFICIAL PARTNER OF THE NBA<i></i></span><span class="swiper-slide">ON THE COURT<i></i></span><span class="swiper-slide">ON THE WORLD STAGE<i></i></span><span class="swiper-slide">PREPARATION OVER PREDICTION<i></i></span><span class="swiper-slide">SEASON AFTER SEASON<i></i></span><span class="swiper-slide">OFFICIAL PARTNER OF THE NBA<i></i></span><span class="swiper-slide">ON THE COURT<i></i></span><span class="swiper-slide">ON THE WORLD STAGE<i></i></span><span class="swiper-slide">PREPARATION OVER PREDICTION<i></i></span><span class="swiper-slide">SEASON AFTER SEASON<i></i></span></div>
   </div>
 </section>
 
 <!-- ============ THE ARC ============ -->
 <section class="section nb-arc-sec" id="legacy" aria-labelledby="nb-arc-title">
   <div class="container">
-    <span class="nb-eyebrow" data-reveal>Shared values</span>
-    <h2 class="nb-h2" id="nb-arc-title" data-reveal>Honouring the legacy.<br> Evolving the game.</h2>
-    <p class="nb-sub" data-reveal>Five things the league and the market have in common. Pick a card &mdash; the deck reorders around it.</p>
+    <span class="nb-eyebrow" data-aos="fade-up">Shared values</span>
+    <h2 class="nb-h2" id="nb-arc-title" data-aos="fade-up">Honouring the legacy.<br> Evolving the game.</h2>
+    <p class="nb-sub" data-aos="fade-up">Five things the league and the market have in common. Pick a card &mdash; the deck reorders around it.</p>
 
     <div class="nb-arc" data-nb-arc>
         <button class="nb-card" type="button" data-nb-card="0" aria-label="Global reach">
-          <img src="../../../assets/img/nba-v1.jpg" alt="" width="900" height="1200" loading="lazy" decoding="async">
+          <img src="../../../assets/img/nba-v1.webp" alt="STARTRADER x NBA collaboration visual 1" width="900" height="1200" loading="lazy" decoding="async">
           <span class="nb-card-n">01</span>
           <span class="nb-card-tx"><b>Global reach</b><em>A shared dedication to connecting people, across a partnership between a multi-asset broker and a multi-faceted global league.</em></span>
         </button>
         <button class="nb-card" type="button" data-nb-card="1" aria-label="Diversity and culture">
-          <img src="../../../assets/img/nba-v2.jpg" alt="" width="900" height="1200" loading="lazy" decoding="async">
+          <img src="../../../assets/img/nba-v2.webp" alt="STARTRADER x NBA collaboration visual 2" width="900" height="1200" loading="lazy" decoding="async">
           <span class="nb-card-n">02</span>
           <span class="nb-card-tx"><b>Diversity and culture</b><em>Both trading and basketball are built on inclusivity, bringing together participants across cultures and regions.</em></span>
         </button>
         <button class="nb-card is-on" type="button" data-nb-card="2" aria-label="Creative expression">
-          <img src="../../../assets/img/nba-v3.jpg" alt="" width="900" height="1200" loading="lazy" decoding="async">
+          <img src="../../../assets/img/nba-v3.webp" alt="STARTRADER x NBA collaboration visual 3" width="900" height="1200" loading="lazy" decoding="async">
           <span class="nb-card-n">03</span>
           <span class="nb-card-tx"><b>Creative expression</b><em>Individuality and expression on the court are reflected in the support of diverse trading styles through flexible tools.</em></span>
         </button>
         <button class="nb-card" type="button" data-nb-card="3" aria-label="Respect for legacy">
-          <img src="../../../assets/img/nba-v4.jpg" alt="" width="900" height="1200" loading="lazy" decoding="async">
+          <img src="../../../assets/img/nba-v4.webp" alt="STARTRADER x NBA collaboration visual 4" width="900" height="1200" loading="lazy" decoding="async">
           <span class="nb-card-n">04</span>
           <span class="nb-card-tx"><b>Respect for legacy</b><em>The NBA celebrates iconic moments of lasting impact. STARTRADER is built on long-term foundations that sustain trust.</em></span>
         </button>
         <button class="nb-card" type="button" data-nb-card="4" aria-label="Community engagement">
-          <img src="../../../assets/img/nba-v5.jpg" alt="" width="900" height="1200" loading="lazy" decoding="async">
+          <img src="../../../assets/img/nba-v5.webp" alt="STARTRADER x NBA collaboration visual 5" width="900" height="1200" loading="lazy" decoding="async">
           <span class="nb-card-n">05</span>
           <span class="nb-card-tx"><b>Community engagement</b><em>The community is shaped by new tools, new markets and new ways of engaging — on the court and in the markets.</em></span>
         </button>
@@ -494,18 +806,18 @@
 <!-- ============ WALLPAPERS ============ -->
 <section class="section nb-wall-sec" id="wallpapers" aria-labelledby="nb-wall-title">
   <div class="container">
-    <span class="nb-eyebrow" data-reveal>Downloads</span>
-    <h2 class="nb-h2" id="nb-wall-title" data-reveal>Game on. Moves ready.<br> Decisions set.</h2>
-    <p class="nb-sub" data-reveal>16 team designs, each carrying the partnership mark. Pick one from the wall &mdash; the screen, and the room around it, change with it.</p>
+    <span class="nb-eyebrow" data-aos="fade-up">Downloads</span>
+    <h2 class="nb-h2" id="nb-wall-title" data-aos="fade-up">Game on. Moves ready.<br> Decisions set.</h2>
+    <p class="nb-sub" data-aos="fade-up">16 team designs, each carrying the partnership mark. Pick one from the wall &mdash; the screen, and the room around it, change with it.</p>
 
     <div class="nb-locker" data-nb-locker style="--pri:#007a33;--sec:#ffffff">
       <span class="nb-locker-aura" aria-hidden="true"></span>
 
       <div class="nb-stage">
-        <div class="nb-phone" data-nb-phone data-reveal>
+        <div class="nb-phone" data-nb-phone data-aos="fade-up">
           <span class="nb-phone-shell" aria-hidden="true"></span>
           <span class="nb-screen">
-            <img data-nb-shot src="../../../assets/img/nba-wp-celtics.jpg" alt="Boston Celtics wallpaper" width="740" height="1600" loading="lazy" decoding="async">
+            <img data-nb-shot src="../../../assets/img/nba-wp-celtics.webp" alt="Boston Celtics wallpaper" width="740" height="1600" loading="lazy" decoding="async">
             <span class="nb-glare" aria-hidden="true"></span>
             <span class="nb-notch" aria-hidden="true"></span>
           </span>
@@ -518,7 +830,7 @@
           <p class="nb-spec">Official Partner of the NBA &middot; iPhone and Android &middot; PNG</p>
           <span class="nb-chips" aria-hidden="true"><i style="background:#007a33"></i><i style="background:#ffffff"></i></span>
           <div class="nb-wall-act">
-            <a class="nb-btn" href="../../../assets/img/nba-wp-celtics.jpg" data-nb-get download>Download this <svg><use href="#i-download"/></svg></a>
+            <a class="nb-btn" href="../../../assets/img/nba-wp-celtics.webp" data-nb-get download>Download this <svg><use href="#i-download"/></svg></a>
             <a class="nb-btn nb-btn--ghost" href="#">Download all 16 <svg><use href="#i-download"/></svg></a>
           </div>
           <span class="nb-hint">Pick a team below, or step through the set with <kbd>&larr;</kbd><kbd>&rarr;</kbd></span>
@@ -528,113 +840,113 @@
       <div class="nb-deck" data-nb-deck role="tablist" aria-label="Team wallpapers">
         <button class="nb-tile" type="button" role="tab" id="nb-tile-0"
           aria-selected="false" tabindex="-1"
-          data-nb-tile="0" data-name="Atlanta Hawks" data-src="../../../assets/img/nba-wp-hawks.jpg" data-pri="#e03a3e" data-sec="#c1d32f">
-          <img src="../../../assets/img/nba-wp-hawks.jpg" alt="" width="740" height="1600" loading="lazy" decoding="async">
+          data-nb-tile="0" data-name="Atlanta Hawks" data-src="../../../assets/img/nba-wp-hawks.webp" data-pri="#e03a3e" data-sec="#c1d32f">
+          <img src="../../../assets/img/nba-wp-hawks.webp" alt="Atlanta Hawks phone wallpaper" width="740" height="1600" loading="lazy" decoding="async">
           <span class="nb-tile-n">01</span>
           <span class="nb-tile-lbl">Atlanta Hawks</span>
         </button>
         <button class="nb-tile is-on" type="button" role="tab" id="nb-tile-1"
           aria-selected="true" tabindex="0"
-          data-nb-tile="1" data-name="Boston Celtics" data-src="../../../assets/img/nba-wp-celtics.jpg" data-pri="#007a33" data-sec="#ffffff">
-          <img src="../../../assets/img/nba-wp-celtics.jpg" alt="" width="740" height="1600" loading="lazy" decoding="async">
+          data-nb-tile="1" data-name="Boston Celtics" data-src="../../../assets/img/nba-wp-celtics.webp" data-pri="#007a33" data-sec="#ffffff">
+          <img src="../../../assets/img/nba-wp-celtics.webp" alt="Boston Celtics phone wallpaper" width="740" height="1600" loading="lazy" decoding="async">
           <span class="nb-tile-n">02</span>
           <span class="nb-tile-lbl">Boston Celtics</span>
         </button>
         <button class="nb-tile" type="button" role="tab" id="nb-tile-2"
           aria-selected="false" tabindex="-1"
-          data-nb-tile="2" data-name="Brooklyn Nets" data-src="../../../assets/img/nba-wp-nets.jpg" data-pri="#1f2430" data-sec="#c9ced6">
-          <img src="../../../assets/img/nba-wp-nets.jpg" alt="" width="740" height="1600" loading="lazy" decoding="async">
+          data-nb-tile="2" data-name="Brooklyn Nets" data-src="../../../assets/img/nba-wp-nets.webp" data-pri="#1f2430" data-sec="#c9ced6">
+          <img src="../../../assets/img/nba-wp-nets.webp" alt="Brooklyn Nets phone wallpaper" width="740" height="1600" loading="lazy" decoding="async">
           <span class="nb-tile-n">03</span>
           <span class="nb-tile-lbl">Brooklyn Nets</span>
         </button>
         <button class="nb-tile" type="button" role="tab" id="nb-tile-3"
           aria-selected="false" tabindex="-1"
-          data-nb-tile="3" data-name="Charlotte Hornets" data-src="../../../assets/img/nba-wp-hornets.jpg" data-pri="#00788c" data-sec="#1d1160">
-          <img src="../../../assets/img/nba-wp-hornets.jpg" alt="" width="740" height="1600" loading="lazy" decoding="async">
+          data-nb-tile="3" data-name="Charlotte Hornets" data-src="../../../assets/img/nba-wp-hornets.webp" data-pri="#00788c" data-sec="#1d1160">
+          <img src="../../../assets/img/nba-wp-hornets.webp" alt="Charlotte Hornets phone wallpaper" width="740" height="1600" loading="lazy" decoding="async">
           <span class="nb-tile-n">04</span>
           <span class="nb-tile-lbl">Charlotte Hornets</span>
         </button>
         <button class="nb-tile" type="button" role="tab" id="nb-tile-4"
           aria-selected="false" tabindex="-1"
-          data-nb-tile="4" data-name="Chicago Bulls" data-src="../../../assets/img/nba-wp-bulls.jpg" data-pri="#ce1141" data-sec="#ffffff">
-          <img src="../../../assets/img/nba-wp-bulls.jpg" alt="" width="740" height="1600" loading="lazy" decoding="async">
+          data-nb-tile="4" data-name="Chicago Bulls" data-src="../../../assets/img/nba-wp-bulls.webp" data-pri="#ce1141" data-sec="#ffffff">
+          <img src="../../../assets/img/nba-wp-bulls.webp" alt="Chicago Bulls phone wallpaper" width="740" height="1600" loading="lazy" decoding="async">
           <span class="nb-tile-n">05</span>
           <span class="nb-tile-lbl">Chicago Bulls</span>
         </button>
         <button class="nb-tile" type="button" role="tab" id="nb-tile-5"
           aria-selected="false" tabindex="-1"
-          data-nb-tile="5" data-name="Cleveland Cavaliers" data-src="../../../assets/img/nba-wp-cavaliers.jpg" data-pri="#860038" data-sec="#fdbb30">
-          <img src="../../../assets/img/nba-wp-cavaliers.jpg" alt="" width="740" height="1600" loading="lazy" decoding="async">
+          data-nb-tile="5" data-name="Cleveland Cavaliers" data-src="../../../assets/img/nba-wp-cavaliers.webp" data-pri="#860038" data-sec="#fdbb30">
+          <img src="../../../assets/img/nba-wp-cavaliers.webp" alt="Cleveland Cavaliers phone wallpaper" width="740" height="1600" loading="lazy" decoding="async">
           <span class="nb-tile-n">06</span>
           <span class="nb-tile-lbl">Cleveland Cavaliers</span>
         </button>
         <button class="nb-tile" type="button" role="tab" id="nb-tile-6"
           aria-selected="false" tabindex="-1"
-          data-nb-tile="6" data-name="Dallas Mavericks" data-src="../../../assets/img/nba-wp-mavericks.jpg" data-pri="#00538c" data-sec="#b8c4ca">
-          <img src="../../../assets/img/nba-wp-mavericks.jpg" alt="" width="740" height="1600" loading="lazy" decoding="async">
+          data-nb-tile="6" data-name="Dallas Mavericks" data-src="../../../assets/img/nba-wp-mavericks.webp" data-pri="#00538c" data-sec="#b8c4ca">
+          <img src="../../../assets/img/nba-wp-mavericks.webp" alt="Dallas Mavericks phone wallpaper" width="740" height="1600" loading="lazy" decoding="async">
           <span class="nb-tile-n">07</span>
           <span class="nb-tile-lbl">Dallas Mavericks</span>
         </button>
         <button class="nb-tile" type="button" role="tab" id="nb-tile-7"
           aria-selected="false" tabindex="-1"
-          data-nb-tile="7" data-name="Denver Nuggets" data-src="../../../assets/img/nba-wp-nuggets.jpg" data-pri="#12315c" data-sec="#fec524">
-          <img src="../../../assets/img/nba-wp-nuggets.jpg" alt="" width="740" height="1600" loading="lazy" decoding="async">
+          data-nb-tile="7" data-name="Denver Nuggets" data-src="../../../assets/img/nba-wp-nuggets.webp" data-pri="#12315c" data-sec="#fec524">
+          <img src="../../../assets/img/nba-wp-nuggets.webp" alt="Denver Nuggets phone wallpaper" width="740" height="1600" loading="lazy" decoding="async">
           <span class="nb-tile-n">08</span>
           <span class="nb-tile-lbl">Denver Nuggets</span>
         </button>
         <button class="nb-tile" type="button" role="tab" id="nb-tile-8"
           aria-selected="false" tabindex="-1"
-          data-nb-tile="8" data-name="Detroit Pistons" data-src="../../../assets/img/nba-wp-pistons.jpg" data-pri="#c8102e" data-sec="#1d42ba">
-          <img src="../../../assets/img/nba-wp-pistons.jpg" alt="" width="740" height="1600" loading="lazy" decoding="async">
+          data-nb-tile="8" data-name="Detroit Pistons" data-src="../../../assets/img/nba-wp-pistons.webp" data-pri="#c8102e" data-sec="#1d42ba">
+          <img src="../../../assets/img/nba-wp-pistons.webp" alt="Detroit Pistons phone wallpaper" width="740" height="1600" loading="lazy" decoding="async">
           <span class="nb-tile-n">09</span>
           <span class="nb-tile-lbl">Detroit Pistons</span>
         </button>
         <button class="nb-tile" type="button" role="tab" id="nb-tile-9"
           aria-selected="false" tabindex="-1"
-          data-nb-tile="9" data-name="Golden State Warriors" data-src="../../../assets/img/nba-wp-warriors.jpg" data-pri="#1d428a" data-sec="#ffc72c">
-          <img src="../../../assets/img/nba-wp-warriors.jpg" alt="" width="740" height="1600" loading="lazy" decoding="async">
+          data-nb-tile="9" data-name="Golden State Warriors" data-src="../../../assets/img/nba-wp-warriors.webp" data-pri="#1d428a" data-sec="#ffc72c">
+          <img src="../../../assets/img/nba-wp-warriors.webp" alt="Golden State Warriors phone wallpaper" width="740" height="1600" loading="lazy" decoding="async">
           <span class="nb-tile-n">10</span>
           <span class="nb-tile-lbl">Golden State Warriors</span>
         </button>
         <button class="nb-tile" type="button" role="tab" id="nb-tile-10"
           aria-selected="false" tabindex="-1"
-          data-nb-tile="10" data-name="Houston Rockets" data-src="../../../assets/img/nba-wp-rockets.jpg" data-pri="#ce1141" data-sec="#c4ced4">
-          <img src="../../../assets/img/nba-wp-rockets.jpg" alt="" width="740" height="1600" loading="lazy" decoding="async">
+          data-nb-tile="10" data-name="Houston Rockets" data-src="../../../assets/img/nba-wp-rockets.webp" data-pri="#ce1141" data-sec="#c4ced4">
+          <img src="../../../assets/img/nba-wp-rockets.webp" alt="Houston Rockets phone wallpaper" width="740" height="1600" loading="lazy" decoding="async">
           <span class="nb-tile-n">11</span>
           <span class="nb-tile-lbl">Houston Rockets</span>
         </button>
         <button class="nb-tile" type="button" role="tab" id="nb-tile-11"
           aria-selected="false" tabindex="-1"
-          data-nb-tile="11" data-name="Indiana Pacers" data-src="../../../assets/img/nba-wp-pacers.jpg" data-pri="#00397e" data-sec="#fdbb30">
-          <img src="../../../assets/img/nba-wp-pacers.jpg" alt="" width="740" height="1600" loading="lazy" decoding="async">
+          data-nb-tile="11" data-name="Indiana Pacers" data-src="../../../assets/img/nba-wp-pacers.webp" data-pri="#00397e" data-sec="#fdbb30">
+          <img src="../../../assets/img/nba-wp-pacers.webp" alt="Indiana Pacers phone wallpaper" width="740" height="1600" loading="lazy" decoding="async">
           <span class="nb-tile-n">12</span>
           <span class="nb-tile-lbl">Indiana Pacers</span>
         </button>
         <button class="nb-tile" type="button" role="tab" id="nb-tile-12"
           aria-selected="false" tabindex="-1"
-          data-nb-tile="12" data-name="Los Angeles Lakers" data-src="../../../assets/img/nba-wp-lakers.jpg" data-pri="#552583" data-sec="#fdb927">
-          <img src="../../../assets/img/nba-wp-lakers.jpg" alt="" width="740" height="1600" loading="lazy" decoding="async">
+          data-nb-tile="12" data-name="Los Angeles Lakers" data-src="../../../assets/img/nba-wp-lakers.webp" data-pri="#552583" data-sec="#fdb927">
+          <img src="../../../assets/img/nba-wp-lakers.webp" alt="Los Angeles Lakers phone wallpaper" width="740" height="1600" loading="lazy" decoding="async">
           <span class="nb-tile-n">13</span>
           <span class="nb-tile-lbl">Los Angeles Lakers</span>
         </button>
         <button class="nb-tile" type="button" role="tab" id="nb-tile-13"
           aria-selected="false" tabindex="-1"
-          data-nb-tile="13" data-name="Miami Heat" data-src="../../../assets/img/nba-wp-heat.jpg" data-pri="#98002e" data-sec="#f9a01b">
-          <img src="../../../assets/img/nba-wp-heat.jpg" alt="" width="740" height="1600" loading="lazy" decoding="async">
+          data-nb-tile="13" data-name="Miami Heat" data-src="../../../assets/img/nba-wp-heat.webp" data-pri="#98002e" data-sec="#f9a01b">
+          <img src="../../../assets/img/nba-wp-heat.webp" alt="Miami Heat phone wallpaper" width="740" height="1600" loading="lazy" decoding="async">
           <span class="nb-tile-n">14</span>
           <span class="nb-tile-lbl">Miami Heat</span>
         </button>
         <button class="nb-tile" type="button" role="tab" id="nb-tile-14"
           aria-selected="false" tabindex="-1"
-          data-nb-tile="14" data-name="Milwaukee Bucks" data-src="../../../assets/img/nba-wp-bucks.jpg" data-pri="#00551f" data-sec="#eee1c6">
-          <img src="../../../assets/img/nba-wp-bucks.jpg" alt="" width="740" height="1600" loading="lazy" decoding="async">
+          data-nb-tile="14" data-name="Milwaukee Bucks" data-src="../../../assets/img/nba-wp-bucks.webp" data-pri="#00551f" data-sec="#eee1c6">
+          <img src="../../../assets/img/nba-wp-bucks.webp" alt="Milwaukee Bucks phone wallpaper" width="740" height="1600" loading="lazy" decoding="async">
           <span class="nb-tile-n">15</span>
           <span class="nb-tile-lbl">Milwaukee Bucks</span>
         </button>
         <button class="nb-tile" type="button" role="tab" id="nb-tile-15"
           aria-selected="false" tabindex="-1"
-          data-nb-tile="15" data-name="New York Knicks" data-src="../../../assets/img/nba-wp-knicks.jpg" data-pri="#006bb6" data-sec="#f58426">
-          <img src="../../../assets/img/nba-wp-knicks.jpg" alt="" width="740" height="1600" loading="lazy" decoding="async">
+          data-nb-tile="15" data-name="New York Knicks" data-src="../../../assets/img/nba-wp-knicks.webp" data-pri="#006bb6" data-sec="#f58426">
+          <img src="../../../assets/img/nba-wp-knicks.webp" alt="New York Knicks phone wallpaper" width="740" height="1600" loading="lazy" decoding="async">
           <span class="nb-tile-n">16</span>
           <span class="nb-tile-lbl">New York Knicks</span>
         </button>
@@ -648,9 +960,9 @@
   <span class="nb-seams nb-seams--left" aria-hidden="true"></span>
   <div class="container">
     <div class="nb-play-head">
-      <span class="nb-eyebrow" data-reveal>Join the global play</span>
-      <h2 class="nb-h2" id="nb-play-title" data-reveal>Four habits, repeated<br> on <span class="nb-hl">both courts</span></h2>
-      <p class="nb-sub" data-reveal>A season is not won in a night, and neither is a track record. These are the four things we do again, and again, and again.</p>
+      <span class="nb-eyebrow" data-aos="fade-up">Join the global play</span>
+      <h2 class="nb-h2" id="nb-play-title" data-aos="fade-up">Four habits, repeated<br> on <span class="nb-hl">both courts</span></h2>
+      <p class="nb-sub" data-aos="fade-up">A season is not won in a night, and neither is a track record. These are the four things we do again, and again, and again.</p>
     </div>
 
     <div class="nb-reps" data-nb-reps>
@@ -676,12 +988,12 @@
       </article>
     </div>
 
-    <div class="nb-reps-foot" data-reveal>
+    <div class="nb-reps-foot" data-aos="fade-up">
       <span class="nb-reps-bar" data-nb-bars aria-hidden="true"><i></i><i></i><i></i><i></i></span>
       <span class="nb-loop">Repetition <b data-nb-loop>1</b></span>
     </div>
 
-    <div class="nb-play-act" data-reveal>
+    <div class="nb-play-act" data-aos="fade-up">
       <a class="nb-btn" href="../../../trading/getting-started/account-opening.html">Open live account <svg><use href="#i-arrow-right"/></svg></a>
       <a class="nb-btn nb-btn--ghost" href="../../../trading/getting-started/account-opening.html">Open demo account</a>
     </div>
@@ -692,13 +1004,13 @@
 <section class="nb-ceo" aria-labelledby="nb-ceo-title">
   <div class="nb-ceo-in">
     <div class="nb-ceo-shot">
-      <img src="../../../assets/img/person-3.jpg" alt="" width="800" height="533" loading="lazy" decoding="async">
+      <img src="../../../assets/img/person-3.webp" alt="STARTRADER trader portrait" width="800" height="533" loading="lazy" decoding="async">
     </div>
     <div class="nb-ceo-tx">
-      <span class="nb-eyebrow" style="text-align:left" id="nb-ceo-title" data-reveal>A word from our CEO</span>
+      <span class="nb-eyebrow" style="text-align:left" id="nb-ceo-title" data-aos="fade-up">A word from our CEO</span>
       <span class="nb-mark" aria-hidden="true">&ldquo;</span>
-      <blockquote data-reveal>Partnering with the NBA reflects our belief in building something that lasts &mdash; grounded in strong foundations, yet always moving forward on a global stage.</blockquote>
-      <cite data-reveal>Peter Karsten &middot; Chief Executive Officer</cite>
+      <blockquote data-aos="fade-up">Partnering with the NBA reflects our belief in building something that lasts &mdash; grounded in strong foundations, yet always moving forward on a global stage.</blockquote>
+      <cite data-aos="fade-up">Peter Karsten &middot; Chief Executive Officer</cite>
     </div>
   </div>
 </section>
@@ -707,10 +1019,10 @@
 <section class="section faq-sec fx-faq" aria-labelledby="nb-faq-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>FAQ</span>
-      <h2 class="h2" id="nb-faq-title" data-reveal>About the partnership</h2>
+      <span class="eyebrow" data-aos="fade-up">FAQ</span>
+      <h2 class="h2" id="nb-faq-title" data-aos="fade-up">About the partnership</h2>
     </div>
-    <div class="faq-list" data-reveal>
+    <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
         <summary>What does Official Partner of the NBA mean for clients?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a">It is a marketing partnership, not a trading product. What it changes for a client is reach and recognition: the same account, the same conditions, backed by a brand that now travels with one of the most-watched leagues in the world.</div>
@@ -735,13 +1047,13 @@
 <section class="nb-close" aria-labelledby="nb-close-title">
   <span class="nb-court" aria-hidden="true"></span>
   <div class="container nb-close-in">
-    <span class="nb-badge" data-reveal>
+    <span class="nb-badge" data-aos="fade-up">
       <img src="../../../assets/img/partner-nba.svg" alt="Official Partner of the NBA">
       <span>Official Partner</span>
     </span>
-    <h2 class="nb-h2" id="nb-close-title" data-reveal>Step onto <span class="nb-hl">the court</span></h2>
-    <p class="nb-sub" data-reveal>Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
-    <div class="nb-close-act" data-reveal>
+    <h2 class="nb-h2" id="nb-close-title" data-aos="fade-up">Step onto <span class="nb-hl">the court</span></h2>
+    <p class="nb-sub" data-aos="fade-up">Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
+    <div class="nb-close-act" data-aos="fade-up">
       <a class="nb-btn" href="../../../trading/getting-started/account-opening.html">Open live account <svg><use href="#i-arrow-right"/></svg></a>
       <a class="nb-btn nb-btn--ghost" href="../../../trading/getting-started/account-opening.html">Try free demo</a>
     </div>
@@ -829,7 +1141,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../../../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../../../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -863,6 +1175,8 @@
 <script src="../../../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../../../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../../../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../../../assets/js/vendor/swiper-bundle.min.js" defer></script>
+<script src="../../../assets/js/vendor/aos.min.js" defer></script>
 <script src="../../../assets/js/main.js" defer></script>
 
 <!-- Company page: robust scroll reveals + hero parallax (self-contained, never leaves content hidden) -->

@@ -17,14 +17,14 @@
   <meta property="og:title" content="VPS — Virtual Private Server | STARTRADER" />
   <meta property="og:description" content="Trade faster, better and safer on a STARTRADER VPS — lower latency, 24/6 Expert Advisor uptime, and up to 30 USD a month reimbursed." />
   <meta property="og:url" content="https://www.startrader.com/trading/products/forex.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/products-video-poster.jpg" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/products-video-poster.webp" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="VPS — Virtual Private Server | STARTRADER" />
   <meta name="twitter:description" content="Trade faster, better and safer on a STARTRADER VPS — lower latency, 24/6 Expert Advisor uptime, and up to 30 USD a month reimbursed." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/products-video-poster.jpg" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/products-video-poster.webp" />
 
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../favicon.svg" />
@@ -32,7 +32,144 @@
 
   <!-- Fonts (self-hosted) -->
   <link rel="stylesheet" href="../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* =================================================================
+   VPS
+   Promotions palette. Six reasons on glass, the two reimbursement tiers
+   as the centrepiece with a checker, then the house case as a hairline
+   list. Scoped with the .prx page class.
+   ================================================================= */
+.vp-why{position:relative;isolation:isolate;overflow:clip;
+  background:radial-gradient(50% 44% at 90% 0%,rgba(0,71,187,.08),transparent 62%),var(--bg-light-2)}
+.vp-why>.container{position:relative;z-index:1}
+.vp-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.8vw,22px);margin-top:clamp(32px,4vw,50px)}
+.vp-card{
+  position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;
+  padding:clamp(22px,2.5vw,30px);border-radius:var(--radius-lg);
+  background:rgba(255,255,255,.7);
+  -webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);
+  border:1px solid rgba(255,255,255,.9);
+  box-shadow:0 12px 30px -20px rgba(20,44,96,.26),inset 0 1px 0 #fff;
+  transition:transform .4s var(--ease),box-shadow .4s,border-color .3s;
+}
+.vp-card::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--blue-bright),var(--mint));
+  transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease);
+}
+.vp-card:hover{transform:translateY(-5px);border-color:rgba(0,71,187,.3);
+  box-shadow:0 28px 52px -26px rgba(0,71,187,.3)}
+.vp-card:hover::before{transform:scaleX(1)}
+.vp-card-ic{
+  display:grid;place-items:center;width:52px;height:52px;border-radius:17px;
+  background:linear-gradient(158deg,var(--blue-bright),var(--blue));
+  box-shadow:0 14px 26px -14px rgba(0,71,187,.6),inset 0 1px 0 rgba(255,255,255,.32);
+  transition:transform .42s var(--ease);
+}
+.vp-card-ic svg{width:23px;height:23px;color:#fff}
+.vp-card:hover .vp-card-ic{transform:translateY(-3px) rotate(-6deg)}
+.vp-card b{display:block;margin-top:18px;font-size:16.5px;font-weight:700;letter-spacing:-.028em;color:var(--ink)}
+.vp-card p{margin-top:9px;font-size:13.6px;line-height:1.68;color:var(--text-soft)}
+/* ---------------- the reimbursement tiers ---------------- */
+.vp-tier-sec{position:relative;isolation:isolate;overflow:clip;background:linear-gradient(180deg,#fff,#f2f6fc)}
+.vp-tier-sec>.container{position:relative;z-index:1}
+.vp-tiers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2vw,26px);margin-top:clamp(30px,3.6vw,46px)}
+.vp-tier{
+  position:relative;overflow:hidden;display:flex;flex-direction:column;
+  border-radius:clamp(20px,2.4vw,30px);padding:clamp(24px,2.8vw,34px);
+  background:linear-gradient(180deg,rgba(0,71,187,.08),rgba(255,255,255,.72) 46%);
+  border:1px solid rgba(255,255,255,.92);
+  box-shadow:0 16px 40px -28px rgba(20,44,96,.44),inset 0 1px 0 #fff;
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .32s;
+}
+.vp-tier--sand{background:linear-gradient(180deg,rgba(223,197,174,.5),rgba(255,255,255,.72) 48%)}
+.vp-tier:hover{transform:translateY(-6px);border-color:rgba(0,71,187,.24);
+  box-shadow:0 34px 64px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff}
+.vp-tier--sand:hover{border-color:rgba(138,100,64,.34)}
+.vp-tier.is-hit{border-color:var(--blue);box-shadow:0 30px 58px -28px rgba(0,71,187,.45),inset 0 1px 0 #fff}
+.vp-tier--sand.is-hit{border-color:#8a6440;box-shadow:0 30px 58px -28px rgba(138,100,64,.45),inset 0 1px 0 #fff}
+.vp-tier-hd{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.vp-tier-n{
+  display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:70px;
+  font-size:9.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#fff;
+  background:linear-gradient(180deg,var(--blue-bright),var(--blue));
+}
+.vp-tier--sand .vp-tier-n{background:linear-gradient(180deg,#b98a5d,#8a6440)}
+.vp-tier-live{
+  font-size:9.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--blue);
+  opacity:0;transform:translateY(-3px);transition:opacity .35s,transform .35s var(--ease);
+}
+.vp-tier--sand .vp-tier-live{color:#8a6440}
+.vp-tier.is-hit .vp-tier-live{opacity:1;transform:none}
+.vp-cap{
+  display:flex;align-items:baseline;gap:7px;margin-top:20px;line-height:.9;
+  font-size:clamp(38px,4.6vw,58px);font-weight:800;letter-spacing:-.055em;font-variant-numeric:tabular-nums;
+  color:transparent;background:linear-gradient(168deg,var(--blue-bright),var(--blue) 68%);
+  -webkit-background-clip:text;background-clip:text;
+}
+.vp-tier--sand .vp-cap{background:linear-gradient(168deg,#b98a5d,#8a6440 70%);-webkit-background-clip:text;background-clip:text}
+.vp-cap em{font-style:normal;font-size:.3em;font-weight:800;letter-spacing:.02em;
+  color:var(--text-mute);background:none;-webkit-text-fill-color:var(--text-mute)}
+.vp-cap-lbl{display:block;margin-top:10px;font-size:10px;font-weight:800;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--text-mute)}
+.vp-reqs{margin-top:clamp(20px,2.4vw,26px);display:flex;flex-direction:column}
+.vp-req{
+  display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:start;
+  padding:13px 0;border-top:1px solid rgba(20,44,96,.1);font-size:13.8px;line-height:1.6;color:#41506a;
+}
+.vp-req:first-child{border-top:0}
+.vp-tier--sand .vp-req{border-top-color:rgba(138,100,64,.18)}
+.vp-req-tick{
+  display:grid;place-items:center;width:22px;height:22px;border-radius:50%;flex:none;margin-top:1px;
+  background:rgba(0,71,187,.1);color:var(--blue);
+}
+.vp-tier--sand .vp-req-tick{background:rgba(223,197,174,.6);color:#8a6440}
+.vp-req-tick svg{width:12px;height:12px}
+.vp-req b{color:var(--ink);font-weight:700}
+/* the checker says which tier the numbers reach */
+.vp-check{
+  position:relative;overflow:hidden;margin-top:clamp(20px,2.4vw,30px);
+  border-radius:clamp(20px,2.4vw,28px);padding:clamp(22px,2.8vw,34px);
+  background:linear-gradient(140deg,rgba(0,71,187,.09),rgba(223,197,174,.32) 64%,rgba(255,255,255,.78));
+  border:1px solid rgba(255,255,255,.92);
+  box-shadow:0 22px 50px -32px rgba(20,44,96,.44),inset 0 1px 0 #fff;
+}
+.vp-check-hd{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px}
+.vp-check-hd b{font-size:clamp(17px,2vw,22px);font-weight:800;letter-spacing:-.034em;color:var(--ink)}
+.vp-check-hd span{font-size:11.5px;color:var(--text-mute)}
+.vp-check .ct-grid{margin-top:clamp(18px,2.2vw,26px)}
+.vp-verdict{
+  display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:center;
+  margin-top:clamp(18px,2.2vw,26px);padding:18px 22px;border-radius:18px;
+  background:rgba(255,255,255,.92);
+}
+.vp-verdict-fig{
+  display:flex;align-items:baseline;gap:5px;font-size:clamp(24px,2.8vw,34px);font-weight:800;
+  letter-spacing:-.05em;line-height:1;font-variant-numeric:tabular-nums;color:var(--blue);
+}
+.vp-verdict-fig em{font-style:normal;font-size:.4em;font-weight:800;color:var(--text-mute)}
+.vp-verdict-tx b{display:block;font-size:15px;font-weight:700;letter-spacing:-.026em;color:var(--ink)}
+.vp-verdict-tx span{display:block;margin-top:6px;font-size:12.5px;line-height:1.6;color:var(--text-soft)}
+.vp-note{margin:clamp(20px,2.4vw,30px) auto 0;max-width:88ch;font-size:11.5px;line-height:1.7;
+  color:var(--text-mute);text-align:center}
+/* the house case rides the shared dark fx-hours treatment; only the seven-card
+   run and the note need saying */
+/* seven cards, spans 2-1-1-2-1-1-1, so the three columns fill exactly */
+.vp-house-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.vp-house-grid .fx-mh-card{min-height:0}
+.vp-house-note{margin:clamp(24px,3vw,34px) auto 0;max-width:88ch;font-size:11.5px;line-height:1.7;
+  color:#8ea4c6;text-align:center}
+@media (max-width:1000px){.vp-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.vp-house-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.vp-house-grid .vp-wide-2{grid-column:span 1}}
+@media (max-width:760px){.vp-grid,.vp-house-grid{grid-template-columns:1fr}
+.vp-house-grid .fx-mh--wide{grid-column:span 1}
+.vp-tiers{grid-template-columns:1fr}
+.vp-verdict{grid-template-columns:1fr;gap:10px}}
+  </style>
 
   <!-- Structured data -->
   <script type="application/ld+json">
@@ -398,18 +535,18 @@
 <!-- ============ BANNER ============ -->
 <section class="pm-hero" aria-labelledby="vp-hero-title">
   <video class="pm-hero-video" autoplay muted loop playsinline preload="metadata"
-    poster="../assets/img/promotions-video-poster.jpg" aria-hidden="true">
+    poster="../assets/img/promotions-video-poster.webp" aria-hidden="true">
     <source src="../assets/video/promotions-banner.mp4" type="video/mp4">
   </video>
   <div class="container pm-hero-in">
     <div class="pm-hero-copy">
-      <span class="pm-eyebrow" data-reveal>VPS</span>
-      <h1 class="pm-h1" id="vp-hero-title" data-reveal>
+      <span class="pm-eyebrow" data-aos="fade-up">VPS</span>
+      <h1 class="pm-h1" id="vp-hero-title" data-aos="fade-up">
         <span>Trade faster, better,</span>
         <span class="lit">safer with VPS.</span>
       </h1>
-      <p class="pm-lead" data-reveal>Greater privacy and faster execution on a Virtual Private Server. Running from a data centre in a safer location enhances security and lets you trade with confidence.</p>
-      <div class="pm-hact" data-reveal>
+      <p class="pm-lead" data-aos="fade-up">Greater privacy and faster execution on a Virtual Private Server. Running from a data centre in a safer location enhances security and lets you trade with confidence.</p>
+      <div class="pm-hact" data-aos="fade-up">
         <a class="pm-btn" href="#tiers">See the reimbursement <svg><use href="#i-arrow-right"/></svg></a>
       </div>
     </div>
@@ -419,37 +556,37 @@
 <!-- ============ WHY VPS ============ -->
 <section class="section vp-why" id="why" aria-labelledby="vp-why-title">
   <div class="container">
-    <span class="pm-eyebrow-c" data-reveal>The case for it</span>
-    <h2 class="pm-h2" id="vp-why-title" data-reveal>Why VPS is<br> a great choice</h2>
-    <p class="pm-sub" data-reveal>Six things a server in a data centre does that a machine on your desk cannot.</p>
+    <span class="pm-eyebrow-c" data-aos="fade-up">The case for it</span>
+    <h2 class="pm-h2" id="vp-why-title" data-aos="fade-up">Why VPS is<br> a great choice</h2>
+    <p class="pm-sub" data-aos="fade-up">Six things a server in a data centre does that a machine on your desk cannot.</p>
 
     <div class="vp-grid">
-      <article class="vp-card" data-reveal>
+      <article class="vp-card" data-aos="fade-up">
         <span class="vp-card-ic"><svg><use href="#i-bolt"/></svg></span>
         <b>Reduces latency</b>
         <p>VPS acts as a powerful transaction server, providing faster execution.</p>
       </article>
-      <article class="vp-card" data-reveal>
+      <article class="vp-card" data-aos="fade-up">
         <span class="vp-card-ic"><svg><use href="#i-clock"/></svg></span>
         <b>24/6 trading</b>
         <p>Your Expert Advisor can run around the clock, even with your own device switched off.</p>
       </article>
-      <article class="vp-card" data-reveal>
+      <article class="vp-card" data-aos="fade-up">
         <span class="vp-card-ic"><svg><use href="#i-globe"/></svg></span>
         <b>Easy access</b>
         <p>Reach the platform from any device, in any location.</p>
       </article>
-      <article class="vp-card" data-reveal>
+      <article class="vp-card" data-aos="fade-up">
         <span class="vp-card-ic"><svg><use href="#i-shield"/></svg></span>
         <b>Maximum stability</b>
         <p>Removes the problems local networks introduce &mdash; poor line quality, dropped connections and the rest.</p>
       </article>
-      <article class="vp-card" data-reveal>
+      <article class="vp-card" data-aos="fade-up">
         <span class="vp-card-ic"><svg><use href="#i-monitor"/></svg></span>
         <b>Strong compatibility</b>
         <p>Highly compatible with Windows, Mac and Linux.</p>
       </article>
-      <article class="vp-card" data-reveal>
+      <article class="vp-card" data-aos="fade-up">
         <span class="vp-card-ic"><svg><use href="#i-box"/></svg></span>
         <b>Private server</b>
         <p>A dedicated server for Expert Advisor trading, so nothing else competes for it.</p>
@@ -461,12 +598,12 @@
 <!-- ============ REIMBURSEMENT ============ -->
 <section class="section vp-tier-sec" id="tiers" aria-labelledby="vp-tier-title">
   <div class="container">
-    <span class="pm-eyebrow-c" data-reveal>Reimbursement</span>
-    <h2 class="pm-h2" id="vp-tier-title" data-reveal>Optimise your trade<br> with our VPS service</h2>
-    <p class="pm-sub" data-reveal>We offer attractive reimbursement options for the VPS service. Two tiers, each with its own cap and thresholds.</p>
+    <span class="pm-eyebrow-c" data-aos="fade-up">Reimbursement</span>
+    <h2 class="pm-h2" id="vp-tier-title" data-aos="fade-up">Optimise your trade<br> with our VPS service</h2>
+    <p class="pm-sub" data-aos="fade-up">We offer attractive reimbursement options for the VPS service. Two tiers, each with its own cap and thresholds.</p>
 
     <div class="vp-tiers" data-vp-tiers>
-      <article class="vp-tier" data-vp-tier="1" data-reveal>
+      <article class="vp-tier" data-vp-tier="1" data-aos="fade-up">
         <span class="vp-tier-hd">
           <span class="vp-tier-n">Tier 1</span>
           <span class="vp-tier-live">You reach this</span>
@@ -479,7 +616,7 @@
         </div>
       </article>
 
-      <article class="vp-tier vp-tier--sand" data-vp-tier="2" data-reveal>
+      <article class="vp-tier vp-tier--sand" data-vp-tier="2" data-aos="fade-up">
         <span class="vp-tier-hd">
           <span class="vp-tier-n">Tier 2</span>
           <span class="vp-tier-live">You reach this</span>
@@ -494,7 +631,7 @@
     </div>
 
     <!-- the checker reads the thresholds back at you -->
-    <div class="vp-check" data-vp-check data-reveal>
+    <div class="vp-check" data-vp-check data-aos="fade-up">
       <div class="vp-check-hd">
         <b>Which tier do your numbers reach?</b>
         <span>An estimate on the thresholds above, not a quote.</span>
@@ -520,7 +657,7 @@
       </div>
     </div>
 
-    <p class="vp-note" data-reveal>&lsquo;Month&rsquo; means thirty calendar days from the date of VPS activation; the activation date is the time shown on your reimbursement voucher. To understand how to buy the VPS service and apply for reimbursement, <a href="../company/about/contact.html">get in touch with support</a>.</p>
+    <p class="vp-note" data-aos="fade-up">&lsquo;Month&rsquo; means thirty calendar days from the date of VPS activation; the activation date is the time shown on your reimbursement voucher. To understand how to buy the VPS service and apply for reimbursement, <a href="../company/about/contact.html">get in touch with support</a>.</p>
   </div>
 </section>
 
@@ -528,48 +665,48 @@
 <section class="section fx-hours vp-house" id="house" aria-labelledby="vp-house-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow eyebrow-blue" data-reveal>The broker</span>
-      <h2 class="h2 h2-light" id="vp-house-title" data-reveal>Why trade with STARTRADER?</h2>
-      <p class="head-sub" data-reveal>The server is only half of it. These are the conditions it runs on.</p>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">The broker</span>
+      <h2 class="h2 h2-light" id="vp-house-title" data-aos="fade-up">Why trade with STARTRADER?</h2>
+      <p class="head-sub" data-aos="fade-up">The server is only half of it. These are the conditions it runs on.</p>
     </div>
-    <div class="fx-mh vp-house-grid" data-reveal-stagger>
-      <article class="fx-mh-card fx-mh--blue fx-mh--wide">
+    <div class="fx-mh vp-house-grid">
+      <article class="fx-mh-card fx-mh--blue fx-mh--wide" data-aos="fade-up">
         <span class="fx-mh-ic"><svg><use href="#i-bolt"/></svg></span>
         <h3>100 millisecond execution</h3>
         <p>Orders fill in milliseconds, which is where the edge in a fast market lives.</p>
       </article>
-      <article class="fx-mh-card fx-mh--green">
+      <article class="fx-mh-card fx-mh--green" data-aos="fade-up" data-aos-delay="100">
         <span class="fx-mh-ic"><svg><use href="#i-swap"/></svg></span>
         <h3>Ultra-tight spreads</h3>
         <p>Ultra-tight spreads on the ECN account.</p>
       </article>
-      <article class="fx-mh-card fx-mh--orange">
+      <article class="fx-mh-card fx-mh--orange" data-aos="fade-up" data-aos-delay="200">
         <span class="fx-mh-ic"><svg><use href="#i-gauge"/></svg></span>
         <h3>Leverage up to 1:1000</h3>
         <p>Leverage up to 1:1000 for higher potential, subject to your account type.</p>
       </article>
-      <article class="fx-mh-card fx-mh--teal fx-mh--wide vp-wide-2">
+      <article class="fx-mh-card fx-mh--teal fx-mh--wide vp-wide-2" data-aos="fade-up" data-aos-delay="300">
         <span class="fx-mh-ic"><svg><use href="#i-droplet"/></svg></span>
         <h3>Top institutional liquidity</h3>
         <p>Institutional-level liquidity access, which is what keeps the spreads where they are.</p>
       </article>
-      <article class="fx-mh-card fx-mh--purple">
+      <article class="fx-mh-card fx-mh--purple" data-aos="fade-up" data-aos-delay="400">
         <span class="fx-mh-ic"><svg><use href="#i-wallet"/></svg></span>
         <h3>Hassle-free transactions</h3>
         <p>Multiple deposit and withdrawal methods, with zero deposit fees on most payment channels.</p>
       </article>
-      <article class="fx-mh-card fx-mh--blue">
+      <article class="fx-mh-card fx-mh--blue" data-aos="fade-up" data-aos-delay="500">
         <span class="fx-mh-ic"><svg><use href="#i-globe"/></svg></span>
         <h3>Expanding global server network</h3>
         <p>Stable, ultra-fast trading on a server footprint that keeps growing.</p>
       </article>
-      <article class="fx-mh-card fx-mh--teal">
+      <article class="fx-mh-card fx-mh--teal" data-aos="fade-up" data-aos-delay="600">
         <span class="fx-mh-ic"><svg><use href="#i-headset"/></svg></span>
         <h3>24/7 multilingual support</h3>
         <p>Professional assistance in more than twenty languages, whenever you need it.</p>
       </article>
     </div>
-    <p class="vp-house-note" data-reveal>Leverage is subject to applicable terms and conditions. Leverage restrictions may apply in accordance with regulatory guidelines.</p>
+    <p class="vp-house-note" data-aos="fade-up">Leverage is subject to applicable terms and conditions. Leverage restrictions may apply in accordance with regulatory guidelines.</p>
   </div>
 </section>
 
@@ -577,10 +714,10 @@
 <section class="section faq-sec fx-faq" aria-labelledby="vp-faq-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>FAQ</span>
-      <h2 class="h2" id="vp-faq-title" data-reveal>About the VPS service</h2>
+      <span class="eyebrow" data-aos="fade-up">FAQ</span>
+      <h2 class="h2" id="vp-faq-title" data-aos="fade-up">About the VPS service</h2>
     </div>
-    <div class="faq-list" data-reveal>
+    <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
         <summary>What is a VPS and why would I use one?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a">A Virtual Private Server runs your platform in a data centre rather than on your own machine. It cuts latency, keeps an Expert Advisor running with your device switched off, and removes the problems a home or office network introduces.</div>
@@ -605,9 +742,9 @@
 <section class="cta-banner" aria-labelledby="vp-close-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="vp-close-title" data-reveal>Start trading with a<br>globally leading broker</h2>
-    <p data-reveal>Open an account, activate the VPS, and let your strategy run without your desk in the way.</p>
-    <div class="cta-actions" data-reveal>
+    <h2 id="vp-close-title" data-aos="fade-up">Start trading with a<br>globally leading broker</h2>
+    <p data-aos="fade-up">Open an account, activate the VPS, and let your strategy run without your desk in the way.</p>
+    <div class="cta-actions" data-aos="fade-up">
       <a href="../trading/getting-started/account-opening.html" class="btn btn-primary btn-lg">Open live account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       <a href="../trading/getting-started/account-opening.html" class="btn btn-ghost btn-lg">Open demo account</a>
     </div>
@@ -696,7 +833,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -730,6 +867,7 @@
 <script src="../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../assets/js/vendor/aos.min.js" defer></script>
 <script src="../assets/js/main.js" defer></script>
 </body>
 </html>

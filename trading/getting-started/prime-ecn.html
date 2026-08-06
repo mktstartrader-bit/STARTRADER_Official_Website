@@ -17,14 +17,14 @@
   <meta property="og:title" content="Prime ECN Account — STARTRADER" />
   <meta property="og:description" content="Power at the edge of the market — 0.0-pip spreads, tier-1 liquidity and ultra-fast execution for professional traders." />
   <meta property="og:url" content="https://www.startrader.com/trading/getting-started/prime-ecn.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/cta-banner.jpg" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/cta-banner.webp" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Prime ECN Account — STARTRADER" />
   <meta name="twitter:description" content="Conditions built for professionals — 0.0-pip spreads, tier-1 liquidity and ultra-fast execution." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/cta-banner.jpg" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/cta-banner.webp" />
 
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../../favicon.svg" />
@@ -33,7 +33,124 @@
   <!-- Fonts (self-hosted) -->
   <link rel="preload" href="../../assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="../../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ================= PRIME ECN PAGE ================= */
+.pe-hero .acct-hero-sub{max-width:600px}
+/* ---- Key metrics (light, glassmorphism cards) ---- */
+.pe-metrics{background:radial-gradient(58% 60% at 88% 2%,rgba(0,71,187,.08),transparent 60%),radial-gradient(50% 60% at 6% 100%,rgba(22,233,215,.06),transparent 60%),var(--bg-light)}
+.pe-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-bottom:36px}
+.pe-stat{background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6);border:1px solid rgba(255,255,255,.8);border-radius:var(--radius-lg);padding:40px 28px;text-align:center;box-shadow:0 12px 34px -18px rgba(20,44,96,.26),inset 0 1px 0 rgba(255,255,255,.9);transition:transform .4s var(--ease),box-shadow .4s,border-color .3s}
+.pe-stat:hover{transform:translateY(-5px);box-shadow:0 28px 58px -26px rgba(20,44,96,.32),inset 0 1px 0 rgba(255,255,255,.95);border-color:#fff}
+.pe-stat b{display:block;font-size:clamp(40px,6vw,58px);font-weight:800;letter-spacing:-.03em;color:var(--text);line-height:1}
+.pe-stat span{display:block;margin-top:14px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mute);font-weight:600}
+.pe-metrics-note{max-width:720px;margin:0 auto;text-align:center;font-size:15px;color:var(--text-soft);line-height:1.7}
+/* ---- Built for professionals (dark bento) ---- */
+.pe-pro{background:radial-gradient(88% 60% at 50% 0%,rgba(0,40,120,.42),transparent 66%),linear-gradient(180deg,#04060e,#080b16 58%,#04060e);color:#fff;position:relative}
+.pe-bento{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.pe-card{position:relative;display:flex;flex-direction:column;
+  background:radial-gradient(130% 74% at 50% -10%,var(--ray,rgba(120,160,255,.2)),transparent 60%),linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.09);border-radius:var(--radius-xl);padding:30px 28px;box-shadow:inset 0 1px 0 rgba(255,255,255,.06);transition:transform .45s var(--ease),border-color .35s,box-shadow .45s}
+.pe-card::after{content:"";position:absolute;top:0;left:16%;right:16%;height:2px;border-radius:2px;background:var(--ray-line,rgba(120,160,255,.7));box-shadow:0 0 18px 1px var(--ray-line,rgba(120,160,255,.7));opacity:.85;transition:opacity .35s,left .45s var(--ease),right .45s var(--ease)}
+.pe-card:hover{transform:translateY(-4px);border-color:var(--ray-line,rgba(90,150,255,.35));box-shadow:0 30px 64px -34px rgba(0,60,180,.55)}
+.pe-card:hover::after{opacity:1;left:6%;right:6%}
+/* per-card gradient colour */
+.pe-card--r1{--ray:rgba(22,233,215,.20);--ray-line:rgba(22,233,215,.85)}
+/* teal */
+.pe-card--r2{--ray:rgba(150,110,255,.22);--ray-line:rgba(160,120,255,.9)}
+/* purple */
+.pe-card--r3{--ray:rgba(16,200,140,.20);--ray-line:rgba(30,210,150,.9)}
+/* green */
+.pe-card--r4{--ray:rgba(0,110,255,.3);--ray-line:rgba(80,150,255,.95)}
+/* brand blue */
+.pe-card h3{font-size:21px;color:#fff;letter-spacing:-.01em;margin-bottom:10px}
+.pe-card p{font-size:14px;color:#9aa6bd;line-height:1.6;max-width:340px}
+.pe-card-viz{margin-top:auto;padding-top:28px}
+.pe-card--wide{grid-column:1/-1;flex-direction:row;align-items:center;gap:40px}
+.pe-card--wide .pe-card-body{flex:1;min-width:0}
+.pe-card--wide .pe-card-viz{flex:1;min-width:0;margin-top:0;padding-top:0}
+/* exec widget */
+.pe-exec{background:rgba(0,0,0,.32);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:16px}
+.pe-exec-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:13px}
+.pe-exec-sym{font-size:14px;font-weight:700;color:#fff}
+.pe-tag{font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#7fb0ff;padding:4px 9px;border-radius:70px;background:rgba(0,71,187,.2);border:1px solid rgba(0,120,255,.4)}
+.pe-quote-row{display:flex;gap:10px}
+.pe-bidask{flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:10px 12px}
+.pe-bidask small{display:block;font-size:10.5px;color:#8b95a8;margin-bottom:3px}
+.pe-bidask b{font-size:15px;color:#fff;font-variant-numeric:tabular-nums}
+.pe-filled{display:flex;align-items:center;justify-content:space-between;margin-top:12px;font-size:12px}
+.pe-filled .ok{display:inline-flex;align-items:center;gap:6px;color:#34d99b;font-weight:600}
+.pe-filled .ok i{width:7px;height:7px;border-radius:50%;background:#34d99b}
+.pe-filled em{font-style:normal;color:#8b95a8}
+/* spread widget */
+.pe-spread{background:rgba(0,0,0,.32);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:20px 16px;text-align:center}
+.pe-spread-sym{font-size:13px;color:#9aa6bd;margin-bottom:8px}
+.pe-spread-val{font-size:46px;font-weight:800;color:#fff;letter-spacing:-.03em;line-height:1}
+.pe-spread-val em{font-style:normal;font-size:16px;color:#5b9dff;font-weight:700;margin-left:6px}
+.pe-spread-bars{display:flex;gap:8px;margin-top:18px}
+.pe-spread-bars span{flex:1;height:6px;border-radius:4px;background:linear-gradient(90deg,#1e4fb8,#5b9dff)}
+/* commission widget */
+.pe-comm{background:rgba(0,0,0,.32);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:16px}
+.pe-comm-row{display:flex;justify-content:space-between;align-items:baseline}
+.pe-comm-row small{font-size:11.5px;color:#8b95a8}
+.pe-comm-big{font-size:32px;font-weight:800;color:#fff;letter-spacing:-.02em}
+.pe-comm-rt{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;padding:12px;border-radius:11px;background:rgba(0,71,187,.16);border:1px solid rgba(0,120,255,.3);color:#8fb8ff;font-size:13px;font-weight:600}
+/* platform tiles (wide card) */
+.pe-plats{display:flex;gap:14px;flex-wrap:wrap;justify-content:flex-end}
+.pe-plat{width:118px;height:118px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#cdd7e6;transition:transform .3s var(--ease),border-color .3s}
+.pe-plat:hover{transform:translateY(-4px);border-color:rgba(90,150,255,.4)}
+.pe-plat svg{width:28px;height:28px;color:#5b9dff}
+.pe-plat b{font-size:13px;font-weight:600}
+/* ---- Upgrading (light two-column) ---- */
+.pe-upgrade{background:var(--bg-light-2)}
+.pe-upgrade-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.pe-upgrade h2{font-size:clamp(28px,4.2vw,44px);color:var(--text);letter-spacing:-.02em;line-height:1.12;margin-bottom:36px}
+.pe-steps{display:flex;flex-direction:column;gap:36px;margin-bottom:40px}
+.pe-step{display:flex;gap:18px}
+.pe-step-n{flex:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-size:15px;font-weight:700;color:var(--blue);background:#fff}
+.pe-step-b h4{font-size:16px;color:var(--text);margin-bottom:5px;letter-spacing:-.01em}
+.pe-step-b p{font-size:14px;color:var(--text-soft);line-height:1.6;max-width:430px}
+.pe-figure{position:relative}
+.pe-figure-img{border-radius:var(--radius-xl);overflow:hidden;aspect-ratio:1076/1440;box-shadow:0 30px 70px -30px rgba(16,30,54,.4)}
+.pe-figure-img img{width:100%;height:100%;object-fit:cover;object-position:center}
+@media (max-width:980px){.pe-upgrade-grid{grid-template-columns:1fr;gap:40px}
+.pe-figure{max-width:520px;margin-inline:auto;width:100%}
+.pe-card--wide{flex-direction:column;align-items:flex-start;gap:26px}
+.pe-plats{justify-content:flex-start}
+.pe-card--wide .pe-card-viz{width:100%}}
+@media (max-width:720px){.pe-bento{grid-template-columns:1fr}
+.pe-stats{grid-template-columns:1fr;max-width:360px;margin-inline:auto}
+.pe-card p,.pe-step-b p{max-width:none}}
+/* ---- Prime ECN micro-interactions ---- */
+.pe-spread-bars span{animation:peBar 1.9s ease-in-out infinite}
+.pe-spread-bars span:nth-child(2){animation-delay:.16s}
+.pe-spread-bars span:nth-child(3){animation-delay:.32s}
+.pe-spread-bars span:nth-child(4){animation-delay:.48s}
+.pe-spread-val{animation:peGlow 3.2s ease-in-out infinite}
+.pe-comm-rt{position:relative;overflow:hidden}
+.pe-comm-rt::after{content:"";position:absolute;top:0;left:-60%;width:45%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.2),transparent);transform:skewX(-18deg);animation:peSheen 3.6s ease-in-out infinite;pointer-events:none}
+.pe-plat svg{transition:transform .3s var(--ease),color .3s}
+.pe-plat:hover svg{transform:scale(1.14) translateY(-2px);color:#7fb0ff}
+.pe-bidask b{transition:color .35s}
+.pe-bidask b.up{color:#34d99b}
+.pe-bidask b.down{color:#ff6b6b}
+.pe-filled .ok i{animation:pulse 2.2s infinite}
+.pe-tag{transition:box-shadow .3s}
+.pe-exec:hover .pe-tag{box-shadow:0 0 16px -2px rgba(0,120,255,.6)}
+/* vertical progress line through the upgrade steps */
+.pe-steps{position:relative}
+.pe-steps-line{position:absolute;left:21px;top:22px;bottom:22px;width:2px;background:var(--line);border-radius:2px;overflow:hidden}
+.pe-steps-line i{position:absolute;inset:0;transform:scaleY(0);transform-origin:top;background:linear-gradient(180deg,#2f7bff,#0740b8)}
+.pe-step{position:relative;z-index:1}
+.pe-step-n{transition:background .4s var(--ease),color .4s,border-color .4s,box-shadow .4s,transform .35s}
+.pe-step-n.is-on{background:var(--blue);color:#fff;border-color:transparent;box-shadow:0 0 0 5px rgba(0,71,187,.14)}
+.pe-step:hover .pe-step-n{transform:scale(1.06)}
+/* stat hover accent */
+.pe-stat b{transition:color .3s}
+.pe-stat:hover b{color:var(--blue)}
+  </style>
 
   <!-- Structured data -->
   <script type="application/ld+json">
@@ -44,7 +161,7 @@
     "description": "Globally leading online broker offering CFD trading across Forex, Metals, Indices, Shares and ETFs.",
     "url": "https://www.startrader.com/",
     "logo": "https://www.startrader.com/assets/img/logo-startrader.svg",
-    "image": "https://www.startrader.com/assets/img/cta-banner.jpg",
+    "image": "https://www.startrader.com/assets/img/cta-banner.webp",
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "4.5",
@@ -377,10 +494,10 @@
   </video>
   <div class="acct-hero-bg" aria-hidden="true"></div>
   <div class="container acct-hero-inner">
-    <span class="eyebrow eyebrow-blue" data-reveal>Prime ECN</span>
-    <h1 class="acct-hero-title" id="pe-hero-title" data-reveal>Power at the edge of the market</h1>
-    <p class="acct-hero-sub" data-reveal>Conditions built for professionals — 0.0-pip spreads, tier-1 liquidity<br>and ultra-fast execution on the instruments you trade most.</p>
-    <div class="acct-hero-cta" data-reveal>
+    <span class="eyebrow eyebrow-blue" data-aos="fade-up">Prime ECN</span>
+    <h1 class="acct-hero-title" id="pe-hero-title" data-aos="fade-up">Power at the edge of the market</h1>
+    <p class="acct-hero-sub" data-aos="fade-up">Conditions built for professionals — 0.0-pip spreads, tier-1 liquidity<br>and ultra-fast execution on the instruments you trade most.</p>
+    <div class="acct-hero-cta" data-aos="fade-up">
       <a href="account-opening.html" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
     </div>
   </div>
@@ -390,15 +507,15 @@
 <section class="section pe-metrics" aria-labelledby="pe-metrics-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Prime ECN</span>
-      <h2 class="h2" id="pe-metrics-title" data-reveal>Conditions made for the pros</h2>
+      <span class="eyebrow" data-aos="fade-up">Prime ECN</span>
+      <h2 class="h2" id="pe-metrics-title" data-aos="fade-up">Conditions made for the pros</h2>
     </div>
-    <div class="pe-stats" data-reveal-stagger>
-      <div class="pe-stat"><b>0.0</b><span>Starting spreads (pips)</span></div>
-      <div class="pe-stat"><b data-count="2" data-prefix="$">$2</b><span>Minimum commission</span></div>
-      <div class="pe-stat"><b data-count="10000" data-comma data-prefix="$">$10,000</b><span>Minimum deposit</span></div>
+    <div class="pe-stats">
+      <div class="pe-stat" data-aos="fade-up"><b>0.0</b><span>Starting spreads (pips)</span></div>
+      <div class="pe-stat" data-aos="fade-up" data-aos-delay="100"><b data-count="2" data-prefix="$">$2</b><span>Minimum commission</span></div>
+      <div class="pe-stat" data-aos="fade-up" data-aos-delay="200"><b data-count="10000" data-comma data-prefix="$">$10,000</b><span>Minimum deposit</span></div>
     </div>
-    <p class="pe-metrics-note" data-reveal>Prime ECN offers highly competitive commissions from just USD 2 per standard FX or gold lot, per side — giving you the freedom to trade more efficiently and maximise every opportunity.</p>
+    <p class="pe-metrics-note" data-aos="fade-up">Prime ECN offers highly competitive commissions from just USD 2 per standard FX or gold lot, per side — giving you the freedom to trade more efficiently and maximise every opportunity.</p>
   </div>
 </section>
 
@@ -406,12 +523,12 @@
 <section class="section pe-pro" aria-labelledby="pe-pro-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow eyebrow-blue" data-reveal>Advantages</span>
-      <h2 class="h2 h2-light" id="pe-pro-title" data-reveal>Built for professionals</h2>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">Advantages</span>
+      <h2 class="h2 h2-light" id="pe-pro-title" data-aos="fade-up">Built for professionals</h2>
     </div>
-    <div class="pe-bento" data-reveal-stagger>
+    <div class="pe-bento">
 
-      <article class="pe-card pe-card--r1">
+      <article class="pe-card pe-card--r1" data-aos="fade-up">
         <div class="pe-card-body">
           <h3>Precision execution &amp; tier-1 access</h3>
           <p>Trade with millisecond precision and zero requotes — execution engineered for professionals.</p>
@@ -434,7 +551,7 @@
         </div>
       </article>
 
-      <article class="pe-card pe-card--r2">
+      <article class="pe-card pe-card--r2" data-aos="fade-up" data-aos-delay="100">
         <div class="pe-card-body">
           <h3>Spreads from 0.0 pips</h3>
           <p>Ultra-tight raw spreads designed to reduce your trading costs on every position.</p>
@@ -448,7 +565,7 @@
         </div>
       </article>
 
-      <article class="pe-card pe-card--r3">
+      <article class="pe-card pe-card--r3" data-aos="fade-up" data-aos-delay="200">
         <div class="pe-card-body">
           <h3>Ultra-low commission</h3>
           <p>Commissions from just USD 2 per lot, per side — USD 4 round-turn on standard FX and gold.</p>
@@ -461,7 +578,7 @@
         </div>
       </article>
 
-      <article class="pe-card pe-card--wide pe-card--r4">
+      <article class="pe-card pe-card--wide pe-card--r4" data-aos="fade-up" data-aos-delay="300">
         <div class="pe-card-body">
           <h3>Cutting-edge multi-platform trading</h3>
           <p>Seamless trading across MetaTrader 4, MetaTrader 5, Web and Mobile — your Prime ECN conditions follow you everywhere.</p>
@@ -484,7 +601,7 @@
 <section class="section pe-upgrade" aria-labelledby="pe-upgrade-title">
   <div class="container">
     <div class="pe-upgrade-grid">
-      <div class="pe-upgrade-copy" data-reveal>
+      <div class="pe-upgrade-copy" data-aos="fade-up">
         <span class="eyebrow">How to upgrade</span>
         <h2 id="pe-upgrade-title">Upgrading to Prime ECN</h2>
         <div class="pe-steps">
@@ -509,7 +626,7 @@
         <a href="account-opening.html" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       </div>
 
-      <div class="pe-figure" data-reveal>
+      <div class="pe-figure" data-aos="fade-up">
         <div class="pe-figure-img"><img src="../../assets/img/prime-upgrade.webp" alt="A professional trader checking markets on mobile" loading="lazy"></div>
       </div>
     </div>
@@ -520,10 +637,10 @@
 <section class="section faq-sec ta-faq" aria-labelledby="pe-faq-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>FAQ</span>
-      <h2 class="h2" id="pe-faq-title" data-reveal>Prime ECN questions</h2>
+      <span class="eyebrow" data-aos="fade-up">FAQ</span>
+      <h2 class="h2" id="pe-faq-title" data-aos="fade-up">Prime ECN questions</h2>
     </div>
-    <div class="faq-list" data-reveal>
+    <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
         <summary>What can I trade on a Prime ECN account?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a">Forex, commodities, indices, shares and ETFs — over 1,000 instruments in total, all with Prime ECN conditions.</div>
@@ -556,9 +673,9 @@
 <section class="cta-banner" aria-labelledby="pe-cta-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="pe-cta-title" data-reveal>Power at the edge<br>of the market</h2>
-    <p data-reveal>Open a Prime ECN account and trade with 0.0-pip spreads, tier-1 liquidity and institutional-grade execution.</p>
-    <a href="account-opening.html" class="btn btn-primary btn-lg" data-reveal>Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
+    <h2 id="pe-cta-title" data-aos="fade-up">Power at the edge<br>of the market</h2>
+    <p data-aos="fade-up">Open a Prime ECN account and trade with 0.0-pip spreads, tier-1 liquidity and institutional-grade execution.</p>
+    <a href="account-opening.html" class="btn btn-primary btn-lg" data-aos="fade-up">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
   </div>
 </section>
 
@@ -643,7 +760,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -677,6 +794,7 @@
 <script src="../../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../../assets/js/vendor/aos.min.js" defer></script>
 <script src="../../assets/js/main.js" defer></script>
 </body>
 </html>

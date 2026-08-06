@@ -17,14 +17,14 @@
   <meta property="og:title" content="Open an Account — STARTRADER" />
   <meta property="og:description" content="Access global markets on your terms. Trade 1,000+ instruments with ultra-tight ECN spreads and 100ms execution." />
   <meta property="og:url" content="https://www.startrader.com/trading/getting-started/account-opening.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/cta-banner.jpg" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/cta-banner.webp" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="STARTRADER — Trade with a Globally Leading Broker" />
   <meta name="twitter:description" content="Access global markets on your terms. Trade 1,000+ instruments with ultra-tight ECN spreads." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/cta-banner.jpg" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/cta-banner.webp" />
 
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../../favicon.svg" />
@@ -33,7 +33,67 @@
   <!-- Fonts (self-hosted) -->
   <link rel="preload" href="../../assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="../../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ---------- How it works (dark navy, pinned scrub) ---------- */
+.stepper{display:flex;align-items:center;justify-content:center;max-width:640px;margin:0 auto 50px;gap:0}
+.stp .stp-num{display:block}
+.stp.done .stp-num{display:none}
+.stp-line{flex:1;height:2px;background:rgba(255,255,255,.12);position:relative;overflow:hidden}
+.stp-line i{position:absolute;inset:0;background:var(--blue);transform-origin:left;transform:scaleX(0)}
+.step-index{display:none}
+.step-active{background:#fff;border-color:#fff;transform:translateY(-6px);box-shadow:0 30px 60px -26px rgba(0,60,180,.6)}
+.step-active h3{color:#0d1424}
+.step-active p{color:#5a6472}
+.howto-static .stepper{display:none}
+.howto-cta{transition:opacity .4s var(--ease)}
+/* ---------- Responsive ---------- */
+@media (max-width:720px){.stepper{max-width:340px}}
+/* ---- Section themes ---- */
+.acct-verify{background:radial-gradient(58% 55% at 88% 2%,rgba(0,71,187,.08),transparent 60%),var(--bg-light)}
+.next-steps{background:radial-gradient(60% 60% at 92% 6%,rgba(0,71,187,.07),transparent 62%),var(--bg-light-2)}
+/* ---- Verify bento (cards with image tiles + wide dark card) ---- */
+.verify-bento{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.vb-card{display:flex;flex-direction:column;background:rgba(255,255,255,.46);-webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6);border:1px solid rgba(255,255,255,.75);border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 12px 34px -18px rgba(20,44,96,.26),inset 0 1px 0 rgba(255,255,255,.9);transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s}
+.vb-card:hover{transform:translateY(-6px);box-shadow:0 28px 58px -26px rgba(20,44,96,.32),inset 0 1px 0 rgba(255,255,255,.95);border-color:#fff}
+.vb-top{padding:28px 28px 8px}
+.vb-top h3{font-size:19px;color:var(--text);margin-bottom:9px;letter-spacing:-.01em}
+.vb-top p{font-size:14px;color:var(--text-soft);line-height:1.6}
+.vb-img{position:relative;height:196px;margin-top:auto;display:grid;place-items:center;overflow:hidden;background:linear-gradient(160deg,#eef4fc,#e3ecfa)}
+.vb-img::before{content:"";position:absolute;inset:0;background:radial-gradient(85% 85% at 26% 20%,rgba(0,71,187,.16),transparent 60%),radial-gradient(75% 75% at 86% 92%,rgba(22,233,215,.16),transparent 60%)}
+.vb-img::after{content:"";position:absolute;width:176px;height:176px;border-radius:50%;border:1px solid rgba(0,71,187,.14)}
+.vb-card:hover .vb-glyph{transform:translateY(-6px) scale(1.04)}
+.vb-img-photo{background:transparent}
+.vb-img-photo::before,.vb-img-photo::after{display:none}
+.vb-img-photo img{position:relative;z-index:1;width:100%;height:100%;object-fit:contain;object-position:center;padding:14px}
+.vb-img-address img{width:88%;height:88%;padding:0;align-self:end;justify-self:start;object-position:left bottom}
+.vb-wide{grid-column:1/-1;position:relative;overflow:hidden;display:flex;align-items:center;gap:24px;border-radius:var(--radius-lg);padding:34px 40px;color:#fff;background:linear-gradient(120deg,#0a1020 0%,#0f1a3a 60%,#122455 100%);border:1px solid rgba(255,255,255,.08)}
+.vb-wide::after{content:"";position:absolute;right:80px;top:50%;transform:translateY(-50%);width:320px;height:320px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,95,255,.45),transparent 70%);filter:blur(8px)}
+.vb-wide-copy{position:relative;z-index:1;max-width:660px}
+.vb-wide-copy h3{font-size:22px;margin-bottom:8px;letter-spacing:-.01em}
+.vb-wide-copy p{font-size:14.5px;color:#c4cedf;line-height:1.6}
+.vb-wide-glyph{position:relative;z-index:1;margin-left:auto;flex:none;width:88px;height:88px;border-radius:24px;display:grid;place-items:center;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);color:#8fb8ff;box-shadow:inset 0 1px 0 rgba(255,255,255,.15)}
+.vb-wide-glyph svg{width:44px;height:44px}
+/* ---- Next steps ---- */
+.next-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:920px;margin:0 auto}
+.next-card{display:flex;flex-direction:column;background:rgba(255,255,255,.46);-webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6);border:1px solid rgba(255,255,255,.75);border-radius:var(--radius-lg);padding:30px 30px 28px;box-shadow:0 12px 34px -18px rgba(20,44,96,.26),inset 0 1px 0 rgba(255,255,255,.9);text-decoration:none;transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s}
+.next-card:hover{transform:translateY(-6px);box-shadow:0 26px 56px -26px rgba(20,44,96,.3),inset 0 1px 0 rgba(255,255,255,.95);border-color:#fff}
+.next-ic{width:48px;height:48px;border-radius:13px;display:grid;place-items:center;background:rgba(0,71,187,.09);color:var(--blue);margin-bottom:18px}
+.next-ic svg{width:22px;height:22px}
+.next-card h3{font-size:19px;color:var(--text);margin-bottom:8px;letter-spacing:-.01em}
+.next-card p{font-size:14px;color:var(--text-soft);line-height:1.6;flex:1}
+.next-link{margin-top:18px;display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--blue)}
+.next-link svg{width:16px;height:16px;transition:transform .3s var(--ease)}
+.next-card:hover .next-link svg{transform:translateX(4px)}
+/* ---- FAQ (minimal divider list) ---- */
+@media (max-width:900px){.verify-bento{grid-template-columns:1fr;max-width:460px;margin-inline:auto}
+.vb-wide{flex-direction:column;align-items:flex-start}
+.vb-wide-glyph{margin-left:0;margin-top:18px}
+.vb-wide::after{right:-90px}
+.next-grid{grid-template-columns:1fr;max-width:460px}}
+  </style>
 
   <!-- Structured data -->
   <script type="application/ld+json">
@@ -44,7 +104,7 @@
     "description": "Globally leading online broker offering CFD trading across Forex, Metals, Indices, Shares and ETFs.",
     "url": "https://www.startrader.com/",
     "logo": "https://www.startrader.com/assets/img/logo-startrader.svg",
-    "image": "https://www.startrader.com/assets/img/cta-banner.jpg",
+    "image": "https://www.startrader.com/assets/img/cta-banner.webp",
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "4.5",
@@ -377,10 +437,10 @@
   </video>
   <div class="acct-hero-bg" aria-hidden="true"></div>
   <div class="container acct-hero-inner">
-    <span class="eyebrow eyebrow-blue" data-reveal>Getting Started</span>
-    <h1 class="acct-hero-title" id="acct-hero-title" data-reveal>Open your account today</h1>
-    <p class="acct-hero-sub" data-reveal>Enter the world of trading with STARTRADER — a secure,<br>fully-regulated onboarding built to get you trading fast.</p>
-    <div class="acct-hero-cta" data-reveal>
+    <span class="eyebrow eyebrow-blue" data-aos="fade-up">Getting Started</span>
+    <h1 class="acct-hero-title" id="acct-hero-title" data-aos="fade-up">Open your account today</h1>
+    <p class="acct-hero-sub" data-aos="fade-up">Enter the world of trading with STARTRADER — a secure,<br>fully-regulated onboarding built to get you trading fast.</p>
+    <div class="acct-hero-cta" data-aos="fade-up">
       <a href="account-opening.html" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
     </div>
   </div>
@@ -390,8 +450,8 @@
 <section class="section howto" aria-labelledby="howto-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow eyebrow-blue" data-reveal>HOW IT WORKS</span>
-      <h2 class="h2 h2-light" id="howto-title" data-reveal>Get Started in Three Simple Steps</h2>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">HOW IT WORKS</span>
+      <h2 class="h2 h2-light" id="howto-title" data-aos="fade-up">Get Started in Three Simple Steps</h2>
     </div>
 
     <div class="stepper" id="stepper" aria-hidden="true">
@@ -430,32 +490,32 @@
 <section class="section acct-verify" aria-labelledby="verify-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Fast Verification</span>
-      <h2 class="h2" id="verify-title" data-reveal>Verify your identity in minutes</h2>
+      <span class="eyebrow" data-aos="fade-up">Fast Verification</span>
+      <h2 class="h2" id="verify-title" data-aos="fade-up">Verify your identity in minutes</h2>
     </div>
-    <div class="verify-bento" data-reveal-stagger>
-      <article class="vb-card">
+    <div class="verify-bento">
+      <article class="vb-card" data-aos="fade-up">
         <div class="vb-top">
           <h3>Valid photo ID</h3>
           <p>A passport, national ID or driver's license — clear and within its validity date.</p>
         </div>
-        <div class="vb-img vb-img-photo" aria-hidden="true"><img src="../../assets/img/verify-id.webp" alt="" loading="lazy"></div>
+        <div class="vb-img vb-img-photo" aria-hidden="true"><img src="../../assets/img/verify-id.webp" alt="Identity document example" loading="lazy"></div>
       </article>
-      <article class="vb-card">
+      <article class="vb-card" data-aos="fade-up" data-aos-delay="100">
         <div class="vb-top">
           <h3>Proof of address</h3>
           <p>A utility bill or bank statement dated within the last three months.</p>
         </div>
-        <div class="vb-img vb-img-photo vb-img-address" aria-hidden="true"><img src="../../assets/img/verify-address.webp" alt="" loading="lazy"></div>
+        <div class="vb-img vb-img-photo vb-img-address" aria-hidden="true"><img src="../../assets/img/verify-address.webp" alt="Proof of address document example" loading="lazy"></div>
       </article>
-      <article class="vb-card">
+      <article class="vb-card" data-aos="fade-up" data-aos-delay="200">
         <div class="vb-top">
           <h3>Clear documents</h3>
           <p>Full-colour and fully visible — not scanned, blurry, cropped or damaged.</p>
         </div>
-        <div class="vb-img vb-img-photo" aria-hidden="true"><img src="../../assets/img/verify-clear.webp" alt="" loading="lazy"></div>
+        <div class="vb-img vb-img-photo" aria-hidden="true"><img src="../../assets/img/verify-clear.webp" alt="Clear, uncropped document example" loading="lazy"></div>
       </article>
-      <article class="vb-wide">
+      <article class="vb-wide" data-aos="fade-up" data-aos-delay="300">
         <div class="vb-wide-copy">
           <h3>Bank-grade security</h3>
           <p>Your documents are encrypted end-to-end and reviewed by our fully-regulated compliance team — with 24/7 support if you ever need a hand.</p>
@@ -470,17 +530,17 @@
 <section class="section next-steps" aria-labelledby="next-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>What's Next</span>
-      <h2 class="h2" id="next-title" data-reveal>You are now ready to trade</h2>
+      <span class="eyebrow" data-aos="fade-up">What's Next</span>
+      <h2 class="h2" id="next-title" data-aos="fade-up">You are now ready to trade</h2>
     </div>
-    <div class="next-grid" data-reveal-stagger>
-      <a href="../../index.html#academy" class="next-card">
+    <div class="next-grid">
+      <a href="../../index.html#academy" class="next-card" data-aos="fade-up">
         <span class="next-ic"><svg><use href="#i-doc"/></svg></span>
         <h3>Explore the Knowledge Centre</h3>
         <p>New to trading? Dive into our extensive educational resources and build a strong foundation.</p>
         <span class="next-link">Visit Knowledge Centre <svg><use href="#i-arrow-right"/></svg></span>
       </a>
-      <a href="#" class="next-card">
+      <a href="#" class="next-card" data-aos="fade-up" data-aos-delay="100">
         <span class="next-ic"><svg><use href="#i-monitor"/></svg></span>
         <h3>Practise with a demo</h3>
         <p>Want to practise risk-free first? Open a free demo account and trade with virtual funds.</p>
@@ -494,10 +554,10 @@
 <section class="section faq-sec" aria-labelledby="faq-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>FAQ</span>
-      <h2 class="h2" id="faq-title" data-reveal>Application questions, answered</h2>
+      <span class="eyebrow" data-aos="fade-up">FAQ</span>
+      <h2 class="h2" id="faq-title" data-aos="fade-up">Application questions, answered</h2>
     </div>
-    <div class="faq-list" data-reveal>
+    <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
         <summary>What documents do I need for the application?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a">You'll need a valid photo ID (passport, national ID or driver's license) and a proof of address — such as a utility bill or bank statement — dated within the last three months.</div>
@@ -530,9 +590,9 @@
 <section class="cta-banner" aria-labelledby="cta-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="cta-title" data-reveal>Start trading with a<br>Globally Leading Broker</h2>
-    <p data-reveal>Join over 2 million traders worldwide. Open your account today and access 1,000+ instruments with institutional-grade execution.</p>
-    <a href="account-opening.html" class="btn btn-primary btn-lg magnetic" data-reveal>Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
+    <h2 id="cta-title" data-aos="fade-up">Start trading with a<br>Globally Leading Broker</h2>
+    <p data-aos="fade-up">Join over 2 million traders worldwide. Open your account today and access 1,000+ instruments with institutional-grade execution.</p>
+    <a href="account-opening.html" class="btn btn-primary btn-lg magnetic" data-aos="fade-up">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
   </div>
 </section>
 
@@ -617,7 +677,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -651,6 +711,7 @@
 <script src="../../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../../assets/js/vendor/aos.min.js" defer></script>
 <script src="../../assets/js/main.js" defer></script>
 </body>
 </html>

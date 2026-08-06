@@ -17,14 +17,14 @@
   <meta property="og:title" content="STARTRADER Trading App | Trade Anytime, Anywhere with Ease" />
   <meta property="og:description" content="MT4 and MT5 in one app. 200+ instruments, real-time data and full risk management on iOS and Android." />
   <meta property="og:url" content="https://www.startrader.com/trading-app.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/company-hero.jpg" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/company-hero.webp" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="STARTRADER Trading App | Trade Anytime, Anywhere with Ease" />
   <meta name="twitter:description" content="MT4 and MT5 in one app. 200+ instruments, real-time data and full risk management on iOS and Android." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/company-hero.jpg" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/company-hero.webp" />
 
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../../favicon.svg" />
@@ -33,7 +33,330 @@
   <!-- Fonts (self-hosted) -->
   <link rel="preload" href="../../assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="../../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ---- Hero (dark; render bleeds from the disclaimer bar to the base) ---- */
+.fx-quote{position:absolute;z-index:3;pointer-events:auto;display:flex;flex-direction:column;gap:2px;padding:11px 14px;border-radius:14px;min-width:134px;
+  background:rgba(16,24,46,.62);-webkit-backdrop-filter:blur(16px) saturate(1.5);backdrop-filter:blur(16px) saturate(1.5);
+  border:1px solid rgba(255,255,255,.14);box-shadow:0 22px 50px -22px rgba(0,0,0,.72),inset 0 1px 0 rgba(255,255,255,.12)}
+.fx-quote .q-sym{font-size:12.5px;font-weight:700;color:#fff;letter-spacing:-.01em}
+.fx-quote .q-row{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.fx-quote .q-px{font-size:15px;font-weight:700;color:#eaf1ff;font-variant-numeric:tabular-nums}
+.fx-quote .q-chg{font-size:11.5px;font-weight:700}
+.fx-quote .q-chg.up{color:#34d99b}
+.fx-quote .q-chg.down{color:#ff6b6b}
+.fx-quote.q1{top:14%;left:-6%}
+.fx-quote.q2{top:46%;right:2%}
+.fx-quote.q3{bottom:18%;left:0}
+/* ---- FAQ (white) ---- */
+@media (max-width:720px){.fx-quote{display:none}}
+/* ---- Store buttons (shared by the banner and the download panel) ---- */
+.st-btns{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:32px}
+.st-btn{
+  position:relative;overflow:hidden;
+  display:inline-flex;align-items:center;gap:12px;
+  height:56px;padding:0 22px;border-radius:15px;
+  background:#fff;color:#0a1020;
+  box-shadow:0 16px 34px -18px rgba(0,0,0,.66),inset 0 0 0 1px rgba(255,255,255,.9);
+  transition:transform .38s var(--ease),box-shadow .38s var(--ease);
+}
+.st-btn:hover{transform:translateY(-3px);box-shadow:0 26px 48px -20px rgba(0,0,0,.72),inset 0 0 0 1px #fff}
+.st-btn:active{transform:translateY(-1px)}
+.st-btn-ic{width:23px;height:23px;flex:none}
+.st-btn-tx{display:flex;flex-direction:column;line-height:1.14;text-align:left}
+.st-btn-tx em{font-style:normal;font-size:9.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#5b6678}
+.st-btn-tx b{font-size:16px;font-weight:700;letter-spacing:-.022em}
+/* ink variant for light backgrounds */
+.st-btn--ink{background:#0b1020;color:#fff;box-shadow:0 18px 38px -20px rgba(11,16,32,.62),inset 0 0 0 1px rgba(255,255,255,.06)}
+.st-btn--ink:hover{box-shadow:0 26px 50px -22px rgba(11,16,32,.7),inset 0 0 0 1px rgba(255,255,255,.12)}
+.st-btn--ink .st-btn-tx em{color:#93a2ba}
+.st-btn--ink::after{background:linear-gradient(100deg,transparent,rgba(255,255,255,.22),transparent)}
+/* a light sweep on hover — the only motion these need */
+.st-btn::after{
+  content:"";position:absolute;top:0;left:-70%;width:45%;height:100%;pointer-events:none;
+  background:linear-gradient(100deg,transparent,rgba(0,71,187,.16),transparent);
+  transform:skewX(-18deg);opacity:0;
+}
+@media (prefers-reduced-motion:no-preference){.st-btn:hover::after{animation:stSheen .8s var(--ease)}}
+/* ---- Banner ---- */
+.ap-hero{
+  min-height:min(720px,calc(100vh - var(--topbar-h,44px)));
+  padding:calc(var(--nav-h) + 34px) 0 48px;
+  background:
+    radial-gradient(84% 76% at 74% 26%,rgba(0,71,187,.30),transparent 62%),
+    radial-gradient(52% 58% at 4% 92%,rgba(22,233,215,.09),transparent 62%),
+    linear-gradient(180deg,#04060e 0%,#060b1a 48%,#04060e 100%);
+}
+/* left wash keeps the copy legible; the radial darkens the render's footprint
+   so the blue haze cannot bleed through the phone screen when it composites */
+.ap-hero .acct-hero-bg::after{background:
+  linear-gradient(90deg,rgba(4,6,14,.92) 0%,rgba(4,6,14,.66) 32%,rgba(4,6,14,.18) 60%,rgba(4,6,14,0) 88%),
+  radial-gradient(44% 56% at 79% 58%,rgba(1,2,7,.94),rgba(1,2,7,0) 74%)}
+.ap-hero-copy-wrap{position:relative;z-index:2;width:100%}
+.ap-hero-copy{max-width:560px}
+.ap-hero .acct-hero-sub{max-width:560px;color:#c2cfe4}
+.ap-hero-visual{position:absolute;top:0;right:0;bottom:0;width:min(700px,50%);pointer-events:none}
+/* height is capped so the device clears the nav while the wrist still runs off
+   the base of the banner */
+.ap-hero-img{
+  position:absolute;right:2%;bottom:0;
+  width:auto;height:min(88%,690px);max-width:none;
+  object-fit:contain;object-position:right bottom;
+  mix-blend-mode:lighten;
+  transform-origin:bottom center;
+}
+@media (prefers-reduced-motion:no-preference){.ap-hero-img{animation:apBreathe 9s var(--ease) infinite alternate}}
+/* floating glass chips beside the render */
+.ap-chip{
+  position:absolute;z-index:2;display:flex;align-items:center;gap:10px;
+  padding:11px 15px;border-radius:15px;
+  background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.17);
+  -webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);
+  box-shadow:0 22px 44px -22px rgba(0,0,0,.7);
+}
+.ap-chip-ic{width:30px;height:30px;flex:none;border-radius:9px;display:grid;place-items:center;background:rgba(0,71,187,.34);color:#bcd6ff}
+.ap-chip-ic svg{width:15px;height:15px}
+.ap-chip-tx{display:flex;flex-direction:column;line-height:1.25}
+.ap-chip-tx b{font-size:12.5px;color:#fff;letter-spacing:-.015em}
+.ap-chip-tx em{font-style:normal;font-size:10px;color:#a9bcdb}
+.ap-hero-visual .ap-chip.c1{top:21%;left:26%}
+.ap-hero-visual .fx-quote.ap-q1{z-index:2;left:16%;bottom:27%}
+/* ---- Feature spec grid (editorial hairlines, no card chrome) ---- */
+.ap-spec{
+  position:relative;isolation:isolate;overflow:clip;
+  background:
+    radial-gradient(50% 44% at 94% 2%,rgba(0,71,187,.07),transparent 62%),
+    radial-gradient(44% 44% at 3% 98%,rgba(22,233,215,.07),transparent 62%),
+    var(--bg-light-2);
+}
+.ap-spec>.container{position:relative;z-index:1}
+.ap-spec-aura{position:absolute;z-index:0;border-radius:50%;filter:blur(90px);pointer-events:none}
+.ap-spec-aura.a1{width:520px;height:520px;top:-14%;right:-8%;background:radial-gradient(circle,rgba(0,71,187,.13),transparent 68%)}
+.ap-spec-aura.a2{width:460px;height:460px;bottom:-16%;left:-10%;background:radial-gradient(circle,rgba(22,233,215,.12),transparent 68%)}
+.spec-grid{border-top:1px solid var(--line)}
+.spec-row{display:grid;border-bottom:1px solid var(--line)}
+.spec-row--a{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}
+.spec-row--b{grid-template-columns:repeat(3,minmax(0,1fr))}
+.spec-row--c{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
+.spec{
+  position:relative;display:flex;flex-direction:column;
+  padding:40px 40px 42px;min-width:0;
+  transition:transform .45s var(--ease);
+}
+.spec:first-child{padding-left:0}
+.spec:last-child{padding-right:0}
+/* inset vertical hairline between cells */
+.spec+.spec::before{content:"";position:absolute;left:0;top:30px;bottom:30px;width:1px;background:var(--line)}
+/* hover wash — the cell warms rather than lifting into a card */
+.spec::after{
+  content:"";position:absolute;inset:14px -10px;z-index:-1;border-radius:18px;pointer-events:none;
+  background:linear-gradient(180deg,rgba(0,71,187,.062),rgba(0,71,187,.012) 58%,transparent);
+  opacity:0;transition:opacity .45s var(--ease);
+}
+.spec:hover::after{opacity:1}
+.spec:hover{transform:translateY(-3px)}
+.spec-lbl{
+  display:block;font-size:12px;font-weight:600;letter-spacing:.02em;color:var(--text-mute);
+  transition:color .35s var(--ease);
+}
+.spec:hover .spec-lbl{color:var(--blue)}
+.spec-n{
+  margin-top:6px;font-size:clamp(38px,4.6vw,62px);font-weight:800;letter-spacing:-.045em;
+  line-height:1;color:var(--ink);font-variant-numeric:tabular-nums;
+}
+.spec-n i{font-style:normal;font-size:.4em;font-weight:700;letter-spacing:-.02em;color:var(--blue);margin-left:2px}
+.spec-h{margin-top:10px;font-size:19px;font-weight:700;letter-spacing:-.025em;color:var(--text);line-height:1.28}
+.spec-h--lead{margin-top:12px;font-size:clamp(22px,2.2vw,29px);line-height:1.16}
+.spec-c{margin-top:12px;font-size:13.5px;line-height:1.68;color:var(--text-soft);max-width:44ch}
+/* three-up figure split inside a cell */
+.spec-split{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:auto;padding-top:26px}
+.spec-split div{display:flex;flex-direction:column;gap:3px;padding-left:14px;border-left:2px solid rgba(0,71,187,.16);transition:border-color .35s var(--ease)}
+.spec:hover .spec-split div{border-left-color:rgba(0,71,187,.42)}
+.spec-split b{font-size:19px;font-weight:800;letter-spacing:-.03em;color:var(--ink)}
+.spec-split span{font-size:11.5px;color:var(--text-mute)}
+.spec-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:26px}
+.spec-pills span{
+  font-size:11.5px;font-weight:600;color:var(--text-soft);
+  background:#fff;border:1px solid var(--line);
+  padding:6px 13px;border-radius:70px;transition:border-color .3s,color .3s,transform .3s var(--ease);
+}
+.spec:hover .spec-pills span{border-color:rgba(0,71,187,.24);color:var(--blue)}
+/* execution histogram — grows on reveal */
+/* content-box so the 26px lead-in does not eat the bar height */
+.spec-bars{box-sizing:content-box;display:flex;align-items:flex-end;gap:6px;height:58px;max-width:250px;margin-top:auto;padding-top:26px}
+.spec-bars i{
+  flex:1;height:var(--h);border-radius:4px;transform-origin:bottom;
+  background:linear-gradient(180deg,#5b9dff,#1e4fb8);opacity:.5;
+  transition:opacity .4s var(--ease),transform .5s var(--ease);
+}
+.spec:hover .spec-bars i{opacity:1}
+.spec:hover .spec-bars i:nth-child(odd){transform:scaleY(1.09)}
+@media (prefers-reduced-motion:no-preference){.spec-bars i{animation:apBar 2.6s var(--ease) infinite alternate}
+.spec-bars i:nth-child(2){animation-delay:-.4s}
+.spec-bars i:nth-child(3){animation-delay:-.8s}
+.spec-bars i:nth-child(4){animation-delay:-1.2s}
+.spec-bars i:nth-child(5){animation-delay:-1.6s}
+.spec-bars i:nth-child(6){animation-delay:-2s}
+.spec-bars i:nth-child(7){animation-delay:-2.4s}
+.spec-bars i:nth-child(8){animation-delay:-2.8s}}
+/* key/value list */
+.spec-rows{margin-top:auto;padding-top:26px;display:flex;flex-direction:column}
+.spec-rows>div{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:11px 0;border-top:1px solid var(--line)}
+.spec-rows>div:last-child{border-bottom:1px solid var(--line)}
+.spec-rows dt{font-size:13px;color:var(--text-soft)}
+.spec-rows dd{font-size:15px;font-weight:800;letter-spacing:-.02em;color:var(--ink);font-variant-numeric:tabular-nums}
+/* miniature order ticket */
+.spec-ticket{
+  margin-top:auto;padding:16px 18px;border-radius:16px;
+  background:linear-gradient(160deg,#0b1224,#060a15);
+  border:1px solid rgba(255,255,255,.09);
+  box-shadow:0 26px 52px -30px rgba(4,16,48,.6);
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease);
+}
+.spec:hover .spec-ticket{transform:translateY(-2px);box-shadow:0 32px 60px -30px rgba(4,16,48,.7)}
+.spec-ticket-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-bottom:11px;border-bottom:1px solid rgba(255,255,255,.08)}
+.spec-ticket-h b{font-size:13.5px;color:#fff;letter-spacing:-.02em}
+.spec-ticket-h span{font-size:11px;color:#8ea4c6}
+.spec-ticket-rows{display:flex;flex-direction:column;gap:8px;padding:12px 0 14px}
+.spec-ticket-rows>div{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.spec-ticket-rows span{font-size:11.5px;color:#8ea4c6}
+.spec-ticket-rows b{font-size:12.5px;color:#e6edf8;font-variant-numeric:tabular-nums}
+.spec-ticket-rows .is-sl b,.spec-ticket-rows div.is-sl b{color:#ff8078}
+.spec-ticket-rows div.is-tp b{color:#3fd9a8}
+.spec-ticket-tags{display:flex;flex-wrap:wrap;gap:6px}
+.spec-ticket-tags span{
+  font-size:10.5px;font-weight:600;color:#b9cbe8;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);
+  padding:4px 10px;border-radius:70px;
+}
+/* ---- Download band (full-bleed, light blue) ----
+   The render is photographed on white, so it composites with multiply: white
+   dissolves into the gradient and the device keeps its own values. Nothing
+   between .ap-dl2 and the image may create a stacking context, so the auras
+   sit at z-index:-1 rather than the content being lifted above them. */
+.ap-dl2{
+  position:relative;isolation:isolate;overflow:hidden;
+  padding:clamp(72px,7vw,104px) 0 0;
+  background:
+    radial-gradient(58% 46% at 78% 0%,rgba(120,178,255,.13),transparent 66%),
+    radial-gradient(48% 44% at 4% 92%,rgba(140,226,255,.11),transparent 66%),
+    linear-gradient(178deg,#fcfdff 0%,#f5f9fe 44%,#eef5fd 76%,#eaf2fd 100%);
+}
+.ap-dl2-aura{position:absolute;z-index:-1;border-radius:50%;pointer-events:none;filter:blur(78px)}
+.ap-dl2-aura.a1{width:560px;height:560px;top:-16%;right:6%;background:radial-gradient(circle,rgba(0,110,255,.08),transparent 68%)}
+.ap-dl2-aura.a2{width:460px;height:460px;bottom:-14%;left:-8%;background:radial-gradient(circle,rgba(22,233,215,.09),transparent 68%)}
+.ap-dl2-in{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.82fr);
+  gap:clamp(28px,4vw,64px);align-items:end;
+}
+.ap-dl2-copy{align-self:center;padding-bottom:clamp(40px,4vw,64px);min-width:0}
+.ap-dl2-copy .eyebrow{margin-bottom:14px}
+.ap-dl2-copy .h2{letter-spacing:-.032em}
+.ap-dl2-lead{margin-top:18px;font-size:clamp(15px,1.5vw,16.5px);line-height:1.68;color:var(--text-soft)}
+.ap-dl2 .st-btns{margin-top:32px}
+.ap-dl2-note{margin-top:26px;font-size:12px;line-height:1.55;color:var(--text-mute);max-width:52ch}
+/* the render — bottom-aligned in the grid, so the wrist meets the section base */
+.ap-dl2-visual{--cw:212px;--ov:46px;position:relative;justify-self:center;width:100%;max-width:470px}
+.ap-dl2-img{display:block;width:100%;height:auto;mix-blend-mode:multiply}
+/* ---- Glass cards riding over the device ---- */
+.gcard{
+  position:absolute;z-index:2;display:flex;align-items:center;gap:11px;
+  width:var(--cw);padding:12px 15px;border-radius:17px;
+  background:rgba(255,255,255,.8);
+  border:1px solid rgba(255,255,255,.96);
+  -webkit-backdrop-filter:blur(24px) saturate(1.8);backdrop-filter:blur(24px) saturate(1.8);
+  box-shadow:0 26px 52px -26px rgba(20,44,96,.42),inset 0 1px 0 rgba(255,255,255,.96);
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease),background .35s;
+}
+.gcard:hover{background:rgba(255,255,255,.93);box-shadow:0 32px 60px -26px rgba(20,44,96,.48),inset 0 1px 0 #fff}
+.gcard-ic{width:30px;height:30px;flex:none;border-radius:10px;display:grid;place-items:center;background:rgba(0,71,187,.11);color:var(--blue)}
+.gcard-ic.ok{background:rgba(16,185,129,.14);color:#0f9d76}
+.gcard-ic svg{width:15px;height:15px}
+.gcard-tx{display:flex;flex-direction:column;line-height:1.28;min-width:0;overflow:hidden}
+.gcard-tx b{font-size:12.5px;font-weight:700;letter-spacing:-.015em;color:var(--ink);white-space:nowrap;text-overflow:ellipsis;overflow:hidden}
+.gcard-tx em{font-style:normal;font-size:10.5px;color:var(--text-mute);white-space:nowrap;text-overflow:ellipsis;overflow:hidden}
+.gcard--quote{justify-content:space-between;gap:14px}
+.gcard-px{display:flex;flex-direction:column;align-items:flex-end;gap:2px;line-height:1.2}
+.gcard-px i{font-style:normal;font-size:13.5px;font-weight:800;letter-spacing:-.02em;color:var(--ink);font-variant-numeric:tabular-nums}
+.gcard-px u{text-decoration:none;font-size:10.5px;font-weight:700}
+.gcard-px u.up{color:#0f9d76}
+.gcard-px u.down{color:#d14a41}
+/* two tidy columns riding the device edges: three left, two interleaved right */
+.gcard--l{left:calc(12% + var(--ov) - var(--cw))}
+.gcard--r{left:calc(75% - var(--ov))}
+.gcard.g1{top:13%}
+.gcard.g2{top:31%}
+.gcard.g3{top:57%}
+.gcard.g4{top:75%}
+@media (prefers-reduced-motion:no-preference){.gcard.g2{animation-duration:6.6s;animation-delay:-1.1s}
+.gcard.g3{animation-duration:7.2s;animation-delay:-2.6s}
+.gcard.g4{animation-duration:6.2s;animation-delay:-3.4s}}
+/* ---- Responsive ---- */
+@media (max-width:1180px){.ap-hero-visual{width:min(640px,50%)}
+.ap-dl2-visual{--cw:188px;--ov:56px}}
+@media (max-width:1080px){.spec-row--a,.spec-row--c{grid-template-columns:1fr 1fr}
+.spec-c{max-width:none}
+.ap-dl2-in{gap:clamp(20px,2.6vw,36px)}
+.ap-dl2-visual{max-width:400px}
+.gcard{padding:10px 13px;border-radius:15px}
+.gcard-tx b{font-size:11.5px}
+.gcard-tx em{font-size:10px}}
+/* below this the copy column can no longer hold the buttons and the fact row
+   beside the render, so the band stacks */
+@media (max-width:900px){.ap-dl2-in{grid-template-columns:1fr;gap:0;text-align:center}}
+/* below this the copy column can no longer hold the buttons and the fact row
+   beside the render, so the band stacks */
+@media (max-width:900px){.ap-dl2-copy{padding-bottom:0}}
+/* below this the copy column can no longer hold the buttons and the fact row
+   beside the render, so the band stacks */
+@media (max-width:900px){.ap-dl2-lead{margin-inline:auto;max-width:56ch}}
+/* below this the copy column can no longer hold the buttons and the fact row
+   beside the render, so the band stacks */
+@media (max-width:900px){.ap-dl2 .st-btns{justify-content:center}}
+/* below this the copy column can no longer hold the buttons and the fact row
+   beside the render, so the band stacks */
+@media (max-width:900px){.ap-dl2-note{margin-inline:auto}}
+/* below this the copy column can no longer hold the buttons and the fact row
+   beside the render, so the band stacks */
+@media (max-width:900px){.ap-dl2-visual{--cw:200px;--ov:46px;max-width:430px;margin:36px auto 0}}
+@media (max-width:980px){.ap-hero{display:block;min-height:auto;padding:calc(var(--nav-h) + 34px) 0 0;text-align:center}
+.ap-hero .acct-hero-bg::after{background:linear-gradient(180deg,rgba(4,6,14,.72) 0%,rgba(4,6,14,.2) 30%,rgba(4,6,14,0) 62%)}
+.ap-hero-copy{max-width:640px;margin-inline:auto}
+.ap-hero .acct-hero-sub{margin-inline:auto}
+.st-btns{justify-content:center}
+.ap-hero-visual{position:relative;top:auto;right:auto;bottom:auto;width:100%;max-width:520px;margin:26px auto 0;aspect-ratio:1072/1052}
+.ap-hero-img{position:absolute;right:0;left:0;margin-inline:auto;height:100%;width:100%}
+.ap-hero-visual .ap-chip.c1{top:12%;left:4%}}
+@media (max-width:860px){.spec{padding:32px 26px 34px}
+.spec-split{grid-template-columns:1fr;gap:12px}}
+@media (max-width:720px){.ap-spec .head-sub br,.ap-spec .h2 br,.ap-dl2 .h2 br,.ap-dl2-lead br{display:none}
+.spec-row--a,.spec-row--b,.spec-row--c{grid-template-columns:1fr}
+.spec{padding:30px 0 32px}
+.spec+.spec::before{left:0;right:0;top:0;bottom:auto;width:auto;height:1px}
+.spec::after{inset:8px -14px}
+.spec-n{font-size:clamp(36px,11vw,50px)}
+.st-btn{height:52px;padding:0 18px}
+.st-btn-tx b{font-size:15px}
+.ap-dl2{padding-top:clamp(56px,9vw,72px)}
+.ap-dl2-visual{--cw:172px;--ov:40px;max-width:330px;margin-top:30px}
+.gcard.g2,.gcard.g4{display:none}
+.gcard{padding:9px 12px;gap:9px}
+.gcard-ic{width:26px;height:26px;border-radius:8px}
+.gcard-ic svg{width:13px;height:13px}
+.gcard.g1{top:10%}
+.gcard.g3{top:62%}
+.ap-hero-visual{max-width:400px}
+.ap-hero-visual .ap-chip.c1{padding:9px 12px}}
+@media (max-width:520px){.ap-hero .acct-hero-title{font-size:26px}
+.st-btns{gap:10px}
+.st-btn{flex:1 1 100%;justify-content:center}
+.ap-dl2-visual{--cw:146px;--ov:70px;max-width:280px}
+.gcard-tx b{font-size:11px}}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.ap-chip{background:rgba(14,20,38,.95)}
+.gcard{background:rgba(255,255,255,.94)}}
+  </style>
 
   <!-- Structured data — page entity -->
   <script type="application/ld+json">
@@ -475,11 +798,11 @@
 
   <div class="container ap-hero-copy-wrap">
     <div class="ap-hero-copy">
-      <span class="eyebrow eyebrow-blue" data-reveal>Mobile App</span>
-      <h1 class="acct-hero-title" id="ap-title" data-reveal>Ascend to stellar heights<br>with the STARTRADER app</h1>
-      <p class="acct-hero-sub" data-reveal>Trade 200+ instruments on MT4 and MT5 from a single app &mdash;<br> live pricing, full charting and risk management built in.</p>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">Mobile App</span>
+      <h1 class="acct-hero-title" id="ap-title" data-aos="fade-up">Ascend to stellar heights<br>with the STARTRADER app</h1>
+      <p class="acct-hero-sub" data-aos="fade-up">Trade 200+ instruments on MT4 and MT5 from a single app &mdash;<br> live pricing, full charting and risk management built in.</p>
 
-      <div class="st-btns" data-reveal>
+      <div class="st-btns" data-aos="fade-up">
         <a class="st-btn" href="https://startrader.onelink.me/PWbI/canpg4vy" target="_blank" rel="noopener" aria-label="Download the STARTRADER app on the App Store">
           <svg class="st-btn-ic" aria-hidden="true"><use href="#i-apple"/></svg>
           <span class="st-btn-tx"><em>Download on the</em><b>App Store</b></span>
@@ -493,7 +816,7 @@
   </div>
 
   <div class="ap-hero-visual" aria-hidden="true">
-    <img class="ap-hero-img" src="../../assets/img/app-hero-phone.webp" alt="" width="1072" height="1052" fetchpriority="high" decoding="async">
+    <img class="ap-hero-img" src="../../assets/img/app-hero-phone.webp" alt="STARTRADER trading app on a smartphone" width="1072" height="1052" fetchpriority="high" decoding="async">
 
     <span class="ap-chip c1" data-float>
       <span class="ap-chip-ic"><svg><use href="#i-bolt"/></svg></span>
@@ -514,15 +837,15 @@
   <span class="ap-spec-aura a2" aria-hidden="true"></span>
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>What is inside</span>
-      <h2 class="h2" id="ap-f-title" data-reveal>Everything you need,<br> in your pocket</h2>
-      <p class="head-sub" data-reveal>The desktop terminal's capability on a screen you actually carry &mdash;<br> the same instruments, the same feed, the same order types.</p>
+      <span class="eyebrow" data-aos="fade-up">What is inside</span>
+      <h2 class="h2" id="ap-f-title" data-aos="fade-up">Everything you need,<br> in your pocket</h2>
+      <p class="head-sub" data-aos="fade-up">The desktop terminal's capability on a screen you actually carry &mdash;<br> the same instruments, the same feed, the same order types.</p>
     </div>
 
     <div class="spec-grid">
 
-      <div class="spec-row spec-row--a" data-reveal-stagger>
-        <article class="spec">
+      <div class="spec-row spec-row--a">
+        <article class="spec" data-aos="fade-up">
           <span class="spec-lbl">Available on mobile</span>
           <p class="spec-n"><span data-count="200" data-suffix="+">200+</span></p>
           <h3 class="spec-h">instruments, the whole book</h3>
@@ -534,7 +857,7 @@
           </div>
         </article>
 
-        <article class="spec">
+        <article class="spec" data-aos="fade-up" data-aos-delay="100">
           <span class="spec-lbl">One download</span>
           <h3 class="spec-h spec-h--lead">MT4 and MT5,<br>in the same app</h3>
           <p class="spec-c">Pick the platform your strategy needs rather than the one your phone allows. Charts, orders and history stay in sync with desktop.</p>
@@ -542,8 +865,8 @@
         </article>
       </div>
 
-      <div class="spec-row spec-row--b" data-reveal-stagger>
-        <article class="spec">
+      <div class="spec-row spec-row--b">
+        <article class="spec" data-aos="fade-up">
           <span class="spec-lbl">Around</span>
           <p class="spec-n"><span data-count="100">100</span> <i>ms</i></p>
           <h3 class="spec-h">order execution</h3>
@@ -551,14 +874,14 @@
           <div class="spec-bars" aria-hidden="true"><i style="--h:44%"></i><i style="--h:58%"></i><i style="--h:71%"></i><i style="--h:63%"></i><i style="--h:84%"></i><i style="--h:76%"></i><i style="--h:95%"></i><i style="--h:68%"></i></div>
         </article>
 
-        <article class="spec">
+        <article class="spec" data-aos="fade-up" data-aos-delay="100">
           <span class="spec-lbl">From</span>
           <p class="spec-n">0.0 <i>pips</i></p>
           <h3 class="spec-h">on ECN accounts</h3>
           <p class="spec-c">The cost you pay per trade is the same on mobile as on desktop &mdash; the spread, plus commission on commission-based accounts.</p>
         </article>
 
-        <article class="spec">
+        <article class="spec" data-aos="fade-up" data-aos-delay="200">
           <span class="spec-lbl">Up to</span>
           <p class="spec-n">1:1000</p>
           <h3 class="spec-h">leverage available</h3>
@@ -566,8 +889,8 @@
         </article>
       </div>
 
-      <div class="spec-row spec-row--c" data-reveal-stagger>
-        <article class="spec">
+      <div class="spec-row spec-row--c">
+        <article class="spec" data-aos="fade-up">
           <span class="spec-lbl">On every chart</span>
           <h3 class="spec-h spec-h--lead">The same analysis<br>you run on desktop</h3>
           <p class="spec-c">A chart you open on the phone is the chart you left on the terminal.</p>
@@ -579,7 +902,7 @@
           </dl>
         </article>
 
-        <article class="spec">
+        <article class="spec" data-aos="fade-up" data-aos-delay="100">
           <span class="spec-lbl">Risk management</span>
           <h3 class="spec-h spec-h--lead">Your exit is set the moment you enter</h3>
           <p class="spec-c">Market, limit, stop-loss and trailing stop orders are built into the ticket, so protection is part of opening the position rather than something you go back for.</p>
@@ -595,22 +918,22 @@
         </article>
       </div>
 
-      <div class="spec-row spec-row--b" data-reveal-stagger>
-        <article class="spec">
+      <div class="spec-row spec-row--b">
+        <article class="spec" data-aos="fade-up">
           <span class="spec-lbl">Around the clock</span>
           <p class="spec-n">24/7</p>
           <h3 class="spec-h">support, in 20+ languages</h3>
           <p class="spec-c">The same desk that answers on desktop answers in the app.</p>
         </article>
 
-        <article class="spec">
+        <article class="spec" data-aos="fade-up" data-aos-delay="100">
           <span class="spec-lbl">Works with</span>
           <p class="spec-n"><span data-count="3">3</span></p>
           <h3 class="spec-h">account types</h3>
           <p class="spec-c">STP, ECN and Demo &mdash; commission-free on the applicable types, raw spread on ECN, virtual funds on Demo.</p>
         </article>
 
-        <article class="spec">
+        <article class="spec" data-aos="fade-up" data-aos-delay="200">
           <span class="spec-lbl">On most methods</span>
           <p class="spec-n">Zero</p>
           <h3 class="spec-h">deposit fees</h3>
@@ -632,11 +955,11 @@
 
   <div class="container ap-dl2-in">
     <div class="ap-dl2-copy">
-      <span class="eyebrow" data-reveal>Get the app</span>
-      <h2 class="h2" id="ap-d-title" data-reveal>Reach for success with<br> the STARTRADER app</h2>
-      <p class="ap-dl2-lead" data-reveal>Free on iOS, Android and tablet. Open a demo inside the app<br> and trade live pricing before you fund anything.</p>
+      <span class="eyebrow" data-aos="fade-up">Get the app</span>
+      <h2 class="h2" id="ap-d-title" data-aos="fade-up">Reach for success with<br> the STARTRADER app</h2>
+      <p class="ap-dl2-lead" data-aos="fade-up">Free on iOS, Android and tablet. Open a demo inside the app<br> and trade live pricing before you fund anything.</p>
 
-      <div class="st-btns" data-reveal>
+      <div class="st-btns" data-aos="fade-up">
         <a class="st-btn st-btn--ink" href="https://startrader.onelink.me/PWbI/canpg4vy" target="_blank" rel="noopener" aria-label="Download the STARTRADER app on the App Store">
           <svg class="st-btn-ic" aria-hidden="true"><use href="#i-apple"/></svg>
           <span class="st-btn-tx"><em>Download on the</em><b>App Store</b></span>
@@ -647,11 +970,11 @@
         </a>
       </div>
 
-      <p class="ap-dl2-note" data-reveal>Leveraged products carry a high level of risk and can cost more than your initial deposit.</p>
+      <p class="ap-dl2-note" data-aos="fade-up">Leveraged products carry a high level of risk and can cost more than your initial deposit.</p>
     </div>
 
     <div class="ap-dl2-visual" aria-hidden="true">
-      <img class="ap-dl2-img" src="../../assets/img/app-download-phone.webp" alt="" width="876" height="1396" loading="lazy" decoding="async">
+      <img class="ap-dl2-img" src="../../assets/img/app-download-phone.webp" alt="STARTRADER app on a smartphone" width="876" height="1396" loading="lazy" decoding="async">
 
       <span class="gcard g1 gcard--l" data-float>
         <span class="gcard-ic ok"><svg><use href="#i-check"/></svg></span>
@@ -681,30 +1004,30 @@
 <section class="section fx-hours pt-hours" aria-labelledby="ap-w-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Why trade with STARTRADER</span>
-      <h2 class="h2" id="ap-w-title" data-reveal>The same broker, wherever you trade</h2>
-      <p class="head-sub" data-reveal>Mobile is not a cut-down version. It is the same liquidity, the same execution and the same costs.</p>
+      <span class="eyebrow" data-aos="fade-up">Why trade with STARTRADER</span>
+      <h2 class="h2" id="ap-w-title" data-aos="fade-up">The same broker, wherever you trade</h2>
+      <p class="head-sub" data-aos="fade-up">Mobile is not a cut-down version. It is the same liquidity, the same execution and the same costs.</p>
     </div>
-    <div class="fx-mh" data-reveal-stagger>
-      <article class="fx-mh-card fx-mh--wide fx-mh--teal">
+    <div class="fx-mh">
+      <article class="fx-mh-card fx-mh--wide fx-mh--teal" data-aos="fade-up">
         <span class="fx-mh-ic"><svg><use href="#i-droplet"/></svg></span>
         <h3>Institutional liquidity, on a phone</h3>
         <p>The app routes to the same aggregated tier-1 liquidity as the desktop terminal, so the pricing you get on mobile is not a lesser feed. <a href="../../company/corporate/liquidity-providers.html">See the providers</a>.</p>
         <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="fx-mh-status"><i></i> Aggregated tier-1 pricing</span></div></div>
       </article>
-      <article class="fx-mh-card fx-mh--blue">
+      <article class="fx-mh-card fx-mh--blue" data-aos="fade-up" data-aos-delay="100">
         <span class="fx-mh-ic"><svg><use href="#i-bolt"/></svg></span>
         <h3>Ultra-fast execution</h3>
         <p>Around 100 milliseconds, so the price you tapped is the price you are far more likely to get.</p>
         <div class="fx-mh-viz"><div class="fx-mh-panel fx-mh-quote"><span class="q-sym">EUR/USD</span><span class="q-r"><span class="q-px">1.08420</span> <span class="q-chg up">+0.13%</span></span></div></div>
       </article>
-      <article class="fx-mh-card fx-mh--purple">
+      <article class="fx-mh-card fx-mh--purple" data-aos="fade-up" data-aos-delay="200">
         <span class="fx-mh-ic"><svg><use href="#i-wallet"/></svg></span>
         <h3>Hassle-free transactions</h3>
         <p>Zero deposit fees on most methods, handled inside the app.</p>
         <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="fx-mh-status"><i></i> Zero fees on most methods</span></div></div>
       </article>
-      <article class="fx-mh-card fx-mh--wide fx-mh--green">
+      <article class="fx-mh-card fx-mh--wide fx-mh--green" data-aos="fade-up" data-aos-delay="300">
         <span class="fx-mh-ic"><svg><use href="#i-headset"/></svg></span>
         <h3>24/7 customer service and ultra-tight spreads</h3>
         <p>Support around the clock in more than twenty languages, and spreads from 0.0 pips on ECN accounts &mdash; the cost you pay per trade is the same on mobile as on desktop.</p>
@@ -718,10 +1041,10 @@
 <section class="section faq-sec fx-faq" aria-labelledby="ap-faq-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>FAQ</span>
-      <h2 class="h2" id="ap-faq-title" data-reveal>Trading app questions</h2>
+      <span class="eyebrow" data-aos="fade-up">FAQ</span>
+      <h2 class="h2" id="ap-faq-title" data-aos="fade-up">Trading app questions</h2>
     </div>
-    <div class="faq-list" data-reveal>
+    <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
         <summary>Which platforms does the STARTRADER app support?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a">The app supports both MT4 and MT5, so you get comprehensive functionality and seamless trading on either platform from the same download. It runs on iOS and Android, on phones and tablets.</div>
@@ -762,9 +1085,9 @@
 <section class="cta-banner" aria-labelledby="pt-cta-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="pt-cta-title" data-reveal>Start trading with a<br>globally leading broker</h2>
-    <p data-reveal>Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
-    <div class="cta-actions" data-reveal>
+    <h2 id="pt-cta-title" data-aos="fade-up">Start trading with a<br>globally leading broker</h2>
+    <p data-aos="fade-up">Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
+    <div class="cta-actions" data-aos="fade-up">
       <a href="../getting-started/account-opening.html" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       <a href="../getting-started/account-opening.html" class="btn btn-ghost btn-lg">Try Free Demo</a>
     </div>
@@ -854,7 +1177,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -888,6 +1211,7 @@
 <script src="../../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../../assets/js/vendor/aos.min.js" defer></script>
 <script src="../../assets/js/main.js" defer></script>
 </body>
 </html>

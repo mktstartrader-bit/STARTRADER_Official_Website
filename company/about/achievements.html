@@ -16,14 +16,14 @@
   <meta property="og:title" content="Awards & Achievements | STARTRADER’s Testimony of Success" />
   <meta property="og:description" content="Eleven global awards for execution, spreads, technology and platform — and the conditions behind them." />
   <meta property="og:url" content="https://www.startrader.com/company/about/achievements.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/platform-hero.jpg" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/platform-hero.webp" />
   <meta property="og:image:alt" content="Achievements — STARTRADER" />
   <meta property="og:locale" content="en_US" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Awards & Achievements | STARTRADER’s Testimony of Success" />
   <meta name="twitter:description" content="Eleven global awards for execution, spreads, technology and platform — and the conditions behind them." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/platform-hero.jpg" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/platform-hero.webp" />
 
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../../favicon.svg" />
@@ -32,7 +32,61 @@
   <link rel="preload" href="../../assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" as="image" href="../../assets/img/platform-hero.webp" />
   <link rel="stylesheet" href="../../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* =================================================================
+   ACHIEVEMENTS — the award wall
+   ================================================================= */
+.aw-sec{
+  position:relative;overflow:clip;color:#fff;
+  background:
+    radial-gradient(62% 48% at 50% 0%,rgba(0,46,138,.34),transparent 62%),
+    radial-gradient(40% 36% at 88% 92%,rgba(227,178,106,.1),transparent 64%),
+    linear-gradient(180deg,#04060e,#080e1e 52%,#04060e);
+}
+.aw-sec .h2,.aw-sec .h2-light{color:#fff}
+.aw-sec .head-sub{color:#a9bcdb}
+.aw-sec>.container{position:relative;z-index:1}
+.aw-count{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(28px,5vw,64px);margin-bottom:clamp(38px,4.4vw,58px)}
+.aw-stat{display:flex;flex-direction:column;align-items:center;gap:7px}
+.aw-stat b{font-size:clamp(32px,4vw,46px);font-weight:800;letter-spacing:-.04em;line-height:1;color:#fff;font-variant-numeric:tabular-nums}
+.aw-stat span{font-size:10.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#8ea4c6}
+/* rows centre themselves, so a short last row is not an orphan */
+.aw-wall{display:flex;flex-wrap:wrap;justify-content:center;gap:14px}
+.aw-badge{
+  flex:0 1 clamp(210px,20vw,244px);min-height:152px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:11px;
+  padding:24px 18px 20px;border-radius:20px;text-align:center;
+  background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.1);
+  transition:transform .45s var(--ease),border-color .35s,background .35s,box-shadow .45s var(--ease);
+}
+.aw-badge:hover{
+  transform:translateY(-5px);border-color:rgba(227,178,106,.44);
+  background:linear-gradient(180deg,rgba(227,178,106,.1),rgba(255,255,255,.03));
+  box-shadow:0 30px 58px -32px rgba(0,0,0,.9);
+}
+.aw-crest{display:flex;align-items:center;justify-content:center;gap:10px;min-height:52px}
+.aw-crest img{height:44px;width:auto;display:block;filter:brightness(0) invert(1);opacity:.58;transition:opacity .4s,transform .5s var(--ease)}
+.aw-crest img:first-child{transform-origin:right bottom}
+.aw-crest img:last-child{transform-origin:left bottom}
+.aw-badge:hover .aw-crest img{opacity:1}
+.aw-badge:hover .aw-crest img:first-child{transform:translateX(-3px) rotate(-5deg)}
+.aw-badge:hover .aw-crest img:last-child{transform:translateX(3px) rotate(5deg)}
+.aw-crest b{
+  max-width:118px;font-size:12.5px;font-weight:800;letter-spacing:-.01em;line-height:1.28;color:#e6edf8;
+  transition:color .35s;
+}
+.aw-badge:hover .aw-crest b{color:#fff}
+.aw-badge em{font-style:normal;font-size:10.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#6f86ad;transition:color .35s}
+.aw-badge:hover em{color:#e3b26a}
+.aw-note{margin-top:clamp(30px,3.6vw,44px);text-align:center;font-size:11.5px;line-height:1.7;color:#7f92b3}
+@media (max-width:720px){.aw-badge{flex:0 1 calc(50% - 7px);padding:20px 14px 17px}
+.aw-crest img{height:36px}
+.aw-crest b{max-width:100px;font-size:11.5px}}
+  </style>
 
   <script type="application/ld+json">
 {
@@ -459,10 +513,10 @@
   <div class="pf-hero-bg" aria-hidden="true"></div>
   <div class="container pf-hero-in">
     <div class="pf-hero-copy">
-      <span class="eyebrow eyebrow-blue" data-reveal>Achievements</span>
-      <h1 class="pf-h1" id="pg-hero-title" data-reveal>STARTRADER’s<br> testimony of success</h1>
-      <p class="pf-lead" data-reveal>Awards are a lagging indicator, not a promise. These are the ones tied<br> to things a client can actually measure &mdash; execution, service, cost.</p>
-      <div class="pf-hact" data-reveal>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">Achievements</span>
+      <h1 class="pf-h1" id="pg-hero-title" data-aos="fade-up">STARTRADER’s<br> testimony of success</h1>
+      <p class="pf-lead" data-aos="fade-up">Awards are a lagging indicator, not a promise. These are the ones tied<br> to things a client can actually measure &mdash; execution, service, cost.</p>
+      <div class="pf-hact" data-aos="fade-up">
         <a href="#factors" class="btn btn-primary btn-lg magnetic">See the factors <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       </div>
     </div>
@@ -473,109 +527,109 @@
 <section class="section aw-sec" id="awards" aria-labelledby="pg-aw-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow eyebrow-blue" data-reveal>Global awards</span>
-      <h2 class="h2 h2-light" id="pg-aw-title" data-reveal>The cabinet, as it stands</h2>
-      <p class="head-sub" data-reveal>Most of them are for execution, spreads and platform &mdash; the things a trader feels rather than reads about.</p>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">Global awards</span>
+      <h2 class="h2 h2-light" id="pg-aw-title" data-aos="fade-up">The cabinet, as it stands</h2>
+      <p class="head-sub" data-aos="fade-up">Most of them are for execution, spreads and platform &mdash; the things a trader feels rather than reads about.</p>
     </div>
 
-    <div class="aw-count" data-reveal>
+    <div class="aw-count" data-aos="fade-up">
       <span class="aw-stat"><b data-count="11">11</b><span>Awards</span></span>
       <span class="aw-stat"><b data-count="5">5</b><span>Regulators</span></span>
       <span class="aw-stat"><b data-count="20" data-suffix="+">20+</b><span>Languages</span></span>
     </div>
 
-    <div class="aw-wall" data-reveal-stagger>
-      <article class="aw-badge">
+    <div class="aw-wall">
+      <article class="aw-badge" data-aos="fade-up">
         <span class="aw-crest">
-          <img src="../../assets/img/laurel-left.svg" alt="" width="25" height="41" loading="lazy" decoding="async">
+          <img src="../../assets/img/laurel-left.svg" alt="Award laurel, left branch" width="25" height="41" loading="lazy" decoding="async">
           <b>Affiliate Brand of the Year</b>
-          <img src="../../assets/img/laurel-right.svg" alt="" width="25" height="41" loading="lazy" decoding="async">
+          <img src="../../assets/img/laurel-right.svg" alt="Award laurel, right branch" width="25" height="41" loading="lazy" decoding="async">
         </span>
         <em>Dubai Affiliate Summit 2025</em>
       </article>
-      <article class="aw-badge">
+      <article class="aw-badge" data-aos="fade-up" data-aos-delay="100">
         <span class="aw-crest">
-          <img src="../../assets/img/laurel-left.svg" alt="" width="25" height="41" loading="lazy" decoding="async">
+          <img src="../../assets/img/laurel-left.svg" alt="Award laurel, left branch" width="25" height="41" loading="lazy" decoding="async">
           <b>Best Forex Trade Execution</b>
-          <img src="../../assets/img/laurel-right.svg" alt="" width="25" height="41" loading="lazy" decoding="async">
+          <img src="../../assets/img/laurel-right.svg" alt="Award laurel, right branch" width="25" height="41" loading="lazy" decoding="async">
         </span>
         <em>Wiki Finance Expo Cyprus 2025</em>
       </article>
-      <article class="aw-badge">
+      <article class="aw-badge" data-aos="fade-up" data-aos-delay="200">
         <span class="aw-crest">
-          <img src="../../assets/img/laurel-left.svg" alt="" width="25" height="41" loading="lazy" decoding="async">
+          <img src="../../assets/img/laurel-left.svg" alt="Award laurel, left branch" width="25" height="41" loading="lazy" decoding="async">
           <b>Best Copy Trading Broker 2025</b>
-          <img src="../../assets/img/laurel-right.svg" alt="" width="25" height="41" loading="lazy" decoding="async">
+          <img src="../../assets/img/laurel-right.svg" alt="Award laurel, right branch" width="25" height="41" loading="lazy" decoding="async">
         </span>
         <em>Forex Traders Summit 2025</em>
       </article>
-      <article class="aw-badge">
+      <article class="aw-badge" data-aos="fade-up" data-aos-delay="300">
         <span class="aw-crest">
-          <img src="../../assets/img/laurel-left.svg" alt="" width="25" height="41" loading="lazy" decoding="async">
+          <img src="../../assets/img/laurel-left.svg" alt="Award laurel, left branch" width="25" height="41" loading="lazy" decoding="async">
           <b>Best Trading Conditions</b>
-          <img src="../../assets/img/laurel-right.svg" alt="" width="25" height="41" loading="lazy" decoding="async">
+          <img src="../../assets/img/laurel-right.svg" alt="Award laurel, right branch" width="25" height="41" loading="lazy" decoding="async">
         </span>
         <em>Money Expo Chile 2025</em>
       </article>
-      <article class="aw-badge">
+      <article class="aw-badge" data-aos="fade-up" data-aos-delay="400">
         <span class="aw-crest">
-          <img src="../../assets/img/laurel-left.svg" alt="" width="25" height="41" loading="lazy" decoding="async">
+          <img src="../../assets/img/laurel-left.svg" alt="Award laurel, left branch" width="25" height="41" loading="lazy" decoding="async">
           <b>Most Reputable Forex Broker</b>
-          <img src="../../assets/img/laurel-right.svg" alt="" width="25" height="41" loading="lazy" decoding="async">
+          <img src="../../assets/img/laurel-right.svg" alt="Award laurel, right branch" width="25" height="41" loading="lazy" decoding="async">
         </span>
         <em>Forex Expo Dubai 2025</em>
       </article>
-      <article class="aw-badge">
+      <article class="aw-badge" data-aos="fade-up" data-aos-delay="500">
         <span class="aw-crest">
-          <img src="../../assets/img/laurel-left.svg" alt="" width="25" height="41" loading="lazy" decoding="async">
+          <img src="../../assets/img/laurel-left.svg" alt="Award laurel, left branch" width="25" height="41" loading="lazy" decoding="async">
           <b>Best ECN Broker</b>
-          <img src="../../assets/img/laurel-right.svg" alt="" width="25" height="41" loading="lazy" decoding="async">
+          <img src="../../assets/img/laurel-right.svg" alt="Award laurel, right branch" width="25" height="41" loading="lazy" decoding="async">
         </span>
         <em>Global Forex Awards 2026</em>
       </article>
-      <article class="aw-badge">
+      <article class="aw-badge" data-aos="fade-up" data-aos-delay="600">
         <span class="aw-crest">
-          <img src="../../assets/img/laurel-left.svg" alt="" width="25" height="41" loading="lazy" decoding="async">
+          <img src="../../assets/img/laurel-left.svg" alt="Award laurel, left branch" width="25" height="41" loading="lazy" decoding="async">
           <b>Best FX Broker Middle East</b>
-          <img src="../../assets/img/laurel-right.svg" alt="" width="25" height="41" loading="lazy" decoding="async">
+          <img src="../../assets/img/laurel-right.svg" alt="Award laurel, right branch" width="25" height="41" loading="lazy" decoding="async">
         </span>
         <em>Gulf Trading Summit 2025</em>
       </article>
-      <article class="aw-badge">
+      <article class="aw-badge" data-aos="fade-up" data-aos-delay="600">
         <span class="aw-crest">
-          <img src="../../assets/img/laurel-left.svg" alt="" width="25" height="41" loading="lazy" decoding="async">
+          <img src="../../assets/img/laurel-left.svg" alt="Award laurel, left branch" width="25" height="41" loading="lazy" decoding="async">
           <b>Fastest Growing Broker</b>
-          <img src="../../assets/img/laurel-right.svg" alt="" width="25" height="41" loading="lazy" decoding="async">
+          <img src="../../assets/img/laurel-right.svg" alt="Award laurel, right branch" width="25" height="41" loading="lazy" decoding="async">
         </span>
         <em>World Finance Awards 2025</em>
       </article>
-      <article class="aw-badge">
+      <article class="aw-badge" data-aos="fade-up" data-aos-delay="600">
         <span class="aw-crest">
-          <img src="../../assets/img/laurel-left.svg" alt="" width="25" height="41" loading="lazy" decoding="async">
+          <img src="../../assets/img/laurel-left.svg" alt="Award laurel, left branch" width="25" height="41" loading="lazy" decoding="async">
           <b>Best Mobile Trading App</b>
-          <img src="../../assets/img/laurel-right.svg" alt="" width="25" height="41" loading="lazy" decoding="async">
+          <img src="../../assets/img/laurel-right.svg" alt="Award laurel, right branch" width="25" height="41" loading="lazy" decoding="async">
         </span>
         <em>Fintech Expo Singapore 2025</em>
       </article>
-      <article class="aw-badge">
+      <article class="aw-badge" data-aos="fade-up" data-aos-delay="600">
         <span class="aw-crest">
-          <img src="../../assets/img/laurel-left.svg" alt="" width="25" height="41" loading="lazy" decoding="async">
+          <img src="../../assets/img/laurel-left.svg" alt="Award laurel, left branch" width="25" height="41" loading="lazy" decoding="async">
           <b>Most Trusted Broker Asia</b>
-          <img src="../../assets/img/laurel-right.svg" alt="" width="25" height="41" loading="lazy" decoding="async">
+          <img src="../../assets/img/laurel-right.svg" alt="Award laurel, right branch" width="25" height="41" loading="lazy" decoding="async">
         </span>
         <em>Asia Forex Awards 2025</em>
       </article>
-      <article class="aw-badge">
+      <article class="aw-badge" data-aos="fade-up" data-aos-delay="600">
         <span class="aw-crest">
-          <img src="../../assets/img/laurel-left.svg" alt="" width="25" height="41" loading="lazy" decoding="async">
+          <img src="../../assets/img/laurel-left.svg" alt="Award laurel, left branch" width="25" height="41" loading="lazy" decoding="async">
           <b>Best Customer Support</b>
-          <img src="../../assets/img/laurel-right.svg" alt="" width="25" height="41" loading="lazy" decoding="async">
+          <img src="../../assets/img/laurel-right.svg" alt="Award laurel, right branch" width="25" height="41" loading="lazy" decoding="async">
         </span>
         <em>Global Broker Awards 2025</em>
       </article>
     </div>
 
-    <p class="aw-note" data-reveal>Award titles are shown as each awarding body presented them. An award describes conditions at a point in time and is not a guarantee of results.</p>
+    <p class="aw-note" data-aos="fade-up">Award titles are shown as each awarding body presented them. An award describes conditions at a point in time and is not a guarantee of results.</p>
   </div>
 </section>
 
@@ -584,36 +638,36 @@
   <span class="pf-aura a1" aria-hidden="true"></span>
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Factors contributing to this success</span>
-      <h2 class="h2" id="pg-grid-title" data-reveal>What sits behind<br> the awards</h2>
-      <p class="head-sub" data-reveal>Five things less quotable than a trophy, and that matter more.</p>
+      <span class="eyebrow" data-aos="fade-up">Factors contributing to this success</span>
+      <h2 class="h2" id="pg-grid-title" data-aos="fade-up">What sits behind<br> the awards</h2>
+      <p class="head-sub" data-aos="fade-up">Five things less quotable than a trophy, and that matter more.</p>
     </div>
 
-    <div class="pl-cards" data-reveal-stagger>
-      <article class="pl-card">
+    <div class="pl-cards">
+      <article class="pl-card" data-aos="fade-up">
         <span class="pl-card-hd"><span class="pl-card-ic"><svg><use href="#i-headset"/></svg></span><h3>A dedicated team of experts</h3></span>
         <p>A desk that answers around the clock in more than twenty languages, staffed by people who trade rather than read from a script.</p>
       </article>
-      <article class="pl-card">
+      <article class="pl-card" data-aos="fade-up" data-aos-delay="100">
         <span class="pl-card-hd"><span class="pl-card-ic"><svg><use href="#i-user"/></svg></span><h3>Client-centric approach</h3></span>
         <p>Product decisions start from what clients asked for repeatedly, not from what is easiest to build or quickest to announce.</p>
       </article>
-      <article class="pl-card">
+      <article class="pl-card" data-aos="fade-up" data-aos-delay="200">
         <span class="pl-card-hd"><span class="pl-card-ic"><svg><use href="#i-bolt"/></svg></span><h3>Innovation and adaptability</h3></span>
         <p>New platforms, new instruments and new access — shipped rather than announced, then measured once they are live.</p>
       </article>
-      <article class="pl-card">
+      <article class="pl-card" data-aos="fade-up" data-aos-delay="300">
         <span class="pl-card-hd"><span class="pl-card-ic"><svg><use href="#i-shield"/></svg></span><h3>Strong ethical foundation</h3></span>
         <p>Segregated client funds, five regulators, and disclosure written to be read rather than to satisfy a rule.</p>
       </article>
-      <article class="pl-card">
+      <article class="pl-card" data-aos="fade-up" data-aos-delay="400">
         <span class="pl-card-hd"><span class="pl-card-ic"><svg><use href="#i-chart"/></svg></span><h3>Continuous learning</h3></span>
         <p>Execution, spreads and uptime are measured continuously, and the numbers change what we build next.</p>
       </article>
     </div>
 
-    <div class="pl-sign glass" data-reveal>
-      <img src="../../assets/img/icon-shield-3d.png" alt="" width="400" height="490" loading="lazy" decoding="async">
+    <div class="pl-sign glass" data-aos="fade-up">
+      <img src="../../assets/img/icon-shield-3d.webp" alt="3D shield emblem for insured client funds" width="400" height="490" loading="lazy" decoding="async">
       <span class="pl-sign-tx">
         <b>The awards follow the conditions, not the other way round</b>
         <em>Execution, spreads and uptime are measured continuously. When a number moves the wrong way it changes what we build next &mdash; which is the only reason the cabinet keeps filling.</em>
@@ -627,10 +681,10 @@
 <section class="section faq-sec fx-faq" aria-labelledby="pg-faq-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>FAQ</span>
-      <h2 class="h2" id="pg-faq-title" data-reveal>About the awards</h2>
+      <span class="eyebrow" data-aos="fade-up">FAQ</span>
+      <h2 class="h2" id="pg-faq-title" data-aos="fade-up">About the awards</h2>
     </div>
-    <div class="faq-list" data-reveal>
+    <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
         <summary>How many awards has STARTRADER won?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a">Fourteen at the last count, across execution, spreads, trading technology, platform and copy trading — listed in full above with the titles as each awarding body presented them.</div>
@@ -655,15 +709,15 @@
 <section class="section pg-list" id="latest" aria-labelledby="pg-list-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Latest</span>
-      <h2 class="h2" id="pg-list-title" data-reveal>The latest from us</h2>
+      <span class="eyebrow" data-aos="fade-up">Latest</span>
+      <h2 class="h2" id="pg-list-title" data-aos="fade-up">The latest from us</h2>
     </div>
-    <div class="pg-bar glass" data-reveal>
+    <div class="pg-bar glass" data-aos="fade-up">
       <div class="pg-cats" role="group" aria-label="Filter by category"><button class="ec-chip is-on" type="button" data-pg-cat="all" aria-pressed="true">All</button><button class="ec-chip" type="button" data-pg-cat="award" aria-pressed="false">Award</button><button class="ec-chip" type="button" data-pg-cat="milestone" aria-pressed="false">Milestone</button></div>
       <p class="pg-status" data-pg-status role="status" aria-live="polite"></p>
     </div>
-    <div class="nr-grid" data-reveal-stagger>
-      <article class="nr-card glass" data-pg-item data-cat="award" data-title="Best ECN Broker — Global Forex Awards 2026">
+    <div class="nr-grid">
+      <article class="nr-card glass" data-pg-item data-cat="award" data-title="Best ECN Broker — Global Forex Awards 2026" data-aos="fade-up">
         <div class="nr-head">
           <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Award</span>
           <time class="nr-date" datetime="2026-06-20">20 Jun 2026</time>
@@ -677,7 +731,7 @@
           <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </span>
       </article>
-      <article class="nr-card glass" data-pg-item data-cat="milestone" data-title="SCA licence secured in the United Arab Emirates">
+      <article class="nr-card glass" data-pg-item data-cat="milestone" data-title="SCA licence secured in the United Arab Emirates" data-aos="fade-up" data-aos-delay="100">
         <div class="nr-head">
           <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Milestone</span>
           <time class="nr-date" datetime="2026-06-11">11 Jun 2026</time>
@@ -687,11 +741,11 @@
           <p class="nr-ex">A fifth regulator, and the one that matters most for clients in the Gulf.</p>
         </div>
         <span class="nr-media">
-          <img src="../../assets/img/company-hero.jpg" alt="SCA licence secured in the United Arab Emirates" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/company-hero.webp" alt="SCA licence secured in the United Arab Emirates" width="640" height="349" loading="lazy" decoding="async">
           <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </span>
       </article>
-      <article class="nr-card glass" data-pg-item data-cat="award" data-title="Most Trusted Broker — MENA region">
+      <article class="nr-card glass" data-pg-item data-cat="award" data-title="Most Trusted Broker — MENA region" data-aos="fade-up" data-aos-delay="200">
         <div class="nr-head">
           <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Award</span>
           <time class="nr-date" datetime="2026-04-25">25 Apr 2026</time>
@@ -701,11 +755,11 @@
           <p class="nr-ex">Voted on trust, which is the slowest of all metrics to move.</p>
         </div>
         <span class="nr-media">
-          <img src="../../assets/img/stat-awards.png" alt="Most Trusted Broker — MENA region" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/stat-awards.webp" alt="Most Trusted Broker — MENA region" width="640" height="349" loading="lazy" decoding="async">
           <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </span>
       </article>
-      <article class="nr-card glass" data-pg-item data-cat="milestone" data-title="Emirates Cricket Board jersey launch">
+      <article class="nr-card glass" data-pg-item data-cat="milestone" data-title="Emirates Cricket Board jersey launch" data-aos="fade-up" data-aos-delay="300">
         <div class="nr-head">
           <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Milestone</span>
           <time class="nr-date" datetime="2026-03-14">14 Mar 2026</time>
@@ -719,7 +773,7 @@
           <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </span>
       </article>
-      <article class="nr-card glass" data-pg-item data-cat="award" data-title="Best Trading Platform — Financial Innovation Awards">
+      <article class="nr-card glass" data-pg-item data-cat="award" data-title="Best Trading Platform — Financial Innovation Awards" data-aos="fade-up" data-aos-delay="400">
         <div class="nr-head">
           <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Award</span>
           <time class="nr-date" datetime="2026-02-08">8 Feb 2026</time>
@@ -733,7 +787,7 @@
           <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </span>
       </article>
-      <article class="nr-card glass" data-pg-item data-cat="award" data-title="Best Customer Service — Broker Awards">
+      <article class="nr-card glass" data-pg-item data-cat="award" data-title="Best Customer Service — Broker Awards" data-aos="fade-up" data-aos-delay="500">
         <div class="nr-head">
           <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Award</span>
           <time class="nr-date" datetime="2026-01-16">16 Jan 2026</time>
@@ -758,27 +812,27 @@
 <section class="section fx-more" aria-labelledby="pg-more-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Keep going</span>
-      <h2 class="h2" id="pg-more-title" data-reveal>Where to go next</h2>
+      <span class="eyebrow" data-aos="fade-up">Keep going</span>
+      <h2 class="h2" id="pg-more-title" data-aos="fade-up">Where to go next</h2>
     </div>
-    <div class="fx-more-grid" data-reveal-stagger>
-      <a class="fx-more-card" href="why-startrader.html">
-        <span class="fx-more-media"><img src="../../assets/img/company-hero.jpg" alt="Why STARTRADER — regulation and scale" width="640" height="349" loading="lazy" decoding="async"></span>
+    <div class="fx-more-grid">
+      <a class="fx-more-card" href="why-startrader.html" data-aos="fade-up">
+        <span class="fx-more-media"><img src="../../assets/img/company-hero.webp" alt="Why STARTRADER — regulation and scale" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Five regulators, segregated funds and the conditions behind the brand.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Why STARTRADER</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="sponsorship/index.html">
+      <a class="fx-more-card" href="sponsorship/index.html" data-aos="fade-up" data-aos-delay="100">
         <span class="fx-more-media"><img src="../../assets/img/company-1.webp" alt="STARTRADER sponsorships" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">The NBA, the PCCME, the UAE National Cricket Team and more.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Sponsorship</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="announcements.html">
+      <a class="fx-more-card" href="announcements.html" data-aos="fade-up" data-aos-delay="200">
         <span class="fx-more-media"><img src="../../assets/img/company-3.webp" alt="STARTRADER announcements" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Product, licensing and schedule notices as they are published.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Announcements</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="contact.html">
-        <span class="fx-more-media"><img src="../../assets/img/contact-hero.jpg" alt="Contact the STARTRADER team" width="640" height="349" loading="lazy" decoding="async"></span>
+      <a class="fx-more-card" href="contact.html" data-aos="fade-up" data-aos-delay="300">
+        <span class="fx-more-media"><img src="../../assets/img/contact-hero.webp" alt="Contact the STARTRADER team" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">A desk that answers around the clock in more than twenty languages.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Contact us</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
@@ -789,9 +843,9 @@
 <section class="cta-banner" aria-labelledby="pg-cta-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="pg-cta-title" data-reveal>Start trading with a<br>globally leading broker</h2>
-    <p data-reveal>Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
-    <div class="cta-actions" data-reveal>
+    <h2 id="pg-cta-title" data-aos="fade-up">Start trading with a<br>globally leading broker</h2>
+    <p data-aos="fade-up">Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
+    <div class="cta-actions" data-aos="fade-up">
       <a href="../../trading/getting-started/account-opening.html" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       <a href="../../trading/getting-started/account-opening.html" class="btn btn-ghost btn-lg">Try Free Demo</a>
     </div>
@@ -879,7 +933,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -913,6 +967,7 @@
 <script src="../../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../../assets/js/vendor/aos.min.js" defer></script>
 <script src="../../assets/js/main.js" defer></script>
 
 <!-- Company page: robust scroll reveals + hero parallax (self-contained, never leaves content hidden) -->

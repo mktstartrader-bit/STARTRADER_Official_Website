@@ -17,14 +17,14 @@
   <meta property="og:title" content="50/20 Deposit Bonus | STARTRADER" />
   <meta property="og:description" content="Get 50% credit bonus on your first deposit, up to $500, then 20% on every deposit after. Terms apply." />
   <meta property="og:url" content="https://www.startrader.com/trading/products/forex.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/products-video-poster.jpg" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/products-video-poster.webp" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="50/20 Deposit Bonus | STARTRADER" />
   <meta name="twitter:description" content="Get 50% credit bonus on your first deposit, up to $500, then 20% on every deposit after. Terms apply." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/products-video-poster.jpg" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/products-video-poster.webp" />
 
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../favicon.svg" />
@@ -32,7 +32,101 @@
 
   <!-- Fonts (self-hosted) -->
   <link rel="stylesheet" href="../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* =================================================================
+   DEPOSIT BONUS 50/20
+   Shares the promotions palette and its coupon language. The two tiers
+   carry their percentage as the artwork; the estimator does the sums.
+   ================================================================= */
+.d5-tier-sec{position:relative;isolation:isolate;overflow:clip;
+  background:radial-gradient(50% 44% at 90% 0%,rgba(0,71,187,.08),transparent 62%),var(--bg-light-2)}
+.d5-tier-sec>.container{position:relative;z-index:1}
+.d5-tiers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2vw,26px);margin-top:clamp(32px,4vw,50px)}
+.d5-tier{
+  position:relative;overflow:hidden;display:flex;flex-direction:column;
+  border-radius:clamp(20px,2.4vw,30px);padding:clamp(24px,2.8vw,34px);
+  background:linear-gradient(180deg,rgba(0,71,187,.08),rgba(255,255,255,.72) 46%);
+  border:1px solid rgba(255,255,255,.92);
+  box-shadow:0 16px 40px -28px rgba(20,44,96,.44),inset 0 1px 0 #fff;
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .32s;
+}
+.d5-tier--sand{background:linear-gradient(180deg,rgba(223,197,174,.5),rgba(255,255,255,.72) 48%)}
+.d5-tier:hover{transform:translateY(-6px);border-color:rgba(0,71,187,.24);
+  box-shadow:0 34px 64px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff}
+.d5-tier--sand:hover{border-color:rgba(138,100,64,.34)}
+/* the percentage is the artwork */
+.d5-pc{
+  display:flex;align-items:baseline;gap:4px;line-height:.86;letter-spacing:-.06em;font-weight:800;
+  font-size:clamp(58px,8vw,104px);font-variant-numeric:tabular-nums;
+  color:transparent;background:linear-gradient(168deg,var(--blue-bright),var(--blue) 68%);
+  -webkit-background-clip:text;background-clip:text;
+}
+.d5-tier--sand .d5-pc{background:linear-gradient(168deg,#b98a5d,#8a6440 70%);-webkit-background-clip:text;background-clip:text}
+.d5-pc sup{font-size:.44em;line-height:1;letter-spacing:-.03em;top:0;position:relative}
+.d5-tier h3{margin-top:16px;font-size:clamp(19px,2.2vw,25px);font-weight:800;letter-spacing:-.036em;line-height:1.16;color:var(--ink)}
+.d5-tier > p{margin-top:11px;font-size:14.2px;line-height:1.7;color:var(--text-soft)}
+.d5-tag{
+  display:inline-flex;align-items:center;gap:7px;align-self:flex-start;
+  margin-top:auto;padding-top:clamp(18px,2.2vw,24px);
+  font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--text-mute);
+}
+.d5-tag i{width:22px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--blue-bright),var(--mint));
+  transition:width .45s var(--ease)}
+.d5-tier:hover .d5-tag i{width:44px}
+/* the third promise runs as a strip under the two tiers */
+.d5-strip{
+  display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:clamp(16px,2.4vw,32px);align-items:center;
+  margin-top:clamp(16px,2vw,26px);padding:clamp(20px,2.4vw,28px) clamp(22px,2.8vw,36px);
+  border-radius:clamp(18px,2.2vw,26px);
+  background:rgba(255,255,255,.76);border:1px solid rgba(255,255,255,.92);
+  -webkit-backdrop-filter:blur(18px) saturate(1.4);backdrop-filter:blur(18px) saturate(1.4);
+  box-shadow:0 16px 40px -30px rgba(20,44,96,.4),inset 0 1px 0 #fff;
+}
+.d5-strip-ic{
+  display:grid;place-items:center;width:52px;height:52px;border-radius:17px;flex:none;
+  background:linear-gradient(158deg,var(--blue-bright),var(--blue));
+  box-shadow:0 14px 26px -14px rgba(0,71,187,.6),inset 0 1px 0 rgba(255,255,255,.32);
+}
+.d5-strip-ic svg{width:23px;height:23px;color:#fff}
+.d5-strip-tx b{display:block;font-size:17px;font-weight:700;letter-spacing:-.028em;color:var(--ink)}
+.d5-strip-tx p{margin-top:7px;font-size:13.6px;line-height:1.66;color:var(--text-soft)}
+.d5-note{margin:clamp(22px,2.6vw,32px) auto 0;max-width:80ch;font-size:11.5px;line-height:1.7;
+  color:var(--text-mute);text-align:center}
+/* ---------------- the estimator ---------------- */
+.d5-calc{
+  position:relative;overflow:hidden;margin-top:clamp(20px,2.4vw,30px);
+  border-radius:clamp(20px,2.4vw,28px);padding:clamp(22px,2.8vw,34px);
+  background:linear-gradient(140deg,rgba(0,71,187,.09),rgba(223,197,174,.32) 64%,rgba(255,255,255,.78));
+  border:1px solid rgba(255,255,255,.92);
+  box-shadow:0 22px 50px -32px rgba(20,44,96,.44),inset 0 1px 0 #fff;
+}
+.d5-calc-hd{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px}
+.d5-calc-hd b{font-size:clamp(17px,2vw,22px);font-weight:800;letter-spacing:-.034em;color:var(--ink)}
+.d5-calc-hd span{font-size:11.5px;color:var(--text-mute)}
+.d5-calc .ct-grid{margin-top:clamp(18px,2.2vw,26px)}
+.d5-out{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;
+  margin-top:clamp(18px,2.2vw,26px);border-radius:18px;overflow:hidden;background:rgba(20,44,96,.1);
+}
+.d5-out div{padding:18px 20px;background:rgba(255,255,255,.92)}
+.d5-out em{display:block;font-style:normal;font-size:10px;font-weight:800;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--text-mute)}
+.d5-out b{display:block;margin-top:9px;font-size:clamp(22px,2.6vw,32px);font-weight:800;
+  letter-spacing:-.05em;line-height:1;font-variant-numeric:tabular-nums;color:var(--blue)}
+.d5-out div:nth-child(2) b{color:#8a6440}
+.d5-out div:nth-child(3) b{color:var(--ink)}
+.d5-out i{display:block;margin-top:8px;font-style:normal;font-size:11.5px;color:var(--text-mute)}
+/* ---------------- how to get it ---------------- */
+.d5-how{position:relative;isolation:isolate;overflow:clip;background:linear-gradient(180deg,#fff,#f2f6fc)}
+.d5-how>.container{position:relative;z-index:1}
+@media (max-width:900px){.d5-tiers{grid-template-columns:1fr}
+.d5-strip{grid-template-columns:auto minmax(0,1fr);gap:18px}
+.d5-strip .btn{grid-column:1 / -1;justify-self:start}
+.d5-out{grid-template-columns:1fr}}
+  </style>
 
   <!-- Structured data -->
   <script type="application/ld+json">
@@ -398,18 +492,18 @@
 <!-- ============ BANNER ============ -->
 <section class="pm-hero" aria-labelledby="d5-hero-title">
   <video class="pm-hero-video" autoplay muted loop playsinline preload="metadata"
-    poster="../assets/img/promotions-video-poster.jpg" aria-hidden="true">
+    poster="../assets/img/promotions-video-poster.webp" aria-hidden="true">
     <source src="../assets/video/promotions-banner.mp4" type="video/mp4">
   </video>
   <div class="container pm-hero-in">
     <div class="pm-hero-copy">
-      <span class="pm-eyebrow" data-reveal>Deposit bonus</span>
-      <h1 class="pm-h1" id="d5-hero-title" data-reveal>
+      <span class="pm-eyebrow" data-aos="fade-up">Deposit bonus</span>
+      <h1 class="pm-h1" id="d5-hero-title" data-aos="fade-up">
         <span>Boost your trades with</span>
         <span class="lit">the 50/20 deposit bonus.</span>
       </h1>
-      <p class="pm-lead" data-reveal>Fifty per cent credit bonus on your first deposit, up to $500 &mdash; then twenty per cent on every deposit after. Terms and conditions apply.</p>
-      <div class="pm-hact" data-reveal>
+      <p class="pm-lead" data-aos="fade-up">Fifty per cent credit bonus on your first deposit, up to $500 &mdash; then twenty per cent on every deposit after. Terms and conditions apply.</p>
+      <div class="pm-hact" data-aos="fade-up">
         <a class="pm-btn" href="../trading/getting-started/funding.html">Deposit now <svg><use href="#i-arrow-right"/></svg></a>
       </div>
     </div>
@@ -419,19 +513,19 @@
 <!-- ============ THE TWO TIERS ============ -->
 <section class="section d5-tier-sec" id="tiers" aria-labelledby="d5-tier-title">
   <div class="container">
-    <span class="pm-eyebrow-c" data-reveal>What you get</span>
-    <h2 class="pm-h2" id="d5-tier-title" data-reveal>Trade bigger with<br> deposit bonus</h2>
-    <p class="pm-sub" data-reveal>Two rates, one promotion. The first deposit earns the most, and the credit keeps coming after that.</p>
+    <span class="pm-eyebrow-c" data-aos="fade-up">What you get</span>
+    <h2 class="pm-h2" id="d5-tier-title" data-aos="fade-up">Trade bigger with<br> deposit bonus</h2>
+    <p class="pm-sub" data-aos="fade-up">Two rates, one promotion. The first deposit earns the most, and the credit keeps coming after that.</p>
 
     <div class="d5-tiers">
-      <article class="d5-tier" data-reveal>
+      <article class="d5-tier" data-aos="fade-up">
         <span class="d5-pc" aria-hidden="true">50<sup>%</sup></span>
         <h3>On your first deposit</h3>
         <p>Get up to $500 credit bonus when you make your first deposit.</p>
         <span class="d5-tag"><i></i>Up to $500</span>
       </article>
 
-      <article class="d5-tier d5-tier--sand" data-reveal>
+      <article class="d5-tier d5-tier--sand" data-aos="fade-up">
         <span class="d5-pc" aria-hidden="true">20<sup>%</sup></span>
         <h3>On every deposit after</h3>
         <p>Keep earning bonus credit on all your subsequent deposits.</p>
@@ -439,7 +533,7 @@
       </article>
     </div>
 
-    <div class="d5-strip" data-reveal>
+    <div class="d5-strip" data-aos="fade-up">
       <span class="d5-strip-ic"><svg><use href="#i-wallet"/></svg></span>
       <span class="d5-strip-tx">
         <b>Profit withdrawals</b>
@@ -449,7 +543,7 @@
     </div>
 
     <!-- the estimator does the two rates in front of you -->
-    <div class="d5-calc" data-d5-calc data-reveal>
+    <div class="d5-calc" data-d5-calc data-aos="fade-up">
       <div class="d5-calc-hd">
         <b>See what your deposits earn</b>
         <span>An estimate on the rates above, not a quote.</span>
@@ -475,7 +569,7 @@
       <p class="d5-note" style="text-align:left;margin-top:16px">The first-deposit bonus is capped at $500 of credit. A deposit of $100 or more is required, and the promotion must be activated from the client portal before you deposit.</p>
     </div>
 
-    <p class="d5-note" data-reveal>Bonus credit is not withdrawable cash. Withdrawals of eligible profits are available, subject to account terms. Terms and conditions apply.</p>
+    <p class="d5-note" data-aos="fade-up">Bonus credit is not withdrawable cash. Withdrawals of eligible profits are available, subject to account terms. Terms and conditions apply.</p>
   </div>
 </section>
 
@@ -483,7 +577,7 @@
 <section class="section htrade-sec d5-how" id="how" aria-labelledby="d5-how-title">
   <div class="container">
     <div class="htrade">
-      <div class="htrade-intro" data-reveal>
+      <div class="htrade-intro" data-aos="fade-up">
         <h2 class="htrade-title" id="d5-how-title">Three steps<br><span>to your bonus</span></h2>
         <p class="htrade-sub">Open the account, opt in, then deposit. The credit lands on its own.</p>
         <a href="../trading/getting-started/account-opening.html" class="btn btn-primary btn-lg htrade-btn magnetic">Open live account <span class="htrade-go"><svg><use href="#i-arrow-right"/></svg></span></a>
@@ -513,10 +607,10 @@
 <section class="section faq-sec fx-faq" aria-labelledby="d5-faq-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>FAQ</span>
-      <h2 class="h2" id="d5-faq-title" data-reveal>About the deposit bonus</h2>
+      <span class="eyebrow" data-aos="fade-up">FAQ</span>
+      <h2 class="h2" id="d5-faq-title" data-aos="fade-up">About the deposit bonus</h2>
     </div>
-    <div class="faq-list" data-reveal>
+    <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
         <summary>How much bonus credit do I get?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a">Fifty per cent of your first deposit, up to $500 of credit bonus. Every deposit after that earns twenty per cent.</div>
@@ -541,9 +635,9 @@
 <section class="cta-banner" aria-labelledby="d5-close-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="d5-close-title" data-reveal>Ready to trade<br>with more behind you?</h2>
-    <p data-reveal>Open a live account, opt in from the portal, and your first deposit earns fifty per cent in credit bonus.</p>
-    <div class="cta-actions" data-reveal>
+    <h2 id="d5-close-title" data-aos="fade-up">Ready to trade<br>with more behind you?</h2>
+    <p data-aos="fade-up">Open a live account, opt in from the portal, and your first deposit earns fifty per cent in credit bonus.</p>
+    <div class="cta-actions" data-aos="fade-up">
       <a href="../trading/getting-started/account-opening.html" class="btn btn-primary btn-lg">Open live account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
     </div>
   </div>
@@ -631,7 +725,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -665,6 +759,7 @@
 <script src="../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../assets/js/vendor/aos.min.js" defer></script>
 <script src="../assets/js/main.js" defer></script>
 </body>
 </html>

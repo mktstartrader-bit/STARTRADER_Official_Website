@@ -16,14 +16,14 @@
   <meta property="og:title" content="Events & Expos | Meet the STARTRADER Team | STARTRADER" />
   <meta property="og:description" content="Where to meet STARTRADER — industry expos, partner summits and client evenings, with the desk in the room and the year on record." />
   <meta property="og:url" content="https://www.startrader.com/company/about/events.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/platform-hero.jpg" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/platform-hero.webp" />
   <meta property="og:image:alt" content="Events — STARTRADER" />
   <meta property="og:locale" content="en_US" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Events & Expos | Meet the STARTRADER Team | STARTRADER" />
   <meta name="twitter:description" content="Where to meet STARTRADER — industry expos, partner summits and client evenings, with the desk in the room and the year on record." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/platform-hero.jpg" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/platform-hero.webp" />
 
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../../favicon.svg" />
@@ -32,7 +32,50 @@
   <link rel="preload" href="../../assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" as="image" href="../../assets/img/platform-hero.webp" />
   <link rel="stylesheet" href="../../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* =================================================================
+   EVENTS — a stage gallery, and the shared kinds/band pattern
+   ================================================================= */
+.ev-sec{position:relative;isolation:isolate;overflow:clip;background:radial-gradient(52% 44% at 50% -6%,rgba(0,71,187,.07),transparent 62%),var(--bg-light-2)}
+.ev-sec>.container{position:relative;z-index:1}
+/* ---- gallery: a full-bleed editorial rail, captions under the frame ---- */
+.ev-gal-sec{position:relative;overflow:clip;background:var(--bg-light-2)}
+.ev-gal-sec>.container{position:relative;z-index:1}
+.ev-rail{
+  position:relative;width:100vw;margin-left:calc(-50vw + 50%);
+  overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch;
+  cursor:grab;overscroll-behavior-x:contain;
+  -webkit-mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+  mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+}
+.ev-rail::-webkit-scrollbar{display:none}
+.ev-rail.dragging{cursor:grabbing}
+.ev-track{display:flex;gap:clamp(18px,2.4vw,32px);width:max-content;padding:6px max(var(--gutter),calc((100vw - var(--maxw)) / 2 + var(--gutter)))}
+.ev-frame{flex:0 0 clamp(240px,25vw,340px)}
+.ev-shot{
+  position:relative;display:block;overflow:hidden;border-radius:20px;aspect-ratio:4/5;
+  background:rgba(20,44,96,.05);
+  box-shadow:0 24px 50px -30px rgba(20,44,96,.36);
+  transition:transform .55s var(--ease),box-shadow .55s var(--ease);
+}
+.ev-shot img{
+  position:absolute;top:0;left:0;width:112%;height:100%;object-fit:cover;
+  transform:translate3d(calc(var(--px,.5) * -10.7%),0,0);
+  will-change:transform;
+}
+.ev-frame:hover .ev-shot{transform:translateY(-6px);box-shadow:0 34px 64px -30px rgba(20,44,96,.5)}
+.ev-cap{margin-top:18px}
+.ev-cap b{display:block;font-size:15.5px;letter-spacing:-.026em;line-height:1.34;color:var(--text)}
+.ev-cap em{display:block;margin-top:6px;font-style:normal;font-size:13px;line-height:1.6;color:var(--text-soft)}
+.ev-progress{display:block;width:min(320px,54vw);height:2px;margin:40px auto 0;border-radius:2px;background:var(--line);overflow:hidden}
+.ev-progress i{display:block;height:100%;width:22%;border-radius:2px;background:var(--blue);transform-origin:left;transition:transform .25s linear}
+.ev-hint{margin-top:16px;text-align:center;font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text-mute)}
+@media (max-width:720px){.ev-frame{flex:0 0 clamp(210px,62vw,270px)}
+.ev-cap b{font-size:14.5px}}
+  </style>
 
   <script type="application/ld+json">
 {
@@ -459,10 +502,10 @@
   <div class="pf-hero-bg" aria-hidden="true"></div>
   <div class="container pf-hero-in">
     <div class="pf-hero-copy">
-      <span class="eyebrow eyebrow-blue" data-reveal>Events</span>
-      <h1 class="pf-h1" id="pg-hero-title" data-reveal>Explore our<br> exciting events</h1>
-      <p class="pf-lead" data-reveal>Expos, summits and client evenings across the world &mdash; the places<br> you can meet the team rather than email it.</p>
-      <div class="pf-hact" data-reveal>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">Events</span>
+      <h1 class="pf-h1" id="pg-hero-title" data-aos="fade-up">Explore our<br> exciting events</h1>
+      <p class="pf-lead" data-aos="fade-up">Expos, summits and client evenings across the world &mdash; the places<br> you can meet the team rather than email it.</p>
+      <div class="pf-hact" data-aos="fade-up">
         <a href="#latest" class="btn btn-primary btn-lg magnetic">See what’s on <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       </div>
     </div>
@@ -474,28 +517,28 @@
   <span class="pf-aura a1" aria-hidden="true"></span>
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Where to find us</span>
-      <h2 class="h2" id="pg-grid-title" data-reveal>Three kinds of room,<br> three reasons to be in them</h2>
-      <p class="head-sub" data-reveal>The hall, the summit and the evening ask for different things. We turn up to all three.</p>
+      <span class="eyebrow" data-aos="fade-up">Where to find us</span>
+      <h2 class="h2" id="pg-grid-title" data-aos="fade-up">Three kinds of room,<br> three reasons to be in them</h2>
+      <p class="head-sub" data-aos="fade-up">The hall, the summit and the evening ask for different things. We turn up to all three.</p>
     </div>
 
-    <div class="pl-cards" data-reveal-stagger>
-      <article class="pl-card">
+    <div class="pl-cards">
+      <article class="pl-card" data-aos="fade-up">
         <span class="pl-card-hd"><span class="pl-card-ic"><svg><use href="#i-globe"/></svg></span><h3>Industry expos</h3></span>
         <p>The large trade shows — iFX EXPO, Forex Expo, Money Expo — where the whole industry is in one hall for two days and everyone is reachable.</p>
       </article>
-      <article class="pl-card">
+      <article class="pl-card" data-aos="fade-up" data-aos-delay="100">
         <span class="pl-card-hd"><span class="pl-card-ic"><svg><use href="#i-user-plus"/></svg></span><h3>Partner summits</h3></span>
         <p>Affiliate and IB summits, where the conversation is about how the partnership actually works rather than the pitch that opens it.</p>
       </article>
-      <article class="pl-card">
+      <article class="pl-card" data-aos="fade-up" data-aos-delay="200">
         <span class="pl-card-hd"><span class="pl-card-ic"><svg><use href="#i-headset"/></svg></span><h3>Client evenings</h3></span>
         <p>Smaller sessions in the cities we operate in, usually with an analyst on the desk and always with questions from the room.</p>
       </article>
     </div>
 
-    <div class="pl-sign glass" data-reveal>
-      <img src="../../assets/img/icon-shield-3d.png" alt="" width="400" height="490" loading="lazy" decoding="async">
+    <div class="pl-sign glass" data-aos="fade-up">
+      <img src="../../assets/img/icon-shield-3d.webp" alt="3D shield emblem for insured client funds" width="400" height="490" loading="lazy" decoding="async">
       <span class="pl-sign-tx">
         <b>The desk travels with us</b>
         <em>Whichever room it is, someone from research or the trading desk is in it &mdash; so the answers come from the people who do the work rather than from a brochure.</em>
@@ -509,36 +552,36 @@
 <section class="section ev-gal-sec" id="gallery" aria-labelledby="pg-gal-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Gallery</span>
-      <h2 class="h2" id="pg-gal-title" data-reveal>From the floor</h2>
-      <p class="head-sub" data-reveal>A year of rooms, in the order we walked into them.</p>
+      <span class="eyebrow" data-aos="fade-up">Gallery</span>
+      <h2 class="h2" id="pg-gal-title" data-aos="fade-up">From the floor</h2>
+      <p class="head-sub" data-aos="fade-up">A year of rooms, in the order we walked into them.</p>
     </div>
   </div>
 
   <div class="ev-rail" data-ev-rail aria-label="Event gallery">
-    <div class="ev-track" data-ev-track data-reveal-stagger>
-      <figure class="ev-frame">
-        <span class="ev-shot"><img src="../../assets/img/ev-gal-1.jpg" alt="iFX EXPO Dubai, on stage" width="1400" height="900" loading="lazy" decoding="async"></span>
+    <div class="ev-track" data-ev-track>
+      <figure class="ev-frame" data-aos="fade-up">
+        <span class="ev-shot"><img src="../../assets/img/ev-gal-1.webp" alt="iFX EXPO Dubai, on stage" width="1400" height="900" loading="lazy" decoding="async"></span>
         <figcaption class="ev-cap"><b>iFX EXPO Dubai, on stage</b><em>Setting out what changed underneath the rebrand, rather than on the logo.</em></figcaption>
       </figure>
-      <figure class="ev-frame">
-        <span class="ev-shot"><img src="../../assets/img/ev-gal-2.jpg" alt="Two days, one hall" width="1400" height="900" loading="lazy" decoding="async"></span>
+      <figure class="ev-frame" data-aos="fade-up" data-aos-delay="100">
+        <span class="ev-shot"><img src="../../assets/img/ev-gal-2.webp" alt="Two days, one hall" width="1400" height="900" loading="lazy" decoding="async"></span>
         <figcaption class="ev-cap"><b>Two days, one hall</b><em>Partners, clients and competitors all reachable in the same afternoon.</em></figcaption>
       </figure>
-      <figure class="ev-frame">
-        <span class="ev-shot"><img src="../../assets/img/ev-gal-3.jpg" alt="Evenings in the cities we operate in" width="1400" height="900" loading="lazy" decoding="async"></span>
+      <figure class="ev-frame" data-aos="fade-up" data-aos-delay="200">
+        <span class="ev-shot"><img src="../../assets/img/ev-gal-3.webp" alt="Evenings in the cities we operate in" width="1400" height="900" loading="lazy" decoding="async"></span>
         <figcaption class="ev-cap"><b>Evenings in the cities we operate in</b><em>Smaller rooms, an analyst from the desk, and the questions clients came with.</em></figcaption>
       </figure>
-      <figure class="ev-frame">
-        <span class="ev-shot"><img src="../../assets/img/ev-gal-4.jpg" alt="Panels and analyst sessions" width="1400" height="900" loading="lazy" decoding="async"></span>
+      <figure class="ev-frame" data-aos="fade-up" data-aos-delay="300">
+        <span class="ev-shot"><img src="../../assets/img/ev-gal-4.webp" alt="Panels and analyst sessions" width="1400" height="900" loading="lazy" decoding="async"></span>
         <figcaption class="ev-cap"><b>Panels and analyst sessions</b><em>Built around what the research desk is being asked, not what reads well on a slide.</em></figcaption>
       </figure>
-      <figure class="ev-frame">
-        <span class="ev-shot"><img src="../../assets/img/ev-gal-5.jpg" alt="Partner workshops" width="1400" height="900" loading="lazy" decoding="async"></span>
+      <figure class="ev-frame" data-aos="fade-up" data-aos-delay="400">
+        <span class="ev-shot"><img src="../../assets/img/ev-gal-5.webp" alt="Partner workshops" width="1400" height="900" loading="lazy" decoding="async"></span>
         <figcaption class="ev-cap"><b>Partner workshops</b><em>Working through the mechanics with the people who run it day to day.</em></figcaption>
       </figure>
-      <figure class="ev-frame">
-        <span class="ev-shot"><img src="../../assets/img/ev-gal-6.jpg" alt="Partner summits" width="1400" height="900" loading="lazy" decoding="async"></span>
+      <figure class="ev-frame" data-aos="fade-up" data-aos-delay="500">
+        <span class="ev-shot"><img src="../../assets/img/ev-gal-6.webp" alt="Partner summits" width="1400" height="900" loading="lazy" decoding="async"></span>
         <figcaption class="ev-cap"><b>Partner summits</b><em>Where the terms and the tooling get discussed properly.</em></figcaption>
       </figure>
     </div>
@@ -554,15 +597,15 @@
 <section class="section pg-list" id="latest" aria-labelledby="pg-list-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Latest</span>
-      <h2 class="h2" id="pg-list-title" data-reveal>The latest from us</h2>
+      <span class="eyebrow" data-aos="fade-up">Latest</span>
+      <h2 class="h2" id="pg-list-title" data-aos="fade-up">The latest from us</h2>
     </div>
-    <div class="pg-bar glass" data-reveal>
+    <div class="pg-bar glass" data-aos="fade-up">
       <div class="pg-cats" role="group" aria-label="Filter by category"><button class="ec-chip is-on" type="button" data-pg-cat="all" aria-pressed="true">All</button><button class="ec-chip" type="button" data-pg-cat="brand" aria-pressed="false">Brand</button><button class="ec-chip" type="button" data-pg-cat="client-evening" aria-pressed="false">Client evening</button><button class="ec-chip" type="button" data-pg-cat="expo" aria-pressed="false">Expo</button><button class="ec-chip" type="button" data-pg-cat="summit" aria-pressed="false">Summit</button></div>
       <p class="pg-status" data-pg-status role="status" aria-live="polite"></p>
     </div>
-    <div class="nr-grid" data-reveal-stagger>
-      <article class="nr-card glass" data-pg-item data-cat="expo" data-title="STARTRADER presents its post-rebrand vision at iFX EXPO Dubai 2026">
+    <div class="nr-grid">
+      <article class="nr-card glass" data-pg-item data-cat="expo" data-title="STARTRADER presents its post-rebrand vision at iFX EXPO Dubai 2026" data-aos="fade-up">
         <div class="nr-head">
           <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Expo</span>
           <time class="nr-date" datetime="2026-06-04">4 Jun 2026</time>
@@ -572,11 +615,11 @@
           <p class="nr-ex">The first outing for the new identity, and a chance to set out what changed underneath it rather than on the logo.</p>
         </div>
         <a class="nr-media" href="event.html" aria-label="Read: STARTRADER presents its post-rebrand vision at iFX EXPO Dubai 2026">
-          <img src="../../assets/img/company-hero.jpg" alt="STARTRADER presents its post-rebrand vision at iFX EXPO Dubai 2026" width="640" height="349" loading="lazy" decoding="async">
+          <img src="../../assets/img/company-hero.webp" alt="STARTRADER presents its post-rebrand vision at iFX EXPO Dubai 2026" width="640" height="349" loading="lazy" decoding="async">
           <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
-      <article class="nr-card glass" data-pg-item data-cat="summit" data-title="STARTRADER at Dubai Affiliate Summit 2025">
+      <article class="nr-card glass" data-pg-item data-cat="summit" data-title="STARTRADER at Dubai Affiliate Summit 2025" data-aos="fade-up" data-aos-delay="100">
         <div class="nr-head">
           <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Summit</span>
           <time class="nr-date" datetime="2026-05-16">16 May 2026</time>
@@ -590,7 +633,7 @@
           <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
-      <article class="nr-card glass" data-pg-item data-cat="expo" data-title="STARTRADER at Forex Expo Dubai 2025">
+      <article class="nr-card glass" data-pg-item data-cat="expo" data-title="STARTRADER at Forex Expo Dubai 2025" data-aos="fade-up" data-aos-delay="200">
         <div class="nr-head">
           <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Expo</span>
           <time class="nr-date" datetime="2026-04-08">8 Apr 2026</time>
@@ -604,7 +647,7 @@
           <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
-      <article class="nr-card glass" data-pg-item data-cat="brand" data-title="STARTRADER launches “STARTRADER-it”">
+      <article class="nr-card glass" data-pg-item data-cat="brand" data-title="STARTRADER launches “STARTRADER-it”" data-aos="fade-up" data-aos-delay="300">
         <div class="nr-head">
           <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Brand</span>
           <time class="nr-date" datetime="2026-03-01">1 Mar 2026</time>
@@ -618,7 +661,7 @@
           <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
-      <article class="nr-card glass" data-pg-item data-cat="client-evening" data-title="Analyst evening series across the Gulf">
+      <article class="nr-card glass" data-pg-item data-cat="client-evening" data-title="Analyst evening series across the Gulf" data-aos="fade-up" data-aos-delay="400">
         <div class="nr-head">
           <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Client evening</span>
           <time class="nr-date" datetime="2026-02-11">11 Feb 2026</time>
@@ -632,7 +675,7 @@
           <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
-      <article class="nr-card glass" data-pg-item data-cat="expo" data-title="Money Expo and the year ahead">
+      <article class="nr-card glass" data-pg-item data-cat="expo" data-title="Money Expo and the year ahead" data-aos="fade-up" data-aos-delay="500">
         <div class="nr-head">
           <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Expo</span>
           <time class="nr-date" datetime="2026-01-15">15 Jan 2026</time>
@@ -657,27 +700,27 @@
 <section class="section fx-more" aria-labelledby="pg-more-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Keep going</span>
-      <h2 class="h2" id="pg-more-title" data-reveal>Where to go next</h2>
+      <span class="eyebrow" data-aos="fade-up">Keep going</span>
+      <h2 class="h2" id="pg-more-title" data-aos="fade-up">Where to go next</h2>
     </div>
-    <div class="fx-more-grid" data-reveal-stagger>
-      <a class="fx-more-card" href="why-startrader.html">
-        <span class="fx-more-media"><img src="../../assets/img/company-hero.jpg" alt="Why STARTRADER — regulation and scale" width="640" height="349" loading="lazy" decoding="async"></span>
+    <div class="fx-more-grid">
+      <a class="fx-more-card" href="why-startrader.html" data-aos="fade-up">
+        <span class="fx-more-media"><img src="../../assets/img/company-hero.webp" alt="Why STARTRADER — regulation and scale" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Five regulators, segregated funds and the conditions behind the brand.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Why STARTRADER</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="sponsorship/index.html">
+      <a class="fx-more-card" href="sponsorship/index.html" data-aos="fade-up" data-aos-delay="100">
         <span class="fx-more-media"><img src="../../assets/img/company-1.webp" alt="STARTRADER sponsorships" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">The NBA, the PCCME, the UAE National Cricket Team and more.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Sponsorship</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="announcements.html">
+      <a class="fx-more-card" href="announcements.html" data-aos="fade-up" data-aos-delay="200">
         <span class="fx-more-media"><img src="../../assets/img/company-3.webp" alt="STARTRADER announcements" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Product, licensing and schedule notices as they are published.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Announcements</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="contact.html">
-        <span class="fx-more-media"><img src="../../assets/img/contact-hero.jpg" alt="Contact the STARTRADER team" width="640" height="349" loading="lazy" decoding="async"></span>
+      <a class="fx-more-card" href="contact.html" data-aos="fade-up" data-aos-delay="300">
+        <span class="fx-more-media"><img src="../../assets/img/contact-hero.webp" alt="Contact the STARTRADER team" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">A desk that answers around the clock in more than twenty languages.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Contact us</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
@@ -688,9 +731,9 @@
 <section class="cta-banner" aria-labelledby="pg-cta-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="pg-cta-title" data-reveal>Start trading with a<br>globally leading broker</h2>
-    <p data-reveal>Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
-    <div class="cta-actions" data-reveal>
+    <h2 id="pg-cta-title" data-aos="fade-up">Start trading with a<br>globally leading broker</h2>
+    <p data-aos="fade-up">Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
+    <div class="cta-actions" data-aos="fade-up">
       <a href="../../trading/getting-started/account-opening.html" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       <a href="../../trading/getting-started/account-opening.html" class="btn btn-ghost btn-lg">Try Free Demo</a>
     </div>
@@ -778,7 +821,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -812,6 +855,7 @@
 <script src="../../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../../assets/js/vendor/aos.min.js" defer></script>
 <script src="../../assets/js/main.js" defer></script>
 
 <!-- Company page: robust scroll reveals + hero parallax (self-contained, never leaves content hidden) -->

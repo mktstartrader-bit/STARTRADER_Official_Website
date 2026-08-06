@@ -16,14 +16,14 @@
   <meta property="og:title" content="Who is STARTRADER? | Help Centre | STARTRADER" />
   <meta property="og:description" content="STARTRADER is a globally recognised forex and CFD broker giving traders and partners access to global markets in a flexible, secure and regulated environment." />
   <meta property="og:url" content="https://www.startrader.com/company/about/help-center/who-is-startrader.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/platform-hero.jpg" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/platform-hero.webp" />
   <meta property="og:image:alt" content="Who is STARTRADER? — STARTRADER" />
   <meta property="og:locale" content="en_US" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Who is STARTRADER? | Help Centre | STARTRADER" />
   <meta name="twitter:description" content="STARTRADER is a globally recognised forex and CFD broker giving traders and partners access to global markets in a flexible, secure and regulated environment." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/platform-hero.jpg" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/platform-hero.webp" />
 
   <link rel="icon" href="../../../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../../../favicon.svg" />
@@ -32,7 +32,31 @@
   <link rel="preload" href="../../../assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" as="image" href="../../../assets/img/platform-hero.webp" />
   <link rel="stylesheet" href="../../../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../../../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../../../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ---- Help article ---- */
+.hc-article{background:#fff}
+.hc-article-in{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(30px,5vw,72px);align-items:start}
+.hc-toc{position:sticky;top:calc(var(--chrome-h) + 24px);display:flex;flex-direction:column;gap:4px;width:220px}
+.hc-toc b{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--text-mute);margin-bottom:8px}
+.hc-toc a{font-size:13.5px;color:var(--text-soft);padding:8px 14px;border-radius:10px;border-left:2px solid var(--line);transition:color .25s,background .25s,border-color .25s}
+.hc-toc a:hover{color:var(--blue);background:rgba(0,71,187,.05);border-left-color:var(--blue)}
+.hc-body{min-width:0;max-width:76ch}
+.hc-body .h2{font-size:clamp(22px,2.4vw,30px);margin-top:38px}
+.hc-body .h2:first-child{margin-top:0}
+.hc-body>p{margin-top:16px;font-size:15px;line-height:1.78;color:var(--text-soft)}
+.hc-values{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:24px}
+.hc-note{margin-top:30px;padding:20px 22px;border-radius:16px;background:var(--bg-light);border:1px solid var(--line);font-size:14px!important;color:var(--text)!important}
+.hc-disc{margin-top:16px;font-size:12.5px!important;line-height:1.65!important;color:var(--text-mute)!important}
+/* ---- Responsive ---- */
+@media (max-width:1080px){.hc-article-in{grid-template-columns:1fr}
+.hc-toc{position:static;width:auto;flex-direction:row;flex-wrap:wrap;gap:8px}
+.hc-toc b{width:100%;margin-bottom:2px}
+.hc-toc a{border-left:0;border:1px solid var(--line);border-radius:70px}}
+@media (max-width:720px){.hc-values{grid-template-columns:1fr}}
+  </style>
 
   <script type="application/ld+json">
 {
@@ -407,13 +431,13 @@
   <div class="pf-hero-bg" aria-hidden="true"></div>
   <div class="container pf-hero-in">
     <div class="pf-hero-copy">
-      <span class="eyebrow eyebrow-blue" data-reveal>Help Centre</span>
-      <h1 class="pf-h1" id="pg-hero-title" data-reveal>Who is<br> STARTRADER?</h1>
-      <p class="pf-lead" data-reveal>A globally recognised forex and CFD broker, built to give traders and<br> partners access to global markets in a secure, regulated environment.</p>
-      <div class="pf-hact" data-reveal>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">Help Centre</span>
+      <h1 class="pf-h1" id="pg-hero-title" data-aos="fade-up">Who is<br> STARTRADER?</h1>
+      <p class="pf-lead" data-aos="fade-up">A globally recognised forex and CFD broker, built to give traders and<br> partners access to global markets in a secure, regulated environment.</p>
+      <div class="pf-hact" data-aos="fade-up">
         <a href="index.html" class="btn btn-primary btn-lg magnetic">Back to Help Centre <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       </div>
-      <nav class="pf-subnav" aria-label="On this page" data-reveal><a href="#who">Overview</a><a href="#values">Values</a></nav>
+      <nav class="pf-subnav" aria-label="On this page" data-aos="fade-up"><a href="#who">Overview</a><a href="#values">Values</a></nav>
     </div>
   </div>
 </section>
@@ -429,48 +453,48 @@
     </nav>
 
     <article class="hc-body">
-      <h2 id="who" class="h2" data-reveal>Who is STARTRADER?</h2>
-      <p data-reveal>STARTRADER is a globally recognised forex and CFD broker, dedicated to empowering traders and partners by providing access to global financial markets in a flexible and secure environment.</p>
-      <p data-reveal>The brand represents a network of regulated entities across five jurisdictions. On registration you are assigned to the entity that corresponds to your location, and that entity&rsquo;s regulator governs your account.</p>
+      <h2 id="who" class="h2" data-aos="fade-up">Who is STARTRADER?</h2>
+      <p data-aos="fade-up">STARTRADER is a globally recognised forex and CFD broker, dedicated to empowering traders and partners by providing access to global financial markets in a flexible and secure environment.</p>
+      <p data-aos="fade-up">The brand represents a network of regulated entities across five jurisdictions. On registration you are assigned to the entity that corresponds to your location, and that entity&rsquo;s regulator governs your account.</p>
 
-      <h2 id="vision" class="h2" data-reveal>Our vision and mission</h2>
-      <p data-reveal>Our vision is a market that is genuinely open &mdash; where the quality of your access is not decided by the size of your account. The mission that follows from it is narrower and more practical: institutional conditions, transparent costs, and education that assumes you are capable of understanding the risk you are taking.</p>
-      <p data-reveal>That is why spreads, execution speed and the terms attached to every promotion are published rather than negotiated, and why the risk warnings on this site are written to be read.</p>
+      <h2 id="vision" class="h2" data-aos="fade-up">Our vision and mission</h2>
+      <p data-aos="fade-up">Our vision is a market that is genuinely open &mdash; where the quality of your access is not decided by the size of your account. The mission that follows from it is narrower and more practical: institutional conditions, transparent costs, and education that assumes you are capable of understanding the risk you are taking.</p>
+      <p data-aos="fade-up">That is why spreads, execution speed and the terms attached to every promotion are published rather than negotiated, and why the risk warnings on this site are written to be read.</p>
 
-      <h2 id="values" class="h2" data-reveal>Our core values</h2>
-      <p data-reveal>Four values give the company its name, and they are the same four that guide which partnerships we take on.</p>
-      <div class="pf-grid hc-values" data-reveal-stagger>
-      <article class="pf-card glass">
+      <h2 id="values" class="h2" data-aos="fade-up">Our core values</h2>
+      <p data-aos="fade-up">Four values give the company its name, and they are the same four that guide which partnerships we take on.</p>
+      <div class="pf-grid hc-values">
+      <article class="pf-card glass" data-aos="fade-up">
         <span class="pf-card-ic"><svg><use href="#i-shield"/></svg></span>
         <h3>Strength</h3>
         <p>We help you navigate market trends with confidence.</p>
       </article>
-      <article class="pf-card glass">
+      <article class="pf-card glass" data-aos="fade-up" data-aos-delay="100">
         <span class="pf-card-ic"><svg><use href="#i-check"/></svg></span>
         <h3>Trust</h3>
         <p>We build transparent processes and long-term partnerships.</p>
       </article>
-      <article class="pf-card glass">
+      <article class="pf-card glass" data-aos="fade-up" data-aos-delay="200">
         <span class="pf-card-ic"><svg><use href="#i-star"/></svg></span>
         <h3>Achievement</h3>
         <p>We support clients in achieving outstanding results.</p>
       </article>
-      <article class="pf-card glass">
+      <article class="pf-card glass" data-aos="fade-up" data-aos-delay="300">
         <span class="pf-card-ic"><svg><use href="#i-gauge"/></svg></span>
         <h3>Resilience</h3>
         <p>Overcome market fluctuations and challenges with determination.</p>
       </article>
       </div>
 
-      <p class="hc-note" data-reveal>STARTRADER is committed to providing a reliable and cutting-edge trading experience, helping traders work towards financial independence in the global markets.</p>
-      <p class="hc-disc" data-reveal><b>Disclaimer:</b> CFDs are complex financial instruments and carry a high risk of losing money rapidly due to leverage. You should ensure you fully understand the risks involved and carefully consider whether you can afford to take the high risk of losing your money before trading.</p>
+      <p class="hc-note" data-aos="fade-up">STARTRADER is committed to providing a reliable and cutting-edge trading experience, helping traders work towards financial independence in the global markets.</p>
+      <p class="hc-disc" data-aos="fade-up"><b>Disclaimer:</b> CFDs are complex financial instruments and carry a high risk of losing money rapidly due to leverage. You should ensure you fully understand the risks involved and carefully consider whether you can afford to take the high risk of losing your money before trading.</p>
     </article>
   </div>
 </section>
 
 <section class="section hc-assist" id="assist" aria-labelledby="hc-a2-title">
   <div class="container">
-    <div class="hc-assist-card" data-reveal>
+    <div class="hc-assist-card" data-aos="fade-up">
       <span class="hc-assist-aura" aria-hidden="true"></span>
       <div class="hc-assist-tx">
         <span class="eyebrow eyebrow-blue">Still stuck?</span>
@@ -488,27 +512,27 @@
 <section class="section fx-more" aria-labelledby="pg-more-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Keep going</span>
-      <h2 class="h2" id="pg-more-title" data-reveal>Where to go next</h2>
+      <span class="eyebrow" data-aos="fade-up">Keep going</span>
+      <h2 class="h2" id="pg-more-title" data-aos="fade-up">Where to go next</h2>
     </div>
-    <div class="fx-more-grid" data-reveal-stagger>
-      <a class="fx-more-card" href="../contact.html">
-        <span class="fx-more-media"><img src="../../../assets/img/contact-hero.jpg" alt="Contact the STARTRADER support desk" width="640" height="349" loading="lazy" decoding="async"></span>
+    <div class="fx-more-grid">
+      <a class="fx-more-card" href="../contact.html" data-aos="fade-up">
+        <span class="fx-more-media"><img src="../../../assets/img/contact-hero.webp" alt="Contact the STARTRADER support desk" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">A desk that answers around the clock in more than twenty languages.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Contact us</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="../../../education/learn/glossary/index.html">
+      <a class="fx-more-card" href="../../../education/learn/glossary/index.html" data-aos="fade-up" data-aos-delay="100">
         <span class="fx-more-media"><img src="../../../assets/img/learn-viz.webp" alt="STARTRADER trading glossary" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Plain-English definitions of every trading term you will meet.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Glossary</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="../../../education/learn/knowledge.html">
+      <a class="fx-more-card" href="../../../education/learn/knowledge.html" data-aos="fade-up" data-aos-delay="200">
         <span class="fx-more-media"><img src="../../../assets/img/learn-cta.webp" alt="STARTRADER Knowledge Centre" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Guides, videos and courses from your first trade to a tested strategy.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Knowledge Centre</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="../../corporate/regulation.html">
-        <span class="fx-more-media"><img src="../../../assets/img/company-hero.jpg" alt="STARTRADER regulation and licences" width="640" height="349" loading="lazy" decoding="async"></span>
+      <a class="fx-more-card" href="../../corporate/regulation.html" data-aos="fade-up" data-aos-delay="300">
+        <span class="fx-more-media"><img src="../../../assets/img/company-hero.webp" alt="STARTRADER regulation and licences" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Five regulators, segregated client funds and the entity you are assigned to.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Regulation</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
@@ -519,9 +543,9 @@
 <section class="cta-banner" aria-labelledby="pg-cta-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="pg-cta-title" data-reveal>Start trading with a<br>globally leading broker</h2>
-    <p data-reveal>Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
-    <div class="cta-actions" data-reveal>
+    <h2 id="pg-cta-title" data-aos="fade-up">Start trading with a<br>globally leading broker</h2>
+    <p data-aos="fade-up">Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
+    <div class="cta-actions" data-aos="fade-up">
       <a href="../../../trading/getting-started/account-opening.html" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       <a href="../../../trading/getting-started/account-opening.html" class="btn btn-ghost btn-lg">Try Free Demo</a>
     </div>
@@ -609,7 +633,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../../../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../../../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -643,6 +667,7 @@
 <script src="../../../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../../../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../../../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../../../assets/js/vendor/aos.min.js" defer></script>
 <script src="../../../assets/js/main.js" defer></script>
 
 <!-- Company page: robust scroll reveals + hero parallax (self-contained, never leaves content hidden) -->

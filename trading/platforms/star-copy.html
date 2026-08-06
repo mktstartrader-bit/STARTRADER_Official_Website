@@ -16,14 +16,14 @@
   <meta property="og:title" content="STAR Copy | Copy Top Traders on Web and App | STARTRADER" />
   <meta property="og:description" content="STAR Copy connects copiers with elite STAR Masters — mirror their trades in real time from the web platform or the app, with profit sharing on both sides." />
   <meta property="og:url" content="https://www.startrader.com/trading/platforms/star-copy.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/platform-hero.jpg" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/platform-hero.webp" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="STAR Copy | Copy Top Traders on Web and App | STARTRADER" />
   <meta name="twitter:description" content="STAR Copy connects copiers with elite STAR Masters — mirror their trades in real time from the web platform or the app, with profit sharing on both sides." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/platform-hero.jpg" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/platform-hero.webp" />
 
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../../favicon.svg" />
@@ -32,7 +32,161 @@
   <link rel="preload" href="../../assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" as="image" href="../../assets/img/platform-hero.webp" />
   <link rel="stylesheet" href="../../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../../assets/css/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="../../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ---------- Header / nav ---------- */
+.drop{
+  position:absolute;top:calc(100% + 10px);left:0;min-width:210px;
+  background:rgba(12,16,28,.96);backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:8px;
+  display:flex;flex-direction:column;gap:2px;
+  opacity:0;visibility:hidden;transform:translateY(8px);
+  transition:opacity .28s var(--ease),transform .28s var(--ease),visibility .28s;
+  box-shadow:0 24px 50px -20px rgba(0,0,0,.7);
+}
+.nav-item.has-drop:hover .drop,.nav-item.has-drop:focus-within .drop{opacity:1;visibility:visible;transform:translateY(0)}
+.drop a{padding:10px 13px;border-radius:9px;color:#c7cddb;font-size:14px;transition:background .2s,color .2s}
+.drop a:hover{background:rgba(255,255,255,.07);color:#fff}
+/* =================================================================
+   STAR COPY
+   shares the copy-trading language — glass cards, the sand accent for
+   the master side, the same pill switch — with its own section shapes
+   ================================================================= */
+.sc-ben{position:relative;isolation:isolate;overflow:clip;background:radial-gradient(52% 44% at 8% 0%,rgba(0,71,187,.08),transparent 62%),var(--bg-light-2)}
+.sc-ben>.container{position:relative;z-index:1}
+/* ---- benefits: one expanding rail, so only the open panel spends space ---- */
+.sc-fan{display:flex;gap:14px;height:372px}
+.sc-panel{
+  position:relative;flex:0 0 96px;min-width:96px;overflow:hidden;border-radius:24px;
+  background:linear-gradient(180deg,rgba(0,71,187,.09),rgba(255,255,255,.62) 48%);
+  transition:flex-grow .62s var(--ease),flex-basis .62s var(--ease),min-width .62s var(--ease),
+             box-shadow .42s var(--ease),border-color .3s;
+}
+.sc-panel:nth-child(even){background:linear-gradient(180deg,rgba(223,197,174,.5),rgba(255,255,255,.62) 50%)}
+.sc-panel.is-on{flex:1 1 0;min-width:0;border-color:rgba(0,71,187,.28);box-shadow:0 28px 52px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff}
+.sc-panel.is-on:nth-child(even){border-color:rgba(138,100,64,.34)}
+.sc-panel-hit{position:absolute;inset:0;z-index:2;width:100%;font-size:0;color:transparent;padding:0}
+.sc-panel-hit:focus-visible{outline:2px solid var(--blue);outline-offset:-4px;border-radius:24px}
+.sc-panel-n{
+  position:absolute;top:24px;left:50%;transform:translateX(-50%);
+  font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--blue);
+  transition:left .55s var(--ease),transform .55s var(--ease);
+}
+.sc-panel:nth-child(even) .sc-panel-n{color:#8a6440}
+.sc-panel.is-on .sc-panel-n{left:28px;transform:none}
+.sc-panel-vt{
+  position:absolute;bottom:26px;left:50%;transform:translateX(-50%) rotate(180deg);
+  writing-mode:vertical-rl;white-space:nowrap;
+  font-size:15px;font-weight:700;letter-spacing:-.02em;color:var(--text);
+  transition:opacity .3s;
+}
+.sc-panel.is-on .sc-panel-vt{opacity:0}
+.sc-panel-in{
+  position:absolute;top:58px;left:28px;right:28px;bottom:30px;min-width:266px;
+  display:flex;flex-direction:column;justify-content:flex-end;gap:11px;
+  opacity:0;transform:translateY(12px);
+  transition:opacity .5s .14s var(--ease),transform .5s .14s var(--ease);
+}
+.sc-panel.is-on .sc-panel-in{opacity:1;transform:none}
+/* the icon takes the right of the open panel so the copy is not marooned in it */
+.sc-panel-ico{position:absolute;right:2px;top:42%;transform:translateY(-50%);width:min(38%,166px);height:auto;filter:drop-shadow(0 20px 26px rgba(20,44,96,.24))}
+.sc-panel-in b{max-width:26ch;font-size:clamp(19px,1.9vw,23px);letter-spacing:-.03em;line-height:1.2;color:var(--text)}
+.sc-panel-in em{max-width:46ch;font-style:normal;font-size:13.5px;line-height:1.68;color:var(--text-soft)}
+/* the dwell bar is the clock — pausing the animation pauses the whole rail */
+.sc-panel-bar{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(20,44,96,.07);opacity:0;transition:opacity .3s}
+.sc-panel.is-on .sc-panel-bar{opacity:1}
+.sc-panel-bar i{display:block;height:100%;transform:scaleX(0);transform-origin:left;background:var(--blue)}
+.sc-panel:nth-child(even) .sc-panel-bar i{background:#8a6440}
+@media (prefers-reduced-motion:no-preference){.sc-panel.is-on .sc-panel-bar i{animation:scDwell 6.5s linear forwards}}
+.sc-fan:hover .sc-panel.is-on .sc-panel-bar i,.sc-fan:focus-within .sc-panel.is-on .sc-panel-bar i,.sc-fan:not(.is-live) .sc-panel.is-on .sc-panel-bar i{animation-play-state:paused}
+.sc-ben-note{margin-top:26px;text-align:center;font-size:11.5px;line-height:1.6;color:var(--text-mute)}
+/* ---- the two roles: the shared htrade stepper, switched by role ---- */
+/* the store links get their own band under the stepper rather than being
+   tucked under a button — they read as a step, not an afterthought */
+.sc-getapp{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;
+  margin-top:24px;padding:24px 28px;border-radius:24px;
+  background:linear-gradient(110deg,rgba(0,71,187,.075),rgba(255,255,255,.66) 54%);
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
+}
+.sc-getapp:hover{transform:translateY(-4px);border-color:rgba(0,71,187,.28);box-shadow:0 28px 52px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff}
+.sc-getapp-tx{display:flex;flex-direction:column;gap:6px;min-width:0}
+.sc-getapp-tx b{font-size:17px;letter-spacing:-.028em;color:var(--text)}
+.sc-getapp-tx em{font-style:normal;font-size:13.5px;line-height:1.6;color:var(--text-soft)}
+.sc-getapp-btns{display:flex;flex-wrap:wrap;gap:12px}
+.sc-app{
+  display:inline-flex;align-items:center;gap:13px;padding:11px 22px 11px 17px;border-radius:15px;
+  background:var(--ink);border:1px solid var(--ink);color:#fff;
+  transition:transform .35s var(--ease),background .3s,box-shadow .35s var(--ease);
+}
+.sc-app:hover{transform:translateY(-3px);background:#182135;box-shadow:0 22px 38px -20px rgba(14,21,36,.66)}
+.sc-app-ic{width:22px;height:22px;flex:none}
+.sc-app>span{display:flex;flex-direction:column;line-height:1.16}
+.sc-app em{font-style:normal;font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.sc-app b{font-size:15px;font-weight:700;letter-spacing:-.02em;white-space:nowrap}
+/* ---- master board: the figures animate in once, on scroll ---- */
+.sc-strat{position:relative;overflow:clip;color:#fff;background:radial-gradient(66% 54% at 50% 0%,rgba(0,46,138,.32),transparent 62%),linear-gradient(180deg,#04060e,#070c1c 54%,#04060e)}
+.sc-strat .h2,.sc-strat .h2-light{color:#fff}
+.sc-strat .head-sub{color:#a9bcdb}
+.sc-strat>.container{position:relative;z-index:1}
+/* the board rides the same auto-scrolling rail as the copy-trading ranking */
+.sc-mv{
+  position:relative;flex:0 0 316px;display:flex;flex-direction:column;padding:24px 24px 20px;border-radius:22px;overflow:hidden;
+  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.022));
+  border:1px solid rgba(255,255,255,.1);
+  transition:transform .38s var(--ease),border-color .3s,background .3s,box-shadow .42s var(--ease);
+}
+.sc-mv:hover{transform:translateY(-4px);border-color:rgba(120,175,255,.42);background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.03));box-shadow:0 34px 62px -34px rgba(0,0,0,.85)}
+.sc-mv-hd{display:flex;align-items:center;gap:12px;min-width:0}
+.sc-mv-av{width:44px;height:44px;flex:none;border-radius:14px;display:grid;place-items:center;font-size:13px;font-weight:800;color:#bcd6ff;background:rgba(0,71,187,.36);border:1px solid rgba(120,175,255,.26)}
+.sc-mv-who{display:flex;flex-direction:column;gap:4px;min-width:0;flex:1}
+.sc-mv-who b{font-size:15.5px;letter-spacing:-.024em;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sc-stars{display:inline-flex;gap:3px}
+.sc-stars svg{width:12px;height:12px;color:rgba(255,255,255,.18)}
+.sc-stars svg.on{color:#e3b26a}
+.sc-mv-rank{flex:none;font-size:10.5px;font-weight:800;letter-spacing:.1em;color:#9fb8dd;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);padding:6px 10px;border-radius:70px}
+.sc-mv-ret{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-top:22px}
+.sc-mv-ret b{font-size:clamp(28px,3vw,34px);font-weight:800;letter-spacing:-.045em;line-height:1;color:#3fd9a8;font-variant-numeric:tabular-nums}
+.sc-mv-ret span{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#6f86ad}
+.sc-mv-spark{display:block;width:calc(100% + 48px);margin:14px -24px 0;height:52px}
+.sc-mv-line{
+  fill:none;stroke:#3fd9a8;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;
+  vector-effect:non-scaling-stroke;stroke-dasharray:1;stroke-dashoffset:1;
+  transition:stroke-dashoffset 1.6s .1s var(--ease);
+}
+.sc-mvs.is-seen .sc-mv-line{stroke-dashoffset:0}
+.sc-mv-meter{margin-top:18px}
+.sc-mv-meter-hd{display:flex;align-items:baseline;justify-content:space-between;gap:12px;font-size:11.5px;color:#8ea4c6}
+.sc-mv-meter-hd b{font-size:13.5px;font-weight:700;color:#e6edf8;font-variant-numeric:tabular-nums}
+.sc-mv-track{height:5px;margin-top:9px;border-radius:70px;background:rgba(255,255,255,.09);overflow:hidden}
+.sc-mv-track i{display:block;height:100%;width:0;border-radius:70px;background:linear-gradient(90deg,#0047bb,#5fa3ff);transition:width 1.4s .25s var(--ease)}
+.sc-mvs.is-seen .sc-mv-track i{width:var(--w,0%)}
+.sc-mv-foot{display:flex;align-items:center;gap:10px;margin-top:18px;padding-top:15px;border-top:1px solid rgba(255,255,255,.08);font-size:11.5px;color:#8ea4c6}
+.sc-mv-foot i{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.22)}
+.sc-mv-go{margin-left:auto;display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;color:#6fa8ff}
+.sc-mv-go svg{width:13px;height:13px;transition:transform .35s var(--ease)}
+.sc-mv:hover .sc-mv-go svg{transform:translate(2px,-2px)}
+.sc-strat-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:18px;margin-top:36px}
+.sc-strat-upd{font-size:11.5px;color:#7f92b3}
+.sc-strat-upd b{color:#c8d6ec;font-weight:700}
+.sc-strat-note{margin-top:22px;text-align:center;font-size:11.5px;line-height:1.6;color:#7f92b3}
+/* ---- Responsive ---- */
+@media (max-width:1000px){.sc-fan{display:grid;grid-template-columns:1fr;height:auto}
+.sc-panel,.sc-panel.is-on{flex:auto;min-width:0;padding:26px 24px;box-shadow:0 18px 40px -26px rgba(20,44,96,.32),inset 0 1px 0 rgba(255,255,255,.96)}
+.sc-panel-hit,.sc-panel-vt,.sc-panel-bar{display:none}
+.sc-panel-n,.sc-panel.is-on .sc-panel-n{position:static;left:auto;transform:none;display:block;margin-bottom:16px}
+.sc-panel-in,.sc-panel.is-on .sc-panel-in{position:static;min-width:0;opacity:1;transform:none}
+.sc-panel-ico{position:static;top:auto;right:auto;transform:none;width:84px;margin-bottom:6px}
+.sc-panel-in b,.sc-panel-in em{max-width:none}}
+@media (max-width:720px){.sc-ben .h2 br,.sc-strat .h2 br{display:none}
+.sc-getapp{padding:22px}
+.sc-getapp-btns{width:100%}
+.sc-app{flex:1 1 100%;justify-content:center}
+.sc-mv{flex:0 0 272px}}
+  </style>
 
   <script type="application/ld+json">
 {
@@ -463,10 +617,10 @@
   <div class="pf-hero-bg" aria-hidden="true"></div>
   <div class="container pf-hero-in">
     <div class="pf-hero-copy">
-      <span class="eyebrow eyebrow-blue" data-reveal>STAR Copy</span>
-      <h1 class="pf-h1" id="pf-hero-title" data-reveal>Copy top traders<br> across web and app</h1>
-      <p class="pf-lead" data-reveal>Connect with elite STAR Masters and mirror their trades in real time &mdash;<br> one account, one login, on whichever screen you have to hand.</p>
-      <div class="pf-hact" data-reveal>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">STAR Copy</span>
+      <h1 class="pf-h1" id="pf-hero-title" data-aos="fade-up">Copy top traders<br> across web and app</h1>
+      <p class="pf-lead" data-aos="fade-up">Connect with elite STAR Masters and mirror their trades in real time &mdash;<br> one account, one login, on whichever screen you have to hand.</p>
+      <div class="pf-hact" data-aos="fade-up">
         <a href="#strategies" class="btn btn-primary btn-lg magnetic">Copy now <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       </div>
     </div>
@@ -478,17 +632,17 @@
   <span class="pf-aura a1" aria-hidden="true"></span>
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Benefits of STAR Copy</span>
-      <h2 class="h2" id="sc-ben-title" data-reveal>Five things that decide<br> whether copying is worth it</h2>
-      <p class="head-sub" data-reveal>Open a panel to read what STAR Copy does about each one.</p>
+      <span class="eyebrow" data-aos="fade-up">Benefits of STAR Copy</span>
+      <h2 class="h2" id="sc-ben-title" data-aos="fade-up">Five things that decide<br> whether copying is worth it</h2>
+      <p class="head-sub" data-aos="fade-up">Open a panel to read what STAR Copy does about each one.</p>
     </div>
 
-    <div class="sc-fan" data-sc-fan data-reveal-stagger>
-      <article class="sc-panel glass is-on" data-sc-panel>
+    <div class="sc-fan" data-sc-fan>
+      <article class="sc-panel glass is-on" data-sc-panel data-aos="fade-up">
         <span class="sc-panel-n">01</span>
         <span class="sc-panel-vt" aria-hidden="true">Profit sharing</span>
         <div class="sc-panel-in">
-          <img class="sc-panel-ico" src="../../assets/img/icon-shield-3d.png" alt="" width="400" height="490" loading="lazy" decoding="async">
+          <img class="sc-panel-ico" src="../../assets/img/icon-shield-3d.webp" alt="3D shield emblem for insured client funds" width="400" height="490" loading="lazy" decoding="async">
           <b>Multi-level profit sharing</b>
           <em>Profit distributes across several levels, so the arrangement pays the copier, the master, and the agent who brought them together.</em>
         </div>
@@ -496,11 +650,11 @@
         <span class="sc-panel-bar" aria-hidden="true"><i></i></span>
       </article>
 
-      <article class="sc-panel glass" data-sc-panel>
+      <article class="sc-panel glass" data-sc-panel data-aos="fade-up" data-aos-delay="100">
         <span class="sc-panel-n">02</span>
         <span class="sc-panel-vt" aria-hidden="true">Premium leverage</span>
         <div class="sc-panel-in">
-          <img class="sc-panel-ico" src="../../assets/img/icon-shield-3d.png" alt="" width="400" height="490" loading="lazy" decoding="async">
+          <img class="sc-panel-ico" src="../../assets/img/icon-shield-3d.webp" alt="3D shield emblem for insured client funds" width="400" height="490" loading="lazy" decoding="async">
           <b>Leverage up to 1:1000</b>
           <em>Premium leverage on eligible accounts, so a modest balance can still hold a position worth copying. Subject to your account type and jurisdiction.</em>
         </div>
@@ -508,11 +662,11 @@
         <span class="sc-panel-bar" aria-hidden="true"><i></i></span>
       </article>
 
-      <article class="sc-panel glass" data-sc-panel>
+      <article class="sc-panel glass" data-sc-panel data-aos="fade-up" data-aos-delay="200">
         <span class="sc-panel-n">03</span>
         <span class="sc-panel-vt" aria-hidden="true">No limits</span>
         <div class="sc-panel-in">
-          <img class="sc-panel-ico" src="../../assets/img/icon-shield-3d.png" alt="" width="400" height="490" loading="lazy" decoding="async">
+          <img class="sc-panel-ico" src="../../assets/img/icon-shield-3d.webp" alt="3D shield emblem for insured client funds" width="400" height="490" loading="lazy" decoding="async">
           <b>No account or currency limits</b>
           <em>Copy across different account types and base currencies. Nothing new to open first, and nothing to convert by hand.</em>
         </div>
@@ -520,11 +674,11 @@
         <span class="sc-panel-bar" aria-hidden="true"><i></i></span>
       </article>
 
-      <article class="sc-panel glass" data-sc-panel>
+      <article class="sc-panel glass" data-sc-panel data-aos="fade-up" data-aos-delay="300">
         <span class="sc-panel-n">04</span>
         <span class="sc-panel-vt" aria-hidden="true">Web to mobile</span>
         <div class="sc-panel-in">
-          <img class="sc-panel-ico" src="../../assets/img/icon-shield-3d.png" alt="" width="400" height="490" loading="lazy" decoding="async">
+          <img class="sc-panel-ico" src="../../assets/img/icon-shield-3d.webp" alt="3D shield emblem for insured client funds" width="400" height="490" loading="lazy" decoding="async">
           <b>Seamless from desktop to mobile</b>
           <em>Start on the web platform and finish in the app. The same positions, the same controls, the same account behind both.</em>
         </div>
@@ -532,11 +686,11 @@
         <span class="sc-panel-bar" aria-hidden="true"><i></i></span>
       </article>
 
-      <article class="sc-panel glass" data-sc-panel>
+      <article class="sc-panel glass" data-sc-panel data-aos="fade-up" data-aos-delay="400">
         <span class="sc-panel-n">05</span>
         <span class="sc-panel-vt" aria-hidden="true">Privacy controls</span>
         <div class="sc-panel-in">
-          <img class="sc-panel-ico" src="../../assets/img/icon-shield-3d.png" alt="" width="400" height="490" loading="lazy" decoding="async">
+          <img class="sc-panel-ico" src="../../assets/img/icon-shield-3d.webp" alt="3D shield emblem for insured client funds" width="400" height="490" loading="lazy" decoding="async">
           <b>Privacy and verification</b>
           <em>Private strategy settings and follower approval controls, with shadow accounts available as a VIP feature.</em>
         </div>
@@ -545,7 +699,7 @@
       </article>
     </div>
 
-    <p class="sc-ben-note" data-reveal>Contact your account manager for details. Terms and conditions apply.</p>
+    <p class="sc-ben-note" data-aos="fade-up">Contact your account manager for details. Terms and conditions apply.</p>
   </div>
 </section>
 
@@ -553,7 +707,7 @@
 <section class="section htrade-sec sc-roles" id="journey" aria-labelledby="sc-roles-title">
   <div class="container">
     <div class="htrade">
-      <div class="htrade-intro" data-reveal>
+      <div class="htrade-intro" data-aos="fade-up">
         <h2 class="htrade-title" id="sc-roles-title">Two ways<br><span>into STAR Copy</span></h2>
         <p class="htrade-sub">Follow a master, or become one. The switch changes the route, not the account.</p>
 
@@ -609,7 +763,7 @@
       </div>
     </div>
 
-    <div class="sc-getapp glass" data-reveal>
+    <div class="sc-getapp glass" data-aos="fade-up">
       <span class="sc-getapp-tx">
         <b>Either route starts in the app</b>
         <em>STAR Copy runs on the web platform and on mobile, against the same account.</em>
@@ -632,12 +786,12 @@
 <section class="section ct-ben-sec" aria-labelledby="sc-key-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Side by side</span>
-      <h2 class="h2" id="sc-key-title" data-reveal>What each side actually gets</h2>
-      <p class="head-sub" data-reveal>Same feature, two different sets of reasons to run it.</p>
+      <span class="eyebrow" data-aos="fade-up">Side by side</span>
+      <h2 class="h2" id="sc-key-title" data-aos="fade-up">What each side actually gets</h2>
+      <p class="head-sub" data-aos="fade-up">Same feature, two different sets of reasons to run it.</p>
     </div>
-    <div class="ct-bens" data-reveal-stagger>
-      <article class="ct-bpanel glass">
+    <div class="ct-bens">
+      <article class="ct-bpanel glass" data-aos="fade-up">
         <header><span class="ct-ben-chip">For STAR Copiers</span><b>Follow without the screen time</b></header>
         <ul class="ct-brows">
           <li>
@@ -658,7 +812,7 @@
           </li>
         </ul>
       </article>
-      <article class="ct-bpanel ct-bpanel--alt glass">
+      <article class="ct-bpanel ct-bpanel--alt glass" data-aos="fade-up" data-aos-delay="100">
         <header><span class="ct-ben-chip alt">For STAR Masters</span><b>Earn on what you already do</b></header>
         <ul class="ct-brows">
           <li>
@@ -688,15 +842,15 @@
   <span class="sc-strat-aura" aria-hidden="true"></span>
   <div class="container">
     <div class="head center">
-      <span class="eyebrow eyebrow-blue" data-reveal>Master board</span>
-      <h2 class="h2 h2-light" id="sc-strat-title" data-reveal>Choose a winning strategy</h2>
-      <p class="head-sub" data-reveal>A snapshot of top-performing STAR Masters. Read the win rate and the star rating beside the return &mdash; the headline figure on its own tells you very little.</p>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">Master board</span>
+      <h2 class="h2 h2-light" id="sc-strat-title" data-aos="fade-up">Choose a winning strategy</h2>
+      <p class="head-sub" data-aos="fade-up">A snapshot of top-performing STAR Masters. Read the win rate and the star rating beside the return &mdash; the headline figure on its own tells you very little.</p>
     </div>
   </div>
 
-  <div class="ct-rail" aria-label="STAR Master ranking">
-    <div class="ct-track sc-mvs" data-sc-board data-sc-track>
-      <article class="sc-mv">
+  <div class="ct-rail swiper st-marquee" aria-label="STAR Master ranking" data-marquee-speed="48">
+    <div class="ct-track sc-mvs swiper-wrapper" data-sc-board data-sc-track>
+      <article class="sc-mv swiper-slide">
         <div class="sc-mv-hd">
           <span class="sc-mv-av">RD</span>
           <span class="sc-mv-who">
@@ -724,7 +878,7 @@
         </div>
       </article>
 
-      <article class="sc-mv">
+      <article class="sc-mv swiper-slide">
         <div class="sc-mv-hd">
           <span class="sc-mv-av">KE</span>
           <span class="sc-mv-who">
@@ -752,7 +906,7 @@
         </div>
       </article>
 
-      <article class="sc-mv">
+      <article class="sc-mv swiper-slide">
         <div class="sc-mv-hd">
           <span class="sc-mv-av">TK</span>
           <span class="sc-mv-who">
@@ -780,7 +934,7 @@
         </div>
       </article>
 
-      <article class="sc-mv">
+      <article class="sc-mv swiper-slide">
         <div class="sc-mv-hd">
           <span class="sc-mv-av">AV</span>
           <span class="sc-mv-who">
@@ -808,7 +962,7 @@
         </div>
       </article>
 
-      <article class="sc-mv">
+      <article class="sc-mv swiper-slide">
         <div class="sc-mv-hd">
           <span class="sc-mv-av">KM</span>
           <span class="sc-mv-who">
@@ -836,7 +990,7 @@
         </div>
       </article>
 
-      <article class="sc-mv">
+      <article class="sc-mv swiper-slide">
         <div class="sc-mv-hd">
           <span class="sc-mv-av">NO</span>
           <span class="sc-mv-who">
@@ -867,11 +1021,11 @@
   </div>
 
   <div class="container">
-    <div class="sc-strat-foot" data-reveal>
+    <div class="sc-strat-foot" data-aos="fade-up">
       <span class="sc-strat-upd">Last updated <b>31 July 2026</b></span>
       <a href="../getting-started/account-opening.html" class="btn btn-primary btn-lg magnetic">Copy now <svg class="ico"><use href="#i-arrow-right"/></svg></a>
     </div>
-    <p class="sc-strat-note" data-reveal>Past performance is not a guide to future results. Leveraged products can cost more than your initial deposit.</p>
+    <p class="sc-strat-note" data-aos="fade-up">Past performance is not a guide to future results. Leveraged products can cost more than your initial deposit.</p>
   </div>
 </section>
 
@@ -879,10 +1033,10 @@
 <section class="section faq-sec fx-faq" aria-labelledby="pf-faq-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>FAQ</span>
-      <h2 class="h2" id="pf-faq-title" data-reveal>Frequently asked questions</h2>
+      <span class="eyebrow" data-aos="fade-up">FAQ</span>
+      <h2 class="h2" id="pf-faq-title" data-aos="fade-up">Frequently asked questions</h2>
     </div>
-    <div class="faq-list" data-reveal>
+    <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
         <summary>What is STAR Copy?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a">STAR Copy is the copy trading feature on the STARTRADER web platform and app. It connects STAR Copiers with experienced STAR Masters, so a copier can mirror a strategy without running it by hand.</div>
@@ -927,26 +1081,26 @@
 <section class="section fx-more" aria-labelledby="pf-more-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Keep going</span>
-      <h2 class="h2" id="pf-more-title" data-reveal>Where to go next</h2>
+      <span class="eyebrow" data-aos="fade-up">Keep going</span>
+      <h2 class="h2" id="pf-more-title" data-aos="fade-up">Where to go next</h2>
     </div>
-    <div class="fx-more-grid" data-reveal-stagger>
-      <a class="fx-more-card" href="mt5.html">
+    <div class="fx-more-grid">
+      <a class="fx-more-card" href="mt5.html" data-aos="fade-up">
         <span class="fx-more-media"><img src="../../assets/img/platform-hero.webp" alt="MetaTrader 5 trading platform" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">The multi-asset terminal — 38 indicators, depth of market and full automation.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">MT5</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="mt4.html">
-        <span class="fx-more-media"><img src="../../assets/img/mt4Screenshot.png" alt="MetaTrader 4 trading platform" width="640" height="349" loading="lazy" decoding="async"></span>
+      <a class="fx-more-card" href="mt4.html" data-aos="fade-up" data-aos-delay="100">
+        <span class="fx-more-media"><img src="../../assets/img/mt4Screenshot.webp" alt="MetaTrader 4 trading platform" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">The retail standard for currencies, with the largest library of robots and indicators.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">MT4</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="trading-app.html">
+      <a class="fx-more-card" href="trading-app.html" data-aos="fade-up" data-aos-delay="200">
         <span class="fx-more-media"><img src="../../assets/img/app-hero-phone.webp" alt="STARTRADER mobile trading app" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">MT4 and MT5 in one app, with live pricing and full risk management.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Mobile app</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="copy-trade.html">
+      <a class="fx-more-card" href="copy-trade.html" data-aos="fade-up" data-aos-delay="300">
         <span class="fx-more-media"><img src="../../assets/img/learn-cta.webp" alt="Copy trading with STARTRADER" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Follow traders with a record you can inspect, and pay only on profit.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Copy trading</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
@@ -959,9 +1113,9 @@
 <section class="cta-banner" aria-labelledby="pf-cta-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="pf-cta-title" data-reveal>Start trading with a<br>globally leading broker</h2>
-    <p data-reveal>Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
-    <div class="cta-actions" data-reveal>
+    <h2 id="pf-cta-title" data-aos="fade-up">Start trading with a<br>globally leading broker</h2>
+    <p data-aos="fade-up">Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
+    <div class="cta-actions" data-aos="fade-up">
       <a href="../getting-started/account-opening.html" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       <a href="../getting-started/account-opening.html" class="btn btn-ghost btn-lg">Try Free Demo</a>
     </div>
@@ -1050,7 +1204,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -1084,6 +1238,8 @@
 <script src="../../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../../assets/js/vendor/swiper-bundle.min.js" defer></script>
+<script src="../../assets/js/vendor/aos.min.js" defer></script>
 <script src="../../assets/js/main.js" defer></script>
 </body>
 </html>

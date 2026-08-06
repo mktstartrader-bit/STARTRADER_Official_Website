@@ -16,14 +16,14 @@
   <meta property="og:title" content="UAE National Cricket Team | ICC Men’s T20 World Cup 2026 | STARTRADER" />
   <meta property="og:description" content="STARTRADER is the Official Partner of the UAE National Cricket Team for the ICC Men’s T20 World Cup 2026 — the fixtures, and why the partnership matters." />
   <meta property="og:url" content="https://www.startrader.com/company/about/sponsorship/icc.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/platform-hero.jpg" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/platform-hero.webp" />
   <meta property="og:image:alt" content="ICC Men’s T20 World Cup 2026 — STARTRADER" />
   <meta property="og:locale" content="en_US" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="UAE National Cricket Team | ICC Men’s T20 World Cup 2026 | STARTRADER" />
   <meta name="twitter:description" content="STARTRADER is the Official Partner of the UAE National Cricket Team for the ICC Men’s T20 World Cup 2026 — the fixtures, and why the partnership matters." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/platform-hero.jpg" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/platform-hero.webp" />
 
   <link rel="icon" href="../../../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../../../favicon.svg" />
@@ -32,7 +32,160 @@
   <link rel="preload" href="../../../assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" as="image" href="../../../assets/img/platform-hero.webp" />
   <link rel="stylesheet" href="../../../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../../../assets/css/aos.min.css" />
   <link rel="stylesheet" href="../../../assets/css/styles.css" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ---------------- banner ---------------- */
+/* a ball seam, two rows of stitches on a curve */
+.ck-seam{display:block;width:min(300px,60%);height:16px;margin:clamp(20px,2.4vw,30px) auto 0;overflow:visible}
+.ck-seam path{fill:none;stroke:var(--seam);stroke-width:1.6;stroke-dasharray:4 8;stroke-linecap:round;opacity:.5}
+.ck-seam path:nth-child(2){transform:translateY(4px);opacity:.28}
+/* ---------------- the schedule ---------------- */
+.ck-sched{position:relative;overflow:hidden;isolation:isolate;color:#fff;
+  background:linear-gradient(180deg,#04070f,#071026 54%,#04070f)}
+.ck-sched::before{
+  content:"";position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);z-index:-1;
+  width:min(1180px,120vw);aspect-ratio:1/1;border-radius:50%;
+  border:1px solid rgba(42,114,255,.16);
+  -webkit-mask:radial-gradient(closest-side,transparent 62%,#000 72%,#000 88%,transparent);
+  mask:radial-gradient(closest-side,transparent 62%,#000 72%,#000 88%,transparent);
+}
+.ck-sched>.container{position:relative;z-index:1}
+.ck-sched .ck-sub{color:#a9bcd8}
+.ck-fix-wrap{position:relative;margin-top:clamp(32px,4vw,50px);padding-left:clamp(0px,3vw,40px)}
+.ck-runup{
+  position:absolute;left:7px;top:8px;bottom:52px;width:2px;
+  background:repeating-linear-gradient(180deg,rgba(255,255,255,.15) 0 6px,transparent 6px 13px);
+}
+.ck-runup i{
+  position:absolute;left:0;right:0;top:0;height:0;
+  background:repeating-linear-gradient(180deg,var(--seam) 0 6px,transparent 6px 13px);
+}
+.ck-fixes{display:flex;flex-direction:column;gap:clamp(10px,1.3vw,14px)}
+.ck-fix{
+  position:relative;overflow:hidden;display:grid;
+  grid-template-columns:auto auto minmax(0,1fr) auto minmax(0,1fr) auto;
+  gap:clamp(12px,1.8vw,26px);align-items:center;
+  padding:clamp(14px,1.7vw,20px) clamp(16px,2vw,26px);border-radius:clamp(16px,1.7vw,20px);
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);
+  -webkit-backdrop-filter:blur(18px) saturate(1.2);backdrop-filter:blur(18px) saturate(1.2);
+  box-shadow:0 22px 48px -32px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.08);
+  transition:transform .42s var(--ease),border-color .32s,box-shadow .42s var(--ease),background .35s;
+}
+.ck-fix:hover{transform:translateX(6px);border-color:rgba(42,114,255,.55);
+  background:rgba(255,255,255,.08);box-shadow:0 30px 60px -30px rgba(0,71,187,.6)}
+.ck-fix::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:2px;
+  background:repeating-linear-gradient(90deg,var(--seam) 0 8px,transparent 8px 16px);
+  transform:scaleX(0);transform-origin:left;transition:transform .55s var(--ease);
+}
+.ck-fix:hover::after{transform:scaleX(1)}
+.ck-fix-no{
+  display:grid;place-items:center;width:38px;height:38px;border-radius:12px;flex:none;
+  font-size:11px;font-weight:800;letter-spacing:.04em;color:var(--acc-3);
+  background:linear-gradient(160deg,rgba(42,114,255,.24),rgba(0,71,187,.14));
+  border:1px solid rgba(42,114,255,.3);
+}
+.ck-fix-date{display:flex;flex-direction:column;gap:3px;min-width:52px;text-align:left}
+.ck-fix-date b{font-size:clamp(20px,2.2vw,27px);font-weight:800;letter-spacing:-.045em;line-height:1;
+  font-variant-numeric:tabular-nums;color:#fff}
+.ck-fix-date em{font-style:normal;font-size:9.5px;font-weight:800;letter-spacing:.15em;
+  text-transform:uppercase;color:#7d92b4}
+.ck-fix-team{display:flex;align-items:center;gap:12px;min-width:0}
+.ck-fix-team--away{flex-direction:row-reverse}
+.ck-fix-team b{font-size:clamp(13.5px,1.5vw,16px);font-weight:700;letter-spacing:-.026em;color:#eaf0fa;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ck-flag{
+  position:relative;flex:none;width:clamp(34px,3.4vw,44px);aspect-ratio:1/1;border-radius:50%;overflow:hidden;
+  background:#0b1018;
+  box-shadow:0 0 0 1px rgba(255,255,255,.24),0 8px 18px -10px rgba(0,0,0,.9);
+  transition:transform .4s var(--ease),box-shadow .4s;
+}
+.ck-flag img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.ck-fix:hover .ck-flag{transform:scale(1.08);box-shadow:0 0 0 1px rgba(42,114,255,.7),0 10px 22px -10px rgba(0,71,187,.9)}
+.ck-fix-vs{
+  display:grid;place-items:center;width:30px;height:30px;border-radius:50%;flex:none;
+  font-size:9.5px;font-weight:800;letter-spacing:.1em;color:#8ea4c6;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);
+}
+.ck-fix-meta{display:flex;flex-direction:column;align-items:flex-end;gap:6px;text-align:right;min-width:104px}
+.ck-chip{
+  display:inline-flex;align-items:center;gap:7px;padding:5px 11px;border-radius:70px;
+  font-size:9.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;
+  color:#cfe0ff;background:rgba(42,114,255,.14);border:1px solid rgba(42,114,255,.34);
+}
+.ck-fix-meta span:last-child{font-size:11.5px;color:#8ea4c6}
+.ck-fix--open{background:rgba(42,114,255,.1);border-color:rgba(42,114,255,.32)}
+.ck-fix--open .ck-fix-no{color:#fff;background:linear-gradient(160deg,var(--acc-2),var(--acc))}
+.ck-sched-foot{
+  margin-top:clamp(22px,2.6vw,32px);font-size:11.5px;color:#7d92b4;text-align:center;
+}
+/* ---------------- why it matters ---------------- */
+.ck-why{position:relative;overflow:hidden;background:linear-gradient(180deg,#fff,#f2f6fc)}
+.ck-why .ck-eyebrow{color:var(--acc)}
+.ck-why .ck-h2{color:var(--ink)}
+.ck-why .ck-sub{color:#4d5c74}
+.ck-whys{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.9vw,24px);margin-top:clamp(28px,3.4vw,42px)}
+.ck-why-card{
+  position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;
+  padding:clamp(22px,2.5vw,32px);border-radius:var(--radius-lg);
+  background:rgba(255,255,255,.7);
+  -webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);
+  border:1px solid rgba(255,255,255,.88);
+  box-shadow:0 12px 30px -20px rgba(20,44,96,.26),inset 0 1px 0 rgba(255,255,255,.9);
+  transition:transform .4s var(--ease),box-shadow .4s,border-color .3s;
+}
+.ck-why-card::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--acc-2),var(--acc));
+  transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease);
+}
+.ck-why-card:hover{transform:translateY(-6px);border-color:rgba(0,71,187,.42);
+  box-shadow:0 28px 52px -26px rgba(0,71,187,.34)}
+.ck-why-card:hover::before{transform:scaleX(1)}
+.ck-why-ic{
+  position:relative;display:grid;place-items:center;width:58px;height:58px;border-radius:18px;
+  background:linear-gradient(158deg,var(--acc-2),var(--acc));
+  box-shadow:0 16px 30px -16px rgba(0,71,187,.7),inset 0 1px 0 rgba(255,255,255,.34);
+  transition:transform .45s var(--ease),box-shadow .45s;
+}
+.ck-why-ic svg{width:25px;height:25px;color:#fff}
+.ck-why-card:hover .ck-why-ic{transform:translateY(-3px) rotate(-6deg);
+  box-shadow:0 22px 38px -16px rgba(0,71,187,.85),inset 0 1px 0 rgba(255,255,255,.4)}
+.ck-why-card h3{margin-top:20px;font-size:clamp(17px,1.9vw,21px);font-weight:700;letter-spacing:-.03em;color:var(--ink)}
+.ck-why-card p{margin-top:11px;font-size:13.8px;line-height:1.7;color:#5a6a83}
+/* the sign-off band, where the 3D mark earns its place */
+.ck-sign{
+  position:relative;overflow:hidden;display:grid;
+  grid-template-columns:auto minmax(0,1fr) auto;gap:clamp(18px,2.6vw,36px);align-items:center;
+  margin-top:clamp(20px,2.4vw,30px);padding:clamp(20px,2.4vw,30px) clamp(22px,2.8vw,38px);
+  border-radius:var(--radius-lg);color:#fff;
+  background:linear-gradient(120deg,#04143a,#0a2a6e 54%,#061a48);
+  box-shadow:0 34px 70px -40px rgba(0,71,187,.8),inset 0 1px 0 rgba(255,255,255,.12);
+}
+.ck-sign::before{
+  content:"";position:absolute;right:-8%;top:-40%;width:52%;height:180%;pointer-events:none;
+  background:radial-gradient(closest-side,rgba(42,114,255,.5),transparent 72%);
+}
+.ck-sign img{position:relative;width:clamp(74px,8vw,104px);height:auto;display:block;
+  filter:drop-shadow(0 18px 30px rgba(0,0,0,.6))}
+.ck-sign-tx{position:relative;display:flex;flex-direction:column;gap:8px}
+.ck-sign-tx b{font-size:clamp(17px,2vw,23px);font-weight:800;letter-spacing:-.034em}
+.ck-sign-tx em{font-style:normal;font-size:13.5px;line-height:1.68;color:#b9c9e4}
+/* ---------------- responsive ---------------- */
+@media (max-width:1080px){.ck-whys{grid-template-columns:1fr}
+.ck-sign{grid-template-columns:auto minmax(0,1fr);gap:20px}
+.ck-sign .btn,.ck-sign .ck-btn{grid-column:1 / -1;justify-self:start}}
+@media (max-width:860px){.ck-fix{grid-template-columns:auto auto minmax(0,1fr);row-gap:14px}
+.ck-fix-vs{display:none}
+.ck-fix-team--away{flex-direction:row;grid-column:3}
+.ck-fix-meta{grid-column:1 / -1;align-items:flex-start;text-align:left}}
+@media (max-width:720px){.ck-fix{grid-template-columns:auto minmax(0,1fr);text-align:left}
+.ck-fix-no{display:none}
+.ck-fix-wrap{padding-left:0}
+.ck-runup{display:none}}
+  </style>
 
   <script type="application/ld+json">
 {
@@ -122,7 +275,7 @@
 }
   </script>
 
-  <link rel="preload" as="image" href="../../../assets/img/icc-banner.jpg" fetchpriority="high">
+  <link rel="preload" as="image" href="../../../assets/img/icc-banner.webp" fetchpriority="high">
 
 </head>
 <body class="ckt">
@@ -422,16 +575,16 @@
   <span class="ck-hero-bg" data-ck-bg aria-hidden="true"></span>
   <div class="container ck-hero-in">
     <div class="ck-hero-copy">
-      <span class="ck-badge" data-reveal>
-        <img src="../../../assets/img/icc-uae-cricket.png" alt="UAE Cricket">
+      <span class="ck-badge" data-aos="fade-up">
+        <img src="../../../assets/img/icc-uae-cricket.webp" alt="UAE Cricket">
         <span>Official Partner</span>
       </span>
-      <h1 class="ck-h1" id="pg-hero-title" data-reveal>
+      <h1 class="ck-h1" id="pg-hero-title" data-aos="fade-up">
         <span>Bigger partnership.</span>
         <span class="hollow">Greater presence.</span>
       </h1>
-      <p class="ck-lead" data-reveal>STARTRADER is the Official Partner of the UAE National Cricket Team for the ICC Men&rsquo;s T20 World Cup 2026 &mdash; a partnership built on the habits both the crease and the market reward.</p>
-      <div class="ck-hact" data-reveal>
+      <p class="ck-lead" data-aos="fade-up">STARTRADER is the Official Partner of the UAE National Cricket Team for the ICC Men&rsquo;s T20 World Cup 2026 &mdash; a partnership built on the habits both the crease and the market reward.</p>
+      <div class="ck-hact" data-aos="fade-up">
         <a class="ck-btn" href="../../../trading/getting-started/account-opening.html">Open live account <svg><use href="#i-arrow-right"/></svg></a>
       </div>
     </div>
@@ -441,12 +594,12 @@
 <!-- ============ THE BENTO ============ -->
 <section class="section ck-bento-sec" id="strength" aria-labelledby="pg-bento-title">
   <div class="container">
-    <span class="ck-eyebrow" data-reveal>Strength in every move</span>
-    <h2 class="ck-h2" id="pg-bento-title" data-reveal>Strength in every move.<br> Progress in every win.</h2>
-    <p class="ck-sub" data-reveal>In cricket and in trading, strength drives every strategic move, and progress turns action into meaningful development.</p>
+    <span class="ck-eyebrow" data-aos="fade-up">Strength in every move</span>
+    <h2 class="ck-h2" id="pg-bento-title" data-aos="fade-up">Strength in every move.<br> Progress in every win.</h2>
+    <p class="ck-sub" data-aos="fade-up">In cricket and in trading, strength drives every strategic move, and progress turns action into meaningful development.</p>
 
     <div class="ck-bento">
-      <article class="ck-cell ck-cell--lead" data-reveal>
+      <article class="ck-cell ck-cell--lead" data-aos="fade-up">
         <span class="ck-lead-bg" aria-hidden="true"></span>
         <div class="ck-lead-card">
           <span class="ck-lead-hd">
@@ -475,25 +628,25 @@
           </span>
         </div>
       </article>
-      <article class="ck-cell" data-reveal>
+      <article class="ck-cell" data-aos="fade-up">
         <span class="ck-cell-n">01<i></i></span>
         <h3>Strength</h3>
         <p>A strong foundation supports performance and enables progress, and progress refines skills.</p>
         <span class="ck-viz ck-viz--stumps" aria-hidden="true"><i></i><i></i><i></i></span>
       </article>
-      <article class="ck-cell" data-reveal>
+      <article class="ck-cell" data-aos="fade-up">
         <span class="ck-cell-n">02<i></i></span>
         <h3>Skill</h3>
         <p>Skill helps turn strength into purposeful action and supports focus in strategic decision-making.</p>
         <span class="ck-viz ck-viz--arc" aria-hidden="true"><svg viewBox="0 0 240 92" preserveAspectRatio="none"><path class="track" d="M6 84 C 62 -2, 178 -2, 234 84"/><path class="draw" d="M6 84 C 62 -2, 178 -2, 234 84"/></svg><b class="ck-ball"></b></span>
       </article>
-      <article class="ck-cell" data-reveal>
+      <article class="ck-cell" data-aos="fade-up">
         <span class="ck-cell-n">03<i></i></span>
         <h3>Strategy</h3>
         <p>With a strategy in hand, you can navigate your path both on the field and in your personal financial learning.</p>
         <span class="ck-viz ck-viz--field" aria-hidden="true"><span class="ring"></span><i style="--a:0deg"></i><i style="--a:52deg"></i><i style="--a:104deg"></i><i style="--a:155deg"></i><i style="--a:205deg"></i><i style="--a:256deg"></i><i style="--a:308deg"></i></span>
       </article>
-      <article class="ck-cell" data-reveal>
+      <article class="ck-cell" data-aos="fade-up">
         <span class="ck-cell-n">04<i></i></span>
         <h3>Success</h3>
         <p>Success reflects the alignment of strength, skill and strategy. It shows progress built through consistent performance.</p>
@@ -506,71 +659,71 @@
 <!-- ============ THE SCHEDULE ============ -->
 <section class="section ck-sched" id="fixtures" aria-labelledby="pg-sched-title">
   <div class="container">
-    <span class="ck-eyebrow" data-reveal>ICC Men&rsquo;s T20 World Cup 2026</span>
-    <h2 class="ck-h2" id="pg-sched-title" data-reveal>UAE National Team<br> schedule</h2>
-    <p class="ck-sub" data-reveal>Key match dates, opponents and venues for the group stage.</p>
+    <span class="ck-eyebrow" data-aos="fade-up">ICC Men&rsquo;s T20 World Cup 2026</span>
+    <h2 class="ck-h2" id="pg-sched-title" data-aos="fade-up">UAE National Team<br> schedule</h2>
+    <p class="ck-sub" data-aos="fade-up">Key match dates, opponents and venues for the group stage.</p>
 
     <div class="ck-fix-wrap" data-ck-run>
       <span class="ck-runup" aria-hidden="true"><i data-ck-runfill></i></span>
       <div class="ck-fixes">
-        <article class="ck-fix ck-fix--open" data-reveal>
+        <article class="ck-fix ck-fix--open" data-aos="fade-up">
           <span class="ck-fix-no">M1</span>
           <span class="ck-fix-date"><b>10</b><em><time datetime="2026-02-10">Feb 26</time></em></span>
           <span class="ck-fix-team">
-            <span class="ck-flag"><img src="../../../assets/img/icc-uae.svg" alt="" width="60" height="60" loading="lazy" decoding="async"></span>
+            <span class="ck-flag"><img src="../../../assets/img/icc-uae.svg" alt="United Arab Emirates cricket team crest" width="60" height="60" loading="lazy" decoding="async"></span>
             <b>United Arab Emirates</b>
           </span>
           <span class="ck-fix-vs" aria-hidden="true">VS</span>
           <span class="ck-fix-team ck-fix-team--away">
-            <span class="ck-flag"><img src="../../../assets/img/icc-new-zealand.svg" alt="" width="60" height="60" loading="lazy" decoding="async"></span>
+            <span class="ck-flag"><img src="../../../assets/img/icc-new-zealand.svg" alt="New Zealand cricket team crest" width="60" height="60" loading="lazy" decoding="async"></span>
             <b>New Zealand</b>
           </span>
           <span class="ck-fix-meta"><span class="ck-chip">Opening match</span><span>Chennai, IN</span></span>
         </article>
-        <article class="ck-fix" data-reveal>
+        <article class="ck-fix" data-aos="fade-up">
           <span class="ck-fix-no">M2</span>
           <span class="ck-fix-date"><b>13</b><em><time datetime="2026-02-13">Feb 26</time></em></span>
           <span class="ck-fix-team">
-            <span class="ck-flag"><img src="../../../assets/img/icc-uae.svg" alt="" width="60" height="60" loading="lazy" decoding="async"></span>
+            <span class="ck-flag"><img src="../../../assets/img/icc-uae.svg" alt="United Arab Emirates cricket team crest" width="60" height="60" loading="lazy" decoding="async"></span>
             <b>United Arab Emirates</b>
           </span>
           <span class="ck-fix-vs" aria-hidden="true">VS</span>
           <span class="ck-fix-team ck-fix-team--away">
-            <span class="ck-flag"><img src="../../../assets/img/icc-canada.svg" alt="" width="60" height="60" loading="lazy" decoding="async"></span>
+            <span class="ck-flag"><img src="../../../assets/img/icc-canada.svg" alt="Canada cricket team crest" width="60" height="60" loading="lazy" decoding="async"></span>
             <b>Canada</b>
           </span>
           <span class="ck-fix-meta"><span class="ck-chip">Group stage</span><span>Delhi, IN</span></span>
         </article>
-        <article class="ck-fix" data-reveal>
+        <article class="ck-fix" data-aos="fade-up">
           <span class="ck-fix-no">M3</span>
           <span class="ck-fix-date"><b>16</b><em><time datetime="2026-02-16">Feb 26</time></em></span>
           <span class="ck-fix-team">
-            <span class="ck-flag"><img src="../../../assets/img/icc-uae.svg" alt="" width="60" height="60" loading="lazy" decoding="async"></span>
+            <span class="ck-flag"><img src="../../../assets/img/icc-uae.svg" alt="United Arab Emirates cricket team crest" width="60" height="60" loading="lazy" decoding="async"></span>
             <b>United Arab Emirates</b>
           </span>
           <span class="ck-fix-vs" aria-hidden="true">VS</span>
           <span class="ck-fix-team ck-fix-team--away">
-            <span class="ck-flag"><img src="../../../assets/img/icc-afghanistan.svg" alt="" width="60" height="60" loading="lazy" decoding="async"></span>
+            <span class="ck-flag"><img src="../../../assets/img/icc-afghanistan.svg" alt="Afghanistan cricket team crest" width="60" height="60" loading="lazy" decoding="async"></span>
             <b>Afghanistan</b>
           </span>
           <span class="ck-fix-meta"><span class="ck-chip">Group stage</span><span>Delhi, IN</span></span>
         </article>
-        <article class="ck-fix" data-reveal>
+        <article class="ck-fix" data-aos="fade-up">
           <span class="ck-fix-no">M4</span>
           <span class="ck-fix-date"><b>18</b><em><time datetime="2026-02-18">Feb 26</time></em></span>
           <span class="ck-fix-team">
-            <span class="ck-flag"><img src="../../../assets/img/icc-uae.svg" alt="" width="60" height="60" loading="lazy" decoding="async"></span>
+            <span class="ck-flag"><img src="../../../assets/img/icc-uae.svg" alt="United Arab Emirates cricket team crest" width="60" height="60" loading="lazy" decoding="async"></span>
             <b>United Arab Emirates</b>
           </span>
           <span class="ck-fix-vs" aria-hidden="true">VS</span>
           <span class="ck-fix-team ck-fix-team--away">
-            <span class="ck-flag"><img src="../../../assets/img/icc-south-africa.svg" alt="" width="60" height="60" loading="lazy" decoding="async"></span>
+            <span class="ck-flag"><img src="../../../assets/img/icc-south-africa.svg" alt="South Africa cricket team crest" width="60" height="60" loading="lazy" decoding="async"></span>
             <b>South Africa</b>
           </span>
           <span class="ck-fix-meta"><span class="ck-chip">Group stage</span><span>Delhi, IN</span></span>
         </article>
       </div>
-      <p class="ck-sched-foot" data-reveal>Dates and venues as published by the ICC. Start times are confirmed closer to each match.</p>
+      <p class="ck-sched-foot" data-aos="fade-up">Dates and venues as published by the ICC. Start times are confirmed closer to each match.</p>
     </div>
   </div>
 </section>
@@ -578,31 +731,31 @@
 <!-- ============ WHY IT MATTERS ============ -->
 <section class="section ck-why" id="why" aria-labelledby="pg-why-title">
   <div class="container">
-    <span class="ck-eyebrow" data-reveal>Strategic direction</span>
-    <h2 class="ck-h2" id="pg-why-title" data-reveal>Why this partnership matters</h2>
-    <p class="ck-sub" data-reveal>Three reasons it sits with the rest of what STARTRADER backs.</p>
+    <span class="ck-eyebrow" data-aos="fade-up">Strategic direction</span>
+    <h2 class="ck-h2" id="pg-why-title" data-aos="fade-up">Why this partnership matters</h2>
+    <p class="ck-sub" data-aos="fade-up">Three reasons it sits with the rest of what STARTRADER backs.</p>
     <svg class="ck-seam" viewBox="0 0 400 16" preserveAspectRatio="none" aria-hidden="true"><path d="M0 10 C 90 2, 310 2, 400 10"/><path d="M0 10 C 90 2, 310 2, 400 10"/></svg>
 
     <div class="ck-whys">
-      <article class="ck-why-card" data-reveal>
+      <article class="ck-why-card" data-aos="fade-up">
         <span class="ck-why-ic"><svg><use href="#i-globe"/></svg></span>
         <h3>Strengthening regional connections</h3>
         <p>It supports our approach to building meaningful relationships across the regions.</p>
       </article>
-      <article class="ck-why-card" data-reveal>
+      <article class="ck-why-card" data-aos="fade-up">
         <span class="ck-why-ic"><svg><use href="#i-gauge"/></svg></span>
         <h3>Aligning with shared principles</h3>
         <p>Cricket&rsquo;s discipline, performance and continuous development mirror the standards we maintain in the financial markets.</p>
       </article>
-      <article class="ck-why-card" data-reveal>
+      <article class="ck-why-card" data-aos="fade-up">
         <span class="ck-why-ic"><svg><use href="#i-shield"/></svg></span>
         <h3>Reinforcing core foundations</h3>
         <p>The partnership highlights values central to STARTRADER: trust, strength, and a commitment to progress and the spirit of winning.</p>
       </article>
     </div>
 
-    <div class="ck-sign" data-reveal>
-      <img src="../../../assets/img/icon-shield-3d.png" alt="" width="400" height="490" loading="lazy" decoding="async">
+    <div class="ck-sign" data-aos="fade-up">
+      <img src="../../../assets/img/icon-shield-3d.webp" alt="3D shield emblem for insured client funds" width="400" height="490" loading="lazy" decoding="async">
       <span class="ck-sign-tx">
         <b>The partnership changes reach, not conditions</b>
         <em>Spreads, commissions and execution are set by your account type and by the market. A sponsorship does not touch them &mdash; it only widens who hears about us.</em>
@@ -616,14 +769,14 @@
 <section class="section ck-ceo" aria-labelledby="pg-ceo-title">
   <div class="container">
     <div class="ck-ceo-in">
-      <span class="ck-eyebrow" id="pg-ceo-title" data-reveal>A word from our CEO</span>
+      <span class="ck-eyebrow" id="pg-ceo-title" data-aos="fade-up">A word from our CEO</span>
       <span class="ck-ceo-mark" aria-hidden="true">&ldquo;</span>
-      <blockquote data-reveal>Cricket has a way of reminding us what commitment, trust and growth can achieve. Continuing this partnership reflects our belief in long-term support for communities, and in the human spirit driving both the game and the markets.</blockquote>
-      <div class="ck-ceo-by" data-reveal>
-        <span class="ck-ceo-face"><img src="../../../assets/img/icc-ceo.jpg" alt="" width="900" height="708" loading="lazy" decoding="async"></span>
+      <blockquote data-aos="fade-up">Cricket has a way of reminding us what commitment, trust and growth can achieve. Continuing this partnership reflects our belief in long-term support for communities, and in the human spirit driving both the game and the markets.</blockquote>
+      <div class="ck-ceo-by" data-aos="fade-up">
+        <span class="ck-ceo-face"><img src="../../../assets/img/icc-ceo.webp" alt="STARTRADER Chief Executive Officer portrait" width="900" height="708" loading="lazy" decoding="async"></span>
         <span class="ck-ceo-who"><b>Peter Karsten</b><em>Chief Executive Officer</em></span>
       </div>
-      <div class="ck-ceo-rules" data-reveal>
+      <div class="ck-ceo-rules" data-aos="fade-up">
         <i></i><span>Official Partner</span><i></i>
       </div>
     </div>
@@ -634,10 +787,10 @@
 <section class="section faq-sec fx-faq" aria-labelledby="pg-faq-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>FAQ</span>
-      <h2 class="h2" id="pg-faq-title" data-reveal>About the partnership</h2>
+      <span class="eyebrow" data-aos="fade-up">FAQ</span>
+      <h2 class="h2" id="pg-faq-title" data-aos="fade-up">About the partnership</h2>
     </div>
-    <div class="faq-list" data-reveal>
+    <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
         <summary>What does the partnership involve?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a">STARTRADER is the Official Partner of the UAE National Cricket Team for the ICC Men&rsquo;s T20 World Cup 2026. It is a brand partnership: it does not change account conditions, spreads or execution.</div>
@@ -661,27 +814,27 @@
 <section class="section fx-more" aria-labelledby="pg-more-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-reveal>Keep going</span>
-      <h2 class="h2" id="pg-more-title" data-reveal>Where to go next</h2>
+      <span class="eyebrow" data-aos="fade-up">Keep going</span>
+      <h2 class="h2" id="pg-more-title" data-aos="fade-up">Where to go next</h2>
     </div>
-    <div class="fx-more-grid" data-reveal-stagger>
-      <a class="fx-more-card" href="../why-startrader.html">
-        <span class="fx-more-media"><img src="../../../assets/img/company-hero.jpg" alt="Why STARTRADER — regulation and scale" width="640" height="349" loading="lazy" decoding="async"></span>
+    <div class="fx-more-grid">
+      <a class="fx-more-card" href="../why-startrader.html" data-aos="fade-up">
+        <span class="fx-more-media"><img src="../../../assets/img/company-hero.webp" alt="Why STARTRADER — regulation and scale" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Five regulators, segregated funds and the conditions behind the brand.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Why STARTRADER</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="../csr.html">
+      <a class="fx-more-card" href="../csr.html" data-aos="fade-up" data-aos-delay="100">
         <span class="fx-more-media"><img src="../../../assets/img/company-2.webp" alt="STARCARES community programmes" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Courts rebuilt, families reached and students backed through STARCARES.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">CSR</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="../events.html">
+      <a class="fx-more-card" href="../events.html" data-aos="fade-up" data-aos-delay="200">
         <span class="fx-more-media"><img src="../../../assets/img/company-1.webp" alt="STARTRADER events and expos" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Expos, summits and client evenings where you can meet the team.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Events</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
-      <a class="fx-more-card" href="../achievements.html">
-        <span class="fx-more-media"><img src="../../../assets/img/stat-awards.png" alt="STARTRADER awards and achievements" width="640" height="349" loading="lazy" decoding="async"></span>
+      <a class="fx-more-card" href="../achievements.html" data-aos="fade-up" data-aos-delay="300">
+        <span class="fx-more-media"><img src="../../../assets/img/stat-awards.webp" alt="STARTRADER awards and achievements" width="640" height="349" loading="lazy" decoding="async"></span>
         <p class="fx-more-desc">Awards tied to execution, service and cost rather than marketing spend.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Achievements</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
@@ -692,9 +845,9 @@
 <section class="cta-banner" aria-labelledby="pg-cta-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="pg-cta-title" data-reveal>Start trading with a<br>globally leading broker</h2>
-    <p data-reveal>Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
-    <div class="cta-actions" data-reveal>
+    <h2 id="pg-cta-title" data-aos="fade-up">Start trading with a<br>globally leading broker</h2>
+    <p data-aos="fade-up">Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
+    <div class="cta-actions" data-aos="fade-up">
       <a href="../../../trading/getting-started/account-opening.html" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       <a href="../../../trading/getting-started/account-opening.html" class="btn btn-ghost btn-lg">Try Free Demo</a>
     </div>
@@ -782,7 +935,7 @@
 
 <!-- ============ CHAT WIDGET ============ -->
 <button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
-  <img class="chat-fab-ico" src="../../../assets/img/chat-icon.svg" alt="" width="27" height="27">
+  <img class="chat-fab-ico" src="../../../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
   <div class="chat-head">
@@ -816,6 +969,7 @@
 <script src="../../../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../../../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../../../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../../../assets/js/vendor/aos.min.js" defer></script>
 <script src="../../../assets/js/main.js" defer></script>
 
 <!-- Company page: robust scroll reveals + hero parallax (self-contained, never leaves content hidden) -->
