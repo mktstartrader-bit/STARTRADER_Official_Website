@@ -3610,3 +3610,48 @@ html:not(.js-aos) [data-aos]{opacity:1 !important;transform:none !important;tran
 @media (max-width:520px){
 .ma-cats{width:100%}
 }
+
+/* =============================================================
+   EVENTS FAMILY (appended batch — expo page)
+   Shared by events.html and expo.html: the gallery rail and the
+   tinted section shells.
+   ============================================================= */
+/* =================================================================
+   EVENTS — a stage gallery, and the shared kinds/band pattern
+   ================================================================= */
+.ev-sec{position:relative;isolation:isolate;overflow:clip;background:radial-gradient(52% 44% at 50% -6%,rgba(0,71,187,.07),transparent 62%),var(--bg-light-2)}
+.ev-sec>.container{position:relative;z-index:1}
+/* ---- gallery: a full-bleed editorial rail, captions under the frame ---- */
+.ev-gal-sec{position:relative;overflow:clip;background:var(--bg-light-2)}
+.ev-gal-sec>.container{position:relative;z-index:1}
+.ev-rail{
+  position:relative;width:100vw;margin-left:calc(-50vw + 50%);
+  overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch;
+  cursor:grab;overscroll-behavior-x:contain;
+  -webkit-mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+  mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+}
+.ev-rail::-webkit-scrollbar{display:none}
+.ev-rail.dragging{cursor:grabbing}
+.ev-track{display:flex;gap:clamp(18px,2.4vw,32px);width:max-content;padding:6px max(var(--gutter),calc((100vw - var(--maxw)) / 2 + var(--gutter)))}
+.ev-frame{flex:0 0 clamp(240px,25vw,340px)}
+.ev-shot{
+  position:relative;display:block;overflow:hidden;border-radius:20px;aspect-ratio:4/5;
+  background:rgba(20,44,96,.05);
+  box-shadow:0 24px 50px -30px rgba(20,44,96,.36);
+  transition:transform .55s var(--ease),box-shadow .55s var(--ease);
+}
+.ev-shot img{
+  position:absolute;top:0;left:0;width:112%;height:100%;object-fit:cover;
+  transform:translate3d(calc(var(--px,.5) * -10.7%),0,0);
+  will-change:transform;
+}
+.ev-frame:hover .ev-shot{transform:translateY(-6px);box-shadow:0 34px 64px -30px rgba(20,44,96,.5)}
+.ev-cap{margin-top:18px}
+.ev-cap b{display:block;font-size:15.5px;letter-spacing:-.026em;line-height:1.34;color:var(--text)}
+.ev-cap em{display:block;margin-top:6px;font-style:normal;font-size:13px;line-height:1.6;color:var(--text-soft)}
+.ev-progress{display:block;width:min(320px,54vw);height:2px;margin:40px auto 0;border-radius:2px;background:var(--line);overflow:hidden}
+.ev-progress i{display:block;height:100%;width:22%;border-radius:2px;background:var(--blue);transform-origin:left;transition:transform .25s linear}
+.ev-hint{margin-top:16px;text-align:center;font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text-mute)}
+@media (max-width:720px){.ev-frame{flex:0 0 clamp(210px,62vw,270px)}
+.ev-cap b{font-size:14.5px}}
