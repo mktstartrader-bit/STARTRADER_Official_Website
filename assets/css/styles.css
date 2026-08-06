@@ -3744,3 +3744,49 @@ html:not(.js-aos) [data-aos]{opacity:1 !important;transform:none !important;tran
 @media (prefers-reduced-motion:no-preference){
 .kc-play::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid rgba(255,255,255,.7);animation:kcPing 2.8s ease-out infinite}
 }
+
+/* =============================================================
+   NEWS SPOTLIGHT CARDS (appended batch — spotlight page)
+   The dark glass appearance cards, shared by the news room and
+   the full spotlight archive.
+   ============================================================= */
+.nr-meta--light{color:#93a4c2}
+.nr-spot{
+  position:relative;color:#fff;
+  background:
+    radial-gradient(80% 60% at 12% 0%,rgba(0,44,130,.42),transparent 62%),
+    linear-gradient(180deg,#04060e,#080b16 58%,#04060e);
+}
+.nr-spot-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.nr-spot-all{color:#9fc0ff}
+.nr-spot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.nr-spot-card{
+  display:flex;flex-direction:column;overflow:hidden;border-radius:22px;text-decoration:none;
+  background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.024));
+  -webkit-backdrop-filter:blur(20px) saturate(1.4);backdrop-filter:blur(20px) saturate(1.4);
+  border:1px solid rgba(255,255,255,.11);box-shadow:inset 0 1px 0 rgba(255,255,255,.07);
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .3s;
+}
+.nr-spot-card:hover{transform:translateY(-4px);border-color:rgba(90,150,255,.42);box-shadow:0 30px 64px -34px rgba(0,60,180,.6)}
+.nr-spot-media{position:relative;display:block;aspect-ratio:16/10;overflow:hidden}
+.nr-spot-media img{width:100%;height:100%;object-fit:cover;transition:transform .55s var(--ease)}
+.nr-spot-card:hover .nr-spot-media img{transform:scale(1.05)}
+.nr-spot-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,8,18,.2) 0%,rgba(4,8,18,.05) 40%,rgba(4,8,18,.62) 100%)}
+.nr-spot-play{
+  position:absolute;inset:0;margin:auto;z-index:2;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(255,255,255,.94);color:var(--blue);box-shadow:0 12px 30px -8px rgba(0,0,0,.55);
+  transition:transform .35s var(--ease),background .3s;
+}
+.nr-spot-play svg{width:19px;height:19px;margin-left:3px}
+.nr-spot-card:hover .nr-spot-play{transform:scale(1.08);background:#fff}
+.nr-spot-body{display:flex;flex-direction:column;padding:18px 20px 22px}
+.nr-spot-body h3{margin-top:10px;font-size:17px;letter-spacing:-.02em;line-height:1.3;color:#fff;transition:color .25s}
+.nr-spot-card:hover .nr-spot-body h3{color:#bcd6ff}
+.nr-spot-body p{margin-top:9px;font-size:13.5px;line-height:1.6;color:#a7b6d0}
+@media (max-width:1080px){
+.nr-spot-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:720px){
+.nr-spot-grid{grid-template-columns:1fr;max-width:420px;margin-inline:auto}
+.nr-spot-head{align-items:flex-start}
+}
