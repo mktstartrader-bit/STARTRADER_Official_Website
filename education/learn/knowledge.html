@@ -57,25 +57,15 @@
 .kc-empty h3{font-size:19px;letter-spacing:-.022em}
 .kc-empty p{margin:10px 0 20px;font-size:14px;color:var(--text-soft);line-height:1.6}
 /* =================== KNOWLEDGE CENTRE =================== */
-.kc-hero{
-  position:relative;overflow:hidden;isolation:isolate;color:#fff;
-  margin-top:calc(-1 * var(--nav-h));
-  display:flex;align-items:center;
-  min-height:min(660px,calc(100vh - var(--topbar-h,44px)));
-  padding:calc(var(--nav-h) + 56px) 0 60px;
-  background:
-    radial-gradient(72% 68% at 50% 6%,rgba(0,71,187,.36),transparent 62%),
-    radial-gradient(48% 52% at 8% 96%,rgba(22,233,215,.11),transparent 62%),
-    linear-gradient(180deg,#04060e 0%,#070c1c 48%,#04060e 100%);
-}
-.kc-hero-aura{position:absolute;z-index:-1;border-radius:50%;pointer-events:none;filter:blur(96px)}
-.kc-hero-aura.a1{width:600px;height:600px;top:-20%;right:2%;background:radial-gradient(circle,rgba(0,110,255,.34),transparent 68%)}
-.kc-hero-aura.a2{width:440px;height:440px;bottom:-22%;right:-6%;background:radial-gradient(circle,rgba(22,233,215,.16),transparent 68%)}
-.kc-hero-in{position:relative;z-index:1;width:100%}
-.kc-hero-copy{max-width:720px;min-width:0}
-.kc-h1{font-size:clamp(32px,5vw,58px);font-weight:800;letter-spacing:-.038em;line-height:1.06;margin-top:16px}
-.kc-lead{margin-top:20px;max-width:64ch;font-size:clamp(15px,1.5vw,17px);line-height:1.68;color:#c2cfe4}
-.kc-hact{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
+
+
+
+
+
+
+
+
+
 /* ---- learning path ---- */
 .kc-path{
   position:relative;overflow:clip;color:#fff;
@@ -127,8 +117,7 @@
 .kc-node-go{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding-top:22px;font-size:13px;font-weight:700;color:#fff}
 .kc-node-go svg{width:15px;height:15px;transition:transform .35s var(--ease)}
 .kc-node:hover .kc-node-go svg{transform:translateX(5px)}
-/* ---- guides ---- */
-.kc-guides{background:#fff}
+/* ---- guides (section shell now global) ---- */
 .kc-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;padding:14px;border-radius:20px;margin-bottom:22px}
 .kc-levels{position:relative;display:flex;gap:4px;padding:4px;border-radius:70px;background:rgba(20,44,96,.06)}
 .kc-levels-ind{position:absolute;top:4px;bottom:4px;left:0;width:0;border-radius:70px;background:var(--blue);box-shadow:0 12px 26px -14px rgba(0,71,187,.75);transition:transform .42s var(--ease),width .42s var(--ease)}
@@ -226,15 +215,14 @@
 .kc-fmt-line{position:absolute;left:0;right:0;bottom:0;height:3px;background:linear-gradient(90deg,var(--blue),#4d94ff);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
 .kc-fmt:hover .kc-fmt-line{transform:scaleX(1)}
 /* ---- Responsive ---- */
-@media (max-width:1080px){.kc-hero-copy{max-width:none}
+@media (max-width:1080px){
 .kc-road{grid-template-columns:1fr;gap:18px}
 .kc-theatre{grid-template-columns:1fr}
 .kc-fmt-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:860px){.kc-hero{min-height:auto;padding:calc(var(--nav-h) + 44px) 0 56px}
+@media (max-width:860px){
 .kc-bar{padding:12px}
 .kc-bar{justify-content:flex-start}}
-@media (max-width:720px){.kc-hact .btn{width:100%;justify-content:center}
-.kc-h1 br,.kc-lead br,.kc-path .head-sub br{display:none}
+@media (max-width:720px){
 .kc-fmt-grid{grid-template-columns:1fr}
 .kc-pl-thumb{width:70px}
 .kc-levels{width:100%}
@@ -454,6 +442,7 @@
             <div class="mega-col">
               <span class="mega-head">Learn</span>
               <a href="knowledge.html" class="mega-item active" aria-current="page"><span class="mega-ico"><svg><use href="#i-box"/></svg></span><span class="mega-txt"><b>Knowledge Center</b></span></a>
+              <a href="knowledge-basics.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-doc"/></svg></span><span class="mega-txt"><b>Knowledge Basics</b></span></a>
               <a href="../learn/glossary/index.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-doc"/></svg></span><span class="mega-txt"><b>Glossary</b></span></a>
               <a href="market-analysis.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>Financial Market Analysis</b></span></a>
             </div>

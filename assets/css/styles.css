@@ -3666,3 +3666,38 @@ html:not(.js-aos) [data-aos]{opacity:1 !important;transform:none !important;tran
 .ct-check input:focus-visible + .an-box{outline:2px solid var(--blue);outline-offset:2px}
 .ct-check input[type="radio"] + .an-box{border-radius:50%}
 .ct-check:hover .an-box{border-color:rgba(0,71,187,.45)}
+
+/* =============================================================
+   KNOWLEDGE FAMILY HERO (appended batch — knowledge-basics page)
+   Shared by knowledge.html and knowledge-basics.html.
+   ============================================================= */
+.kc-hero{
+  position:relative;overflow:hidden;isolation:isolate;color:#fff;
+  margin-top:calc(-1 * var(--nav-h));
+  display:flex;align-items:center;
+  min-height:min(660px,calc(100vh - var(--topbar-h,44px)));
+  padding:calc(var(--nav-h) + 56px) 0 60px;
+  background:
+    radial-gradient(72% 68% at 50% 6%,rgba(0,71,187,.36),transparent 62%),
+    radial-gradient(48% 52% at 8% 96%,rgba(22,233,215,.11),transparent 62%),
+    linear-gradient(180deg,#04060e 0%,#070c1c 48%,#04060e 100%);
+}
+.kc-hero-aura{position:absolute;z-index:-1;border-radius:50%;pointer-events:none;filter:blur(96px)}
+.kc-hero-aura.a1{width:600px;height:600px;top:-20%;right:2%;background:radial-gradient(circle,rgba(0,110,255,.34),transparent 68%)}
+.kc-hero-aura.a2{width:440px;height:440px;bottom:-22%;right:-6%;background:radial-gradient(circle,rgba(22,233,215,.16),transparent 68%)}
+.kc-hero-in{position:relative;z-index:1;width:100%}
+.kc-hero-copy{max-width:720px;min-width:0}
+.kc-h1{font-size:clamp(32px,5vw,58px);font-weight:800;letter-spacing:-.038em;line-height:1.06;margin-top:16px}
+.kc-lead{margin-top:20px;max-width:64ch;font-size:clamp(15px,1.5vw,17px);line-height:1.68;color:#c2cfe4}
+.kc-hact{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
+@media (max-width:1080px){
+.kc-hero-copy{max-width:none}
+}
+@media (max-width:860px){
+.kc-hero{min-height:auto;padding:calc(var(--nav-h) + 44px) 0 56px}
+}
+@media (max-width:720px){
+.kc-hact .btn{width:100%;justify-content:center}
+.kc-h1 br,.kc-lead br,.kc-path .head-sub br{display:none}
+}
+.kc-guides{background:#fff}
