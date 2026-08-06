@@ -44,6 +44,20 @@
    glance. Everything hovers and reveals like the rest of the site.
    ================================================================= */
 
+/* ---- banner: copy + the live-account form card ---- */
+.dfp-hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(26px,4vw,70px);align-items:center}
+.dfp-acct-card{max-width:520px;justify-self:end;width:100%}
+.dfp-acct-h{font-size:clamp(18px,1.8vw,21px);letter-spacing:-.02em;color:var(--text)}
+.dfp-acct-sub{margin:6px 0 18px;font-size:13px;line-height:1.6;color:var(--text-soft)}
+.dfp-acct-grid{gap:14px 16px}
+.dfp-acct-btn{width:100%;justify-content:center;margin-top:18px}
+.dfp-acct-note{margin-top:12px;font-size:11.5px;line-height:1.6;color:var(--text-mute);text-align:center}
+.dfp-acct-note.is-ok{color:var(--green);font-weight:600}
+@media (max-width:1080px){
+  .dfp-hero-grid{grid-template-columns:1fr;gap:34px}
+  .dfp-acct-card{justify-self:stretch;max-width:640px;margin-inline:auto}
+}
+
 /* ---- offer at a glance ---- */
 .dfp-glance-sec{position:relative;isolation:isolate;overflow:clip;
   background:radial-gradient(50% 44% at 12% 0%,rgba(0,71,187,.08),transparent 62%),var(--bg-light-2)}
@@ -486,15 +500,67 @@
     <source src="../assets/video/promotions-banner.mp4" type="video/mp4">
   </video>
   <div class="container pm-hero-in">
-    <div class="pm-hero-copy">
-      <span class="pm-eyebrow" data-aos="fade-up">Daily Forex Promo</span>
-      <h1 class="pm-h1" id="dfp-hero-title" data-aos="fade-up">
-        <span>Every deposit works harder.</span>
-        <span class="lit">50% first, 20% forever after.</span>
-      </h1>
-      <p class="pm-lead" data-aos="fade-up">Bonus credit on every qualifying deposit &mdash; 50% on your first, up to $500, then 20% on each one after, to a $10,000 total. For clients in Europe, New Zealand and Canada. Terms and conditions apply.</p>
-      <div class="pm-hact" data-aos="fade-up">
-        <a class="pm-btn" href="../trading/getting-started/account-opening.html">Claim the bonus <svg><use href="#i-arrow-right"/></svg></a>
+    <div class="dfp-hero-grid">
+      <div class="pm-hero-copy">
+        <span class="pm-eyebrow" data-aos="fade-up">Daily Forex Promo</span>
+        <h1 class="pm-h1" id="dfp-hero-title" data-aos="fade-up">
+          <span>Every deposit works harder.</span>
+          <span class="lit">50% first, 20% forever after.</span>
+        </h1>
+        <p class="pm-lead" data-aos="fade-up">Bonus credit on every qualifying deposit &mdash; 50% on your first, up to $500, then 20% on each one after, to a $10,000 total. For clients in Europe, New Zealand and Canada. Terms and conditions apply.</p>
+        <div class="pm-hact" data-aos="fade-up">
+          <a class="pm-btn" href="#calculator">See your credit <svg><use href="#i-arrow-right"/></svg></a>
+        </div>
+      </div>
+
+      <div class="pt-form-card glass dfp-acct-card" data-aos="fade-up" data-aos-delay="100">
+        <form id="dfpAcct" novalidate>
+          <h3 class="dfp-acct-h">Open your live account</h3>
+          <p class="dfp-acct-sub">Register now &mdash; the 50% tier meets your first deposit.</p>
+          <div class="ct-grid dfp-acct-grid">
+            <div class="ct-field">
+              <label for="dfpName">Full name</label>
+              <input type="text" id="dfpName" name="name" autocomplete="name" placeholder="Your full name" aria-describedby="dfpNameErr">
+              <p class="ct-err" id="dfpNameErr" hidden>Please tell us your name.</p>
+            </div>
+            <div class="ct-field">
+              <label for="dfpEmail">Email</label>
+              <input type="email" id="dfpEmail" name="email" inputmode="email" autocomplete="email" placeholder="you@example.com" aria-describedby="dfpEmailErr">
+              <p class="ct-err" id="dfpEmailErr" hidden>We need a valid email to reach you on.</p>
+            </div>
+            <div class="ct-field">
+              <label for="dfpPhone">Phone <em>optional</em></label>
+              <input type="tel" id="dfpPhone" name="phone" inputmode="tel" autocomplete="tel" placeholder="+44 20 0000 0000" aria-describedby="dfpPhoneErr">
+              <p class="ct-err" id="dfpPhoneErr" hidden>Use digits only, with an optional + prefix.</p>
+            </div>
+            <div class="ct-field">
+              <label for="dfpCountry">Country or region</label>
+              <div class="wb-selwrap">
+                <select id="dfpCountry" name="country" aria-describedby="dfpCountryErr">
+                  <option value="">Select&hellip;</option>
+                  <option>United Kingdom</option>
+                  <option>Germany</option>
+                  <option>France</option>
+                  <option>Italy</option>
+                  <option>Spain</option>
+                  <option>Netherlands</option>
+                  <option>New Zealand</option>
+                  <option>Canada</option>
+                  <option>Other</option>
+                </select>
+                <svg class="wb-selchev" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+              </div>
+              <p class="ct-err" id="dfpCountryErr" hidden>Please choose your country or region.</p>
+            </div>
+          </div>
+          <label class="ct-check" for="dfpConsent">
+            <input type="checkbox" id="dfpConsent" name="consent" aria-describedby="dfpConsentErr">
+            <span>I have read the promotion terms and the <a href="../company/corporate/legal-documents.html">legal documents</a>, and I opt in to the Daily Forex Promo.</span>
+          </label>
+          <p class="ct-err" id="dfpConsentErr" hidden>Please confirm you accept the terms to continue.</p>
+          <button class="btn btn-primary btn-lg dfp-acct-btn" type="submit">Create account <svg class="ico"><use href="#i-arrow-right"/></svg></button>
+          <p class="dfp-acct-note" data-dfp-acct-note>Your details go to the onboarding desk &mdash; verification and funding happen in the client portal.</p>
+        </form>
       </div>
     </div>
   </div>
@@ -795,6 +861,38 @@
     });
   });
   render();
+})();
+
+/* banner account form — validates inline, then hands over to onboarding */
+(function () {
+  var form = document.getElementById('dfpAcct');
+  if (!form) return;
+  var note = form.querySelector('[data-dfp-acct-note]');
+  function field(id) {
+    return { el: document.getElementById(id), err: document.getElementById(id + 'Err') };
+  }
+  var name = field('dfpName'), email = field('dfpEmail'),
+      phone = field('dfpPhone'), country = field('dfpCountry'), consent = field('dfpConsent');
+  function flag(f, bad) { if (f.err) f.err.hidden = !bad; return !bad; }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var ok = true;
+    ok = flag(name, !name.el.value.trim()) && ok;
+    ok = flag(email, !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.el.value.trim())) && ok;
+    ok = flag(phone, phone.el.value.trim() !== '' && !/^\+?[0-9 ()-]{6,}$/.test(phone.el.value.trim())) && ok;
+    ok = flag(country, !country.el.value) && ok;
+    ok = flag(consent, !consent.el.checked) && ok;
+    if (!ok) return;
+    note.textContent = 'Details received — taking you to account opening…';
+    note.classList.add('is-ok');
+    setTimeout(function () {
+      window.location.href = '../trading/getting-started/account-opening.html';
+    }, 900);
+  });
+  [name, email, phone, country].forEach(function (f) {
+    f.el.addEventListener('input', function () { if (f.err) f.err.hidden = true; });
+  });
+  consent.el.addEventListener('change', function () { consent.err.hidden = true; });
 })();
 </script>
 
