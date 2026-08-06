@@ -3928,3 +3928,66 @@ html:not(.js-aos) [data-aos]{opacity:1 !important;transform:none !important;tran
 /* the fan's light section shell */
 .sc-ben{position:relative;isolation:isolate;overflow:clip;background:radial-gradient(52% 44% at 8% 0%,rgba(0,71,187,.08),transparent 62%),var(--bg-light-2)}
 .sc-ben>.container{position:relative;z-index:1}
+
+/* =============================================================
+   WEBINAR REPLAY CARDS (appended batch — previous-webinars page)
+   Shared by webinars.html and the replay archive.
+   ============================================================= */
+.wb-rep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.wb-rep{
+  position:relative;overflow:hidden;display:flex;flex-direction:column;border-radius:20px;
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
+}
+.wb-rep:hover{transform:translateY(-4px);border-color:rgba(0,71,187,.28);box-shadow:0 28px 52px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff}
+.wb-rep-head{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:13px 18px;border-bottom:1px solid rgba(20,40,80,.09);
+}
+.wb-rep-cat{display:flex;align-items:center;gap:9px;min-width:0;font-size:13px;font-weight:600;color:var(--text)}
+.wb-rep-cat svg{width:17px;height:17px;flex:none;color:var(--blue)}
+.wb-rep-cat i{width:3px;height:3px;border-radius:50%;background:var(--text-mute);flex:none;margin-inline:1px}
+.wb-rep-date{flex:none;font-size:12.5px;color:var(--text-mute);font-variant-numeric:tabular-nums}
+.wb-rep-body{padding:17px 18px 19px}
+.wb-rep-title{font-size:17.5px;letter-spacing:-.022em;line-height:1.3;color:var(--text)}
+.wb-rep-title a{transition:color .25s}
+.wb-rep:hover .wb-rep-title a{color:var(--blue)}
+.wb-rep-desc{
+  margin-top:8px;font-size:13.5px;line-height:1.55;color:var(--text-soft);
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.wb-rep-media{position:relative;display:block;margin-top:auto;aspect-ratio:16/10;overflow:hidden}
+.wb-rep-media img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
+.wb-rep:hover .wb-rep-media img{transform:scale(1.05)}
+.wb-rep-media::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(4,8,18,.12) 0%,rgba(4,8,18,.08) 46%,rgba(4,8,18,.5) 100%);
+}
+.wb-play{
+  position:absolute;inset:0;margin:auto;z-index:2;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(255,255,255,.94);color:var(--blue);box-shadow:0 12px 30px -8px rgba(0,0,0,.5);
+  transition:transform .35s var(--ease),background .3s;
+}
+.wb-play svg{width:19px;height:19px;margin-left:3px}
+.wb-rep:hover .wb-play{transform:scale(1.08);background:#fff}
+.wb-dur,.wb-lvl{
+  position:absolute;bottom:12px;z-index:2;font-size:11px;font-weight:600;color:#fff;
+  padding:5px 11px;border-radius:70px;background:rgba(8,14,26,.56);border:1px solid rgba(255,255,255,.2);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+}
+.wb-dur{left:12px;font-variant-numeric:tabular-nums}
+.wb-lvl{right:12px;letter-spacing:.06em;text-transform:uppercase;font-size:10px}
+.wb-allrow{display:flex;justify-content:center;margin-top:40px}
+@media (max-width:1080px){
+.wb-rep-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:720px){
+.wb-rep-grid{grid-template-columns:1fr;max-width:420px;margin-inline:auto}
+}
+/* the replay archive's light section shell */
+.wb-sched{
+  background:
+    radial-gradient(58% 46% at 6% 0%,rgba(0,71,187,.08),transparent 62%),
+    radial-gradient(52% 44% at 96% 16%,rgba(22,233,215,.07),transparent 62%),
+    radial-gradient(56% 40% at 48% 104%,rgba(0,71,187,.06),transparent 62%),
+    var(--bg-light);
+}

@@ -1759,15 +1759,7 @@
       });
     }
 
-    /* ---- "View all replays" jumps to the replay tab ---- */
-    var allRow = root.querySelector('.wb-allrow .wb-textlink');
-    if (allRow) {
-      allRow.addEventListener('click', function (e) {
-        e.preventDefault();
-        cat = 'replay';
-        apply();
-      });
-    }
+    /* ("View all previous webinars" is a plain link to the archive page) */
 
     /* ---- calendar file (.ics) ---- */
     function pad(n) { return (n < 10 ? '0' : '') + n; }
