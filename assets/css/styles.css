@@ -3704,3 +3704,43 @@ html:not(.js-aos) [data-aos]{opacity:1 !important;transform:none !important;tran
 
 /* the more-row must wrap when it carries two buttons (350px floor) */
 .ma-morerow{flex-wrap:wrap;gap:12px}
+
+/* =============================================================
+   KNOWLEDGE VIDEO CARDS (appended batch — knowledge-videos page)
+   The feature tile and play chip, shared by the centre's theatre
+   and the full video library.
+   ============================================================= */
+.kc-feature{display:flex}
+.kc-feature-media{
+  position:relative;display:block;width:100%;border-radius:22px;overflow:hidden;aspect-ratio:16/9;
+  box-shadow:0 34px 70px -38px rgba(20,44,96,.55);
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease);
+}
+.kc-feature-media:hover{transform:translateY(-4px);box-shadow:0 44px 84px -40px rgba(20,44,96,.62)}
+.kc-playlist{justify-content:flex-start}
+.kc-feature-media img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.kc-feature-media:hover img{transform:scale(1.05)}
+.kc-feature-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,6,14,.1) 0%,rgba(4,6,14,.28) 46%,rgba(4,6,14,.88) 100%)}
+.kc-feature-meta{position:absolute;top:18px;left:18px;right:18px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.kc-feature-chip{font-size:10.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#fff;background:rgba(0,71,187,.86);padding:6px 12px;border-radius:70px}
+.kc-feature-dur{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;color:#fff;background:rgba(4,6,14,.62);padding:6px 11px;border-radius:70px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);font-variant-numeric:tabular-nums}
+.kc-feature-dur svg{width:13px;height:13px}
+.kc-feature-copy{position:absolute;left:22px;right:22px;bottom:26px;display:flex;flex-direction:column;gap:7px}
+.kc-feature-copy b{font-size:clamp(20px,2.2vw,27px);font-weight:700;letter-spacing:-.03em;color:#fff;line-height:1.16}
+.kc-feature-copy em{font-style:normal;font-size:13.5px;line-height:1.55;color:rgba(255,255,255,.78);max-width:46ch}
+.kc-feature-bar{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.16)}
+.kc-feature-bar i{display:block;height:100%;width:26%;background:linear-gradient(90deg,#4d94ff,#16e9d7);transition:width .7s var(--ease)}
+.kc-feature-media:hover .kc-feature-bar i{width:62%}
+.kc-playlist{display:flex;flex-direction:column;gap:8px;padding:18px;border-radius:22px;background:#fff;border:1px solid var(--line);box-shadow:0 14px 34px -24px rgba(20,44,96,.26)}
+.kc-play{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:64px;height:64px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(255,255,255,.92);color:var(--blue);
+  box-shadow:0 18px 40px -16px rgba(0,0,0,.6);
+  transition:transform .45s var(--ease),background .35s;
+}
+.kc-play svg{width:24px;height:24px;margin-left:3px}
+.kc-feature-media:hover .kc-play{transform:translate(-50%,-50%) scale(1.1);background:#fff}
+@media (prefers-reduced-motion:no-preference){
+.kc-play::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid rgba(255,255,255,.7);animation:kcPing 2.8s ease-out infinite}
+}
