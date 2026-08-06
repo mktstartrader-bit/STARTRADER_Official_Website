@@ -55,53 +55,34 @@
    shares the copy-trading language — glass cards, the sand accent for
    the master side, the same pill switch — with its own section shapes
    ================================================================= */
-.sc-ben{position:relative;isolation:isolate;overflow:clip;background:radial-gradient(52% 44% at 8% 0%,rgba(0,71,187,.08),transparent 62%),var(--bg-light-2)}
-.sc-ben>.container{position:relative;z-index:1}
+
+
 /* ---- benefits: one expanding rail, so only the open panel spends space ---- */
-.sc-fan{display:flex;gap:14px;height:372px}
-.sc-panel{
-  position:relative;flex:0 0 96px;min-width:96px;overflow:hidden;border-radius:24px;
-  background:linear-gradient(180deg,rgba(0,71,187,.09),rgba(255,255,255,.62) 48%);
-  transition:flex-grow .62s var(--ease),flex-basis .62s var(--ease),min-width .62s var(--ease),
-             box-shadow .42s var(--ease),border-color .3s;
-}
-.sc-panel:nth-child(even){background:linear-gradient(180deg,rgba(223,197,174,.5),rgba(255,255,255,.62) 50%)}
-.sc-panel.is-on{flex:1 1 0;min-width:0;border-color:rgba(0,71,187,.28);box-shadow:0 28px 52px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff}
-.sc-panel.is-on:nth-child(even){border-color:rgba(138,100,64,.34)}
-.sc-panel-hit{position:absolute;inset:0;z-index:2;width:100%;font-size:0;color:transparent;padding:0}
-.sc-panel-hit:focus-visible{outline:2px solid var(--blue);outline-offset:-4px;border-radius:24px}
-.sc-panel-n{
-  position:absolute;top:24px;left:50%;transform:translateX(-50%);
-  font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--blue);
-  transition:left .55s var(--ease),transform .55s var(--ease);
-}
-.sc-panel:nth-child(even) .sc-panel-n{color:#8a6440}
-.sc-panel.is-on .sc-panel-n{left:28px;transform:none}
-.sc-panel-vt{
-  position:absolute;bottom:26px;left:50%;transform:translateX(-50%) rotate(180deg);
-  writing-mode:vertical-rl;white-space:nowrap;
-  font-size:15px;font-weight:700;letter-spacing:-.02em;color:var(--text);
-  transition:opacity .3s;
-}
-.sc-panel.is-on .sc-panel-vt{opacity:0}
-.sc-panel-in{
-  position:absolute;top:58px;left:28px;right:28px;bottom:30px;min-width:266px;
-  display:flex;flex-direction:column;justify-content:flex-end;gap:11px;
-  opacity:0;transform:translateY(12px);
-  transition:opacity .5s .14s var(--ease),transform .5s .14s var(--ease);
-}
-.sc-panel.is-on .sc-panel-in{opacity:1;transform:none}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* the icon takes the right of the open panel so the copy is not marooned in it */
-.sc-panel-ico{position:absolute;right:2px;top:42%;transform:translateY(-50%);width:min(38%,166px);height:auto;filter:drop-shadow(0 20px 26px rgba(20,44,96,.24))}
-.sc-panel-in b{max-width:26ch;font-size:clamp(19px,1.9vw,23px);letter-spacing:-.03em;line-height:1.2;color:var(--text)}
-.sc-panel-in em{max-width:46ch;font-style:normal;font-size:13.5px;line-height:1.68;color:var(--text-soft)}
+
+
+
 /* the dwell bar is the clock — pausing the animation pauses the whole rail */
-.sc-panel-bar{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(20,44,96,.07);opacity:0;transition:opacity .3s}
-.sc-panel.is-on .sc-panel-bar{opacity:1}
-.sc-panel-bar i{display:block;height:100%;transform:scaleX(0);transform-origin:left;background:var(--blue)}
-.sc-panel:nth-child(even) .sc-panel-bar i{background:#8a6440}
-@media (prefers-reduced-motion:no-preference){.sc-panel.is-on .sc-panel-bar i{animation:scDwell 6.5s linear forwards}}
-.sc-fan:hover .sc-panel.is-on .sc-panel-bar i,.sc-fan:focus-within .sc-panel.is-on .sc-panel-bar i,.sc-fan:not(.is-live) .sc-panel.is-on .sc-panel-bar i{animation-play-state:paused}
+
+
+
+
+
+
 .sc-ben-note{margin-top:26px;text-align:center;font-size:11.5px;line-height:1.6;color:var(--text-mute)}
 /* ---- the two roles: the shared htrade stepper, switched by role ---- */
 /* the store links get their own band under the stepper rather than being
@@ -174,13 +155,7 @@
 .sc-strat-upd b{color:#c8d6ec;font-weight:700}
 .sc-strat-note{margin-top:22px;text-align:center;font-size:11.5px;line-height:1.6;color:#7f92b3}
 /* ---- Responsive ---- */
-@media (max-width:1000px){.sc-fan{display:grid;grid-template-columns:1fr;height:auto}
-.sc-panel,.sc-panel.is-on{flex:auto;min-width:0;padding:26px 24px;box-shadow:0 18px 40px -26px rgba(20,44,96,.32),inset 0 1px 0 rgba(255,255,255,.96)}
-.sc-panel-hit,.sc-panel-vt,.sc-panel-bar{display:none}
-.sc-panel-n,.sc-panel.is-on .sc-panel-n{position:static;left:auto;transform:none;display:block;margin-bottom:16px}
-.sc-panel-in,.sc-panel.is-on .sc-panel-in{position:static;min-width:0;opacity:1;transform:none}
-.sc-panel-ico{position:static;top:auto;right:auto;transform:none;width:84px;margin-bottom:6px}
-.sc-panel-in b,.sc-panel-in em{max-width:none}}
+
 @media (max-width:720px){.sc-ben .h2 br,.sc-strat .h2 br{display:none}
 .sc-getapp{padding:22px}
 .sc-getapp-btns{width:100%}
@@ -411,7 +386,7 @@
             <a href="mt5.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-monitor"/></svg></span><span class="mega-txt"><b>MT5</b></span></a>
             <a href="mt4.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-monitor"/></svg></span><span class="mega-txt"><b>MT4</b></span></a>
             <a href="copy-trade.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-copy"/></svg></span><span class="mega-txt"><b>Copy Trade</b></span></a>
-            <a href="star-copy.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-doc"/></svg></span><span class="mega-txt"><b>STAR Copy <span class="mega-badge">New</span></b></span></a>
+            <a href="star-copy.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-doc"/></svg></span><span class="mega-txt"><b>STAR Copy <span class="mega-badge">New</span></b></span></a><a href="star-matrix.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>STAR Matrix</b></span></a>
             <a href="star-webtrader.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-cfd"/></svg></span><span class="mega-txt"><b>STAR Web Trading <span class="mega-badge">New</span></b></span></a>
             <div class="mega-sub">
               <a href="webtrader.html" class="mega-item mega-sub-toggle"><span class="mega-ico"><svg><use href="#i-window"/></svg></span><span class="mega-txt"><b>Web Trader</b></span><svg class="mega-subchev"><use href="#i-chevron-down"/></svg></a>
@@ -1145,7 +1120,7 @@
       </div>
       <div class="foot-col">
         <h4>Platforms</h4>
-        <a href="mt5.html">MT5</a><a href="mt4.html">MT4</a><a href="copy-trade.html">Copy Trade</a><a href="star-webtrader.html">STAR Web Trading</a><a href="webtrader.html">Web Trader</a><a href="trading-app.html">Mobile Apps</a><a href="pamm-trade.html">Pro-Link</a>
+        <a href="mt5.html">MT5</a><a href="mt4.html">MT4</a><a href="copy-trade.html">Copy Trade</a><a href="star-webtrader.html">STAR Web Trading</a><a href="star-matrix.html">STAR Matrix</a><a href="webtrader.html">Web Trader</a><a href="trading-app.html">Mobile Apps</a><a href="pamm-trade.html">Pro-Link</a>
         <h4 class="mt">Products</h4>
         <a href="../products/forex.html">Forex</a><a href="../products/cfd.html">CFD</a><a href="../products/commodities.html">Commodities</a><a href="../products/indices.html">Indices</a><a href="../products/shares.html">Shares</a><a href="../products/etf.html">ETFs</a>
       </div>

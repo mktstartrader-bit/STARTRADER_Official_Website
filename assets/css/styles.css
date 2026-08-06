@@ -3866,3 +3866,65 @@ html:not(.js-aos) [data-aos]{opacity:1 !important;transform:none !important;tran
   .pp-grid{grid-template-columns:1fr}
   .pp-toc{position:static;max-height:none;order:-1}
 }
+
+/* =============================================================
+   STAR PANEL FAN (appended batch — star-matrix page)
+   The auto-advancing benefit panels, shared by STAR Copy and
+   STAR Matrix.
+   ============================================================= */
+.sc-fan{display:flex;gap:14px;height:372px}
+.sc-panel{
+  position:relative;flex:0 0 96px;min-width:96px;overflow:hidden;border-radius:24px;
+  background:linear-gradient(180deg,rgba(0,71,187,.09),rgba(255,255,255,.62) 48%);
+  transition:flex-grow .62s var(--ease),flex-basis .62s var(--ease),min-width .62s var(--ease),
+             box-shadow .42s var(--ease),border-color .3s;
+}
+.sc-panel:nth-child(even){background:linear-gradient(180deg,rgba(223,197,174,.5),rgba(255,255,255,.62) 50%)}
+.sc-panel.is-on{flex:1 1 0;min-width:0;border-color:rgba(0,71,187,.28);box-shadow:0 28px 52px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff}
+.sc-panel.is-on:nth-child(even){border-color:rgba(138,100,64,.34)}
+.sc-panel-hit{position:absolute;inset:0;z-index:2;width:100%;font-size:0;color:transparent;padding:0}
+.sc-panel-hit:focus-visible{outline:2px solid var(--blue);outline-offset:-4px;border-radius:24px}
+.sc-panel-n{
+  position:absolute;top:24px;left:50%;transform:translateX(-50%);
+  font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--blue);
+  transition:left .55s var(--ease),transform .55s var(--ease);
+}
+.sc-panel:nth-child(even) .sc-panel-n{color:#8a6440}
+.sc-panel.is-on .sc-panel-n{left:28px;transform:none}
+.sc-panel-vt{
+  position:absolute;bottom:26px;left:50%;transform:translateX(-50%) rotate(180deg);
+  writing-mode:vertical-rl;white-space:nowrap;
+  font-size:15px;font-weight:700;letter-spacing:-.02em;color:var(--text);
+  transition:opacity .3s;
+}
+.sc-panel.is-on .sc-panel-vt{opacity:0}
+.sc-panel-in{
+  position:absolute;top:58px;left:28px;right:28px;bottom:30px;min-width:266px;
+  display:flex;flex-direction:column;justify-content:flex-end;gap:11px;
+  opacity:0;transform:translateY(12px);
+  transition:opacity .5s .14s var(--ease),transform .5s .14s var(--ease);
+}
+.sc-panel.is-on .sc-panel-in{opacity:1;transform:none}
+.sc-panel-ico{position:absolute;right:2px;top:42%;transform:translateY(-50%);width:min(38%,166px);height:auto;filter:drop-shadow(0 20px 26px rgba(20,44,96,.24))}
+.sc-panel-in b{max-width:26ch;font-size:clamp(19px,1.9vw,23px);letter-spacing:-.03em;line-height:1.2;color:var(--text)}
+.sc-panel-in em{max-width:46ch;font-style:normal;font-size:13.5px;line-height:1.68;color:var(--text-soft)}
+.sc-panel-bar{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(20,44,96,.07);opacity:0;transition:opacity .3s}
+.sc-panel.is-on .sc-panel-bar{opacity:1}
+.sc-panel-bar i{display:block;height:100%;transform:scaleX(0);transform-origin:left;background:var(--blue)}
+.sc-panel:nth-child(even) .sc-panel-bar i{background:#8a6440}
+@media (prefers-reduced-motion:no-preference){
+.sc-panel.is-on .sc-panel-bar i{animation:scDwell 6.5s linear forwards}
+}
+.sc-fan:hover .sc-panel.is-on .sc-panel-bar i,.sc-fan:focus-within .sc-panel.is-on .sc-panel-bar i,.sc-fan:not(.is-live) .sc-panel.is-on .sc-panel-bar i{animation-play-state:paused}
+@media (max-width:1000px){
+.sc-fan{display:grid;grid-template-columns:1fr;height:auto}
+.sc-panel,.sc-panel.is-on{flex:auto;min-width:0;padding:26px 24px;box-shadow:0 18px 40px -26px rgba(20,44,96,.32),inset 0 1px 0 rgba(255,255,255,.96)}
+.sc-panel-hit,.sc-panel-vt,.sc-panel-bar{display:none}
+.sc-panel-n,.sc-panel.is-on .sc-panel-n{position:static;left:auto;transform:none;display:block;margin-bottom:16px}
+.sc-panel-in,.sc-panel.is-on .sc-panel-in{position:static;min-width:0;opacity:1;transform:none}
+.sc-panel-ico{position:static;top:auto;right:auto;transform:none;width:84px;margin-bottom:6px}
+.sc-panel-in b,.sc-panel-in em{max-width:none}
+}
+/* the fan's light section shell */
+.sc-ben{position:relative;isolation:isolate;overflow:clip;background:radial-gradient(52% 44% at 8% 0%,rgba(0,71,187,.08),transparent 62%),var(--bg-light-2)}
+.sc-ben>.container{position:relative;z-index:1}
