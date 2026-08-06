@@ -3465,3 +3465,148 @@ button.mt-rail-card{
 html:not(.js-aos) [data-aos]{opacity:1 !important;transform:none !important;transition:none !important}
 /* the house reveal travels 28px, not AOS's default 100px */
 [data-aos="fade-up"]{transform:translate3d(0,28px,0)}
+
+/* =============================================================
+   MARKET ANALYSIS FAMILY (appended batch — analysis cadence pages)
+   Shared by market-analysis.html and the four cadence pages:
+   daily-technical, daily-fundamental, weekly, monthly.
+   ============================================================= */
+/* =================== MARKET ANALYSIS =================== */
+.ma-hero{
+  position:relative;overflow:hidden;isolation:isolate;color:#fff;
+  margin-top:calc(-1 * var(--nav-h));
+  min-height:min(660px,calc(100vh - var(--topbar-h,44px)));
+  display:flex;flex-direction:column;justify-content:center;
+  padding:calc(var(--nav-h) + 56px) 0 24px;
+  background:
+    radial-gradient(80% 74% at 76% 16%,rgba(0,71,187,.34),transparent 62%),
+    radial-gradient(54% 58% at 4% 92%,rgba(22,233,215,.1),transparent 62%),
+    linear-gradient(180deg,#04060e 0%,#070c1c 50%,#04060e 100%);
+}
+.ma-hero-aura{position:absolute;z-index:-1;border-radius:50%;pointer-events:none;filter:blur(90px)}
+.ma-hero-aura.a1{width:560px;height:560px;top:-18%;right:2%;background:radial-gradient(circle,rgba(0,110,255,.34),transparent 68%)}
+.ma-hero-aura.a2{width:440px;height:440px;bottom:-14%;left:-6%;background:radial-gradient(circle,rgba(22,233,215,.16),transparent 68%)}
+.ma-hero-in{position:relative;z-index:1;width:100%}
+.ma-hero-copy{max-width:720px;min-width:0}
+.ma-h1{font-size:clamp(30px,4.2vw,50px);font-weight:800;letter-spacing:-.036em;line-height:1.1;margin-top:16px}
+.ma-lead{margin-top:20px;font-size:clamp(15px,1.6vw,17.5px);line-height:1.68;color:#c2cfe4;max-width:62ch}
+.ma-hact{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
+
+/* ---- reports ---- */
+.ma-reports{background:#fff}
+.ma-bar{display:flex;flex-wrap:wrap;align-items:center;gap:16px;padding:14px;border-radius:20px;margin-bottom:22px}
+.ma-search{position:relative;flex:1 1 260px;display:flex;align-items:center}
+.ma-search-ic{position:absolute;left:14px;width:17px;height:17px;color:var(--text-mute);pointer-events:none}
+.ma-search-ic svg{width:100%;height:100%}
+.ma-search input{
+  width:100%;height:44px;padding:0 40px 0 40px;border-radius:70px;
+  background:#fff;border:1px solid var(--line);font:inherit;font-size:14px;color:var(--text);
+  transition:border-color .25s,box-shadow .25s;
+}
+.ma-search input::placeholder{color:var(--text-mute)}
+.ma-search input:focus{outline:none;border-color:rgba(0,71,187,.42);box-shadow:0 0 0 4px rgba(0,71,187,.1)}
+.ma-clear{position:absolute;right:12px;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;color:var(--text-mute);background:rgba(20,44,96,.07)}
+.ma-clear svg{width:12px;height:12px}
+.ma-clear:hover{color:var(--text);background:rgba(20,44,96,.13)}
+.ma-cats{display:flex;flex-wrap:wrap;gap:8px}
+.ma-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.ma-rep mark{background:rgba(255,214,102,.5);color:inherit;border-radius:3px;padding:0 2px}
+.ma-empty{
+  max-width:520px;margin:12px auto 0;text-align:center;padding:44px 30px;border-radius:22px;
+  background:var(--bg-light);border:1px dashed var(--line);
+}
+.ma-empty-ic{width:52px;height:52px;margin:0 auto 16px;border-radius:16px;display:grid;place-items:center;background:rgba(0,71,187,.08);color:var(--blue)}
+.ma-empty-ic svg{width:24px;height:24px}
+.ma-empty h3{font-size:19px;letter-spacing:-.022em}
+.ma-empty p{margin:10px 0 20px;font-size:14px;color:var(--text-soft);line-height:1.6}
+.ma-morerow{display:flex;justify-content:center;margin-top:34px}
+
+/* ---- subscribe ---- */
+.ma-sub{background:#fff}
+.ma-sub-panel{
+  position:relative;overflow:hidden;border-radius:28px;color:#fff;
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.88fr);gap:clamp(26px,3.4vw,52px);align-items:center;
+  padding:clamp(32px,4vw,54px);
+  background:radial-gradient(74% 84% at 88% 6%,rgba(0,71,187,.46),transparent 62%),linear-gradient(152deg,#0b1224,#050914 56%,#04060e);
+  border:1px solid rgba(255,255,255,.11);
+  box-shadow:0 46px 100px -50px rgba(0,20,70,.82),inset 0 1px 0 rgba(255,255,255,.13);
+}
+.ma-sub-aura{position:absolute;z-index:0;width:460px;height:460px;top:-38%;right:4%;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(0,110,255,.36),transparent 66%);filter:blur(60px)}
+.ma-sub-copy,.ma-sub-form{position:relative;z-index:1;min-width:0}
+.ma-sub-copy h2{font-size:clamp(24px,2.7vw,34px);letter-spacing:-.032em;line-height:1.16}
+.ma-sub-copy>p{margin-top:14px;font-size:14.5px;line-height:1.66;color:#a9bcdb;max-width:46ch}
+.ma-sub-pts{display:flex;flex-direction:column;gap:9px;margin-top:20px}
+.ma-sub-pts li{display:flex;align-items:center;gap:9px;font-size:13px;color:#c2cfe4}
+.ma-sub-pts svg{width:14px;height:14px;flex:none;color:#3fd9a8}
+.ma-sub-field{display:flex;gap:10px;flex-wrap:wrap}
+.ma-sub-field input{
+  flex:1 1 200px;height:52px;padding:0 18px;border-radius:14px;font:inherit;font-size:14.5px;color:#fff;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);
+  transition:border-color .25s,box-shadow .25s,background .25s;
+}
+.ma-sub-field input::placeholder{color:#7f92b3}
+.ma-sub-field input:focus{outline:none;background:rgba(255,255,255,.11);border-color:rgba(120,175,255,.6);box-shadow:0 0 0 4px rgba(0,71,187,.24)}
+.ma-sub-field .btn{height:52px;border-radius:14px;padding-inline:24px}
+.ma-sub-note{margin-top:14px;font-size:11.5px;line-height:1.5;color:#7f92b3}
+.ma-sub-note.is-ok{color:#3fd9a8}
+.ma-sub-note.is-err{color:#ff8078}
+
+/* ---- report cards: the same card the news index uses ---- */
+.ma-rep{
+  display:flex;flex-direction:column;overflow:hidden;border-radius:20px;height:100%;padding:0;
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
+}
+.ma-rep:hover{transform:translateY(-4px);border-color:rgba(0,71,187,.28);
+  box-shadow:0 28px 52px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff}
+.ma-head{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:13px 18px;border-bottom:1px solid rgba(20,40,80,.09);
+}
+.ma-cat{display:flex;align-items:center;gap:9px;min-width:0;font-size:13px;font-weight:600;color:var(--text)}
+.ma-cat svg{width:17px;height:17px;flex:none;color:var(--blue)}
+.ma-cat.fa svg{color:#0f9d76}
+.ma-cat.wk svg{color:#a2650a}
+.ma-cat.mo svg{color:#6d3fd9}
+.ma-date{flex:none;font-size:12.5px;color:var(--text-mute);font-variant-numeric:tabular-nums}
+.ma-body{display:flex;flex-direction:column;flex:1;padding:17px 18px 19px}
+.ma-h{font-size:17px;letter-spacing:-.022em;line-height:1.3;color:var(--text)}
+.ma-h a{transition:color .25s}
+.ma-rep:hover .ma-h a{color:var(--blue)}
+.ma-ex{
+  margin-top:8px;font-size:13.5px;line-height:1.55;color:var(--text-soft);
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.ma-read{margin-top:11px;font-size:11.5px;font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--text-mute)}
+.ma-media{position:relative;display:block;margin-top:auto;aspect-ratio:16/10;overflow:hidden}
+.ma-media img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
+.ma-rep:hover .ma-media img{transform:scale(1.05)}
+.ma-media::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(4,8,18,.06) 0%,rgba(4,8,18,.04) 46%,rgba(4,8,18,.34) 100%)}
+.ma-readmark{
+  position:absolute;left:12px;bottom:12px;z-index:2;width:34px;height:34px;border-radius:11px;
+  display:grid;place-items:center;background:rgba(255,255,255,.94);color:var(--blue);
+  box-shadow:0 10px 22px -10px rgba(20,44,96,.55);
+  transition:transform .35s var(--ease),background .3s;
+}
+.ma-readmark svg{width:15px;height:15px}
+.ma-rep:hover .ma-readmark{transform:translate(2px,-2px);background:#fff}
+.ma-rep mark{background:rgba(255,214,102,.5);color:inherit;border-radius:3px;padding:0 2px}
+  
+/* ---- family responsive ---- */
+@media (max-width:1080px){
+.ma-hero-copy{max-width:none}
+.ma-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.ma-sub-panel{grid-template-columns:1fr;gap:30px}
+}
+@media (max-width:860px){
+.ma-hero{min-height:auto;padding:calc(var(--nav-h) + 40px) 0 54px}
+.ma-bar{padding:12px}
+}
+@media (max-width:720px){
+.ma-hact .btn{width:100%;justify-content:center}
+.ma-sub-field .btn{flex:1 1 100%}
+}
+@media (max-width:520px){
+.ma-cats{width:100%}
+}
