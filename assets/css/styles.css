@@ -4081,3 +4081,9 @@ html:not(.js-aos) [data-aos]{opacity:1 !important;transform:none !important;tran
   width:auto;overflow:visible;transition:opacity .28s var(--ease);opacity:0;pointer-events:none}
 .mega.flyout-open .mega-flyout{width:auto;opacity:1;pointer-events:auto}
 .mega-flyout .fly-inner{height:100%;overflow:auto;scrollbar-width:thin}
+/* menus crossfade in place — no slide offset, so the panel never
+   detaches from the navbar while switching items */
+.mega,.mega--center{transform:none}
+.nav-item.has-mega:hover .mega,.nav-item.has-mega:focus-within .mega,
+.nav-item.has-mega:hover .mega--center,.nav-item.has-mega:focus-within .mega--center{transform:none}
+.site-header:has(.nav-item.has-mega:hover){border-bottom-color:transparent}
