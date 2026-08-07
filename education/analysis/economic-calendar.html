@@ -1148,6 +1148,8 @@
     [5, '15:00', 'INR', 'FX Reserves (USD)', 'w/e 08 Aug', 'low', '—', '—', '$698.2B', false, false],
     [6, '23:50', 'JPY', 'PPI y/y', 'Jul', 'low', '—', '2.9%', '2.9%', false, false]
   ];
+  var rows = DATA;
+  var live = false;
 
   /* deck state */
   var impBoxes = Array.prototype.slice.call(deck.querySelectorAll('[data-ecf-imp]'));
@@ -1164,11 +1166,11 @@
     var nowHM = two(now.getHours()) + ':' + two(now.getMinutes());
     var cur = inst.value.toUpperCase();
     var html = '';
-    DATA.forEach(function (r) {
+    rows.forEach(function (r) {
       if (r[0] !== selDay) return;
       if (r[10]) { if (!holBox.checked) return; }
       else if (!imps[r[5]]) return;
-      if (cur !== 'ALL' && r[2] !== cur) return;
+      if (cur !== 'ALL' && r[2] !== cur && r[2] !== 'ALL') return;
       if (restrBox.checked && !r[9]) return;
       var past = selDay === todayIdx && r[1] < nowHM;
       if (past && pastBox.checked) return;
@@ -1229,6 +1231,37 @@
   impBoxes.concat([holBox, pastBox, restrBox]).forEach(function (c) { c.addEventListener('change', render); });
   inst.addEventListener('change', render);
   render();
+
+  /* live weekly feed, proxied same-origin via /api/calendar (vercel.json rewrite).
+     Falls back to the illustrative dataset when unreachable (e.g. local dev). */
+  var IMPMAP = { High: 'high', Medium: 'med', Low: 'low', Holiday: 'hol' };
+  fetch('/api/calendar', { headers: { 'Accept': 'application/json' } })
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (list) {
+      var start = new Date(week[0].getFullYear(), week[0].getMonth(), week[0].getDate());
+      var out = [];
+      list.forEach(function (e) {
+        var d = new Date(e.date);
+        if (isNaN(d)) return;
+        var idx = Math.floor((new Date(d.getFullYear(), d.getMonth(), d.getDate()) - start) / 86400000);
+        if (idx < 0 || idx > 6) return;
+        out.push([idx,
+          two(d.getHours()) + ':' + two(d.getMinutes()),
+          e.country === 'All' ? 'ALL' : e.country,
+          e.title, e.impact === 'Holiday' ? (e.country === 'All' ? '' : e.country + ' — markets closed') : '',
+          IMPMAP[e.impact] || 'low', '—',
+          e.forecast || '—', e.previous || '—',
+          false, e.impact === 'Holiday']);
+      });
+      if (!out.length) return;
+      out.sort(function (a, b) { return a[0] - b[0] || (a[1] < b[1] ? -1 : 1); });
+      rows = out;
+      live = true;
+      var credit = document.querySelector('.ec-credit');
+      if (credit) credit.innerHTML = 'Live weekly schedule via the <a href="https://www.forexfactory.com/calendar" rel="noopener nofollow" target="_blank">Forex Factory</a> feed &mdash; actual prints land in the production build. Times follow your device timezone.';
+      render();
+    })
+    .catch(function () { /* keep illustrative fallback */ });
 })();
 </script>
 
