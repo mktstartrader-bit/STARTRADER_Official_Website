@@ -1435,7 +1435,7 @@
 </div>
 
 <script>
-/* welcome popup — returns 10s after every dismissal (dummy cadence) */
+/* welcome popup — first shows after 20s, returns 10s after every dismissal (dummy cadence) */
 (function () {
   var pop = document.getElementById('stPopup');
   var x = document.getElementById('stPopupClose');
@@ -1456,7 +1456,7 @@
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && !pop.hidden) close();
   });
-  setTimeout(open, 900);
+  setTimeout(open, 20000);
 })();
 
 /* hero promo ad card — slides in, dismissed for the visit */
