@@ -117,6 +117,66 @@
 .ti-chipline{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
 .ti-chip{padding:5px 12px;border-radius:30px;font-size:11.5px;font-weight:700;color:#33415e;
   background:rgba(28,44,84,.05);border:1px solid rgba(28,44,84,.1)}
+/* ---- per-card micro visuals ---- */
+.ti-viz{position:relative;height:104px;margin-top:18px;border-radius:14px;overflow:hidden;
+  border:1px solid rgba(28,44,84,.08);background-color:rgba(255,255,255,.55)}
+.ti-viz--grid{background-image:
+  linear-gradient(rgba(42,114,255,.06) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(42,114,255,.06) 1px,transparent 1px);
+  background-size:22px 22px}
+.ti-viz--dots{background-image:radial-gradient(rgba(245,166,35,.22) 1.2px,transparent 1.2px);
+  background-size:13px 13px}
+.ti-viz--net{background-image:repeating-linear-gradient(135deg,rgba(18,184,134,.05) 0 1px,transparent 1px 12px)}
+.ti-viz--scan{background-image:linear-gradient(90deg,rgba(122,92,255,.06) 1px,transparent 1px);
+  background-size:18px 100%}
+/* 01 — candles + trendline that draws itself on hover */
+.ti-candles{position:absolute;inset:0;display:flex;align-items:flex-end;gap:9px;padding:14px 16px}
+.ti-candles i{position:relative;flex:1;max-width:14px;height:var(--h);border-radius:3px;background:#2ee6a8}
+.ti-candles i.dn{background:#ff8296}
+.ti-candles i::before{content:"";position:absolute;left:50%;top:-7px;bottom:-7px;width:1.6px;margin-left:-.8px;background:inherit;opacity:.55;border-radius:2px}
+.ti-trend{position:absolute;inset:0;width:100%;height:100%}
+.ti-trend path{fill:none;stroke:var(--blue,#2a72ff);stroke-width:2;stroke-linecap:round;
+  stroke-dasharray:240;stroke-dashoffset:150;transition:stroke-dashoffset 1.1s var(--ease)}
+.ti-card:hover .ti-trend path{stroke-dashoffset:0}
+/* 02 — bars that rise on hover */
+.ti-bars{position:absolute;inset:0;display:flex;align-items:flex-end;gap:10px;padding:14px 16px}
+.ti-bars i{flex:1;height:calc(var(--h)*.55);border-radius:4px 4px 2px 2px;
+  background:linear-gradient(180deg,#ffc46b,#f5a623);
+  transition:height .7s var(--ease);transition-delay:calc(var(--i)*70ms)}
+.ti-card:hover .ti-bars i{height:var(--h)}
+.ti-viz-tag{position:absolute;top:9px;right:10px;padding:4px 10px;border-radius:20px;
+  font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.ti-viz--dots .ti-viz-tag{color:#8a5b00;background:rgba(245,166,35,.14);border:1px solid rgba(245,166,35,.3)}
+.ti-viz--net .ti-viz-tag{color:#0b7a58;background:rgba(18,184,134,.12);border:1px solid rgba(18,184,134,.3)}
+.ti-viz--scan .ti-viz-tag{color:#5b3fd6;background:rgba(122,92,255,.12);border:1px solid rgba(122,92,255,.3)}
+/* 03 — two platforms, data pulsing both ways */
+.ti-net{position:absolute;inset:0;display:flex;align-items:center;gap:14px;padding:0 18px}
+.ti-node{display:grid;place-items:center;width:44px;height:44px;border-radius:14px;flex:0 0 auto;
+  font-size:12px;font-weight:800;letter-spacing:.02em;color:#0b7a58;background:#fff;
+  border:1px solid rgba(18,184,134,.3);box-shadow:0 8px 20px -12px rgba(18,184,134,.55);
+  transition:transform .4s var(--ease)}
+.ti-card:hover .ti-node{transform:scale(1.08)}
+.ti-wire{position:relative;flex:1;height:2px;border-radius:2px;
+  background:linear-gradient(90deg,rgba(18,184,134,.12),rgba(18,184,134,.5),rgba(18,184,134,.12))}
+.ti-wire i{position:absolute;top:50%;width:8px;height:8px;margin-top:-4px;border-radius:50%;
+  background:#12b886;box-shadow:0 0 12px rgba(18,184,134,.8)}
+.ti-wire i:first-child{animation:tiFlowR 2.8s linear infinite}
+.ti-wire i:last-child{animation:tiFlowL 2.8s linear infinite;animation-delay:1.4s}
+@keyframes tiFlowR{0%{left:0;opacity:0}12%{opacity:1}88%{opacity:1}100%{left:calc(100% - 8px);opacity:0}}
+@keyframes tiFlowL{0%{left:calc(100% - 8px);opacity:0}12%{opacity:1}88%{opacity:1}100%{left:0;opacity:0}}
+/* 04 — equity curve with a backtest replay scanline */
+.ti-eq{position:absolute;inset:0;width:100%;height:100%}
+.ti-eq polygon{fill:rgba(122,92,255,.12)}
+.ti-eq polyline{fill:none;stroke:#7a5cff;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.ti-scanline{position:absolute;top:8px;bottom:8px;left:14px;width:2px;border-radius:2px;
+  background:linear-gradient(180deg,transparent,#7a5cff 30%,#7a5cff 70%,transparent);
+  box-shadow:0 0 14px rgba(122,92,255,.5);animation:tiScan 3.4s var(--ease) infinite alternate}
+@keyframes tiScan{from{left:6%}to{left:94%}}
+@media (prefers-reduced-motion:reduce){
+  .ti-wire i,.ti-scanline{animation:none}
+  .ti-trend path{stroke-dashoffset:0}
+  .ti-bars i{height:var(--h)}
+}
 /* ---- risk note ---- */
 .ti-risk{background:#fff}
 .ti-risk-card{display:flex;align-items:flex-start;gap:16px;max-width:860px;margin:0 auto;
@@ -505,24 +565,52 @@
         <span class="ti-ico" aria-hidden="true"><svg><use href="#i-cfd"/></svg></span>
         <h3>Advanced market analysis</h3>
         <p>Easily follow the movements of the 1,000+ products offered by STARTRADER using TradingView&rsquo;s professional charts, technical indicators and drawing tools &mdash; whether you are analysing forex, commodities, indices or shares, or simply want to understand the price movements of gold (XAUUSD).</p>
+        <div class="ti-viz ti-viz--grid" aria-hidden="true">
+          <div class="ti-candles">
+            <i style="--h:32%"></i><i class="dn" style="--h:24%"></i><i style="--h:40%"></i><i style="--h:52%"></i><i class="dn" style="--h:38%"></i><i style="--h:56%"></i><i style="--h:66%"></i><i class="dn" style="--h:50%"></i><i style="--h:72%"></i><i style="--h:80%"></i>
+          </div>
+          <svg class="ti-trend" viewBox="0 0 200 104" preserveAspectRatio="none"><path d="M8 84 C 50 76, 76 70, 104 54 S 160 30, 194 18"/></svg>
+        </div>
         <div class="ti-chipline"><span class="ti-chip">1,000+ products</span><span class="ti-chip">Pro charts</span><span class="ti-chip">Drawing tools</span></div>
       </article>
       <article class="ti-card ti-card--amber" data-num="02" data-aos="fade-up" data-aos-delay="100">
         <span class="ti-ico" aria-hidden="true"><svg><use href="#i-chart"/></svg></span>
         <h3>Powerful charting tools</h3>
         <p>Customise your analysis using different timeframes, chart types and technical indicators, all easily accessible through TradingView&rsquo;s intuitive charting interface.</p>
+        <div class="ti-viz ti-viz--dots" aria-hidden="true">
+          <span class="ti-viz-tag">5m &rarr; 1D</span>
+          <div class="ti-bars">
+            <i style="--h:34%;--i:0"></i><i style="--h:52%;--i:1"></i><i style="--h:40%;--i:2"></i><i style="--h:64%;--i:3"></i><i style="--h:48%;--i:4"></i><i style="--h:74%;--i:5"></i><i style="--h:58%;--i:6"></i><i style="--h:82%;--i:7"></i>
+          </div>
+        </div>
         <div class="ti-chipline"><span class="ti-chip">Any timeframe</span><span class="ti-chip">Chart types</span><span class="ti-chip">Indicators</span></div>
       </article>
       <article class="ti-card ti-card--mint" data-num="03" data-aos="fade-up" data-aos-delay="150">
         <span class="ti-ico" aria-hidden="true"><svg><use href="#i-plug"/></svg></span>
         <h3>A more connected trading experience</h3>
         <p>Use TradingView tools as part of your trading workflow, reducing the need to switch between platforms and creating a smoother experience when analysing markets and managing trades.</p>
+        <div class="ti-viz ti-viz--net" aria-hidden="true">
+          <span class="ti-viz-tag">Synced</span>
+          <div class="ti-net">
+            <span class="ti-node">TV</span>
+            <span class="ti-wire"><i></i><i></i></span>
+            <span class="ti-node">ST</span>
+          </div>
+        </div>
         <div class="ti-chipline"><span class="ti-chip">One workflow</span><span class="ti-chip">Less switching</span></div>
       </article>
       <article class="ti-card ti-card--violet" data-num="04" data-aos="fade-up" data-aos-delay="200">
         <span class="ti-ico" aria-hidden="true"><svg><use href="#i-gauge"/></svg></span>
         <h3>Supporting smarter market decisions</h3>
         <p>Through TradingView&rsquo;s backtesting functionality, test strategies against historical market data, review how different approaches may have performed, and make more informed adjustments to your trading plans.</p>
+        <div class="ti-viz ti-viz--scan" aria-hidden="true">
+          <span class="ti-viz-tag">Replay</span>
+          <svg class="ti-eq" viewBox="0 0 200 104" preserveAspectRatio="none">
+            <polygon points="8,86 36,74 58,80 84,60 110,66 138,44 164,50 192,26 192,104 8,104"/>
+            <polyline points="8,86 36,74 58,80 84,60 110,66 138,44 164,50 192,26"/>
+          </svg>
+          <i class="ti-scanline"></i>
+        </div>
         <div class="ti-chipline"><span class="ti-chip">Backtesting</span><span class="ti-chip">Historical data</span><span class="ti-chip">Informed adjustments</span></div>
       </article>
     </div>
