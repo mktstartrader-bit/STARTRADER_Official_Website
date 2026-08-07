@@ -61,6 +61,58 @@
 }
 .ec-live i{width:7px;height:7px;border-radius:50%;flex:none;background:#ef4444;box-shadow:0 0 0 0 rgba(239,68,68,.6);animation:ecPing 2.2s infinite}
 .ec-embed-hint{font-size:12.5px;color:var(--text-mute)}
+/* ---- filter deck (dark glass, ForexFactory-style) ---- */
+.ecf{color:#fff;padding:16px clamp(14px,1.8vw,22px) 18px;display:flex;flex-direction:column;gap:14px;
+  background:linear-gradient(180deg,#0b1120,#080d1a);border-bottom:1px solid rgba(255,255,255,.08)}
+.ecf-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.ecf-today{padding:9px 20px;border-radius:12px;border:1px solid rgba(255,255,255,.22);background:transparent;
+  color:#fff;font:700 13.5px/1 inherit;font-family:inherit;cursor:pointer;
+  transition:background .25s,border-color .25s}
+.ecf-today:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.4)}
+.ecf-range{font-size:clamp(15px,1.5vw,19px);font-weight:800;letter-spacing:.01em}
+.ecf-tz{display:inline-flex;align-items:center;gap:9px;margin-left:auto;padding:9px 15px;border-radius:12px;
+  font-size:12.5px;font-weight:700;color:#cdd9ec;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)}
+.ecf-tz svg{width:15px;height:15px;color:#8ea4c6}
+.ecf-days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:9px}
+.ecf-day{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:11px 13px;border-radius:12px;
+  border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03);color:#cdd9ec;
+  font:700 13px/1 inherit;font-family:inherit;cursor:pointer;min-width:0;
+  transition:border-color .25s,background .25s,color .25s}
+.ecf-day em{font-style:normal;font-weight:600;color:#7286a8}
+.ecf-day svg{width:13px;height:13px;color:var(--blue,#2a72ff);flex:0 0 auto;opacity:0;transition:opacity .2s}
+.ecf-day:hover{border-color:rgba(255,255,255,.3)}
+.ecf-day.is-on{border-color:var(--blue,#2a72ff);background:rgba(42,114,255,.13);color:#fff}
+.ecf-day.is-on svg{opacity:1}
+.ecf-groups{display:flex;gap:14px;align-items:stretch;flex-wrap:wrap}
+.ecf-group{min-width:0}
+.ecf-lbl{display:block;font-size:12.5px;font-weight:700;color:#8ea4c6;margin-bottom:8px}
+.ecf-box{display:flex;align-items:center;gap:clamp(12px,1.6vw,26px);flex-wrap:wrap;padding:12px 16px;border-radius:12px;
+  border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03)}
+.ecf-check{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:600;color:#e6ecf7;cursor:pointer;user-select:none}
+.ecf-check input{position:absolute;opacity:0;pointer-events:none}
+.ecf-check i{position:relative;width:19px;height:19px;border-radius:6px;flex:0 0 auto;
+  border:2px solid var(--ecf-c,#8fa0bd);background:transparent;transition:background .2s}
+.ecf-check i::after{content:"";position:absolute;left:5px;top:1.5px;width:5px;height:9px;
+  border:solid #fff;border-width:0 2px 2px 0;transform:rotate(40deg);opacity:0}
+.ecf-check input:checked+i{background:var(--ecf-c,#8fa0bd)}
+.ecf-check input:checked+i::after{opacity:1}
+.ecf-check input:focus-visible+i{outline:2px solid rgba(91,157,255,.7);outline-offset:2px}
+.ecf-check--hol{--ecf-c:#8fa0bd}.ecf-check--low{--ecf-c:#14c8a6}
+.ecf-check--med{--ecf-c:#f5a524}.ecf-check--high{--ecf-c:#ef4b5d}
+.ecf-check--vis{--ecf-c:#2a72ff}
+.ecf-sel{display:block;width:100%;min-width:120px;padding:12px 40px 12px 16px;border-radius:12px;cursor:pointer;
+  border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:#fff;
+  font:700 14px/1.2 inherit;font-family:inherit;-webkit-appearance:none;appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23cdd9ec' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;background-size:15px}
+.ecf-sel option{color:#0c1526;background:#fff}
+.ecf-src{margin-left:auto;align-self:flex-end;font-size:11.5px;color:#7286a8}
+@media (max-width:920px){
+  .ecf-days{display:flex;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
+  .ecf-day{flex:0 0 108px}
+  .ecf-tz{margin-left:0}
+  .ecf-src{margin-left:0}
+}
 /* the widget is its own light UI — give it a clean white stage to sit on */
 .ec-embed-frame{background:#fff;height:clamp(520px,66vh,760px)}
 .ec-embed-frame iframe{display:block;width:100%;height:100%;border:0}
@@ -559,13 +611,54 @@
     </div>
 
     <div class="ec-embed glass" data-aos="fade-up">
-      <div class="ec-embed-bar">
-        <span class="ec-live"><i aria-hidden="true"></i> Live data</span>
-        <span class="ec-embed-hint">Impact &middot; previous &middot; forecast &middot; actual, updated as each figure is published</span>
+      <div class="ecf" data-ecf>
+        <div class="ecf-row">
+          <button type="button" class="ecf-today" id="ecfToday">Today</button>
+          <b class="ecf-range" id="ecfRange">&nbsp;</b>
+          <span class="ecf-tz"><svg aria-hidden="true"><use href="#i-clock"/></svg><span id="ecfTz">&nbsp;</span></span>
+          <span class="ec-live"><i aria-hidden="true"></i> Live data</span>
+        </div>
+        <div class="ecf-days" id="ecfDays" role="group" aria-label="Day of week"></div>
+        <div class="ecf-groups">
+          <div class="ecf-group" style="flex:1.2">
+            <span class="ecf-lbl">Impact</span>
+            <div class="ecf-box">
+              <label class="ecf-check ecf-check--hol"><input type="checkbox" data-ecf-hol><i aria-hidden="true"></i>Holidays</label>
+              <label class="ecf-check ecf-check--low"><input type="checkbox" data-ecf-imp="-1" checked><i aria-hidden="true"></i>Low</label>
+              <label class="ecf-check ecf-check--med"><input type="checkbox" data-ecf-imp="0" checked><i aria-hidden="true"></i>Medium</label>
+              <label class="ecf-check ecf-check--high"><input type="checkbox" data-ecf-imp="1" checked><i aria-hidden="true"></i>High</label>
+            </div>
+          </div>
+          <div class="ecf-group" style="flex:1.4">
+            <span class="ecf-lbl">Visibility</span>
+            <div class="ecf-box">
+              <label class="ecf-check ecf-check--vis"><input type="checkbox" data-ecf-past checked><i aria-hidden="true"></i>Hide past news</label>
+              <label class="ecf-check ecf-check--vis"><input type="checkbox" data-ecf-restricted><i aria-hidden="true"></i>Show only restricted events</label>
+            </div>
+          </div>
+          <div class="ecf-group" style="flex:0 0 auto">
+            <span class="ecf-lbl" id="ecfInstLbl">Instrument</span>
+            <select class="ecf-sel" id="ecfInst" aria-labelledby="ecfInstLbl">
+              <option value="all" selected>All</option>
+              <option value="usd">USD</option>
+              <option value="eur">EUR</option>
+              <option value="gbp">GBP</option>
+              <option value="jpy">JPY</option>
+              <option value="aud">AUD</option>
+              <option value="nzd">NZD</option>
+              <option value="cad">CAD</option>
+              <option value="chf">CHF</option>
+              <option value="cny">CNY</option>
+              <option value="inr">INR</option>
+            </select>
+          </div>
+        </div>
       </div>
       <div class="ec-embed-frame">
-        <!-- TradingView economic calendar. Investing.com's sslecal2 embed returns
-             403 for this domain; swap this block back once that embed is authorised. -->
+        <!-- TradingView economic calendar, rebuilt by the filter deck above.
+             Investing.com's sslecal2 embed returns 403 for this domain; swap
+             this block back once that embed is authorised. -->
+        <div id="ecEmbedHost">
         <div class="tradingview-widget-container">
           <div class="tradingview-widget-container__widget"></div>
           <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-events.js" async>
@@ -579,6 +672,7 @@
             "height": "100%"
           }
           </script>
+        </div>
         </div>
       </div>
       <p class="ec-credit"><a href="https://www.tradingview.com/economic-calendar/" rel="noopener nofollow" target="_blank">Economic calendar</a> by TradingView &mdash; times follow your device timezone.</p>
@@ -962,6 +1056,101 @@
   <a href="../../company/corporate/legal-documents.html" class="cookie-more">More details</a>
   <button class="cookie-x" id="cookieClose" aria-label="Accept and close"><svg><use href="#i-close"/></svg></button>
 </div>
+
+<script>
+/* calendar filter deck — impact + instrument rebuild the TradingView embed;
+   day chips, visibility and holidays are visual state (widget has no API for them) */
+(function () {
+  var deck = document.querySelector('[data-ecf]');
+  var host = document.getElementById('ecEmbedHost');
+  if (!deck || !host) return;
+
+  /* week strip: Monday–Sunday around today */
+  var daysEl = document.getElementById('ecfDays');
+  var rangeEl = document.getElementById('ecfRange');
+  var names = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  var now = new Date();
+  var monday = new Date(now);
+  monday.setDate(now.getDate() - ((now.getDay() + 6) % 7));
+  function two(n) { return (n < 10 ? '0' : '') + n; }
+  var week = [];
+  for (var i = 0; i < 7; i++) {
+    var d = new Date(monday);
+    d.setDate(monday.getDate() + i);
+    week.push(d);
+  }
+  rangeEl.textContent = two(week[0].getDate()) + '/' + two(week[0].getMonth() + 1) +
+    ' – ' + two(week[6].getDate()) + '/' + two(week[6].getMonth() + 1) + '/' + String(week[6].getFullYear()).slice(-2);
+  week.forEach(function (d) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'ecf-day';
+    b.innerHTML = '<span>' + names[d.getDay()] + ' <em>' + two(d.getDate()) + '</em></span>' +
+      '<svg aria-hidden="true"><use href="#i-check"/></svg>';
+    if (d.toDateString() === now.toDateString()) b.classList.add('is-on');
+    b.addEventListener('click', function () {
+      var cur = daysEl.querySelector('.is-on');
+      if (cur) cur.classList.remove('is-on');
+      b.classList.add('is-on');
+    });
+    daysEl.appendChild(b);
+  });
+  document.getElementById('ecfToday').addEventListener('click', function () {
+    var chips = daysEl.children;
+    for (var j = 0; j < chips.length; j++) {
+      chips[j].classList.toggle('is-on', j === ((now.getDay() + 6) % 7));
+    }
+  });
+
+  /* live clock + timezone */
+  var tzEl = document.getElementById('ecfTz');
+  var zone = 'Local time';
+  try { zone = Intl.DateTimeFormat().resolvedOptions().timeZone || zone; } catch (e) {}
+  function tick() {
+    var t = new Date();
+    tzEl.textContent = two(t.getHours()) + ':' + two(t.getMinutes()) + ' ' + zone;
+  }
+  tick();
+  setInterval(tick, 30000);
+
+  /* impact + instrument genuinely rebuild the widget */
+  var COUNTRIES = {
+    all: 'us,eu,gb,jp,de,fr,it,ca,au,nz,ch,cn,in,br,mx,kr,za,tr,es,hk',
+    usd: 'us', eur: 'eu,de,fr,it,es', gbp: 'gb', jpy: 'jp', aud: 'au',
+    nzd: 'nz', cad: 'ca', chf: 'ch', cny: 'cn,hk', inr: 'in'
+  };
+  var inst = document.getElementById('ecfInst');
+  var impBoxes = Array.prototype.slice.call(deck.querySelectorAll('[data-ecf-imp]'));
+  var timer = null;
+  function rebuild() {
+    var imps = impBoxes.filter(function (c) { return c.checked; })
+      .map(function (c) { return c.getAttribute('data-ecf-imp'); });
+    if (!imps.length) imps = ['-1', '0', '1'];
+    var cfg = {
+      colorTheme: 'light',
+      isTransparent: true,
+      locale: 'en',
+      countryFilter: COUNTRIES[inst.value] || COUNTRIES.all,
+      importanceFilter: imps.join(','),
+      width: '100%',
+      height: '100%'
+    };
+    host.innerHTML = '<div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div></div>';
+    var s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.src = 'https://s3.tradingview.com/external-embedding/embed-widget-events.js';
+    s.async = true;
+    s.text = JSON.stringify(cfg);
+    host.firstChild.appendChild(s);
+  }
+  function queueRebuild() {
+    clearTimeout(timer);
+    timer = setTimeout(rebuild, 450);
+  }
+  impBoxes.forEach(function (c) { c.addEventListener('change', queueRebuild); });
+  inst.addEventListener('change', queueRebuild);
+})();
+</script>
 
 <script src="../../assets/js/vendor/gsap.min.js" defer></script>
 <script src="../../assets/js/vendor/ScrollTrigger.min.js" defer></script>
