@@ -146,6 +146,12 @@
   font-size:9.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
   color:#5b3fd6;background:rgba(122,92,255,.1);border:1px solid rgba(122,92,255,.3);vertical-align:1px}
 .ecx-empty{padding:44px 20px;text-align:center;color:#8a94a8;font-size:13.5px}
+.ecx-dayrow td{background:#f8fafd;color:#0c1526;font-size:14px;font-weight:800;letter-spacing:-.01em;
+  padding:13px 18px;border-left:3px solid #0c1526}
+.ecx-cty{display:inline-flex;align-items:center;gap:9px;font-weight:700;white-space:nowrap}
+.ecx-cty i{font-style:normal;font-size:17px;line-height:1}
+.ecx-time--hot{display:inline-block;background:#e03131;color:#fff;padding:4px 10px;border-radius:9px;font-weight:800}
+.ecx-cd{color:#e03131;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
 .ec-embed-frame iframe{display:block;width:100%;height:100%;border:0}
 .ec-credit{padding:12px 20px;font-size:12px;color:var(--text-mute);border-top:1px solid rgba(20,40,80,.07);background:rgba(255,255,255,.5)}
 .ec-credit a{color:var(--blue);font-weight:600}
@@ -688,7 +694,7 @@
         <div class="ecx-wrap">
           <table class="ecx" id="ecxTable" aria-label="Economic events">
             <thead>
-              <tr><th scope="col">Time</th><th scope="col">Currency</th><th scope="col">Event</th><th scope="col">Impact</th><th scope="col">Actual</th><th scope="col">Forecast</th><th scope="col">Previous</th></tr>
+              <tr><th scope="col">Time</th><th scope="col">Country</th><th scope="col">Event</th><th scope="col">Impact</th><th scope="col">Actual</th><th scope="col">Forecast</th><th scope="col">Prior</th></tr>
             </thead>
             <tbody id="ecxBody"></tbody>
           </table>
@@ -1078,7 +1084,8 @@
 </div>
 
 <script>
-/* calendar filter deck + full results table — every control filters the rows */
+/* calendar filter deck + full results table on live TradingView data —
+   grouped by time and country, with release countdowns, like the source UI */
 (function () {
   var deck = document.querySelector('[data-ecf]');
   var body = document.getElementById('ecxBody');
@@ -1093,7 +1100,7 @@
   for (var i = 0; i < 7; i++) {
     var d = new Date(monday);
     d.setDate(monday.getDate() + i);
-    week.push(d);
+    week.push(new Date(d.getFullYear(), d.getMonth(), d.getDate()));
   }
   var todayIdx = (now.getDay() + 6) % 7;
   var selDay = todayIdx;
@@ -1102,54 +1109,30 @@
     two(week[0].getDate()) + '/' + two(week[0].getMonth() + 1) + ' – ' +
     two(week[6].getDate()) + '/' + two(week[6].getMonth() + 1) + '/' + String(week[6].getFullYear()).slice(-2);
 
-  /* illustrative week of releases: [day 0-6, time, cur, event, detail, imp, actual, forecast, previous, restricted, holiday] */
-  var CUR_C = { USD: '#2a72ff', EUR: '#5b3fd6', GBP: '#b3273c', JPY: '#c0392b', AUD: '#0b7a58', NZD: '#0b7a58', CAD: '#8a5b00', CHF: '#c0392b', CNY: '#b3273c', INR: '#c07c00' };
-  var DATA = [
-    [0, '02:45', 'CNY', 'Caixin Services PMI', 'Jul', 'med', '52.1', '51.6', '51.0', false, false],
-    [0, '08:30', 'EUR', 'Sentix Investor Confidence', 'Aug', 'low', '-3.2', '-4.1', '-5.9', false, false],
-    [0, '11:30', 'INR', 'RBI Interest Rate Decision', '', 'high', '5.50%', '5.50%', '5.50%', true, false],
-    [0, '14:00', 'USD', 'Factory Orders m/m', 'Jun', 'low', '1.8%', '1.2%', '-2.9%', false, false],
-    [0, '19:01', 'GBP', 'BRC Retail Sales Monitor y/y', 'Jul', 'low', '1.4%', '0.9%', '0.7%', false, false],
-    [1, '00:30', 'AUD', 'Trade Balance', 'Jun', 'med', 'A$5.42B', 'A$5.10B', 'A$4.87B', false, false],
-    [1, '06:45', 'CHF', 'Unemployment Rate', 'Jul', 'low', '2.9%', '2.9%', '2.8%', false, false],
-    [1, '08:00', 'EUR', 'German Industrial Production m/m', 'Jun', 'med', '-0.6%', '0.4%', '1.2%', false, false],
-    [1, '12:30', 'USD', 'Trade Balance', 'Jun', 'med', '-$61.3B', '-$62.5B', '-$71.5B', false, false],
-    [1, '14:30', 'USD', 'ISM Services PMI', 'Jul', 'high', '53.4', '52.8', '50.8', false, false],
-    [2, '01:30', 'CNY', 'Trade Balance', 'Jul', 'high', '$102.4B', '$96.0B', '$114.8B', false, false],
-    [2, '06:00', 'JPY', 'Leading Economic Index', 'Jun', 'low', '106.2', '105.9', '105.3', false, false],
-    [2, '09:00', 'EUR', 'Retail Sales m/m', 'Jun', 'med', '0.5%', '0.3%', '-0.7%', false, false],
-    [2, '12:00', 'USD', 'MBA Mortgage Applications w/w', '', 'low', '3.1%', '—', '-2.4%', false, false],
-    [2, '14:30', 'USD', 'Crude Oil Inventories', '', 'med', '-2.1M', '-1.4M', '3.6M', false, false],
-    [3, '01:30', 'AUD', 'NAB Business Confidence', 'Jul', 'low', '6', '4', '3', false, false],
-    [3, '11:00', 'GBP', 'BoE Interest Rate Decision', '', 'high', '4.00%', '4.00%', '4.25%', true, false],
-    [3, '11:30', 'GBP', 'BoE Governor Press Conference', '', 'high', '—', '—', '—', true, false],
-    [3, '12:30', 'USD', 'Initial Jobless Claims', 'w/e 02 Aug', 'med', '224K', '230K', '218K', false, false],
-    [3, '23:50', 'JPY', 'BoJ Summary of Opinions', '', 'med', '—', '—', '—', false, false],
-    [4, '01:30', 'CNY', 'CPI y/y', 'Jul', 'high', '—', '0.3%', '0.1%', false, false],
-    [4, '06:00', 'JPY', 'Household Spending y/y', 'Jun', 'med', '—', '1.2%', '4.7%', false, false],
-    [4, '08:30', 'GBP', 'GDP m/m', 'Jun', 'high', '—', '0.1%', '-0.1%', false, false],
-    [4, '12:30', 'USD', 'Nonfarm Payrolls', 'Jul', 'high', '—', '176K', '147K', true, false],
-    [4, '12:30', 'USD', 'Unemployment Rate', 'Jul', 'high', '—', '4.2%', '4.1%', false, false],
-    [4, '12:30', 'CAD', 'Employment Change', 'Jul', 'high', '—', '18.5K', '83.1K', false, false],
-    [4, '14:00', 'USD', 'UoM Consumer Sentiment (prelim)', 'Aug', 'med', '—', '62.0', '61.7', false, false],
-    [5, '00:00', 'JPY', 'Mountain Day', 'Markets closed', 'hol', '—', '—', '—', false, true],
-    [5, '12:30', 'USD', 'Fed Member Bowman Speech', '', 'low', '—', '—', '—', false, false],
-    [0, '17:30', 'USD', '3-Month Bill Auction', '', 'low', '4.21%', '—', '4.24%', false, false],
-    [0, '21:00', 'NZD', 'RBNZ Inflation Expectations q/q', 'Q3', 'med', '2.3%', '—', '2.4%', false, false],
-    [1, '17:00', 'USD', 'Fed Member Daly Speech', '', 'med', '—', '—', '—', false, false],
-    [1, '20:30', 'USD', 'API Weekly Crude Stock', '', 'low', '-1.8M', '—', '1.5M', false, false],
-    [2, '17:00', 'USD', '10-Year Note Auction', '', 'med', '4.28%', '—', '4.36%', false, false],
-    [2, '22:45', 'NZD', 'Electronic Card Retail Sales m/m', 'Jul', 'low', '0.4%', '0.2%', '-0.1%', false, false],
-    [3, '17:00', 'USD', '30-Year Bond Auction', '', 'med', '4.81%', '—', '4.89%', false, false],
-    [3, '22:30', 'NZD', 'BusinessNZ Manufacturing Index', 'Jul', 'low', '—', '49.5', '48.8', false, false],
-    [4, '17:00', 'USD', 'Baker Hughes Oil Rig Count', '', 'low', '—', '—', '482', false, false],
-    [4, '19:30', 'USD', 'CFTC Speculative Net Positions', '', 'low', '—', '—', '+28.4K', false, false],
-    [4, '20:00', 'USD', 'Federal Budget Balance', 'Jul', 'med', '—', '-$241.0B', '-$27.0B', false, false],
-    [5, '15:00', 'INR', 'FX Reserves (USD)', 'w/e 08 Aug', 'low', '—', '—', '$698.2B', false, false],
-    [6, '23:50', 'JPY', 'PPI y/y', 'Jul', 'low', '—', '2.9%', '2.9%', false, false]
+  /* offline fallback: an illustrative trading week */
+  var FB = [
+    [0, '08:30', 'EUR', 'EU', 'Sentix Investor Confidence', 'Aug', 'low', '-3.2', '-4.1', '-5.9'],
+    [0, '11:30', 'INR', 'IN', 'RBI Interest Rate Decision', '', 'high', '5.50%', '5.50%', '5.50%'],
+    [0, '14:00', 'USD', 'US', 'Factory Orders MoM', 'Jun', 'low', '1.8%', '1.2%', '-2.9%'],
+    [1, '12:30', 'USD', 'US', 'Trade Balance', 'Jun', 'med', '-$61.3B', '-$62.5B', '-$71.5B'],
+    [1, '14:30', 'USD', 'US', 'ISM Services PMI', 'Jul', 'high', '53.4', '52.8', '50.8'],
+    [2, '01:30', 'CNY', 'CN', 'Trade Balance', 'Jul', 'high', '$102.4B', '$96.0B', '$114.8B'],
+    [2, '09:00', 'EUR', 'EU', 'Retail Sales MoM', 'Jun', 'med', '0.5%', '0.3%', '-0.7%'],
+    [3, '11:00', 'GBP', 'GB', 'BoE Interest Rate Decision', '', 'high', '4.00%', '4.00%', '4.25%'],
+    [3, '12:30', 'USD', 'US', 'Initial Jobless Claims', 'w/e 02 Aug', 'med', '224K', '230K', '218K'],
+    [4, '12:30', 'USD', 'US', 'Non Farm Payrolls', 'Jul', 'high', '—', '80K', '57K'],
+    [4, '12:30', 'USD', 'US', 'Unemployment Rate', 'Jul', 'high', '—', '4.2%', '4.1%'],
+    [4, '12:30', 'CAD', 'CA', 'Employment Change', 'Jul', 'high', '—', '18.5K', '83.1K'],
+    [4, '17:00', 'USD', 'US', 'Baker Hughes Oil Rig Count', '', 'low', '—', '—', '482'],
+    [5, '00:00', 'JPY', 'JP', 'Mountain Day', 'Markets closed', 'hol', '—', '—', '—'],
+    [6, '23:50', 'JPY', 'JP', 'PPI YoY', 'Jul', 'low', '—', '2.9%', '2.9%']
   ];
-  var rows = DATA;
-  var live = false;
+  var rows = FB.map(function (r) {
+    var hm = r[1].split(':');
+    return { day: r[0], time: r[1], ts: week[r[0]].getTime() + (+hm[0]) * 3600000 + (+hm[1]) * 60000,
+      cur: r[2], country: r[3], title: r[4], detail: r[5], imp: r[6],
+      actual: r[7], forecast: r[8], prior: r[9], restricted: false, holiday: r[6] === 'hol' };
+  });
 
   /* deck state */
   var impBoxes = Array.prototype.slice.call(deck.querySelectorAll('[data-ecf-imp]'));
@@ -1160,33 +1143,69 @@
   var IMPKEY = { '-1': 'low', '0': 'med', '1': 'high' };
   var IMPLBL = { low: 'Low', med: 'Medium', high: 'High', hol: 'Holiday' };
 
+  var regionNames = null;
+  try { regionNames = new Intl.DisplayNames(['en'], { type: 'region' }); } catch (e) {}
+  function countryName(code) {
+    if (code === 'EU') return 'Euro Area';
+    if (code === 'US') return 'USA';
+    if (code === 'GB') return 'UK';
+    if (regionNames) { try { return regionNames.of(code) || code; } catch (e) {} }
+    return code;
+  }
+  function flag(code) {
+    if (!/^[A-Z]{2}$/.test(code)) return '🌐';
+    return String.fromCodePoint(0x1f1e6 + code.charCodeAt(0) - 65, 0x1f1e6 + code.charCodeAt(1) - 65);
+  }
+  function cdText(ms) {
+    var s = Math.max(0, Math.round(ms / 1000));
+    return 'Coming in ' + Math.floor(s / 60) + ':' + two(s % 60);
+  }
+
   function render() {
     var imps = {};
     impBoxes.forEach(function (c) { if (c.checked) imps[IMPKEY[c.getAttribute('data-ecf-imp')]] = true; });
-    var nowHM = two(now.getHours()) + ':' + two(now.getMinutes());
     var cur = inst.value.toUpperCase();
+    var nowMs = Date.now();
+    var list = rows.filter(function (r) {
+      if (r.day !== selDay) return false;
+      if (r.holiday) { if (!holBox.checked) return false; }
+      else if (!imps[r.imp]) return false;
+      if (cur !== 'ALL' && r.cur !== cur && r.cur !== 'ALL') return false;
+      if (restrBox.checked && !r.restricted) return false;
+      if (selDay === todayIdx && r.ts <= nowMs && pastBox.checked) return false;
+      return true;
+    }).sort(function (a, b) { return a.ts - b.ts || (a.country < b.country ? -1 : a.country > b.country ? 1 : 0); });
+
     var html = '';
-    rows.forEach(function (r) {
-      if (r[0] !== selDay) return;
-      if (r[10]) { if (!holBox.checked) return; }
-      else if (!imps[r[5]]) return;
-      if (cur !== 'ALL' && r[2] !== cur && r[2] !== 'ALL') return;
-      if (restrBox.checked && !r[9]) return;
-      var past = selDay === todayIdx && r[1] < nowHM;
-      if (past && pastBox.checked) return;
-      var num = function (v, ref) {
-        if (v === '—' || ref === '—') return '<td class="ecx-num">' + v + '</td>';
-        var a = parseFloat(v.replace(/[^0-9.-]/g, '')), b = parseFloat(ref.replace(/[^0-9.-]/g, ''));
-        var cls = isNaN(a) || isNaN(b) || a === b ? '' : (a > b ? ' up' : ' dn');
-        return '<td class="ecx-num' + cls + '">' + v + '</td>';
+    if (list.length) {
+      html += '<tr class="ecx-dayrow"><td colspan="7">' +
+        week[selDay].toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }) + '</td></tr>';
+    }
+    var lastTime = null, lastCountry = null;
+    list.forEach(function (r) {
+      var past = selDay === todayIdx && r.ts <= nowMs;
+      var soon = !past && r.ts - nowMs <= 3600000 && r.day === todayIdx;
+      var newTime = r.time !== lastTime;
+      var newCountry = newTime || r.country !== lastCountry;
+      lastTime = r.time; lastCountry = r.country;
+      var num = function (v, ref, cls) {
+        if (v === '—' || ref === '—' || v === undefined) return '<td class="ecx-num' + (cls || '') + '">' + (v || '—') + '</td>';
+        var a = parseFloat(String(v).replace(/[^0-9.-]/g, '')), b = parseFloat(String(ref).replace(/[^0-9.-]/g, ''));
+        var c = isNaN(a) || isNaN(b) || a === b ? '' : (a > b ? ' up' : ' dn');
+        return '<td class="ecx-num' + c + '">' + v + '</td>';
       };
+      var actualCell = soon && r.actual === '—'
+        ? '<td><span class="ecx-cd" data-cd="' + r.ts + '">' + cdText(r.ts - nowMs) + '</span></td>'
+        : num(r.actual, r.forecast);
       html += '<tr' + (past ? ' class="is-past"' : '') + '>' +
-        '<td class="ecx-time">' + r[1] + '</td>' +
-        '<td><span class="ecx-cur" style="--ecx-c:' + (CUR_C[r[2]] || '#8fa0bd') + '"><i></i>' + r[2] + '</span></td>' +
-        '<td class="ecx-event"><b>' + r[3] + '</b>' + (r[9] ? '<span class="ecx-flag">Restricted</span>' : '') +
-          (r[4] ? '<small>' + r[4] + '</small>' : '') + '</td>' +
-        '<td><span class="ecx-imp ecx-imp--' + r[5] + '"><i></i>' + IMPLBL[r[5]] + '</span></td>' +
-        num(r[6], r[7]) + '<td class="ecx-num">' + r[7] + '</td><td class="ecx-num">' + r[8] + '</td></tr>';
+        '<td class="ecx-time">' + (newTime ? (soon ? '<span class="ecx-time--hot">' + r.time + '</span>' : r.time) : '') + '</td>' +
+        '<td>' + (newCountry ? '<span class="ecx-cty"><i aria-hidden="true">' + flag(r.country) + '</i>' + countryName(r.country) + '</span>' : '') + '</td>' +
+        '<td class="ecx-event"><b>' + r.title + '</b>' + (r.restricted ? '<span class="ecx-flag">Restricted</span>' : '') +
+          (r.detail ? '<small>' + r.detail + '</small>' : '') + '</td>' +
+        '<td><span class="ecx-imp ecx-imp--' + r.imp + '"><i></i>' + IMPLBL[r.imp] + '</span></td>' +
+        actualCell +
+        '<td class="ecx-num">' + r.forecast + '</td>' +
+        '<td class="ecx-num">' + r.prior + '</td></tr>';
     });
     body.innerHTML = html;
     document.getElementById('ecxEmpty').hidden = !!html;
@@ -1232,49 +1251,68 @@
   inst.addEventListener('change', render);
   render();
 
-  /* live TradingView economic-calendar data via our /api/calendar relay
-     (TradingView 403s non-whitelisted origins, so the browser cannot call it
-     directly). Falls back to the illustrative dataset when unreachable. */
+  /* live TradingView data via the /api/calendar relay (TradingView 403s
+     non-whitelisted origins, so the browser cannot call it directly) */
   var IMPMAP = { '-1': 'low', '0': 'med', '1': 'high' };
-  var iso = function (d) { return d.toISOString(); };
-  var from = new Date(week[0].getFullYear(), week[0].getMonth(), week[0].getDate());
-  var to = new Date(from.getTime() + 7 * 86400000);
+  var from = week[0], to = new Date(from.getTime() + 7 * 86400000);
   var COUNTRY_LIST = 'US,EU,GB,JP,DE,FR,IT,CA,AU,NZ,CH,CN,IN,BR,MX,KR,ZA,TR,ES,HK';
-  fetch('/api/calendar?from=' + encodeURIComponent(iso(from)) +
-        '&to=' + encodeURIComponent(iso(to)) + '&countries=' + COUNTRY_LIST,
-    { headers: { 'Accept': 'application/json' } })
-    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-    .then(function (res) {
-      var list = res && res.result;
-      if (!list || !list.length) return;
-      var fmt = function (v, e) {
-        if (v === null || v === undefined || v === '') return '—';
-        return String(v) + (e.scale || '') + (e.unit || '');
-      };
-      var out = [];
-      list.forEach(function (e) {
-        var d = new Date(e.date);
-        if (isNaN(d)) return;
-        var idx = Math.floor((new Date(d.getFullYear(), d.getMonth(), d.getDate()) - from) / 86400000);
-        if (idx < 0 || idx > 6) return;
-        var hol = e.indicator === 'Holidays' || e.category === 'Holidays';
-        out.push([idx,
-          two(d.getHours()) + ':' + two(d.getMinutes()),
-          e.currency || e.country,
-          e.title, hol ? 'Markets closed' : (e.period || ''),
-          hol ? 'hol' : (IMPMAP[String(e.importance)] || 'low'),
-          fmt(e.actual, e), fmt(e.forecast, e), fmt(e.previous, e),
-          false, hol]);
-      });
-      if (!out.length) return;
-      out.sort(function (a, b) { return a[0] - b[0] || (a[1] < b[1] ? -1 : 1); });
-      rows = out;
-      live = true;
-      var credit = document.querySelector('.ec-credit');
-      if (credit) credit.innerHTML = 'Live <a href="https://www.tradingview.com/economic-calendar/" rel="noopener nofollow" target="_blank">economic calendar</a> data by TradingView &mdash; actual, forecast and previous update as figures are published. Times follow your device timezone.';
+  function loadLive() {
+    fetch('/api/calendar?from=' + encodeURIComponent(from.toISOString()) +
+          '&to=' + encodeURIComponent(to.toISOString()) + '&countries=' + COUNTRY_LIST,
+      { headers: { 'Accept': 'application/json' } })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function (res) {
+        var list = res && res.result;
+        if (!list || !list.length) return;
+        var fmt = function (v, e) {
+          if (v === null || v === undefined || v === '') return '—';
+          return String(v) + (e.scale || '') + (e.unit || '');
+        };
+        var out = [];
+        list.forEach(function (e) {
+          var d = new Date(e.date);
+          if (isNaN(d)) return;
+          var idx = Math.floor((new Date(d.getFullYear(), d.getMonth(), d.getDate()) - from) / 86400000);
+          if (idx < 0 || idx > 6) return;
+          var hol = e.indicator === 'Holidays' || e.category === 'Holidays';
+          out.push({ day: idx, time: two(d.getHours()) + ':' + two(d.getMinutes()), ts: d.getTime(),
+            cur: e.currency || e.country, country: e.country || '', title: e.title,
+            detail: hol ? 'Markets closed' : (e.period || ''),
+            imp: hol ? 'hol' : (IMPMAP[String(e.importance)] || 'low'),
+            actual: fmt(e.actual, e), forecast: fmt(e.forecast, e), prior: fmt(e.previous, e),
+            restricted: false, holiday: hol });
+        });
+        if (!out.length) return;
+        rows = out;
+        var credit = document.querySelector('.ec-credit');
+        if (credit) credit.innerHTML = 'Live <a href="https://www.tradingview.com/economic-calendar/" rel="noopener nofollow" target="_blank">economic calendar</a> data by TradingView &mdash; actual, forecast and prior update as figures are published. Times follow your device timezone.';
+        render();
+      })
+      .catch(function () { /* keep fallback */ });
+  }
+  loadLive();
+
+  /* countdown ticker: update "Coming in" cells; on release, re-render and
+     refetch shortly after so the actual print fills in */
+  var refetchQueued = false;
+  setInterval(function () {
+    var els = document.querySelectorAll('[data-cd]');
+    if (!els.length) return;
+    var flip = false;
+    var nowMs = Date.now();
+    Array.prototype.forEach.call(els, function (el) {
+      var left = +el.getAttribute('data-cd') - nowMs;
+      if (left <= 0) flip = true;
+      else el.textContent = cdText(left);
+    });
+    if (flip) {
       render();
-    })
-    .catch(function () { /* keep illustrative fallback */ });
+      if (!refetchQueued) {
+        refetchQueued = true;
+        setTimeout(function () { refetchQueued = false; loadLive(); }, 120000);
+      }
+    }
+  }, 1000);
 })();
 </script>
 
