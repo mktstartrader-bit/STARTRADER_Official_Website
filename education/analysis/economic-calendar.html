@@ -114,7 +114,38 @@
   .ecf-src{margin-left:0}
 }
 /* the widget is its own light UI — give it a clean white stage to sit on */
-.ec-embed-frame{background:#fff;height:clamp(540px,62vh,660px)}
+.ec-embed-frame{background:#fff}
+/* ---- full results table ---- */
+.ecx-wrap{overflow-x:auto}
+.ecx{width:100%;border-collapse:collapse;font-size:13.5px;min-width:760px}
+.ecx th{position:sticky;top:0;background:#f4f7fc;color:#5a6478;font-size:11px;font-weight:800;
+  letter-spacing:.09em;text-transform:uppercase;text-align:left;padding:12px 18px;
+  border-bottom:1px solid rgba(20,40,80,.1)}
+.ecx td{padding:13px 18px;border-bottom:1px solid rgba(20,40,80,.07);color:#1c2740;vertical-align:middle}
+.ecx tr:last-child td{border-bottom:0}
+.ecx tbody tr{transition:background .2s}
+.ecx tbody tr:hover{background:rgba(42,114,255,.04)}
+.ecx-time{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ecx-cur{display:inline-flex;align-items:center;gap:7px;padding:4px 11px;border-radius:30px;
+  font-size:11.5px;font-weight:800;letter-spacing:.04em;color:#33415e;
+  background:rgba(28,44,84,.05);border:1px solid rgba(28,44,84,.12);white-space:nowrap}
+.ecx-cur i{width:7px;height:7px;border-radius:50%;background:var(--ecx-c,#8fa0bd)}
+.ecx-imp{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;white-space:nowrap}
+.ecx-imp i{width:9px;height:9px;border-radius:3px}
+.ecx-imp--low{color:#0b7a58}.ecx-imp--low i{background:#14c8a6}
+.ecx-imp--med{color:#8a5b00}.ecx-imp--med i{background:#f5a524}
+.ecx-imp--high{color:#b3273c}.ecx-imp--high i{background:#ef4b5d}
+.ecx-imp--hol{color:#5a6478}.ecx-imp--hol i{background:#8fa0bd}
+.ecx-num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.ecx-num.up{color:#0b7a58;font-weight:700}
+.ecx-num.dn{color:#b3273c;font-weight:700}
+.ecx-event b{font-weight:700}
+.ecx-event small{display:block;font-size:11.5px;color:#8a94a8;margin-top:2px}
+.ecx tr.is-past td{opacity:.45}
+.ecx-flag{display:inline-block;margin-left:8px;padding:2px 8px;border-radius:20px;
+  font-size:9.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+  color:#5b3fd6;background:rgba(122,92,255,.1);border:1px solid rgba(122,92,255,.3);vertical-align:1px}
+.ecx-empty{padding:44px 20px;text-align:center;color:#8a94a8;font-size:13.5px}
 .ec-embed-frame iframe{display:block;width:100%;height:100%;border:0}
 .ec-credit{padding:12px 20px;font-size:12px;color:var(--text-mute);border-top:1px solid rgba(20,40,80,.07);background:rgba(255,255,255,.5)}
 .ec-credit a{color:var(--blue);font-weight:600}
@@ -130,8 +161,7 @@
 .ec-beat-lbl{color:#34d99b}
 .ec-beat-lbl::before{background:#34d99b}
 /* ---- Responsive ---- */
-@media (max-width:1080px){.ec-embed-frame{height:clamp(520px,58vh,640px)}}
-@media (max-width:720px){.ec-embed-frame{height:clamp(480px,66vh,600px)}
+@media (max-width:720px){
 .ec-embed-bar{padding:12px 16px}
 .ec-credit{padding:11px 16px}}
 /* ---- Why-card additions for features the product pages don't cover.
@@ -655,27 +685,17 @@
         </div>
       </div>
       <div class="ec-embed-frame">
-        <!-- TradingView economic calendar, rebuilt by the filter deck above.
-             Investing.com's sslecal2 embed returns 403 for this domain; swap
-             this block back once that embed is authorised. -->
-        <div id="ecEmbedHost">
-        <div class="tradingview-widget-container">
-          <div class="tradingview-widget-container__widget"></div>
-          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-events.js" async>
-          {
-            "colorTheme": "light",
-            "isTransparent": true,
-            "locale": "en",
-            "countryFilter": "us,eu,gb,jp,de,fr,it,ca,au,nz,ch,cn,in,br,mx,kr,za,tr,es,hk",
-            "importanceFilter": "-1,0,1",
-            "width": "100%",
-            "height": "100%"
-          }
-          </script>
-        </div>
+        <div class="ecx-wrap">
+          <table class="ecx" id="ecxTable" aria-label="Economic events">
+            <thead>
+              <tr><th scope="col">Time</th><th scope="col">Currency</th><th scope="col">Event</th><th scope="col">Impact</th><th scope="col">Actual</th><th scope="col">Forecast</th><th scope="col">Previous</th></tr>
+            </thead>
+            <tbody id="ecxBody"></tbody>
+          </table>
+          <p class="ecx-empty" id="ecxEmpty" hidden>No events match the current filters &mdash; widen the impact or instrument selection.</p>
         </div>
       </div>
-      <p class="ec-credit"><a href="https://www.tradingview.com/economic-calendar/" rel="noopener nofollow" target="_blank">Economic calendar</a> by TradingView &mdash; times follow your device timezone.</p>
+      <p class="ec-credit">Illustrative schedule for design preview &mdash; the production build connects this table to the live data feed. Times follow your device timezone.</p>
     </div>
 
     <p class="ec-note">Times, forecasts and figures are supplied by a third party and may be revised or rescheduled by the issuing institution. Shown for information only &mdash; not investment advice.</p>
@@ -1058,16 +1078,12 @@
 </div>
 
 <script>
-/* calendar filter deck — impact + instrument rebuild the TradingView embed;
-   day chips, visibility and holidays are visual state (widget has no API for them) */
+/* calendar filter deck + full results table — every control filters the rows */
 (function () {
   var deck = document.querySelector('[data-ecf]');
-  var host = document.getElementById('ecEmbedHost');
-  if (!deck || !host) return;
+  var body = document.getElementById('ecxBody');
+  if (!deck || !body) return;
 
-  /* week strip: Monday–Sunday around today */
-  var daysEl = document.getElementById('ecfDays');
-  var rangeEl = document.getElementById('ecfRange');
   var names = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   var now = new Date();
   var monday = new Date(now);
@@ -1079,30 +1095,127 @@
     d.setDate(monday.getDate() + i);
     week.push(d);
   }
-  rangeEl.textContent = two(week[0].getDate()) + '/' + two(week[0].getMonth() + 1) +
-    ' – ' + two(week[6].getDate()) + '/' + two(week[6].getMonth() + 1) + '/' + String(week[6].getFullYear()).slice(-2);
-  week.forEach(function (d) {
+  var todayIdx = (now.getDay() + 6) % 7;
+  var selDay = todayIdx;
+
+  document.getElementById('ecfRange').textContent =
+    two(week[0].getDate()) + '/' + two(week[0].getMonth() + 1) + ' – ' +
+    two(week[6].getDate()) + '/' + two(week[6].getMonth() + 1) + '/' + String(week[6].getFullYear()).slice(-2);
+
+  /* illustrative week of releases: [day 0-6, time, cur, event, detail, imp, actual, forecast, previous, restricted, holiday] */
+  var CUR_C = { USD: '#2a72ff', EUR: '#5b3fd6', GBP: '#b3273c', JPY: '#c0392b', AUD: '#0b7a58', NZD: '#0b7a58', CAD: '#8a5b00', CHF: '#c0392b', CNY: '#b3273c', INR: '#c07c00' };
+  var DATA = [
+    [0, '02:45', 'CNY', 'Caixin Services PMI', 'Jul', 'med', '52.1', '51.6', '51.0', false, false],
+    [0, '08:30', 'EUR', 'Sentix Investor Confidence', 'Aug', 'low', '-3.2', '-4.1', '-5.9', false, false],
+    [0, '11:30', 'INR', 'RBI Interest Rate Decision', '', 'high', '5.50%', '5.50%', '5.50%', true, false],
+    [0, '14:00', 'USD', 'Factory Orders m/m', 'Jun', 'low', '1.8%', '1.2%', '-2.9%', false, false],
+    [0, '19:01', 'GBP', 'BRC Retail Sales Monitor y/y', 'Jul', 'low', '1.4%', '0.9%', '0.7%', false, false],
+    [1, '00:30', 'AUD', 'Trade Balance', 'Jun', 'med', 'A$5.42B', 'A$5.10B', 'A$4.87B', false, false],
+    [1, '06:45', 'CHF', 'Unemployment Rate', 'Jul', 'low', '2.9%', '2.9%', '2.8%', false, false],
+    [1, '08:00', 'EUR', 'German Industrial Production m/m', 'Jun', 'med', '-0.6%', '0.4%', '1.2%', false, false],
+    [1, '12:30', 'USD', 'Trade Balance', 'Jun', 'med', '-$61.3B', '-$62.5B', '-$71.5B', false, false],
+    [1, '14:30', 'USD', 'ISM Services PMI', 'Jul', 'high', '53.4', '52.8', '50.8', false, false],
+    [2, '01:30', 'CNY', 'Trade Balance', 'Jul', 'high', '$102.4B', '$96.0B', '$114.8B', false, false],
+    [2, '06:00', 'JPY', 'Leading Economic Index', 'Jun', 'low', '106.2', '105.9', '105.3', false, false],
+    [2, '09:00', 'EUR', 'Retail Sales m/m', 'Jun', 'med', '0.5%', '0.3%', '-0.7%', false, false],
+    [2, '12:00', 'USD', 'MBA Mortgage Applications w/w', '', 'low', '3.1%', '—', '-2.4%', false, false],
+    [2, '14:30', 'USD', 'Crude Oil Inventories', '', 'med', '-2.1M', '-1.4M', '3.6M', false, false],
+    [3, '01:30', 'AUD', 'NAB Business Confidence', 'Jul', 'low', '6', '4', '3', false, false],
+    [3, '11:00', 'GBP', 'BoE Interest Rate Decision', '', 'high', '4.00%', '4.00%', '4.25%', true, false],
+    [3, '11:30', 'GBP', 'BoE Governor Press Conference', '', 'high', '—', '—', '—', true, false],
+    [3, '12:30', 'USD', 'Initial Jobless Claims', 'w/e 02 Aug', 'med', '224K', '230K', '218K', false, false],
+    [3, '23:50', 'JPY', 'BoJ Summary of Opinions', '', 'med', '—', '—', '—', false, false],
+    [4, '01:30', 'CNY', 'CPI y/y', 'Jul', 'high', '—', '0.3%', '0.1%', false, false],
+    [4, '06:00', 'JPY', 'Household Spending y/y', 'Jun', 'med', '—', '1.2%', '4.7%', false, false],
+    [4, '08:30', 'GBP', 'GDP m/m', 'Jun', 'high', '—', '0.1%', '-0.1%', false, false],
+    [4, '12:30', 'USD', 'Nonfarm Payrolls', 'Jul', 'high', '—', '176K', '147K', true, false],
+    [4, '12:30', 'USD', 'Unemployment Rate', 'Jul', 'high', '—', '4.2%', '4.1%', false, false],
+    [4, '12:30', 'CAD', 'Employment Change', 'Jul', 'high', '—', '18.5K', '83.1K', false, false],
+    [4, '14:00', 'USD', 'UoM Consumer Sentiment (prelim)', 'Aug', 'med', '—', '62.0', '61.7', false, false],
+    [5, '00:00', 'JPY', 'Mountain Day', 'Markets closed', 'hol', '—', '—', '—', false, true],
+    [5, '12:30', 'USD', 'Fed Member Bowman Speech', '', 'low', '—', '—', '—', false, false],
+    [0, '17:30', 'USD', '3-Month Bill Auction', '', 'low', '4.21%', '—', '4.24%', false, false],
+    [0, '21:00', 'NZD', 'RBNZ Inflation Expectations q/q', 'Q3', 'med', '2.3%', '—', '2.4%', false, false],
+    [1, '17:00', 'USD', 'Fed Member Daly Speech', '', 'med', '—', '—', '—', false, false],
+    [1, '20:30', 'USD', 'API Weekly Crude Stock', '', 'low', '-1.8M', '—', '1.5M', false, false],
+    [2, '17:00', 'USD', '10-Year Note Auction', '', 'med', '4.28%', '—', '4.36%', false, false],
+    [2, '22:45', 'NZD', 'Electronic Card Retail Sales m/m', 'Jul', 'low', '0.4%', '0.2%', '-0.1%', false, false],
+    [3, '17:00', 'USD', '30-Year Bond Auction', '', 'med', '4.81%', '—', '4.89%', false, false],
+    [3, '22:30', 'NZD', 'BusinessNZ Manufacturing Index', 'Jul', 'low', '—', '49.5', '48.8', false, false],
+    [4, '17:00', 'USD', 'Baker Hughes Oil Rig Count', '', 'low', '—', '—', '482', false, false],
+    [4, '19:30', 'USD', 'CFTC Speculative Net Positions', '', 'low', '—', '—', '+28.4K', false, false],
+    [4, '20:00', 'USD', 'Federal Budget Balance', 'Jul', 'med', '—', '-$241.0B', '-$27.0B', false, false],
+    [5, '15:00', 'INR', 'FX Reserves (USD)', 'w/e 08 Aug', 'low', '—', '—', '$698.2B', false, false],
+    [6, '23:50', 'JPY', 'PPI y/y', 'Jul', 'low', '—', '2.9%', '2.9%', false, false]
+  ];
+
+  /* deck state */
+  var impBoxes = Array.prototype.slice.call(deck.querySelectorAll('[data-ecf-imp]'));
+  var holBox = deck.querySelector('[data-ecf-hol]');
+  var pastBox = deck.querySelector('[data-ecf-past]');
+  var restrBox = deck.querySelector('[data-ecf-restricted]');
+  var inst = document.getElementById('ecfInst');
+  var IMPKEY = { '-1': 'low', '0': 'med', '1': 'high' };
+  var IMPLBL = { low: 'Low', med: 'Medium', high: 'High', hol: 'Holiday' };
+
+  function render() {
+    var imps = {};
+    impBoxes.forEach(function (c) { if (c.checked) imps[IMPKEY[c.getAttribute('data-ecf-imp')]] = true; });
+    var nowHM = two(now.getHours()) + ':' + two(now.getMinutes());
+    var cur = inst.value.toUpperCase();
+    var html = '';
+    DATA.forEach(function (r) {
+      if (r[0] !== selDay) return;
+      if (r[10]) { if (!holBox.checked) return; }
+      else if (!imps[r[5]]) return;
+      if (cur !== 'ALL' && r[2] !== cur) return;
+      if (restrBox.checked && !r[9]) return;
+      var past = selDay === todayIdx && r[1] < nowHM;
+      if (past && pastBox.checked) return;
+      var num = function (v, ref) {
+        if (v === '—' || ref === '—') return '<td class="ecx-num">' + v + '</td>';
+        var a = parseFloat(v.replace(/[^0-9.-]/g, '')), b = parseFloat(ref.replace(/[^0-9.-]/g, ''));
+        var cls = isNaN(a) || isNaN(b) || a === b ? '' : (a > b ? ' up' : ' dn');
+        return '<td class="ecx-num' + cls + '">' + v + '</td>';
+      };
+      html += '<tr' + (past ? ' class="is-past"' : '') + '>' +
+        '<td class="ecx-time">' + r[1] + '</td>' +
+        '<td><span class="ecx-cur" style="--ecx-c:' + (CUR_C[r[2]] || '#8fa0bd') + '"><i></i>' + r[2] + '</span></td>' +
+        '<td class="ecx-event"><b>' + r[3] + '</b>' + (r[9] ? '<span class="ecx-flag">Restricted</span>' : '') +
+          (r[4] ? '<small>' + r[4] + '</small>' : '') + '</td>' +
+        '<td><span class="ecx-imp ecx-imp--' + r[5] + '"><i></i>' + IMPLBL[r[5]] + '</span></td>' +
+        num(r[6], r[7]) + '<td class="ecx-num">' + r[7] + '</td><td class="ecx-num">' + r[8] + '</td></tr>';
+    });
+    body.innerHTML = html;
+    document.getElementById('ecxEmpty').hidden = !!html;
+    document.getElementById('ecxTable').style.display = html ? '' : 'none';
+  }
+
+  /* day strip */
+  var daysEl = document.getElementById('ecfDays');
+  week.forEach(function (d, idx) {
     var b = document.createElement('button');
     b.type = 'button';
-    b.className = 'ecf-day';
+    b.className = 'ecf-day' + (idx === selDay ? ' is-on' : '');
     b.innerHTML = '<span>' + names[d.getDay()] + ' <em>' + two(d.getDate()) + '</em></span>' +
       '<svg aria-hidden="true"><use href="#i-check"/></svg>';
-    if (d.toDateString() === now.toDateString()) b.classList.add('is-on');
     b.addEventListener('click', function () {
-      var cur = daysEl.querySelector('.is-on');
-      if (cur) cur.classList.remove('is-on');
+      var on = daysEl.querySelector('.is-on');
+      if (on) on.classList.remove('is-on');
       b.classList.add('is-on');
+      selDay = idx;
+      render();
     });
     daysEl.appendChild(b);
   });
   document.getElementById('ecfToday').addEventListener('click', function () {
     var chips = daysEl.children;
-    for (var j = 0; j < chips.length; j++) {
-      chips[j].classList.toggle('is-on', j === ((now.getDay() + 6) % 7));
-    }
+    for (var j = 0; j < chips.length; j++) chips[j].classList.toggle('is-on', j === todayIdx);
+    selDay = todayIdx;
+    render();
   });
 
-  /* live clock + timezone */
+  /* clock */
   var tzEl = document.getElementById('ecfTz');
   var zone = 'Local time';
   try { zone = Intl.DateTimeFormat().resolvedOptions().timeZone || zone; } catch (e) {}
@@ -1113,42 +1226,9 @@
   tick();
   setInterval(tick, 30000);
 
-  /* impact + instrument genuinely rebuild the widget */
-  var COUNTRIES = {
-    all: 'us,eu,gb,jp,de,fr,it,ca,au,nz,ch,cn,in,br,mx,kr,za,tr,es,hk',
-    usd: 'us', eur: 'eu,de,fr,it,es', gbp: 'gb', jpy: 'jp', aud: 'au',
-    nzd: 'nz', cad: 'ca', chf: 'ch', cny: 'cn,hk', inr: 'in'
-  };
-  var inst = document.getElementById('ecfInst');
-  var impBoxes = Array.prototype.slice.call(deck.querySelectorAll('[data-ecf-imp]'));
-  var timer = null;
-  function rebuild() {
-    var imps = impBoxes.filter(function (c) { return c.checked; })
-      .map(function (c) { return c.getAttribute('data-ecf-imp'); });
-    if (!imps.length) imps = ['-1', '0', '1'];
-    var cfg = {
-      colorTheme: 'light',
-      isTransparent: true,
-      locale: 'en',
-      countryFilter: COUNTRIES[inst.value] || COUNTRIES.all,
-      importanceFilter: imps.join(','),
-      width: '100%',
-      height: '100%'
-    };
-    host.innerHTML = '<div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div></div>';
-    var s = document.createElement('script');
-    s.type = 'text/javascript';
-    s.src = 'https://s3.tradingview.com/external-embedding/embed-widget-events.js';
-    s.async = true;
-    s.text = JSON.stringify(cfg);
-    host.firstChild.appendChild(s);
-  }
-  function queueRebuild() {
-    clearTimeout(timer);
-    timer = setTimeout(rebuild, 450);
-  }
-  impBoxes.forEach(function (c) { c.addEventListener('change', queueRebuild); });
-  inst.addEventListener('change', queueRebuild);
+  impBoxes.concat([holBox, pastBox, restrBox]).forEach(function (c) { c.addEventListener('change', render); });
+  inst.addEventListener('change', render);
+  render();
 })();
 </script>
 
