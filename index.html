@@ -38,6 +38,39 @@
   <link rel="stylesheet" href="assets/css/styles.css" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
+/* ---- welcome popup (dark glass) ---- */
+.stpop{position:fixed;inset:0;z-index:3000;display:grid;place-items:center;padding:20px;
+  background:rgba(4,8,18,.58);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  opacity:0;pointer-events:none;transition:opacity .35s ease}
+.stpop.is-open{opacity:1;pointer-events:auto}
+.stpop-card{position:relative;width:min(480px,100%);text-align:center;color:#fff;
+  padding:clamp(30px,4vw,44px) clamp(22px,3.4vw,40px) clamp(26px,3.4vw,38px);
+  border-radius:clamp(22px,2.6vw,30px);
+  background:linear-gradient(180deg,rgba(15,23,42,.88),rgba(8,13,26,.94));
+  border:1px solid rgba(255,255,255,.13);
+  -webkit-backdrop-filter:blur(24px) saturate(1.35);backdrop-filter:blur(24px) saturate(1.35);
+  box-shadow:0 50px 110px -40px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.1);
+  transform:translateY(14px) scale(.96);transition:transform .45s var(--ease)}
+.stpop.is-open .stpop-card{transform:none}
+.stpop-card::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:radial-gradient(60% 42% at 50% 0%,rgba(42,114,255,.2),transparent 70%)}
+.stpop-x{position:absolute;top:14px;right:14px;display:grid;place-items:center;width:34px;height:34px;
+  border-radius:50%;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);
+  color:#cdd9ec;cursor:pointer;transition:color .25s,background .25s,transform .35s var(--ease)}
+.stpop-x:hover{color:#fff;background:rgba(255,255,255,.12);transform:rotate(90deg)}
+.stpop-x svg{width:16px;height:16px}
+.stpop-ico{width:118px;height:auto;margin:0 auto 6px;filter:drop-shadow(0 18px 30px rgba(42,114,255,.35));
+  animation:stpopFloat 4.5s ease-in-out infinite}
+@keyframes stpopFloat{50%{transform:translateY(-8px)}}
+@media (prefers-reduced-motion:reduce){.stpop-ico{animation:none}}
+.stpop-kicker{display:inline-block;padding:6px 14px;border-radius:30px;margin-bottom:12px;
+  font-size:10.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#8db4ff;
+  background:rgba(42,114,255,.13);border:1px solid rgba(42,114,255,.3)}
+.stpop-card h2{font-size:clamp(21px,2.4vw,27px);letter-spacing:-.026em;margin-bottom:10px}
+.stpop-card>p{font-size:14px;line-height:1.7;color:#a9bcd8;max-width:38ch;margin:0 auto 22px}
+.stpop-note{margin-top:14px;font-size:11.5px;color:#7286a8}
+  </style>
+  <style>
 /* ---------- Layout ---------- */
 .ta-r{text-align:right}
 /* ---------- Hero ---------- */
@@ -1336,6 +1369,45 @@
     <button type="submit" class="chat-send" aria-label="Send"><svg><use href="#i-send"/></svg></button>
   </form>
 </div>
+
+<!-- ============ WELCOME POPUP ============ -->
+<div class="stpop" id="stPopup" role="dialog" aria-modal="true" aria-labelledby="stpop-title" hidden>
+  <div class="stpop-card">
+    <button class="stpop-x" id="stPopupClose" aria-label="Close popup"><svg><use href="#i-close"/></svg></button>
+    <img class="stpop-ico" src="assets/img/icon-shield-3d.webp" alt="3D shield emblem" width="236" height="290" loading="lazy" decoding="async">
+    <span class="stpop-kicker">Limited-time offer</span>
+    <h2 id="stpop-title">Your first deposit, doubled down</h2>
+    <p>Open a live account today and claim bonus credit on your first deposit &mdash; placeholder copy for the campaign of the moment.</p>
+    <a href="trading/getting-started/account-opening.html" class="btn btn-primary btn-lg">Claim the offer <svg class="ico"><use href="#i-arrow-right"/></svg></a>
+    <p class="stpop-note">Terms and conditions apply. Trading CFDs carries a high level of risk.</p>
+  </div>
+</div>
+
+<script>
+/* welcome popup — once per session, dismiss on X / backdrop / Esc */
+(function () {
+  var pop = document.getElementById('stPopup');
+  var x = document.getElementById('stPopupClose');
+  if (!pop || !x) return;
+  try { if (sessionStorage.getItem('st-popup-seen')) return; } catch (e) {}
+  function close() {
+    pop.classList.remove('is-open');
+    try { sessionStorage.setItem('st-popup-seen', '1'); } catch (e) {}
+    document.removeEventListener('keydown', onKey);
+    setTimeout(function () { pop.hidden = true; }, 380);
+  }
+  function onKey(e) { if (e.key === 'Escape') close(); }
+  x.addEventListener('click', close);
+  pop.addEventListener('click', function (e) { if (e.target === pop) close(); });
+  document.addEventListener('keydown', onKey);
+  setTimeout(function () {
+    pop.hidden = false;
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () { pop.classList.add('is-open'); x.focus(); });
+    });
+  }, 900);
+})();
+</script>
 
 <!-- ============ COOKIE CONSENT ============ -->
 <div class="cookie" id="cookie" role="dialog" aria-label="Cookie notice">
