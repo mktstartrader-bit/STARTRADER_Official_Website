@@ -3991,3 +3991,93 @@ html:not(.js-aos) [data-aos]{opacity:1 !important;transform:none !important;tran
     radial-gradient(56% 40% at 48% 104%,rgba(0,71,187,.06),transparent 62%),
     var(--bg-light);
 }
+
+/* =============================================================
+   MEGA MENU — FULL-LENGTH MINIMAL (appended batch, preview)
+   The dropdown becomes one full-width panel under the header:
+   flat near-black, text-only columns, no icon chips — headings
+   in muted grey, items as plain links aligned to the site grid.
+   ============================================================= */
+.mega,.mega--center{
+  left:0;right:0;top:100%;
+  max-width:none;width:auto;
+  border-radius:0;
+  background:#070a12;
+  border-top:1px solid rgba(255,255,255,.06);
+  border-left:0;border-right:0;border-bottom:1px solid rgba(255,255,255,.05);
+  box-shadow:0 48px 80px -38px rgba(0,0,0,.85);
+  padding:40px max(var(--gutter),calc((100vw - var(--maxw))/2 + var(--gutter))) 48px;
+  gap:clamp(30px,4.5vw,84px);
+  transform:translateY(8px);
+}
+.mega--center{transform:translateY(8px)}
+.nav-item.has-mega:hover .mega,.nav-item.has-mega:focus-within .mega,
+.nav-item.has-mega:hover .mega--center,.nav-item.has-mega:focus-within .mega--center{transform:translateY(0)}
+.mega .mega-ico{display:none}
+.mega-col{padding:0}
+.mega-head{padding-left:0;margin-bottom:14px;text-transform:none;letter-spacing:.02em;font-size:13px;font-weight:600;color:#8592ad}
+.mega-item{gap:0;padding:10px 0;border-radius:0;background:none}
+.mega-item:hover,.mega-item:focus-visible{background:none}
+.mega-txt b{font-weight:500;font-size:14.5px;color:#e6ebf4;transition:color .2s}
+.mega-item:hover .mega-txt b,.mega-item:focus-visible .mega-txt b{color:#5b9dff}
+.mega-txt em{display:none}
+.mega-subchev{margin-left:6px}
+/* the panel must span the header, not the container */
+.site-header .nav{position:static}
+/* alignment pass: arrows lead from the left, columns tighten, dividers go */
+.mega-col+.mega-col{border-left:0}
+.mega,.mega--center{gap:clamp(40px,5vw,72px)}
+.mega-col{min-width:210px}
+.mega-item{align-items:center}
+.mega-item .mega-chev,.mega-item .mega-subchev{order:-1;margin:0 10px 0 0;width:14px;height:14px;flex:none;color:#6d7893}
+.mega-item:hover .mega-chev{color:#5b9dff;transform:translateX(2px)}
+.mega-item .mega-subchev{transform:none}
+.mega-item[aria-expanded="true"] .mega-subchev,.mega-sub.is-open .mega-subchev{transform:rotate(90deg);color:#5b9dff}
+.mega-subitems{padding-left:24px}
+.fly-inner{margin-left:0;border-radius:12px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.08)}
+/* arrows belong to the children: parents keep their indicator beside the
+   label, every sub-menu entry leads with a small arrow */
+.mega-item .mega-chev,.mega-item .mega-subchev{order:0;margin:0 0 0 8px}
+.mega-item:hover .mega-chev{transform:none}
+.mega-subitems a,.fly-group a{display:flex;align-items:center}
+.mega-subitems a::before,.fly-group a:not(:first-child)::before,.fly-group h5+a::before{content:"›";margin-right:9px;font-weight:600;color:#6d7893;transition:color .2s}
+.fly-group a::before{content:"›";margin-right:9px;font-weight:600;color:#6d7893;transition:color .2s}
+.fly-group h5 a::before{content:none}
+.mega-subitems a:hover::before,.fly-group a:hover::before{color:#5b9dff}
+.mega-subitems{padding-left:8px}
+/* columns take their natural width — the gap alone does the spacing,
+   so the flyout docks right beside its column */
+.mega-col{min-width:0}
+.mega-flyout .fly-inner{margin-left:0}
+/* the column wrapper stays content-sized so the flyout docks beside it,
+   and the current page reads as blue text — not a boxed pill */
+.mega-main{display:flex;gap:clamp(40px,5vw,72px);flex:0 0 auto}
+.mega-item:hover,.mega-item.active,.mega-item.is-current{background:none}
+.mega-item.active .mega-txt b,.mega-item.is-current .mega-txt b{color:#5b9dff}
+.mega-item.active .mega-chev,.mega-item.is-current .mega-chev{color:#5b9dff}
+/* the flyout lays its groups side by side — a third of the height */
+.mega.flyout-open .mega-flyout{width:auto;max-width:640px}
+.mega-flyout .fly-inner{width:100%;min-width:0}
+.mega-flyout [data-fly-panel].is-on{display:flex;gap:clamp(14px,1.6vw,26px);align-items:flex-start}
+.mega-flyout .fly-title{flex:none}
+.mega-flyout [data-fly-panel].is-on .fly-title{width:100%;margin-bottom:4px}
+.mega-flyout [data-fly-panel].is-on{flex-wrap:wrap}
+.mega-flyout .fly-group{margin-bottom:0;min-width:118px;flex:1}
+/* the navbar and the panel are one surface: same black glass */
+.site-header,.site-header.scrolled{
+  background:rgba(5,8,15,.82);
+  -webkit-backdrop-filter:blur(30px) saturate(1.5);backdrop-filter:blur(30px) saturate(1.5);
+  box-shadow:none;border-bottom:1px solid rgba(255,255,255,.05)}
+.mega,.mega--center{border-top:0}
+/* where the browser cannot blur the backdrop, the glass goes solid */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .site-header,.site-header.scrolled{background:rgba(5,8,15,.98)}
+}
+/* the flyout overlays inside the panel instead of stretching it —
+   the menu's height never moves */
+.mega-flyout{position:absolute;top:34px;bottom:40px;
+  left:calc(max(var(--gutter),(100vw - var(--maxw))/2 + var(--gutter)) + 620px);
+  right:max(var(--gutter),calc((100vw - var(--maxw))/2 + var(--gutter)));
+  width:auto;overflow:visible;transition:opacity .28s var(--ease);opacity:0;pointer-events:none}
+.mega.flyout-open .mega-flyout{width:auto;opacity:1;pointer-events:auto}
+.mega-flyout .fly-inner{height:100%;overflow:auto;scrollbar-width:thin}
