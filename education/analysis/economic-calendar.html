@@ -1232,33 +1232,46 @@
   inst.addEventListener('change', render);
   render();
 
-  /* live weekly feed, proxied same-origin via /api/calendar (vercel.json rewrite).
-     Falls back to the illustrative dataset when unreachable (e.g. local dev). */
-  var IMPMAP = { High: 'high', Medium: 'med', Low: 'low', Holiday: 'hol' };
-  fetch('/api/calendar', { headers: { 'Accept': 'application/json' } })
+  /* live TradingView economic-calendar data via our /api/calendar relay
+     (TradingView 403s non-whitelisted origins, so the browser cannot call it
+     directly). Falls back to the illustrative dataset when unreachable. */
+  var IMPMAP = { '-1': 'low', '0': 'med', '1': 'high' };
+  var iso = function (d) { return d.toISOString(); };
+  var from = new Date(week[0].getFullYear(), week[0].getMonth(), week[0].getDate());
+  var to = new Date(from.getTime() + 7 * 86400000);
+  var COUNTRY_LIST = 'US,EU,GB,JP,DE,FR,IT,CA,AU,NZ,CH,CN,IN,BR,MX,KR,ZA,TR,ES,HK';
+  fetch('/api/calendar?from=' + encodeURIComponent(iso(from)) +
+        '&to=' + encodeURIComponent(iso(to)) + '&countries=' + COUNTRY_LIST,
+    { headers: { 'Accept': 'application/json' } })
     .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-    .then(function (list) {
-      var start = new Date(week[0].getFullYear(), week[0].getMonth(), week[0].getDate());
+    .then(function (res) {
+      var list = res && res.result;
+      if (!list || !list.length) return;
+      var fmt = function (v, e) {
+        if (v === null || v === undefined || v === '') return '—';
+        return String(v) + (e.scale || '') + (e.unit || '');
+      };
       var out = [];
       list.forEach(function (e) {
         var d = new Date(e.date);
         if (isNaN(d)) return;
-        var idx = Math.floor((new Date(d.getFullYear(), d.getMonth(), d.getDate()) - start) / 86400000);
+        var idx = Math.floor((new Date(d.getFullYear(), d.getMonth(), d.getDate()) - from) / 86400000);
         if (idx < 0 || idx > 6) return;
+        var hol = e.indicator === 'Holidays' || e.category === 'Holidays';
         out.push([idx,
           two(d.getHours()) + ':' + two(d.getMinutes()),
-          e.country === 'All' ? 'ALL' : e.country,
-          e.title, e.impact === 'Holiday' ? (e.country === 'All' ? '' : e.country + ' — markets closed') : '',
-          IMPMAP[e.impact] || 'low', '—',
-          e.forecast || '—', e.previous || '—',
-          false, e.impact === 'Holiday']);
+          e.currency || e.country,
+          e.title, hol ? 'Markets closed' : (e.period || ''),
+          hol ? 'hol' : (IMPMAP[String(e.importance)] || 'low'),
+          fmt(e.actual, e), fmt(e.forecast, e), fmt(e.previous, e),
+          false, hol]);
       });
       if (!out.length) return;
       out.sort(function (a, b) { return a[0] - b[0] || (a[1] < b[1] ? -1 : 1); });
       rows = out;
       live = true;
       var credit = document.querySelector('.ec-credit');
-      if (credit) credit.innerHTML = 'Live weekly schedule via the <a href="https://www.forexfactory.com/calendar" rel="noopener nofollow" target="_blank">Forex Factory</a> feed &mdash; actual prints land in the production build. Times follow your device timezone.';
+      if (credit) credit.innerHTML = 'Live <a href="https://www.tradingview.com/economic-calendar/" rel="noopener nofollow" target="_blank">economic calendar</a> data by TradingView &mdash; actual, forecast and previous update as figures are published. Times follow your device timezone.';
       render();
     })
     .catch(function () { /* keep illustrative fallback */ });
