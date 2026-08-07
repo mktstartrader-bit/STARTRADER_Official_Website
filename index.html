@@ -43,7 +43,7 @@
   background:rgba(4,8,18,.58);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
   opacity:0;pointer-events:none;transition:opacity .35s ease}
 .stpop.is-open{opacity:1;pointer-events:auto}
-.stpop-card{position:relative;width:min(480px,100%);text-align:center;color:#fff;
+.stpop-card{position:relative;width:min(580px,100%);text-align:center;color:#fff;
   padding:clamp(30px,4vw,44px) clamp(22px,3.4vw,40px) clamp(26px,3.4vw,38px);
   border-radius:clamp(22px,2.6vw,30px);
   background:linear-gradient(180deg,rgba(15,23,42,.88),rgba(8,13,26,.94));
@@ -68,7 +68,7 @@
   background:rgba(42,114,255,.13);border:1px solid rgba(42,114,255,.3)}
 .stpop-card h2{font-size:clamp(21px,2.4vw,27px);letter-spacing:-.026em;margin-bottom:10px}
 .stpop-card>p{font-size:14px;line-height:1.7;color:#a9bcd8;max-width:38ch;margin:0 auto 22px}
-.stpop-note{margin-top:14px;font-size:11.5px;color:#7286a8}
+.stpop-note{margin-top:24px;font-size:10px;letter-spacing:.01em;color:#7286a8}
   </style>
   <style>
 /* ---------- Layout ---------- */
@@ -1384,28 +1384,28 @@
 </div>
 
 <script>
-/* welcome popup — once per session, dismiss on X / backdrop / Esc */
+/* welcome popup — returns 10s after every dismissal (dummy cadence) */
 (function () {
   var pop = document.getElementById('stPopup');
   var x = document.getElementById('stPopupClose');
   if (!pop || !x) return;
-  try { if (sessionStorage.getItem('st-popup-seen')) return; } catch (e) {}
-  function close() {
-    pop.classList.remove('is-open');
-    try { sessionStorage.setItem('st-popup-seen', '1'); } catch (e) {}
-    document.removeEventListener('keydown', onKey);
-    setTimeout(function () { pop.hidden = true; }, 380);
-  }
-  function onKey(e) { if (e.key === 'Escape') close(); }
-  x.addEventListener('click', close);
-  pop.addEventListener('click', function (e) { if (e.target === pop) close(); });
-  document.addEventListener('keydown', onKey);
-  setTimeout(function () {
+  function open() {
     pop.hidden = false;
     requestAnimationFrame(function () {
       requestAnimationFrame(function () { pop.classList.add('is-open'); x.focus(); });
     });
-  }, 900);
+  }
+  function close() {
+    pop.classList.remove('is-open');
+    setTimeout(function () { pop.hidden = true; }, 380);
+    setTimeout(open, 10000);
+  }
+  x.addEventListener('click', close);
+  pop.addEventListener('click', function (e) { if (e.target === pop) close(); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !pop.hidden) close();
+  });
+  setTimeout(open, 900);
 })();
 </script>
 
