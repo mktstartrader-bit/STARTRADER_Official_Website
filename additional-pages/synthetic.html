@@ -66,36 +66,47 @@
 .syn-stat h3{margin-top:10px;font-size:15.5px;letter-spacing:-.02em}
 .syn-stat p{margin-top:6px;font-size:13px;line-height:1.6;color:var(--text-soft)}
 
-/* ---- the three series, simulated live ---- */
-.syn-series-sec{position:relative;isolation:isolate;overflow:clip;background:#fff}
+/* ---- the three series: dark stage, the chart is the hero ---- */
+.syn-series-sec{position:relative;isolation:isolate;overflow:clip;color:#fff;
+  background:
+    radial-gradient(56% 48% at 12% -8%,rgba(42,114,255,.14),transparent 60%),
+    radial-gradient(44% 40% at 90% 100%,rgba(22,233,215,.07),transparent 58%),
+    linear-gradient(180deg,#04060e,#081020 56%,#04060e)}
+.syn-series-sec>.container{position:relative;z-index:1}
+.syn-why-sec{border-top:1px solid rgba(255,255,255,.08)}
+.syn-series-sec .h2{color:#fff}
 .syn-series{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,26px);margin-top:clamp(30px,3.6vw,46px)}
-.syn-card{display:flex;flex-direction:column;gap:12px;border-radius:clamp(18px,2.2vw,28px);padding:clamp(22px,2.6vw,32px);
-  background:rgba(255,255,255,.66);border:1px solid rgba(255,255,255,.92);
-  -webkit-backdrop-filter:blur(18px) saturate(1.45);backdrop-filter:blur(18px) saturate(1.45);
-  box-shadow:0 24px 54px -36px rgba(16,30,54,.32),inset 0 1px 0 rgba(255,255,255,.9);
-  transition:transform .45s var(--ease),box-shadow .45s var(--ease)}
-.syn-card:hover{transform:translateY(-6px);box-shadow:0 34px 68px -36px rgba(16,30,54,.44)}
+.syn-card{display:flex;flex-direction:column;gap:12px;border-radius:clamp(20px,2.4vw,30px);padding:clamp(22px,2.6vw,32px);
+  background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.03));
+  border:1px solid rgba(255,255,255,.11);
+  -webkit-backdrop-filter:blur(18px) saturate(1.3);backdrop-filter:blur(18px) saturate(1.3);
+  box-shadow:0 30px 64px -40px rgba(0,0,0,.75),inset 0 1px 0 rgba(255,255,255,.08);
+  transition:transform .45s var(--ease),border-color .4s,box-shadow .45s var(--ease)}
+.syn-card:hover{transform:translateY(-6px);box-shadow:0 42px 80px -40px rgba(0,0,0,.85)}
+.syn-card--vol:hover{border-color:rgba(91,157,255,.4)}
+.syn-card--boost:hover{border-color:rgba(245,158,11,.4)}
+.syn-card--step:hover{border-color:rgba(22,233,215,.4)}
 .syn-tag{display:inline-flex;width:fit-content;padding:6px 13px;border-radius:40px;
   font-size:10.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
-.syn-tag--vol{color:var(--blue);background:rgba(0,71,187,.08);border:1px solid rgba(0,71,187,.16)}
-.syn-tag--boost{color:#c2701c;background:rgba(234,148,44,.12);border:1px solid rgba(234,148,44,.22)}
-.syn-tag--step{color:#0e9e92;background:rgba(22,233,215,.12);border:1px solid rgba(22,233,215,.26)}
-.syn-card h3{font-size:clamp(17px,1.7vw,20px);letter-spacing:-.024em}
-.syn-card h3 em{display:block;font-style:normal;font-size:12.5px;font-weight:600;color:var(--text-mute);margin-top:3px}
-.syn-card p{font-size:13.5px;line-height:1.65;color:var(--text-soft)}
-.syn-chart{position:relative;margin-top:auto;border-radius:14px;overflow:hidden;
-  background:linear-gradient(180deg,#07101f,#0a1428);border:1px solid rgba(20,40,80,.14)}
-.syn-chart svg{display:block;width:100%;height:96px}
-.syn-chart .grid line{stroke:rgba(255,255,255,.06);stroke-width:1}
-.syn-live{position:absolute;top:9px;right:11px;display:inline-flex;align-items:center;gap:6px;
+.syn-tag--vol{color:#8db4ff;background:rgba(91,157,255,.12);border:1px solid rgba(91,157,255,.28)}
+.syn-tag--boost{color:#ffc46b;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.3)}
+.syn-tag--step{color:#7ef0d2;background:rgba(22,233,215,.12);border:1px solid rgba(22,233,215,.3)}
+.syn-card h3{font-size:clamp(17px,1.7vw,20px);letter-spacing:-.024em;color:#fff}
+.syn-card h3 em{display:block;font-style:normal;font-size:12.5px;font-weight:600;color:#8ea4c6;margin-top:3px}
+.syn-card p{font-size:13.5px;line-height:1.65;color:#a9bcd8}
+.syn-chart{position:relative;margin-top:auto;border-radius:16px;overflow:hidden;
+  background:rgba(4,7,14,.72);border:1px solid rgba(255,255,255,.09)}
+.syn-chart svg{display:block;width:100%;height:132px}
+.syn-chart .grid line{stroke:rgba(255,255,255,.05);stroke-width:1}
+.syn-live{position:absolute;top:10px;right:12px;display:inline-flex;align-items:center;gap:6px;
   font-size:9.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#7ef0d2}
 .syn-live i{width:6px;height:6px;border-radius:50%;background:#16e9d7;
   box-shadow:0 0 0 0 rgba(22,233,215,.4);animation:synPing 2.2s ease-out infinite}
 @keyframes synPing{70%{box-shadow:0 0 0 7px rgba(22,233,215,0)}100%{box-shadow:0 0 0 0 rgba(22,233,215,0)}}
 @media (prefers-reduced-motion:reduce){.syn-live i{animation:none}}
 .syn-specs{display:flex;flex-wrap:wrap;gap:7px}
-.syn-spec{padding:5px 11px;border-radius:30px;font-size:11.5px;font-weight:700;color:var(--text-soft);
-  background:rgba(20,40,80,.05);border:1px solid var(--line)}
+.syn-spec{padding:5px 11px;border-radius:30px;font-size:11.5px;font-weight:700;color:#cdd9ec;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)}
 
 @media (max-width:1080px){.syn-glance,.syn-series{grid-template-columns:1fr;max-width:520px;margin-inline:auto}}
   </style>
@@ -480,14 +491,19 @@
     </div>
 
     <div class="syn-series" data-syn>
-      <article class="syn-card" data-aos="fade-up">
+      <article class="syn-card syn-card--vol" data-aos="fade-up">
         <span class="syn-tag syn-tag--vol">ConstaVol Series</span>
         <h3>Stability in motion<em>Constant volatility, tick after tick</em></h3>
         <p>Simulated markets with constant volatility and a price update every second &mdash; the clean laboratory for backtesting strategies and practising risk control.</p>
         <div class="syn-chart" aria-hidden="true">
-          <svg viewBox="0 0 300 96" preserveAspectRatio="none">
-            <g class="grid"><line x1="0" y1="24" x2="300" y2="24"/><line x1="0" y1="48" x2="300" y2="48"/><line x1="0" y1="72" x2="300" y2="72"/></g>
-            <polyline id="synVol" points="" fill="none" stroke="#5b9dff" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+          <svg viewBox="0 0 300 132" preserveAspectRatio="none">
+            <defs><linearGradient id="synVolG" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#5b9dff" stop-opacity=".28"/>
+              <stop offset="100%" stop-color="#5b9dff" stop-opacity="0"/>
+            </linearGradient></defs>
+            <g class="grid"><line x1="0" y1="33" x2="300" y2="33"/><line x1="0" y1="66" x2="300" y2="66"/><line x1="0" y1="99" x2="300" y2="99"/></g>
+            <polygon id="synVolF" points="" fill="url(#synVolG)"/>
+            <polyline id="synVol" points="" fill="none" stroke="#5b9dff" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
           </svg>
           <span class="syn-live"><i></i>Live</span>
         </div>
@@ -498,14 +514,19 @@
         </div>
       </article>
 
-      <article class="syn-card" data-aos="fade-up" data-aos-delay="100">
+      <article class="syn-card syn-card--boost" data-aos="fade-up" data-aos-delay="100">
         <span class="syn-tag syn-tag--boost">Boost / Dip Series</span>
         <h3>Surprises full of opportunity<em>Random spikes and drops</em></h3>
         <p>Directional markets punctuated by sudden boosts and dips, with major moves landing roughly every 150&ndash;1000 ticks &mdash; event-driven volatility, on demand.</p>
         <div class="syn-chart" aria-hidden="true">
-          <svg viewBox="0 0 300 96" preserveAspectRatio="none">
-            <g class="grid"><line x1="0" y1="24" x2="300" y2="24"/><line x1="0" y1="48" x2="300" y2="48"/><line x1="0" y1="72" x2="300" y2="72"/></g>
-            <polyline id="synBoost" points="" fill="none" stroke="#5b9dff" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+          <svg viewBox="0 0 300 132" preserveAspectRatio="none">
+            <defs><linearGradient id="synBoostG" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#f59e0b" stop-opacity=".28"/>
+              <stop offset="100%" stop-color="#f59e0b" stop-opacity="0"/>
+            </linearGradient></defs>
+            <g class="grid"><line x1="0" y1="33" x2="300" y2="33"/><line x1="0" y1="66" x2="300" y2="66"/><line x1="0" y1="99" x2="300" y2="99"/></g>
+            <polygon id="synBoostF" points="" fill="url(#synBoostG)"/>
+            <polyline id="synBoost" points="" fill="none" stroke="#f59e0b" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
           </svg>
           <span class="syn-live"><i></i>Live</span>
         </div>
@@ -516,14 +537,19 @@
         </div>
       </article>
 
-      <article class="syn-card" data-aos="fade-up" data-aos-delay="200">
+      <article class="syn-card syn-card--step" data-aos="fade-up" data-aos-delay="200">
         <span class="syn-tag syn-tag--step">PriceStep Series</span>
         <h3>One step at a time<em>Fixed moves, no surprises</em></h3>
         <p>Prices move by a fixed step every second &mdash; no spikes, no crashes. The predictable rhythm that scalpers and EA developers test against.</p>
         <div class="syn-chart" aria-hidden="true">
-          <svg viewBox="0 0 300 96" preserveAspectRatio="none">
-            <g class="grid"><line x1="0" y1="24" x2="300" y2="24"/><line x1="0" y1="48" x2="300" y2="48"/><line x1="0" y1="72" x2="300" y2="72"/></g>
-            <polyline id="synStep" points="" fill="none" stroke="#5b9dff" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+          <svg viewBox="0 0 300 132" preserveAspectRatio="none">
+            <defs><linearGradient id="synStepG" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#16e9d7" stop-opacity=".28"/>
+              <stop offset="100%" stop-color="#16e9d7" stop-opacity="0"/>
+            </linearGradient></defs>
+            <g class="grid"><line x1="0" y1="33" x2="300" y2="33"/><line x1="0" y1="66" x2="300" y2="66"/><line x1="0" y1="99" x2="300" y2="99"/></g>
+            <polygon id="synStepF" points="" fill="url(#synStepG)"/>
+            <polyline id="synStep" points="" fill="none" stroke="#16e9d7" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
           </svg>
           <span class="syn-live"><i></i>Live</span>
         </div>
@@ -538,7 +564,7 @@
 </section>
 
 <!-- ============ WHY TRADE ============ -->
-<section class="section fx-hours" id="why" aria-labelledby="syn-why-title">
+<section class="section fx-hours syn-why-sec" id="why" aria-labelledby="syn-why-title">
   <div class="container">
     <div class="head center">
       <span class="eyebrow eyebrow-blue" data-aos="fade-up">Why STARTRADER</span>
@@ -569,10 +595,10 @@
         <p>Orders fill in milliseconds &mdash; in a market that ticks every second, the fill speed matters twice.</p>
         <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="fx-mh-status"><i></i> Millisecond fills</span></div></div>
       </article>
-      <article class="fx-mh-card fx-mh--wide fx-mh--teal" data-aos="fade-up" data-aos-delay="250">
+      <article class="fx-mh-card fx-mh--teal" data-aos="fade-up" data-aos-delay="250">
         <span class="fx-mh-ic"><svg><use href="#i-wallet"/></svg></span>
         <h3>Low entry, every style</h3>
-        <p>Begin with as little as $0.50, and pick the series that fits how you trade &mdash; steady, spiky or stepped. There is an index for every strategy.</p>
+        <p>Begin with as little as $0.50, and pick the series that fits how you trade.</p>
         <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="fx-mh-status"><i></i> From $0.50 &middot; three series</span></div></div>
       </article>
     </div>
@@ -660,7 +686,7 @@
   var root = document.querySelector('[data-syn]');
   if (!root) return;
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var N = 60, W = 300, H = 96, PAD = 10;
+  var N = 60, W = 300, H = 132, PAD = 14;
   function makeSeries(step) {
     var v = H / 2, out = [];
     for (var i = 0; i < N; i++) { v = step(v, i); out.push(v); }
@@ -689,7 +715,10 @@
         ? x.toFixed(1) + ',' + s.data[i - 1].toFixed(1) + ' ' + x.toFixed(1) + ',' + v.toFixed(1)
         : x.toFixed(1) + ',' + v.toFixed(1);
     });
-    s.el.setAttribute('points', pts.join(' '));
+    var line = pts.join(' ');
+    s.el.setAttribute('points', line);
+    if (!s.fill) s.fill = document.getElementById(s.id + 'F');
+    if (s.fill) s.fill.setAttribute('points', line + ' ' + W + ',' + H + ' 0,' + H);
   }
   if (reduced) return;
   setInterval(function () {
