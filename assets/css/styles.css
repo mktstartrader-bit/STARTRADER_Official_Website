@@ -4206,3 +4206,13 @@ html{overflow-x:clip}
    breakpoint (devtools closing, tablet rotation). Above 900px it simply
    does not exist. */
 @media (min-width:901px){.mobile-menu,.menu-backdrop{display:none !important}}
+
+/* ===== COOKIE ALIGNMENT + PLAIN NEW BADGES (appended batch) =====
+   The pill's close control stays on the row, vertically centred at the
+   right, at every width; New markers in both menus become plain blue text. */
+@media (max-width:560px){
+  .cookie{flex-wrap:nowrap;align-items:center;gap:12px}
+  .cookie-x{margin-left:auto;flex:0 0 auto}
+}
+.mega-badge{background:none;border:0;padding:0;color:#5b9dff}
+.mm-new{color:#5b9dff}
