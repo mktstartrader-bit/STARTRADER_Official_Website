@@ -4180,3 +4180,14 @@ html{overflow-x:clip}
 .mobile-menu .mm-langs{display:none;margin-top:12px}
 .mm-lang.open .mm-langs{display:flex}
 .mm-empty{padding:18px 6px;font-size:13.5px;color:#8b97ae}
+
+/* ===== MOBILE SCROLL + LANGUAGE POLISH (appended batch) =====
+   Native scrolling on phones (Lenis now stands down there); the sticky
+   chrome drops its expensive blur below 720px, and the sheet menu's
+   language switcher moves up under the CTAs with full language names. */
+@media (max-width:720px){
+  .site-header{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(5,8,15,.97)}
+  .topbar{-webkit-backdrop-filter:none;backdrop-filter:none}
+}
+.mobile-menu .mm-lang{margin-top:18px;padding-top:20px;border-top:1px solid rgba(255,255,255,.09)}
+.mobile-menu .mm-langs button{font-size:13px;padding:8px 14px}

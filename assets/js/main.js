@@ -15,7 +15,10 @@
   /* ---------------- Lenis smooth scroll ---------------- */
   var lenis = null;
   function initLenis() {
-    if (prefersReduced || typeof window.Lenis === 'undefined') return;
+    // touch devices scroll best natively — Lenis's rAF loop fights the
+    // platform scroller and reads as glitching on phones
+    var coarse = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+    if (prefersReduced || coarse || typeof window.Lenis === 'undefined') return;
     lenis = new Lenis({ duration: 1.05, lerp: 0.1, wheelMultiplier: 1, smoothWheel: true });
     if (hasGSAP && hasST) {
       lenis.on('scroll', ScrollTrigger.update);
@@ -249,26 +252,29 @@
       var current = codeEl ? codeEl.textContent.trim() : 'EN';
       lbtn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.7 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3Z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span></span>' +
         '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-      lbtn.querySelector('span').textContent = current;
       var chips = document.createElement('div');
       chips.className = 'mm-langs';
+      var currentName = current;
       grid.querySelectorAll('.lp-item').forEach(function (it) {
         var code = it.getAttribute('data-code') || '';
         if (!code) return;
+        var nameEl = it.querySelector('b');
+        var name = nameEl ? nameEl.textContent.trim() : code;
+        if (code === current && nameEl) currentName = name;
         var c = document.createElement('button');
         c.type = 'button';
-        c.textContent = code;
-        var name = it.querySelector('b');
-        c.setAttribute('aria-label', 'Switch language to ' + (name ? name.textContent : code));
+        c.textContent = name;
+        c.setAttribute('aria-label', 'Switch language to ' + name);
         if (code === current) c.classList.add('is-on');
         c.addEventListener('click', function () {
           chips.querySelectorAll('button').forEach(function (x) { x.classList.remove('is-on'); });
           c.classList.add('is-on');
           if (codeEl) codeEl.textContent = code;
-          lbtn.querySelector('span').textContent = code;
+          lbtn.querySelector('span').textContent = name;
         });
         chips.appendChild(c);
       });
+      lbtn.querySelector('span').textContent = currentName;
       lbtn.addEventListener('click', function () { langWrap.classList.toggle('open'); });
       langWrap.appendChild(lbtn);
       langWrap.appendChild(chips);
