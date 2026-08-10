@@ -4200,3 +4200,9 @@ html{overflow-x:clip}
    resolve against the bar — hang it centred beneath the nav, mega-style */
 .lang-pop{top:calc(100% + 12px);background:#070a12;-webkit-backdrop-filter:none;backdrop-filter:none;
   border:1px solid rgba(255,255,255,.1);max-height:min(78vh,calc(100vh - 160px))}
+
+/* ===== MOBILE SHEET STANDS DOWN ON DESKTOP (appended batch) =====
+   The sheet could linger open when the viewport grew past the hamburger
+   breakpoint (devtools closing, tablet rotation). Above 900px it simply
+   does not exist. */
+@media (min-width:901px){.mobile-menu,.menu-backdrop{display:none !important}}

@@ -336,6 +336,12 @@
     backdrop.addEventListener('click', function () { setOpen(false); });
     menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { setOpen(false); }); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+    // when the viewport grows past the hamburger breakpoint, the sheet closes
+    // itself — otherwise it lingers open after devtools/rotation resizes
+    var mq = window.matchMedia('(min-width: 901px)');
+    var onWide = function (e) { if (e.matches) setOpen(false); };
+    if (mq.addEventListener) mq.addEventListener('change', onWide);
+    else if (mq.addListener) mq.addListener(onWide);
   }
 
   /* ---------------- Smooth anchor links ---------------- */
