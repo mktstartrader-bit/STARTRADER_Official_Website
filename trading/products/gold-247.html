@@ -74,10 +74,13 @@
 .g247-bi>img{position:absolute;inset:0;z-index:-1;width:100%;height:100%;object-fit:cover;
   transition:transform .9s var(--ease)}
 .g247-bi:hover>img{transform:scale(1.06)}
-.g247-frost{position:absolute;left:14px;right:14px;bottom:14px;padding:15px 19px;border-radius:16px;color:#fff;
-  background:rgba(10,16,30,.38);border:1px solid rgba(255,255,255,.24);
-  -webkit-backdrop-filter:blur(16px) saturate(1.35);backdrop-filter:blur(16px) saturate(1.35);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.25)}
+/* frosted gradient rising from the cell's foot — no plate, just progressive glass */
+.g247-frost{position:absolute;left:0;right:0;bottom:0;padding:64px 22px 20px;color:#fff;
+  background:linear-gradient(180deg,rgba(10,8,5,0) 0%,rgba(10,8,5,.48) 48%,rgba(10,8,5,.74) 100%);
+  -webkit-backdrop-filter:blur(15px) saturate(1.25);backdrop-filter:blur(15px) saturate(1.25);
+  -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 46%);
+  mask-image:linear-gradient(180deg,transparent 0%,#000 46%)}
+.g247-frost b{text-shadow:0 1px 14px rgba(0,0,0,.45)}
 .g247-frost b{display:block;font-size:clamp(20px,2vw,26px);letter-spacing:-.022em;line-height:1.1}
 .g247-frost b sub{font-size:12.5px;font-weight:600;color:rgba(255,255,255,.8);vertical-align:baseline}
 .g247-frost span{display:block;margin-top:4px;font-size:10.5px;font-weight:800;letter-spacing:.09em;
