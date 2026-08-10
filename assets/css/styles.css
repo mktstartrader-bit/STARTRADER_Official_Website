@@ -4095,3 +4095,45 @@ html:not(.js-aos) [data-aos]{opacity:1 !important;transform:none !important;tran
    Root-level guard: no page may scroll sideways on a phone, whatever an
    individual element does. body already clips; the root now matches. */
 html{overflow-x:clip}
+
+/* ===== I18N HARDENING + MOBILE MENU V2 (appended batch) =====
+   Dev feedback: fixed-width chrome breaks once EN copy is swapped for
+   CN/AR/JP. The 130% width reserve now reaches the disclaimer bar, the
+   cookie pill and the top nav; the mobile menu gains the sub-category
+   accordion and a language switcher. */
+/* 1 — top disclaimer: copy may run long in translation; scale and wrap */
+.topbar p{font-size:clamp(10.5px,1.4vw,12.5px);line-height:1.45}
+@media (max-width:640px){.topbar .container{padding-block:9px}}
+/* 1 — cookie pill: text gets flexible room and the pill may wrap */
+.cookie{flex-wrap:wrap;row-gap:8px}
+.cookie-text{flex:1 1 200px;min-width:0;font-size:clamp(12.5px,1.6vw,14px);line-height:1.45}
+@media (max-width:560px){
+  .cookie{left:14px;right:14px;max-width:none;border-radius:20px;padding:12px 14px;transform:translateY(16px)}
+  .cookie.show{transform:none}
+}
+/* 4 — nav: labels never break to a second line; spacing flexes instead */
+.nav-menu{gap:clamp(2px,0.6vw,10px)}
+.nav-menu .nav-link{white-space:nowrap}
+.mega-head{white-space:nowrap}
+/* 2 — mobile menu v2: sub-category accordion + language switcher */
+.mobile-menu .mm-top{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;
+  background:none;border:0;color:#dbe0ec;font:500 17px/1.3 inherit;font-family:inherit;text-align:left;
+  padding:13px 6px;border-radius:10px;cursor:pointer}
+.mobile-menu .mm-top:hover{background:rgba(255,255,255,.05)}
+.mm-top svg{width:15px;height:15px;flex:0 0 auto;color:#8b97ae;transition:transform .3s var(--ease)}
+.mm-acc.open .mm-top svg{transform:rotate(180deg)}
+.mm-panel{display:none;padding:0 6px 8px}
+.mm-acc.open .mm-panel{display:block}
+.mm-group{display:block;margin:12px 0 3px;font-size:10.5px;font-weight:800;letter-spacing:.14em;
+  text-transform:uppercase;color:#5b9dff}
+.mobile-menu .mm-panel a{display:block;padding:8px;font-size:14.5px;font-weight:500;color:#c7cddb;border-radius:8px}
+.mobile-menu .mm-panel a:hover{background:rgba(255,255,255,.05)}
+.mm-lang{margin-top:14px;padding-top:16px;border-top:1px solid rgba(255,255,255,.09)}
+.mm-lang b{display:block;font-size:10.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  color:#8b97ae;margin-bottom:10px}
+.mm-langs{display:flex;flex-wrap:wrap;gap:8px}
+.mm-langs button{padding:7px 13px;border-radius:24px;border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.05);color:#c7cddb;font:600 12.5px/1 inherit;font-family:inherit;cursor:pointer;
+  transition:background .25s,color .25s,border-color .25s}
+.mm-langs button:hover{border-color:rgba(255,255,255,.35);color:#fff}
+.mm-langs button.is-on{background:var(--blue);border-color:transparent;color:#fff}

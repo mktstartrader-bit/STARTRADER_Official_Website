@@ -128,10 +128,122 @@
   }
 
   /* ---------------- Mobile menu ---------------- */
+  /* Rebuild the mobile menu from the page's own mega menu: every desktop
+     sub-category becomes an accordion group (same links, same depth-correct
+     hrefs), and the language grid becomes a chip switcher. The static links
+     in the markup remain as the no-JS fallback. */
+  function buildMobileMenuV2(menu) {
+    var nav = menu.querySelector('nav');
+    var items = document.querySelectorAll('.nav-menu .nav-item');
+    if (!nav || !items.length) return;
+    var frag = document.createDocumentFragment();
+    var caret = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+    items.forEach(function (item) {
+      var link = item.querySelector('.nav-link');
+      var mega = item.querySelector('.mega');
+      if (!link) return;
+      var label = link.childNodes[0] ? String(link.childNodes[0].textContent).trim() : link.textContent.trim();
+      if (!label) return;
+      if (!mega) {
+        if (link.tagName === 'A' && link.getAttribute('href')) {
+          var top = document.createElement('a');
+          top.href = link.getAttribute('href');
+          top.textContent = label;
+          frag.appendChild(top);
+        }
+        return;
+      }
+      var acc = document.createElement('div');
+      acc.className = 'mm-acc';
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'mm-top';
+      btn.setAttribute('aria-expanded', 'false');
+      btn.innerHTML = '<span></span>' + caret;
+      btn.firstChild.textContent = label;
+      var panel = document.createElement('div');
+      panel.className = 'mm-panel';
+
+      mega.querySelectorAll('.mega-col, .fly-group').forEach(function (col) {
+        var headEl = col.querySelector('.mega-head, h5');
+        if (headEl) {
+          var head = document.createElement('span');
+          head.className = 'mm-group';
+          head.textContent = headEl.textContent.trim();
+          panel.appendChild(head);
+        }
+        col.querySelectorAll('a').forEach(function (a) {
+          if (headEl && headEl.contains(a)) return;
+          var txt = a.querySelector('.mega-txt b');
+          var lbl = (txt ? txt.textContent : a.textContent).replace(/\s+/g, ' ').trim().replace(/\s*New$/, '');
+          if (!lbl) return;
+          var m = document.createElement('a');
+          m.href = a.getAttribute('href') || '#';
+          m.textContent = lbl;
+          panel.appendChild(m);
+        });
+      });
+      if (!panel.children.length) return;
+
+      btn.addEventListener('click', function () {
+        var open = acc.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      acc.appendChild(btn);
+      acc.appendChild(panel);
+      frag.appendChild(acc);
+    });
+
+    if (!frag.children.length) return;
+
+    // carry over the login / CTA row from the static menu
+    var extras = document.createElement('div');
+    var hr = document.createElement('hr');
+    extras.appendChild(hr);
+    nav.querySelectorAll('a.login, a.btn').forEach(function (a) { extras.appendChild(a.cloneNode(true)); });
+
+    // language switcher fed by the header's own language grid
+    var langWrap = null;
+    var grid = document.getElementById('langGrid');
+    var codeEl = document.getElementById('langCode');
+    if (grid) {
+      langWrap = document.createElement('div');
+      langWrap.className = 'mm-lang';
+      langWrap.innerHTML = '<b>Language</b>';
+      var chips = document.createElement('div');
+      chips.className = 'mm-langs';
+      var current = codeEl ? codeEl.textContent.trim() : 'EN';
+      grid.querySelectorAll('.lp-item').forEach(function (it) {
+        var code = it.getAttribute('data-code') || '';
+        if (!code) return;
+        var c = document.createElement('button');
+        c.type = 'button';
+        c.textContent = code;
+        var name = it.querySelector('b');
+        c.setAttribute('aria-label', 'Switch language to ' + (name ? name.textContent : code));
+        if (code === current) c.classList.add('is-on');
+        c.addEventListener('click', function () {
+          chips.querySelectorAll('button').forEach(function (x) { x.classList.remove('is-on'); });
+          c.classList.add('is-on');
+          if (codeEl) codeEl.textContent = code;
+        });
+        chips.appendChild(c);
+      });
+      langWrap.appendChild(chips);
+    }
+
+    nav.innerHTML = '';
+    nav.appendChild(frag);
+    nav.appendChild(extras);
+    if (langWrap) nav.appendChild(langWrap);
+  }
+
   function initMobileMenu() {
     var burger = document.getElementById('hamburger');
     var menu = document.getElementById('mobileMenu');
     if (!burger || !menu) return;
+    try { buildMobileMenuV2(menu); } catch (e) { /* static links remain */ }
     var backdrop = document.createElement('div');
     backdrop.className = 'menu-backdrop';
     document.body.appendChild(backdrop);
@@ -283,11 +395,16 @@
       if (!wrapper) return;
       var slides = wrapper.children.length;
       if (!slides) return;
-      // loop mode needs a healthy slide count — clone the set once when short
-      if (slides < 8) {
-        Array.prototype.slice.call(wrapper.children).forEach(function (c) {
+      // loop mode stutters unless the slide set is at least twice the visible
+      // width — clone whole sets until the track covers 2x the container
+      var originals = Array.prototype.slice.call(wrapper.children);
+      var need = (el.getBoundingClientRect().width || window.innerWidth) * 2;
+      var guard = 0;
+      while (wrapper.scrollWidth < need && guard < 6) {
+        originals.forEach(function (c) {
           wrapper.appendChild(c.cloneNode(true));
         });
+        guard++;
       }
       var pxPerSec = parseFloat(el.getAttribute('data-marquee-speed')) || 45;
       var gap = parseFloat(getComputedStyle(wrapper).gap) || 18;
