@@ -4137,3 +4137,46 @@ html{overflow-x:clip}
   transition:background .25s,color .25s,border-color .25s}
 .mm-langs button:hover{border-color:rgba(255,255,255,.35);color:#fff}
 .mm-langs button.is-on{background:var(--blue);border-color:transparent;color:#fff}
+
+/* ===== MOBILE MENU V3 — full-sheet redesign (appended batch) =====
+   Modern sheet menu in the capital.com / Rise grammar: logo + close
+   header, search that filters the links, oversized drill items with
+   right chevrons, pinned pill CTAs and a folded language switcher. */
+.mobile-menu{width:min(100vw,470px);padding:18px 22px 30px;display:flex;flex-direction:column}
+.mobile-menu nav{flex:1;display:flex;flex-direction:column;gap:2px}
+.mm-head-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.mm-head-row img{width:150px;height:auto;display:block}
+.mm-x{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;flex:0 0 auto;
+  border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:#e6ecf7;cursor:pointer;
+  transition:background .25s,transform .35s var(--ease)}
+.mm-x:hover{background:rgba(255,255,255,.12);transform:rotate(90deg)}
+.mm-x svg{width:16px;height:16px}
+.mm-search{position:relative;margin:2px 0 14px}
+.mm-search svg{position:absolute;left:15px;top:50%;width:15px;height:15px;margin-top:-7.5px;color:#8b97ae}
+.mm-search input{width:100%;padding:13px 16px 13px 41px;border-radius:40px;
+  border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);
+  color:#fff;font:500 14.5px/1.2 inherit;font-family:inherit;outline:none;transition:border-color .25s}
+.mm-search input::placeholder{color:#8b97ae}
+.mm-search input:focus{border-color:rgba(91,157,255,.55)}
+.mobile-menu .mm-top{font-size:clamp(22px,6vw,26px);font-weight:700;letter-spacing:-.022em;
+  color:#fff;padding:14px 4px}
+.mm-top svg{width:18px;height:18px}
+.mm-acc.open .mm-top svg{transform:rotate(90deg)}
+.mm-panel{padding:0 4px 12px}
+.mobile-menu .mm-panel a{font-size:15px;padding:9px 8px}
+.mm-new{display:inline-block;margin-left:8px;font-size:10.5px;font-weight:800;letter-spacing:.06em;
+  color:#ff8a3d;text-transform:uppercase;font-style:normal}
+.mm-cta{display:flex;flex-direction:column;gap:10px;margin-top:18px}
+.mm-cta a{display:flex;align-items:center;justify-content:center;width:100%;height:52px;
+  border-radius:40px;font-size:15.5px;font-weight:700;padding:0}
+.mm-cta .mm-login{background:#eef1f6;color:#0c1526}
+.mm-cta .mm-login:hover{background:#fff}
+.mobile-menu .mm-cta .btn{margin:0;width:100%;height:52px;border-radius:40px}
+.mobile-menu .mm-lang{margin-top:auto;padding-top:22px;border-top:0}
+.mm-lang-btn{display:inline-flex;align-items:center;gap:9px;background:none;border:0;
+  color:#dbe0ec;font:600 14.5px/1 inherit;font-family:inherit;cursor:pointer;padding:6px 4px}
+.mm-lang-btn svg{width:14px;height:14px;color:#8b97ae;transition:transform .3s var(--ease)}
+.mm-lang.open .mm-lang-btn svg{transform:rotate(180deg)}
+.mobile-menu .mm-langs{display:none;margin-top:12px}
+.mm-lang.open .mm-langs{display:flex}
+.mm-empty{padding:18px 6px;font-size:13.5px;color:#8b97ae}

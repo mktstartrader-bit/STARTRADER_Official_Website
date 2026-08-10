@@ -132,13 +132,31 @@
      sub-category becomes an accordion group (same links, same depth-correct
      hrefs), and the language grid becomes a chip switcher. The static links
      in the markup remain as the no-JS fallback. */
+  /* Rebuild the mobile menu as a full sheet from the page's own mega menu:
+     logo + close header, a search field that filters the links, every desktop
+     sub-category as a drill group with depth-correct hrefs, pinned pill CTAs
+     and a folded language switcher fed by the header's language grid. The
+     static links in the markup remain as the no-JS fallback. */
   function buildMobileMenuV2(menu) {
     var nav = menu.querySelector('nav');
     var items = document.querySelectorAll('.nav-menu .nav-item');
     if (!nav || !items.length) return;
-    var frag = document.createDocumentFragment();
-    var caret = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    var chevR = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
+    // header row: brand + close
+    var head = document.createElement('div');
+    head.className = 'mm-head-row';
+    var brandImg = document.querySelector('.brand img');
+    head.innerHTML = (brandImg ? '<img src="' + brandImg.getAttribute('src') + '" alt="STARTRADER" width="150" height="29">' : '<span></span>') +
+      '<button type="button" class="mm-x" aria-label="Close menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>';
+
+    // search that filters the menu
+    var search = document.createElement('div');
+    search.className = 'mm-search';
+    search.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>' +
+      '<input type="text" placeholder="Search" autocomplete="off" spellcheck="false" aria-label="Search menu">';
+
+    var frag = document.createDocumentFragment();
     items.forEach(function (item) {
       var link = item.querySelector('.nav-link');
       var mega = item.querySelector('.mega');
@@ -150,6 +168,7 @@
           var top = document.createElement('a');
           top.href = link.getAttribute('href');
           top.textContent = label;
+          top.className = 'mm-top';
           frag.appendChild(top);
         }
         return;
@@ -160,7 +179,7 @@
       btn.type = 'button';
       btn.className = 'mm-top';
       btn.setAttribute('aria-expanded', 'false');
-      btn.innerHTML = '<span></span>' + caret;
+      btn.innerHTML = '<span></span>' + chevR;
       btn.firstChild.textContent = label;
       var panel = document.createElement('div');
       panel.className = 'mm-panel';
@@ -168,19 +187,26 @@
       mega.querySelectorAll('.mega-col, .fly-group').forEach(function (col) {
         var headEl = col.querySelector('.mega-head, h5');
         if (headEl) {
-          var head = document.createElement('span');
-          head.className = 'mm-group';
-          head.textContent = headEl.textContent.trim();
-          panel.appendChild(head);
+          var h = document.createElement('span');
+          h.className = 'mm-group';
+          h.textContent = headEl.textContent.trim();
+          panel.appendChild(h);
         }
         col.querySelectorAll('a').forEach(function (a) {
           if (headEl && headEl.contains(a)) return;
           var txt = a.querySelector('.mega-txt b');
+          var isNew = !!a.querySelector('.mega-badge');
           var lbl = (txt ? txt.textContent : a.textContent).replace(/\s+/g, ' ').trim().replace(/\s*New$/, '');
           if (!lbl) return;
           var m = document.createElement('a');
           m.href = a.getAttribute('href') || '#';
           m.textContent = lbl;
+          if (isNew) {
+            var em = document.createElement('em');
+            em.className = 'mm-new';
+            em.textContent = 'New';
+            m.appendChild(em);
+          }
           panel.appendChild(m);
         });
       });
@@ -194,26 +220,38 @@
       acc.appendChild(panel);
       frag.appendChild(acc);
     });
-
     if (!frag.children.length) return;
 
-    // carry over the login / CTA row from the static menu
-    var extras = document.createElement('div');
-    var hr = document.createElement('hr');
-    extras.appendChild(hr);
-    nav.querySelectorAll('a.login, a.btn').forEach(function (a) { extras.appendChild(a.cloneNode(true)); });
+    // pinned pill CTAs from the static menu's login / account links
+    var cta = document.createElement('div');
+    cta.className = 'mm-cta';
+    var loginSrc = nav.querySelector('a.login');
+    var btnSrc = nav.querySelector('a.btn');
+    if (loginSrc) {
+      var lg = document.createElement('a');
+      lg.href = loginSrc.getAttribute('href') || '#';
+      lg.className = 'mm-login';
+      lg.textContent = loginSrc.textContent.trim() || 'Login';
+      cta.appendChild(lg);
+    }
+    if (btnSrc) cta.appendChild(btnSrc.cloneNode(true));
 
-    // language switcher fed by the header's own language grid
+    // folded language switcher fed by the header's language grid
     var langWrap = null;
     var grid = document.getElementById('langGrid');
     var codeEl = document.getElementById('langCode');
     if (grid) {
       langWrap = document.createElement('div');
       langWrap.className = 'mm-lang';
-      langWrap.innerHTML = '<b>Language</b>';
+      var lbtn = document.createElement('button');
+      lbtn.type = 'button';
+      lbtn.className = 'mm-lang-btn';
+      var current = codeEl ? codeEl.textContent.trim() : 'EN';
+      lbtn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.7 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3Z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span></span>' +
+        '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      lbtn.querySelector('span').textContent = current;
       var chips = document.createElement('div');
       chips.className = 'mm-langs';
-      var current = codeEl ? codeEl.textContent.trim() : 'EN';
       grid.querySelectorAll('.lp-item').forEach(function (it) {
         var code = it.getAttribute('data-code') || '';
         if (!code) return;
@@ -227,16 +265,47 @@
           chips.querySelectorAll('button').forEach(function (x) { x.classList.remove('is-on'); });
           c.classList.add('is-on');
           if (codeEl) codeEl.textContent = code;
+          lbtn.querySelector('span').textContent = code;
         });
         chips.appendChild(c);
       });
+      lbtn.addEventListener('click', function () { langWrap.classList.toggle('open'); });
+      langWrap.appendChild(lbtn);
       langWrap.appendChild(chips);
     }
 
+    var empty = document.createElement('p');
+    empty.className = 'mm-empty';
+    empty.textContent = 'Nothing matches that search.';
+    empty.hidden = true;
+
     nav.innerHTML = '';
+    nav.appendChild(head);
+    nav.appendChild(search);
     nav.appendChild(frag);
-    nav.appendChild(extras);
+    nav.appendChild(empty);
+    nav.appendChild(cta);
     if (langWrap) nav.appendChild(langWrap);
+
+    // search filter: matching links stay, groups open on match, rest fold away
+    var input = search.querySelector('input');
+    input.addEventListener('input', function () {
+      var q = this.value.trim().toLowerCase();
+      var any = false;
+      nav.querySelectorAll('.mm-acc').forEach(function (acc) {
+        var hit = false;
+        acc.querySelectorAll('.mm-panel a').forEach(function (a) {
+          var match = !q || a.textContent.toLowerCase().indexOf(q) > -1;
+          a.style.display = match ? '' : 'none';
+          if (q && match) hit = true;
+        });
+        acc.querySelectorAll('.mm-group').forEach(function (g) { g.style.display = q ? 'none' : ''; });
+        acc.classList.toggle('open', !!q && hit);
+        acc.style.display = !q || hit ? '' : 'none';
+        if (hit) any = true;
+      });
+      empty.hidden = !q || any;
+    });
   }
 
   function initMobileMenu() {
@@ -258,6 +327,8 @@
       document.body.style.overflow = open ? 'hidden' : '';
     }
     burger.addEventListener('click', function () { setOpen(!menu.classList.contains('open')); });
+    var mmX = menu.querySelector('.mm-x');
+    if (mmX) mmX.addEventListener('click', function () { setOpen(false); });
     backdrop.addEventListener('click', function () { setOpen(false); });
     menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { setOpen(false); }); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
