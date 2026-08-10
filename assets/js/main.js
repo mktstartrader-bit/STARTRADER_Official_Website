@@ -254,13 +254,11 @@
         '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
       var chips = document.createElement('div');
       chips.className = 'mm-langs';
-      var currentName = current;
       grid.querySelectorAll('.lp-item').forEach(function (it) {
         var code = it.getAttribute('data-code') || '';
         if (!code) return;
         var nameEl = it.querySelector('b');
         var name = nameEl ? nameEl.textContent.trim() : code;
-        if (code === current && nameEl) currentName = name;
         var c = document.createElement('button');
         c.type = 'button';
         c.textContent = name;
@@ -270,11 +268,11 @@
           chips.querySelectorAll('button').forEach(function (x) { x.classList.remove('is-on'); });
           c.classList.add('is-on');
           if (codeEl) codeEl.textContent = code;
-          lbtn.querySelector('span').textContent = name;
+          lbtn.querySelector('span').textContent = code;
         });
         chips.appendChild(c);
       });
-      lbtn.querySelector('span').textContent = currentName;
+      lbtn.querySelector('span').textContent = current;
       lbtn.addEventListener('click', function () { langWrap.classList.toggle('open'); });
       langWrap.appendChild(lbtn);
       langWrap.appendChild(chips);
