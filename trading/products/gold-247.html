@@ -61,40 +61,32 @@
 
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
-/* ---- proof strip: five gilded stat tiles ---- */
+/* ---- proof strip: image bento with frosted text plates ---- */
 .g247-proof-sec{background:#fff}
-.g247-proof{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(12px,1.6vw,20px)}
-.g247-pi{position:relative;isolation:isolate;overflow:hidden;text-align:center;
-  padding:clamp(22px,2.6vw,32px) 14px;border-radius:clamp(16px,1.8vw,22px);
-  background:linear-gradient(165deg,#fff,#fbf7ee);border:1px solid rgba(212,166,67,.22);
-  box-shadow:0 18px 40px -30px rgba(150,110,20,.35);
-  transition:transform .4s var(--ease),border-color .3s,box-shadow .4s var(--ease)}
-.g247-pi::before{content:"";position:absolute;inset:0 0 auto;height:3px;
-  background:linear-gradient(90deg,transparent,#d4a643,transparent);
-  background-size:200% 100%;animation:g247Shine 3.8s linear infinite}
-@keyframes g247Shine{from{background-position:200% 0}to{background-position:-200% 0}}
-.g247-pi:hover{transform:translateY(-6px);border-color:rgba(212,166,67,.5);
-  box-shadow:0 28px 52px -30px rgba(150,110,20,.5)}
-.g247-pico{position:relative;width:56px;height:56px;margin:0 auto 14px;border-radius:50%;
-  display:grid;place-items:center;color:#a87b16;background:#fff;
-  box-shadow:inset 0 0 0 1px rgba(212,166,67,.18)}
-.g247-pico::before{content:"";position:absolute;inset:-4px;border-radius:50%;padding:2px;
-  background:conic-gradient(from 0deg,rgba(212,166,67,0) 12%,#d4a643 40%,#f0c96a 50%,#d4a643 60%,rgba(212,166,67,0) 88%);
-  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-  -webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-  mask-composite:exclude;animation:g247Spin 5.5s linear infinite}
-@keyframes g247Spin{to{transform:rotate(360deg)}}
-.g247-pi:hover .g247-pico::before{animation-duration:1.4s}
-.g247-pico svg{width:23px;height:23px}
-.g247-pi b{display:block;font-size:clamp(19px,2vw,25px);letter-spacing:-.022em;color:#101828}
-.g247-pi b sub{font-size:12px;font-weight:600;color:#8a6f2e;vertical-align:baseline}
-.g247-pl{display:block;margin-top:5px;font-size:11px;font-weight:800;letter-spacing:.08em;
-  text-transform:uppercase;color:#8a6f2e}
-@media (max-width:1080px){
-  .g247-proof{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .g247-pi:last-child{grid-column:span 2}
+.g247-bento{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.8vw,22px)}
+.g247-bi{position:relative;isolation:isolate;overflow:hidden;min-height:clamp(220px,24vw,270px);
+  border-radius:clamp(20px,2.2vw,28px);border:1px solid rgba(28,44,84,.1);transform:translateZ(0);
+  box-shadow:0 26px 56px -38px rgba(15,32,68,.4);
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease)}
+.g247-bi:hover{transform:translateY(-6px);box-shadow:0 38px 70px -38px rgba(15,32,68,.55)}
+.g247-bi--wide{grid-column:span 2}
+.g247-bi>img{position:absolute;inset:0;z-index:-1;width:100%;height:100%;object-fit:cover;
+  transition:transform .9s var(--ease)}
+.g247-bi:hover>img{transform:scale(1.06)}
+.g247-frost{position:absolute;left:14px;right:14px;bottom:14px;padding:15px 19px;border-radius:16px;color:#fff;
+  background:rgba(10,16,30,.38);border:1px solid rgba(255,255,255,.24);
+  -webkit-backdrop-filter:blur(16px) saturate(1.35);backdrop-filter:blur(16px) saturate(1.35);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.25)}
+.g247-frost b{display:block;font-size:clamp(20px,2vw,26px);letter-spacing:-.022em;line-height:1.1}
+.g247-frost b sub{font-size:12.5px;font-weight:600;color:rgba(255,255,255,.8);vertical-align:baseline}
+.g247-frost span{display:block;margin-top:4px;font-size:10.5px;font-weight:800;letter-spacing:.09em;
+  text-transform:uppercase;color:rgba(255,255,255,.78)}
+@media (max-width:1080px){.g247-bento{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){
+  .g247-bento{grid-template-columns:1fr}
+  .g247-bi--wide{grid-column:auto}
+  .g247-bi{min-height:200px}
 }
-@media (prefers-reduced-motion:reduce){.g247-pi::before,.g247-pico::before{animation:none}}
 /* ---- the week, drawn: 24/7 vs standard hours ---- */
 .g247-week{max-width:880px;margin:clamp(28px,3.4vw,44px) auto 0;border-radius:clamp(18px,2vw,26px);
   padding:clamp(20px,2.6vw,32px);color:#fff;
@@ -471,26 +463,26 @@
 <!-- ============ PROOF STRIP ============ -->
 <section class="section g247-proof-sec" aria-label="XAUUSD247 at a glance">
   <div class="container">
-    <div class="g247-proof">
-      <article class="g247-pi" data-aos="fade-up">
-        <span class="g247-pico" aria-hidden="true"><svg><use href="#i-clock"/></svg></span>
-        <b>7 days</b><span class="g247-pl">Quoted every week</span>
+    <div class="g247-bento">
+      <article class="g247-bi g247-bi--wide" data-aos="fade-up">
+        <img src="../../assets/img/gold247-week-3d.webp" alt="Frosted 3D calendar with a checked day, standing for a full quoted week" width="900" height="900" loading="lazy" decoding="async">
+        <div class="g247-frost"><b>7 days</b><span>Quoted every week &mdash; weekends included</span></div>
       </article>
-      <article class="g247-pi" data-aos="fade-up" data-aos-delay="100">
-        <span class="g247-pico" aria-hidden="true"><svg><use href="#i-layers"/></svg></span>
-        <b>1 oz</b><span class="g247-pl">One lot, one ounce</span>
+      <article class="g247-bi" data-aos="fade-up" data-aos-delay="100">
+        <img src="../../assets/img/stat-tan.webp" alt="Bronze loop render, standing for the single golden ounce" width="2000" height="750" loading="lazy" decoding="async">
+        <div class="g247-frost"><b>1 oz</b><span>One lot, one ounce</span></div>
       </article>
-      <article class="g247-pi" data-aos="fade-up" data-aos-delay="200">
-        <span class="g247-pico" aria-hidden="true"><svg><use href="#i-cfd"/></svg></span>
-        <b>$0.15 <sub>/oz</sub></b><span class="g247-pl">Weekday spreads from</span>
+      <article class="g247-bi" data-aos="fade-up" data-aos-delay="150">
+        <img src="../../assets/img/stat-blue.webp" alt="Blue lightning bolt render, standing for weekday market pace" width="2000" height="750" loading="lazy" decoding="async">
+        <div class="g247-frost"><b>$0.15 <sub>/oz</sub></b><span>Weekday spreads from</span></div>
       </article>
-      <article class="g247-pi" data-aos="fade-up" data-aos-delay="300">
-        <span class="g247-pico" aria-hidden="true"><svg><use href="#i-globe"/></svg></span>
-        <b>$0.40 <sub>/oz</sub></b><span class="g247-pl">Weekend spreads from</span>
+      <article class="g247-bi" data-aos="fade-up" data-aos-delay="200">
+        <img src="../../assets/img/pat-glass.webp" alt="Frosted glass panes render, standing for the quiet weekend session" width="736" height="1308" loading="lazy" decoding="async">
+        <div class="g247-frost"><b>$0.40 <sub>/oz</sub></b><span>Weekend spreads from</span></div>
       </article>
-      <article class="g247-pi" data-aos="fade-up" data-aos-delay="400">
-        <span class="g247-pico" aria-hidden="true"><svg><use href="#i-wallet"/></svg></span>
-        <b>$0</b><span class="g247-pl">Separate commission</span>
+      <article class="g247-bi" data-aos="fade-up" data-aos-delay="250">
+        <img src="../../assets/img/pat-ribbon.webp" alt="Polished silver ribbon render, standing for a cost kept clean" width="724" height="1600" loading="lazy" decoding="async">
+        <div class="g247-frost"><b>$0</b><span>Separate commission</span></div>
       </article>
     </div>
   </div>
