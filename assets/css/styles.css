@@ -4090,3 +4090,8 @@ html:not(.js-aos) [data-aos]{opacity:1 !important;transform:none !important;tran
 /* identical solid panels swap instantly — a crossfade only lets the
    page ghost through and reads as a colour shift */
 .mega,.mega--center{transition:none}
+
+/* ===== MOBILE HARDENING (appended batch) =====
+   Root-level guard: no page may scroll sideways on a phone, whatever an
+   individual element does. body already clips; the root now matches. */
+html{overflow-x:clip}
