@@ -861,6 +861,18 @@
       e.stopPropagation();
       pop.classList.contains('open') ? close() : open();
     });
+
+    // desktop: open on hover like the other nav menus; a short grace period
+    // covers the pointer's trip across the gap to the panel
+    if (window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      var hoverT = null;
+      var scheduleClose = function () { hoverT = setTimeout(close, 160); };
+      var cancelClose = function () { if (hoverT) { clearTimeout(hoverT); hoverT = null; } };
+      [btn, pop].forEach(function (el) {
+        el.addEventListener('mouseenter', function () { cancelClose(); if (!pop.classList.contains('open')) open(); });
+        el.addEventListener('mouseleave', scheduleClose);
+      });
+    }
     if (closeBtn) closeBtn.addEventListener('click', close);
     document.addEventListener('click', function (e) {
       if (pop.classList.contains('open') && !pop.contains(e.target) && !btn.contains(e.target)) close();
