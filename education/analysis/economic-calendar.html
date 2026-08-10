@@ -152,6 +152,7 @@
 .ecx-cty i{font-style:normal;font-size:17px;line-height:1}
 .ecx-time--hot{display:inline-block;background:#e03131;color:#fff;padding:4px 10px;border-radius:9px;font-weight:800}
 .ecx-cd{color:#e03131;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ecx .ecx-dup{visibility:hidden}
 .ec-embed-frame iframe{display:block;width:100%;height:100%;border:0}
 .ec-credit{padding:12px 20px;font-size:12px;color:var(--text-mute);border-top:1px solid rgba(20,40,80,.07);background:rgba(255,255,255,.5)}
 .ec-credit a{color:var(--blue);font-weight:600}
@@ -168,6 +169,35 @@
 .ec-beat-lbl::before{background:#34d99b}
 /* ---- Responsive ---- */
 @media (max-width:720px){
+  /* filter deck stacks */
+  .ecf{padding:14px 14px 16px}
+  .ecf-range{font-size:14.5px}
+  .ecf-today{padding:8px 16px}
+  .ecf-groups{flex-direction:column;gap:12px}
+  .ecf-group{flex:1 1 auto !important}
+  .ecf-box{padding:10px 12px;gap:10px 16px}
+  .ecf-sel{min-width:0}
+  /* table becomes stacked event rows */
+  .ecx{min-width:0}
+  .ecx thead{display:none}
+  .ecx tbody{display:block}
+  .ecx tr{display:flex;flex-wrap:wrap;align-items:center;gap:3px 10px;padding:13px 16px;border-bottom:1px solid rgba(20,40,80,.08)}
+  .ecx td{display:block;padding:0;border:0}
+  .ecx td:nth-child(1){order:1;font-size:12.5px}
+  .ecx td:nth-child(2){order:2;flex:1;min-width:0;font-size:12.5px}
+  .ecx td:nth-child(4){order:3;margin-left:auto}
+  .ecx td:nth-child(3){order:4;flex:0 0 100%;margin-top:3px}
+  .ecx td:nth-child(5),.ecx td:nth-child(6),.ecx td:nth-child(7){order:5;flex:1 1 0;margin-top:9px}
+  .ecx td:nth-child(5)::before{content:"Actual"}
+  .ecx td:nth-child(6)::before{content:"Forecast"}
+  .ecx td:nth-child(7)::before{content:"Prior"}
+  .ecx td:nth-child(5)::before,.ecx td:nth-child(6)::before,.ecx td:nth-child(7)::before{
+    display:block;font-size:9.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#8a94a8;margin-bottom:3px}
+  .ecx tr.ecx-dayrow{padding:0;border-bottom:0}
+  .ecx tr.ecx-dayrow td{flex:1;order:0;padding:12px 16px}
+  .ecx .ecx-dup{visibility:visible}
+  .ecx-cty i{font-size:15px}
+
 .ec-embed-bar{padding:12px 16px}
 .ec-credit{padding:11px 16px}}
 /* ---- Why-card additions for features the product pages don't cover.
@@ -1197,9 +1227,11 @@
       var actualCell = soon && r.actual === '—'
         ? '<td><span class="ecx-cd" data-cd="' + r.ts + '">' + cdText(r.ts - nowMs) + '</span></td>'
         : num(r.actual, r.forecast);
+      var timeHtml = soon ? '<span class="ecx-time--hot">' + r.time + '</span>' : r.time;
+      var ctyHtml = '<span class="ecx-cty"><i aria-hidden="true">' + flag(r.country) + '</i>' + countryName(r.country) + '</span>';
       html += '<tr' + (past ? ' class="is-past"' : '') + '>' +
-        '<td class="ecx-time">' + (newTime ? (soon ? '<span class="ecx-time--hot">' + r.time + '</span>' : r.time) : '') + '</td>' +
-        '<td>' + (newCountry ? '<span class="ecx-cty"><i aria-hidden="true">' + flag(r.country) + '</i>' + countryName(r.country) + '</span>' : '') + '</td>' +
+        '<td class="ecx-time">' + (newTime ? timeHtml : '<span class="ecx-dup">' + r.time + '</span>') + '</td>' +
+        '<td>' + (newCountry ? ctyHtml : '<span class="ecx-dup">' + ctyHtml + '</span>') + '</td>' +
         '<td class="ecx-event"><b>' + r.title + '</b>' + (r.restricted ? '<span class="ecx-flag">Restricted</span>' : '') +
           (r.detail ? '<small>' + r.detail + '</small>' : '') + '</td>' +
         '<td><span class="ecx-imp ecx-imp--' + r.imp + '"><i></i>' + IMPLBL[r.imp] + '</span></td>' +
