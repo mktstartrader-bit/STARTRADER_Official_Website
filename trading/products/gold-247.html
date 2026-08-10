@@ -119,31 +119,56 @@
 .g247-hl{background:rgba(212,166,67,.07);font-weight:700}
 .ta-table td.g247-hl{border-left:1px solid rgba(212,166,67,.25);border-right:1px solid rgba(212,166,67,.25)}
 .g247-note{margin-top:14px;text-align:center;font-size:12px;color:#8a94a8}
-/* ---- cost cards with share meters ---- */
-.g247-cost{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2vw,24px);
-  max-width:880px;margin:clamp(28px,3.4vw,44px) auto 0}
-.g247-cc{border-radius:clamp(18px,2vw,26px);padding:clamp(22px,2.6vw,32px);
-  border:1px solid rgba(28,44,84,.09);box-shadow:0 24px 54px -36px rgba(15,32,68,.3);
-  transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
-.g247-cc:hover{transform:translateY(-5px);box-shadow:0 34px 66px -36px rgba(15,32,68,.42)}
-.g247-cc--wd{background:linear-gradient(150deg,#eefaf4,#fbfefd)}
-.g247-cc--we{background:linear-gradient(150deg,#fdf6e9,#fffdf8)}
-.g247-cc small{display:block;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#5a6478;margin-bottom:8px}
-.g247-cc b{display:block;font-size:clamp(26px,2.8vw,34px);letter-spacing:-.03em;color:#101828}
-.g247-cc b sub{font-size:13px;font-weight:600;color:#5a6478;vertical-align:baseline}
-.g247-meter{height:8px;border-radius:6px;background:rgba(28,44,84,.08);margin:16px 0 8px;overflow:hidden}
-.g247-meter i{display:block;height:100%;width:0;border-radius:6px;transition:width 1.1s var(--ease) .2s}
-.g247-cc--wd .g247-meter i{background:linear-gradient(90deg,#14c8a6,#0b7a58)}
-.g247-cc--we .g247-meter i{background:linear-gradient(90deg,#f0c96a,#c08a15)}
-.g247-cc.is-in .g247-meter i{width:var(--w)}
-.g247-cc p{font-size:12.5px;color:#5a6478}
+/* ---- the spread lab: pick a day, size the trade, watch the cost ---- */
+.g247-lab{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(18px,2.4vw,34px);
+  max-width:960px;margin:clamp(28px,3.4vw,44px) auto 0;border-radius:clamp(20px,2.4vw,30px);
+  padding:clamp(24px,3vw,40px);color:#f4ead6;
+  background:linear-gradient(165deg,#171208,#0b0805 70%);border:1px solid rgba(212,166,67,.24);
+  box-shadow:0 34px 70px -40px rgba(0,0,0,.85)}
+.g247-lab-cap{display:block;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+  color:#b3a68a;margin-bottom:12px}
+.g247-lab-days{display:grid;grid-template-columns:repeat(7,1fr);gap:7px}
+.g247-lab-days button{padding:11px 4px;border-radius:12px;border:1px solid rgba(212,166,67,.2);
+  background:rgba(212,166,67,.05);color:#cfc3a6;font:700 12.5px/1 inherit;font-family:inherit;cursor:pointer;
+  transition:background .25s,color .25s,border-color .25s,transform .3s var(--ease)}
+.g247-lab-days button:hover{border-color:rgba(212,166,67,.5);transform:translateY(-2px)}
+.g247-lab-days button.is-on{background:linear-gradient(135deg,#f0c96a,#c08a15);color:#241a02;border-color:transparent}
+.g247-lab-days button.is-we{border-style:dashed}
+.g247-lab-line{margin-top:14px;font-size:13px;line-height:1.6;color:#b3a68a;min-height:42px}
+.g247-lab-oz{margin-top:18px;padding-top:18px;border-top:1px solid rgba(212,166,67,.14)}
+.g247-lab-oz label{display:flex;justify-content:space-between;align-items:baseline;font-size:12.5px;
+  font-weight:700;color:#b3a68a;margin-bottom:10px}
+.g247-lab-oz label b{font-size:15px;color:#f0c96a;font-variant-numeric:tabular-nums}
+.g247-lab-oz input[type=range]{width:100%;accent-color:#d4a643;cursor:pointer}
+.g247-lab-oz p{margin-top:12px;font-size:13px;color:#b3a68a}
+.g247-lab-oz p b{color:#f4ead6;font-size:16px;font-variant-numeric:tabular-nums}
+.g247-lab-r{display:flex;flex-direction:column;justify-content:center;text-align:center;border-radius:20px;
+  padding:clamp(20px,2.4vw,30px);background:rgba(212,166,67,.05);border:1px solid rgba(212,166,67,.16)}
+.g247-live-dot{display:inline-flex;align-items:center;gap:7px;margin:0 auto 12px;font-size:10px;
+  font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#7ef0d2}
+.g247-live-dot i{width:7px;height:7px;border-radius:50%;background:#2ee6a8;
+  box-shadow:0 0 0 0 rgba(46,230,168,.5);animation:g247Ping 2.2s ease-out infinite}
+.g247-lab-r small{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#b3a68a}
+.g247-big{display:block;margin:10px 0 14px;font-size:clamp(44px,5.4vw,64px);line-height:1;
+  letter-spacing:-.03em;font-variant-numeric:tabular-nums;
+  background:linear-gradient(100deg,#f6e2a8 10%,#d4a643 55%,#a87b16 90%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  transition:transform .3s var(--ease)}
+.g247-big.bump{transform:scale(1.06)}
+.g247-big sub{font-size:16px;letter-spacing:0;vertical-align:baseline;
+  background:none;-webkit-text-fill-color:#b3a68a;color:#b3a68a}
+.g247-meter{height:8px;border-radius:6px;background:rgba(255,255,255,.08);overflow:hidden;max-width:280px;margin:0 auto}
+.g247-meter i{display:block;height:100%;width:30%;border-radius:6px;
+  background:linear-gradient(90deg,#f6e2a8,#d4a643);transition:width .8s var(--ease),background .5s}
+.g247-lab.is-we .g247-meter i{width:80%;background:linear-gradient(90deg,#d4a643,#8a6410)}
+.g247-lab-r p{margin-top:10px;font-size:12.5px;color:#b3a68a}
 .g247-costnotes{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:22px}
-.g247-costnotes span{padding:8px 15px;border-radius:30px;font-size:12px;font-weight:600;color:#33415e;
-  background:rgba(28,44,84,.05);border:1px solid rgba(28,44,84,.1)}
+.g247-costnotes span{padding:8px 15px;border-radius:30px;font-size:12px;font-weight:600;color:#cfc3a6;
+  background:rgba(212,166,67,.07);border:1px solid rgba(212,166,67,.22)}
 @media (max-width:760px){
+  .g247-lab{grid-template-columns:1fr}
   .g247-row,.g247-days{grid-template-columns:1fr}
   .g247-days .d{grid-column:1}
-  .g247-cost{grid-template-columns:1fr}
 }
   
 /* ================= DARK GOLD THEME ================= */
@@ -181,7 +206,8 @@ body.g247x .htrade-sec{background:
 body.g247x .faq-sec{background:#0d0a07}
 body.g247x main .h2{color:#fff}
 body.g247x main .head-sub{color:#b3a68a}
-body.g247x main .eyebrow{color:#f0c96a}
+/* section eyebrows retired on this page — the headings carry the room */
+body.g247x main .head .eyebrow{display:none}
 body.g247x .g247-note{color:#8f846b}
 /* bento cells pick up gold borders */
 body.g247x .g247-bi{border-color:rgba(212,166,67,.22);box-shadow:0 30px 60px -40px rgba(0,0,0,.85)}
@@ -204,16 +230,6 @@ body.g247x .fx-hours{background:
   radial-gradient(90% 68% at 50% 0%,rgba(120,86,16,.28),transparent 60%),
   linear-gradient(180deg,#080604 0%,#100c06 52%,#080604 100%)}
 /* cost cards: candlelit glass */
-body.g247x .g247-cc--wd,body.g247x .g247-cc--we{border-color:rgba(212,166,67,.24)}
-body.g247x .g247-cc--wd{background:linear-gradient(150deg,#16110a,#0d0a06)}
-body.g247x .g247-cc--we{background:linear-gradient(150deg,#1a1309,#0e0b06)}
-body.g247x .g247-cc small{color:#b3a68a}
-body.g247x .g247-cc b{color:#f4ead6}
-body.g247x .g247-cc b sub{color:#b3a68a}
-body.g247x .g247-cc p{color:#b3a68a}
-body.g247x .g247-meter{background:rgba(255,255,255,.08)}
-body.g247x .g247-cc--wd .g247-meter i{background:linear-gradient(90deg,#f6e2a8,#d4a643)}
-body.g247x .g247-cc--we .g247-meter i{background:linear-gradient(90deg,#d4a643,#8a6410)}
 body.g247x .g247-costnotes span{color:#cfc3a6;background:rgba(212,166,67,.07);border-color:rgba(212,166,67,.22)}
 /* steps in the dark */
 body.g247x .htrade-intro,body.g247x .htrade-steps{background:#120e08;border-color:rgba(212,166,67,.2);
@@ -223,7 +239,15 @@ body.g247x .htrade-title span{color:#d4a643}
 body.g247x .htrade-sub{color:#b3a68a}
 body.g247x .htrade-txt h3{color:#f4ead6}
 body.g247x .htrade-txt p{color:#b3a68a}
-body.g247x .htrade-num{background:rgba(212,166,67,.12);border-color:rgba(212,166,67,.3);color:#f0c96a}
+body.g247x .htrade-num{background:#2a2110;border-color:rgba(212,166,67,.34);color:#f0c96a}
+/* active step speaks gold, not blue */
+body.g247x .htrade-step:hover,body.g247x .htrade-step.is-on{background:rgba(212,166,67,.07)}
+body.g247x .htrade-step:hover .htrade-num,body.g247x .htrade-step.is-on .htrade-num{
+  background:linear-gradient(135deg,#f0c96a,#c08a15);border-color:transparent;color:#241a02;
+  box-shadow:0 12px 26px -12px rgba(212,166,67,.7)}
+body.g247x .htrade-step:hover .htrade-txt h3,body.g247x .htrade-step.is-on .htrade-txt h3{color:#f0c96a}
+body.g247x .htrade-steps::before{background:rgba(212,166,67,.18)}
+body.g247x .htrade-steps::after{background:linear-gradient(180deg,#f0c96a,#a87b16)}
 /* FAQ in the dark */
 body.g247x .faq-item{border-bottom-color:rgba(255,255,255,.09)}
 body.g247x .faq-item summary{color:#e8dcc0}
@@ -232,7 +256,8 @@ body.g247x .faq-a{color:#b3a68a}
 body.g247x .faq-q-ic{border-color:rgba(255,255,255,.2);color:#d4a643}
 body.g247x .faq-item summary:hover .faq-q-ic{border-color:#f0c96a;color:#f0c96a}
 /* closing banner glow warms up */
-body.g247x .cta-banner .cta-bg{filter:hue-rotate(192deg) saturate(1.15) brightness(1.02)}
+body.g247x .cta-bg{background:#0a0805 url(../../assets/img/gold247-cta.webp) center bottom/cover no-repeat}
+body.g247x .cta-inner p{color:#e4d8b8}
 @media (max-width:640px){.g247-hero{padding:96px 0 84px}}
 </style>
 </head>
@@ -553,7 +578,7 @@ body.g247x .cta-banner .cta-bg{filter:hue-rotate(192deg) saturate(1.15) brightne
   <div class="container">
     <div class="g247-bento">
       <article class="g247-bi g247-bi--wide" data-aos="fade-up">
-        <img src="../../assets/img/gold247-days-3d.webp" alt="Amber light bars pulsing out of darkness, standing for a week quoted without pause" width="1400" height="900" loading="lazy" decoding="async">
+        <img src="../../assets/img/gold247-days-3d.webp" alt="Engraved gold coin standing on its edge in warm light, for a week quoted without pause" width="1200" height="608" loading="lazy" decoding="async">
         <div class="g247-frost"><b>7 days</b><span>Quoted every week &mdash; weekends included</span></div>
       </article>
       <article class="g247-bi" data-aos="fade-up" data-aos-delay="100">
@@ -668,20 +693,34 @@ body.g247x .cta-banner .cta-bg{filter:hue-rotate(192deg) saturate(1.15) brightne
       <span class="eyebrow eyebrow-blue" data-aos="fade-up">Cost</span>
       <h2 class="h2" id="g247-cost-title" data-aos="fade-up">Spreads, weekday<br> and weekend</h2>
     </div>
-    <div class="g247-cost">
-      <article class="g247-cc g247-cc--wd" data-g247-meter style="--w:30%" data-aos="fade-up">
-        <small>Weekdays</small>
-        <b>from $0.15 <sub>/oz</sub></b>
+    <div class="g247-lab" data-g247-lab data-aos="fade-up">
+      <div class="g247-lab-l">
+        <span class="g247-lab-cap">Pick a day</span>
+        <div class="g247-lab-days" role="group" aria-label="Day of the week">
+          <button type="button" data-day="0">Mon</button>
+          <button type="button" data-day="1">Tue</button>
+          <button type="button" data-day="2">Wed</button>
+          <button type="button" data-day="3">Thu</button>
+          <button type="button" data-day="4">Fri</button>
+          <button type="button" data-day="5" class="is-we">Sat</button>
+          <button type="button" data-day="6" class="is-we">Sun</button>
+        </div>
+        <p class="g247-lab-line" id="g247LabLine">&nbsp;</p>
+        <div class="g247-lab-oz">
+          <label for="g247Oz">Position size <b id="g247OzVal">10 oz</b></label>
+          <input type="range" id="g247Oz" min="1" max="100" value="10" aria-label="Position size in ounces">
+          <p>Spread cost on this trade: <b id="g247Cost">$1.50</b></p>
+        </div>
+      </div>
+      <div class="g247-lab-r">
+        <span class="g247-live-dot"><i aria-hidden="true"></i> Quoted now</span>
+        <small id="g247Mode">Weekday spread from</small>
+        <b class="g247-big" id="g247Big">$<span id="g247Price">0.15</span><sub>/oz</sub></b>
         <div class="g247-meter"><i></i></div>
-        <p><strong>0.00%</strong> share of the gold price</p>
-      </article>
-      <article class="g247-cc g247-cc--we" data-g247-meter style="--w:80%" data-aos="fade-up" data-aos-delay="100">
-        <small>Weekends</small>
-        <b>from $0.40 <sub>/oz</sub></b>
-        <div class="g247-meter"><i></i></div>
-        <p><strong>0.01%</strong> share of the gold price</p>
-      </article>
+        <p id="g247Share">Around 0.00% of the gold price at $5,000/oz</p>
+      </div>
     </div>
+
     <div class="g247-costnotes" data-aos="fade-up">
       <span>Percentages are based on gold at $5,000 an ounce</span>
       <span>Weekend pricing differs due to liquidity and hedging conditions</span>
@@ -761,20 +800,66 @@ body.g247x .cta-banner .cta-bg{filter:hue-rotate(192deg) saturate(1.15) brightne
 </main>
 
 <script>
-/* cost meters fill when they enter view */
+/* the spread lab: day picker flips weekday/weekend pricing, the big number
+   tweens between rates, and the slider prices a real position */
 (function () {
-  var cards = document.querySelectorAll('[data-g247-meter]');
-  if (!cards.length) return;
-  if (!('IntersectionObserver' in window)) {
-    cards.forEach(function (c) { c.classList.add('is-in'); });
-    return;
+  var lab = document.querySelector('[data-g247-lab]');
+  if (!lab) return;
+  var DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+  var priceEl = document.getElementById('g247Price');
+  var bigEl = document.getElementById('g247Big');
+  var modeEl = document.getElementById('g247Mode');
+  var shareEl = document.getElementById('g247Share');
+  var lineEl = document.getElementById('g247LabLine');
+  var ozIn = document.getElementById('g247Oz');
+  var ozVal = document.getElementById('g247OzVal');
+  var costEl = document.getElementById('g247Cost');
+  var btns = Array.prototype.slice.call(lab.querySelectorAll('[data-day]'));
+  var shown = 0.15;
+  var target = 0.15;
+  var raf = null;
+
+  function weekend(d) { return d >= 5; }
+  function fmt(v) { return v.toFixed(2); }
+
+  function renderCost() {
+    var oz = parseInt(ozIn.value, 10) || 1;
+    ozVal.textContent = oz + ' oz';
+    costEl.textContent = '$' + (target * oz).toFixed(2);
   }
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (en) {
-      if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); }
-    });
-  }, { threshold: 0.4 });
-  cards.forEach(function (c) { io.observe(c); });
+  function tween() {
+    var diff = target - shown;
+    if (Math.abs(diff) < 0.005) { shown = target; priceEl.textContent = fmt(shown); raf = null; return; }
+    shown += diff * 0.18;
+    priceEl.textContent = fmt(shown);
+    raf = requestAnimationFrame(tween);
+  }
+  function select(d) {
+    btns.forEach(function (b) { b.classList.toggle('is-on', +b.getAttribute('data-day') === d); });
+    var we = weekend(d);
+    lab.classList.toggle('is-we', we);
+    target = we ? 0.40 : 0.15;
+    modeEl.textContent = we ? 'Weekend spread from' : 'Weekday spread from';
+    shareEl.textContent = we ? 'Around 0.01% of the gold price at $5,000/oz'
+                             : 'Around 0.00% of the gold price at $5,000/oz';
+    lineEl.textContent = we
+      ? DAYS[d] + ' — the rest of the market sleeps, XAUUSD247 keeps quoting. Weekend pricing applies.'
+      : DAYS[d] + ' — the desk is open and weekday pricing applies.';
+    bigEl.classList.add('bump');
+    setTimeout(function () { bigEl.classList.remove('bump'); }, 320);
+    if (!raf) raf = requestAnimationFrame(tween);
+    clearTimeout(select.snap);
+    select.snap = setTimeout(function () {
+      shown = target;
+      priceEl.textContent = fmt(shown);
+    }, 800);
+    renderCost();
+  }
+  btns.forEach(function (b) {
+    b.addEventListener('click', function () { select(+b.getAttribute('data-day')); });
+  });
+  ozIn.addEventListener('input', renderCost);
+  select((new Date().getDay() + 6) % 7);
 })();
 </script>
 
