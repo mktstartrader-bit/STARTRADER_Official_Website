@@ -4191,3 +4191,12 @@ html{overflow-x:clip}
 }
 .mobile-menu .mm-lang{margin-top:18px;padding-top:20px;border-top:1px solid rgba(255,255,255,.09)}
 .mobile-menu .mm-langs button{font-size:13px;padding:8px 14px}
+
+/* ===== LANGUAGE PANEL — MEGA CLOTH, SCREEN CENTRE (appended batch) =====
+   The panel lives inside the blurred header, and Chrome cannot nest
+   backdrop-filters — the same quirk that made the mega menu solid. It now
+   wears the mega panel's exact background and sits dead centre. */
+/* the blurred header is the panel's containing block, so viewport maths
+   resolve against the bar — hang it centred beneath the nav, mega-style */
+.lang-pop{top:calc(100% + 12px);background:#070a12;-webkit-backdrop-filter:none;backdrop-filter:none;
+  border:1px solid rgba(255,255,255,.1);max-height:min(78vh,calc(100vh - 160px))}
