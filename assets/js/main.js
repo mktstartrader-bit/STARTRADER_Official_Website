@@ -337,6 +337,19 @@
       document.body.classList.remove('has-sb');
       bar.remove();
     });
+    // sit a measured 10px above the cookie while it shows, not a guessed offset
+    function layoutSb() {
+      var ck = document.getElementById('cookie');
+      if (ck && ck.classList.contains('show')) {
+        var r = ck.getBoundingClientRect();
+        bar.style.bottom = Math.round(window.innerHeight - r.top + 10) + 'px';
+      } else {
+        bar.style.bottom = '';
+      }
+    }
+    document.addEventListener('st:cookie', function () { setTimeout(layoutSb, 60); });
+    window.addEventListener('resize', layoutSb);
+    setTimeout(layoutSb, 1600);
   }
 
   function initMobileMenu() {
@@ -945,11 +958,12 @@
     var stored;
     try { stored = localStorage.getItem('st_cookie_consent'); } catch (e) { stored = null; }
     if (stored) return;
-    setTimeout(function () { el.classList.add('show'); document.body.classList.add('ck-open'); }, 1300);
+    setTimeout(function () { el.classList.add('show'); document.body.classList.add('ck-open'); document.dispatchEvent(new Event('st:cookie')); }, 1300);
     function dismiss() {
       try { localStorage.setItem('st_cookie_consent', 'accepted'); } catch (e) {}
       el.classList.remove('show');
       document.body.classList.remove('ck-open');
+      document.dispatchEvent(new Event('st:cookie'));
     }
     var x = document.getElementById('cookieClose');
     if (x) x.addEventListener('click', dismiss);
