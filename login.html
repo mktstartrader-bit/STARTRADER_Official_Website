@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#dbe9fb" />
+  <title>Client Portal Login | STARTRADER</title>
+  <meta name="description" content="Log in to the STARTRADER Client Portal with your email or phone number, or continue with Telegram." />
+  <meta name="robots" content="noindex, follow" />
+  <link rel="canonical" href="https://www.startrader.com/login.html" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preload" as="image" href="assets/img/login-bg.webp" fetchpriority="high" type="image/webp" />
+  <link rel="stylesheet" href="assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=ru1" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ---- the room: soft glass sky, card dead centre ---- */
+.lg-wrap{min-height:100svh;min-height:100vh;display:grid;place-items:center;padding:28px 16px;
+  background:#dbe9fb url(assets/img/login-bg.webp) center/cover no-repeat}
+.lg-card{width:min(440px,100%);border-radius:28px;padding:clamp(28px,4vw,40px) clamp(22px,3.4vw,36px);
+  background:rgba(255,255,255,.58);border:1px solid rgba(255,255,255,.85);
+  -webkit-backdrop-filter:blur(24px) saturate(1.5);backdrop-filter:blur(24px) saturate(1.5);
+  box-shadow:0 40px 90px -36px rgba(30,70,150,.4),inset 0 1px 0 rgba(255,255,255,.9);
+  animation:lgIn .7s cubic-bezier(.22,.61,.36,1) both}
+@keyframes lgIn{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.lg-card{animation:none}}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .lg-card{background:rgba(255,255,255,.94)}
+}
+.lg-logo{display:block;width:168px;margin:0 0 18px}
+.lg-logo img{width:100%;height:auto;display:block}
+.lg-card h1{text-align:left;font-size:clamp(23px,2.7vw,28px);letter-spacing:-.03em;color:#0c1526;margin-bottom:22px}
+/* ---- the email / phone switch ---- */
+.lg-tabs{position:relative;display:grid;grid-template-columns:1fr 1fr;padding:5px;border-radius:16px;
+  background:rgba(12,21,38,.06);margin-bottom:18px}
+.lg-tabs::before{content:"";position:absolute;top:5px;bottom:5px;left:5px;width:calc(50% - 5px);
+  border-radius:12px;background:#fff;box-shadow:0 6px 18px -8px rgba(15,32,68,.35);
+  transition:transform .35s cubic-bezier(.22,.61,.36,1)}
+.lg-tabs.is-phone::before{transform:translateX(100%)}
+.lg-tab{position:relative;z-index:1;padding:12px 6px;border:0;background:none;border-radius:12px;cursor:pointer;
+  font:600 14px/1 inherit;font-family:inherit;color:#5a6478;transition:color .25s}
+.lg-tab.is-on{color:#0c1526;font-weight:700}
+/* ---- fields ---- */
+.lg-field{position:relative;margin-bottom:14px}
+.lg-field input{width:100%;padding:16px 18px;border-radius:16px;border:1px solid transparent;
+  background:rgba(12,21,38,.05);color:#0c1526;font:500 14.5px/1.3 inherit;font-family:inherit;outline:none;
+  transition:border-color .25s,background .25s,box-shadow .25s}
+.lg-field input::placeholder{color:#8a94a8}
+.lg-field input:focus{border-color:rgba(42,114,255,.55);background:#fff;
+  box-shadow:0 0 0 4px rgba(42,114,255,.12)}
+.lg-field--pw input{padding-right:52px}
+.lg-eye{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:38px;height:38px;
+  display:grid;place-items:center;border:0;background:none;border-radius:50%;cursor:pointer;color:#8a94a8;
+  transition:color .25s,background .25s}
+.lg-eye:hover{color:#2a72ff;background:rgba(42,114,255,.08)}
+.lg-eye svg{width:19px;height:19px}
+.lg-eye .off{display:none}
+.lg-eye.show .on{display:none}
+.lg-eye.show .off{display:block}
+.lg-forgot{display:block;text-align:right;margin:2px 2px 20px;font-size:13px;font-weight:700;color:#2a72ff}
+.lg-forgot:hover{text-decoration:underline;text-underline-offset:3px}
+/* ---- actions ---- */
+.lg-submit{width:100%;justify-content:center;height:52px;border-radius:16px;font-size:15px}
+.lg-div{display:flex;align-items:center;gap:14px;margin:20px 0;color:#8a94a8;font-size:12.5px}
+.lg-div::before,.lg-div::after{content:"";flex:1;height:0;border-top:1px dashed rgba(12,21,38,.22)}
+.lg-alt{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;height:50px;border-radius:16px;
+  background:rgba(12,21,38,.05);border:1px solid rgba(12,21,38,.08);color:#0c1526;font-weight:700;font-size:14.5px;
+  transition:background .25s,border-color .25s,transform .35s var(--ease)}
+.lg-alt:hover{background:#fff;border-color:rgba(42,114,255,.35);transform:translateY(-2px)}
+.lg-alt svg{width:19px;height:19px;color:#2AABEE}
+.lg-foot{margin-top:20px;text-align:center;font-size:13px;color:#5a6478}
+.lg-foot a{font-weight:700;color:#2a72ff;text-decoration:underline;text-underline-offset:3px}
+.lg-back{position:fixed;top:18px;left:18px;display:inline-flex;align-items:center;gap:7px;padding:9px 16px;
+  border-radius:40px;font-size:12.5px;font-weight:700;color:#33415e;background:rgba(255,255,255,.6);
+  border:1px solid rgba(255,255,255,.9);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  transition:background .25s,transform .3s var(--ease)}
+.lg-back:hover{background:#fff;transform:translateX(-2px)}
+.lg-back svg{width:14px;height:14px;transform:rotate(180deg)}
+  </style>
+</head>
+<body>
+
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M4 12h15m0 0-6-6m6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-telegram" viewBox="0 0 24 24"><path d="M21.5 4.3 2.9 11.5c-.9.35-.9.9-.15 1.12l4.7 1.46 1.8 5.6c.23.63.4.86 1 .86.46 0 .66-.2.9-.45l2.28-2.2 4.72 3.5c.87.48 1.5.23 1.72-.8l3-14.1c.3-1.28-.5-1.86-1.34-1.5z" fill="currentColor"/></symbol>
+</svg>
+
+<a class="lg-back" href="index.html"><svg aria-hidden="true"><use href="#i-arrow-right"/></svg>Back to site</a>
+
+<main class="lg-wrap">
+  <form class="lg-card" autocomplete="on" novalidate>
+    <a class="lg-logo" href="index.html" aria-label="STARTRADER home">
+      <img src="assets/img/logo-startrader-dark.svg" alt="STARTRADER" width="180" height="35">
+    </a>
+    <h1>Client Portal Login</h1>
+
+    <div class="lg-tabs" id="lgTabs" role="tablist" aria-label="Login method">
+      <button type="button" class="lg-tab is-on" id="lgTabEmail" role="tab" aria-selected="true">Email Address</button>
+      <button type="button" class="lg-tab" id="lgTabPhone" role="tab" aria-selected="false">Phone Number</button>
+    </div>
+
+    <div class="lg-field">
+      <input type="email" id="lgId" name="username" placeholder="Email" aria-label="Email" autocomplete="username">
+    </div>
+    <div class="lg-field lg-field--pw">
+      <input type="password" id="lgPw" name="password" placeholder="Password" aria-label="Password" autocomplete="current-password">
+      <button type="button" class="lg-eye" id="lgEye" aria-label="Show password" aria-pressed="false">
+        <svg class="on" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+        <svg class="off" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 20 20 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <a class="lg-forgot" href="#">Forgot Password?</a>
+
+    <button type="submit" class="btn btn-primary lg-submit">Log in</button>
+
+    <div class="lg-div">Other Login Method</div>
+    <a class="lg-alt" href="#"><svg aria-hidden="true"><use href="#i-telegram"/></svg>Telegram</a>
+
+    <p class="lg-foot">Not A Client? <a href="trading/getting-started/account-opening.html">Open Live Account</a></p>
+  </form>
+</main>
+
+<script>
+/* method switch + password reveal — page-scoped */
+(function () {
+  var tabs = document.getElementById('lgTabs');
+  var tEmail = document.getElementById('lgTabEmail');
+  var tPhone = document.getElementById('lgTabPhone');
+  var id = document.getElementById('lgId');
+  function setMode(phone) {
+    tabs.classList.toggle('is-phone', phone);
+    tEmail.classList.toggle('is-on', !phone);
+    tPhone.classList.toggle('is-on', phone);
+    tEmail.setAttribute('aria-selected', String(!phone));
+    tPhone.setAttribute('aria-selected', String(phone));
+    id.type = phone ? 'tel' : 'email';
+    id.placeholder = phone ? 'Phone Number' : 'Email';
+    id.setAttribute('aria-label', phone ? 'Phone Number' : 'Email');
+    id.value = '';
+    id.focus();
+  }
+  tEmail.addEventListener('click', function () { setMode(false); });
+  tPhone.addEventListener('click', function () { setMode(true); });
+
+  var eye = document.getElementById('lgEye');
+  var pw = document.getElementById('lgPw');
+  eye.addEventListener('click', function () {
+    var show = pw.type === 'password';
+    pw.type = show ? 'text' : 'password';
+    eye.classList.toggle('show', show);
+    eye.setAttribute('aria-pressed', String(show));
+    eye.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+  });
+
+  document.querySelector('.lg-card').addEventListener('submit', function (e) { e.preventDefault(); });
+})();
+</script>
+</body>
+</html>
