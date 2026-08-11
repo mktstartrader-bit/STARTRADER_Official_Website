@@ -127,7 +127,7 @@
 .g247-lab-line{margin-top:14px;font-size:13px;line-height:1.6;color:#b3a68a;min-height:42px}
 .g247-lab-oz{margin-top:18px;padding-top:18px;border-top:1px solid rgba(212,166,67,.14)}
 .g247-lab-oz label{display:flex;justify-content:space-between;align-items:baseline;font-size:12.5px;
-  font-weight:700;color:#b3a68a;margin-bottom:10px}
+  font-weight:700;color:#b3a68a;margin-top:10px}
 .g247-lab-oz label b{font-size:15px;color:#f0c96a;font-variant-numeric:tabular-nums}
 .g247-lab-oz input[type=range]{width:100%;accent-color:#d4a643;cursor:pointer}
 .g247-lab-oz p{margin:0 0 14px;font-size:13px;color:#b3a68a}
@@ -224,7 +224,6 @@ body.g247x .fx-hours{background:
   radial-gradient(90% 68% at 50% 0%,rgba(120,86,16,.28),transparent 60%),
   linear-gradient(180deg,#080604 0%,#100c06 52%,#080604 100%)}
 /* cost cards: candlelit glass */
-body.g247x .g247-costnotes span{color:#cfc3a6;background:rgba(212,166,67,.07);border-color:rgba(212,166,67,.22)}
 /* steps in the dark */
 body.g247x .htrade-intro,body.g247x .htrade-steps{background:#120e08;border-color:rgba(212,166,67,.2);
   box-shadow:0 24px 54px -38px rgba(0,0,0,.8)}
@@ -699,12 +698,11 @@ body.g247x .cta-inner p{color:#e4d8b8}
         <p class="g247-lab-line" id="g247LabLine">&nbsp;</p>
         <div class="g247-lab-oz">
           <p>Spread cost on this trade: <b id="g247Cost">$1.50</b></p>
-          <label for="g247Oz">Position size <b id="g247OzVal">10 oz</b></label>
           <input type="range" id="g247Oz" min="1" max="100" value="10" aria-label="Position size in ounces">
+          <label for="g247Oz">Position size <b id="g247OzVal">10 oz</b></label>
         </div>
       </div>
       <div class="g247-lab-r">
-        <span class="g247-live-dot"><i aria-hidden="true"></i> Quoted now</span>
         <small id="g247Mode">Weekday spread from</small>
         <b class="g247-big" id="g247Big">$<span id="g247Price">0.15</span><sub>/oz</sub></b>
         <div class="g247-meter"><i></i></div>
