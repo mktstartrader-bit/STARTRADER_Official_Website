@@ -62,34 +62,24 @@
 
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
-/* ---- proof strip: image bento with frosted text plates ---- */
+/* ---- proof strip: bare icon and text, three up then two ---- */
 .g247-proof-sec{background:#fff}
-.g247-bento{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.8vw,22px)}
-.g247-bi{position:relative;isolation:isolate;overflow:hidden;min-height:clamp(220px,24vw,270px);
-  border-radius:clamp(20px,2.2vw,28px);border:1px solid rgba(28,44,84,.1);transform:translateZ(0);
-  box-shadow:0 26px 56px -38px rgba(15,32,68,.4);
-  transition:transform .45s var(--ease),box-shadow .45s var(--ease)}
-.g247-bi:hover{transform:translateY(-6px);box-shadow:0 38px 70px -38px rgba(15,32,68,.55)}
-.g247-bi--wide{grid-column:span 2}
-.g247-bi>img{position:absolute;inset:0;z-index:-1;width:100%;height:100%;object-fit:cover;
-  transition:transform .9s var(--ease)}
-.g247-bi:hover>img{transform:scale(1.06)}
-/* frosted gradient rising from the cell's foot — no plate, just progressive glass */
-.g247-frost{position:absolute;left:0;right:0;bottom:0;padding:64px 22px 20px;color:#fff;
-  background:linear-gradient(180deg,rgba(10,8,5,0) 0%,rgba(10,8,5,.48) 48%,rgba(10,8,5,.74) 100%);
-  -webkit-backdrop-filter:blur(15px) saturate(1.25);backdrop-filter:blur(15px) saturate(1.25);
-  -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 46%);
-  mask-image:linear-gradient(180deg,transparent 0%,#000 46%)}
-.g247-frost b{text-shadow:0 1px 14px rgba(0,0,0,.45)}
-.g247-frost b{display:block;font-size:clamp(20px,2vw,26px);letter-spacing:-.022em;line-height:1.1}
-.g247-frost b sub{font-size:12.5px;font-weight:600;color:rgba(255,255,255,.8);vertical-align:baseline}
-.g247-frost span{display:block;margin-top:4px;font-size:10.5px;font-weight:800;letter-spacing:.09em;
-  text-transform:uppercase;color:rgba(255,255,255,.78)}
-@media (max-width:1080px){.g247-bento{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:640px){
-  .g247-bento{grid-template-columns:1fr}
-  .g247-bi--wide{grid-column:auto}
-  .g247-bi{min-height:200px}
+.g247-proof{display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(26px,3.4vw,48px) clamp(14px,2vw,26px);
+  max-width:980px;margin:0 auto}
+.g247-pi{grid-column:span 2;display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px}
+.g247-pi:nth-child(4){grid-column:2/4}
+.g247-pi:nth-child(5){grid-column:4/6}
+.g247-pi img{width:clamp(56px,6vw,76px);height:auto;margin-bottom:10px;
+  filter:drop-shadow(0 14px 26px rgba(212,166,67,.35));
+  transition:transform .45s var(--ease),filter .45s var(--ease)}
+.g247-pi:hover img{transform:translateY(-5px) scale(1.07);filter:drop-shadow(0 20px 34px rgba(212,166,67,.55))}
+.g247-pi b{font-size:clamp(19px,2vw,24px);letter-spacing:-.022em;color:#101828}
+.g247-pi b sub{font-size:12px;font-weight:600;color:#8a6f2e;vertical-align:baseline}
+.g247-pl{font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#8a6f2e}
+@media (max-width:760px){
+  .g247-proof{grid-template-columns:repeat(2,1fr);gap:26px 14px}
+  .g247-pi,.g247-pi:nth-child(4){grid-column:auto}
+  .g247-pi:nth-child(5){grid-column:1/-1}
 }
 /* ---- the week, drawn: 24/7 vs standard hours ---- */
 .g247-week{max-width:880px;margin:clamp(28px,3.4vw,44px) auto 0;border-radius:clamp(18px,2vw,26px);
@@ -211,8 +201,9 @@ body.g247x main .head-sub{color:#b3a68a}
 /* section eyebrows retired on this page — the headings carry the room */
 body.g247x main .head .eyebrow{display:none}
 body.g247x .g247-note{color:#8f846b}
-/* bento cells pick up gold borders */
-body.g247x .g247-bi{border-color:rgba(212,166,67,.22);box-shadow:0 30px 60px -40px rgba(0,0,0,.85)}
+/* proof items on the dark stage */
+body.g247x .g247-pi b{color:#f4ead6}
+body.g247x .g247-pl{color:#b3a68a}
 /* week visual re-tinted from navy to smoke */
 body.g247x .g247-week{background:linear-gradient(165deg,#171208,#0b0805 70%);border-color:rgba(212,166,67,.24)}
 /* spec table in the dark */
@@ -580,27 +571,27 @@ body.g247x .cta-inner p{color:#e4d8b8}
 <!-- ============ PROOF STRIP ============ -->
 <section class="section g247-proof-sec" aria-label="XAUUSD247 at a glance">
   <div class="container">
-    <div class="g247-bento">
-      <article class="g247-bi g247-bi--wide" data-aos="fade-up">
-        <img src="../../assets/img/gold247-days-3d.webp" alt="Engraved gold coin standing on its edge in warm light, for a week quoted without pause" width="1200" height="608" loading="lazy" decoding="async">
-        <div class="g247-frost"><b>7 days</b><span>Quoted 7 days a week</span></div>
-      </article>
-      <article class="g247-bi" data-aos="fade-up" data-aos-delay="100">
-        <img src="../../assets/img/gold247-oz-3d.webp" alt="Seven polished gold capsules on black, standing for the single golden ounce" width="1200" height="675" loading="lazy" decoding="async">
-        <div class="g247-frost"><b>1 oz</b><span>1 lot = 1 oz</span></div>
-      </article>
-      <article class="g247-bi" data-aos="fade-up" data-aos-delay="150">
-        <img src="../../assets/img/gold247-weekday-3d.webp" alt="Gold 3D calendar showing the Monday-to-Friday columns" width="900" height="900" loading="lazy" decoding="async">
-        <div class="g247-frost"><b>$0.15 <sub>/oz</sub></b><span>Weekday spreads from $0.15/oz</span></div>
-      </article>
-      <article class="g247-bi" data-aos="fade-up" data-aos-delay="200">
-        <img src="../../assets/img/gold247-weekday-3d.webp" alt="Gold 3D calendar render, here standing for the weekend session" width="900" height="900" loading="lazy" decoding="async">
-        <div class="g247-frost"><b>$0.40 <sub>/oz</sub></b><span>Weekend spreads from $0.40/oz</span></div>
-      </article>
-      <article class="g247-bi" data-aos="fade-up" data-aos-delay="250">
-        <img src="../../assets/img/gold247-fee-3d.webp" alt="Gold dollar plaque and percent coin render, standing for zero separate commission" width="900" height="900" loading="lazy" decoding="async">
-        <div class="g247-frost"><b>$0</b><span>$0 separate commission</span></div>
-      </article>
+    <div class="g247-proof">
+      <div class="g247-pi" data-aos="fade-up">
+        <img src="../../assets/img/gold247-proof-shield.webp" alt="Layered gold shields with a check mark" width="240" height="240" loading="lazy" decoding="async">
+        <b>7 days</b><span class="g247-pl">Quoted 7 days a week</span>
+      </div>
+      <div class="g247-pi" data-aos="fade-up" data-aos-delay="100">
+        <img src="../../assets/img/gold247-proof-shield.webp" alt="Layered gold shields with a check mark" width="240" height="240" loading="lazy" decoding="async">
+        <b>1 oz</b><span class="g247-pl">1 lot = 1 oz</span>
+      </div>
+      <div class="g247-pi" data-aos="fade-up" data-aos-delay="200">
+        <img src="../../assets/img/gold247-proof-shield.webp" alt="Layered gold shields with a check mark" width="240" height="240" loading="lazy" decoding="async">
+        <b>$0.15 <sub>/oz</sub></b><span class="g247-pl">Weekday spreads from $0.15/oz</span>
+      </div>
+      <div class="g247-pi" data-aos="fade-up" data-aos-delay="300">
+        <img src="../../assets/img/gold247-proof-shield.webp" alt="Layered gold shields with a check mark" width="240" height="240" loading="lazy" decoding="async">
+        <b>$0.40 <sub>/oz</sub></b><span class="g247-pl">Weekend spreads from $0.40/oz</span>
+      </div>
+      <div class="g247-pi" data-aos="fade-up" data-aos-delay="400">
+        <img src="../../assets/img/gold247-proof-shield.webp" alt="Layered gold shields with a check mark" width="240" height="240" loading="lazy" decoding="async">
+        <b>$0</b><span class="g247-pl">$0 separate commission</span>
+      </div>
     </div>
   </div>
 </section>
