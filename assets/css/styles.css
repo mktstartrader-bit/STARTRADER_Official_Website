@@ -4391,3 +4391,9 @@ iframe#webWidget{
 
 /* ===== TAGLINE SITS LEVEL WITH THE LOGO (appended batch) ===== */
 .foot-tag{font-size:clamp(15px,1.6vw,20px)}
+
+/* ===== MEGA MENU HOLDS OPEN FOR THE POINTER (appended batch) =====
+   Open state is now JS-managed with a grace period, so a micro-break in
+   the hover chain — trackpads, touchscreens, fast diagonals — can no
+   longer slam the panel shut before a link is reached. */
+.nav-item.has-mega.is-open .mega{opacity:1;visibility:visible;transform:none;pointer-events:auto}

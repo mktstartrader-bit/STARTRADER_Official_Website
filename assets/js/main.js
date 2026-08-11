@@ -843,6 +843,25 @@
     document.querySelectorAll('.mega').forEach(function (p) { p.setAttribute('data-lenis-prevent', ''); });
     document.querySelectorAll('.nav-item.has-mega').forEach(function (item) {
       var mega = item.querySelector('.mega');
+      // hold the panel open across hover micro-breaks; tap/click toggles too
+      var hideT = null;
+      function show() {
+        if (hideT) { clearTimeout(hideT); hideT = null; }
+        document.querySelectorAll('.nav-item.has-mega.is-open').forEach(function (o) {
+          if (o !== item) o.classList.remove('is-open');
+        });
+        item.classList.add('is-open');
+      }
+      function scheduleHide() {
+        hideT = setTimeout(function () { item.classList.remove('is-open'); }, 240);
+      }
+      item.addEventListener('mouseenter', show);
+      item.addEventListener('mouseleave', scheduleHide);
+      var topBtn = item.querySelector(':scope > .nav-link');
+      if (topBtn) topBtn.addEventListener('click', function () {
+        item.classList.contains('is-open') && hideT === null
+          ? item.classList.remove('is-open') : show();
+      });
       var parents = Array.prototype.slice.call(item.querySelectorAll('.mega-item-parent'));
       if (!mega || !parents.length) return;
       var fly = mega.querySelector('.mega-flyout');
