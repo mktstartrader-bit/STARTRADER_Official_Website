@@ -323,21 +323,13 @@
     bar.setAttribute('role', 'complementary');
     bar.setAttribute('aria-label', 'Get the STARTRADER app');
     var star = '<img src="/assets/img/sb-star.svg" alt="" width="11" height="10">';
-    bar.innerHTML = '<button type="button" class="sb-x" aria-label="Dismiss app banner">' +
-      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button>' +
-      '<span class="sb-ico"><img src="/assets/img/sb-mark.svg" alt="" width="24" height="31"></span>' +
+    bar.innerHTML = '<span class="sb-ico"><img src="/assets/img/sb-mark.svg" alt="" width="24" height="31"></span>' +
       '<span class="sb-txt"><b>STARTRADER</b><span>Online Trading App</span>' +
       '<span class="sb-stars" aria-label="Rated 4.5 out of 5">' + star + star + star + star +
       '<img src="/assets/img/sb-star-half.svg" alt="" width="11" height="10"></span></span>' +
       '<a class="sb-get" href="/trading/platforms/trading-app.html">Install</a>';
     document.body.appendChild(bar);
     document.body.classList.add('has-sb');
-    bar.querySelector('.sb-x').addEventListener('click', function () {
-      try { sessionStorage.setItem('sb-dismissed', '1'); } catch (e) {}
-      document.body.classList.remove('has-sb');
-      bar.remove();
-      setTimeout(layoutSb, 30);
-    });
     // sit a measured 10px above the cookie while it shows, not a guessed offset;
     // the chat bubble then rides a measured 12px above whichever is topmost
     function layoutSb() {
