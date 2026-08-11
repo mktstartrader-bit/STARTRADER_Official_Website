@@ -1,0 +1,1137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#05070E" />
+
+  <title>Corporate Social Responsibility | STARCARES | STARTRADER</title>
+  <meta name="description" content="STARCARES is how STARTRADER shows up in the places it operates — community infrastructure, disaster relief, education and youth leadership, with the work on record." />
+  <meta name="author" content="STARTRADER" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <link rel="canonical" href="https://www.startrader.com/corporate-social-responsibility/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="STARTRADER" />
+  <meta property="og:title" content="Corporate Social Responsibility | STARCARES | STARTRADER" />
+  <meta property="og:description" content="STARCARES is how STARTRADER shows up in the places it operates — community infrastructure, disaster relief, education and youth leadership, with the work on record." />
+  <meta property="og:url" content="https://www.startrader.com/corporate-social-responsibility/" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/platform-hero.webp" />
+  <meta property="og:image:alt" content="CSR — STARTRADER" />
+  <meta property="og:locale" content="en_US" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Corporate Social Responsibility | STARCARES | STARTRADER" />
+  <meta name="twitter:description" content="STARCARES is how STARTRADER shows up in the places it operates — community infrastructure, disaster relief, education and youth leadership, with the work on record." />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/platform-hero.webp" />
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/favicon.svg" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <link rel="preload" href="/assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" as="image" href="/assets/img/platform-hero.webp" />
+  <link rel="stylesheet" href="/assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="/assets/css/aos.min.css" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=map1" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* =================================================================
+   CSR — commitments, gallery, initiative timeline
+   ================================================================= */
+.csr-sec{position:relative;isolation:isolate;overflow:clip;background:radial-gradient(52% 44% at 50% -6%,rgba(0,71,187,.07),transparent 62%),var(--bg-light-2)}
+.csr-sec>.container{position:relative;z-index:1}
+/* ---- gallery: a bento of stills, each one opens ---- */
+.csr-gal-sec{position:relative;overflow:clip;color:#fff;background:radial-gradient(66% 52% at 50% 0%,rgba(0,46,138,.3),transparent 62%),linear-gradient(180deg,#04060e,#080e1e 54%,#04060e)}
+.csr-gal-sec .h2,.csr-gal-sec .h2-light{color:#fff}
+.csr-gal-sec .head-sub{color:#a9bcdb}
+.csr-gal-sec>.container{position:relative;z-index:1}
+.csr-gal{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:196px;gap:16px}
+.csr-tile{
+  position:relative;display:block;width:100%;height:100%;padding:0;overflow:hidden;
+  border-radius:20px;cursor:pointer;text-align:left;
+  border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);
+  transition:transform .45s var(--ease),border-color .3s,box-shadow .45s var(--ease);
+}
+.csr-tile:nth-child(1){grid-column:span 2;grid-row:span 2}
+.csr-tile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s var(--ease)}
+.csr-tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 34%,rgba(4,6,14,.86));opacity:.9;transition:opacity .4s}
+.csr-tile:hover{transform:translateY(-4px);border-color:rgba(120,175,255,.44);box-shadow:0 34px 62px -34px rgba(0,0,0,.9)}
+.csr-tile:hover img{transform:scale(1.06)}
+.csr-tile:hover::after{opacity:1}
+.csr-tile-cap{position:absolute;z-index:1;left:18px;right:18px;bottom:16px;display:flex;flex-direction:column;gap:5px}
+.csr-tile-cap b{font-size:14.5px;letter-spacing:-.024em;color:#fff;line-height:1.3}
+.csr-tile-cap em{font-style:normal;font-size:11.5px;color:#a9bcdb}
+.csr-tile-zoom{
+  position:absolute;z-index:1;top:14px;right:14px;width:32px;height:32px;border-radius:50%;
+  display:grid;place-items:center;color:#fff;background:rgba(4,6,14,.6);border:1px solid rgba(255,255,255,.2);
+  opacity:0;transform:scale(.85);transition:opacity .35s,transform .35s var(--ease);
+}
+.csr-tile-zoom svg{width:14px;height:14px}
+.csr-tile:hover .csr-tile-zoom,.csr-tile:focus-visible .csr-tile-zoom{opacity:1;transform:scale(1)}
+/* ---- lightbox ---- */
+.csr-lb{
+  position:fixed;inset:0;z-index:960;display:grid;place-items:center;padding:clamp(16px,4vw,54px);
+  background:rgba(3,5,12,.9);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s;
+}
+.csr-lb.is-open{opacity:1;visibility:visible}
+.csr-lb-fig{position:relative;max-width:min(1080px,100%);margin:0;transform:scale(.97);transition:transform .4s var(--ease)}
+.csr-lb.is-open .csr-lb-fig{transform:none}
+.csr-lb-fig img{display:block;width:100%;max-height:74vh;object-fit:contain;border-radius:18px;box-shadow:0 50px 100px -40px rgba(0,0,0,.9)}
+.csr-lb-cap{display:flex;flex-direction:column;gap:6px;margin-top:18px;color:#fff}
+.csr-lb-cap b{font-size:17px;letter-spacing:-.028em}
+.csr-lb-cap em{font-style:normal;font-size:13.5px;color:#a9bcdb}
+.csr-lb-btn{
+  position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;
+  display:grid;place-items:center;color:#fff;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:background .3s,transform .3s var(--ease);
+}
+.csr-lb-btn:hover{background:rgba(255,255,255,.2)}
+.csr-lb-btn svg{width:20px;height:20px}
+.csr-lb-prev{left:-62px}
+.csr-lb-next{right:-62px}
+.csr-lb-close{position:absolute;top:14px;right:14px;transform:none;width:40px;height:40px;background:rgba(4,6,14,.7)}
+.csr-lb-close{z-index:1}
+.csr-lb-close:hover{transform:rotate(90deg)}
+.csr-lb-count{
+  position:absolute;z-index:1;top:18px;left:16px;padding:7px 13px;border-radius:70px;
+  font-size:11.5px;font-weight:700;letter-spacing:.1em;color:#fff;font-variant-numeric:tabular-nums;
+  background:rgba(4,6,14,.7);border:1px solid rgba(255,255,255,.2);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+}
+/* ---- initiatives: a horizontal milestone scrubber ---- */
+.csr-time{max-width:1000px;margin:0 auto}
+.csr-time-top{display:flex;flex-direction:column;align-items:center;gap:10px}
+.csr-time-pill{
+  display:inline-flex;align-items:center;padding:11px 24px;border-radius:70px;
+  font-size:16px;font-weight:800;letter-spacing:-.02em;color:#fff;background:var(--blue);
+  box-shadow:0 18px 34px -16px rgba(0,71,187,.7);
+}
+.csr-time-kind{font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--text-mute)}
+.csr-time-rail{position:relative;display:grid;grid-template-columns:46px minmax(0,1fr) 46px;align-items:center;gap:14px;margin-top:30px}
+.csr-time-arrow{
+  width:46px;height:46px;border-radius:50%;display:grid;place-items:center;
+  color:var(--text-soft);background:#fff;border:1px solid var(--line);
+  box-shadow:0 10px 24px -16px rgba(20,44,96,.34);
+  transition:color .3s,border-color .3s,transform .3s var(--ease),box-shadow .3s;
+}
+.csr-time-arrow svg{width:18px;height:18px}
+.csr-time-arrow:hover{color:var(--blue);border-color:rgba(0,71,187,.4);transform:translateY(-2px);box-shadow:0 16px 30px -16px rgba(0,71,187,.45)}
+.csr-time-arrow[disabled]{opacity:.35;pointer-events:none}
+/* the card holds the centre; the months scroll through it */
+.csr-time-frame{
+  position:absolute;z-index:0;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:124px;height:118px;border-radius:20px;pointer-events:none;
+  background:#fff;border:1px solid var(--line);
+  box-shadow:0 20px 44px -24px rgba(20,44,96,.4),inset 0 1px 0 #fff;
+}
+.csr-time-scroll{
+  position:relative;z-index:1;
+  overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch;
+  overscroll-behavior-x:contain;cursor:grab;
+  -webkit-mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
+  mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
+}
+.csr-time-scroll::-webkit-scrollbar{display:none}
+.csr-time-scroll.dragging{cursor:grabbing}
+.csr-time-scroll.dragging .csr-time-node{transition:transform .2s var(--ease),opacity .2s}
+.csr-time-track{display:flex;align-items:center;gap:10px;width:max-content;padding:14px 50%}
+.csr-time-node{
+  position:relative;flex:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;
+  width:124px;height:118px;padding:0;background:transparent;border:0;
+  transform-origin:center;
+  transition:transform .32s var(--ease),opacity .28s;
+}
+.csr-time-node b{font-size:19px;font-weight:800;letter-spacing:-.02em;color:var(--text-mute);transition:color .4s}
+.csr-time-node em{font-style:normal;font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text-mute);opacity:.6;transition:color .4s,opacity .4s}
+.csr-time-node i{display:block;width:2px;height:14px;border-radius:2px;background:var(--line);transition:background .4s,height .45s var(--ease)}
+.csr-time-node:not(.is-on){opacity:.62}
+.csr-time-node:not(.is-on):hover{opacity:1;transform:scale(1.05)}
+.csr-time-node.is-on{transform:scale(1.16)}
+.csr-time-node.is-on b{color:var(--text)}
+.csr-time-node.is-on em{color:var(--blue);opacity:1}
+.csr-time-node.is-on i{height:26px;background:var(--blue)}
+.csr-time-body{max-width:720px;margin:34px auto 0;text-align:center}
+.csr-time-body h3{font-size:clamp(21px,2.3vw,27px);letter-spacing:-.032em;line-height:1.24;color:var(--text)}
+.csr-time-body p{margin-top:14px;font-size:15px;line-height:1.74;color:var(--text-soft)}
+.csr-time-body a{display:inline-flex;align-items:center;gap:9px;margin-top:20px;font-size:13.5px;font-weight:700;color:var(--blue)}
+.csr-time-body a svg{width:15px;height:15px;transition:transform .3s var(--ease)}
+.csr-time-body a:hover svg{transform:translateX(4px)}
+.csr-time-body.is-swap{animation:csrSwap .45s var(--ease) both}
+@media (prefers-reduced-motion:reduce){.csr-time-body.is-swap{animation:none}}
+.csr-time-dots{display:flex;justify-content:center;gap:7px;margin-top:28px}
+.csr-time-dots i{width:7px;height:7px;border-radius:50%;background:var(--line);transition:background .3s,width .3s var(--ease)}
+.csr-time-dots i.is-on{width:26px;border-radius:70px;background:var(--blue)}
+@media (max-width:900px){.csr-gal{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:180px}
+.csr-tile:nth-child(1){grid-column:span 2;grid-row:span 1}
+.csr-lb-prev{left:6px}
+.csr-lb-next{right:6px}}
+@media (max-width:720px){.csr-time-track{padding-inline:50%}
+.csr-time-node,.csr-time-frame{width:104px;height:106px}
+.csr-gal{grid-template-columns:1fr;grid-auto-rows:200px}
+.csr-tile:nth-child(n){grid-column:auto;grid-row:auto}}
+/* four commitments divide by four, not three */
+.csr-sec .pl-cards{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:1080px){.csr-sec .pl-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.csr-sec .pl-cards{grid-template-columns:1fr}}
+  </style>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "CSR",
+  "description": "STARCARES is the STARTRADER corporate social responsibility programme — community infrastructure, disaster relief, education and youth leadership across the regions we operate in.",
+  "url": "https://www.startrader.com/company/about/csr.html",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "STARTRADER",
+    "url": "https://www.startrader.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "STARTRADER",
+    "url": "https://www.startrader.com/",
+    "logo": "https://www.startrader.com/assets/img/logo-startrader.svg"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.startrader.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Company",
+      "item": "https://www.startrader.com/company/about/why-startrader.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "CSR",
+      "item": "https://www.startrader.com/company/about/csr.html"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "CSR",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "STARTRADER breaks ground on basketball court revamp in Davao City"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "STARCARES partners with B-LEAD 2026 in Vietnam"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Emergency relief delivered to 300 earthquake-affected families"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "KTH alumni evening in Dubai on AI, technology and innovation"
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "name": "CEO Peter Karsten joins University of Europe for three sessions"
+    },
+    {
+      "@type": "ListItem",
+      "position": 6,
+      "name": "Local sports facilities upgraded across three regions"
+    }
+  ]
+}
+  </script>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is STARCARES?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "STARCARES is the name we give our corporate social responsibility work — community infrastructure, disaster relief, education and youth leadership, run through the regional teams rather than from head office."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How are projects chosen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Local teams propose them. The test is whether a company our size can change something specific and then keep it maintained, rather than fund a one-off that degrades within a year."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can my organisation apply for support?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Contact the regional office nearest you through the contact page and it will reach the team that reviews proposals for that market."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where do you operate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Across the markets our licensed entities cover — the UAE, Australia, South Africa, Mauritius and Seychelles among them. CSR work follows that footprint."
+      }
+    }
+  ]
+}
+  </script>
+
+</head>
+<body>
+
+<!-- ============ SVG ICON SPRITE ============ -->
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M4 12h15m0 0-6-6m6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-arrow-ur" viewBox="0 0 24 24"><path d="M7 17 17 7m0 0H8m9 0v9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z" fill="currentColor"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.4 3 8.4 7 9.5 4-1.1 7-5.1 7-9.5V6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><path d="M12 3 3 7.5v9L12 21l9-4.5v-9zM3 7.5 12 12l9-4.5M12 12v9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-headset" viewBox="0 0 24 24"><path d="M4 13a8 8 0 0 1 16 0M4 13v3a2 2 0 0 0 2 2h1v-6H6a2 2 0 0 0-2 2Zm16 0v3a2 2 0 0 1-2 2h-1v-6h1a2 2 0 0 1 2 2Zm-3 5a3 3 0 0 1-3 2.5h-2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10m5 10V4m5 16v-7m5 7V8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 2 2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.8 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z" fill="currentColor"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.7 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3Z" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 7v5l3.4 2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M4 18a8 8 0 1 1 16 0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M12 18l4.2-5.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="12" cy="18" r="1.5" fill="currentColor"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-facebook" viewBox="0 0 24 24"><path d="M14 8.5V7c0-.9.6-1 1-1h1.5V3H14c-2.2 0-3.5 1.5-3.5 3.7V8.5H8.5v3h2v8.5h3.5v-8.5h2.3l.4-3z" fill="currentColor"/></symbol>
+  <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="3.6" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="16.5" cy="7.5" r="1.1" fill="currentColor"/></symbol>
+  <symbol id="i-youtube" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m10.5 9.3 4.5 2.7-4.5 2.7z" fill="currentColor"/></symbol>
+  <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M6.5 9v9M6.5 6.2v.01M11 18v-5a2.5 2.5 0 0 1 5 0v5M11 12v6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+  <symbol id="i-caret-up" viewBox="0 0 12 12"><path d="M6 3 10 8H2z" fill="currentColor"/></symbol>
+  <symbol id="i-caret-down" viewBox="0 0 12 12"><path d="M6 9 2 4h8z" fill="currentColor"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M17.5 3h3.2l-7 8 8.2 10.9h-6.4l-5-6.6-5.8 6.6H1.5l7.5-8.6L1.6 3H8l4.5 6zM16.4 19.1h1.8L7.7 4.8H5.8z" fill="currentColor"/></symbol>
+  <symbol id="i-telegram" viewBox="0 0 24 24"><path d="M21.5 4.3 2.9 11.5c-.9.35-.9.9-.15 1.12l4.7 1.46 1.8 5.6c.23.63.4.86 1 .86.46 0 .66-.2.9-.45l2.28-2.2 4.72 3.5c.87.48 1.5.23 1.72-.8l3-14.1c.3-1.28-.5-1.86-1.34-1.5z" fill="currentColor"/></symbol>
+  <symbol id="i-user-plus" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3 20a6 6 0 0 1 12 0M18.5 8v5M21 10.5h-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-id" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="8.5" cy="11" r="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M13.5 10h4M13.5 13.5h4M5.6 15.6c.4-1.2 1.6-1.9 2.9-1.9s2.5.7 2.9 1.9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 1 2-2h11.5A1.5 1.5 0 0 0 15 4H5.5" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="6" width="18" height="13" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="16.5" cy="12.5" r="1.3" fill="currentColor"/></symbol>
+  <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9 20h6M12 16v4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M5 15H4.6A1.6 1.6 0 0 1 3 13.4V5a2 2 0 0 1 2-2h8.4A1.6 1.6 0 0 1 15 4.6V5" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 3v5h5M8.5 13h7M8.5 16.5h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-window" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 9h18" stroke="currentColor" stroke-width="1.6"/><circle cx="6" cy="7" r=".7" fill="currentColor"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 18h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-plug" viewBox="0 0 24 24"><path d="M9 3v4M15 3v4M6.5 7h11v3.5a5.5 5.5 0 0 1-11 0zM12 16.5V21" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-swap" viewBox="0 0 24 24"><path d="M4 8h13l-3.5-3.5M20 16H7l3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-cfd" viewBox="0 0 24 24"><path d="M4 15l4.5-4.5 3 3L19 6M14.5 6H19v4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-droplet" viewBox="0 0 24 24"><path d="M12 3.5s6 6.2 6 10.5a6 6 0 0 1-12 0c0-4.3 6-10.5 6-10.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+  <symbol id="i-pie" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M12 3v9h9A9 9 0 0 0 12 3Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 11.5a7.5 7.5 0 0 1-10.9 6.7L4 20l1.8-5.1A7.5 7.5 0 1 1 21 11.5Z" fill="currentColor"/><circle cx="8.5" cy="11.5" r="1.15" fill="#0a2a6b"/><circle cx="12" cy="11.5" r="1.15" fill="#0a2a6b"/><circle cx="15.5" cy="11.5" r="1.15" fill="#0a2a6b"/></symbol>
+  <symbol id="i-bubble" viewBox="0 0 24 24"><path d="M20.5 11.6c0 4-3.8 7.2-8.5 7.2-.9 0-1.8-.12-2.6-.34L4.5 20l1.2-3.5A6.9 6.9 0 0 1 3.5 11.6c0-4 3.8-7.2 8.5-7.2s8.5 3.2 8.5 7.2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.8 11.6h6.4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-cookie" viewBox="0 0 24 24"><path d="M12 2.5a9.5 9.5 0 1 0 9.5 9.5 4 4 0 0 1-4-4 3.2 3.2 0 0 1-3.4-3.4A9.6 9.6 0 0 0 12 2.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="9" cy="12" r="1" fill="currentColor"/><circle cx="13" cy="15" r="1" fill="currentColor"/><circle cx="14.5" cy="10" r="1" fill="currentColor"/><circle cx="8.5" cy="16" r=".8" fill="currentColor"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M4 12 20 4l-6 16-3-6-7-2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8.2" r="3.8" fill="currentColor"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0Z" fill="currentColor"/></symbol>
+</svg>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============ TOP DISCLAIMER BAR ============ -->
+<div class="topbar" role="note">
+  <div class="container">
+    <p>CFDs are complex instruments and come with a high risk of losing money rapidly due to leverage. <strong>74% of retail investor accounts lose money</strong> when trading CFDs with this provider.</p>
+  </div>
+</div>
+
+<!-- ============ HEADER / NAV ============ -->
+<header class="site-header" id="siteHeader">
+  <div class="container nav">
+    <div class="nav-brandwrap">
+      <a href="/index.html" class="brand" aria-label="STARTRADER home">
+        <img src="/assets/img/logo-startrader.svg" alt="STARTRADER" width="180" height="35" />
+      </a>
+      <span class="hp-divider" aria-hidden="true"></span>
+      <span class="header-partners">
+        <img class="hp-logo hp-nba" src="/assets/img/nav-nba.svg" alt="NBA" width="156" height="92" loading="lazy">
+        <img class="hp-logo hp-porsche" src="/assets/img/nav-porsche.svg" alt="Porsche Carrera Cup Middle East" width="121" height="34" loading="lazy">
+      </span>
+    </div>
+
+    <nav class="nav-menu" aria-label="Primary">
+      <div class="nav-item has-drop has-mega">
+        <button class="nav-link" aria-expanded="false">Trading <svg class="caret"><use href="#i-chevron-down"/></svg></button>
+        <div class="mega" role="menu">
+          <div class="mega-main">
+          <div class="mega-col">
+            <span class="mega-head">Getting Started</span>
+            <a href="/getting-started.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-user-plus"/></svg></span><span class="mega-txt"><b>Account Opening</b></span></a>
+            <a href="/accounts.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-id"/></svg></span><span class="mega-txt"><b>Trading Account</b></span></a>
+            <a href="/prime-ecn-account.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-bolt"/></svg></span><span class="mega-txt"><b>Prime ECN</b></span></a>
+            <a href="/funding.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>Funding &amp; Withdrawal</b></span></a>
+          </div>
+          <div class="mega-col">
+            <span class="mega-head">Platforms</span>
+            <a href="/mt5.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-monitor"/></svg></span><span class="mega-txt"><b>MT5</b></span></a>
+            <a href="/mt4.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-monitor"/></svg></span><span class="mega-txt"><b>MT4</b></span></a>
+            <a href="/copy-trade.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-copy"/></svg></span><span class="mega-txt"><b>Copy Trade</b></span></a>
+            <a href="/star-copy.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-doc"/></svg></span><span class="mega-txt"><b>STAR Copy <span class="mega-badge">New</span></b></span></a>
+            <a href="/star-webtrader.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-cfd"/></svg></span><span class="mega-txt"><b>STAR Web Trading <span class="mega-badge">New</span></b></span></a>
+            <div class="mega-sub">
+              <a href="/webtrader.html" class="mega-item mega-sub-toggle"><span class="mega-ico"><svg><use href="#i-window"/></svg></span><span class="mega-txt"><b>Web Trader</b></span><svg class="mega-subchev"><use href="#i-chevron-down"/></svg></a>
+              <div class="mega-subitems">
+                <a href="/webtrader-mt4.html">MT4 WebTrader</a>
+                <a href="/webtrader-mt5.html">MT5 WebTrader</a>
+              </div>
+            </div>
+            <a href="/trading-app.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-phone"/></svg></span><span class="mega-txt"><b>Mobile Apps</b></span></a>
+            <a href="/pamm-trade.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-plug"/></svg></span><span class="mega-txt"><b>Pro-Link</b></span></a>
+          </div>
+          <div class="mega-col">
+            <span class="mega-head">Products</span>
+            <a href="/forex.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-swap"/></svg></span><span class="mega-txt"><b>Forex</b></span></a>
+            <a href="/cfd.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-cfd"/></svg></span><span class="mega-txt"><b>CFD</b></span></a>
+            <a href="/commodities.html" class="mega-item mega-item-parent" data-fly="commodities"><span class="mega-ico"><svg><use href="#i-droplet"/></svg></span><span class="mega-txt"><b>Commodities</b></span><svg class="mega-chev" aria-hidden="true"><use href="#i-chevron-right"/></svg></a>
+            <a href="/indices.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>Indices</b></span></a>
+            <a href="/shares.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-pie"/></svg></span><span class="mega-txt"><b>Shares</b></span></a>
+            <a href="/etf.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-layers"/></svg></span><span class="mega-txt"><b>ETFs</b></span></a>
+          </div>
+          </div>
+          <div class="mega-flyout" aria-hidden="true"><div class="fly-inner" data-fly-panel="commodities">
+            <a class="fly-title fly-title-link" href="/commodities.html">Commodities <svg class="fly-title-go"><use href="#i-arrow-right"/></svg></a>
+            <div class="fly-group">
+              <h5><a href="/commodities/energies.html">Energies</a></h5>
+              <a href="/commodities/brent-oil.html">Brent Oil</a>
+              <a href="/commodities/natural-gas.html">Natural Gas</a>
+              <a href="/commodities/heating-oil.html">Heating Oil</a>
+            </div>
+            <div class="fly-group">
+              <h5><a href="/metals.html">Metals</a></h5>
+              <a href="/commodities/gold.html">Gold · XAU/USD</a>
+              <a href="/commodities/gold-247.html">Gold 24/7 <span class="mega-badge">New</span></a>
+              <a href="/commodities/silver.html">Silver · XAG/USD</a>
+              <a href="/commodities/copper.html">Copper</a>
+              <a href="/commodities/platinum.html">Platinum · XPT/USD</a>
+            <a href="/commodities/palladium.html">Palladium · XPD/USD</a>
+            </div>
+            <div class="fly-group">
+              <h5><a href="/agriculture.html">Agriculture</a></h5>
+              <a href="/commodities/wheat.html">Wheat</a>
+              <a href="/commodities/corn.html">Corn</a>
+              <a href="/commodities/soybeans.html">Soybeans</a>
+              <a href="/commodities/coffee.html">Coffee</a>
+              <a href="/commodities/sugar.html">Sugar</a>
+              <a href="/commodities/cocoa.html">Cocoa</a>
+              <a href="/commodities/cotton.html">Cotton</a>
+            </div>
+          </div></div>
+        </div>
+      </div>
+            <div class="nav-item has-drop has-mega">
+        <button class="nav-link" aria-expanded="false">Education <svg class="caret"><use href="#i-chevron-down"/></svg></button>
+        <div class="mega mega--center" role="menu">
+          <div class="mega-main">
+            <div class="mega-col">
+              <span class="mega-head">Learn</span>
+              <a href="/education.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-box"/></svg></span><span class="mega-txt"><b>Knowledge Center</b></span></a>
+              <a href="/glossary.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-doc"/></svg></span><span class="mega-txt"><b>Glossary</b></span></a>
+              <a href="/market-analysis.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>Financial Market Analysis</b></span></a>
+            </div>
+            <div class="mega-col">
+              <span class="mega-head">Analysis</span>
+              <a href="/news.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-window"/></svg></span><span class="mega-txt"><b>News Room</b></span></a>
+              <a href="/economiccalendar.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-clock"/></svg></span><span class="mega-txt"><b>Economic Calendar</b></span></a>
+            </div>
+            <div class="mega-col">
+              <span class="mega-head">Academy</span>
+              <a href="/webinars.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-play"/></svg></span><span class="mega-txt"><b>Webinars</b></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+            <div class="nav-item has-drop has-mega">
+        <button class="nav-link" aria-expanded="false">Promotions <svg class="caret"><use href="#i-chevron-down"/></svg></button>
+        <div class="mega mega--promo mega--center" role="menu">
+          <div class="mega-main">
+            <div class="mega-col">
+              <span class="mega-head">Promotions</span>
+              <a href="/promotions.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-send"/></svg></span><span class="mega-txt"><b>Our Promotions</b></span></a>
+              <a href="#" class="mega-item"><span class="mega-ico"><svg><use href="#i-star"/></svg></span><span class="mega-txt"><b>STAR Trading League</b></span></a>
+              <a href="/dailyforexpromo.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-bolt"/></svg></span><span class="mega-txt"><b>Daily Forex Promo</b></span></a>
+              <a href="/deposit-bonus-10010-20240513.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>100/10 Deposit Bonus</b></span></a>
+              <a href="/deposit-bonus-5020-20250101.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>50/20 Deposit Bonus</b></span></a>
+              <a href="/point-mall.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>Point Mall</b></span></a>
+              <a href="/deposit-bonus.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>Deposit Bonuses</b></span></a>
+              <a href="/switch-allowance.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-swap"/></svg></span><span class="mega-txt"><b>1% Switch Allowance</b></span></a>
+              <a href="/vps.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-plug"/></svg></span><span class="mega-txt"><b>VPS</b></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+            <div class="nav-item has-drop has-mega">
+        <button class="nav-link" aria-expanded="false">Company <svg class="caret"><use href="#i-chevron-down"/></svg></button>
+        <div class="mega mega--center" role="menu">
+          <div class="mega-main">
+            <div class="mega-col">
+              <span class="mega-head">About</span>
+              <a href="/company.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-shield"/></svg></span><span class="mega-txt"><b>Why STARTRADER</b></span></a>
+              <a href="/corporate-social-responsibility.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-user"/></svg></span><span class="mega-txt"><b>CSR</b></span></a>
+              <a href="/events.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-clock"/></svg></span><span class="mega-txt"><b>Events</b></span></a>
+              <div class="mega-sub">
+                <a href="/sponsorship.html" class="mega-item mega-item--tight mega-sub-toggle"><span class="mega-ico"><svg><use href="#i-star"/></svg></span><span class="mega-txt"><b>Sponsorship</b></span><svg class="mega-subchev"><use href="#i-chevron-down"/></svg></a>
+                <div class="mega-subitems">
+                  <a href="/sponsorship/nba.html">Official Partner of the NBA</a>
+                  <a href="/sponsorship/pccme.html">Official Partner of the PCCME</a>
+                  <a href="/sponsorship/icc.html">ICC Men&rsquo;s T20 World Cup 2026</a>
+                  <a href="/sponsorship/asia-cup-2025.html">UAE National Cricket Team</a>
+                  <a href="/sponsorship/pfl-champions-series.html">PFL Champions Series</a>
+                  <a href="/sponsorship/mena.html">MENA Investment Congress 2025</a>
+                </div>
+              </div>
+              <a href="/media.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-doc"/></svg></span><span class="mega-txt"><b>Media Coverage</b></span></a>
+              <a href="/achievement.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-globe"/></svg></span><span class="mega-txt"><b>Achievements</b></span></a>
+              <a href="/announcements.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-send"/></svg></span><span class="mega-txt"><b>Announcements</b></span></a>
+              <a href="/contact.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-user-plus"/></svg></span><span class="mega-txt"><b>Careers</b></span></a>
+              <a href="/help-center.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-headset"/></svg></span><span class="mega-txt"><b>Help Center</b></span></a>
+              <a href="/contact.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-bubble"/></svg></span><span class="mega-txt"><b>Contact Us</b></span></a>
+            </div>
+            <div class="mega-col">
+              <span class="mega-head">Corporate</span>
+              <a href="/regulation.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-id"/></svg></span><span class="mega-txt"><b>Regulation</b></span></a>
+              <a href="/legal-documents.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-doc"/></svg></span><span class="mega-txt"><b>Legal Documents</b></span></a>
+              <div class="mega-sub">
+                <a href="/insurance.html" class="mega-item mega-item--tight mega-sub-toggle"><span class="mega-ico"><svg><use href="#i-shield"/></svg></span><span class="mega-txt"><b>Insurance</b></span><svg class="mega-subchev"><use href="#i-chevron-down"/></svg></a>
+                <div class="mega-subitems">
+                  <a href="/lloyd-insurance.html">Lloyd&rsquo;s Insurance</a>
+                  <a href="/financial-commission.html">Financial Commission</a>
+                </div>
+              </div>
+              <a href="/liquidity-providers.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-droplet"/></svg></span><span class="mega-txt"><b>Liquidity Providers</b></span></a>
+            </div>
+            <div class="mega-col">
+              <span class="mega-head">Partnership</span>
+              <a href="/partner.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-user"/></svg></span><span class="mega-txt"><b>Partner</b></span></a>
+              <a href="/ib-register.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-user-plus"/></svg></span><span class="mega-txt"><b>Introducing Broker</b></span></a>
+              <a href="/affiliate-registration.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-globe"/></svg></span><span class="mega-txt"><b>Affiliate</b></span></a>
+              <a href="/money-manager.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>Money Manager</b></span></a>
+              <a href="/institutional.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-box"/></svg></span><span class="mega-txt"><b>Institutional</b></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="nav-right">
+      <button class="lang" id="langBtn" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="langPop" aria-label="Select language">
+        <svg class="lang-globe" aria-hidden="true"><use href="#i-globe"/></svg>
+        <span class="lang-code" id="langCode">EN</span>
+        <svg class="lang-caret" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+      </button>
+      <div class="lang-pop" id="langPop" role="dialog" aria-label="Select language" aria-hidden="true">
+        <div class="lp-head">
+          <span class="lp-title">Languages</span>
+          <button class="lp-close" id="langClose" type="button" aria-label="Close language menu"><svg><use href="#i-close"/></svg></button>
+        </div>
+        <div class="lp-search">
+          <svg class="lp-search-ic" viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="6.4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M13.8 13.8L18 18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          <input type="text" id="langSearch" placeholder="Search Language" autocomplete="off" spellcheck="false">
+        </div>
+        <div class="lp-grid" id="langGrid">
+          <button class="lp-item is-active" type="button" data-code="EN"><b>English</b></button>
+          <button class="lp-item" type="button" data-code="ZH-CN"><b>简体中文</b> Simplified Chinese</button>
+          <button class="lp-item" type="button" data-code="ZH-TW"><b>繁體中文</b> Traditional Chinese</button>
+          <button class="lp-item" type="button" data-code="JA"><b>日本語</b> Japanese</button>
+          <button class="lp-item" type="button" data-code="KO"><b>한국어</b> Korean</button>
+          <button class="lp-item" type="button" data-code="MS"><b>Melayu</b> Malay</button>
+          <button class="lp-item" type="button" data-code="VI"><b>Việt</b> Vietnamese</button>
+          <button class="lp-item" type="button" data-code="TH"><b>ภาษาไทย</b> Thai</button>
+          <button class="lp-item" type="button" data-code="ID"><b>Indonesian</b> Indonesian</button>
+          <button class="lp-item" type="button" data-code="FR"><b>Français</b> French</button>
+          <button class="lp-item" type="button" data-code="ES"><b>Español</b> Spanish</button>
+          <button class="lp-item" type="button" data-code="PL"><b>Polski</b> Polish</button>
+          <button class="lp-item" type="button" data-code="PT"><b>Português</b> Portuguese</button>
+          <button class="lp-item" type="button" data-code="RU"><b>Русский язык</b> Russian</button>
+          <button class="lp-item" type="button" data-code="AR"><b>العربية</b> Arabic</button>
+          <button class="lp-item" type="button" data-code="IT"><b>Italiano</b> Italian</button>
+          <button class="lp-item" type="button" data-code="FA"><b>فارسی</b> Persian</button>
+          <button class="lp-item" type="button" data-code="TR"><b>Türkçe</b> Turkish</button>
+          <button class="lp-item" type="button" data-code="DE"><b>Deutsch</b> German</button>
+          <button class="lp-item" type="button" data-code="HI"><b>हिंदी</b> Hindi</button>
+        </div>
+        <p class="lp-empty" hidden>No languages found</p>
+      </div>
+      <a href="/login.html" class="login">Login</a>
+      <a href="/getting-started.html" class="btn btn-primary btn-sm nav-cta">Open Live Account</a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav aria-label="Mobile">
+    <a href="/index.html#markets">Trading</a>
+    <a href="/index.html#academy">Education</a>
+    <a href="/promotions.html">Promotions</a>
+    <a href="/index.html#why">Company</a>
+    <hr>
+    <a href="/login.html" class="login">Login</a>
+    <a href="/getting-started.html" class="btn btn-primary">Open Live Account</a>
+  </nav>
+</div>
+
+<main id="main">
+
+<!-- ============ BANNER ============ -->
+<section class="pf-hero" aria-labelledby="pg-hero-title">
+  <div class="pf-hero-bg" aria-hidden="true"></div>
+  <div class="container pf-hero-in">
+    <div class="pf-hero-copy">
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">STARCARES</span>
+      <h1 class="pf-h1" id="pg-hero-title" data-aos="fade-up">Corporate social<br> responsibility</h1>
+      <p class="pf-lead" data-aos="fade-up">A broker is part of the places it operates in. STARCARES is how that shows up &mdash;<br> in courts rebuilt, families reached and students given somewhere to start.</p>
+      <div class="pf-hact" data-aos="fade-up">
+        <a href="#gallery" class="btn btn-primary btn-lg magnetic">See the work <svg class="ico"><use href="#i-arrow-right"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMMITMENTS ============ -->
+<section class="section csr-sec" id="commitments" aria-labelledby="pg-grid-title">
+  <span class="pf-aura a1" aria-hidden="true"></span>
+  <div class="container">
+    <div class="head center">
+      <span class="eyebrow" data-aos="fade-up">Our core commitments</span>
+      <h2 class="h2" id="pg-grid-title" data-aos="fade-up">Four areas, chosen<br> because we can finish them</h2>
+      <p class="head-sub" data-aos="fade-up">We work in four areas rather than twelve, because a company our size can change something specific and then stay long enough to maintain it.</p>
+    </div>
+
+    <div class="pl-cards">
+      <article class="pl-card" data-aos="fade-up">
+        <span class="pl-card-hd"><span class="pl-card-ic"><svg><use href="#i-user"/></svg></span><h3>Community infrastructure</h3></span>
+        <p>Public space a neighbourhood actually uses — courts, facilities, and the maintenance that keeps them usable after the ribbon is cut.</p>
+      </article>
+      <article class="pl-card" data-aos="fade-up" data-aos-delay="100">
+        <span class="pl-card-hd"><span class="pl-card-ic"><svg><use href="#i-shield"/></svg></span><h3>Disaster relief</h3></span>
+        <p>Direct, fast support to families after earthquakes, floods and storms, in the regions where we already have people on the ground.</p>
+      </article>
+      <article class="pl-card" data-aos="fade-up" data-aos-delay="200">
+        <span class="pl-card-hd"><span class="pl-card-ic"><svg><use href="#i-doc"/></svg></span><h3>Education</h3></span>
+        <p>Scholarships, campus sessions and university partnerships on finance, technology and market risk — taught by people who do the work.</p>
+      </article>
+      <article class="pl-card" data-aos="fade-up" data-aos-delay="300">
+        <span class="pl-card-hd"><span class="pl-card-ic"><svg><use href="#i-star"/></svg></span><h3>Youth leadership</h3></span>
+        <p>Backing the programmes that give the next generation of business leaders somewhere to start, and someone to ask.</p>
+      </article>
+    </div>
+
+    <div class="pl-sign glass" data-aos="fade-up">
+      <img src="/assets/img/icon-shield-3d.webp" alt="3D shield emblem for insured client funds" width="400" height="490" loading="lazy" decoding="async">
+      <span class="pl-sign-tx">
+        <b>Every project is proposed by the team that will run it</b>
+        <em>Regional offices put projects forward, and each one is expected to still be standing a year later. If your organisation is looking for a partner, start with the desk nearest you.</em>
+      </span>
+      <a class="btn btn-primary" href="/contact.html">Contact the team <svg class="ico"><use href="#i-arrow-right"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section class="section csr-gal-sec" id="gallery" aria-labelledby="pg-gal-title">
+  <span class="sc-strat-aura" aria-hidden="true"></span>
+  <div class="container">
+    <div class="head center">
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">Gallery</span>
+      <h2 class="h2 h2-light" id="pg-gal-title" data-aos="fade-up">The work, as it<br> actually looked</h2>
+      <p class="head-sub" data-aos="fade-up">Open any frame for the full picture. Arrow keys move between them.</p>
+    </div>
+
+    <div class="csr-gal" data-csr-gal>
+      <button class="csr-tile" type="button" data-csr-tile="0" aria-label="Open: Community court programmes" data-aos="fade-up">
+        <img src="/assets/img/csr-gal-1.webp" alt="Community court programmes" width="1600" height="1044" loading="lazy" decoding="async">
+        <span class="csr-tile-zoom" aria-hidden="true"><svg><use href="#i-plus"/></svg></span>
+        <span class="csr-tile-cap"><b>Community court programmes</b><em>Public courts rebuilt and kept in use, with the partnership behind them.</em></span>
+      </button>
+      <button class="csr-tile" type="button" data-csr-tile="1" aria-label="Open: Youth leadership" data-aos="fade-up" data-aos-delay="100">
+        <img src="/assets/img/csr-gal-2.webp" alt="Youth leadership" width="1100" height="1422" loading="lazy" decoding="async">
+        <span class="csr-tile-zoom" aria-hidden="true"><svg><use href="#i-plus"/></svg></span>
+        <span class="csr-tile-cap"><b>Youth leadership</b><em>Backing the programmes that give the next generation somewhere to start.</em></span>
+      </button>
+      <button class="csr-tile" type="button" data-csr-tile="2" aria-label="Open: Campus sessions" data-aos="fade-up" data-aos-delay="200">
+        <img src="/assets/img/csr-gal-3.webp" alt="Campus sessions" width="1100" height="733" loading="lazy" decoding="async">
+        <span class="csr-tile-zoom" aria-hidden="true"><svg><use href="#i-plus"/></svg></span>
+        <span class="csr-tile-cap"><b>Campus sessions</b><em>Students and graduates, in sessions run by people who do the work.</em></span>
+      </button>
+      <button class="csr-tile" type="button" data-csr-tile="3" aria-label="Open: The communities we work in" data-aos="fade-up" data-aos-delay="300">
+        <img src="/assets/img/csr-gal-4.webp" alt="The communities we work in" width="1600" height="900" loading="lazy" decoding="async">
+        <span class="csr-tile-zoom" aria-hidden="true"><svg><use href="#i-plus"/></svg></span>
+        <span class="csr-tile-cap"><b>The communities we work in</b><em>Projects proposed by the regional teams who live in them.</em></span>
+      </button>
+      <button class="csr-tile" type="button" data-csr-tile="4" aria-label="Open: Workshops and mentoring" data-aos="fade-up" data-aos-delay="400">
+        <img src="/assets/img/csr-gal-5.webp" alt="Workshops and mentoring" width="1100" height="734" loading="lazy" decoding="async">
+        <span class="csr-tile-zoom" aria-hidden="true"><svg><use href="#i-plus"/></svg></span>
+        <span class="csr-tile-cap"><b>Workshops and mentoring</b><em>Small rooms, real questions, and someone in the industry to answer them.</em></span>
+      </button>
+      <button class="csr-tile" type="button" data-csr-tile="5" aria-label="Open: The teams behind it" data-aos="fade-up" data-aos-delay="500">
+        <img src="/assets/img/csr-gal-6.webp" alt="The teams behind it" width="1100" height="733" loading="lazy" decoding="async">
+        <span class="csr-tile-zoom" aria-hidden="true"><svg><use href="#i-plus"/></svg></span>
+        <span class="csr-tile-cap"><b>The teams behind it</b><em>Regional offices who see a project through past the ribbon-cutting.</em></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="csr-lb" data-csr-lb role="dialog" aria-modal="true" aria-label="Gallery image" hidden>
+    <figure class="csr-lb-fig">
+      <span class="csr-lb-count" data-csr-count>1 / 5</span>
+      <button class="csr-lb-btn csr-lb-close" type="button" data-csr-close aria-label="Close gallery"><svg><use href="#i-close"/></svg></button>
+      <button class="csr-lb-btn csr-lb-prev" type="button" data-csr-prev aria-label="Previous image"><svg><use href="#i-chevron-left"/></svg></button>
+      <button class="csr-lb-btn csr-lb-next" type="button" data-csr-next aria-label="Next image"><svg><use href="#i-chevron-right"/></svg></button>
+      <img data-csr-img src="" alt="Corporate social responsibility gallery photo">
+      <figcaption class="csr-lb-cap"><b data-csr-title></b><em data-csr-cap></em></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ INITIATIVES ============ -->
+<section class="section csr-sec" id="initiatives" aria-labelledby="pg-tl-title">
+  <div class="container">
+    <div class="head center">
+      <span class="eyebrow" data-aos="fade-up">Initiatives</span>
+      <h2 class="h2" id="pg-tl-title" data-aos="fade-up">What we have been doing</h2>
+      <p class="head-sub" data-aos="fade-up">Scrub the months, or use the arrows. Each milestone links to the announcement it came from.</p>
+    </div>
+
+    <div class="csr-time" data-csr-time data-aos="fade-up">
+      <div class="csr-time-top">
+        <span class="csr-time-pill" data-ct-pill>22 Mar 2026</span>
+        <span class="csr-time-kind" data-ct-kind>Education</span>
+      </div>
+
+      <div class="csr-time-rail">
+        <button class="csr-time-arrow" type="button" data-ct-prev aria-label="Previous milestone"><svg><use href="#i-chevron-left"/></svg></button>
+        <span class="csr-time-frame" aria-hidden="true"></span>
+        <div class="csr-time-scroll" data-ct-scroll>
+          <div class="csr-time-track" role="tablist" aria-label="Initiative milestones">
+          <button class="csr-time-node" type="button" data-ct-node="0"
+            data-date="18 Jun 2026" data-kind="Community infrastructure" data-title="Basketball court revamp, Davao City" data-desc="Ground broken on the rebuild of a public court serving around 20,000 people across the surrounding barangays — resurfacing, lighting and the fixtures that decide whether a court stays in use.">
+            <b>Jun</b><em>2026</em><i></i>
+          </button>
+          <button class="csr-time-node" type="button" data-ct-node="1"
+            data-date="30 May 2026" data-kind="Youth leadership" data-title="STARCARES partners with B-LEAD 2026, Vietnam" data-desc="Backing a programme that puts Vietnam&rsquo;s next generation of business leaders in front of the people already doing the work, with mentoring from inside the industry.">
+            <b>May</b><em>2026</em><i></i>
+          </button>
+          <button class="csr-time-node" type="button" data-ct-node="2"
+            data-date="12 Apr 2026" data-kind="Disaster relief" data-title="Emergency relief for 300 earthquake-affected families" data-desc="Direct support delivered to three hundred families in the immediate aftermath, coordinated through the regional team rather than handed to a third party.">
+            <b>Apr</b><em>2026</em><i></i>
+          </button>
+          <button class="csr-time-node is-on" type="button" data-ct-node="3"
+            data-date="22 Mar 2026" data-kind="Education" data-title="KTH alumni evening, Dubai" data-desc="An evening on AI, technology and innovation with the KTH alumni network &mdash; the kind of room where a graduate meets someone who is hiring.">
+            <b>Mar</b><em>2026</em><i></i>
+          </button>
+          <button class="csr-time-node" type="button" data-ct-node="4"
+            data-date="14 Feb 2026" data-kind="Education" data-title="CEO Peter Karsten at University of Europe" data-desc="Three sessions with students on markets, risk and what a career in the industry actually asks of you.">
+            <b>Feb</b><em>2026</em><i></i>
+          </button>
+          <button class="csr-time-node" type="button" data-ct-node="5"
+            data-date="20 Jan 2026" data-kind="Community infrastructure" data-title="Local sports facilities upgraded across three regions" data-desc="Facility upgrades completed in three regions, chosen with local organisations rather than picked from head office.">
+            <b>Jan</b><em>2026</em><i></i>
+          </button>
+          <button class="csr-time-node" type="button" data-ct-node="6"
+            data-date="20 Dec 2025" data-kind="Education" data-title="Scholarship intake opened for the 2026 cohort"
+            data-desc="Applications opened for the next scholarship round, with places held for students in the markets where our regional offices already sit.">
+            <b>Dec</b><em>2025</em><i></i>
+          </button>
+          </div>
+        </div>
+        <button class="csr-time-arrow" type="button" data-ct-next aria-label="Next milestone"><svg><use href="#i-chevron-right"/></svg></button>
+      </div>
+
+      <div class="csr-time-body" data-ct-body aria-live="polite">
+        <h3 data-ct-title>KTH alumni evening, Dubai</h3>
+        <p data-ct-desc>An evening on AI, technology and innovation with the KTH alumni network &mdash; the kind of room where a graduate meets someone who is hiring.</p>
+        <a href="/announcements.html" data-ct-link>Read the announcement <svg><use href="#i-arrow-right"/></svg></a>
+      </div>
+
+      <div class="csr-time-dots" data-ct-dots aria-hidden="true"><i></i><i></i><i></i><i class="is-on"></i><i></i><i></i><i></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section faq-sec fx-faq" aria-labelledby="pg-faq-title">
+  <div class="container">
+    <div class="head center">
+      <span class="eyebrow" data-aos="fade-up">FAQ</span>
+      <h2 class="h2" id="pg-faq-title" data-aos="fade-up">Questions about STARCARES</h2>
+    </div>
+    <div class="faq-list" data-aos="fade-up">
+      <details class="faq-item">
+        <summary>What is STARCARES?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
+        <div class="faq-a">STARCARES is the name we give our corporate social responsibility work — community infrastructure, disaster relief, education and youth leadership, run through the regional teams rather than from head office.</div>
+      </details>
+      <details class="faq-item">
+        <summary>How are projects chosen?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
+        <div class="faq-a">Local teams propose them. The test is whether a company our size can change something specific and then keep it maintained, rather than fund a one-off that degrades within a year.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Can my organisation apply for support?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
+        <div class="faq-a">Yes. Contact the regional office nearest you through the contact page and it will reach the team that reviews proposals for that market.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Where do you operate?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
+        <div class="faq-a">Across the markets our licensed entities cover — the UAE, Australia, South Africa, Mauritius and Seychelles among them. CSR work follows that footprint.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LATEST ============ -->
+<section class="section pg-list" id="latest" aria-labelledby="pg-list-title">
+  <div class="container">
+    <div class="head center">
+      <span class="eyebrow" data-aos="fade-up">Latest</span>
+      <h2 class="h2" id="pg-list-title" data-aos="fade-up">The latest from us</h2>
+    </div>
+    <div class="pg-bar glass" data-aos="fade-up">
+      <div class="pg-cats" role="group" aria-label="Filter by category"><button class="ec-chip is-on" type="button" data-pg-cat="all" aria-pressed="true">All</button><button class="ec-chip" type="button" data-pg-cat="community" aria-pressed="false">Community</button><button class="ec-chip" type="button" data-pg-cat="education" aria-pressed="false">Education</button><button class="ec-chip" type="button" data-pg-cat="relief" aria-pressed="false">Relief</button></div>
+      <p class="pg-status" data-pg-status role="status" aria-live="polite"></p>
+    </div>
+    <div class="nr-grid">
+      <article class="nr-card glass" data-pg-item data-cat="community" data-title="STARTRADER breaks ground on basketball court revamp in Davao City" data-aos="fade-up">
+        <div class="nr-head">
+          <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Community</span>
+          <time class="nr-date" datetime="2026-06-18">18 Jun 2026</time>
+        </div>
+        <div class="nr-body">
+          <h3 class="nr-h"><a href="/announcements.html">STARTRADER breaks ground on basketball court revamp in Davao City</a></h3>
+          <p class="nr-ex">A full rebuild of a public court serving around 20,000 people across the surrounding barangays in the Philippines.</p>
+        </div>
+        <span class="nr-media">
+          <img src="/assets/img/lp/citadel.webp" alt="STARTRADER breaks ground on basketball court revamp in Davao City" width="640" height="349" loading="lazy" decoding="async">
+          <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
+        </span>
+      </article>
+      <article class="nr-card glass" data-pg-item data-cat="education" data-title="STARCARES partners with B-LEAD 2026 in Vietnam" data-aos="fade-up" data-aos-delay="100">
+        <div class="nr-head">
+          <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Education</span>
+          <time class="nr-date" datetime="2026-05-30">30 May 2026</time>
+        </div>
+        <div class="nr-body">
+          <h3 class="nr-h"><a href="/announcements.html">STARCARES partners with B-LEAD 2026 in Vietnam</a></h3>
+          <p class="nr-ex">Supporting a programme that puts Vietnam’s next generation of business leaders in front of the people already doing the work.</p>
+        </div>
+        <span class="nr-media">
+          <img src="/assets/img/company-1.webp" alt="STARCARES partners with B-LEAD 2026 in Vietnam" width="640" height="349" loading="lazy" decoding="async">
+          <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
+        </span>
+      </article>
+      <article class="nr-card glass" data-pg-item data-cat="relief" data-title="Emergency relief delivered to 300 earthquake-affected families" data-aos="fade-up" data-aos-delay="200">
+        <div class="nr-head">
+          <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Relief</span>
+          <time class="nr-date" datetime="2026-04-12">12 Apr 2026</time>
+        </div>
+        <div class="nr-body">
+          <h3 class="nr-h"><a href="/announcements.html">Emergency relief delivered to 300 earthquake-affected families</a></h3>
+          <p class="nr-ex">Direct assistance to households displaced by the earthquake in the Philippines, coordinated with local partners.</p>
+        </div>
+        <span class="nr-media">
+          <img src="/assets/img/company-2.webp" alt="Emergency relief delivered to 300 earthquake-affected families" width="640" height="349" loading="lazy" decoding="async">
+          <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
+        </span>
+      </article>
+      <article class="nr-card glass" data-pg-item data-cat="education" data-title="KTH alumni evening in Dubai on AI, technology and innovation" data-aos="fade-up" data-aos-delay="300">
+        <div class="nr-head">
+          <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Education</span>
+          <time class="nr-date" datetime="2026-03-22">22 Mar 2026</time>
+        </div>
+        <div class="nr-body">
+          <h3 class="nr-h"><a href="/announcements.html">KTH alumni evening in Dubai on AI, technology and innovation</a></h3>
+          <p class="nr-ex">An evening hosted for KTH alumni exploring where artificial intelligence is genuinely changing practice, and where it is not.</p>
+        </div>
+        <span class="nr-media">
+          <img src="/assets/img/company-3.webp" alt="KTH alumni evening in Dubai on AI, technology and innovation" width="640" height="349" loading="lazy" decoding="async">
+          <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
+        </span>
+      </article>
+      <article class="nr-card glass" data-pg-item data-cat="education" data-title="CEO Peter Karsten joins University of Europe for three sessions" data-aos="fade-up" data-aos-delay="400">
+        <div class="nr-head">
+          <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Education</span>
+          <time class="nr-date" datetime="2026-02-14">14 Feb 2026</time>
+        </div>
+        <div class="nr-body">
+          <h3 class="nr-h"><a href="/announcements.html">CEO Peter Karsten joins University of Europe for three sessions</a></h3>
+          <p class="nr-ex">Three sessions with students on AI, business operations and market risk — the parts of finance a lecture usually skips.</p>
+        </div>
+        <span class="nr-media">
+          <img src="/assets/img/company-office.webp" alt="CEO Peter Karsten joins University of Europe for three sessions" width="640" height="349" loading="lazy" decoding="async">
+          <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
+        </span>
+      </article>
+      <article class="nr-card glass" data-pg-item data-cat="community" data-title="Local sports facilities upgraded across three regions" data-aos="fade-up" data-aos-delay="500">
+        <div class="nr-head">
+          <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Community</span>
+          <time class="nr-date" datetime="2026-01-20">20 Jan 2026</time>
+        </div>
+        <div class="nr-body">
+          <h3 class="nr-h"><a href="/announcements.html">Local sports facilities upgraded across three regions</a></h3>
+          <p class="nr-ex">Equipment, resurfacing and lighting for facilities that were already well used but poorly maintained.</p>
+        </div>
+        <span class="nr-media">
+          <img src="/assets/img/learn-cta.webp" alt="Local sports facilities upgraded across three regions" width="640" height="349" loading="lazy" decoding="async">
+          <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
+        </span>
+      </article>
+    </div>
+    <div class="pg-empty" data-pg-empty hidden>
+      <p>Nothing in that category yet.</p>
+      <button class="btn btn-primary" type="button" data-pg-reset>Show everything</button>
+    </div>
+  </div>
+</section>
+
+<section class="section fx-more" aria-labelledby="pg-more-title">
+  <div class="container">
+    <div class="head center">
+      <span class="eyebrow" data-aos="fade-up">Keep going</span>
+      <h2 class="h2" id="pg-more-title" data-aos="fade-up">Where to go next</h2>
+    </div>
+    <div class="fx-more-grid">
+      <a class="fx-more-card" href="/company.html" data-aos="fade-up">
+        <span class="fx-more-media"><img src="/assets/img/company-hero.webp" alt="Why STARTRADER — regulation and scale" width="640" height="349" loading="lazy" decoding="async"></span>
+        <p class="fx-more-desc">Five regulators, segregated funds and the conditions behind the brand.</p>
+        <span class="fx-more-foot"><span class="fx-more-tag">Why STARTRADER</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
+      </a>
+      <a class="fx-more-card" href="/sponsorship.html" data-aos="fade-up" data-aos-delay="100">
+        <span class="fx-more-media"><img src="/assets/img/company-1.webp" alt="STARTRADER sponsorships" width="640" height="349" loading="lazy" decoding="async"></span>
+        <p class="fx-more-desc">The NBA, the PCCME, the UAE National Cricket Team and more.</p>
+        <span class="fx-more-foot"><span class="fx-more-tag">Sponsorship</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
+      </a>
+      <a class="fx-more-card" href="/announcements.html" data-aos="fade-up" data-aos-delay="200">
+        <span class="fx-more-media"><img src="/assets/img/company-3.webp" alt="STARTRADER announcements" width="640" height="349" loading="lazy" decoding="async"></span>
+        <p class="fx-more-desc">Product, licensing and schedule notices as they are published.</p>
+        <span class="fx-more-foot"><span class="fx-more-tag">Announcements</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
+      </a>
+      <a class="fx-more-card" href="/contact.html" data-aos="fade-up" data-aos-delay="300">
+        <span class="fx-more-media"><img src="/assets/img/contact-hero.webp" alt="Contact the STARTRADER team" width="640" height="349" loading="lazy" decoding="async"></span>
+        <p class="fx-more-desc">A desk that answers around the clock in more than twenty languages.</p>
+        <span class="fx-more-foot"><span class="fx-more-tag">Contact us</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="cta-banner" aria-labelledby="pg-cta-title">
+  <div class="cta-bg" aria-hidden="true"></div>
+  <div class="container cta-inner">
+    <h2 id="pg-cta-title" data-aos="fade-up">Start trading with a<br>globally leading broker</h2>
+    <p data-aos="fade-up">Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
+    <div class="cta-actions" data-aos="fade-up">
+      <a href="/getting-started.html" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
+      <a href="/getting-started.html" class="btn btn-ghost btn-lg">Try Free Demo</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script type="application/json" data-csr-data>
+[
+  {
+    "src": "../../assets/img/csr-gal-1.webp",
+    "title": "Community court programmes",
+    "cap": "Public courts rebuilt and kept in use, with the partnership behind them."
+  },
+  {
+    "src": "../../assets/img/csr-gal-2.webp",
+    "title": "Youth leadership",
+    "cap": "Backing the programmes that give the next generation somewhere to start."
+  },
+  {
+    "src": "../../assets/img/csr-gal-3.webp",
+    "title": "Campus sessions",
+    "cap": "Students and graduates, in sessions run by people who do the work."
+  },
+  {
+    "src": "../../assets/img/csr-gal-4.webp",
+    "title": "The communities we work in",
+    "cap": "Projects proposed by the regional teams who live in them."
+  },
+  {
+    "src": "../../assets/img/csr-gal-5.webp",
+    "title": "Workshops and mentoring",
+    "cap": "Small rooms, real questions, and someone in the industry to answer them."
+  },
+  {
+    "src": "../../assets/img/csr-gal-6.webp",
+    "title": "The teams behind it",
+    "cap": "Regional offices who see a project through past the ribbon-cutting."
+  }
+]
+</script>
+
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer" id="footer">
+  <div class="container">
+    <div class="foot-cols">
+      <div class="foot-col">
+        <h4>Conditions</h4>
+        <a href="/getting-started.html">Account Opening</a><a href="/accounts.html">Trading Account</a><a href="/prime-ecn-account.html">Prime ECN</a><a href="/funding.html">Funding &amp; Withdrawal</a>
+        <h4 class="mt">Partnership</h4>
+        <a href="/ib-register.html">Introducing Broker</a><a href="/affiliate-registration.html">Affiliate</a><a href="/money-manager.html">Money Manager</a><a href="/institutional.html">Institutional</a>
+      </div>
+      <div class="foot-col">
+        <h4>Platforms</h4>
+        <a href="/mt5.html">MT5</a><a href="/mt4.html">MT4</a><a href="/copy-trade.html">Copy Trade</a><a href="/star-webtrader.html">STAR Web Trading</a><a href="/webtrader.html">Web Trader</a><a href="/trading-app.html">Mobile Apps</a><a href="/pamm-trade.html">Pro-Link</a>
+        <h4 class="mt">Products</h4>
+        <a href="/forex.html">Forex</a><a href="/cfd.html">CFD</a><a href="/commodities.html">Commodities</a><a href="/indices.html">Indices</a><a href="/shares.html">Shares</a><a href="/etf.html">ETFs</a>
+      </div>
+      <div class="foot-col">
+        <h4>Education</h4>
+        <a href="/education.html">Knowledge Center</a><a href="/market-analysis.html">Market Analysis</a><a href="/glossary.html">Glossary</a><a href="/news.html">News Room</a><a href="/economiccalendar.html">Economic Calendar</a><a href="/webinars.html">Webinars</a>
+        <h4 class="mt">Corporate</h4>
+        <a href="/regulation.html">Regulation</a><a href="/legal-documents.html">Legal Documents</a><a href="/insurance.html">Insurance</a><a href="/liquidity-providers.html">Liquidity Providers</a>
+      </div>
+      <div class="foot-col">
+        <h4>About</h4>
+        <a href="/company.html">Why STARTRADER</a><a href="/corporate-social-responsibility.html">CSR</a><a href="/events.html">Events</a><a href="/media.html">Media Coverage</a><a href="/achievement.html">Achievements</a><a href="/announcements.html">Announcements</a><a href="/contact.html">Careers</a><a href="/help-center.html">Help Center</a>
+        <h4 class="mt">Contact us</h4>
+        <div class="foot-contact"><span>Support enquiries</span><a href="mailto:support@startrader.com">support@startrader.com</a></div>
+        <div class="foot-contact"><span>Partnerships</span><a href="mailto:partners@startrader.com">partners@startrader.com</a></div>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <span class="foot-brand"><img class="foot-logo" src="/assets/img/logo-startrader.svg" alt="STARTRADER" width="180" height="35"><span class="foot-tag">Built on trust. Driven by growth.</span></span>
+      <div class="foot-partners">
+        <img class="fp-nba" src="/assets/img/partner-nba.svg" alt="Official Partner of the NBA" height="30" width="45">
+        <img class="fp-porsche" src="/assets/img/partner-porsche.webp" alt="Official Partner of Porsche Carrera Cup Middle East" height="26" width="165">
+      </div>
+    </div>
+
+    <div class="foot-legal-row">
+      <div class="foot-copy">
+        <span>© 2026 STARTRADER. All rights reserved</span>
+        <a href="/privacy-policy-app.html">Privacy Policy</a><a href="/legal-documents.html">Terms &amp; Conditions</a><a href="/legal-documents.html">Cookie Policy</a>
+      </div>
+      <div class="socials">
+        <a href="#" aria-label="Facebook"><svg><use href="#i-facebook"/></svg></a>
+        <a href="#" aria-label="X"><svg><use href="#i-x"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg><use href="#i-instagram"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg><use href="#i-linkedin"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg><use href="#i-youtube"/></svg></a>
+        <a href="#" aria-label="Telegram"><svg><use href="#i-telegram"/></svg></a>
+      </div>
+    </div>
+
+    <div class="risk">
+      <h5>RISK WARNING</h5>
+      <p>Trading in leveraged derivative products, such as Foreign Exchange (Forex) and Contracts for Difference (CFDs), involves a high level of risk and may result in losses that exceed your initial deposit. These products may not be suitable for all investors. Leverage amplifies both potential profits and losses. When trading these instruments, you do not own or have any rights to the underlying assets. Past performance is not indicative of future results.</p>
+      <p>Before making any investment decisions, you should carefully assess your investment objectives, knowledge, experience, and financial situation. You should only engage in Forex and CFD trading if you possess sufficient knowledge and experience. STARTRADER assumes no liability for any losses incurred from trading, and all trading activities are undertaken at your own risk.</p>
+      <p>The content provided on this website is for general informational purposes only and does not take into account your individual financial circumstances, investment goals, or risk tolerance. You should review the legal documents available on our website to ensure a full understanding of the risks associated with CFD trading. If necessary, seek independent advice from qualified professionals before proceeding.</p>
+
+      <h5>REGIONAL RESTRICTIONS</h5>
+      <p>This website is not intended for distribution to, or use by, any person or entity who is a citizen or resident of certain jurisdictions, including, but not limited to the United States, and jurisdictions listed on the FATF "blacklist" or other major global sanctions lists. It is also not intended for distribution or use in any jurisdiction where such distribution or use would violate local laws or regulations.</p>
+
+      <h5>REGULATOR INFORMATION</h5>
+      <p>STARTRADER is the brand representing a network of regulated and licensed entities across various jurisdictions, each authorised to provide specific financial services in compliance with local regulations. Upon registration, you will be assigned to the appropriate entity based on your location, ensuring that all trading activities are governed by the applicable regulatory authority. While the relevant authorities have granted securities or investment dealer licenses to the licensees, they do not endorse the products or services offered by STARTRADER.</p>
+      <p><strong>STARTRADER</strong> Global Financial Consultation &amp; Financial Analysis L.L.C is a Category 5 licensee regulated by the Capital Market Authority (CMA) of the United Arab Emirates, with License No. 20200000241, authorised to carry out regulated activities of Introduction and Promotion in the UAE. Its registered office is located at Office 815, Al Manara Tower, Business Bay, Dubai, UAE. It is not authorised to provide brokerage services or execute client trades.</p>
+      <p><strong>STARTRADER</strong> Prime Global Pty Ltd is regulated by the Australian Securities and Investments Commission (ASIC), with ACN 156005668 and AFSL No. 421210. Its registered office is located at Level 35, 31 Market Street, Sydney, NSW 2000, Australia.</p>
+      <p><strong>STARTRADER</strong> International Pty Ltd is regulated by the Financial Sector Conduct Authority (FSCA) of South Africa, with FSP No. 52464 and Registration No. 2022/435897/07. Its registered office is located at 18 Cavendish Road, Claremont, Cape Town, Western Cape, 7708, South Africa.</p>
+      <p><strong>STARTRADER</strong> Limited is regulated by the Financial Services Authority (FSA) of Seychelles, with License No. SD049 and Registration No. 8427362-1. Its registered office is located at Suite 3, Global Village, Jivan's Complex, Mont Fleuri, Mahe, Seychelles.</p>
+      <p><strong>STARTRADER</strong> Financial Markets Limited is regulated by the Financial Services Commission (FSC) of Mauritius, with Company No. 212229 GBC and License No. GB24203371. Its registered office is located at Suite 201, 2nd Floor, The Catalyst, 40 Silicon Avenue, Ebene Cybercity, Mauritius.</p>
+      <p><strong>STARTRADER</strong> (CY) Limited, registered in the Republic of Cyprus under registration number HE421001 with its registered address at 160 Archiepiskopou Makariou III, 1st Floor, 3026 Limassol, Cyprus. This entity does not offer regulated financial products or provide trading services.</p>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Back to top"><svg><use href="#i-caret-up"/></svg></button>
+
+<!-- ============ CHAT WIDGET ============ -->
+<button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
+  <img class="chat-fab-ico" src="/assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
+</button>
+<div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
+  <div class="chat-head">
+    <span class="chat-avatar"><svg><use href="#i-headset"/></svg><i class="chat-online"></i></span>
+    <div class="chat-head-txt"><b>STARTRADER Support</b><em>Typically replies in a few minutes</em></div>
+    <button class="chat-close" id="chatClose" aria-label="Close chat"><svg><use href="#i-close"/></svg></button>
+  </div>
+  <div class="chat-body">
+    <div class="chat-msg">👋 Hi there! Welcome to STARTRADER. How can we help you today?</div>
+    <div class="chat-quick">
+      <a href="/getting-started.html" class="chat-chip">Open a live account</a>
+      <a href="/trading-app.html" class="chat-chip">Download a platform</a>
+      <a href="#fx-pairs-title" class="chat-chip">View forex spreads</a>
+      <a href="/contact.html" class="chat-chip">Contact us</a>
+    </div>
+  </div>
+  <form class="chat-input" id="chatForm">
+    <input type="text" id="chatText" placeholder="Type your message…" aria-label="Message" autocomplete="off">
+    <button type="submit" class="chat-send" aria-label="Send"><svg><use href="#i-send"/></svg></button>
+  </form>
+</div>
+
+<!-- ============ COOKIE CONSENT ============ -->
+<div class="cookie" id="cookie" role="dialog" aria-label="Cookie notice">
+  <span class="cookie-ic"><svg><use href="#i-cookie"/></svg></span>
+  <span class="cookie-text">We use cookies to enhance your experience on this website.</span>
+  <a href="/legal-documents.html" class="cookie-more">More details</a>
+  <button class="cookie-x" id="cookieClose" aria-label="Accept and close"><svg><use href="#i-close"/></svg></button>
+</div>
+
+<script src="/assets/js/vendor/gsap.min.js" defer></script>
+<script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
+<script src="/assets/js/vendor/lenis.min.js" defer></script>
+<script src="/assets/js/vendor/aos.min.js" defer></script>
+<script src="/assets/js/main.js?v=map1" defer></script>
+
+<!-- Company page: robust scroll reveals + hero parallax (self-contained, never leaves content hidden) -->
+<script>
+(function(){
+  var root = document.documentElement;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var reveals = [].slice.call(document.querySelectorAll('.reveal'));
+
+  function showAll(){ reveals.forEach(function(el){ el.classList.add('in'); }); }
+
+  if (reduce || !('IntersectionObserver' in window)) {
+    showAll();
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
+    reveals.forEach(function(el){ io.observe(el); });
+    // Safety net: reveal anything still hidden shortly after load (covers no-scroll / screenshot capture).
+    window.addEventListener('load', function(){ setTimeout(showAll, 2200); });
+  }
+})();
+</script>
+</body>
+</html>

@@ -332,7 +332,7 @@
       (((document.documentElement.lang || '').indexOf('ru') === 0) ? 'Приложение для трейдинга' : 'Online Trading App') +
       '</span><span class="sb-stars" aria-label="Rated 4.5 out of 5">' + star + star + star + star +
       '<img src="/assets/img/sb-star-half.svg" alt="" width="11" height="10"></span></span>' +
-      '<a class="sb-get" href="/trading/platforms/trading-app.html">' +
+      '<a class="sb-get" href="/trading-app.html">' +
       (((document.documentElement.lang || '').indexOf('ru') === 0) ? 'Установить' : 'Install') + '</a>';
     document.body.appendChild(bar);
     document.body.classList.add('has-sb');

@@ -5,27 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#05070E" />
 
-  <title>404 — Page Not Found | STARTRADER</title>
-  <meta name="description" content="The page you are looking for has moved, expired, or never existed. Head back to STARTRADER and keep trading 1,000+ global instruments." />
-  <meta name="keywords" content="STARTRADER, online broker, forex trading, CFD trading, ECN spreads, MetaTrader 4, MetaTrader 5, copy trading, indices, commodities, shares, ETFs" />
+  <title>In the Spotlight | STARTRADER in the Media | STARTRADER</title>
+  <meta name="description" content="Every STARTRADER media appearance in one place — broadcast segments, conference panels, interviews and podcasts from the research desk and leadership team." />
+  <meta name="keywords" content="STARTRADER, news room, market news, technical analysis, fundamental analysis, forex analysis, gold analysis, oil news, broker announcements, market commentary" />
   <meta name="author" content="STARTRADER" />
-  <meta name="robots" content="noindex, follow" />
-  <link rel="canonical" href="https://www.startrader.com/404.html" />
+  <link rel="canonical" href="https://www.startrader.com/news-in-the-spotlight/" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="STARTRADER" />
-  <meta property="og:title" content="404 — Page Not Found | STARTRADER" />
-  <meta property="og:description" content="The page you are looking for has moved, expired, or never existed. Head back to STARTRADER and keep trading 1,000+ global instruments." />
-  <meta property="og:url" content="https://www.startrader.com/" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/cta-banner.webp" />
+  <meta property="og:title" content="In the Spotlight | STARTRADER in the Media | STARTRADER" />
+  <meta property="og:description" content="Every STARTRADER media appearance in one place — broadcast segments, conference panels, interviews and podcasts from the research desk and leadership team." />
+  <meta property="og:url" content="https://www.startrader.com/news-in-the-spotlight/" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/home-hero-wave.webp" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="404 — Page Not Found | STARTRADER" />
-  <meta name="twitter:description" content="The page you are looking for has moved, expired, or never existed. Head back to STARTRADER and keep trading 1,000+ global instruments." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/cta-banner.webp" />
+  <meta name="twitter:title" content="In the Spotlight | STARTRADER in the Media | STARTRADER" />
+  <meta name="twitter:description" content="Every STARTRADER media appearance in one place — broadcast segments, conference panels, interviews and podcasts from the research desk and leadership team." />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/home-hero-wave.webp" />
 
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="/favicon.svg" />
@@ -34,379 +33,133 @@
   <!-- Fonts (self-hosted) -->
   <link rel="preload" href="/assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/assets/fonts/fonts.css" />
-  <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css" />
   <link rel="stylesheet" href="/assets/css/aos.min.css" />
   <link rel="stylesheet" href="/assets/css/styles.css?v=map1" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
-/* ---------- Layout ---------- */
-.ta-r{text-align:right}
-/* ---------- Hero ---------- */
-.hero-inner{display:flex;flex-direction:column;align-items:center;text-align:center}
-.hero-title{width:100%;max-width:100%;font-size:clamp(29px,6.4vw,66px);font-weight:800;letter-spacing:-.03em;line-height:1.14;overflow-wrap:break-word}
-.hero-title .line-1,.hero-title .line-2{display:block}
-.hero-title .line-2{
-  background:linear-gradient(90deg,rgba(255,255,255,.8),#eef3f9);
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-  padding-bottom:.14em;
+/* ---- Hero (two-column: copy + interactive panel over video) ---- */
+.ta-metric.flash{animation:taMetric .55s ease}
+/* ================= NEWS ROOM PAGE ================= */
+/* banner: the same video shell and left-aligned copy as the calendar */
+.nr-hero{justify-content:center}
+/* ---- Lead story ---- */
+.nr-lead-sec{background:radial-gradient(58% 46% at 6% 0%,rgba(0,71,187,.07),transparent 62%),var(--bg-light)}
+.nr-lead{
+  display:grid;grid-template-columns:1.05fr .95fr;align-items:stretch;gap:0;overflow:hidden;
+  border-radius:var(--radius-xl);background:#fff;border:1px solid var(--line);text-decoration:none;
+  box-shadow:0 18px 44px -34px rgba(20,44,96,.45);
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .3s;
 }
-.hero-sub{
-  margin-top:20px;font-size:clamp(15px,1.6vw,18px);color:#d8e1ee;font-weight:400;
-  text-shadow:0 1px 12px rgba(3,7,20,.55);
+.nr-lead:hover{transform:translateY(-4px);border-color:rgba(0,71,187,.28);box-shadow:0 28px 52px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff}
+.nr-lead-media{position:relative;display:block;overflow:hidden;min-height:340px}
+.nr-lead-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.nr-lead:hover .nr-lead-media img{transform:scale(1.04)}
+.nr-lead-tag{
+  position:absolute;top:16px;left:16px;z-index:2;font-size:10.5px;font-weight:700;letter-spacing:.11em;
+  text-transform:uppercase;color:#fff;padding:6px 12px;border-radius:70px;background:rgba(8,14,26,.6);
+  border:1px solid rgba(255,255,255,.22);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
 }
-.hero-cta{margin-top:34px}
-/* Hero CTA sits on the dark banner — white pill */
-.hero-cta .btn{background:#fff;color:#08122a;box-shadow:0 16px 36px -16px rgba(0,0,0,.6)}
-.hero-cta .btn:hover{background:#e9f0fa}
-.hero-cta .btn:active{background:#d9e4f4}
-.hero-strip-label{
-  margin-top:48px;font-size:13.5px;color:#c2cddd;font-style:italic;font-weight:400;
-  text-shadow:0 1px 14px rgba(3,7,20,.7);
+.nr-lead-body{display:flex;flex-direction:column;padding:clamp(26px,3vw,44px)}
+.nr-lead-flag{
+  display:inline-flex;align-items:center;gap:9px;align-self:flex-start;
+  font-size:10.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--blue);
+  padding:6px 12px;border-radius:70px;background:rgba(0,71,187,.08);
 }
-.hero-strip{
-  margin-top:34px;display:flex;justify-content:center;align-items:flex-start;flex-wrap:wrap;
-  gap:0;width:100%;
+.nr-lead-flag i{width:7px;height:7px;border-radius:50%;background:var(--blue);flex:none}
+.nr-lead-h{
+  margin-top:18px;font-size:clamp(22px,2.5vw,32px);font-weight:800;letter-spacing:-.028em;line-height:1.16;color:var(--text);
+  transition:color .3s;
 }
-.hero-strip li{
-  flex:1;min-width:150px;max-width:220px;display:flex;flex-direction:column;align-items:center;text-align:center;
-  padding:0 26px;position:relative;
+.nr-lead:hover .nr-lead-h{color:var(--blue)}
+.nr-lead-ex{display:block;margin-top:14px;font-size:15px;line-height:1.65;color:var(--text-soft)}
+.nr-lead .nr-meta{margin-top:20px}
+.nr-lead-go{
+  margin-top:auto;padding-top:24px;display:inline-flex;align-items:center;gap:9px;
+  font-size:14.5px;font-weight:700;color:var(--blue);
 }
-.hero-strip li+li::before{
-  content:"";position:absolute;left:0;top:8px;bottom:8px;width:1px;
-  background:linear-gradient(180deg,transparent,rgba(255,255,255,.16),transparent);
-}
-.hs-ico{
-  width:48px;height:48px;border-radius:50%;display:grid;place-items:center;margin-bottom:16px;
-  background:radial-gradient(120% 120% at 50% 0%,rgba(255,255,255,.14),rgba(255,255,255,.03));
-  border:1px solid rgba(255,255,255,.12);color:#dfe6f1;
-  transition:transform .4s var(--ease),border-color .3s,color .3s;
-}
-.hero-strip li:hover .hs-ico{transform:translateY(-4px);border-color:rgba(0,120,255,.6);color:#fff}
-.hs-ico svg{width:22px;height:22px}
-.hs-val{font-size:15px;font-weight:700;color:#fff;letter-spacing:-.01em;text-shadow:0 1px 12px rgba(3,7,20,.55)}
-.hs-lbl{font-size:12.5px;color:#c5d0e0;margin-top:5px;text-shadow:0 1px 10px rgba(3,7,20,.55)}
-/* ---------- Why stats ---------- */
-.why-stats{display:grid;grid-template-columns:repeat(3,1fr);max-width:1000px;margin:0 auto}
-.why-stats li{padding:6px 44px;position:relative}
-.why-stats li+li::before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:1px;background:var(--line)}
-.stat-num{display:block;font-size:clamp(44px,6vw,64px);font-weight:800;letter-spacing:-.03em;color:var(--text);line-height:1}
-.stat-title{display:block;margin-top:14px;font-size:17px;font-weight:600;color:var(--blue)}
-.stat-desc{display:block;margin-top:7px;font-size:13.5px;color:var(--text-mute)}
-/* ---------- Markets (glassmorphism) ---------- */
-.mkt-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
-/* faint colour hints behind the glass cards */
-.markets .blob{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none}
-.markets .blob.b1{width:460px;height:460px;left:-6%;top:18%;background:radial-gradient(circle,rgba(0,110,255,.12),transparent 70%)}
-.markets .blob.b2{width:500px;height:500px;right:-6%;top:8%;background:radial-gradient(circle,rgba(20,205,200,.1),transparent 70%)}
-.markets .blob.b3{display:none}
-/* ---- Markets explorer (glassmorphic cards + category tabs) ---- */
-.mkx-tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:6px 0 34px}
-.mkx-tab{font-size:14px;font-weight:600;color:var(--text-soft);padding:9px 20px;border-radius:60px;background:rgba(255,255,255,.6);border:1px solid var(--line);cursor:pointer;transition:background .25s,color .25s,border-color .25s,box-shadow .25s}
-.mkx-tab:hover{color:var(--text);border-color:#c7d3e6}
-.mkx-tab.is-active{background:#0d1420;color:#fff;border-color:transparent;box-shadow:0 12px 26px -14px rgba(13,20,32,.5)}
-.mkx-rows{display:flex;flex-direction:column;gap:16px}
-.mkx-row{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent);mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent)}
-.mkx-track{display:flex;gap:18px;width:max-content;padding:12px 0;will-change:transform}
-.mkx-note{max-width:640px;margin:32px auto 0;text-align:center;font-size:13px;color:var(--text-mute);line-height:1.7}
-.mkx-note b{color:var(--text-soft);font-weight:700}
-.mkx-more{margin-top:28px;text-align:center}
-/* ---------- Platforms ---------- */
-/* the hand sits flush to the card's lower-right corner */
-.plat-hand{
-  position:absolute;right:clamp(-58px,-4vw,-24px);bottom:0;z-index:1;
-  width:auto;height:clamp(300px,88%,486px);max-width:74%;
-  object-fit:contain;object-position:100% 100%;
-  filter:drop-shadow(0 26px 40px rgba(20,44,96,.28));
-  pointer-events:none;
-}
-/* two glass readouts on the left, overlapping the phone rather than sitting on it */
-.plat-chips{
-  position:absolute;left:34px;bottom:clamp(104px,21%,136px);z-index:3;
-  display:flex;flex-direction:column;gap:10px;width:clamp(152px,40%,184px);pointer-events:none;
-}
-.plat-chip{
-  display:flex;flex-direction:column;gap:6px;
-  padding:12px 14px;border-radius:14px;
-  background:rgba(255,255,255,.62);
-  -webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);
-  border:1px solid rgba(255,255,255,.86);
-  box-shadow:0 16px 34px -22px rgba(20,44,96,.45),inset 0 1px 0 #fff;
-}
-.plat-chip b{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mute)}
-.plat-chip-row{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
-.plat-chip em{font-style:normal;font-size:16px;font-weight:700;letter-spacing:-.02em;
-  font-variant-numeric:tabular-nums;color:var(--text)}
-.plat-chip i{font-style:normal;font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px}
-.plat-chip i.up{color:#0f9d76;background:rgba(16,185,129,.14)}
-/* the stat chip leads with the figure */
-.plat-chip--stat b{font-size:23px;font-weight:800;letter-spacing:-.04em;text-transform:none;
-  color:var(--blue);font-variant-numeric:tabular-nums}
-.plat-chip--stat b small{font-size:12px;font-weight:800;margin-left:2px;color:var(--text-mute)}
-.plat-chip--stat span{font-size:11.5px;line-height:1.4;color:var(--text-soft)}
-@media (prefers-reduced-motion:no-preference){.plat-app .plat-chip{animation:platFloat 6.5s var(--ease) infinite}
-.plat-app .plat-chip--stat{animation-delay:-3.2s}}
-@media (max-width:900px){.plat-chips{width:clamp(132px,44%,168px);bottom:clamp(88px,18%,118px)}
-.plat-chip--stat b{font-size:20px}}
-/* the web card's readouts sit lower and smaller — it is a short, wide card */
-.plat-chips--web{
-  left:auto;right:clamp(150px,30%,240px);top:50%;bottom:auto;transform:translateY(-50%);
-  width:clamp(150px,26%,176px);
-}
-.plat-chips--web .plat-chip{padding:11px 13px;gap:5px}
-.plat-chips--web .plat-chip em{font-size:15px}
-.plat-chips--web .plat-chip--stat b{font-size:20px}
-.plat-chips--web .plat-chip--stat span{font-size:11px}
-@media (max-width:1080px){.plat-chips--web{display:none}}
-/* a veil of blur climbing off the bottom edge, with the store buttons on it */
-.plat-veil{
-  position:absolute;left:0;right:0;bottom:0;z-index:4;
-  padding:56px 34px 26px;
-  -webkit-backdrop-filter:blur(16px) saturate(1.2);backdrop-filter:blur(16px) saturate(1.2);
-  background:linear-gradient(180deg,rgba(240,245,252,0) 0%,rgba(240,245,252,.62) 42%,rgba(240,245,252,.9) 100%);
-  /* the blur itself fades out towards the top, so there is no hard edge */
-  -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 46%,#000 100%);
-  mask-image:linear-gradient(180deg,transparent 0%,#000 46%,#000 100%);
-}
-.plat-veil .avail{
-  display:block;font-size:10.5px;font-weight:800;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--text-mute);
-}
-.plat-veil .badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:11px}
-.plat-veil .badges img{height:38px;width:auto;display:block;
-  border-radius:8px;box-shadow:0 10px 22px -12px rgba(20,44,96,.5);
-  transition:transform .3s var(--ease),box-shadow .3s}
-.plat-veil .badges a:hover img{transform:translateY(-3px);box-shadow:0 16px 30px -12px rgba(20,44,96,.6)}
-@media (max-width:900px){.plat-hand{height:clamp(240px,78%,400px);max-width:62%}
-.plat-veil{padding:48px 22px 20px}}
-/* ---------- Tools (dark) ---------- */
-.tools-grid{
-  display:grid;gap:22px;grid-template-columns:repeat(3,1fr);
-  grid-template-areas:"copy web pro" "copy ct syn";
-  align-items:stretch;
-}
-.tcard{
+.nr-lead-go svg{width:16px;height:16px;transition:transform .3s var(--ease)}
+.nr-lead:hover .nr-lead-go svg{transform:translateX(4px)}
+/* shared meta line */
+.nr-meta{display:flex;align-items:center;flex-wrap:wrap;gap:5px 10px;font-size:12.5px;color:var(--text-mute)}
+.nr-meta i{width:3px;height:3px;border-radius:50%;background:currentColor;opacity:.55;flex:none}
+.nr-meta time{font-variant-numeric:tabular-nums}
+
+/* ---- The latest ---- */
+.nr-sec{
   background:
-    radial-gradient(130% 72% at 50% -10%,var(--ray,transparent),transparent 60%),
-    linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.02));
-  border:1px solid rgba(255,255,255,.09);border-radius:var(--radius-xl);
-  padding:26px;position:relative;overflow:hidden;
-  transition:transform .45s var(--ease),border-color .35s,box-shadow .45s var(--ease);
+    radial-gradient(52% 44% at 96% 10%,rgba(22,233,215,.07),transparent 62%),
+    radial-gradient(56% 40% at 46% 104%,rgba(0,71,187,.06),transparent 62%),
+    var(--bg-light-2);
+  scroll-margin-top:calc(var(--chrome-h) + var(--chrome-gap));
 }
-/* thin colored light-ray line at the very top edge, per card */
-.tcard::after{content:"";position:absolute;top:0;left:16%;right:16%;height:2px;border-radius:2px;background:var(--ray-line,rgba(120,160,255,.6));box-shadow:0 0 18px 1px var(--ray-line,rgba(120,160,255,.6));opacity:.8;transition:opacity .35s,left .45s var(--ease),right .45s var(--ease)}
-.tcard:hover::after{opacity:1;left:6%;right:6%}
-.tcard:hover{transform:translateY(-4px);border-color:var(--ray-line,rgba(0,120,255,.45));box-shadow:0 30px 60px -30px rgba(0,60,180,.6)}
-.tcard-copy{grid-area:copy;display:flex;flex-direction:column;--ray:rgba(0,110,255,.24);--ray-line:rgba(70,150,255,.9)}
-.tcard-web{grid-area:web;--ray:rgba(22,233,215,.20);--ray-line:rgba(22,233,215,.85)}
-.tcard-pro{grid-area:pro;--ray:rgba(150,110,255,.22);--ray-line:rgba(160,120,255,.9)}
-.tcard-ct{grid-area:ct;--ray:rgba(16,200,140,.20);--ray-line:rgba(30,210,150,.9)}
-.tcard-syn{grid-area:syn;--ray:rgba(255,170,60,.18);--ray-line:rgba(255,180,80,.9)}
-.tcard h3{font-size:22px;color:#fff;margin-bottom:7px}
-.tcard-sub{font-size:13.5px;color:#9aa6bd;max-width:320px}
-.tcard-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
-.tcard-tag{font-size:11px;letter-spacing:.1em;color:#7c88a0;font-weight:600}
-.tcard-cornico{width:20px;height:20px;color:#6f7c94}
-.icon-btn{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;color:#aeb8cc;border:1px solid rgba(255,255,255,.1);transition:background .25s,color .25s}
-.icon-btn:hover{background:rgba(255,255,255,.08);color:#fff}
-.icon-btn svg{width:16px;height:16px}
-.pill{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:.05em;padding:6px 11px;border-radius:30px}
-.pill-new{background:rgba(0,71,187,.2);color:#7fb0ff;border:1px solid rgba(0,120,255,.4)}
-.pill-live{background:rgba(16,185,129,.14);color:#34d99b;border:1px solid rgba(16,185,129,.35)}
-.pill-live i{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(16,185,129,.6);animation:pulse 2s infinite}
-.pill-ghost{background:rgba(255,255,255,.06);color:#aab4c8;border:1px solid rgba(255,255,255,.1)}
-.copy-kpis{display:flex;gap:34px;margin-top:20px}
-.kpi-lbl{display:block;font-size:11px;letter-spacing:.06em;color:#7c88a0;font-weight:600;text-transform:uppercase}
-.kpi-val{display:block;font-size:26px;font-weight:800;color:#fff;margin-top:4px;letter-spacing:-.02em}
-.kpi-val.blue{color:#5b9dff}
-.copy-box{margin-top:20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:16px 18px}
-.copy-box .row{display:flex;justify-content:space-between;font-size:13.5px;padding:7px 0;color:#b9c2d4}
-.copy-box .row b{color:#fff;font-weight:600}
-.lb-head{margin-top:22px}
-.leaderboard{margin-top:12px;display:flex;flex-direction:column;gap:6px;flex:1}
-.leaderboard li{display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:12px;padding:8px 0}
-.lb-avatar{width:38px;height:38px;border-radius:50%;flex:none;display:grid;place-items:center;font-size:13px;font-weight:700;color:#fff;letter-spacing:.02em;background:#243049 center/cover}
-.lb-avatar[data-av="1"]{background-image:linear-gradient(135deg,#3a4a6b,#1e2740)}
-.lb-avatar[data-av="2"]{background-image:linear-gradient(135deg,#4b3a6b,#281e40)}
-.lb-avatar[data-av="3"]{background-image:linear-gradient(135deg,#3a5a6b,#1e3340)}
-.lb-meta{display:flex;flex-direction:column;line-height:1.3}
-.lb-meta b{font-size:14px;color:#fff;font-weight:600}
-.lb-meta em{font-style:normal;font-size:11.5px;color:#8390a6}
-.lb-ret{font-size:14px;font-weight:700;color:#5b9dff;font-variant-numeric:tabular-nums}
-.btn-copy{font-size:12px;font-weight:600;color:#7fb0ff;padding:7px 15px;border-radius:30px;border:1px solid rgba(0,120,255,.45);transition:background .25s,color .25s,border-color .25s}
-.btn-copy:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
-.tcard-copy .btn{margin-top:20px}
-.mini-terminal{margin-top:20px;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:0 0 12px;overflow:hidden}
-.mt-bar{display:flex;align-items:center;gap:6px;padding:11px 14px;border-bottom:1px solid rgba(255,255,255,.06);position:relative}
-.mt-bar i{width:9px;height:9px;border-radius:50%}
-.mt-bar i:nth-child(1){background:#ff5f57}
-.mt-bar i:nth-child(2){background:#febc2e}
-.mt-bar i:nth-child(3){background:#28c840}
-.mt-lock{width:13px;height:13px;color:#5c677d;margin-left:8px}
-.mt-track{flex:1;height:6px;border-radius:4px;background:rgba(255,255,255,.08)}
-.mt-row{display:grid;grid-template-columns:1fr auto auto;gap:14px;align-items:center;padding:9px 16px;font-size:13px;color:#aab4c8}
-.mt-row b{color:#fff;font-weight:700}
-.mt-head{color:#6d7893;font-size:10.5px;letter-spacing:.08em;padding-top:12px}
-.mt-row .tag{font-size:11.5px;font-weight:600;padding:3px 8px;border-radius:6px}
-.mt-row .tag.up{background:rgba(16,185,129,.16);color:#34d99b}
-.tcard-foot{display:flex;justify-content:space-between;align-items:center;margin-top:18px}
-.foot-traders{display:flex;align-items:center;gap:10px;font-size:13px;color:#c2ccdd}
-.ava-stack{display:flex}
-.ava-stack i{width:24px;height:24px;border-radius:50%;border:2px solid #0b1120;margin-left:-8px;background:#2a3350;display:grid;place-items:center;color:rgba(255,255,255,.78)}
-.ava-stack i svg{width:13px;height:13px}
-.ava-stack i:first-child{margin-left:0}
-.ava-stack i[data-av="1"]{background:linear-gradient(135deg,#3a4a6b,#1e2740)}
-.ava-stack i[data-av="2"]{background:linear-gradient(135deg,#4b3a6b,#281e40)}
-.ava-stack i[data-av="3"]{background:linear-gradient(135deg,#3a5a6b,#1e3340)}
-.foot-rating{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:#fff}
-.foot-rating .star{width:14px;height:14px;color:#ffb400}
-.pro-input{margin-top:20px;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.1);border-radius:11px;padding:13px 15px;font-size:13.5px;color:#c9d2e2;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
-.pro-latency{display:flex;align-items:center;gap:8px;margin-top:16px;font-size:13.5px;color:#aab4c8;border-top:1px solid rgba(255,255,255,.07);padding-top:16px}
-.pro-latency svg{width:15px;height:15px;color:#5b9dff}
-.pro-latency b{color:#fff}
-.tlink{display:inline-flex;align-items:center;gap:7px;margin-top:18px;font-size:14px;font-weight:600;color:#5b9dff}
-.tlink .ico{width:15px;height:15px;transition:transform .3s var(--ease)}
-.tlink:hover .ico{transform:translateX(4px)}
-.ct-main{display:flex;align-items:center;justify-content:space-between;margin-top:22px;gap:16px}
-.ct-big{font-size:52px;font-weight:800;color:#5b9dff;letter-spacing:-.03em;line-height:1}
-.ct-bars{display:flex;align-items:flex-end;gap:5px;height:56px}
-.ct-bars i{width:8px;border-radius:3px;background:linear-gradient(180deg,#5b9dff,#1e4fb8)}
-.ct-bars i:nth-child(1){height:40%}
-.ct-bars i:nth-child(2){height:62%}
-.ct-bars i:nth-child(3){height:48%}
-.ct-bars i:nth-child(4){height:78%}
-.ct-bars i:nth-child(5){height:56%}
-.ct-bars i:nth-child(6){height:90%}
-.ct-bars i:nth-child(7){height:70%}
-.ct-bars i:nth-child(8){height:100%}
-.ct-foot{display:flex;justify-content:space-between;margin-top:22px;border-top:1px solid rgba(255,255,255,.07);padding-top:16px}
-.ct-foot b{display:block;color:#fff;font-size:15px;font-weight:700;margin-top:3px}
-.syn-load{margin-top:24px}
-.syn-row{display:flex;justify-content:space-between;font-size:13.5px;color:#b9c2d4;margin-bottom:10px}
-.syn-row .blue{color:#5b9dff;font-weight:600}
-.syn-bar{height:8px;border-radius:5px;background:rgba(255,255,255,.08);overflow:hidden}
-.syn-bar i{display:block;height:100%;width:var(--w);border-radius:5px;background:linear-gradient(90deg,#1e4fb8,#5b9dff)}
-/* ---------- Trusted worldwide ---------- */
-.trusted-stats{display:flex;justify-content:center;gap:0;max-width:760px;margin:0 auto 64px;flex-wrap:wrap}
-.trusted-stats li{flex:1;min-width:150px;text-align:center;padding:0 40px;position:relative}
-.trusted-stats li+li::before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:1px;background:rgba(255,255,255,.14)}
-.stat-num.light{color:#fff;font-size:clamp(34px,4.5vw,46px)}
-.stat-cap{display:block;margin-top:10px;font-size:12px;letter-spacing:.08em;color:#8ea0bd;text-transform:uppercase}
-.country-rail{overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
-.country-track{display:flex;gap:22px;width:max-content;will-change:transform;padding-bottom:6px}
-.country-card{flex:0 0 360px;width:360px;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.09);border-radius:var(--radius-xl);overflow:hidden;transition:transform .4s var(--ease),border-color .3s}
-.country-card:hover{transform:translateY(-4px);border-color:rgba(0,120,255,.4)}
-.cc-media{position:relative;aspect-ratio:386/250;overflow:hidden}
-.cc-media img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
-.country-card:hover .cc-media img{transform:scale(1.05)}
-.cc-foot{padding:18px 20px 20px}
-.cc-row{display:flex;justify-content:space-between;align-items:center}
-.cc-name{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:600;color:#fff}
-.cc-country{font-size:13px;color:#9aa8c0}
-.cc-meta{margin-top:16px;align-items:flex-end}
-.cc-meta small{display:block;font-size:11.5px;color:#8494ad;margin-bottom:3px}
-.cc-meta b{font-size:15px;color:#fff;font-weight:700}
-/* ---------- Academy ---------- */
-.academy-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.ac-feature{display:flex;flex-direction:column;background:linear-gradient(180deg,#0a3aa0,#04205a);border-radius:var(--radius-xl);padding:14px;color:#fff;overflow:hidden;transition:transform .45s var(--ease),box-shadow .45s var(--ease)}
-.ac-feature:hover{transform:translateY(-5px);box-shadow:0 30px 60px -28px rgba(0,50,150,.6)}
-.ac-img{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:16/9.4;flex:0 0 auto}
-.ac-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
-.ac-feature:hover .ac-img img{transform:scale(1.05)}
-.ac-tag{position:absolute;font-size:12px;font-weight:600;padding:6px 13px;border-radius:30px;background:rgba(10,16,28,.55);color:#fff;backdrop-filter:blur(6px)}
-.ac-tag.tl{top:14px;left:14px}
-.ac-tag.tr{top:14px;right:14px}
-.ac-play{position:absolute;inset:0;margin:auto;width:66px;height:66px;border-radius:50%;background:rgba(255,255,255,.92);color:var(--blue);display:grid;place-items:center;box-shadow:0 12px 30px -8px rgba(0,0,0,.45);transition:transform .3s var(--ease),background .3s}
-.ac-play svg{width:26px;height:26px;margin-left:3px}
-.ac-play:hover{transform:scale(1.09);background:#fff}
-.ac-play.sm{width:44px;height:44px}
-.ac-play.sm svg{width:17px;height:17px;margin-left:2px}
-.ac-feature:hover .ac-play,.ac-mini:hover .ac-play{transform:scale(1.06)}
-.ac-duration{position:absolute;right:14px;bottom:14px;background:rgba(6,10,20,.72);color:#fff;font-size:12px;font-weight:600;padding:4px 9px;border-radius:7px;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
-.ac-body{display:flex;flex-direction:column;flex:1 1 auto;padding:24px 18px 14px}
-.ac-body h3{font-size:22px;margin-bottom:8px}
-.ac-body p{font-size:14px;color:#c3d2ee}
-.ac-foot{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:28px}
-.ac-meta{font-size:13px;color:#a9b7d3}
-.ac-read{display:inline-flex;align-items:center;gap:7px;font-size:14px;font-weight:600;color:#fff}
-.ac-read.blue{color:var(--blue)}
-.ac-read .ico{width:15px;height:15px;transition:transform .3s var(--ease)}
-.ac-read:hover .ico{transform:translateX(4px)}
-.ac-side{display:flex;flex-direction:column;gap:24px}
-.ac-mini{flex:1;background:rgba(255,255,255,.46);-webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6);border:1px solid rgba(255,255,255,.75);border-radius:var(--radius-xl);padding:18px;display:flex;gap:18px;box-shadow:0 12px 34px -18px rgba(20,44,96,.26),inset 0 1px 0 rgba(255,255,255,.9);transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s}
-.ac-mini:hover{transform:translateY(-4px);box-shadow:0 24px 54px -22px rgba(20,44,96,.34),inset 0 1px 0 rgba(255,255,255,.95);border-color:#fff}
-.ac-thumb{position:relative;flex:0 0 178px;height:100%;min-height:150px;border-radius:14px;overflow:hidden}
-.ac-thumb img{width:100%;height:100%;object-fit:cover}
-.ac-thumb .ac-tag{bottom:12px;left:12px;font-size:11px;padding:4px 10px}
-.ac-mini-body{display:flex;flex-direction:column;flex:1;padding:4px 4px 4px 0}
-.ac-mini-body h3{font-size:17px;color:var(--text);margin-bottom:6px;letter-spacing:-.01em}
-.ac-mini-body p{font-size:13.5px;color:var(--text-soft)}
-.ac-mini-body .ac-foot{margin-top:auto}
-.ac-mini-body .ac-meta{color:var(--text-mute)}
-/* ---------- Sponsors ---------- */
-.sponsors-title{text-align:center;font-size:clamp(19px,2.3vw,26px);color:var(--text);font-weight:600;line-height:1.2;margin-bottom:40px}
-.sponsor-cards{display:flex;justify-content:center;gap:24px;flex-wrap:wrap}
-.sponsor-card{width:300px;height:160px;text-decoration:none;cursor:pointer;background:rgba(255,255,255,.46);-webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6);border:1px solid rgba(255,255,255,.75);border-radius:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;box-shadow:0 12px 34px -18px rgba(20,44,96,.26),inset 0 1px 0 rgba(255,255,255,.9);transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s}
-.sponsor-card:hover{transform:translateY(-5px);box-shadow:0 24px 54px -22px rgba(20,44,96,.34),inset 0 1px 0 rgba(255,255,255,.95);border-color:#fff}
-.sponsor-card img{height:44px;width:auto}
-.sponsor-card span{font-size:13.5px;color:var(--text-soft)}
-/* ---------- Hero network graphic ---------- */
-.cc-row{display:flex;align-items:center;gap:8px}
-.cc-name{font-size:13px;font-weight:600;color:#fff}
-.cc-name em{font-style:normal;color:#8b95a8;font-weight:400}
-/* ---------- Responsive ---------- */
-@media (max-width:1080px){.tools-grid{grid-template-columns:1fr 1fr;grid-template-areas:"copy web" "copy pro" "ct syn"}}
-@media (max-width:720px){.hero-strip-label{margin-top:64px}
-.hero-strip{gap:26px 0}
-.hero-strip li{flex:0 0 44%;min-width:44%;padding:0 10px}
-.hero-strip li+li::before{display:none}
-.why-stats{grid-template-columns:1fr;gap:12px;max-width:340px}
-.why-stats li{padding:20px 0;text-align:center}
-.why-stats li+li::before{left:20%;right:20%;top:0;bottom:auto;width:auto;height:1px}
-.tools-grid{grid-template-columns:1fr;grid-template-areas:"copy" "web" "pro" "ct" "syn"}
-.trusted-stats li{flex:1 0 100%;padding:18px 0}
-.trusted-stats li+li::before{display:none}
-.academy-grid{grid-template-columns:1fr}}
-@media (max-width:460px){.sponsor-card{width:100%;max-width:320px}
-.ac-mini{flex-direction:column}
-.ac-thumb{flex-basis:auto;width:100%;height:170px;min-height:0}}
+.nr-bar{
+  position:sticky;top:calc(var(--chrome-h) + var(--chrome-gap));z-index:20;
+  display:flex;align-items:center;gap:14px 18px;flex-wrap:wrap;
+  padding:12px 14px;border-radius:24px;background:rgba(255,255,255,.8);
+}
+.nr-search{
+  display:flex;align-items:center;gap:10px;flex:1 1 260px;min-width:0;
+  padding:0 6px 0 16px;border-radius:70px;background:rgba(255,255,255,.7);border:1px solid var(--line);
+  transition:border-color .25s,box-shadow .3s;
+}
+.nr-search:focus-within{border-color:rgba(0,71,187,.45);box-shadow:0 0 0 4px rgba(0,71,187,.12)}
+.nr-search-ic{flex:none;display:grid;place-items:center;color:var(--text-mute)}
+.nr-search-ic svg{width:17px;height:17px}
+.nr-search input{flex:1;min-width:0;border:0;background:none;outline:none;font:inherit;font-size:14.5px;color:var(--text);padding:12px 0}
+.nr-search input::placeholder{color:var(--text-mute)}
+.nr-search input::-webkit-search-cancel-button{display:none}
+.nr-clear{
+  flex:none;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(0,71,187,.08);color:var(--blue);transition:background .25s,transform .3s var(--ease);
+}
+.nr-clear svg{width:13px;height:13px}
+.nr-clear:hover{background:rgba(0,71,187,.16);transform:rotate(90deg)}
+.nr-cats{display:flex;gap:6px;flex-wrap:wrap}
+.nr-empty{text-align:center;padding:54px 20px 8px}
+.nr-empty h3{font-size:20px;color:var(--text);letter-spacing:-.02em}
+.nr-empty h3 span{color:var(--blue)}
+.nr-empty p{max-width:520px;margin:10px auto 0;font-size:14.5px;line-height:1.6;color:var(--text-soft)}
+.nr-empty .btn{margin-top:24px}
+/* ---- In the spotlight ---- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ---- Subscribe bar ---- */
+.nr-subsec{background:radial-gradient(58% 56% at 90% 4%,rgba(0,71,187,.06),transparent 60%),var(--bg-light)}
+/* ---- Responsive ---- */
+@media (max-width:1080px){.nr-lead{grid-template-columns:1fr}
+.nr-lead-media{min-height:260px;aspect-ratio:16/9}}
+@media (max-width:900px){.nr-bar{position:static;border-radius:22px}}
+
   </style>
 
-  <!-- Hero background (LCP) -->
-  <link rel="preload" href="/assets/img/home-hero-bg.webp" as="image" type="image/webp" fetchpriority="high" />
+  <!-- Structured data — breadcrumb -->
 
-  <!-- Structured data -->
+  <!-- Structured data — article listing -->
 
-  <!-- Page-specific styles (extracted from the shared stylesheet) -->
-  <style>
-/* ---- 404: giant ghost numerals + frosted card ---- */
-.nf-hero{position:relative;isolation:isolate;overflow:clip;color:#fff;text-align:center;
-  padding:clamp(40px,6vw,90px) 0 clamp(70px,8vw,120px);
-  background:
-    radial-gradient(52% 44% at 18% 0%,rgba(42,114,255,.16),transparent 60%),
-    radial-gradient(46% 40% at 85% 90%,rgba(42,114,255,.1),transparent 58%),
-    linear-gradient(180deg,#04060e,#070d1c 55%,#04060e)}
-.nf-hero>.container{position:relative;z-index:1}
-.nf-code{display:block;font-weight:800;line-height:.86;letter-spacing:-.04em;user-select:none;
-  font-size:clamp(160px,30vw,420px);
-  background:linear-gradient(160deg,#f2f5fb 8%,#aab6c9 34%,#3c4a63 72%,#131c30 96%);
-  -webkit-background-clip:text;background-clip:text;color:transparent}
-.nf-card{position:relative;max-width:600px;margin:clamp(-90px,-9vw,-40px) auto 0;
-  padding:clamp(30px,4vw,48px) clamp(24px,4vw,52px);border-radius:clamp(20px,2.4vw,30px);
-  background:linear-gradient(180deg,rgba(13,20,36,.72),rgba(9,14,26,.82));
-  border:1px solid rgba(255,255,255,.12);
-  -webkit-backdrop-filter:blur(20px) saturate(1.3);backdrop-filter:blur(20px) saturate(1.3);
-  box-shadow:0 40px 90px -40px rgba(0,0,0,.85),inset 0 1px 0 rgba(255,255,255,.09)}
-.nf-card h1{font-size:clamp(24px,2.8vw,34px);letter-spacing:-.028em;margin-bottom:12px}
-.nf-card p{font-size:14.5px;line-height:1.7;color:#a9bcd8;max-width:44ch;margin:0 auto 24px}
-.nf-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:12px}
-.nf-links{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:26px;
-  padding-top:22px;border-top:1px solid rgba(255,255,255,.09)}
-.nf-links a{padding:8px 16px;border-radius:30px;font-size:12.5px;font-weight:700;color:#cdd9ec;
-  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);
-  transition:color .25s,border-color .25s,background .25s,transform .35s var(--ease)}
-.nf-links a:hover{color:#fff;border-color:rgba(91,157,255,.5);background:rgba(42,114,255,.14);transform:translateY(-2px)}
-@media (max-width:520px){.nf-card{margin-top:-24px}}
-  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "STARTRADER In the Spotlight",
+    "description": "Every STARTRADER media appearance in one place — broadcast segments, conference panels, interviews and podcasts from the research desk and leadership team.",
+    "url": "https://www.startrader.com/education/analysis/news/spotlight.html"
+  }
+  </script>
 </head>
 <body>
 
@@ -419,26 +172,23 @@
   <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></symbol>
-  <symbol id="i-share" viewBox="0 0 24 24"><path d="M18 8a3 3 0 1 0-2.83-4M6 15a3 3 0 1 0 0-.01M18 22a3 3 0 1 0 0-6 3 3 0 0 0 0 6M8.6 13.5l6.8 4M15.4 6.5l-6.8 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z" fill="currentColor"/></symbol>
   <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.4 3 8.4 7 9.5 4-1.1 7-5.1 7-9.5V6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-box" viewBox="0 0 24 24"><path d="M12 3 3 7.5v9L12 21l9-4.5v-9zM3 7.5 12 12l9-4.5M12 12v9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
-  <symbol id="i-expand" viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-headset" viewBox="0 0 24 24"><path d="M4 13a8 8 0 0 1 16 0M4 13v3a2 2 0 0 0 2 2h1v-6H6a2 2 0 0 0-2 2Zm16 0v3a2 2 0 0 1-2 2h-1v-6h1a2 2 0 0 1 2 2Zm-3 5a3 3 0 0 1-3 2.5h-2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-  <symbol id="i-gear" viewBox="0 0 24 24"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M19.4 13a7.8 7.8 0 0 0 0-2l1.6-1.2-2-3.4-1.9.8a7.6 7.6 0 0 0-1.7-1l-.3-2H10.9l-.3 2a7.6 7.6 0 0 0-1.7 1l-1.9-.8-2 3.4L6.6 11a7.8 7.8 0 0 0 0 2l-1.6 1.2 2 3.4 1.9-.8c.5.4 1.1.7 1.7 1l.3 2h4.2l.3-2c.6-.3 1.2-.6 1.7-1l1.9.8 2-3.4z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></symbol>
   <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10m5 10V4m5 16v-7m5 7V8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
   <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 2 2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.8 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z" fill="currentColor"/></symbol>
-  <symbol id="i-verified" viewBox="0 0 24 24"><path d="m12 2 2.2 1.6 2.7-.2 1.1 2.5 2.4 1.3-.5 2.7 1.4 2.3-1.9 1.9.1 2.7-2.6.8-1.3 2.4-2.6-.6L12 22l-2.2-1.6-2.6.6-1.3-2.4-2.6-.8.1-2.7L1.6 13 3 10.7l-.5-2.7 2.4-1.3 1.1-2.5 2.7.2z" fill="currentColor"/><path d="m8.5 12 2.3 2.3 4.7-4.6" fill="none" stroke="#0d0f13" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
   <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.7 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3Z" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 7v5l3.4 2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M4 18a8 8 0 1 1 16 0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M12 18l4.2-5.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="12" cy="18" r="1.5" fill="currentColor"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
   <symbol id="i-facebook" viewBox="0 0 24 24"><path d="M14 8.5V7c0-.9.6-1 1-1h1.5V3H14c-2.2 0-3.5 1.5-3.5 3.7V8.5H8.5v3h2v8.5h3.5v-8.5h2.3l.4-3z" fill="currentColor"/></symbol>
   <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="3.6" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="16.5" cy="7.5" r="1.1" fill="currentColor"/></symbol>
   <symbol id="i-youtube" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m10.5 9.3 4.5 2.7-4.5 2.7z" fill="currentColor"/></symbol>
   <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M6.5 9v9M6.5 6.2v.01M11 18v-5a2.5 2.5 0 0 1 5 0v5M11 12v6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
-  <symbol id="i-tiktok" viewBox="0 0 24 24"><path d="M14 4c.3 2.3 1.9 3.9 4 4.1V11c-1.5 0-2.9-.5-4-1.3V15a5 5 0 1 1-5-5v2.6a2.4 2.4 0 1 0 2.4 2.4V4z" fill="currentColor"/></symbol>
   <symbol id="i-caret-up" viewBox="0 0 12 12"><path d="M6 3 10 8H2z" fill="currentColor"/></symbol>
   <symbol id="i-caret-down" viewBox="0 0 12 12"><path d="M6 9 2 4h8z" fill="currentColor"/></symbol>
-  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M8 10V8a4 4 0 0 1 8 0v2" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
   <symbol id="i-x" viewBox="0 0 24 24"><path d="M17.5 3h3.2l-7 8 8.2 10.9h-6.4l-5-6.6-5.8 6.6H1.5l7.5-8.6L1.6 3H8l4.5 6zM16.4 19.1h1.8L7.7 4.8H5.8z" fill="currentColor"/></symbol>
   <symbol id="i-telegram" viewBox="0 0 24 24"><path d="M21.5 4.3 2.9 11.5c-.9.35-.9.9-.15 1.12l4.7 1.46 1.8 5.6c.23.63.4.86 1 .86.46 0 .66-.2.9-.45l2.28-2.2 4.72 3.5c.87.48 1.5.23 1.72-.8l3-14.1c.3-1.28-.5-1.86-1.34-1.5z" fill="currentColor"/></symbol>
   <symbol id="i-user-plus" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3 20a6 6 0 0 1 12 0M18.5 8v5M21 10.5h-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
@@ -456,11 +206,11 @@
   <symbol id="i-pie" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M12 3v9h9A9 9 0 0 0 12 3Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
   <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 11.5a7.5 7.5 0 0 1-10.9 6.7L4 20l1.8-5.1A7.5 7.5 0 1 1 21 11.5Z" fill="currentColor"/><circle cx="8.5" cy="11.5" r="1.15" fill="#0a2a6b"/><circle cx="12" cy="11.5" r="1.15" fill="#0a2a6b"/><circle cx="15.5" cy="11.5" r="1.15" fill="#0a2a6b"/></symbol>
   <symbol id="i-bubble" viewBox="0 0 24 24"><path d="M20.5 11.6c0 4-3.8 7.2-8.5 7.2-.9 0-1.8-.12-2.6-.34L4.5 20l1.2-3.5A6.9 6.9 0 0 1 3.5 11.6c0-4 3.8-7.2 8.5-7.2s8.5 3.2 8.5 7.2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.8 11.6h6.4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
-  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 7v5l3.4 2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-cookie" viewBox="0 0 24 24"><path d="M12 2.5a9.5 9.5 0 1 0 9.5 9.5 4 4 0 0 1-4-4 3.2 3.2 0 0 1-3.4-3.4A9.6 9.6 0 0 0 12 2.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="9" cy="12" r="1" fill="currentColor"/><circle cx="13" cy="15" r="1" fill="currentColor"/><circle cx="14.5" cy="10" r="1" fill="currentColor"/><circle cx="8.5" cy="16" r=".8" fill="currentColor"/></symbol>
   <symbol id="i-send" viewBox="0 0 24 24"><path d="M4 12 20 4l-6 16-3-6-7-2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
   <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
   <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8.2" r="3.8" fill="currentColor"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0Z" fill="currentColor"/></symbol>
+  <symbol id="i-cm-bars" viewBox="0 0 24 24"><path d="M3.6 16.4h7.2l1.1 3.4H2.5l1.1-3.4Z" fill="currentColor"/><path d="M13.2 16.4h7.2l1.1 3.4h-9.4l1.1-3.4Z" fill="currentColor" opacity=".78"/><path d="M8.4 11.2h7.2l1.1 3.4H7.3l1.1-3.4Z" fill="currentColor" opacity=".9"/><path d="M8.4 6h7.2l1.1 3.4H7.3L8.4 6Z" fill="currentColor" opacity=".62"/></symbol>
 </svg>
 
 <a class="skip-link" href="#main">Skip to content</a>
@@ -476,7 +226,7 @@
 <header class="site-header" id="siteHeader">
   <div class="container nav">
     <div class="nav-brandwrap">
-      <a href="#top" class="brand" aria-label="STARTRADER home">
+      <a href="/index.html" class="brand" aria-label="STARTRADER home">
         <img src="/assets/img/logo-startrader.svg" alt="STARTRADER" width="180" height="35" />
       </a>
       <span class="hp-divider" aria-hidden="true"></span>
@@ -567,7 +317,7 @@
             </div>
             <div class="mega-col">
               <span class="mega-head">Analysis</span>
-              <a href="/news.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-window"/></svg></span><span class="mega-txt"><b>News Room</b></span></a>
+              <a href="/news.html" class="mega-item active" aria-current="page"><span class="mega-ico"><svg><use href="#i-window"/></svg></span><span class="mega-txt"><b>News Room</b></span></a>
               <a href="/economiccalendar.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-clock"/></svg></span><span class="mega-txt"><b>Economic Calendar</b></span></a>
             </div>
             <div class="mega-col">
@@ -700,10 +450,10 @@
 <!-- Mobile menu -->
 <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
   <nav aria-label="Mobile">
-    <a href="#markets">Trading</a>
-    <a href="#academy">Education</a>
-    <a href="#tools">Promotions</a>
-    <a href="#why">Company</a>
+    <a href="/index.html#markets">Trading</a>
+    <a href="/index.html#academy">Education</a>
+    <a href="/promotions.html">Promotions</a>
+    <a href="/index.html#why">Company</a>
     <hr>
     <a href="/login.html" class="login">Login</a>
     <a href="/getting-started.html" class="btn btn-primary">Open Live Account</a>
@@ -712,33 +462,147 @@
 
 <main id="main">
 
-<!-- ============ 404 ============ -->
-<section class="nf-hero" aria-labelledby="nf-title">
-  <div class="container">
-    <span class="nf-code" aria-hidden="true">404</span>
-    <div class="nf-card" data-aos="fade-up">
-      <h1 id="nf-title">Oops, page not found</h1>
-      <p>The page you are looking for has moved, expired, or never existed. The markets, however, are still open.</p>
-      <div class="nf-actions">
-        <a href="/index.html" class="btn btn-primary btn-lg">Back to homepage <svg class="ico"><use href="#i-arrow-right"/></svg></a>
-      </div>
-      <nav class="nf-links" aria-label="Popular destinations">
-        <a href="/getting-started.html">Open an account</a>
-        <a href="/forex.html">Markets</a>
-        <a href="/mt5.html">Platforms</a>
-        <a href="/promotions.html">Promotions</a>
-        <a href="/help-center.html">Help Center</a>
-      </nav>
+<!-- ============ HERO ============ -->
+<section class="wb-hero nr-hero" aria-labelledby="sp-hero-title">
+  <video class="wb-hero-video" autoplay muted loop playsinline preload="auto" poster="/assets/img/webinars-video-poster.webp" aria-hidden="true">
+    <source src="/assets/video/webinars-banner.mp4" type="video/mp4">
+  </video>
+  <div class="wb-hero-scrim" aria-hidden="true"></div>
+
+  <div class="container wb-hero-inner">
+    <span class="eyebrow eyebrow-blue" data-aos="fade-up">News Room</span>
+    <h1 class="wb-h1" id="sp-hero-title" data-aos="fade-up">In the Spotlight</h1>
+    <p class="wb-lead" data-aos="fade-up">Where you&rsquo;ve seen us &mdash; broadcast segments, conference panels, interviews<br> and podcasts from the research desk and the leadership team.</p>
+    <div class="wb-hact" data-aos="fade-up">
+      <a href="#appearances" class="btn btn-primary btn-lg magnetic">Browse appearances <svg class="ico"><use href="#i-arrow-right"/></svg></a>
     </div>
   </div>
 </section>
 
-<!-- ============ CTA ============ -->
-<section class="cta-banner" aria-labelledby="nf-cta-title">
+<!-- ============ ALL APPEARANCES ============ -->
+<section class="section nr-spot" id="appearances" aria-labelledby="sp-all-title">
+  <div class="container">
+    <div class="head center">
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">The archive</span>
+      <h2 class="h2 h2-light" id="sp-all-title" data-aos="fade-up">Every appearance, on record</h2>
+      <p class="head-sub" data-aos="fade-up">The cameras, the stages and the studios &mdash; newest first.</p>
+    </div>
+
+    <div class="nr-spot-grid">
+      <a class="nr-spot-card" href="/media.html" data-aos="fade-up">
+        <span class="nr-spot-media">
+          <img src="/assets/img/company-office.webp" alt="STARTRADER analyst speaking on a broadcast panel" width="800" height="533" loading="lazy" decoding="async">
+          <span class="nr-spot-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
+        </span>
+        <span class="nr-spot-body">
+          <span class="nr-meta nr-meta--light"><time datetime="2026-06-05">5 Jun 2026</time><i aria-hidden="true"></i><span>Broadcast</span></span>
+          <h3>The case for gold at record highs</h3>
+          <p>Our senior analyst on why the metal keeps finding buyers, and what would change the story.</p>
+        </span>
+      </a>
+      <a class="nr-spot-card" href="/media.html" data-aos="fade-up" data-aos-delay="100">
+        <span class="nr-spot-media">
+          <img src="/assets/img/person-3.webp" alt="STARTRADER head of research at a conference panel" width="800" height="533" loading="lazy" decoding="async">
+          <span class="nr-spot-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
+        </span>
+        <span class="nr-spot-body">
+          <span class="nr-meta nr-meta--light"><time datetime="2026-05-20">20 May 2026</time><i aria-hidden="true"></i><span>Conference</span></span>
+          <h3>MENA Investment Congress: FX flows in a higher-rate world</h3>
+          <p>A panel on where regional capital is going as the rate cycle turns.</p>
+        </span>
+      </a>
+      <a class="nr-spot-card" href="/media.html" data-aos="fade-up" data-aos-delay="200">
+        <span class="nr-spot-media">
+          <img src="/assets/img/person-1.webp" alt="STARTRADER analyst in an interview" width="800" height="533" loading="lazy" decoding="async">
+          <span class="nr-spot-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
+        </span>
+        <span class="nr-spot-body">
+          <span class="nr-meta nr-meta--light"><time datetime="2026-05-12">12 May 2026</time><i aria-hidden="true"></i><span>Interview</span></span>
+          <h3>How ECN pricing actually works</h3>
+          <p>Raw spreads, commission and aggregation, explained without the jargon.</p>
+        </span>
+      </a>
+      <a class="nr-spot-card" href="/media.html" data-aos="fade-up">
+        <span class="nr-spot-media">
+          <img src="/assets/img/company-2.webp" alt="STARTRADER team at work" width="800" height="533" loading="lazy" decoding="async">
+          <span class="nr-spot-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
+        </span>
+        <span class="nr-spot-body">
+          <span class="nr-meta nr-meta--light"><time datetime="2026-04-28">28 Apr 2026</time><i aria-hidden="true"></i><span>Broadcast</span></span>
+          <h3>Rate cuts, and the currencies that care most</h3>
+          <p>A morning-show segment on which pairs move first when the easing cycle finally lands.</p>
+        </span>
+      </a>
+      <a class="nr-spot-card" href="/media.html" data-aos="fade-up" data-aos-delay="100">
+        <span class="nr-spot-media">
+          <img src="/assets/img/person-2.webp" alt="STARTRADER trader portrait" width="800" height="533" loading="lazy" decoding="async">
+          <span class="nr-spot-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
+        </span>
+        <span class="nr-spot-body">
+          <span class="nr-meta nr-meta--light"><time datetime="2026-04-14">14 Apr 2026</time><i aria-hidden="true"></i><span>Podcast</span></span>
+          <h3>Risk management is a habit, not a setting</h3>
+          <p>Forty minutes with our head of research on stops, sizing and the discipline behind both.</p>
+        </span>
+      </a>
+      <a class="nr-spot-card" href="/media.html" data-aos="fade-up" data-aos-delay="200">
+        <span class="nr-spot-media">
+          <img src="/assets/img/ev-gal-4.webp" alt="Panel session at iFX EXPO International in Limassol" width="800" height="533" loading="lazy" decoding="async">
+          <span class="nr-spot-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
+        </span>
+        <span class="nr-spot-body">
+          <span class="nr-meta nr-meta--light"><time datetime="2026-03-26">26 Mar 2026</time><i aria-hidden="true"></i><span>Conference</span></span>
+          <h3>iFX EXPO panel: where retail execution goes next</h3>
+          <p>Aggregation, speed and transparency — our desk alongside the industry's liquidity providers.</p>
+        </span>
+      </a>
+      <a class="nr-spot-card" href="/media.html" data-aos="fade-up">
+        <span class="nr-spot-media">
+          <img src="/assets/img/company-1.webp" alt="STARTRADER office" width="800" height="533" loading="lazy" decoding="async">
+          <span class="nr-spot-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
+        </span>
+        <span class="nr-spot-body">
+          <span class="nr-meta nr-meta--light"><time datetime="2026-03-10">10 Mar 2026</time><i aria-hidden="true"></i><span>Interview</span></span>
+          <h3>Reading the oil curve like a desk does</h3>
+          <p>Backwardation, contango and what the spreads say that the headline price doesn't.</p>
+        </span>
+      </a>
+      <a class="nr-spot-card" href="/media.html" data-aos="fade-up" data-aos-delay="100">
+        <span class="nr-spot-media">
+          <img src="/assets/img/company-3.webp" alt="STARTRADER trading floor" width="800" height="533" loading="lazy" decoding="async">
+          <span class="nr-spot-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
+        </span>
+        <span class="nr-spot-body">
+          <span class="nr-meta nr-meta--light"><time datetime="2026-02-19">19 Feb 2026</time><i aria-hidden="true"></i><span>Broadcast</span></span>
+          <h3>Gold, the dollar and the year's first surprise</h3>
+          <p>A studio discussion on the quarter's positioning — and the trade everyone had wrong.</p>
+        </span>
+      </a>
+      <a class="nr-spot-card" href="/media.html" data-aos="fade-up" data-aos-delay="200">
+        <span class="nr-spot-media">
+          <img src="/assets/img/fl-g1.webp" alt="STARTRADER team receiving an industry award" width="800" height="533" loading="lazy" decoding="async">
+          <span class="nr-spot-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
+        </span>
+        <span class="nr-spot-body">
+          <span class="nr-meta nr-meta--light"><time datetime="2026-02-04">4 Feb 2026</time><i aria-hidden="true"></i><span>Award</span></span>
+          <h3>Best Trade Execution — the desk behind the award</h3>
+          <p>Why fill quality is measured in milliseconds and slippage, not slogans.</p>
+        </span>
+      </a>
+    </div>
+
+    <div class="ma-morerow">
+      <a class="btn btn-primary btn-lg" href="/news.html">Back to the News Room <svg class="ico"><use href="#i-arrow-right"/></svg></a>
+      <a class="btn btn-primary btn-lg" href="/media.html">Media coverage <svg class="ico"><use href="#i-arrow-right"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLOSING CTA ============ -->
+<section class="cta-banner" aria-labelledby="sp-cta-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="nf-cta-title" data-aos="fade-up">Lost the page,<br>not the opportunity</h2>
-    <p data-aos="fade-up">Open a live account and trade 1,000+ instruments with ECN spreads and 100ms execution.</p>
+    <h2 id="sp-cta-title" data-aos="fade-up">Trade with the desk<br>you keep seeing on stage</h2>
+    <p data-aos="fade-up">Open an account and get the same research that the cameras keep asking for.</p>
     <div class="cta-actions" data-aos="fade-up">
       <a href="/getting-started.html" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
     </div>
@@ -746,6 +610,7 @@
 </section>
 
 </main>
+
 
 <!-- ============ FOOTER ============ -->
 <footer class="site-footer" id="footer">
@@ -759,13 +624,13 @@
       </div>
       <div class="foot-col">
         <h4>Platforms</h4>
-        <a href="/mt5.html">MT5</a><a href="/mt4.html">MT4</a><a href="/copy-trade.html">Copy Trade</a><a href="/star-webtrader.html">STAR Web Trading</a><a href="/webtrader.html">Web Trader</a><a href="#platforms">Mobile Apps</a><a href="/pamm-trade.html">Pro-Link</a>
+        <a href="/mt5.html">MT5</a><a href="/mt4.html">MT4</a><a href="/copy-trade.html">Copy Trade</a><a href="/star-webtrader.html">STAR Web Trading</a><a href="/webtrader.html">Web Trader</a><a href="/trading-app.html">Mobile Apps</a><a href="/pamm-trade.html">Pro-Link</a>
         <h4 class="mt">Products</h4>
         <a href="/forex.html">Forex</a><a href="/cfd.html">CFD</a><a href="/commodities.html">Commodities</a><a href="/indices.html">Indices</a><a href="/shares.html">Shares</a><a href="/etf.html">ETFs</a>
       </div>
       <div class="foot-col">
         <h4>Education</h4>
-        <a href="#academy">Knowledge Center</a><a href="/glossary.html">Glossary</a><a href="/news.html">News Room</a><a href="/economiccalendar.html">Economic Calendar</a><a href="/webinars.html">Webinars</a>
+        <a href="/education.html">Knowledge Center</a><a href="/market-analysis.html">Market Analysis</a><a href="/glossary.html">Glossary</a><a href="/news.html" aria-current="page">News Room</a><a href="/economiccalendar.html">Economic Calendar</a><a href="/webinars.html">Webinars</a>
         <h4 class="mt">Corporate</h4>
         <a href="/regulation.html">Regulation</a><a href="/legal-documents.html">Legal Documents</a><a href="/insurance.html">Insurance</a><a href="/liquidity-providers.html">Liquidity Providers</a>
       </div>
@@ -838,8 +703,8 @@
     <div class="chat-msg">👋 Hi there! Welcome to STARTRADER. How can we help you today?</div>
     <div class="chat-quick">
       <a href="/getting-started.html" class="chat-chip">Open a live account</a>
-      <a href="#platforms" class="chat-chip">Download a platform</a>
-      <a href="#markets" class="chat-chip">View spreads &amp; markets</a>
+      <a href="/trading-app.html" class="chat-chip">Download a platform</a>
+      <a href="#latest" class="chat-chip">Read the latest analysis</a>
       <a href="/contact.html" class="chat-chip">Contact us</a>
     </div>
   </div>
@@ -860,7 +725,6 @@
 <script src="/assets/js/vendor/gsap.min.js" defer></script>
 <script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/assets/js/vendor/lenis.min.js" defer></script>
-<script src="/assets/js/vendor/swiper-bundle.min.js" defer></script>
 <script src="/assets/js/vendor/aos.min.js" defer></script>
 <script src="/assets/js/main.js?v=map1" defer></script>
 </body>

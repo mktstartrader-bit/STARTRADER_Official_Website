@@ -1,0 +1,1291 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#05070E" />
+
+  <title>Financial Market Analysis | Daily, Weekly &amp; Monthly Reports | STARTRADER</title>
+  <meta name="description" content="Daily technical and fundamental analysis, weekly outlooks and monthly reviews from the STARTRADER desk — read the forces shaping forex, metals, indices and energies before you place the trade." />
+  <meta name="keywords" content="market analysis, technical analysis, fundamental analysis, weekly outlook, monthly review, forex analysis, gold analysis, STARTRADER" />
+  <meta name="author" content="STARTRADER" />
+  <link rel="canonical" href="https://www.startrader.com/market-analysis/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="STARTRADER" />
+  <meta property="og:title" content="Financial Market Analysis | STARTRADER" />
+  <meta property="og:description" content="Technical, fundamental, weekly and monthly analysis from the STARTRADER desk." />
+  <meta property="og:url" content="https://www.startrader.com/market-analysis/" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/home-hero-wave.webp" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Financial Market Analysis | STARTRADER" />
+  <meta name="twitter:description" content="Technical, fundamental, weekly and monthly analysis from the STARTRADER desk." />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/home-hero-wave.webp" />
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/favicon.svg" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <!-- Fonts (self-hosted) -->
+  <link rel="preload" href="/assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="/assets/css/aos.min.css" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=map1" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+
+/* ================= GLOSSARY ================= */
+/* one hover for every card on every page — do not redefine it per component */
+.ma-card,.ma-rep,.ma-cov{
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
+}
+.ma-card:hover,.ma-rep:hover,.ma-cov:hover{
+  transform:translateY(-4px);
+  border-color:rgba(0,71,187,.28);
+  box-shadow:0 28px 52px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff;
+}
+/* ---- choose your analysis (bento) ---- */
+.ma-choose{
+  position:relative;isolation:isolate;overflow:clip;
+  background:
+    radial-gradient(50% 44% at 94% 2%,rgba(0,71,187,.07),transparent 62%),
+    radial-gradient(44% 44% at 3% 98%,rgba(22,233,215,.07),transparent 62%),
+    var(--bg-light-2);
+}
+.ma-choose>.container{position:relative;z-index:1}
+.ma-soft-aura{position:absolute;z-index:0;border-radius:50%;filter:blur(92px);pointer-events:none}
+.ma-soft-aura.a1{width:520px;height:520px;top:-12%;right:-8%;background:radial-gradient(circle,rgba(0,71,187,.12),transparent 68%)}
+.ma-soft-aura.a2{width:460px;height:460px;bottom:-14%;left:-10%;background:radial-gradient(circle,rgba(22,233,215,.12),transparent 68%)}
+.ma-bento{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:20px}
+.ma-card{display:flex;flex-direction:column;border-radius:22px;padding:26px 24px 24px;min-width:0;overflow:hidden}
+/* wide featured card splits into copy + visual; the other three fill 2/3/3 */
+.ma-card--feat{grid-column:span 4;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.02fr);gap:clamp(20px,2.4vw,34px);align-items:start}
+.ma-card--feat>.ma-feat-copy{display:flex;flex-direction:column;height:100%}
+.ma-card--feat .ma-feat-viz{margin-top:0}
+.ma-card--feat .ma-more{margin-top:auto;padding-top:20px}
+.ma-bento>.ma-card:nth-child(2){grid-column:span 2}
+.ma-bento>.ma-card:nth-child(3),.ma-bento>.ma-card:nth-child(4){grid-column:span 3}
+.ma-ribbon{
+  align-self:flex-start;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  color:#fff;background:linear-gradient(120deg,var(--blue),#3b82f6);
+  padding:6px 12px;border-radius:70px;margin-bottom:14px;
+}
+.ma-card-ic{
+  width:46px;height:46px;border-radius:14px;display:grid;place-items:center;margin-bottom:16px;
+  background:rgba(0,71,187,.09);color:var(--blue);transition:transform .4s var(--ease);
+}
+.ma-card-ic svg{width:22px;height:22px}
+.ma-card:hover .ma-card-ic{transform:translateY(-3px) scale(1.05)}
+.ma-card h3{font-size:18px;letter-spacing:-.025em;color:var(--text)}
+.ma-card p{margin-top:10px;font-size:13.5px;line-height:1.64;color:var(--text-soft)}
+.ma-more{
+  display:inline-flex;align-items:center;gap:8px;margin-top:18px;
+  font-size:13px;font-weight:700;color:var(--blue);
+}
+.ma-more svg{width:15px;height:15px;transition:transform .35s var(--ease)}
+.ma-card:hover .ma-more svg{transform:translateX(5px)}
+.ma-feat-viz{margin-top:20px;padding:16px 16px 14px;border-radius:18px;background:#fff;border:1px solid var(--line)}
+.ma-feat-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.ma-feat-tag{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-mute)}
+.ma-feat-chg{font-size:11.5px;font-weight:800}
+.ma-feat-chg.up{color:#0f9d76}
+/* the chart gets its own rounded, clipped plot area */
+.ma-spark-wrap{margin-top:12px;border-radius:14px;overflow:hidden;background:linear-gradient(180deg,rgba(0,71,187,.05),rgba(0,71,187,0));border:1px solid rgba(20,44,96,.07)}
+.ma-spark{width:100%;height:84px;display:block}
+@media (prefers-reduced-motion:no-preference){.ma-spark-line{stroke-dasharray:340;stroke-dashoffset:340;transition:stroke-dashoffset 1.9s var(--ease)}
+.ma-spark-fill{opacity:0;transition:opacity 1s var(--ease) .5s}
+.ma-card.is-seen .ma-spark-line{stroke-dashoffset:0}
+.ma-card.is-seen .ma-spark-fill{opacity:1}}
+.ma-feat-rows{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.ma-feat-rows div{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:12px}
+.ma-feat-rows span{color:var(--text-soft)}
+.ma-feat-rows b{color:var(--ink);font-variant-numeric:tabular-nums}
+.ma-feat-rows .is-bull{color:#0f9d76}
+.ma-mini{display:flex;flex-direction:column;gap:8px;margin-top:auto;padding-top:20px}
+.ma-mini-row{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;padding:9px 12px;border-radius:11px;background:#fff;border:1px solid var(--line);font-size:12px;transition:transform .3s var(--ease),border-color .3s}
+.ma-card:hover .ma-mini-row{border-color:rgba(0,71,187,.2)}
+.ma-mini-row:hover{transform:translateX(3px)}
+.ma-mini-row span:not(.ma-flag){color:var(--text-soft)}
+.ma-mini-row b{color:var(--ink);font-variant-numeric:tabular-nums}
+.ma-mini-row b.hi{color:var(--blue)}
+.ma-flag{font-size:9.5px;font-weight:800;letter-spacing:.05em;color:var(--blue);background:rgba(0,71,187,.1);padding:3px 7px;border-radius:6px}
+.ma-wk{display:flex;flex-direction:column;gap:9px;margin-top:auto;padding-top:22px}
+.ma-wk-row{display:grid;grid-template-columns:34px minmax(0,1fr) 56px;align-items:center;gap:11px;font-size:12px}
+.ma-wk-row>span{color:var(--text-mute);font-weight:600}
+.ma-wk-row>b{text-align:right;font-variant-numeric:tabular-nums;font-weight:700;color:var(--text-soft)}
+.ma-wk-row.is-best>b{color:#0f9d76}
+.ma-wk-row>i{position:relative;height:8px;border-radius:70px;background:rgba(20,44,96,.07);overflow:hidden}
+.ma-wk-row>i::after{
+  content:"";position:absolute;inset:0 auto 0 0;width:var(--w);border-radius:70px;
+  transform-origin:left;transform:scaleX(0);transition:transform .75s var(--ease);
+}
+.ma-wk-row>i.up::after{background:linear-gradient(90deg,#4d94ff,#0047BB)}
+.ma-wk-row>i.down::after{background:linear-gradient(90deg,#ffa39c,#e0483f)}
+.ma-wk-row.is-best>i::after{background:linear-gradient(90deg,#3fd9a8,#0f9d76)}
+.ma-card.is-seen .ma-wk-row>i::after{transform:scaleX(1)}
+.ma-card.is-seen .ma-wk-row:nth-child(2)>i::after{transition-delay:.08s}
+.ma-card.is-seen .ma-wk-row:nth-child(3)>i::after{transition-delay:.16s}
+.ma-card.is-seen .ma-wk-row:nth-child(4)>i::after{transition-delay:.24s}
+.ma-card.is-seen .ma-wk-row:nth-child(5)>i::after{transition-delay:.32s}
+.ma-month{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-top:auto;padding-top:22px}
+.ma-month span{aspect-ratio:1;border-radius:5px;background:rgba(20,44,96,.07);transition:background .4s var(--ease),transform .4s var(--ease)}
+.ma-month span.on{background:rgba(0,71,187,.34)}
+.ma-card:hover .ma-month span.on{background:var(--blue);transform:scale(1.12)}
+
+/* ---- method (scroll-linked) ---- */
+.ma-method{
+  position:relative;overflow:clip;color:#fff;
+  background:
+    radial-gradient(64% 60% at 82% 10%,rgba(0,71,187,.3),transparent 62%),
+    linear-gradient(180deg,#04060e,#070c1c 52%,#04060e);
+}
+.ma-method .h2,.ma-method .head-sub{color:#fff}
+.ma-method .head-sub{color:#a9bcdb}
+.ma-method .eyebrow{color:#93b6ff}
+.ma-meth{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,4vw,64px);align-items:start}
+.ma-meth-stage{position:sticky;top:calc(var(--chrome-h) + 26px)}
+.ma-meth-viz{
+  border-radius:24px;padding:20px;
+  background:linear-gradient(168deg,rgba(255,255,255,.075),rgba(255,255,255,.03));
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 40px 80px -44px rgba(0,0,0,.85),inset 0 1px 0 rgba(255,255,255,.16);
+}
+.ma-meth-viz-top{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.ma-meth-sym{display:flex;flex-direction:column;gap:2px}
+.ma-meth-sym b{font-size:14px;color:#fff;letter-spacing:-.02em}
+.ma-meth-sym em{font-style:normal;font-size:11px;color:#8ea4c6}
+.ma-meth-prog{display:flex;gap:5px}
+.ma-meth-prog i{width:22px;height:3px;border-radius:3px;background:rgba(255,255,255,.16);transition:background .45s var(--ease),width .45s var(--ease)}
+.ma-meth[data-on="1"] .ma-meth-prog i:nth-child(1),.ma-meth[data-on="2"] .ma-meth-prog i:nth-child(-n+2),.ma-meth[data-on="3"] .ma-meth-prog i{background:#6fa8ff}
+.ma-meth[data-on="1"] .ma-meth-prog i:nth-child(1),.ma-meth[data-on="2"] .ma-meth-prog i:nth-child(2),.ma-meth[data-on="3"] .ma-meth-prog i:nth-child(3){width:32px}
+.ma-meth-canvas{position:relative;margin-top:16px;border-radius:18px;overflow:hidden;background:rgba(3,5,12,.55);border:1px solid rgba(255,255,255,.07)}
+.ma-meth-canvas svg{width:100%;height:clamp(210px,24vw,270px);display:block}
+.mv-grid line{stroke:rgba(255,255,255,.05);stroke-width:1}
+.mv-price{fill:none;stroke:#6fa8ff;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.mv-area{opacity:0;transition:opacity .7s var(--ease)}
+.ma-meth[data-seen] .mv-area{opacity:1}
+@media (prefers-reduced-motion:no-preference){.mv-price{stroke-dasharray:600;stroke-dashoffset:600}
+.ma-meth[data-seen] .mv-price{transition:stroke-dashoffset 2.2s var(--ease);stroke-dashoffset:0}}
+/* each pass fades its own layer in, and slides it a touch — opacity alone read flat */
+.mv-struct,.mv-cat,.mv-lvl{opacity:0;transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.mv-struct{transform:translateY(10px)}
+.mv-cat{transform:scaleX(.9);transform-origin:280px 0}
+.mv-lvl{transform:translateY(-8px)}
+.ma-meth[data-on="1"] .mv-struct,.ma-meth[data-on="2"] .mv-cat,.ma-meth[data-on="3"] .mv-lvl{opacity:1;transform:none}
+.mv-ch{fill:none;stroke:#6fa8ff;stroke-width:1.3;stroke-dasharray:6 7;opacity:.8;vector-effect:non-scaling-stroke}
+.mv-catline{fill:none;stroke:#ffc244;stroke-width:1.4;stroke-dasharray:5 6;vector-effect:non-scaling-stroke}
+.mv-res{fill:none;stroke:#ff8078;stroke-width:1.5;stroke-dasharray:7 7;vector-effect:non-scaling-stroke}
+.mv-sup{fill:none;stroke:#3fd9a8;stroke-width:1.5;stroke-dasharray:7 7;vector-effect:non-scaling-stroke}
+.mv-tag{
+  position:absolute;display:inline-flex;align-items:center;gap:7px;
+  font-size:10.5px;font-weight:700;padding:5px 10px;border-radius:70px;letter-spacing:-.01em;
+  background:rgba(6,10,22,.82);border:1px solid rgba(255,255,255,.14);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  opacity:0;transform:translateY(6px) scale(.96);
+  transition:opacity .5s var(--ease),transform .5s var(--ease);
+}
+.mv-tag i{width:6px;height:6px;border-radius:50%;flex:none}
+.mv-tag-r{top:15%;left:4%;color:#ffb0a8}
+.mv-tag-r i{background:#ff8078}
+.mv-tag-s{top:62%;left:4%;color:#8fe6c8}
+.mv-tag-s i{background:#3fd9a8}
+.mv-tag-c{top:5%;left:52%;color:#ffd88a}
+.mv-tag-c i{background:#ffc244}
+.mv-tag-t{bottom:8%;right:5%;color:#bcd6ff}
+.mv-tag-t i{background:#6fa8ff}
+.ma-meth[data-on="1"] .mv-tag-t,.ma-meth[data-on="2"] .mv-tag-c,.ma-meth[data-on="3"] .mv-tag-r,.ma-meth[data-on="3"] .mv-tag-s{opacity:1;transform:none}
+.ma-meth-foot{display:flex;align-items:flex-start;gap:12px;margin-top:16px}
+.ma-meth-badge{
+  flex:none;font-size:10px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#0b1220;
+  background:#6fa8ff;padding:6px 11px;border-radius:70px;
+}
+.ma-meth-cap{font-size:13px;line-height:1.6;color:#a9bcdb;min-height:2.9em}
+.ma-meth-steps{list-style:none;display:flex;flex-direction:column;gap:18px}
+.ma-meth-step-item{
+  position:relative;padding:26px 26px 26px 30px;border-radius:20px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+  transition:background .45s var(--ease),border-color .45s var(--ease),transform .45s var(--ease);
+}
+.ma-meth-step-item::before{
+  content:"";position:absolute;left:0;top:22px;bottom:22px;width:3px;border-radius:3px;
+  background:linear-gradient(180deg,#6fa8ff,#0047BB);transform:scaleY(0);transform-origin:top;
+  transition:transform .55s var(--ease);
+}
+.ma-meth-step-item.is-on{background:rgba(255,255,255,.075);border-color:rgba(120,175,255,.32);transform:translateX(4px)}
+.ma-meth-step-item.is-on::before{transform:scaleY(1)}
+.ma-meth-num{font-size:11.5px;font-weight:800;letter-spacing:.14em;color:#6f86ad;transition:color .4s}
+.ma-meth-step-item.is-on .ma-meth-num{color:#6fa8ff}
+.ma-meth-step-item h3{margin-top:8px;font-size:21px;letter-spacing:-.026em;color:#fff}
+.ma-meth-step-item p{margin-top:11px;font-size:14px;line-height:1.7;color:#a9bcdb}
+
+/* ---- coverage ---- */
+.ma-cover{background:var(--bg-light)}
+.ma-cov-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.ma-cov{position:relative;display:flex;flex-direction:column;border-radius:20px;padding:24px 22px;overflow:hidden}
+.ma-cov-ic{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:rgba(0,71,187,.09);color:var(--blue);transition:transform .4s var(--ease)}
+.ma-cov-ic svg{width:20px;height:20px}
+.ma-cov:hover .ma-cov-ic{transform:translateY(-3px) scale(1.06)}
+.ma-cov b{margin-top:16px;font-size:34px;font-weight:800;letter-spacing:-.04em;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+.ma-cov-l{margin-top:6px;font-size:14px;font-weight:700;color:var(--text)}
+.ma-cov em{margin-top:8px;font-style:normal;font-size:12.5px;line-height:1.55;color:var(--text-soft)}
+.ma-cov-go{position:absolute;top:22px;right:22px;width:16px;height:16px;color:var(--text-mute);transition:color .3s,transform .35s var(--ease)}
+.ma-cov:hover .ma-cov-go{color:var(--blue);transform:translate(3px,-3px)}
+
+/* ---- Responsive (page-specific) ---- */
+@media (max-width:1080px){
+.ma-bento{grid-template-columns:repeat(2,minmax(0,1fr))}
+.ma-card--feat,.ma-bento>.ma-card:nth-child(2),.ma-bento>.ma-card:nth-child(3),.ma-bento>.ma-card:nth-child(4){grid-column:span 1}
+.ma-card--feat{grid-column:span 2;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.ma-meth{grid-template-columns:1fr;gap:32px}
+.ma-meth-stage{position:relative;top:auto}
+.ma-cov-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:720px){
+.ma-h1 br,.ma-lead br,.ma-choose .head-sub br,.ma-method .head-sub br{display:none}
+.ma-bento,.ma-grid,.ma-cov-grid{grid-template-columns:1fr}
+.ma-card--feat,.ma-card--feat{grid-template-columns:1fr}
+.ma-card--feat .ma-feat-viz{margin-top:20px}
+.ma-meth-step-item{padding:22px 20px 22px 24px}
+}
+</style>
+
+  <!-- Structured data — page entity -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Financial Market Analysis",
+  "description": "Daily technical and fundamental analysis, weekly outlooks and monthly reviews from the STARTRADER research desk.",
+  "url": "https://www.startrader.com/education/learn/market-analysis.html",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "STARTRADER",
+    "url": "https://www.startrader.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "STARTRADER",
+    "url": "https://www.startrader.com/"
+  }
+}
+  </script>
+
+  <!-- Structured data — breadcrumb -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.startrader.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Education", "item": "https://www.startrader.com/education/learn/market-analysis.html" },
+    { "@type": "ListItem", "position": 3, "name": "Financial Market Analysis", "item": "https://www.startrader.com/education/learn/market-analysis.html" }
+  ]
+}
+  </script>
+
+  <!-- Structured data — FAQ -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How often is the analysis published?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Technical and fundamental notes are published every trading day before the London open. The weekly outlook lands on Monday morning and the monthly review in the first week of each month." }
+    },
+    {
+      "@type": "Question",
+      "name": "Which markets does the desk cover?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Major and minor forex pairs, gold and silver, crude oil and natural gas, the major equity indices and a rotating list of single shares — the same instruments you can trade on the platform." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the analysis a trade recommendation?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Everything published here is general market commentary for information only. It does not take your objectives or circumstances into account and is not a personal recommendation to buy or sell." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need an account to read the reports?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. The analysis is free to read without an account. Opening a live or demo account lets you act on what you read on the same platform." }
+    }
+  ]
+}
+  </script>
+
+</head>
+
+<body>
+
+<!-- ============ SVG ICON SPRITE ============ -->
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M4 12h15m0 0-6-6m6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-arrow-ur" viewBox="0 0 24 24"><path d="M7 17 17 7m0 0H8m9 0v9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z" fill="currentColor"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.4 3 8.4 7 9.5 4-1.1 7-5.1 7-9.5V6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><path d="M12 3 3 7.5v9L12 21l9-4.5v-9zM3 7.5 12 12l9-4.5M12 12v9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-headset" viewBox="0 0 24 24"><path d="M4 13a8 8 0 0 1 16 0M4 13v3a2 2 0 0 0 2 2h1v-6H6a2 2 0 0 0-2 2Zm16 0v3a2 2 0 0 1-2 2h-1v-6h1a2 2 0 0 1 2 2Zm-3 5a3 3 0 0 1-3 2.5h-2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10m5 10V4m5 16v-7m5 7V8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 2 2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.8 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z" fill="currentColor"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.7 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3Z" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 7v5l3.4 2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M4 18a8 8 0 1 1 16 0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M12 18l4.2-5.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="12" cy="18" r="1.5" fill="currentColor"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-facebook" viewBox="0 0 24 24"><path d="M14 8.5V7c0-.9.6-1 1-1h1.5V3H14c-2.2 0-3.5 1.5-3.5 3.7V8.5H8.5v3h2v8.5h3.5v-8.5h2.3l.4-3z" fill="currentColor"/></symbol>
+  <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="3.6" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="16.5" cy="7.5" r="1.1" fill="currentColor"/></symbol>
+  <symbol id="i-youtube" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m10.5 9.3 4.5 2.7-4.5 2.7z" fill="currentColor"/></symbol>
+  <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M6.5 9v9M6.5 6.2v.01M11 18v-5a2.5 2.5 0 0 1 5 0v5M11 12v6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+  <symbol id="i-caret-up" viewBox="0 0 12 12"><path d="M6 3 10 8H2z" fill="currentColor"/></symbol>
+  <symbol id="i-caret-down" viewBox="0 0 12 12"><path d="M6 9 2 4h8z" fill="currentColor"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M17.5 3h3.2l-7 8 8.2 10.9h-6.4l-5-6.6-5.8 6.6H1.5l7.5-8.6L1.6 3H8l4.5 6zM16.4 19.1h1.8L7.7 4.8H5.8z" fill="currentColor"/></symbol>
+  <symbol id="i-telegram" viewBox="0 0 24 24"><path d="M21.5 4.3 2.9 11.5c-.9.35-.9.9-.15 1.12l4.7 1.46 1.8 5.6c.23.63.4.86 1 .86.46 0 .66-.2.9-.45l2.28-2.2 4.72 3.5c.87.48 1.5.23 1.72-.8l3-14.1c.3-1.28-.5-1.86-1.34-1.5z" fill="currentColor"/></symbol>
+  <symbol id="i-user-plus" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3 20a6 6 0 0 1 12 0M18.5 8v5M21 10.5h-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-id" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="8.5" cy="11" r="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M13.5 10h4M13.5 13.5h4M5.6 15.6c.4-1.2 1.6-1.9 2.9-1.9s2.5.7 2.9 1.9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 1 2-2h11.5A1.5 1.5 0 0 0 15 4H5.5" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="6" width="18" height="13" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="16.5" cy="12.5" r="1.3" fill="currentColor"/></symbol>
+  <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9 20h6M12 16v4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M5 15H4.6A1.6 1.6 0 0 1 3 13.4V5a2 2 0 0 1 2-2h8.4A1.6 1.6 0 0 1 15 4.6V5" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 3v5h5M8.5 13h7M8.5 16.5h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-window" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 9h18" stroke="currentColor" stroke-width="1.6"/><circle cx="6" cy="7" r=".7" fill="currentColor"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 18h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-plug" viewBox="0 0 24 24"><path d="M9 3v4M15 3v4M6.5 7h11v3.5a5.5 5.5 0 0 1-11 0zM12 16.5V21" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-swap" viewBox="0 0 24 24"><path d="M4 8h13l-3.5-3.5M20 16H7l3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-cfd" viewBox="0 0 24 24"><path d="M4 15l4.5-4.5 3 3L19 6M14.5 6H19v4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-droplet" viewBox="0 0 24 24"><path d="M12 3.5s6 6.2 6 10.5a6 6 0 0 1-12 0c0-4.3 6-10.5 6-10.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+  <symbol id="i-pie" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M12 3v9h9A9 9 0 0 0 12 3Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 11.5a7.5 7.5 0 0 1-10.9 6.7L4 20l1.8-5.1A7.5 7.5 0 1 1 21 11.5Z" fill="currentColor"/><circle cx="8.5" cy="11.5" r="1.15" fill="#0a2a6b"/><circle cx="12" cy="11.5" r="1.15" fill="#0a2a6b"/><circle cx="15.5" cy="11.5" r="1.15" fill="#0a2a6b"/></symbol>
+  <symbol id="i-bubble" viewBox="0 0 24 24"><path d="M20.5 11.6c0 4-3.8 7.2-8.5 7.2-.9 0-1.8-.12-2.6-.34L4.5 20l1.2-3.5A6.9 6.9 0 0 1 3.5 11.6c0-4 3.8-7.2 8.5-7.2s8.5 3.2 8.5 7.2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.8 11.6h6.4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-cookie" viewBox="0 0 24 24"><path d="M12 2.5a9.5 9.5 0 1 0 9.5 9.5 4 4 0 0 1-4-4 3.2 3.2 0 0 1-3.4-3.4A9.6 9.6 0 0 0 12 2.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="9" cy="12" r="1" fill="currentColor"/><circle cx="13" cy="15" r="1" fill="currentColor"/><circle cx="14.5" cy="10" r="1" fill="currentColor"/><circle cx="8.5" cy="16" r=".8" fill="currentColor"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M4 12 20 4l-6 16-3-6-7-2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8.2" r="3.8" fill="currentColor"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0Z" fill="currentColor"/></symbol>
+  <symbol id="i-cm-bars" viewBox="0 0 24 24"><path d="M3.6 16.4h7.2l1.1 3.4H2.5l1.1-3.4Z" fill="currentColor"/><path d="M13.2 16.4h7.2l1.1 3.4h-9.4l1.1-3.4Z" fill="currentColor" opacity=".78"/><path d="M8.4 11.2h7.2l1.1 3.4H7.3l1.1-3.4Z" fill="currentColor" opacity=".9"/><path d="M8.4 6h7.2l1.1 3.4H7.3L8.4 6Z" fill="currentColor" opacity=".62"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 10h18M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="8.5" cy="14.5" r="1.1" fill="currentColor"/><circle cx="12" cy="14.5" r="1.1" fill="currentColor"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.2-4.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5zM20 5.5A1.5 1.5 0 0 0 18.5 4H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></symbol>
+</svg>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============ TOP DISCLAIMER BAR ============ -->
+<div class="topbar" role="note">
+  <div class="container">
+    <p>CFDs are complex instruments and come with a high risk of losing money rapidly due to leverage. <strong>74% of retail investor accounts lose money</strong> when trading CFDs with this provider.</p>
+  </div>
+</div>
+
+<!-- ============ HEADER / NAV ============ -->
+<header class="site-header" id="siteHeader">
+  <div class="container nav">
+    <div class="nav-brandwrap">
+      <a href="/index.html" class="brand" aria-label="STARTRADER home">
+        <img src="/assets/img/logo-startrader.svg" alt="STARTRADER" width="180" height="35" />
+      </a>
+      <span class="hp-divider" aria-hidden="true"></span>
+      <span class="header-partners">
+        <img class="hp-logo hp-nba" src="/assets/img/nav-nba.svg" alt="NBA" width="156" height="92" loading="lazy">
+        <img class="hp-logo hp-porsche" src="/assets/img/nav-porsche.svg" alt="Porsche Carrera Cup Middle East" width="121" height="34" loading="lazy">
+      </span>
+    </div>
+
+    <nav class="nav-menu" aria-label="Primary">
+      <div class="nav-item has-drop has-mega">
+        <button class="nav-link" aria-expanded="false">Trading <svg class="caret"><use href="#i-chevron-down"/></svg></button>
+        <div class="mega" role="menu">
+          <div class="mega-main">
+          <div class="mega-col">
+            <span class="mega-head">Getting Started</span>
+            <a href="/getting-started.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-user-plus"/></svg></span><span class="mega-txt"><b>Account Opening</b></span></a>
+            <a href="/accounts.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-id"/></svg></span><span class="mega-txt"><b>Trading Account</b></span></a>
+            <a href="/prime-ecn-account.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-bolt"/></svg></span><span class="mega-txt"><b>Prime ECN</b></span></a>
+            <a href="/funding.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>Funding &amp; Withdrawal</b></span></a>
+          </div>
+          <div class="mega-col">
+            <span class="mega-head">Platforms</span>
+            <a href="/mt5.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-monitor"/></svg></span><span class="mega-txt"><b>MT5</b></span></a>
+            <a href="/mt4.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-monitor"/></svg></span><span class="mega-txt"><b>MT4</b></span></a>
+            <a href="/copy-trade.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-copy"/></svg></span><span class="mega-txt"><b>Copy Trade</b></span></a>
+            <a href="/star-copy.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-doc"/></svg></span><span class="mega-txt"><b>STAR Copy <span class="mega-badge">New</span></b></span></a>
+            <a href="/star-webtrader.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-cfd"/></svg></span><span class="mega-txt"><b>STAR Web Trading <span class="mega-badge">New</span></b></span></a>
+            <div class="mega-sub">
+              <a href="/webtrader.html" class="mega-item mega-sub-toggle"><span class="mega-ico"><svg><use href="#i-window"/></svg></span><span class="mega-txt"><b>Web Trader</b></span><svg class="mega-subchev"><use href="#i-chevron-down"/></svg></a>
+              <div class="mega-subitems">
+                <a href="/webtrader-mt4.html">MT4 WebTrader</a>
+                <a href="/webtrader-mt5.html">MT5 WebTrader</a>
+              </div>
+            </div>
+            <a href="/trading-app.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-phone"/></svg></span><span class="mega-txt"><b>Mobile Apps</b></span></a>
+            <a href="/pamm-trade.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-plug"/></svg></span><span class="mega-txt"><b>Pro-Link</b></span></a>
+          </div>
+          <div class="mega-col">
+            <span class="mega-head">Products</span>
+            <a href="/forex.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-swap"/></svg></span><span class="mega-txt"><b>Forex</b></span></a>
+            <a href="/cfd.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-cfd"/></svg></span><span class="mega-txt"><b>CFD</b></span></a>
+            <a href="/commodities.html" class="mega-item mega-item-parent" data-fly="commodities"><span class="mega-ico"><svg><use href="#i-droplet"/></svg></span><span class="mega-txt"><b>Commodities</b></span><svg class="mega-chev" aria-hidden="true"><use href="#i-chevron-right"/></svg></a>
+            <a href="/indices.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>Indices</b></span></a>
+            <a href="/shares.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-pie"/></svg></span><span class="mega-txt"><b>Shares</b></span></a>
+            <a href="/etf.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-layers"/></svg></span><span class="mega-txt"><b>ETFs</b></span></a>
+          </div>
+          </div>
+          <div class="mega-flyout" aria-hidden="true"><div class="fly-inner" data-fly-panel="commodities">
+            <a class="fly-title fly-title-link" href="/commodities.html">Commodities <svg class="fly-title-go"><use href="#i-arrow-right"/></svg></a>
+            <div class="fly-group">
+              <h5><a href="/commodities/energies.html">Energies</a></h5>
+              <a href="/commodities/brent-oil.html">Brent Oil</a>
+              <a href="/commodities/natural-gas.html">Natural Gas</a>
+              <a href="/commodities/heating-oil.html">Heating Oil</a>
+            </div>
+            <div class="fly-group">
+              <h5><a href="/metals.html">Metals</a></h5>
+              <a href="/commodities/gold.html">Gold · XAU/USD</a>
+              <a href="/commodities/gold-247.html">Gold 24/7 <span class="mega-badge">New</span></a>
+              <a href="/commodities/silver.html">Silver · XAG/USD</a>
+              <a href="/commodities/copper.html">Copper</a>
+              <a href="/commodities/platinum.html">Platinum · XPT/USD</a>
+            <a href="/commodities/palladium.html">Palladium · XPD/USD</a>
+            </div>
+            <div class="fly-group">
+              <h5><a href="/agriculture.html">Agriculture</a></h5>
+              <a href="/commodities/wheat.html">Wheat</a>
+              <a href="/commodities/corn.html">Corn</a>
+              <a href="/commodities/soybeans.html">Soybeans</a>
+              <a href="/commodities/coffee.html">Coffee</a>
+              <a href="/commodities/sugar.html">Sugar</a>
+              <a href="/commodities/cocoa.html">Cocoa</a>
+              <a href="/commodities/cotton.html">Cotton</a>
+            </div>
+          </div></div>
+        </div>
+      </div>
+            <div class="nav-item has-drop has-mega">
+        <button class="nav-link" aria-expanded="false">Education <svg class="caret"><use href="#i-chevron-down"/></svg></button>
+        <div class="mega mega--center" role="menu">
+          <div class="mega-main">
+            <div class="mega-col">
+              <span class="mega-head">Learn</span>
+              <a href="/education.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-box"/></svg></span><span class="mega-txt"><b>Knowledge Center</b></span></a>
+              <a href="/glossary.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-doc"/></svg></span><span class="mega-txt"><b>Glossary</b></span></a>
+              <a href="/market-analysis.html" class="mega-item active" aria-current="page"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>Financial Market Analysis</b></span></a>
+            </div>
+            <div class="mega-col">
+              <span class="mega-head">Analysis</span>
+              <a href="/news.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-window"/></svg></span><span class="mega-txt"><b>News Room</b></span></a>
+              <a href="/economiccalendar.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-clock"/></svg></span><span class="mega-txt"><b>Economic Calendar</b></span></a>
+            </div>
+            <div class="mega-col">
+              <span class="mega-head">Academy</span>
+              <a href="/webinars.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-play"/></svg></span><span class="mega-txt"><b>Webinars</b></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+            <div class="nav-item has-drop has-mega">
+        <button class="nav-link" aria-expanded="false">Promotions <svg class="caret"><use href="#i-chevron-down"/></svg></button>
+        <div class="mega mega--promo mega--center" role="menu">
+          <div class="mega-main">
+            <div class="mega-col">
+              <span class="mega-head">Promotions</span>
+              <a href="/promotions.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-send"/></svg></span><span class="mega-txt"><b>Our Promotions</b></span></a>
+              <a href="#" class="mega-item"><span class="mega-ico"><svg><use href="#i-star"/></svg></span><span class="mega-txt"><b>STAR Trading League</b></span></a>
+              <a href="/dailyforexpromo.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-bolt"/></svg></span><span class="mega-txt"><b>Daily Forex Promo</b></span></a>
+              <a href="/deposit-bonus-10010-20240513.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>100/10 Deposit Bonus</b></span></a>
+              <a href="/deposit-bonus-5020-20250101.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>50/20 Deposit Bonus</b></span></a>
+              <a href="/point-mall.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>Point Mall</b></span></a>
+              <a href="/deposit-bonus.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>Deposit Bonuses</b></span></a>
+              <a href="/switch-allowance.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-swap"/></svg></span><span class="mega-txt"><b>1% Switch Allowance</b></span></a>
+              <a href="/vps.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-plug"/></svg></span><span class="mega-txt"><b>VPS</b></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+            <div class="nav-item has-drop has-mega">
+        <button class="nav-link" aria-expanded="false">Company <svg class="caret"><use href="#i-chevron-down"/></svg></button>
+        <div class="mega mega--center" role="menu">
+          <div class="mega-main">
+            <div class="mega-col">
+              <span class="mega-head">About</span>
+              <a href="/company.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-shield"/></svg></span><span class="mega-txt"><b>Why STARTRADER</b></span></a>
+              <a href="/corporate-social-responsibility.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-user"/></svg></span><span class="mega-txt"><b>CSR</b></span></a>
+              <a href="/events.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-clock"/></svg></span><span class="mega-txt"><b>Events</b></span></a>
+              <div class="mega-sub">
+                <a href="/sponsorship.html" class="mega-item mega-item--tight mega-sub-toggle"><span class="mega-ico"><svg><use href="#i-star"/></svg></span><span class="mega-txt"><b>Sponsorship</b></span><svg class="mega-subchev"><use href="#i-chevron-down"/></svg></a>
+                <div class="mega-subitems">
+                  <a href="/sponsorship/nba.html">Official Partner of the NBA</a>
+                  <a href="/sponsorship/pccme.html">Official Partner of the PCCME</a>
+                  <a href="/sponsorship/icc.html">ICC Men&rsquo;s T20 World Cup 2026</a>
+                  <a href="/sponsorship/asia-cup-2025.html">UAE National Cricket Team</a>
+                  <a href="/sponsorship/pfl-champions-series.html">PFL Champions Series</a>
+                  <a href="/sponsorship/mena.html">MENA Investment Congress 2025</a>
+                </div>
+              </div>
+              <a href="/media.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-doc"/></svg></span><span class="mega-txt"><b>Media Coverage</b></span></a>
+              <a href="/achievement.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-globe"/></svg></span><span class="mega-txt"><b>Achievements</b></span></a>
+              <a href="/announcements.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-send"/></svg></span><span class="mega-txt"><b>Announcements</b></span></a>
+              <a href="/contact.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-user-plus"/></svg></span><span class="mega-txt"><b>Careers</b></span></a>
+              <a href="/help-center.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-headset"/></svg></span><span class="mega-txt"><b>Help Center</b></span></a>
+              <a href="/contact.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-bubble"/></svg></span><span class="mega-txt"><b>Contact Us</b></span></a>
+            </div>
+            <div class="mega-col">
+              <span class="mega-head">Corporate</span>
+              <a href="/regulation.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-id"/></svg></span><span class="mega-txt"><b>Regulation</b></span></a>
+              <a href="/legal-documents.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-doc"/></svg></span><span class="mega-txt"><b>Legal Documents</b></span></a>
+              <div class="mega-sub">
+                <a href="/insurance.html" class="mega-item mega-item--tight mega-sub-toggle"><span class="mega-ico"><svg><use href="#i-shield"/></svg></span><span class="mega-txt"><b>Insurance</b></span><svg class="mega-subchev"><use href="#i-chevron-down"/></svg></a>
+                <div class="mega-subitems">
+                  <a href="/lloyd-insurance.html">Lloyd&rsquo;s Insurance</a>
+                  <a href="/financial-commission.html">Financial Commission</a>
+                </div>
+              </div>
+              <a href="/liquidity-providers.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-droplet"/></svg></span><span class="mega-txt"><b>Liquidity Providers</b></span></a>
+            </div>
+            <div class="mega-col">
+              <span class="mega-head">Partnership</span>
+              <a href="/partner.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-user"/></svg></span><span class="mega-txt"><b>Partner</b></span></a>
+              <a href="/ib-register.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-user-plus"/></svg></span><span class="mega-txt"><b>Introducing Broker</b></span></a>
+              <a href="/affiliate-registration.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-globe"/></svg></span><span class="mega-txt"><b>Affiliate</b></span></a>
+              <a href="/money-manager.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>Money Manager</b></span></a>
+              <a href="/institutional.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-box"/></svg></span><span class="mega-txt"><b>Institutional</b></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="nav-right">
+      <button class="lang" id="langBtn" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="langPop" aria-label="Select language">
+        <svg class="lang-globe" aria-hidden="true"><use href="#i-globe"/></svg>
+        <span class="lang-code" id="langCode">EN</span>
+        <svg class="lang-caret" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+      </button>
+      <div class="lang-pop" id="langPop" role="dialog" aria-label="Select language" aria-hidden="true">
+        <div class="lp-head">
+          <span class="lp-title">Languages</span>
+          <button class="lp-close" id="langClose" type="button" aria-label="Close language menu"><svg><use href="#i-close"/></svg></button>
+        </div>
+        <div class="lp-search">
+          <svg class="lp-search-ic" viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="6.4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M13.8 13.8L18 18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          <input type="text" id="langSearch" placeholder="Search Language" autocomplete="off" spellcheck="false">
+        </div>
+        <div class="lp-grid" id="langGrid">
+          <button class="lp-item is-active" type="button" data-code="EN"><b>English</b></button>
+          <button class="lp-item" type="button" data-code="ZH-CN"><b>简体中文</b> Simplified Chinese</button>
+          <button class="lp-item" type="button" data-code="ZH-TW"><b>繁體中文</b> Traditional Chinese</button>
+          <button class="lp-item" type="button" data-code="JA"><b>日本語</b> Japanese</button>
+          <button class="lp-item" type="button" data-code="KO"><b>한국어</b> Korean</button>
+          <button class="lp-item" type="button" data-code="MS"><b>Melayu</b> Malay</button>
+          <button class="lp-item" type="button" data-code="VI"><b>Việt</b> Vietnamese</button>
+          <button class="lp-item" type="button" data-code="TH"><b>ภาษาไทย</b> Thai</button>
+          <button class="lp-item" type="button" data-code="ID"><b>Indonesian</b> Indonesian</button>
+          <button class="lp-item" type="button" data-code="FR"><b>Français</b> French</button>
+          <button class="lp-item" type="button" data-code="ES"><b>Español</b> Spanish</button>
+          <button class="lp-item" type="button" data-code="PL"><b>Polski</b> Polish</button>
+          <button class="lp-item" type="button" data-code="PT"><b>Português</b> Portuguese</button>
+          <button class="lp-item" type="button" data-code="RU"><b>Русский язык</b> Russian</button>
+          <button class="lp-item" type="button" data-code="AR"><b>العربية</b> Arabic</button>
+          <button class="lp-item" type="button" data-code="IT"><b>Italiano</b> Italian</button>
+          <button class="lp-item" type="button" data-code="FA"><b>فارسی</b> Persian</button>
+          <button class="lp-item" type="button" data-code="TR"><b>Türkçe</b> Turkish</button>
+          <button class="lp-item" type="button" data-code="DE"><b>Deutsch</b> German</button>
+          <button class="lp-item" type="button" data-code="HI"><b>हिंदी</b> Hindi</button>
+        </div>
+        <p class="lp-empty" hidden>No languages found</p>
+      </div>
+      <a href="/login.html" class="login">Login</a>
+      <a href="/getting-started.html" class="btn btn-primary btn-sm nav-cta">Open Live Account</a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav aria-label="Mobile">
+    <a href="/index.html#markets">Trading</a>
+    <a href="/index.html#academy">Education</a>
+    <a href="/promotions.html">Promotions</a>
+    <a href="/index.html#why">Company</a>
+    <hr>
+    <a href="/login.html" class="login">Login</a>
+    <a href="/getting-started.html" class="btn btn-primary">Open Live Account</a>
+  </nav>
+</div>
+
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<!-- Content only: heading, subline, one button. The live strip is the same
+     component the home page banner uses (#heroTicker, built in main.js). -->
+<section class="ma-hero" aria-labelledby="ma-hero-title">
+  <span class="ma-hero-aura a1" aria-hidden="true"></span>
+  <span class="ma-hero-aura a2" aria-hidden="true"></span>
+
+  <div class="container ma-hero-in">
+    <div class="ma-hero-copy">
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">Market Analysis</span>
+      <h1 class="ma-h1" id="ma-hero-title" data-aos="fade-up">Decode market secrets<br> to unlock opportunities.</h1>
+      <p class="ma-lead" data-aos="fade-up">Understand the forces shaping the market and spot potential setups &mdash;<br> so you can refine your strategy and trade on evidence rather than instinct.</p>
+      <div class="ma-hact" data-aos="fade-up">
+        <a href="#reports" class="btn btn-primary btn-lg magnetic">Explore analysis <svg class="ico"><use href="#i-arrow-right"/></svg></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-ticker" aria-label="Live market prices">
+    <div class="hero-ticker-track" id="heroTicker"><!-- populated by JS --></div>
+  </div>
+</section>
+
+<!-- ============ CHOOSE YOUR ANALYSIS (BENTO) ============ -->
+<section class="section ma-choose" id="choose" aria-labelledby="ma-choose-title">
+  <span class="ma-soft-aura a1" aria-hidden="true"></span>
+  <span class="ma-soft-aura a2" aria-hidden="true"></span>
+  <div class="container">
+    <div class="head center">
+      <span class="eyebrow" data-aos="fade-up">Analysis</span>
+      <h2 class="h2" id="ma-choose-title" data-aos="fade-up">Choose your analysis.</h2>
+      <p class="head-sub" data-aos="fade-up">Four cadences, one desk &mdash; from the intraday chart to the quarter-defining theme,<br> so you read the one that matches the horizon you actually trade.</p>
+    </div>
+
+    <div class="ma-bento" data-ma-spot>
+      <article class="ma-card ma-card--feat glass" data-aos="fade-up">
+        <div class="ma-feat-copy">
+        <span class="ma-ribbon">Featured</span>
+        <span class="ma-card-ic"><svg><use href="#i-cfd"/></svg></span>
+        <h3>Daily Technical Analysis</h3>
+        <p>Intraday structure, the levels that matter and the patterns forming right now &mdash; the chart read that sets up your session.</p>
+
+        <a class="ma-more" href="/daily-technical-analysis.html">Know more <svg><use href="#i-arrow-right"/></svg></a>
+        </div>
+
+        <div class="ma-feat-viz">
+          <div class="ma-feat-head">
+            <span class="ma-feat-tag">Today &middot; XAU/USD</span>
+            <span class="ma-feat-chg up">&#9650; 1.24%</span>
+          </div>
+          <div class="ma-spark-wrap">
+            <svg class="ma-spark" viewBox="0 0 300 80" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="maSpark" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#0047BB" stop-opacity=".26"/>
+                  <stop offset="100%" stop-color="#0047BB" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path class="ma-spark-fill" d="M0 66 C7.33 63.00 14.67 57.00 22 57 C30.00 57.00 38.00 62.00 46 62 C55.33 62.00 64.67 45.00 74 45 C82.00 45.00 90.00 51.00 98 51 C107.33 51.00 116.67 37.00 126 37 C134.67 37.00 143.33 43.00 152 43 C161.33 43.00 170.67 32.77 180 29 C188.67 25.50 197.33 21.00 206 21 C214.67 21.00 223.33 31.00 232 31 C240.67 31.00 249.33 17.00 258 17 C264.67 17.00 271.33 23.00 278 23 C285.33 23.00 292.67 13.67 300 9 L300 80 L0 80Z" fill="url(#maSpark)"/>
+              <path class="ma-spark-line" d="M0 66 C7.33 63.00 14.67 57.00 22 57 C30.00 57.00 38.00 62.00 46 62 C55.33 62.00 64.67 45.00 74 45 C82.00 45.00 90.00 51.00 98 51 C107.33 51.00 116.67 37.00 126 37 C134.67 37.00 143.33 43.00 152 43 C161.33 43.00 170.67 32.77 180 29 C188.67 25.50 197.33 21.00 206 21 C214.67 21.00 223.33 31.00 232 31 C240.67 31.00 249.33 17.00 258 17 C264.67 17.00 271.33 23.00 278 23 C285.33 23.00 292.67 13.67 300 9" fill="none" stroke="#0047BB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="ma-feat-rows">
+            <div><span>Resistance</span><b>2,352.00</b></div>
+            <div><span>Support</span><b>2,318.40</b></div>
+            <div><span>Bias</span><b class="is-bull">Bullish</b></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="ma-card glass" data-aos="fade-up" data-aos-delay="100">
+        <span class="ma-card-ic"><svg><use href="#i-globe"/></svg></span>
+        <h3>Daily Fundamental Analysis</h3>
+        <p>The prints, speeches and headlines that may move your positions before the chart catches up.</p>
+        <div class="ma-mini">
+          <div class="ma-mini-row"><span class="ma-flag">US</span><span>Core CPI</span><b class="hi">13:30</b></div>
+          <div class="ma-mini-row"><span class="ma-flag">EU</span><span>ECB speech</span><b>15:00</b></div>
+          <div class="ma-mini-row"><span class="ma-flag">UK</span><span>GDP q/q</span><b>07:00</b></div>
+        </div>
+        <a class="ma-more" href="/daily-fundamental-analysis.html">Know more <svg><use href="#i-arrow-right"/></svg></a>
+      </article>
+
+      <article class="ma-card glass" data-aos="fade-up" data-aos-delay="200">
+        <span class="ma-card-ic"><svg><use href="#i-calendar"/></svg></span>
+        <h3>Weekly Analysis</h3>
+        <p>The shifts that defined the week and the levels carried into the next one.</p>
+        <div class="ma-wk">
+          <div class="ma-wk-row"><span>Mon</span><i class="up" style="--w:34%"></i><b>+0.34%</b></div>
+          <div class="ma-wk-row"><span>Tue</span><i class="up" style="--w:61%"></i><b>+0.61%</b></div>
+          <div class="ma-wk-row"><span>Wed</span><i class="down" style="--w:22%"></i><b>&minus;0.22%</b></div>
+          <div class="ma-wk-row"><span>Thu</span><i class="up" style="--w:77%"></i><b>+0.77%</b></div>
+          <div class="ma-wk-row is-best"><span>Fri</span><i class="up" style="--w:96%"></i><b>+0.96%</b></div>
+        </div>
+        <a class="ma-more" href="/weekly-analysis.html">Know more <svg><use href="#i-arrow-right"/></svg></a>
+      </article>
+
+      <article class="ma-card glass" data-aos="fade-up" data-aos-delay="300">
+        <span class="ma-card-ic"><svg><use href="#i-layers"/></svg></span>
+        <h3>Monthly Analysis</h3>
+        <p>Step back for the bigger picture &mdash; the themes, flows and cycles shaping the months ahead.</p>
+        <div class="ma-month" aria-hidden="true">
+          <span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span>
+          <span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span></span>
+          <span class="on"></span><span></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span>
+        </div>
+        <a class="ma-more" href="/monthly-analysis.html">Know more <svg><use href="#i-arrow-right"/></svg></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LATEST REPORTS ============ -->
+<section class="section ma-reports" id="reports" aria-labelledby="ma-rep-title">
+  <div class="container">
+    <div class="head center">
+      <span class="eyebrow" data-aos="fade-up">The archive</span>
+      <h2 class="h2" id="ma-rep-title" data-aos="fade-up">Latest reports from the desk</h2>
+      <p class="head-sub" data-aos="fade-up">Filter by cadence, or search for an instrument, a central bank or a theme.</p>
+    </div>
+
+    <div class="ma-bar glass" data-aos="fade-up">
+      <form class="ma-search" role="search" onsubmit="return false">
+        <span class="ma-search-ic" aria-hidden="true"><svg><use href="#i-search"/></svg></span>
+        <input id="maSearch" type="search" autocomplete="off" placeholder="Search reports&hellip;" aria-label="Search analysis reports">
+        <button class="ma-clear" type="button" id="maClear" aria-label="Clear search" hidden><svg><use href="#i-close"/></svg></button>
+      </form>
+
+      <div class="ma-cats" role="group" aria-label="Filter by analysis type">
+        <button class="ec-chip is-on" type="button" data-ma-cat="all" aria-pressed="true">All</button>
+        <button class="ec-chip" type="button" data-ma-cat="ta" aria-pressed="false">Technical</button>
+        <button class="ec-chip" type="button" data-ma-cat="fa" aria-pressed="false">Fundamental</button>
+        <button class="ec-chip" type="button" data-ma-cat="wk" aria-pressed="false">Weekly</button>
+        <button class="ec-chip" type="button" data-ma-cat="mo" aria-pressed="false">Monthly</button>
+      </div>
+    </div>
+
+    <p class="wb-status" data-ma-status role="status" aria-live="polite"></p>
+
+    <div class="ma-grid">
+
+      <article class="ma-rep glass" data-ma-item data-cat="ta" data-title="Gold holds the breakout as buyers defend 2,318" data-aos="fade-up">
+        <div class="ma-head">
+          <span class="ma-cat ta"><svg aria-hidden="true"><use href="#i-cfd"/></svg>Technical Analysis</span>
+          <time class="ma-date" datetime="2026-07-30">30 Jul 2026</time>
+        </div>
+
+        <div class="ma-body">
+          <h3 class="ma-h"><a href="/news-article.html">Gold holds the breakout as buyers defend 2,318</a></h3>
+          <p class="ma-ex">The retest held to the pip. While 2,318 caps the downside, the path of least resistance still points at the 2,352 shelf.</p>
+          <span class="ma-read">4 min read</span>
+        </div>
+
+        <a class="ma-media" href="/news-article.html" aria-label="Read: Gold holds the breakout as buyers defend 2,318">
+          <img src="/assets/img/webtraderScreenShot.webp" alt="STARTRADER Web Trader platform interface" width="640" height="349" loading="lazy" decoding="async">
+          <span class="ma-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
+        </a>
+      </article>
+      <article class="ma-rep glass" data-ma-item data-cat="fa" data-title="Core CPI cools again and the dollar gives back the week" data-aos="fade-up" data-aos-delay="100">
+        <div class="ma-head">
+          <span class="ma-cat fa"><svg aria-hidden="true"><use href="#i-globe"/></svg>Fundamental Analysis</span>
+          <time class="ma-date" datetime="2026-07-30">30 Jul 2026</time>
+        </div>
+
+        <div class="ma-body">
+          <h3 class="ma-h"><a href="/news-article.html">Core CPI cools again and the dollar gives back the week</a></h3>
+          <p class="ma-ex">A third consecutive soft print pulled forward the cut that the curve had been arguing about since spring.</p>
+          <span class="ma-read">5 min read</span>
+        </div>
+
+        <a class="ma-media" href="/news-article.html" aria-label="Read: Core CPI cools again and the dollar gives back the week">
+          <img src="/assets/img/home-hero-wave.webp" alt="Abstract blue light wave" width="640" height="349" loading="lazy" decoding="async">
+          <span class="ma-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
+        </a>
+      </article>
+      <article class="ma-rep glass" data-ma-item data-cat="ta" data-title="EUR/USD grinds into the range high with momentum fading" data-aos="fade-up" data-aos-delay="200">
+        <div class="ma-head">
+          <span class="ma-cat ta"><svg aria-hidden="true"><use href="#i-cfd"/></svg>Technical Analysis</span>
+          <time class="ma-date" datetime="2026-07-29">29 Jul 2026</time>
+        </div>
+
+        <div class="ma-body">
+          <h3 class="ma-h"><a href="/news-article.html">EUR/USD grinds into the range high with momentum fading</a></h3>
+          <p class="ma-ex">Price is making the high the hard way. Divergence on the hourly says the fourth attempt is rarely the clean one.</p>
+          <span class="ma-read">4 min read</span>
+        </div>
+
+        <a class="ma-media" href="/news-article.html" aria-label="Read: EUR/USD grinds into the range high with momentum fading">
+          <img src="/assets/img/webtraderScreenShot.webp" alt="STARTRADER Web Trader platform interface" width="640" height="349" loading="lazy" decoding="async">
+          <span class="ma-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
+        </a>
+      </article>
+      <article class="ma-rep glass" data-ma-item data-cat="wk" data-title="Weekly outlook: three central banks and one payrolls print" data-aos="fade-up" data-aos-delay="300">
+        <div class="ma-head">
+          <span class="ma-cat wk"><svg aria-hidden="true"><use href="#i-calendar"/></svg>Weekly Outlook</span>
+          <time class="ma-date" datetime="2026-07-28">28 Jul 2026</time>
+        </div>
+
+        <div class="ma-body">
+          <h3 class="ma-h"><a href="/news-article.html">Weekly outlook: three central banks and one payrolls print</a></h3>
+          <p class="ma-ex">The calendar does the heavy lifting this week. Here is what each decision would have to say to matter.</p>
+          <span class="ma-read">7 min read</span>
+        </div>
+
+        <a class="ma-media" href="/news-article.html" aria-label="Read: Weekly outlook: three central banks and one payrolls print">
+          <img src="/assets/img/stat-tan.webp" alt="Sculpted bronze abstract artwork" width="640" height="349" loading="lazy" decoding="async">
+          <span class="ma-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
+        </a>
+      </article>
+      <article class="ma-rep glass" data-ma-item data-cat="ta" data-title="WTI slips out of the month-long range as the risk premium drains" data-aos="fade-up" data-aos-delay="400">
+        <div class="ma-head">
+          <span class="ma-cat ta"><svg aria-hidden="true"><use href="#i-cfd"/></svg>Technical Analysis</span>
+          <time class="ma-date" datetime="2026-07-27">27 Jul 2026</time>
+        </div>
+
+        <div class="ma-body">
+          <h3 class="ma-h"><a href="/news-article.html">WTI slips out of the month-long range as the risk premium drains</a></h3>
+          <p class="ma-ex">Crude gave back the geopolitical bid almost as quickly as it built it. The range low is now the whole argument.</p>
+          <span class="ma-read">4 min read</span>
+        </div>
+
+        <a class="ma-media" href="/news-article.html" aria-label="Read: WTI slips out of the month-long range as the risk premium drains">
+          <img src="/assets/img/webtraderScreenShot.webp" alt="STARTRADER Web Trader platform interface" width="640" height="349" loading="lazy" decoding="async">
+          <span class="ma-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
+        </a>
+      </article>
+      <article class="ma-rep glass" data-ma-item data-cat="mo" data-title="Monthly review: the rotation out of defensives finally showed up" data-aos="fade-up" data-aos-delay="500">
+        <div class="ma-head">
+          <span class="ma-cat mo"><svg aria-hidden="true"><use href="#i-layers"/></svg>Monthly Review</span>
+          <time class="ma-date" datetime="2026-07-25">25 Jul 2026</time>
+        </div>
+
+        <div class="ma-body">
+          <h3 class="ma-h"><a href="/news-article.html">Monthly review: the rotation out of defensives finally showed up</a></h3>
+          <p class="ma-ex">Six months of positioning unwound in three weeks. What the flows say about where the next leg comes from.</p>
+          <span class="ma-read">9 min read</span>
+        </div>
+
+        <a class="ma-media" href="/news-article.html" aria-label="Read: Monthly review: the rotation out of defensives finally showed up">
+          <img src="/assets/img/stat-awards.webp" alt="Award trophies backdrop" width="640" height="349" loading="lazy" decoding="async">
+          <span class="ma-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
+        </a>
+      </article>
+      <article class="ma-rep glass" data-ma-item data-cat="fa" data-title="The BoJ blinks and the yen carry trade gets its first real test" data-aos="fade-up" data-aos-delay="600">
+        <div class="ma-head">
+          <span class="ma-cat fa"><svg aria-hidden="true"><use href="#i-globe"/></svg>Fundamental Analysis</span>
+          <time class="ma-date" datetime="2026-07-24">24 Jul 2026</time>
+        </div>
+
+        <div class="ma-body">
+          <h3 class="ma-h"><a href="/news-article.html">The BoJ blinks and the yen carry trade gets its first real test</a></h3>
+          <p class="ma-ex">A single line in the statement changed the maths on the most crowded trade in macro. The unwind rarely stays orderly.</p>
+          <span class="ma-read">6 min read</span>
+        </div>
+
+        <a class="ma-media" href="/news-article.html" aria-label="Read: The BoJ blinks and the yen carry trade gets its first real test">
+          <img src="/assets/img/home-hero-wave.webp" alt="Abstract blue light wave" width="640" height="349" loading="lazy" decoding="async">
+          <span class="ma-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
+        </a>
+      </article>
+      <article class="ma-rep glass" data-ma-item data-cat="wk" data-title="Weekly outlook: indices carry the momentum into month end" data-aos="fade-up" data-aos-delay="600">
+        <div class="ma-head">
+          <span class="ma-cat wk"><svg aria-hidden="true"><use href="#i-calendar"/></svg>Weekly Outlook</span>
+          <time class="ma-date" datetime="2026-07-21">21 Jul 2026</time>
+        </div>
+
+        <div class="ma-body">
+          <h3 class="ma-h"><a href="/news-article.html">Weekly outlook: indices carry the momentum into month end</a></h3>
+          <p class="ma-ex">Rebalancing flows, a thin earnings calendar and one inflation print &mdash; the setup that usually favours the trend.</p>
+          <span class="ma-read">6 min read</span>
+        </div>
+
+        <a class="ma-media" href="/news-article.html" aria-label="Read: Weekly outlook: indices carry the momentum into month end">
+          <img src="/assets/img/stat-tan.webp" alt="Sculpted bronze abstract artwork" width="640" height="349" loading="lazy" decoding="async">
+          <span class="ma-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
+        </a>
+      </article>
+      <article class="ma-rep glass" data-ma-item data-cat="mo" data-title="Monthly review: gold's quiet quarter was anything but quiet underneath" data-aos="fade-up" data-aos-delay="600">
+        <div class="ma-head">
+          <span class="ma-cat mo"><svg aria-hidden="true"><use href="#i-layers"/></svg>Monthly Review</span>
+          <time class="ma-date" datetime="2026-07-04">4 Jul 2026</time>
+        </div>
+
+        <div class="ma-body">
+          <h3 class="ma-h"><a href="/news-article.html">Monthly review: gold's quiet quarter was anything but quiet underneath</a></h3>
+          <p class="ma-ex">Flat on the month, transformed on the tape. Central-bank buying kept absorbing every attempt to sell the rallies.</p>
+          <span class="ma-read">8 min read</span>
+        </div>
+
+        <a class="ma-media" href="/news-article.html" aria-label="Read: Monthly review: gold's quiet quarter was anything but quiet underneath">
+          <img src="/assets/img/stat-awards.webp" alt="Award trophies backdrop" width="640" height="349" loading="lazy" decoding="async">
+          <span class="ma-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
+        </a>
+      </article>
+
+    </div>
+
+    <div class="ma-empty" data-ma-empty hidden>
+      <span class="ma-empty-ic"><svg><use href="#i-search"/></svg></span>
+      <h3>Nothing matched <span data-ma-empty-q>that filter</span></h3>
+      <p>Try a different cadence, or clear the search to see the whole archive.</p>
+      <button class="btn btn-primary" type="button" data-ma-reset>Reset filters</button>
+    </div>
+
+    <div class="ma-morerow" data-ma-morerow hidden>
+      <button class="btn btn-primary btn-lg" type="button" data-ma-more>Load more reports <svg class="ico"><use href="#i-chevron-down"/></svg></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ METHOD (scroll-linked) ============ -->
+<section class="section ma-method" id="method" aria-labelledby="ma-method-title">
+  <div class="container">
+    <div class="head center">
+      <span class="eyebrow" data-aos="fade-up">Method</span>
+      <h2 class="h2" id="ma-method-title" data-aos="fade-up">How the desk reads a market</h2>
+      <p class="head-sub" data-aos="fade-up">Every report follows the same three passes, in the same order.<br> Scroll to walk through them.</p>
+    </div>
+
+    <div class="ma-meth" data-ma-meth>
+      <div class="ma-meth-stage">
+        <div class="ma-meth-viz">
+          <div class="ma-meth-viz-top">
+            <span class="ma-meth-sym"><b>XAU/USD</b><em>H1 &middot; live</em></span>
+            <span class="ma-meth-prog" aria-hidden="true"><i></i><i></i><i></i></span>
+          </div>
+
+          <div class="ma-meth-canvas">
+            <svg viewBox="0 0 460 250" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="mvArea" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#6fa8ff" stop-opacity=".28"/>
+                  <stop offset="100%" stop-color="#6fa8ff" stop-opacity="0"/>
+                </linearGradient>
+                <linearGradient id="mvBand" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#ffc244" stop-opacity="0"/>
+                  <stop offset="50%" stop-color="#ffc244" stop-opacity=".2"/>
+                  <stop offset="100%" stop-color="#ffc244" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+
+              <g class="mv-grid">
+                <line x1="0" y1="62" x2="460" y2="62"/><line x1="0" y1="125" x2="460" y2="125"/><line x1="0" y1="188" x2="460" y2="188"/>
+              </g>
+
+              <path class="mv-area" d="M0 212 C9.33 206.67 18.67 196.00 28 196 C36.67 196.00 45.33 203.00 54 203 C64.67 203.00 75.33 168.00 86 168 C96.67 168.00 107.33 179.00 118 179 C126.00 179.00 134.00 151.00 142 151 C153.33 151.00 164.67 159.00 176 159 C186.67 159.00 197.33 127.00 208 127 C216.00 127.00 224.00 139.00 232 139 C244.00 139.00 256.00 113.86 268 106 C277.33 99.89 286.67 95.00 296 95 C305.33 95.00 314.67 113.00 324 113 C335.33 113.00 346.67 88.17 358 81 C369.33 73.83 380.67 70.00 392 70 C402.67 70.00 413.33 88.00 424 88 C436.00 88.00 448.00 72.00 460 64 L460 250 L0 250Z" fill="url(#mvArea)"/>
+              <path class="mv-price" d="M0 212 C9.33 206.67 18.67 196.00 28 196 C36.67 196.00 45.33 203.00 54 203 C64.67 203.00 75.33 168.00 86 168 C96.67 168.00 107.33 179.00 118 179 C126.00 179.00 134.00 151.00 142 151 C153.33 151.00 164.67 159.00 176 159 C186.67 159.00 197.33 127.00 208 127 C216.00 127.00 224.00 139.00 232 139 C244.00 139.00 256.00 113.86 268 106 C277.33 99.89 286.67 95.00 296 95 C305.33 95.00 314.67 113.00 324 113 C335.33 113.00 346.67 88.17 358 81 C369.33 73.83 380.67 70.00 392 70 C402.67 70.00 413.33 88.00 424 88 C436.00 88.00 448.00 72.00 460 64"/>
+
+              <g class="mv-struct">
+                <path class="mv-ch" d="M0 214 460 54"/>
+                <path class="mv-ch" d="M0 168 460 8"/>
+              </g>
+
+              <g class="mv-cat">
+                <rect x="252" y="0" width="56" height="250" fill="url(#mvBand)"/>
+                <path class="mv-catline" d="M280 0V250"/>
+              </g>
+
+              <g class="mv-lvl">
+                <path class="mv-res" d="M0 56 460 56"/>
+                <path class="mv-sup" d="M0 172 460 172"/>
+              </g>
+            </svg>
+
+            <span class="mv-tag mv-tag-r"><i></i>2,352.00</span>
+            <span class="mv-tag mv-tag-s"><i></i>2,318.40</span>
+            <span class="mv-tag mv-tag-c"><i></i>CPI &middot; 13:30</span>
+            <span class="mv-tag mv-tag-t"><i></i>Higher highs</span>
+          </div>
+
+          <div class="ma-meth-foot">
+            <span class="ma-meth-badge" data-ma-meth-lbl>Structure</span>
+            <p class="ma-meth-cap" data-ma-meth-cap>Trend, range or transition &mdash; before anything else, what regime is price actually in?</p>
+          </div>
+        </div>
+      </div>
+
+      <ol class="ma-meth-steps">
+        <li class="ma-meth-step-item is-on" data-ma-meth-item data-n="01" data-lbl="Structure" data-cap="Trend, range or transition &mdash; before anything else, what regime is price actually in?">
+          <span class="ma-meth-num">01</span>
+          <h3>Structure first</h3>
+          <p>We start with the shape of the market, not the news. Higher highs or lower lows, an expanding range or a coiling one &mdash; the regime decides which tools are even valid, and it is the single thing most retail analysis skips.</p>
+        </li>
+        <li class="ma-meth-step-item" data-ma-meth-item data-n="02" data-lbl="Catalyst" data-cap="What is on the calendar that could break the structure, and when exactly does it land?">
+          <span class="ma-meth-num">02</span>
+          <h3>Then the catalyst</h3>
+          <p>A clean technical setup that runs into a rate decision is not a clean setup. We map the releases, the speakers and the auctions against the chart so you know which hours carry event risk and which are yours to trade.</p>
+        </li>
+        <li class="ma-meth-step-item" data-ma-meth-item data-n="03" data-lbl="Levels" data-cap="Where the idea is proven, and where it is simply wrong. Both marked on the chart.">
+          <span class="ma-meth-num">03</span>
+          <h3>Finally the levels</h3>
+          <p>Every report ends with the two prices that matter: the level that confirms the read and the level that invalidates it. No open-ended targets &mdash; if we cannot say where the idea is wrong, we do not publish it.</p>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COVERAGE ============ -->
+<section class="section ma-cover" aria-labelledby="ma-cover-title">
+  <div class="container">
+    <div class="head center">
+      <span class="eyebrow" data-aos="fade-up">Coverage</span>
+      <h2 class="h2" id="ma-cover-title" data-aos="fade-up">The desk covers what you trade</h2>
+      <p class="head-sub" data-aos="fade-up">The same instruments the platform quotes &mdash; analysed by the people watching the same feed.</p>
+    </div>
+
+    <div class="ma-cov-grid">
+      <a class="ma-cov glass" href="/forex.html" data-aos="fade-up">
+        <span class="ma-cov-ic"><svg><use href="#i-swap"/></svg></span>
+        <b data-count="28" data-suffix="">28</b>
+        <span class="ma-cov-l">Forex pairs</span>
+        <em>Majors, minors and the crosses that actually move.</em>
+        <svg class="ma-cov-go"><use href="#i-arrow-ur"/></svg>
+      </a>
+      <a class="ma-cov glass" href="/commodities.html" data-aos="fade-up" data-aos-delay="100">
+        <span class="ma-cov-ic"><svg><use href="#i-droplet"/></svg></span>
+        <b data-count="12">12</b>
+        <span class="ma-cov-l">Commodities</span>
+        <em>Gold, silver, crude and gas &mdash; daily and weekly.</em>
+        <svg class="ma-cov-go"><use href="#i-arrow-ur"/></svg>
+      </a>
+      <a class="ma-cov glass" href="/index.html#markets" data-aos="fade-up" data-aos-delay="200">
+        <span class="ma-cov-ic"><svg><use href="#i-chart"/></svg></span>
+        <b data-count="9">9</b>
+        <span class="ma-cov-l">Indices</span>
+        <em>The benchmarks that set the risk tone each session.</em>
+        <svg class="ma-cov-go"><use href="#i-arrow-ur"/></svg>
+      </a>
+      <a class="ma-cov glass" href="/economiccalendar.html" data-aos="fade-up" data-aos-delay="300">
+        <span class="ma-cov-ic"><svg><use href="#i-clock"/></svg></span>
+        <b data-count="40" data-suffix="+">40+</b>
+        <span class="ma-cov-l">Events a week</span>
+        <em>Mapped onto the chart, not listed in a table.</em>
+        <svg class="ma-cov-go"><use href="#i-arrow-ur"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SUBSCRIBE ============ -->
+<section class="section ma-sub" id="subscribe" aria-labelledby="ma-sub-title">
+  <div class="container">
+    <div class="ma-sub-panel" data-aos="fade-up">
+      <span class="ma-sub-aura" aria-hidden="true"></span>
+      <div class="ma-sub-copy">
+        <span class="eyebrow eyebrow-blue">Daily briefing</span>
+        <h2 id="ma-sub-title">Get the desk read before the open</h2>
+        <p>One email each trading morning: the overnight session, the levels on the majors and the calendar risk for the day ahead.</p>
+        <ul class="ma-sub-pts">
+          <li><svg><use href="#i-check"/></svg>Sent before the London open</li>
+          <li><svg><use href="#i-check"/></svg>Charts and levels, not hype</li>
+          <li><svg><use href="#i-check"/></svg>One click to unsubscribe</li>
+        </ul>
+      </div>
+      <form class="ma-sub-form" data-ma-sub novalidate>
+        <label class="sr-only" for="maEmail">Email address</label>
+        <div class="ma-sub-field">
+          <input id="maEmail" type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+          <button class="btn btn-primary" type="submit">Subscribe <svg class="ico"><use href="#i-arrow-right"/></svg></button>
+        </div>
+        <p class="ma-sub-note" data-ma-sub-note>Free, and general market commentary only &mdash; never a personal recommendation.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section faq-sec fx-faq" aria-labelledby="ma-faq-title">
+  <div class="container">
+    <div class="head center">
+      <span class="eyebrow" data-aos="fade-up">FAQ</span>
+      <h2 class="h2" id="ma-faq-title" data-aos="fade-up">About the analysis</h2>
+    </div>
+    <div class="faq-list" data-aos="fade-up">
+      <details class="faq-item">
+        <summary>How often is the analysis published?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
+        <div class="faq-a">Technical and fundamental notes are published every trading day before the London open. The weekly outlook lands on Monday morning and the monthly review in the first week of each month.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Which markets does the desk cover?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
+        <div class="faq-a">Major and minor forex pairs, gold and silver, crude oil and natural gas, the major equity indices and a rotating list of single shares &mdash; the same instruments you can trade on the platform.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Is the analysis a trade recommendation?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
+        <div class="faq-a">No. Everything published here is general market commentary for information only. It does not take your objectives, financial situation or needs into account and is not a personal recommendation to buy or sell any instrument.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Do I need an account to read the reports?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
+        <div class="faq-a">No. The analysis is free to read without an account. Opening a live or demo account simply lets you act on what you read on the same platform.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Where do the levels come from?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
+        <div class="faq-a">From market structure on the chart &mdash; prior swing points, session highs and lows, and areas where price has repeatedly reacted. They are marked so you can judge them yourself rather than take them on trust.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPLORE MORE ============ -->
+<section class="section fx-more" aria-labelledby="ma-more-title">
+  <div class="container">
+    <div class="head center">
+      <span class="eyebrow" data-aos="fade-up">Keep going</span>
+      <h2 class="h2" id="ma-more-title" data-aos="fade-up">Where to go next</h2>
+    </div>
+    <div class="fx-more-grid">
+      <a class="fx-more-card" href="/education.html" data-aos="fade-up">
+        <span class="fx-more-media"><img src="/assets/img/learn-viz.webp" alt="Knowledge Centre trading guides and courses" width="640" height="349" loading="lazy" decoding="async"></span>
+        <p class="fx-more-desc">Guides, videos and courses that take you from your first trade to a strategy you have tested.</p>
+        <span class="fx-more-foot"><span class="fx-more-tag">Knowledge Centre</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
+      </a>
+      <a class="fx-more-card" href="/economiccalendar.html" data-aos="fade-up" data-aos-delay="100">
+        <span class="fx-more-media"><img src="/assets/img/home-hero-wave.webp" alt="Economic calendar of market-moving releases" width="640" height="349" loading="lazy" decoding="async"></span>
+        <p class="fx-more-desc">Every release the desk watches, with forecasts and the numbers as they land.</p>
+        <span class="fx-more-foot"><span class="fx-more-tag">Economic calendar</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
+      </a>
+      <a class="fx-more-card" href="/news.html" data-aos="fade-up" data-aos-delay="200">
+        <span class="fx-more-media"><img src="/assets/img/webtrader-laptop.webp" alt="News room covering market and company stories" width="640" height="349" loading="lazy" decoding="async"></span>
+        <p class="fx-more-desc">The stories moving the instruments you hold, written as they break.</p>
+        <span class="fx-more-foot"><span class="fx-more-tag">News room</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
+      </a>
+      <a class="fx-more-card" href="/webinars.html" data-aos="fade-up" data-aos-delay="300">
+        <span class="fx-more-media"><img src="/assets/img/learn-cta.webp" alt="Live trading webinars with market analysts" width="640" height="349" loading="lazy" decoding="async"></span>
+        <p class="fx-more-desc">Live sessions with analysts every week, plus replays if the timing does not suit you.</p>
+        <span class="fx-more-foot"><span class="fx-more-tag">Webinars</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLOSING CTA ============ -->
+<section class="cta-banner" aria-labelledby="ma-cta-title">
+  <div class="cta-bg" aria-hidden="true"></div>
+  <div class="container cta-inner">
+    <h2 id="ma-cta-title" data-aos="fade-up">Start trading with a<br>globally leading broker</h2>
+    <p data-aos="fade-up">Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
+    <div class="cta-actions" data-aos="fade-up">
+      <a href="/getting-started.html" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
+      <a href="/getting-started.html" class="btn btn-ghost btn-lg">Try Free Demo</a>
+    </div>
+  </div>
+</section>
+
+
+</main>
+
+
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer" id="footer">
+  <div class="container">
+    <div class="foot-cols">
+      <div class="foot-col">
+        <h4>Conditions</h4>
+        <a href="/getting-started.html">Account Opening</a><a href="/accounts.html">Trading Account</a><a href="/prime-ecn-account.html">Prime ECN</a><a href="/funding.html">Funding &amp; Withdrawal</a>
+        <h4 class="mt">Partnership</h4>
+        <a href="/ib-register.html">Introducing Broker</a><a href="/affiliate-registration.html">Affiliate</a><a href="/money-manager.html">Money Manager</a><a href="/institutional.html">Institutional</a>
+      </div>
+      <div class="foot-col">
+        <h4>Platforms</h4>
+        <a href="/mt5.html">MT5</a><a href="/mt4.html">MT4</a><a href="/copy-trade.html">Copy Trade</a><a href="/star-webtrader.html">STAR Web Trading</a><a href="/webtrader.html">Web Trader</a><a href="/trading-app.html">Mobile Apps</a><a href="/pamm-trade.html">Pro-Link</a>
+        <h4 class="mt">Products</h4>
+        <a href="/forex.html">Forex</a><a href="/cfd.html">CFD</a><a href="/commodities.html">Commodities</a><a href="/indices.html">Indices</a><a href="/shares.html">Shares</a><a href="/etf.html">ETFs</a>
+      </div>
+      <div class="foot-col">
+        <h4>Education</h4>
+        <a href="/education.html">Knowledge Center</a><a href="/market-analysis.html">Market Analysis</a><a href="/glossary.html">Glossary</a><a href="/news.html">News Room</a><a href="/economiccalendar.html">Economic Calendar</a><a href="/webinars.html">Webinars</a>
+        <h4 class="mt">Corporate</h4>
+        <a href="/regulation.html">Regulation</a><a href="/legal-documents.html">Legal Documents</a><a href="/insurance.html">Insurance</a><a href="/liquidity-providers.html">Liquidity Providers</a>
+      </div>
+      <div class="foot-col">
+        <h4>About</h4>
+        <a href="/company.html">Why STARTRADER</a><a href="/corporate-social-responsibility.html">CSR</a><a href="/events.html">Events</a><a href="/media.html">Media Coverage</a><a href="/achievement.html">Achievements</a><a href="/announcements.html">Announcements</a><a href="/contact.html">Careers</a><a href="/help-center.html">Help Center</a>
+        <h4 class="mt">Contact us</h4>
+        <div class="foot-contact"><span>Support enquiries</span><a href="mailto:support@startrader.com">support@startrader.com</a></div>
+        <div class="foot-contact"><span>Partnerships</span><a href="mailto:partners@startrader.com">partners@startrader.com</a></div>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <span class="foot-brand"><img class="foot-logo" src="/assets/img/logo-startrader.svg" alt="STARTRADER" width="180" height="35"><span class="foot-tag">Built on trust. Driven by growth.</span></span>
+      <div class="foot-partners">
+        <img class="fp-nba" src="/assets/img/partner-nba.svg" alt="Official Partner of the NBA" height="30" width="45">
+        <img class="fp-porsche" src="/assets/img/partner-porsche.webp" alt="Official Partner of Porsche Carrera Cup Middle East" height="26" width="165">
+      </div>
+    </div>
+
+    <div class="foot-legal-row">
+      <div class="foot-copy">
+        <span>© 2026 STARTRADER. All rights reserved</span>
+        <a href="/privacy-policy-app.html">Privacy Policy</a><a href="/legal-documents.html">Terms &amp; Conditions</a><a href="/legal-documents.html">Cookie Policy</a>
+      </div>
+      <div class="socials">
+        <a href="#" aria-label="Facebook"><svg><use href="#i-facebook"/></svg></a>
+        <a href="#" aria-label="X"><svg><use href="#i-x"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg><use href="#i-instagram"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg><use href="#i-linkedin"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg><use href="#i-youtube"/></svg></a>
+        <a href="#" aria-label="Telegram"><svg><use href="#i-telegram"/></svg></a>
+      </div>
+    </div>
+
+    <div class="risk">
+      <h5>RISK WARNING</h5>
+      <p>Trading in leveraged derivative products, such as Foreign Exchange (Forex) and Contracts for Difference (CFDs), involves a high level of risk and may result in losses that exceed your initial deposit. These products may not be suitable for all investors. Leverage amplifies both potential profits and losses. When trading these instruments, you do not own or have any rights to the underlying assets. Past performance is not indicative of future results.</p>
+      <p>Before making any investment decisions, you should carefully assess your investment objectives, knowledge, experience, and financial situation. You should only engage in Forex and CFD trading if you possess sufficient knowledge and experience. STARTRADER assumes no liability for any losses incurred from trading, and all trading activities are undertaken at your own risk.</p>
+      <p>The content provided on this website is for general informational purposes only and does not take into account your individual financial circumstances, investment goals, or risk tolerance. You should review the legal documents available on our website to ensure a full understanding of the risks associated with CFD trading. If necessary, seek independent advice from qualified professionals before proceeding.</p>
+
+      <h5>REGIONAL RESTRICTIONS</h5>
+      <p>This website is not intended for distribution to, or use by, any person or entity who is a citizen or resident of certain jurisdictions, including, but not limited to the United States, and jurisdictions listed on the FATF "blacklist" or other major global sanctions lists. It is also not intended for distribution or use in any jurisdiction where such distribution or use would violate local laws or regulations.</p>
+
+      <h5>REGULATOR INFORMATION</h5>
+      <p>STARTRADER is the brand representing a network of regulated and licensed entities across various jurisdictions, each authorised to provide specific financial services in compliance with local regulations. Upon registration, you will be assigned to the appropriate entity based on your location, ensuring that all trading activities are governed by the applicable regulatory authority. While the relevant authorities have granted securities or investment dealer licenses to the licensees, they do not endorse the products or services offered by STARTRADER.</p>
+      <p><strong>STARTRADER</strong> Global Financial Consultation &amp; Financial Analysis L.L.C is a Category 5 licensee regulated by the Capital Market Authority (CMA) of the United Arab Emirates, with License No. 20200000241, authorised to carry out regulated activities of Introduction and Promotion in the UAE. Its registered office is located at Office 815, Al Manara Tower, Business Bay, Dubai, UAE. It is not authorised to provide brokerage services or execute client trades.</p>
+      <p><strong>STARTRADER</strong> Prime Global Pty Ltd is regulated by the Australian Securities and Investments Commission (ASIC), with ACN 156005668 and AFSL No. 421210. Its registered office is located at Level 35, 31 Market Street, Sydney, NSW 2000, Australia.</p>
+      <p><strong>STARTRADER</strong> International Pty Ltd is regulated by the Financial Sector Conduct Authority (FSCA) of South Africa, with FSP No. 52464 and Registration No. 2022/435897/07. Its registered office is located at 18 Cavendish Road, Claremont, Cape Town, Western Cape, 7708, South Africa.</p>
+      <p><strong>STARTRADER</strong> Limited is regulated by the Financial Services Authority (FSA) of Seychelles, with License No. SD049 and Registration No. 8427362-1. Its registered office is located at Suite 3, Global Village, Jivan's Complex, Mont Fleuri, Mahe, Seychelles.</p>
+      <p><strong>STARTRADER</strong> Financial Markets Limited is regulated by the Financial Services Commission (FSC) of Mauritius, with Company No. 212229 GBC and License No. GB24203371. Its registered office is located at Suite 201, 2nd Floor, The Catalyst, 40 Silicon Avenue, Ebene Cybercity, Mauritius.</p>
+      <p><strong>STARTRADER</strong> (CY) Limited, registered in the Republic of Cyprus under registration number HE421001 with its registered address at 160 Archiepiskopou Makariou III, 1st Floor, 3026 Limassol, Cyprus. This entity does not offer regulated financial products or provide trading services.</p>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Back to top"><svg><use href="#i-caret-up"/></svg></button>
+
+<!-- ============ CHAT WIDGET ============ -->
+<button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
+  <img class="chat-fab-ico" src="/assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
+</button>
+<div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
+  <div class="chat-head">
+    <span class="chat-avatar"><svg><use href="#i-headset"/></svg><i class="chat-online"></i></span>
+    <div class="chat-head-txt"><b>STARTRADER Support</b><em>Typically replies in a few minutes</em></div>
+    <button class="chat-close" id="chatClose" aria-label="Close chat"><svg><use href="#i-close"/></svg></button>
+  </div>
+  <div class="chat-body">
+    <div class="chat-msg">👋 Hi there! Welcome to STARTRADER. How can we help you today?</div>
+    <div class="chat-quick">
+      <a href="/getting-started.html" class="chat-chip">Open a live account</a>
+      <a href="/trading-app.html" class="chat-chip">Download a platform</a>
+      <a href="#schedule" class="chat-chip">See the webinar schedule</a>
+      <a href="/contact.html" class="chat-chip">Contact us</a>
+    </div>
+  </div>
+  <form class="chat-input" id="chatForm">
+    <input type="text" id="chatText" placeholder="Type your message…" aria-label="Message" autocomplete="off">
+    <button type="submit" class="chat-send" aria-label="Send"><svg><use href="#i-send"/></svg></button>
+  </form>
+</div>
+
+<!-- ============ COOKIE CONSENT ============ -->
+<div class="cookie" id="cookie" role="dialog" aria-label="Cookie notice">
+  <span class="cookie-ic"><svg><use href="#i-cookie"/></svg></span>
+  <span class="cookie-text">We use cookies to enhance your experience on this website.</span>
+  <a href="/legal-documents.html" class="cookie-more">More details</a>
+  <button class="cookie-x" id="cookieClose" aria-label="Accept and close"><svg><use href="#i-close"/></svg></button>
+</div>
+
+<script src="/assets/js/vendor/gsap.min.js" defer></script>
+<script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
+<script src="/assets/js/vendor/lenis.min.js" defer></script>
+<script src="/assets/js/vendor/aos.min.js" defer></script>
+<script src="/assets/js/main.js?v=map1" defer></script>
+</body>
+</html>
