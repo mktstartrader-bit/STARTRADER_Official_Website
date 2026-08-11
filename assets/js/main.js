@@ -945,10 +945,11 @@
     var stored;
     try { stored = localStorage.getItem('st_cookie_consent'); } catch (e) { stored = null; }
     if (stored) return;
-    setTimeout(function () { el.classList.add('show'); }, 1300);
+    setTimeout(function () { el.classList.add('show'); document.body.classList.add('ck-open'); }, 1300);
     function dismiss() {
       try { localStorage.setItem('st_cookie_consent', 'accepted'); } catch (e) {}
       el.classList.remove('show');
+      document.body.classList.remove('ck-open');
     }
     var x = document.getElementById('cookieClose');
     if (x) x.addEventListener('click', dismiss);
