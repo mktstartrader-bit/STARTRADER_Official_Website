@@ -1138,7 +1138,7 @@
 (function(){
   var root = document.documentElement;
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var reveals = [].slice.call(document.querySelectorAll('.reveal'));
+  var reveals = [].slice.call(document.querySelectorAll('.reveal, .reveal-stagger'));
 
   function showAll(){ reveals.forEach(function(el){ el.classList.add('in'); }); }
 
