@@ -267,6 +267,10 @@
         c.setAttribute('aria-label', 'Switch language to ' + name);
         if (code === current) c.classList.add('is-on');
         c.addEventListener('click', function () {
+          var ruHome = document.documentElement.hasAttribute('data-ru-home');
+          var isRu = (document.documentElement.lang || '').toLowerCase().indexOf('ru') === 0;
+          if (ruHome && code === 'RU' && !isRu) { window.location.href = '/ru/'; return; }
+          if (ruHome && code === 'EN' && isRu) { window.location.href = '/'; return; }
           chips.querySelectorAll('button').forEach(function (x) { x.classList.remove('is-on'); });
           c.classList.add('is-on');
           if (codeEl) codeEl.textContent = code;
@@ -324,10 +328,12 @@
     bar.setAttribute('aria-label', 'Get the STARTRADER app');
     var star = '<img src="/assets/img/sb-star.svg" alt="" width="11" height="10">';
     bar.innerHTML = '<span class="sb-ico"><img src="/assets/img/sb-mark.svg" alt="" width="24" height="31"></span>' +
-      '<span class="sb-txt"><b>STARTRADER</b><span>Online Trading App</span>' +
-      '<span class="sb-stars" aria-label="Rated 4.5 out of 5">' + star + star + star + star +
+      '<span class="sb-txt"><b>STARTRADER</b><span>' +
+      (((document.documentElement.lang || '').indexOf('ru') === 0) ? 'Приложение для трейдинга' : 'Online Trading App') +
+      '</span><span class="sb-stars" aria-label="Rated 4.5 out of 5">' + star + star + star + star +
       '<img src="/assets/img/sb-star-half.svg" alt="" width="11" height="10"></span></span>' +
-      '<a class="sb-get" href="/trading/platforms/trading-app.html">Install</a>';
+      '<a class="sb-get" href="/trading/platforms/trading-app.html">' +
+      (((document.documentElement.lang || '').indexOf('ru') === 0) ? 'Установить' : 'Install') + '</a>';
     document.body.appendChild(bar);
     document.body.classList.add('has-sb');
     // sit a measured 10px above the cookie while it shows, not a guessed offset;
@@ -941,11 +947,17 @@
       if (empty) empty.hidden = any;
     });
 
+    var RU_HOME = document.documentElement.hasAttribute('data-ru-home');
+    var IS_RU = (document.documentElement.lang || '').toLowerCase().indexOf('ru') === 0;
     items.forEach(function (it) {
       it.addEventListener('click', function () {
+        var code = it.getAttribute('data-code') || '';
+        // the homepage exists in two languages — switching navigates for real
+        if (RU_HOME && code === 'RU' && !IS_RU) { window.location.href = '/ru/'; return; }
+        if (RU_HOME && code === 'EN' && IS_RU) { window.location.href = '/'; return; }
         items.forEach(function (x) { x.classList.remove('is-active'); });
         it.classList.add('is-active');
-        if (codeEl) codeEl.textContent = it.getAttribute('data-code') || codeEl.textContent;
+        if (codeEl) codeEl.textContent = code || codeEl.textContent;
         btn.setAttribute('aria-label', 'Language: ' + it.textContent.trim());
         close();
       });
