@@ -6,6 +6,8 @@
 
   var doc = document.documentElement;
   var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // touch devices get static backdrops: scrub/parallax effects cost frames there
+  var COARSE = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
   var hasGSAP = typeof window.gsap !== 'undefined';
   var hasST = typeof window.ScrollTrigger !== 'undefined';
   var finePointer = window.matchMedia('(pointer: fine)').matches;
@@ -460,8 +462,8 @@
     // hero parallax
     var glow = document.querySelector('.hero-glow');
     var shape = document.querySelector('.hero-shape');
-    if (glow) gsap.to(glow, { yPercent: 26, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
-    if (shape) gsap.to(shape, { yPercent: 18, rotate: 6, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+    if (glow && !COARSE) gsap.to(glow, { yPercent: 26, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+    if (shape && !COARSE) gsap.to(shape, { yPercent: 18, rotate: 6, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
   }
 
   /* ---------------- Marquee rails (Swiper) ----------------
@@ -1077,7 +1079,7 @@
     if (steps) {
       var fill = steps.querySelector('.pe-steps-line i');
       var nums = Array.prototype.slice.call(steps.querySelectorAll('.pe-step-n'));
-      if (prefersReduced || !hasGSAP || !hasST) {
+      if (prefersReduced || COARSE || !hasGSAP || !hasST) {
         if (fill) fill.style.transform = 'scaleY(1)';
         nums.forEach(function (n) { n.classList.add('is-on'); });
       } else {
@@ -1535,7 +1537,7 @@
     // a hidden panel measures as zero, so re-measure when a tab switch refreshes
     if (hasST) ScrollTrigger.addEventListener('refresh', layoutRail);
 
-    if (prefersReduced || !hasGSAP || !hasST) {
+    if (prefersReduced || COARSE || !hasGSAP || !hasST) {
       list.style.setProperty('--htrade-rail', '1');
       return;
     }
@@ -3127,7 +3129,7 @@
       });
     });
 
-    if (prefersReduced || !hasGSAP || !hasST) return;
+    if (prefersReduced || COARSE || !hasGSAP || !hasST) return;
     gsap.utils.toArray('[data-rg-aura]').forEach(function (aura) {
       var amt = parseFloat(aura.getAttribute('data-rg-aura'));
       if (!amt) return;
@@ -3305,7 +3307,7 @@
       });
     });
 
-    if (prefersReduced || !hasGSAP || !hasST) return;
+    if (prefersReduced || COARSE || !hasGSAP || !hasST) return;
     gsap.utils.toArray('[data-pt-aura]').forEach(function (aura) {
       var amt = parseFloat(aura.getAttribute('data-pt-aura'));
       if (!amt) return;
