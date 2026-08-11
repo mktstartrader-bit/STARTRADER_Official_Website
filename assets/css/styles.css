@@ -4378,3 +4378,13 @@ iframe#webWidget{
 
 /* ===== FOOTER TAGLINE, SET LARGE IN PERIWINKLE (appended batch) ===== */
 .foot-tag{color:#7da4f7;font-size:clamp(24px,3.4vw,44px);letter-spacing:0;line-height:1.15}
+
+/* ===== PLATFORM CARD BREATHES ON SMALL PHONES (appended batch) =====
+   Below 480px the app card's copy column was pinned to 40% width with a
+   nowrap title, clipping the heading and stacking one word per line. */
+@media (max-width:480px){
+  .plat-app .plat-copy{max-width:100%}
+  .plat-app .plat-copy h3{white-space:normal}
+  .plat-copy p{max-width:none}
+  .plat-hand{width:min(230px,64%)}
+}
