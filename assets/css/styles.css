@@ -4330,3 +4330,20 @@ html{overflow-x:clip}
   body.has-sb .cookie{bottom:calc(14px + env(safe-area-inset-bottom,0px))}
   .cookie{bottom:calc(14px + env(safe-area-inset-bottom,0px))}
 }
+
+/* ===== ZENDESK BEHIND THE BRAND LAUNCHER (appended batch) =====
+   Zendesk's own turquoise launcher stays hidden; the site's chat bubble
+   (already the house blue gradient) opens the real messaging window,
+   which is framed as a floating glass card. Interior colours belong to
+   Zendesk Admin's brand setting. */
+/* Zendesk's own launcher never shows — not even during boot */
+iframe[title="Button to launch messaging window"]{
+  visibility:hidden !important;pointer-events:none !important;
+}
+iframe[title="Messaging window"],
+iframe#webWidget{
+  border-radius:22px !important;
+  border:1px solid rgba(255,255,255,.35) !important;
+  box-shadow:0 40px 90px -34px rgba(7,20,60,.65),0 0 0 6px rgba(255,255,255,.06) !important;
+  overflow:hidden !important;
+}

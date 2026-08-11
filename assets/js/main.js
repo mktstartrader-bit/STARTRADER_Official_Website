@@ -986,12 +986,24 @@
     // demo fab/panel are removed so only one chat exists.
     var ZE_KEY = '1f3bcd95-0e9c-4848-aa01-f290f4a3a36d';
     if (ZE_KEY) {
-      ['chatFab', 'chatPanel'].forEach(function (id) {
-        var el = document.getElementById(id);
-        if (el) el.remove();
-      });
+      var panel = document.getElementById('chatPanel');
+      if (panel) panel.remove();
+      var fab = document.getElementById('chatFab');
       var loadZe = function () {
         if (document.getElementById('ze-snippet')) return;
+        // brand the widget before it boots (honoured by the classic widget;
+        // the messaging widget takes its colours from Admin Center)
+        window.zESettings = {
+          webWidget: {
+            color: {
+              theme: '#0047bb',
+              launcher: '#0047bb',
+              launcherText: '#ffffff',
+              header: '#0047bb',
+              button: '#0047bb'
+            }
+          }
+        };
         var s = document.createElement('script');
         s.id = 'ze-snippet';
         s.src = 'https://static.zdassets.com/ekr/snippet.js?key=' + ZE_KEY;
@@ -999,6 +1011,33 @@
       };
       if (document.readyState === 'complete') setTimeout(loadZe, 1500);
       else window.addEventListener('load', function () { setTimeout(loadZe, 1500); });
+
+      // our brand bubble is the launcher; Zendesk's stays hidden
+      var whenZE = function (cb) {
+        if (window.zE) cb();
+        else setTimeout(function () { whenZE(cb); }, 300);
+      };
+      whenZE(function () {
+        try {
+          zE('messenger', 'hide');
+          zE('messenger:on', 'close', function () {
+            zE('messenger', 'hide');
+            if (fab) fab.style.visibility = '';
+          });
+        } catch (e) {
+          // classic widget: zESettings already brands its launcher blue
+          if (fab) fab.remove();
+        }
+      });
+      if (fab) fab.addEventListener('click', function () {
+        whenZE(function () {
+          try {
+            zE('messenger', 'show');
+            zE('messenger', 'open');
+            fab.style.visibility = 'hidden';
+          } catch (e) {}
+        });
+      });
       return;
     }
     var fab = document.getElementById('chatFab'), panel = document.getElementById('chatPanel'), close = document.getElementById('chatClose');
