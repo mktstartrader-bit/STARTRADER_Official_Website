@@ -1435,11 +1435,12 @@
 </div>
 
 <script>
-/* welcome popup — first shows after 20s, returns 10s after every dismissal (dummy cadence) */
+/* welcome popup — appears once per visit, 20s after load */
 (function () {
   var pop = document.getElementById('stPopup');
   var x = document.getElementById('stPopupClose');
   if (!pop || !x) return;
+  try { if (sessionStorage.getItem('st-popup-seen')) return; } catch (e) {}
   function open() {
     pop.hidden = false;
     requestAnimationFrame(function () {
@@ -1448,8 +1449,8 @@
   }
   function close() {
     pop.classList.remove('is-open');
+    try { sessionStorage.setItem('st-popup-seen', '1'); } catch (e) {}
     setTimeout(function () { pop.hidden = true; }, 380);
-    setTimeout(open, 10000);
   }
   x.addEventListener('click', close);
   pop.addEventListener('click', function (e) { if (e.target === pop) close(); });
