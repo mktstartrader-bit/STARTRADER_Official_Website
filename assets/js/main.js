@@ -980,6 +980,27 @@
 
   /* ---------------- Chat widget ---------------- */
   function initChat() {
+    // Real support chat: the Zendesk snippet (requested via the feedback
+    // sheet) replaces the demo chat panel site-wide. The snippet is loaded
+    // lazily after the page settles so it never competes with LCP; the
+    // demo fab/panel are removed so only one chat exists.
+    var ZE_KEY = '1f3bcd95-0e9c-4848-aa01-f290f4a3a36d';
+    if (ZE_KEY) {
+      ['chatFab', 'chatPanel'].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el) el.remove();
+      });
+      var loadZe = function () {
+        if (document.getElementById('ze-snippet')) return;
+        var s = document.createElement('script');
+        s.id = 'ze-snippet';
+        s.src = 'https://static.zdassets.com/ekr/snippet.js?key=' + ZE_KEY;
+        document.head.appendChild(s);
+      };
+      if (document.readyState === 'complete') setTimeout(loadZe, 1500);
+      else window.addEventListener('load', function () { setTimeout(loadZe, 1500); });
+      return;
+    }
     var fab = document.getElementById('chatFab'), panel = document.getElementById('chatPanel'), close = document.getElementById('chatClose');
     if (!fab || !panel) return;
     var ck = document.getElementById('cookie');
