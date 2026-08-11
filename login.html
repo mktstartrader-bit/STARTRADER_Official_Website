@@ -19,8 +19,7 @@
     radial-gradient(52% 60% at 12% 6%,rgba(42,114,255,.07),transparent 62%),
     radial-gradient(56% 64% at 90% 94%,rgba(122,164,255,.07),transparent 62%),
     linear-gradient(180deg,#f7fafe 0%,#eef3fb 100%)}
-.lg-shell{display:grid;grid-template-columns:1.5fr 1fr;gap:20px;width:min(1240px,100%);
-  min-height:min(820px,calc(100svh - 48px))}
+.lg-shell{display:grid;grid-template-columns:1fr;width:min(560px,100%)}
 .lg-wrap{position:relative;overflow:clip}
 .lg-wrap::before,.lg-wrap::after{content:"";position:absolute;border-radius:50%;pointer-events:none}
 .lg-wrap::before{width:56vmin;height:56vmin;left:4%;top:6%;
@@ -35,19 +34,11 @@
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
   .lg-panel{background:rgba(255,255,255,.94)}
 }
-.lg-panel--form{display:grid;place-items:center;padding:clamp(36px,5vw,64px) clamp(20px,3vw,48px)}
-.lg-panel--promo{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;
-  padding:clamp(36px,4.6vw,56px) clamp(24px,3vw,44px) 0;overflow:hidden}
-.lg-lines{display:flex;gap:10px;width:100%;max-width:420px;margin:0 auto 40px}
+.lg-panel--form{display:grid;place-items:center;padding:clamp(64px,7vw,84px) clamp(20px,4vw,56px) clamp(36px,4vw,52px)}
 
-.lg-panel--promo h2{font-size:clamp(21px,2.2vw,26px);letter-spacing:-.028em;color:#0c1526;line-height:1.2}
-.lg-panel--promo p{margin-top:10px;font-size:14px;line-height:1.65;color:#5a6478;max-width:34ch}
-.lg-shield{display:block;margin:auto auto 0;width:min(320px,72%);height:auto;
-  filter:drop-shadow(0 30px 50px rgba(30,70,150,.26))}
 @media (max-width:980px){
   .lg-shell{grid-template-columns:1fr;min-height:auto}
-  .lg-panel--promo{display:none}
-}
+  }
 .lg-card{width:min(420px,100%);animation:lgIn .6s cubic-bezier(.22,.61,.36,1) both}
 @keyframes lgIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 .lg-card>*{animation:lgIn .55s cubic-bezier(.22,.61,.36,1) both}
@@ -126,23 +117,9 @@
 .lg-foot{margin-top:22px;text-align:center;font-size:13px;color:#5a6478}
 .lg-foot a{font-weight:700;color:#2a72ff}
 .lg-foot a:hover{text-decoration:underline;text-underline-offset:3px}
-.lg-back{position:fixed;top:18px;left:18px;z-index:20;display:inline-flex;align-items:center;gap:7px;padding:9px 16px;
-  border-radius:40px;font-size:12.5px;font-weight:700;color:#33415e;background:rgba(255,255,255,.6);
-  border:1px solid rgba(255,255,255,.9);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
-  transition:background .25s,transform .3s var(--ease)}
-.lg-back:hover{background:#fff;transform:translateX(-2px)}
-.lg-back svg{width:14px;height:14px;transform:rotate(180deg)}
   
 /* ---- promo slider ---- */
 .lg-panel--form{position:relative}
-.lg-lines button{flex:1;padding:6px 0;border:0;background:none;cursor:pointer}
-.lg-lines button i{display:block;height:3px;border-radius:3px;background:#e9eef7;transition:background .3s}
-.lg-lines button.is-on i{background:#2a72ff}
-.lg-slides{position:relative;flex:1;display:flex;width:100%}
-.lg-slide{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;text-align:center;
-  opacity:0;transform:translateX(18px);pointer-events:none;
-  transition:opacity .45s var(--ease),transform .45s var(--ease)}
-.lg-slide.is-on{position:relative;opacity:1;transform:none;pointer-events:auto}
 /* ---- language chip ---- */
 .lg-top{position:absolute;top:20px;left:24px;right:20px;z-index:5;
   display:flex;align-items:center;justify-content:space-between}
@@ -161,6 +138,13 @@
   transition:background .2s,color .2s}
 .lg-lang-pop button:hover{background:#f2f5fa;color:#0c1526}
 .lg-lang-pop button.is-on{color:#2a72ff;background:rgba(42,114,255,.07)}
+
+/* ---- official partnerships, as worn by the site header ---- */
+.lg-partners{margin-top:24px;display:flex;align-items:center;justify-content:center;gap:20px;
+  padding:16px 22px;border-radius:18px;background:#0a1f44}
+.lg-partners img{height:34px;width:auto;display:block;opacity:.95}
+.lg-partners img:last-child{height:26px}
+.lg-partners i{width:1px;align-self:stretch;background:rgba(255,255,255,.22)}
 </style>
 </head>
 <body>
@@ -169,8 +153,6 @@
   <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M4 12h15m0 0-6-6m6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-telegram" viewBox="0 0 24 24"><path d="M21.5 4.3 2.9 11.5c-.9.35-.9.9-.15 1.12l4.7 1.46 1.8 5.6c.23.63.4.86 1 .86.46 0 .66-.2.9-.45l2.28-2.2 4.72 3.5c.87.48 1.5.23 1.72-.8l3-14.1c.3-1.28-.5-1.86-1.34-1.5z" fill="currentColor"/></symbol>
 </svg>
-
-<a class="lg-back" href="index.html"><svg aria-hidden="true"><use href="#i-arrow-right"/></svg>Back to site</a>
 
 <main class="lg-wrap">
   <div class="lg-shell">
@@ -231,32 +213,15 @@
     <a class="lg-alt" href="#"><svg aria-hidden="true"><use href="#i-telegram"/></svg>Telegram</a>
 
     <p class="lg-foot">Not A Client? <a href="trading/getting-started/account-opening.html">Open Live Account</a></p>
+
+    <div class="lg-partners" aria-label="Official partnerships">
+      <img src="assets/img/nav-nba.svg" alt="Official Partner of the NBA" width="156" height="92">
+      <i aria-hidden="true"></i>
+      <img src="assets/img/nav-porsche.svg" alt="Official Partner of the Porsche Carrera Cup Middle East" width="121" height="34">
+    </div>
   </form>
   </section>
-  <aside class="lg-panel lg-panel--promo" aria-label="Why STARTRADER" data-lg-slider>
-    <div class="lg-lines" role="tablist" aria-label="Promo slides">
-      <button type="button" class="is-on" role="tab" aria-selected="true" aria-label="Slide 1"><i></i></button>
-      <button type="button" role="tab" aria-selected="false" aria-label="Slide 2"><i></i></button>
-      <button type="button" role="tab" aria-selected="false" aria-label="Slide 3"><i></i></button>
-    </div>
-    <div class="lg-slides">
-      <div class="lg-slide is-on">
-        <h2>Trade with a Globally Leading Broker</h2>
-        <p>Access global markets on your terms today.</p>
-        <img class="lg-shield" src="assets/img/icon-shield-3d.webp" alt="3D shield emblem for insured client funds" width="400" height="490">
-      </div>
-      <div class="lg-slide">
-        <h2>STARTRADER: Trading &amp; Investing App</h2>
-        <p>The full account in your pocket &mdash; iOS &amp; Android.</p>
-        <img class="lg-shield" src="assets/img/icon-shield-3d.webp" alt="3D shield emblem" width="400" height="490">
-      </div>
-      <div class="lg-slide">
-        <h2>MetaTrader 5</h2>
-        <p>Multi-asset, depth of market, full algo support.</p>
-        <img class="lg-shield" src="assets/img/icon-shield-3d.webp" alt="3D shield emblem" width="400" height="490">
-      </div>
-    </div>
-  </aside>
+  
   </div>
 </main>
 
@@ -294,32 +259,7 @@
   document.querySelector('.lg-card').addEventListener('submit', function (e) { e.preventDefault(); });
 })();
 
-/* promo slider: auto-rotates, lines jump */
-(function () {
-  var root = document.querySelector('[data-lg-slider]');
-  if (!root) return;
-  var slides = Array.prototype.slice.call(root.querySelectorAll('.lg-slide'));
-  var dots = Array.prototype.slice.call(root.querySelectorAll('.lg-lines button'));
-  var idx = 0, timer = null;
-  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function go(n) {
-    idx = (n + slides.length) % slides.length;
-    slides.forEach(function (s, i) { s.classList.toggle('is-on', i === idx); });
-    dots.forEach(function (d, i) {
-      d.classList.toggle('is-on', i === idx);
-      d.setAttribute('aria-selected', String(i === idx));
-    });
-  }
-  function arm() {
-    if (reduced) return;
-    clearInterval(timer);
-    timer = setInterval(function () { go(idx + 1); }, 5000);
-  }
-  dots.forEach(function (d, i) {
-    d.addEventListener('click', function () { go(i); arm(); });
-  });
-  arm();
-})();
+
 
 /* language chip */
 (function () {
