@@ -94,6 +94,9 @@ the shared layer must never shift under them.
 - Prefer complete per-page code in one batch (page HTML with its inline CSS),
   never fragments the devs must merge by hand.
 - Commit in logical units (images / vendor / shared CSS+JS / pages).
+- Cache busting: every page links `styles.css?v=<short-sha>` and `main.js?v=<short-sha>`.
+  After changing either file, bump the `?v=` stamp across all pages (sed) so
+  reviewers' phones pick up the change without hard refreshes.
 - Deploy: `vercel --prod --yes` (project is linked; static, no build step).
   Smoke-check the `startrader-official.vercel.app` alias afterwards — the
   unique deployment URL 302s due to deployment protection; that is normal.
