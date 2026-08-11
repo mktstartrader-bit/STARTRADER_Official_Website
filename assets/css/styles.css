@@ -4347,3 +4347,13 @@ iframe#webWidget{
   box-shadow:0 40px 90px -34px rgba(7,20,60,.65),0 0 0 6px rgba(255,255,255,.06) !important;
   overflow:hidden !important;
 }
+
+/* ===== HEADER FITS AT PHONE WIDTHS (appended batch) =====
+   The i18n logo guard pushed the hamburger past the right edge on
+   390px screens, where the overflow guard clipped it invisible. Below
+   480px the brand and CTA slim down so all three fit. */
+@media (max-width:480px){
+  .brand img{min-width:0;width:128px;height:auto}
+  .nav .nav-cta{padding:9px 14px;font-size:12.5px}
+  .nav{gap:10px}
+}
