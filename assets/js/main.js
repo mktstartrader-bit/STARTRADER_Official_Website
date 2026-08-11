@@ -314,6 +314,26 @@
     });
   }
 
+  /* Smart app banner — phones only (CSS gates at 768px), one per visit */
+  function initSmartBanner() {
+    try { if (sessionStorage.getItem('sb-dismissed')) return; } catch (e) {}
+    if (document.querySelector('.sb-bar')) return;
+    var bar = document.createElement('div');
+    bar.className = 'sb-bar';
+    bar.setAttribute('role', 'complementary');
+    bar.setAttribute('aria-label', 'Get the STARTRADER app');
+    bar.innerHTML = '<button type="button" class="sb-x" aria-label="Dismiss app banner">' +
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button>' +
+      '<span class="sb-ico"><img src="/assets/img/logo-mark.svg" alt="" width="22" height="22"></span>' +
+      '<span class="sb-txt"><b>STARTRADER: Online Trading App</b><span>&#9733;&#9733;&#9733;&#9733;&#9733; &middot; Free</span></span>' +
+      '<a class="sb-get" href="/trading/platforms/trading-app.html">Install</a>';
+    document.body.insertBefore(bar, document.body.firstChild);
+    bar.querySelector('.sb-x').addEventListener('click', function () {
+      try { sessionStorage.setItem('sb-dismissed', '1'); } catch (e) {}
+      bar.remove();
+    });
+  }
+
   function initMobileMenu() {
     var burger = document.getElementById('hamburger');
     var menu = document.getElementById('mobileMenu');
@@ -332,6 +352,7 @@
       if (lenis) { open ? lenis.stop() : lenis.start(); }
       document.body.style.overflow = open ? 'hidden' : '';
     }
+    menu.setAttribute('data-lenis-prevent', '');
     burger.addEventListener('click', function () { setOpen(!menu.classList.contains('open')); });
     var mmX = menu.querySelector('.mm-x');
     if (mmX) mmX.addEventListener('click', function () { setOpen(false); });
@@ -794,6 +815,7 @@
 
   /* ---------------- Mega menu — item flyouts (Commodities, Web Trader) ---------------- */
   function initMega() {
+    document.querySelectorAll('.mega').forEach(function (p) { p.setAttribute('data-lenis-prevent', ''); });
     document.querySelectorAll('.nav-item.has-mega').forEach(function (item) {
       var mega = item.querySelector('.mega');
       var parents = Array.prototype.slice.call(item.querySelectorAll('.mega-item-parent'));
@@ -847,6 +869,7 @@
     var btn = document.getElementById('langBtn');
     var pop = document.getElementById('langPop');
     if (!btn || !pop) return;
+    pop.setAttribute('data-lenis-prevent', '');
     var closeBtn = document.getElementById('langClose');
     var search = document.getElementById('langSearch');
     var codeEl = document.getElementById('langCode');
@@ -5139,6 +5162,7 @@
     initLenis();
     buildTicker();
     initHeader();
+    initSmartBanner();
     initMobileMenu();
     initAnchors();
     initDropdowns();
