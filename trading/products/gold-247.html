@@ -75,7 +75,7 @@
 .g247-pi:hover img{transform:translateY(-5px) scale(1.07);filter:drop-shadow(0 20px 34px rgba(212,166,67,.55))}
 .g247-pi b{font-size:clamp(24px,2.6vw,32px);letter-spacing:-.024em;color:#101828}
 .g247-pi b sub{font-size:15px;font-weight:600;color:#8a6f2e;vertical-align:baseline}
-.g247-pl{font-size:13.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#8a6f2e}
+.g247-pl{margin-bottom:2px;font-size:13.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#8a6f2e}
 @media (max-width:760px){
   .g247-proof{grid-template-columns:repeat(2,1fr);gap:26px 14px}
   .g247-pi,.g247-pi:nth-child(4){grid-column:auto}
@@ -130,7 +130,7 @@
   font-weight:700;color:#b3a68a;margin-bottom:10px}
 .g247-lab-oz label b{font-size:15px;color:#f0c96a;font-variant-numeric:tabular-nums}
 .g247-lab-oz input[type=range]{width:100%;accent-color:#d4a643;cursor:pointer}
-.g247-lab-oz p{margin-top:12px;font-size:13px;color:#b3a68a}
+.g247-lab-oz p{margin:0 0 14px;font-size:13px;color:#b3a68a}
 .g247-lab-oz p b{color:#f4ead6;font-size:16px;font-variant-numeric:tabular-nums}
 .g247-lab-r{display:flex;flex-direction:column;justify-content:center;text-align:center;border-radius:20px;
   padding:clamp(20px,2.4vw,30px);background:rgba(212,166,67,.05);border:1px solid rgba(212,166,67,.16)}
@@ -574,23 +574,23 @@ body.g247x .cta-inner p{color:#e4d8b8}
     <div class="g247-proof">
       <div class="g247-pi" data-aos="fade-up">
         <img src="../../assets/img/gold247-proof-shield.webp" alt="Layered gold shields with a check mark" width="240" height="240" loading="lazy" decoding="async">
-        <b>7 days</b><span class="g247-pl">Quoted 7 days a week</span>
+        <span class="g247-pl">Quoted 7 days a week</span><b>7 days</b>
       </div>
       <div class="g247-pi" data-aos="fade-up" data-aos-delay="100">
         <img src="../../assets/img/gold247-proof-shield.webp" alt="Layered gold shields with a check mark" width="240" height="240" loading="lazy" decoding="async">
-        <b>1 oz</b><span class="g247-pl">1 lot = 1 oz</span>
+        <span class="g247-pl">1 lot = 1 oz</span><b>1 oz</b>
       </div>
       <div class="g247-pi" data-aos="fade-up" data-aos-delay="200">
         <img src="../../assets/img/gold247-proof-shield.webp" alt="Layered gold shields with a check mark" width="240" height="240" loading="lazy" decoding="async">
-        <b>$0.15 <sub>/oz</sub></b><span class="g247-pl">Weekday spreads from $0.15/oz</span>
+        <span class="g247-pl">Weekday spreads from</span><b>$0.15 <sub>/oz</sub></b>
       </div>
       <div class="g247-pi" data-aos="fade-up" data-aos-delay="300">
         <img src="../../assets/img/gold247-proof-shield.webp" alt="Layered gold shields with a check mark" width="240" height="240" loading="lazy" decoding="async">
-        <b>$0.40 <sub>/oz</sub></b><span class="g247-pl">Weekend spreads from $0.40/oz</span>
+        <span class="g247-pl">Weekend spreads from</span><b>$0.40 <sub>/oz</sub></b>
       </div>
       <div class="g247-pi" data-aos="fade-up" data-aos-delay="400">
         <img src="../../assets/img/gold247-proof-shield.webp" alt="Layered gold shields with a check mark" width="240" height="240" loading="lazy" decoding="async">
-        <b>$0</b><span class="g247-pl">$0 separate commission</span>
+        <span class="g247-pl">Separate commission</span><b>$0</b>
       </div>
     </div>
   </div>
@@ -698,9 +698,9 @@ body.g247x .cta-inner p{color:#e4d8b8}
         </div>
         <p class="g247-lab-line" id="g247LabLine">&nbsp;</p>
         <div class="g247-lab-oz">
+          <p>Spread cost on this trade: <b id="g247Cost">$1.50</b></p>
           <label for="g247Oz">Position size <b id="g247OzVal">10 oz</b></label>
           <input type="range" id="g247Oz" min="1" max="100" value="10" aria-label="Position size in ounces">
-          <p>Spread cost on this trade: <b id="g247Cost">$1.50</b></p>
         </div>
       </div>
       <div class="g247-lab-r">
@@ -752,7 +752,7 @@ body.g247x .cta-inner p{color:#e4d8b8}
   <div class="container">
     <div class="head center">
       <span class="eyebrow" data-aos="fade-up">FAQ</span>
-      <h2 class="h2" id="g247-faq-title" data-aos="fade-up">Gold 24/7 questions</h2>
+      <h2 class="h2" id="g247-faq-title" data-aos="fade-up">Gold 24/7 Questions</h2>
     </div>
     <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
@@ -779,7 +779,7 @@ body.g247x .cta-inner p{color:#e4d8b8}
 <section class="cta-banner" aria-labelledby="fx-cta-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="fx-cta-title" data-aos="fade-up">Gold no longer<br>keeps office hours</h2>
+    <h2 id="fx-cta-title" data-aos="fade-up">Gold No Longer<br>Keeps Office Hours</h2>
     <p data-aos="fade-up">Open an account and trade XAUUSD247 around the clock, seven days a week.</p>
     <div class="cta-actions" data-aos="fade-up">
       <a href="../getting-started/account-opening.html" class="btn btn-primary btn-lg">Open an MT5 Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
