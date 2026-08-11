@@ -4365,3 +4365,13 @@ iframe#webWidget{
 @media (max-width:900px){
   .nav .nav-cta{margin-left:auto}
 }
+
+/* ===== NAV-RIGHT CARRIES THE SPACER (appended batch) =====
+   The CTA's auto margin sat inside the content-sized wrapper where
+   there was no space to take — the wrapper itself now claims the free
+   width, and the burger trims its inner padding so its bars sit on the
+   same 20px optical gutter as the logo. */
+@media (max-width:900px){
+  .nav-right{margin-left:auto}
+  .hamburger{margin-right:-6px}
+}
