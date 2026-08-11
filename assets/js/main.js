@@ -336,15 +336,24 @@
       try { sessionStorage.setItem('sb-dismissed', '1'); } catch (e) {}
       document.body.classList.remove('has-sb');
       bar.remove();
+      setTimeout(layoutSb, 30);
     });
-    // sit a measured 10px above the cookie while it shows, not a guessed offset
+    // sit a measured 10px above the cookie while it shows, not a guessed offset;
+    // the chat bubble then rides a measured 12px above whichever is topmost
     function layoutSb() {
       var ck = document.getElementById('cookie');
-      if (ck && ck.classList.contains('show')) {
-        var r = ck.getBoundingClientRect();
-        bar.style.bottom = Math.round(window.innerHeight - r.top + 10) + 'px';
+      var ckOn = ck && ck.classList.contains('show');
+      if (ckOn) {
+        bar.style.bottom = Math.round(window.innerHeight - ck.getBoundingClientRect().top + 10) + 'px';
       } else {
         bar.style.bottom = '';
+      }
+      var fab = document.getElementById('chatFab');
+      if (fab) {
+        var topmost = null;
+        if (document.body.contains(bar)) topmost = bar.getBoundingClientRect().top;
+        else if (ckOn) topmost = ck.getBoundingClientRect().top;
+        fab.style.bottom = topmost !== null ? Math.round(window.innerHeight - topmost + 12) + 'px' : '';
       }
     }
     document.addEventListener('st:cookie', function () { setTimeout(layoutSb, 60); });

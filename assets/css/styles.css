@@ -4312,3 +4312,13 @@ html{overflow-x:clip}
   body.has-sb .chat-fab{bottom:calc(104px + env(safe-area-inset-bottom,0px))}
   body.has-sb.ck-open .chat-fab{bottom:calc(208px + env(safe-area-inset-bottom,0px))}
 }
+
+/* ===== STACK POLISH (appended batch) =====
+   The cookie keeps its glass on phones — one small fixed surface is
+   cheap — and the chat bubble is measured above the banner stack by JS. */
+@media (pointer: coarse){
+  .cookie{-webkit-backdrop-filter:blur(16px) saturate(1.35);backdrop-filter:blur(16px) saturate(1.35)}
+}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .cookie{background:rgba(10,16,30,.94)}
+}
