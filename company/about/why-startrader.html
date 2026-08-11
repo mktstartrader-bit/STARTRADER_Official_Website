@@ -245,7 +245,77 @@
 .co-reg-name{min-height:0}
 .co-gallery{grid-template-columns:1fr;max-width:420px;margin-inline:auto}
 .co-gcard,.co-gcard-lg{min-height:300px}}
-  </style>
+  
+/* ---- platforms section styles, carried over with the homepage markup ---- */
+/* ---------- Platforms ---------- */
+/* the hand sits flush to the card's lower-right corner */
+.plat-hand{
+  position:absolute;right:clamp(-58px,-4vw,-24px);bottom:0;z-index:1;
+  width:auto;height:clamp(300px,88%,486px);max-width:74%;
+  object-fit:contain;object-position:100% 100%;
+  filter:drop-shadow(0 26px 40px rgba(20,44,96,.28));
+  pointer-events:none;
+}
+/* two glass readouts on the left, overlapping the phone rather than sitting on it */
+.plat-chips{
+  position:absolute;left:34px;bottom:clamp(104px,21%,136px);z-index:3;
+  display:flex;flex-direction:column;gap:10px;width:clamp(152px,40%,184px);pointer-events:none;
+}
+.plat-chip{
+  display:flex;flex-direction:column;gap:6px;
+  padding:12px 14px;border-radius:14px;
+  background:rgba(255,255,255,.62);
+  -webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);
+  border:1px solid rgba(255,255,255,.86);
+  box-shadow:0 16px 34px -22px rgba(20,44,96,.45),inset 0 1px 0 #fff;
+}
+.plat-chip b{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mute)}
+.plat-chip-row{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.plat-chip em{font-style:normal;font-size:16px;font-weight:700;letter-spacing:-.02em;
+  font-variant-numeric:tabular-nums;color:var(--text)}
+.plat-chip i{font-style:normal;font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px}
+.plat-chip i.up{color:#0f9d76;background:rgba(16,185,129,.14)}
+/* the stat chip leads with the figure */
+.plat-chip--stat b{font-size:23px;font-weight:800;letter-spacing:-.04em;text-transform:none;
+  color:var(--blue);font-variant-numeric:tabular-nums}
+.plat-chip--stat b small{font-size:12px;font-weight:800;margin-left:2px;color:var(--text-mute)}
+.plat-chip--stat span{font-size:11.5px;line-height:1.4;color:var(--text-soft)}
+@media (prefers-reduced-motion:no-preference){.plat-app .plat-chip{animation:platFloat 6.5s var(--ease) infinite}
+.plat-app .plat-chip--stat{animation-delay:-3.2s}}
+@media (max-width:900px){.plat-chips{width:clamp(132px,44%,168px);bottom:clamp(88px,18%,118px)}
+.plat-chip--stat b{font-size:20px}}
+/* the web card's readouts sit lower and smaller — it is a short, wide card */
+.plat-chips--web{
+  left:auto;right:clamp(150px,30%,240px);top:50%;bottom:auto;transform:translateY(-50%);
+  width:clamp(150px,26%,176px);
+}
+.plat-chips--web .plat-chip{padding:11px 13px;gap:5px}
+.plat-chips--web .plat-chip em{font-size:15px}
+.plat-chips--web .plat-chip--stat b{font-size:20px}
+.plat-chips--web .plat-chip--stat span{font-size:11px}
+@media (max-width:1080px){.plat-chips--web{display:none}}
+/* a veil of blur climbing off the bottom edge, with the store buttons on it */
+.plat-veil{
+  position:absolute;left:0;right:0;bottom:0;z-index:4;
+  padding:56px 34px 26px;
+  -webkit-backdrop-filter:blur(16px) saturate(1.2);backdrop-filter:blur(16px) saturate(1.2);
+  background:linear-gradient(180deg,rgba(240,245,252,0) 0%,rgba(240,245,252,.62) 42%,rgba(240,245,252,.9) 100%);
+  /* the blur itself fades out towards the top, so there is no hard edge */
+  -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 46%,#000 100%);
+  mask-image:linear-gradient(180deg,transparent 0%,#000 46%,#000 100%);
+}
+.plat-veil .avail{
+  display:block;font-size:10.5px;font-weight:800;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--text-mute);
+}
+.plat-veil .badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:11px}
+.plat-veil .badges img{height:38px;width:auto;display:block;
+  border-radius:8px;box-shadow:0 10px 22px -12px rgba(20,44,96,.5);
+  transition:transform .3s var(--ease),box-shadow .3s}
+.plat-veil .badges a:hover img{transform:translateY(-3px);box-shadow:0 16px 30px -12px rgba(20,44,96,.6)}
+@media (max-width:900px){.plat-hand{height:clamp(240px,78%,400px);max-width:62%}
+.plat-veil{padding:48px 22px 20px}}
+</style>
   <script>document.documentElement.classList.add('js-reveal');</script>
 
   <!-- Structured data -->
@@ -693,53 +763,79 @@
       <h2 class="h2" id="platforms-title" data-aos="fade-up">Our star platforms &amp; tools</h2>
     </div>
 
-    <div class="plat-grid" data-aos="fade-up">
+    <div class="plat-grid">
       <!-- App card -->
-      <article class="plat-card plat-app">
+      <article class="plat-card plat-app" data-aos="fade-up">
         <div class="plat-copy">
           <h3>STARTRADER: Trading &amp; Investing App</h3>
-          <p>The full account in your pocket — iOS &amp; Android.</p>
-          <span class="avail">Available on:</span>
+          <p>The full account in your pocket &mdash; iOS &amp; Android.</p>
+        </div>
+
+        <!-- two minimal readouts, lapping the phone's left edge -->
+        <div class="plat-chips" aria-hidden="true">
+          <span class="plat-chip plat-chip--tick">
+            <b>GBPUSD</b>
+            <span class="plat-chip-row"><em>1.25413</em><i class="up">+0.44%</i></span>
+          </span>
+          <span class="plat-chip plat-chip--stat">
+            <b>100<small>ms</small></b>
+            <span>average execution</span>
+          </span>
+        </div>
+
+        <img class="plat-hand" src="../../assets/img/app-hand.webp" alt="The STARTRADER app open on a phone" width="1000" height="1364" loading="lazy" decoding="async">
+
+        <!-- the veil rises off the lower edge, and the buttons sit on it -->
+        <div class="plat-veil">
+          <span class="avail">Available on</span>
           <div class="badges">
-            <a href="#" aria-label="Get it on Google Play"><img src="../../assets/img/badge-googleplay.webp" alt="Get it on Google Play" width="140" height="41" loading="lazy"></a>
             <a href="#" aria-label="Download on the App Store"><img src="../../assets/img/badge-appstore.webp" alt="Download on the App Store" width="140" height="41" loading="lazy"></a>
+            <a href="#" aria-label="Get it on Google Play"><img src="../../assets/img/badge-googleplay.webp" alt="Get it on Google Play" width="140" height="41" loading="lazy"></a>
           </div>
         </div>
-        <img class="plat-phone" src="../../assets/img/appScreenshot.webp" alt="STARTRADER mobile trading app" width="880" height="1034" loading="lazy">
       </article>
 
       <!-- Web trader (blue) -->
-      <article class="plat-card plat-web">
+      <article class="plat-card plat-web" data-aos="fade-up" data-aos-delay="100">
         <div class="plat-copy">
           <h3>Web Trader</h3>
           <p>The full trading terminal in your browser — no download needed.</p>
         </div>
         <a href="../../trading/platforms/webtrader.html" class="link-ur">Launch web trader <svg class="ico"><use href="#i-arrow-ur"/></svg></a>
+        <!-- one readout, lapping the laptop -->
+        <div class="plat-chips plat-chips--web" aria-hidden="true">
+          <span class="plat-chip plat-chip--tick">
+            <b>XAUUSD</b>
+            <span class="plat-chip-row"><em>3,279.96</em><i class="up">+1.18%</i></span>
+          </span>
+        </div>
+
         <img class="plat-tablet" src="../../assets/img/webtrader-laptop.webp" alt="Web Trader terminal open on a laptop" width="619" height="458" loading="lazy">
       </article>
 
       <!-- MT4 -->
-      <article class="plat-card plat-mt">
+      <article class="plat-card plat-mt" data-aos="fade-up" data-aos-delay="200">
         <div class="plat-copy">
           <h3>MetaTrader 4</h3>
           <p>The classic — EAs, indicators, proven reliability.</p>
         </div>
         <a href="../../trading/platforms/mt4.html" class="link-ur">Download MT4 <svg class="ico"><use href="#i-arrow-ur"/></svg></a>
-        <img class="plat-mt-ico" src="../../assets/img/mt4Screenshot.webp" alt="MetaTrader 4" width="152" height="165" loading="lazy">
+
+        <img class="plat-mt-ico" src="../../assets/img/mt4-stack.webp" alt="MetaTrader 4" width="520" height="498" loading="lazy" decoding="async">
       </article>
 
       <!-- MT5 -->
-      <article class="plat-card plat-mt">
+      <article class="plat-card plat-mt" data-aos="fade-up" data-aos-delay="300">
         <div class="plat-copy">
           <h3>MetaTrader 5</h3>
           <p>Multi-asset, depth of market, full algo support.</p>
         </div>
         <a href="../../trading/platforms/mt5.html" class="link-ur">Download MT5 <svg class="ico"><use href="#i-arrow-ur"/></svg></a>
-        <img class="plat-mt-ico" src="../../assets/img/mt5Screenshot.webp" alt="MetaTrader 5" width="163" height="166" loading="lazy">
+        <img class="plat-mt-ico" src="../../assets/img/mt5-stack.webp" alt="MetaTrader 5" width="520" height="520" loading="lazy" decoding="async">
       </article>
     </div>
 
-    <div class="center">
+    <div class="center" data-aos="fade-up">
       <a href="../../trading/getting-started/account-opening.html" class="btn btn-primary btn-lg magnetic">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
     </div>
   </div>
