@@ -253,7 +253,7 @@ body.g247x .faq-item summary:hover .faq-q-ic{border-color:#f0c96a;color:#f0c96a}
 body.g247x .cta-bg{background:#0a0805 url(/assets/img/gold247-cta.webp) center bottom/cover no-repeat}
 body.g247x .cta-inner{padding:clamp(48px,6vw,84px) 0;text-align:left}
 .g247-acct-card{max-width:620px;margin-inline:auto;padding:clamp(24px,2.8vw,34px);
-  background:linear-gradient(150deg,rgba(40,30,14,.62) 0%,rgba(16,12,6,.82) 55%,rgba(30,22,10,.7) 100%);
+  background:linear-gradient(150deg,rgba(28,21,10,.8) 0%,rgba(9,7,3,.93) 55%,rgba(22,16,8,.84) 100%);
   -webkit-backdrop-filter:blur(18px) saturate(1.25);backdrop-filter:blur(18px) saturate(1.25);
   border:1px solid rgba(240,201,106,.32);
   box-shadow:0 34px 80px -42px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.14)}
@@ -264,24 +264,24 @@ body.g247x .cta-inner .g247-acct-card .ct-err{font-size:12px;color:#ff9d91;margi
 body.g247x .cta-inner .g247-acct-card .btn{margin-top:0}
 .g247-req{color:#e5484d;font-weight:700}
 /* frosted fields, label above the input inside the outline */
-.g247-fld{position:relative;display:flex;flex-direction:column;gap:2px;margin-top:14px;padding:9px 16px 10px;
-  border:1px solid rgba(255,255,255,.18);border-radius:15px;background:rgba(255,255,255,.05);transition:border-color .25s,box-shadow .25s}
+.g247-fld{position:relative;display:flex;flex-direction:column;gap:1px;margin-top:12px;padding:7px 15px 8px;
+  border:1px solid rgba(255,255,255,.18);border-radius:13px;background:rgba(255,255,255,.05);transition:border-color .25s,box-shadow .25s}
 .g247-fld:focus-within{border-color:rgba(240,201,106,.65);box-shadow:0 0 0 4px rgba(240,201,106,.14)}
-.g247-fld label{font-size:12px;font-weight:600;letter-spacing:.02em;color:#cdbd97}
-.g247-fld input,.g247-fld select{width:100%;border:0;background:transparent;font:inherit;font-size:14.5px;color:#fff;outline:none;padding:2px 0 1px}
+.g247-fld label{font-size:11.5px;font-weight:600;letter-spacing:.02em;line-height:1.4;color:#cdbd97}
+.g247-fld input,.g247-fld select{width:100%;border:0;background:transparent;font:inherit;font-size:14px;line-height:1.35;color:#fff;outline:none;padding:1px 0}
 .g247-fld select{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:26px}
 .g247-fld select option{background:#181206;color:#fff}
-.g247-fld--sel .g247-fld-chev{position:absolute;right:15px;bottom:12px;width:16px;height:16px;color:#cdbd97;pointer-events:none}
+.g247-fld--sel .g247-fld-chev{position:absolute;right:14px;bottom:10px;width:16px;height:16px;color:#cdbd97;pointer-events:none}
 .g247-fld--pass input{padding-right:36px}
 /* verification code sits beside its gold send button */
 .g247-coderow{display:flex;gap:10px;align-items:stretch}
 .g247-coderow .g247-fld{flex:1;min-width:0}
-.g247-send{flex:0 0 auto;margin-top:14px;padding:0 clamp(14px,2.4vw,26px);border:0;border-radius:15px;
+.g247-send{flex:0 0 auto;margin-top:12px;padding:0 clamp(14px,2.4vw,24px);border:0;border-radius:13px;
   background:linear-gradient(135deg,#f0c96a,#c08a15);color:#241a02;font:inherit;font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;
   box-shadow:0 10px 24px -12px rgba(212,166,67,.7);transition:filter .25s,box-shadow .25s}
 .g247-send:hover{filter:brightness(1.06);box-shadow:0 14px 30px -12px rgba(212,166,67,.85)}
 .g247-send[disabled]{filter:grayscale(.35) brightness(.85);cursor:default;box-shadow:none}
-.g247-eye{position:absolute;right:12px;bottom:9px;display:grid;place-items:center;width:30px;height:30px;border:0;border-radius:9px;background:transparent;color:#cdbd97;cursor:pointer;transition:color .25s}
+.g247-eye{position:absolute;right:10px;bottom:6px;display:grid;place-items:center;width:28px;height:28px;border:0;border-radius:9px;background:transparent;color:#cdbd97;cursor:pointer;transition:color .25s}
 .g247-eye:hover{color:#f0c96a}
 .g247-eye svg{width:19px;height:19px}
 /* account type and confirmations on the dark glass */
@@ -302,6 +302,11 @@ body.g247x .cta-banner .g247-acct-card .btn-primary:hover{background:linear-grad
 @media (max-width:560px){.g247-type{flex-direction:column;gap:14px}.g247-coderow{flex-direction:column;gap:0}.g247-send{margin-top:10px;padding:13px}}
 body.g247x .cta-inner .g247-acct-card .g247-acct-note{margin-top:12px;font-size:12px;line-height:1.6;text-align:center;color:#cdbd97}
 body.g247x .cta-inner .g247-acct-card .g247-acct-note.is-ok{color:#7ddf9a;font-weight:600}
+.g247-acct-links{display:flex;justify-content:space-evenly;gap:14px;margin-top:16px}
+.g247-acct-links a{font-size:13.5px;font-weight:600;text-decoration:underline;text-underline-offset:4px;transition:color .25s}
+.g247-acct-links a:first-child{color:#f0c96a}
+.g247-acct-links a:last-child{color:#b3a68a}
+.g247-acct-links a:hover{color:#f6d788}
 @media (max-width:640px){.g247-hero{padding:96px 0 84px}}
 </style>
 </head>
@@ -896,14 +901,19 @@ body.g247x .cta-inner .g247-acct-card .g247-acct-note.is-ok{color:#7ddf9a;font-w
         <label class="ct-check" for="g247Terms">
           <input type="checkbox" id="g247Terms" name="terms" aria-describedby="g247TermsErr">
           <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
-          <span>I accept the <a href="/privacy-policy-app.html">Privacy Policy</a>.</span>
+          <span>I agree to STARTRADER using my data for product/service information, offers, events, and application support. You can unsubscribe anytime. For details, see our <a href="/privacy-policy-app.html">Privacy Policy</a>.</span>
         </label>
-        <p class="ct-err" id="g247TermsErr" hidden>Please accept the Privacy Policy to continue.</p>
+        <p class="ct-err" id="g247TermsErr" hidden>Please agree to continue.</p>
 
         <div class="ct-actions">
           <button class="btn btn-primary btn-lg ct-submit" type="submit">Create Account</button>
         </div>
         <p class="g247-acct-note" data-g247-acct-note hidden></p>
+
+        <div class="g247-acct-links">
+          <a href="/getting-started.html">Practice Trading</a>
+          <a href="https://myaccount.startrader.com" rel="noopener">Login</a>
+        </div>
       </form>
     </div>
   </div>
