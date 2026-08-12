@@ -241,6 +241,7 @@ body.g247x .htrade-step:hover .htrade-num,body.g247x .htrade-step.is-on .htrade-
 body.g247x .htrade-step:hover .htrade-txt h3,body.g247x .htrade-step.is-on .htrade-txt h3{color:#f0c96a}
 body.g247x .htrade-steps::before{background:rgba(212,166,67,.18)}
 body.g247x .htrade-steps::after{background:linear-gradient(180deg,#f0c96a,#a87b16)}
+body.g247x .htrade-mark{width:150px;filter:drop-shadow(0 20px 30px rgba(212,166,67,.4))}
 /* FAQ in the dark */
 body.g247x .faq-item{border-bottom-color:rgba(255,255,255,.09)}
 body.g247x .faq-item summary{color:#e8dcc0}
@@ -250,36 +251,36 @@ body.g247x .faq-q-ic{border-color:rgba(255,255,255,.2);color:#d4a643}
 body.g247x .faq-item summary:hover .faq-q-ic{border-color:#f0c96a;color:#f0c96a}
 /* closing banner: the copy gives way to the account form, centred on the image */
 body.g247x .cta-bg{background:#0a0805 url(/assets/img/gold247-cta.webp) center bottom/cover no-repeat}
-body.g247x .cta-inner{padding:clamp(64px,8vw,120px) 0;text-align:left}
-.g247-acct-card{max-width:720px;margin-inline:auto;background:rgba(255,255,255,.93);
+body.g247x .cta-inner{padding:clamp(48px,6vw,84px) 0;text-align:left}
+.g247-acct-card{max-width:560px;margin-inline:auto;padding:clamp(20px,2.4vw,30px);background:rgba(255,255,255,.93);
   -webkit-backdrop-filter:blur(14px) saturate(1.3);backdrop-filter:blur(14px) saturate(1.3);
   border:1px solid rgba(255,255,255,.95);box-shadow:0 34px 80px -42px rgba(10,8,5,.85)}
 /* the shared .cta-inner rules style banner copy — re-assert the form voice at page level */
-body.g247x .cta-inner .g247-acct-card h2{font-size:clamp(22px,2.6vw,30px);font-weight:700;letter-spacing:-.03em;line-height:1.2;color:var(--ink);text-align:center}
+body.g247x .cta-inner .g247-acct-card h2{font-size:clamp(18px,2vw,23px);font-weight:700;letter-spacing:-.03em;line-height:1.2;color:var(--ink);text-align:center}
 body.g247x .cta-inner .g247-acct-card p{max-width:none;margin:0}
-body.g247x .cta-inner .g247-acct-card .ct-err{font-size:12.5px;color:#c0392f;margin:6px 4px 0}
+body.g247x .cta-inner .g247-acct-card .ct-err{font-size:12px;color:#c0392f;margin:4px 4px 0}
 body.g247x .cta-inner .g247-acct-card .btn{margin-top:0}
 .g247-req{color:#a87b16;font-weight:700}
 /* the email / phone method toggle */
-.g247-seg{display:flex;gap:6px;margin-top:clamp(20px,2.6vw,28px);padding:6px;border-radius:18px;background:#e9eef7;border:1px solid #dfe6f2}
-.g247-seg-btn{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-width:0;padding:13px 10px;border:0;border-radius:13px;
-  background:transparent;font:inherit;font-size:14.5px;font-weight:600;color:#41506b;cursor:pointer;transition:background .25s,box-shadow .25s,color .25s}
-.g247-seg-btn svg{width:18px;height:18px;flex:0 0 auto;color:#8a97ad}
+.g247-seg{display:flex;gap:6px;margin-top:16px;padding:5px;border-radius:15px;background:#e9eef7;border:1px solid #dfe6f2}
+.g247-seg-btn{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-width:0;padding:9px 10px;border:0;border-radius:11px;
+  background:transparent;font:inherit;font-size:13.5px;font-weight:600;color:#41506b;cursor:pointer;transition:background .25s,box-shadow .25s,color .25s}
+.g247-seg-btn svg{width:16px;height:16px;flex:0 0 auto;color:#8a97ad}
 .g247-seg-btn.is-on{background:#fff;color:var(--ink);box-shadow:0 6px 16px -8px rgba(16,30,54,.35)}
 /* pill fields with a leading icon and an in-field label */
-.g247-fld{position:relative;display:flex;align-items:center;gap:12px;margin-top:14px;padding:15px 18px;
-  border:1px solid #e3e9f3;border-radius:16px;background:#fcfdff;transition:border-color .25s,box-shadow .25s}
+.g247-fld{position:relative;display:flex;align-items:center;gap:10px;margin-top:10px;padding:11px 14px;
+  border:1px solid #e3e9f3;border-radius:13px;background:#fcfdff;transition:border-color .25s,box-shadow .25s}
 .g247-fld:focus-within{border-color:rgba(168,123,22,.6);box-shadow:0 0 0 4px rgba(212,166,67,.18)}
-.g247-fld-ic{width:19px;height:19px;flex:0 0 auto;color:#96a2b8}
-.g247-fld input,.g247-fld select{flex:1;min-width:0;border:0;background:transparent;font:inherit;font-size:15px;color:var(--ink);outline:none}
+.g247-fld-ic{width:17px;height:17px;flex:0 0 auto;color:#96a2b8}
+.g247-fld input,.g247-fld select{flex:1;min-width:0;border:0;background:transparent;font:inherit;font-size:14px;color:var(--ink);outline:none}
 .g247-fld select{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:26px}
-.g247-fld-chev{position:absolute;right:16px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:#96a2b8;pointer-events:none}
-.g247-ph{position:absolute;left:49px;top:50%;transform:translateY(-50%);pointer-events:none;font-size:15px;color:#3c4a63}
+.g247-fld-chev{position:absolute;right:13px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:#96a2b8;pointer-events:none}
+.g247-ph{position:absolute;left:41px;top:50%;transform:translateY(-50%);pointer-events:none;font-size:14px;color:#3c4a63}
 .g247-fld input:not(:placeholder-shown) ~ .g247-ph,.g247-fld.has-val .g247-ph{display:none}
 /* account type and confirmations keep the shared check voice, squared like the mock */
-.g247-type{display:flex;gap:clamp(28px,6vw,64px);margin-top:20px;padding:0 4px}
-.g247-check{margin-top:0;font-size:14px}
-.g247-acct-card .ct-check{margin-top:16px}
+.g247-type{display:flex;gap:clamp(24px,5vw,48px);margin-top:14px;padding:0 2px}
+.g247-check{margin-top:0;font-size:13px}
+.g247-acct-card .ct-check{margin-top:11px;font-size:12.5px;line-height:1.5}
 .g247-acct-card .ct-check input[type="radio"] + .an-box{border-radius:7px}
 /* the action keeps the page's gold voice; the hover must outrank the shared
    .cta-banner .btn:hover blue, which would swallow the dark label */
@@ -290,9 +291,10 @@ body.g247x .cta-banner .g247-acct-card .btn-primary:hover{background:linear-grad
 .g247-acct-card .ct-check input:focus-visible + .an-box{outline-color:#c08a15}
 .g247-acct-card .ct-check:hover .an-box{border-color:rgba(192,138,21,.6)}
 .g247-acct-card .ct-check a{color:#a87b16}
-.g247-acct-card .ct-actions{margin-top:26px}
-.g247-acct-links{display:flex;justify-content:space-evenly;gap:14px;margin-top:18px}
-.g247-acct-links a{font-size:14px;font-weight:600;color:var(--text-soft);transition:color .25s}
+.g247-acct-card .ct-actions{margin-top:18px}
+.g247-acct-card .ct-submit{padding:13px 22px;font-size:15px}
+.g247-acct-links{display:flex;justify-content:space-evenly;gap:14px;margin-top:12px}
+.g247-acct-links a{font-size:13px;font-weight:600;color:var(--text-soft);transition:color .25s}
 .g247-acct-links a:hover{color:#a87b16}
 @media (max-width:560px){.g247-seg{flex-direction:column}.g247-type{flex-direction:column;gap:14px}}
 body.g247x .cta-inner .g247-acct-card .g247-acct-note{margin-top:12px;font-size:12px;line-height:1.6;text-align:center;color:var(--text-mute)}
@@ -772,7 +774,7 @@ body.g247x .cta-inner .g247-acct-card .g247-acct-note.is-ok{color:var(--green);f
       <div class="htrade-intro" data-aos="fade-up">
         <h2 class="htrade-title" id="g247-start-title">3 Steps<br><span>to Start</span></h2>
         <a href="/getting-started.html" class="btn btn-primary btn-lg htrade-btn magnetic">Open an MT5 Account <span class="htrade-go"><svg><use href="#i-arrow-right"/></svg></span></a>
-        <img class="htrade-mark" src="/assets/img/icon-shield-3d.webp" alt="3D shield emblem for insured client funds" width="400" height="490" loading="lazy" decoding="async">
+        <img class="htrade-mark" src="/assets/img/gold247-mt5-icon.webp" alt="Golden MT5 emblem of three interlocking coins" width="400" height="400" loading="lazy" decoding="async">
       </div>
       <ol class="htrade-steps" data-htrade>
         <li class="htrade-step">
