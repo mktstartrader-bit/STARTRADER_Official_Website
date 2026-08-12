@@ -5061,6 +5061,17 @@
         clearTimeout(go._t);
         go._t = setTimeout(function () { lock = false; }, smooth === false ? 60 : 620);
       }
+      // geometry is measured, so a viewport resize must re-centre the active
+      // month — otherwise the frame and the rail drift apart until a reload
+      var rzT;
+      window.addEventListener('resize', function () {
+        clearTimeout(rzT);
+        rzT = setTimeout(function () {
+          lock = true;
+          centre(nodes[cur], false);
+          setTimeout(function () { lock = false; }, 80);
+        }, 120);
+      });
 
       nodes.forEach(function (n, i) {
         n.setAttribute('role', 'tab');
