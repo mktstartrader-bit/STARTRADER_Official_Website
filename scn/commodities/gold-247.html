@@ -254,7 +254,15 @@ body.g247x .faq-a{color:#b3a68a}
 body.g247x .faq-q-ic{border-color:rgba(255,255,255,.2);color:#d4a643}
 body.g247x .faq-item summary:hover .faq-q-ic{border-color:#f0c96a;color:#f0c96a}
 /* closing banner: the copy gives way to the account form, centred on the image */
-body.g247x .cta-bg{background:#0a0805 url(/assets/img/gold247-form-bg.webp) center/cover no-repeat}
+/* closing banner: no artwork — one shaft of gold falls from the section's top
+   edge and fades out well before the form. the shared blue-black scrim over
+   the top third would swallow it, so it steps aside here */
+body.g247x .cta-bg{background:
+  radial-gradient(150% 62% at 50% -8%,rgba(246,226,168,.26) 0%,rgba(212,166,67,.10) 36%,transparent 66%),
+  radial-gradient(64% 44% at 6% -4%,rgba(240,201,106,.26),transparent 64%),
+  radial-gradient(64% 44% at 94% -4%,rgba(240,201,106,.26),transparent 64%),
+  #0a0805}
+body.g247x .cta-bg::after{background:none}
 .g247-acct-card{scroll-margin-top:calc(var(--chrome-h) + 28px)}
 body.g247x .cta-inner{padding:clamp(48px,6vw,84px) 0;text-align:left}
 .g247-acct-card{max-width:620px;margin-inline:auto;padding:clamp(24px,2.8vw,34px);
