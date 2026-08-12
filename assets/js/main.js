@@ -524,16 +524,15 @@
       if (!wrapper) return;
       var slides = wrapper.children.length;
       if (!slides) return;
-      // loop mode stutters unless the slide set is at least twice the visible
-      // width — clone whole sets until the track covers 2x the container
+      // loop mode stutters unless the track covers twice the visible width,
+      // but extra DOM beyond that only costs frames — so clone one slide at
+      // a time (cycling the set) and stop the moment 2x is reached
       var originals = Array.prototype.slice.call(wrapper.children);
       var need = (el.getBoundingClientRect().width || window.innerWidth) * 2;
-      var guard = 0;
-      while (wrapper.scrollWidth < need && guard < 6) {
-        originals.forEach(function (c) {
-          wrapper.appendChild(c.cloneNode(true));
-        });
-        guard++;
+      var ci = 0;
+      while (wrapper.scrollWidth < need && ci < originals.length * 6) {
+        wrapper.appendChild(originals[ci % originals.length].cloneNode(true));
+        ci++;
       }
       var pxPerSec = parseFloat(el.getAttribute('data-marquee-speed')) || 45;
       var gap = parseFloat(getComputedStyle(wrapper).gap) || 18;
@@ -1040,25 +1039,29 @@
         if (window.zE) cb();
         else setTimeout(function () { whenZE(cb); }, 300);
       };
-      whenZE(function () {
-        try {
-          zE('messenger', 'hide');
-          zE('messenger:on', 'close', function () {
-            zE('messenger', 'hide');
-            if (fab) fab.style.visibility = '';
-          });
-        } catch (e) {
-          // classic widget: zESettings already brands its launcher blue
-          if (fab) fab.remove();
+      // the account may boot either Zendesk API — messaging ('messenger')
+      // or the classic web widget ('webWidget'). Try both forms and never
+      // remove the fab: it is the site's only launcher, so if Zendesk is
+      // slow or unreachable the bubble stays put and retries on click.
+      var zeApi = function (variants) {
+        for (var i = 0; i < variants.length; i++) {
+          try { zE.apply(null, variants[i]); return true; } catch (e) {}
         }
+        return false;
+      };
+      var restoreFab = function () { if (fab) fab.style.visibility = ''; };
+      whenZE(function () {
+        zeApi([['messenger', 'hide'], ['webWidget', 'hide']]);
+        zeApi([
+          ['messenger:on', 'close', function () { zeApi([['messenger', 'hide']]); restoreFab(); }],
+          ['webWidget:on', 'close', function () { zeApi([['webWidget', 'hide']]); restoreFab(); }]
+        ]);
       });
       if (fab) fab.addEventListener('click', function () {
         whenZE(function () {
-          try {
-            zE('messenger', 'show');
-            zE('messenger', 'open');
-            fab.style.visibility = 'hidden';
-          } catch (e) {}
+          var shown = zeApi([['messenger', 'show'], ['webWidget', 'show']]);
+          var opened = zeApi([['messenger', 'open'], ['webWidget', 'open']]);
+          if (shown || opened) fab.style.visibility = 'hidden';
         });
       });
       return;
