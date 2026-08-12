@@ -253,53 +253,55 @@ body.g247x .faq-item summary:hover .faq-q-ic{border-color:#f0c96a;color:#f0c96a}
 body.g247x .cta-bg{background:#0a0805 url(/assets/img/gold247-cta.webp) center bottom/cover no-repeat}
 body.g247x .cta-inner{padding:clamp(48px,6vw,84px) 0;text-align:left}
 .g247-acct-card{max-width:620px;margin-inline:auto;padding:clamp(24px,2.8vw,34px);
-  background:linear-gradient(135deg,rgba(255,255,255,.72) 0%,rgba(255,255,255,.94) 30%,rgba(255,255,255,.94) 70%,rgba(255,255,255,.68) 100%);
-  -webkit-backdrop-filter:blur(16px) saturate(1.35);backdrop-filter:blur(16px) saturate(1.35);
-  border:1px solid rgba(255,255,255,.9);box-shadow:0 34px 80px -42px rgba(10,8,5,.85)}
-/* the shared .cta-inner rules style banner copy — re-assert the form voice at page level */
-body.g247x .cta-inner .g247-acct-card h2{font-size:clamp(20px,2.2vw,26px);font-weight:700;letter-spacing:-.03em;line-height:1.2;color:var(--ink);text-align:center}
+  background:linear-gradient(150deg,rgba(40,30,14,.62) 0%,rgba(16,12,6,.82) 55%,rgba(30,22,10,.7) 100%);
+  -webkit-backdrop-filter:blur(18px) saturate(1.25);backdrop-filter:blur(18px) saturate(1.25);
+  border:1px solid rgba(240,201,106,.32);
+  box-shadow:0 34px 80px -42px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.14)}
+body.g247x .cta-inner .g247-acct-card h2{font-size:clamp(20px,2.2vw,26px);font-weight:800;letter-spacing:-.03em;line-height:1.2;color:#fff;text-align:center}
+body.g247x .cta-inner .g247-acct-card h2 span{color:#f0c96a}
 body.g247x .cta-inner .g247-acct-card p{max-width:none;margin:0}
-body.g247x .cta-inner .g247-acct-card .ct-err{font-size:12px;color:#c0392f;margin:4px 4px 0}
+body.g247x .cta-inner .g247-acct-card .ct-err{font-size:12px;color:#ff9d91;margin:4px 4px 0}
 body.g247x .cta-inner .g247-acct-card .btn{margin-top:0}
-.g247-req{color:#a87b16;font-weight:700}
-/* the email / phone method toggle */
-.g247-seg{display:flex;gap:6px;margin-top:18px;padding:6px;border-radius:16px;background:#e9eef7;border:1px solid #dfe6f2}
-.g247-seg-btn{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:9px;min-width:0;padding:11px 10px;border:0;border-radius:12px;
-  background:transparent;font:inherit;font-size:14px;font-weight:600;color:#41506b;cursor:pointer;transition:background .25s,box-shadow .25s,color .25s}
-.g247-seg-btn svg{width:17px;height:17px;flex:0 0 auto;color:#8a97ad}
-.g247-seg-btn.is-on{background:#fff;color:var(--ink);box-shadow:0 6px 16px -8px rgba(16,30,54,.35)}
-/* pill fields with a leading icon and an in-field label */
-.g247-fld{position:relative;display:flex;align-items:center;gap:11px;margin-top:12px;padding:13px 16px;
-  border:1px solid #e3e9f3;border-radius:14px;background:#fcfdff;transition:border-color .25s,box-shadow .25s}
-.g247-fld:focus-within{border-color:rgba(168,123,22,.6);box-shadow:0 0 0 4px rgba(212,166,67,.18)}
-.g247-fld-ic{width:18px;height:18px;flex:0 0 auto;color:#96a2b8}
-.g247-fld input,.g247-fld select{flex:1;min-width:0;border:0;background:transparent;font:inherit;font-size:14.5px;color:var(--ink);outline:none}
+.g247-req{color:#e5484d;font-weight:700}
+/* frosted fields, label above the input inside the outline */
+.g247-fld{position:relative;display:flex;flex-direction:column;gap:2px;margin-top:14px;padding:9px 16px 10px;
+  border:1px solid rgba(255,255,255,.18);border-radius:15px;background:rgba(255,255,255,.05);transition:border-color .25s,box-shadow .25s}
+.g247-fld:focus-within{border-color:rgba(240,201,106,.65);box-shadow:0 0 0 4px rgba(240,201,106,.14)}
+.g247-fld label{font-size:12px;font-weight:600;letter-spacing:.02em;color:#cdbd97}
+.g247-fld input,.g247-fld select{width:100%;border:0;background:transparent;font:inherit;font-size:14.5px;color:#fff;outline:none;padding:2px 0 1px}
 .g247-fld select{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:26px}
-.g247-fld-chev{position:absolute;right:13px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:#96a2b8;pointer-events:none}
-.g247-ph{position:absolute;left:45px;top:50%;transform:translateY(-50%);pointer-events:none;font-size:14.5px;color:#3c4a63}
-.g247-fld input:not(:placeholder-shown) ~ .g247-ph,.g247-fld.has-val .g247-ph{display:none}
-/* account type and confirmations keep the shared check voice, squared like the mock */
+.g247-fld select option{background:#181206;color:#fff}
+.g247-fld--sel .g247-fld-chev{position:absolute;right:15px;bottom:12px;width:16px;height:16px;color:#cdbd97;pointer-events:none}
+.g247-fld--pass input{padding-right:36px}
+/* verification code sits beside its gold send button */
+.g247-coderow{display:flex;gap:10px;align-items:stretch}
+.g247-coderow .g247-fld{flex:1;min-width:0}
+.g247-send{flex:0 0 auto;margin-top:14px;padding:0 clamp(14px,2.4vw,26px);border:0;border-radius:15px;
+  background:linear-gradient(135deg,#f0c96a,#c08a15);color:#241a02;font:inherit;font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;
+  box-shadow:0 10px 24px -12px rgba(212,166,67,.7);transition:filter .25s,box-shadow .25s}
+.g247-send:hover{filter:brightness(1.06);box-shadow:0 14px 30px -12px rgba(212,166,67,.85)}
+.g247-send[disabled]{filter:grayscale(.35) brightness(.85);cursor:default;box-shadow:none}
+.g247-eye{position:absolute;right:12px;bottom:9px;display:grid;place-items:center;width:30px;height:30px;border:0;border-radius:9px;background:transparent;color:#cdbd97;cursor:pointer;transition:color .25s}
+.g247-eye:hover{color:#f0c96a}
+.g247-eye svg{width:19px;height:19px}
+/* account type and confirmations on the dark glass */
 .g247-type{display:flex;gap:clamp(26px,5vw,52px);margin-top:16px;padding:0 3px}
 .g247-check{margin-top:0;font-size:13.5px}
-.g247-acct-card .ct-check{margin-top:13px;font-size:13px;line-height:1.55}
+.g247-acct-card .ct-check{margin-top:13px;font-size:13px;line-height:1.55;color:#e8dcc0}
+.g247-acct-card .ct-check .an-box{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.32)}
 .g247-acct-card .ct-check input[type="radio"] + .an-box{border-radius:7px}
-/* the action keeps the page's gold voice; the hover must outrank the shared
-   .cta-banner .btn:hover blue, which would swallow the dark label */
-body.g247x .cta-banner .g247-acct-card .btn-primary{background:linear-gradient(135deg,#f0c96a,#c08a15);color:#241a02;box-shadow:0 16px 34px -16px rgba(212,166,67,.7)}
+.g247-acct-card .ct-check input:checked + .an-box{background:#c08a15;border-color:#c08a15;color:#241a02}
+.g247-acct-card .ct-check input:focus-visible + .an-box{outline-color:#f0c96a}
+.g247-acct-card .ct-check:hover .an-box{border-color:rgba(240,201,106,.6)}
+.g247-acct-card .ct-check a{color:#f0c96a;text-decoration:underline;text-underline-offset:3px}
+/* the gold action; its hover must outrank the shared banner blue */
+body.g247x .cta-banner .g247-acct-card .btn-primary{background:linear-gradient(135deg,#f0c96a,#c08a15);color:#241a02;letter-spacing:.05em;text-transform:uppercase;box-shadow:0 16px 34px -16px rgba(212,166,67,.7)}
 body.g247x .cta-banner .g247-acct-card .btn-primary:hover{background:linear-gradient(135deg,#f6d788,#c99b2a);color:#241a02;box-shadow:0 22px 44px -16px rgba(212,166,67,.85)}
-/* checked marks, agreement links and focus rings pick up the same gold */
-.g247-acct-card .ct-check input:checked + .an-box{background:#c08a15;border-color:#c08a15}
-.g247-acct-card .ct-check input:focus-visible + .an-box{outline-color:#c08a15}
-.g247-acct-card .ct-check:hover .an-box{border-color:rgba(192,138,21,.6)}
-.g247-acct-card .ct-check a{color:#a87b16}
 .g247-acct-card .ct-actions{margin-top:20px}
-.g247-acct-card .ct-submit{padding:14px 22px;font-size:15.5px}
-.g247-acct-links{display:flex;justify-content:space-evenly;gap:14px;margin-top:14px}
-.g247-acct-links a{font-size:13.5px;font-weight:600;color:var(--text-soft);transition:color .25s}
-.g247-acct-links a:hover{color:#a87b16}
-@media (max-width:560px){.g247-seg{flex-direction:column}.g247-type{flex-direction:column;gap:14px}}
-body.g247x .cta-inner .g247-acct-card .g247-acct-note{margin-top:12px;font-size:12px;line-height:1.6;text-align:center;color:var(--text-mute)}
-body.g247x .cta-inner .g247-acct-card .g247-acct-note.is-ok{color:var(--green);font-weight:600}
+.g247-acct-card .ct-submit{padding:14px 22px;font-size:15px}
+@media (max-width:560px){.g247-type{flex-direction:column;gap:14px}.g247-coderow{flex-direction:column;gap:0}.g247-send{margin-top:10px;padding:13px}}
+body.g247x .cta-inner .g247-acct-card .g247-acct-note{margin-top:12px;font-size:12px;line-height:1.6;text-align:center;color:#cdbd97}
+body.g247x .cta-inner .g247-acct-card .g247-acct-note.is-ok{color:#7ddf9a;font-weight:600}
 @media (max-width:640px){.g247-hero{padding:96px 0 84px}}
 </style>
 </head>
@@ -344,6 +346,8 @@ body.g247x .cta-inner .g247-acct-card .g247-acct-note.is-ok{color:var(--green);f
   <symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 18h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
   <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m4.5 7.5 7.5 5.6 7.5-5.6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M8 11V8a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+  <symbol id="i-eye-off" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m4.5 4 15 16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
   <symbol id="i-plug" viewBox="0 0 24 24"><path d="M9 3v4M15 3v4M6.5 7h11v3.5a5.5 5.5 0 0 1-11 0zM12 16.5V21" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-swap" viewBox="0 0 24 24"><path d="M4 8h13l-3.5-3.5M20 16H7l3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-cfd" viewBox="0 0 24 24"><path d="M4 15l4.5-4.5 3 3L19 6M14.5 6H19v4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
@@ -829,23 +833,11 @@ body.g247x .cta-inner .g247-acct-card .g247-acct-note.is-ok{color:var(--green);f
   <div class="container cta-inner">
     <div class="ct-form-card pt-form-card glass g247-acct-card" data-aos="fade-up">
       <form id="g247Acct" novalidate>
-        <h2 class="g247-acct-h" id="g247-acct-title">Open Live Account</h2>
-
-        <div class="g247-seg" role="tablist" aria-label="Register with email or phone">
-          <button type="button" class="g247-seg-btn is-on" data-g247-seg="email" role="tab" aria-selected="true"><svg aria-hidden="true"><use href="#i-mail"/></svg>Email Address<b class="g247-req">*</b></button>
-          <button type="button" class="g247-seg-btn" data-g247-seg="phone" role="tab" aria-selected="false"><svg aria-hidden="true"><use href="#i-phone"/></svg>Phone Number<b class="g247-req">*</b></button>
-        </div>
-
-        <div class="g247-fld">
-          <svg class="g247-fld-ic" aria-hidden="true"><use href="#i-mail" data-g247-main-ic/></svg>
-          <input type="email" id="g247Id" name="email" inputmode="email" autocomplete="email" placeholder=" " aria-label="Email address" aria-describedby="g247IdErr">
-          <span class="g247-ph" data-g247-main-ph>Enter your Email<b class="g247-req">*</b></span>
-        </div>
-        <p class="ct-err" id="g247IdErr" hidden>We need a valid email to reach you on.</p>
+        <h2 class="g247-acct-h" id="g247-acct-title">Open <span>Live Account</span></h2>
 
         <div class="g247-fld g247-fld--sel">
-          <svg class="g247-fld-ic" aria-hidden="true"><use href="#i-globe"/></svg>
-          <select id="g247Country" name="country" aria-label="Country" aria-describedby="g247CountryErr">
+          <label for="g247Country">Country <b class="g247-req">*</b></label>
+          <select id="g247Country" name="country" aria-describedby="g247CountryErr">
             <option value=""></option>
             <option>United Arab Emirates</option>
             <option>United Kingdom</option>
@@ -855,68 +847,63 @@ body.g247x .cta-inner .g247-acct-card .g247-acct-note.is-ok{color:var(--green);f
             <option>Canada</option>
             <option>Other</option>
           </select>
-          <span class="g247-ph">Country<b class="g247-req">*</b></span>
           <svg class="g247-fld-chev" aria-hidden="true"><use href="#i-chevron-down"/></svg>
         </div>
         <p class="ct-err" id="g247CountryErr" hidden>Please choose your country.</p>
 
         <div class="g247-fld">
-          <svg class="g247-fld-ic" aria-hidden="true"><use href="#i-lock"/></svg>
-          <input type="password" id="g247Pass" name="password" autocomplete="new-password" placeholder=" " aria-label="Password" aria-describedby="g247PassErr">
-          <span class="g247-ph">Password<b class="g247-req">*</b></span>
+          <label for="g247Id">Email <b class="g247-req">*</b></label>
+          <input type="email" id="g247Id" name="email" inputmode="email" autocomplete="email" aria-describedby="g247IdErr">
+        </div>
+        <p class="ct-err" id="g247IdErr" hidden>We need a valid email to reach you on.</p>
+
+        <div class="g247-coderow">
+          <div class="g247-fld">
+            <label for="g247Code">Email Verification Code <b class="g247-req">*</b></label>
+            <input type="text" id="g247Code" name="code" inputmode="numeric" autocomplete="one-time-code" aria-describedby="g247CodeErr">
+          </div>
+          <button type="button" class="g247-send" id="g247Send">Send Code</button>
+        </div>
+        <p class="ct-err" id="g247CodeErr" hidden>Enter the code we email you.</p>
+
+        <div class="g247-fld g247-fld--pass">
+          <label for="g247Pass">Password <b class="g247-req">*</b></label>
+          <input type="password" id="g247Pass" name="password" autocomplete="new-password" aria-describedby="g247PassErr">
+          <button type="button" class="g247-eye" id="g247Eye" aria-label="Show password" aria-pressed="false"><svg aria-hidden="true"><use href="#i-eye"/></svg></button>
         </div>
         <p class="ct-err" id="g247PassErr" hidden>Use at least 8 characters.</p>
 
-        <div class="g247-fld">
-          <svg class="g247-fld-ic" aria-hidden="true"><use href="#i-user-plus"/></svg>
-          <input type="text" id="g247Ref" name="referral" autocomplete="off" placeholder=" " aria-label="Referred by" aria-describedby="g247RefErr">
-          <span class="g247-ph">Referred By<b class="g247-req">*</b></span>
-        </div>
-        <p class="ct-err" id="g247RefErr" hidden>Please tell us who referred you.</p>
-
         <div class="g247-type" role="radiogroup" aria-label="Account type">
           <label class="ct-check g247-check" for="g247TypeInd">
-            <input type="radio" id="g247TypeInd" name="acctType" value="Individual">
+            <input type="radio" id="g247TypeInd" name="acctType" value="Individual" checked>
             <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
-            <span>Individual<b class="g247-req">*</b></span>
+            <span>Individual</span>
           </label>
           <label class="ct-check g247-check" for="g247TypeCo">
             <input type="radio" id="g247TypeCo" name="acctType" value="Company">
             <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
-            <span>Company<b class="g247-req">*</b></span>
+            <span>Company</span>
           </label>
         </div>
-        <p class="ct-err" id="g247TypeErr" hidden>Please choose an account type.</p>
 
         <label class="ct-check" for="g247Us">
           <input type="checkbox" id="g247Us" name="notUs" aria-describedby="g247UsErr">
           <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
-          <span>I confirm that I am not a U.S. Person.</span>
+          <span>I am not a US resident</span>
         </label>
-        <p class="ct-err" id="g247UsErr" hidden>The product is not available to U.S. Persons.</p>
-
-        <label class="ct-check" for="g247Mkt">
-          <input type="checkbox" id="g247Mkt" name="marketing">
-          <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
-          <span>I consent to STARTRADER processing my personal data for marketing and application support. I may withdraw my consent at any time.</span>
-        </label>
+        <p class="ct-err" id="g247UsErr" hidden>The product is not available to US residents.</p>
 
         <label class="ct-check" for="g247Terms">
           <input type="checkbox" id="g247Terms" name="terms" aria-describedby="g247TermsErr">
           <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
-          <span>I have read, understood, and agree to the <a href="/legal-documents.html">Client Agreement</a>, <a href="/legal-documents.html">Risk Disclosure</a>, <a href="/privacy-policy-app.html">Privacy Policy</a>, and all other applicable terms and policies.</span>
+          <span>I accept the <a href="/privacy-policy-app.html">Privacy Policy</a>.</span>
         </label>
-        <p class="ct-err" id="g247TermsErr" hidden>Please accept the agreements to continue.</p>
+        <p class="ct-err" id="g247TermsErr" hidden>Please accept the Privacy Policy to continue.</p>
 
         <div class="ct-actions">
           <button class="btn btn-primary btn-lg ct-submit" type="submit">Create Account</button>
         </div>
         <p class="g247-acct-note" data-g247-acct-note hidden></p>
-
-        <div class="g247-acct-links">
-          <a href="/getting-started.html">Practice Trading</a>
-          <a href="https://myaccount.startrader.com" rel="noopener">Login</a>
-        </div>
       </form>
     </div>
   </div>
@@ -984,74 +971,65 @@ body.g247x .cta-inner .g247-acct-card .g247-acct-note.is-ok{color:var(--green);f
   select((new Date().getDay() + 6) % 7);
 })();
 
-/* closing-banner account form — email/phone toggle and inline validation */
+/* closing-banner account form — verification-code flow and inline validation */
 (function () {
   var form = document.getElementById('g247Acct');
   if (!form) return;
   var note = form.querySelector('[data-g247-acct-note]');
-  var segBtns = Array.prototype.slice.call(form.querySelectorAll('[data-g247-seg]'));
-  var mainIn = document.getElementById('g247Id');
-  var mainIc = form.querySelector('[data-g247-main-ic]');
-  var mainPh = form.querySelector('[data-g247-main-ph]');
-  var mainErr = document.getElementById('g247IdErr');
-  var mode = 'email';
-  segBtns.forEach(function (b) {
-    b.addEventListener('click', function () {
-      mode = b.getAttribute('data-g247-seg');
-      segBtns.forEach(function (x) {
-        var on = x === b;
-        x.classList.toggle('is-on', on);
-        x.setAttribute('aria-selected', on ? 'true' : 'false');
-      });
-      var em = mode === 'email';
-      mainIn.type = em ? 'email' : 'tel';
-      mainIn.name = em ? 'email' : 'phone';
-      mainIn.setAttribute('inputmode', em ? 'email' : 'tel');
-      mainIn.setAttribute('autocomplete', em ? 'email' : 'tel');
-      mainIn.setAttribute('aria-label', em ? 'Email address' : 'Phone number');
-      mainIn.value = '';
-      mainIc.setAttribute('href', em ? '#i-mail' : '#i-phone');
-      mainPh.innerHTML = (em ? 'Enter your Email' : 'Enter your Phone Number') + '<b class="g247-req">*</b>';
-      mainErr.textContent = em ? 'We need a valid email to reach you on.' : 'Use digits only, with an optional + prefix.';
-      mainErr.hidden = true;
-    });
-  });
+  var email = document.getElementById('g247Id');
+  var send = document.getElementById('g247Send');
+  var eye = document.getElementById('g247Eye');
+  var pass = document.getElementById('g247Pass');
   var country = document.getElementById('g247Country');
-  country.addEventListener('change', function () {
-    country.closest('.g247-fld').classList.toggle('has-val', !!country.value);
-  });
   function err(id, bad) {
     var el = document.getElementById(id);
     if (el) el.hidden = !bad;
     return !bad;
   }
+  function emailOk() { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim()); }
+  send.addEventListener('click', function () {
+    if (!err('g247IdErr', !emailOk())) return;
+    var left = 60;
+    send.disabled = true;
+    send.textContent = 'Sent (60s)';
+    var tick = setInterval(function () {
+      left -= 1;
+      if (left <= 0) { clearInterval(tick); send.disabled = false; send.textContent = 'Send Code'; return; }
+      send.textContent = 'Sent (' + left + 's)';
+    }, 1000);
+    note.hidden = false;
+    note.classList.remove('is-ok');
+    note.textContent = 'We\u2019ve emailed a verification code to ' + email.value.trim() + '.';
+  });
+  eye.addEventListener('click', function () {
+    var show = pass.type === 'password';
+    pass.type = show ? 'text' : 'password';
+    eye.setAttribute('aria-pressed', show ? 'true' : 'false');
+    eye.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+    eye.querySelector('use').setAttribute('href', show ? '#i-eye-off' : '#i-eye');
+  });
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var ok = true;
-    var v = mainIn.value.trim();
-    ok = err('g247IdErr', mode === 'email' ? !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) : !/^\+?[0-9 ()-]{6,}$/.test(v)) && ok;
     ok = err('g247CountryErr', !country.value) && ok;
-    ok = err('g247PassErr', document.getElementById('g247Pass').value.length < 8) && ok;
-    ok = err('g247RefErr', !document.getElementById('g247Ref').value.trim()) && ok;
-    ok = err('g247TypeErr', !form.querySelector('input[name="acctType"]:checked')) && ok;
+    ok = err('g247IdErr', !emailOk()) && ok;
+    ok = err('g247CodeErr', !document.getElementById('g247Code').value.trim()) && ok;
+    ok = err('g247PassErr', pass.value.length < 8) && ok;
     ok = err('g247UsErr', !document.getElementById('g247Us').checked) && ok;
     ok = err('g247TermsErr', !document.getElementById('g247Terms').checked) && ok;
     if (!ok) return;
     note.hidden = false;
-    note.textContent = 'Details received — taking you to account opening…';
+    note.textContent = 'Details received \u2014 taking you to account opening\u2026';
     note.classList.add('is-ok');
     setTimeout(function () { window.location.href = '/getting-started.html'; }, 900);
   });
-  ['g247Id', 'g247Country', 'g247Pass', 'g247Ref'].forEach(function (id) {
+  ['g247Country', 'g247Id', 'g247Code', 'g247Pass'].forEach(function (id) {
     var el = document.getElementById(id);
     el.addEventListener('input', function () { err(id + 'Err', false); });
     el.addEventListener('change', function () { err(id + 'Err', false); });
   });
   ['g247Us', 'g247Terms'].forEach(function (id) {
     document.getElementById(id).addEventListener('change', function () { err(id + 'Err', false); });
-  });
-  Array.prototype.slice.call(form.querySelectorAll('input[name="acctType"]')).forEach(function (r) {
-    r.addEventListener('change', function () { err('g247TypeErr', false); });
   });
 })();
 </script>
