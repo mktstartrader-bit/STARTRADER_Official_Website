@@ -55,7 +55,12 @@
 }
 .csr-tile:nth-child(1){grid-column:span 2;grid-row:span 2}
 .csr-tile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s var(--ease)}
-.csr-tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 34%,rgba(4,6,14,.86));opacity:.9;transition:opacity .4s}
+.csr-tile::after{content:"";position:absolute;left:0;right:0;bottom:0;height:64%;
+  background:linear-gradient(180deg,rgba(4,6,14,0) 0%,rgba(4,6,14,.5) 48%,rgba(4,6,14,.82) 100%);
+  -webkit-backdrop-filter:blur(14px) saturate(1.15);backdrop-filter:blur(14px) saturate(1.15);
+  -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 52%);
+  mask-image:linear-gradient(180deg,transparent 0%,#000 52%);
+  opacity:.94;transition:opacity .4s}
 .csr-tile:hover{transform:translateY(-4px);border-color:rgba(120,175,255,.44);box-shadow:0 34px 62px -34px rgba(0,0,0,.9)}
 .csr-tile:hover img{transform:scale(1.06)}
 .csr-tile:hover::after{opacity:1}
