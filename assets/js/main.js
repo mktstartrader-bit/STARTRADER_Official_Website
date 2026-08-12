@@ -558,15 +558,20 @@
 
   /* ---------------- Drag-to-scroll (country + awards) ---------------- */
   function enableDrag(el) {
-    var isDown = false, startX = 0, startScroll = 0, moved = false;
+    var isDown = false, startX = 0, startScroll = 0, moved = false, pid = null;
     el.addEventListener('pointerdown', function (e) {
-      isDown = true; moved = false; startX = e.clientX; startScroll = el.scrollLeft;
-      el.classList.add('dragging'); el.setPointerCapture(e.pointerId);
+      isDown = true; moved = false; startX = e.clientX; startScroll = el.scrollLeft; pid = e.pointerId;
+      el.classList.add('dragging');
     });
     el.addEventListener('pointermove', function (e) {
       if (!isDown) return;
       var dx = e.clientX - startX;
-      if (Math.abs(dx) > 4) moved = true;
+      // capture only once a real drag starts — capturing on pointerdown makes
+      // Chrome retarget the ensuing click at the rail, killing taps on children
+      if (Math.abs(dx) > 4 && !moved) {
+        moved = true;
+        try { el.setPointerCapture(pid); } catch (_) {}
+      }
       el.scrollLeft = startScroll - dx;
     });
     function end() { isDown = false; el.classList.remove('dragging'); }
@@ -4972,32 +4977,37 @@
     window.addEventListener('resize', paint);
     paint();
 
-    // a slow drift on first view shows the row moves, then it hands over for good
-    if (prefersReduced || !hasGSAP) return;
-    var drift = null, taken = false;
-    function stop() {
-      taken = true;
-      if (drift) { drift.kill(); drift = null; }
-      if (hint) hint.textContent = 'Drag to explore';
+    // the rail drifts back and forth on its own; a hand on it pauses the
+    // drift, and it picks itself back up a few seconds after the hand leaves
+    if (prefersReduced) return;
+    var dir = 1, visible = false, resting = false, idle = null, last = 0;
+    function stepDrift(ts) {
+      requestAnimationFrame(stepDrift);
+      if (!visible || resting || rail.classList.contains('dragging')) { last = ts; return; }
+      var dt = Math.min(48, ts - last); last = ts;
+      var max = rail.scrollWidth - rail.clientWidth;
+      if (max <= 0) return;
+      var next = rail.scrollLeft + dir * dt * 0.026;
+      if (next >= max) { next = max; dir = -1; }
+      if (next <= 0) { next = 0; dir = 1; }
+      rail.scrollLeft = next;
     }
-    ['pointerdown', 'wheel', 'touchstart', 'keydown'].forEach(function (ev) {
-      rail.addEventListener(ev, stop, { passive: true });
+    function rest() {
+      resting = true;
+      clearTimeout(idle);
+      idle = setTimeout(function () { resting = false; }, 4000);
+    }
+    ['pointerdown', 'pointerup', 'wheel', 'touchstart', 'touchend', 'keydown'].forEach(function (ev) {
+      rail.addEventListener(ev, rest, { passive: true });
     });
     if ('IntersectionObserver' in window) {
-      var io = new IntersectionObserver(function (es) {
-        es.forEach(function (e) {
-          if (!e.isIntersecting || taken || drift) return;
-          var max = rail.scrollWidth - rail.clientWidth;
-          if (max <= 0) return;
-          drift = gsap.to(rail, {
-            scrollLeft: max, duration: max / 26, ease: 'none',
-            onComplete: function () { drift = null; }
-          });
-          io.unobserve(e.target);
-        });
-      }, { threshold: 0.35 });
-      io.observe(rail);
+      new IntersectionObserver(function (es) {
+        es.forEach(function (e) { visible = e.isIntersecting; });
+      }, { threshold: 0.35 }).observe(rail);
+    } else {
+      visible = true;
     }
+    requestAnimationFrame(stepDrift);
   }
 
   /* ---------------- CSR: gallery lightbox + the timeline rail ---------------- */
