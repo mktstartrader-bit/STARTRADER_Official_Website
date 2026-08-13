@@ -34,12 +34,23 @@
   <link rel="preload" href="/assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/assets/fonts/fonts.css" />
   <link rel="stylesheet" href="/assets/css/aos.min.css" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=sp1" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=qa4" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* ---- the three programme models ---- */
 /* two routes rather than three, so they share the row instead of leaving a hole */
-.pt-models--2{grid-template-columns:repeat(2,minmax(0,1fr));max-width:860px;margin-inline:auto}
+.pt-models--2{max-width:860px;margin-inline:auto}
+/* Two-up only while the row can carry it. Declared unscoped, this also beat the
+   shared stylesheet's own stacking rule (max-width:1080px -> 1fr), because it is
+   the same specificity but later in source order — which kept both cards side by
+   side down to 350px, at 145px per column. */
+@media (min-width:801px){
+  .pt-models--2{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+/* 800px and below: one card per row, so the copy gets the full measure */
+@media (max-width:800px){
+  .pt-models--2{grid-template-columns:1fr}
+}
   </style>
 
   <!-- Structured data — breadcrumb -->
@@ -754,6 +765,6 @@
 <script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/assets/js/vendor/lenis.min.js" defer></script>
 <script src="/assets/js/vendor/aos.min.js" defer></script>
-<script src="/assets/js/main.js?v=sp1" defer></script>
+<script src="/assets/js/main.js?v=qa4" defer></script>
 </body>
 </html>

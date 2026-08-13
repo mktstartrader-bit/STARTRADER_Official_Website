@@ -34,7 +34,25 @@
   <link rel="preload" href="/assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/assets/fonts/fonts.css" />
   <link rel="stylesheet" href="/assets/css/aos.min.css" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=sp1" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=qa4" />
+  <!-- Page-specific styles -->
+  <style>
+/* ---- the three cover cards ---- */
+/* The shared .fx-w2-viz is a hard height:206px. It is also display:grid with
+   place-items:center, so the moment its panel needs more than 206px — a narrow
+   column at 1081-1120px, a phone at 375px and under, or any translation that
+   wraps a row at any width at all (measured: 1.6x copy overflows by 106px on a
+   1440px desktop) — the
+   centred content spills out of the box top AND bottom, and the
+   "Insolvency cover, not market cover" line is painted over the h3 beneath it.
+   Making 206px a floor instead of a cap lets the well size itself from its
+   content: unchanged wherever the panel already fits, taller where it does not. */
+.fx-w2-viz{height:auto;min-height:206px}
+/* .fx-tx took its size from that fixed height (height:100%) and pins its chip to
+   its own bottom edge, so it is stretched to the well explicitly rather than left
+   to resolve a percentage against an auto height. */
+.fx-w2-viz > .fx-tx{align-self:stretch;height:auto}
+  </style>
 
   <!-- Structured data — page entity -->
   <script type="application/ld+json">
@@ -765,6 +783,6 @@
 <script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/assets/js/vendor/lenis.min.js" defer></script>
 <script src="/assets/js/vendor/aos.min.js" defer></script>
-<script src="/assets/js/main.js?v=sp1" defer></script>
+<script src="/assets/js/main.js?v=qa4" defer></script>
 </body>
 </html>

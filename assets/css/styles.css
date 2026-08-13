@@ -4446,3 +4446,31 @@ iframe#webWidget{
 @media (max-width:430px){
   .ck-lead-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 16px}
 }
+
+/* ===== FX-MH SPAN LEAK, 641–720px BAND (appended batch 2026-08-13) =====
+   the forex block's @media (max-width:720px) drops .fx-mh to a single column
+   and resets its own --a…--e spans, but --wide/--full keep grid-column:span 2.
+   grid then fabricates an implicit max-content column — a 438px card, since
+   .fx-mh-card p is capped at 380px — squeezing the explicit track to as little
+   as 143px and clipping the quote tile inside it. 44 pages carry these
+   modifiers, so the reset belongs here rather than page by page */
+@media (max-width:720px){.fx-mh--wide,.fx-mh--full{grid-column:auto}}
+/* the header's right group overhangs its gutter by ~2px under 380px: with 20px
+   padding either side there are 310px to spend, and the brand (128) plus the
+   group (142 CTA + 18 gap + 34 burger = 194) asks for 322. overflow-x:clip was
+   hiding the difference rather than fixing it — the group gives back 18px */
+@media (max-width:380px){
+  .nav-right{gap:8px}
+  .nav-cta{padding-left:11px;padding-right:11px}
+}
+
+/* ===== FX-W2-VIZ FIXED HEIGHT (appended batch 2026-08-13) =====
+   line 1081 gives this well a hard height:206px and centres its contents, so
+   anything taller spills equally above and below — the panel's eyebrow then
+   paints straight over the heading beneath it. It bites at 1081–1120px and
+   under ~375px today, and at every width including 1440 once copy is
+   translated (a 1.6x string overflowed by 87px on desktop). 13 pages carry the
+   component. .fx-tx sized itself from that fixed height, so it is stretched
+   explicitly rather than resolving height:100% against an auto height */
+.fx-w2-viz{height:auto;min-height:206px}
+.fx-w2-viz > .fx-tx{align-self:stretch;height:auto}

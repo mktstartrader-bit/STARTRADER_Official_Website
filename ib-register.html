@@ -34,7 +34,48 @@
   <link rel="preload" href="/assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/assets/fonts/fonts.css" />
   <link rel="stylesheet" href="/assets/css/aos.min.css" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=sp1" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=qa4" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ---- The "Become an Introducing Broker" CTAs wrap instead of overflowing ----
+   .btn in the shared stylesheet is white-space:nowrap, which pins a button's
+   minimum width to its whole label. This page carries the site's longest CTA
+   label on two buttons, and neither could give:
+
+   .htrade-btn — below 720px the shared rule stretches it across the intro
+   panel (align-self:stretch), so the label had nowhere to go: it ran 2px past
+   the panel at 390px and 42px at 350px, where the page's overflow clip cut the
+   arrow disc off. Translated 1.6x it also broke out of its .86fr column by
+   43px at 1081px, so the wrap is not gated to phones. The button's height
+   comes from the 32px arrow disc rather than the text, so the taller
+   line-height leaves the one-line desktop button at exactly 64px.
+
+   .pt-hact .btn — an inline pill in a flex row, where nowrap made it
+   unshrinkable and it pushed straight out of the banner under a longer label.
+   Only ever tight on phones, so that wrap is gated and desktop is untouched. */
+.htrade .htrade-btn{white-space:normal;line-height:1.25;min-width:0;max-width:100%;overflow-wrap:break-word}
+@media (max-width:720px){
+  .pt-hero .pt-hact .btn{white-space:normal;line-height:1.25;min-width:0;max-width:100%;overflow-wrap:break-word}
+}
+
+/* ---- "What you're promoting" bento holds together at 641–720px ----
+   The same defect reported on partner.html, which this page's identical
+   .pt-hours bento inherits: the shared stylesheet collapses .fx-mh to a single
+   `1fr` column at 720px (forex page block, later in the file so it wins) but
+   only releases .fx-mh--wide's `span 2` at 640px. In between, the two-column
+   spans forced an implicit `auto` column that took its max-content width
+   (380px copy + 56px padding = 438px) and starved the explicit `1fr` column
+   down to 222px at 720px and 143px at 641px. The two breakpoints are restated
+   in lock-step so the column count and the spans can never disagree. */
+@media (max-width:720px){
+  .pt-hours .fx-mh{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pt-hours .fx-mh--wide{grid-column:span 2}
+}
+@media (max-width:640px){
+  .pt-hours .fx-mh{grid-template-columns:minmax(0,1fr)}
+  .pt-hours .fx-mh--wide,.pt-hours .fx-mh--full{grid-column:auto}
+}
+  </style>
 
   <!-- Structured data — the programme -->
   <script type="application/ld+json">
@@ -896,6 +937,6 @@
 <script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/assets/js/vendor/lenis.min.js" defer></script>
 <script src="/assets/js/vendor/aos.min.js" defer></script>
-<script src="/assets/js/main.js?v=sp1" defer></script>
+<script src="/assets/js/main.js?v=qa4" defer></script>
 </body>
 </html>

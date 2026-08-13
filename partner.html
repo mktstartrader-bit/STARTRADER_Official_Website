@@ -34,7 +34,44 @@
   <link rel="preload" href="/assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/assets/fonts/fonts.css" />
   <link rel="stylesheet" href="/assets/css/aos.min.css" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=sp1" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=qa4" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ---- "Why traders choose STARTRADER" bento holds together at 641–720px ----
+   The shared stylesheet declares .fx-mh twice for narrow screens: the market-
+   hours component stacks it at 640px (and releases .fx-mh--wide's `span 2`
+   there), while the forex page's later block collapses grid-template-columns
+   to a single `1fr` at 720px. The later declaration wins on source order, so
+   between 641px and 720px the grid had one explicit column but items still
+   spanning two — the browser fabricated an implicit `auto` column that took
+   its max-content width (380px copy + 56px padding = 438px) and left the
+   explicit `1fr` column with only what remained (222px at 720px, 143px at
+   641px). The narrow card's copy shredded to one word per line and its quote
+   tile was clipped by the card's overflow.
+   The two breakpoints are restated here in lock-step so the column count and
+   the spans can never disagree; minmax(0,1fr) also keeps a long translated
+   word from re-inflating a track. */
+@media (max-width:720px){
+  .pt-hours .fx-mh{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pt-hours .fx-mh--wide{grid-column:span 2}
+}
+@media (max-width:640px){
+  .pt-hours .fx-mh{grid-template-columns:minmax(0,1fr)}
+  .pt-hours .fx-mh--wide,.pt-hours .fx-mh--full{grid-column:auto}
+}
+
+/* ---- CTA labels keep their translation reserve ----
+   .btn in the shared stylesheet is white-space:nowrap, so a button's minimum
+   width is its whole label. Below 720px .htrade-btn stretches across the intro
+   panel and has nowhere to give: "Become a partner" fits, but at ~1.35x — well
+   inside the 130% reserve — it started running past the panel on a 350px
+   screen. The arrow disc is 32px tall and sets the button's height, so the
+   taller line-height leaves the one-line button at exactly 64px. */
+.htrade .htrade-btn{white-space:normal;line-height:1.25;min-width:0;max-width:100%;overflow-wrap:break-word}
+@media (max-width:720px){
+  .pt-hero .pt-hact .btn{white-space:normal;line-height:1.25;min-width:0;max-width:100%;overflow-wrap:break-word}
+}
+  </style>
 
   <!-- Structured data — the three partnership models -->
   <script type="application/ld+json">
@@ -950,6 +987,6 @@
 <script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/assets/js/vendor/lenis.min.js" defer></script>
 <script src="/assets/js/vendor/aos.min.js" defer></script>
-<script src="/assets/js/main.js?v=sp1" defer></script>
+<script src="/assets/js/main.js?v=qa4" defer></script>
 </body>
 </html>

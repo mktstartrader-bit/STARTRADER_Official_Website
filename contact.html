@@ -34,7 +34,7 @@
   <link rel="preload" href="/assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/assets/fonts/fonts.css" />
   <link rel="stylesheet" href="/assets/css/aos.min.css" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=sp1" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=qa4" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* ================= CONTACT PAGE ================= */
@@ -168,6 +168,31 @@
 .ct-ch:nth-of-type(4) .ct-ch-go{margin-top:auto;padding-top:20px}
 .ct-seg{gap:22px}
 .ct-aura{filter:blur(54px)}}
+/* ---- Narrow-viewport corrections ---- */
+/* the single-column track has to be minmax(0,1fr), like the two-column one
+   above: a bare 1fr floors the track at the card's min-content width, and a
+   long unbreakable string inside then pushes the card past the viewport,
+   where the page-level overflow-x:clip silently cuts it off */
+@media (max-width:1080px){.ct-form-wrap{grid-template-columns:minmax(0,1fr)}}
+/* the routing line is a flex row of three text runs; without wrap they squeeze
+   to min-content and stack one word per line */
+.ct-route{flex-wrap:wrap}
+@media (max-width:720px){
+/* 260px was a *width* basis for the row layout; once the card turns into a
+   column it becomes a *height* basis and inflates the card by ~190px */
+.ct-ch:nth-of-type(4){flex-wrap:nowrap}
+.ct-ch:nth-of-type(4) .ct-ch-txt{flex:0 1 auto}}
+@media (max-width:560px){
+/* one flowing sentence reads better than three flex items on two lines */
+.ct-route{display:block;font-size:12px}
+.ct-route b{white-space:nowrap}}
+@media (max-width:480px){
+/* longer translations need the room; the fields are the widest strings */
+.ct-field input,.ct-field textarea,.ct-form-card .wb-selwrap select{font-size:15px}
+.ct-form-card .wb-selwrap select{text-overflow:ellipsis}
+.ct-seg{flex-wrap:wrap;gap:6px 20px}
+.ct-ch{padding:22px 20px 20px}
+.ct-ch--lead{padding:26px 22px 22px}}
   </style>
 
   <!-- Structured data — organisation, contact points and offices -->
@@ -943,6 +968,6 @@
 <script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/assets/js/vendor/lenis.min.js" defer></script>
 <script src="/assets/js/vendor/aos.min.js" defer></script>
-<script src="/assets/js/main.js?v=sp1" defer></script>
+<script src="/assets/js/main.js?v=qa4" defer></script>
 </body>
 </html>

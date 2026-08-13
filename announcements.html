@@ -34,7 +34,7 @@
   <link rel="preload" href="/assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/assets/fonts/fonts.css" />
   <link rel="stylesheet" href="/assets/css/aos.min.css" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=sp1" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=qa4" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* ================= ANNOUNCEMENTS PAGE ================= */
@@ -95,7 +95,9 @@
 .an-f:hover{background:rgba(0,71,187,.07);color:var(--blue);transform:translateX(2px)}
 .an-filters--row .an-f:hover{transform:translateY(-1px)}
 .an-f.is-on{background:var(--blue);color:#fff;box-shadow:0 10px 22px -12px rgba(0,71,187,.8)}
-.an-filters--row .an-f.is-on{border-color:var(--blue)}
+/* the pill-shaped variants restate the surface, so the selected state has to
+   restate its own fill and label too — otherwise white text lands on white */
+.an-filters--row .an-f.is-on{border-color:var(--blue);background:var(--blue);color:#fff}
 .an-n{
   flex:none;font-size:11px;font-weight:700;padding:2px 8px;border-radius:70px;
   background:rgba(0,71,187,.09);color:var(--blue);font-variant-numeric:tabular-nums;transition:background .25s,color .25s;
@@ -177,7 +179,7 @@
 .an-filters{flex-direction:row;flex-wrap:wrap;gap:6px}
 .an-filters .an-f{padding:8px 13px;border-radius:70px;border:1px solid var(--line);background:rgba(255,255,255,.55)}
 .an-filters .an-f:hover{transform:translateY(-1px)}
-.an-filters .an-f.is-on{border-color:var(--blue)}}
+.an-filters .an-f.is-on{border-color:var(--blue);background:var(--blue);color:#fff}}
 @media (max-width:720px){.an-rail{grid-template-columns:1fr}
 .an-item summary{padding:15px 16px}
 .an-body{padding:2px 16px 18px}
@@ -1403,6 +1405,6 @@
 <script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/assets/js/vendor/lenis.min.js" defer></script>
 <script src="/assets/js/vendor/aos.min.js" defer></script>
-<script src="/assets/js/main.js?v=sp1" defer></script>
+<script src="/assets/js/main.js?v=qa4" defer></script>
 </body>
 </html>
