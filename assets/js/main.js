@@ -189,7 +189,60 @@
       var panel = document.createElement('div');
       panel.className = 'mm-panel';
 
-      mega.querySelectorAll('.mega-col, .fly-group').forEach(function (col) {
+      // one nested level: the label keeps its own page, the caret opens the
+      // children. deliberately not .mm-panel — the parent accordion's rule
+      // would otherwise reveal every nested list the moment it opened
+      function addSub(label, href, fill) {
+        var wrap = document.createElement('div');
+        wrap.className = 'mm-sub';
+        var row = document.createElement('div');
+        row.className = 'mm-sub-row';
+        var head = document.createElement('a');
+        head.href = href || '#';
+        head.textContent = label;
+        var tbtn = document.createElement('button');
+        tbtn.type = 'button';
+        tbtn.className = 'mm-sub-chev';
+        tbtn.setAttribute('aria-expanded', 'false');
+        tbtn.setAttribute('aria-label', label + ' submenu');
+        tbtn.innerHTML = chevR;
+        row.appendChild(head);
+        row.appendChild(tbtn);
+        var spanel = document.createElement('div');
+        spanel.className = 'mm-subpanel';
+        fill(spanel);
+        if (!spanel.children.length) return false;
+        tbtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          var on = wrap.classList.toggle('open');
+          tbtn.setAttribute('aria-expanded', on ? 'true' : 'false');
+        });
+        wrap.appendChild(row);
+        wrap.appendChild(spanel);
+        panel.appendChild(wrap);
+        return true;
+      }
+      function plainLink(a) {
+        var txt = a.querySelector('.mega-txt b');
+        var isNew = !!a.querySelector('.mega-badge');
+        var lbl = (txt ? txt.textContent : a.textContent).replace(/\s+/g, ' ').trim().replace(/\s*New$/, '');
+        if (!lbl) return null;
+        var m = document.createElement('a');
+        m.href = a.getAttribute('href') || '#';
+        m.textContent = lbl;
+        if (isNew) {
+          var em = document.createElement('em');
+          em.className = 'mm-new';
+          em.textContent = 'New';
+          m.appendChild(em);
+        }
+        return m;
+      }
+
+      // .fly-group is no longer walked at this level: it belongs to the flyout
+      // parent that owns it, and is emitted inside that parent's dropdown
+      mega.querySelectorAll('.mega-col').forEach(function (col) {
         var headEl = col.querySelector('.mega-head, h5');
         if (headEl) {
           var h = document.createElement('span');
@@ -197,22 +250,56 @@
           h.textContent = headEl.textContent.trim();
           panel.appendChild(h);
         }
-        col.querySelectorAll('a').forEach(function (a) {
-          if (headEl && headEl.contains(a)) return;
-          var txt = a.querySelector('.mega-txt b');
-          var isNew = !!a.querySelector('.mega-badge');
-          var lbl = (txt ? txt.textContent : a.textContent).replace(/\s+/g, ' ').trim().replace(/\s*New$/, '');
-          if (!lbl) return;
-          var m = document.createElement('a');
-          m.href = a.getAttribute('href') || '#';
-          m.textContent = lbl;
-          if (isNew) {
-            var em = document.createElement('em');
-            em.className = 'mm-new';
-            em.textContent = 'New';
-            m.appendChild(em);
+        // blocks and links walked together so document order survives
+        col.querySelectorAll('.mega-sub, a').forEach(function (node) {
+          if (node.classList.contains('mega-sub')) {
+            var tog = node.querySelector('.mega-sub-toggle');
+            var kids = node.querySelectorAll('.mega-subitems a');
+            if (!tog || !kids.length) return;
+            var tb = tog.querySelector('.mega-txt b');
+            var tlbl = (tb ? tb.textContent : tog.textContent).replace(/\s+/g, ' ').trim();
+            if (tlbl) {
+              addSub(tlbl, tog.getAttribute('href'), function (sp) {
+                kids.forEach(function (k) {
+                  var ka = document.createElement('a');
+                  ka.href = k.getAttribute('href') || '#';
+                  ka.textContent = k.textContent.replace(/\s+/g, ' ').trim();
+                  sp.appendChild(ka);
+                });
+              });
+            }
+            return;
           }
-          panel.appendChild(m);
+          if (headEl && headEl.contains(node)) return;
+          if (node.closest('.mega-sub')) return;
+
+          // a desktop flyout parent (Commodities) keeps its panel as a level
+          var key = node.getAttribute('data-fly');
+          var fly = key ? mega.querySelector('[data-fly-panel="' + key + '"]') : null;
+          if (fly) {
+            var fb = node.querySelector('.mega-txt b');
+            var flbl = (fb ? fb.textContent : node.textContent).replace(/\s+/g, ' ').trim();
+            var built = flbl && addSub(flbl, node.getAttribute('href'), function (sp) {
+              fly.querySelectorAll('.fly-group').forEach(function (g) {
+                var gh = g.querySelector('h5, .fly-head, .mega-head');
+                if (gh) {
+                  var gs = document.createElement('span');
+                  gs.className = 'mm-group';
+                  gs.textContent = gh.textContent.replace(/\s+/g, ' ').trim();
+                  sp.appendChild(gs);
+                }
+                g.querySelectorAll('a').forEach(function (fa) {
+                  if (gh && gh.contains(fa)) return;
+                  var el = plainLink(fa);
+                  if (el) sp.appendChild(el);
+                });
+              });
+            });
+            if (built) return;
+          }
+
+          var m = plainLink(node);
+          if (m) panel.appendChild(m);
         });
       });
       if (!panel.children.length) return;
@@ -304,10 +391,16 @@
       var any = false;
       nav.querySelectorAll('.mm-acc').forEach(function (acc) {
         var hit = false;
-        acc.querySelectorAll('.mm-panel a').forEach(function (a) {
+        acc.querySelectorAll('.mm-panel a, .mm-subpanel a').forEach(function (a) {
           var match = !q || a.textContent.toLowerCase().indexOf(q) > -1;
           a.style.display = match ? '' : 'none';
           if (q && match) hit = true;
+        });
+        // a nested dropdown opens when the search reaches inside it
+        acc.querySelectorAll('.mm-sub').forEach(function (sub) {
+          var inner = Array.prototype.some.call(sub.querySelectorAll('.mm-subpanel a'),
+            function (a) { return a.style.display !== 'none'; });
+          sub.classList.toggle('open', !!q && inner);
         });
         acc.querySelectorAll('.mm-group').forEach(function (g) { g.style.display = q ? 'none' : ''; });
         acc.classList.toggle('open', !!q && hit);

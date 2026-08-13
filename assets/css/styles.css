@@ -4406,3 +4406,30 @@ iframe#webWidget{
    the parallax slack left visible gaps at the frame edges — every shot
    now covers its 4:5 frame exactly, like a background image would */
 .ev-shot img{width:100%;transform:none}
+
+/* ===== MOBILE MENU DROPDOWN AFFORDANCE (appended batch 2026-08-13) =====
+   the four accordion rows read as plain headings: their chevron sat pinned to
+   the far right of a 345px row, a long way from the label it belongs to, so
+   nothing said the row opened. the caret now sits beside its label the way the
+   desktop nav caret does, points down until the row opens, and the panel it
+   reveals is indented under it so the dropdown clearly belongs to that item */
+.mobile-menu .mm-top{justify-content:flex-start;gap:9px}
+.mobile-menu .mm-acc .mm-top svg{color:#aab4c6;transform:rotate(90deg)}
+.mobile-menu .mm-acc.open .mm-top svg{transform:rotate(-90deg)}
+.mobile-menu .mm-panel{margin-left:5px;padding-left:13px;border-left:1px solid rgba(255,255,255,.1)}
+/* second level: the desktop flyouts (Sponsorship and friends) keep their
+   nesting on mobile — the label still goes to its own page, the caret beside
+   it opens the children. deliberately NOT .mm-panel, or the parent
+   accordion's own rule would reveal every nested list at once */
+.mobile-menu .mm-sub-row{display:flex;align-items:center;gap:2px}
+.mobile-menu .mm-sub-row a{flex:0 1 auto;min-width:0}
+.mobile-menu .mm-sub-chev{flex:0 0 auto;display:grid;place-items:center;width:34px;height:34px;
+  border:0;background:transparent;color:#8b97ae;cursor:pointer;border-radius:8px}
+.mobile-menu .mm-sub-chev:hover{background:rgba(255,255,255,.06);color:#dbe3ef}
+.mobile-menu .mm-sub-chev svg{width:14px;height:14px;transform:rotate(90deg);transition:transform .3s var(--ease)}
+.mobile-menu .mm-sub.open .mm-sub-chev svg{transform:rotate(-90deg)}
+.mobile-menu .mm-subpanel{display:none;margin:2px 0 6px 10px;padding-left:12px;
+  border-left:1px solid rgba(255,255,255,.1)}
+.mobile-menu .mm-sub.open .mm-subpanel{display:block}
+.mobile-menu .mm-subpanel a{display:block;padding:8px;font-size:14px;font-weight:500;color:#aeb7c7;border-radius:8px}
+.mobile-menu .mm-subpanel a:hover{background:rgba(255,255,255,.05);color:#fff}
