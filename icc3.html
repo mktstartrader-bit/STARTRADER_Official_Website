@@ -1,0 +1,19 @@
+<!doctype html><body style="margin:0;background:#111"><iframe id="f" src="/sponsorship/icc.html" style="width:390px;height:13000px;border:0;display:block"></iframe>
+<div id="out" style="font:11px monospace;color:#fff;white-space:pre"></div>
+<script>
+window.addEventListener('load',function(){setTimeout(function(){
+  var d=document.getElementById('f').contentDocument;
+  var s=d.querySelector('.ck-sign'), img=s.querySelector('img'), tx=s.querySelector('.ck-sign-tx');
+  var ir=img.getBoundingClientRect(), tr=tx.getBoundingClientRect();
+  var o=['SIGNTOP='+Math.round(s.getBoundingClientRect().top),
+         'icon above copy: '+(ir.bottom<=tr.top+1),
+         'card height (EN): '+Math.round(s.getBoundingClientRect().height)];
+  // simulate a longer translation and re-measure
+  tx.querySelector('em').textContent='点差、佣金与执行方式由您的账户类型以及市场状况决定。赞助关系不会改变这些条件，它只是让更多人听见我们的名字，扩大我们的影响范围而已。';
+  setTimeout(function(){
+    o.push('card height (longer copy): '+Math.round(s.getBoundingClientRect().height));
+    o.push('no horizontal overflow: '+(s.scrollWidth<=s.clientWidth+1));
+    document.getElementById('out').textContent=o.join('\n');
+  },200);
+},4000);});
+</script></body>

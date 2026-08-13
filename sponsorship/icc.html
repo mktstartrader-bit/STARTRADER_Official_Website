@@ -33,7 +33,7 @@
   <link rel="preload" as="image" href="/assets/img/platform-hero.webp" />
   <link rel="stylesheet" href="/assets/fonts/fonts.css" />
   <link rel="stylesheet" href="/assets/css/aos.min.css" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=mm3" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=sp1" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* ---------------- banner ---------------- */
@@ -177,6 +177,14 @@
 @media (max-width:1080px){.ck-whys{grid-template-columns:1fr}
 .ck-sign{grid-template-columns:auto minmax(0,1fr);gap:20px}
 .ck-sign .btn,.ck-sign .ck-btn{grid-column:1 / -1;justify-self:start}}
+/* the shield sat beside the copy, so a longer translation stretched the card
+   into a tall column of text with an icon parked next to it. below 860px the
+   icon takes its own line above the words */
+@media (max-width:860px){
+  .ck-sign{grid-template-columns:minmax(0,1fr);gap:16px;align-items:start}
+  .ck-sign img{width:clamp(62px,15vw,84px)}
+  .ck-sign .btn,.ck-sign .ck-btn{justify-self:start}
+}
 @media (max-width:860px){.ck-fix{grid-template-columns:auto auto minmax(0,1fr);row-gap:14px}
 .ck-fix-vs{display:none}
 .ck-fix-team--away{flex-direction:row;grid-column:3}
@@ -184,7 +192,13 @@
 @media (max-width:720px){.ck-fix{grid-template-columns:auto minmax(0,1fr);text-align:left}
 .ck-fix-no{display:none}
 .ck-fix-wrap{padding-left:0}
-.ck-runup{display:none}}
+.ck-runup{display:none}
+/* the away team still carried grid-column:3 from the 860px rule, which opened
+   an implicit third column here and squeezed the home team until "United Arab
+   Emirates" ellipsised to "U.". each side now takes its own line, and a long
+   name — or a translation — wraps instead of being cut */
+.ck-fix-team--away{grid-column:2}
+.ck-fix-team b{white-space:normal;overflow:visible;text-overflow:clip}}
   </style>
 
   <script type="application/ld+json">
@@ -979,7 +993,7 @@
 <script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/assets/js/vendor/lenis.min.js" defer></script>
 <script src="/assets/js/vendor/aos.min.js" defer></script>
-<script src="/assets/js/main.js?v=mm3" defer></script>
+<script src="/assets/js/main.js?v=sp1" defer></script>
 
 <!-- Company page: robust scroll reveals + hero parallax (self-contained, never leaves content hidden) -->
 <script>

@@ -33,7 +33,7 @@
   <link rel="preload" as="image" href="/assets/img/platform-hero.webp" />
   <link rel="stylesheet" href="/assets/fonts/fonts.css" />
   <link rel="stylesheet" href="/assets/css/aos.min.css" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=mm3" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=sp1" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* ---------------- Asia Cup: the gallery ---------------- */
@@ -82,6 +82,19 @@
 .ck-shot--lead .ck-shot-card{position:relative;left:auto;right:auto;bottom:auto;margin:0}}
 @media (max-width:600px){.ck-gal{grid-template-columns:1fr}
 .ck-shot--lead{grid-column:span 1}}
+/* the lead tile's card drops into normal flow below 900px, but the tile kept a
+   fixed 16:10 box with overflow:hidden — so the copy was cut mid-sentence, and
+   any translation would fare worse. the tile now stacks its photo above the
+   card and takes whatever height the text needs */
+@media (max-width:900px){
+  .ck-shot--lead{aspect-ratio:auto;overflow:visible;background:none;border:0;box-shadow:none}
+  .ck-shot--lead::after{content:none}
+  .ck-shot--lead img{position:relative;inset:auto;height:auto;aspect-ratio:16/10;
+    border-radius:clamp(16px,1.8vw,22px)}
+  .ck-shot--lead .ck-shot-card{margin-top:14px}
+  .ck-shot--lead:hover{transform:none;box-shadow:none}
+  .ck-shot--lead:hover img{transform:none}
+}
 /* the Asia Cup page shares the frame and swaps the plate */
 .ck-hero--ac .ck-hero-bg{background-image:url(/assets/img/ac-banner.webp)}
 .ck-hero--ac::before{
@@ -802,7 +815,7 @@
 <script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/assets/js/vendor/lenis.min.js" defer></script>
 <script src="/assets/js/vendor/aos.min.js" defer></script>
-<script src="/assets/js/main.js?v=mm3" defer></script>
+<script src="/assets/js/main.js?v=sp1" defer></script>
 
 <!-- Company page: robust scroll reveals + hero parallax (self-contained, never leaves content hidden) -->
 <script>

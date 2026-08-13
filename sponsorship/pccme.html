@@ -34,7 +34,7 @@
   <link rel="stylesheet" href="/assets/fonts/fonts.css" />
   <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css" />
   <link rel="stylesheet" href="/assets/css/aos.min.css" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=mm3" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=sp1" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* ---------- Header / nav ---------- */
@@ -60,7 +60,10 @@
 .pc-hero::before{
   content:"";position:absolute;inset:0;z-index:-2;
   background:
-    linear-gradient(90deg,rgba(4,6,11,.94) 0%,rgba(4,6,11,.8) 34%,rgba(4,6,11,.3) 60%,transparent 82%),
+    /* the plateau now reaches the copy column's own edge (620px cap ~ 48% at
+       page width), so a longer translation stays on dark ground instead of
+       running onto the car's bright bodywork */
+    linear-gradient(90deg,rgba(4,6,11,.94) 0%,rgba(4,6,11,.85) 46%,rgba(4,6,11,.34) 68%,transparent 86%),
     linear-gradient(180deg,rgba(4,6,11,.72),transparent 26%,rgba(4,6,11,.9));
 }
 .pc-hero-in{position:relative;z-index:2;width:100%}
@@ -1252,7 +1255,7 @@
 <script src="/assets/js/vendor/lenis.min.js" defer></script>
 <script src="/assets/js/vendor/swiper-bundle.min.js" defer></script>
 <script src="/assets/js/vendor/aos.min.js" defer></script>
-<script src="/assets/js/main.js?v=mm3" defer></script>
+<script src="/assets/js/main.js?v=sp1" defer></script>
 
 <!-- Company page: robust scroll reveals + hero parallax (self-contained, never leaves content hidden) -->
 <script>
