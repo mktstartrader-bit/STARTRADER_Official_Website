@@ -5,25 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#05070E" />
 
-  <title>Cashback | Gold Promotion | STARTRADER</title>
-  <meta name="description" content="STARTRADER Cashback promotion — USD 1.00 for every USD 100,000 of eligible notional trading volume on Gold 24/7, plus a weekly lucky draw for gold prizes and a Grand Prize. Runs 21 August to 31 October 2026. Terms and conditions apply." />
-  <meta name="keywords" content="STARTRADER, cashback promotion, gold cashback, Gold 24/7, XAUUSD247, notional trading volume, rebate, weekly lucky draw, grand prize, promotion terms" />
+  <title>Get Cashback on Every Million | XAUUSD247 | STARTRADER</title>
+  <meta name="description" content="From 21 August to 31 October 2026, earn USD 10 in cashback for every USD 1 million in notional volume you trade on the XAUUSD247 gold CFD, up to USD 1,000 per client. Weekend trading also earns entries into the weekly gold prize draw. Eligibility criteria, minimum deposit and T&amp;Cs apply." />
+  <meta name="keywords" content="STARTRADER, cashback promotion, XAUUSD247, gold CFD, notional volume, weekend draw, gold prize draw, trading promotion" />
   <meta name="author" content="STARTRADER" />
   <link rel="canonical" href="https://www.startrader.com/gold-cashback/" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="STARTRADER" />
-  <meta property="og:title" content="Cashback | Gold Promotion | STARTRADER" />
-  <meta property="og:description" content="STARTRADER Cashback promotion — USD 1.00 for every USD 100,000 of eligible notional trading volume on Gold 24/7, plus a weekly lucky draw for gold prizes and a Grand Prize. Runs 21 August to 31 October 2026. Terms and conditions apply." />
+  <meta property="og:title" content="Get Cashback on Every Million | XAUUSD247 | STARTRADER" />
+  <meta property="og:description" content="From 21 August to 31 October 2026, earn USD 10 in cashback for every USD 1 million in notional volume you trade on the XAUUSD247 gold CFD, up to USD 1,000 per client. Weekend trading also earns entries into the weekly gold prize draw." />
   <meta property="og:url" content="https://www.startrader.com/gold-cashback/" />
   <meta property="og:image" content="https://www.startrader.com/assets/img/promotions-video-poster.webp" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Cashback | Gold Promotion | STARTRADER" />
-  <meta name="twitter:description" content="STARTRADER Cashback promotion — USD 1.00 for every USD 100,000 of eligible notional trading volume on Gold 24/7, plus a weekly lucky draw for gold prizes and a Grand Prize. Runs 21 August to 31 October 2026. Terms and conditions apply." />
+  <meta name="twitter:title" content="Get Cashback on Every Million | XAUUSD247 | STARTRADER" />
+  <meta name="twitter:description" content="From 21 August to 31 October 2026, earn USD 10 in cashback for every USD 1 million in notional volume you trade on the XAUUSD247 gold CFD, up to USD 1,000 per client. Weekend trading also earns entries into the weekly gold prize draw." />
   <meta name="twitter:image" content="https://www.startrader.com/assets/img/promotions-video-poster.webp" />
 
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -37,13 +37,12 @@
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* =================================================================
-   CASHBACK (GOLD) PROMOTION
-   A campaign page, not a terms sheet. The shared promotions banner
-   stays on top; below it the offer gets the vocabulary a promotion
-   needs — a giant pool figure under gold rays, tear-off coupons, a
-   live countdown, a reward machine you can drag, boarding passes for
-   eligibility, and the full terms as a receipt at the end.
-   Every graphic here is CSS/SVG, so nothing new ships as an image.
+   XAUUSD247 CASHBACK PROMOTION
+   The shared promotions banner up top, then the campaign: a proof
+   strip under gold rays with a live countdown, the shared htrade
+   stepper for How It Works, and a tear-off coupon plus a draggable
+   machine for each of the two mechanics. Every graphic is CSS or
+   inline SVG, so the page adds no image weight.
    ================================================================= */
 
 .gcb{
@@ -69,20 +68,28 @@
 @keyframes gcbTwinkle{0%,100%{transform:scale(.55) rotate(0);opacity:.35}50%{transform:scale(1) rotate(35deg);opacity:1}}
 @media (prefers-reduced-motion:reduce){.gcb-spark{animation:none}}
 
-/* the shine that sweeps a card on hover */
+/* the shine that sweeps a coupon on hover */
 .gcb-shine{position:absolute;inset:0;overflow:hidden;border-radius:inherit;pointer-events:none}
 .gcb-shine i{position:absolute;top:-60%;left:-30%;width:38%;height:220%;transform:rotate(18deg) translateX(-120%);
   background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);
   transition:transform .9s var(--ease)}
 
-/* ---------- 1. the offer --------------------------------------- */
-.gcb-offer{position:relative;isolation:isolate;overflow:clip;color:#fff;
+/* ---------- hero extras ---------------------------------------- */
+.gcb-hact{display:flex;align-items:center;gap:clamp(14px,2vw,26px);flex-wrap:wrap}
+.gcb-hlink{display:inline-flex;align-items:center;gap:8px;font-size:14.5px;font-weight:700;
+  color:var(--blue);transition:color .3s,gap .3s var(--ease)}
+.gcb-hlink:hover{color:var(--blue-700);gap:12px}
+.gcb-hlink svg{width:15px;height:15px}
+.gcb-hnote{margin-top:16px;font-size:12.5px;line-height:1.6;color:var(--text-mute)}
+
+/* ---------- 1. proof strip ------------------------------------- */
+.gcb-proof{position:relative;isolation:isolate;overflow:clip;color:#fff;
   padding-block:clamp(58px,7vw,110px);
   background:
     radial-gradient(58% 46% at 50% -6%,rgba(200,149,46,.26),transparent 62%),
     radial-gradient(70% 60% at 84% 108%,rgba(0,71,187,.24),transparent 64%),
     linear-gradient(180deg,var(--ink-1),var(--ink-2))}
-.gcb-offer>.container{position:relative;z-index:2}
+.gcb-proof>.container{position:relative;z-index:2}
 /* the rays behind the figure */
 .gcb-rays{position:absolute;left:50%;top:-14%;width:min(1180px,150%);aspect-ratio:1;translate:-50% 0;
   background:conic-gradient(from 0deg,rgba(200,149,46,.13) 0 1.4deg,transparent 1.4deg 7.5deg);
@@ -91,52 +98,27 @@
   animation:gcbSpin 90s linear infinite;pointer-events:none;z-index:0}
 @keyframes gcbSpin{to{rotate:360deg}}
 @media (prefers-reduced-motion:reduce){.gcb-rays{animation:none}}
-.gcb-eyebrow{display:flex;align-items:center;justify-content:center;gap:12px;
-  font-size:11.5px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-2)}
-.gcb-eyebrow::before,.gcb-eyebrow::after{content:'';height:1px;width:clamp(18px,4vw,54px);
-  background:linear-gradient(90deg,transparent,var(--gold-line),transparent)}
-.gcb-figure{margin-top:clamp(14px,1.8vw,22px);text-align:center}
+.gcb-figure{text-align:center}
 .gcb-figure em{display:block;font-style:normal;font-size:clamp(15px,1.8vw,21px);font-weight:800;
   letter-spacing:.3em;text-transform:uppercase;color:var(--gold-3);opacity:.85}
-.gcb-figure b{display:block;position:relative;margin-top:-.04em;
-  font-size:clamp(62px,15.5vw,196px);font-weight:800;line-height:.86;letter-spacing:-.045em;
+.gcb-figure b{display:block;position:relative;margin-top:-.02em;
+  font-size:clamp(76px,15.5vw,196px);font-weight:800;line-height:.86;letter-spacing:-.045em;
   font-variant-numeric:tabular-nums;
   background:var(--gold-face);-webkit-background-clip:text;background-clip:text;color:transparent;
   filter:drop-shadow(0 14px 34px rgba(200,149,46,.34))}
-.gcb-figure-cap{margin:clamp(16px,2vw,24px) auto 0;max-width:58ch;
-  font-size:clamp(14px,1.45vw,16.5px);line-height:1.7;color:#b9c8de;text-align:center}
+.gcb-figure-cap{margin:clamp(14px,1.8vw,22px) auto 0;max-width:52ch;
+  font-size:clamp(15px,1.6vw,18px);font-weight:600;line-height:1.6;color:#cfdcee;text-align:center}
 
-/* tear-off coupons */
-.gcb-tickets{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2vw,26px);
-  margin-top:clamp(30px,3.6vw,48px)}
-.gcb-tk{position:relative;display:grid;grid-template-columns:1fr auto;align-items:stretch;
-  border-radius:22px;overflow:hidden;text-align:left;
-  transition:transform .45s var(--ease),box-shadow .45s var(--ease)}
-.gcb-tk:hover{transform:translateY(-8px) rotate(-.5deg)}
-.gcb-tk:hover .gcb-shine i{transform:rotate(18deg) translateX(340%)}
-.gcb-tk--gold{background:var(--gold-face);color:#2A1B00;
-  box-shadow:0 34px 64px -34px rgba(200,149,46,.6),inset 0 1px 0 rgba(255,255,255,.5)}
-.gcb-tk--gold:hover{box-shadow:0 44px 80px -34px rgba(200,149,46,.72)}
-.gcb-tk--blue{background:linear-gradient(135deg,#DCE9FF,#9CC0FF 42%,#3C7BF0 100%);color:#04204F;
-  box-shadow:0 34px 64px -34px rgba(0,71,187,.66),inset 0 1px 0 rgba(255,255,255,.5)}
-.gcb-tk--blue:hover{box-shadow:0 44px 80px -34px rgba(0,71,187,.78)}
-.gcb-tk-main{padding:clamp(22px,2.8vw,34px)}
-.gcb-tk-kicker{display:inline-flex;align-items:center;gap:7px;padding:5px 12px;border-radius:40px;
-  font-size:10.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;
-  background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.7)}
-.gcb-tk-val{display:block;margin-top:14px;font-size:clamp(30px,4.4vw,54px);font-weight:800;
-  letter-spacing:-.035em;line-height:1;font-variant-numeric:tabular-nums}
-.gcb-tk-val small{font-size:.42em;font-weight:800;letter-spacing:.02em}
-.gcb-tk-for{margin-top:12px;font-size:13.5px;line-height:1.6;font-weight:600;opacity:.82}
-/* the perforated stub */
-.gcb-tk-stub{position:relative;display:flex;align-items:center;justify-content:center;
-  width:clamp(52px,6vw,74px);border-left:2px dashed rgba(0,0,0,.24)}
-.gcb-tk-stub span{writing-mode:vertical-rl;transform:rotate(180deg);
-  font-size:10.5px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;opacity:.72}
-.gcb-tk-stub::before,.gcb-tk-stub::after{content:'';position:absolute;left:-13px;width:24px;height:24px;
-  border-radius:50%;background:var(--ink-2)}
-.gcb-tk-stub::before{top:-12px}
-.gcb-tk-stub::after{bottom:-12px}
+/* the remaining proof lines as pills */
+.gcb-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(10px,1.4vw,16px);
+  margin-top:clamp(28px,3.4vw,44px)}
+.gcb-pill{display:inline-flex;align-items:center;gap:10px;padding:13px 20px;border-radius:44px;
+  font-size:13.5px;font-weight:700;line-height:1.45;color:#eaf0fa;text-align:left;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  transition:transform .35s var(--ease),background .35s,border-color .35s}
+.gcb-pill:hover{transform:translateY(-3px);background:rgba(255,255,255,.11);border-color:var(--gold-line)}
+.gcb-pill svg{flex:none;width:17px;height:17px;color:var(--gold-2)}
 
 /* countdown */
 .gcb-cd{margin-top:clamp(30px,3.6vw,46px);display:flex;flex-direction:column;align-items:center;gap:14px}
@@ -157,84 +139,64 @@
   background:var(--gold-face);-webkit-background-clip:text;background-clip:text;color:transparent}
 .gcb-cd-cell span{display:block;margin-top:8px;font-size:10.5px;font-weight:800;
   letter-spacing:.18em;text-transform:uppercase;color:#8ea4c6}
-.gcb-cd-note{font-size:12px;font-weight:600;color:#8ea4c6;text-align:center}
+.gcb-note{margin-top:clamp(20px,2.4vw,30px);font-size:12.5px;line-height:1.7;color:#8ea4c6;text-align:center}
 
-/* ---------- 2. benefit tabs ------------------------------------ */
-.gcb-ben-sec{position:relative;isolation:isolate;overflow:clip;
-  background:radial-gradient(52% 44% at 14% 0%,rgba(200,149,46,.10),transparent 62%),var(--bg-light-2)}
-.gcb-ben-sec>.container{position:relative;z-index:1}
-.gcb-tabs{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;
-  margin:clamp(26px,3vw,38px) auto 0;padding:6px;width:max-content;max-width:100%;
-  border-radius:44px;background:rgba(255,255,255,.7);border:1px solid var(--line);
-  box-shadow:0 14px 34px -22px rgba(16,30,54,.28)}
-.gcb-tab{display:inline-flex;align-items:center;gap:9px;padding:11px clamp(14px,2vw,22px);
-  border-radius:40px;font-size:13.5px;font-weight:700;letter-spacing:-.01em;color:var(--text-soft);
-  background:transparent;border:0;cursor:pointer;white-space:nowrap;
-  transition:color .3s,background .3s,box-shadow .3s}
-.gcb-tab em{font-style:normal;display:inline-flex;align-items:center;justify-content:center;
-  min-width:22px;height:22px;padding:0 6px;border-radius:7px;font-size:10.5px;font-weight:800;
-  letter-spacing:.06em;background:rgba(0,71,187,.1);color:var(--blue)}
-.gcb-tab:hover{color:var(--text)}
-.gcb-tab[aria-selected="true"]{color:#2A1B00;background:var(--gold-face);
-  box-shadow:0 12px 26px -14px rgba(200,149,46,.7)}
-.gcb-tab[aria-selected="true"] em{background:rgba(42,27,0,.14);color:#2A1B00}
-.gcb-panels{margin-top:clamp(22px,2.6vw,32px)}
-.gcb-panel[hidden]{display:none}
-.gcb-pane{display:grid;grid-template-columns:.86fr 1.14fr;gap:clamp(20px,3vw,42px);align-items:center;
-  border-radius:clamp(20px,2.4vw,30px);padding:clamp(22px,3vw,44px);
-  background:rgba(255,255,255,.68);border:1px solid rgba(255,255,255,.9);
-  -webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4);
-  box-shadow:0 26px 58px -34px rgba(16,30,54,.3),inset 0 1px 0 rgba(255,255,255,.9);
-  animation:gcbFade .5s var(--ease) both}
-@keyframes gcbFade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){.gcb-pane{animation:none}}
-.gcb-pane-art{position:relative;display:grid;place-items:center;min-height:clamp(200px,24vw,290px);
-  border-radius:22px;overflow:hidden;
-  background:radial-gradient(70% 70% at 50% 30%,rgba(200,149,46,.16),transparent 66%),
-    linear-gradient(180deg,#061634,#020C1F)}
-.gcb-pane--draw .gcb-pane-art{background:radial-gradient(70% 70% at 50% 30%,rgba(0,71,187,.3),transparent 66%),
-    linear-gradient(180deg,#061634,#020C1F)}
-.gcb-pane-art svg{position:relative;z-index:1;width:min(78%,260px);height:auto}
-.gcb-pane-h{font-size:clamp(19px,2.1vw,26px);letter-spacing:-.025em}
-.gcb-pane-h span{color:var(--gold)}
-.gcb-pane--draw .gcb-pane-h span{color:var(--blue)}
-.gcb-pane-sum{display:inline-flex;align-items:baseline;gap:10px;margin-top:14px;padding:10px 16px;
-  border-radius:14px;background:var(--gold-wash);border:1px solid var(--gold-line)}
-.gcb-pane--draw .gcb-pane-sum{background:rgba(0,71,187,.08);border-color:rgba(0,71,187,.2)}
-.gcb-pane-sum b{font-size:clamp(19px,2.2vw,25px);font-weight:800;letter-spacing:-.03em;color:var(--gold-deep);
-  font-variant-numeric:tabular-nums}
-.gcb-pane--draw .gcb-pane-sum b{color:var(--blue)}
-.gcb-pane-sum span{font-size:12.5px;font-weight:700;color:var(--text-soft)}
-.gcb-clist{margin-top:clamp(18px,2.2vw,24px);display:grid;gap:14px;list-style:none;counter-reset:gcbcl}
-.gcb-clist li{position:relative;counter-increment:gcbcl;padding-left:34px;
-  font-size:13.5px;line-height:1.72;color:var(--text-soft)}
-.gcb-clist li::before{content:counter(gcbcl,lower-roman);position:absolute;left:0;top:2px;
-  display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:24px;padding:0 6px;
-  border-radius:8px;font-size:10.5px;font-weight:800;
-  background:var(--gold-wash);border:1px solid var(--gold-line);color:var(--gold-deep)}
-.gcb-pane--draw .gcb-clist li::before{background:rgba(0,71,187,.08);border-color:rgba(0,71,187,.2);color:var(--blue)}
-.gcb-clist b{color:var(--text);font-weight:700}
+/* ---------- 2 & 3. the two mechanics --------------------------- */
+.gcb-mech{position:relative;isolation:isolate;overflow:clip;color:#fff}
+.gcb-mech--cash{background:
+  radial-gradient(60% 50% at 12% -10%,rgba(200,149,46,.22),transparent 60%),
+  radial-gradient(60% 50% at 92% 106%,rgba(0,71,187,.2),transparent 62%),var(--ink-1)}
+.gcb-mech--draw{background:
+  radial-gradient(60% 50% at 88% -10%,rgba(0,71,187,.3),transparent 60%),
+  radial-gradient(56% 46% at 8% 104%,rgba(200,149,46,.16),transparent 62%),var(--ink-2)}
+.gcb-mech>.container{position:relative;z-index:2}
+.gcb-mech .pm-h2{color:#fff}
+.gcb-mech .pm-sub{color:#b9c8de}
+.gcb-mech .pm-eyebrow-c{color:var(--gold-2)}
+.gcb-mech--draw .pm-eyebrow-c{color:#8fb6ff}
 
-/* ---------- 3. reward machine ---------------------------------- */
-.gcb-calc-sec{position:relative;isolation:isolate;overflow:clip;color:#fff;
-  background:radial-gradient(60% 50% at 12% -10%,rgba(200,149,46,.2),transparent 60%),
-    radial-gradient(60% 50% at 92% 106%,rgba(0,71,187,.26),transparent 62%),var(--ink-1)}
-.gcb-calc-sec>.container{position:relative;z-index:2}
-.gcb-calc-sec .pm-h2{color:#fff}
-.gcb-calc-sec .pm-sub{color:#a9bcd8}
-.gcb-calc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2vw,26px);
+.gcb-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(20px,2.6vw,36px);align-items:center;
   margin-top:clamp(30px,3.6vw,46px)}
+
+/* tear-off coupon */
+.gcb-tk{position:relative;display:grid;grid-template-columns:1fr auto;align-items:stretch;
+  border-radius:22px;overflow:hidden;text-align:left;
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease)}
+.gcb-tk:hover{transform:translateY(-8px) rotate(-.5deg)}
+.gcb-tk:hover .gcb-shine i{transform:rotate(18deg) translateX(340%)}
+.gcb-tk--gold{background:var(--gold-face);color:#2A1B00;
+  box-shadow:0 34px 64px -34px rgba(200,149,46,.6),inset 0 1px 0 rgba(255,255,255,.5)}
+.gcb-tk--gold:hover{box-shadow:0 44px 80px -34px rgba(200,149,46,.72)}
+.gcb-tk--blue{background:linear-gradient(135deg,#DCE9FF,#9CC0FF 42%,#3C7BF0 100%);color:#04204F;
+  box-shadow:0 34px 64px -34px rgba(0,71,187,.66),inset 0 1px 0 rgba(255,255,255,.5)}
+.gcb-tk--blue:hover{box-shadow:0 44px 80px -34px rgba(0,71,187,.78)}
+.gcb-tk-main{padding:clamp(22px,2.8vw,34px)}
+.gcb-tk-val{display:block;font-size:clamp(34px,4.6vw,58px);font-weight:800;
+  letter-spacing:-.035em;line-height:1;font-variant-numeric:tabular-nums}
+.gcb-tk-val small{font-size:.4em;font-weight:800;letter-spacing:.02em}
+.gcb-tk-for{margin-top:14px;font-size:13.5px;line-height:1.6;font-weight:600;opacity:.82}
+.gcb-tk-stub{position:relative;display:flex;align-items:center;justify-content:center;
+  width:clamp(52px,6vw,74px);border-left:2px dashed rgba(0,0,0,.24)}
+.gcb-tk-stub span{writing-mode:vertical-rl;transform:rotate(180deg);
+  font-size:10.5px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;opacity:.72}
+.gcb-tk-stub::before,.gcb-tk-stub::after{content:'';position:absolute;left:-13px;width:24px;height:24px;
+  border-radius:50%;background:var(--ink-1)}
+.gcb-mech--draw .gcb-tk-stub::before,.gcb-mech--draw .gcb-tk-stub::after{background:var(--ink-2)}
+.gcb-tk-stub::before{top:-12px}
+.gcb-tk-stub::after{bottom:-12px}
+
+/* the copy beside the coupon */
+.gcb-copy p{font-size:14.5px;line-height:1.78;color:#c2d1e6}
+.gcb-copy p+p{margin-top:16px}
+.gcb-copy b{color:#fff;font-weight:700}
+
+/* the draggable machine */
 .gcb-mach{position:relative;border-radius:clamp(20px,2.4vw,30px);padding:clamp(22px,2.8vw,36px);
+  margin-top:clamp(20px,2.6vw,32px);
   background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.12);
   -webkit-backdrop-filter:blur(18px) saturate(1.3);backdrop-filter:blur(18px) saturate(1.3);
   box-shadow:0 34px 70px -40px rgba(0,0,0,.72),inset 0 1px 0 rgba(255,255,255,.09)}
-.gcb-mach-h{display:flex;align-items:center;gap:11px;font-size:16.5px;letter-spacing:-.02em}
-.gcb-mach-h span{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;
-  background:rgba(200,149,46,.16);border:1px solid var(--gold-line);color:var(--gold-2)}
-.gcb-mach--draw .gcb-mach-h span{background:rgba(42,114,255,.16);border-color:rgba(42,114,255,.32);color:#8fb6ff}
-.gcb-mach-h span svg{width:17px;height:17px}
-.gcb-mach-sub{margin-top:10px;font-size:13px;line-height:1.65;color:#a1b4d0}
-.gcb-amt{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;margin-top:clamp(18px,2.2vw,26px)}
+.gcb-amt{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
 .gcb-amt em{font-style:normal;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#8ea4c6}
 .gcb-amt b{font-size:clamp(22px,2.8vw,34px);font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
 .gcb-range{width:100%;margin-top:14px;-webkit-appearance:none;appearance:none;height:8px;border-radius:8px;
@@ -246,23 +208,22 @@
 .gcb-range::-webkit-slider-thumb:hover{transform:scale(1.14);box-shadow:0 0 0 9px rgba(232,180,74,.26),0 6px 16px rgba(0,0,0,.5)}
 .gcb-range::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:#fff;border:0;
   box-shadow:0 0 0 5px rgba(232,180,74,.32)}
-.gcb-mach--draw .gcb-range{--rc:#5B9DFF}
-.gcb-mach--draw .gcb-range::-webkit-slider-thumb{box-shadow:0 0 0 5px rgba(91,157,255,.32),0 6px 16px rgba(0,0,0,.5)}
+.gcb-mech--draw .gcb-range{--rc:#5B9DFF}
+.gcb-mech--draw .gcb-range::-webkit-slider-thumb{box-shadow:0 0 0 5px rgba(91,157,255,.32),0 6px 16px rgba(0,0,0,.5)}
 .gcb-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 .gcb-chip{padding:7px 14px;border-radius:40px;font-size:12.5px;font-weight:700;color:#cdd9ec;
   background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);cursor:pointer;
   transition:background .25s,color .25s,border-color .25s,transform .25s var(--ease)}
 .gcb-chip:hover{transform:translateY(-2px);background:rgba(255,255,255,.13)}
 .gcb-chip.is-on{background:var(--gold-face);border-color:transparent;color:#2A1B00}
-.gcb-mach--draw .gcb-chip.is-on{background:linear-gradient(135deg,#9CC0FF,#3C7BF0);color:#fff}
-/* the payout readout */
+.gcb-mech--draw .gcb-chip.is-on{background:linear-gradient(135deg,#9CC0FF,#3C7BF0);color:#fff}
 .gcb-out{margin-top:clamp(20px,2.4vw,28px);padding-top:clamp(18px,2.2vw,24px);border-top:1px solid rgba(255,255,255,.11)}
 .gcb-out em{display:block;font-style:normal;font-size:11px;font-weight:800;letter-spacing:.18em;
   text-transform:uppercase;color:#8ea4c6}
 .gcb-out b{display:block;margin-top:8px;font-size:clamp(34px,5vw,58px);font-weight:800;letter-spacing:-.035em;
   line-height:1;font-variant-numeric:tabular-nums;
   background:var(--gold-face);-webkit-background-clip:text;background-clip:text;color:transparent}
-.gcb-mach--draw .gcb-out b{background:linear-gradient(135deg,#DCE9FF,#5B9DFF 60%,#2A72FF);
+.gcb-mech--draw .gcb-out b{background:linear-gradient(135deg,#DCE9FF,#5B9DFF 60%,#2A72FF);
   -webkit-background-clip:text;background-clip:text}
 .gcb-meter{margin-top:16px}
 .gcb-meter-top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;
@@ -275,7 +236,6 @@
 .gcb-cap-flag{display:none;margin-top:12px;padding:9px 14px;border-radius:12px;font-size:12.5px;font-weight:700;
   background:rgba(16,233,215,.12);border:1px solid rgba(16,233,215,.3);color:#8BF3E8}
 .gcb-meter-bar.is-cap ~ .gcb-cap-flag{display:block}
-/* the tickets that pile up */
 .gcb-tkwrap{margin-top:16px;min-height:74px;display:flex;flex-wrap:wrap;gap:7px;align-items:flex-start}
 .gcb-mini{flex:0 0 auto;display:flex;align-items:center;gap:6px;padding:7px 11px;border-radius:9px;
   font-size:11px;font-weight:800;letter-spacing:.06em;color:#04204F;
@@ -286,198 +246,41 @@
 @keyframes gcbPop{from{opacity:0;transform:scale(.6) translateY(8px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.gcb-mini{animation:none}}
 .gcb-tkwrap-empty{font-size:12.5px;color:#8ea4c6}
-.gcb-calc-note{margin-top:clamp(18px,2.2vw,24px);font-size:12px;line-height:1.7;color:#8ea4c6;text-align:center}
+.gcb-wed{display:inline-flex;align-items:center;gap:10px;margin-top:clamp(22px,2.6vw,32px);
+  padding:12px 18px;border-radius:44px;font-size:13.5px;font-weight:700;color:#eaf0fa;
+  background:rgba(42,114,255,.14);border:1px solid rgba(42,114,255,.3)}
+.gcb-wed svg{flex:none;width:17px;height:17px;color:#8fb6ff}
 
-/* ---------- 4. cap cards -------------------------------------- */
-.gcb-caps-sec{position:relative;isolation:isolate;overflow:clip;
-  background:radial-gradient(54% 46% at 86% 0%,rgba(0,71,187,.08),transparent 62%),var(--bg-light)}
-.gcb-caps-sec>.container{position:relative;z-index:1}
-.gcb-caps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.8vw,24px);
-  margin-top:clamp(30px,3.6vw,46px)}
-.gcb-cap{position:relative;overflow:hidden;border-radius:clamp(18px,2.2vw,26px);padding:clamp(22px,2.6vw,32px);
-  background:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.9);
+/* ---------- 4. who can join ------------------------------------ */
+.gcb-who-sec{position:relative;isolation:isolate;overflow:clip;
+  background:radial-gradient(52% 44% at 14% 0%,rgba(200,149,46,.1),transparent 62%),var(--bg-light-2)}
+.gcb-who-sec>.container{position:relative;z-index:1}
+.gcb-who{max-width:900px;margin:clamp(30px,3.6vw,46px) auto 0;
+  border-radius:clamp(18px,2.2vw,28px);padding:clamp(20px,2.8vw,38px);
+  background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.94);
   -webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4);
-  box-shadow:0 20px 46px -30px rgba(16,30,54,.28),inset 0 1px 0 rgba(255,255,255,.9);
-  transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
-.gcb-cap:hover{transform:translateY(-6px);box-shadow:0 30px 60px -30px rgba(16,30,54,.4)}
-.gcb-cap:hover .gcb-shine i{transform:rotate(18deg) translateX(340%)}
-.gcb-cap-art{height:108px;display:grid;place-items:center;margin:-6px 0 12px}
-.gcb-cap-art svg{width:auto;height:100px}
-.gcb-cap b{display:block;font-size:clamp(26px,3.2vw,40px);font-weight:800;letter-spacing:-.035em;line-height:1;
-  font-variant-numeric:tabular-nums;color:var(--blue)}
-.gcb-cap b em{font-style:normal;font-size:.4em;font-weight:800;letter-spacing:.04em;vertical-align:middle;
-  color:var(--text-mute)}
-.gcb-cap--gold b{background:var(--gold-face);-webkit-background-clip:text;background-clip:text;color:transparent}
-.gcb-cap--gold b em{-webkit-text-fill-color:var(--gold);color:var(--gold)}
-.gcb-cap h3{margin-top:12px;font-size:15.5px;letter-spacing:-.02em}
-.gcb-cap p{margin-top:8px;font-size:13px;line-height:1.68;color:var(--text-soft)}
+  box-shadow:0 24px 56px -34px rgba(16,30,54,.3),inset 0 1px 0 rgba(255,255,255,.95)}
+.gcb-who ul{list-style:none;display:grid;gap:0}
+.gcb-who li{display:flex;gap:14px;align-items:flex-start;padding:clamp(14px,1.8vw,18px) 0;
+  border-top:1px dashed var(--line);font-size:14.5px;line-height:1.7;color:var(--text-soft)}
+.gcb-who li:first-child{border-top:0;padding-top:0}
+.gcb-who li:last-child{padding-bottom:0}
+.gcb-who-ic{flex:none;display:grid;place-items:center;width:28px;height:28px;margin-top:1px;border-radius:9px}
+.gcb-who-ic svg{width:15px;height:15px}
+.gcb-who li.is-yes .gcb-who-ic{background:rgba(16,185,129,.12);color:var(--green)}
+.gcb-who li.is-no .gcb-who-ic{background:rgba(239,68,68,.1);color:var(--red)}
+.gcb-who li.is-note .gcb-who-ic{background:var(--gold-wash);color:var(--gold)}
+.gcb-who li.is-no{color:var(--text)}
 
-/* ---------- 5. draw flow -------------------------------------- */
-.gcb-flow-sec{position:relative;isolation:isolate;overflow:clip;color:#fff;
-  background:radial-gradient(60% 50% at 50% -8%,rgba(0,71,187,.28),transparent 62%),var(--ink-2)}
-.gcb-flow-sec>.container{position:relative;z-index:2}
-.gcb-flow-sec .pm-h2{color:#fff}
-.gcb-flow-sec .pm-sub{color:#a9bcd8}
-.gcb-flow{position:relative;list-style:none;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));
-  gap:clamp(10px,1.4vw,20px);margin-top:clamp(34px,4vw,54px)}
-.gcb-flow::before{content:'';position:absolute;left:8%;right:8%;top:38px;height:2px;
-  background:repeating-linear-gradient(90deg,rgba(255,255,255,.28) 0 8px,transparent 8px 16px)}
-.gcb-flow-step{position:relative;text-align:center;padding-top:0}
-.gcb-flow-ic{position:relative;z-index:1;display:grid;place-items:center;width:76px;height:76px;margin:0 auto;
-  border-radius:24px;color:var(--gold-2);
-  background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.04));
-  border:1px solid rgba(255,255,255,.16);
-  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
-  box-shadow:0 20px 40px -24px rgba(0,0,0,.8);
-  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .4s}
-.gcb-flow-step:hover .gcb-flow-ic{transform:translateY(-6px);border-color:var(--gold-line);
-  box-shadow:0 26px 52px -24px rgba(200,149,46,.5)}
-.gcb-flow-ic svg{width:32px;height:32px}
-.gcb-flow-n{position:absolute;z-index:2;top:-8px;right:calc(50% - 46px);display:grid;place-items:center;
-  width:26px;height:26px;border-radius:9px;font-size:11px;font-weight:800;
-  background:var(--gold-face);color:#2A1B00;box-shadow:0 8px 18px -8px rgba(200,149,46,.8)}
-.gcb-flow-step h3{margin-top:18px;font-size:14.5px;letter-spacing:-.02em}
-.gcb-flow-step p{margin-top:8px;font-size:12.5px;line-height:1.65;color:#a1b4d0}
-.gcb-flow-step--wed .gcb-flow-ic{color:#8fb6ff}
-.gcb-flow-step--wed .gcb-flow-ic::after{content:'';position:absolute;inset:-6px;border-radius:28px;
-  border:1px solid rgba(143,182,255,.4);animation:gcbRing 2.6s ease-out infinite}
-@keyframes gcbRing{0%{transform:scale(.9);opacity:.9}100%{transform:scale(1.18);opacity:0}}
-@media (prefers-reduced-motion:reduce){.gcb-flow-step--wed .gcb-flow-ic::after{animation:none}}
-.gcb-flow-step--grand .gcb-flow-ic{background:var(--gold-face);border-color:transparent;color:#2A1B00;
-  box-shadow:0 22px 46px -22px rgba(200,149,46,.7)}
-.gcb-flow-note{margin-top:clamp(26px,3vw,38px);text-align:center;font-size:12.5px;color:#8ea4c6}
-
-/* ---------- 6. eligible product ------------------------------- */
-.gcb-prod-sec{position:relative;isolation:isolate;overflow:clip;
-  background:radial-gradient(50% 44% at 12% 0%,rgba(200,149,46,.11),transparent 62%),var(--bg-light-2)}
-.gcb-prod-sec>.container{position:relative;z-index:1}
-.gcb-prod{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(20px,3vw,44px);align-items:center;
-  margin-top:clamp(30px,3.6vw,46px);border-radius:clamp(20px,2.4vw,30px);padding:clamp(22px,3vw,42px);
-  background:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.92);
-  -webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4);
-  box-shadow:0 26px 58px -34px rgba(16,30,54,.3),inset 0 1px 0 rgba(255,255,255,.9)}
-.gcb-prod-art{position:relative;display:grid;place-items:center;min-height:clamp(190px,22vw,260px);
-  border-radius:22px;overflow:hidden;
-  background:radial-gradient(70% 70% at 50% 26%,rgba(200,149,46,.22),transparent 68%),
-    linear-gradient(180deg,#0A1B3C,#02091B)}
-.gcb-prod-art svg{position:relative;z-index:1;width:min(80%,240px);height:auto}
-.gcb-prod-tag{display:inline-flex;align-items:center;gap:8px;padding:6px 13px;border-radius:40px;
-  font-size:10.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;
-  background:var(--gold-wash);border:1px solid var(--gold-line);color:var(--gold-deep)}
-.gcb-prod h3{margin-top:16px;font-size:clamp(22px,2.6vw,32px);letter-spacing:-.03em}
-.gcb-prod-code{display:inline-block;margin-top:12px;padding:7px 13px;border-radius:10px;
-  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;font-weight:700;letter-spacing:.06em;
-  background:#0A1B3C;color:var(--gold-3)}
-.gcb-prod p{margin-top:14px;font-size:14px;line-height:1.72;color:var(--text-soft)}
-.gcb-prod-badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
-.gcb-badge{display:inline-flex;align-items:center;gap:9px;padding:10px 15px;border-radius:14px;
-  font-size:12.5px;font-weight:700;line-height:1.4;color:var(--text);
-  background:rgba(255,255,255,.8);border:1px solid var(--line);box-shadow:var(--shadow-sm);
-  transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
-.gcb-badge:hover{transform:translateY(-3px);box-shadow:0 16px 30px -18px rgba(16,30,54,.34)}
-.gcb-badge svg{flex:none;width:17px;height:17px;color:var(--gold)}
-.gcb-badge--warn svg{color:var(--red)}
-.gcb-prod-act{margin-top:22px}
-.pm-btn--ghost{color:var(--ink);background:rgba(255,255,255,.8);border:1px solid rgba(20,44,96,.12);box-shadow:none}
-.pm-btn--ghost:hover{background:#fff;box-shadow:0 16px 32px -18px rgba(20,44,96,.35)}
-
-/* ---------- 7. eligibility passes ----------------------------- */
-.gcb-pass-sec{position:relative;isolation:isolate;overflow:clip;background:#EFF3F9}
-.gcb-pass-sec>.container{position:relative;z-index:1}
-.gcb-passes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2vw,26px);
-  margin-top:clamp(30px,3.6vw,46px)}
-.gcb-pass{position:relative;display:grid;grid-template-columns:1fr auto;overflow:hidden;
-  border-radius:22px;background:#fff;border:1px solid rgba(255,255,255,.9);
-  box-shadow:0 24px 52px -32px rgba(16,30,54,.34);
-  transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
-.gcb-pass:hover{transform:translateY(-6px);box-shadow:0 34px 66px -32px rgba(16,30,54,.42)}
-.gcb-pass-body{padding:clamp(20px,2.6vw,30px)}
-.gcb-pass-top{display:flex;align-items:center;gap:11px}
-.gcb-pass-top svg{flex:none;width:20px;height:20px}
-.gcb-pass--in .gcb-pass-top svg{color:var(--green)}
-.gcb-pass--out .gcb-pass-top svg{color:var(--red)}
-.gcb-pass-top h3{font-size:16px;letter-spacing:-.02em}
-.gcb-pass-rows{margin-top:18px;display:grid;gap:0;list-style:none}
-.gcb-pass-rows li{display:grid;grid-template-columns:minmax(0,.68fr) minmax(0,1.32fr);gap:14px;
-  padding:11px 0;border-top:1px dashed var(--line);align-items:start}
-.gcb-pass-rows li:first-child{border-top:0;padding-top:0}
-.gcb-pass-rows em{font-style:normal;font-size:10.5px;font-weight:800;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--text-mute);padding-top:2px}
-.gcb-pass-rows span{font-size:13.5px;font-weight:600;line-height:1.55;color:var(--text)}
-.gcb-outs{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
-.gcb-out-chip{display:inline-flex;align-items:center;gap:7px;padding:9px 13px;border-radius:11px;
-  font-size:12.5px;font-weight:700;color:#8C2B2B;
-  background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.22)}
-.gcb-out-chip svg{width:13px;height:13px;color:var(--red)}
-.gcb-pass-note{margin-top:18px;padding-top:15px;border-top:1px solid var(--line);
-  font-size:12.5px;line-height:1.65;color:var(--text-mute)}
-/* the stub with the rubber stamp */
-.gcb-pass-stub{position:relative;width:clamp(78px,9vw,116px);display:grid;place-items:center;
-  border-left:2px dashed var(--line);
-  background:linear-gradient(180deg,rgba(16,185,129,.08),rgba(16,185,129,.02))}
-.gcb-pass--out .gcb-pass-stub{background:linear-gradient(180deg,rgba(239,68,68,.08),rgba(239,68,68,.02))}
-.gcb-pass-stub::before,.gcb-pass-stub::after{content:'';position:absolute;left:-13px;width:24px;height:24px;
-  border-radius:50%;background:#EFF3F9}
-.gcb-pass-stub::before{top:-12px}
-.gcb-pass-stub::after{bottom:-12px}
-.gcb-stamp{transform:rotate(-9deg);padding:8px 10px;border-radius:9px;text-align:center;
-  font-size:10.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
-  border:2px solid var(--green);color:var(--green);opacity:.85}
-.gcb-pass--out .gcb-stamp{border-color:var(--red);color:var(--red)}
-
-/* ---------- 8. terms receipt --------------------------------- */
-.gcb-terms-sec{position:relative;isolation:isolate;overflow:clip;
-  background:radial-gradient(50% 40% at 50% 0%,rgba(200,149,46,.08),transparent 60%),var(--bg-light-2)}
-.gcb-terms-sec>.container{position:relative;z-index:1}
-.gcb-doc{position:relative;max-width:940px;margin:clamp(30px,3.6vw,46px) auto 0;
-  border-radius:4px;padding:clamp(26px,3.4vw,50px) clamp(20px,3vw,46px);
-  background:rgba(255,255,255,.82);border:1px solid rgba(255,255,255,.95);
-  -webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4);
-  box-shadow:0 26px 60px -34px rgba(16,30,54,.3),inset 0 1px 0 rgba(255,255,255,.95)}
-/* torn paper edges, top and bottom */
-.gcb-doc::before,.gcb-doc::after{content:'';position:absolute;left:0;right:0;height:10px;
-  background:
-    linear-gradient(135deg,rgba(255,255,255,.86) 25%,transparent 25%) -10px 0/20px 20px,
-    linear-gradient(225deg,rgba(255,255,255,.86) 25%,transparent 25%) -10px 0/20px 20px}
-.gcb-doc::before{top:-10px;transform:scaleY(-1)}
-.gcb-doc::after{bottom:-10px}
-.gcb-doc-head{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
-  padding-bottom:clamp(16px,2vw,22px);margin-bottom:clamp(20px,2.4vw,28px);
-  border-bottom:2px dashed var(--line)}
-.gcb-doc-head b{font-size:13px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--text)}
-.gcb-doc-head span{font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mute)}
-.gcb-clauses{list-style:none;counter-reset:gcbc;display:grid;gap:clamp(18px,2vw,24px)}
-.gcb-clauses>li{position:relative;counter-increment:gcbc;padding-left:clamp(38px,4.4vw,52px)}
-.gcb-clauses>li::before{content:counter(gcbc,decimal-leading-zero);position:absolute;left:0;top:-1px;
-  display:inline-flex;align-items:center;justify-content:center;width:clamp(26px,3vw,34px);height:clamp(26px,3vw,34px);
-  border-radius:10px;font-size:11.5px;font-weight:800;letter-spacing:.02em;
-  background:var(--gold-wash);border:1px solid var(--gold-line);color:var(--gold-deep);font-variant-numeric:tabular-nums}
-.gcb-clauses>li>p{font-size:14px;line-height:1.78;color:var(--text-soft)}
-.gcb-clauses>li>h3{font-size:16px;letter-spacing:-.02em;color:var(--text)}
-.gcb-clauses>li>h3+ol{margin-top:14px}
-.gcb-clauses b{color:var(--text);font-weight:700}
-.gcb-clauses a{color:var(--blue);font-weight:600;text-decoration:underline;text-underline-offset:2px;word-break:break-word}
-.gcb-clauses a:hover{color:var(--blue-700)}
-.gcb-sub{list-style:none;counter-reset:gcbs;display:grid;gap:12px}
-.gcb-sub>li{position:relative;counter-increment:gcbs;padding-left:34px;
-  font-size:13.5px;line-height:1.78;color:var(--text-soft)}
-.gcb-sub>li::before{content:counter(gcbs,lower-roman) ".";position:absolute;left:0;top:0;
-  min-width:24px;font-size:12px;font-weight:800;color:var(--gold);text-align:right}
-.gcb-clause--hi{padding:clamp(16px,2vw,22px) clamp(16px,2vw,22px) clamp(16px,2vw,22px) clamp(52px,5vw,66px)!important;
-  border-radius:14px;background:var(--gold-wash);border:1px solid var(--gold-line)}
-.gcb-clause--hi::before{left:clamp(14px,1.8vw,20px);top:clamp(15px,1.9vw,21px);background:#fff;border-color:var(--gold-line)}
-.gcb-clause--hi>p{color:var(--text)}
-
-/* ---------- 9. closing call ---------------------------------- */
+/* ---------- 5. closing call ------------------------------------ */
 .gcb-cta{position:relative;isolation:isolate;overflow:clip;color:#fff;text-align:center;
   padding-block:clamp(64px,8vw,120px);
   background:radial-gradient(58% 60% at 50% 0%,rgba(200,149,46,.26),transparent 64%),
     radial-gradient(70% 70% at 84% 110%,rgba(0,71,187,.28),transparent 62%),
     linear-gradient(180deg,var(--ink-2),#04060B)}
 .gcb-cta>.container{position:relative;z-index:2}
-.gcb-cta h2{font-size:clamp(28px,4vw,54px);font-weight:800;letter-spacing:-.035em;line-height:1.1}
+.gcb-cta h2{font-size:clamp(28px,4vw,54px);font-weight:800;letter-spacing:-.035em;line-height:1.15}
 .gcb-cta h2 span{background:var(--gold-face);-webkit-background-clip:text;background-clip:text;color:transparent}
-.gcb-cta p{margin:18px auto 0;max-width:60ch;font-size:clamp(14px,1.5vw,17px);line-height:1.7;color:#b9c8de}
 .gcb-cta-act{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:clamp(26px,3vw,38px)}
 .gcb-cta-btn{display:inline-flex;align-items:center;gap:10px;padding:16px 30px;border-radius:44px;
   font-size:15px;font-weight:800;letter-spacing:-.01em;color:#2A1B00;background:var(--gold-face);
@@ -492,44 +295,23 @@
 .gcb-cta-ghost:hover{transform:translateY(-4px);background:rgba(255,255,255,.13)}
 .gcb-cta-ghost svg{width:18px;height:18px}
 
-/* ---------- responsive ---------------------------------------- */
-@media (max-width:1000px){
-  .gcb-flow{grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(18px,3vw,28px)}
-  .gcb-flow::before{display:none}
-  .gcb-flow-n{right:calc(50% - 46px)}
-}
+/* ---------- responsive ----------------------------------------- */
 @media (max-width:900px){
-  .gcb-tickets,.gcb-calc,.gcb-passes{grid-template-columns:1fr}
-  .gcb-pane,.gcb-prod{grid-template-columns:1fr}
-  .gcb-pane-art,.gcb-prod-art{min-height:180px;order:-1}
-  .gcb-caps{grid-template-columns:1fr;max-width:470px;margin-inline:auto}
+  .gcb-grid{grid-template-columns:1fr}
 }
 @media (max-width:700px){
   /* the hand-placed line breaks in the sublines only help wide screens */
-  .pm-sub br,.gcb-figure-cap br{display:none}
-  .gcb-flow{grid-template-columns:1fr;max-width:420px;margin-inline:auto}
-  .gcb-tabs{width:100%;flex-direction:column;border-radius:22px}
-  .gcb-tab{justify-content:flex-start;width:100%}
+  .pm-sub br,.gcb-figure-cap br,.gcb-cta h2 br{display:none}
+  .gcb-pill{width:100%}
 }
 @media (max-width:560px){
-  .gcb-eyebrow::before,.gcb-eyebrow::after{display:none}
-  .gcb-clauses>li{padding-left:0}
-  .gcb-clauses>li::before{position:static;margin-bottom:10px}
-  .gcb-clause--hi{padding:clamp(16px,2vw,22px)!important}
-  .gcb-clause--hi::before{margin-bottom:10px}
-  .gcb-sub>li{padding-left:26px}
+  .gcb-cd-cell{min-width:0;flex:1 1 calc(50% - 8px)}
   .gcb-tk{grid-template-columns:1fr}
   .gcb-tk-stub{width:auto;height:46px;border-left:0;border-top:2px dashed rgba(0,0,0,.24)}
   .gcb-tk-stub span{writing-mode:horizontal-tb;transform:none}
   .gcb-tk-stub::before,.gcb-tk-stub::after{left:auto;top:-12px;bottom:auto}
   .gcb-tk-stub::before{left:-12px}
   .gcb-tk-stub::after{right:-12px}
-  .gcb-pass{grid-template-columns:1fr}
-  .gcb-pass-stub{width:auto;height:64px;border-left:0;border-top:2px dashed var(--line)}
-  .gcb-pass-stub::before,.gcb-pass-stub::after{left:auto;top:-12px;bottom:auto}
-  .gcb-pass-stub::before{left:-12px}
-  .gcb-pass-stub::after{right:-12px}
-  .gcb-cd-cell{min-width:0;flex:1 1 calc(50% - 8px)}
 }
   </style>
 
@@ -539,8 +321,8 @@
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "Cashback | Gold Promotion | STARTRADER",
-    "description": "STARTRADER Cashback promotion — USD 1.00 for every USD 100,000 of eligible notional trading volume on Gold 24/7, plus a weekly lucky draw for gold prizes and a Grand Prize. Runs 21 August to 31 October 2026. Terms and conditions apply.",
+    "name": "Get Cashback on Every Million | XAUUSD247 | STARTRADER",
+    "description": "From 21 August to 31 October 2026, earn USD 10 in cashback for every USD 1 million in notional volume you trade on the XAUUSD247 gold CFD, up to USD 1,000 per client. Weekend trading also earns entries into the weekly gold prize draw.",
     "url": "https://www.startrader.com/gold-cashback.html"
   }
   </script>
@@ -854,56 +636,40 @@
   </video>
   <div class="container pm-hero-in">
     <div class="pm-hero-copy">
-      <span class="pm-eyebrow" data-aos="fade-up">Promotion</span>
       <h1 class="pm-h1" id="gcb-hero-title" data-aos="fade-up">
-        <span>Cashback</span>
+        <span>Trading XAUUSD247?</span>
+        <span class="lit">Get Cashback on Every Million</span>
       </h1>
-      <p class="pm-lead" data-aos="fade-up">Promotion Period: From 00:00 August 21st, 2026 to 23:59 October 31st, 2026 (based on server time).</p>
-      <div class="pm-hact" data-aos="fade-up">
-        <a class="pm-btn" href="/funding.html">Deposit now <svg><use href="#i-arrow-right"/></svg></a>
+      <p class="pm-lead" data-aos="fade-up">From 21 August to 31 October 2026, earn USD 10 in cashback for every USD 1 million in notional volume you trade on the XAUUSD247 gold CFD, up to USD 1,000 per client. Weekend trading also earns entries into the weekly gold prize draw.</p>
+      <div class="pm-hact gcb-hact" data-aos="fade-up">
+        <a class="pm-btn" href="https://myaccount.startrader.com" rel="noopener">Opt In via Client Portal <svg><use href="#i-arrow-right"/></svg></a>
+        <a class="gcb-hlink" href="/legal-documents.html">Read the full terms <svg><use href="#i-arrow-right"/></svg></a>
       </div>
+      <p class="gcb-hnote" data-aos="fade-up">Eligibility criteria, minimum deposit and T&amp;Cs apply.</p>
     </div>
   </div>
 </section>
 
-
-<!-- ============ THE OFFER ============ -->
-<section class="gcb-offer" id="offer" aria-labelledby="gcb-offer-title">
+<!-- ============ PROOF STRIP ============ -->
+<section class="gcb-proof" id="offer" aria-labelledby="gcb-proof-title">
   <span class="gcb-rays" aria-hidden="true"></span>
-  <span class="gcb-spark" aria-hidden="true" style="--sp:26px;left:18%;top:9%"></span>
-  <span class="gcb-spark" aria-hidden="true" style="--sp:16px;left:44%;top:5%;--sp-delay:-1.2s"></span>
+  <span class="gcb-spark" aria-hidden="true" style="--sp:26px;left:18%;top:11%"></span>
+  <span class="gcb-spark" aria-hidden="true" style="--sp:16px;left:44%;top:6%;--sp-delay:-1.2s"></span>
   <span class="gcb-spark" aria-hidden="true" style="--sp:20px;right:20%;top:26%;--sp-delay:-2.1s"></span>
-  <span class="gcb-spark" aria-hidden="true" style="--sp:14px;left:8%;top:52%;--sp-delay:-.6s"></span>
-  <span class="gcb-spark" aria-hidden="true" style="--sp:22px;right:12%;bottom:26%;--sp-delay:-1.7s"></span>
+  <span class="gcb-spark" aria-hidden="true" style="--sp:14px;left:9%;top:54%;--sp-delay:-.6s"></span>
+  <span class="gcb-spark" aria-hidden="true" style="--sp:22px;right:12%;bottom:24%;--sp-delay:-1.7s"></span>
 
   <div class="container">
-    <span class="gcb-eyebrow" data-aos="fade-up">Total campaign cashback pool</span>
-    <h2 class="gcb-figure" data-aos="fade-up" id="gcb-offer-title">
+    <h2 class="gcb-figure" id="gcb-proof-title" data-aos="fade-up">
       <em>USD</em>
-      <b data-count="999999" data-comma>999,999</b>
+      <b data-count="10">10</b>
     </h2>
-    <p class="gcb-figure-cap" data-aos="fade-up">The total cumulative cashback pool allocated for this promotional Campaign is strictly capped at USD 999,999<br> &mdash; paid as a fixed rebate on eligible notional trading volume, with a weekly lucky draw for gold prizes on top.</p>
+    <p class="gcb-figure-cap" data-aos="fade-up">cashback per USD 1 million notional volume traded</p>
 
-    <div class="gcb-tickets">
-      <article class="gcb-tk gcb-tk--gold" data-aos="fade-up">
-        <span class="gcb-shine" aria-hidden="true"><i></i></span>
-        <div class="gcb-tk-main">
-          <span class="gcb-tk-kicker">Benefit 1 &middot; Cashback rebate</span>
-          <b class="gcb-tk-val"><small>USD</small> 1.00</b>
-          <p class="gcb-tk-for">for every USD 100,000 (One Hundred Thousand) in eligible notional trading volume</p>
-        </div>
-        <div class="gcb-tk-stub"><span>Rebate</span></div>
-      </article>
-
-      <article class="gcb-tk gcb-tk--blue" data-aos="fade-up" data-aos-delay="100">
-        <span class="gcb-shine" aria-hidden="true"><i></i></span>
-        <div class="gcb-tk-main">
-          <span class="gcb-tk-kicker">Benefit 2 &middot; Weekly lucky draw</span>
-          <b class="gcb-tk-val">1 <small>ticket</small></b>
-          <p class="gcb-tk-for">for every 1,000,000 (One Million) in eligible notional volume traded during recognized weekend trading hours</p>
-        </div>
-        <div class="gcb-tk-stub"><span>Draw</span></div>
-      </article>
+    <div class="gcb-pills" data-aos="fade-up">
+      <span class="gcb-pill"><svg aria-hidden="true"><use href="#i-check"/></svg>Up to USD 1,000 per client</span>
+      <span class="gcb-pill"><svg aria-hidden="true"><use href="#i-star"/></svg>1 draw entry per USD 1 million traded during weekend trading hours</span>
+      <span class="gcb-pill"><svg aria-hidden="true"><use href="#i-clock"/></svg>21 Aug &ndash; 31 Oct 2026</span>
     </div>
 
     <div class="gcb-cd" data-gcb-cd data-aos="fade-up">
@@ -914,542 +680,162 @@
         <div class="gcb-cd-cell"><b data-gcb-m>00</b><span>Minutes</span></div>
         <div class="gcb-cd-cell"><b data-gcb-s>00</b><span>Seconds</span></div>
       </div>
-      <p class="gcb-cd-note">From 00:00 August 21st, 2026 to 23:59 October 31st, 2026 (based on server time)</p>
     </div>
+
+    <p class="gcb-note">T&amp;Cs and eligibility criteria apply.</p>
   </div>
 </section>
 
-<!-- ============ THE TWO BENEFITS (TABS) ============ -->
-<section class="section gcb-ben-sec" id="benefits" aria-labelledby="gcb-ben-title">
-  <div class="container">
-    <span class="pm-eyebrow-c" data-aos="fade-up">The rewards</span>
-    <h2 class="pm-h2" id="gcb-ben-title" data-aos="fade-up">Two benefits,<br> one promotion</h2>
-    <p class="pm-sub" data-aos="fade-up">A fixed cashback rebate on the volume you trade, and a weekly lucky draw for gold prizes<br> that finishes with a Grand Prize draw in the final week.</p>
-
-    <div class="gcb-tabs" role="tablist" aria-label="Promotion benefits" data-aos="fade-up">
-      <button class="gcb-tab" type="button" role="tab" id="gcb-tab-1" aria-controls="gcb-p-1" aria-selected="true">
-        <em>01</em> Cashback Rebate Scheme
-      </button>
-      <button class="gcb-tab" type="button" role="tab" id="gcb-tab-2" aria-controls="gcb-p-2" aria-selected="false" tabindex="-1">
-        <em>02</em> Weekly Lucky Draw &amp; Grand Prize
-      </button>
-    </div>
-
-    <div class="gcb-panels" data-aos="fade-up">
-      <div class="gcb-panel" id="gcb-p-1" role="tabpanel" aria-labelledby="gcb-tab-1" tabindex="0">
-        <div class="gcb-pane gcb-pane--cash">
-          <div class="gcb-pane-art">
-            <svg viewBox="0 0 240 180" role="img" aria-label="Illustration of a stack of gold coins rising with a trend arrow">
-              <defs>
-                <linearGradient id="gcbG1" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stop-color="#F9E7B8"/><stop offset=".42" stop-color="#E8B44A"/>
-                  <stop offset=".74" stop-color="#C8952E"/><stop offset="1" stop-color="#F2D48A"/>
-                </linearGradient>
-                <linearGradient id="gcbG1b" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0" stop-color="#8A6218"/><stop offset="1" stop-color="#5E410C"/>
-                </linearGradient>
-              </defs>
-              <g>
-                <ellipse cx="84" cy="146" rx="52" ry="15" fill="url(#gcbG1b)"/>
-                <rect x="32" y="128" width="104" height="18" fill="url(#gcbG1b)"/>
-                <ellipse cx="84" cy="128" rx="52" ry="15" fill="url(#gcbG1)"/>
-                <ellipse cx="84" cy="128" rx="34" ry="9.4" fill="none" stroke="#8A6218" stroke-opacity=".45" stroke-width="2"/>
-                <rect x="42" y="104" width="84" height="16" fill="url(#gcbG1b)"/>
-                <ellipse cx="84" cy="104" rx="42" ry="12.4" fill="url(#gcbG1)"/>
-                <ellipse cx="84" cy="104" rx="27" ry="7.6" fill="none" stroke="#8A6218" stroke-opacity=".45" stroke-width="2"/>
-                <rect x="52" y="82" width="64" height="14" fill="url(#gcbG1b)"/>
-                <ellipse cx="84" cy="82" rx="32" ry="9.6" fill="url(#gcbG1)"/>
-                <text x="84" y="86" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="13" font-weight="800" fill="#7E5A15">$</text>
-              </g>
-              <path d="M148 118 L176 88 L192 100 L216 62" fill="none" stroke="url(#gcbG1)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M198 60h20v20" fill="none" stroke="url(#gcbG1)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div class="gcb-pane-txt">
-            <h3 class="gcb-pane-h">Cashback on <span>every eligible lot</span> you close</h3>
-            <p class="gcb-pane-sum"><b>USD 1.00</b> <span>per USD 100,000 of eligible notional volume</span></p>
-            <ol class="gcb-clist">
-              <li><b>Eligibility and Calculation:</b> The Participant shall be eligible to receive a cashback rebate based upon their cumulative eligible (CFD) notional trading volume executed and closed during the Campaign Period.</li>
-              <li><b>Fixed Rebate Rate:</b> The applicable rebate rate is strictly fixed at USD 1.00 for every USD 100,000 (One Hundred Thousand) in eligible notional trading volume. The cashback rebate shall be calculated and credited based on the total aggregated notional volume traded by the Participant.</li>
-            </ol>
-          </div>
-        </div>
-      </div>
-
-      <div class="gcb-panel" id="gcb-p-2" role="tabpanel" aria-labelledby="gcb-tab-2" tabindex="0" hidden>
-        <div class="gcb-pane gcb-pane--draw">
-          <div class="gcb-pane-art">
-            <svg viewBox="0 0 240 180" role="img" aria-label="Illustration of a fan of lucky draw tickets with a prize star">
-              <defs>
-                <linearGradient id="gcbG2" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stop-color="#EAF2FF"/><stop offset=".5" stop-color="#9CC0FF"/><stop offset="1" stop-color="#3C7BF0"/>
-                </linearGradient>
-                <linearGradient id="gcbG2g" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stop-color="#F9E7B8"/><stop offset=".5" stop-color="#E8B44A"/><stop offset="1" stop-color="#C8952E"/>
-                </linearGradient>
-              </defs>
-              <g transform="rotate(-14 120 100)">
-                <rect x="34" y="72" width="132" height="56" rx="10" fill="url(#gcbG2)" opacity=".45"/>
-              </g>
-              <g transform="rotate(-6 120 100)">
-                <rect x="44" y="66" width="132" height="56" rx="10" fill="url(#gcbG2)" opacity=".7"/>
-              </g>
-              <g>
-                <rect x="52" y="60" width="136" height="58" rx="11" fill="url(#gcbG2)"/>
-                <path d="M148 60v58" stroke="#04204F" stroke-opacity=".35" stroke-width="2" stroke-dasharray="6 5"/>
-                <circle cx="148" cy="60" r="6" fill="#061634"/>
-                <circle cx="148" cy="118" r="6" fill="#061634"/>
-                <text x="98" y="97" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="26" font-weight="800" fill="#04204F">1</text>
-                <text x="168" y="93" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="10" font-weight="800" fill="#04204F">WIN</text>
-              </g>
-              <path d="m196 34 5.4 11.7 12.8 1.3-9.5 8.6 2.6 12.6L196 62l-11.3 4.8 2.6-12.6-9.5-8.6 12.8-1.3z" fill="url(#gcbG2g)"/>
-              <circle cx="46" cy="42" r="5" fill="url(#gcbG2g)"/>
-              <circle cx="212" cy="124" r="4" fill="url(#gcbG2g)"/>
-            </svg>
-          </div>
-          <div class="gcb-pane-txt">
-            <h3 class="gcb-pane-h">Trade the weekend, <span>win gold prizes</span></h3>
-            <p class="gcb-pane-sum"><b>1 ticket</b> <span>per 1,000,000 of eligible weekend volume</span></p>
-            <ol class="gcb-clist">
-              <li><b>Draw Eligibility:</b> In addition to the Cashback Rebate Scheme, Participants are eligible to enter a randomized weekly lucky draw to win gold prizes, contingent upon their weekend trading activity. Furthermore, a special Grand Prize draw will be conducted during the final week of the Campaign.</li>
-              <li><b>Entry Calculation:</b> For every 1,000,000 (One Million) in eligible notional trading volume executed and closed during recognized weekend trading hours, the Participant shall receive one (1) valid ticket entry into that respective week&rsquo;s lucky draw. Tickets are strictly tied to the weekend notional trading volume and do not carry over into subsequent regular weekly draws.</li>
-              <li><b>Grand Prize Draw:</b> At the culmination of the Campaign, one final scheduled draw will be designated as the Grand Prize draw, featuring a major final reward for eligible Participants who accumulate valid ticket entries during that period.</li>
-              <li><b>Winner Announcement Schedule:</b> The official results and the winning Participants for each respective week&rsquo;s lucky draw, including the final week&rsquo;s Grand Prize draw, shall be announced every Wednesday following the conclusion of the previous trading week.</li>
-            </ol>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ REWARD MACHINE ============ -->
-<section class="section gcb-calc-sec" id="calculator" aria-labelledby="gcb-calc-title">
-  <span class="gcb-spark" aria-hidden="true" style="--sp:18px;right:6%;top:14%;--sp-delay:-1s"></span>
-  <div class="container">
-    <span class="pm-eyebrow-c" data-aos="fade-up">Do the maths</span>
-    <h2 class="pm-h2" id="gcb-calc-title" data-aos="fade-up">Drag the volume,<br> watch the reward</h2>
-    <p class="pm-sub" data-aos="fade-up">The rebate and the draw entries both run off notional volume &mdash; move the sliders<br> and the promotion&rsquo;s own arithmetic plays out.</p>
-
-    <div class="gcb-calc">
-      <!-- rebate machine -->
-      <div class="gcb-mach" data-gcb-rebate data-aos="fade-up">
-        <h3 class="gcb-mach-h"><span aria-hidden="true"><svg><use href="#i-wallet"/></svg></span>Cashback rebate</h3>
-        <p class="gcb-mach-sub">Cumulative eligible (CFD) notional trading volume executed and closed during the Campaign Period.</p>
-
-        <div class="gcb-amt"><em>Eligible notional volume</em><b data-gcb-vol>USD 25,000,000</b></div>
-        <label class="sr-only" for="gcbVol">Eligible notional trading volume in US dollars</label>
-        <input class="gcb-range" id="gcbVol" type="range" min="0" max="200000000" step="100000" value="25000000">
-        <div class="gcb-chips" role="group" aria-label="Preset volumes">
-          <button class="gcb-chip" type="button" data-gcb-vp="10000000">10M</button>
-          <button class="gcb-chip is-on" type="button" data-gcb-vp="25000000">25M</button>
-          <button class="gcb-chip" type="button" data-gcb-vp="50000000">50M</button>
-          <button class="gcb-chip" type="button" data-gcb-vp="100000000">100M</button>
-          <button class="gcb-chip" type="button" data-gcb-vp="200000000">200M</button>
-        </div>
-
-        <div class="gcb-out" aria-live="polite">
-          <em>Cashback rebate</em>
-          <b data-gcb-cash>USD 250</b>
-          <div class="gcb-meter">
-            <div class="gcb-meter-top"><span>Individual Participant Maximum</span><span data-gcb-captxt>250 / 1,000</span></div>
-            <div class="gcb-meter-bar" data-gcb-capbar style="--fill:25%"><i></i></div>
-            <p class="gcb-cap-flag">Individual cap reached &mdash; USD 1,000 is the maximum cashback rebate per Participant for the entire Campaign.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- ticket machine -->
-      <div class="gcb-mach gcb-mach--draw" data-gcb-draw data-aos="fade-up" data-aos-delay="100">
-        <h3 class="gcb-mach-h"><span aria-hidden="true"><svg><use href="#i-star"/></svg></span>Weekly draw entries</h3>
-        <p class="gcb-mach-sub">Eligible notional volume executed and closed during recognized weekend trading hours, for that week&rsquo;s lucky draw.</p>
-
-        <div class="gcb-amt"><em>Weekend notional volume</em><b data-gcb-wk>8,000,000</b></div>
-        <label class="sr-only" for="gcbWk">Weekend notional trading volume</label>
-        <input class="gcb-range" id="gcbWk" type="range" min="0" max="50000000" step="1000000" value="8000000">
-        <div class="gcb-chips" role="group" aria-label="Preset weekend volumes">
-          <button class="gcb-chip" type="button" data-gcb-wp="3000000">3M</button>
-          <button class="gcb-chip is-on" type="button" data-gcb-wp="8000000">8M</button>
-          <button class="gcb-chip" type="button" data-gcb-wp="20000000">20M</button>
-          <button class="gcb-chip" type="button" data-gcb-wp="50000000">50M</button>
-        </div>
-
-        <div class="gcb-out" aria-live="polite">
-          <em>Ticket entries this week</em>
-          <b data-gcb-tickets>8</b>
-          <div class="gcb-tkwrap" data-gcb-tkwrap></div>
-        </div>
-      </div>
-    </div>
-
-    <p class="gcb-calc-note">Illustration only. Tickets are strictly tied to the weekend notional trading volume and do not carry over into subsequent regular weekly draws. The Terms and Conditions below govern the full conditions.</p>
-  </div>
-</section>
-
-<!-- ============ CAPS ============ -->
-<section class="section gcb-caps-sec" id="limits" aria-labelledby="gcb-lim-title">
-  <div class="container">
-    <span class="pm-eyebrow-c" data-aos="fade-up">Promotional limits</span>
-    <h2 class="pm-h2" id="gcb-lim-title" data-aos="fade-up">Three caps worth<br> knowing up front</h2>
-
-    <div class="gcb-caps">
-      <article class="gcb-cap gcb-cap--gold" data-aos="fade-up">
-        <span class="gcb-shine" aria-hidden="true"><i></i></span>
-        <div class="gcb-cap-art" aria-hidden="true">
-          <svg viewBox="0 0 120 120">
-            <defs><linearGradient id="gcbV" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#F9E7B8"/><stop offset=".5" stop-color="#E8B44A"/><stop offset="1" stop-color="#C8952E"/>
-            </linearGradient></defs>
-            <rect x="16" y="18" width="88" height="84" rx="14" fill="#0A1B3C"/>
-            <rect x="24" y="26" width="72" height="68" rx="10" fill="none" stroke="url(#gcbV)" stroke-width="2.4" stroke-opacity=".7"/>
-            <circle cx="60" cy="60" r="19" fill="none" stroke="url(#gcbV)" stroke-width="4"/>
-            <path d="M60 41v10M60 69v10M41 60h10M69 60h10" stroke="url(#gcbV)" stroke-width="4" stroke-linecap="round"/>
-            <rect x="30" y="100" width="16" height="10" rx="3" fill="url(#gcbV)"/>
-            <rect x="74" y="100" width="16" height="10" rx="3" fill="url(#gcbV)"/>
-          </svg>
-        </div>
-        <b><em>USD</em> <span data-count="999999" data-comma>999,999</span></b>
-        <h3>Total Campaign Pool Cap</h3>
-        <p>Once this aggregate threshold has been exhausted, the Campaign shall automatically conclude, and no further cashback rebates will be credited, regardless of the remaining trading volume or deposit tier.</p>
-      </article>
-
-      <article class="gcb-cap" data-aos="fade-up" data-aos-delay="100">
-        <span class="gcb-shine" aria-hidden="true"><i></i></span>
-        <div class="gcb-cap-art" aria-hidden="true">
-          <svg viewBox="0 0 120 120">
-            <defs>
-              <linearGradient id="gcbQ" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#5B9DFF"/><stop offset="1" stop-color="#0047BB"/>
-              </linearGradient>
-              <linearGradient id="gcbQg" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#F9E7B8"/><stop offset=".5" stop-color="#E8B44A"/><stop offset="1" stop-color="#C8952E"/>
-              </linearGradient>
-            </defs>
-            <path d="M10 96h100" stroke="#0047BB" stroke-opacity=".16" stroke-width="4" stroke-linecap="round"/>
-            <path d="M74 26h22M88 18l8 8-8 8" fill="none" stroke="url(#gcbQg)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="28" cy="64" r="19" fill="url(#gcbQ)"/>
-            <circle cx="28" cy="64" r="23" fill="none" stroke="url(#gcbQg)" stroke-width="3"/>
-            <text x="28" y="71" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="18" font-weight="800" fill="#fff">1</text>
-            <circle cx="66" cy="68" r="14" fill="#0047BB" opacity=".38"/>
-            <text x="66" y="74" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="14" font-weight="800" fill="#fff" opacity=".85">2</text>
-            <circle cx="96" cy="72" r="10" fill="#0047BB" opacity=".2"/>
-            <text x="96" y="77" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="800" fill="#0047BB" opacity=".7">3</text>
-          </svg>
-        </div>
-        <b>First&nbsp;come</b>
-        <h3>First-Come, First-Served Basis</h3>
-        <p>All rewards are subject to availability. Priority will be determined by the chronological time and date that the eligible CFD trading lots are successfully closed.</p>
-      </article>
-
-      <article class="gcb-cap gcb-cap--gold" data-aos="fade-up" data-aos-delay="200">
-        <span class="gcb-shine" aria-hidden="true"><i></i></span>
-        <div class="gcb-cap-art" aria-hidden="true">
-          <svg viewBox="0 0 120 120">
-            <defs><linearGradient id="gcbM" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#F9E7B8"/><stop offset=".5" stop-color="#E8B44A"/><stop offset="1" stop-color="#C8952E"/>
-            </linearGradient></defs>
-            <path d="M40 14h40l-9 30H49z" fill="#0A1B3C"/>
-            <circle cx="60" cy="70" r="30" fill="url(#gcbM)"/>
-            <circle cx="60" cy="70" r="22" fill="none" stroke="#8A6218" stroke-opacity=".45" stroke-width="2.6"/>
-            <path d="m60 54 4.6 9.9 10.9 1.1-8.1 7.3 2.2 10.7L60 78l-9.6 4 2.2-10.7-8.1-7.3 10.9-1.1z" fill="#7E5A15" fill-opacity=".55"/>
-          </svg>
-        </div>
-        <b><em>USD</em> <span data-count="1000" data-comma>1,000</span></b>
-        <h3>Individual Participant Maximum</h3>
-        <p>Capped per Unique Identifier (UID) for the entire duration of the Campaign. Any eligible trading volume generated after reaching this maximum individual cap will not qualify for further cashback rebates.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ============ DRAW FLOW ============ -->
-<section class="section gcb-flow-sec" id="draw" aria-labelledby="gcb-flow-title">
-  <span class="gcb-spark" aria-hidden="true" style="--sp:20px;left:8%;top:16%;--sp-c:#8FB6FF"></span>
-  <span class="gcb-spark" aria-hidden="true" style="--sp:16px;right:10%;bottom:18%;--sp-delay:-1.4s"></span>
-  <div class="container">
-    <span class="pm-eyebrow-c" data-aos="fade-up">The weekly draw</span>
-    <h2 class="pm-h2" id="gcb-flow-title" data-aos="fade-up">From weekend volume<br> to the Grand Prize</h2>
-    <p class="pm-sub" data-aos="fade-up">Five stages, repeating every week of the Campaign &mdash; and one final draw at the end of it.</p>
-
-    <ol class="gcb-flow">
-      <li class="gcb-flow-step" data-aos="fade-up">
-        <span class="gcb-flow-n">01</span>
-        <span class="gcb-flow-ic" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.4 2"/>
-          </svg>
-        </span>
-        <h3>Trade the weekend</h3>
-        <p>Eligible notional volume executed and closed during recognized weekend trading hours.</p>
-      </li>
-      <li class="gcb-flow-step" data-aos="fade-up" data-aos-delay="100">
-        <span class="gcb-flow-n">02</span>
-        <span class="gcb-flow-ic" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round">
-            <path d="M3 8.5A1.5 1.5 0 0 1 4.5 7h15A1.5 1.5 0 0 1 21 8.5V10a2 2 0 0 0 0 4v1.5A1.5 1.5 0 0 1 19.5 17h-15A1.5 1.5 0 0 1 3 15.5V14a2 2 0 0 0 0-4z"/>
-            <path d="M14 7v10" stroke-dasharray="3 3"/>
-          </svg>
-        </span>
-        <h3>Earn ticket entries</h3>
-        <p>One (1) valid ticket entry for every 1,000,000 (One Million) in eligible weekend notional volume.</p>
-      </li>
-      <li class="gcb-flow-step" data-aos="fade-up" data-aos-delay="200">
-        <span class="gcb-flow-n">03</span>
-        <span class="gcb-flow-ic" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.6 1.6M9 3h6"/>
-          </svg>
-        </span>
-        <h3>Randomized weekly draw</h3>
-        <p>A randomized weekly lucky draw to win gold prizes, contingent upon weekend trading activity.</p>
-      </li>
-      <li class="gcb-flow-step gcb-flow-step--wed" data-aos="fade-up" data-aos-delay="300">
-        <span class="gcb-flow-n">04</span>
-        <span class="gcb-flow-ic" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v3M16 3v3"/>
-            <circle cx="12" cy="15" r="1.6" fill="currentColor" stroke="none"/>
-          </svg>
-        </span>
-        <h3>Announced every Wednesday</h3>
-        <p>Results and winning Participants are announced every Wednesday following the conclusion of the previous trading week.</p>
-      </li>
-      <li class="gcb-flow-step gcb-flow-step--grand" data-aos="fade-up" data-aos-delay="400">
-        <span class="gcb-flow-n">05</span>
-        <span class="gcb-flow-ic" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M8 4h8v5a4 4 0 0 1-8 0z"/><path d="M16 5h2.5a1.5 1.5 0 0 1 0 3H16M8 5H5.5a1.5 1.5 0 0 0 0 3H8"/>
-            <path d="M12 13v4M9 20h6"/>
-          </svg>
-        </span>
-        <h3>Grand Prize draw</h3>
-        <p>One final scheduled draw at the culmination of the Campaign, featuring a major final reward.</p>
-      </li>
-    </ol>
-
-    <p class="gcb-flow-note">Tickets are strictly tied to the weekend notional trading volume and do not carry over into subsequent regular weekly draws.</p>
-  </div>
-</section>
-
-<!-- ============ ELIGIBLE PRODUCT ============ -->
-<section class="section gcb-prod-sec" id="product" aria-labelledby="gcb-prod-title">
-  <div class="container">
-    <span class="pm-eyebrow-c" data-aos="fade-up">Eligible CFD trades</span>
-    <h2 class="pm-h2" id="gcb-prod-title" data-aos="fade-up">The volume that counts<br> comes from gold</h2>
-
-    <div class="gcb-prod" data-aos="fade-up">
-      <div class="gcb-prod-art" aria-hidden="true">
-        <span class="gcb-spark" style="--sp:18px;left:14%;top:14%"></span>
-        <span class="gcb-spark" style="--sp:13px;right:16%;bottom:18%;--sp-delay:-1.5s"></span>
-        <svg viewBox="0 0 240 160">
-          <defs>
-            <linearGradient id="gcbB1" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#F9E7B8"/><stop offset=".45" stop-color="#E8B44A"/><stop offset="1" stop-color="#C8952E"/>
-            </linearGradient>
-            <linearGradient id="gcbB2" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#C8952E"/><stop offset="1" stop-color="#7E5A15"/>
-            </linearGradient>
-          </defs>
-          <path d="M36 132h68l-8-26H44z" fill="url(#gcbB1)"/>
-          <path d="M36 132h68l2 8H34z" fill="url(#gcbB2)"/>
-          <path d="M136 132h68l-8-26h-52z" fill="url(#gcbB1)"/>
-          <path d="M136 132h68l2 8h-72z" fill="url(#gcbB2)"/>
-          <path d="M86 100h68l-8-26H94z" fill="url(#gcbB1)"/>
-          <path d="M86 100h68l2 6H84z" fill="url(#gcbB2)"/>
-          <text x="120" y="93" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="800" fill="#7E5A15">XAU</text>
-          <circle cx="200" cy="44" r="6" fill="url(#gcbB1)"/>
-          <circle cx="44" cy="56" r="4" fill="url(#gcbB1)"/>
-        </svg>
-      </div>
-      <div class="gcb-prod-txt">
-        <span class="gcb-prod-tag">Benefit 1 &amp; 2 &middot; Eligible instrument</span>
-        <h3>Gold 24/7</h3>
-        <span class="gcb-prod-code">XAUUSD247</span>
-        <p>Eligible CFD trades include Gold 24/7 XAUUSD247 where 1 lot traded on MetaTrader equates to 1 standard lot.</p>
-        <div class="gcb-prod-badges">
-          <span class="gcb-badge"><svg><use href="#i-clock"/></svg>Minimum Holding Duration &mdash; not less than ten (10) minutes</span>
-          <span class="gcb-badge"><svg><use href="#i-layers"/></svg>1 lot on MetaTrader = 1 standard lot</span>
-          <span class="gcb-badge gcb-badge--warn"><svg><use href="#i-close"/></svg>Products not explicitly mentioned are excluded</span>
-        </div>
-        <div class="gcb-prod-act">
-          <a class="pm-btn pm-btn--ghost" href="/commodities/gold-247.html">About Gold 24/7 <svg><use href="#i-arrow-right"/></svg></a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ ELIGIBILITY PASSES ============ -->
-<section class="section gcb-pass-sec" id="eligibility" aria-labelledby="gcb-el-title">
-  <div class="container">
-    <span class="pm-eyebrow-c" data-aos="fade-up">Eligibility</span>
-    <h2 class="pm-h2" id="gcb-el-title" data-aos="fade-up">Check your pass<br> before you opt in</h2>
-    <p class="pm-sub" data-aos="fade-up">This Promotion is exclusively available to both new and existing clients<br> who maintain an active trading account with STARTRADER.</p>
-
-    <div class="gcb-passes">
-      <article class="gcb-pass gcb-pass--in" data-aos="fade-up">
-        <div class="gcb-pass-body">
-          <div class="gcb-pass-top">
-            <svg aria-hidden="true"><use href="#i-check"/></svg>
-            <h3>Eligible to participate</h3>
-          </div>
-          <ul class="gcb-pass-rows">
-            <li><em>Clients</em><span>Both new and existing clients who maintain an active trading account with STARTRADER</span></li>
-            <li><em>Account type</em><span>Only active STARTRADER trading accounts categorized as STP</span></li>
-            <li><em>Region</em><span>Resident of Eligible Countries/Regions</span></li>
-            <li><em>Opt in</em><span>Confirm participation via the Client Portal</span></li>
-          </ul>
-          <p class="gcb-pass-note">Clients must make a minimum net deposit of USD 100 during the Promotion Period to be eligible for this Promotion.</p>
-        </div>
-        <div class="gcb-pass-stub" aria-hidden="true"><span class="gcb-stamp">Eligible</span></div>
-      </article>
-
-      <article class="gcb-pass gcb-pass--out" data-aos="fade-up" data-aos-delay="100">
-        <div class="gcb-pass-body">
-          <div class="gcb-pass-top">
-            <svg aria-hidden="true"><use href="#i-close"/></svg>
-            <h3>Not eligible to participate</h3>
-          </div>
-          <div class="gcb-outs">
-            <span class="gcb-out-chip"><svg aria-hidden="true"><use href="#i-close"/></svg>ECN Accounts</span>
-            <span class="gcb-out-chip"><svg aria-hidden="true"><use href="#i-close"/></svg>STAR Copy</span>
-            <span class="gcb-out-chip"><svg aria-hidden="true"><use href="#i-close"/></svg>Cryptocurrency Accounts</span>
-            <span class="gcb-out-chip"><svg aria-hidden="true"><use href="#i-close"/></svg>PAMM Accounts</span>
-            <span class="gcb-out-chip"><svg aria-hidden="true"><use href="#i-close"/></svg>MAM Accounts</span>
-          </div>
-          <p class="gcb-pass-note">Internal transfers, balance adjustments, and any other non-deposit credits will not be considered new deposits and will not count towards eligibility for this Promotion.</p>
-        </div>
-        <div class="gcb-pass-stub" aria-hidden="true"><span class="gcb-stamp">Excluded</span></div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ============ THREE STEPS ============ -->
+<!-- ============ HOW IT WORKS ============ -->
 <section class="section htrade-sec" id="how" aria-labelledby="gcb-how-title">
   <div class="container">
     <div class="htrade">
       <div class="htrade-intro" data-aos="fade-up">
-        <h2 class="htrade-title" id="gcb-how-title">Three steps,<br><span>then trade</span></h2>
-        <p class="htrade-sub">From opting in to eligible volume</p>
-        <a href="/getting-started.html" class="btn btn-primary btn-lg htrade-btn magnetic">Start now <span class="htrade-go"><svg><use href="#i-arrow-right"/></svg></span></a>
+        <h2 class="htrade-title" id="gcb-how-title">How It<br><span>Works</span></h2>
+        <a href="https://myaccount.startrader.com" rel="noopener" class="btn btn-primary btn-lg htrade-btn magnetic">Opt In via Client Portal <span class="htrade-go"><svg><use href="#i-arrow-right"/></svg></span></a>
         <img class="htrade-mark" src="/assets/img/icon-shield-3d.webp" alt="3D shield emblem for insured client funds" width="400" height="490" loading="lazy" decoding="async">
       </div>
 
       <ol class="htrade-steps" data-htrade>
         <li class="htrade-step">
           <span class="htrade-num">01</span>
-          <div class="htrade-txt"><h3>Opt in via the Client Portal</h3><p>To participate in this Promotion, clients must opt in by confirming their participation via the Client Portal.</p></div>
+          <div class="htrade-txt"><h3>Opt In</h3><p>Confirm your participation through the Client Portal. Only volume traded after opting in will count.</p></div>
         </li>
         <li class="htrade-step">
           <span class="htrade-num">02</span>
-          <div class="htrade-txt"><h3>Net deposit of USD 100</h3><p>Clients must make a minimum net deposit of USD 100 during the Promotion Period to be eligible for this Promotion.</p></div>
+          <div class="htrade-txt"><h3>Deposit and Maintain USD 100</h3><p>Make and maintain a minimum net deposit of USD 100 for the duration of the promotion.</p></div>
         </li>
         <li class="htrade-step">
           <span class="htrade-num">03</span>
-          <div class="htrade-txt"><h3>Trade eligible CFDs</h3><p>Eligible CFD trades include Gold 24/7 XAUUSD247, held for not less than ten (10) minutes to count towards Eligible Notional Volume.</p></div>
+          <div class="htrade-txt"><h3>Trade XAUUSD247</h3><p>Hold each position for at least 10 minutes for it to count towards the promotion.</p></div>
         </li>
       </ol>
     </div>
   </div>
 </section>
 
-<!-- ============ TERMS AND CONDITIONS ============ -->
-<section class="section gcb-terms-sec" id="terms" aria-labelledby="gcb-terms-title">
+<!-- ============ CASHBACK ============ -->
+<section class="section gcb-mech gcb-mech--cash" id="cashback" aria-labelledby="gcb-cash-title">
+  <span class="gcb-spark" aria-hidden="true" style="--sp:18px;right:7%;top:13%;--sp-delay:-1s"></span>
   <div class="container">
-    <span class="pm-eyebrow-c" data-aos="fade-up">The small print</span>
-    <h2 class="pm-h2" id="gcb-terms-title" data-aos="fade-up">Terms and Conditions</h2>
-    <p class="pm-sub" data-aos="fade-up">These Terms and Conditions are legally binding. By participating in this Promotion,<br> you agree to be bound by these Terms and Conditions.</p>
+    <span class="pm-eyebrow-c" data-aos="fade-up">Cashback</span>
+    <h2 class="pm-h2" id="gcb-cash-title" data-aos="fade-up">USD 10 for Every Million<br> You Trade</h2>
 
-    <div class="gcb-doc" data-aos="fade-up">
-      <div class="gcb-doc-head">
-        <b>Cashback &mdash; Promotion Terms</b>
-        <span>Promotion Period 21 Aug 2026 &ndash; 31 Oct 2026 &middot; 25 clauses</span>
+    <div class="gcb-grid">
+      <article class="gcb-tk gcb-tk--gold" data-aos="fade-up">
+        <span class="gcb-shine" aria-hidden="true"><i></i></span>
+        <div class="gcb-tk-main">
+          <b class="gcb-tk-val"><small>USD</small> 10</b>
+          <p class="gcb-tk-for">cashback per USD 1 million notional volume traded</p>
+        </div>
+        <div class="gcb-tk-stub"><span>Cashback</span></div>
+      </article>
+
+      <div class="gcb-copy" data-aos="fade-up" data-aos-delay="100">
+        <p>Cashback is calculated on your total notional volume on XAUUSD247 once positions are closed, at USD 1 for every USD 100,000 traded. Your total cashback is capped at USD 1,000 for the promotion.</p>
+        <p>The total promotion pool is USD 999,999, allocated on a first come, first served basis subject to participants meeting all eligibility requirements under this Promotion. Once the cashback pool is fully distributed, no further cashback will be awarded.</p>
       </div>
-      <ol class="gcb-clauses">
-        <li><p>These Terms and Conditions are legally binding. By participating in this Promotion, you agree to be bound by these Terms and Conditions.</p></li>
+    </div>
 
-        <li><p>To participate in this Promotion, clients must opt in by confirming their participation via the Client Portal.</p></li>
+    <div class="gcb-mach" data-gcb-rebate data-aos="fade-up">
+      <div class="gcb-amt"><em>Notional volume traded</em><b data-gcb-vol>USD 25,000,000</b></div>
+      <label class="sr-only" for="gcbVol">Notional volume traded on XAUUSD247, in US dollars</label>
+      <input class="gcb-range" id="gcbVol" type="range" min="0" max="200000000" step="100000" value="25000000">
+      <div class="gcb-chips" role="group" aria-label="Preset volumes">
+        <button class="gcb-chip" type="button" data-gcb-vp="10000000">10M</button>
+        <button class="gcb-chip is-on" type="button" data-gcb-vp="25000000">25M</button>
+        <button class="gcb-chip" type="button" data-gcb-vp="50000000">50M</button>
+        <button class="gcb-chip" type="button" data-gcb-vp="100000000">100M</button>
+        <button class="gcb-chip" type="button" data-gcb-vp="200000000">200M</button>
+      </div>
 
-        <li><p>Clients must make a minimum net deposit of USD 100 during the Promotion Period to be eligible for this Promotion.</p></li>
+      <div class="gcb-out" aria-live="polite">
+        <em>Cashback</em>
+        <b data-gcb-cash>USD 250</b>
+        <div class="gcb-meter">
+          <div class="gcb-meter-top"><span>Up to USD 1,000 per client</span><span data-gcb-captxt>250 / 1,000</span></div>
+          <div class="gcb-meter-bar" data-gcb-capbar style="--fill:25%"><i></i></div>
+          <p class="gcb-cap-flag">Your total cashback is capped at USD 1,000 for the promotion.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <li>
-          <h3>Cashback Rebate Scheme (Benefit 1)</h3>
-          <ol class="gcb-sub">
-            <li><b>Eligibility and Calculation:</b> The Participant shall be eligible to receive a cashback rebate based upon their cumulative eligible (CFD) notional trading volume executed and closed during the Campaign Period.</li>
-            <li><b>Fixed Rebate Rate:</b> The applicable rebate rate is strictly fixed at USD 1.00 for every USD 100,000 (One Hundred Thousand) in eligible notional trading volume. The cashback rebate shall be calculated and credited based on the total aggregated notional volume traded by the Participant.</li>
-          </ol>
+<!-- ============ WEEKEND DRAW ============ -->
+<section class="section gcb-mech gcb-mech--draw" id="draw" aria-labelledby="gcb-draw-title">
+  <span class="gcb-spark" aria-hidden="true" style="--sp:20px;left:8%;top:16%;--sp-c:#8FB6FF"></span>
+  <span class="gcb-spark" aria-hidden="true" style="--sp:16px;right:10%;bottom:18%;--sp-delay:-1.4s"></span>
+  <div class="container">
+    <span class="pm-eyebrow-c" data-aos="fade-up">Weekend Draw</span>
+    <h2 class="pm-h2" id="gcb-draw-title" data-aos="fade-up">Weekend Volume<br> Earns Draw Entries</h2>
+
+    <div class="gcb-grid">
+      <article class="gcb-tk gcb-tk--blue" data-aos="fade-up">
+        <span class="gcb-shine" aria-hidden="true"><i></i></span>
+        <div class="gcb-tk-main">
+          <b class="gcb-tk-val">1 <small>draw entry</small></b>
+          <p class="gcb-tk-for">per USD 1 million traded during weekend trading hours</p>
+        </div>
+        <div class="gcb-tk-stub"><span>Draw</span></div>
+      </article>
+
+      <div class="gcb-copy" data-aos="fade-up" data-aos-delay="100">
+        <p>Every USD 1 million in notional volume traded during weekend trading hours earns one entry into that week&rsquo;s draw for gold prizes. Entries count for that week only and do not carry over. The final week of the promotion is the Grand Prize draw.</p>
+        <p class="gcb-wed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v3M16 3v3"/><circle cx="12" cy="15" r="1.6" fill="currentColor" stroke="none"/></svg>Winners are announced each Wednesday, following the close of the relevant trading week.</p>
+      </div>
+    </div>
+
+    <div class="gcb-mach" data-gcb-draw data-aos="fade-up">
+      <div class="gcb-amt"><em>Weekend notional volume</em><b data-gcb-wk>USD 8,000,000</b></div>
+      <label class="sr-only" for="gcbWk">Notional volume traded during weekend trading hours, in US dollars</label>
+      <input class="gcb-range" id="gcbWk" type="range" min="0" max="50000000" step="1000000" value="8000000">
+      <div class="gcb-chips" role="group" aria-label="Preset weekend volumes">
+        <button class="gcb-chip" type="button" data-gcb-wp="3000000">3M</button>
+        <button class="gcb-chip is-on" type="button" data-gcb-wp="8000000">8M</button>
+        <button class="gcb-chip" type="button" data-gcb-wp="20000000">20M</button>
+        <button class="gcb-chip" type="button" data-gcb-wp="50000000">50M</button>
+      </div>
+
+      <div class="gcb-out" aria-live="polite">
+        <em>Draw entries</em>
+        <b data-gcb-tickets>8</b>
+        <div class="gcb-tkwrap" data-gcb-tkwrap></div>
+      </div>
+    </div>
+
+    <p class="gcb-note">Eligibility criteria, qualifying hours and prize details apply. See <a href="/legal-documents.html">full Terms and Conditions</a>.<br>Trading carries a high risk of loss.</p>
+  </div>
+</section>
+
+<!-- ============ WHO CAN JOIN ============ -->
+<section class="section gcb-who-sec" id="eligibility" aria-labelledby="gcb-who-title">
+  <div class="container">
+    <h2 class="pm-h2" id="gcb-who-title" data-aos="fade-up">Who Can Join</h2>
+
+    <div class="gcb-who" data-aos="fade-up">
+      <ul>
+        <li class="is-yes">
+          <span class="gcb-who-ic" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+          Clients who hold active STARTRADER trading accounts
         </li>
-
-        <li>
-          <h3>Weekly Lucky Draw and Grand Prize (Benefit 2)</h3>
-          <ol class="gcb-sub">
-            <li><b>Draw Eligibility:</b> In addition to the Cashback Rebate Scheme, Participants are eligible to enter a randomized weekly lucky draw to win gold prizes, contingent upon their weekend trading activity. Furthermore, a special Grand Prize draw will be conducted during the final week of the Campaign.</li>
-            <li><b>Entry Calculation:</b> For every 1,000,000 (One Million) in eligible notional trading volume executed and closed during recognized weekend trading hours, the Participant shall receive one (1) valid ticket entry into that respective week&rsquo;s lucky draw. Tickets are strictly tied to the weekend notional trading volume and do not carry over into subsequent regular weekly draws.</li>
-            <li><b>Grand Prize Draw:</b> At the culmination of the Campaign, one final scheduled draw will be designated as the Grand Prize draw, featuring a major final reward for eligible Participants who accumulate valid ticket entries during that period.</li>
-            <li><b>Winner Announcement Schedule:</b> The official results and the winning Participants for each respective week&rsquo;s lucky draw, including the final week&rsquo;s Grand Prize draw, shall be announced every Wednesday following the conclusion of the previous trading week.</li>
-          </ol>
+        <li class="is-yes">
+          <span class="gcb-who-ic" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+          STARTRADER trading accounts categorized as STP accounts only
         </li>
-
-        <li>
-          <h3>Promotional Limits and Reward Distribution</h3>
-          <ol class="gcb-sub">
-            <li><b>Total Campaign Pool Cap:</b> The total cumulative cashback pool allocated for this promotional Campaign is strictly capped at USD 999,999. Once this aggregate threshold has been exhausted, the Campaign shall automatically conclude, and no further cashback rebates will be credited, regardless of the remaining trading volume or deposit tier.</li>
-            <li><b>First-Come, First-Served Basis:</b> All rewards are subject to availability and shall be processed and distributed strictly on a first-come, first-served basis. Priority will be determined by the chronological time and date that the eligible CFD trading lots are successfully closed.</li>
-            <li><b>Individual Participant Maximum:</b> The maximum allowable cashback rebate awarded to any single Participant, as identified by their Unique Identifier (UID), is strictly capped at USD 1,000 for the entire duration of the Campaign. Any eligible trading volume generated by a Participant after reaching this maximum individual cap will not qualify for further cashback rebates.</li>
-          </ol>
+        <li class="is-no">
+          <span class="gcb-who-ic" aria-hidden="true"><svg><use href="#i-close"/></svg></span>
+          ECN Accounts, Cryptocurrency Accounts, PAMM Accounts and MAM accounts are not eligible to participate in this Promotion.
         </li>
-
-        <li><p>To qualify for the reward, the client must maintain a minimum Net Deposit of USD 100 (calculated as total deposits less total withdrawals) throughout the duration of the promotional period.</p></li>
-
-        <li><p>Participants may process partial withdrawals during the promotional period without forfeiting their active bonus, provided that the account maintains a minimum Net Deposit balance of $100 USD (or currency equivalent) at all times following the transaction.</p></li>
-
-        <li><p>Eligible CFD trades include Gold 24/7 XAUUSD247 where 1 lot traded on MetaTrader equates to 1 standard lot.</p></li>
-
-        <li><p>Products not explicitly mentioned are excluded.</p></li>
-
-        <li class="gcb-clause--hi"><p><b>Minimum Holding Duration:</b> A trade will only count towards Eligible Notional Volume for the Cashback Rebate Scheme (Benefit 1) or the Weekly Gold Prize Draw (Benefit 2) if its Holding Duration is not less than ten (10) minutes.</p></li>
-
-        <li><p>Accounts registered under the same client profile will have their eligible trading activity aggregated for the purpose of this promotion.</p></li>
-
-        <li><p>Internal transfers, balance adjustments, and any other non-deposit credits will not be considered new deposits and will not count towards eligibility for this Promotion.</p></li>
-
-        <li><p>To claim a physical prize, winners are required to send a redemption request to <a href="mailto:Promotion@startrader.com">Promotion@startrader.com</a> within seven (7) days of the prize announcement. Failure to contact the promotions team within this designated timeframe will result in the automatic forfeiture of the prize.</p></li>
-
-        <li><p>Physical prizes will be processed and delivered to the eligible client within one (1) month following the successful completion of the redemption process.</p></li>
-
-        <li><p>This Promotion may be used in conjunction with other STARTRADER promotional offers, unless otherwise stated in the applicable terms and conditions.</p></li>
-
-        <li><p>During the promotional period, STARTRADER reserves the right to disqualify participants, revoke eligibility, deduct improperly obtained promotional benefits, or terminate its business relationship with any client found to be in material breach of these Terms and Conditions.</p></li>
-
-        <li>
-          <h3>Improper or abusive trading behavior includes, but is not limited to, the following:</h3>
-          <ol class="gcb-sub">
-            <li>Operating multiple accounts from the same IP address with the intent to exploit promotions;</li>
-            <li>Engaging in arbitrage trading using multiple accounts, whether within STARTRADER or across different brokers;</li>
-            <li>Using strategies such as scalping, high-frequency trading, latency arbitrage, or malicious hedging in a way that disrupts platform integrity;</li>
-            <li>Placing abnormally large or disproportionate trades during key trading periods without a sound trading rationale;</li>
-            <li>Replicating similar trades across accounts to artificially increase exposure;</li>
-            <li>Concentrating trading activity on a narrow range of products in a way that creates abnormal risk conditions;</li>
-            <li>In cases involving multiple accounts, allocating more than 70% of trading volume to a single product or maintaining a consistently one-directional trading strategy;</li>
-            <li>Any other behavior deemed to be a violation of the STARTRADER Client Agreement, including behavior reasonably defined as default events or suspicious trading activity.</li>
-          </ol>
+        <li class="is-note">
+          <span class="gcb-who-ic" aria-hidden="true"><svg><use href="#i-layers"/></svg></span>
+          Accounts registered under the same client profile will have their eligible trading activity aggregated
         </li>
-
-        <li><p>STARTRADER retains discretion in identifying abusive trading activity. However, we are committed to fair and reasonable evaluation and, when feasible, will provide a general explanation if promotional benefits are withheld or accounts are disqualified.</p></li>
-
-        <li><p>To protect platform integrity and client confidentiality, STARTRADER may not disclose detailed methodologies or internal risk detection systems used in these assessments. In the event of disputes, clients are encouraged to contact STARTRADER support for resolution.</p></li>
-
-        <li><p>Clients are also expected to engage respectfully in all communications. While STARTRADER respects the right to share opinions and experiences, it reserves the right to respond to defamatory or knowingly false public statements that may cause reputational harm, including by pursuing appropriate legal remedies where necessary.</p></li>
-
-        <li><p>When a client&rsquo;s balance becomes negative during the promotion, the bonus will be offset against the loss caused by the negative balance. When your negative balance exceeds 1000 USD, STARTRADER reserves the right to refuse the client&rsquo;s request to clear the negative balance.</p></li>
-
-        <li><p>STARTRADER reserves the right to amend, suspend, or terminate the Promotion at any time, without prior notice and at its sole discretion.</p></li>
-
-        <li><p>Translations of these Terms and Conditions are provided for convenience only. In the event of any inconsistency or discrepancy, the English version shall take precedence.</p></li>
-
-        <li><p>The notional volume refers to the total value of the underlying asset in a contract.</p></li>
-      </ol>
+        <li class="is-note">
+          <span class="gcb-who-ic" aria-hidden="true"><svg><use href="#i-swap"/></svg></span>
+          Internal transfers and balance adjustments will not be considered new deposits and will not count toward eligibility for this Promotion.
+        </li>
+      </ul>
     </div>
   </div>
 </section>
@@ -1459,11 +845,10 @@
   <span class="gcb-spark" aria-hidden="true" style="--sp:24px;left:16%;bottom:26%"></span>
   <span class="gcb-spark" aria-hidden="true" style="--sp:17px;right:24%;top:14%;--sp-delay:-1.3s"></span>
   <div class="container">
-    <h2 id="gcb-cta-title" data-aos="fade-up">Opt in from the Client Portal<br><span>and start earning cashback</span></h2>
-    <p data-aos="fade-up">Clients must make a minimum net deposit of USD 100 during the Promotion Period to be eligible for this Promotion.</p>
+    <h2 id="gcb-cta-title" data-aos="fade-up">Every Million Counts.<br><span>Opt In and Start Trading.</span></h2>
     <div class="gcb-cta-act" data-aos="fade-up">
-      <a class="gcb-cta-btn" href="/funding.html">Deposit now <svg><use href="#i-arrow-right"/></svg></a>
-      <a class="gcb-cta-ghost" href="#terms">Read the terms <svg><use href="#i-chevron-down"/></svg></a>
+      <a class="gcb-cta-btn" href="https://myaccount.startrader.com" rel="noopener">Opt In via Client Portal <svg><use href="#i-arrow-right"/></svg></a>
+      <a class="gcb-cta-ghost" href="/legal-documents.html">Read the full terms <svg><use href="#i-arrow-right"/></svg></a>
     </div>
   </div>
 </section>
@@ -1471,15 +856,15 @@
 </main>
 
 <script>
-/* Cashback promotion — page-scoped: countdown, benefit tabs, reward machines */
+/* XAUUSD247 cashback promotion — page-scoped: countdown and the two machines */
 (function () {
   var nf = function (n) { return Number(n).toLocaleString('en-US'); };
 
-  /* ---------- countdown to the promotion window ---------- */
+  /* ---------- countdown across the promotion window ---------- */
   (function () {
     var root = document.querySelector('[data-gcb-cd]');
     if (!root) return;
-    // 00:00 August 21st, 2026 → 23:59 October 31st, 2026
+    // 21 August 2026 → 31 October 2026
     var START = new Date(2026, 7, 21, 0, 0, 0);
     var END = new Date(2026, 9, 31, 23, 59, 0);
     var lab = root.querySelector('[data-gcb-cd-lab]');
@@ -1504,50 +889,19 @@
     }
   })();
 
-  /* ---------- benefit tabs ---------- */
-  (function () {
-    var list = document.querySelector('.gcb-tabs');
-    if (!list) return;
-    var tabs = Array.prototype.slice.call(list.querySelectorAll('[role="tab"]'));
-    function select(tab, focus) {
-      tabs.forEach(function (t) {
-        var on = t === tab;
-        t.setAttribute('aria-selected', on ? 'true' : 'false');
-        t.tabIndex = on ? 0 : -1;
-        var panel = document.getElementById(t.getAttribute('aria-controls'));
-        if (panel) panel.hidden = !on;
-      });
-      if (focus) tab.focus();
-    }
-    tabs.forEach(function (tab, i) {
-      tab.addEventListener('click', function () { select(tab); });
-      tab.addEventListener('keydown', function (e) {
-        var k = e.key, next = null;
-        if (k === 'ArrowRight' || k === 'ArrowDown') next = tabs[(i + 1) % tabs.length];
-        else if (k === 'ArrowLeft' || k === 'ArrowUp') next = tabs[(i - 1 + tabs.length) % tabs.length];
-        else if (k === 'Home') next = tabs[0];
-        else if (k === 'End') next = tabs[tabs.length - 1];
-        if (next) { e.preventDefault(); select(next, true); }
-      });
-    });
-  })();
-
-  /* ---------- cashback rebate machine ----------
-     USD 1.00 for every USD 100,000 of eligible notional volume,
-     capped at USD 1,000 per Participant for the whole Campaign. */
+  /* ---------- cashback ----------
+     USD 1 for every USD 100,000 of notional volume, capped at USD 1,000. */
   (function () {
     var root = document.querySelector('[data-gcb-rebate]');
     if (!root) return;
     var range = document.getElementById('gcbVol');
     var vol = root.querySelector('[data-gcb-vol]'), cash = root.querySelector('[data-gcb-cash]'),
-        capTxt = root.querySelector('[data-gcb-captxt]'),
-        capBar = root.querySelector('[data-gcb-capbar]');
+        capTxt = root.querySelector('[data-gcb-captxt]'), capBar = root.querySelector('[data-gcb-capbar]');
     var chips = Array.prototype.slice.call(root.querySelectorAll('[data-gcb-vp]'));
     var UNIT = 100000, CAP = 1000;
     function render() {
       var v = parseInt(range.value, 10);
-      var raw = Math.floor(v / UNIT);           // USD 1.00 per unit
-      var paid = Math.min(raw, CAP);
+      var paid = Math.min(Math.floor(v / UNIT), CAP);
       range.style.setProperty('--fill', (v / parseInt(range.max, 10) * 100) + '%');
       vol.textContent = 'USD ' + nf(v);
       cash.textContent = 'USD ' + nf(paid);
@@ -1565,8 +919,8 @@
     render();
   })();
 
-  /* ---------- weekly draw ticket machine ----------
-     One ticket per 1,000,000 of eligible weekend notional volume. */
+  /* ---------- weekend draw entries ----------
+     One entry per USD 1 million traded during weekend trading hours. */
   (function () {
     var root = document.querySelector('[data-gcb-draw]');
     if (!root) return;
@@ -1581,11 +935,11 @@
       var v = parseInt(range.value, 10);
       var t = Math.floor(v / UNIT);
       range.style.setProperty('--fill', (v / parseInt(range.max, 10) * 100) + '%');
-      wk.textContent = nf(v);
+      wk.textContent = 'USD ' + nf(v);
       out.textContent = nf(t);
       var html = '';
       if (!t) {
-        html = '<p class="gcb-tkwrap-empty">No weekend volume yet — a ticket lands with every 1,000,000 traded.</p>';
+        html = '<p class="gcb-tkwrap-empty">One entry per USD 1 million traded during weekend trading hours.</p>';
       } else {
         for (var i = 0; i < Math.min(t, SHOW); i++) {
           html += '<span class="gcb-mini" style="animation-delay:' + (i * 26) + 'ms">' + TICKET + '#' + (i + 1) + '</span>';
