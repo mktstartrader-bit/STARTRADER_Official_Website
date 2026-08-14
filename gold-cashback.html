@@ -32,7 +32,6 @@
 
   <!-- Fonts (self-hosted) -->
   <link rel="stylesheet" href="/assets/fonts/fonts.css" />
-  <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css" />
   <link rel="stylesheet" href="/assets/css/aos.min.css" />
   <link rel="stylesheet" href="/assets/css/styles.css?v=qa4" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
@@ -41,9 +40,9 @@
    CASHBACK (GOLD) PROMOTION
    A campaign page, not a terms sheet. The shared promotions banner
    stays on top; below it the offer gets the vocabulary a promotion
-   needs — running tape, a giant pool figure under gold rays, tear-off
-   coupons, a live countdown, a reward machine you can drag, boarding
-   passes for eligibility, and the full terms as a receipt at the end.
+   needs — a giant pool figure under gold rays, tear-off coupons, a
+   live countdown, a reward machine you can drag, boarding passes for
+   eligibility, and the full terms as a receipt at the end.
    Every graphic here is CSS/SVG, so nothing new ships as an image.
    ================================================================= */
 
@@ -76,26 +75,7 @@
   background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);
   transition:transform .9s var(--ease)}
 
-/* ---------- 1. running tape ------------------------------------ */
-.gcb-tape-sec{position:relative;height:clamp(150px,17vw,228px);overflow:hidden;background:var(--ink-1);isolation:isolate}
-.gcb-tape-sec::before{content:'';position:absolute;inset:0;
-  background:radial-gradient(60% 120% at 50% 50%,rgba(200,149,46,.22),transparent 70%)}
-.gcb-tape{position:absolute;left:-8%;width:116%;overflow:hidden}
-.gcb-tape .swiper-wrapper{align-items:center}
-.gcb-tape-i{flex:0 0 auto;width:auto;display:flex;align-items:center;gap:clamp(16px,2vw,30px);
-  padding:0 clamp(10px,1.4vw,18px);font-size:clamp(13px,1.5vw,18px);font-weight:800;
-  letter-spacing:.14em;text-transform:uppercase;white-space:nowrap}
-.gcb-tape-i b{font-weight:800}
-.gcb-tape-i em{font-style:normal;font-size:.72em;opacity:.7}
-.gcb-tape--a{top:17%;transform:rotate(-2.5deg);
-  background:var(--gold-face);color:#2A1B00;
-  box-shadow:0 18px 40px -18px rgba(0,0,0,.7);padding:clamp(9px,1.1vw,14px) 0}
-.gcb-tape--b{bottom:13%;transform:rotate(2.1deg);
-  background:#04122F;color:var(--gold-3);border-top:1px solid var(--gold-line);border-bottom:1px solid var(--gold-line);
-  padding:clamp(8px,1vw,12px) 0}
-.gcb-tape--b .gcb-tape-i{font-size:clamp(11px,1.2vw,14px);letter-spacing:.2em}
-
-/* ---------- 2. the offer --------------------------------------- */
+/* ---------- 1. the offer --------------------------------------- */
 .gcb-offer{position:relative;isolation:isolate;overflow:clip;color:#fff;
   padding-block:clamp(58px,7vw,110px);
   background:
@@ -179,7 +159,7 @@
   letter-spacing:.18em;text-transform:uppercase;color:#8ea4c6}
 .gcb-cd-note{font-size:12px;font-weight:600;color:#8ea4c6;text-align:center}
 
-/* ---------- 3. benefit tabs ------------------------------------ */
+/* ---------- 2. benefit tabs ------------------------------------ */
 .gcb-ben-sec{position:relative;isolation:isolate;overflow:clip;
   background:radial-gradient(52% 44% at 14% 0%,rgba(200,149,46,.10),transparent 62%),var(--bg-light-2)}
 .gcb-ben-sec>.container{position:relative;z-index:1}
@@ -235,7 +215,7 @@
 .gcb-pane--draw .gcb-clist li::before{background:rgba(0,71,187,.08);border-color:rgba(0,71,187,.2);color:var(--blue)}
 .gcb-clist b{color:var(--text);font-weight:700}
 
-/* ---------- 4. reward machine ---------------------------------- */
+/* ---------- 3. reward machine ---------------------------------- */
 .gcb-calc-sec{position:relative;isolation:isolate;overflow:clip;color:#fff;
   background:radial-gradient(60% 50% at 12% -10%,rgba(200,149,46,.2),transparent 60%),
     radial-gradient(60% 50% at 92% 106%,rgba(0,71,187,.26),transparent 62%),var(--ink-1)}
@@ -308,7 +288,7 @@
 .gcb-tkwrap-empty{font-size:12.5px;color:#8ea4c6}
 .gcb-calc-note{margin-top:clamp(18px,2.2vw,24px);font-size:12px;line-height:1.7;color:#8ea4c6;text-align:center}
 
-/* ---------- 5. cap cards -------------------------------------- */
+/* ---------- 4. cap cards -------------------------------------- */
 .gcb-caps-sec{position:relative;isolation:isolate;overflow:clip;
   background:radial-gradient(54% 46% at 86% 0%,rgba(0,71,187,.08),transparent 62%),var(--bg-light)}
 .gcb-caps-sec>.container{position:relative;z-index:1}
@@ -332,7 +312,7 @@
 .gcb-cap h3{margin-top:12px;font-size:15.5px;letter-spacing:-.02em}
 .gcb-cap p{margin-top:8px;font-size:13px;line-height:1.68;color:var(--text-soft)}
 
-/* ---------- 6. draw flow -------------------------------------- */
+/* ---------- 5. draw flow -------------------------------------- */
 .gcb-flow-sec{position:relative;isolation:isolate;overflow:clip;color:#fff;
   background:radial-gradient(60% 50% at 50% -8%,rgba(0,71,187,.28),transparent 62%),var(--ink-2)}
 .gcb-flow-sec>.container{position:relative;z-index:2}
@@ -367,7 +347,7 @@
   box-shadow:0 22px 46px -22px rgba(200,149,46,.7)}
 .gcb-flow-note{margin-top:clamp(26px,3vw,38px);text-align:center;font-size:12.5px;color:#8ea4c6}
 
-/* ---------- 7. eligible product ------------------------------- */
+/* ---------- 6. eligible product ------------------------------- */
 .gcb-prod-sec{position:relative;isolation:isolate;overflow:clip;
   background:radial-gradient(50% 44% at 12% 0%,rgba(200,149,46,.11),transparent 62%),var(--bg-light-2)}
 .gcb-prod-sec>.container{position:relative;z-index:1}
@@ -401,7 +381,7 @@
 .pm-btn--ghost{color:var(--ink);background:rgba(255,255,255,.8);border:1px solid rgba(20,44,96,.12);box-shadow:none}
 .pm-btn--ghost:hover{background:#fff;box-shadow:0 16px 32px -18px rgba(20,44,96,.35)}
 
-/* ---------- 8. eligibility passes ----------------------------- */
+/* ---------- 7. eligibility passes ----------------------------- */
 .gcb-pass-sec{position:relative;isolation:isolate;overflow:clip;background:#EFF3F9}
 .gcb-pass-sec>.container{position:relative;z-index:1}
 .gcb-passes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2vw,26px);
@@ -445,7 +425,7 @@
   border:2px solid var(--green);color:var(--green);opacity:.85}
 .gcb-pass--out .gcb-stamp{border-color:var(--red);color:var(--red)}
 
-/* ---------- 10. terms receipt --------------------------------- */
+/* ---------- 8. terms receipt --------------------------------- */
 .gcb-terms-sec{position:relative;isolation:isolate;overflow:clip;
   background:radial-gradient(50% 40% at 50% 0%,rgba(200,149,46,.08),transparent 60%),var(--bg-light-2)}
 .gcb-terms-sec>.container{position:relative;z-index:1}
@@ -488,7 +468,7 @@
 .gcb-clause--hi::before{left:clamp(14px,1.8vw,20px);top:clamp(15px,1.9vw,21px);background:#fff;border-color:var(--gold-line)}
 .gcb-clause--hi>p{color:var(--text)}
 
-/* ---------- 11. closing call ---------------------------------- */
+/* ---------- 9. closing call ---------------------------------- */
 .gcb-cta{position:relative;isolation:isolate;overflow:clip;color:#fff;text-align:center;
   padding-block:clamp(64px,8vw,120px);
   background:radial-gradient(58% 60% at 50% 0%,rgba(200,149,46,.26),transparent 64%),
@@ -886,27 +866,6 @@
   </div>
 </section>
 
-<!-- ============ RUNNING TAPE ============ -->
-<section class="gcb-tape-sec" aria-hidden="true">
-  <div class="gcb-tape gcb-tape--a swiper st-marquee" data-marquee-speed="58">
-    <div class="swiper-wrapper">
-      <span class="gcb-tape-i swiper-slide"><b>Cashback</b><em>&#9670;</em></span>
-      <span class="gcb-tape-i swiper-slide"><b>Gold 24/7</b><em>&#9670;</em></span>
-      <span class="gcb-tape-i swiper-slide"><b>USD 1 per 100,000</b><em>&#9670;</em></span>
-      <span class="gcb-tape-i swiper-slide"><b>Weekly Gold Draw</b><em>&#9670;</em></span>
-      <span class="gcb-tape-i swiper-slide"><b>Grand Prize</b><em>&#9670;</em></span>
-      <span class="gcb-tape-i swiper-slide"><b>21 Aug &ndash; 31 Oct 2026</b><em>&#9670;</em></span>
-    </div>
-  </div>
-  <div class="gcb-tape gcb-tape--b swiper st-marquee" data-marquee-speed="34">
-    <div class="swiper-wrapper">
-      <span class="gcb-tape-i swiper-slide"><b>Promotion Period 21 August 2026 &ndash; 31 October 2026</b><em>&#8226;</em></span>
-      <span class="gcb-tape-i swiper-slide"><b>Based on server time</b><em>&#8226;</em></span>
-      <span class="gcb-tape-i swiper-slide"><b>Terms and conditions apply</b><em>&#8226;</em></span>
-      <span class="gcb-tape-i swiper-slide"><b>Opt in via the Client Portal</b><em>&#8226;</em></span>
-    </div>
-  </div>
-</section>
 
 <!-- ============ THE OFFER ============ -->
 <section class="gcb-offer" id="offer" aria-labelledby="gcb-offer-title">
@@ -1760,7 +1719,6 @@
 <script src="/assets/js/vendor/gsap.min.js" defer></script>
 <script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/assets/js/vendor/lenis.min.js" defer></script>
-<script src="/assets/js/vendor/swiper-bundle.min.js" defer></script>
 <script src="/assets/js/vendor/aos.min.js" defer></script>
 <script src="/assets/js/main.js?v=qa4" defer></script>
 </body>
