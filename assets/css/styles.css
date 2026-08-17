@@ -4494,3 +4494,16 @@ iframe#webWidget{
    phones where the centred copy fills every line. 75 pages carry this CTA */
 .cta-inner{padding-inline:var(--gutter)}
 @media (max-width:620px){.cta-inner{padding-inline:26px}}
+
+/* ===== FX-MH WIDE CARD, 721–980px BAND (appended batch 2026-08-17) =====
+   line 1063 drops .fx-mh to two columns but restates .fx-mh--wide's span 2,
+   so the wide card eats a whole row and everything after it is left holding
+   half a row: on the two-card pages (lloyd-insurance, legal-documents,
+   financial-commission, liquidity-providers) that reads as one full-width
+   card above one 60%-width card. One column each pairs them properly, and on
+   the five-card pages it removes two holes rather than adding any. The band
+   stops at 721 because line 4457 already releases the span for the single
+   column below it. .fx-mh--full is deliberately left spanning */
+@media (min-width:721px) and (max-width:980px){
+  .fx-mh--wide{grid-column:span 1}
+}

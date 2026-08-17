@@ -107,7 +107,11 @@
 .ct-ch h3{font-size:17px;letter-spacing:-.02em;color:var(--text)}
 .ct-ch--lead h3{font-size:clamp(21px,2vw,25px);letter-spacing:-.03em}
 .ct-ch p{margin-top:8px;font-size:13.5px;line-height:1.62;color:var(--text-soft)}
-.ct-ch--lead p{margin-top:12px;font-size:14.5px;line-height:1.68;max-width:34ch}
+/* the gap above the pill lives here, not on the button: the button needs
+   margin-top:auto to stay pinned to the bottom of the tall two-row card on
+   desktop, and an auto margin cannot also carry a minimum. Once the card
+   stacks, free space is 0 and the pill sat flush against this paragraph */
+.ct-ch--lead p{margin-top:12px;margin-bottom:20px;font-size:14.5px;line-height:1.68;max-width:34ch}
 .ct-ch-go{
   margin-top:auto;padding-top:20px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;
   font-size:13.5px;font-weight:700;color:var(--blue);word-break:break-word;text-align:left;
