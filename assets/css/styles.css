@@ -4474,3 +4474,23 @@ iframe#webWidget{
    explicitly rather than resolving height:100% against an auto height */
 .fx-w2-viz{height:auto;min-height:206px}
 .fx-w2-viz > .fx-tx{align-self:stretch;height:auto}
+
+/* ===== HERO CTA ALIGNMENT ON TABLET (appended batch 2026-08-17) =====
+   lines 869 and 1207 sit inside the trading-account and instrument 980px
+   blocks, where the whole hero turns centred — but both wrote a bare
+   .acct-hero-cta, so every other .acct-hero centres its button while the
+   eyebrow, heading and subline stay left. It shows from 721 to 980px
+   (iPad Air portrait lands at 820) on getting-started, funding and
+   prime-ecn-account; below 721px line 784 centres the hero for real */
+@media (min-width:721px) and (max-width:980px){
+  .acct-hero:not(.ta-hero):not(.fx-hero) .acct-hero-cta{justify-content:flex-start}
+}
+
+/* ===== CLOSING CTA GUTTER (appended batch 2026-08-17) =====
+   .cta-inner is a .container, but lines 544 and 728 set `padding:112px 0 …`
+   and `padding:84px 0 150px` — the shorthand zeroed the inline gutter the
+   container had given it, so on phones the heading and subline ran to within
+   4px of both screen edges. Restores the gutter, with a little more air on
+   phones where the centred copy fills every line. 75 pages carry this CTA */
+.cta-inner{padding-inline:var(--gutter)}
+@media (max-width:620px){.cta-inner{padding-inline:26px}}

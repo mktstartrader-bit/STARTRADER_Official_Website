@@ -287,11 +287,22 @@
 .fl-read{text-align:center}
 .fl-read p{margin-inline:auto}
 .fl-read-bar{justify-content:center}
-.fl-strip{grid-template-columns:1fr}
-.fl-shot:nth-child(2),.fl-shot:nth-child(3){margin-top:0}}
+/* two across, not one — a single 4:3 shot filled a ~940px column and ate the
+   whole screen at 1000px. The third simply starts a second row */
+.fl-strip{grid-template-columns:repeat(2,minmax(0,1fr))}
+.fl-shot:nth-child(2),.fl-shot:nth-child(3){margin-top:0}
+/* the odd third shot centres under the pair rather than leaving a hole beside
+   it — half the row minus half the gap keeps it exactly one column wide */
+.fl-shot:nth-child(3){grid-column:1/-1;width:calc(50% - clamp(7px,.9vw,11px));margin-inline:auto}}
 @media (max-width:640px){.fl-hero{min-height:0;padding-bottom:80px}
 .fl-stage{display:none}
-.fl-node-list{display:flex}}
+.fl-node-list{display:flex}
+/* one per row only once two would be too narrow to read the caption */
+.fl-strip{grid-template-columns:1fr;max-width:460px;margin-inline:auto}
+/* full width again — the half-row width above is for the two-column rows, and
+   the auto side margins have to go with it or the shot stops stretching and
+   collapses to its (absolutely positioned) zero-width content */
+.fl-shot:nth-child(3){width:auto;margin-inline:0}}
 /* on the narrowest screens the dial becomes a row of pills */
 .fl-node-list{display:none;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:22px}
 .fl-node-list button{

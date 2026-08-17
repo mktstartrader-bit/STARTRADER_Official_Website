@@ -260,7 +260,9 @@ body.g247x .faq-item summary:hover .faq-q-ic{border-color:#f0c96a;color:#f0c96a}
 body.g247x .cta-bg{background:#0a0805 url(/assets/img/gold247-form-glow.webp) center/cover no-repeat}
 body.g247x .cta-bg::after{background:none}
 .g247-acct-card{scroll-margin-top:calc(var(--chrome-h) + 28px)}
-body.g247x .cta-inner{padding:clamp(48px,6vw,84px) 0;text-align:left}
+/* keeps the container gutter the shorthand would otherwise zero — without it
+   the bordered account card bleeds off both screen edges on phones */
+body.g247x .cta-inner{padding:clamp(48px,6vw,84px) var(--gutter);text-align:left}
 .g247-acct-card{max-width:620px;margin-inline:auto;padding:clamp(24px,2.8vw,34px);
   background:linear-gradient(150deg,rgba(28,21,10,.8) 0%,rgba(9,7,3,.93) 55%,rgba(22,16,8,.84) 100%);
   -webkit-backdrop-filter:blur(18px) saturate(1.25);backdrop-filter:blur(18px) saturate(1.25);

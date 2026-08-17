@@ -65,8 +65,10 @@
 /* ECN — green */
 .ta-card--dark{--ray:rgba(0,110,255,.3);--ray-line:rgba(80,150,255,.95);border-color:rgba(90,150,255,.26)}
 /* Prime ECN — brand blue */
-.ta-card--dark::after{display:none}
-/* badge is the top accent — no line behind it */
+.ta-card--rec::after{display:none}
+/* on whichever card carries the badge, the badge *is* the top accent — no
+   line behind it. Keyed to the modifier, not to Prime ECN, so the badge can
+   move between tiers without the accent lines going wrong */
 .ta-card-ic{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#e6ecf6;margin-bottom:20px}
 .ta-card-ic svg{width:23px;height:23px}
 .ta-card h3{font-size:21px;color:#fff;letter-spacing:-.01em}
@@ -90,8 +92,11 @@
 @media (max-width:620px){.ta-cards{grid-template-columns:1fr;max-width:420px;margin-inline:auto}
 .ta-card-tag{min-height:0}}
   
-/* the four plans breathe as a 2x2 from 1100px down (long translations) */
-@media (max-width:1100px) and (min-width:721px){
+/* the four plans breathe as a 2x2 from 1200px down (long translations).
+   1200 is where .container stops growing, so 4-up now only renders at the
+   full 1152px content width the cards were drawn for — below that the
+   nowrap buttons start pulling the tracks to uneven widths */
+@media (max-width:1200px) and (min-width:721px){
   .ta-cards{grid-template-columns:1fr 1fr}
 }
 </style>
@@ -479,7 +484,8 @@
         </ul>
       </article>
 
-      <article class="ta-card ta-card--s2" data-aos="fade-up" data-aos-delay="100">
+      <article class="ta-card ta-card--s2 ta-card--rec" data-aos="fade-up" data-aos-delay="100">
+        <span class="ta-rec">Recommended</span>
         <span class="ta-card-ic"><svg><use href="#i-user"/></svg></span>
         <h3>Standard</h3>
         <p class="ta-card-tag">For newcomers building confidence</p>
@@ -510,7 +516,6 @@
       </article>
 
       <article class="ta-card ta-card--dark" data-aos="fade-up" data-aos-delay="300">
-        <span class="ta-rec">Recommended</span>
         <span class="ta-card-ic"><svg><use href="#i-bolt"/></svg></span>
         <h3>Prime ECN</h3>
         <p class="ta-card-tag">For experienced, high-volume traders</p>

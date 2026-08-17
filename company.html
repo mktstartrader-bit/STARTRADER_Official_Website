@@ -240,7 +240,9 @@
 .co-statx{min-height:150px;padding:26px 28px}
 .sx-body{max-width:66%}
 .co-starrow,.co-mktgrid,.co-trust-grid,.co-statgrid{grid-template-columns:1fr;max-width:420px;margin-inline:auto}
-.co-reggrid{grid-template-columns:repeat(2,1fr);gap:12px}
+/* one licence per row on phones — two columns left the regulator names and
+   the longer licence numbers wrapping to three cramped lines */
+.co-reggrid{grid-template-columns:1fr;gap:12px;max-width:420px;margin-inline:auto}
 .co-reg-name{min-height:0}
 .co-gallery{grid-template-columns:1fr;max-width:420px;margin-inline:auto}
 .co-gcard,.co-gcard-lg{min-height:300px}}
