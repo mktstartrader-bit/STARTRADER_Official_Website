@@ -32,3 +32,23 @@
   font-display: swap;
   src: url('./zodiak-700.woff2') format('woff2');
 }
+
+/* Noto Sans JP — self-hosted variable subset (wght 400–700) for the Japanese
+   pages. Built from the official Google Fonts package supplied by the brand
+   team (Noto_Sans_JP.zip → NotoSansJP-VariableFont_wght.ttf); the SIL Open
+   Font Licence that ships with it is kept alongside as noto-sans-jp-OFL.txt.
+   Subset to kana / fullwidth / latin / punctuation plus the kanji these pages
+   render — 198KB instead of the 5MB full face — with palt, vert, vrt2, vpal
+   and halt retained for proportional kana and vertical writing. Other locales
+   never reference the family, so they never download it.
+   Regenerate after copy changes:
+     fonttools varLib.instancer -o tmp.ttf NotoSansJP-VariableFont_wght.ttf wght=400:700
+     pyftsubset tmp.ttf --text-file=<glyphs> --output-file=noto-sans-jp-subset.woff2 \
+       --flavor=woff2 --layout-features+=palt,vert,vrt2,vpal,halt --no-hinting     */
+@font-face {
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('./noto-sans-jp-subset.woff2') format('woff2');
+}
