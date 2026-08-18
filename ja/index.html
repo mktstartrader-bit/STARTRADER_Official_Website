@@ -398,8 +398,7 @@
    Charts are generated from a real price series: open chains to the previous
    close, wicks extend past the body, and the gold line is a 4-period SMA of
    the closes drawn as one Catmull-Rom curve — so the average actually tracks
-   the candles instead of wandering across them. Each candle is a <g class="c">
-   holding its wick and body, so both grow together.
+   the candles instead of wandering across them. Each candle is its own group (g.c) holding wick and body together.
    Two triggers only: `is-live`/`.aos-animate` on reveal, and :hover. Finished
    state is the base state, so nothing snaps back when AOS strips its class. */
 .jp-viz-chart g.c{transform-box:fill-box;transform-origin:50% 100%}
