@@ -43,10 +43,10 @@
   <link rel="preload" href="/assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/assets/fonts/noto-sans-jp-subset.woff2" as="font" type="font/woff2" crossorigin />
   <!-- stamped: fonts.css gained the Noto Sans JP face, so warm caches must refetch -->
-  <link rel="stylesheet" href="/assets/fonts/fonts.css?v=jp3" />
+  <link rel="stylesheet" href="/assets/fonts/fonts.css?v=jp7" />
   <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css" />
   <link rel="stylesheet" href="/assets/css/aos.min.css" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=jp3" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=jp7" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* =========================================================================
@@ -186,10 +186,14 @@
    sit visibly low against the heading it belongs to */
 .jp-trust-cell{display:grid;grid-template-columns:42px minmax(0,1fr);gap:0 13px;
   align-items:start;min-width:0}
+.jp-trust-txt{min-width:0}
 .jp-trust-cell b{display:block;font-family:var(--mincho);font-size:clamp(14.5px,1.45vw,18px);
   color:var(--sumi);line-height:42px;letter-spacing:.02em}
-.jp-trust-cell span{display:block;margin-top:1px;font-size:11px;color:#6B7A90;line-height:1.7}
-.jp-trust-ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;
+/* the sub-line gets its own class: a bare `.jp-trust-cell span` also matched
+   .jp-trust-ic (itself a span) and forced display:block on it, which killed the
+   grid centring and left every glyph 11px above its box centre */
+.jp-trust-sub{display:block;margin-top:1px;font-size:11px;color:#6B7A90;line-height:1.7;font-style:normal}
+.jp-trust-cell > .jp-trust-ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;
   color:var(--ai);background:rgba(0,71,187,.07);border:1px solid rgba(0,71,187,.16);
   transition:transform .4s var(--ease),border-color .3s,background .3s}
 .jp-trust-cell:hover .jp-trust-ic{transform:translateY(-2px);background:rgba(0,71,187,.11);
@@ -198,10 +202,12 @@
 /* normalise each glyph to the same optical size and centre inside the box —
    the sprite's paths have different bounds, which is what made the row look
    misaligned even though the boxes themselves are on the grid */
-.jp-trust-ic--shield  svg{transform:translateY(.2px) scale(.97)}
-.jp-trust-ic--headset svg{transform:translateY(-.7px) scale(1.1)}
-.jp-trust-ic--lock    svg{transform:scale(1.06)}
-.jp-trust-ic--clock   svg{transform:scale(.94)}
+/* measured by pixel: ink heights equalise at 17px and all four then sat 1px
+   high in the 42px box, so each carries the same +1px optical nudge */
+.jp-trust-ic--shield  svg{transform:translateY(1.2px) scale(.97)}
+.jp-trust-ic--headset svg{transform:translateY(.3px)  scale(1.1)}
+.jp-trust-ic--lock    svg{transform:translateY(1px)   scale(1.06)}
+.jp-trust-ic--clock   svg{transform:translateY(1px)   scale(.94)}
 
 /* ---------- 3-up / 4-up card grids on washi ---------- */
 .jp-grid{display:grid;gap:clamp(14px,1.8vw,22px)}
@@ -304,7 +310,7 @@
 .jp-row:hover{background:rgba(200,162,90,.06)}
 .jp-row .sym{display:flex;align-items:center;gap:11px;min-width:0}
 .jp-row .sym b{font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:800;color:#fff;letter-spacing:-.01em}
-.jp-row .sym span{display:block;font-size:11px;color:#8FA3C4;margin-top:2px}
+.jp-row .sym-sub{display:block;font-size:11px;color:#8FA3C4;margin-top:2px;font-style:normal}
 .jp-row .px{font-family:'Plus Jakarta Sans',sans-serif;font-size:14.5px;font-weight:700;color:#EAF0FA;
   font-variant-numeric:tabular-nums}
 .jp-row .chg{font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}
@@ -351,11 +357,11 @@
 .jp-viz-bar .url{margin-left:auto;color:#5E7191}
 .jp-viz-body{position:relative;padding:12px}
 .jp-viz-chart{display:block;width:100%;height:auto}
-.jp-viz-chart .grid line{stroke:rgba(255,255,255,.055);stroke-width:1}
-.jp-viz-chart .up{fill:#34D99B}
-.jp-viz-chart .dn{fill:#FF6B6B}
-.jp-viz-chart .wick{stroke:rgba(255,255,255,.34);stroke-width:1}
-.jp-viz-chart .ma{fill:none;stroke:var(--kin);stroke-width:1.3;opacity:.85}
+.jp-viz-chart .grid line{stroke:rgba(255,255,255,.05);stroke-width:1}
+.jp-viz-chart .up{fill:#2FC98D}
+.jp-viz-chart .dn{fill:#F2645F}
+.jp-viz-chart .wick{stroke:rgba(255,255,255,.28);stroke-width:1.1;stroke-linecap:round}
+.jp-viz-chart .ma{fill:none;stroke:var(--kin);stroke-width:1.4;opacity:.8;stroke-linecap:round}
 .jp-viz-chart .lvl{stroke:rgba(200,162,90,.5);stroke-width:1;stroke-dasharray:3 3}
 .jp-viz-tags{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
 .jp-viz-tag{font-family:'Plus Jakarta Sans',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.1em;
@@ -389,64 +395,78 @@
 .jp-viz-rows em{font-style:normal;color:#34D99B;font-weight:700}
 .jp-viz-rows em.dn{color:#FF6B6B}
 /* ---- micro-interactions ----------------------------------------------------
-   Two triggers only: `is-live` is added once when the card reveals (via the
-   site's own aos:in event), and :hover on the card. Everything is transform or
-   opacity so nothing re-lays-out, and it all collapses under reduced-motion. */
-.jp-viz-chart rect{transform-box:fill-box;transform-origin:50% 100%}
-.jp-viz-chart .wick{transform-box:fill-box;transform-origin:50% 100%}
+   Charts are generated from a real price series: open chains to the previous
+   close, wicks extend past the body, and the gold line is a 4-period SMA of
+   the closes drawn as one Catmull-Rom curve — so the average actually tracks
+   the candles instead of wandering across them. Each candle is a <g class="c">
+   holding its wick and body, so both grow together.
+   Two triggers only: `is-live`/`.aos-animate` on reveal, and :hover. Finished
+   state is the base state, so nothing snaps back when AOS strips its class. */
+.jp-viz-chart g.c{transform-box:fill-box;transform-origin:50% 100%}
 .jp-viz-dom i{transform-origin:left center}
 
 @media (prefers-reduced-motion:no-preference){
   /* candles grow out of the baseline, left to right */
-  .jp-viz.is-live .jp-viz-chart rect,[data-aos].aos-animate .jp-viz .jp-viz-chart rect{animation:jpCandle .5s cubic-bezier(.2,.9,.3,1) both}
-  .jp-viz.is-live .jp-viz-chart .wick,[data-aos].aos-animate .jp-viz .jp-viz-chart .wick{animation:jpCandle .5s cubic-bezier(.2,.9,.3,1) both}
-  .jp-viz-chart rect:nth-of-type(1),.jp-viz-chart .wick:nth-of-type(1){animation-delay:.04s}
-  .jp-viz-chart rect:nth-of-type(2),.jp-viz-chart .wick:nth-of-type(2){animation-delay:.08s}
-  .jp-viz-chart rect:nth-of-type(3),.jp-viz-chart .wick:nth-of-type(3){animation-delay:.12s}
-  .jp-viz-chart rect:nth-of-type(4),.jp-viz-chart .wick:nth-of-type(4){animation-delay:.16s}
-  .jp-viz-chart rect:nth-of-type(5),.jp-viz-chart .wick:nth-of-type(5){animation-delay:.2s}
-  .jp-viz-chart rect:nth-of-type(6),.jp-viz-chart .wick:nth-of-type(6){animation-delay:.24s}
-  .jp-viz-chart rect:nth-of-type(7),.jp-viz-chart .wick:nth-of-type(7){animation-delay:.28s}
-  .jp-viz-chart rect:nth-of-type(8),.jp-viz-chart .wick:nth-of-type(8){animation-delay:.32s}
-  .jp-viz-chart rect:nth-of-type(9),.jp-viz-chart .wick:nth-of-type(9){animation-delay:.36s}
-  .jp-viz-chart rect:nth-of-type(10),.jp-viz-chart .wick:nth-of-type(10){animation-delay:.4s}
-  .jp-viz-chart rect:nth-of-type(n+11),.jp-viz-chart .wick:nth-of-type(n+11){animation-delay:.44s}
+  .jp-viz.is-live .jp-viz-chart g.c,
+  [data-aos].aos-animate .jp-viz .jp-viz-chart g.c{animation:jpCandle .46s cubic-bezier(.2,.9,.3,1) both}
+  .jp-viz-chart g.c:nth-of-type(1){animation-delay:.05s}
+  .jp-viz-chart g.c:nth-of-type(2){animation-delay:.10s}
+  .jp-viz-chart g.c:nth-of-type(3){animation-delay:.15s}
+  .jp-viz-chart g.c:nth-of-type(4){animation-delay:.20s}
+  .jp-viz-chart g.c:nth-of-type(5){animation-delay:.25s}
+  .jp-viz-chart g.c:nth-of-type(6){animation-delay:.30s}
+  .jp-viz-chart g.c:nth-of-type(7){animation-delay:.35s}
+  .jp-viz-chart g.c:nth-of-type(8){animation-delay:.40s}
+  .jp-viz-chart g.c:nth-of-type(9){animation-delay:.45s}
+  .jp-viz-chart g.c:nth-of-type(10){animation-delay:.50s}
+  .jp-viz-chart g.c:nth-of-type(11){animation-delay:.55s}
+  .jp-viz-chart g.c:nth-of-type(12){animation-delay:.60s}
+  .jp-viz-chart g.c:nth-of-type(13){animation-delay:.65s}
+  .jp-viz-chart g.c:nth-of-type(14){animation-delay:.70s}
+  .jp-viz-chart g.c:nth-of-type(15){animation-delay:.75s}
+  .jp-viz-chart g.c:nth-of-type(16){animation-delay:.80s}
 
-  /* the moving average draws itself once the candles are up */
-  .jp-viz-chart .ma{stroke-dasharray:420;stroke-dashoffset:0}
+  /* the average draws itself as the candles finish */
+  .jp-viz-chart .ma{stroke-dasharray:400;stroke-dashoffset:0}
   .jp-viz.is-live .jp-viz-chart .ma,
-  [data-aos].aos-animate .jp-viz .jp-viz-chart .ma{animation:jpMa 1.4s cubic-bezier(.4,0,.2,1) .34s both}
+  [data-aos].aos-animate .jp-viz .jp-viz-chart .ma{animation:jpMa 1.5s cubic-bezier(.4,0,.2,1) .3s both}
 
-  /* the reference level fades in, then breathes very slightly */
-  .jp-viz.is-live .jp-viz-chart .lvl,[data-aos].aos-animate .jp-viz .jp-viz-chart .lvl{animation:jpLvl .8s ease .6s both}
+  .jp-viz.is-live .jp-viz-chart .lvl,
+  [data-aos].aos-animate .jp-viz .jp-viz-chart .lvl{animation:jpLvl .8s ease .85s both}
 
-  /* depth ladder fills from the price column outwards */
+  /* depth ladder fills outwards from the price column */
   .jp-viz.is-live .jp-viz-dom i,[data-aos].aos-animate .jp-viz .jp-viz-dom i{animation:jpBar .7s cubic-bezier(.2,.9,.3,1) both}
-  .jp-viz.is-live .jp-viz-dom div:nth-child(1) i,[data-aos].aos-animate .jp-viz .jp-viz-dom div:nth-child(1) i{animation-delay:.5s}
-  .jp-viz.is-live .jp-viz-dom div:nth-child(2) i,[data-aos].aos-animate .jp-viz .jp-viz-dom div:nth-child(2) i{animation-delay:.58s}
-  .jp-viz.is-live .jp-viz-dom div:nth-child(3) i,[data-aos].aos-animate .jp-viz .jp-viz-dom div:nth-child(3) i{animation-delay:.66s}
-  .jp-viz.is-live .jp-viz-dom div:nth-child(4) i,[data-aos].aos-animate .jp-viz .jp-viz-dom div:nth-child(4) i{animation-delay:.74s}
+  .jp-viz-dom div:nth-child(1) i{animation-delay:.60s}
+  .jp-viz-dom div:nth-child(2) i{animation-delay:.68s}
+  .jp-viz-dom div:nth-child(3) i{animation-delay:.76s}
+  .jp-viz-dom div:nth-child(4) i{animation-delay:.84s}
 
-  /* phone watchlist rows tick in one by one */
+  /* phone watchlist ticks in row by row */
   .jp-viz.is-live .jp-viz-rows div,[data-aos].aos-animate .jp-viz .jp-viz-rows div{animation:jpRow .45s ease both}
-  .jp-viz.is-live .jp-viz-rows div:nth-child(1),[data-aos].aos-animate .jp-viz .jp-viz-rows div:nth-child(1){animation-delay:.42s}
-  .jp-viz.is-live .jp-viz-rows div:nth-child(2),[data-aos].aos-animate .jp-viz .jp-viz-rows div:nth-child(2){animation-delay:.5s}
-  .jp-viz.is-live .jp-viz-rows div:nth-child(3),[data-aos].aos-animate .jp-viz .jp-viz-rows div:nth-child(3){animation-delay:.58s}
-  .jp-viz.is-live .jp-viz-rows div:nth-child(4),[data-aos].aos-animate .jp-viz .jp-viz-rows div:nth-child(4){animation-delay:.66s}
-  .jp-viz.is-live .jp-viz-rows div:nth-child(5),[data-aos].aos-animate .jp-viz .jp-viz-rows div:nth-child(5){animation-delay:.74s}
+  .jp-viz-rows div:nth-child(1){animation-delay:.42s}
+  .jp-viz-rows div:nth-child(2){animation-delay:.50s}
+  .jp-viz-rows div:nth-child(3){animation-delay:.58s}
+  .jp-viz-rows div:nth-child(4){animation-delay:.66s}
+  .jp-viz-rows div:nth-child(5){animation-delay:.74s}
 
-  /* the one-click strip settles last, then pulses gently on hover */
-  .jp-viz.is-live .jp-viz-oct b,[data-aos].aos-animate .jp-viz .jp-viz-oct b{animation:jpRow .5s ease .8s both}
+  .jp-viz.is-live .jp-viz-oct b,[data-aos].aos-animate .jp-viz .jp-viz-oct b{animation:jpRow .5s ease .9s both}
   .jp-plat:hover .jp-viz .jp-viz-oct b.buy{animation:jpPulseBuy 1.8s ease-out infinite}
   .jp-plat:hover .jp-viz .jp-viz-oct b.sell{animation:jpPulseSell 1.8s ease-out infinite .3s}
 }
-@keyframes jpCandle{from{transform:scaleY(.05);opacity:0}to{transform:scaleY(1);opacity:1}}
-@keyframes jpMa{from{stroke-dashoffset:420}to{stroke-dashoffset:0}}
+@keyframes jpCandle{from{transform:scaleY(.04);opacity:0}to{transform:scaleY(1);opacity:1}}
+@keyframes jpMa{from{stroke-dashoffset:400}to{stroke-dashoffset:0}}
 @keyframes jpLvl{from{opacity:0}to{opacity:1}}
 @keyframes jpBar{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 @keyframes jpRow{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
 @keyframes jpPulseBuy{0%{box-shadow:0 0 0 0 rgba(52,217,155,.45)}70%{box-shadow:0 0 0 7px rgba(52,217,155,0)}100%{box-shadow:0 0 0 0 rgba(52,217,155,0)}}
 @keyframes jpPulseSell{0%{box-shadow:0 0 0 0 rgba(255,107,107,.4)}70%{box-shadow:0 0 0 7px rgba(255,107,107,0)}100%{box-shadow:0 0 0 0 rgba(255,107,107,0)}}
+
+/* hover: gold edge, a slightly stronger average, chips wake up */
+.jp-plat:hover .jp-viz-frame{border-color:rgba(200,162,90,.6)}
+.jp-plat:hover .jp-viz-chart .ma{stroke-width:1.7}
+.jp-viz-tag{transition:color .25s,background .25s,border-color .25s,transform .25s var(--ease)}
+.jp-viz-tag:hover{transform:translateY(-2px);color:#fff;border-color:rgba(200,162,90,.55)}
+.jp-viz-frame,.jp-viz-chart .ma{transition:border-color .35s,stroke-width .35s}
 
 /* ---- AOS pins a transform on anything it fades in -------------------------
    aos.min.css ends with `[data-aos^=fade][data-aos^=fade].aos-animate
@@ -802,19 +822,19 @@ html.js-aos .jp-mizuhiki path{stroke-dashoffset:1400}
     <div class="jp-trust-row">
       <div class="jp-trust-cell" data-aos="fade-up">
         <span class="jp-trust-ic jp-trust-ic--shield"><svg><use href="#i-shield"/></svg></span>
-        <span><b>5つの金融ライセンス</b><span>複数の国と地域の規制下で運営</span></span>
+        <span class="jp-trust-txt"><b>5つの金融ライセンス</b><em class="jp-trust-sub">複数の国と地域の規制下で運営</em></span>
       </div>
       <div class="jp-trust-cell" data-aos="fade-up" data-aos-delay="100">
         <span class="jp-trust-ic jp-trust-ic--headset"><svg><use href="#i-headset"/></svg></span>
-        <span><b>日本語サポート</b><span>市場が開いている平日は24時間対応</span></span>
+        <span class="jp-trust-txt"><b>日本語サポート</b><em class="jp-trust-sub">市場が開いている平日は24時間対応</em></span>
       </div>
       <div class="jp-trust-cell" data-aos="fade-up" data-aos-delay="200">
         <span class="jp-trust-ic jp-trust-ic--lock"><svg><use href="#i-lock"/></svg></span>
-        <span><b>顧客資産の分別管理</b><span>Lloyd&rsquo;s の保険による補償つき</span></span>
+        <span class="jp-trust-txt"><b>顧客資産の分別管理</b><em class="jp-trust-sub">Lloyd&rsquo;s の保険による補償つき</em></span>
       </div>
       <div class="jp-trust-cell" data-aos="fade-up" data-aos-delay="300">
         <span class="jp-trust-ic jp-trust-ic--clock"><svg><use href="#i-clock"/></svg></span>
-        <span><b>最短3分で口座開設</b><span>オンラインで完結・郵送不要</span></span>
+        <span class="jp-trust-txt"><b>最短3分で口座開設</b><em class="jp-trust-sub">オンラインで完結・郵送不要</em></span>
       </div>
     </div>
   </div>
@@ -951,35 +971,35 @@ html.js-aos .jp-mizuhiki path{stroke-dashoffset:1400}
         <span>銘柄</span><span>参考価格</span><span class="c-spr">スプレッド</span><span class="c-spark">推移</span><span class="c-cta"></span>
       </div>
       <div class="jp-row">
-        <span class="sym"><span><b>USD/JPY</b><span>米ドル / 円</span></span></span>
+        <span class="sym"><span class="sym-txt"><b>USD/JPY</b><em class="sym-sub">米ドル / 円</em></span></span>
         <span class="px">150.24</span>
         <span class="spr">0.9 pips</span>
         <svg class="jp-spark" viewBox="0 0 92 30" aria-hidden="true"><path d="M2 22 14 18 26 20 38 12 50 15 62 8 74 11 90 5"/></svg>
         <span class="jp-row-cta"><a href="/getting-started.html">取引する</a></span>
       </div>
       <div class="jp-row">
-        <span class="sym"><span><b>XAU/USD</b><span>ゴールド / 米ドル</span></span></span>
+        <span class="sym"><span class="sym-txt"><b>XAU/USD</b><em class="sym-sub">ゴールド / 米ドル</em></span></span>
         <span class="px">2,381.40</span>
         <span class="spr">1.4 pips</span>
         <svg class="jp-spark" viewBox="0 0 92 30" aria-hidden="true"><path d="M2 18 14 20 26 14 38 16 50 9 62 12 74 6 90 8"/></svg>
         <span class="jp-row-cta"><a href="/getting-started.html">取引する</a></span>
       </div>
       <div class="jp-row">
-        <span class="sym"><span><b>JP225</b><span>日経225 指数</span></span></span>
+        <span class="sym"><span class="sym-txt"><b>JP225</b><em class="sym-sub">日経225 指数</em></span></span>
         <span class="px">38,512</span>
         <span class="spr">7 ポイント</span>
         <svg class="jp-spark dn" viewBox="0 0 92 30" aria-hidden="true"><path d="M2 10 14 13 26 9 38 15 50 13 62 19 74 17 90 23"/></svg>
         <span class="jp-row-cta"><a href="/getting-started.html">取引する</a></span>
       </div>
       <div class="jp-row">
-        <span class="sym"><span><b>EUR/JPY</b><span>ユーロ / 円</span></span></span>
+        <span class="sym"><span class="sym-txt"><b>EUR/JPY</b><em class="sym-sub">ユーロ / 円</em></span></span>
         <span class="px">163.38</span>
         <span class="spr">1.3 pips</span>
         <svg class="jp-spark" viewBox="0 0 92 30" aria-hidden="true"><path d="M2 20 14 16 26 19 38 13 50 14 62 9 74 12 90 7"/></svg>
         <span class="jp-row-cta"><a href="/getting-started.html">取引する</a></span>
       </div>
       <div class="jp-row">
-        <span class="sym"><span><b>US30</b><span>ダウ工業株30種平均</span></span></span>
+        <span class="sym"><span class="sym-txt"><b>US30</b><em class="sym-sub">ダウ工業株30種平均</em></span></span>
         <span class="px">39,140</span>
         <span class="spr">2.4 ポイント</span>
         <svg class="jp-spark" viewBox="0 0 92 30" aria-hidden="true"><path d="M2 21 14 19 26 15 38 17 50 11 62 13 74 8 90 6"/></svg>
@@ -1011,12 +1031,7 @@ html.js-aos .jp-mizuhiki path{stroke-dashoffset:1400}
           <div class="jp-viz-frame">
             <div class="jp-viz-bar"><i></i><i></i><i></i><span>USDJPY, H4 — MetaTrader 4</span></div>
             <div class="jp-viz-body">
-              <svg class="jp-viz-chart" viewBox="0 0 300 120" role="img" aria-label="USD/JPY 4時間足のローソク足チャート（上昇トレンド）">
-              <g class="grid"><line x1="0" y1="24" x2="300" y2="24"/><line x1="0" y1="52" x2="300" y2="52"/><line x1="0" y1="80" x2="300" y2="80"/><line x1="0" y1="108" x2="300" y2="108"/></g>
-              <line class="lvl" x1="0" y1="30" x2="300" y2="30"/>
-              <line class="wick" x1="11" y1="60" x2="11" y2="80"/><rect class="up" x="8" y="66" width="7" height="8" rx="1"/><line class="wick" x1="24" y1="62" x2="24" y2="76"/><rect class="dn" x="21" y="66" width="7" height="4" rx="1"/><line class="wick" x1="37" y1="52" x2="37" y2="74"/><rect class="up" x="34" y="58" width="7" height="12" rx="1"/><line class="wick" x1="50" y1="54" x2="50" y2="68"/><rect class="dn" x="47" y="58" width="7" height="4" rx="1"/><line class="wick" x1="63" y1="44" x2="63" y2="66"/><rect class="up" x="60" y="50" width="7" height="12" rx="1"/><line class="wick" x1="76" y1="46" x2="76" y2="60"/><rect class="dn" x="73" y="50" width="7" height="6" rx="1"/><line class="wick" x1="89" y1="38" x2="89" y2="60"/><rect class="up" x="86" y="44" width="7" height="12" rx="1"/><line class="wick" x1="102" y1="40" x2="102" y2="54"/><rect class="dn" x="99" y="44" width="7" height="4" rx="1"/><line class="wick" x1="115" y1="30" x2="115" y2="52"/><rect class="up" x="112" y="36" width="7" height="12" rx="1"/><line class="wick" x1="128" y1="32" x2="128" y2="46"/><rect class="dn" x="125" y="36" width="7" height="6" rx="1"/><line class="wick" x1="141" y1="26" x2="141" y2="46"/><rect class="up" x="138" y="32" width="7" height="10" rx="1"/><line class="wick" x1="154" y1="28" x2="154" y2="42"/><rect class="dn" x="151" y="32" width="7" height="6" rx="1"/><line class="wick" x1="167" y1="22" x2="167" y2="42"/><rect class="up" x="164" y="28" width="7" height="10" rx="1"/><line class="wick" x1="180" y1="24" x2="180" y2="38"/><rect class="dn" x="177" y="28" width="7" height="6" rx="1"/><line class="wick" x1="193" y1="18" x2="193" y2="38"/><rect class="up" x="190" y="24" width="7" height="10" rx="1"/><line class="wick" x1="206" y1="20" x2="206" y2="34"/><rect class="dn" x="203" y="24" width="7" height="6" rx="1"/><line class="wick" x1="219" y1="15" x2="219" y2="34"/><rect class="up" x="216" y="20" width="7" height="10" rx="1"/><line class="wick" x1="232" y1="17" x2="232" y2="30"/><rect class="dn" x="229" y="20" width="7" height="6" rx="1"/><line class="wick" x1="245" y1="12" x2="245" y2="30"/><rect class="up" x="242" y="18" width="7" height="8" rx="1"/><line class="wick" x1="258" y1="14" x2="258" y2="26"/><rect class="dn" x="255" y="18" width="7" height="4" rx="1"/><line class="wick" x1="271" y1="11" x2="271" y2="26"/><rect class="up" x="268" y="16" width="7" height="6" rx="1"/><line class="wick" x1="284" y1="13" x2="284" y2="24"/><rect class="dn" x="281" y="16" width="7" height="4" rx="1"/>
-              <path class="ma" d="M8 78 C60 70, 110 52, 160 40 S250 24, 296 18"/>
-            </svg>
+              <svg class="jp-viz-chart" viewBox="0 0 300 120" role="img" aria-label="USD/JPY 4時間足のローソク足チャートと移動平均線（上昇トレンド）"><g class="grid"><line x1="0" y1="14" x2="300" y2="14"/><line x1="0" y1="44" x2="300" y2="44"/><line x1="0" y1="74" x2="300" y2="74"/><line x1="0" y1="104" x2="300" y2="104"/></g><line class="lvl" x1="0" y1="24.4" x2="300" y2="24.4"/><path class="ma" d="M16.0 92.8 C18.8 92.0, 27.3 89.2, 33.0 88.3 C38.7 87.4, 44.3 88.0, 50.0 87.5 C55.7 87.1, 61.3 86.4, 67.0 85.6 C72.7 84.7, 78.3 82.7, 84.0 82.6 C89.7 82.5, 95.3 84.5, 101.0 85.0 C106.7 85.4, 112.3 85.8, 118.0 85.1 C123.7 84.5, 129.3 82.7, 135.0 80.9 C140.7 79.1, 146.3 76.9, 152.0 74.2 C157.7 71.6, 163.3 68.0, 169.0 64.9 C174.7 61.8, 180.3 57.7, 186.0 55.7 C191.7 53.7, 197.3 52.9, 203.0 52.9 C208.7 52.8, 214.3 54.8, 220.0 55.3 C225.7 55.7, 231.3 56.0, 237.0 55.3 C242.7 54.6, 248.3 52.9, 254.0 51.0 C259.7 49.2, 268.2 45.4, 271.0 44.3"/><g class="c"><line class="wick" x1="16.0" y1="87.2" x2="16.0" y2="103.6"/><rect class="up" x="12.0" y="92.8" width="8.0" height="5.6" rx="1.2"/></g><g class="c"><line class="wick" x1="33.0" y1="76.0" x2="33.0" y2="100.2"/><rect class="up" x="29.0" y="83.9" width="8.0" height="8.9" rx="1.2"/></g><g class="c"><line class="wick" x1="50.0" y1="80.5" x2="50.0" y2="89.3"/><rect class="dn" x="46.0" y="83.9" width="8.0" height="2.1" rx="1.2"/></g><g class="c"><line class="wick" x1="67.0" y1="73.6" x2="67.0" y2="91.8"/><rect class="up" x="63.0" y="79.7" width="8.0" height="6.3" rx="1.2"/></g><g class="c"><line class="wick" x1="84.0" y1="76.3" x2="84.0" y2="84.1"/><rect class="dn" x="80.0" y="79.7" width="8.0" height="1.8" rx="1.2"/></g><g class="c"><line class="wick" x1="101.0" y1="70.3" x2="101.0" y2="103.2"/><rect class="dn" x="97.0" y="80.8" width="8.0" height="12.6" rx="1.2"/></g><g class="c"><line class="wick" x1="118.0" y1="80.3" x2="118.0" y2="99.4"/><rect class="up" x="114.0" y="86.7" width="8.0" height="6.7" rx="1.2"/></g><g class="c"><line class="wick" x1="135.0" y1="44.1" x2="135.0" y2="104.0"/><rect class="up" x="131.0" y="62.6" width="8.0" height="24.1" rx="1.2"/></g><g class="c"><line class="wick" x1="152.0" y1="46.6" x2="152.0" y2="69.8"/><rect class="up" x="148.0" y="54.2" width="8.0" height="8.5" rx="1.2"/></g><g class="c"><line class="wick" x1="169.0" y1="50.7" x2="169.0" y2="59.5"/><rect class="dn" x="165.0" y="54.2" width="8.0" height="2.1" rx="1.2"/></g><g class="c"><line class="wick" x1="186.0" y1="43.6" x2="186.0" y2="62.1"/><rect class="up" x="182.0" y="49.8" width="8.0" height="6.4" rx="1.2"/></g><g class="c"><line class="wick" x1="203.0" y1="46.4" x2="203.0" y2="54.5"/><rect class="dn" x="199.0" y="49.8" width="8.0" height="1.8" rx="1.2"/></g><g class="c"><line class="wick" x1="220.0" y1="40.8" x2="220.0" y2="73.6"/><rect class="dn" x="216.0" y="51.2" width="8.0" height="12.5" rx="1.2"/></g><g class="c"><line class="wick" x1="237.0" y1="49.8" x2="237.0" y2="70.1"/><rect class="up" x="233.0" y="56.5" width="8.0" height="7.2" rx="1.2"/></g><g class="c"><line class="wick" x1="254.0" y1="14.0" x2="254.0" y2="73.8"/><rect class="up" x="250.0" y="32.5" width="8.0" height="24.0" rx="1.2"/></g><g class="c"><line class="wick" x1="271.0" y1="17.1" x2="271.0" y2="39.4"/><rect class="up" x="267.0" y="24.4" width="8.0" height="8.1" rx="1.2"/></g></svg>
               <div class="jp-viz-oct">
                 <b class="sell">SELL 150.238</b><b class="vol">0.10</b><b class="buy">BUY 150.247</b>
               </div>
@@ -1032,12 +1047,7 @@ html.js-aos .jp-mizuhiki path{stroke-dashoffset:1400}
           <div class="jp-viz-frame">
             <div class="jp-viz-bar"><i></i><i></i><i></i><span>XAUUSD, D1 — MetaTrader 5</span></div>
             <div class="jp-viz-body">
-              <svg class="jp-viz-chart" viewBox="0 0 300 120" role="img" aria-label="XAU/USD 日足のローソク足チャートと移動平均線">
-              <g class="grid"><line x1="0" y1="24" x2="300" y2="24"/><line x1="0" y1="52" x2="300" y2="52"/><line x1="0" y1="80" x2="300" y2="80"/><line x1="0" y1="108" x2="300" y2="108"/></g>
-              <line class="lvl" x1="0" y1="24" x2="300" y2="24"/>
-              <line class="wick" x1="11" y1="36" x2="11" y2="52"/><rect class="dn" x="8" y="40" width="7" height="8" rx="1"/><line class="wick" x1="24" y1="38" x2="24" y2="54"/><rect class="up" x="21" y="44" width="7" height="4" rx="1"/><line class="wick" x1="37" y1="40" x2="37" y2="58"/><rect class="dn" x="34" y="44" width="7" height="8" rx="1"/><line class="wick" x1="50" y1="42" x2="50" y2="58"/><rect class="up" x="47" y="46" width="7" height="6" rx="1"/><line class="wick" x1="63" y1="42" x2="63" y2="62"/><rect class="dn" x="60" y="46" width="7" height="10" rx="1"/><line class="wick" x1="76" y1="44" x2="76" y2="60"/><rect class="up" x="73" y="50" width="7" height="6" rx="1"/><line class="wick" x1="89" y1="46" x2="89" y2="66"/><rect class="dn" x="86" y="50" width="7" height="10" rx="1"/><line class="wick" x1="102" y1="48" x2="102" y2="64"/><rect class="up" x="99" y="54" width="7" height="6" rx="1"/><line class="wick" x1="115" y1="50" x2="115" y2="70"/><rect class="dn" x="112" y="54" width="7" height="10" rx="1"/><line class="wick" x1="128" y1="52" x2="128" y2="68"/><rect class="up" x="125" y="58" width="7" height="6" rx="1"/><line class="wick" x1="141" y1="54" x2="141" y2="74"/><rect class="dn" x="138" y="58" width="7" height="10" rx="1"/><line class="wick" x1="154" y1="56" x2="154" y2="72"/><rect class="up" x="151" y="62" width="7" height="6" rx="1"/><line class="wick" x1="167" y1="58" x2="167" y2="78"/><rect class="dn" x="164" y="62" width="7" height="10" rx="1"/><line class="wick" x1="180" y1="60" x2="180" y2="76"/><rect class="up" x="177" y="66" width="7" height="6" rx="1"/><line class="wick" x1="193" y1="62" x2="193" y2="82"/><rect class="dn" x="190" y="66" width="7" height="10" rx="1"/><line class="wick" x1="206" y1="64" x2="206" y2="80"/><rect class="up" x="203" y="70" width="7" height="6" rx="1"/><line class="wick" x1="219" y1="52" x2="219" y2="76"/><rect class="up" x="216" y="58" width="7" height="12" rx="1"/><line class="wick" x1="232" y1="44" x2="232" y2="62"/><rect class="up" x="229" y="50" width="7" height="8" rx="1"/><line class="wick" x1="245" y1="36" x2="245" y2="56"/><rect class="up" x="242" y="42" width="7" height="8" rx="1"/><line class="wick" x1="258" y1="28" x2="258" y2="48"/><rect class="up" x="255" y="34" width="7" height="8" rx="1"/><line class="wick" x1="271" y1="20" x2="271" y2="40"/><rect class="up" x="268" y="26" width="7" height="8" rx="1"/><line class="wick" x1="284" y1="14" x2="284" y2="32"/><rect class="up" x="281" y="20" width="7" height="6" rx="1"/>
-              <path class="ma" d="M8 44 C60 52, 110 64, 160 72 S250 40, 296 22"/>
-            </svg>
+              <svg class="jp-viz-chart" viewBox="0 0 300 120" role="img" aria-label="XAU/USD 日足のローソク足チャートと移動平均線（下落から反転）"><g class="grid"><line x1="0" y1="14" x2="300" y2="14"/><line x1="0" y1="44" x2="300" y2="44"/><line x1="0" y1="74" x2="300" y2="74"/><line x1="0" y1="104" x2="300" y2="104"/></g><line class="lvl" x1="0" y1="25.9" x2="300" y2="25.9"/><path class="ma" d="M16.0 29.5 C18.8 30.2, 27.3 31.9, 33.0 33.6 C38.7 35.4, 44.3 38.2, 50.0 40.1 C55.7 42.1, 61.3 42.6, 67.0 45.1 C72.7 47.7, 78.3 51.6, 84.0 55.6 C89.7 59.5, 95.3 64.9, 101.0 68.7 C106.7 72.5, 112.3 76.0, 118.0 78.3 C123.7 80.6, 129.3 81.8, 135.0 82.6 C140.7 83.4, 146.3 83.6, 152.0 83.2 C157.7 82.7, 163.3 81.3, 169.0 79.9 C174.7 78.5, 180.3 76.0, 186.0 75.0 C191.7 73.9, 197.3 73.6, 203.0 73.6 C208.7 73.5, 214.3 75.0, 220.0 74.8 C225.7 74.6, 231.3 74.1, 237.0 72.4 C242.7 70.7, 248.3 67.8, 254.0 64.6 C259.7 61.5, 268.2 55.1, 271.0 53.2"/><g class="c"><line class="wick" x1="16.0" y1="25.0" x2="16.0" y2="38.5"/><rect class="up" x="12.0" y="29.5" width="8.0" height="4.6" rx="1.2"/></g><g class="c"><line class="wick" x1="33.0" y1="22.5" x2="33.0" y2="44.4"/><rect class="dn" x="29.0" y="29.5" width="8.0" height="8.2" rx="1.2"/></g><g class="c"><line class="wick" x1="50.0" y1="25.5" x2="50.0" y2="64.6"/><rect class="dn" x="46.0" y="37.7" width="8.0" height="15.5" rx="1.2"/></g><g class="c"><line class="wick" x1="67.0" y1="47.0" x2="67.0" y2="65.9"/><rect class="dn" x="63.0" y="53.2" width="8.0" height="6.8" rx="1.2"/></g><g class="c"><line class="wick" x1="84.0" y1="50.8" x2="84.0" y2="80.0"/><rect class="dn" x="80.0" y="60.0" width="8.0" height="11.3" rx="1.2"/></g><g class="c"><line class="wick" x1="101.0" y1="56.6" x2="101.0" y2="104.0"/><rect class="dn" x="97.0" y="71.3" width="8.0" height="19.0" rx="1.2"/></g><g class="c"><line class="wick" x1="118.0" y1="87.5" x2="118.0" y2="94.4"/><rect class="dn" x="114.0" y="90.3" width="8.0" height="1.8" rx="1.2"/></g><g class="c"><line class="wick" x1="135.0" y1="65.5" x2="135.0" y2="102.5"/><rect class="up" x="131.0" y="77.1" width="8.0" height="14.6" rx="1.2"/></g><g class="c"><line class="wick" x1="152.0" y1="69.8" x2="152.0" y2="80.7"/><rect class="up" x="148.0" y="73.6" width="8.0" height="3.5" rx="1.2"/></g><g class="c"><line class="wick" x1="169.0" y1="69.8" x2="169.0" y2="80.8"/><rect class="dn" x="165.0" y="73.6" width="8.0" height="3.5" rx="1.2"/></g><g class="c"><line class="wick" x1="186.0" y1="66.9" x2="186.0" y2="81.9"/><rect class="up" x="182.0" y="71.9" width="8.0" height="5.2" rx="1.2"/></g><g class="c"><line class="wick" x1="203.0" y1="68.7" x2="203.0" y2="74.7"/><rect class="up" x="199.0" y="71.5" width="8.0" height="1.8" rx="1.2"/></g><g class="c"><line class="wick" x1="220.0" y1="65.3" x2="220.0" y2="84.4"/><rect class="dn" x="216.0" y="71.5" width="8.0" height="7.0" rx="1.2"/></g><g class="c"><line class="wick" x1="237.0" y1="58.5" x2="237.0" y2="87.0"/><rect class="up" x="233.0" y="67.5" width="8.0" height="11.0" rx="1.2"/></g><g class="c"><line class="wick" x1="254.0" y1="21.1" x2="254.0" y2="86.1"/><rect class="up" x="250.0" y="41.0" width="8.0" height="26.5" rx="1.2"/></g><g class="c"><line class="wick" x1="271.0" y1="14.0" x2="271.0" y2="52.2"/><rect class="up" x="267.0" y="25.9" width="8.0" height="15.1" rx="1.2"/></g></svg>
               <div class="jp-viz-dom" aria-label="板情報（気配値）">
                 <div class="a"><span>2,382.10</span><i style="width:38%"></i><span>1.4</span></div>
                 <div class="a"><span>2,381.80</span><i style="width:62%"></i><span>3.2</span></div>
@@ -1056,12 +1066,7 @@ html.js-aos .jp-mizuhiki path{stroke-dashoffset:1400}
           <div class="jp-viz-frame">
             <div class="jp-viz-bar"><i></i><i></i><i></i><span>STARTRADER Web Trader</span><span class="url">app.startrader.com</span></div>
             <div class="jp-viz-body">
-              <svg class="jp-viz-chart" viewBox="0 0 300 120" role="img" aria-label="ブラウザ版取引画面のチャート表示">
-              <g class="grid"><line x1="0" y1="24" x2="300" y2="24"/><line x1="0" y1="52" x2="300" y2="52"/><line x1="0" y1="80" x2="300" y2="80"/><line x1="0" y1="108" x2="300" y2="108"/></g>
-              <line class="lvl" x1="0" y1="34" x2="300" y2="34"/>
-              <line class="wick" x1="11" y1="38" x2="11" y2="60"/><rect class="up" x="8" y="44" width="7" height="12" rx="1"/><line class="wick" x1="24" y1="40" x2="24" y2="54"/><rect class="dn" x="21" y="44" width="7" height="4" rx="1"/><line class="wick" x1="37" y1="30" x2="37" y2="52"/><rect class="up" x="34" y="36" width="7" height="12" rx="1"/><line class="wick" x1="50" y1="32" x2="50" y2="46"/><rect class="dn" x="47" y="36" width="7" height="6" rx="1"/><line class="wick" x1="63" y1="26" x2="63" y2="46"/><rect class="up" x="60" y="32" width="7" height="10" rx="1"/><line class="wick" x1="76" y1="28" x2="76" y2="42"/><rect class="dn" x="73" y="32" width="7" height="6" rx="1"/><line class="wick" x1="89" y1="22" x2="89" y2="42"/><rect class="up" x="86" y="28" width="7" height="10" rx="1"/><line class="wick" x1="102" y1="24" x2="102" y2="38"/><rect class="dn" x="99" y="28" width="7" height="6" rx="1"/><line class="wick" x1="115" y1="18" x2="115" y2="38"/><rect class="up" x="112" y="24" width="7" height="10" rx="1"/><line class="wick" x1="128" y1="20" x2="128" y2="34"/><rect class="dn" x="125" y="24" width="7" height="6" rx="1"/><line class="wick" x1="141" y1="15" x2="141" y2="34"/><rect class="up" x="138" y="20" width="7" height="10" rx="1"/><line class="wick" x1="154" y1="17" x2="154" y2="30"/><rect class="dn" x="151" y="20" width="7" height="6" rx="1"/><line class="wick" x1="167" y1="12" x2="167" y2="30"/><rect class="up" x="164" y="18" width="7" height="8" rx="1"/><line class="wick" x1="180" y1="14" x2="180" y2="26"/><rect class="dn" x="177" y="18" width="7" height="4" rx="1"/><line class="wick" x1="193" y1="11" x2="193" y2="26"/><rect class="up" x="190" y="16" width="7" height="6" rx="1"/><line class="wick" x1="206" y1="13" x2="206" y2="24"/><rect class="dn" x="203" y="16" width="7" height="4" rx="1"/><line class="wick" x1="219" y1="36" x2="219" y2="52"/><rect class="dn" x="216" y="40" width="7" height="8" rx="1"/><line class="wick" x1="232" y1="38" x2="232" y2="54"/><rect class="up" x="229" y="44" width="7" height="4" rx="1"/><line class="wick" x1="245" y1="40" x2="245" y2="58"/><rect class="dn" x="242" y="44" width="7" height="8" rx="1"/><line class="wick" x1="258" y1="42" x2="258" y2="58"/><rect class="up" x="255" y="46" width="7" height="6" rx="1"/><line class="wick" x1="271" y1="42" x2="271" y2="62"/><rect class="dn" x="268" y="46" width="7" height="10" rx="1"/><line class="wick" x1="284" y1="44" x2="284" y2="60"/><rect class="up" x="281" y="50" width="7" height="6" rx="1"/><line class="wick" x1="297" y1="46" x2="297" y2="66"/><rect class="dn" x="294" y="50" width="7" height="10" rx="1"/><line class="wick" x1="310" y1="48" x2="310" y2="64"/><rect class="up" x="307" y="54" width="7" height="6" rx="1"/>
-              <path class="ma" d="M8 78 C60 70, 110 52, 160 40 S250 24, 296 18"/>
-            </svg>
+              <svg class="jp-viz-chart" viewBox="0 0 300 120" role="img" aria-label="ブラウザ版取引画面のローソク足チャートと移動平均線"><g class="grid"><line x1="0" y1="14" x2="300" y2="14"/><line x1="0" y1="44" x2="300" y2="44"/><line x1="0" y1="74" x2="300" y2="74"/><line x1="0" y1="104" x2="300" y2="104"/></g><line class="lvl" x1="0" y1="61.1" x2="300" y2="61.1"/><path class="ma" d="M16.0 89.0 C18.8 87.6, 27.3 82.7, 33.0 80.9 C38.7 79.1, 44.3 79.3, 50.0 78.1 C55.7 76.9, 61.3 75.7, 67.0 73.9 C72.7 72.0, 78.3 67.8, 84.0 66.9 C89.7 65.9, 95.3 68.1, 101.0 68.2 C106.7 68.3, 112.3 68.5, 118.0 67.4 C123.7 66.3, 129.3 63.9, 135.0 61.7 C140.7 59.4, 146.3 56.9, 152.0 53.9 C157.7 51.0, 163.3 47.0, 169.0 43.9 C174.7 40.9, 180.3 36.6, 186.0 35.6 C191.7 34.6, 197.3 35.5, 203.0 37.7 C208.7 39.9, 214.3 45.3, 220.0 48.8 C225.7 52.2, 231.3 55.9, 237.0 58.3 C242.7 60.8, 248.3 62.1, 254.0 63.5 C259.7 65.0, 268.2 66.5, 271.0 67.2"/><g class="c"><line class="wick" x1="16.0" y1="81.3" x2="16.0" y2="104.0"/><rect class="up" x="12.0" y="89.0" width="8.0" height="7.7" rx="1.2"/></g><g class="c"><line class="wick" x1="33.0" y1="59.2" x2="33.0" y2="101.8"/><rect class="up" x="29.0" y="72.8" width="8.0" height="16.2" rx="1.2"/></g><g class="c"><line class="wick" x1="50.0" y1="67.7" x2="50.0" y2="77.4"/><rect class="up" x="46.0" y="72.5" width="8.0" height="1.8" rx="1.2"/></g><g class="c"><line class="wick" x1="67.0" y1="50.9" x2="67.0" y2="82.1"/><rect class="up" x="63.0" y="61.2" width="8.0" height="11.3" rx="1.2"/></g><g class="c"><line class="wick" x1="84.0" y1="56.3" x2="84.0" y2="65.7"/><rect class="up" x="80.0" y="61.1" width="8.0" height="1.8" rx="1.2"/></g><g class="c"><line class="wick" x1="101.0" y1="46.9" x2="101.0" y2="91.3"/><rect class="dn" x="97.0" y="61.1" width="8.0" height="16.9" rx="1.2"/></g><g class="c"><line class="wick" x1="118.0" y1="61.1" x2="118.0" y2="85.9"/><rect class="up" x="114.0" y="69.4" width="8.0" height="8.6" rx="1.2"/></g><g class="c"><line class="wick" x1="135.0" y1="14.0" x2="135.0" y2="92.0"/><rect class="up" x="131.0" y="38.2" width="8.0" height="31.2" rx="1.2"/></g><g class="c"><line class="wick" x1="152.0" y1="22.0" x2="152.0" y2="45.8"/><rect class="up" x="148.0" y="30.0" width="8.0" height="8.1" rx="1.2"/></g><g class="c"><line class="wick" x1="169.0" y1="22.1" x2="169.0" y2="45.6"/><rect class="dn" x="165.0" y="30.0" width="8.0" height="8.0" rx="1.2"/></g><g class="c"><line class="wick" x1="186.0" y1="31.3" x2="186.0" y2="42.6"/><rect class="up" x="182.0" y="36.0" width="8.0" height="2.0" rx="1.2"/></g><g class="c"><line class="wick" x1="203.0" y1="26.3" x2="203.0" y2="55.8"/><rect class="dn" x="199.0" y="36.0" width="8.0" height="10.6" rx="1.2"/></g><g class="c"><line class="wick" x1="220.0" y1="24.9" x2="220.0" y2="94.6"/><rect class="dn" x="216.0" y="46.6" width="8.0" height="27.7" rx="1.2"/></g><g class="c"><line class="wick" x1="237.0" y1="69.6" x2="237.0" y2="80.9"/><rect class="dn" x="233.0" y="74.3" width="8.0" height="2.0" rx="1.2"/></g><g class="c"><line class="wick" x1="254.0" y1="40.9" x2="254.0" y2="91.4"/><rect class="up" x="250.0" y="56.8" width="8.0" height="19.5" rx="1.2"/></g><g class="c"><line class="wick" x1="271.0" y1="51.5" x2="271.0" y2="66.2"/><rect class="dn" x="267.0" y="56.8" width="8.0" height="4.3" rx="1.2"/></g></svg>
               <div class="jp-viz-tags">
                 <span class="jp-viz-tag on">M15</span><span class="jp-viz-tag">H1</span>
                 <span class="jp-viz-tag">H4</span><span class="jp-viz-tag">D1</span>
@@ -1357,7 +1362,7 @@ html.js-aos .jp-mizuhiki path{stroke-dashoffset:1400}
 <script src="/assets/js/vendor/aos.min.js" defer></script>
 <script src="/assets/js/vendor/gsap.min.js" defer></script>
 <script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
-<script src="/assets/js/main.js?v=jp3" defer></script>
+<script src="/assets/js/main.js?v=jp7" defer></script>
 
 <script>
 /* =========================================================================
