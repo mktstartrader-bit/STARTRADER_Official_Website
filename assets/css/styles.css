@@ -4507,3 +4507,46 @@ iframe#webWidget{
 @media (min-width:721px) and (max-width:980px){
   .fx-mh--wide{grid-column:span 1}
 }
+
+/* ===== HTRADE CTA WRAP, FX-PW LABEL COLUMN (appended batch 2026-08-19) =====
+   Two narrow-screen findings from the money-manager review, both sitting in
+   shared components rather than on that page.
+
+   .btn is white-space:nowrap, so a button's minimum width is its whole label.
+   Below 720px line 1292 stretches .htrade-btn across the intro panel, where it
+   then has nowhere to give: "Become a Money Manager" needed 278px of a 268px
+   panel at 362px and of a 256px panel at 350px, and the overflow pushed the
+   32px arrow disc out through the pill's rounded cap — the clipped button in
+   the review. This is the rule partner.html and ib-register.html already carry
+   inline for the same reason; it belongs to the component, which 35 pages use.
+   The button's height comes from the arrow disc rather than from the text, so
+   the taller line-height leaves the one-line button at exactly 64px. Also
+   catches synthetic.html (265px) and institutional.html (259px), over by less.
+
+   .fx-pw-row is a `1fr auto auto` grid whose fixed parts — 14px of side
+   padding, two 12px gaps and the 52px min-width reserving .q-chg's column —
+   take 143px of a 223px row at 350px, leaving 57px for the label. "Expert
+   advisors", "Manual trading", "Side by side", "Available balance", "Open
+   positions", "Trading losses" and "Landing pages" all broke over two lines
+   inside a 12.5px row. Below 560px the panel takes the full width of its viz
+   instead of 90%, the gaps and side padding tighten, both text cells step down
+   half a point, and .q-chg reserves only what a change cell measures. The row
+   goes 223px -> 248px and the label column 57px -> 93-115px, which clears the
+   longest label in the family ("Available balance", 102px) by 12% and puts
+   every one of them back on a single line at 350px. The line-height is there
+   for the translation that still will not fit: two tidy lines rather than the
+   three cramped ones this started as.
+
+   .q-chg's reserve lands on 46px rather than lower because the widest change
+   cell is "-0.08%" at 45px. Under that, the percentage panels on company.html
+   and forex.html would size their last column per row, and the middle column
+   would fall out of line between rows. Every panel's alignment is the same
+   after this batch as before it, bar money-manager's, which gains it. */
+.htrade .htrade-btn{white-space:normal;line-height:1.25;min-width:0;max-width:100%;overflow-wrap:break-word}
+@media (max-width:560px){
+  .fx-pw{width:100%}
+  .fx-pw-row{gap:8px;padding:11px 10px}
+  .fx-pw-row .q-sym{font-size:12px;line-height:1.3}
+  .fx-pw-row .q-px{font-size:12px}
+  .fx-pw-row .q-chg{min-width:46px}
+}
