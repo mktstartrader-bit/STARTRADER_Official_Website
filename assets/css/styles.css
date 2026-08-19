@@ -4604,3 +4604,66 @@ iframe#webWidget{
 .ct-below{flex-wrap:wrap}
 .ct-below .ct-err{flex:1 1 220px}
 .ct-count{white-space:nowrap}
+
+/* ===== STYLED DROPDOWNS (appended batch 2026-08-19) =====
+   A <select>'s popup belongs to the operating system — on iOS it is a wheel
+   picker with none of its type, colour or spacing under our control, and the
+   17 selects on the site were the one place the design stopped at the edge of
+   the control. The native element stays exactly where it is, with its own
+   markup, its own page CSS, its name and its value, so forms submit and every
+   change listener still fires; it just stops taking pointer events. An
+   invisible button covers it and opens a panel we draw ourselves.
+
+   The closed control is therefore untouched on every page — the dark field on
+   webinars, the underlined field in the contact forms, the pill in the
+   calendar deck all keep the rules they already had, including their chevrons.
+   Only the open list is new, and it takes its colour from the control's own
+   text: light type means a dark surface, dark type a light one. */
+.stsel{position:relative;display:block}
+.stsel-native{pointer-events:none}
+.stsel-hit{position:absolute;inset:0;width:100%;height:100%;padding:0;margin:0;
+  border:0;background:none;cursor:pointer;border-radius:inherit;color:transparent;font:inherit}
+.stsel-hit:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:8px}
+.stsel-panel{
+  position:fixed;z-index:1200;overflow:auto;overscroll-behavior:contain;
+  padding:6px;border-radius:14px;background:#fff;border:1px solid var(--line);
+  box-shadow:0 26px 60px -24px rgba(20,44,96,.42),0 2px 8px rgba(20,44,96,.08);
+  -webkit-overflow-scrolling:touch;
+}
+.stsel-panel:focus{outline:none}
+.stsel-opt{
+  padding:10px 12px;border-radius:9px;cursor:pointer;
+  font-size:14px;line-height:1.35;color:var(--text);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.stsel-opt.is-active{background:rgba(0,71,187,.1);color:var(--blue)}
+.stsel-opt.is-disabled{opacity:.45;cursor:not-allowed}
+.stsel-panel--dark{background:#0b1224;border-color:rgba(255,255,255,.14);
+  box-shadow:0 26px 60px -22px rgba(0,0,0,.7)}
+.stsel-panel--dark .stsel-opt{color:#e8eefb}
+.stsel-panel--dark .stsel-opt.is-active{background:rgba(90,150,255,.22);color:#fff}
+@media (max-width:560px){
+  .stsel-opt{padding:11px 12px;font-size:14.5px;white-space:normal}
+}
+
+/* ===== THE COUNTRY FIELD JOINS ITS OWN FORM (appended batch 2026-08-19) =====
+   The light treatment for a select in these forms was keyed to .ct-form-card,
+   but institutional, affiliate-registration, ib-register, money-manager and
+   partner never carry that class — their card is built differently. So while
+   every input and textarea beside it took .ct-field's underlined light field,
+   the country select fell through to the plain .wb-selwrap rule and rendered
+   as a dark filled pill: white type on rgba(4,8,18,.5), in the middle of a
+   white form. It is the odd control out in the review's screenshot of that
+   page. Keying the same treatment to .ct-field, which is what actually marks a
+   field of this form family, brings all five into line and leaves the four
+   pages that do carry .ct-form-card exactly as they were. */
+.ct-field .wb-selwrap select{
+  width:100%;font:inherit;font-size:16px;color:var(--text);padding:11px 2px;
+  background:transparent;border:0;border-bottom:1px solid rgba(20,44,96,.2);border-radius:0;outline:none;
+  cursor:pointer;appearance:none;-webkit-appearance:none;padding-right:32px;
+  transition:border-color .25s,box-shadow .25s;
+}
+.ct-field .wb-selwrap select:hover{border-bottom-color:rgba(20,44,96,.4)}
+.ct-field .wb-selwrap select:focus{border-bottom-color:var(--blue);box-shadow:0 1px 0 0 var(--blue)}
+.ct-field .wb-selchev{color:var(--text-mute);right:2px}
+.ct-field.is-bad .wb-selwrap select{border-bottom-color:#d0453b;box-shadow:0 1px 0 0 #d0453b}

@@ -1361,6 +1361,192 @@
     }
   }
 
+  /* ---------------- Styled dropdowns ----------------
+     iOS gives a <select>'s popup to the OS and none of it can be styled, so
+     every one on the site opened as a control the design does not own. The
+     native element stays exactly where it is — same markup, same CSS, same
+     name and value, so forms submit and every existing change listener still
+     fires — but it stops taking pointer events, an invisible button over it
+     takes the interaction, and the list is drawn as a panel we can style.
+     Options are read at open time, so the selects that build their own list
+     (webinars sessions, the calendar's instruments) need no hook. */
+  function initSelects() {
+    var list = Array.prototype.slice.call(document.querySelectorAll('select:not([data-native])'));
+    if (!list.length) return;
+    var openOne = null;
+
+    function labelFor(sel) {
+      if (sel.getAttribute('aria-label')) return sel.getAttribute('aria-label');
+      var by = sel.getAttribute('aria-labelledby');
+      if (by) {
+        var t = document.getElementById(by.split(' ')[0]);
+        if (t) return (t.textContent || '').trim();
+      }
+      if (sel.id) {
+        var l = document.querySelector('label[for="' + sel.id + '"]');
+        if (l) return (l.textContent || '').trim();
+      }
+      return sel.name || 'Select an option';
+    }
+
+    // a dark control wants a dark list; read it off the control's own text
+    function isDark(sel) {
+      var c = getComputedStyle(sel).color.match(/[\d.]+/g);
+      if (!c) return false;
+      var lum = (0.299 * +c[0] + 0.587 * +c[1] + 0.114 * +c[2]) / 255;
+      return lum > 0.5;
+    }
+
+    function enhance(sel) {
+      if (sel.closest('.stsel')) return;
+      var wrap = document.createElement('span');
+      wrap.className = 'stsel';
+      sel.parentNode.insertBefore(wrap, sel);
+      wrap.appendChild(sel);
+      sel.classList.add('stsel-native');
+      sel.setAttribute('tabindex', '-1');
+      sel.setAttribute('aria-hidden', 'true');
+
+      var hit = document.createElement('button');
+      hit.type = 'button';
+      hit.className = 'stsel-hit';
+      hit.setAttribute('role', 'combobox');
+      hit.setAttribute('aria-haspopup', 'listbox');
+      hit.setAttribute('aria-expanded', 'false');
+      hit.setAttribute('aria-label', labelFor(sel));
+      wrap.appendChild(hit);
+      if (sel.disabled) hit.disabled = true;
+
+      var panel = null, opts = [], active = -1, typed = '', typedAt = 0;
+
+      function close(focusBack) {
+        if (!panel) return;
+        panel.remove(); panel = null; opts = []; active = -1;
+        hit.setAttribute('aria-expanded', 'false');
+        wrap.classList.remove('is-open');
+        openOne = null;
+        document.removeEventListener('mousedown', onOutside, true);
+        window.removeEventListener('resize', onReflow);
+        window.removeEventListener('scroll', onReflow, true);
+        if (focusBack) hit.focus();
+      }
+
+      function onOutside(e) { if (!panel.contains(e.target) && e.target !== hit) close(false); }
+      function onReflow() { place(); }
+
+      // the panel hangs under the control, flips above it when the room is
+      // there instead, and is clamped inside the viewport either way — a
+      // smooth-scroll library settling mid-open must not push it off screen
+      function place() {
+        if (!panel) return;
+        var vh = window.innerHeight, vw = window.innerWidth;
+        var r = sel.getBoundingClientRect();
+        var w = Math.max(r.width, 180);
+        panel.style.width = w + 'px';
+        panel.style.left = Math.max(8, Math.min(r.left, vw - w - 8)) + 'px';
+        var below = vh - r.bottom - 12, above = r.top - 12;
+        var useBelow = below > 180 || below >= above;
+        var max = Math.max(140, Math.min(300, Math.max(useBelow ? below : above, 140)));
+        panel.style.maxHeight = max + 'px';
+        panel.style.bottom = 'auto';
+        var h = Math.min(max, panel.scrollHeight);
+        var top = useBelow ? r.bottom + 6 : r.top - 6 - h;
+        panel.style.top = Math.max(8, Math.min(top, vh - h - 8)) + 'px';
+      }
+
+      function setActive(i) {
+        if (!opts.length) return;
+        active = Math.max(0, Math.min(opts.length - 1, i));
+        opts.forEach(function (o, n) {
+          o.el.classList.toggle('is-active', n === active);
+          o.el.setAttribute('aria-selected', n === active ? 'true' : 'false');
+        });
+        var el = opts[active].el;
+        var pr = panel.getBoundingClientRect(), er = el.getBoundingClientRect();
+        if (er.bottom > pr.bottom) panel.scrollTop += er.bottom - pr.bottom;
+        else if (er.top < pr.top) panel.scrollTop -= pr.top - er.top;
+      }
+
+      function choose(i) {
+        var o = opts[i];
+        if (!o) return;
+        if (sel.value !== o.value) {
+          sel.value = o.value;
+          sel.dispatchEvent(new Event('input', { bubbles: true }));
+          sel.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+        close(true);
+      }
+
+      function open() {
+        if (panel) { close(true); return; }
+        if (openOne) openOne();
+        panel = document.createElement('div');
+        panel.className = 'stsel-panel' + (isDark(sel) ? ' stsel-panel--dark' : '');
+        panel.setAttribute('role', 'listbox');
+        panel.tabIndex = -1;
+        opts = [];
+        Array.prototype.forEach.call(sel.options, function (o, i) {
+          var el = document.createElement('div');
+          el.className = 'stsel-opt' + (o.disabled ? ' is-disabled' : '');
+          el.setAttribute('role', 'option');
+          el.textContent = o.textContent;
+          el.title = o.textContent;
+          if (!o.disabled) {
+            el.addEventListener('click', function () { choose(opts.indexOf(rec)); });
+            el.addEventListener('mousemove', function () { setActive(opts.indexOf(rec)); });
+          }
+          var rec = { el: el, value: o.value, text: o.textContent, disabled: o.disabled, i: i };
+          opts.push(rec);
+          panel.appendChild(el);
+        });
+        document.body.appendChild(panel);
+        hit.setAttribute('aria-expanded', 'true');
+        wrap.classList.add('is-open');
+        place();
+        var cur = sel.selectedIndex;
+        setActive(cur > -1 ? cur : 0);
+        panel.focus();
+        openOne = function () { close(false); };
+        document.addEventListener('mousedown', onOutside, true);
+        window.addEventListener('resize', onReflow);
+        window.addEventListener('scroll', onReflow, true);
+        panel.addEventListener('keydown', onKeys);
+      }
+
+      function jump(ch) {
+        var now = Date.now();
+        typed = (now - typedAt < 900 ? typed : '') + ch.toLowerCase();
+        typedAt = now;
+        for (var n = 0; n < opts.length; n++) {
+          var k = (active + 1 + n) % opts.length;
+          if (!opts[k].disabled && opts[k].text.toLowerCase().indexOf(typed) === 0) { setActive(k); return; }
+        }
+      }
+
+      function onKeys(e) {
+        var k = e.key;
+        if (k === 'Escape') { e.preventDefault(); close(true); }
+        else if (k === 'ArrowDown') { e.preventDefault(); setActive(active + 1); }
+        else if (k === 'ArrowUp') { e.preventDefault(); setActive(active - 1); }
+        else if (k === 'Home') { e.preventDefault(); setActive(0); }
+        else if (k === 'End') { e.preventDefault(); setActive(opts.length - 1); }
+        else if (k === 'Enter' || k === ' ') { e.preventDefault(); choose(active); }
+        else if (k === 'Tab') { close(false); }
+        else if (k.length === 1) { jump(k); }
+      }
+
+      hit.addEventListener('click', function (e) { e.preventDefault(); open(); });
+      hit.addEventListener('keydown', function (e) {
+        var k = e.key;
+        if (k === 'ArrowDown' || k === 'ArrowUp' || k === 'Enter' || k === ' ') { e.preventDefault(); open(); }
+        else if (k.length === 1 && /\S/.test(k)) { open(); jump(k); }
+      });
+    }
+
+    list.forEach(function (sel) { try { enhance(sel); } catch (e) {} });
+  }
+
   /* ---------------- Funding page interactions ---------------- */
   function initFunding() {
     // Deposit / Withdrawal tabs
@@ -5475,6 +5661,7 @@
     initKbForm();
     initCompare();
     initVps();
+    initSelects();
     if (hasST) ScrollTrigger.refresh();
     window.addEventListener('load', function () { if (hasST) ScrollTrigger.refresh(); });
   }
