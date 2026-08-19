@@ -4720,3 +4720,43 @@ iframe#webWidget{
    its own words well before the label comes back over them */
 .sc-panel-in{transition:opacity .2s var(--ease) 0s,transform .2s var(--ease) 0s}
 .sc-panel.is-on .sc-panel-in{transition:opacity .5s var(--ease) .18s,transform .5s var(--ease) .18s}
+/* ===== THREE READABILITY FIXES (appended batch 2026-08-19) =====
+
+   .syn-live is mint type with no background at all, sitting on top of a chart
+   that is itself mint — on the PriceStep card the badge all but disappears
+   into the line behind it. It takes the same dark glass chip the other
+   over-chart badges on the site use, so it reads on any series colour.
+
+   .ma-head lays a category label and a date in one row on align-items:center.
+   Below 430px "Monthly Review" wraps to three lines while the date stays on
+   one, so the date settled against the middle of the label block and the two
+   read as misaligned by 10-11px. They share a top edge instead, and the row
+   may wrap if even that will not fit. */
+.syn-live{padding:4px 9px;border-radius:20px;background:rgba(4,10,22,.72);
+  border:1px solid rgba(126,240,210,.28);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+@media (max-width:430px){
+  .ma-head{align-items:flex-start}
+  .ma-cat{align-items:flex-start}
+  .ma-cat svg{margin-top:2px}
+  .ma-date{flex:none;white-space:nowrap}
+}
+
+/* ===== THE PRODUCT HERO COPY CLEARS ITS ARTWORK (appended batch 2026-08-19) =====
+   The hero's artwork is the video itself, covering the whole section, and the
+   copy is kept legible by a side-lit scrim: 95% opaque at the left edge, 74%
+   at 32% across, 30% at 58%, 6% at the right. The copy is sized in pixels
+   though — 560px with a 520px subline — so as the window narrows the text
+   keeps its length while the scrim's dark end shrinks with the viewport. At
+   1024px the subline reaches 53% across, where the scrim is down to about a
+   third, and at 981px it reaches 55%: the tail of the sentence ends up on the
+   bright part of the picture, which is the unreadable line in the review. From
+   981px the copy is capped against the viewport instead, holding the subline
+   inside the first 40% where the scrim is still around 65%. Below 980px the
+   page already stacks the copy over the art and swaps in a vertical scrim, so
+   the band ends there. It is the shared hero, so all 24 product pages that use
+   it get the same clearance. */
+@media (min-width:981px) and (max-width:1180px){
+  .fx-hero-copy{max-width:min(560px,42vw)}
+  .fx-hero .acct-hero-sub{max-width:min(520px,38vw)}
+}

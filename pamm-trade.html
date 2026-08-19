@@ -33,7 +33,7 @@
   <link rel="preload" as="image" href="/assets/img/platform-hero.webp" />
   <link rel="stylesheet" href="/assets/fonts/fonts.css" />
   <link rel="stylesheet" href="/assets/css/aos.min.css" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=qa9" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=qa10" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* =================================================================
@@ -67,7 +67,17 @@
 .pk-fig.fee b{color:#fff}
 .pk-fig span{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#6f86ad}
 .pk-spark{display:block;width:calc(100% + 48px);margin:16px -24px 0;height:48px}
-.pk-line{fill:none;stroke:#3fd9a8;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.6s .1s var(--ease)}
+/* vector-effect:non-scaling-stroke keeps the 1.9px stroke even through the
+   viewBox stretch, but it also moves the dash into screen space — so the
+   `stroke-dasharray:1` that pathLength was meant to normalise resolved to a
+   fixed length in pixels and the paint stopped there. Measured off the
+   rendered pixels: a constant 283px of line whatever the card's width, which
+   is 56% of the path at 600px, 88% at 1440px and only complete when the card
+   happens to be 250px wide. That is why the chart looked frozen while the
+   window moved. pathLength is gone, since the UA ignores it for the dash once
+   non-scaling-stroke is set, and the dash now clears the longest on-screen
+   path the card ever has (513px at 600px viewport) at every width. */
+.pk-line{fill:none;stroke:#3fd9a8;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;stroke-dasharray:560;stroke-dashoffset:560;transition:stroke-dashoffset 1.6s .1s var(--ease)}
 [data-seen].is-seen .pk-line{stroke-dashoffset:0}
 .pk-foot{display:flex;align-items:center;gap:12px;margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,.08);font-size:11.5px;color:#8ea4c6}
 .pk-foot .btn{margin-left:auto}
@@ -634,7 +644,7 @@
           <span class="pk-fig fee"><b>25%</b><span>Performance fee</span></span>
         </div>
         <svg class="pk-spark" viewBox="0 0 280 48" preserveAspectRatio="none" aria-hidden="true">
-          <path class="pk-line" pathLength="1" d="M0 44 L20 42 L40 43 L60 38 L80 34 L100 36 L120 29 L140 24 L160 26 L180 19 L200 15 L220 17 L240 11 L260 7 L280 5"/>
+          <path class="pk-line" d="M0 44 L20 42 L40 43 L60 38 L80 34 L100 36 L120 29 L140 24 L160 26 L180 19 L200 15 L220 17 L240 11 L260 7 L280 5"/>
         </svg>
         <div class="pk-foot">
           <span><b>2,318</b> investors</span>
@@ -652,7 +662,7 @@
           <span class="pk-fig fee"><b>20%</b><span>Performance fee</span></span>
         </div>
         <svg class="pk-spark" viewBox="0 0 280 48" preserveAspectRatio="none" aria-hidden="true">
-          <path class="pk-line" pathLength="1" d="M0 43 L20 40 L40 42 L60 36 L80 38 L100 32 L120 34 L140 28 L160 30 L180 25 L200 27 L220 21 L240 23 L260 18 L280 15"/>
+          <path class="pk-line" d="M0 43 L20 40 L40 42 L60 36 L80 38 L100 32 L120 34 L140 28 L160 30 L180 25 L200 27 L220 21 L240 23 L260 18 L280 15"/>
         </svg>
         <div class="pk-foot">
           <span><b>1,047</b> investors</span>
@@ -670,7 +680,7 @@
           <span class="pk-fig fee"><b>30%</b><span>Performance fee</span></span>
         </div>
         <svg class="pk-spark" viewBox="0 0 280 48" preserveAspectRatio="none" aria-hidden="true">
-          <path class="pk-line" pathLength="1" d="M0 40 L20 38 L40 40 L60 36 L80 37 L100 33 L120 35 L140 31 L160 33 L180 29 L200 31 L220 27 L240 28 L260 25 L280 23"/>
+          <path class="pk-line" d="M0 40 L20 38 L40 40 L60 36 L80 37 L100 33 L120 35 L140 31 L160 33 L180 29 L200 31 L220 27 L240 28 L260 25 L280 23"/>
         </svg>
         <div class="pk-foot">
           <span><b>612</b> investors</span>

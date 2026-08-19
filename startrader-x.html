@@ -34,7 +34,7 @@
   <link rel="stylesheet" href="/assets/fonts/fonts.css" />
   <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css" />
   <link rel="stylesheet" href="/assets/css/aos.min.css" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=qa9" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=qa10" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <!-- Page-specific styles -->
   <style>
@@ -150,12 +150,31 @@
 .x-chip-row i{font-style:normal;font-size:11px;font-weight:800;padding:2px 7px;border-radius:20px}
 .x-chip-row i.up{color:#7ef0d2;background:rgba(16,185,129,.16)}
 .x-chip-row i.down{color:#ff9a97;background:rgba(239,68,68,.16)}
+/* The copy is capped at 600px and the handset is absolutely placed on the
+   right at min(46vw,640px), so the two close on each other as the window
+   narrows: from 1080px down the copy runs onto the picture — 16,294px2 of
+   overlap at 1080, 25,397 at 1010, 30,404 at 970, 34,072 at 940, and a last
+   3,050 at 1180 — until the 900px rule finally stacks them. In that band the
+   copy takes only the room left of the artwork. */
+@media (max-width:1180px) and (min-width:901px){
+  .x-hand-copy{max-width:min(600px,46vw)}
+}
 @media (max-width:900px){
   .x-hand-sec{min-height:0;display:block;padding-bottom:0}
-  .x-hand-visual{position:relative;inset:auto;width:100%;height:340px;margin-top:26px}
-  .x-hand-visual img{right:-6%;bottom:-60px;height:130%}
-  .x-chip--exec{left:6%;top:8%}
-  .x-chip--quote{left:2%;bottom:30%}
+  /* the stage was full width with the handset pushed to its right edge, so the
+     chips — placed against the stage, not the phone — sat 202 to 450px away
+     from it over empty background. The stage is now only as wide as the phone
+     and centred, which puts the chips back on its left shoulder where they
+     belong at every width down to 350px. */
+  .x-hand-visual{position:relative;inset:auto;width:min(100%,430px);height:clamp(300px,64vw,360px);
+    margin:26px auto 0}
+  .x-hand-visual img{right:-2%;bottom:-40px;height:118%}
+  .x-chip--exec{left:0;top:10%}
+  .x-chip--quote{left:-2%;bottom:24%}
+}
+@media (max-width:420px){
+  .x-chip--exec{left:2%}
+  .x-chip--quote{left:0}
 }
 
 /* floating toasts around the handset */

@@ -33,7 +33,7 @@
   <!-- Fonts (self-hosted) -->
   <link rel="stylesheet" href="/assets/fonts/fonts.css" />
   <link rel="stylesheet" href="/assets/css/aos.min.css" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=qa9" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=qa10" />
     <!-- Structured data -->
   <script type="application/ld+json">
   {
@@ -194,6 +194,17 @@
   .ti-tfs{flex-wrap:wrap}
   .ti-chart svg{height:170px}
 }
+/* The tag pill is a translucent tint laid over the artwork it labels — it
+   covers about 1,700px2 of its own marks on each card, so wherever a bar or a
+   node lands under it the type has to compete with the shape behind. On the
+   amber card that is the worst of it: dark gold letters over a gold bar. The
+   pills take an opaque surface and sit above the marks in the stack, so they
+   hold when the marks grow on hover too. */
+.ti-viz-tag{z-index:3}
+.ti-viz--grid .ti-viz-tag{background:#eaf1fb}
+.ti-viz--dots .ti-viz-tag{background:#fff4e0;border-color:rgba(245,166,35,.5)}
+.ti-viz--net .ti-viz-tag{background:#e4f8f1;border-color:rgba(18,184,134,.5)}
+.ti-viz--scan .ti-viz-tag{background:#edeafd;border-color:rgba(122,92,255,.5)}
   </style>
 </head>
 <body class="prx light-top">

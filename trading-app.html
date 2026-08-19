@@ -34,7 +34,7 @@
   <link rel="preload" href="/assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/assets/fonts/fonts.css" />
   <link rel="stylesheet" href="/assets/css/aos.min.css" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=qa9" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=qa10" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* ---- Hero (dark; render bleeds from the disclaimer bar to the base) ---- */
@@ -367,6 +367,28 @@
 }
 @media (max-width:480px){
   .ap-hero-visual .fx-quote.ap-q1{transform:scale(.7);bottom:16%}
+}
+/* The floating cards hang off the phone by design: .gcard--l sits at
+   12% + --ov - --cw, which is 166px outside the stage's left edge, and
+   .gcard--r at 75% - --ov, which puts its right edge 48px outside. Both
+   overhangs need room beside the stage, and from about 1,240px down there
+   isn't any — the right pair ran 11px past the window at 1200px, 8px at 970px
+   and 13px at 940px, and the left pair 7px past the other edge at 350px.
+   Below that width the cards sit inside the stage instead, flush to its edges:
+   still over the handset, which is the look, but with nothing hanging into the
+   copy column or off the screen. They keep their own rows, so the two sides
+   never meet.
+
+   Two of the four were also dropped outright below 700px. They are half the
+   story the section tells — an order filling and a live price — so they stay. */
+@media (max-width:1239px){
+  .gcard--l{left:0}
+  .gcard--r{left:auto;right:0}
+}
+@media (max-width:700px){
+  .gcard.g2,.gcard.g4{display:flex}
+  .gcard.g2{top:30%}
+  .gcard.g4{top:74%}
 }
   </style>
 
