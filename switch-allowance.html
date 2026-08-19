@@ -33,7 +33,7 @@
   <!-- Fonts (self-hosted) -->
   <link rel="stylesheet" href="/assets/fonts/fonts.css" />
   <link rel="stylesheet" href="/assets/css/aos.min.css" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=qa6" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=qa7" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* =================================================================
@@ -225,6 +225,11 @@
 .db-send--quiet:hover{color:var(--blue)}
 /* a one-line hint instead of a row of rule pills */
 .db-hint{font-size:11.5px;color:var(--text-mute)}
+/* the hint and the error say the same thing — "Mixed case, number, symbol"
+   against "8-16 characters, mixed case, a number and a symbol." — so while the
+   error is up the hint is a second copy of it competing for a 208px row. It
+   stands down until the field is good again. */
+.ct-field.is-bad .db-hint{display:none}
 /* the referral field stays out of the way until it is wanted */
 .db-more{
   display:inline-flex;align-items:center;gap:7px;margin-top:22px;padding:0;border:0;background:none;cursor:pointer;

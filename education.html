@@ -34,7 +34,7 @@
   <link rel="preload" href="/assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/assets/fonts/fonts.css" />
   <link rel="stylesheet" href="/assets/css/aos.min.css" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=qa6" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=qa7" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* ================= GLOSSARY ================= */
@@ -218,6 +218,31 @@
 .kc-levels{width:100%}
 .kc-level{flex:1;padding-inline:10px;text-align:center}}
 @media (max-width:520px){.kc-prods{width:100%}}
+/* The featured lesson is a 16/9 frame with the copy laid over its foot and the
+   play disc centred in it. The frame's height falls with its width, the copy
+   block does not — below 500px the description takes a second line and holds
+   72px, so the disc came down onto it: 942px2 of overlap at 450px and 2,022px2
+   at 390px, most of it across the title itself. On a phone the frame takes a
+   4/3 crop instead, which buys back the height the copy needs, and the disc
+   sits in the clear band between the chips and the copy at a smaller 52px. */
+@media (max-width:560px){
+  .kc-feature-media{aspect-ratio:4/3}
+  .kc-play{top:38%;width:52px;height:52px}
+  .kc-play svg{width:20px;height:20px}
+}
+/* The level tabs share the bar's width three ways below 720px, and at 350px
+   that leaves "Intermediate" exactly the 82px it measures — no reserve at all,
+   so a translation either wraps the pill onto two lines or pushes the strip
+   past the bar. The tabs keep their natural width and the strip scrolls when
+   they no longer fit, which is nothing at all for English (248px of tabs in
+   284px of bar) and a swipe rather than a broken row for everything longer.
+   The indicator is positioned inside the strip, so it travels with it. */
+@media (max-width:720px){
+  .kc-levels{overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-ms-overflow-style:none;
+    overscroll-behavior-x:contain}
+  .kc-levels::-webkit-scrollbar{display:none}
+  .kc-level{flex:1 0 auto;white-space:nowrap}
+}
   </style>
 
   <!-- Structured data — page entity -->

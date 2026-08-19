@@ -4584,3 +4584,23 @@ iframe#webWidget{
   body.has-sb .to-top{bottom:calc(174px + env(safe-area-inset-bottom,0px))}
   body.has-sb.ck-open .to-top{bottom:calc(278px + env(safe-area-inset-bottom,0px))}
 }
+
+/* ===== FIELD FOOTNOTE ROW WRAPS (appended batch 2026-08-19) =====
+   .ct-below carries whatever sits under a field — the validation error, a
+   hint, a character count, a Send code / Show button — on one baseline row
+   that never wrapped. On switch-allowance.html those fields are in the
+   two-column .ct-grid, so the row is only 208-240px wide from 760px up, and
+   an error there had to share it with two more items: "8-16 characters, mixed
+   case, a number and a symbol." was reading in a 96px column over four lines
+   beside a 48px column of hint, an 80px-tall row of shredded text — the copy
+   the review marked. It is worst on a full desktop screen, where the form
+   card is narrowest relative to its grid.
+
+   The row wraps now, and the error asks for 220px before it will share: on a
+   wide row nothing moves, and on a narrow one the error takes the line to
+   itself and the hint and button drop below it, each on one line. The count
+   on the message forms stops breaking "0 / 800" over two lines at 362-430px
+   for the same reason. */
+.ct-below{flex-wrap:wrap}
+.ct-below .ct-err{flex:1 1 220px}
+.ct-count{white-space:nowrap}
