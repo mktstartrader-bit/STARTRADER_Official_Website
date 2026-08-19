@@ -34,7 +34,7 @@
   <link rel="stylesheet" href="/assets/fonts/fonts.css" />
   <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css" />
   <link rel="stylesheet" href="/assets/css/aos.min.css" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=qa8" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=qa9" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* =================================================================
@@ -157,6 +157,19 @@
 .ct-video-in{grid-template-columns:1fr;gap:30px}}
 @media (max-width:720px){.ct-steer .h2 br,.ct-video .h2 br,.ct-path h3 br{display:none}
 .ct-path-ico{width:78px}}
+/* The player is a 16/9 frame with the copy over its foot and the disc centred
+   in it. The frame's height falls with its width and the copy block does not:
+   below 440px the description takes a second line and holds 66px, so the disc
+   came down onto the title — 410px2 of overlap at 430px, 1,285 at 390px and
+   2,159 at 350px. On a phone the frame takes a 4/3 crop, which buys back the
+   height, and the disc sits at 56px in the clear band between the chips and
+   the copy. Same shape as the fix the featured lesson on education.html
+   carries for the same reason. */
+@media (max-width:560px){
+  .ct-player{aspect-ratio:4/3}
+  .ct-player-btn{top:40%;width:56px;height:56px}
+  .ct-player-btn svg{width:22px;height:22px}
+}
   </style>
 
   <script type="application/ld+json">

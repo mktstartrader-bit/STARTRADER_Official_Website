@@ -34,7 +34,7 @@
   <link rel="preload" href="/assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/assets/fonts/fonts.css" />
   <link rel="stylesheet" href="/assets/css/aos.min.css" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=qa8" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=qa9" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* ---- Hero (dark; render bleeds from the disclaimer bar to the base) ---- */
@@ -356,6 +356,18 @@
 .gcard-tx b{font-size:11px}}
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.ap-chip{background:rgba(14,20,38,.95)}
 .gcard{background:rgba(255,255,255,.94)}}
+/* The hero pairs the phone with two floating cards: the execution chip at the
+   top and the live EUR/USD quote below it. .fx-quote is hidden under 720px,
+   which leaves the chip on its own over an empty stretch of the stage — the
+   piece the review found missing. It comes back on the phone stage at a size
+   that fits, tucked to the lower left of the handset where the artwork is
+   plain, and the shared rule still hides every other .fx-quote on the page. */
+@media (max-width:720px){
+  .ap-hero-visual .fx-quote.ap-q1{display:flex;left:2%;bottom:20%;transform:scale(.82);transform-origin:left bottom}
+}
+@media (max-width:480px){
+  .ap-hero-visual .fx-quote.ap-q1{transform:scale(.7);bottom:16%}
+}
   </style>
 
   <!-- Structured data — page entity -->

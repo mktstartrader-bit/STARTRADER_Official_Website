@@ -34,7 +34,7 @@
   <link rel="preload" href="/assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/assets/fonts/fonts.css" />
   <link rel="stylesheet" href="/assets/css/aos.min.css" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=qa8" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=qa9" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* ================= PRIME ECN PAGE ================= */
@@ -167,6 +167,17 @@
    starts at 721 so it cannot undo the single column below that. */
 @media (min-width:721px){
   .pe-bento{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+/* Three columns need about 1,000px to hold a card that reads: the copy runs to
+   340px and the price panel measures 284px on its own. On an iPad at 820px
+   each card gets 247px, so the headings break over three lines, "Per lot /
+   side" stacks beside the figure and the round-turn pill wraps — the cards
+   coming apart in the review. The stack moves up to 980px, the width this page
+   already uses to break .pe-upgrade-grid, so the whole page changes shape at
+   one place rather than two. */
+@media (max-width:980px){
+  .pe-bento{grid-template-columns:1fr}
+  .pe-card p,.pe-step-b p{max-width:none}
 }
 
 /* The connector ran past the last circle. .pe-steps-line is stretched between

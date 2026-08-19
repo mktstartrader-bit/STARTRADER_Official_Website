@@ -4667,3 +4667,56 @@ iframe#webWidget{
 .ct-field .wb-selwrap select:focus{border-bottom-color:var(--blue);box-shadow:0 1px 0 0 var(--blue)}
 .ct-field .wb-selchev{color:var(--text-mute);right:2px}
 .ct-field.is-bad .wb-selwrap select{border-bottom-color:#d0453b;box-shadow:0 1px 0 0 #d0453b}
+
+/* ===== THREE FROM THE PLATFORM PAGES (appended batch 2026-08-19) =====
+
+   .swx-bar is the browser chrome above the Web Trader mock, and every round
+   thing in it — the three window dots, the shield in the address pill, the
+   live dot — was a flex item free to shrink. At 350px the row runs out of
+   width and the shield is the one that gives: 12 x 12 becomes 6.5 x 12, an
+   oval where a shield should be. None of them may shrink now, and the address
+   truncates instead, which is what a real address bar does anyway.
+
+   .wt-caps is five cells in a five-column grid. At 980px it drops to three, so
+   the second row holds two of them and leaves the third cell empty: the rule
+   above that row stops two thirds of the way across and the divider beside the
+   last cell runs down into nothing. At 720px it drops to two and the fifth
+   cell is alone with the same result. Letting the last cell take the rest of
+   its row closes both — three pages carry this component with five cells each.
+
+   trading-app.html hides .fx-quote below 720px, and on the hero that quote is
+   half the composition: the phone keeps a chip pinned at its top left and an
+   empty space where the price card was, which is the missing piece in the
+   review. It comes back at a size the narrower stage can hold. */
+@media (max-width:980px){
+  .wt-cap:last-child{grid-column:span 2}
+}
+.swx-bar > i{flex:none}
+.swx-url{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.swx-url svg{flex:none}
+.swx-live{flex:none}
+.swx-live b{flex:none}
+
+
+/* ===== THE PANEL LABELS STOP OVERLAPPING (appended batch 2026-08-19) =====
+   A .sc-panel carries two versions of itself: the vertical label it shows
+   while it is 96px wide, and the horizontal block it shows once open. Opening
+   one faded the label out over .3s while the block faded in over .5s after a
+   .14s wait, and closing the neighbour ran the same pair the other way — so
+   for about a third of a second every panel in transit showed both at once,
+   the vertical name printed through its own heading. That is the afterimage in
+   the review.
+
+   The two now take turns. The label leaves in .14s with no delay, so it has
+   gone before the block starts at .14s, and it does not come back until .34s,
+   by which time the closing panel's block has cleared. visibility follows the
+   opacity so nothing half-faded is left painting over the text. */
+.sc-panel-vt{transition:opacity .18s var(--ease) .26s,visibility 0s linear .26s}
+.sc-panel.is-on .sc-panel-vt{
+  opacity:0;visibility:hidden;
+  transition:opacity .14s var(--ease) 0s,visibility 0s linear .14s;
+}
+/* the block leaves quickly and arrives slowly, so a closing panel is clear of
+   its own words well before the label comes back over them */
+.sc-panel-in{transition:opacity .2s var(--ease) 0s,transform .2s var(--ease) 0s}
+.sc-panel.is-on .sc-panel-in{transition:opacity .5s var(--ease) .18s,transform .5s var(--ease) .18s}

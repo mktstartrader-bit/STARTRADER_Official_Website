@@ -34,7 +34,7 @@
   <link rel="preload" href="/assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/assets/fonts/fonts.css" />
   <link rel="stylesheet" href="/assets/css/aos.min.css" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=qa8" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=qa9" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* ================= FUNDING PAGE ================= */
@@ -113,6 +113,17 @@
 @media (max-width:560px){.pay-grid{grid-template-columns:1fr 1fr;gap:12px}
 .calc-out{grid-template-columns:1fr}
 .calc-card{padding:26px 20px}}
+/* Two columns leave a card 169px wide at 390px and 149px at 350px, and the
+   footer row asks for a label and a pill side by side: "3-5 days" plus the
+   Fee-free chip needs about 124px of the 105px inside the padding, so both
+   halves broke over two lines and the chip split mid-word. Below 410px the
+   two stack instead — label over pill, each on one line — and the padding
+   comes in a little so the name has more to work with. */
+@media (max-width:410px){
+  .pay-card{padding:18px 16px 16px;gap:11px}
+  .pay-meta{flex-direction:column;align-items:flex-start;gap:6px}
+  .pay-fee{padding:3px 9px}
+}
   </style>
 
   <!-- Structured data -->
