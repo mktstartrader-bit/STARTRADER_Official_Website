@@ -165,6 +165,38 @@
 @media (max-width:560px){.mall-cats{grid-template-columns:1fr}
 .mall-cat--w3,.mall-cat--w4,.mall-cat--w2{grid-column:span 1}
 .mall-pts{gap:14px 22px}}
+/* Once the bento drops to two columns the tiles are half the width they were
+   designed at, and the two that set text beside or under the product stop
+   working there. --row already turns to a column above; these are the other
+   two.
+
+   --split kept its 52/48 side-by-side at every width, so the copy was reading
+   in 160-269px while the photograph took the rest — the crowding in the
+   review. It stacks instead, and because the photograph is a near-white studio
+   shot that cannot blend into a tinted tile, it keeps its own flush panel and
+   takes the foot of the tile full-bleed rather than being inset with padding.
+   That panel needs a definite height, not flex:1 — the photograph is a 1100 x
+   1615 portrait, and against an auto-height parent its height:100% falls back
+   to the natural aspect, which stretched the tile to 452-761px tall.
+
+   --bleed runs its product off the bottom-right corner, and the art is sized
+   as a share of the tile: at the designed three- and two-column widths it
+   cleared the copy, but from 900px down the "Premium mobility" tile put
+   1,800-5,900px2 of product straight over its own heading. The art is capped
+   so its top edge always lands below the text block — 210px of width is 177px
+   of height in a tile that is at least 300px tall from here down — and the
+   heading keeps the same reserve as the wide tile rather than the full width
+   the two-column variant was given. */
+@media (max-width:1000px){
+  .mall-cat--split{flex-direction:column;align-items:stretch}
+  .mall-cat--split .mall-cat-tx{flex:none;align-self:auto}
+  .mall-cat--split .mall-cat-shot{flex:none;min-height:0;height:clamp(190px,46vw,280px)}
+  .mall-cat--split .mall-cat-shot img{object-position:50% 40%}
+  .mall-cat--bleed{min-height:clamp(300px,32vw,352px)}
+  .mall-cat--bleed .mall-cat-shot,
+  .mall-cat--bleed.mall-cat--w2 .mall-cat-shot{width:clamp(150px,48%,210px)}
+  .mall-cat--bleed.mall-cat--w2 .mall-cat-tx{max-width:min(100%,62%)}
+}
   </style>
 
   <!-- Structured data -->

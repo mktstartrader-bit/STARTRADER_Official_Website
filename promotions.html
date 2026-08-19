@@ -125,6 +125,20 @@
 @media (max-width:960px){.pm-offers{grid-template-columns:1fr}
 .pm-sign{grid-template-columns:auto minmax(0,1fr);gap:20px}
 .pm-sign .pm-btn{grid-column:1 / -1;justify-self:start}}
+/* The emblem column costs the band 92px of its width, and the sign-off is the
+   longest paragraph on the page: on a phone that left the copy 168-208px to
+   run in, so it broke over seven lines at 390px and eight at 350px. Stacked,
+   the same words get the band's full width and settle in four or five, which
+   is the top-and-bottom structure the review asked for. The emblem comes down
+   with it — beside the copy it was filling space the text was not using, but
+   above it every pixel of its height is added to the band, so it holds at
+   54-68px rather than 72-100px. The change is gated to 480px because between
+   there and 620px the two columns still give the copy 300-470px, and stacking
+   would only make the band taller for no gain in line length. */
+@media (max-width:480px){
+  .pm-sign{grid-template-columns:minmax(0,1fr);gap:12px;padding:22px}
+  .pm-sign img{width:clamp(54px,14vw,68px)}
+}
   </style>
 
   <!-- Structured data -->
