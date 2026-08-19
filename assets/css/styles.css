@@ -4735,9 +4735,14 @@ iframe#webWidget{
 .syn-live{padding:4px 9px;border-radius:20px;background:rgba(4,10,22,.72);
   border:1px solid rgba(126,240,210,.28);
   -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
-@media (max-width:430px){
-  .ma-head{align-items:flex-start}
-  .ma-cat{align-items:flex-start}
+@media (max-width:480px){
+  /* once the card is a row the head shares a narrow column with the picture,
+     and the label and the date were splitting it between them — "Monthly
+     Review" came out over three lines beside a date that needed one. The date
+     takes its own line under the label instead, which gives the label the
+     column and puts it back on one. */
+  .ma-head{align-items:flex-start;flex-wrap:wrap;row-gap:2px}
+  .ma-cat{align-items:flex-start;flex:1 1 100%}
   .ma-cat svg{margin-top:2px}
   .ma-date{flex:none;white-space:nowrap}
 }
@@ -4759,4 +4764,29 @@ iframe#webWidget{
 @media (min-width:981px) and (max-width:1180px){
   .fx-hero-copy{max-width:min(560px,42vw)}
   .fx-hero .acct-hero-sub{max-width:min(520px,38vw)}
+}
+
+/* ===== THE REPORT GRID GOES ONE TO A ROW ON TABLET (appended batch 2026-08-19) =====
+   .ma-grid went three columns to two at 1080px and then stayed at two all the
+   way down: 354px cards at 768px, 230px at 520px and 165px at 390px, where the
+   category label wrapped over three lines and the headline over twelve. One
+   card to a row from 860px fixes that, but the card is built as a column with
+   a 16/10 picture at its foot, so stacking it as-is would give a 512px-tall
+   image on an 820px card and six of them would run past 4,000px. Between 860
+   and 561 the card turns on its side instead — the label, headline and excerpt
+   in a column, the picture beside them filling the row's height — which reads
+   as a report list and keeps each row near 200px. Below 560px there is no room
+   for two columns of anything, so the card returns to its stacked form at full
+   width. Five pages carry this grid and all of them were cramped the same way. */
+@media (max-width:860px){
+  .ma-grid{grid-template-columns:1fr}
+}
+@media (max-width:860px){
+  .ma-rep{
+    display:grid;grid-template-columns:minmax(0,1fr) clamp(116px,32%,300px);
+    grid-template-areas:"head media" "body media";
+  }
+  .ma-head{grid-area:head}
+  .ma-body{grid-area:body}
+  .ma-media{grid-area:media;margin-top:0;aspect-ratio:auto;height:100%}
 }
