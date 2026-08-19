@@ -156,6 +156,39 @@
   .pe-plats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
   .pe-plat{width:auto}
 }
+
+/* `repeat(3,1fr)` is `repeat(3,minmax(auto,1fr))`, so no track may shrink below
+   its own min-content. The first card's price panel measures 284px and will not
+   give, so between 721 and 780px the three tracks wanted 743px of a 681-700px
+   container and the row ran out past the section's clip — the third card was
+   cut off mid-word, which is what the review caught. It also left the columns
+   uneven higher up: 284 / 216 / 216 at 800px. A zero floor lets all three share
+   the width evenly and the card contents wrap instead of pushing. The band
+   starts at 721 so it cannot undo the single column below that. */
+@media (min-width:721px){
+  .pe-bento{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+
+/* The connector ran past the last circle. .pe-steps-line is stretched between
+   `top:22px` and `bottom:22px` of the steps column, which assumes the last
+   circle sits 22px off the bottom — but the column ends at the bottom of the
+   last step's *text*, not its circle, so the line overshot by however far that
+   paragraph reached: 23px at most widths. It is drawn per step instead, each
+   segment running from its own circle's centre to the next one's, so the track
+   ends on the last circle at any wrap. The fill follows the same `is-on` marks
+   main.js already sets as you scroll, one segment at a time rather than a
+   continuous sweep. */
+.pe-steps{--pe-gap:36px;gap:var(--pe-gap)}
+.pe-steps-line{display:none}
+.pe-step-n{position:relative;z-index:1}
+.pe-step:not(:last-child)::before{
+  content:"";position:absolute;left:21px;top:22px;width:2px;
+  height:calc(100% + var(--pe-gap));background:var(--line);border-radius:2px;
+  transition:background .45s var(--ease);
+}
+.pe-step:not(:last-child):has(+ .pe-step .pe-step-n.is-on)::before{
+  background:linear-gradient(180deg,#2f7bff,#0740b8);
+}
 </style>
 
   <!-- Structured data -->
