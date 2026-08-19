@@ -279,6 +279,34 @@
   .mv-struct,.mv-cat,.mv-lvl,.mv-tag{opacity:1;transform:none}
   .ma-meth[data-on] .ma-meth-prog i{background:#6fa8ff;width:32px}
 }
+
+/* The price line stopped partway across. .mv-price carries
+   vector-effect:non-scaling-stroke (line 168) so that its 2.4px stroke holds
+   an even weight through the viewBox's non-uniform stretch — but that also
+   moves the dash pattern into screen space, and the 600 on line 171 is
+   therefore 600 screen pixels rather than 600 of the path's 569 user units.
+   The svg is preserveAspectRatio="none", so its on-screen path length runs
+   with the container: 620px when the chart is half-width above 1080, and
+   699px at 720 through 1,060px at 1080, where the chart has the column to
+   itself. Everything past the first 600 painted pixels fell in the dash's gap,
+   so the line ended at 56% of the canvas at 1049px, 69% at 900px and 86% at
+   720px — and even at 1440px it was 3% short of the right edge.
+
+   The dash is set per band to just clear the on-screen length it has to cover
+   there. The line now reaches the right edge at every width; the draw takes
+   1.4-2.1s of its 2.2s rather than the full run, which is the cost of a dash
+   long enough to be safe. Measured 100% painted at 1440, 1200, 1080, 1049,
+   900, 720, 560 and 390px. .ma-spark-line on the feature card sets no
+   vector-effect, so its dashes stay in user space and it was never affected. */
+@media (prefers-reduced-motion:no-preference) and (min-width:1081px){
+  .mv-price{stroke-dasharray:760;stroke-dashoffset:760}
+}
+@media (prefers-reduced-motion:no-preference) and (max-width:1080px){
+  .mv-price{stroke-dasharray:1120;stroke-dashoffset:1120}
+}
+@media (prefers-reduced-motion:no-preference) and (max-width:560px){
+  .mv-price{stroke-dasharray:620;stroke-dashoffset:620}
+}
 </style>
 
   <!-- Structured data — page entity -->
