@@ -33,7 +33,7 @@
   <!-- Fonts (self-hosted) -->
   <link rel="stylesheet" href="/assets/fonts/fonts.css" />
   <link rel="stylesheet" href="/assets/css/aos.min.css" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=qa11" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=qa12" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* =================================================================
@@ -91,6 +91,20 @@
 .mn-acts{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:clamp(28px,3.6vw,40px)}
 .mn-note{margin-top:18px;font-size:12px;color:var(--text-mute)}
 .mn-note a{color:var(--blue);font-weight:600}
+/* The status dot is an 8px circle in an inline-flex row and was free to
+   shrink: below 420px the row runs out of width and the dot is what gives,
+   coming out as an oval beside the label. It holds its size now and the label
+   wraps instead. */
+.mn-status i{flex:none}
+.mn-status{flex-wrap:wrap;justify-content:center;row-gap:2px}
+
+/* This page stands in for the client portal while it is down, and the version
+   it replaces showed neither the site header nor the footer — there is nowhere
+   to navigate to from a maintenance notice, and offering a full site menu on
+   it invites the reader straight back into the thing that is unavailable. Both
+   are hidden again. The risk-warning topbar stays: it is a regulatory notice,
+   not navigation, and it sits outside the header. */
+.site-header,.site-footer,.mobile-menu,.menu-backdrop{display:none !important}
   </style>
 
   <!-- Structured data -->

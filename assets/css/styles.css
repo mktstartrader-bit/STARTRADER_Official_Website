@@ -4790,3 +4790,22 @@ iframe#webWidget{
   .ma-body{grid-area:body}
   .ma-media{grid-area:media;margin-top:0;aspect-ratio:auto;height:100%}
 }
+
+/* ===== THE PROMO HERO SCRIM COVERS ITS COPY (appended batch 2026-08-19) =====
+   .pm-hero lights its copy with a side-lit scrim — 96% opaque at the left
+   edge, 86% at 34% across, 40% at 58%, clear by 80% — and switches to a
+   top-to-bottom one at 640px. The copy in between does not shrink with the
+   window: the subline holds a fixed 549px from 900px down, so its right edge
+   marches from 63% across at 900px to 78% at 730px and 89% at 641px, where the
+   side-lit scrim has nothing left to give. Measured on the declared stops the
+   scrim under the end of that sentence is 0.31 at 900px, 0.09 at 760px and 0.00
+   from 700px down — the words are sitting on bare artwork, which is the
+   obscured text in the review. The vertical scrim starts at 900px instead of
+   640px, so the whole band where the copy outgrows the side light is covered.
+   Ten promotion pages share this hero and all ten measure the same. */
+@media (max-width:900px){
+  .pm-hero::before{
+    background:
+      linear-gradient(180deg,rgba(244,247,252,.94) 0%,rgba(244,247,252,.8) 48%,rgba(244,247,252,.5) 100%);
+  }
+}
