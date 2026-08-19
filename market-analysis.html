@@ -251,6 +251,34 @@
 .ma-card--feat .ma-feat-viz{margin-top:20px}
 .ma-meth-step-item{padding:22px 20px 22px 24px}
 }
+
+/* The bento drops to one column at 720px, but .ma-card--feat kept the
+   `grid-column:span 2` it is given in the 1080px block above — that block is
+   max-width, so it still applies here. A span-2 item in a one-column explicit
+   grid forces an implicit second column, and the browser sizes that column
+   from content: the grid came out as 160px + 500px at 720px and 50px + 280px
+   at 390px, with "Daily Fundamental Analysis" crushed into the 50px track and
+   its rows stretched to 1,197px tall. That is the broken layout in the review.
+   The feature card takes the single column like the rest. */
+@media (max-width:720px){
+  .ma-bento>.ma-card--feat{grid-column:auto}
+}
+
+/* The methodology chart reveals one layer per step — structure, then the
+   catalyst window, then the two levels — and the layers are exclusive, so only
+   the step you are on is drawn. That works while the stage is sticky and stays
+   in frame. Below 1080px the stage is released (line 243) and the chart sits
+   above the steps in one column, so by the time the reader reaches step 02 the
+   chart has scrolled off the top: steps 02 and 03 reveal their lines to nobody
+   and the levels are never seen at all. Below that width the chart shows the
+   finished read from the start — both channel lines, the catalyst window and
+   the support and resistance levels, with their tags — and the progress marks
+   read complete to match. The steps still highlight and still drive the
+   caption underneath; it is only the chart that stops waiting. */
+@media (max-width:1080px){
+  .mv-struct,.mv-cat,.mv-lvl,.mv-tag{opacity:1;transform:none}
+  .ma-meth[data-on] .ma-meth-prog i{background:#6fa8ff;width:32px}
+}
 </style>
 
   <!-- Structured data — page entity -->
