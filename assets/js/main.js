@@ -430,21 +430,48 @@
     document.body.appendChild(bar);
     document.body.classList.add('has-sb');
     // sit a measured 10px above the cookie while it shows, not a guessed offset;
-    // the chat bubble then rides a measured 12px above whichever is topmost
+    // the chat bubble then rides a measured 12px above whichever surface is
+    // topmost, and the back-to-top disc rides 10px above the bubble — the gap
+    // the pair keeps on desktop, where CSS puts them at 24px and 94px.
+    // Only a surface that is on screen AND shares the buttons' column counts:
+    // the banner is display:none above 768px, where its rect reads 0,0,0,0,
+    // and the cookie is a centred pill there that never reaches the corner.
+    function isOn(el) {
+      if (!el || !el.getClientRects().length) return false;
+      return getComputedStyle(el).visibility !== 'hidden';
+    }
     function layoutSb() {
       var ck = document.getElementById('cookie');
-      var ckOn = ck && ck.classList.contains('show');
-      if (ckOn) {
+      var ckOn = ck && ck.classList.contains('show') && isOn(ck);
+      var sbOn = isOn(bar);
+      if (ckOn && sbOn) {
         bar.style.bottom = Math.round(window.innerHeight - ck.getBoundingClientRect().top + 10) + 'px';
       } else {
         bar.style.bottom = '';
       }
+      // the highest surface sitting under el's own column, or null for a clear run
+      function ceiling(el) {
+        var r = el.getBoundingClientRect(), t = null;
+        [sbOn ? bar : null, ckOn ? ck : null].forEach(function (o) {
+          if (!o) return;
+          var ob = o.getBoundingClientRect();
+          if (ob.right < r.left || ob.left > r.right) return;
+          if (t === null || ob.top < t) t = ob.top;
+        });
+        return t;
+      }
       var fab = document.getElementById('chatFab');
+      var fabOn = isOn(fab);
       if (fab) {
-        var topmost = null;
-        if (document.body.contains(bar)) topmost = bar.getBoundingClientRect().top;
-        else if (ckOn) topmost = ck.getBoundingClientRect().top;
-        fab.style.bottom = topmost !== null ? Math.round(window.innerHeight - topmost + 12) + 'px' : '';
+        var c = ceiling(fab);
+        fab.style.bottom = c !== null ? Math.round(window.innerHeight - c + 12) + 'px' : '';
+      }
+      var top = document.getElementById('toTop');
+      if (top) {
+        var above = null;
+        if (fabOn) above = fab.getBoundingClientRect().top - 10;
+        else { var c2 = ceiling(top); if (c2 !== null) above = c2 - 12; }
+        top.style.bottom = above !== null ? Math.round(window.innerHeight - above) + 'px' : '';
       }
     }
     document.addEventListener('st:cookie', function () { setTimeout(layoutSb, 60); });

@@ -4550,3 +4550,37 @@ iframe#webWidget{
   .fx-pw-row .q-px{font-size:12px}
   .fx-pw-row .q-chg{min-width:46px}
 }
+
+/* ===== FORM HINT ROOM, BACK-TO-TOP ABOVE THE STACK (appended batch 2026-08-19) =====
+   Two more from the institutional.html review.
+
+   The requirements textarea cut its own hint off. rows="4" at 16px/1.6 gives a
+   124px box, and that page's placeholder — 111 characters, the longest in the
+   form family — measures 124px across four lines at 390px and below: it fit by
+   nought. Any of the ordinary reasons a line breaks earlier (a classic Windows
+   scrollbar taking 17px out of the text width, wider rasterisation, a
+   translation) tips it to five lines and the last one is cut, which is what the
+   review caught. The controls stay at 16px deliberately — iOS Safari zooms the
+   page in when a focused field is under 16px — so the room comes from height
+   instead: 176px on phones holds six lines of the hint against the four the
+   longest one needs today, and the shorter hints on the other five form pages
+   simply get a more generous message box.
+
+   .to-top never joined the fixed stack. It is pinned at bottom:94px on every
+   viewport, while below 768px the smart app banner (z 902) and the cookie
+   notice (z 860) sit at 575-663 and 668-766 on a 780px screen — the disc (z
+   840, 640-686) was sandwiched behind both and could not be seen or pressed.
+   The chat bubble was already lifted by a measured offset in layoutSb(); the
+   disc now rides 10px above the bubble, the gap the pair keeps on desktop, and
+   these are the pre-JS fallbacks under the same two body classes the bubble
+   uses. Same batch fixes layoutSb() measuring the banner while it is
+   display:none above 768px — its 0,0,0,0 rect read as a ceiling at the top of
+   the screen and threw the chat bubble clean off the top of every desktop
+   page. */
+@media (max-width:560px){
+  .ct-field textarea{min-height:176px}
+}
+@media (max-width:768px){
+  body.has-sb .to-top{bottom:calc(174px + env(safe-area-inset-bottom,0px))}
+  body.has-sb.ck-open .to-top{bottom:calc(278px + env(safe-area-inset-bottom,0px))}
+}
