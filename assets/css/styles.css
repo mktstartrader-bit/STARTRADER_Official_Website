@@ -4850,3 +4850,12 @@ iframe#webWidget{
   .cookie-text{flex:1 1 calc(100% - 36px);font-size:13px}
   .cookie-x{margin-left:auto}
 }
+
+/* ===== CK LEAD HEADER KEEPS ITS LABELS WHOLE (2026-08-21, appended batch) =====
+   Dev feedback: "The name" and the Asia Cup tag both broke mid-label once
+   the row ran short — translations run to 130%, and narrow screens or font
+   boosting spend the same slack. Neither text may break: the row wraps as
+   whole units instead, the tag dropping beneath the label on its own line. */
+.ck-lead-hd{flex-wrap:wrap;row-gap:8px}
+.ck-lead-hd b{white-space:nowrap}
+.ck-lead-tag{white-space:nowrap;flex:none}
