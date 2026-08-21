@@ -4828,3 +4828,11 @@ iframe#webWidget{
 .lp-item.is-off{opacity:.34;cursor:not-allowed}
 .lp-item.is-off:hover{background:none}
 .lp-item.is-off b{color:#8ea4c6}
+
+/* ===== THE LANGUAGE BADGE HOLDS ONE LINE (appended batch 2026-08-21) =====
+   The button carries a two-letter locale code in a slot sized for two. The
+   Chinese entries are ZH-CN and ZH-TW, and the hyphen is a soft break, so the
+   Simplified Chinese page wrapped its badge onto two lines and pushed the
+   caret down. The script now maps those two to CN and TW; this keeps any
+   future code from breaking there whatever its length. */
+.lang-code{white-space:nowrap;flex:none}

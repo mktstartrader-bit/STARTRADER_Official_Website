@@ -1101,6 +1101,11 @@
       'PL': 'pl', 'PT': 'pt', 'RU': 'ru', 'AR': 'ar', 'IT': 'it', 'FA': 'fa',
       'TR': 'tr', 'DE': 'de', 'HI': 'hi'
     };
+    /* the button shows a two-letter badge; the Chinese codes are five characters
+       and wrapped at their hyphen in a slot sized for two */
+    var CODE_BADGE = { 'ZH-CN': 'CN', 'ZH-TW': 'TW' };
+    function badge(code) { return CODE_BADGE[code] || code; }
+
     var alts = {}, routed = false;
     Array.prototype.forEach.call(
       document.querySelectorAll('link[rel="alternate"][hreflang]'),
@@ -1140,7 +1145,7 @@
         it.setAttribute('data-href', path);
         if (isHere(hl)) {
           it.classList.add('is-active');
-          if (codeEl) codeEl.textContent = it.getAttribute('data-code');
+          if (codeEl) codeEl.textContent = badge(it.getAttribute('data-code'));
           btn.setAttribute('aria-label', 'Language: ' + it.textContent.trim());
         }
       });
@@ -1159,7 +1164,7 @@
         if (path) { close(); return; }          // already on this language
         items.forEach(function (x) { x.classList.remove('is-active'); });
         it.classList.add('is-active');
-        if (codeEl) codeEl.textContent = code || codeEl.textContent;
+        if (codeEl) codeEl.textContent = badge(code) || codeEl.textContent;
         btn.setAttribute('aria-label', 'Language: ' + it.textContent.trim());
         close();
       });
