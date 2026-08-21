@@ -87,6 +87,8 @@
 .gcb-hlink:hover{color:var(--blue-700);gap:12px}
 .gcb-hlink svg{width:15px;height:15px}
 .gcb-hnote{margin-top:16px;font-size:12.5px;line-height:1.6;color:var(--text-mute)}
+/* the second and third compliance paragraphs sit under the lead, a step quieter */
+.pm-hero .gcb-lead2{margin-top:12px;font-size:14px;line-height:1.7;opacity:.86}
 
 /* ---------- 1. proof strip ------------------------------------- */
 .gcb-proof{position:relative;isolation:isolate;overflow:clip;color:#fff;
@@ -239,9 +241,9 @@
 .gcb-meter-bar i{display:block;height:100%;width:var(--fill,0%);border-radius:8px;
   background:var(--gold-face);transition:width .55s var(--ease)}
 .gcb-meter-bar.is-cap i{background:linear-gradient(90deg,#16E9D7,#0FB7A9)}
-.gcb-cap-flag{display:none;margin-top:12px;padding:9px 14px;border-radius:12px;font-size:12.5px;font-weight:700;
-  background:rgba(16,233,215,.12);border:1px solid rgba(16,233,215,.3);color:#8BF3E8}
-.gcb-meter-bar.is-cap ~ .gcb-cap-flag{display:block}
+/* the draws list inside the weekend copy */
+.gcb-draws{margin-top:10px;padding-left:20px;display:grid;gap:8px}
+.gcb-draws li{font-size:14.5px;line-height:1.7;color:inherit}
 .gcb-tkwrap{margin-top:16px;min-height:74px;display:flex;flex-wrap:wrap;gap:7px;align-items:flex-start}
 .gcb-mini{flex:0 0 auto;display:flex;align-items:center;gap:6px;padding:7px 11px;border-radius:9px;
   font-size:11px;font-weight:800;letter-spacing:.06em;color:#04204F;
@@ -288,6 +290,9 @@
 .gcb-cta h2{font-size:clamp(28px,4vw,54px);font-weight:800;letter-spacing:-.035em;line-height:1.15}
 .gcb-cta h2 span{background:var(--gold-face);-webkit-background-clip:text;background-clip:text;color:transparent}
 .gcb-cta-act{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:clamp(26px,3vw,38px)}
+/* the compliance block under the closing buttons */
+.gcb-cta-fine{max-width:760px;margin:clamp(26px,3vw,36px) auto 0;display:grid;gap:12px}
+.gcb-cta-fine p{font-size:12.5px;line-height:1.7;color:#93A2BE}
 .gcb-cta-btn{display:inline-flex;align-items:center;gap:10px;padding:16px 30px;border-radius:44px;
   font-size:15px;font-weight:800;letter-spacing:-.01em;color:#2A1B00;background:var(--gold-face);
   box-shadow:0 22px 46px -20px rgba(200,149,46,.72);
@@ -650,14 +655,16 @@
     <div class="pm-hero-copy">
       <h1 class="pm-h1" id="gcb-hero-title" data-aos="fade-up">
         <span>Trading XAUUSD247?</span>
-        <span class="lit">Get Cashback on Every Million</span>
+        <span class="lit">Earn USD 10 Cashback for Every USD 1 Million in Eligible Notional Volume</span>
       </h1>
-      <p class="pm-lead" data-aos="fade-up">From 21 August to 31 October 2026, earn USD 1 in cashback for every USD 100,000 in notional volume you trade on the XAUUSD247 gold CFD, up to USD 1,000 per client. Weekend trading also earns entries into the weekly gold prize draw.</p>
+      <p class="pm-lead" data-aos="fade-up">From 21 August to 1 November 2026, earn USD10 cashback for every completed USD 1 million in eligible notional volume traded on the XAUUSD247 gold CFD, up to USD 1,000 per client.</p>
+      <p class="pm-lead gcb-lead2" data-aos="fade-up">Eligible weekend trading can also earn entries into the weekly gold prize draws. All valid tickets accumulated throughout the Promotion Period will be pooled for the Grand Prize draw.</p>
+      <p class="pm-lead gcb-lead2" data-aos="fade-up">Cashback is subject to the Promotion&rsquo;s USD 999,999 cashback pool cap and first-come, first-served allocation. Eligibility and qualifying conditions apply.</p>
       <div class="pm-hact gcb-hact" data-aos="fade-up">
         <a class="pm-btn" href="https://myaccount.startrader.com" rel="noopener">Opt In via Client Portal <svg><use href="#i-arrow-right"/></svg></a>
-        <a class="gcb-hlink" href="/legal-documents.html">Read the full terms <svg><use href="#i-arrow-right"/></svg></a>
+        <a class="gcb-hlink" href="/legal-documents.html">Read the full Terms &amp; Conditions <svg><use href="#i-arrow-right"/></svg></a>
       </div>
-      <p class="gcb-hnote" data-aos="fade-up">Eligibility criteria, minimum deposit and T&amp;Cs apply.</p>
+      <p class="gcb-hnote" data-aos="fade-up">Minimum Net Deposit, eligibility and qualifying trading conditions apply.</p>
     </div>
   </div>
 </section>
@@ -674,14 +681,14 @@
   <div class="container">
     <h2 class="gcb-figure" id="gcb-proof-title" data-aos="fade-up">
       <em>USD</em>
-      <b data-count="1">1</b>
+      <b data-count="10">10</b>
     </h2>
-    <p class="gcb-figure-cap" data-aos="fade-up">cashback per USD 100,000 notional volume traded</p>
+    <p class="gcb-figure-cap" data-aos="fade-up">Cashback per completed USD 1 million in eligible notional volume</p>
 
     <div class="gcb-pills" data-aos="fade-up">
-      <span class="gcb-pill"><svg aria-hidden="true"><use href="#i-check"/></svg>Up to USD 1,000 per client</span>
-      <span class="gcb-pill"><svg aria-hidden="true"><use href="#i-star"/></svg>1 draw entry per USD 1 million traded during weekend trading hours</span>
-      <span class="gcb-pill"><svg aria-hidden="true"><use href="#i-clock"/></svg>21 Aug &ndash; 31 Oct 2026</span>
+      <span class="gcb-pill"><svg aria-hidden="true"><use href="#i-check"/></svg>Up to USD 1,000 &mdash; Maximum cashback per Client</span>
+      <span class="gcb-pill"><svg aria-hidden="true"><use href="#i-star"/></svg>1 draw entry per completed USD 1 million in eligible notional volume traded during recognised weekend trading hours</span>
+      <span class="gcb-pill"><svg aria-hidden="true"><use href="#i-clock"/></svg>21 Aug &ndash; 1 Nov 2026</span>
     </div>
 
     <div class="gcb-cd" data-gcb-cd data-aos="fade-up">
@@ -694,7 +701,7 @@
       </div>
     </div>
 
-    <p class="gcb-note">T&amp;Cs and eligibility criteria apply.</p>
+    <p class="gcb-note">Terms &amp; Conditions, eligibility criteria and qualifying conditions apply.</p>
   </div>
 </section>
 
@@ -711,15 +718,15 @@
       <ol class="htrade-steps" data-htrade>
         <li class="htrade-step">
           <span class="htrade-num">01</span>
-          <div class="htrade-txt"><h3>Opt In</h3><p>Confirm your participation through the Client Portal. Only volume traded after opting in will count.</p></div>
+          <div class="htrade-txt"><h3>Opt In</h3><p>Confirm your participation through the Client Portal. Only eligible trading activity executed after successful opt-in will count towards the Promotion.</p></div>
         </li>
         <li class="htrade-step">
           <span class="htrade-num">02</span>
-          <div class="htrade-txt"><h3>Deposit and Maintain USD 100</h3><p>Make and maintain a minimum net deposit of USD 100 for the duration of the promotion.</p></div>
+          <div class="htrade-txt"><h3>Deposit and Maintain USD 100</h3><p>Make and maintain a minimum net deposit of USD 100 throughout the Promotion Period.</p></div>
         </li>
         <li class="htrade-step">
           <span class="htrade-num">03</span>
-          <div class="htrade-txt"><h3>Trade XAUUSD247</h3><p>Hold each position for at least 10 minutes for it to count towards the promotion.</p></div>
+          <div class="htrade-txt"><h3>Trade XAUUSD247</h3><p>Trade the XAUUSD247 gold CFD. Each eligible position must be held open for at least 10 minutes to count towards the Promotion.</p></div>
         </li>
       </ol>
     </div>
@@ -731,21 +738,22 @@
   <span class="gcb-spark" aria-hidden="true" style="--sp:18px;right:7%;top:13%;--sp-delay:-1s"></span>
   <div class="container">
     <span class="pm-eyebrow-c" data-aos="fade-up">Cashback</span>
-    <h2 class="pm-h2" id="gcb-cash-title" data-aos="fade-up">USD 1 for Every 100,000<br> You Trade</h2>
+    <h2 class="pm-h2" id="gcb-cash-title" data-aos="fade-up">USD 10 for Every USD 1 Million<br> in Eligible Volume</h2>
 
     <div class="gcb-grid">
       <article class="gcb-tk gcb-tk--gold" data-aos="fade-up">
         <span class="gcb-shine" aria-hidden="true"><i></i></span>
         <div class="gcb-tk-main">
-          <b class="gcb-tk-val"><small>USD</small> 1</b>
-          <p class="gcb-tk-for">cashback per USD 100,000 notional volume traded</p>
+          <b class="gcb-tk-val"><small>USD</small> 10</b>
+          <p class="gcb-tk-for">cashback per USD 1 million notional volume traded</p>
         </div>
         <div class="gcb-tk-stub"><span>Cashback</span></div>
       </article>
 
       <div class="gcb-copy" data-aos="fade-up" data-aos-delay="100">
-        <p>Cashback is calculated on your total notional volume on XAUUSD247 once positions are closed, at USD 1 for every USD 100,000 traded. Your total cashback is capped at USD 1,000 for the promotion.</p>
-        <p>The total promotion pool is USD 999,999, allocated on a first come, first served basis subject to participants meeting all eligibility requirements under this Promotion. Once the cashback pool is fully distributed, no further cashback will be awarded.</p>
+        <p>Cashback is calculated on your eligible XAUUSD247 notional volume once positions are closed, at USD 1 for every completed USD 100,000 in eligible notional volume.</p>
+        <p>Your total cashback is capped at USD 1,000 per Client for the promotion.</p>
+        <p>The total cashback pool is capped at USD 999,999. Cashback is allocated on a first-come, first-served basis, subject to eligibility and qualifying requirements. Once the cashback pool has been exhausted, no further cashback will be awarded.</p>
       </div>
     </div>
 
@@ -767,7 +775,6 @@
         <div class="gcb-meter">
           <div class="gcb-meter-top"><span>Up to USD 1,000 per client</span><span data-gcb-captxt>250 / 1,000</span></div>
           <div class="gcb-meter-bar" data-gcb-capbar style="--fill:25%"><i></i></div>
-          <p class="gcb-cap-flag">Your total cashback is capped at USD 1,000 for the promotion.</p>
         </div>
       </div>
     </div>
@@ -780,7 +787,7 @@
   <span class="gcb-spark" aria-hidden="true" style="--sp:16px;right:10%;bottom:18%;--sp-delay:-1.4s"></span>
   <div class="container">
     <span class="pm-eyebrow-c" data-aos="fade-up">Weekend Draw</span>
-    <h2 class="pm-h2" id="gcb-draw-title" data-aos="fade-up">Weekend Volume<br> Earns Draw Entries</h2>
+    <h2 class="pm-h2" id="gcb-draw-title" data-aos="fade-up">Eligible Weekend Volume<br> Earns Draw Entries</h2>
 
     <div class="gcb-grid">
       <article class="gcb-tk gcb-tk--blue" data-aos="fade-up">
@@ -793,8 +800,15 @@
       </article>
 
       <div class="gcb-copy" data-aos="fade-up" data-aos-delay="100">
-        <p>Every USD 1 million in notional volume traded during weekend trading hours earns one entry into that week&rsquo;s draw for gold prizes. Entries count for that week only and do not carry over. The final week of the promotion is the Grand Prize draw.</p>
-        <p class="gcb-wed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v3M16 3v3"/><circle cx="12" cy="15" r="1.6" fill="currentColor" stroke="none"/></svg>Winners are announced each Wednesday, following the close of the relevant trading week.</p>
+        <p>Every completed USD 1 million in eligible notional volume traded during recognised weekend trading hours &mdash; 00:00 server time Saturday to 23:59 server time Sunday &mdash; earns one valid ticket entry into that week&rsquo;s draw.</p>
+        <p>Each ticket is valid for the applicable weekly draw and does not carry over to subsequent weekly draws.</p>
+        <p>However, all valid tickets accumulated throughout the Promotion Period will be pooled and entered into the Grand Prize draw.</p>
+        <p>There will be 11 scheduled draws:</p>
+        <ul class="gcb-draws">
+          <li>Draws 1&ndash;10: Weekly draws, with one winner receiving 10 grams of physical gold</li>
+          <li>Draw 11: Grand Prize draw, with one winner receiving one troy ounce of physical gold</li>
+        </ul>
+        <p class="gcb-wed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v3M16 3v3"/><circle cx="12" cy="15" r="1.6" fill="currentColor" stroke="none"/></svg>Winners are announced each Wednesday following the conclusion of the relevant trading week.</p>
       </div>
     </div>
 
@@ -816,7 +830,7 @@
       </div>
     </div>
 
-    <p class="gcb-note">Eligibility criteria, qualifying hours and prize details apply. See <a href="/legal-documents.html">full Terms and Conditions</a>.<br>Trading carries a high risk of loss.</p>
+    <p class="gcb-note">Eligibility criteria, qualifying hours and prize conditions apply. See the <a href="/legal-documents.html">full Terms &amp; Conditions</a>.</p>
   </div>
 </section>
 
@@ -833,19 +847,19 @@
         </li>
         <li class="is-yes">
           <span class="gcb-who-ic" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
-          STARTRADER trading accounts categorized as STP accounts only
+          STP and ECN accounts are eligible to participate in this Promotion.
         </li>
         <li class="is-no">
           <span class="gcb-who-ic" aria-hidden="true"><svg><use href="#i-close"/></svg></span>
-          ECN Accounts, Cryptocurrency Accounts, PAMM Accounts and MAM accounts are not eligible to participate in this Promotion.
+          STAR Copy, Cryptocurrency, PAMM and MAM Accounts are not eligible to participate in this Promotion.
         </li>
         <li class="is-note">
           <span class="gcb-who-ic" aria-hidden="true"><svg><use href="#i-layers"/></svg></span>
-          Accounts registered under the same client profile will have their eligible trading activity aggregated
+          Accounts registered under the same Client profile will have their eligible trading activity aggregated for the purposes of this Promotion.
         </li>
         <li class="is-note">
           <span class="gcb-who-ic" aria-hidden="true"><svg><use href="#i-swap"/></svg></span>
-          Internal transfers and balance adjustments will not be considered new deposits and will not count toward eligibility for this Promotion.
+          Internal transfers, balance adjustments and any other non-deposit credits will not be considered new deposits and will not count towards eligibility for this Promotion.
         </li>
       </ul>
     </div>
@@ -857,10 +871,15 @@
   <span class="gcb-spark" aria-hidden="true" style="--sp:24px;left:16%;bottom:26%"></span>
   <span class="gcb-spark" aria-hidden="true" style="--sp:17px;right:24%;top:14%;--sp-delay:-1.3s"></span>
   <div class="container">
-    <h2 id="gcb-cta-title" data-aos="fade-up">Every Million Counts.<br><span>Opt In and Start Trading.</span></h2>
+    <h2 id="gcb-cta-title" data-aos="fade-up">Ready to Participate?<br><span>Review the Terms and Opt In</span></h2>
     <div class="gcb-cta-act" data-aos="fade-up">
       <a class="gcb-cta-btn" href="https://myaccount.startrader.com" rel="noopener">Opt In via Client Portal <svg><use href="#i-arrow-right"/></svg></a>
-      <a class="gcb-cta-ghost" href="/legal-documents.html">Read the full terms <svg><use href="#i-arrow-right"/></svg></a>
+      <a class="gcb-cta-ghost" href="/legal-documents.html">Read the Full Terms &amp; Conditions <svg><use href="#i-arrow-right"/></svg></a>
+    </div>
+    <div class="gcb-cta-fine" data-aos="fade-up">
+      <p>Participation is voluntary. Eligibility, minimum Net Deposit, qualifying trading conditions and all other Terms &amp; Conditions apply.</p>
+      <p>RISK WARNING: CFDs are complex instruments and carry a high risk of loss. Trading leveraged CFDs may result in substantial losses. Please consider whether you understand how CFDs work and whether you can afford to take the high risk of losing your money.</p>
+      <p>This Promotion is available only to eligible Clients in Eligible Countries/Regions and is subject to applicable laws, regulations and the full Terms &amp; Conditions.</p>
     </div>
   </div>
 </section>
@@ -876,9 +895,9 @@
   (function () {
     var root = document.querySelector('[data-gcb-cd]');
     if (!root) return;
-    // 21 August 2026 → 31 October 2026
+    // 21 August 2026 → 1 November 2026
     var START = new Date(2026, 7, 21, 0, 0, 0);
-    var END = new Date(2026, 9, 31, 23, 59, 0);
+    var END = new Date(2026, 10, 1, 23, 59, 0);
     var lab = root.querySelector('[data-gcb-cd-lab]');
     var d = root.querySelector('[data-gcb-d]'), h = root.querySelector('[data-gcb-h]'),
         m = root.querySelector('[data-gcb-m]'), s = root.querySelector('[data-gcb-s]');
