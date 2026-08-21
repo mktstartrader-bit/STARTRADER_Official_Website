@@ -36,7 +36,7 @@
   <link rel="preload" href="/assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/assets/fonts/fonts.css" />
   <link rel="stylesheet" href="/assets/css/aos.min.css" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=qa12" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=qa13" />
 
   <!-- Structured data -->
   <script type="application/ld+json">
@@ -337,6 +337,24 @@ body.g247x .cta-inner .g247-acct-card .g247-acct-note.is-ok{color:#7ddf9a;font-w
 .g247-acct-links a:last-child{color:#b3a68a}
 .g247-acct-links a:hover{color:#f6d788}
 @media (max-width:640px){.g247-hero{padding:96px 0 84px}}
+/* The day picker is seven chips on repeat(7,1fr) with a 7px gap, and no chip
+   can go under its own label plus 8px of padding — about 38px. Seven of those
+   plus the gaps come to 308px, wider than the panel has below 370px, so the
+   spread lab overflowed its own column by 12px at 360 and 22px at 350 and the
+   last chips were cut off. The gap and the padding come in so the row fits the
+   narrowest screen the site supports. */
+@media (max-width:400px){
+  .g247-lab-days{gap:4px}
+  .g247-lab-days button{padding:10px 2px;font-size:11px}
+}
+
+/* The FAQ toggle is gold on this page while it is closed and on hover, but the
+   open state was never re-coloured, so it came through from the shared rule as
+   brand blue: a gold plus turning into a blue cross. It stays gold. */
+body.g247x .faq-item[open] summary .faq-q-ic,
+body.g247x .faq-item[open] summary:hover .faq-q-ic{
+  background:linear-gradient(135deg,#f0c96a,#c08a15);border-color:transparent;color:#241a02;
+}
 </style>
 </head>
 <body class="g247x">
@@ -1198,7 +1216,7 @@ body.g247x .cta-inner .g247-acct-card .g247-acct-note.is-ok{color:#7ddf9a;font-w
 <script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/assets/js/vendor/lenis.min.js" defer></script>
 <script src="/assets/js/vendor/aos.min.js" defer></script>
-<script src="/assets/js/main.js?v=qa8" defer></script>
+<script src="/assets/js/main.js?v=qa13" defer></script>
 <script>
 /* this page exists in English and Simplified Chinese, so those two entries in
    the language menu navigate for real; the rest only relabel, as before */

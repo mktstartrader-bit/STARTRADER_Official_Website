@@ -5286,26 +5286,37 @@
     // the rail drifts back and forth on its own; a hand on it pauses the
     // drift, and it picks itself back up a few seconds after the hand leaves
     if (prefersReduced) return;
-    var dir = 1, visible = false, resting = false, idle = null, last = 0;
+    var dir = 1, visible = false, resting = false, idle = null, last = 0, pos = null;
     function stepDrift(ts) {
       requestAnimationFrame(stepDrift);
-      if (!visible || resting || rail.classList.contains('dragging')) { last = ts; return; }
+      if (!visible || resting || rail.classList.contains('dragging')) { last = ts; pos = null; return; }
       var dt = Math.min(48, ts - last); last = ts;
       var max = rail.scrollWidth - rail.clientWidth;
-      if (max <= 0) return;
-      var next = rail.scrollLeft + dir * dt * 0.026;
-      if (next >= max) { next = max; dir = -1; }
-      if (next <= 0) { next = 0; dir = 1; }
-      rail.scrollLeft = next;
+      if (max <= 0) { pos = null; return; }
+      // the step is well under a pixel per frame, and scrollLeft snaps to whole
+      // pixels — reading it back each frame threw the remainder away, so the
+      // rail crept two pixels and then sat still. The position is carried in a
+      // float and re-read from the element only after a pause or a drag.
+      if (pos === null) pos = rail.scrollLeft;
+      pos += dir * dt * 0.026;
+      if (pos >= max) { pos = max; dir = -1; }
+      if (pos <= 0) { pos = 0; dir = 1; }
+      rail.scrollLeft = pos;
     }
     function rest() {
       resting = true;
       clearTimeout(idle);
       idle = setTimeout(function () { resting = false; }, 4000);
     }
-    ['pointerdown', 'pointerup', 'wheel', 'touchstart', 'touchend', 'keydown'].forEach(function (ev) {
+    ['pointerdown', 'pointerup', 'touchstart', 'touchend', 'keydown'].forEach(function (ev) {
       rail.addEventListener(ev, rest, { passive: true });
     });
+    // a wheel over the rail is usually the reader scrolling the page, not
+    // reaching for the rail — only a sideways wheel counts as a hand on it,
+    // otherwise reading past the section kept the drift parked for 4s at a time
+    rail.addEventListener('wheel', function (e) {
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) rest();
+    }, { passive: true });
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (es) {
         es.forEach(function (e) { visible = e.isIntersecting; });

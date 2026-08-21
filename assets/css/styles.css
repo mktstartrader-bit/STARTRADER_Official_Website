@@ -4781,14 +4781,22 @@ iframe#webWidget{
 @media (max-width:860px){
   .ma-grid{grid-template-columns:1fr}
 }
-@media (max-width:860px){
+@media (max-width:860px) and (min-width:441px){
   .ma-rep{
-    display:grid;grid-template-columns:minmax(0,1fr) clamp(116px,32%,300px);
+    display:grid;grid-template-columns:minmax(0,1fr) clamp(140px,32%,300px);
     grid-template-areas:"head media" "body media";
   }
   .ma-head{grid-area:head}
   .ma-body{grid-area:body}
   .ma-media{grid-area:media;margin-top:0;aspect-ratio:auto;height:100%}
+}
+/* Under 440px the row is too short for a picture beside it: the media column
+   came out 116px wide against a 250px-tall card, a sliver rather than a
+   photograph. The card goes back to a stack there, with the picture full width
+   under the copy on a 16/9 crop rather than 16/10 so six of them stay near
+   2,300px instead of 2,800. */
+@media (max-width:440px){
+  .ma-media{aspect-ratio:16/9}
 }
 
 /* ===== THE PROMO HERO SCRIM COVERS ITS COPY (appended batch 2026-08-19) =====

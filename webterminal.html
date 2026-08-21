@@ -33,7 +33,7 @@
   <!-- Fonts (self-hosted) -->
   <link rel="stylesheet" href="/assets/fonts/fonts.css" />
   <link rel="stylesheet" href="/assets/css/aos.min.css" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=qa12" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=qa13" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* =================================================================
@@ -129,6 +129,22 @@
 @media (max-width:560px){
   .wt2-seg button{padding:11px 12px}
   .wt2-below{flex-direction:column;align-items:flex-start}
+}
+/* The band's icon is a 15px square in a flex row with nothing to stop it
+   shrinking: from 420px down the row runs out of width and the icon is what
+   gives, coming out 12.7px wide at 420 and 9.8px at 350 against an unchanged
+   15px height. It holds its size and the label wraps instead. */
+.wt2-band svg{flex:none}
+.wt2-band{flex-wrap:wrap;row-gap:2px}
+
+/* The server row is a label and a value on one line with space-between. Below
+   400px the value has to give and "STARTRADERFinancial-Live" breaks at its
+   hyphen, which leaves the label floating against the middle of a two-line
+   value. The row stacks there instead: the label on its own line, the value
+   with the full width under it, which is enough for it to stay on one. */
+@media (max-width:400px){
+  .wt2-server{flex-direction:column;align-items:flex-start;gap:4px}
+  .wt2-server b{font-size:13px}
 }
   </style>
 
@@ -684,6 +700,6 @@
 <script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/assets/js/vendor/lenis.min.js" defer></script>
 <script src="/assets/js/vendor/aos.min.js" defer></script>
-<script src="/assets/js/main.js?v=qa8" defer></script>
+<script src="/assets/js/main.js?v=qa13" defer></script>
 </body>
 </html>

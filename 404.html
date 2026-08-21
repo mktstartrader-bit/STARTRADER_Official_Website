@@ -36,7 +36,7 @@
   <link rel="stylesheet" href="/assets/fonts/fonts.css" />
   <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css" />
   <link rel="stylesheet" href="/assets/css/aos.min.css" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=qa12" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=qa13" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* ---------- Layout ---------- */
@@ -387,7 +387,10 @@
     linear-gradient(180deg,#04060e,#070d1c 55%,#04060e)}
 .nf-hero>.container{position:relative;z-index:1}
 .nf-code{display:block;font-weight:800;line-height:.86;letter-spacing:-.04em;user-select:none;
-  font-size:clamp(160px,30vw,420px);
+  /* the floor was 160px, which paints 305px of ink into a 310px box at 350px —
+     no slack at all, and a classic scrollbar taking 15px off the viewport was
+     enough to clip the last numeral. It scales with the window now */
+  font-size:clamp(108px,30vw,420px);
   background:linear-gradient(160deg,#f2f5fb 8%,#aab6c9 34%,#3c4a63 72%,#131c30 96%);
   -webkit-background-clip:text;background-clip:text;color:transparent}
 .nf-card{position:relative;max-width:600px;margin:clamp(-90px,-9vw,-40px) auto 0;
@@ -862,6 +865,6 @@
 <script src="/assets/js/vendor/lenis.min.js" defer></script>
 <script src="/assets/js/vendor/swiper-bundle.min.js" defer></script>
 <script src="/assets/js/vendor/aos.min.js" defer></script>
-<script src="/assets/js/main.js?v=qa8" defer></script>
+<script src="/assets/js/main.js?v=qa13" defer></script>
 </body>
 </html>
