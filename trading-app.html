@@ -34,7 +34,7 @@
   <link rel="preload" href="/assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/assets/fonts/fonts.css" />
   <link rel="stylesheet" href="/assets/css/aos.min.css" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=qa18" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=qa25" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* ---- Hero (dark; render bleeds from the disclaimer bar to the base) ---- */
@@ -381,7 +381,10 @@
 
    Two of the four were also dropped outright below 700px. They are half the
    story the section tells — an order filling and a live price — so they stay. */
-@media (max-width:1239px){
+/* the overhang needs air beside the stage, and between 1240 and 1300 there
+   is almost none — the right pair ended 14px off the window edge at 1250.
+   The flush-inside placement holds until the viewport can afford the look. */
+@media (max-width:1299px){
   .gcard--l{left:0}
   .gcard--r{left:auto;right:0}
 }
@@ -1255,6 +1258,6 @@
 <script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/assets/js/vendor/lenis.min.js" defer></script>
 <script src="/assets/js/vendor/aos.min.js" defer></script>
-<script src="/assets/js/main.js?v=qa23" defer></script>
+<script src="/assets/js/main.js?v=qa25" defer></script>
 </body>
 </html>

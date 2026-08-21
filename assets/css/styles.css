@@ -4868,3 +4868,22 @@ iframe#webWidget{
 .an-tablewrap::-webkit-scrollbar{height:8px}
 .an-tablewrap::-webkit-scrollbar-track{background:rgba(20,40,80,.08);border-radius:8px}
 .an-tablewrap::-webkit-scrollbar-thumb{background:rgba(0,71,187,.45);border-radius:8px}
+
+/* ===== SCROLL-BEHAVIOR HANDS BACK TO LENIS (2026-08-21, appended batch) =====
+   html carried scroll-behavior:smooth from before Lenis arrived. Lenis is
+   the smooth scroll now — the CSS rule only governed programmatic scrolls,
+   and it turned ScrollTrigger's instant measuring scrolls into animated
+   ones, so any refresh that ran while the page was scrolled measured
+   mid-flight and froze every scrub below (the sheet's fails-after-resize
+   family, and copy-trade's steps sticking when the deferred load refresh
+   landed mid-scroll). */
+html{scroll-behavior:auto}
+
+/* ===== PAIRS TABLE KEEPS ITS VERTICAL EDGE QUIET (2026-08-21, appended batch) =====
+   Dev feedback: a scrollbar appears beside the table when switching
+   categories. .ta-spec-wrap sets overflow-x:auto, which computes
+   overflow-y to auto as well, so any transient vertical overflow during
+   the row swap draws a classic vertical bar on Windows. The wrap's height
+   always comes from its own content — the vertical axis never needs to
+   scroll, so it never gets a bar. */
+.ta-spec-wrap{overflow-y:hidden}

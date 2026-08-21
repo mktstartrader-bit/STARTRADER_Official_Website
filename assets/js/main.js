@@ -29,24 +29,21 @@
     } else {
       requestAnimationFrame(function raf(time) { lenis.raf(time); requestAnimationFrame(raf); });
     }
-    // A resize while the page is scrolled leaves every ScrollTrigger with
-    // impossible positions — measured on this site, a refresh that runs
-    // while scrolled records each trigger's start as its viewport-relative
-    // top without adding the scroll back (the contact banner froze dim at
-    // progress 1 with start:-4952 at scroll 5000), while the same refresh
-    // at scroll 0 measures absolute positions correctly, which is why page
-    // load is always right. So once a resize settles: jump to 0, measure,
-    // jump back — all synchronous inside one handler tick, so no frame
-    // paints in between and the reader never sees the trip.
+    // The refreshes ScrollTrigger runs on its own (resize, the deferred
+    // load event) measured garbage while the page was scrolled, because
+    // html carried scroll-behavior:smooth and its measuring scrolls came
+    // back animated — that rule is now stood down in the stylesheet. What
+    // remains here: after a resize settles, point Lenis at where the page
+    // actually is (the browser adjusts native scroll on its own and Lenis
+    // never learns of moves it did not make), then measure once more on
+    // agreed ground.
     var rsT = null;
     window.addEventListener('resize', function () {
       clearTimeout(rsT);
       rsT = setTimeout(function () {
         if (!hasGSAP || !hasST) return;
-        var y = window.scrollY;
-        lenis.scrollTo(0, { immediate: true, force: true });
+        lenis.scrollTo(window.scrollY, { immediate: true, force: true });
         ScrollTrigger.refresh();
-        lenis.scrollTo(y, { immediate: true, force: true });
       }, 220);
     });
   }
@@ -4383,7 +4380,21 @@
       if (next) next.disabled = vp.scrollLeft >= max - 2;
     }
     function go(dir) {
-      vp.scrollBy({ left: dir * step(), behavior: prefersReduced ? 'auto' : 'smooth' });
+      // stepping by the first card's width drifted: the video card is wider
+      // than the rest, so each press slid the deck a little further out of
+      // line until a card sat half-cut at the edge with its text clipped.
+      // land on a card's own left edge instead, whichever direction
+      var cards = track.querySelectorAll('.mt-rail-card');
+      var base = vp.getBoundingClientRect().left +
+        (parseFloat(getComputedStyle(track).paddingLeft) || 24);
+      var target = null;
+      for (var i = 0; i < cards.length; i++) {
+        var d = cards[i].getBoundingClientRect().left - base;
+        if (dir > 0) { if (d > 6) { target = vp.scrollLeft + d; break; } }
+        else if (d < -6) { target = vp.scrollLeft + d; }
+      }
+      if (target === null) target = vp.scrollLeft + dir * step();
+      vp.scrollTo({ left: target, behavior: prefersReduced ? 'auto' : 'smooth' });
     }
     if (prev) prev.addEventListener('click', function () { go(-1); });
     if (next) next.addEventListener('click', function () { go(1); });
