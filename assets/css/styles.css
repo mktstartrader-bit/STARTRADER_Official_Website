@@ -4859,3 +4859,12 @@ iframe#webWidget{
 .ck-lead-hd{flex-wrap:wrap;row-gap:8px}
 .ck-lead-hd b{white-space:nowrap}
 .ck-lead-tag{white-space:nowrap;flex:none}
+
+/* ===== ANNOUNCEMENT TABLES SHOW THEIR SCROLLBAR (2026-08-21, appended batch) =====
+   Dev feedback: the notice tables scroll sideways on small screens, but
+   overlay scrollbars gave no sign of it — columns simply looked cut off.
+   The wrap now draws a slim bar whenever the table overflows. */
+.an-tablewrap{scrollbar-width:thin;scrollbar-color:rgba(0,71,187,.45) rgba(20,40,80,.08);padding-bottom:2px}
+.an-tablewrap::-webkit-scrollbar{height:8px}
+.an-tablewrap::-webkit-scrollbar-track{background:rgba(20,40,80,.08);border-radius:8px}
+.an-tablewrap::-webkit-scrollbar-thumb{background:rgba(0,71,187,.45);border-radius:8px}

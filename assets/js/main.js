@@ -29,6 +29,26 @@
     } else {
       requestAnimationFrame(function raf(time) { lenis.raf(time); requestAnimationFrame(raf); });
     }
+    // A resize while the page is scrolled leaves every ScrollTrigger with
+    // impossible positions — measured on this site, a refresh that runs
+    // while scrolled records each trigger's start as its viewport-relative
+    // top without adding the scroll back (the contact banner froze dim at
+    // progress 1 with start:-4952 at scroll 5000), while the same refresh
+    // at scroll 0 measures absolute positions correctly, which is why page
+    // load is always right. So once a resize settles: jump to 0, measure,
+    // jump back — all synchronous inside one handler tick, so no frame
+    // paints in between and the reader never sees the trip.
+    var rsT = null;
+    window.addEventListener('resize', function () {
+      clearTimeout(rsT);
+      rsT = setTimeout(function () {
+        if (!hasGSAP || !hasST) return;
+        var y = window.scrollY;
+        lenis.scrollTo(0, { immediate: true, force: true });
+        ScrollTrigger.refresh();
+        lenis.scrollTo(y, { immediate: true, force: true });
+      }, 220);
+    });
   }
 
   function scrollToTarget(target, offset) {

@@ -34,7 +34,7 @@
   <link rel="preload" href="/assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/assets/fonts/fonts.css" />
   <link rel="stylesheet" href="/assets/css/aos.min.css" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=qa17" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=qa18" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* ================= ANNOUNCEMENTS PAGE ================= */
@@ -172,7 +172,11 @@
 .an-empty .btn{margin-top:24px}
 .an-subsec{background:radial-gradient(58% 56% at 90% 4%,rgba(0,71,187,.06),transparent 60%),var(--bg-light-2)}
 /* ---- Responsive ---- */
-@media (max-width:1024px){.an-cols{grid-template-columns:1fr}
+/* a plain 1fr is minmax(auto,1fr): the notice table's 560px min-content
+   became the column's floor, blew the list out past the viewport and left
+   the table clipped instead of scrolling. A zero floor lets the wrap take
+   the real width, and the table scrolls inside it. */
+@media (max-width:1024px){.an-cols{grid-template-columns:minmax(0,1fr)}
 .an-rail{position:static;display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .an-search{grid-column:1 / -1}
 .an-rail-note{grid-column:1 / -1}
@@ -1405,6 +1409,6 @@
 <script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/assets/js/vendor/lenis.min.js" defer></script>
 <script src="/assets/js/vendor/aos.min.js" defer></script>
-<script src="/assets/js/main.js?v=qa16" defer></script>
+<script src="/assets/js/main.js?v=qa19" defer></script>
 </body>
 </html>
