@@ -4817,3 +4817,14 @@ iframe#webWidget{
       linear-gradient(180deg,rgba(244,247,252,.94) 0%,rgba(244,247,252,.8) 48%,rgba(244,247,252,.5) 100%);
   }
 }
+
+/* ===== THE LANGUAGE MENU LINKS ITS TRANSLATIONS (appended batch 2026-08-21) =====
+   The picker used to be a preference marker everywhere except the homepage,
+   where RU was special-cased in script. It now reads the page's own hreflang
+   alternates: a language the page has is a link, and one it does not have is
+   shown as unavailable instead of appearing to switch and doing nothing. Pages
+   that declare no alternates keep the old marker behaviour, so this changes
+   nothing on the 106 pages that have no translations yet. */
+.lp-item.is-off{opacity:.34;cursor:not-allowed}
+.lp-item.is-off:hover{background:none}
+.lp-item.is-off b{color:#8ea4c6}

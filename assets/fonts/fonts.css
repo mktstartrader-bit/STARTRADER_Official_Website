@@ -38,8 +38,10 @@
    team (Noto_Sans_JP.zip → NotoSansJP-VariableFont_wght.ttf); the SIL Open
    Font Licence that ships with it is kept alongside as noto-sans-jp-OFL.txt.
    Subset to kana / fullwidth / latin / punctuation plus the kanji these pages
-   render — 198KB instead of the 5MB full face — with palt, vert, vrt2, vpal
-   and halt retained for proportional kana and vertical writing. Other locales
+   render — 926 codepoints, 208KB instead of the 5MB full face — with palt,
+   vert, vrt2, vpal and halt retained for proportional kana and vertical
+   writing. Rebuilt 2026-08-21 for ja/gold-cashback.html, which needed 64 kanji
+   the first cut did not carry; the URL is versioned so warm caches refetch. Other locales
    never reference the family, so they never download it.
    Regenerate after copy changes:
      fonttools varLib.instancer -o tmp.ttf NotoSansJP-VariableFont_wght.ttf wght=400:700
@@ -50,5 +52,5 @@
   font-style: normal;
   font-weight: 400 700;
   font-display: swap;
-  src: url('./noto-sans-jp-subset.woff2') format('woff2');
+  src: url('./noto-sans-jp-subset.woff2?v=2') format('woff2');
 }

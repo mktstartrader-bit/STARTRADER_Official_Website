@@ -1090,14 +1090,73 @@
       if (empty) empty.hidden = any;
     });
 
+    /* A page that declares its translations with hreflang alternates turns the
+       picker into real navigation: every language it has becomes a link, and
+       every language it does not becomes unavailable rather than pretending to
+       switch. Pages that declare none keep the old behaviour, where picking a
+       language only marks a preference. */
+    var CODE_HREFLANG = {
+      'EN': 'en', 'ZH-CN': 'zh-hans', 'ZH-TW': 'zh-hant', 'JA': 'ja', 'KO': 'ko',
+      'MS': 'ms', 'VI': 'vi', 'TH': 'th', 'ID': 'id', 'FR': 'fr', 'ES': 'es',
+      'PL': 'pl', 'PT': 'pt', 'RU': 'ru', 'AR': 'ar', 'IT': 'it', 'FA': 'fa',
+      'TR': 'tr', 'DE': 'de', 'HI': 'hi'
+    };
+    var alts = {}, routed = false;
+    Array.prototype.forEach.call(
+      document.querySelectorAll('link[rel="alternate"][hreflang]'),
+      function (l) {
+        var h = (l.getAttribute('hreflang') || '').toLowerCase();
+        var href = l.getAttribute('href');
+        if (!h || h === 'x-default' || !href) return;
+        // the alternates carry production URLs; navigate by path so the menu
+        // works on any host, localhost and preview builds included
+        try { alts[h] = new URL(href, window.location.href).pathname; }
+        catch (e) { alts[h] = href; }
+        routed = true;
+      }
+    );
+
+    var here = (document.documentElement.lang || 'en').toLowerCase();
+    function isHere(hl) {
+      if (hl === here) return true;
+      // zh-hans / zh-hant against a zh-CN or zh-TW document
+      if (hl.indexOf('zh-') === 0 && here.indexOf('zh') === 0) {
+        return (hl === 'zh-hant') === (here.indexOf('tw') > -1 || here.indexOf('hant') > -1);
+      }
+      return hl === here.split('-')[0];
+    }
+
+    if (routed) {
+      items.forEach(function (it) {
+        var hl = CODE_HREFLANG[it.getAttribute('data-code') || ''];
+        var path = hl ? alts[hl] : null;
+        it.classList.remove('is-active');
+        if (!path) {
+          it.disabled = true;
+          it.classList.add('is-off');
+          it.setAttribute('aria-disabled', 'true');
+          return;
+        }
+        it.setAttribute('data-href', path);
+        if (isHere(hl)) {
+          it.classList.add('is-active');
+          if (codeEl) codeEl.textContent = it.getAttribute('data-code');
+          btn.setAttribute('aria-label', 'Language: ' + it.textContent.trim());
+        }
+      });
+    }
+
     var RU_HOME = document.documentElement.hasAttribute('data-ru-home');
     var IS_RU = (document.documentElement.lang || '').toLowerCase().indexOf('ru') === 0;
     items.forEach(function (it) {
       it.addEventListener('click', function () {
         var code = it.getAttribute('data-code') || '';
+        var path = it.getAttribute('data-href');
+        if (path && path !== window.location.pathname) { window.location.href = path; return; }
         // the homepage exists in two languages — switching navigates for real
         if (RU_HOME && code === 'RU' && !IS_RU) { window.location.href = '/ru/'; return; }
         if (RU_HOME && code === 'EN' && IS_RU) { window.location.href = '/'; return; }
+        if (path) { close(); return; }          // already on this language
         items.forEach(function (x) { x.classList.remove('is-active'); });
         it.classList.add('is-active');
         if (codeEl) codeEl.textContent = code || codeEl.textContent;
