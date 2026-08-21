@@ -4836,3 +4836,17 @@ iframe#webWidget{
    caret down. The script now maps those two to CN and TW; this keeps any
    future code from breaking there whatever its length. */
 .lang-code{white-space:nowrap;flex:none}
+
+/* ===== COOKIE PILL SMALL-SIZE RELAYOUT (2026-08-21, appended batch) =====
+   Dev feedback: at small sizes the copy should take 100% of the pill's
+   width. The alignment and 2026-08-11 batches pinned the pill to one
+   nowrap row to keep the close disc centred, which squeezed the copy to
+   a ~150px column over four lines once "More details" and the disc took
+   their share of a phone-width pill. Below 560px the pill wraps again:
+   the copy takes the full first row beside its icon, and the actions sit
+   on their own row — More details left, the close disc at the right edge. */
+@media (max-width:560px){
+  .cookie{flex-wrap:wrap}
+  .cookie-text{flex:1 1 calc(100% - 36px);font-size:13px}
+  .cookie-x{margin-left:auto}
+}
