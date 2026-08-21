@@ -1061,11 +1061,27 @@
       pop.classList.contains('open') ? close() : open();
     });
 
-    // desktop: open on hover like the other nav menus; a short grace period
-    // covers the pointer's trip across the gap to the panel
+    // desktop: open on hover like the other nav menus. The panel hangs 12px
+    // under the bar while the button sits inside it, so 37px of dead space
+    // separates the two — a pointer resting there is between the button and
+    // the panel, not leaving. The close timer keeps re-arming while the
+    // pointer stays inside that corridor, and only a move beyond it closes.
     if (window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
       var hoverT = null;
-      var scheduleClose = function () { hoverT = setTimeout(close, 160); };
+      var mx = -1, my = -1;
+      document.addEventListener('mousemove', function (ev) { mx = ev.clientX; my = ev.clientY; }, { passive: true });
+      var inCorridor = function () {
+        if (!pop.classList.contains('open')) return false;
+        var b = btn.getBoundingClientRect(), p = pop.getBoundingClientRect();
+        return mx >= b.left - 16 && mx <= b.right + 16 && my >= b.top && my <= p.top + 2;
+      };
+      var scheduleClose = function () {
+        hoverT = setTimeout(function () {
+          hoverT = null;
+          if (inCorridor()) { scheduleClose(); return; }
+          close();
+        }, 160);
+      };
       var cancelClose = function () { if (hoverT) { clearTimeout(hoverT); hoverT = null; } };
       [btn, pop].forEach(function (el) {
         el.addEventListener('mouseenter', function () { cancelClose(); if (!pop.classList.contains('open')) open(); });
