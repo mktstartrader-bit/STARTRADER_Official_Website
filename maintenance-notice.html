@@ -105,6 +105,16 @@
    are hidden again. The risk-warning topbar stays: it is a regulatory notice,
    not navigation, and it sits outside the header. */
 .site-header,.site-footer,.mobile-menu,.menu-backdrop{display:none !important}
+
+/* The smart app banner is fixed to the foot of the screen below 768px. On
+   every other page the footer absorbs the strip it covers; this page has no
+   footer, so the closing line sat behind the banner. Reserve the banner's
+   height (86px card + 12px offset + a 12px gap), and step up by the same
+   104px the shared overlay rules use while the cookie pill is open too. */
+@media (max-width:768px){
+  body.has-sb .mn-sec{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
+  body.has-sb.ck-open .mn-sec{padding-bottom:calc(214px + env(safe-area-inset-bottom,0px))}
+}
   </style>
 
   <!-- Structured data -->
