@@ -1541,6 +1541,11 @@
         if (!panel) return;
         var vh = window.innerHeight, vw = window.innerWidth;
         var r = sel.getBoundingClientRect();
+        // a resize or scroll that carries the control out of the viewport
+        // must take the list with it — the clamp below would otherwise leave
+        // the panel pinned to the viewport edge, floating detached over
+        // whatever content reflowed into its place
+        if (r.bottom < -4 || r.top > vh + 4) { close(false); return; }
         var w = Math.max(r.width, 180);
         panel.style.width = w + 'px';
         panel.style.left = Math.max(8, Math.min(r.left, vw - w - 8)) + 'px';
@@ -1604,6 +1609,7 @@
         hit.setAttribute('aria-expanded', 'true');
         wrap.classList.add('is-open');
         place();
+        if (!panel) return; // place() closes when the control sits off-screen
         var cur = sel.selectedIndex;
         setActive(cur > -1 ? cur : 0);
         panel.focus();
@@ -4086,6 +4092,12 @@
         if (ok && input) input.value = '';
         if (ok) setTimeout(function () { note.textContent = base; note.className = 'ma-sub-note'; }, 6000);
       });
+      // the error borrows the note's slot so the form does not grow; the
+      // compliance line returns the moment the reader starts correcting the
+      // address, not only after a successful submit
+      if (input && note) input.addEventListener('input', function () {
+        if (note.className.indexOf('is-err') > -1) { note.textContent = base; note.className = 'ma-sub-note'; }
+      });
     })();
   }
 
@@ -4151,9 +4163,17 @@
         if (!ind) return;
         var on = levels.filter(function (b) { return b.classList.contains('is-on'); })[0];
         if (!on) return;
+        // the tabs wrap once translations outgrow the bar, so the pill needs
+        // the vertical axis too — it follows its tab onto whichever row
         ind.style.width = on.offsetWidth + 'px';
-        ind.style.transform = 'translateX(' + on.offsetLeft + 'px)';
+        ind.style.height = on.offsetHeight + 'px';
+        ind.style.transform = 'translate(' + on.offsetLeft + 'px,' + on.offsetTop + 'px)';
       }
+      var indT = null;
+      window.addEventListener('resize', function () {
+        clearTimeout(indT);
+        indT = setTimeout(moveInd, 140);
+      });
 
       function apply() {
         var matched = items.filter(function (el) {

@@ -119,8 +119,9 @@
 .kc-node:hover .kc-node-go svg{transform:translateX(5px)}
 /* ---- guides (section shell now global) ---- */
 .kc-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;padding:14px;border-radius:20px;margin-bottom:22px}
-.kc-levels{position:relative;display:flex;gap:4px;padding:4px;border-radius:70px;background:rgba(20,44,96,.06)}
-.kc-levels-ind{position:absolute;top:4px;bottom:4px;left:0;width:0;border-radius:70px;background:var(--blue);box-shadow:0 12px 26px -14px rgba(0,71,187,.75);transition:transform .42s var(--ease),width .42s var(--ease)}
+.kc-levels{position:relative;display:flex;flex-wrap:wrap;gap:4px;padding:4px;border-radius:26px;background:rgba(20,44,96,.06)}
+.kc-levels-ind{position:absolute;top:0;left:0;width:0;height:0;border-radius:70px;background:var(--blue);box-shadow:0 12px 26px -14px rgba(0,71,187,.75);transition:transform .42s var(--ease),width .42s var(--ease),height .42s var(--ease)}
+.kc-level{white-space:nowrap}
 .kc-level{position:relative;z-index:1;padding:9px 20px;border-radius:70px;font-size:13px;font-weight:700;color:var(--text-soft);transition:color .3s}
 .kc-level:hover{color:var(--text)}
 .kc-level.is-on{color:#fff}
@@ -216,7 +217,7 @@
 .kc-fmt-grid{grid-template-columns:1fr}
 .kc-pl-thumb{width:70px}
 .kc-levels{width:100%}
-.kc-level{flex:1;padding-inline:10px;text-align:center}}
+.kc-level{flex:1 0 auto;padding-inline:10px;text-align:center}}
 @media (max-width:520px){.kc-prods{width:100%}}
 /* The featured lesson is a 16/9 frame with the copy laid over its foot and the
    play disc centred in it. The frame's height falls with its width, the copy
@@ -230,19 +231,11 @@
   .kc-play{top:38%;width:52px;height:52px}
   .kc-play svg{width:20px;height:20px}
 }
-/* The level tabs share the bar's width three ways below 720px, and at 350px
-   that leaves "Intermediate" exactly the 82px it measures — no reserve at all,
-   so a translation either wraps the pill onto two lines or pushes the strip
-   past the bar. The tabs keep their natural width and the strip scrolls when
-   they no longer fit, which is nothing at all for English (248px of tabs in
-   284px of bar) and a swipe rather than a broken row for everything longer.
-   The indicator is positioned inside the strip, so it travels with it. */
-@media (max-width:720px){
-  .kc-levels{overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-ms-overflow-style:none;
-    overscroll-behavior-x:contain}
-  .kc-levels::-webkit-scrollbar{display:none}
-  .kc-level{flex:1 0 auto;white-space:nowrap}
-}
+/* The level tabs used to scroll sideways once translations outgrew the bar,
+   but a hidden scrollbar reads as a clipped pill, not a swipe. They wrap
+   onto a second row instead now — the same longer-copy style the product
+   filter beside them already uses — and the sliding indicator travels
+   vertically as well as horizontally to follow a tab onto any row. */
   </style>
 
   <!-- Structured data — page entity -->
@@ -1410,6 +1403,6 @@
 <script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/assets/js/vendor/lenis.min.js" defer></script>
 <script src="/assets/js/vendor/aos.min.js" defer></script>
-<script src="/assets/js/main.js?v=qa19" defer></script>
+<script src="/assets/js/main.js?v=qa23" defer></script>
 </body>
 </html>
