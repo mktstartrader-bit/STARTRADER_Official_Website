@@ -87,8 +87,33 @@
 .gcb-hlink:hover{color:var(--blue-700);gap:12px}
 .gcb-hlink svg{width:15px;height:15px}
 .gcb-hnote{margin-top:16px;font-size:12.5px;line-height:1.6;color:var(--text-mute)}
-/* the second and third compliance paragraphs sit under the lead, a step quieter */
-.pm-hero .gcb-lead2{margin-top:12px;font-size:14px;line-height:1.7;opacity:.86}
+/* the H1 keeps "Trading XAUUSD247?" at display size; the offer line rides
+   beneath it a full step smaller, still in the gold-to-teal gradient */
+.pm-h1 .gcb-h1-sub{font-size:clamp(17px,1.9vw,25px);font-weight:800;letter-spacing:-.025em;
+  line-height:1.4;margin-top:10px;max-width:36ch}
+
+/* ---- the offer in brief: the three compliance paragraphs, carded under
+   the banner so the hero keeps only its heading, subline and buttons ---- */
+.gcb-intro{position:relative;padding:clamp(26px,3.2vw,44px) 0 clamp(34px,4vw,56px);background:#eef2f8}
+.gcb-intro-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,1.8vw,22px)}
+.gcb-intro-card{position:relative;display:flex;gap:14px;align-items:flex-start;
+  border-radius:20px;padding:clamp(18px,2.2vw,26px);
+  background:rgba(255,255,255,.66);border:1px solid rgba(255,255,255,.95);
+  -webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);
+  box-shadow:0 24px 54px -34px rgba(20,44,96,.35),inset 0 1px 0 rgba(255,255,255,.9);
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+.gcb-intro-card:hover{transform:translateY(-4px);box-shadow:0 30px 64px -30px rgba(20,44,96,.45)}
+.gcb-intro-card p{font-size:14px;line-height:1.72;color:#4d5c74}
+.gcb-intro-card--lead p{color:var(--ink)}
+.gcb-intro-ic{flex:none;width:38px;height:38px;border-radius:12px;display:grid;place-items:center;
+  background:linear-gradient(160deg,#F6D67B,#C8952E);color:#2A1B00;
+  box-shadow:0 10px 22px -12px rgba(200,149,46,.7)}
+.gcb-intro-ic svg{width:17px;height:17px}
+.gcb-intro-card:nth-child(2) .gcb-intro-ic{background:linear-gradient(160deg,#2a72ff,#0047bb);color:#fff;
+  box-shadow:0 10px 22px -12px rgba(0,71,187,.7)}
+.gcb-intro-card:nth-child(3) .gcb-intro-ic{background:linear-gradient(160deg,#3A4A63,#131C30);color:#fff;
+  box-shadow:0 10px 22px -12px rgba(19,28,48,.6)}
+@media (max-width:1000px){.gcb-intro-grid{grid-template-columns:1fr}}
 
 /* ---------- 1. proof strip ------------------------------------- */
 .gcb-proof{position:relative;isolation:isolate;overflow:clip;color:#fff;
@@ -655,16 +680,33 @@
     <div class="pm-hero-copy">
       <h1 class="pm-h1" id="gcb-hero-title" data-aos="fade-up">
         <span>Trading XAUUSD247?</span>
-        <span class="lit">Earn USD 10 Cashback for Every USD 1 Million in Eligible Notional Volume</span>
+        <span class="lit gcb-h1-sub">Earn USD 10 Cashback for Every USD 1 Million in Eligible Notional Volume</span>
       </h1>
-      <p class="pm-lead" data-aos="fade-up">From 21 August to 1 November 2026, earn USD10 cashback for every completed USD 1 million in eligible notional volume traded on the XAUUSD247 gold CFD, up to USD 1,000 per client.</p>
-      <p class="pm-lead gcb-lead2" data-aos="fade-up">Eligible weekend trading can also earn entries into the weekly gold prize draws. All valid tickets accumulated throughout the Promotion Period will be pooled for the Grand Prize draw.</p>
-      <p class="pm-lead gcb-lead2" data-aos="fade-up">Cashback is subject to the Promotion&rsquo;s USD 999,999 cashback pool cap and first-come, first-served allocation. Eligibility and qualifying conditions apply.</p>
       <div class="pm-hact gcb-hact" data-aos="fade-up">
         <a class="pm-btn" href="https://myaccount.startrader.com" rel="noopener">Opt In via Client Portal <svg><use href="#i-arrow-right"/></svg></a>
         <a class="gcb-hlink" href="/legal-documents.html">Read the full Terms &amp; Conditions <svg><use href="#i-arrow-right"/></svg></a>
       </div>
       <p class="gcb-hnote" data-aos="fade-up">Minimum Net Deposit, eligibility and qualifying trading conditions apply.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE OFFER IN BRIEF ============ -->
+<section class="gcb-intro" aria-label="Promotion overview">
+  <div class="container">
+    <div class="gcb-intro-grid">
+      <article class="gcb-intro-card gcb-intro-card--lead" data-aos="fade-up">
+        <span class="gcb-intro-ic" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+        <p>From 21 August to 1 November 2026, earn USD10 cashback for every completed USD 1 million in eligible notional volume traded on the XAUUSD247 gold CFD, up to USD 1,000 per client.</p>
+      </article>
+      <article class="gcb-intro-card" data-aos="fade-up" data-aos-delay="100">
+        <span class="gcb-intro-ic" aria-hidden="true"><svg><use href="#i-star"/></svg></span>
+        <p>Eligible weekend trading can also earn entries into the weekly gold prize draws. All valid tickets accumulated throughout the Promotion Period will be pooled for the Grand Prize draw.</p>
+      </article>
+      <article class="gcb-intro-card" data-aos="fade-up" data-aos-delay="200">
+        <span class="gcb-intro-ic" aria-hidden="true"><svg><use href="#i-layers"/></svg></span>
+        <p>Cashback is subject to the Promotion&rsquo;s USD 999,999 cashback pool cap and first-come, first-served allocation. Eligibility and qualifying conditions apply.</p>
+      </article>
     </div>
   </div>
 </section>
