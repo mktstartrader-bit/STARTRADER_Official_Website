@@ -408,7 +408,12 @@
   background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);
   transition:color .25s,border-color .25s,background .25s,transform .35s var(--ease)}
 .nf-links a:hover{color:#fff;border-color:rgba(91,157,255,.5);background:rgba(42,114,255,.14);transform:translateY(-2px)}
-@media (max-width:520px){.nf-card{margin-top:-24px}}
+/* the ghost-overlap is sized for desktop numerals; the same fixed cuts ran
+   through half the glyphs once the digits shrink (52% covered at 640px, 38%
+   at 390). The tuck now scales with the width — ~28% of the digits on
+   tablets, ~17% on phones — so the card reads as layered, not as a crop */
+@media (max-width:900px){.nf-card{margin-top:clamp(-40px,-4vw,-16px)}}
+@media (max-width:520px){.nf-card{margin-top:-6px}}
   </style>
 </head>
 <body>
