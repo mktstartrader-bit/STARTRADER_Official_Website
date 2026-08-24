@@ -413,10 +413,20 @@
           a.style.display = match ? '' : 'none';
           if (q && match) hit = true;
         });
-        // a nested dropdown opens when the search reaches inside it
+        // a nested dropdown opens when the search reaches inside it. The
+        // group shows or hides as one unit: a hidden head link must take
+        // its chevron with it — a caret with no label reads as debris
+        // (IT screenshot, 8.24) — and a head whose child matched comes
+        // back as the context line above the hit.
         acc.querySelectorAll('.mm-sub').forEach(function (sub) {
+          var head = sub.querySelector('.mm-sub-row a');
+          var chev = sub.querySelector('.mm-sub-chev');
           var inner = Array.prototype.some.call(sub.querySelectorAll('.mm-subpanel a'),
             function (a) { return a.style.display !== 'none'; });
+          var headMatch = head && head.style.display !== 'none';
+          if (chev) chev.style.display = q ? 'none' : '';
+          if (head && q && inner) head.style.display = '';
+          sub.style.display = (!q || inner || headMatch) ? '' : 'none';
           sub.classList.toggle('open', !!q && inner);
         });
         acc.querySelectorAll('.mm-group').forEach(function (g) { g.style.display = q ? 'none' : ''; });
@@ -496,6 +506,28 @@
     setTimeout(layoutSb, 1600);
   }
 
+  /* the fixed bottom stack (app banner + cookie) floats over the end of the
+     page, so the footer's last lines could never scroll clear of it on
+     phones (IT 8.24 round, global row 11). The body reserves the covered
+     height while any of the stack is on screen, and hands it back when the
+     surfaces are dismissed. */
+  function layoutBottomPad() {
+    var pad = 0, vh = window.innerHeight;
+    [document.querySelector('.sb-bar'), document.getElementById('cookie')].forEach(function (el) {
+      if (!el || !el.getClientRects().length) return;
+      if (el.id === 'cookie' && !el.classList.contains('show')) return;
+      if (getComputedStyle(el).visibility === 'hidden') return;
+      var r = el.getBoundingClientRect();
+      if (r.top < vh && r.height > 0) pad = Math.max(pad, vh - r.top);
+    });
+    document.body.style.paddingBottom = pad ? Math.round(pad + 14) + 'px' : '';
+  }
+  // registered here, not inside initSmartBanner — the banner init returns
+  // early once dismissed, and the cookie alone still covers the footer
+  document.addEventListener('st:cookie', function () { setTimeout(layoutBottomPad, 80); });
+  window.addEventListener('resize', layoutBottomPad);
+  setTimeout(layoutBottomPad, 1700);
+
   function initMobileMenu() {
     var burger = document.getElementById('hamburger');
     var menu = document.getElementById('mobileMenu');
@@ -523,7 +555,7 @@
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
     // when the viewport grows past the hamburger breakpoint, the sheet closes
     // itself — otherwise it lingers open after devtools/rotation resizes
-    var mq = window.matchMedia('(min-width: 901px)');
+    var mq = window.matchMedia('(min-width: 1081px)');
     var onWide = function (e) { if (e.matches) setOpen(false); };
     if (mq.addEventListener) mq.addEventListener('change', onWide);
     else if (mq.addListener) mq.addListener(onWide);
@@ -1534,7 +1566,8 @@
       // the panel hangs under the control, flips above it when the room is
       // there instead, and is clamped inside the viewport either way — a
       // smooth-scroll library settling mid-open must not push it off screen
-      function place() {
+      var placedBelow = true; // side chosen at open time; reflows keep it
+      function place(initial) {
         if (!panel) return;
         var vh = window.innerHeight, vw = window.innerWidth;
         var r = sel.getBoundingClientRect();
@@ -1547,12 +1580,18 @@
         panel.style.width = w + 'px';
         panel.style.left = Math.max(8, Math.min(r.left, vw - w - 8)) + 'px';
         var below = vh - r.bottom - 12, above = r.top - 12;
-        var useBelow = below > 180 || below >= above;
-        var max = Math.max(140, Math.min(300, Math.max(useBelow ? below : above, 140)));
+        if (initial) placedBelow = below > 180 || below >= above;
+        var room = placedBelow ? below : above;
+        // mid-scroll the panel never switches sides — re-anchoring to the
+        // other edge of the control mid-gesture reads as a detached panel
+        // hovering over unrelated fields (IT 8.24 round, style row 70). when
+        // the opened side runs out of room, the list closes instead.
+        if (!initial && room < Math.min(140, panel.scrollHeight)) { close(false); return; }
+        var max = Math.max(140, Math.min(300, Math.max(room, 140)));
         panel.style.maxHeight = max + 'px';
         panel.style.bottom = 'auto';
         var h = Math.min(max, panel.scrollHeight);
-        var top = useBelow ? r.bottom + 6 : r.top - 6 - h;
+        var top = placedBelow ? r.bottom + 6 : r.top - 6 - h;
         panel.style.top = Math.max(8, Math.min(top, vh - h - 8)) + 'px';
       }
 
@@ -1605,7 +1644,7 @@
         document.body.appendChild(panel);
         hit.setAttribute('aria-expanded', 'true');
         wrap.classList.add('is-open');
-        place();
+        place(true);
         if (!panel) return; // place() closes when the control sits off-screen
         var cur = sel.selectedIndex;
         setActive(cur > -1 ? cur : 0);
@@ -4077,24 +4116,38 @@
       var note = form.querySelector('[data-ma-sub-note]');
       var input = form.querySelector('input[type="email"]');
       var base = note ? note.textContent : '';
+      // the error takes its own line above the note so the compliance hint
+      // never leaves the page (IT 8.24, style row 68); it clears as soon as
+      // the reader starts correcting the address
+      function clearErr() {
+        var err = form.querySelector('[data-ma-sub-err]');
+        if (err && err.parentNode) err.parentNode.removeChild(err);
+      }
       form.addEventListener('submit', function (e) {
         e.preventDefault();
         var v = (input && input.value || '').trim();
         var ok = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
         if (!note) return;
-        note.textContent = ok
-          ? 'Thanks — the next briefing will land in your inbox before the London open.'
-          : 'That email address does not look right. Check it and try again.';
-        note.className = 'ma-sub-note ' + (ok ? 'is-ok' : 'is-err');
-        if (ok && input) input.value = '';
-        if (ok) setTimeout(function () { note.textContent = base; note.className = 'ma-sub-note'; }, 6000);
+        if (ok) {
+          clearErr();
+          note.textContent = 'Thanks — the next briefing will land in your inbox before the London open.';
+          note.className = 'ma-sub-note is-ok';
+          if (input) input.value = '';
+          setTimeout(function () { note.textContent = base; note.className = 'ma-sub-note'; }, 6000);
+        } else {
+          var err = form.querySelector('[data-ma-sub-err]');
+          if (!err) {
+            err = document.createElement('p');
+            err.setAttribute('data-ma-sub-err', '');
+            err.className = 'ma-sub-note is-err';
+            note.parentNode.insertBefore(err, note);
+          }
+          err.textContent = 'That email address does not look right. Check it and try again.';
+          note.textContent = base;
+          note.className = 'ma-sub-note';
+        }
       });
-      // the error borrows the note's slot so the form does not grow; the
-      // compliance line returns the moment the reader starts correcting the
-      // address, not only after a successful submit
-      if (input && note) input.addEventListener('input', function () {
-        if (note.className.indexOf('is-err') > -1) { note.textContent = base; note.className = 'ma-sub-note'; }
-      });
+      if (input) input.addEventListener('input', clearErr);
     })();
   }
 
