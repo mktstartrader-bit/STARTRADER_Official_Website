@@ -33,7 +33,7 @@
   <!-- Fonts (self-hosted) -->
   <link rel="stylesheet" href="/assets/fonts/fonts.css" />
   <link rel="stylesheet" href="/assets/css/aos.min.css" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=qa25" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=qa26" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* =================================================================
@@ -190,8 +190,12 @@
 /* Between 1001 and 1250px the bento is already narrow but the block above
    has not kicked in, so the --w2 tile still gave its heading the full width
    while the art took 74% of a ~340px tile — 4,300px2 of product over the
-   copy at 1100px. The same reserve and cap the small sizes use apply here. */
-@media (min-width:1001px) and (max-width:1250px){
+   copy at 1100px. The same reserve and cap the small sizes use apply here.
+   IT round 8.24 found 1260px still cramped — the band originally ended at
+   1250px, dropping the tile straight back to the 74%/320px desktop art one
+   step before the grid was wide enough for it. The band now runs to 1320px,
+   where the two-column tile is ~380px and clears the copy on its own. */
+@media (min-width:1001px) and (max-width:1320px){
   .mall-cat--bleed.mall-cat--w2 .mall-cat-tx{max-width:min(100%,62%)}
   .mall-cat--bleed.mall-cat--w2 .mall-cat-shot{width:clamp(150px,52%,200px)}
 }
@@ -873,6 +877,6 @@
 <script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/assets/js/vendor/lenis.min.js" defer></script>
 <script src="/assets/js/vendor/aos.min.js" defer></script>
-<script src="/assets/js/main.js?v=qa25" defer></script>
+<script src="/assets/js/main.js?v=qa26" defer></script>
 </body>
 </html>
