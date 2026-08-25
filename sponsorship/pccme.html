@@ -34,7 +34,7 @@
   <link rel="stylesheet" href="/assets/fonts/fonts.css" />
   <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css" />
   <link rel="stylesheet" href="/assets/css/aos.min.css" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=qa35" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=qa36" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* ---------- Header / nav ---------- */
@@ -351,8 +351,11 @@
   position:relative;flex:none;width:56px;height:56px;border-radius:50%;overflow:hidden;
   background:#0b1018;box-shadow:0 0 0 2px rgba(63,107,255,.28);
 }
-.pc-ceo-face img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  object-position:36% 24%;display:block}
+/* the portrait is a full-body shot: rendered at three times the ring's
+   height with the face anchored to its centre, the circle holds a proper
+   headshot instead of a tiny head over a suit (same as .ck-ceo-face) */
+.pc-ceo-face img{position:absolute;left:50%;top:50%;width:auto;max-width:none;height:300%;
+  transform:translate(-47%,-25%);display:block}
 .pc-ceo-who{display:flex;flex-direction:column;gap:3px;text-align:left}
 .pc-ceo-who b{font-size:14.5px;font-weight:700;letter-spacing:-.024em;color:var(--ink)}
 .pc-ceo-who em{font-style:normal;font-size:11.5px;color:#7a8aa4}
@@ -1272,7 +1275,7 @@
 <script src="/assets/js/vendor/lenis.min.js" defer></script>
 <script src="/assets/js/vendor/swiper-bundle.min.js" defer></script>
 <script src="/assets/js/vendor/aos.min.js" defer></script>
-<script src="/assets/js/main.js?v=qa35" defer></script>
+<script src="/assets/js/main.js?v=qa36" defer></script>
 
 <!-- Company page: robust scroll reveals + hero parallax (self-contained, never leaves content hidden) -->
 <script>
