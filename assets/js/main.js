@@ -707,15 +707,18 @@
       var gap = parseFloat(getComputedStyle(wrapper).gap) || 18;
       var first = wrapper.children[0];
       var slideW = (first ? first.getBoundingClientRect().width : 300) + gap;
+      // data-marquee-static rails never drift on their own — they only move
+      // by their arrows or a drag, at a normal per-slide speed
+      var isStatic = el.hasAttribute('data-marquee-static');
       var opts = {
         slidesPerView: 'auto',
         spaceBetween: gap,
         loop: !prefersReduced,
-        speed: Math.max(400, Math.round(slideW / pxPerSec * 1000)),
+        speed: isStatic ? 450 : Math.max(400, Math.round(slideW / pxPerSec * 1000)),
         grabCursor: true,
         a11y: { enabled: true }
       };
-      if (!prefersReduced) {
+      if (!prefersReduced && !isStatic) {
         opts.autoplay = { delay: 0, disableOnInteraction: false, pauseOnMouseEnter: true };
       }
       var prevSel = el.getAttribute('data-marquee-prev');
@@ -4678,8 +4681,9 @@
           pre.src = src;
         }
 
-        // keep the picked tile inside the rail on narrow screens
-        if (deck && deck.scrollWidth > deck.clientWidth + 4) {
+        // keep the picked tile inside the rail — but only for a pick the
+        // reader made: the idle cycle must never scroll the row on its own
+        if (touched && deck && deck.scrollWidth > deck.clientWidth + 4) {
           var dr = deck.getBoundingClientRect(), tr = t.getBoundingClientRect();
           var by = (tr.left + tr.width / 2) - (dr.left + dr.width / 2);
           if (deck.scrollTo) deck.scrollTo({ left: deck.scrollLeft + by, behavior: 'smooth' });
@@ -4700,6 +4704,26 @@
           tiles[wallAt].focus();
         });
         enableDrag(deck);
+
+        // the deck is one scrollable row now, and the arrows page it;
+        // they grey out against the ends like every other rail
+        var dkPrev = locker.querySelector('[data-nb-prev]');
+        var dkNext = locker.querySelector('[data-nb-next]');
+        if (dkPrev || dkNext) {
+          var syncDeckNav = function () {
+            var max = deck.scrollWidth - deck.clientWidth;
+            if (dkPrev) dkPrev.disabled = deck.scrollLeft <= 2;
+            if (dkNext) dkNext.disabled = deck.scrollLeft >= max - 2;
+          };
+          var pageDeck = function (dir) {
+            deck.scrollBy({ left: dir * deck.clientWidth * 0.8, behavior: prefersReduced ? 'auto' : 'smooth' });
+          };
+          if (dkPrev) dkPrev.addEventListener('click', function () { pageDeck(-1); });
+          if (dkNext) dkNext.addEventListener('click', function () { pageDeck(1); });
+          deck.addEventListener('scroll', syncDeckNav, { passive: true });
+          window.addEventListener('resize', syncDeckNav);
+          syncDeckNav();
+        }
       }
 
       if (!prefersReduced) {

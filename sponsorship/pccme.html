@@ -34,7 +34,7 @@
   <link rel="stylesheet" href="/assets/fonts/fonts.css" />
   <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css" />
   <link rel="stylesheet" href="/assets/css/aos.min.css" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=qa28" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=qa29" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* ---------- Header / nav ---------- */
@@ -373,6 +373,16 @@
 .pc-reasons{grid-template-columns:1fr}
 .pc-bey{grid-template-columns:1fr}
 .pc-bey-strip{border-radius:22px}}
+
+/* The wallpaper rail lives inside the container now — it no longer bleeds
+   across the full section — and a pair of arrows steps it frame by frame
+   alongside the marquee drift (dev request, 8.25). */
+.pc-rail-nav{display:flex;justify-content:flex-end;gap:10px;margin-top:18px}
+.pc-rail-btn{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;cursor:pointer;
+  border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:#cfe0ff;
+  transition:background .3s,border-color .3s,transform .3s var(--ease)}
+.pc-rail-btn:hover{background:rgba(0,71,187,.55);border-color:rgba(120,175,255,.5);transform:translateY(-2px)}
+.pc-rail-btn svg{width:18px;height:18px}
   </style>
 
   <script type="application/ld+json">
@@ -957,12 +967,12 @@
           <a class="pc-btn" href="/assets/img/pccme-wp-01.webp" data-pc-wpget download>Download this</a>
           <a class="pc-btn pc-btn--ghost" href="#">Download all 15</a>
         </div>
-        <span class="pc-hint">The rail keeps moving until you hover it. Pick any frame to load it.</span>
+        <span class="pc-hint">Step through the rail with the arrows, or drag it. Pick any frame to load it.</span>
       </div>
     </div>
-  </div>
 
-  <div class="pc-rail swiper st-marquee" aria-label="All fifteen wallpapers" data-marquee-speed="34">
+    <div class="pc-rail swiper st-marquee" aria-label="All fifteen wallpapers" data-marquee-static
+      data-marquee-prev="#pcWpPrev" data-marquee-next="#pcWpNext">
     <div class="pc-track swiper-wrapper" id="pcTrack" data-pc-track>
         <button class="pc-frame is-on swiper-slide" type="button" data-pc-wp="0"
           aria-label="Wallpaper 01">
@@ -1039,6 +1049,12 @@
           <img src="/assets/img/pccme-wp-15.webp" alt="Porsche Carrera Cup Middle East wallpaper 15" width="740" height="1601" loading="lazy" decoding="async">
           <span class="pc-frame-n">15</span>
         </button>
+    </div>
+    </div>
+
+    <div class="pc-rail-nav">
+      <button class="pc-rail-btn" type="button" id="pcWpPrev" aria-label="Previous wallpapers"><svg><use href="#i-chevron-left"/></svg></button>
+      <button class="pc-rail-btn" type="button" id="pcWpNext" aria-label="Next wallpapers"><svg><use href="#i-chevron-right"/></svg></button>
     </div>
   </div>
 </section>
@@ -1255,7 +1271,7 @@
 <script src="/assets/js/vendor/lenis.min.js" defer></script>
 <script src="/assets/js/vendor/swiper-bundle.min.js" defer></script>
 <script src="/assets/js/vendor/aos.min.js" defer></script>
-<script src="/assets/js/main.js?v=qa28" defer></script>
+<script src="/assets/js/main.js?v=qa29" defer></script>
 
 <!-- Company page: robust scroll reveals + hero parallax (self-contained, never leaves content hidden) -->
 <script>

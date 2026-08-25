@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="/assets/fonts/fonts.css" />
   <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css" />
   <link rel="stylesheet" href="/assets/css/aos.min.css" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=qa28" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=qa29" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* =================================================================
@@ -198,13 +198,27 @@
 .nb-hint kbd{display:inline-block;padding:1px 6px;margin:0 2px;border-radius:5px;font:inherit;
   background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#a9bcd8}
 /* the wall of tiles underneath */
+/* One scrollable row inside the locker — the sixteen tiles no longer tile
+   the whole section as a grid, and a pair of arrows pages the row
+   (dev request, 8.25). The drag, keyboard arrows and the auto-centre on
+   pick all carry over from the old narrow-screen behaviour. */
 .nb-deck{
-  position:relative;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));
+  position:relative;display:flex;overflow-x:auto;scroll-behavior:smooth;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;-ms-overflow-style:none;
   gap:14px;margin-top:clamp(30px,3.4vw,44px);padding-top:clamp(26px,3vw,36px);
-  border-top:1px solid rgba(255,255,255,.09);
+  padding-bottom:8px;border-top:1px solid rgba(255,255,255,.09);
 }
+.nb-deck::-webkit-scrollbar{display:none}
+.nb-deck-nav{display:flex;justify-content:flex-end;gap:10px;margin-top:14px}
+.nb-deck-btn{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;cursor:pointer;
+  border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:#cfe0ff;
+  transition:background .3s,border-color .3s,transform .3s var(--ease)}
+.nb-deck-btn:hover:not(:disabled){background:color-mix(in srgb,var(--pri) 60%,#0a1120);border-color:color-mix(in srgb,var(--sec) 50%,transparent);transform:translateY(-2px)}
+.nb-deck-btn:disabled{opacity:.32;cursor:default}
+.nb-deck-btn svg{width:18px;height:18px}
 .nb-tile{
-  position:relative;overflow:hidden;padding:0;border:0;cursor:pointer;background:#0b1018;
+  position:relative;flex:0 0 auto;width:clamp(96px,9vw,118px);
+  overflow:hidden;padding:0;border:0;cursor:pointer;background:#0b1018;
   border-radius:14px;aspect-ratio:9/17;
   box-shadow:0 14px 30px -18px rgba(0,0,0,.9),inset 0 0 0 1px rgba(255,255,255,.08);
   transition:transform .45s var(--ease),box-shadow .45s var(--ease),filter .45s;
@@ -231,19 +245,12 @@
              inset 0 0 0 2px color-mix(in srgb,var(--sec) 78%,transparent);
 }
 .nb-tile.is-on .nb-tile-n{color:#fff}
-@media (max-width:1080px){.nb-deck{grid-template-columns:repeat(6,minmax(0,1fr))}}
 @media (max-width:860px){.nb-stage{grid-template-columns:1fr;gap:34px}
 .nb-phone{width:min(74%,262px);margin-bottom:34px}
 .nb-stage-tx{text-align:center}
 .nb-count,.nb-chips,.nb-locker .nb-wall-act{justify-content:center}}
 @media (max-width:640px){.nb-locker{padding:20px 16px}
-.nb-deck{
-    display:flex;overflow-x:auto;scroll-behavior:smooth;
-    -webkit-overflow-scrolling:touch;scrollbar-width:none;
-    margin-left:-16px;margin-right:-16px;padding:26px 16px 4px;
-  }
-.nb-deck::-webkit-scrollbar{display:none}
-.nb-tile{flex:0 0 auto;width:26vw;max-width:118px}}
+.nb-tile{width:26vw;max-width:118px}}
 /* ---------------- the repeatedly panels ---------------- */
 .nb-play{position:relative;overflow:hidden;color:#fff;background:linear-gradient(115deg,#0a2f8a 0%,#061c52 30%,#0a0f1c 62%,#05070d)}
 .nb-play::before{
@@ -960,6 +967,11 @@
           <span class="nb-tile-lbl">New York Knicks</span>
         </button>
       </div>
+
+      <div class="nb-deck-nav">
+        <button class="nb-deck-btn" type="button" data-nb-prev aria-label="Previous teams"><svg><use href="#i-chevron-left"/></svg></button>
+        <button class="nb-deck-btn" type="button" data-nb-next aria-label="Next teams"><svg><use href="#i-chevron-right"/></svg></button>
+      </div>
     </div>
   </div>
 </section>
@@ -1185,7 +1197,7 @@
 <script src="/assets/js/vendor/lenis.min.js" defer></script>
 <script src="/assets/js/vendor/swiper-bundle.min.js" defer></script>
 <script src="/assets/js/vendor/aos.min.js" defer></script>
-<script src="/assets/js/main.js?v=qa28" defer></script>
+<script src="/assets/js/main.js?v=qa29" defer></script>
 
 <!-- Company page: robust scroll reveals + hero parallax (self-contained, never leaves content hidden) -->
 <script>
