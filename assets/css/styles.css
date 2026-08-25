@@ -5009,3 +5009,14 @@ html{scroll-behavior:auto}
 .cmp-act .btn-primary:hover{background:var(--blue-700)}
 .mobile-menu .mm-cta a.btn:hover{background:var(--blue-700)}
 .sb-get{background:var(--blue);border-color:var(--blue);color:#fff}
+
+/* ===== THE EVENTS GALLERY JOINS THE MARQUEES (2026-08-25, appended batch) =====
+   Dev request: the "From the floor" rail plays on its own — the shared
+   Swiper marquee replaces the hand-rolled ping-pong drift on events.html
+   (expo.html keeps the old rail and its driver). The shots paint as
+   .cover-bg backgrounds so each photo fills its 4:5 card completely,
+   drag and pause-on-hover come with the marquee, and the track drops the
+   scroll gutters and the native overflow the old rail needed. */
+.ev-rail.st-marquee{overflow:hidden;cursor:grab;overflow-x:hidden}
+.ev-rail.st-marquee .ev-track{padding:6px 0}
+.ev-rail.st-marquee .ev-shot{width:100%}

@@ -724,7 +724,20 @@
       var prevSel = el.getAttribute('data-marquee-prev');
       var nextSel = el.getAttribute('data-marquee-next');
       if (prevSel && nextSel) opts.navigation = { prevEl: prevSel, nextEl: nextSel };
-      new Swiper(el, opts);
+      var sw = new Swiper(el, opts);
+      // continuous autoplay stalls for good after a drag or a click — the
+      // interrupted linear transition never hands back to the autoplay
+      // chain. Re-arm it whenever the hand leaves the rail.
+      if (opts.autoplay) {
+        var rekick = function () {
+          setTimeout(function () {
+            if (sw.autoplay && !sw.destroyed) { sw.autoplay.stop(); sw.autoplay.start(); }
+          }, 250);
+        };
+        sw.on('touchEnd', rekick);
+        el.addEventListener('mouseleave', rekick);
+        el.addEventListener('click', rekick);
+      }
     });
   }
 
@@ -5470,6 +5483,28 @@
 
   /* ---------------- Events: the gallery rail ---------------- */
   function initEvents() {
+    // events.html runs the gallery as a Swiper marquee; the progress bar
+    // follows the marquee's translate — one full pass of the originals is
+    // half the cloned track — so the design's moving line stays alive
+    var mq = document.querySelector('.ev-rail.st-marquee');
+    if (mq) {
+      var mqBar = document.querySelector('[data-ev-bar]');
+      if (mqBar) {
+        var tries = 0;
+        (function hook() {
+          var sw = mq.swiper;
+          if (!sw) { if (tries++ < 40) setTimeout(hook, 150); return; }
+          var wrap = mq.querySelector('.swiper-wrapper');
+          sw.on('setTranslate', function (s, t) {
+            var w = Math.max(1, wrap.scrollWidth / 2);
+            var p = ((-t / w) % 1 + 1) % 1;
+            mqBar.style.transform = 'translateX(' + (p * (100 / 0.22 - 100)) + '%)';
+          });
+        })();
+      }
+    }
+
+    // expo.html keeps the self-drifting rail
     var rail = document.querySelector('[data-ev-rail]');
     if (!rail) return;
     var frames = Array.prototype.slice.call(rail.querySelectorAll('.ev-frame'));
