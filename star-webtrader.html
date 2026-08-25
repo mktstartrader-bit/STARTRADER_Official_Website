@@ -33,7 +33,7 @@
   <link rel="preload" as="image" href="/assets/img/platform-hero.webp" />
   <link rel="stylesheet" href="/assets/fonts/fonts.css" />
   <link rel="stylesheet" href="/assets/css/aos.min.css" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=qa26" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=qa27" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* ---- the dashboard, built rather than photographed: the panel you pick is
@@ -311,6 +311,11 @@
 .sw-grid2{grid-template-columns:1fr}
 .sw-panel{min-height:0}
 .sw-stage-sec .h2 br,.sw-ben .h2 br,.sw-feat .h2 br{display:none}}
+
+/* the fake address pill clips its text inside its own edge instead of
+   running over the Live chip on the narrowest screens (IT 8.25, item 6) */
+.swx-url{min-width:0;overflow:hidden;white-space:nowrap}
+.swx-bar i,.swx-live{flex:none}
   </style>
 
   <script type="application/ld+json">
@@ -1298,6 +1303,6 @@
 <script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/assets/js/vendor/lenis.min.js" defer></script>
 <script src="/assets/js/vendor/aos.min.js" defer></script>
-<script src="/assets/js/main.js?v=qa26" defer></script>
+<script src="/assets/js/main.js?v=qa27" defer></script>
 </body>
 </html>

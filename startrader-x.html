@@ -34,7 +34,7 @@
   <link rel="stylesheet" href="/assets/fonts/fonts.css" />
   <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css" />
   <link rel="stylesheet" href="/assets/css/aos.min.css" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=qa26" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=qa27" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <!-- Page-specific styles -->
   <style>
@@ -175,6 +175,21 @@
 @media (max-width:420px){
   .x-chip--exec{left:2%}
   .x-chip--quote{left:0}
+}
+/* In the stacked band the handset's left edge walks toward the chips as the
+   stage heightens (the art is bottom-anchored at 118% height), and by ~520px
+   the full-size quote chip lay over the phone's instrument rows — the
+   covered "buttons" IT flagged at ~460px on their metrics. The chips run
+   compact through the whole band so they end on the handset's plain
+   shoulder instead of its screen. */
+@media (max-width:900px){
+  .x-chip{padding:9px 12px;gap:8px}
+  .x-chip-ic{width:28px;height:28px;border-radius:8px}
+  .x-chip-ic svg{width:14px;height:14px}
+  .x-chip-tx b{font-size:12.5px}
+  .x-chip-tx em{font-size:10px}
+  .x-chip-row span{font-size:13px}
+  .x-chip-row i{font-size:10px}
 }
 
 /* floating toasts around the handset */
@@ -874,6 +889,6 @@
 <script src="/assets/js/vendor/lenis.min.js" defer></script>
 <script src="/assets/js/vendor/swiper-bundle.min.js" defer></script>
 <script src="/assets/js/vendor/aos.min.js" defer></script>
-<script src="/assets/js/main.js?v=qa26" defer></script>
+<script src="/assets/js/main.js?v=qa27" defer></script>
 </body>
 </html>

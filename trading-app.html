@@ -34,7 +34,7 @@
   <link rel="preload" href="/assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/assets/fonts/fonts.css" />
   <link rel="stylesheet" href="/assets/css/aos.min.css" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=qa26" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=qa27" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* ---- Hero (dark; render bleeds from the disclaimer bar to the base) ---- */
@@ -384,9 +384,13 @@
 /* the overhang needs air beside the stage, and between 1240 and 1300 there
    is almost none — the right pair ended 14px off the window edge at 1250.
    The flush-inside placement holds until the viewport can afford the look. */
+/* IT 8.25, item 7: flush-to-the-stage still read as glued to the window
+   on zoomed displays around 1240-1260 — the cards now keep a 12px inset
+   from the stage edge through the whole band, so there is visible air
+   between them and the viewport at every width the band covers. */
 @media (max-width:1299px){
-  .gcard--l{left:0}
-  .gcard--r{left:auto;right:0}
+  .gcard--l{left:12px}
+  .gcard--r{left:auto;right:12px}
 }
 @media (max-width:700px){
   .gcard.g2,.gcard.g4{display:flex}
@@ -1258,6 +1262,6 @@
 <script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/assets/js/vendor/lenis.min.js" defer></script>
 <script src="/assets/js/vendor/aos.min.js" defer></script>
-<script src="/assets/js/main.js?v=qa26" defer></script>
+<script src="/assets/js/main.js?v=qa27" defer></script>
 </body>
 </html>
