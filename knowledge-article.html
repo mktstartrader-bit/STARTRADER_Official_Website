@@ -39,16 +39,35 @@
   <style>
 /* =================================================================
    KNOWLEDGE ARTICLE
-   The article furniture is the shared ar-* system; only the sign-up
-   block and two body details are new.
+   The article furniture is the shared ar-* system. This page swaps the
+   columns — copy on the left, the rail on the right — and the rail
+   carries the contents index plus an open-account form, both riding
+   the rail's shared sticky position.
    ================================================================= */
-.kb-form-sec{margin-top:clamp(30px,4vw,46px)}
-.kb-form-h{font-size:clamp(19px,2.2vw,25px);font-weight:800;letter-spacing:-.036em;color:var(--ink);text-align:center}
-.kb-form-h span{color:var(--blue)}
-.kb-form-sub{margin-top:8px;font-size:12.5px;line-height:1.6;color:var(--text-mute);text-align:center}
-.kb-form-sub + form{margin-top:clamp(20px,2.4vw,26px)}
-.kb-form-sec .ct-actions{margin-top:24px}
-.kb-form-sec .ct-actions .ct-submit{width:100%;justify-content:center}
+.ar-cols{grid-template-columns:var(--ar-measure) var(--ar-rail)}
+.ar-main{order:1}
+.ar-rail{order:2}
+.ar-toc{border-right:0;padding-right:0;border-left:1px solid var(--line);padding-left:var(--toc-pad)}
+.ar-toc a::after{right:auto;left:calc(-1 * var(--toc-pad) - 1px)}
+
+/* the open-account card in the rail */
+.ar-cta{padding:18px 16px 16px;border-radius:16px}
+.ar-cta-sub{margin:9px 0 12px;font-size:13px;line-height:1.55;color:var(--text-soft)}
+.ar-cta-form{display:flex;flex-direction:column;gap:10px}
+.ar-cta-form input{height:44px;padding:0 14px;border-radius:12px;border:1px solid var(--line);background:#fff;font:inherit;font-size:14px;color:var(--text)}
+.ar-cta-form input::placeholder{color:var(--text-mute)}
+.ar-cta-form input:focus{outline:none;border-color:rgba(0,71,187,.5)}
+.ar-cta-form .btn{width:100%;justify-content:center;margin-top:2px}
+.ar-cta-note{margin-top:10px;font-size:11px;color:var(--text-mute);text-align:center}
+
+@media (max-width:1024px){
+  /* the shared breakpoint flattens the rail; this page's column swap and
+     the toc's flipped border hand back to the shared one-column rules */
+  .ar-cols{grid-template-columns:minmax(0,1fr)}
+  .ar-toc{border-left:0;padding-left:0}
+  .ar-cta{order:3;min-width:0}
+}
+
 /* the fine print under an illustrative table */
 .ar-body .ar-fine{margin-top:10px;font-size:12px;line-height:1.6;color:var(--text-mute)}
   </style>
@@ -490,23 +509,17 @@
           </nav>
         </div>
 
-        <div class="ar-extras">
-          <div class="ar-key glass">
-            <h2 class="ar-side-h">At a glance</h2>
-            <ul>
-              <li><span>Level</span><b>Basics</b></li>
-              <li><span>Read time</span><b>12 min</b></li>
-              <li><span>Product</span><b>Bonds</b></li>
-              <li><span>Updated</span><b>3 Aug 2026</b></li>
-            </ul>
-            <p class="ar-key-note">Educational content. Not investment advice.</p>
-          </div>
-
-          <div class="ar-sub glass">
-            <h2 class="ar-side-h">Keep learning</h2>
-            <p>New guides land in the Knowledge Centre every week, from first principles to strategy.</p>
-            <a class="btn btn-primary btn-sm" href="/education.html">Browse the library <svg class="ico"><use href="#i-arrow-right"/></svg></a>
-          </div>
+        <div class="ar-cta glass" data-ar-open-card>
+          <h2 class="ar-side-h">Open Live Account</h2>
+          <p class="ar-cta-sub">Trade 1,000+ instruments with ultra-tight spreads and 100&thinsp;ms execution. Set up in minutes.</p>
+          <form class="ar-cta-form" data-ar-open novalidate="false">
+            <label class="sr-only" for="arOpenName">Full name</label>
+            <input type="text" id="arOpenName" name="name" placeholder="Full name" autocomplete="name" required>
+            <label class="sr-only" for="arOpenEmail">Email</label>
+            <input type="email" id="arOpenEmail" name="email" placeholder="you@example.com" inputmode="email" autocomplete="email" required>
+            <button class="btn btn-primary" type="submit">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></button>
+          </form>
+          <p class="ar-cta-note">Regulated broker &middot; Segregated client funds</p>
         </div>
       </aside>
 
@@ -677,62 +690,6 @@
             <p>This article is educational and is not investment advice or a recommendation. CFDs are complex instruments and come with a high risk of losing money rapidly due to leverage. Consider whether you understand how they work and whether you can afford the risk.</p>
           </div>
         </div>
-
-        <!-- ============ THE FORM ============ -->
-        <section class="kb-form-sec" aria-labelledby="kb-form-title">
-          <div class="ct-form-card pt-form-card glass" data-kb-form>
-            <h2 class="kb-form-h" id="kb-form-title">Get guides like this <span>by email</span></h2>
-            <p class="kb-form-sub">One note a week from the research desk. No noise, unsubscribe whenever.</p>
-
-            <form novalidate data-kb-signup>
-              <div class="ct-grid">
-                <div class="ct-field" data-kb-fld>
-                  <label for="kbName">Full name</label>
-                  <input type="text" id="kbName" name="name" autocomplete="name" placeholder="Your full name" data-kb-name aria-describedby="kbNameErr">
-                  <p class="ct-err" id="kbNameErr" hidden>Please tell us your name.</p>
-                </div>
-                <div class="ct-field" data-kb-fld>
-                  <label for="kbEmail">Email</label>
-                  <input type="email" id="kbEmail" name="email" inputmode="email" autocomplete="email" placeholder="you@example.com" data-kb-email aria-describedby="kbEmailErr">
-                  <p class="ct-err" id="kbEmailErr" hidden>We need a valid email to send it to.</p>
-                </div>
-                <div class="ct-field" data-kb-fld>
-                  <label for="kbLevel">Where are you starting from?</label>
-                  <div class="wb-selwrap">
-                    <select id="kbLevel" name="level" data-kb-level aria-describedby="kbLevelErr">
-                      <option value="">Select&hellip;</option>
-                      <option>New to trading</option>
-                      <option>Some experience</option>
-                      <option>Experienced trader</option>
-                    </select>
-                    <svg class="wb-selchev" aria-hidden="true"><use href="#i-chevron-down"/></svg>
-                  </div>
-                  <p class="ct-err" id="kbLevelErr" hidden>Please pick the closest option.</p>
-                </div>
-                <div class="ct-field">
-                  <label for="kbTopic">What would you like next? <em>optional</em></label>
-                  <input type="text" id="kbTopic" name="topic" placeholder="Bonds, indices, risk management&hellip;" data-kb-topic>
-                </div>
-              </div>
-
-              <label class="ct-check" for="kbConsent" data-kb-check>
-                <input type="checkbox" id="kbConsent" name="consent" data-kb-consent>
-                <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
-                <span>I agree to STARTRADER using these details to send the guides, as set out in the <a href="/privacy-policy-app.html">Privacy Policy</a>.</span>
-              </label>
-
-              <div class="ct-actions">
-                <button class="btn btn-primary btn-lg ct-submit" type="submit">Send me the guides <svg class="ico"><use href="#i-arrow-right"/></svg></button>
-              </div>
-            </form>
-
-            <div class="ct-done" data-kb-done hidden role="status">
-              <span class="ct-done-ic" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
-              <b>You are on the list</b>
-              <p>The next guide goes out on Monday. Check your inbox for a confirmation.</p>
-            </div>
-          </div>
-        </section>
 
         <div class="ar-tags">
           <span class="ar-tags-l">Tagged</span>
@@ -940,5 +897,16 @@
 <script src="/assets/js/vendor/lenis.min.js" defer></script>
 <script src="/assets/js/vendor/aos.min.js" defer></script>
 <script src="/assets/js/main.js?v=qa37" defer></script>
+<script>
+// the rail's open-account form: native validation runs first; a valid
+// submit routes to account opening without carrying the fields in the URL
+document.addEventListener('DOMContentLoaded', function () {
+  var f = document.querySelector('[data-ar-open]');
+  if (f) f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    window.location.href = '/getting-started.html';
+  });
+});
+</script>
 </body>
 </html>
