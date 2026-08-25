@@ -63,36 +63,53 @@
 @media (max-width:1080px){.cp-docs{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:720px){.cp-docs{grid-template-columns:1fr}}
 
-/* ---- the per-entity document popup: the site's light glass ---- */
-.ld-pop{border:0;border-radius:26px;padding:0;width:min(560px,calc(100vw - 32px));
+/* ---- the per-entity document popup: layered light glass ---- */
+.ld-pop{border:0;border-radius:28px;padding:0;width:min(600px,calc(100vw - 32px));
   margin:auto;inset:0;max-height:min(86vh,680px);overflow:auto;
   background:transparent}
-.ld-pop::backdrop{background:rgba(6,10,20,.44);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
-.ld-pop[open]{animation:ldPopIn .32s var(--ease)}
-@keyframes ldPopIn{from{opacity:0;transform:translateY(12px) scale(.985)}to{opacity:1;transform:none}}
+.ld-pop::backdrop{background:rgba(5,9,18,.5);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+.ld-pop[open]{animation:ldPopIn .34s var(--ease)}
+@keyframes ldPopIn{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.ld-pop[open]{animation:none}}
-.ld-pop-card{position:relative;padding:clamp(26px,4.5vw,38px);border-radius:26px;
-  background:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.95);
-  -webkit-backdrop-filter:blur(26px) saturate(1.5);backdrop-filter:blur(26px) saturate(1.5);
-  box-shadow:0 44px 96px -42px rgba(20,44,96,.55),inset 0 1px 0 rgba(255,255,255,.92)}
-.ld-pop-x{position:absolute;right:14px;top:14px;width:36px;height:36px;display:grid;place-items:center;
-  border:0;border-radius:50%;background:rgba(20,44,96,.06);color:var(--text-soft);cursor:pointer;
-  transition:background .25s,color .25s,transform .3s var(--ease)}
-.ld-pop-x:hover{background:var(--blue);color:#fff;transform:rotate(90deg)}
+.ld-pop-card{position:relative;padding:clamp(28px,4.5vw,40px);border-radius:28px;overflow:hidden;
+  background:
+    radial-gradient(52% 40% at 10% 0%,rgba(0,71,187,.07),transparent 62%),
+    radial-gradient(42% 36% at 94% 6%,rgba(22,233,215,.06),transparent 64%),
+    rgba(255,255,255,.86);
+  border:1px solid rgba(255,255,255,.95);
+  -webkit-backdrop-filter:blur(28px) saturate(1.55);backdrop-filter:blur(28px) saturate(1.55);
+  box-shadow:0 48px 110px -44px rgba(10,26,66,.6),inset 0 1px 0 rgba(255,255,255,.95)}
+/* a lit hairline across the glass, the comparison card's signature */
+.ld-pop-card::before{content:"";position:absolute;left:14%;right:14%;top:0;height:1px;border-radius:1px;
+  background:linear-gradient(90deg,transparent,rgba(0,71,187,.55),rgba(22,233,215,.45),transparent)}
+.ld-pop-x{position:absolute;right:16px;top:16px;width:38px;height:38px;display:grid;place-items:center;
+  border:1px solid rgba(20,44,96,.12);border-radius:50%;background:rgba(255,255,255,.7);color:var(--text-soft);cursor:pointer;
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  transition:background .25s,color .25s,transform .3s var(--ease),border-color .25s}
+.ld-pop-x:hover{background:var(--blue);border-color:transparent;color:#fff;transform:rotate(90deg)}
 .ld-pop-x svg{width:16px;height:16px}
-.ld-pop-kicker{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--text-mute)}
-.ld-pop-h{margin-top:8px;font-size:clamp(20px,2.6vw,26px);font-weight:800;letter-spacing:-.034em;color:var(--ink)}
-.ld-ents{margin-top:22px;display:flex;flex-direction:column}
-.ld-ent{padding:18px 0}
-.ld-ent + .ld-ent{border-top:1px solid var(--line)}
-.ld-ent b{display:block;font-size:15.5px;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
-.ld-doc-row{display:inline-flex;align-items:center;gap:12px;margin-top:12px;
-  color:var(--text);transition:color .25s}
-.ld-doc-row:hover{color:var(--blue)}
-.ld-doc-ic{flex:none;width:34px;height:34px;display:grid;place-items:center;border-radius:10px;
-  background:rgba(0,71,187,.08);border:1px solid rgba(0,71,187,.16);color:var(--blue)}
-.ld-doc-ic svg{width:17px;height:17px}
-.ld-doc-row u{text-decoration:underline;text-underline-offset:4px;font-size:15px;font-weight:600}
+.ld-pop-kicker{display:inline-flex;align-items:center;gap:8px;font-size:10.5px;font-weight:800;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--blue)}
+.ld-pop-kicker::before{content:"";width:22px;height:2px;border-radius:2px;
+  background:linear-gradient(90deg,var(--blue),#16e9d7)}
+.ld-pop-h{margin-top:10px;font-size:clamp(22px,3vw,30px);font-weight:800;letter-spacing:-.036em;color:var(--ink)}
+.ld-pop-sub{margin-top:8px;font-size:13.5px;line-height:1.6;color:var(--text-soft)}
+.ld-ents{margin-top:24px;display:flex;flex-direction:column;gap:12px}
+.ld-row{display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:18px;
+  background:rgba(255,255,255,.72);border:1px solid rgba(20,44,96,.1);
+  box-shadow:0 14px 30px -22px rgba(20,44,96,.35);
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .3s}
+.ld-row:hover{transform:translateY(-3px);border-color:rgba(0,71,187,.3);
+  box-shadow:0 22px 44px -22px rgba(0,71,187,.4)}
+.ld-row-ic{flex:none;width:44px;height:44px;display:grid;place-items:center}
+.ld-row-ic svg{width:38px;height:38px;filter:drop-shadow(0 4px 8px rgba(20,44,96,.18))}
+.ld-row-tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.ld-row-tx b{font-size:14.5px;font-weight:800;letter-spacing:-.015em;color:var(--ink);line-height:1.3}
+.ld-row-tx em{font-style:normal;font-size:12px;font-weight:600;color:var(--text-mute)}
+.ld-row-go{flex:none;width:30px;height:30px;display:grid;place-items:center;border-radius:50%;
+  background:rgba(0,71,187,.08);color:var(--blue);transition:background .25s,color .25s,transform .3s var(--ease)}
+.ld-row-go svg{width:13px;height:13px}
+.ld-row:hover .ld-row-go{background:var(--blue);color:#fff;transform:translate(2px,-2px)}
   </style>
 
   <!-- Structured data — breadcrumb -->
@@ -642,22 +659,25 @@
     </button>
     <span class="ld-pop-kicker">Issued per entity</span>
     <h2 class="ld-pop-h" id="ld-pop-h" data-ld-title>Client Agreement</h2>
+    <p class="ld-pop-sub">Choose your licensed entity&rsquo;s copy &mdash; it is named in your client agreement and on your statements.</p>
     <div class="ld-ents">
-      <div class="ld-ent">
-        <b>STARTRADER Financial Markets Limited</b>
-        <!-- the CMS wires each entity's PDF here -->
-        <a class="ld-doc-row" href="#" target="_blank" rel="noopener" data-ld-doc>
-          <span class="ld-doc-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 3v5h5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><text x="8" y="17" font-size="6.5" font-weight="800" fill="currentColor" font-family="inherit">PDF</text></svg></span>
-          <u data-ld-doc-label>Client Agreement</u>
-        </a>
-      </div>
-      <div class="ld-ent">
-        <b>STARTRADER LIMITED</b>
-        <a class="ld-doc-row" href="#" target="_blank" rel="noopener" data-ld-doc>
-          <span class="ld-doc-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 3v5h5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><text x="8" y="17" font-size="6.5" font-weight="800" fill="currentColor" font-family="inherit">PDF</text></svg></span>
-          <u data-ld-doc-label>Client Agreement</u>
-        </a>
-      </div>
+      <!-- the CMS wires each entity's PDF href -->
+      <a class="ld-row" href="#" target="_blank" rel="noopener" data-ld-doc>
+        <span class="ld-row-ic"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 2h11.5L27 9.5V28a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z" fill="#fff" stroke="#cdd6e4" stroke-width="1.2"/><path d="M19.5 2v7.5H27" fill="#eef2f8" stroke="#cdd6e4" stroke-width="1.2" stroke-linejoin="round"/><rect x="3" y="15.5" width="21" height="10.5" rx="2.6" fill="#E5484D"/><text x="6.4" y="23.4" font-size="7.2" font-weight="800" fill="#fff" letter-spacing=".5">PDF</text></svg></span>
+        <span class="ld-row-tx">
+          <b>STARTRADER Financial Markets Limited</b>
+          <em><span data-ld-doc-label>Client Agreement</span> &middot; PDF</em>
+        </span>
+        <span class="ld-row-go" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
+      </a>
+      <a class="ld-row" href="#" target="_blank" rel="noopener" data-ld-doc>
+        <span class="ld-row-ic"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 2h11.5L27 9.5V28a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z" fill="#fff" stroke="#cdd6e4" stroke-width="1.2"/><path d="M19.5 2v7.5H27" fill="#eef2f8" stroke="#cdd6e4" stroke-width="1.2" stroke-linejoin="round"/><rect x="3" y="15.5" width="21" height="10.5" rx="2.6" fill="#E5484D"/><text x="6.4" y="23.4" font-size="7.2" font-weight="800" fill="#fff" letter-spacing=".5">PDF</text></svg></span>
+        <span class="ld-row-tx">
+          <b>STARTRADER LIMITED</b>
+          <em><span data-ld-doc-label>Client Agreement</span> &middot; PDF</em>
+        </span>
+        <span class="ld-row-go" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
+      </a>
     </div>
   </div>
 </dialog>
