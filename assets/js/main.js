@@ -2128,7 +2128,7 @@
     // a hidden panel measures as zero, so re-measure when a tab switch refreshes
     if (hasST) ScrollTrigger.addEventListener('refresh', layoutRail);
 
-    if (prefersReduced || COARSE || !hasGSAP || !hasST) {
+    if (prefersReduced || !hasGSAP || !hasST) {
       list.style.setProperty('--htrade-rail', '1');
       return;
     }
@@ -2139,7 +2139,9 @@
       scrollTrigger: { trigger: list, start: 'top 76%', end: 'bottom 74%', scrub: 0.6 }
     });
 
-    // one step highlighted at a time, following the scroll position
+    // one step highlighted at a time, following the scroll position.
+    // touch pointers used to be excluded here, which left the highlight
+    // frozen on phones and in responsive-mode testing (IT 8.25, item 5)
     steps.forEach(function (s, i) {
       ScrollTrigger.create({
         trigger: s, start: 'top 66%', end: 'bottom 44%',
@@ -2147,6 +2149,15 @@
         onEnterBack: function () { setActive(i); }
       });
     });
+    // enter/back only fire on a crossing, so a resize that reflows the
+    // steps around the viewport line leaves a stale highlight until the
+    // next crossing — recompute it outright after every refresh
+    function syncActive() {
+      var line = window.innerHeight * 0.55, idx = 0;
+      steps.forEach(function (s, i) { if (s.getBoundingClientRect().top < line) idx = i; });
+      setActive(idx);
+    }
+    ScrollTrigger.addEventListener('refresh', syncActive);
   }
 
   /* ---------------- Commodities page interactions ---------------- */
