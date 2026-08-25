@@ -158,6 +158,16 @@
    copy takes only the room left of the artwork. */
 @media (max-width:1180px) and (min-width:901px){
   .x-hand-copy{max-width:min(600px,46vw)}
+  /* IT follow-up 8.25: the chips' fixed left offsets let their right ends
+     ride onto the handset as the two columns close on each other in this
+     band. The art's width is computable — 102% of the section's height at
+     a 1000:1364 aspect — so the chips anchor to its left edge instead and
+     keep 10px of air at every width the band covers. The quote chip also
+     drops to the visual's lower corner: at the band's narrow end there is
+     no horizontal room left between the copy column and the art, but the
+     store buttons end above that line, so the depth is all clearance. */
+  .x-chip--exec,.x-chip--quote{left:auto;right:calc(clamp(520px,52vw,660px)*.7478 + 10px)}
+  .x-chip--quote{bottom:6%}
 }
 @media (max-width:900px){
   .x-hand-sec{min-height:0;display:block;padding-bottom:0}
