@@ -5020,3 +5020,12 @@ html{scroll-behavior:auto}
 .ev-rail.st-marquee{overflow:hidden;cursor:grab;overflow-x:hidden}
 .ev-rail.st-marquee .ev-track{padding:6px 0}
 .ev-rail.st-marquee .ev-shot{width:100%}
+
+/* ===== CK LEAD TAG STAYS WITH ITS NAME (2026-08-25, appended batch) =====
+   The ragged second line kept coming back: margin-left:auto sent the
+   pill to the far right whenever the header wrapped, and the wrap point
+   shifts with fonts, zoom and viewport, so no width band could cover
+   every environment. The auto margin goes entirely — the pill now sits
+   beside the name on one line, and when the row must wrap it lands
+   flush left with the header's own edge. Sponsorship lead cards. */
+.ck-lead-tag{margin-left:0}
