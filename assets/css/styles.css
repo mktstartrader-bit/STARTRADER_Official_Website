@@ -5013,6 +5013,25 @@ html{scroll-behavior:auto}
   .wb-hero-video{aspect-ratio:2/1;object-position:50% 0;filter:brightness(1.16) saturate(1.06)}
 }
 
+/* ===== VIDEO BANNERS RUN FULL-BLEED (2026-08-25, appended batch) =====
+   MKT reference (Revolut mobile): the stacked hero media is not a
+   framed card — it runs edge to edge beneath the copy and meets the
+   section's bottom edge, one continuous banner. The frame, gutter and
+   shadow from the batch above go; phones take a taller 4:3 crop for
+   presence, tablets keep 16:9, and the webinars film widens to 21:9
+   top-anchored so the footage's lower band stays cropped away. */
+@media (max-width:980px){
+  .pm-hero,.acct-hero,.fx-hero,.wb-hero{padding-bottom:0}
+  .pm-hero-video,.acct-hero-video,.wb-hero-video{
+    width:100%;max-width:none;margin:30px 0 0;
+    border-radius:0;box-shadow:none;
+  }
+  .wb-hero-video{aspect-ratio:21/9}
+}
+@media (max-width:560px){
+  .pm-hero-video,.acct-hero-video{aspect-ratio:4/3}
+}
+
 /* ===== THE PLATFORM RAIL SHOWS ONE WHOLE CARD ON PHONES (2026-08-25, appended batch) =====
    Dev feedback at ~400px: the fixed 280px card left the next one cut
    awkwardly beside it, and the arrows sat small in the corner. On
