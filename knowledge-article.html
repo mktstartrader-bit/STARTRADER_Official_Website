@@ -46,7 +46,7 @@
    ================================================================= */
 /* the rail takes the width a real form needs, and the copy column
    gives it back — shrinking first when the window tightens */
-.ar{--ar-rail:340px;--ar-measure:700px}
+.ar{--ar-rail:380px;--ar-measure:650px}
 .ar-cols{grid-template-columns:minmax(0,var(--ar-measure)) var(--ar-rail)}
 .ar-main{order:1}
 .ar-rail{order:2}
@@ -56,23 +56,26 @@
 
 /* the open-account card in the rail */
 .ar-cta{padding:20px 18px 18px;border-radius:16px}
-.ar-cta-h{font-size:20px;font-weight:800;letter-spacing:-.032em;color:var(--ink)}
+.ar-cta-h{font-size:20px;font-weight:800;letter-spacing:-.032em;color:var(--ink);text-align:center}
 .ar-cta-h span{color:var(--blue)}
 .ar-cta-form{display:flex;flex-direction:column;gap:13px;margin-top:14px}
 .ar-f{display:flex;flex-direction:column;gap:6px}
 .ar-f label{font-size:12.5px;font-weight:700;color:var(--text)}
 .ar-f label i{font-style:normal;color:var(--red)}
+/* the site's field language: a quiet underline, not a boxed input */
 .ar-cta-form input,.ar-cta-form select{
-  width:100%;height:44px;padding:0 14px;border-radius:12px;border:1px solid var(--line);
-  background:#fff;font:inherit;font-size:14px;color:var(--text);appearance:none;
+  width:100%;font:inherit;font-size:15px;color:var(--text);padding:10px 2px;
+  background:transparent;border:0;border-bottom:1px solid rgba(20,44,96,.2);border-radius:0;
+  outline:none;appearance:none;transition:border-color .25s;
 }
 .ar-cta-form input::placeholder{color:var(--text-mute)}
-.ar-cta-form input:focus,.ar-cta-form select:focus{outline:none;border-color:rgba(0,71,187,.5)}
-.ar-cta .wb-selwrap .wb-selchev{position:absolute;right:13px;top:50%;transform:translateY(-50%);width:15px;height:15px;color:var(--text-mute);pointer-events:none}
+.ar-cta-form input:hover,.ar-cta-form select:hover{border-bottom-color:rgba(20,44,96,.4)}
+.ar-cta-form input:focus,.ar-cta-form select:focus{border-bottom-color:var(--blue)}
+.ar-cta .wb-selwrap .wb-selchev{position:absolute;right:2px;top:50%;transform:translateY(-50%);width:15px;height:15px;color:var(--text-mute);pointer-events:none}
 .ar-code-row{display:flex;gap:8px}
 .ar-code-row input{flex:1;min-width:0}
 .ar-send{
-  flex:none;height:44px;padding:0 14px;border-radius:12px;cursor:pointer;
+  flex:none;height:40px;align-self:flex-end;padding:0 14px;border-radius:70px;cursor:pointer;
   border:1px solid rgba(0,71,187,.35);background:rgba(0,71,187,.06);
   font:inherit;font-size:12.5px;font-weight:700;color:var(--blue);
   transition:background .25s,color .25s;
@@ -81,8 +84,8 @@
 .ar-send:disabled{opacity:.55;cursor:default}
 .ar-sent{font-size:11.5px;color:#0f9d76}
 .ar-pass-row{position:relative}
-.ar-pass-row input{padding-right:46px}
-.ar-eye{position:absolute;right:4px;top:4px;width:36px;height:36px;display:grid;place-items:center;
+.ar-pass-row input{padding-right:40px}
+.ar-eye{position:absolute;right:0;top:50%;transform:translateY(-50%);width:34px;height:34px;display:grid;place-items:center;
   border:0;border-radius:10px;background:none;color:var(--text-mute);cursor:pointer;transition:color .25s}
 .ar-eye:hover{color:var(--text)}
 .ar-eye[aria-pressed="true"]{color:var(--blue)}
@@ -690,6 +693,10 @@
             <span class="ar-copied" data-ar-copied hidden role="status">Link copied</span>
           </div>
         </div>
+
+        <figure class="ar-fig">
+          <img src="/assets/img/learn-viz.webp" alt="Market learning illustration with charts and study notes" width="1600" height="900" fetchpriority="high" decoding="async" itemprop="image">
+        </figure>
 
         <div class="ar-body" itemprop="articleBody">
           <p class="ar-lede">Stocks are the main topic of most investing conversations. Bonds seldom are &mdash; which is odd, because the bond market is larger by total value than the equity market. Governments and companies have been raising money by selling bonds for centuries.</p>
