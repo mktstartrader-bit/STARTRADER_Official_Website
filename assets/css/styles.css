@@ -4988,6 +4988,21 @@ html{scroll-behavior:auto}
 .wt-frame-url{min-width:0;overflow:hidden;white-space:nowrap}
 .wt-frame-bar i,.wt-frame-live{flex:none}
 
+/* ===== THE PLATFORM RAIL SHOWS ONE WHOLE CARD ON PHONES (2026-08-25, appended batch) =====
+   Dev feedback at ~400px: the fixed 280px card left the next one cut
+   awkwardly beside it, and the arrows sat small in the corner. On
+   phones the card now sizes to the viewport — one whole card with a
+   24px gutter and only a sliver of the next as the swipe cue — the
+   snap from the earlier batch lands every gesture on a card edge, and
+   the arrows grow to 44px tap targets centred under the full-width
+   progress line. Desktop keeps every current measurement. */
+@media (max-width:600px){
+  .mt-rail-card{width:clamp(272px,calc(100vw - 72px),340px)}
+  .mt-rail-foot{flex-direction:column;align-items:stretch;gap:16px}
+  .mt-rail-nav{justify-content:center}
+  .mt-rail-btn{width:44px;height:44px}
+}
+
 /* ===== THE ACTIVE LANGUAGE RETURNS, LIT (2026-08-25, appended batch) =====
    MKT preference over the earlier menu batch: the page's own language
    stays in the menu after all, wearing the blue active pill both grids
