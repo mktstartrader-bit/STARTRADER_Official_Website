@@ -68,6 +68,28 @@
 /* ---- Responsive ---- */
 @media (max-width:1080px){.pg-partner-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:720px){.pg-partner-grid{grid-template-columns:1fr}}
+
+/* ---- the four principles: the site's layered glass with STAR watermarks ---- */
+.pg-vals{grid-template-columns:repeat(4,minmax(0,1fr))}
+.pg-vals .pf-card{position:relative;border-radius:22px;padding:26px 24px 28px;
+  background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.95);
+  -webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);
+  box-shadow:0 24px 54px -34px rgba(20,44,96,.35),inset 0 1px 0 rgba(255,255,255,.9);
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s}
+.pg-vals .pf-card:hover{transform:translateY(-6px);border-color:rgba(0,71,187,.22);
+  box-shadow:0 34px 66px -34px rgba(20,44,96,.5)}
+.pg-vals .pf-card::before{content:attr(data-letter);position:absolute;right:12px;top:-16px;
+  font-size:96px;font-weight:800;letter-spacing:-.05em;line-height:1;pointer-events:none;
+  color:transparent;background:linear-gradient(180deg,rgba(0,71,187,.16),rgba(0,71,187,.02) 82%);
+  -webkit-background-clip:text;background-clip:text}
+.pg-vals .pf-card-ic{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;
+  background:linear-gradient(160deg,#2a72ff,var(--blue));color:#fff;
+  box-shadow:0 12px 24px -12px rgba(0,71,187,.7)}
+.pg-vals .pf-card-ic svg{width:20px;height:20px}
+.pg-vals .pf-card h3{margin-top:16px}
+.pg-vals .pf-card p{margin-top:8px}
+@media (max-width:1080px){.pg-vals{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.pg-vals{grid-template-columns:1fr}}
   </style>
 
   <script type="application/ld+json">
@@ -490,23 +512,23 @@
       <h2 class="h2" id="pg-grid-title" data-aos="fade-up">Our partnerships reflect our values</h2>
       <p class="head-sub" data-aos="fade-up">Every sponsorship we choose is guided by the same four principles.</p>
     </div>
-    <div class="pf-grid">
-      <article class="pf-card glass" data-aos="fade-up">
+    <div class="pf-grid pg-vals">
+      <article class="pf-card glass" data-letter="S" data-aos="fade-up">
         <span class="pf-card-ic"><svg><use href="#i-shield"/></svg></span>
         <h3>S &mdash; Strength</h3>
         <p>We back the powerful, ready to take the next challenge.</p>
       </article>
-      <article class="pf-card glass" data-aos="fade-up" data-aos-delay="100">
+      <article class="pf-card glass" data-letter="T" data-aos="fade-up" data-aos-delay="100">
         <span class="pf-card-ic"><svg><use href="#i-check"/></svg></span>
         <h3>T &mdash; Trust</h3>
         <p>We stand by the names people believe in.</p>
       </article>
-      <article class="pf-card glass" data-aos="fade-up" data-aos-delay="200">
+      <article class="pf-card glass" data-letter="A" data-aos="fade-up" data-aos-delay="200">
         <span class="pf-card-ic"><svg><use href="#i-star"/></svg></span>
         <h3>A &mdash; Ambition</h3>
         <p>We support those who always aim high and reach high.</p>
       </article>
-      <article class="pf-card glass" data-aos="fade-up" data-aos-delay="300">
+      <article class="pf-card glass" data-letter="R" data-aos="fade-up" data-aos-delay="300">
         <span class="pf-card-ic"><svg><use href="#i-gauge"/></svg></span>
         <h3>R &mdash; Resilience</h3>
         <p>We endure with our partners, standing strong through every test.</p>
