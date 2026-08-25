@@ -4988,6 +4988,31 @@ html{scroll-behavior:auto}
 .wt-frame-url{min-width:0;overflow:hidden;white-space:nowrap}
 .wt-frame-bar i,.wt-frame-live{flex:none}
 
+/* ===== VIDEO BANNERS STACK BELOW THE COPY (2026-08-25, appended batch) =====
+   Dev feedback: below ~980px the hero footage sat behind — and read
+   as covering — the copy. Every video hero now re-stacks on tablet and
+   phone: heading, subline and button first on the section's own
+   ground, then the film as a framed 16:9 media block, its aspect held,
+   never scaled-down desktop furniture. The fx product pages needed the
+   same flex column re-asserted because their 980px rule flips the
+   section to display:block, which is exactly what let the footage
+   paint over the copy. The webinars film keeps a wider top-anchored
+   box so the footage's lower band (third-party scheme marks) stays
+   cropped away. Families: pm-hero (promotions), acct-hero/fx-hero
+   (products), wb-hero (webinars). */
+@media (max-width:980px){
+  .pm-hero,.acct-hero,.fx-hero{display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;min-height:auto}
+  .pm-hero-video,.acct-hero-video,.wb-hero-video{
+    position:static;order:99;z-index:auto;
+    width:calc(100% - 40px);max-width:560px;height:auto;
+    margin:28px auto 34px;aspect-ratio:16/9;border-radius:16px;
+    object-fit:cover;object-position:center;
+    box-shadow:0 24px 50px -28px rgba(0,0,0,.5);
+  }
+  .wb-hero{min-height:auto}
+  .wb-hero-video{aspect-ratio:2/1;object-position:50% 0;filter:brightness(1.16) saturate(1.06)}
+}
+
 /* ===== THE PLATFORM RAIL SHOWS ONE WHOLE CARD ON PHONES (2026-08-25, appended batch) =====
    Dev feedback at ~400px: the fixed 280px card left the next one cut
    awkwardly beside it, and the arrows sat small in the corner. On
