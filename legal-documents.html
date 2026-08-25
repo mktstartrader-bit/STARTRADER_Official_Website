@@ -532,7 +532,7 @@
         <span class="cp-doc-ic"><svg><use href="#i-doc"/></svg></span>
         <h3>Client Agreement</h3>
         <p>The contract between you and the STARTRADER entity your account is registered with, setting out the terms on which we provide services.</p>
-        <button class="cp-doc-go" type="button" data-ld-open>Open document <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></button>
+        <button class="cp-doc-go" type="button" data-ld-open data-ld-entities='[{"name":"STARTRADER Financial Markets Limited","href":"https://www.startrader.com/pdf/startrader-financial-markets-limited-client-agreement-20260715.pdf"},{"name":"STARTRADER LIMITED","href":"https://www.startrader.com/pdf/startrader-limited-client-agreement-20260715.pdf"}]'>Open document <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></button>
       </article>
 
       <article class="cp-doc glass" data-aos="fade-up" data-aos-delay="100">
@@ -546,7 +546,7 @@
         <span class="cp-doc-ic"><svg><use href="#i-shield"/></svg></span>
         <h3>Privacy Policy</h3>
         <p>What personal data we collect, why we hold it, how long we keep it, and the rights you have over it.</p>
-        <a class="cp-doc-go" href="#">Open document <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></a>
+        <button class="cp-doc-go" type="button" data-ld-open data-ld-entities='[{"name":"STARTRADER Financial Markets Limited","href":"https://www.startrader.com/pdf/startrader-privacy-policy-20260210.pdf"},{"name":"STARTRADER Limited (Seychelles)","href":"https://www.startrader.com/pdf/startrader-limited-privacy-policy-20260216.pdf"}]'>Open document <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></button>
       </article>
 
       <article class="cp-doc glass" data-aos="fade-up" data-aos-delay="300">
@@ -660,24 +660,7 @@
     <span class="ld-pop-kicker">Issued per entity</span>
     <h2 class="ld-pop-h" id="ld-pop-h" data-ld-title>Client Agreement</h2>
     <p class="ld-pop-sub">Choose your licensed entity&rsquo;s copy &mdash; it is named in your client agreement and on your statements.</p>
-    <div class="ld-ents">
-      <a class="ld-row" href="https://www.startrader.com/pdf/startrader-financial-markets-limited-client-agreement-20260715.pdf" target="_blank" rel="noopener" data-ld-doc>
-        <span class="ld-row-ic"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 2h11.5L27 9.5V28a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z" fill="#fff" stroke="#cdd6e4" stroke-width="1.2"/><path d="M19.5 2v7.5H27" fill="#eef2f8" stroke="#cdd6e4" stroke-width="1.2" stroke-linejoin="round"/><rect x="3" y="15.5" width="21" height="10.5" rx="2.6" fill="#E5484D"/><text x="6.4" y="23.4" font-size="7.2" font-weight="800" fill="#fff" letter-spacing=".5">PDF</text></svg></span>
-        <span class="ld-row-tx">
-          <b>STARTRADER Financial Markets Limited</b>
-          <em><span data-ld-doc-label>Client Agreement</span> &middot; PDF</em>
-        </span>
-        <span class="ld-row-go" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
-      </a>
-      <a class="ld-row" href="https://www.startrader.com/pdf/startrader-limited-client-agreement-20260715.pdf" target="_blank" rel="noopener" data-ld-doc>
-        <span class="ld-row-ic"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 2h11.5L27 9.5V28a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z" fill="#fff" stroke="#cdd6e4" stroke-width="1.2"/><path d="M19.5 2v7.5H27" fill="#eef2f8" stroke="#cdd6e4" stroke-width="1.2" stroke-linejoin="round"/><rect x="3" y="15.5" width="21" height="10.5" rx="2.6" fill="#E5484D"/><text x="6.4" y="23.4" font-size="7.2" font-weight="800" fill="#fff" letter-spacing=".5">PDF</text></svg></span>
-        <span class="ld-row-tx">
-          <b>STARTRADER LIMITED</b>
-          <em><span data-ld-doc-label>Client Agreement</span> &middot; PDF</em>
-        </span>
-        <span class="ld-row-go" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
-      </a>
-    </div>
+    <div class="ld-ents" data-ld-ents></div>
   </div>
 </dialog>
 
@@ -803,19 +786,34 @@
 <script src="/assets/js/vendor/aos.min.js" defer></script>
 <script src="/assets/js/main.js?v=qa43" defer></script>
 <script>
-// each card opens the shared popup carrying its own document name; the
-// CMS supplies the per-entity PDF hrefs on the two data-ld-doc links
+// each card opens the shared popup carrying its own document name and its
+// own entity list — name + href pairs ride the trigger's data attribute
 document.addEventListener('DOMContentLoaded', function () {
   var pop = document.querySelector('[data-ld-pop]');
   if (!pop) return;
   var title = pop.querySelector('[data-ld-title]');
-  var labels = pop.querySelectorAll('[data-ld-doc-label]');
+  var ents = pop.querySelector('[data-ld-ents]');
   var last = null;
+  var PDF_IC = '<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 2h11.5L27 9.5V28a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z" fill="#fff" stroke="#cdd6e4" stroke-width="1.2"/><path d="M19.5 2v7.5H27" fill="#eef2f8" stroke="#cdd6e4" stroke-width="1.2" stroke-linejoin="round"/><rect x="3" y="15.5" width="21" height="10.5" rx="2.6" fill="#E5484D"/><text x="6.4" y="23.4" font-size="7.2" font-weight="800" fill="#fff" letter-spacing=".5">PDF</text></svg>';
   document.querySelectorAll('[data-ld-open]').forEach(function (b) {
     b.addEventListener('click', function () {
       var name = b.closest('.cp-doc').querySelector('h3').textContent.trim();
+      var list = [];
+      try { list = JSON.parse(b.getAttribute('data-ld-entities') || '[]'); } catch (e) {}
       title.textContent = name;
-      labels.forEach(function (l) { l.textContent = name; });
+      ents.innerHTML = '';
+      list.forEach(function (ent) {
+        var a = document.createElement('a');
+        a.className = 'ld-row';
+        a.href = ent.href;
+        if (ent.href && ent.href !== '#') { a.target = '_blank'; a.rel = 'noopener'; }
+        a.innerHTML = '<span class="ld-row-ic">' + PDF_IC + '</span>' +
+          '<span class="ld-row-tx"><b></b><em><span></span> &middot; PDF</em></span>' +
+          '<span class="ld-row-go" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>';
+        a.querySelector('b').textContent = ent.name;
+        a.querySelector('em span').textContent = name;
+        ents.appendChild(a);
+      });
       last = b;
       if (typeof pop.showModal === 'function') pop.showModal();
       else pop.setAttribute('open', '');
