@@ -4959,6 +4959,15 @@ html{scroll-behavior:auto}
   .mt-rail-card{scroll-snap-align:start}
 }
 
+/* ===== THE MENU LISTS ONLY THE OTHER LANGUAGES (2026-08-25, appended batch) =====
+   The approved sheet shows twenty languages — the twenty you can switch
+   TO. The page's own language stays out of its menu (its code already
+   sits in the header chip), so the English site lists the sheet's twenty
+   and a translated page lists English plus the other nineteen: always
+   twenty, and always a way back. The mobile sheet mirrors the rule. */
+.lp-item.is-active{display:none}
+.mm-langs button.is-on{display:none}
+
 /* ===== THE COLLAPSED HEADER KEEPS ITS RIGHT EDGE (2026-08-25, appended batch) =====
    The 1080px collapse (8.24 batch) hides .nav-menu, which carried the
    margin-right:auto that pushed the right group to the edge — the ≤900px

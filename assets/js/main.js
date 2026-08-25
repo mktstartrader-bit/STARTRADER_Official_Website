@@ -1167,7 +1167,7 @@
       'EN': 'en', 'ZH-CN': 'zh-hans', 'ZH-TW': 'zh-hant', 'JA': 'ja', 'KO': 'ko',
       'MS': 'ms', 'VI': 'vi', 'TH': 'th', 'ID': 'id', 'FR': 'fr', 'ES': 'es',
       'PL': 'pl', 'PT': 'pt', 'RU': 'ru', 'AR': 'ar', 'IT': 'it', 'FA': 'fa',
-      'TR': 'tr', 'DE': 'de', 'HI': 'hi'
+      'TR': 'tr', 'DE': 'de', 'HI': 'hi', 'NL': 'nl'
     };
     /* the button shows a two-letter badge; the Chinese codes are five characters
        and wrapped at their hyphen in a slot sized for two */
