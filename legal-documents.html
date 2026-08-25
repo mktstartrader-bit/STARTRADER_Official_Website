@@ -62,6 +62,37 @@
 /* ---- Responsive ---- */
 @media (max-width:1080px){.cp-docs{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:720px){.cp-docs{grid-template-columns:1fr}}
+
+/* ---- the per-entity document popup: the site's light glass ---- */
+.ld-pop{border:0;border-radius:26px;padding:0;width:min(560px,calc(100vw - 32px));
+  margin:auto;inset:0;max-height:min(86vh,680px);overflow:auto;
+  background:transparent}
+.ld-pop::backdrop{background:rgba(6,10,20,.44);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.ld-pop[open]{animation:ldPopIn .32s var(--ease)}
+@keyframes ldPopIn{from{opacity:0;transform:translateY(12px) scale(.985)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.ld-pop[open]{animation:none}}
+.ld-pop-card{position:relative;padding:clamp(26px,4.5vw,38px);border-radius:26px;
+  background:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.95);
+  -webkit-backdrop-filter:blur(26px) saturate(1.5);backdrop-filter:blur(26px) saturate(1.5);
+  box-shadow:0 44px 96px -42px rgba(20,44,96,.55),inset 0 1px 0 rgba(255,255,255,.92)}
+.ld-pop-x{position:absolute;right:14px;top:14px;width:36px;height:36px;display:grid;place-items:center;
+  border:0;border-radius:50%;background:rgba(20,44,96,.06);color:var(--text-soft);cursor:pointer;
+  transition:background .25s,color .25s,transform .3s var(--ease)}
+.ld-pop-x:hover{background:var(--blue);color:#fff;transform:rotate(90deg)}
+.ld-pop-x svg{width:16px;height:16px}
+.ld-pop-kicker{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--text-mute)}
+.ld-pop-h{margin-top:8px;font-size:clamp(20px,2.6vw,26px);font-weight:800;letter-spacing:-.034em;color:var(--ink)}
+.ld-ents{margin-top:22px;display:flex;flex-direction:column}
+.ld-ent{padding:18px 0}
+.ld-ent + .ld-ent{border-top:1px solid var(--line)}
+.ld-ent b{display:block;font-size:15.5px;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
+.ld-doc-row{display:inline-flex;align-items:center;gap:12px;margin-top:12px;
+  color:var(--text);transition:color .25s}
+.ld-doc-row:hover{color:var(--blue)}
+.ld-doc-ic{flex:none;width:34px;height:34px;display:grid;place-items:center;border-radius:10px;
+  background:rgba(0,71,187,.08);border:1px solid rgba(0,71,187,.16);color:var(--blue)}
+.ld-doc-ic svg{width:17px;height:17px}
+.ld-doc-row u{text-decoration:underline;text-underline-offset:4px;font-size:15px;font-weight:600}
   </style>
 
   <!-- Structured data — breadcrumb -->
@@ -484,42 +515,42 @@
         <span class="cp-doc-ic"><svg><use href="#i-doc"/></svg></span>
         <h3>Client Agreement</h3>
         <p>The contract between you and the STARTRADER entity your account is registered with, setting out the terms on which we provide services.</p>
-        <a class="cp-doc-go" href="#">Open document <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></a>
+        <button class="cp-doc-go" type="button" data-ld-open>Open document <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></button>
       </article>
 
       <article class="cp-doc glass" data-aos="fade-up" data-aos-delay="100">
         <span class="cp-doc-ic"><svg><use href="#i-headset"/></svg></span>
         <h3>Complaints Procedure Policy</h3>
         <p>How to raise a complaint, who reviews it, and what timescales apply. Complaints go to the compliance team of your entity.</p>
-        <a class="cp-doc-go" href="#">Open document <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></a>
+        <button class="cp-doc-go" type="button" data-ld-open>Open document <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></button>
       </article>
 
       <article class="cp-doc glass" data-aos="fade-up" data-aos-delay="200">
         <span class="cp-doc-ic"><svg><use href="#i-shield"/></svg></span>
         <h3>Privacy Policy</h3>
         <p>What personal data we collect, why we hold it, how long we keep it, and the rights you have over it.</p>
-        <a class="cp-doc-go" href="#">Open document <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></a>
+        <button class="cp-doc-go" type="button" data-ld-open>Open document <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></button>
       </article>
 
       <article class="cp-doc glass" data-aos="fade-up" data-aos-delay="300">
         <span class="cp-doc-ic"><svg><use href="#i-swap"/></svg></span>
         <h3>Swap-Free Accounts Policy</h3>
         <p>The terms that apply to swap-free (Islamic) accounts, including eligibility and how positions are treated.</p>
-        <a class="cp-doc-go" href="#">Open document <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></a>
+        <button class="cp-doc-go" type="button" data-ld-open>Open document <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></button>
       </article>
 
       <article class="cp-doc glass" data-aos="fade-up" data-aos-delay="400">
         <span class="cp-doc-ic"><svg><use href="#i-wallet"/></svg></span>
         <h3>Deposit and Withdrawal Policy</h3>
         <p>Accepted funding methods, processing times, third-party payment rules and the conditions attached to withdrawals.</p>
-        <a class="cp-doc-go" href="#">Open document <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></a>
+        <button class="cp-doc-go" type="button" data-ld-open>Open document <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></button>
       </article>
 
       <article class="cp-doc glass" data-aos="fade-up" data-aos-delay="500">
         <span class="cp-doc-ic"><svg><use href="#i-bolt"/></svg></span>
         <h3>Risk Disclosure</h3>
         <p>The risks of trading leveraged derivatives, set out in full. Read this before you open a position, not after.</p>
-        <a class="cp-doc-go" href="#">Open document <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></a>
+        <button class="cp-doc-go" type="button" data-ld-open>Open document <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></button>
       </article>
     </div>
 
@@ -601,6 +632,35 @@
   </div>
 </section>
 
+
+
+<!-- ============ DOCUMENT POPUP ============ -->
+<dialog class="ld-pop" data-ld-pop aria-labelledby="ld-pop-h">
+  <div class="ld-pop-card">
+    <button class="ld-pop-x" type="button" data-ld-close aria-label="Close">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+    </button>
+    <span class="ld-pop-kicker">Issued per entity</span>
+    <h2 class="ld-pop-h" id="ld-pop-h" data-ld-title>Client Agreement</h2>
+    <div class="ld-ents">
+      <div class="ld-ent">
+        <b>STARTRADER Financial Markets Limited</b>
+        <!-- the CMS wires each entity's PDF here -->
+        <a class="ld-doc-row" href="#" target="_blank" rel="noopener" data-ld-doc>
+          <span class="ld-doc-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 3v5h5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><text x="8" y="17" font-size="6.5" font-weight="800" fill="currentColor" font-family="inherit">PDF</text></svg></span>
+          <u data-ld-doc-label>Client Agreement</u>
+        </a>
+      </div>
+      <div class="ld-ent">
+        <b>STARTRADER LIMITED</b>
+        <a class="ld-doc-row" href="#" target="_blank" rel="noopener" data-ld-doc>
+          <span class="ld-doc-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 3v5h5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><text x="8" y="17" font-size="6.5" font-weight="800" fill="currentColor" font-family="inherit">PDF</text></svg></span>
+          <u data-ld-doc-label>Client Agreement</u>
+        </a>
+      </div>
+    </div>
+  </div>
+</dialog>
 
 </main>
 
@@ -723,5 +783,33 @@
 <script src="/assets/js/vendor/lenis.min.js" defer></script>
 <script src="/assets/js/vendor/aos.min.js" defer></script>
 <script src="/assets/js/main.js?v=qa43" defer></script>
+<script>
+// each card opens the shared popup carrying its own document name; the
+// CMS supplies the per-entity PDF hrefs on the two data-ld-doc links
+document.addEventListener('DOMContentLoaded', function () {
+  var pop = document.querySelector('[data-ld-pop]');
+  if (!pop) return;
+  var title = pop.querySelector('[data-ld-title]');
+  var labels = pop.querySelectorAll('[data-ld-doc-label]');
+  var last = null;
+  document.querySelectorAll('[data-ld-open]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var name = b.closest('.cp-doc').querySelector('h3').textContent.trim();
+      title.textContent = name;
+      labels.forEach(function (l) { l.textContent = name; });
+      last = b;
+      if (typeof pop.showModal === 'function') pop.showModal();
+      else pop.setAttribute('open', '');
+    });
+  });
+  function close() {
+    if (typeof pop.close === 'function') pop.close();
+    else pop.removeAttribute('open');
+    if (last && last.focus) last.focus();
+  }
+  pop.querySelector('[data-ld-close]').addEventListener('click', close);
+  pop.addEventListener('click', function (e) { if (e.target === pop) close(); });
+});
+</script>
 </body>
 </html>
