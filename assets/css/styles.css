@@ -4995,3 +4995,17 @@ html{scroll-behavior:auto}
    than twenty with it hidden. */
 .lp-item.is-active{display:inline-block}
 .mm-langs button.is-on{display:inline-block}
+
+/* ===== EVERY BLUE BUTTON WEARS THE BRAND BLUE (2026-08-25, appended batch) =====
+   Dev request: one blue for every solid blue button — the brand
+   var(--blue) with the standard darker hover, exactly like the base
+   .btn. The CTA banner's bright variant, the comparison card's gradient
+   pair, the mobile menu's gradient hover and the install pill's
+   gradient all fold into the same code. Scoped to .btn-primary in the
+   banner so the white ghost button keeps its own paint. */
+.cta-banner .btn-primary{background:var(--blue)}
+.cta-banner .btn-primary:hover{background:var(--blue-700)}
+.cmp-act .btn-primary{background:var(--blue)}
+.cmp-act .btn-primary:hover{background:var(--blue-700)}
+.mobile-menu .mm-cta a.btn:hover{background:var(--blue-700)}
+.sb-get{background:var(--blue);border-color:var(--blue);color:#fff}
