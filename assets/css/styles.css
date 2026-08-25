@@ -5050,6 +5050,16 @@ html{scroll-behavior:auto}
   .pm-hero-video,.acct-hero-video{aspect-ratio:1/1}
 }
 
+/* ===== REPORT CARDS STACK ON TABLET TOO (2026-08-25, appended batch) =====
+   MKT preference over the 08-19 sideways card: in the 441-860px band the
+   report cards keep their stacked form as well — label and copy first,
+   the cover full-width beneath on the 16:9 crop the phone band already
+   uses. The pages run longer, and that is the accepted trade. */
+@media (max-width:860px) and (min-width:441px){
+  .ma-rep{display:flex;flex-direction:column}
+  .ma-media{margin-top:auto;aspect-ratio:16/9;height:auto}
+}
+
 /* ===== THE PLATFORM RAIL SHOWS ONE WHOLE CARD ON PHONES (2026-08-25, appended batch) =====
    Dev feedback at ~400px: the fixed 280px card left the next one cut
    awkwardly beside it, and the arrows sat small in the corner. On
