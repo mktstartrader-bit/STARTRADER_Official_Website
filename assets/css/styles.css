@@ -5060,6 +5060,17 @@ html{scroll-behavior:auto}
   .ma-media{margin-top:auto;aspect-ratio:16/9;height:auto}
 }
 
+/* ===== NEWS CARDS FOLLOW THE REPORT CARDS ON TABLET (2026-08-25, appended batch) =====
+   Same request as the analysis grids: from 860px down the news cards go
+   one to a row at full width — copy first, the cover full-width beneath
+   on the 16:9 crop — instead of two squeezed columns and the 420px cap
+   the old phone rule imposed. Applies wherever the nr-grid ships: the
+   news room, the article's related row and the events page. */
+@media (max-width:860px){
+  .nr-grid{grid-template-columns:1fr;max-width:none}
+  .nr-media{aspect-ratio:16/9}
+}
+
 /* ===== THE PLATFORM RAIL SHOWS ONE WHOLE CARD ON PHONES (2026-08-25, appended batch) =====
    Dev feedback at ~400px: the fixed 280px card left the next one cut
    awkwardly beside it, and the arrows sat small in the corner. On
