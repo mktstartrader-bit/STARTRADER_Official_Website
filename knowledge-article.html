@@ -44,28 +44,66 @@
    carries the contents index plus an open-account form, both riding
    the rail's shared sticky position.
    ================================================================= */
-.ar-cols{grid-template-columns:var(--ar-measure) var(--ar-rail)}
+/* the rail takes the width a real form needs, and the copy column
+   gives it back — shrinking first when the window tightens */
+.ar{--ar-rail:340px;--ar-measure:700px}
+.ar-cols{grid-template-columns:minmax(0,var(--ar-measure)) var(--ar-rail)}
 .ar-main{order:1}
 .ar-rail{order:2}
-.ar-toc{border-right:0;padding-right:0;border-left:1px solid var(--line);padding-left:var(--toc-pad)}
-.ar-toc a::after{right:auto;left:calc(-1 * var(--toc-pad) - 1px)}
+/* the rail leads with the article's related tags */
+.ar-rtags{padding:18px 16px;border-radius:16px}
+.ar-rtags-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
 
 /* the open-account card in the rail */
-.ar-cta{padding:18px 16px 16px;border-radius:16px}
-.ar-cta-sub{margin:9px 0 12px;font-size:13px;line-height:1.55;color:var(--text-soft)}
-.ar-cta-form{display:flex;flex-direction:column;gap:10px}
-.ar-cta-form input{height:44px;padding:0 14px;border-radius:12px;border:1px solid var(--line);background:#fff;font:inherit;font-size:14px;color:var(--text)}
+.ar-cta{padding:20px 18px 18px;border-radius:16px}
+.ar-cta-h{font-size:20px;font-weight:800;letter-spacing:-.032em;color:var(--ink)}
+.ar-cta-h span{color:var(--blue)}
+.ar-cta-form{display:flex;flex-direction:column;gap:13px;margin-top:14px}
+.ar-f{display:flex;flex-direction:column;gap:6px}
+.ar-f label{font-size:12.5px;font-weight:700;color:var(--text)}
+.ar-f label i{font-style:normal;color:var(--red)}
+.ar-cta-form input,.ar-cta-form select{
+  width:100%;height:44px;padding:0 14px;border-radius:12px;border:1px solid var(--line);
+  background:#fff;font:inherit;font-size:14px;color:var(--text);appearance:none;
+}
 .ar-cta-form input::placeholder{color:var(--text-mute)}
-.ar-cta-form input:focus{outline:none;border-color:rgba(0,71,187,.5)}
+.ar-cta-form input:focus,.ar-cta-form select:focus{outline:none;border-color:rgba(0,71,187,.5)}
+.ar-cta .wb-selwrap .wb-selchev{position:absolute;right:13px;top:50%;transform:translateY(-50%);width:15px;height:15px;color:var(--text-mute);pointer-events:none}
+.ar-code-row{display:flex;gap:8px}
+.ar-code-row input{flex:1;min-width:0}
+.ar-send{
+  flex:none;height:44px;padding:0 14px;border-radius:12px;cursor:pointer;
+  border:1px solid rgba(0,71,187,.35);background:rgba(0,71,187,.06);
+  font:inherit;font-size:12.5px;font-weight:700;color:var(--blue);
+  transition:background .25s,color .25s;
+}
+.ar-send:hover:not(:disabled){background:var(--blue);color:#fff}
+.ar-send:disabled{opacity:.55;cursor:default}
+.ar-sent{font-size:11.5px;color:#0f9d76}
+.ar-pass-row{position:relative}
+.ar-pass-row input{padding-right:46px}
+.ar-eye{position:absolute;right:4px;top:4px;width:36px;height:36px;display:grid;place-items:center;
+  border:0;border-radius:10px;background:none;color:var(--text-mute);cursor:pointer;transition:color .25s}
+.ar-eye:hover{color:var(--text)}
+.ar-eye[aria-pressed="true"]{color:var(--blue)}
+.ar-eye svg{width:19px;height:19px}
+.ar-kind{display:flex;gap:8px}
+.ar-kind-pill{flex:1;position:relative}
+.ar-kind-pill input{position:absolute;opacity:0;width:0;height:0}
+.ar-kind-pill span{display:flex;align-items:center;justify-content:center;height:40px;border-radius:12px;
+  border:1px solid var(--line);font-size:13px;font-weight:700;color:var(--text-soft);cursor:pointer;
+  transition:background .25s,color .25s,border-color .25s}
+.ar-kind-pill input:checked + span{background:var(--blue);border-color:transparent;color:#fff}
+.ar-kind-pill input:focus-visible + span{outline:2px solid rgba(0,71,187,.5);outline-offset:2px}
+.ar-cta .ar-check{margin-top:0;font-size:12.5px;line-height:1.5}
 .ar-cta-form .btn{width:100%;justify-content:center;margin-top:2px}
 .ar-cta-note{margin-top:10px;font-size:11px;color:var(--text-mute);text-align:center}
 
 @media (max-width:1024px){
-  /* the shared breakpoint flattens the rail; this page's column swap and
-     the toc's flipped border hand back to the shared one-column rules */
+  /* the shared breakpoint flattens the rail into the article column */
   .ar-cols{grid-template-columns:minmax(0,1fr)}
-  .ar-toc{border-left:0;padding-left:0}
-  .ar-cta{order:3;min-width:0}
+  .ar-rtags{order:3;min-width:0}
+  .ar-cta{order:4;min-width:0}
 }
 
 /* the fine print under an illustrative table */
@@ -493,31 +531,135 @@
     <div class="container ar-cols">
 
       <aside class="ar-rail" aria-label="Article contents and tools">
-        <div class="ar-toc" data-ar-toc>
-          <h2 class="sr-only">On this page</h2>
-          <nav aria-label="Sections in this article">
-            <a href="#what-is-a-bond">What is a bond?</a>
-            <a href="#why-invest">Why invest in bonds?</a>
-            <a href="#types">Types of bonds</a>
-            <a href="#how-it-works">How bond investing works</a>
-            <a href="#yield">What bond yield is</a>
-            <a href="#rates">How interest rates affect prices</a>
-            <a href="#how-to-invest">How to invest in bonds</a>
-            <a href="#cfds">Trading bonds using CFDs</a>
-            <a href="#risks">The key risks</a>
-            <a href="#mistakes">Common mistakes to avoid</a>
-          </nav>
+        <div class="ar-rtags glass">
+          <h2 class="ar-side-h">Related tags</h2>
+          <div class="ar-rtags-list">
+            <a class="ar-tag" href="/education.html">Bonds</a>
+            <a class="ar-tag" href="/education.html">Fixed income</a>
+            <a class="ar-tag" href="/education.html">Yields</a>
+            <a class="ar-tag" href="/education.html">Interest rates</a>
+            <a class="ar-tag" href="/education.html">CFDs</a>
+            <a class="ar-tag" href="/education.html">Basics</a>
+          </div>
         </div>
 
         <div class="ar-cta glass" data-ar-open-card>
-          <h2 class="ar-side-h">Open Live Account</h2>
-          <p class="ar-cta-sub">Trade 1,000+ instruments with ultra-tight spreads and 100&thinsp;ms execution. Set up in minutes.</p>
-          <form class="ar-cta-form" data-ar-open novalidate="false">
-            <label class="sr-only" for="arOpenName">Full name</label>
-            <input type="text" id="arOpenName" name="name" placeholder="Full name" autocomplete="name" required>
-            <label class="sr-only" for="arOpenEmail">Email</label>
-            <input type="email" id="arOpenEmail" name="email" placeholder="you@example.com" inputmode="email" autocomplete="email" required>
-            <button class="btn btn-primary" type="submit">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></button>
+          <h2 class="ar-cta-h">Open <span>Live Account</span></h2>
+          <form class="ar-cta-form" data-ar-open>
+            <div class="ar-f">
+              <label for="arCountry">Country <i>*</i></label>
+              <div class="wb-selwrap">
+                <!-- illustrative list — the CMS supplies the licensed country set -->
+                <select id="arCountry" name="country" required>
+                  <option value="">Select your country&hellip;</option>
+                  <option>United Arab Emirates</option>
+                  <option>United Kingdom</option>
+                  <option>Australia</option>
+                  <option>Austria</option>
+                  <option>Bahrain</option>
+                  <option>Bangladesh</option>
+                  <option>Belgium</option>
+                  <option>Brazil</option>
+                  <option>Brunei</option>
+                  <option>Cambodia</option>
+                  <option>Chile</option>
+                  <option>China</option>
+                  <option>Colombia</option>
+                  <option>Cyprus</option>
+                  <option>Czechia</option>
+                  <option>Denmark</option>
+                  <option>Egypt</option>
+                  <option>Finland</option>
+                  <option>France</option>
+                  <option>Germany</option>
+                  <option>Greece</option>
+                  <option>Hong Kong</option>
+                  <option>Hungary</option>
+                  <option>India</option>
+                  <option>Indonesia</option>
+                  <option>Ireland</option>
+                  <option>Italy</option>
+                  <option>Japan</option>
+                  <option>Jordan</option>
+                  <option>Kenya</option>
+                  <option>Kuwait</option>
+                  <option>Laos</option>
+                  <option>Lebanon</option>
+                  <option>Malaysia</option>
+                  <option>Maldives</option>
+                  <option>Mexico</option>
+                  <option>Morocco</option>
+                  <option>Nepal</option>
+                  <option>Netherlands</option>
+                  <option>New Zealand</option>
+                  <option>Nigeria</option>
+                  <option>Norway</option>
+                  <option>Oman</option>
+                  <option>Pakistan</option>
+                  <option>Peru</option>
+                  <option>Philippines</option>
+                  <option>Poland</option>
+                  <option>Portugal</option>
+                  <option>Qatar</option>
+                  <option>Saudi Arabia</option>
+                  <option>Singapore</option>
+                  <option>South Africa</option>
+                  <option>South Korea</option>
+                  <option>Spain</option>
+                  <option>Sri Lanka</option>
+                  <option>Sweden</option>
+                  <option>Switzerland</option>
+                  <option>Taiwan</option>
+                  <option>Thailand</option>
+                  <option>Türkiye</option>
+                  <option>Vietnam</option>
+                  <option>Other</option>
+                </select>
+                <svg class="wb-selchev" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+              </div>
+            </div>
+
+            <div class="ar-f">
+              <label for="arOpenEmail">Email <i>*</i></label>
+              <input type="email" id="arOpenEmail" name="email" placeholder="you@example.com" inputmode="email" autocomplete="email" required>
+            </div>
+
+            <div class="ar-f">
+              <label for="arCode">Email verification code <i>*</i></label>
+              <div class="ar-code-row">
+                <input type="text" id="arCode" name="code" inputmode="numeric" autocomplete="one-time-code" placeholder="6-digit code" required>
+                <button class="ar-send" type="button" data-ar-send>Send code</button>
+              </div>
+              <p class="ar-sent" data-ar-sent hidden>Code sent &mdash; check your inbox.</p>
+            </div>
+
+            <div class="ar-f">
+              <label for="arPass">Password <i>*</i></label>
+              <div class="ar-pass-row">
+                <input type="password" id="arPass" name="password" autocomplete="new-password" minlength="8" placeholder="Minimum 8 characters" required>
+                <button class="ar-eye" type="button" data-ar-eye aria-label="Show password" aria-pressed="false">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="2.8" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="ar-kind" role="radiogroup" aria-label="Account type">
+              <label class="ar-kind-pill"><input type="radio" name="kind" value="individual" checked><span>Individual</span></label>
+              <label class="ar-kind-pill"><input type="radio" name="kind" value="company"><span>Company</span></label>
+            </div>
+
+            <label class="ct-check ar-check" for="arUs">
+              <input type="checkbox" id="arUs" required>
+              <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+              <span>I confirm that I am not a U.S. person, including a U.S. citizen or resident.</span>
+            </label>
+            <label class="ct-check ar-check" for="arPp">
+              <input type="checkbox" id="arPp" required>
+              <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+              <span>I accept the <a href="/privacy-policy-app.html">Privacy Policy</a>.</span>
+            </label>
+
+            <button class="btn btn-primary" type="submit">Create Account <svg class="ico"><use href="#i-arrow-right"/></svg></button>
           </form>
           <p class="ar-cta-note">Regulated broker &middot; Segregated client funds</p>
         </div>
@@ -689,14 +831,6 @@
             <b>Risk warning</b>
             <p>This article is educational and is not investment advice or a recommendation. CFDs are complex instruments and come with a high risk of losing money rapidly due to leverage. Consider whether you understand how they work and whether you can afford the risk.</p>
           </div>
-        </div>
-
-        <div class="ar-tags">
-          <span class="ar-tags-l">Tagged</span>
-          <a class="ar-tag" href="/education.html">Bonds</a>
-          <a class="ar-tag" href="/education.html">Fixed income</a>
-          <a class="ar-tag" href="/education.html">Yields</a>
-          <a class="ar-tag" href="/education.html">Basics</a>
         </div>
 
         <nav class="ar-pager" aria-label="More guides">
@@ -902,9 +1036,37 @@
 // submit routes to account opening without carrying the fields in the URL
 document.addEventListener('DOMContentLoaded', function () {
   var f = document.querySelector('[data-ar-open]');
-  if (f) f.addEventListener('submit', function (e) {
+  if (!f) return;
+  f.addEventListener('submit', function (e) {
     e.preventDefault();
     window.location.href = '/getting-started.html';
+  });
+
+  // send-code is a demo on the static build: it checks the email first,
+  // then arms a resend countdown the way the portal does
+  var send = f.querySelector('[data-ar-send]');
+  var sent = f.querySelector('[data-ar-sent]');
+  var email = f.querySelector('#arOpenEmail');
+  if (send && email) send.addEventListener('click', function () {
+    if (!email.checkValidity()) { email.reportValidity(); return; }
+    if (sent) sent.hidden = false;
+    var left = 60;
+    send.disabled = true;
+    var base = send.textContent;
+    var t = setInterval(function () {
+      left--;
+      send.textContent = 'Resend in ' + left + 's';
+      if (left <= 0) { clearInterval(t); send.disabled = false; send.textContent = base; }
+    }, 1000);
+  });
+
+  var eye = f.querySelector('[data-ar-eye]');
+  var pass = f.querySelector('#arPass');
+  if (eye && pass) eye.addEventListener('click', function () {
+    var show = pass.type === 'password';
+    pass.type = show ? 'text' : 'password';
+    eye.setAttribute('aria-pressed', show ? 'true' : 'false');
+    eye.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
   });
 });
 </script>
