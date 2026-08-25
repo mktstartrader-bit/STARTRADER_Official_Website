@@ -4959,6 +4959,17 @@ html{scroll-behavior:auto}
   .mt-rail-card{scroll-snap-align:start}
 }
 
+/* ===== THE COLLAPSED HEADER KEEPS ITS RIGHT EDGE (2026-08-25, appended batch) =====
+   The 1080px collapse (8.24 batch) hides .nav-menu, which carried the
+   margin-right:auto that pushed the right group to the edge — the ≤900px
+   band had its own margin-left:auto rule, but 901-1080 had neither, so
+   the language button, Login and CTA huddled beside the logo with the
+   whole right half empty. The right group now claims the auto margin for
+   the entire collapsed range. */
+@media (max-width:1080px){
+  .nav-right{margin-left:auto}
+}
+
 /* ===== THE MOCK ADDRESS BAR CLIPS, NEVER COLLIDES (2026-08-25, appended batch) =====
    IT round 8.25, item 6: below ~350px the fake address pill's text ran
    over the Live chip — the pill could not shrink because a bare text node
