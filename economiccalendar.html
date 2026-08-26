@@ -34,7 +34,7 @@
   <link rel="preload" href="/assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/assets/fonts/fonts.css" />
   <link rel="stylesheet" href="/assets/css/aos.min.css" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=qa45" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=qa46" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* ================= ECONOMIC CALENDAR PAGE ================= */
@@ -108,13 +108,15 @@
 .ecf-sel option{color:#0c1526;background:#fff}
 .ecf-src{margin-left:auto;align-self:flex-end;font-size:11.5px;color:#7286a8}
 @media (max-width:920px){
-  /* every other rail on the site hides its scrollbar and is swiped instead —
-     .ar-toc nav, .mt-rail-vp, .ev-rail all do. This one asked for a thin one,
-     which is why it reads as a different control from the filters under it. */
-  .ecf-days{display:flex;overflow-x:auto;overflow-y:hidden;padding-bottom:4px;
-    scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior-x:contain;
-    -webkit-overflow-scrolling:touch}
-  .ecf-days::-webkit-scrollbar{display:none}
+  /* IT 8.26: with the bar hidden, narrow screens cut the later dates with
+     no cue that more exist. The day rail shows a thin bar like the
+     announcement tables do. */
+  .ecf-days{display:flex;overflow-x:auto;overflow-y:hidden;padding-bottom:8px;
+    scrollbar-width:thin;scrollbar-color:rgba(120,160,255,.55) rgba(255,255,255,.08);
+    overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+  .ecf-days::-webkit-scrollbar{height:6px}
+  .ecf-days::-webkit-scrollbar-track{background:rgba(255,255,255,.08);border-radius:6px}
+  .ecf-days::-webkit-scrollbar-thumb{background:rgba(120,160,255,.55);border-radius:6px}
   .ecf-day{flex:0 0 108px}
   .ecf-tz{margin-left:0}
   .ecf-src{margin-left:0}
@@ -1361,6 +1363,6 @@
 <script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/assets/js/vendor/lenis.min.js" defer></script>
 <script src="/assets/js/vendor/aos.min.js" defer></script>
-<script src="/assets/js/main.js?v=qa45" defer></script>
+<script src="/assets/js/main.js?v=qa46" defer></script>
 </body>
 </html>

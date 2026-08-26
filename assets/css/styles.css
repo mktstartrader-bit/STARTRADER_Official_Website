@@ -5162,3 +5162,12 @@ html{scroll-behavior:auto}
    and take a quiet strip right beneath it, on the page's own ground in
    the article pages' light pill style. */
 .ar-crumb-strip{padding:20px 0 0}
+
+/* ===== TWO SMALL CORRECTIONS (2026-08-26, appended batch) =====
+   The nav carets were flex children with no guard, so a tight nav band
+   squeezed them oval; and the styled dropdown's panel outranked the
+   sticky header, floating over the menu when a select sat near the top
+   of the viewport. The caret refuses to shrink and the panel steps
+   below the chrome. */
+.nav-link .caret{flex:none}
+.stsel-panel{z-index:880}
