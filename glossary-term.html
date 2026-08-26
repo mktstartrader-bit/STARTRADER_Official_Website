@@ -124,6 +124,47 @@
 .gt-pager{flex-direction:column}
 .gt-pgl--next{text-align:left}
 .gt-pgl--next .dir{justify-content:flex-start}}
+
+/* ---- the rail steps out: the related panel goes dark glass ---- */
+.gt-relcard--dark{position:relative;overflow:hidden;
+  background:
+    radial-gradient(70% 55% at 12% 0%,rgba(42,114,255,.3),transparent 62%),
+    radial-gradient(50% 40% at 96% 100%,rgba(22,233,215,.12),transparent 64%),
+    linear-gradient(180deg,#0d1730,#070d1e);
+  border:1px solid rgba(120,160,255,.22);
+  box-shadow:0 34px 70px -34px rgba(4,10,26,.75),inset 0 1px 0 rgba(255,255,255,.12)}
+.gt-relcard--dark::before{content:"";position:absolute;left:14%;right:14%;top:0;height:1px;border-radius:1px;
+  background:linear-gradient(90deg,transparent,rgba(127,178,255,.85),rgba(22,233,215,.6),transparent)}
+.gt-relcard--dark .gt-relh{color:#8ea4c6}
+.gt-relcard--dark .gt-rel:hover{background:rgba(255,255,255,.07)}
+.gt-relcard--dark .gt-rel b{color:#e6edf9}
+.gt-relcard--dark .gt-rel:hover b{color:#fff}
+.gt-relcard--dark .gt-rel svg{color:#7fb2ff}
+.gt-relcard--dark .gt-relempty{color:#8ea4c6}
+
+/* ---- the house banner: an ad-weight card on the brand gradient ---- */
+.gt-ad{position:relative;overflow:hidden;display:flex;flex-direction:column;gap:13px;
+  padding:24px 22px 22px;border-radius:20px;color:#fff;
+  background:
+    radial-gradient(80% 60% at 85% -10%,rgba(79,155,255,.55),transparent 62%),
+    radial-gradient(60% 50% at 0% 110%,rgba(22,233,215,.25),transparent 60%),
+    linear-gradient(160deg,#2a72ff,var(--blue) 55%,#00279a);
+  box-shadow:0 34px 68px -30px rgba(0,71,187,.65),inset 0 1px 0 rgba(255,255,255,.28);
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+.gt-ad:hover{transform:translateY(-5px);box-shadow:0 44px 84px -32px rgba(0,71,187,.8)}
+.gt-ad-kick{font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.75)}
+.gt-ad-h{font-size:19px;font-weight:800;letter-spacing:-.03em;line-height:1.28}
+.gt-ad-list{display:flex;flex-direction:column;gap:7px}
+.gt-ad-list span{display:flex;align-items:center;gap:9px;font-size:12.5px;font-weight:600;color:rgba(235,243,255,.92)}
+.gt-ad-list span::before{content:"";flex:none;width:5px;height:5px;border-radius:50%;
+  background:#16e9d7;box-shadow:0 0 8px rgba(22,233,215,.9)}
+.gt-ad-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;margin-top:4px;
+  height:46px;border-radius:70px;background:#fff;color:var(--blue);font-size:14px;font-weight:700;
+  transition:background .25s}
+.gt-ad:hover .gt-ad-btn{background:#eaf2ff}
+.gt-ad-btn svg{width:15px;height:15px;transition:transform .3s var(--ease)}
+.gt-ad:hover .gt-ad-btn svg{transform:translateX(3px)}
+@media (max-width:1080px){.gt-ad{flex:1 1 300px}}
   </style>
 
   <script type="application/ld+json" id="gtLd">{"@context":"https://schema.org","@type":"DefinedTerm"}</script>
@@ -476,7 +517,7 @@
 
         <aside class="gt-aside" aria-label="Related">
       <div class="gt-sticky">
-        <div class="gt-relcard glass" data-aos="fade-up">
+        <div class="gt-relcard gt-relcard--dark" data-aos="fade-up">
           <h2 class="gt-relh">Related terms</h2>
           <div class="gt-rellist" id="gtRelated"></div>
         </div>
@@ -488,6 +529,17 @@
             <em>Every trading term, explained</em>
           </span>
           <span class="gt-az-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="gt-ad" href="/getting-started.html" data-aos="fade-up">
+          <span class="gt-ad-kick">Trade with STARTRADER</span>
+          <b class="gt-ad-h">Put the theory on a live chart</b>
+          <span class="gt-ad-list">
+            <span>0.0-pip ECN spreads</span>
+            <span>100&thinsp;ms average execution</span>
+            <span>1,000+ instruments</span>
+          </span>
+          <span class="gt-ad-btn">Open Live Account <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
         </a>
       </div>
     </aside>
