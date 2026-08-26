@@ -300,9 +300,13 @@
               fly.querySelectorAll('.fly-group').forEach(function (g) {
                 var gh = g.querySelector('h5, .fly-head, .mega-head');
                 if (gh) {
-                  var gs = document.createElement('span');
+                  // a heading that links on desktop stays a link here —
+                  // Energies, Metals and Agriculture navigate, not label
+                  var ga = gh.querySelector('a');
+                  var gs = document.createElement(ga ? 'a' : 'span');
                   gs.className = 'mm-group';
-                  gs.textContent = gh.textContent.replace(/\s+/g, ' ').trim();
+                  gs.textContent = (ga || gh).textContent.replace(/\s+/g, ' ').trim();
+                  if (ga) gs.href = ga.getAttribute('href') || '#';
                   sp.appendChild(gs);
                 }
                 g.querySelectorAll('a').forEach(function (fa) {
