@@ -143,14 +143,17 @@
 .gt-relcard--dark .gt-relempty{color:#8ea4c6}
 
 /* ---- the house banner: an ad-weight card on the brand gradient ---- */
-.gt-ad{position:relative;overflow:hidden;display:flex;flex-direction:column;gap:13px;
-  padding:24px 22px 22px;border-radius:20px;color:#fff;
+.gt-ad{position:relative;overflow:hidden;display:flex;flex-direction:column;gap:12px;
+  padding:24px 22px 0;border-radius:20px;color:#fff;
   background:
-    radial-gradient(80% 60% at 85% -10%,rgba(79,155,255,.55),transparent 62%),
-    radial-gradient(60% 50% at 0% 110%,rgba(22,233,215,.25),transparent 60%),
-    linear-gradient(160deg,#2a72ff,var(--blue) 55%,#00279a);
-  box-shadow:0 34px 68px -30px rgba(0,71,187,.65),inset 0 1px 0 rgba(255,255,255,.28);
+    radial-gradient(90% 50% at 80% -12%,rgba(42,114,255,.5),transparent 60%),
+    radial-gradient(55% 40% at 4% 30%,rgba(22,233,215,.14),transparent 62%),
+    #000;
+  border:1px solid rgba(120,160,255,.24);
+  box-shadow:0 34px 68px -30px rgba(2,8,24,.8),inset 0 1px 0 rgba(255,255,255,.16);
   transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+.gt-ad-img{display:block;width:calc(100% + 44px);max-width:none;margin:4px -22px 0;
+  height:auto;aspect-ratio:16/11;object-fit:cover;object-position:60% 10%}
 .gt-ad:hover{transform:translateY(-5px);box-shadow:0 44px 84px -32px rgba(0,71,187,.8)}
 .gt-ad-kick{font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.75)}
 .gt-ad-h{font-size:19px;font-weight:800;letter-spacing:-.03em;line-height:1.28}
@@ -537,9 +540,9 @@
           <span class="gt-ad-list">
             <span>0.0-pip ECN spreads</span>
             <span>100&thinsp;ms average execution</span>
-            <span>1,000+ instruments</span>
           </span>
           <span class="gt-ad-btn">Open Live Account <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
+          <img class="gt-ad-img" src="/assets/img/app-hero-phone.webp" alt="STARTRADER trading app held in a hand" width="1072" height="1052" loading="lazy" decoding="async">
         </a>
       </div>
     </aside>
