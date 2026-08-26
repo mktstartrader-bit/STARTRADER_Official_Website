@@ -176,8 +176,10 @@
      from it over empty background. The stage is now only as wide as the phone
      and centred, which puts the chips back on its left shoulder where they
      belong at every width down to 350px. */
+  /* the art runs 118% tall off the stage's bottom, so its top pokes up to
+     37px above the stage — the margin reserves that overhang plus air */
   .x-hand-visual{position:relative;inset:auto;width:min(100%,470px);height:clamp(300px,68vw,430px);
-    margin:26px auto 0}
+    margin:68px auto 0}
   .x-hand-visual img{right:-2%;bottom:-40px;height:118%}
   /* the chips ride the handset itself — anchored to the art's computable
      left edge (102%+16% bottom bleed of the stage height at a 1000:1364
