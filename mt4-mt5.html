@@ -5,24 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#05070E" />
 
-  <title>MT4 vs MT5 | Compare &amp; Download MetaTrader | STARTRADER</title>
-  <meta name="description" content="Compare MetaTrader 4 and MetaTrader 5 side by side and download either terminal with STARTRADER — on Windows, Mac, web, Android and iOS. Two terminals, one broker, one login." />
+  <title>Download MT4 &amp; MT5 | MetaTrader Platforms | STARTRADER</title>
+  <meta name="description" content="Download STARTRADER's MT4 and MT5 trading platforms for iOS, Android, Mac and Windows — or trade in the browser with Web Trader. Advanced online trading software, one login." />
   <meta name="author" content="STARTRADER" />
   <link rel="canonical" href="https://www.startrader.com/mt4-mt5/" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="STARTRADER" />
-  <meta property="og:title" content="MT4 vs MT5 | Compare &amp; Download MetaTrader | STARTRADER" />
-  <meta property="og:description" content="Compare MetaTrader 4 and MetaTrader 5 side by side and download either terminal with STARTRADER — on Windows, Mac, web, Android and iOS. Two terminals, one broker, one login." />
+  <meta property="og:title" content="Download MT4 &amp; MT5 | MetaTrader Platforms | STARTRADER" />
+  <meta property="og:description" content="Download STARTRADER's MT4 and MT5 trading platforms for iOS, Android, Mac and Windows — or trade in the browser with Web Trader. Advanced online trading software, one login." />
   <meta property="og:url" content="https://www.startrader.com/mt4-mt5/" />
   <meta property="og:image" content="https://www.startrader.com/assets/img/platform-hero.webp" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="MT4 vs MT5 | Compare &amp; Download MetaTrader | STARTRADER" />
-  <meta name="twitter:description" content="Compare MetaTrader 4 and MetaTrader 5 side by side and download either terminal with STARTRADER — on Windows, Mac, web, Android and iOS. Two terminals, one broker, one login." />
+  <meta name="twitter:title" content="Download MT4 &amp; MT5 | MetaTrader Platforms | STARTRADER" />
+  <meta name="twitter:description" content="Download STARTRADER's MT4 and MT5 trading platforms for iOS, Android, Mac and Windows — or trade in the browser with Web Trader. Advanced online trading software, one login." />
   <meta name="twitter:image" content="https://www.startrader.com/assets/img/platform-hero.webp" />
 
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -36,49 +36,100 @@
   <link rel="stylesheet" href="/assets/css/styles.css?v=qa47" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
-/* ---- Download: centred render composited into the section ---- */
-.mt-dl-aura{display:none}
-/* this render's surround is rgb(2,4,14) — darker than the section on every
-   channel — so lighten alone melts it away. No mask: any fade would only dim
-   the laptop base and the bottom of the terminal. */
-.mt-dl-img--mt5{
-  -webkit-mask-image:none;
-  mask-image:none;
+/* =================================================================
+   DOWNLOAD MT4 & MT5
+   One dark surface: the hero holds the copy beside the hand-held
+   terminal, and two frosted panels below carry every download. All
+   glass, lit hairlines, no neon.
+   ================================================================= */
+.mtd-hero{
+  position:relative;overflow:hidden;isolation:isolate;color:#fff;
+  margin-top:calc(-1 * var(--nav-h));
+  min-height:min(720px,calc(100vh - var(--topbar-h,44px)));
+  display:flex;align-items:center;
+  padding:calc(var(--nav-h) + 56px) 0 64px;
+  background:
+    radial-gradient(70% 60% at 82% 20%,rgba(0,71,187,.3),transparent 62%),
+    radial-gradient(40% 46% at 8% 90%,rgba(22,233,215,.08),transparent 60%),
+    linear-gradient(180deg,#04060e,#071026 55%,#04060e);
 }
-.mt-dl-stage:has(.mt-dl-img--mt5){max-width:min(1120px,96%)}
+.mtd-hero-in{position:relative;z-index:2;width:100%}
+.mtd-copy{max-width:min(100%,560px)}
+.mtd-h1{margin-top:24px;font-size:clamp(34px,4.8vw,64px);font-weight:800;letter-spacing:-.045em;line-height:1.02}
+.mtd-lead{margin-top:20px;max-width:46ch;font-size:clamp(15px,1.5vw,17px);line-height:1.72;color:#c4cedf}
+.mtd-hact{margin-top:32px}
+.mtd-visual{position:absolute;z-index:1;right:clamp(-30px,2vw,70px);bottom:0;top:0;width:min(44vw,600px);pointer-events:none}
+.mtd-visual img{position:absolute;right:0;bottom:clamp(-130px,-8vw,-50px);height:104%;width:auto;max-width:none;
+  filter:drop-shadow(-30px 40px 60px rgba(0,0,0,.55))}
 
-/* ---- the two-terminal chooser: the site's glass card and shared hover ---- */
-.mtx-pick{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2vw,26px);margin-top:clamp(26px,3vw,40px)}
-.mtx-card{position:relative;display:flex;flex-direction:column;padding:clamp(22px,2.8vw,34px);border-radius:22px;
-  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .4s}
-.mtx-card:hover{transform:translateY(-6px);border-color:rgba(0,71,187,.22);
-  box-shadow:0 30px 60px -30px rgba(20,44,96,.45)}
-.mtx-flag{align-self:flex-start;padding:5px 13px;border-radius:70px;font-size:10.5px;font-weight:800;
-  letter-spacing:.16em;text-transform:uppercase;color:var(--blue);
-  background:rgba(0,71,187,.09);border:1px solid rgba(0,71,187,.18)}
-.mtx-card h3{margin-top:16px;font-size:clamp(20px,2vw,25px);font-weight:800;letter-spacing:-.03em;color:var(--ink)}
-.mtx-line{margin-top:6px;font-size:13.5px;color:var(--text-mute)}
-.mtx-card ul{list-style:none;margin:18px 0 24px;padding:0;display:grid;gap:10px}
-.mtx-card li{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.6;color:var(--text-soft)}
-.mtx-card li svg{width:16px;height:16px;color:var(--blue);flex:none;margin-top:3px}
-.mtx-act{margin-top:auto}
-@media (max-width:760px){.mtx-pick{grid-template-columns:1fr}}
+/* ---- the download panels ---- */
+.mtd-dl{position:relative;overflow:hidden;color:#fff;
+  background:
+    radial-gradient(56% 44% at 14% 0%,rgba(0,71,187,.14),transparent 62%),
+    linear-gradient(180deg,#04060e,#060b1a 60%,#04060e)}
+.mtd-dl .head-sub{color:#a9bcdb}
+.mtd-panels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2.2vw,26px);margin-top:clamp(30px,4vw,48px)}
+.mtd-panel{
+  position:relative;overflow:hidden;display:flex;flex-direction:column;gap:20px;
+  padding:clamp(24px,3vw,34px);border-radius:24px;
+  background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.13);
+  -webkit-backdrop-filter:blur(22px) saturate(1.35);backdrop-filter:blur(22px) saturate(1.35);
+  box-shadow:0 34px 70px -36px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.14);
+}
+.mtd-panel::before{content:"";position:absolute;left:14%;right:14%;top:0;height:1px;border-radius:1px;
+  background:linear-gradient(90deg,transparent,rgba(127,178,255,.8),rgba(22,233,215,.5),transparent)}
+.mtd-panel-hd{display:flex;align-items:flex-start;gap:14px}
+.mtd-flag{flex:none;width:56px;height:56px;border-radius:15px;display:block;
+  box-shadow:0 14px 26px -14px rgba(0,71,187,.8),inset 0 0 0 1px rgba(120,175,255,.25)}
+.mtd-panel-hd h3{font-size:clamp(19px,2vw,23px);font-weight:800;letter-spacing:-.03em}
+.mtd-panel-hd p{margin-top:5px;font-size:13px;line-height:1.6;color:#a9bcdb}
+.mtd-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.mtd-btn{
+  display:flex;align-items:center;gap:12px;padding:13px 16px;border-radius:15px;color:#fff;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);
+  transition:transform .35s var(--ease),border-color .3s,background .3s,box-shadow .35s var(--ease);
+}
+.mtd-btn:hover{transform:translateY(-3px);border-color:rgba(120,175,255,.5);background:rgba(0,71,187,.18);
+  box-shadow:0 18px 34px -20px rgba(0,0,0,.8)}
+.mtd-btn-ic{flex:none;display:grid;place-items:center;width:36px;height:36px;border-radius:11px;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:#dfe9fb}
+.mtd-btn-ic svg{width:18px;height:18px}
+.mtd-btn-tx{display:flex;flex-direction:column;gap:1px;min-width:0}
+.mtd-btn-tx em{font-style:normal;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#8ea4c6}
+.mtd-btn-tx b{font-size:14.5px;font-weight:700;letter-spacing:-.01em}
+.mtd-web{
+  display:flex;align-items:center;justify-content:center;gap:9px;margin-top:2px;
+  height:50px;border-radius:70px;font-size:14px;font-weight:700;color:#fff;
+  border:1px solid rgba(120,175,255,.4);background:rgba(0,71,187,.14);
+  transition:background .3s,border-color .3s,transform .35s var(--ease);
+}
+.mtd-web em{font-style:normal;font-weight:500;color:#a9bcdb}
+.mtd-web svg{width:15px;height:15px;transition:transform .3s var(--ease)}
+.mtd-web:hover{background:var(--blue);border-color:transparent;transform:translateY(-2px)}
+.mtd-web:hover em{color:rgba(255,255,255,.8)}
+.mtd-web:hover svg{transform:translateX(3px)}
+.mtd-risk{margin-top:clamp(26px,3vw,38px);text-align:center;font-size:12.5px;line-height:1.6;color:#8ea4c6}
 
-/* ---- the comparison glass sits inline on this page, not in a dialog ---- */
-.mtx-cmp-card{max-width:940px;margin-inline:auto}
-
-/* ---- the download strip serves both terminals, labelled per row ---- */
-.mtx-dl-lbl{display:block;text-align:center;margin:30px 0 2px;font-size:11px;font-weight:800;
-  letter-spacing:.18em;text-transform:uppercase;color:#7fb2ff}
-.mtx-dl-lbl:first-of-type{margin-top:8px}
+/* ---- responsive ---- */
+@media (max-width:1080px){.mtd-visual{width:46vw}}
+@media (max-width:900px){
+  .mtd-hero{display:block;min-height:0;padding:calc(var(--nav-h) + 46px) 0 0;text-align:center}
+  .mtd-copy{max-width:640px;margin-inline:auto}
+  .mtd-lead{margin-inline:auto}
+  .mtd-visual{position:relative;inset:auto;width:min(100%,440px);height:clamp(300px,66vw,420px);margin:34px auto 0}
+  .mtd-visual img{right:50%;transform:translateX(50%);bottom:-36px;height:112%}
+  .mtd-panels{grid-template-columns:1fr}
+}
+@media (max-width:400px){.mtd-grid{gap:8px}
+.mtd-btn{padding:11px 12px;gap:9px}}
   </style>
 
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "MT4 vs MT5",
-  "description": "Compare MetaTrader 4 and MetaTrader 5 side by side and download either terminal with STARTRADER — on Windows, Mac, web, Android and iOS. Two terminals, one broker, one login.",
+  "name": "Download MT4 & MT5",
+  "description": "Download STARTRADER's MT4 and MT5 trading platforms for iOS, Android, Mac and Windows — or trade in the browser with Web Trader. Advanced online trading software, one login.",
   "url": "https://www.startrader.com/mt4-mt5/",
   "isPartOf": {
     "@type": "WebSite",
@@ -112,60 +163,13 @@
     {
       "@type": "ListItem",
       "position": 3,
-      "name": "MT4 vs MT5",
+      "name": "Download MT4 & MT5",
       "item": "https://www.startrader.com/mt4-mt5/"
     }
   ]
 }
   </script>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Which platform should I choose — MT4 or MT5?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "If your trading is forex-first, or you rely on the MQL4 library of Expert Advisors and indicators, MT4 remains the standard. If you want shares, indices and futures in the same terminal, Depth of Market, or a faster multi-threaded strategy tester, take MT5. Both run on your STARTRADER account."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I use MT4 and MT5 at the same time?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. They are separate terminals, so you can hold an account on each, run both side by side and move funds between them from the client portal. Each account keeps its own login."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do my MT4 Expert Advisors work on MT5?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No — MQL4 programs are not compatible with MQL5 and need porting. That library is exactly why many EA-driven traders stay on MT4, while systematic traders who want the faster tester rebuild on MT5."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I move from MT4 to MT5 later?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. Open an MT5 account from the client portal alongside your MT4 one, transfer funds between the two, and switch at your own pace — there is nothing to migrate inside the terminal."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do both platforms work on mobile and web?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes — both MT4 and MT5 ship iOS and Android apps and browser versions that need no install. The STARTRADER trading app carries both platforms with live pricing and full risk management."
-      }
-    }
-  ]
-}
-  </script>
+  
 
 </head>
 <body>
@@ -477,377 +481,95 @@
 
 <main id="main">
 
-<!-- ============ BANNER ============ -->
-<section class="pf-hero pf-hero--mt" aria-labelledby="pf-hero-title">
-  <div class="container pf-hero-in">
-    <div class="pf-hero-copy">
+<!-- ============ HERO ============ -->
+<section class="mtd-hero" aria-labelledby="mtd-hero-title">
+  <div class="container mtd-hero-in">
+    <div class="mtd-copy">
       <span class="eyebrow eyebrow-blue" data-aos="fade-up">MetaTrader 4 &amp; 5</span>
-      <h1 class="pf-h1" id="pf-hero-title" data-aos="fade-up">MT4 or MT5?<br> Take the terminal that fits</h1>
-      <p class="pf-lead" data-aos="fade-up">Two terminals, one broker and one login. Put them side by side,<br> pick your fit, and download it on any screen you own.</p>
-      <div class="pf-hact" data-aos="fade-up">
-        <a href="#compare" class="btn btn-primary btn-lg magnetic">Compare MT4 and MT5 <svg class="ico"><use href="#i-arrow-right"/></svg></a>
+      <h1 class="mtd-h1" id="mtd-hero-title" data-aos="fade-up">Download MT4 &amp; MT5 now!</h1>
+      <p class="mtd-lead" data-aos="fade-up">Download STARTRADER&rsquo;s trading platform today and embark on an enjoyable trading journey with our advanced online trading software.</p>
+      <div class="mtd-hact" data-aos="fade-up">
+        <a href="#downloads" class="btn btn-primary btn-lg">Choose your platform <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       </div>
     </div>
   </div>
-
-  <div class="mt-hero-visual" aria-hidden="true">
-    <img class="mt-hero-img" src="/assets/img/mt-laptop-hero.webp" alt="MetaTrader terminal on a laptop" width="1190" height="1046" fetchpriority="high" decoding="async">
+  <div class="mtd-visual" aria-hidden="true">
+    <img src="/assets/img/app-hand.webp" alt="The STARTRADER trading platform on a phone" width="1000" height="1364" fetchpriority="high" decoding="async">
   </div>
 </section>
 
-<!-- ============ PICK YOUR TERMINAL ============ -->
-<section class="section mt-why" id="platforms" aria-labelledby="mtx-pick-title">
-  <span class="pf-aura a1" aria-hidden="true"></span>
+<!-- ============ DOWNLOADS ============ -->
+<section class="section mtd-dl" id="downloads" aria-labelledby="mtd-dl-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-aos="fade-up">The platforms</span>
-      <h2 class="h2" id="mtx-pick-title" data-aos="fade-up">Two terminals, <span class="hl">one account</span></h2>
-      <p class="head-sub" data-aos="fade-up">MetaTrader 4 set the standard for forex trading; MetaTrader 5 opens the same workflow out to shares, indices and futures. Both run against your STARTRADER account &mdash; this page puts them side by side so you can take the one built for the way you trade.</p>
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">Every screen you own</span>
+      <h2 class="h2 h2-light" id="mtd-dl-title" data-aos="fade-up">Take the terminal with you</h2>
+      <p class="head-sub" data-aos="fade-up">One account, one login &mdash; the same charts on desktop, mobile and the browser.</p>
     </div>
-    <div class="mtx-pick">
-      <article class="mtx-card glass" data-aos="fade-up">
-        <span class="mtx-flag">MT4</span>
-        <h3>MetaTrader 4</h3>
-        <p class="mtx-line">The classic forex terminal</p>
-        <ul>
-          <li><svg><use href="#i-check"/></svg>Forex-first, lean and familiar</li>
-          <li><svg><use href="#i-check"/></svg>The largest EA and indicator library, in MQL4</li>
-          <li><svg><use href="#i-check"/></svg>9 timeframes and 30 built-in indicators</li>
-          <li><svg><use href="#i-check"/></svg>One-click trading and trailing stops</li>
-        </ul>
-        <div class="mtx-act">
-          <a class="btn btn-primary" href="/mt4.html">Explore MT4 <svg class="ico"><use href="#i-arrow-right"/></svg></a>
+
+    <div class="mtd-panels">
+      <article class="mtd-panel" data-aos="fade-up">
+        <div class="mtd-panel-hd">
+          <img class="mtd-flag" src="/assets/img/mt4-icon-blue.webp" alt="MetaTrader 4 icon" width="256" height="256" loading="lazy" decoding="async">
+          <div>
+            <h3>MetaTrader 4</h3>
+            <p>The classic forex terminal &mdash; lean, familiar and everywhere.</p>
+          </div>
         </div>
-      </article>
-      <article class="mtx-card glass" data-aos="fade-up" data-aos-delay="100">
-        <span class="mtx-flag">MT5</span>
-        <h3>MetaTrader 5</h3>
-        <p class="mtx-line">The multi-asset terminal</p>
-        <ul>
-          <li><svg><use href="#i-check"/></svg>Forex, CFDs, shares, indices and futures</li>
-          <li><svg><use href="#i-check"/></svg>21 timeframes, 38 indicators, 44 chart objects</li>
-          <li><svg><use href="#i-check"/></svg>Depth of Market and a multi-threaded tester</li>
-          <li><svg><use href="#i-check"/></svg>Hedging or netting, set on the account</li>
-        </ul>
-        <div class="mtx-act">
-          <a class="btn btn-primary" href="/mt5.html">Explore MT5 <svg class="ico"><use href="#i-arrow-right"/></svg></a>
+        <div class="mtd-grid">
+            <a class="mtd-btn" href="https://www.startrader.com/mt4-ios/">
+              <span class="mtd-btn-ic" aria-hidden="true"><svg><use href="#i-apple"/></svg></span>
+              <span class="mtd-btn-tx"><em>Download on</em><b>iOS</b></span>
+            </a>
+            <a class="mtd-btn" href="https://www.startrader.com/mt4-android/">
+              <span class="mtd-btn-ic" aria-hidden="true"><svg><use href="#i-android"/></svg></span>
+              <span class="mtd-btn-tx"><em>Download on</em><b>Android</b></span>
+            </a>
+            <a class="mtd-btn" href="https://www.startrader.com/mt4-mac/">
+              <span class="mtd-btn-ic" aria-hidden="true"><svg><use href="#i-apple"/></svg></span>
+              <span class="mtd-btn-tx"><em>Download on</em><b>Mac</b></span>
+            </a>
+            <a class="mtd-btn" href="https://www.startrader.com/mt4-windows/">
+              <span class="mtd-btn-ic" aria-hidden="true"><svg><use href="#i-windows"/></svg></span>
+              <span class="mtd-btn-tx"><em>Download on</em><b>Windows</b></span>
+            </a>
         </div>
+        <a class="mtd-web" href="/webtrader-mt4.html">Web Trader <em>&mdash; nothing to install</em> <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
       </article>
-    </div>
-  </div>
-</section>
 
-
-<!-- ============ MT4 vs MT5 SIDE BY SIDE ============ -->
-<section class="section mtx-cmp" id="compare" aria-labelledby="cmp-title">
-  <div class="container">
-    <div class="cmp-card mtx-cmp-card" data-aos="fade-up">
-      <div class="cmp-head">
-        <span class="cmp-eyebrow">Side by side</span>
-        <h2 class="cmp-h" id="cmp-title">MT4 or MT5?</h2>
-        <p class="cmp-sub">Same broker, same account, two terminals. The difference is what each one is built to reach.</p>
-      </div>
-
-      <div class="cmp-tablewrap">
-      <table class="cmp-table">
-        <caption class="sr-only">MetaTrader 4 compared with MetaTrader 5</caption>
-        <thead>
-          <tr>
-            <th scope="col"><span class="sr-only">Feature</span></th>
-            <th scope="col"><span class="cmp-flag">MT4</span></th>
-            <th scope="col"><span class="cmp-flag">MT5</span></th>
-          </tr>
-        </thead>
-        <tbody>
-            <tr>
-              <th scope="row">Markets covered</th>
-              <td>Forex and CFDs</td>
-              <td>Forex, CFDs, shares, indices and futures</td>
-            </tr>
-            <tr>
-              <th scope="row">Chart timeframes</th>
-              <td>9</td>
-              <td>21</td>
-            </tr>
-            <tr>
-              <th scope="row">Pending order types</th>
-              <td>4</td>
-              <td>6, including buy stop limit and sell stop limit</td>
-            </tr>
-            <tr>
-              <th scope="row">Depth of market</th>
-              <td>Not available</td>
-              <td>Built in</td>
-            </tr>
-            <tr>
-              <th scope="row">Economic calendar</th>
-              <td>Not available</td>
-              <td>Built into the terminal</td>
-            </tr>
-            <tr>
-              <th scope="row">Position accounting</th>
-              <td>Hedging only</td>
-              <td>Hedging or netting, set on the account</td>
-            </tr>
-            <tr>
-              <th scope="row">Partial close</th>
-              <td>Not available</td>
-              <td>Supported</td>
-            </tr>
-            <tr>
-              <th scope="row">Programming language</th>
-              <td>MQL4</td>
-              <td>MQL5</td>
-            </tr>
-            <tr>
-              <th scope="row">Strategy tester</th>
-              <td>Single-threaded, one instrument</td>
-              <td>Multi-threaded, multi-currency</td>
-            </tr>
-            <tr>
-              <th scope="row">Built-in indicators</th>
-              <td>30</td>
-              <td>38</td>
-            </tr>
-            <tr>
-              <th scope="row">Graphical objects</th>
-              <td>24</td>
-              <td>44</td>
-            </tr>
-            <tr>
-              <th scope="row">Best suited to</th>
-              <td>Forex-first strategies and MQL4 EAs</td>
-              <td>Multi-asset trading and heavier back-testing</td>
-            </tr>
-        </tbody>
-      </table>
-    </div>
-
-      <p class="cmp-note">Neither replaces the other. MT4 remains the standard for forex-first workflows and the MQL4 library; MT5 is the one to take if you want shares, indices and futures in the same terminal, or a faster tester.</p>
-
-      <div class="cmp-act">
-        <a class="btn btn-primary" href="/mt4.html">Open the MT4 page <svg class="ico"><use href="#i-arrow-right"/></svg></a>
-        <a class="btn btn-ghost" href="/mt5.html">Open the MT5 page</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ DOWNLOAD ============ -->
-<section class="section mt-dl" id="download" aria-labelledby="mt-dl-title">
-  <span class="mt-dl-aura" aria-hidden="true"></span>
-  <div class="container">
-    <div class="head center">
-      <span class="eyebrow eyebrow-blue" data-aos="fade-up">Trade anywhere</span>
-      <h2 class="h2 h2-light" id="mt-dl-title" data-aos="fade-up">Get MT4 or MT5 on every<br> screen you own</h2>
-      <p class="head-sub" data-aos="fade-up">Install either terminal on Windows or Mac, open it in a browser with nothing to install, or carry it on Android and iOS. One account, one login, the same charts on all of them.</p>
-    </div>
-
-    <div class="mt-dl-stage" data-aos="fade-up" aria-hidden="true">
-      <img class="mt-dl-img mt-dl-img--mt5" src="/assets/img/mt5-laptop-dl.webp" alt="MetaTrader 5 terminal on a laptop" width="1448" height="1086" loading="lazy" decoding="async">
-    </div>
-
-    <span class="mtx-dl-lbl" data-aos="fade-up">MetaTrader 5</span>
-    <div class="mt-dl-btns">
-        <a class="mt-dl-btn" href="https://www.startrader.com/mt5-ios/" data-aos="fade-up">
-          <span class="mt-dl-tile apple"><svg class="mt-dl-ic"><use href="#i-apple"/></svg></span>
-          <span class="mt-dl-tx"><em>Download on the</em><b>App Store</b></span>
-        </a>
-        <a class="mt-dl-btn" href="https://www.startrader.com/mt5-windows/" data-aos="fade-up" data-aos-delay="100">
-          <span class="mt-dl-tile win"><svg class="mt-dl-ic"><use href="#i-windows"/></svg></span>
-          <span class="mt-dl-tx"><em>Download for</em><b>Windows</b></span>
-        </a>
-        <a class="mt-dl-btn" href="https://www.startrader.com/mt5-android/" data-aos="fade-up" data-aos-delay="200">
-          <span class="mt-dl-tile droid"><svg class="mt-dl-ic"><use href="#i-android"/></svg></span>
-          <span class="mt-dl-tx"><em>Download on</em><b>Android</b></span>
-        </a>
-        <a class="mt-dl-btn" href="https://www.startrader.com/mt5-mac/" data-aos="fade-up" data-aos-delay="300">
-          <span class="mt-dl-tile apple"><svg class="mt-dl-ic"><use href="#i-apple"/></svg></span>
-          <span class="mt-dl-tx"><em>Download for</em><b>Mac OS</b></span>
-        </a>
-    </div>
-
-    <span class="mtx-dl-lbl" data-aos="fade-up">MetaTrader 4</span>
-    <div class="mt-dl-btns">
-        <a class="mt-dl-btn" href="https://www.startrader.com/mt4-ios/" data-aos="fade-up">
-          <span class="mt-dl-tile apple"><svg class="mt-dl-ic"><use href="#i-apple"/></svg></span>
-          <span class="mt-dl-tx"><em>Download on the</em><b>App Store</b></span>
-        </a>
-        <a class="mt-dl-btn" href="https://www.startrader.com/mt4-windows/" data-aos="fade-up" data-aos-delay="100">
-          <span class="mt-dl-tile win"><svg class="mt-dl-ic"><use href="#i-windows"/></svg></span>
-          <span class="mt-dl-tx"><em>Download for</em><b>Windows</b></span>
-        </a>
-        <a class="mt-dl-btn" href="https://www.startrader.com/mt4-android/" data-aos="fade-up" data-aos-delay="200">
-          <span class="mt-dl-tile droid"><svg class="mt-dl-ic"><use href="#i-android"/></svg></span>
-          <span class="mt-dl-tx"><em>Download on</em><b>Android</b></span>
-        </a>
-        <a class="mt-dl-btn" href="https://www.startrader.com/mt4-mac/" data-aos="fade-up" data-aos-delay="300">
-          <span class="mt-dl-tile apple"><svg class="mt-dl-ic"><use href="#i-apple"/></svg></span>
-          <span class="mt-dl-tx"><em>Download for</em><b>Mac OS</b></span>
-        </a>
-    </div>
-
-  </div>
-</section>
-
-<!-- ============ WHY STARTRADER ============ -->
-<section class="section fx-hours mt-whyst" aria-labelledby="mt-whyst-title">
-  <div class="container">
-    <div class="head center">
-      <span class="eyebrow eyebrow-blue" data-aos="fade-up">The broker</span>
-      <h2 class="h2 h2-light" id="mt-whyst-title" data-aos="fade-up">Why STARTRADER MetaTrader?</h2>
-      <p class="head-sub" data-aos="fade-up">The terminal is only half of it. These are the conditions it runs on.</p>
-    </div>
-    <div class="fx-mh mt-whyst-grid">
-      <article class="fx-mh-card fx-mh--teal" data-aos="fade-up">
-        <span class="fx-mh-ic"><svg><use href="#i-shield"/></svg></span>
-        <h3>Transparent trading environment</h3>
-        <p>Flexible and transparent trading conditions with ultra-fast execution. Orders are processed swiftly so clients can act on market opportunities as they appear.</p>
-      </article>
-      <article class="fx-mh-card fx-mh--blue" data-aos="fade-up" data-aos-delay="100">
-        <span class="fx-mh-ic"><svg><use href="#i-headset"/></svg></span>
-        <h3>Dedicated customer service</h3>
-        <p>A dedicated team is available 24/7 to answer queries, address concerns and listen to feedback, in more than twenty languages.</p>
-      </article>
-      <article class="fx-mh-card fx-mh--purple" data-aos="fade-up" data-aos-delay="200">
-        <span class="fx-mh-ic"><svg><use href="#i-id"/></svg></span>
-        <h3>Segregated client accounts</h3>
-        <p>To ensure funds are used for trading purposes only, client money is held in segregated accounts separate from company funds.</p>
-      </article>
-      <article class="fx-mh-card fx-mh--green" data-aos="fade-up" data-aos-delay="300">
-        <span class="fx-mh-ic"><svg><use href="#i-gauge"/></svg></span>
-        <h3>High leverage and tight spreads</h3>
-        <p>Leverage up to 1:1000 with ultra-tight spreads, subject to your account type and the jurisdiction your account is registered in.</p>
-      </article>
-      <article class="fx-mh-card fx-mh--orange" data-aos="fade-up" data-aos-delay="400">
-        <span class="fx-mh-ic"><svg><use href="#i-wallet"/></svg></span>
-        <h3>Hassle-free transactions</h3>
-        <p>Multiple deposit and withdrawal methods with zero fees on most payment channels, for a more rewarding experience.</p>
-      </article>
-      <article class="fx-mh-card fx-mh--teal" data-aos="fade-up" data-aos-delay="500">
-        <span class="fx-mh-ic"><svg><use href="#i-droplet"/></svg></span>
-        <h3>Top institutional liquidity</h3>
-        <p>Access to institutional-level liquidity, aggregated from tier-1 providers, which is what keeps the spreads where they are.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ============ STEPS ============ -->
-<section class="section htrade-sec" aria-labelledby="mt-steps-title">
-  <div class="container">
-    <div class="htrade">
-      <div class="htrade-intro" data-aos="fade-up">
-        <h2 class="htrade-title" id="mt-steps-title">Your trading journey<br><span>takes off</span></h2>
-        <p class="htrade-sub">In 3 simple steps</p>
-        <a href="/getting-started.html" class="btn btn-primary btn-lg htrade-btn magnetic">Open an account <span class="htrade-go"><svg><use href="#i-arrow-right"/></svg></span></a>
-      </div>
-      <ol class="htrade-steps" data-htrade>
-        <li class="htrade-step">
-          <span class="htrade-num">01</span>
-          <div class="htrade-txt">
-            <h3>Open an account</h3>
-            <p>Fill in our online form, get verified, and your account is ready instantly.</p>
+      <article class="mtd-panel" data-aos="fade-up" data-aos-delay="100">
+        <div class="mtd-panel-hd">
+          <img class="mtd-flag" src="/assets/img/mt5-icon-blue.webp" alt="MetaTrader 5 icon" width="256" height="256" loading="lazy" decoding="async">
+          <div>
+            <h3>MetaTrader 5</h3>
+            <p>The multi-asset terminal &mdash; shares, indices and futures too.</p>
           </div>
-        </li>
-        <li class="htrade-step">
-          <span class="htrade-num">02</span>
-          <div class="htrade-txt">
-            <h3>Deposit</h3>
-            <p>Add funds to your account by card, bank transfer or e-wallet.</p>
-          </div>
-        </li>
-        <li class="htrade-step">
-          <span class="htrade-num">03</span>
-          <div class="htrade-txt">
-            <h3>Download MT4 or MT5</h3>
-            <p>Take either terminal &mdash; or both &mdash; with a single click for instant installation.</p>
-          </div>
-        </li>
-      </ol>
+        </div>
+        <div class="mtd-grid">
+            <a class="mtd-btn" href="https://www.startrader.com/mt5-ios/">
+              <span class="mtd-btn-ic" aria-hidden="true"><svg><use href="#i-apple"/></svg></span>
+              <span class="mtd-btn-tx"><em>Download on</em><b>iOS</b></span>
+            </a>
+            <a class="mtd-btn" href="https://www.startrader.com/mt5-android/">
+              <span class="mtd-btn-ic" aria-hidden="true"><svg><use href="#i-android"/></svg></span>
+              <span class="mtd-btn-tx"><em>Download on</em><b>Android</b></span>
+            </a>
+            <a class="mtd-btn" href="https://www.startrader.com/mt5-mac/">
+              <span class="mtd-btn-ic" aria-hidden="true"><svg><use href="#i-apple"/></svg></span>
+              <span class="mtd-btn-tx"><em>Download on</em><b>Mac</b></span>
+            </a>
+            <a class="mtd-btn" href="https://www.startrader.com/mt5-windows/">
+              <span class="mtd-btn-ic" aria-hidden="true"><svg><use href="#i-windows"/></svg></span>
+              <span class="mtd-btn-tx"><em>Download on</em><b>Windows</b></span>
+            </a>
+        </div>
+        <a class="mtd-web" href="/webtrader-mt5.html">Web Trader <em>&mdash; nothing to install</em> <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+      </article>
     </div>
+
+    <p class="mtd-risk" data-aos="fade-up">Trading and investing in Forex and CFD products are high risk. Losses can exceed deposits.</p>
   </div>
 </section>
-
-<!-- ============ FAQ ============ -->
-<section class="section faq-sec fx-faq" aria-labelledby="pf-faq-title">
-  <div class="container">
-    <div class="head center">
-      <span class="eyebrow" data-aos="fade-up">FAQ</span>
-      <h2 class="h2" id="pf-faq-title" data-aos="fade-up">Frequently asked questions</h2>
-    </div>
-    <div class="faq-list" data-aos="fade-up">
-      <details class="faq-item">
-        <summary>Which platform should I choose &mdash; MT4 or MT5?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">If your trading is forex-first, or you rely on the MQL4 library of Expert Advisors and indicators, MT4 remains the standard. If you want shares, indices and futures in the same terminal, Depth of Market, or a faster multi-threaded strategy tester, take MT5. Both run on your STARTRADER account.</div>
-      </details>
-      <details class="faq-item">
-        <summary>Can I use MT4 and MT5 at the same time?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Yes. They are separate terminals, so you can hold an account on each, run both side by side and move funds between them from the client portal. Each account keeps its own login.</div>
-      </details>
-      <details class="faq-item">
-        <summary>Do my MT4 Expert Advisors work on MT5?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">No &mdash; MQL4 programs are not compatible with MQL5 and need porting. That library is exactly why many EA-driven traders stay on MT4, while systematic traders who want the faster tester rebuild on MT5.</div>
-      </details>
-      <details class="faq-item">
-        <summary>Can I move from MT4 to MT5 later?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Yes. Open an MT5 account from the client portal alongside your MT4 one, transfer funds between the two, and switch at your own pace &mdash; there is nothing to migrate inside the terminal.</div>
-      </details>
-      <details class="faq-item">
-        <summary>Do both platforms work on mobile and web?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Yes &mdash; both MT4 and MT5 ship iOS and Android apps and browser versions that need no install. The STARTRADER trading app carries both platforms with live pricing and full risk management.</div>
-      </details>
-    </div>
-  </div>
-</section>
-
-<!-- ============ EXPLORE MORE ============ -->
-<section class="section fx-more" aria-labelledby="pf-more-title">
-  <div class="container">
-    <div class="head center">
-      <span class="eyebrow" data-aos="fade-up">Keep going</span>
-      <h2 class="h2" id="pf-more-title" data-aos="fade-up">Where to go next</h2>
-    </div>
-    <div class="fx-more-grid">
-      <a class="fx-more-card" href="/mt5.html" data-aos="fade-up">
-        <span class="fx-more-media"><img src="/assets/img/platform-hero.webp" alt="MetaTrader 5 trading platform" width="640" height="349" loading="lazy" decoding="async"></span>
-        <p class="fx-more-desc">The multi-asset terminal — 38 indicators, depth of market and full automation.</p>
-        <span class="fx-more-foot"><span class="fx-more-tag">MT5</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
-      </a>
-      <a class="fx-more-card" href="/mt4.html" data-aos="fade-up" data-aos-delay="100">
-        <span class="fx-more-media"><img src="/assets/img/mt4Screenshot.webp" alt="MetaTrader 4 trading platform" width="640" height="349" loading="lazy" decoding="async"></span>
-        <p class="fx-more-desc">The retail standard for currencies, with the largest library of robots and indicators.</p>
-        <span class="fx-more-foot"><span class="fx-more-tag">MT4</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
-      </a>
-      <a class="fx-more-card" href="/trading-app.html" data-aos="fade-up" data-aos-delay="200">
-        <span class="fx-more-media"><img src="/assets/img/app-hero-phone.webp" alt="STARTRADER mobile trading app" width="640" height="349" loading="lazy" decoding="async"></span>
-        <p class="fx-more-desc">MT4 and MT5 in one app, with live pricing and full risk management.</p>
-        <span class="fx-more-foot"><span class="fx-more-tag">Mobile app</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
-      </a>
-      <a class="fx-more-card" href="/copy-trade.html" data-aos="fade-up" data-aos-delay="300">
-        <span class="fx-more-media"><img src="/assets/img/learn-cta.webp" alt="Copy trading with STARTRADER" width="640" height="349" loading="lazy" decoding="async"></span>
-        <p class="fx-more-desc">Follow traders with a record you can inspect, and pay only on profit.</p>
-        <span class="fx-more-foot"><span class="fx-more-tag">Copy trading</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ CLOSING CTA ============ -->
-<section class="cta-banner" aria-labelledby="pf-cta-title">
-  <div class="cta-bg" aria-hidden="true"></div>
-  <div class="container cta-inner">
-    <h2 id="pf-cta-title" data-aos="fade-up">Start trading with a<br>globally leading broker</h2>
-    <p data-aos="fade-up">Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
-    <div class="cta-actions" data-aos="fade-up">
-      <a href="/getting-started.html" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
-      <a href="/getting-started.html" class="btn btn-ghost btn-lg">Try Free Demo</a>
-    </div>
-  </div>
-</section>
-
-
-
 
 </main>
 
