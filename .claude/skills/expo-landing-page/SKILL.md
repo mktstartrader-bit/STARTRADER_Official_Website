@@ -18,8 +18,11 @@ swap content, never redesign.
   the page must not load `main.js` (it injects the smart banner). AOS is
   initialised by the page's own inline script, which also adds the
   `js-aos` class.
-- **Risk warning last.** The standard risk paragraph (first paragraph of
-  the site footer's RISK WARNING) closes the page on a dark strip.
+- **Legal strip last.** A dark `xp-risk` strip closes the page carrying
+  the legal copy MKT supplies for the campaign — for prize promotions
+  that is a "Disclaimer:" heading, the prize-trademark paragraph, and a
+  `©<year> STARTRADER. All rights reserved` line (class `xp-copy`).
+  Only use the standard risk warning paragraph if MKT supplies nothing.
 - **Open Live Account form in the hero** — the house underline-field form
   (country select, email, verification code + resend countdown, password
   + eye toggle, Individual/Company pills, U.S.-person + Privacy Policy
@@ -56,10 +59,11 @@ swap content, never redesign.
    em-dash) + copy (the part after). Below: the `*T&Cs apply.` line — the
    anchor text links the promotion's PMT document (from MKT; `#` +
    comment until supplied, keep the full document name in `title=`).
-6. **Risk warning (dark)** — `xp-risk`.
+6. **Legal strip (dark)** — `xp-risk`: disclaimer + copyright (see
+   non-negotiables).
 
 The light/dark rhythm is fixed: dark hero → image band → dark fine print
-→ light campaign → light steps → dark risk.
+→ light campaign → light steps → dark legal strip.
 
 ## Imagery (generate per expo, Higgsfield nano_banana)
 
