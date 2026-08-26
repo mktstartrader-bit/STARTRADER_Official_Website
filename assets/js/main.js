@@ -68,36 +68,66 @@
     { sym: 'AAPL', price: '228.11', chg: '-0.21%', dir: 'down' }
   ];
   var heroPairs = [
-    { n: 'Euro vs Swiss Franc', a: 'eu', b: 'ch', p: '0.92963/0.92980', dir: 'down' },
-    { n: 'Euro vs Australian Dollar', a: 'eu', b: 'au', p: '1.62889/1.62915', dir: 'up' },
-    { n: 'Great Britain Pound vs Swiss Franc', a: 'gb', b: 'ch', p: '1.08842/1.08858', dir: 'down' },
-    { n: 'New Zealand Dollar vs Swiss Franc', a: 'nz', b: 'ch', p: '0.47272/0.47287', dir: 'up' },
-    { n: 'Great Britain Pound vs Canadian Dollar', a: 'gb', b: 'ca', p: '1.88057/1.88083', dir: 'down' },
-    { n: 'US Dollar vs Japanese Yen', a: 'us', b: 'jp', p: '163.562/163.588', dir: 'up' },
-    { n: 'Euro vs US Dollar', a: 'eu', b: 'us', p: '1.08420/1.08435', dir: 'up' },
-    { n: 'Great Britain Pound vs US Dollar', a: 'gb', b: 'us', p: '1.27180/1.27201', dir: 'down' }
+    { c: 'EURCHF', n: 'Euro vs Swiss Franc', a: 'eu', b: 'ch', p: '0.92963', chg: -0.14, dir: 'down' },
+    { c: 'EURAUD', n: 'Euro vs Australian Dollar', a: 'eu', b: 'au', p: '1.62889', chg: 0.31, dir: 'up' },
+    { c: 'GBPCHF', n: 'Great Britain Pound vs Swiss Franc', a: 'gb', b: 'ch', p: '1.08842', chg: -0.09, dir: 'down' },
+    { c: 'NZDCHF', n: 'New Zealand Dollar vs Swiss Franc', a: 'nz', b: 'ch', p: '0.47272', chg: 0.22, dir: 'up' },
+    { c: 'GBPCAD', n: 'Great Britain Pound vs Canadian Dollar', a: 'gb', b: 'ca', p: '1.88057', chg: -0.18, dir: 'down' },
+    { c: 'USDJPY', n: 'US Dollar vs Japanese Yen', a: 'us', b: 'jp', p: '163.562', chg: 0.24, dir: 'up' },
+    { c: 'EURUSD', n: 'Euro vs US Dollar', a: 'eu', b: 'us', p: '1.08420', chg: 0.13, dir: 'up' },
+    { c: 'GBPUSD', n: 'Great Britain Pound vs US Dollar', a: 'gb', b: 'us', p: '1.27180', chg: -0.11, dir: 'down' }
   ];
   function initHeroTicker() {
     var track = document.getElementById('heroTicker');
     if (!track) return;
-    var arrows = { down: 'M12 5v14M6 13l6 6 6-6', up: 'M12 19V5M6 11l6-6 6 6' };
+    var diag = { up: 'M7 17 17 7M17 7H9M17 7v8', down: 'M7 7l10 10M17 17H9M17 17V9' };
     var html = heroPairs.map(function (m) {
-      return '<a class="mkt-pill" href="#">' +
-        '<span class="mkt-flags"><img src="/assets/img/flags/' + m.a + '.svg" alt="" loading="lazy"><img src="/assets/img/flags/' + m.b + '.svg" alt="" loading="lazy"></span>' +
-        '<span class="mkt-txt"><b>' + m.n + '</b><em>' + m.p + '</em></span>' +
-        '<span class="mkt-dir ' + m.dir + '"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="' + arrows[m.dir] + '"/></svg></span>' +
-        '<span class="mkt-trade">Trade</span>' +
+      return '<a class="mkt-cell ' + m.dir + '" href="#" data-c="' + m.c + '" aria-label="Trade ' + m.c + ' — ' + m.n + '">' +
+        '<span class="mkt-cell-ic"><img src="/assets/img/flags/' + m.a + '.svg" alt="" loading="lazy"><img src="/assets/img/flags/' + m.b + '.svg" alt="" loading="lazy"></span>' +
+        '<span class="mkt-cell-tx"><b>' + m.c + '</b>' +
+          '<span class="mkt-cell-q"><em data-ht-px>' + m.p + '</em>' +
+          '<i><span data-ht-chg>' + (m.chg >= 0 ? '+' : '') + m.chg.toFixed(2) + '%</span>' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="' + diag[m.dir] + '"/></svg></i></span>' +
+        '</span>' +
+        '<span class="mkt-cell-trade">Trade</span>' +
         '</a>';
     }).join('');
     track.innerHTML = html + html; // duplicate for seamless loop
+
+    // live ticking across both marquee copies
+    var live = {};
+    heroPairs.forEach(function (m) {
+      var dec = (m.p.split('.')[1] || '').length;
+      live[m.c] = { base: parseFloat(m.p), cur: parseFloat(m.p), d: dec, chg0: m.chg };
+    });
+    if (!prefersReduced) {
+      setInterval(function () {
+        heroPairs.forEach(function (m) {
+          if (Math.random() > 0.45) return;
+          var st = live[m.c];
+          var step = st.base * 0.0006 * (Math.random() * 2 - 1);
+          st.cur = st.cur + step + (st.base - st.cur) * 0.06;
+          var chg = st.chg0 + ((st.cur - st.base) / st.base) * 100;
+          var ps = st.cur.toFixed(st.d);
+          var cs = (chg >= 0 ? '+' : '') + chg.toFixed(2) + '%';
+          var cells = track.querySelectorAll('[data-c="' + m.c + '"]');
+          Array.prototype.forEach.call(cells, function (cell) {
+            var pe = cell.querySelector('[data-ht-px]'), ce = cell.querySelector('[data-ht-chg]');
+            if (pe) { pe.textContent = ps; pe.classList.remove('flash-up', 'flash-down'); void pe.offsetWidth; pe.classList.add(step >= 0 ? 'flash-up' : 'flash-down'); }
+            if (ce) ce.textContent = cs;
+          });
+        });
+      }, 1700);
+    }
+
     if (prefersReduced || !hasGSAP) return;
     var half = track.scrollWidth / 2;
-    var speed = 62; // px/s
+    var speed = 38; // px/s
     var tween = gsap.to(track, {
       x: -half, duration: half / speed, ease: 'none', repeat: -1,
       modifiers: { x: function (x) { return (parseFloat(x) % half) + 'px'; } }
     });
-    track.addEventListener('mouseenter', function () { tween.timeScale(0.12); });
+    track.addEventListener('mouseenter', function () { tween.timeScale(0.1); });
     track.addEventListener('mouseleave', function () { tween.timeScale(1); });
   }
 
@@ -774,30 +804,49 @@
 
   /* ---------------- Live market data (simulated) ---------------- */
   var mkxData = [
-    { s: 'USDCAD', n: 'US Dollar vs Canadian Dollar', c: 'forex', ic: { t: 'flags', a: 'us', b: 'ca' }, p: 1.40855, d: 5, chg: -0.08, pop: true },
-    { s: 'GBPUSD', n: 'Great Britain Pound vs US Dollar', c: 'forex', ic: { t: 'flags', a: 'gb', b: 'us' }, p: 1.3355, d: 4, chg: 0.26, pop: true },
-    { s: 'EURUSD', n: 'Euro vs US Dollar', c: 'forex', ic: { t: 'flags', a: 'eu', b: 'us' }, p: 1.0842, d: 4, chg: 0.13, pop: true },
+    { s: 'GBPUSD', n: 'Great Britain Pound vs US Dollar', c: 'forex', ic: { t: 'flags', a: 'gb', b: 'us' }, p: 1.3355, d: 4, chg: 0.26, pop: true, po: 0 },
+    { s: 'EURUSD', n: 'Euro vs US Dollar', c: 'forex', ic: { t: 'flags', a: 'eu', b: 'us' }, p: 1.0842, d: 4, chg: 0.13, pop: true, po: 1 },
+    { s: 'USDCAD', n: 'US Dollar vs Canadian Dollar', c: 'forex', ic: { t: 'flags', a: 'us', b: 'ca' }, p: 1.40855, d: 5, chg: -0.08 },
     { s: 'AUDUSD', n: 'Australian Dollar vs US Dollar', c: 'forex', ic: { t: 'flags', a: 'au', b: 'us' }, p: 0.6612, d: 4, chg: -0.08 },
     { s: 'USDJPY', n: 'US Dollar vs Japanese Yen', c: 'forex', ic: { t: 'flags', a: 'us', b: 'jp' }, p: 156.82, d: 2, chg: 0.24 },
     { s: 'NZDCHF', n: 'New Zealand Dollar vs Swiss Franc', c: 'forex', ic: { t: 'flags', a: 'nz', b: 'ch' }, p: 0.47272, d: 5, chg: 0.32 },
-    { s: 'CAC40', n: 'France 40 Cash Index', c: 'indices', ic: { t: 'flag', a: 'fr' }, p: 8438.7, d: 1, chg: 0.93, pop: true },
+    { s: 'USDCHF', n: 'US Dollar vs Swiss Franc', c: 'forex', ic: { t: 'flags', a: 'us', b: 'ch' }, p: 0.8842, d: 4, chg: 0.11 },
     { s: 'US500', n: 'US 500 Cash Index', c: 'indices', ic: { t: 'flag', a: 'us' }, p: 5732.3, d: 1, chg: 0.90 },
+    { s: 'CAC40', n: 'France 40 Cash Index', c: 'indices', ic: { t: 'flag', a: 'fr' }, p: 8438.7, d: 1, chg: 0.93, pop: true, po: 2 },
     { s: 'GER40', n: 'Germany 40 Cash Index', c: 'indices', ic: { t: 'flag', a: 'de' }, p: 18411, d: 0, chg: 0.34 },
     { s: 'NAS100', n: 'US Tech 100 Cash Index', c: 'indices', ic: { t: 'flag', a: 'us' }, p: 29971.3, d: 1, chg: -0.62 },
-    { s: 'SOLUSD', n: 'Solana vs US Dollar', c: 'crypto', ic: { t: 'sym', v: 'S', bg: '#7b5cff' }, p: 76.53, d: 2, chg: 3.59, pop: true },
-    { s: 'BTCUSD', n: 'Bitcoin vs US Dollar', c: 'crypto', ic: { t: 'sym', v: '₿', bg: '#f7931a' }, p: 64230, d: 0, chg: 2.14 },
-    { s: 'ETHUSD', n: 'Ethereum vs US Dollar', c: 'crypto', ic: { t: 'sym', v: 'Ξ', bg: '#627eea' }, p: 3402.5, d: 1, chg: 1.12 },
-    { s: 'AAPL', n: 'Apple Inc', c: 'stocks', ic: { t: 'sym', v: 'A', bg: '#111418' }, p: 228.11, d: 2, chg: 0.63 },
-    { s: 'TSLA', n: 'Tesla Inc', c: 'stocks', ic: { t: 'sym', v: 'T', bg: '#e82127' }, p: 334.09, d: 2, chg: -1.02 },
-    { s: 'NVDA', n: 'NVIDIA Corp', c: 'stocks', ic: { t: 'sym', v: 'N', bg: '#76b900' }, p: 126.40, d: 2, chg: 2.18 },
-    { s: 'SPXS.ETF', n: 'Direxion Daily S&P 500 Bear 3x Shares', c: 'etfs', ic: { t: 'etf' }, p: 27.61, d: 2, chg: -0.61, pop: true },
-    { s: 'RSP.ETF', n: 'Invesco S&P 500 Equal Weight ETF', c: 'etfs', ic: { t: 'etf' }, p: 213.7, d: 1, chg: 1.03, pop: true },
-    { s: 'LQD.ETF', n: 'iShares iBoxx IG Corp Bond ETF', c: 'etfs', ic: { t: 'etf' }, p: 106.35, d: 2, chg: 0.05, pop: true },
+    { s: 'UK100', n: 'UK 100 Cash Index', c: 'indices', ic: { t: 'flag', a: 'gb' }, p: 8241.4, d: 1, chg: 0.42 },
+    { s: 'JP225', n: 'Japan 225 Cash Index', c: 'indices', ic: { t: 'flag', a: 'jp' }, p: 38614, d: 0, chg: -0.28 },
+    { s: 'HK50', n: 'Hong Kong 50 Cash Index', c: 'indices', ic: { t: 'flag', a: 'hk' }, p: 17492, d: 0, chg: 0.65 },
+    { s: 'AAPL', n: 'Apple Inc', c: 'shares', ic: { t: 'sym', v: 'A', bg: '#111418' }, p: 228.11, d: 2, chg: 0.63 },
+    { s: 'TSLA', n: 'Tesla Inc', c: 'shares', ic: { t: 'sym', v: 'T', bg: '#e82127' }, p: 334.09, d: 2, chg: -1.02 },
+    { s: 'NVDA', n: 'NVIDIA Corp', c: 'shares', ic: { t: 'sym', v: 'N', bg: '#76b900' }, p: 126.40, d: 2, chg: 2.18 },
+    { s: 'MSFT', n: 'Microsoft Corp', c: 'shares', ic: { t: 'sym', v: 'M', bg: '#0078d4' }, p: 428.2, d: 2, chg: 0.41 },
+    { s: 'AMZN', n: 'Amazon.com Inc', c: 'shares', ic: { t: 'sym', v: 'A', bg: '#ff9900' }, p: 186.3, d: 2, chg: 0.96 },
+    { s: 'META', n: 'Meta Platforms Inc', c: 'shares', ic: { t: 'sym', v: 'M', bg: '#0866ff' }, p: 512.4, d: 2, chg: -0.53 },
+    { s: 'GOOG', n: 'Alphabet Inc', c: 'shares', ic: { t: 'sym', v: 'G', bg: '#4285f4' }, p: 176.3, d: 2, chg: 0.72 },
     { s: 'SPY.ETF', n: 'SPDR S&P 500 ETF Trust', c: 'etfs', ic: { t: 'etf' }, p: 571.28, d: 2, chg: 0.55 },
-    { s: 'XAUUSD', n: 'Gold vs US Dollar', c: 'commodities', ic: { t: 'inst', a: 'xau' }, p: 3241.80, d: 2, chg: 0.82 },
-    { s: 'XAGUSD', n: 'Silver vs US Dollar', c: 'commodities', ic: { t: 'inst', a: 'xag' }, p: 38.42, d: 2, chg: 1.14 },
-    { s: 'WTI', n: 'US Crude Oil Spot', c: 'commodities', ic: { t: 'inst', a: 'xti' }, p: 71.28, d: 2, chg: -0.34 }
+    { s: 'LQD.ETF', n: 'iShares iBoxx IG Corp Bond ETF', c: 'etfs', ic: { t: 'etf' }, p: 106.35, d: 2, chg: 0.05, pop: true, po: 4 },
+    { s: 'RSP.ETF', n: 'Invesco S&P 500 Equal Weight ETF', c: 'etfs', ic: { t: 'etf' }, p: 213.7, d: 1, chg: 1.03, pop: true, po: 5 },
+    { s: 'SPXS.ETF', n: 'Direxion Daily S&P 500 Bear 3x Shares', c: 'etfs', ic: { t: 'etf' }, p: 27.61, d: 2, chg: -0.61, pop: true, po: 6 },
+    { s: 'QQQ.ETF', n: 'Invesco QQQ Trust', c: 'etfs', ic: { t: 'etf' }, p: 486.9, d: 2, chg: 0.88 },
+    { s: 'VOO.ETF', n: 'Vanguard S&P 500 ETF', c: 'etfs', ic: { t: 'etf' }, p: 526.4, d: 2, chg: 0.54 },
+    { s: 'GLD.ETF', n: 'SPDR Gold Shares', c: 'etfs', ic: { t: 'etf' }, p: 214.8, d: 2, chg: 0.29 },
+    { s: 'XAUUSD', n: 'Gold vs US Dollar', c: 'metals', ic: { t: 'inst', a: 'xau' }, p: 3241.80, d: 2, chg: 0.82, pop: true, po: 3 },
+    { s: 'XAGUSD', n: 'Silver vs US Dollar', c: 'metals', ic: { t: 'inst', a: 'xag' }, p: 38.42, d: 2, chg: 1.14 },
+    { s: 'WTI', n: 'US Crude Oil Spot', c: 'commodities', ic: { t: 'inst', a: 'xti' }, p: 71.28, d: 2, chg: -0.34 },
+    { s: 'UKOUSD', n: 'Brent Crude Oil Spot', c: 'commodities', ic: { t: 'inst', a: 'xbr' }, p: 75.6, d: 2, chg: -0.22 },
+    { s: 'NATGAS', n: 'US Natural Gas Spot', c: 'commodities', ic: { t: 'inst', a: 'xng' }, p: 2.84, d: 3, chg: 1.66 },
+    { s: 'COPPER', n: 'Copper Spot', c: 'metals', ic: { t: 'inst', a: 'copper' }, p: 4.32, d: 3, chg: 0.38 },
+    { s: 'XPTUSD', n: 'Platinum vs US Dollar', c: 'metals', ic: { t: 'inst', a: 'xpt' }, p: 978.4, d: 2, chg: -0.45 },
+    { s: 'XPDUSD', n: 'Palladium vs US Dollar', c: 'metals', ic: { t: 'inst', a: 'xpd' }, p: 1024.6, d: 2, chg: 0.58 },
+    { s: 'XAUAUD', n: 'Gold vs Australian Dollar', c: 'metals', ic: { t: 'inst', a: 'xau' }, p: 4903.2, d: 2, chg: 0.66 },
+    { s: 'WHEAT', n: 'US Wheat Futures', c: 'commodities', ic: { t: 'inst', a: 'wheat' }, p: 598.4, d: 1, chg: 0.72 },
+    { s: 'CORN', n: 'US Corn Futures', c: 'commodities', ic: { t: 'inst', a: 'corn' }, p: 442.6, d: 1, chg: -0.31 },
+    { s: 'COFFEE', n: 'Coffee C Futures', c: 'commodities', ic: { t: 'inst', a: 'coffee' }, p: 228.9, d: 1, chg: 1.24 },
+    { s: 'SUGAR', n: 'Sugar No. 11 Futures', c: 'commodities', ic: { t: 'inst', a: 'sugar' }, p: 19.42, d: 2, chg: 0.44 }
   ];
+  var mkxFeat = { popular: 'GBPUSD', forex: 'GBPUSD', indices: 'US500', commodities: 'WTI', etfs: 'SPY.ETF', metals: 'XAUUSD', shares: 'AAPL' };
   function mkxSpark(sym, up) {
     var seed = 0, i;
     for (i = 0; i < sym.length; i++) seed = (seed * 31 + sym.charCodeAt(i)) >>> 0;
@@ -814,7 +863,7 @@
       var c1x = x1 + (x2 - x0) / 6, c1y = y1 + (y2 - y0) / 6, c2x = x2 - (x3 - x1) / 6, c2y = y2 - (y3 - y1) / 6;
       line += ' C' + c1x.toFixed(1) + ' ' + c1y.toFixed(1) + ' ' + c2x.toFixed(1) + ' ' + c2y.toFixed(1) + ' ' + x2.toFixed(1) + ' ' + y2.toFixed(1);
     }
-    return { line: line, area: line + ' L' + W + ' ' + H + ' L0 ' + H + ' Z', baseY: ys[0].toFixed(1) };
+    return { line: line, area: line + ' L' + W + ' ' + H + ' L0 ' + H + ' Z', baseY: ys[0].toFixed(1), lx: xs[N - 1].toFixed(1), ly: ys[N - 1].toFixed(1) };
   }
   function mkxIcon(m) {
     var ic = m.ic;
@@ -824,48 +873,64 @@
     if (ic.t === 'etf') return '<span class="mkx-ic mkx-ic-etf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l5-6 3.5 3.5L20 7"/><path d="M4 20h16"/></svg></span>';
     return '<span class="mkx-ic mkx-ic-sym" style="background:' + (ic.bg || '#0a2a6b') + '">' + ic.v + '</span>';
   }
-  function mkxCard(m) {
-    var up = m.chg >= 0, col = up ? '#12b76a' : '#e5484d', sp = mkxSpark(m.s, up);
-    var gid = 'gsp-' + m.s.replace(/[^A-Za-z0-9]/g, '');
-    var price = m.p.toLocaleString('en-US', { minimumFractionDigits: m.d, maximumFractionDigits: m.d });
-    return '<article class="mkx-card" data-cat="' + m.c + '" data-sym="' + m.s + '">' +
+  function mkxPrice(m) { return m.p.toLocaleString('en-US', { minimumFractionDigits: m.d, maximumFractionDigits: m.d }); }
+  function mkbSvg(m, seedSuffix, big) {
+    var up = m.chg >= 0, col = up ? '#12b76a' : '#e5484d', sp = mkxSpark(m.s + (seedSuffix || ''), up);
+    var gid = 'gsp-' + (big ? 'f-' : '') + m.s.replace(/[^A-Za-z0-9]/g, '');
+    return '<svg viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">' +
+      '<defs><linearGradient id="' + gid + '" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="' + col + '" stop-opacity=".24"/><stop offset="1" stop-color="' + col + '" stop-opacity="0"/></linearGradient></defs>' +
+      (big ? '<line class="mkx-base" x1="0" y1="' + sp.baseY + '" x2="100" y2="' + sp.baseY + '"/>' : '') +
+      '<path d="' + sp.area + '" fill="url(#' + gid + ')"/>' +
+      '<path d="' + sp.line + '" fill="none" stroke="' + col + '" stroke-width="' + (big ? 1.6 : 1.4) + '" vector-effect="non-scaling-stroke"/>' +
+      (big ? '<circle cx="' + sp.lx + '" cy="' + sp.ly + '" r="1.6" fill="' + col + '"/>' : '') +
+      '</svg>';
+  }
+  function mkbMini(m) {
+    var up = m.chg >= 0;
+    return '<article class="mkb-card" data-sym="' + m.s + '">' +
       '<div class="mkx-top">' + mkxIcon(m) + '<div class="mkx-name"><b>' + m.s + '</b><em>' + m.n + '</em></div></div>' +
-      '<div class="mkx-spark"><svg viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">' +
-        '<defs><linearGradient id="' + gid + '" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="' + col + '" stop-opacity=".26"/><stop offset="1" stop-color="' + col + '" stop-opacity="0"/></linearGradient></defs>' +
-        '<line class="mkx-base" x1="0" y1="' + sp.baseY + '" x2="100" y2="' + sp.baseY + '"/>' +
-        '<path d="' + sp.area + '" fill="url(#' + gid + ')"/>' +
-        '<path d="' + sp.line + '" fill="none" stroke="' + col + '" stroke-width="1.4" vector-effect="non-scaling-stroke"/>' +
-      '</svg></div>' +
-      '<div class="mkx-foot"><span class="mkx-price">' + price + '</span><span class="mkx-chg ' + (up ? 'up' : 'down') + '">' + (up ? '+' : '') + m.chg.toFixed(2) + '%</span><a class="mkx-trade" href="#">Trade</a></div>' +
+      '<div class="mkb-mid"><div class="mkb-nums"><span class="mkb-p">' + mkxPrice(m) + '</span><span class="mkx-chg ' + (up ? 'up' : 'down') + '">' + (up ? '+' : '') + m.chg.toFixed(2) + '%</span></div>' +
+      '<div class="mkb-spark">' + mkbSvg(m) + '</div></div>' +
+      '<a class="mkb-trade" href="#">Trade <svg><use href="#i-arrow-right"/></svg></a>' +
+      '</article>';
+  }
+  function mkbFeatCard(m) {
+    var up = m.chg >= 0;
+    var delta = (m.p * m.chg / 100), ds = (delta >= 0 ? '+' : '') + delta.toLocaleString('en-US', { minimumFractionDigits: m.d, maximumFractionDigits: m.d });
+    var tfs = ['1D', '1W', '1M', '3M', '1Y'].map(function (t, i) {
+      return '<button class="mkb-tf' + (i === 0 ? ' is-on' : '') + '" type="button">' + t + '</button>';
+    }).join('');
+    return '<article class="mkb-feat" data-sym="' + m.s + '">' +
+      '<span class="mkb-featchip"><svg><use href="#i-star"/></svg>Featured</span>' +
+      '<div class="mkx-top">' + mkxIcon(m) + '<div class="mkx-name"><b>' + m.s + '</b><em>' + m.n + '</em></div></div>' +
+      '<span class="mkb-price mkb-p">' + mkxPrice(m) + '</span>' +
+      '<span class="mkb-chgrow"><span class="mkx-chg ' + (up ? 'up' : 'down') + '">' + (up ? '+' : '') + m.chg.toFixed(2) + '%</span><em class="mkb-delta">(' + ds + ')</em></span>' +
+      '<div class="mkb-feat-spark" data-mkb-spark>' + mkbSvg(m, '', true) + '</div>' +
+      '<div class="mkb-feat-foot"><a class="mkb-trade mkb-trade--lg" href="#">Trade <svg><use href="#i-arrow-right"/></svg></a><div class="mkb-tfs">' + tfs + '</div></div>' +
       '</article>';
   }
   var mkxLive = {};
   function initMarkets() {
-    var rows = document.getElementById('mkxRows');
-    if (!rows) return;
+    var board = document.getElementById('mkxBoard');
+    if (!board) return;
     mkxData.forEach(function (m) { if (!mkxLive[m.s]) mkxLive[m.s] = { base: m.p, cur: m.p, d: m.d }; });
-    var tracks = Array.prototype.slice.call(rows.querySelectorAll('.mkx-track'));
     var tabs = Array.prototype.slice.call(document.querySelectorAll('.mkx-tab'));
 
-    function fillRow(track, items) {
-      var dir = parseInt(track.dataset.dir, 10) || -1, cardW = 338;
-      var row = track.closest('.mkx-row');
-      var need = Math.ceil(((row ? row.clientWidth : 1200) + 420) / cardW);
-      var set = [];
-      while (set.length < Math.max(need, items.length)) set = set.concat(items);
-      track.innerHTML = set.concat(set).map(mkxCard).join('');
-      if (track._tw) { track._tw.kill(); track._tw = null; }
-      if (prefersReduced || !hasGSAP) { gsap && gsap.set(track, { x: 0 }); return; }
-      var half = track.scrollWidth / 2, dur = half / 42;
-      if (dir < 0) { gsap.set(track, { x: 0 }); track._tw = gsap.to(track, { x: -half, duration: dur, ease: 'none', repeat: -1 }); }
-      else { gsap.set(track, { x: -half }); track._tw = gsap.to(track, { x: 0, duration: dur, ease: 'none', repeat: -1 }); }
-      track.onmouseenter = function () { if (track._tw) track._tw.timeScale(0.18); };
-      track.onmouseleave = function () { if (track._tw) track._tw.timeScale(1); };
-    }
     function render(cat) {
       var items = mkxData.filter(function (m) { return cat === 'popular' ? m.pop : m.c === cat; });
-      if (tracks[0]) fillRow(tracks[0], items);
-      if (tracks[1]) fillRow(tracks[1], items.slice().reverse());
+      if (cat === 'popular') items.sort(function (a, b) { return (a.po || 0) - (b.po || 0); });
+      var featSym = mkxFeat[cat], feat = null, minis = [];
+      items.forEach(function (m) { if (!feat && m.s === featSym) feat = m; else minis.push(m); });
+      if (!feat) { feat = items[0]; minis = items.slice(1); }
+      board.innerHTML = mkbFeatCard(feat) + '<div class="mkx-minis">' + minis.slice(0, 6).map(mkbMini).join('') + '</div>';
+      var tfBtns = Array.prototype.slice.call(board.querySelectorAll('.mkb-tf'));
+      var sparkBox = board.querySelector('[data-mkb-spark]');
+      tfBtns.forEach(function (b) {
+        b.addEventListener('click', function () {
+          tfBtns.forEach(function (x) { x.classList.toggle('is-on', x === b); });
+          if (sparkBox) sparkBox.innerHTML = mkbSvg(feat, b.textContent === '1D' ? '' : b.textContent, true);
+        });
+      });
     }
     tabs.forEach(function (t) {
       t.addEventListener('click', function () {
@@ -875,26 +940,22 @@
     });
     render('popular');
 
-    // live prices — updates every card sharing a symbol (incl. duplicated marquee copies)
+    // live prices tick across the board
     if (!prefersReduced) {
       setInterval(function () {
-        var cards = rows.querySelectorAll('.mkx-card');
+        var cards = board.querySelectorAll('[data-sym]');
         if (!cards.length) return;
-        var bySym = {};
-        cards.forEach(function (c) { var s = c.getAttribute('data-sym'); if (s) (bySym[s] = bySym[s] || []).push(c); });
-        Object.keys(bySym).forEach(function (s) {
-          var st = mkxLive[s]; if (!st) return;
-          if (Math.random() > 0.5) return;
+        Array.prototype.forEach.call(cards, function (c) {
+          var s = c.getAttribute('data-sym'), st = mkxLive[s];
+          if (!st || Math.random() > 0.5) return;
           var step = st.base * 0.0009 * (Math.random() * 2 - 1);
           st.cur = st.cur + step + (st.base - st.cur) * 0.05;
           var chg = ((st.cur - st.base) / st.base) * 100;
           var ps = st.cur.toLocaleString('en-US', { minimumFractionDigits: st.d, maximumFractionDigits: st.d });
           var cs = (chg >= 0 ? '+' : '') + chg.toFixed(2) + '%';
-          bySym[s].forEach(function (c) {
-            var pe = c.querySelector('.mkx-price'), ce = c.querySelector('.mkx-chg');
-            if (pe) { pe.textContent = ps; pe.classList.remove('mkx-flash-up', 'mkx-flash-down'); void pe.offsetWidth; pe.classList.add(step >= 0 ? 'mkx-flash-up' : 'mkx-flash-down'); }
-            if (ce) { ce.textContent = cs; ce.classList.toggle('up', chg >= 0); ce.classList.toggle('down', chg < 0); }
-          });
+          var pe = c.querySelector('.mkb-p'), ce = c.querySelector('.mkx-chg');
+          if (pe) { pe.textContent = ps; pe.classList.remove('mkx-flash-up', 'mkx-flash-down'); void pe.offsetWidth; pe.classList.add(step >= 0 ? 'mkx-flash-up' : 'mkx-flash-down'); }
+          if (ce) { ce.textContent = cs; ce.classList.toggle('up', chg >= 0); ce.classList.toggle('down', chg < 0); }
         });
       }, 1600);
     }

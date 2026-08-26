@@ -37,7 +37,7 @@
   <link rel="stylesheet" href="/assets/fonts/fonts.css" />
   <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css" />
   <link rel="stylesheet" href="/assets/css/aos.min.css" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=qa47" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=qa48" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* ---- welcome popup (dark glass) ---- */
@@ -169,17 +169,78 @@
 .markets .blob.b1{width:460px;height:460px;left:-6%;top:18%;background:radial-gradient(circle,rgba(0,110,255,.12),transparent 70%)}
 .markets .blob.b2{width:500px;height:500px;right:-6%;top:8%;background:radial-gradient(circle,rgba(20,205,200,.1),transparent 70%)}
 .markets .blob.b3{display:none}
-/* ---- Markets explorer (glassmorphic cards + category tabs) ---- */
-.mkx-tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:6px 0 34px}
-.mkx-tab{font-size:14px;font-weight:600;color:var(--text-soft);padding:9px 20px;border-radius:60px;background:rgba(255,255,255,.6);border:1px solid var(--line);cursor:pointer;transition:background .25s,color .25s,border-color .25s,box-shadow .25s}
-.mkx-tab:hover{color:var(--text);border-color:#c7d3e6}
-.mkx-tab.is-active{background:#0d1420;color:#fff;border-color:transparent;box-shadow:0 12px 26px -14px rgba(13,20,32,.5)}
-.mkx-rows{display:flex;flex-direction:column;gap:16px}
-.mkx-row{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent);mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent)}
-.mkx-track{display:flex;gap:18px;width:max-content;padding:12px 0;will-change:transform}
-.mkx-note{max-width:640px;margin:32px auto 0;text-align:center;font-size:13px;color:var(--text-mute);line-height:1.7}
+/* ---- Markets board: icon tab bar, one featured instrument, six minis ---- */
+.mkx-tabs{display:flex;justify-content:flex-start;gap:4px;margin:6px auto 30px;padding:7px;width:max-content;max-width:100%;
+  background:rgba(255,255,255,.7);border:1px solid var(--line);border-radius:70px;
+  -webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4);
+  box-shadow:0 18px 40px -30px rgba(20,44,96,.35);overflow-x:auto;scrollbar-width:none}
+.mkx-tabs::-webkit-scrollbar{display:none}
+.mkx-tab{display:inline-flex;align-items:center;gap:8px;white-space:nowrap;font-size:14px;font-weight:600;color:var(--text-soft);
+  padding:10px 18px;border-radius:60px;background:transparent;border:0;cursor:pointer;transition:background .25s,color .25s,box-shadow .25s}
+.mkx-tab:hover{color:var(--text)}
+.mkx-tab.is-active{background:#0d1420;color:#fff;box-shadow:0 12px 26px -14px rgba(13,20,32,.55)}
+.mkx-tab-ic{width:16px;height:16px;flex:none}
+.mkx-tab-btc{display:grid;place-items:center;width:17px;height:17px;flex:none;border-radius:50%;border:1.6px solid currentColor;font-size:10.5px;font-weight:800;line-height:1}
+.mkx-board{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,11fr);gap:18px;align-items:stretch}
+.mkb-feat{display:flex;flex-direction:column;border-radius:var(--radius-xl);padding:26px 26px 24px;
+  background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(22px) saturate(1.7);backdrop-filter:blur(22px) saturate(1.7);
+  border:1px solid rgba(255,255,255,.85);transition:transform .4s var(--ease),border-color .3s,background .3s}
+.mkb-feat:hover{transform:translateY(-4px);border-color:#fff;background:rgba(255,255,255,.66)}
+.mkb-featchip{align-self:flex-start;display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:700;color:var(--blue);
+  background:rgba(0,71,187,.08);border:1px solid rgba(0,71,187,.18);padding:7px 14px;border-radius:60px;margin-bottom:18px}
+.mkb-featchip svg{width:13px;height:13px}
+.mkb-feat .mkx-name b{font-size:19px}
+.mkb-feat .mkx-name em{font-size:13px;white-space:normal}
+.mkb-price{display:block;font-size:clamp(30px,3vw,40px);font-weight:800;letter-spacing:-.03em;color:var(--text);font-variant-numeric:tabular-nums;margin-top:16px}
+.mkb-chgrow{display:flex;align-items:center;gap:10px;margin-top:10px}
+.mkb-delta{font-style:normal;font-size:13.5px;font-weight:600;color:var(--text-soft);font-variant-numeric:tabular-nums}
+.mkb-feat-spark{margin:18px 0 20px;height:clamp(120px,13vw,168px)}
+.mkb-feat-spark svg{width:100%;height:100%;display:block;overflow:visible}
+.mkb-feat-foot{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:auto;flex-wrap:wrap}
+.mkb-tfs{display:flex;gap:4px;background:rgba(255,255,255,.72);border:1px solid var(--line);border-radius:60px;padding:4px}
+.mkb-tf{font-size:12px;font-weight:700;color:var(--text-mute);padding:7px 11px;border-radius:60px;border:0;background:transparent;cursor:pointer;transition:background .25s,color .25s;font-variant-numeric:tabular-nums}
+.mkb-tf:hover{color:var(--text)}
+.mkb-tf.is-on{background:#fff;color:var(--text);box-shadow:0 4px 12px -6px rgba(20,44,96,.35)}
+.mkx-minis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.mkb-card{display:flex;flex-direction:column;border-radius:var(--radius-xl);padding:18px 18px 16px;
+  background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(22px) saturate(1.7);backdrop-filter:blur(22px) saturate(1.7);
+  border:1px solid rgba(255,255,255,.85);transition:transform .4s var(--ease),border-color .3s,background .3s}
+.mkb-card:hover{transform:translateY(-4px);border-color:#fff;background:rgba(255,255,255,.66)}
+.mkb-card .mkx-ic{width:36px;height:36px;font-size:12px}
+.mkb-card .mkx-ic-flags{width:42px}
+.mkb-card .mkx-ic-flags img:first-child{width:26px;height:26px}
+.mkb-card .mkx-ic-flags img:last-child{width:22px;height:22px}
+.mkb-card .mkx-name b{font-size:14.5px}
+.mkb-mid{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:14px 0}
+.mkb-nums{min-width:0;flex:none}
+.mkb-p{display:block;font-size:20px;font-weight:800;letter-spacing:-.02em;color:var(--text);font-variant-numeric:tabular-nums}
+.mkb-nums .mkx-chg{display:inline-block;margin-top:8px;font-size:12px;padding:5px 10px}
+.mkb-spark{flex:1 1 auto;min-width:0;max-width:47%;height:52px}
+.mkb-spark svg{width:100%;height:100%;display:block}
+@keyframes mkbFlash{0%,30%{color:var(--fc)}100%{color:var(--text)}}
+.mkb-p.mkx-flash-up{animation:mkbFlash .8s ease;--fc:#0a9d5a}
+.mkb-p.mkx-flash-down{animation:mkbFlash .8s ease;--fc:#d43a3f}
+.mkb-trade{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;margin-top:auto;font-size:13px;font-weight:600;color:var(--text);
+  padding:8px 16px;border-radius:60px;background:rgba(255,255,255,.72);border:1px solid var(--line);text-decoration:none;transition:background .25s,color .25s,border-color .25s}
+.mkb-trade svg{width:14px;height:14px}
+.mkb-trade:hover{background:var(--blue);color:#fff;border-color:transparent}
+.mkb-trade--lg{font-size:14px;padding:11px 22px;background:var(--blue);color:#fff;border-color:transparent}
+.mkb-trade--lg:hover{background:var(--blue-700,#002EA2)}
+.mkx-footbar{display:flex;align-items:center;gap:18px;margin-top:22px;padding:14px 14px 14px 22px;border-radius:24px;
+  background:rgba(255,255,255,.6);border:1px solid var(--line);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
+.mkx-note{display:flex;align-items:center;gap:12px;margin:0;text-align:left;font-size:13px;color:var(--text-mute);line-height:1.6}
 .mkx-note b{color:var(--text-soft);font-weight:700}
-.mkx-more{margin-top:28px;text-align:center}
+.mkx-note svg{width:20px;height:20px;flex:none;color:var(--text-soft)}
+.mkx-footbar .btn{margin-left:auto;flex:none}
+@media (max-width:1080px){
+  .mkx-board{grid-template-columns:1fr}
+  .mkx-minis{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:640px){
+  .mkx-minis{grid-template-columns:1fr}
+  .mkx-footbar{flex-direction:column;align-items:flex-start;padding:18px 20px}
+  .mkx-footbar .btn{margin-left:0;width:100%;justify-content:center}
+}
 /* ---------- Platforms ---------- */
 /* the hand sits flush to the card's lower-right corner */
 .plat-hand{
@@ -893,20 +954,19 @@
     </div>
 
     <div class="mkx-tabs" data-aos="fade-up" role="tablist" aria-label="Market categories">
-      <button class="mkx-tab is-active" type="button" role="tab" aria-selected="true" data-cat="popular">Популярное</button>
-      <button class="mkx-tab" type="button" role="tab" aria-selected="false" data-cat="forex">Форекс</button>
-      <button class="mkx-tab" type="button" role="tab" aria-selected="false" data-cat="indices">Индексы</button>
-      <button class="mkx-tab" type="button" role="tab" aria-selected="false" data-cat="crypto">Криптовалюты</button>
-      <button class="mkx-tab" type="button" role="tab" aria-selected="false" data-cat="stocks">Акции</button>
-      <button class="mkx-tab" type="button" role="tab" aria-selected="false" data-cat="etfs">ETF</button>
-      <button class="mkx-tab" type="button" role="tab" aria-selected="false" data-cat="commodities">Сырьё</button>
+      <button class="mkx-tab is-active" type="button" role="tab" aria-selected="true" data-cat="popular"><svg class="mkx-tab-ic"><use href="#i-cm-bars"/></svg>Популярное</button>
+      <button class="mkx-tab" type="button" role="tab" aria-selected="false" data-cat="commodities"><svg class="mkx-tab-ic"><use href="#i-droplet"/></svg>Сырьё</button>
+      <button class="mkx-tab" type="button" role="tab" aria-selected="false" data-cat="indices"><svg class="mkx-tab-ic"><use href="#i-cfd"/></svg>Индексы</button>
+      <button class="mkx-tab" type="button" role="tab" aria-selected="false" data-cat="forex"><svg class="mkx-tab-ic"><use href="#i-swap"/></svg>Форекс</button>
+      <button class="mkx-tab" type="button" role="tab" aria-selected="false" data-cat="etfs"><svg class="mkx-tab-ic"><use href="#i-pie"/></svg>ETF</button>
+      <button class="mkx-tab" type="button" role="tab" aria-selected="false" data-cat="metals"><svg class="mkx-tab-ic"><use href="#i-layers"/></svg>Металлы</button>
+      <button class="mkx-tab" type="button" role="tab" aria-selected="false" data-cat="shares"><svg class="mkx-tab-ic"><use href="#i-chart"/></svg>Акции</button>
     </div>
-    <div class="mkx-rows" id="mkxRows" data-aos="fade-up">
-      <div class="mkx-row"><div class="mkx-track" data-dir="-1"><!-- cards by JS --></div></div>
-      <div class="mkx-row"><div class="mkx-track" data-dir="1"><!-- cards by JS --></div></div>
+    <div class="mkx-board" id="mkxBoard" data-aos="fade-up"><!-- cards by JS --></div>
+    <div class="mkx-footbar" data-aos="fade-up">
+      <p class="mkx-note"><svg aria-hidden="true"><use href="#i-shield"/></svg><span>Цены выше являются ориентировочными и могут запаздывать до <b>5 минут</b>. Перед открытием сделок сверяйтесь с котировками в торговой платформе.</span></p>
+      <a href="#markets" class="btn btn-primary btn-lg magnetic">Все рынки <svg class="ico"><use href="#i-arrow-right"/></svg></a>
     </div>
-    <p class="mkx-note">Цены выше являются ориентировочными и могут запаздывать до <b>5 минут</b>. Перед открытием сделок сверяйтесь с котировками в торговой платформе.</p>
-    <div class="mkx-more"><a href="#markets" class="btn btn-primary btn-lg magnetic">Все рынки <svg class="ico"><use href="#i-arrow-right"/></svg></a></div>
   </div>
 </section>
 
@@ -1494,6 +1554,6 @@
 <script src="/assets/js/vendor/lenis.min.js" defer></script>
 <script src="/assets/js/vendor/swiper-bundle.min.js" defer></script>
 <script src="/assets/js/vendor/aos.min.js" defer></script>
-<script src="/assets/js/main.js?v=qa47" defer></script>
+<script src="/assets/js/main.js?v=qa48" defer></script>
 </body>
 </html>
