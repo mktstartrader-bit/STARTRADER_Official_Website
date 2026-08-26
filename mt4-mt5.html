@@ -120,8 +120,16 @@
   .mtd-visual img{right:50%;transform:translateX(50%);bottom:-36px;height:112%}
   .mtd-panels{grid-template-columns:1fr}
 }
-@media (max-width:400px){.mtd-grid{gap:8px}
-.mtd-btn{padding:11px 12px;gap:9px}}
+@media (max-width:480px){
+  .mtd-grid{gap:8px}
+  .mtd-btn{padding:11px 12px;gap:9px}
+  .mtd-btn-ic{width:32px;height:32px}
+  .mtd-btn-ic svg{width:16px;height:16px}
+  /* the kicker holds one line so the two rows align across the grid */
+  .mtd-btn-tx em{font-size:9.5px;letter-spacing:.04em;white-space:nowrap}
+  .mtd-btn-tx b{font-size:14px}
+}
+@media (max-width:360px){.mtd-grid{grid-template-columns:1fr}}
   </style>
 
   <script type="application/ld+json">
