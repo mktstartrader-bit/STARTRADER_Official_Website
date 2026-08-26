@@ -156,7 +156,7 @@
    overlap at 1080, 25,397 at 1010, 30,404 at 970, 34,072 at 940, and a last
    3,050 at 1180 — until the 900px rule finally stacks them. In that band the
    copy takes only the room left of the artwork. */
-@media (max-width:1180px) and (min-width:761px){
+@media (max-width:1180px) and (min-width:901px){
   .x-hand-copy{max-width:min(600px,46vw)}
   /* IT follow-up 8.25: the chips' fixed left offsets let their right ends
      ride onto the handset as the two columns close on each other in this
@@ -169,7 +169,7 @@
   .x-chip--exec,.x-chip--quote{left:auto;right:calc(clamp(520px,52vw,660px)*.7478 + 10px)}
   .x-chip--quote{bottom:6%}
 }
-@media (max-width:760px){
+@media (max-width:900px){
   .x-hand-sec{min-height:0;display:block;padding-bottom:0}
   /* the stage was full width with the handset pushed to its right edge, so the
      chips — placed against the stage, not the phone — sat 202 to 450px away
@@ -179,8 +179,11 @@
   .x-hand-visual{position:relative;inset:auto;width:min(100%,470px);height:clamp(300px,68vw,430px);
     margin:26px auto 0}
   .x-hand-visual img{right:-2%;bottom:-40px;height:118%}
-  .x-chip--exec{left:0;top:10%}
-  .x-chip--quote{left:-2%;bottom:24%}
+  /* the chips ride the handset itself — anchored to the art's computable
+     left edge (102%+16% bottom bleed of the stage height at a 1000:1364
+     aspect) and tucked a step onto the bezel, the desktop look */
+  .x-chip--exec{left:auto;right:calc(clamp(300px,68vw,430px)*.8651 - 22px);top:10%}
+  .x-chip--quote{left:auto;right:calc(clamp(300px,68vw,430px)*.8651 - 30px);bottom:22%}
 }
 @media (max-width:420px){
   .x-chip--exec{left:2%}
@@ -192,7 +195,7 @@
    covered "buttons" IT flagged at ~460px on their metrics. The chips run
    compact through the whole band so they end on the handset's plain
    shoulder instead of its screen. */
-@media (max-width:760px){
+@media (max-width:900px){
   .x-chip{padding:9px 12px;gap:8px}
   .x-chip-ic{width:28px;height:28px;border-radius:8px}
   .x-chip-ic svg{width:14px;height:14px}
