@@ -58,7 +58,7 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
 .xp-kicker::before{content:"";width:24px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--blue),#16e9d7)}
 .xp-h1{margin-top:18px;font-size:clamp(34px,4.6vw,62px);font-weight:800;letter-spacing:-.045em;line-height:1.02}
 .xp-h1 span{display:block}
-.xp-h1 .alt{color:transparent;background:linear-gradient(92deg,#7fb2ff,#2a72ff 55%,#16e9d7);-webkit-background-clip:text;background-clip:text}
+.xp-h1 .alt{color:transparent;background:linear-gradient(92deg,#7fb2ff,#2a72ff 55%,#16e9d7);-webkit-background-clip:text;background-clip:text;padding-bottom:.14em;margin-bottom:-.14em}
 .xp-lead{margin-top:20px;max-width:46ch;font-size:clamp(15px,1.5vw,17px);line-height:1.72;color:#c4cedf}
 .xp-meta{display:flex;flex-direction:column;gap:10px;margin-top:clamp(24px,3vw,34px)}
 .xp-meta-row{display:flex;align-items:center;gap:12px;padding:13px 16px;border-radius:15px;max-width:420px;
@@ -137,32 +137,39 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
 .xp-fine p{max-width:88ch;margin-inline:auto;font-size:12px;line-height:1.7;color:#8ea4c6;text-align:center}
 .xp-fine p + p{margin-top:6px}
 
-/* ---- the quiz ---- */
-.xp-quiz{position:relative;overflow:hidden;padding:clamp(56px,8vw,104px) 0;color:var(--text);
+/* ---- the quiz: one dark billboard on the light ground ---- */
+.xp-quiz{padding:clamp(48px,7vw,96px) 0;background:var(--bg-light,#F4F7FA)}
+.xp-quiz-panel{position:relative;overflow:hidden;border-radius:clamp(24px,3vw,34px);color:#fff;
+  padding:clamp(28px,4.5vw,60px);
   background:
-    radial-gradient(56% 44% at 86% 8%,rgba(0,71,187,.07),transparent 62%),
-    radial-gradient(40% 36% at 6% 90%,rgba(22,233,215,.06),transparent 60%),
-    var(--bg-light,#F4F7FA)}
-.xp-quiz-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:clamp(30px,5vw,72px);align-items:center}
+    radial-gradient(64% 60% at 88% 10%,rgba(0,71,187,.4),transparent 60%),
+    radial-gradient(44% 50% at 4% 96%,rgba(22,233,215,.14),transparent 60%),
+    linear-gradient(160deg,#0a1428,#04060e 62%);
+  border:1px solid rgba(120,160,255,.22);
+  box-shadow:0 50px 100px -46px rgba(4,10,26,.7),inset 0 1px 0 rgba(255,255,255,.14)}
+.xp-quiz-panel::before{content:"";position:absolute;left:12%;right:12%;top:0;height:1px;border-radius:1px;
+  background:linear-gradient(90deg,transparent,rgba(127,178,255,.85),rgba(22,233,215,.6),transparent)}
+.xp-quiz-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,360px);gap:clamp(28px,4.5vw,64px);align-items:center}
 .xp-h2{font-size:clamp(28px,3.6vw,46px);font-weight:800;letter-spacing:-.04em;line-height:1.06}
 .xp-h2 span{display:block}
-.xp-h2 .alt{color:transparent;background:linear-gradient(92deg,var(--blue),#2a72ff 55%,#0aa9a0);-webkit-background-clip:text;background-clip:text}
-.xp-quiz p{margin-top:18px;max-width:52ch;font-size:clamp(14.5px,1.4vw,16.5px);line-height:1.72;color:var(--text-soft)}
+.xp-h2 .alt{color:transparent;background:linear-gradient(92deg,#7fb2ff,#2a72ff 55%,#16e9d7);-webkit-background-clip:text;background-clip:text;padding-bottom:.14em;margin-bottom:-.14em}
+.xp-quiz p{margin-top:18px;max-width:52ch;font-size:clamp(14.5px,1.4vw,16.5px);line-height:1.72;color:#c4cedf}
 .xp-stats{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
 .xp-stat{display:flex;align-items:center;gap:9px;padding:11px 16px;border-radius:70px;
-  background:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.95);
-  -webkit-backdrop-filter:blur(14px) saturate(1.4);backdrop-filter:blur(14px) saturate(1.4);
-  box-shadow:0 14px 30px -22px rgba(20,44,96,.35);
-  font-size:13.5px;font-weight:700;letter-spacing:-.01em;color:var(--text);
-  transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
-.xp-stat:hover{transform:translateY(-3px);box-shadow:0 20px 38px -22px rgba(0,71,187,.35)}
-.xp-stat i{width:6px;height:6px;border-radius:50%;background:var(--blue)}
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  font-size:13.5px;font-weight:700;letter-spacing:-.01em;color:#eaf0fa;
+  transition:transform .35s var(--ease),border-color .3s}
+.xp-stat:hover{transform:translateY(-3px);border-color:rgba(127,178,255,.45)}
+.xp-stat i{width:6px;height:6px;border-radius:50%;background:#16e9d7}
 .xp-cta{margin-top:32px}
+/* the icon is shot on pure black — screen-blended, only its glass glows */
 .xp-visual{position:relative;display:grid;place-items:center}
-.xp-visual img{width:min(100%,380px);height:auto;border-radius:28px;
-  box-shadow:0 50px 100px -44px rgba(0,71,187,.7);
+.xp-visual::before{content:"";position:absolute;width:76%;aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle,rgba(42,114,255,.34),transparent 66%);filter:blur(10px)}
+.xp-visual img{position:relative;width:min(100%,360px);height:auto;mix-blend-mode:screen;
   transition:transform .5s var(--ease)}
-.xp-visual:hover img{transform:translateY(-6px) rotate(-1.2deg)}
+.xp-quiz-panel:hover .xp-visual img{transform:translateY(-6px) rotate(-1.5deg) scale(1.02)}
 
 /* ---- how it works ---- */
 .xp-how{padding:clamp(56px,8vw,104px) 0;background:linear-gradient(180deg,var(--bg-light,#F4F7FA),#eef2f8);color:var(--text)}
@@ -198,8 +205,9 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
 @media (max-width:1024px){
   .xp-hero-in{grid-template-columns:1fr;gap:38px}
   .xp-form{max-width:520px;margin-inline:auto;width:100%}
-  .xp-quiz-in{grid-template-columns:1fr;gap:40px;text-align:left}
+  .xp-quiz-in{grid-template-columns:1fr;gap:30px;text-align:left}
   .xp-visual{order:-1}
+  .xp-visual img{width:min(70%,300px)}
   .xp-steps{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:560px){
@@ -330,25 +338,29 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
 
 <!-- ============ THE QUIZ ============ -->
 <section class="xp-quiz" aria-labelledby="xp-quiz-h">
-  <div class="xp-wrap xp-quiz-in">
-    <div>
-      <h2 class="xp-h2" id="xp-quiz-h" data-aos="fade-up">
-        <span>Think fast.</span>
-        <span class="alt">Test your market edge.</span>
-      </h2>
-      <p data-aos="fade-up">Put your knowledge to the test and see if you&rsquo;ve got what it takes. Get free market insights, educational content, and exclusive STARTRADER extras along the way.</p>
-      <div class="xp-stats" data-aos="fade-up">
-        <span class="xp-stat"><i></i>10 Questions</span>
-        <span class="xp-stat"><i></i>5 Seconds Each</span>
-        <span class="xp-stat"><i></i>Exciting Rewards</span>
+  <div class="xp-wrap">
+    <div class="xp-quiz-panel" data-aos="fade-up">
+      <div class="xp-quiz-in">
+        <div>
+          <h2 class="xp-h2" id="xp-quiz-h">
+            <span>Think fast.</span>
+            <span class="alt">Test your market edge.</span>
+          </h2>
+          <p>Put your knowledge to the test and see if you&rsquo;ve got what it takes. Get free market insights, educational content, and exclusive STARTRADER extras along the way.</p>
+          <div class="xp-stats">
+            <span class="xp-stat"><i></i>10 Questions</span>
+            <span class="xp-stat"><i></i>5 Seconds Each</span>
+            <span class="xp-stat"><i></i>Exciting Rewards</span>
+          </div>
+          <div class="xp-cta">
+            <!-- the quiz URL lands with the campaign integration -->
+            <a href="#" class="btn btn-primary btn-lg">Take the quiz now <svg class="ico"><use href="#xp-arrow"/></svg></a>
+          </div>
+        </div>
+        <div class="xp-visual" aria-hidden="true">
+          <img src="/assets/img/expo-quiz-hero.webp" alt="" width="512" height="512" loading="lazy" decoding="async">
+        </div>
       </div>
-      <div class="xp-cta" data-aos="fade-up">
-        <!-- the quiz URL lands with the campaign integration -->
-        <a href="#" class="btn btn-primary btn-lg">Take the quiz now <svg class="ico"><use href="#xp-arrow"/></svg></a>
-      </div>
-    </div>
-    <div class="xp-visual" data-aos="fade-up" data-aos-delay="100">
-      <img src="/assets/img/expo-quiz-hero.webp" alt="Think fast — the five-second market quiz" width="512" height="512" loading="lazy" decoding="async">
     </div>
   </div>
 </section>

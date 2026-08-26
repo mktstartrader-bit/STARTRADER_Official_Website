@@ -39,10 +39,15 @@ swap content, never redesign.
    edge, dark-feathered top and bottom.
 3. **Entity fine print (dark seam)** — the sheet's compliance lines,
    centred small print.
-4. **Campaign section (LIGHT)** — `xp-quiz`: the sheet's second headline
-   pair, the campaign copy, stat pills (each sheet line becomes one
-   `xp-stat`), the CTA button (campaign URL from MKT; `#` + comment until
-   supplied), and the hero 3D icon on its dark tile.
+4. **Campaign section (LIGHT ground, dark billboard)** — `xp-quiz`: one
+   large rounded dark-glass panel (`xp-quiz-panel`: lit hairline top edge,
+   blue/teal radials on near-black) sitting on the light page ground.
+   Inside, left: the sheet's second headline pair, the campaign copy,
+   stat pills (each sheet line becomes one `xp-stat`), the CTA button
+   (campaign URL from MKT; `#` + comment until supplied). Right: the
+   hero 3D icon with `mix-blend-mode:screen` so its black background
+   melts into the panel and only the glass glows. Below ~1024px the
+   icon moves above the copy.
 5. **How it works (LIGHT)** — `xp-steps`: one glass card per sheet step;
    card = ghost numeral + 3D icon tile + bold title (the part before the
    em-dash) + copy (the part after). Below: the `*T&Cs apply.` line — the
