@@ -32,9 +32,12 @@ swap content, never redesign.
 
 1. **Hero (dark)** — `xp-hero`: STARTRADER logo link, kicker (event name),
    H1 = the sheet's two headline lines (second line takes the blue→teal
-   gradient `alt` class), lead = booth/meet line, two `xp-meta-row` glass
-   chips (venue+halls / dates+booth), and the `xp-form` glass card on the
-   right (stacks below 1024px).
+   gradient `alt` class), lead = booth/meet line, ONE merged
+   `xp-meta-row--stack` glass chip: calendar icon + bold
+   "<Event>, <dates>" line, muted venue line, then inline pin icon +
+   bold "Booth <N>". The `xp-form` glass card sits right and is pulled
+   up with negative margin so its top aligns with the logo line
+   (reset to 0 below 1024px where it stacks).
 2. **Full-width image band** — `xp-band`: a 21:9 venue image, edge to
    edge, dark-feathered top and bottom.
 3. **Entity fine print (dark seam)** — the sheet's compliance lines,
