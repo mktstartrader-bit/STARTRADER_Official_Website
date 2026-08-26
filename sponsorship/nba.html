@@ -69,12 +69,8 @@
 .nb-badge span{font-size:10.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#e6edf8}
 .nb-h1{margin-top:26px;font-size:clamp(38px,5.6vw,78px);font-weight:800;letter-spacing:-.05em;line-height:.96}
 .nb-h1 span{display:block}
-/* the second line is outlined, the way a game poster stacks a title */
-.nb-h1 .hollow{
-  color:transparent;-webkit-text-stroke:1.4px rgba(127,233,223,.72);
-  text-shadow:0 0 30px rgba(22,233,215,.5),0 0 70px rgba(10,92,245,.42);
-}
-.nb-h1 span:first-child{text-shadow:0 0 46px rgba(10,92,245,.5)}
+/* both lines run as normal filled type — no outline, no glow */
+.nb-h1 .hollow{color:#fff}
 .nb-lead{margin-top:24px;max-width:50ch;font-size:clamp(15px,1.5vw,17px);line-height:1.72;color:#c4cedf}
 .nb-hact{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
 .nb-dl{
@@ -121,7 +117,7 @@
 .nb-card-n{
   position:absolute;z-index:1;top:16px;left:18px;font-size:11px;font-weight:800;letter-spacing:.16em;color:rgba(255,255,255,.5);
 }
-.nb-card.is-on{border-color:rgba(10,92,245,.66);box-shadow:0 50px 96px -38px rgba(10,92,245,.5),0 0 0 1px rgba(10,92,245,.28)}
+.nb-card.is-on{border-color:rgba(10,92,245,.66);box-shadow:0 30px 60px -30px rgba(0,0,0,.6)}
 .nb-card.is-on img{opacity:.82}
 .nb-card.is-on .nb-card-tx em{max-height:110px;opacity:1;margin-top:10px}
 .nb-card.is-on .nb-card-n{color:var(--teal)}
@@ -288,7 +284,7 @@
 .nb-reps-foot{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:clamp(28px,3vw,40px)}
 .nb-reps-bar{display:flex;gap:6px}
 .nb-reps-bar i{width:36px;height:3px;border-radius:2px;background:rgba(255,255,255,.16);transition:background .4s,width .4s var(--ease)}
-.nb-reps-bar i.is-on{width:52px;background:var(--teal);box-shadow:0 0 14px rgba(22,233,215,.8)}
+.nb-reps-bar i.is-on{width:52px;background:var(--teal)}
 .nb-loop{
   display:inline-flex;align-items:baseline;gap:7px;padding:8px 15px;border-radius:70px;
   font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#8ea4c6;
@@ -321,7 +317,7 @@
 .nb-arc-dots{display:none}
 .nb-reps{grid-template-columns:1fr}}
 /* the wallpapers are artwork now, so the swatches show the crest itself */
-.nb-hl{color:var(--teal);text-shadow:0 0 26px rgba(22,233,215,.5)}
+.nb-hl{color:var(--teal)}
 /* the habit panels get a neon edge that lights left to right */
 .nb-rep{position:relative;overflow:hidden}
 .nb-rep::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--teal),var(--neon));transform:scaleY(0);transform-origin:top;transition:transform .5s var(--ease)}
