@@ -212,6 +212,158 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
 .xp-risk p{margin-top:10px;font-size:12px;line-height:1.7;color:#7286a8}
 .xp-risk .xp-copy{margin-top:18px;color:#8ea4c6}
 
+/* ---- the quiz popup: one glass card that walks the sixteen steps ---- */
+.xp-pop{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:20px;
+  background:rgba(4,6,14,.66);-webkit-backdrop-filter:blur(12px) saturate(1.2);backdrop-filter:blur(12px) saturate(1.2);
+  opacity:0;pointer-events:none;transition:opacity .35s}
+.xp-pop.is-open{opacity:1;pointer-events:auto}
+.xp-pop-card{position:relative;overflow:auto;width:min(600px,100%);max-height:calc(100dvh - 40px);color:#fff;
+  padding:clamp(24px,4.4vw,40px);border-radius:clamp(22px,3vw,30px);
+  background:
+    radial-gradient(130% 100% at var(--mx,84%) var(--my,-10%),rgba(0,71,187,.4),transparent 56%),
+    radial-gradient(52% 46% at 6% 102%,rgba(42,114,255,.14),transparent 62%),
+    linear-gradient(158deg,#0b1630,#04060e 66%);
+  border:1px solid rgba(120,160,255,.26);
+  box-shadow:0 60px 130px -40px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.14);
+  transform:translateY(30px) scale(.94);transition:transform .5s var(--ease)}
+.xp-pop.is-open .xp-pop-card{transform:none}
+.xp-pop-card::before{content:"";position:absolute;left:12%;right:12%;top:0;height:1px;border-radius:1px;
+  background:linear-gradient(90deg,transparent,rgba(127,178,255,.9),rgba(127,178,255,.45),transparent)}
+.xp-pop-x{position:absolute;top:14px;right:14px;z-index:2;width:38px;height:38px;display:grid;place-items:center;cursor:pointer;
+  border-radius:50%;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.07);color:#c4cedf;
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  transition:background .25s,color .25s,transform .3s var(--ease)}
+.xp-pop-x:hover{background:rgba(255,255,255,.15);color:#fff;transform:rotate(90deg)}
+.xp-pop-x svg{width:15px;height:15px}
+/* each step fades in as it lands */
+.xp-pop-body{animation:xpStepIn .45s var(--ease) both}
+@keyframes xpStepIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.xp-pop-kicker{display:inline-flex;align-items:center;gap:9px;font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#7fb2ff}
+.xp-pop-kicker::before{content:"";width:22px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--blue),#7fb2ff)}
+.xp-pop-h{margin-top:12px;font-size:clamp(23px,4.6vw,32px);font-weight:800;letter-spacing:-.04em;line-height:1.1;outline:none;padding-right:34px}
+.xp-pop-h .alt{display:block;color:transparent;background:linear-gradient(92deg,#9cc2ff,#2a72ff 60%,#7fb2ff);-webkit-background-clip:text;background-clip:text;padding-bottom:.14em;margin-bottom:-.14em}
+.xp-pop-h3{margin-top:22px;font-size:clamp(18px,3vw,22px);font-weight:800;letter-spacing:-.03em;line-height:1.2}
+.xp-pop-sub{margin-top:22px;font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#8ea4c6}
+.xp-pop-p{margin-top:12px;font-size:14.5px;line-height:1.7;color:#c4cedf}
+.xp-pop-p b{color:#eaf0fa}
+.xp-pop-p.is-strong{color:#eaf0fa;font-weight:700}
+.xp-pop .xp-stats{margin-top:20px}
+.xp-pop-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.xp-pop-actions .btn{flex:1 1 200px;justify-content:center}
+.btn-line{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.22);color:#eaf0fa}
+.btn-line:hover{background:rgba(255,255,255,.14)}
+.btn-line:active{background:rgba(255,255,255,.1)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn:disabled:hover{background:var(--blue)}
+.btn-line:disabled:hover{background:rgba(255,255,255,.06)}
+.xp-pop-fine{margin-top:12px;font-size:12px;font-style:italic;line-height:1.65;color:#8ea4c6}
+.xp-pop-fine a,.xp-pop-consent a{color:#7fb2ff;text-decoration:underline;text-underline-offset:3px}
+.xp-pop-hr{height:1px;margin:26px 0 4px;border:0;background:linear-gradient(90deg,transparent,rgba(127,178,255,.4),transparent)}
+/* the question: progress on the left, the 5-second ring on the right */
+.xp-q-top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-right:44px}
+.xp-q-prog{flex:1;min-width:0}
+.xp-q-prog span{display:block;font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#8ea4c6}
+.xp-q-bar{display:grid;grid-template-columns:repeat(10,1fr);gap:4px;margin-top:9px}
+.xp-q-bar b{height:4px;border-radius:2px;background:rgba(255,255,255,.12)}
+.xp-q-bar b.is-done{background:linear-gradient(90deg,#2a72ff,#7fb2ff)}
+.xp-q-bar b.is-now{background:#7fb2ff;box-shadow:0 0 12px rgba(127,178,255,.8)}
+.xp-q-timer{position:relative;flex:none;width:54px;height:54px;display:grid;place-items:center}
+.xp-q-timer svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.xp-q-timer circle{fill:none;stroke-width:3.5}
+.xp-q-ring-bg{stroke:rgba(255,255,255,.12)}
+.xp-q-ring-arc{stroke:#7fb2ff;stroke-linecap:round;stroke-dasharray:138.23;stroke-dashoffset:0;transition:stroke .25s}
+.xp-q-timer b{position:relative;font-size:18px;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.xp-q-timer.is-low .xp-q-ring-arc{stroke:#ff9a97}
+.xp-q-timer.is-low b{color:#ff9a97}
+.xp-q-h{margin-top:22px;font-size:clamp(18px,3.6vw,23px);font-weight:800;letter-spacing:-.03em;line-height:1.28;outline:none}
+.xp-q-opts{display:grid;gap:9px;margin-top:18px}
+.xp-opt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;padding:12px 14px;border-radius:15px;cursor:pointer;
+  font:inherit;font-size:14.5px;line-height:1.45;color:#eaf0fa;
+  background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.14);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  transition:background .2s,border-color .2s,transform .3s var(--ease)}
+.xp-opt i{flex:none;width:30px;height:30px;display:grid;place-items:center;border-radius:9px;font-style:normal;font-size:12.5px;font-weight:800;
+  color:#7fb2ff;background:rgba(0,71,187,.3);border:1px solid rgba(127,178,255,.32);transition:background .2s,color .2s,border-color .2s}
+.xp-opt:hover{background:rgba(255,255,255,.1);border-color:rgba(127,178,255,.45);transform:translateX(3px)}
+.xp-opt.is-picked{background:rgba(0,71,187,.34);border-color:#7fb2ff}
+.xp-opt.is-picked i{background:var(--blue);border-color:transparent;color:#fff}
+.xp-opt:focus-visible{outline:2px solid rgba(127,178,255,.7);outline-offset:2px}
+.xp-q-opts.is-locked .xp-opt{cursor:default;transform:none}
+.xp-q-opts.is-locked .xp-opt:not(.is-picked){opacity:.55}
+.xp-q-hint{margin-top:16px;font-size:13.5px;font-weight:700;color:#eaf0fa}
+.xp-q-hint.is-over{color:#ff9a97}
+/* the score reveal */
+.xp-score{margin-top:14px;font-size:clamp(52px,12vw,76px);font-weight:800;letter-spacing:-.05em;line-height:1;
+  color:transparent;background:linear-gradient(92deg,#9cc2ff,#2a72ff 60%,#7fb2ff);-webkit-background-clip:text;background-clip:text;padding-bottom:.1em;margin-bottom:-.1em}
+.xp-score small{font-size:.42em;color:#8ea4c6;-webkit-text-fill-color:#8ea4c6;letter-spacing:-.02em;margin-left:4px}
+/* the details form: the house underline fields */
+.xp-pop-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 18px;margin-top:20px}
+.xp-pop-form .xp-f{display:flex;flex-direction:column;gap:6px}
+.xp-pop-form .xp-f--full{grid-column:1/-1}
+.xp-pop-form label{font-size:12.5px;font-weight:700;color:#dfe9fb}
+.xp-pop-form label i{font-style:normal;color:#ff9a97}
+.xp-pop-form input,.xp-pop-form select{width:100%;font:inherit;font-size:15px;color:#fff;padding:9px 2px;
+  background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.24);border-radius:0;outline:none;appearance:none;transition:border-color .25s}
+.xp-pop-form input::placeholder{color:#8ea4c6}
+.xp-pop-form select option{color:#101623;background:#fff}
+.xp-pop-form input:hover,.xp-pop-form select:hover{border-bottom-color:rgba(255,255,255,.45)}
+.xp-pop-form input:focus,.xp-pop-form select:focus{border-bottom-color:#7fb2ff}
+.xp-pop-form .xp-selwrap{position:relative}
+.xp-pop-form .xp-selwrap svg{position:absolute;right:2px;top:50%;transform:translateY(-50%);width:15px;height:15px;color:#8ea4c6;pointer-events:none}
+.xp-pop-consent{display:flex;align-items:flex-start;gap:11px;margin-top:14px;cursor:pointer;font-size:12.5px;line-height:1.55;color:#c4cedf}
+.xp-pop-consent input{position:absolute;opacity:0;width:0;height:0}
+.xp-pop-consent .xp-box{flex:none;width:18px;height:18px;margin-top:1px;border-radius:6px;display:grid;place-items:center;
+  border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.06);color:#fff;transition:background .2s,border-color .2s}
+.xp-pop-consent .xp-box svg{width:11px;height:11px;opacity:0;transition:opacity .2s}
+.xp-pop-consent input:checked + .xp-box{background:var(--blue);border-color:transparent}
+.xp-pop-consent input:checked + .xp-box svg{opacity:1}
+.xp-pop-consent input:focus-visible + .xp-box{outline:2px solid rgba(127,178,255,.6);outline-offset:2px}
+/* the rewards list */
+.xp-rw{display:grid;gap:10px;margin-top:12px}
+.xp-rw li{display:flex;gap:13px;padding:13px 15px;border-radius:15px;list-style:none;
+  background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.13)}
+.xp-rw-ic{flex:none;width:36px;height:36px;display:grid;place-items:center;border-radius:11px;font-size:18px;line-height:1;
+  background:rgba(0,71,187,.3);border:1px solid rgba(127,178,255,.32)}
+.xp-rw b{display:block;font-size:13.5px;font-weight:800;letter-spacing:.02em;text-transform:uppercase}
+.xp-rw p{margin-top:4px;font-size:13px;line-height:1.6;color:#c4cedf}
+/* the claim code */
+.xp-code{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px;padding:14px 18px;border-radius:15px;
+  border:1px dashed rgba(127,178,255,.55);background:rgba(0,71,187,.16)}
+.xp-code code{font:inherit;font-size:clamp(18px,4vw,22px);font-weight:800;letter-spacing:.08em;color:#fff;user-select:all;-webkit-user-select:all}
+.xp-code small{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8ea4c6}
+/* the cooldown */
+.xp-cool{display:inline-flex;align-items:center;gap:8px;margin-top:12px;padding:8px 14px;border-radius:70px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);font-size:13px;color:#c4cedf}
+.xp-cool b{font-variant-numeric:tabular-nums;font-weight:800;color:#fff;letter-spacing:.04em}
+.xp-cool.is-ready{border-color:rgba(126,240,210,.5);color:#7ef0d2}
+/* how to connect: two pills, then the matching panel */
+.xp-seg{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;margin-top:14px}
+.xp-seg em{font-style:normal;font-size:12px;color:#8ea4c6}
+.xp-seg button{font:inherit;font-size:13.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#c4cedf;padding:13px 10px;border-radius:14px;cursor:pointer;
+  background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.14);transition:background .2s,color .2s,border-color .2s}
+.xp-seg button[aria-pressed="true"]{background:rgba(0,71,187,.34);border-color:#7fb2ff;color:#fff}
+.xp-seg button:focus-visible{outline:2px solid rgba(127,178,255,.7);outline-offset:2px}
+.xp-qr{display:flex;align-items:center;gap:18px;margin-top:18px;padding:14px;border-radius:16px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.13)}
+.xp-qr img{flex:none;width:124px;height:124px;border-radius:10px;background:#fff;padding:8px;display:block}
+.xp-qr p{font-size:14px;line-height:1.6;color:#eaf0fa;font-weight:600}
+.xp-pop-disc{margin-top:20px;font-size:11.5px;font-style:italic;line-height:1.65;color:#8ea4c6}
+.xp-pop-disc b{font-style:normal;color:#a9bcdb}
+.xp-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (max-width:560px){
+  .xp-pop{padding:12px}
+  .xp-pop-card{max-height:calc(100dvh - 24px)}
+  .xp-pop-form{grid-template-columns:1fr}
+  .xp-pop-actions .btn{flex-basis:100%}
+  .xp-seg{grid-template-columns:1fr}
+  .xp-seg em{text-align:center}
+  .xp-qr{flex-direction:column;text-align:center}
+  .xp-code{flex-direction:column;align-items:flex-start;gap:4px}
+  .xp-code code{font-size:19px;letter-spacing:.06em}
+}
+@media (prefers-reduced-motion:reduce){
+  .xp-pop,.xp-pop-card,.xp-pop-body,.xp-opt{transition:none;animation:none}
+}
+
 /* ---- responsive ---- */
 @media (max-width:1024px){
   .xp-hero-in{grid-template-columns:1fr;gap:30px}
@@ -269,8 +421,7 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
           <span class="xp-stat"><i></i>Exciting Rewards</span>
         </div>
         <div class="xp-cta" data-aos="fade-up">
-          <!-- the quiz URL lands with the campaign integration -->
-          <a href="#" class="btn btn-primary btn-lg">Take the quiz now <svg class="ico"><use href="#xp-arrow"/></svg></a>
+          <button type="button" class="btn btn-primary btn-lg" data-xp-quiz-open aria-haspopup="dialog" aria-controls="xpPop">Take the quiz now <svg class="ico"><use href="#xp-arrow"/></svg></button>
         </div>
         <p class="xp-disc" data-aos="fade-up"><b>Disclaimer:</b> This quiz is provided for general educational purposes only. It does not constitute investment advice, a recommendation, an offer to trade, or an assessment of your suitability for trading. Your quiz score reflects general market knowledge only and is not a prediction of general investment outcomes. STARTRADER&rsquo;s Dubai entity is regulated by the UAE Capital Market Authority (CMA) as a Category 5 firm and does not provide brokerage or trading services.</p>
       </div>
@@ -393,6 +544,21 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
 
 </main>
 
+<!-- ============ QUIZ POPUP ============
+     One glass card, sixteen steps, rendered by the script below from the
+     campaign sheet: intro → Q1–Q10 (5 seconds each) → score reveal →
+     details form → rewards by score, with the cooldown retake and the
+     second-attempt outcomes. Opened by the hero button. -->
+<div class="xp-pop" id="xpPop" role="dialog" aria-modal="true" aria-labelledby="xpPopH" aria-hidden="true">
+  <div class="xp-pop-card">
+    <button class="xp-pop-x" type="button" data-pop-x aria-label="Close">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <div class="xp-pop-body" data-pop-body></div>
+    <p class="xp-sr" data-pop-live aria-live="polite"></p>
+  </div>
+</div>
+
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="xp-arrow" viewBox="0 0 24 24"><path d="M4 12h15m0 0-6-6m6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 </svg>
@@ -442,6 +608,371 @@ document.addEventListener('DOMContentLoaded', function () {
     for (var i = 0; i < cards.length; i++) bind(cards[i]);
   })();
 });
+</script>
+<script>
+// ---- the quiz popup ------------------------------------------------------
+// Content is the campaign sheet, verbatim. The answer key, claim codes, the
+// quiz URL, the education pack, the booking link and the QR code land with
+// the campaign integration — every placeholder is marked "integration:".
+(function () {
+  var pop = document.getElementById('xpPop');
+  if (!pop) return;
+  var body = pop.querySelector('[data-pop-body]');
+  var live = pop.querySelector('[data-pop-live]');
+  var xBtn = pop.querySelector('[data-pop-x]');
+  var LIMIT = 5;          // seconds per question
+  var COOLDOWN = 5 * 60;  // seconds before the retake unlocks (sheet: 05:00)
+  var PASS = 8;           // 8–10 is the top tier
+  var LETTERS = ['A', 'B', 'C', 'D'];
+
+  // integration: the answer key is a working draft — only Q7 and Q8 are marked on the sheet
+  var Q = [
+    { q: 'What does diversification help to reduce?', o: ['Potential returns', 'Trading costs', 'Risk', 'Market volatility'], a: 2, h: 'Quick thinking! You have 5 seconds.' },
+    { q: 'Which of the following is an example of a fundamental indicator?', o: ['RSI', 'Moving Average', 'GDP Growth', 'Bollinger Bands'], a: 2, h: 'Trust your instincts. Choose before time runs out.' },
+    { q: 'What is leverage in trading?', o: ['A tool used to manage risk', 'Borrowing funds to increase position size', 'A type of trading chart', 'A strategy that guarantees profit'], a: 1, h: '5 seconds. Go with your first instinct.' },
+    { q: 'What is a stop-loss order designed to do?', o: ['Guarantee a profitable trade', 'Automatically close a position at a predetermined level', 'Increase the size of a position', 'Keep a trade open during volatility'], a: 1, h: 'Think fast. Your timer is running.' },
+    { q: 'What does a bullish market generally indicate?', o: ['Prices are expected to rise', 'Prices are expected to fall', 'Markets have stopped trading', 'Volatility has disappeared'], a: 0, h: 'Halfway there. Keep going!' },
+    { q: 'Which approach can help manage trading risk?', o: ['Putting all available capital into one trade', 'Increasing leverage after every loss', 'Using appropriate position sizing', 'Trading without an exit plan'], a: 2, h: 'Don&rsquo;t overthink it. Pick your answer.' },
+    { q: 'If a central bank cuts interest rates, what is the typical intended effect on the economy?', o: ['To slow down borrowing and cool inflation', 'To encourage borrowing and spending, stimulating economic growth', 'To strengthen the currency significantly', 'To reduce the money supply'], a: 1, h: 'Three more to go. Stay sharp!' },
+    { q: 'What is a &ldquo;bear market&rdquo; commonly defined as?', o: ['A single bad trading day', 'A rise in stock prices of 20% or more', 'A decline of 20% or more from recent highs, typically reflecting pessimism', 'A market with no trading activity'], a: 2, h: 'Almost there. Trust your instincts.' },
+    { q: 'What is an &ldquo;IPO&rdquo; (Initial Public Offering)?', o: ['The first time a company sells shares to the public on a stock exchange', 'A company&rsquo;s annual earnings report', 'A type of government bond', 'A merger between two companies'], a: 0, h: 'One more after this. Think fast!' },
+    { q: 'Why can patience be important in trading?', o: ['It encourages more frequent trading', 'It can help traders wait for setups that fit their strategy', 'It guarantees profitable trades', 'It removes the need for analysis'], a: 1, h: 'Final question. Make it count!' }
+  ];
+
+  // ---- state: survives a close/reopen and a reload within the session ----
+  var KEY = 'xpQuizState';
+  var S = { attempt: 0, first: null, second: null, std: null, prm: null, cooldownEnd: 0, details: false };
+  try { var raw = sessionStorage.getItem(KEY); if (raw) S = JSON.parse(raw); } catch (err) {}
+  function save() { try { sessionStorage.setItem(KEY, JSON.stringify(S)); } catch (err) {} }
+  // integration: the campaign backend issues the real claim codes
+  function genCode(prefix) {
+    var chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789', out = '';
+    for (var i = 0; i < 8; i++) { out += chars.charAt(Math.floor(Math.random() * chars.length)); if (i === 3) out += '-'; }
+    return prefix + '-' + out;
+  }
+
+  var run = null;        // the attempt in progress: { i, picks, locked, raf, t0 }
+  var stepTimer = null;  // cooldown interval / advance timeout of the current step
+  var lastFocus = null;
+
+  // ---- helpers ----
+  function h(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+  function announce(msg) { if (live) { live.textContent = ''; setTimeout(function () { live.textContent = msg; }, 30); } }
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function clearStep() {
+    if (stepTimer) { clearInterval(stepTimer); clearTimeout(stepTimer); stepTimer = null; }
+    if (run && run.raf) { cancelAnimationFrame(run.raf); run.raf = 0; }
+  }
+  function render(html, focusSel) {
+    clearStep();
+    body.style.animation = 'none'; void body.offsetWidth; body.style.animation = '';
+    body.innerHTML = html;
+    if (body.scrollIntoView) pop.querySelector('.xp-pop-card').scrollTop = 0;
+    var f = body.querySelector(focusSel || '[data-focus]');
+    if (f) { f.setAttribute('tabindex', '-1'); f.focus({ preventScroll: true }); }
+  }
+  function actions(inner) { return '<div class="xp-pop-actions">' + inner + '</div>'; }
+  function primary(label, attr) { return '<button class="btn btn-primary" type="button" ' + (attr || '') + '>' + label + ' <svg class="ico"><use href="#xp-arrow"/></svg></button>'; }
+  function line(label, attr, href) {
+    return href ? '<a class="btn btn-line" href="' + href + '" ' + (attr || '') + '>' + label + '</a>'
+                : '<button class="btn btn-line" type="button" ' + (attr || '') + '>' + label + '</button>';
+  }
+  function codeBox(code) {
+    return '<div class="xp-code"><code data-code>' + h(code) + '</code><small>Unique code</small></div>';
+  }
+  function bindCopy() {
+    var b = body.querySelector('[data-copy]'), c = body.querySelector('[data-code]');
+    if (!b || !c) return;
+    b.addEventListener('click', function () {
+      var text = c.textContent, base = b.innerHTML;
+      function done() { b.innerHTML = 'Copied! <svg class="ico"><use href="#xp-arrow"/></svg>'; announce('Code copied'); setTimeout(function () { b.innerHTML = base; }, 1600); }
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, function () { selectCode(c); });
+      else selectCode(c);
+    });
+  }
+  function selectCode(c) {
+    var r = document.createRange(); r.selectNodeContents(c);
+    var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+    try { document.execCommand('copy'); announce('Code copied'); } catch (err) {}
+  }
+
+  // ---- routing: what the button opens depends on where the visitor is ----
+  function route() {
+    if (S.attempt === 0) return showIntro();
+    if (S.attempt === 1) return S.first >= PASS ? showTopTier() : showKeepLearning();
+    return S.second >= PASS ? showSession() : showRoundTwo();
+  }
+
+  // POP-UP 1 — the billboard, condensed
+  function showIntro() {
+    render(
+      '<span class="xp-pop-kicker">Forex Expo Dubai</span>' +
+      '<h2 class="xp-pop-h" id="xpPopH" data-focus><span>Think fast.</span><span class="alt">Test your market edge.</span></h2>' +
+      '<p class="xp-pop-p">Put your knowledge to the test and see if you&rsquo;ve got what it takes. Get <b>free market insights, educational content, and exclusive STARTRADER extras</b> along the way.</p>' +
+      '<div class="xp-stats"><span class="xp-stat"><i></i>10 Questions</span><span class="xp-stat"><i></i>5 Seconds Each</span><span class="xp-stat"><i></i>Exciting Rewards</span></div>' +
+      actions(primary('Start the quiz', 'data-start')) +
+      '<p class="xp-pop-fine" style="text-align:center">It&rsquo;s quick, simple, and free.</p>'
+    );
+    body.querySelector('[data-start]').addEventListener('click', startRun);
+  }
+
+  // ---- the ten questions ----
+  function startRun() {
+    run = { i: 0, picks: [], locked: false, raf: 0, t0: 0 };
+    showQuestion();
+  }
+  function showQuestion() {
+    var i = run.i, q = Q[i], bar = '', opts = '';
+    for (var k = 0; k < Q.length; k++) bar += '<b class="' + (k < i ? 'is-done' : k === i ? 'is-now' : '') + '"></b>';
+    for (var j = 0; j < q.o.length; j++) opts += '<button class="xp-opt" type="button" data-opt="' + j + '"><i>' + LETTERS[j] + '</i><span>' + q.o[j] + '</span></button>';
+    var last = i === Q.length - 1;
+    render(
+      '<div class="xp-q-top"><div class="xp-q-prog"><span>Question ' + (i + 1) + ' of ' + Q.length + '</span><div class="xp-q-bar">' + bar + '</div></div>' +
+      '<div class="xp-q-timer" data-timer aria-hidden="true"><svg viewBox="0 0 52 52"><circle class="xp-q-ring-bg" cx="26" cy="26" r="22"/><circle class="xp-q-ring-arc" cx="26" cy="26" r="22" data-arc/></svg><b data-secs>' + LIMIT + '</b></div></div>' +
+      '<h2 class="xp-q-h" id="xpPopH" data-focus>' + q.q + '</h2>' +
+      '<div class="xp-q-opts" role="group" aria-label="Answers" data-opts>' + opts + '</div>' +
+      '<p class="xp-q-hint" data-hint>' + q.h + '</p>' +
+      actions(primary(last ? 'Submit' : 'Next', 'data-next disabled'))
+    );
+    announce('Question ' + (i + 1) + ' of ' + Q.length + '. ' + LIMIT + ' seconds.');
+    var optsEl = body.querySelector('[data-opts]'), next = body.querySelector('[data-next]');
+    run.picks[i] = -1; run.locked = false;
+    optsEl.addEventListener('click', function (e) {
+      var b = e.target.closest ? e.target.closest('.xp-opt') : null;
+      if (!b || run.locked) return;
+      pick(parseInt(b.getAttribute('data-opt'), 10));
+    });
+    next.addEventListener('click', function () { if (!run.locked) advance(); });
+    // the ring drains over the five seconds
+    var arc = body.querySelector('[data-arc]'), secs = body.querySelector('[data-secs]'), timer = body.querySelector('[data-timer]');
+    var C = 138.23; run.t0 = performance.now();
+    function tick(now) {
+      var t = Math.min(LIMIT, (now - run.t0) / 1000), left = LIMIT - t;
+      arc.style.strokeDashoffset = (C * t / LIMIT).toFixed(2);
+      secs.textContent = Math.ceil(left);
+      if (left <= 2) timer.classList.add('is-low');
+      if (t >= LIMIT) return timeUp();
+      run.raf = requestAnimationFrame(tick);
+    }
+    run.raf = requestAnimationFrame(tick);
+  }
+  function pick(j) {
+    var i = run.i, all = body.querySelectorAll('.xp-opt');
+    run.picks[i] = j;
+    for (var k = 0; k < all.length; k++) all[k].classList.toggle('is-picked', k === j);
+    var next = body.querySelector('[data-next]'); if (next) next.disabled = false;
+  }
+  function timeUp() {
+    run.locked = true; run.raf = 0;
+    var optsEl = body.querySelector('[data-opts]'), hint = body.querySelector('[data-hint]'), next = body.querySelector('[data-next]');
+    if (optsEl) optsEl.classList.add('is-locked');
+    if (next) next.disabled = true;
+    if (hint) { hint.textContent = 'Time’s up — moving on.'; hint.classList.add('is-over'); }
+    announce('Time is up.');
+    stepTimer = setTimeout(advance, 700);
+  }
+  function advance() {
+    if (!run) return;
+    clearStep(); run.locked = true;
+    if (run.i < Q.length - 1) { run.i++; return showQuestion(); }
+    var score = 0;
+    for (var k = 0; k < Q.length; k++) if (run.picks[k] === Q[k].a) score++;
+    S.attempt++;
+    if (S.attempt === 1) { S.first = score; S.std = S.std || genCode('STD'); if (score >= PASS) S.prm = S.prm || genCode('PRM'); }
+    else { S.second = score; }
+    save(); run = null;
+    showScore(score);
+  }
+  // keyboard: A–D or 1–4 pick an answer while a question is up
+  pop.addEventListener('keydown', function (e) {
+    if (!run || run.locked || !body.querySelector('[data-opts]')) return;
+    var k = e.key.toUpperCase(), j = LETTERS.indexOf(k);
+    if (j < 0 && /^[1-4]$/.test(k)) j = parseInt(k, 10) - 1;
+    if (j >= 0 && j < Q[run.i].o.length) { pick(j); e.preventDefault(); }
+  });
+
+  // POP-UP 12 — the score reveal
+  function showScore(score) {
+    var top = score >= PASS;
+    render(
+      '<span class="xp-pop-kicker">Your market knowledge score</span>' +
+      '<p class="xp-score" aria-label="' + score + ' out of 10">' + score + '<small>/10</small></p>' +
+      (top ? '<h2 class="xp-pop-h" id="xpPopH" data-focus style="margin-top:8px;font-size:clamp(20px,4vw,26px)">Market mind on point 🔥</h2>' +
+             '<p class="xp-pop-p">You kept up with the clock and came out with a strong score.</p>' +
+             '<p class="xp-pop-p is-strong">Now, see what your score brings.</p>'
+           : '<h2 class="xp-pop-h xp-sr" id="xpPopH" data-focus>Your market knowledge score: ' + score + ' out of 10</h2>' +
+             '<p class="xp-pop-p">You&rsquo;re off to a solid start. Now, there&rsquo;s more market knowledge to explore.</p>' +
+             '<p class="xp-pop-p is-strong">See what can help you prepare for your next attempt.</p>') +
+      actions(primary(top ? 'See my rewards' : 'See what&rsquo;s next', 'data-go'))
+    );
+    body.querySelector('[data-go]').addEventListener('click', function () { S.details ? route() : showForm(); });
+  }
+
+  // POP-UP 13 — the details form (first attempt only)
+  function showForm() {
+    var countries = ['United Arab Emirates', 'Saudi Arabia', 'Qatar', 'Kuwait', 'Bahrain', 'Oman', 'Jordan', 'Egypt', 'India', 'Pakistan', 'Philippines', 'Malaysia', 'Indonesia', 'Thailand', 'Vietnam', 'Nigeria', 'South Africa', 'United Kingdom', 'Other'], co = '';
+    for (var i = 0; i < countries.length; i++) co += '<option>' + countries[i] + '</option>';
+    var chev = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    var tick = '<span class="xp-box" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
+    render(
+      '<h2 class="xp-pop-h" id="xpPopH" data-focus>Discover your results &amp; rewards</h2>' +
+      '<p class="xp-pop-p">You&rsquo;ve completed the Trading Quiz.</p>' +
+      '<p class="xp-pop-p">Enter your details below to receive your results and see the rewards available for your score.</p>' +
+      '<form class="xp-pop-form" data-details novalidate>' +
+        '<div class="xp-f"><label for="qzFirst">First Name <i>*</i></label><input id="qzFirst" name="first" autocomplete="given-name" required></div>' +
+        '<div class="xp-f"><label for="qzLast">Last Name <i>*</i></label><input id="qzLast" name="last" autocomplete="family-name" required></div>' +
+        '<div class="xp-f"><label for="qzEmail">Email <i>*</i></label><input id="qzEmail" name="email" type="email" inputmode="email" autocomplete="email" required></div>' +
+        '<div class="xp-f"><label for="qzPhone">Phone Number <i>*</i></label><input id="qzPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required></div>' +
+        '<div class="xp-f"><label for="qzCountry">Country <i>*</i></label><div class="xp-selwrap"><select id="qzCountry" name="country" required><option value="">Select your country&hellip;</option>' + co + '</select>' + chev + '</div></div>' +
+        '<div class="xp-f"><label for="qzRef">Referral Code</label><input id="qzRef" name="referral" autocomplete="off"></div>' +
+        '<div class="xp-f--full">' + actions(primary('Unlock my rewards', 'data-submit')).replace('type="button"', 'type="submit"') +
+        '<p class="xp-pop-fine">By submitting your details, you acknowledge and agree to the applicable <a href="privacy-policy-app.html" target="_blank" rel="noopener">Privacy Policy</a> and <a href="legal-documents.html" target="_blank" rel="noopener">Terms &amp; Conditions</a>.</p>' +
+        '<label class="xp-pop-consent" for="qzOpt"><input type="checkbox" id="qzOpt" name="optin">' + tick + '<span>I would like to receive further updates, promotions, and event invitations from STARTRADER by email/SMS. You can unsubscribe at any time.</span></label>' +
+        '</div>' +
+      '</form>'
+    );
+    var f = body.querySelector('[data-details]');
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!f.checkValidity()) { f.reportValidity(); return; }
+      // integration: post the details to the campaign endpoint here
+      S.details = true; save();
+      route();
+    });
+  }
+
+  function rewardItem(ic, title, copy) {
+    return '<li><span class="xp-rw-ic" aria-hidden="true">' + ic + '</span><div><b>' + title + '</b><p>' + copy + '</p></div></li>';
+  }
+  var EDU = rewardItem('📚', 'Free STARACADEMY education pack', '');
+
+  // POP-UP 14 — score below 8 on the first attempt
+  function showKeepLearning() {
+    if (!S.cooldownEnd) { S.cooldownEnd = Date.now() + COOLDOWN * 1000; save(); }
+    render(
+      '<h2 class="xp-pop-h" id="xpPopH" data-focus>Keep learning. Come back stronger. 📚</h2>' +
+      '<p class="xp-pop-p">You&rsquo;re on the right track, and you&rsquo;ve still earned a reward.</p>' +
+      '<p class="xp-pop-sub">Your rewards:</p><ul class="xp-rw">' +
+        rewardItem('🎁', 'Standard STARTRADER merchandise', 'Claim your standard merchandise at the STARTRADER booth using your unique code.') +
+        rewardItem('📚', 'Free STARACADEMY education pack', 'Brush up on the essentials, sharpen your knowledge, and get ready for another shot at the quiz.') +
+      '</ul>' +
+      '<p class="xp-pop-sub">Your claim code</p>' + codeBox(S.std) +
+      actions(primary('Save my code', 'data-copy') + line('Download education pack', '', '#')) + // integration: education pack URL
+      '<hr class="xp-pop-hr">' +
+      '<h3 class="xp-pop-h3">Ready for round two?</h3>' +
+      '<p class="xp-pop-p">Think you can beat your first score?</p>' +
+      '<p class="xp-pop-p">Take some time to explore your education pack, then come back and put your knowledge to the test again.</p>' +
+      '<p class="xp-pop-p is-strong">You have 1 attempt remaining.</p>' +
+      actions(primary('Retake the quiz', 'data-retake disabled')) +
+      '<p class="xp-pop-fine">Retake available after the cooldown period.</p>' +
+      '<p class="xp-cool" data-cool><span>Cooldown:</span> <b data-cool-t>05:00</b></p>'
+    );
+    bindCopy();
+    var retake = body.querySelector('[data-retake]'), cool = body.querySelector('[data-cool]'), ct = body.querySelector('[data-cool-t]');
+    function tickCool() {
+      var left = Math.max(0, Math.ceil((S.cooldownEnd - Date.now()) / 1000));
+      ct.textContent = pad(Math.floor(left / 60)) + ':' + pad(left % 60);
+      if (left <= 0) {
+        clearInterval(stepTimer); stepTimer = null;
+        cool.classList.add('is-ready'); cool.innerHTML = '<span>Retake available now</span>';
+        retake.disabled = false; announce('Retake available now.');
+      }
+    }
+    tickCool(); stepTimer = setInterval(tickCool, 500);
+    retake.addEventListener('click', function () { if (!retake.disabled) startRun(); });
+  }
+
+  // POP-UP 14 — score 8–10 on the first attempt
+  function showTopTier() {
+    render(
+      '<h2 class="xp-pop-h" id="xpPopH" data-focus>Top-tier rewards unlocked! 🎉</h2>' +
+      '<p class="xp-pop-p">Sharp thinking. You nailed it on your first attempt and earned our <b>top reward tier</b>.</p>' +
+      '<p class="xp-pop-sub">Your rewards:</p><ul class="xp-rw">' +
+        rewardItem('👑', 'Premium STARTRADER merchandise', 'Claim your premium merchandise at the STARTRADER booth using your unique code.') +
+        rewardItem('📚', 'Free STARACADEMY education pack', 'Keep building your market knowledge with educational content designed to help sharpen your trading know-how.') +
+        rewardItem('💬', 'Free 15-minute introduction session', 'Connect with a STARTRADER Representative for a complimentary 15-minute introduction session.') +
+      '</ul>' +
+      '<p class="xp-pop-sub">Your premium claim code</p>' + codeBox(S.prm) +
+      actions(primary('Save my code', 'data-copy') + line('Download education pack', '', '#') + line('Book my introduction session', '', '#')) // integration: pack + booking URLs
+    );
+    bindCopy();
+  }
+
+  // POP-UP 15 — second attempt complete, score below 8
+  function showRoundTwo() {
+    render(
+      '<h2 class="xp-pop-h" id="xpPopH" data-focus>Round two complete! 🎯</h2>' +
+      '<p class="xp-pop-p">You came back, put your learning to the test, and completed your second attempt.</p>' +
+      '<p class="xp-pop-sub">Your new score</p>' +
+      '<p class="xp-score" aria-label="' + S.second + ' out of 10">' + S.second + '<small>/10</small></p>' +
+      '<p class="xp-pop-p">Your <b>standard merchandise reward remains unlocked</b>, and your claim code is ready to use at the STARTRADER booth.</p>' +
+      '<p class="xp-pop-sub">Your claim code</p>' + codeBox(S.std) +
+      actions(primary('Save my code', 'data-copy'))
+    );
+    bindCopy();
+  }
+
+  // POP-UP 16 — second attempt complete, score 8–10
+  function showSession() {
+    render(
+      '<h2 class="xp-pop-h" id="xpPopH" data-focus>Your introduction session awaits</h2>' +
+      '<p class="xp-pop-p">You&rsquo;ve earned a complimentary <b>15-minute introduction session</b> with a STARTRADER Representative.</p>' +
+      '<p class="xp-pop-p is-strong">Choose how you&rsquo;d like to connect:</p>' +
+      '<div class="xp-seg" role="group" aria-label="How would you like to connect?"><button type="button" data-mode="online" aria-pressed="true">Online</button><em>or</em><button type="button" data-mode="booth" aria-pressed="false">At the booth</button></div>' +
+      '<div data-panel="online">' + actions(primary('Book my 15-minute session', 'data-book')) + '</div>' + // integration: booking URL
+      '<div data-panel="booth" hidden><div class="xp-qr"><img src="assets/img/expo-quiz-qr.svg" alt="QR code to book your 15-minute introduction session" width="124" height="124"><p>Scan the QR code to book your session.</p></div></div>' +
+      '<p class="xp-pop-disc"><b>*Disclaimer:</b> The Introduction Session is provided for general informational purposes only. It does not constitute investment advice, a personal recommendation, a trading signal, or an assessment of the suitability of any product or service for your individual circumstances. The STARTRADER Representative conducting this session will not provide advice on account opening, trading strategy, leverage, position sizing, or entry/exit timing, and no such advice should be inferred from anything discussed. STARTRADER Global Financial Consultation &amp; Financial Analysis L.L.C is authorised by the Capital Market Authority (CMA) as a Category 5 firm for Introduction and Promotion activities only. It does not provide trading, brokerage, or investment advisory services, and does not hold client funds. If you require personalised financial or investment advice, you should consult an appropriately licensed financial advisor.</p>'
+    );
+    var segs = body.querySelectorAll('[data-mode]');
+    function setMode(m) {
+      for (var i = 0; i < segs.length; i++) segs[i].setAttribute('aria-pressed', segs[i].getAttribute('data-mode') === m ? 'true' : 'false');
+      body.querySelector('[data-panel="online"]').hidden = m !== 'online';
+      body.querySelector('[data-panel="booth"]').hidden = m !== 'booth';
+    }
+    for (var i = 0; i < segs.length; i++) segs[i].addEventListener('click', function () { setMode(this.getAttribute('data-mode')); });
+    body.querySelector('[data-book]').addEventListener('click', function () { /* integration: open the booking link */ });
+  }
+
+  // ---- open / close ----
+  function openPop() {
+    lastFocus = document.activeElement;
+    route();
+    pop.classList.add('is-open');
+    pop.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closePop() {
+    clearStep();
+    run = null; // a run abandoned mid-way is not an attempt
+    pop.classList.remove('is-open');
+    pop.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  var openers = document.querySelectorAll('[data-xp-quiz-open]');
+  for (var i = 0; i < openers.length; i++) openers[i].addEventListener('click', function (e) { e.preventDefault(); openPop(); });
+  xBtn.addEventListener('click', closePop);
+  pop.addEventListener('click', function (e) { if (e.target === pop) closePop(); });
+  document.addEventListener('keydown', function (e) {
+    if (!pop.classList.contains('is-open')) return;
+    if (e.key === 'Escape' || e.keyCode === 27) return closePop();
+    // keep Tab inside the card
+    if (e.key === 'Tab') {
+      var f = pop.querySelectorAll('button:not(:disabled),[href],input,select,[tabindex]:not([tabindex="-1"])');
+      if (!f.length) return;
+      var first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { last.focus(); e.preventDefault(); }
+      else if (!e.shiftKey && document.activeElement === last) { first.focus(); e.preventDefault(); }
+    }
+  });
+  // the glass glow follows the cursor across the card
+  var card = pop.querySelector('.xp-pop-card');
+  card.addEventListener('mousemove', function (e) {
+    var r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
+    card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%');
+  });
+})();
 </script>
 </body>
 </html>
