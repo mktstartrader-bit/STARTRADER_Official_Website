@@ -5,6 +5,15 @@
   'use strict';
 
   var doc = document.documentElement;
+  // site root resolved from this script's own URL so runtime-built asset paths
+  // stay valid when the site is served from a subfolder or opened from disk
+  var ROOT = (function () {
+    var s = document.currentScript, list, src;
+    if (!s) { list = document.getElementsByTagName('script'); s = list[list.length - 1]; }
+    src = (s && s.src) || '';
+    var i = src.lastIndexOf('/assets/');
+    return i > -1 ? src.slice(0, i + 1) : '';
+  })();
   var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   // touch devices get static backdrops: scrub/parallax effects cost frames there
   var COARSE = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
@@ -83,7 +92,7 @@
     var diag = { up: 'M7 17 17 7M17 7H9M17 7v8', down: 'M7 7l10 10M17 17H9M17 17V9' };
     var html = heroPairs.map(function (m) {
       return '<a class="mkt-cell ' + m.dir + '" href="#" data-c="' + m.c + '" aria-label="Trade ' + m.c + ' — ' + m.n + '">' +
-        '<span class="mkt-cell-ic"><img src="/assets/img/flags/' + m.a + '.svg" alt="" loading="lazy"><img src="/assets/img/flags/' + m.b + '.svg" alt="" loading="lazy"></span>' +
+        '<span class="mkt-cell-ic"><img src="' + ROOT + 'assets/img/flags/' + m.a + '.svg" alt="" loading="lazy"><img src="' + ROOT + 'assets/img/flags/' + m.b + '.svg" alt="" loading="lazy"></span>' +
         '<span class="mkt-cell-tx"><b>' + m.c + '</b>' +
           '<span class="mkt-cell-q"><em data-ht-px>' + m.p + '</em>' +
           '<i><span data-ht-chg>' + (m.chg >= 0 ? '+' : '') + m.chg.toFixed(2) + '%</span>' +
@@ -407,8 +416,8 @@
         c.addEventListener('click', function () {
           var ruHome = document.documentElement.hasAttribute('data-ru-home');
           var isRu = (document.documentElement.lang || '').toLowerCase().indexOf('ru') === 0;
-          if (ruHome && code === 'RU' && !isRu) { window.location.href = '/ru/'; return; }
-          if (ruHome && code === 'EN' && isRu) { window.location.href = '/'; return; }
+          if (ruHome && code === 'RU' && !isRu) { window.location.href = ROOT + 'ru/'; return; }
+          if (ruHome && code === 'EN' && isRu) { window.location.href = ROOT || '/'; return; }
           chips.querySelectorAll('button').forEach(function (x) { x.classList.remove('is-on'); });
           c.classList.add('is-on');
           if (codeEl) codeEl.textContent = code;
@@ -480,13 +489,13 @@
     bar.className = 'sb-bar';
     bar.setAttribute('role', 'complementary');
     bar.setAttribute('aria-label', 'Get the STARTRADER app');
-    var star = '<img src="/assets/img/sb-star.svg" alt="" width="11" height="10">';
-    bar.innerHTML = '<span class="sb-ico"><img src="/assets/img/sb-mark.svg" alt="" width="24" height="31"></span>' +
+    var star = '<img src="' + ROOT + 'assets/img/sb-star.svg" alt="" width="11" height="10">';
+    bar.innerHTML = '<span class="sb-ico"><img src="' + ROOT + 'assets/img/sb-mark.svg" alt="" width="24" height="31"></span>' +
       '<span class="sb-txt"><b>STARTRADER</b><span>' +
       (((document.documentElement.lang || '').indexOf('ru') === 0) ? 'Приложение для трейдинга' : 'Online Trading App') +
       '</span><span class="sb-stars" aria-label="Rated 4.5 out of 5">' + star + star + star + star +
-      '<img src="/assets/img/sb-star-half.svg" alt="" width="11" height="10"></span></span>' +
-      '<a class="sb-get" href="/trading-app.html">' +
+      '<img src="' + ROOT + 'assets/img/sb-star-half.svg" alt="" width="11" height="10"></span></span>' +
+      '<a class="sb-get" href="' + ROOT + 'trading-app.html">' +
       (((document.documentElement.lang || '').indexOf('ru') === 0) ? 'Установить' : 'Install') + '</a>';
     document.body.appendChild(bar);
     document.body.classList.add('has-sb');
@@ -867,9 +876,9 @@
   }
   function mkxIcon(m) {
     var ic = m.ic;
-    if (ic.t === 'flags') return '<span class="mkx-ic mkx-ic-flags"><img src="/assets/img/flags/' + ic.a + '.svg" alt="" loading="lazy"><img src="/assets/img/flags/' + ic.b + '.svg" alt="" loading="lazy"></span>';
-    if (ic.t === 'flag') return '<span class="mkx-ic mkx-ic-flag"><img src="/assets/img/flags/' + ic.a + '.svg" alt="" loading="lazy"></span>';
-    if (ic.t === 'inst') return '<span class="mkx-ic mkx-ic-inst"><img src="/assets/img/commodities/' + ic.a + '.svg" alt="" loading="lazy"></span>';
+    if (ic.t === 'flags') return '<span class="mkx-ic mkx-ic-flags"><img src="' + ROOT + 'assets/img/flags/' + ic.a + '.svg" alt="" loading="lazy"><img src="' + ROOT + 'assets/img/flags/' + ic.b + '.svg" alt="" loading="lazy"></span>';
+    if (ic.t === 'flag') return '<span class="mkx-ic mkx-ic-flag"><img src="' + ROOT + 'assets/img/flags/' + ic.a + '.svg" alt="" loading="lazy"></span>';
+    if (ic.t === 'inst') return '<span class="mkx-ic mkx-ic-inst"><img src="' + ROOT + 'assets/img/commodities/' + ic.a + '.svg" alt="" loading="lazy"></span>';
     if (ic.t === 'etf') return '<span class="mkx-ic mkx-ic-etf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l5-6 3.5 3.5L20 7"/><path d="M4 20h16"/></svg></span>';
     return '<span class="mkx-ic mkx-ic-sym" style="background:' + (ic.bg || '#0a2a6b') + '">' + ic.v + '</span>';
   }
@@ -1305,8 +1314,8 @@
         var path = it.getAttribute('data-href');
         if (path && path !== window.location.pathname) { window.location.href = path; return; }
         // the homepage exists in two languages — switching navigates for real
-        if (RU_HOME && code === 'RU' && !IS_RU) { window.location.href = '/ru/'; return; }
-        if (RU_HOME && code === 'EN' && IS_RU) { window.location.href = '/'; return; }
+        if (RU_HOME && code === 'RU' && !IS_RU) { window.location.href = ROOT + 'ru/'; return; }
+        if (RU_HOME && code === 'EN' && IS_RU) { window.location.href = ROOT || '/'; return; }
         if (path) { close(); return; }          // already on this language
         items.forEach(function (x) { x.classList.remove('is-active'); });
         it.classList.add('is-active');
@@ -1874,7 +1883,7 @@
     };
     function flagImg(code) {
       var f = FLAG[code];
-      return f ? '<img src="/assets/img/flags/' + f + '.svg" alt="" loading="lazy">' : '';
+      return f ? '<img src="' + ROOT + 'assets/img/flags/' + f + '.svg" alt="" loading="lazy">' : '';
     }
 
     var SETS = {
@@ -1891,7 +1900,7 @@
       commodities: {
         pip: function () { return 1; },
         badge: function (p) {
-          return '<span class="fx-inst-ic"><img src="/assets/img/commodities/' + p.icon + '.svg" alt="' + p.name + ' icon" loading="lazy"></span>';
+          return '<span class="fx-inst-ic"><img src="' + ROOT + 'assets/img/commodities/' + p.icon + '.svg" alt="' + p.name + ' icon" loading="lazy"></span>';
         },
         spread: function (s, p) { return s.toFixed(p.sdec); },
         floor: function (p) { return p.spread * 0.6; },
@@ -1952,12 +1961,12 @@
     // real marks rather than lettered tiles: a commodity glyph, a flag pair for
     // a currency cross, or the listing country's flag
     function instBadge(p) {
-      if (p.icon) return '<span class="fx-inst-ic"><img src="/assets/img/commodities/' + p.icon + '.svg" alt="" loading="lazy"></span>';
+      if (p.icon) return '<span class="fx-inst-ic"><img src="' + ROOT + 'assets/img/commodities/' + p.icon + '.svg" alt="" loading="lazy"></span>';
       if (p.pair) {
         var c = p.sym.split('/');
         return '<span class="fx-pair-flags">' + flagImg(c[0]) + flagImg(c[1]) + '</span>';
       }
-      if (p.flag) return '<span class="fx-inst-ic"><img src="/assets/img/flags/' + p.flag + '.svg" alt="" loading="lazy"></span>';
+      if (p.flag) return '<span class="fx-inst-ic"><img src="' + ROOT + 'assets/img/flags/' + p.flag + '.svg" alt="" loading="lazy"></span>';
       return '<span class="fx-inst-tx">' + (p.badge || p.sym) + '</span>';
     }
     function txSet(rows) {
@@ -2078,7 +2087,7 @@
           '<td><span class="fx-px" data-el="bid">' + fmt(bid, p.dec) + '</span></td>' +
           '<td><span class="fx-px" data-el="ask">' + fmt(ask, p.dec) + '</span></td>' +
           '<td><span class="fx-spread-pill" data-el="spread">' + set.spread(p.spread, p) + '</span></td>' +
-          '<td class="ta-td-act"><a class="fx-trade" href="/trading/getting-started/account-opening.html">' +
+          '<td class="ta-td-act"><a class="fx-trade" href="' + ROOT + 'trading/getting-started/account-opening.html">' +
           'Trade<svg aria-hidden="true"><use href="#i-arrow-right"/></svg>' +
           '<span class="sr-only"> ' + p.sym + '</span></a></td>' +
           '</tr>';

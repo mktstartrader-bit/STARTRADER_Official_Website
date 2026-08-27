@@ -55,6 +55,20 @@ the shared layer must never shift under them.
 - GSAP/ScrollTrigger/Lenis stay ONLY for pinned scroll scrubs, count-up
   counters, and hero parallax. No new GSAP reveals or marquees.
 
+## Paths (dev-team requirement, 2026-08-27)
+
+- **Never root-absolute.** All intra-site references (`href`, `src`, `poster`,
+  `data-src`, `action`, CSS `url()`) are depth-relative: `assets/…` from root
+  pages, `../assets/…` one level down, `../../assets/…` two levels down. The
+  dev team opens pages from folders/subdirectory installs where `/assets/…`
+  404s. Home links use `index.html` (never bare `/`); section links use
+  `index.html#anchor`.
+- Full `https://www.startrader.com/…` URLs stay absolute where crawlers need
+  them: canonical, hreflang, og/twitter images, JSON-LD, sitemap.
+- `main.js` computes `ROOT` from its own script `src` at runtime — every
+  JS-built asset path or page link must be `ROOT + 'assets/…'` /
+  `ROOT + 'page.html'`, never a leading `/`.
+
 ## Images
 
 - All raster images ship as **WebP** (Pillow, `quality=80, method=6`); SVG/GIF
