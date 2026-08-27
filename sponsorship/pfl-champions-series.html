@@ -30,10 +30,10 @@
   <link rel="manifest" href="/site.webmanifest" />
 
   <link rel="preload" href="/assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" as="image" href="/assets/img/platform-hero.webp" />
+  <link rel="preload" as="image" fetchpriority="high" href="/assets/img/platform-hero.webp" />
   <link rel="stylesheet" href="/assets/fonts/fonts.css" />
   <link rel="stylesheet" href="/assets/css/aos.min.css" />
-  <link rel="stylesheet" href="/assets/css/styles.css?v=qa48" />
+  <link rel="stylesheet" href="/assets/css/styles.min.css?v=qa49" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* =================================================================
@@ -401,7 +401,7 @@
 }
   </script>
 
-  <link rel="preload" as="image" href="/assets/img/fl-banner.webp" fetchpriority="high">
+  <link rel="preload" as="image" fetchpriority="high" href="/assets/img/fl-banner.webp" fetchpriority="high">
 
 </head>
 <body class="flx">
@@ -712,7 +712,7 @@
   <div class="container fl-hero-in">
     <div class="fl-hero-copy">
       <span class="fl-badge" data-aos="fade-up">
-        <img src="/assets/img/fl-pfl-lockup.webp" alt="Official Partner of the Professional Fighters League" width="620" height="217">
+        <img loading="lazy" decoding="async" src="/assets/img/fl-pfl-lockup.webp" alt="Official Partner of the Professional Fighters League" width="620" height="217">
       </span>
       <h1 class="fl-h1" id="pg-hero-title" data-aos="fade-up">
         <span>Strength. Speed.</span>
@@ -849,7 +849,7 @@
     </div>
 
     <div class="fl-means-note" data-aos="fade-up">
-      <img src="/assets/img/fl-pfl-lockup.webp" alt="Official Partner of the Professional Fighters League" width="620" height="217" loading="lazy" decoding="async">
+      <img loading="lazy" decoding="async" src="/assets/img/fl-pfl-lockup.webp" alt="Official Partner of the Professional Fighters League" width="620" height="217" loading="lazy" decoding="async">
       <p>Official Partner of the PFL Road to Dubai Champions Series. The partnership widens who hears about us; it does not change what you trade on.</p>
     </div>
   </div>
@@ -981,7 +981,7 @@
       <span class="foot-brand"><img class="foot-logo" src="/assets/img/logo-startrader.svg" alt="STARTRADER" width="180" height="35"><span class="foot-tag">Built on trust. Driven by growth.</span></span>
       <div class="foot-partners">
         <img class="fp-nba" src="/assets/img/partner-nba.svg" alt="Official Partner of the NBA" height="30" width="45">
-        <img class="fp-porsche" src="/assets/img/partner-porsche.webp" alt="Official Partner of Porsche Carrera Cup Middle East" height="26" width="165">
+        <img class="fp-porsche" loading="lazy" decoding="async" src="/assets/img/partner-porsche.webp" alt="Official Partner of Porsche Carrera Cup Middle East" height="26" width="165">
       </div>
     </div>
 
@@ -1060,7 +1060,7 @@
 <script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/assets/js/vendor/lenis.min.js" defer></script>
 <script src="/assets/js/vendor/aos.min.js" defer></script>
-<script src="/assets/js/main.js?v=qa48" defer></script>
+<script src="/assets/js/main.min.js?v=qa49" defer></script>
 
 <!-- Company page: robust scroll reveals + hero parallax (self-contained, never leaves content hidden) -->
 <script>

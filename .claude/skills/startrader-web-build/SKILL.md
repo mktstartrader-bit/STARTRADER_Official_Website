@@ -94,9 +94,24 @@ the shared layer must never shift under them.
 - Prefer complete per-page code in one batch (page HTML with its inline CSS),
   never fragments the devs must merge by hand.
 - Commit in logical units (images / vendor / shared CSS+JS / pages).
-- Cache busting: every page links `styles.css?v=<short-sha>` and `main.js?v=<short-sha>`.
-  After changing either file, bump the `?v=` stamp across all pages (sed) so
-  reviewers' phones pick up the change without hard refreshes.
+- **Minified build artifacts**: pages link `styles.min.css?v=<stamp>` and
+  `main.min.js?v=<stamp>`. The editable, append-only sources remain
+  `styles.css` and `main.js` (never hand-edit the `.min` files). After ANY
+  change to either source, regenerate both artifacts before verifying:
+  `npx --yes csso-cli assets/css/styles.css --no-restructure -o assets/css/styles.min.css`
+  (`--no-restructure` is mandatory — the append-only cascade depends on rule
+  order) and
+  `npx --yes terser assets/js/main.js -c -m --ecma 5 -o assets/js/main.min.js`,
+  then `node --check assets/js/main.min.js`.
+- Cache busting: after regenerating the artifacts, bump the `?v=` stamp on the
+  `.min` links across all pages (sed) so reviewers' phones pick up the change
+  without hard refreshes.
+- Page-speed guardrails (Core Web Vitals: LCP ≤2.5s, INP ≤200ms, CLS ≤0.1 on
+  mobile AND desktop): every below-the-fold `<img>` carries `loading="lazy"
+  decoding="async"`; hero/LCP images stay eager with a
+  `<link rel="preload" as="image" fetchpriority="high">`; `<video>` uses
+  `preload="metadata"` (never `auto`) with a poster; third-party iframes are
+  lazy-loaded (IntersectionObserver) with a `preconnect` for their origin.
 - Deploy: `vercel --prod --yes` (project is linked; static, no build step).
   Smoke-check the `startrader-official.vercel.app` alias afterwards — the
   unique deployment URL 302s due to deployment protection; that is normal.
