@@ -192,6 +192,9 @@
 }
 .ct-rank-panel.is-ready iframe{opacity:1}
 .ct-rank-note{position:relative;z-index:1;margin-top:26px;text-align:center;font-size:11.5px;line-height:1.6;color:#7f92b3}
+/* related articles reuse the shared fx-more cards; the banners carry their own art titles */
+.ct-art .fx-more-media{aspect-ratio:1200/628}
+.ct-art .fx-more-desc{color:var(--text);font-weight:600}
 /* ---- Responsive ---- */
 @media (max-width:1080px){.ct-paths{grid-template-columns:1fr}
 .ct-video-in{grid-template-columns:1fr;gap:30px}}
@@ -916,6 +919,39 @@
       <iframe id="widgetFrame" title="Trade Ranking" data-src="https://rating.startrader.com/widgets/ratings?widgetKey=social_platform_ratings&amp;theme=light&amp;lang=en" style="min-width:100%" scrolling="no" frameborder="0"></iframe>
     </div>
     <p class="ct-rank-note" data-aos="fade-up">Past performance is not a guide to future results. Leveraged products can cost more than your initial deposit.</p>
+  </div>
+</section>
+
+<!-- ============ RELATED ARTICLES ============ -->
+<section class="section fx-more ct-art" aria-labelledby="ct-art-title">
+  <div class="container">
+    <div class="head center">
+      <span class="eyebrow" data-aos="fade-up">Keep learning</span>
+      <h2 class="h2" id="ct-art-title" data-aos="fade-up">Related articles</h2>
+    </div>
+    <div class="fx-more-grid">
+      <!-- TODO: remaining article URLs from MKT — placeholders until the posts are live -->
+      <a class="fx-more-card" href="copy-trading-platform-india.html" data-aos="fade-up">
+        <span class="fx-more-media"><img src="assets/img/ct-article-platform-india.webp" alt="How to Choose a Copy Trading Platform in India" width="1200" height="628" loading="lazy" decoding="async"></span>
+        <p class="fx-more-desc">How to Choose a Copy Trading Platform in India</p>
+        <span class="fx-more-foot"><span class="fx-more-tag">Platforms</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
+      </a>
+      <a class="fx-more-card" href="#" data-aos="fade-up" data-aos-delay="100">
+        <span class="fx-more-media"><img src="assets/img/ct-article-risks.webp" alt="Copy Trading Risks: What You Need to Know Before You Start" width="1200" height="628" loading="lazy" decoding="async"></span>
+        <p class="fx-more-desc">Copy Trading Risks: What You Need to Know Before You Start</p>
+        <span class="fx-more-foot"><span class="fx-more-tag">Risk</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
+      </a>
+      <a class="fx-more-card" href="#" data-aos="fade-up" data-aos-delay="200">
+        <span class="fx-more-media"><img src="assets/img/ct-article-signal-provider.webp" alt="How to Choose a Copy Trading Signal Provider" width="1200" height="628" loading="lazy" decoding="async"></span>
+        <p class="fx-more-desc">How to Choose a Copy Trading Signal Provider</p>
+        <span class="fx-more-foot"><span class="fx-more-tag">Providers</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
+      </a>
+      <a class="fx-more-card" href="#" data-aos="fade-up" data-aos-delay="300">
+        <span class="fx-more-media"><img src="assets/img/ct-article-what-is.webp" alt="Copy Trading: What It Is, How It Works and How to Start" width="1200" height="628" loading="lazy" decoding="async"></span>
+        <p class="fx-more-desc">Copy Trading: What It Is, How It Works &amp; How to Start</p>
+        <span class="fx-more-foot"><span class="fx-more-tag">Basics</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
+      </a>
+    </div>
   </div>
 </section>
 
