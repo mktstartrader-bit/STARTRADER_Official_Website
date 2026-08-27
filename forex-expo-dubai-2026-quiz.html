@@ -58,7 +58,7 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
     radial-gradient(64% 54% at 14% 0%,rgba(0,71,187,.26),transparent 62%),
     linear-gradient(90deg,rgba(4,6,14,.94) 0%,rgba(4,6,14,.86) 34%,rgba(4,6,14,.6) 56%,rgba(4,6,14,.3) 76%,rgba(4,6,14,.42) 100%),
     linear-gradient(180deg,rgba(4,6,14,.55),transparent 28%,transparent 60%,#04060e 100%)}
-.xp-hero-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:clamp(30px,4.5vw,64px);align-items:start}
+.xp-hero-in{display:grid;grid-template-columns:minmax(0,1fr);max-width:760px}
 .xp-brand{display:inline-flex;align-items:center;gap:12px;margin-bottom:clamp(26px,4vw,44px)}
 .xp-brand img{width:170px;height:auto;display:block}
 .xp-kicker{display:inline-flex;align-items:center;gap:9px;font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#7fb2ff}
@@ -82,17 +82,6 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
 /* the sheet's disclaimer rides under the button in quiet italics */
 .xp-disc{margin-top:22px;max-width:62ch;font-size:12px;font-style:italic;line-height:1.7;color:#8ea4c6}
 .xp-disc b{font-style:normal;font-weight:700;color:#a9bcdb}
-/* the icon is shot on pure black — screen-blended, only its glass glows */
-.xp-visual{position:relative;display:grid;place-items:center}
-.xp-visual::before{content:"";position:absolute;width:76%;aspect-ratio:1;border-radius:50%;
-  background:radial-gradient(circle,rgba(42,114,255,.34),transparent 66%);filter:blur(10px)}
-.xp-visual img{position:relative;width:min(100%,360px);height:auto;mix-blend-mode:screen;
-  transition:transform .5s var(--ease)}
-.xp-hero .xp-visual{align-self:center;margin-top:clamp(20px,3vw,40px)}
-.xp-hero .xp-visual img{width:min(100%,380px);animation:xpVisIn .8s ease .2s both,xpFloat 7s ease-in-out 1s infinite}
-@keyframes xpVisIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-@keyframes xpFloat{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-10px) rotate(-1.2deg)}}
-@media (prefers-reduced-motion:reduce){.xp-hero .xp-visual img{animation:none}}
 
 /* ---- how it works ---- */
 .xp-how{padding:clamp(56px,8vw,104px) 0;background:linear-gradient(180deg,var(--bg-light,#F4F7FA),#eef2f8);color:var(--text)}
@@ -228,8 +217,6 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
   .xp-hero-in{grid-template-columns:1fr;gap:30px}
   .xp-hero-bg{object-position:50% 50%}
   .xp-hero::before{background:linear-gradient(180deg,rgba(4,6,14,.8),rgba(4,6,14,.68) 38%,rgba(4,6,14,.74) 74%,#04060e 100%)}
-  .xp-hero .xp-visual{margin-top:0}
-  .xp-hero .xp-visual img{width:min(60%,260px)}
   .xp-steps{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:560px){
@@ -286,11 +273,6 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
           <a href="#" class="btn btn-primary btn-lg">Take the quiz now <svg class="ico"><use href="#xp-arrow"/></svg></a>
         </div>
         <p class="xp-disc" data-aos="fade-up"><b>Disclaimer:</b> This quiz is provided for general educational purposes only. It does not constitute investment advice, a recommendation, an offer to trade, or an assessment of your suitability for trading. Your quiz score reflects general market knowledge only and is not a prediction of general investment outcomes. STARTRADER&rsquo;s Dubai entity is regulated by the UAE Capital Market Authority (CMA) as a Category 5 firm and does not provide brokerage or trading services.</p>
-      </div>
-
-      <!-- no data-aos here: the AOS transform would isolate the icon's screen blend from the photograph -->
-      <div class="xp-visual">
-        <img src="assets/img/expo-quiz-hero.webp" alt="Frosted blue glass stopwatch and lightning bolt — the market edge quiz" width="512" height="512" fetchpriority="high" decoding="async">
       </div>
     </div>
   </div>
