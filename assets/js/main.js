@@ -496,9 +496,20 @@
       '</span><span class="sb-stars" aria-label="Rated 4.5 out of 5">' + star + star + star + star +
       '<img src="' + ROOT + 'assets/img/sb-star-half.svg" alt="" width="11" height="10"></span></span>' +
       '<a class="sb-get" href="' + ROOT + 'trading-app.html">' +
-      (((document.documentElement.lang || '').indexOf('ru') === 0) ? 'Установить' : 'Install') + '</a>';
+      (((document.documentElement.lang || '').indexOf('ru') === 0) ? 'Установить' : 'Install') + '</a>' +
+      '<button class="sb-x" type="button" aria-label="Close">' +
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button>';
     document.body.appendChild(bar);
     document.body.classList.add('has-sb');
+    // the close control: dismissed for the rest of the session (IT 8.31,
+    // global row 7) — the body padding and the fab/to-top stack re-measure
+    bar.querySelector('.sb-x').addEventListener('click', function () {
+      try { sessionStorage.setItem('sb-dismissed', '1'); } catch (e) {}
+      if (bar.parentNode) bar.parentNode.removeChild(bar);
+      document.body.classList.remove('has-sb');
+      layoutSb();
+      layoutBottomPad();
+    });
     // sit a measured 10px above the cookie while it shows, not a guessed offset;
     // the chat bubble then rides a measured 12px above whichever surface is
     // topmost, and the back-to-top disc rides 10px above the bubble — the gap
