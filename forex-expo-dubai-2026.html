@@ -211,7 +211,9 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
     radial-gradient(40% 44% at 6% 100%,rgba(42,114,255,.12),transparent 60%),
     #04060e}
 .xp-spon-h{text-align:center;font-size:clamp(24px,3vw,38px);font-weight:800;letter-spacing:-.04em}
-.xp-spon-lead{margin:14px auto 0;max-width:52ch;text-align:center;font-size:clamp(14px,1.4vw,16px);line-height:1.7;color:#c4cedf}
+.xp-spon-lead{margin:14px auto 0;text-align:center;font-size:clamp(14px,1.4vw,16px);line-height:1.7;color:#c4cedf}
+/* each sentence holds together: one line where both fit, two clean lines where they don't */
+.xp-spon-lead span{display:inline-block}
 .xp-spon-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(14px,2vw,24px);margin-top:clamp(30px,4.5vw,52px)}
 .xp-spon-card{position:relative;overflow:hidden;display:flex;flex-direction:column;gap:14px;
   padding:clamp(24px,3vw,36px);border-radius:24px;
@@ -391,7 +393,7 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
 <section class="xp-spon" aria-labelledby="xp-spon-h">
   <div class="xp-wrap">
     <h2 class="xp-spon-h" id="xp-spon-h" data-aos="fade-up">Sponsorships</h2>
-    <p class="xp-spon-lead" data-aos="fade-up">Where passion unites with collaboration. Discover the champions we partner with.</p>
+    <p class="xp-spon-lead" data-aos="fade-up"><span>Where passion unites with collaboration.</span> <span>Discover the champions we partner with.</span></p>
     <div class="xp-spon-grid">
       <article class="xp-spon-card" data-aos="fade-up">
         <span class="xp-spon-logo"><img src="assets/img/nav-nba.svg" alt="Official Partner of the NBA" width="156" height="92" loading="lazy" decoding="async"></span>
