@@ -34,7 +34,7 @@
   <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=qa55" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=qa56" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* ---- Hero (two-column: copy + interactive panel over video) ---- */
@@ -44,7 +44,7 @@
 /* ---- Account type cards (dark, multi-shade, equal height) ---- */
 .ta-types{background:radial-gradient(90% 68% at 50% 0%,rgba(0,46,138,.34),transparent 60%),linear-gradient(180deg,#04060e 0%,#060a18 52%,#04060e 100%);color:#fff;position:relative;overflow:hidden}
 .ta-types>.container{position:relative;z-index:1}
-.ta-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;align-items:stretch}
+.ta-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch}
 .ta-card{position:relative;display:flex;flex-direction:column;height:100%;border-radius:var(--radius-xl);padding:32px 28px;
   background:
     radial-gradient(130% 74% at 50% -10%,var(--ray,rgba(120,160,255,.2)),transparent 60%),
@@ -57,8 +57,6 @@
 .ta-card:hover{transform:translateY(-4px);border-color:var(--ray-line,rgba(0,120,255,.45));box-shadow:0 36px 78px -34px rgba(0,60,180,.55)}
 .ta-card:hover::after{opacity:1;left:6%;right:6%}
 /* per-card gradient colour */
-.ta-card--s1{--ray:rgba(22,233,215,.20);--ray-line:rgba(22,233,215,.85)}
-/* Demo — teal */
 .ta-card--s2{--ray:rgba(150,110,255,.22);--ray-line:rgba(160,120,255,.9)}
 /* Standard — purple */
 .ta-card--s3{--ray:rgba(16,200,140,.20);--ray-line:rgba(30,210,150,.9)}
@@ -89,10 +87,12 @@
 /* ---- Closing CTA: two actions ---- */
 @media (max-width:980px){.ta-hero .acct-hero-bg::after{background:linear-gradient(180deg,rgba(4,6,14,.72),rgba(4,6,14,.92))}
 .ta-cards{grid-template-columns:1fr 1fr}}
+/* with three cards the odd one takes the full second row in the 2-col bands */
+@media (max-width:1200px) and (min-width:621px){.ta-cards > .ta-card:nth-child(3){grid-column:1/-1}}
 @media (max-width:620px){.ta-cards{grid-template-columns:1fr;max-width:420px;margin-inline:auto}
 .ta-card-tag{min-height:0}}
   
-/* the four plans breathe as a 2x2 from 1200px down (long translations).
+/* the three plans breathe as a 2+1 from 1200px down (long translations).
    1200 is where .container stops growing, so 4-up now only renders at the
    full 1152px content width the cards were drawn for — below that the
    nowrap buttons start pulling the tracks to uneven widths */
@@ -470,21 +470,6 @@
     </div>
     <div class="ta-cards">
 
-      <article class="ta-card ta-card--s1" data-aos="fade-up">
-        <span class="ta-card-ic"><svg><use href="#i-monitor"/></svg></span>
-        <h3>Demo</h3>
-        <p class="ta-card-tag">Practise risk-free with virtual funds</p>
-        <a href="getting-started.html" class="btn btn-primary">Open Demo</a>
-        <ul class="ta-feat">
-          <li><span class="ta-feat-ic"><svg><use href="#i-check"/></svg></span> Free</li>
-          <li><span class="ta-feat-ic"><svg><use href="#i-check"/></svg></span> Easy to register</li>
-          <li><span class="ta-feat-ic"><svg><use href="#i-check"/></svg></span> Risk-free environment</li>
-          <li><span class="ta-feat-ic"><svg><use href="#i-check"/></svg></span> Access to trading tools</li>
-          <li><span class="ta-feat-ic"><svg><use href="#i-check"/></svg></span> Real-time market simulation</li>
-          <li><span class="ta-feat-ic"><svg><use href="#i-check"/></svg></span> Trading strategies practice</li>
-        </ul>
-      </article>
-
       <article class="ta-card ta-card--s2 ta-card--rec" data-aos="fade-up" data-aos-delay="100">
         <span class="ta-rec">Recommended</span>
         <span class="ta-card-ic"><svg><use href="#i-user"/></svg></span>
@@ -812,6 +797,6 @@
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=qa55" defer></script>
+<script src="assets/js/main.min.js?v=qa56" defer></script>
 </body>
 </html>

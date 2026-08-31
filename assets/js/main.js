@@ -91,7 +91,7 @@
     if (!track) return;
     var diag = { up: 'M7 17 17 7M17 7H9M17 7v8', down: 'M7 7l10 10M17 17H9M17 17V9' };
     var html = heroPairs.map(function (m) {
-      return '<a class="mkt-cell ' + m.dir + '" href="#" data-c="' + m.c + '" aria-label="Trade ' + m.c + ' — ' + m.n + '">' +
+      return '<a class="mkt-cell ' + m.dir + '" href="https://www.startrader.com/live-account/" data-c="' + m.c + '" aria-label="Trade ' + m.c + ' — ' + m.n + '">' +
         '<span class="mkt-cell-ic"><img src="' + ROOT + 'assets/img/flags/' + m.a + '.svg" alt="" loading="lazy"><img src="' + ROOT + 'assets/img/flags/' + m.b + '.svg" alt="" loading="lazy"></span>' +
         '<span class="mkt-cell-tx"><b>' + m.c + '</b>' +
           '<span class="mkt-cell-q"><em data-ht-px>' + m.p + '</em>' +
@@ -2098,7 +2098,7 @@
           '<td><span class="fx-px" data-el="bid">' + fmt(bid, p.dec) + '</span></td>' +
           '<td><span class="fx-px" data-el="ask">' + fmt(ask, p.dec) + '</span></td>' +
           '<td><span class="fx-spread-pill" data-el="spread">' + set.spread(p.spread, p) + '</span></td>' +
-          '<td class="ta-td-act"><a class="fx-trade" href="' + ROOT + 'trading/getting-started/account-opening.html">' +
+          '<td class="ta-td-act"><a class="fx-trade" href="https://www.startrader.com/live-account/">' +
           'Trade<svg aria-hidden="true"><use href="#i-arrow-right"/></svg>' +
           '<span class="sr-only"> ' + p.sym + '</span></a></td>' +
           '</tr>';
@@ -5458,7 +5458,7 @@
         send.disabled = true;
         send.textContent = 'Continue on the secure form';
         setTimeout(function () {
-          window.location.href = '../trading/getting-started/account-opening.html';
+          window.location.href = 'https://www.startrader.com/live-account/';
         }, 550);
       });
     }
@@ -5479,7 +5479,7 @@
       if (bad) { if (bad.focus) bad.focus(); return; }
       // everything checks out locally; the account itself is created on the secure flow
       var q = email && email.value ? '?email=' + encodeURIComponent(email.value) : '';
-      window.location.href = '../trading/getting-started/account-opening.html' + q;
+      window.location.href = 'https://www.startrader.com/live-account/' + q;
     });
   }
 
