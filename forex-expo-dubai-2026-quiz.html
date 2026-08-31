@@ -705,12 +705,26 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // ---- the ten questions ----
+  // a repeat run taken before the details form was submitted gets a
+  // shuffled deck, so replaying from memory earns nothing; the first run
+  // and any retake after the form keep the sheet's order
+  function makeOrder() {
+    var idx = [], k, r, t;
+    for (k = 0; k < Q.length; k++) idx.push(k);
+    if (S.attempt >= 1 && !S.details) {
+      for (k = idx.length - 1; k > 0; k--) {
+        r = Math.floor(Math.random() * (k + 1));
+        t = idx[k]; idx[k] = idx[r]; idx[r] = t;
+      }
+    }
+    return idx;
+  }
   function startRun() {
-    run = { i: 0, picks: [], locked: false };
+    run = { i: 0, picks: [], locked: false, order: makeOrder() };
     showQuestion();
   }
   function showQuestion() {
-    var i = run.i, q = Q[i], bar = '', opts = '';
+    var i = run.i, q = Q[run.order[i]], bar = '', opts = '';
     for (var k = 0; k < Q.length; k++) bar += '<b class="' + (k < i ? 'is-done' : k === i ? 'is-now' : '') + '"></b>';
     for (var j = 0; j < q.o.length; j++) opts += '<button class="xp-opt" type="button" data-opt="' + j + '"><i>' + LETTERS[j] + '</i><span>' + q.o[j] + '</span></button>';
     var last = i === Q.length - 1;
@@ -742,7 +756,7 @@ document.addEventListener('DOMContentLoaded', function () {
     clearStep(); run.locked = true;
     if (run.i < Q.length - 1) { run.i++; return showQuestion(); }
     var score = 0;
-    for (var k = 0; k < Q.length; k++) if (run.picks[k] === Q[k].a) score++;
+    for (var k = 0; k < Q.length; k++) if (run.picks[k] === Q[run.order[k]].a) score++;
     S.attempt++;
     if (S.attempt === 1) { S.first = score; S.std = S.std || genCode('STD'); if (score >= PASS) S.prm = S.prm || genCode('PRM'); }
     else { S.second = score; }
@@ -754,7 +768,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!run || run.locked || !body.querySelector('[data-opts]')) return;
     var k = e.key.toUpperCase(), j = LETTERS.indexOf(k);
     if (j < 0 && /^[1-4]$/.test(k)) j = parseInt(k, 10) - 1;
-    if (j >= 0 && j < Q[run.i].o.length) { pick(j); e.preventDefault(); }
+    if (j >= 0 && j < Q[run.order[run.i]].o.length) { pick(j); e.preventDefault(); }
   });
 
   // POP-UP 12 — the score reveal
