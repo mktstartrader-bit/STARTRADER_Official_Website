@@ -5256,3 +5256,11 @@ html{scroll-behavior:auto}
   .htrade-go{width:28px;height:28px}
   .htrade-go svg{width:13px;height:13px}
 }
+
+/* ===== HTRADE CTA KEEPS ITS OWN WIDTH ON PHONES (appended batch 2026-08-31) =====
+   Follow-up to the batch above: the ≤720px rule stretches the CTA across
+   the intro panel, so on phones it still filled the white box. Below
+   560px the button now hugs its label like everywhere else. */
+@media (max-width:560px){
+  .htrade-btn{align-self:flex-start}
+}
