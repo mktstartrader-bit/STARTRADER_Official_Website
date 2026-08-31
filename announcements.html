@@ -34,7 +34,7 @@
   <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=qa51" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=qa52" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* ================= ANNOUNCEMENTS PAGE ================= */
@@ -119,7 +119,7 @@
 .an-item--pin::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--blue),#5b9dff);z-index:1}
 .an-item summary{
   position:relative;list-style:none;cursor:pointer;display:grid;
-  grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"tags chev" "title chev" "meta chev";
+  grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"title chev" "meta chev";
   gap:6px 16px;padding:17px 18px;
 }
 .an-item summary::-webkit-details-marker{display:none}
@@ -191,7 +191,7 @@
 /* ---- Announcements: date tile, share action, filter dialog ---- */
 .an-item summary{
   grid-template-columns:auto minmax(0,1fr) auto;
-  grid-template-areas:"date tags acts" "date title acts" "date meta acts";
+  grid-template-areas:"date title acts" "date meta acts";
 }
 /* the date is the thing people scan for, so it gets a tile of its own */
 .an-date{
@@ -306,7 +306,7 @@
   transition:color .25s,border-color .25s,background .25s;
 }
 .an-cancel:hover{color:var(--text);border-color:rgba(20,40,80,.25);background:#fff}
-@media (max-width:720px){.an-item summary{grid-template-columns:auto minmax(0,1fr);grid-template-areas:"date tags" "date title" "date meta" "acts acts"}
+@media (max-width:720px){.an-item summary{grid-template-columns:auto minmax(0,1fr);grid-template-areas:"date title" "date meta" "acts acts"}
 .an-acts{justify-content:flex-end;padding-top:4px}
 .an-modal-cols{grid-template-columns:1fr;gap:10px}
 .an-modal-foot{flex-direction:column-reverse}
@@ -829,10 +829,6 @@
           <details>
             <summary>
               <time class="an-date" datetime="2026-07-28"><b>28</b><em>Jul</em><i>2026</i></time>
-              <span class="an-tags">
-                <span class="an-pin"><svg aria-hidden="true"><use href="#i-star"/></svg>Pinned</span>
-                <span class="an-cat an-cat--other">Company</span>
-              </span>
               <h3 class="an-title">STARTRADER Trustpilot profile merger update</h3>
               <span class="an-meta"><span class="an-open">Read notice</span></span>
               <span class="an-acts">
@@ -854,10 +850,6 @@
           <details>
             <summary>
               <time class="an-date" datetime="2026-07-28"><b>28</b><em>Jul</em><i>2026</i></time>
-              <span class="an-tags">
-                <span class="an-pin"><svg aria-hidden="true"><use href="#i-star"/></svg>Pinned</span>
-                <span class="an-cat an-cat--system">System</span>
-              </span>
               <h3 class="an-title">Important notice: system optimisation for STARTRADER</h3>
               <span class="an-meta"><span class="an-open">Read notice</span></span>
               <span class="an-acts">
@@ -884,10 +876,6 @@
           <details>
             <summary>
               <time class="an-date" datetime="2026-07-28"><b>28</b><em>Jul</em><i>2026</i></time>
-              <span class="an-tags">
-                <span class="an-pin"><svg aria-hidden="true"><use href="#i-star"/></svg>Pinned</span>
-                <span class="an-cat an-cat--system">System</span>
-              </span>
               <h3 class="an-title">Important notice: historical data compression for Cent accounts</h3>
               <span class="an-meta"><span class="an-open">Read notice</span></span>
               <span class="an-acts">
@@ -909,10 +897,6 @@
           <details>
             <summary>
               <time class="an-date" datetime="2026-07-28"><b>28</b><em>Jul</em><i>2026</i></time>
-              <span class="an-tags">
-                <span class="an-pin"><svg aria-hidden="true"><use href="#i-star"/></svg>Pinned</span>
-                <span class="an-cat an-cat--alert">Security</span>
-              </span>
               <h3 class="an-title">Declaration regarding counterfeit websites, apps and unauthorised use of our name</h3>
               <span class="an-meta"><span class="an-open">Read notice</span></span>
               <span class="an-acts">
@@ -941,7 +925,6 @@
           <details>
             <summary>
               <time class="an-date" datetime="2026-07-08"><b>8</b><em>Jul</em><i>2026</i></time>
-              <span class="an-tags"><span class="an-cat an-cat--closure">Market closure</span></span>
               <h3 class="an-title">Market closure in July</h3>
               <span class="an-meta"><span class="an-open">Read notice</span></span>
               <span class="an-acts">
@@ -1000,7 +983,6 @@
           <details>
             <summary>
               <time class="an-date" datetime="2026-07-01"><b>1</b><em>Jul</em><i>2026</i></time>
-              <span class="an-tags"><span class="an-cat an-cat--closure">Market closure</span></span>
               <h3 class="an-title">Market closure in July</h3>
               <span class="an-meta"><span class="an-open">Read notice</span></span>
               <span class="an-acts">
@@ -1027,7 +1009,6 @@
           <details>
             <summary>
               <time class="an-date" datetime="2026-06-24"><b>24</b><em>Jun</em><i>2026</i></time>
-              <span class="an-tags"><span class="an-cat an-cat--rollover">Rollover</span></span>
               <h3 class="an-title">Rollover adjustment notice</h3>
               <span class="an-meta"><span class="an-open">Read notice</span></span>
               <span class="an-acts">
@@ -1054,7 +1035,6 @@
           <details>
             <summary>
               <time class="an-date" datetime="2026-06-18"><b>18</b><em>Jun</em><i>2026</i></time>
-              <span class="an-tags"><span class="an-cat an-cat--leverage">Leverage</span></span>
               <h3 class="an-title">Temporary leverage adjustment ahead of the FOMC decision</h3>
               <span class="an-meta"><span class="an-open">Read notice</span></span>
               <span class="an-acts">
@@ -1081,7 +1061,6 @@
           <details>
             <summary>
               <time class="an-date" datetime="2026-06-02"><b>2</b><em>Jun</em><i>2026</i></time>
-              <span class="an-tags"><span class="an-cat an-cat--closure">Market closure</span></span>
               <h3 class="an-title">Market closure in June</h3>
               <span class="an-meta"><span class="an-open">Read notice</span></span>
               <span class="an-acts">
@@ -1103,7 +1082,6 @@
           <details>
             <summary>
               <time class="an-date" datetime="2026-05-20"><b>20</b><em>May</em><i>2026</i></time>
-              <span class="an-tags"><span class="an-cat an-cat--system">System</span></span>
               <h3 class="an-title">Scheduled maintenance: MT5 server upgrade</h3>
               <span class="an-meta"><span class="an-open">Read notice</span></span>
               <span class="an-acts">
@@ -1125,7 +1103,6 @@
           <details>
             <summary>
               <time class="an-date" datetime="2026-05-12"><b>12</b><em>May</em><i>2026</i></time>
-              <span class="an-tags"><span class="an-cat an-cat--product">Product</span></span>
               <h3 class="an-title">New instruments: 12 share CFDs added</h3>
               <span class="an-meta"><span class="an-open">Read notice</span></span>
               <span class="an-acts">
@@ -1147,7 +1124,6 @@
           <details>
             <summary>
               <time class="an-date" datetime="2026-05-01"><b>1</b><em>May</em><i>2026</i></time>
-              <span class="an-tags"><span class="an-cat an-cat--closure">Market closure</span></span>
               <h3 class="an-title">Market closure in May</h3>
               <span class="an-meta"><span class="an-open">Read notice</span></span>
               <span class="an-acts">
@@ -1410,6 +1386,6 @@
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=qa51" defer></script>
+<script src="assets/js/main.min.js?v=qa52" defer></script>
 </body>
 </html>

@@ -2308,6 +2308,8 @@
 
     var letter = 'all';
     var query = '';
+    var PAGE = parseInt(root.getAttribute('data-page-size'), 10) || 12;
+    var page = 1;
 
     // cache the original label markup so highlighting can be undone cleanly
     cards.forEach(function (c) {
@@ -2329,14 +2331,23 @@
       var q = query.trim().toLowerCase();
       var shown = 0;
 
+      var matched = [];
       cards.forEach(function (c) {
         var okL = letter === 'all' || c.closest('.gl-group').getAttribute('data-l') === letter;
         var okQ = !q || (c.dataset.name || '').indexOf(q) > -1 || (c.dataset.def || '').indexOf(q) > -1;
         var on = okL && okQ;
         c.hidden = !on;
-        if (on) shown++;
+        if (on) { shown++; matched.push(c); }
         mark(c._t, c._tRaw, q);
         mark(c._e, c._eRaw, q);
+      });
+      // browsing views page through the matches; a search shows every hit at once
+      var pages = q ? 1 : Math.max(1, Math.ceil(matched.length / PAGE));
+      if (page > pages) page = pages;
+      if (!q) matched.forEach(function (c, i) {
+        var on = i >= (page - 1) * PAGE && i < page * PAGE;
+        if (on && c.hidden === false && c.hasAttribute('data-aos') && page > 1) stripAosOff(c);
+        c.hidden = !on;
       });
 
       // a letter group disappears once every card inside it is filtered out,
@@ -2350,21 +2361,42 @@
 
       if (empty) empty.hidden = shown !== 0;
       if (emptyQ) emptyQ.textContent = q ? '“' + query.trim() + '”' : 'that filter';
-      if (pager) pager.hidden = shown === 0 || !!q;
+      if (pager) {
+        pager.hidden = shown === 0 || !!q || pages < 2;
+        if (!pager.hidden) {
+          var html = '';
+          for (var n = 1; n <= pages; n++) {
+            html += '<button class="gl-pg' + (n === page ? ' is-on' : '') + '" type="button"' +
+              (n === page ? ' aria-current="page"' : '') + ' data-gl-page="' + n + '">' + n + '</button>';
+          }
+          pager.innerHTML = html;
+        }
+      }
       if (clear) clear.hidden = !query;
 
       if (status) {
+        var pageNote = pages > 1 ? ' — page ' + page + ' of ' + pages : '';
         if (q) status.textContent = shown + (shown === 1 ? ' term matches ' : ' terms match ') + '“' + query.trim() + '”';
-        else if (letter !== 'all') status.textContent = 'Showing ' + shown + (shown === 1 ? ' term' : ' terms') + ' under ' + letter;
-        else status.textContent = '';
+        else if (letter !== 'all') status.textContent = 'Showing ' + shown + (shown === 1 ? ' term' : ' terms') + ' under ' + letter + pageNote;
+        else status.textContent = pages > 1 ? 'Showing ' + shown + ' terms' + pageNote : '';
       }
       if (hasST) ScrollTrigger.refresh();
     }
+
+    if (pager) pager.addEventListener('click', function (e) {
+      var b = e.target.closest ? e.target.closest('[data-gl-page]') : null;
+      if (!b) return;
+      page = parseInt(b.getAttribute('data-gl-page'), 10) || 1;
+      apply();
+      var g0 = root.querySelector('.gl-group:not([hidden])');
+      if (g0 && window.scrollY > g0.offsetTop) g0.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+    });
 
     letters.forEach(function (b) {
       if (b.classList.contains('is-off')) return;
       b.addEventListener('click', function () {
         letter = b.dataset.l;
+        page = 1;
         letters.forEach(function (x) { x.classList.toggle('is-on', x === b); });
         apply();
         // keep the chosen letter in view under the sticky index
@@ -2377,18 +2409,20 @@
       var t;
       input.addEventListener('input', function () {
         query = input.value;
+        page = 1;
         clearTimeout(t);
         t = setTimeout(apply, 120);
       });
       // Esc clears the field the way a search box should
       input.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && input.value) { input.value = ''; query = ''; apply(); }
+        if (e.key === 'Escape' && input.value) { input.value = ''; query = ''; page = 1; apply(); }
       });
     }
     function clearAll() {
       if (input) { input.value = ''; input.focus(); }
       query = '';
       letter = 'all';
+      page = 1;
       letters.forEach(function (x) { x.classList.toggle('is-on', x.dataset.l === 'all'); });
       apply();
     }
@@ -2400,6 +2434,7 @@
     if (q0 && input) { input.value = q0; query = q0; }
 
     apply();
+    stripAosHidden(cards);
   }
 
   /* ---------------- Glossary — single term view (?term=slug) ---------------- */
@@ -2943,12 +2978,26 @@
     if (film) { film.removeAttribute('autoplay'); film.pause(); }
   }
 
+  /* items hidden by a pager at init never run their AOS entry; strip the
+     attributes so a later reveal shows them instantly instead of invisibly */
+  function stripAosOff(el) {
+    el.removeAttribute('data-aos');
+    el.removeAttribute('data-aos-delay');
+    el.classList.remove('aos-init');
+    el.classList.remove('aos-animate');
+  }
+  function stripAosHidden(items) {
+    setTimeout(function () {
+      items.forEach(function (el) { if (el.hidden) stripAosOff(el); });
+    }, 120);
+  }
+
   /* ---------------- News room — filter, search, load more ---------------- */
   function initNews() {
     var root = document.getElementById('latest');
     if (!root) return;
 
-    var PAGE = 6;                        // stories revealed per step
+    var PAGE = parseInt(root.getAttribute('data-page-size'), 10) || 6;  // stories revealed per step
     var CATS = { ta: 'Technical Analysis', fa: 'Fundamental Analysis', mkt: 'Market news', co: 'Company' };
 
     var items = Array.prototype.slice.call(root.querySelectorAll('[data-nr-item]'));
@@ -2963,6 +3012,7 @@
     var moreRow = root.querySelector('.nr-morerow');
 
     var cat = 'all', query = '', shown = PAGE;
+    stripAosHidden(items);
 
     // cache the searchable text and the original markup for highlighting
     items.forEach(function (el) {
@@ -4103,7 +4153,7 @@
     (function () {
       var root = document.getElementById('reports');
       if (!root) return;
-      var PAGE = 6;
+      var PAGE = parseInt(root.getAttribute('data-page-size'), 10) || 6;
       var NAMES = { ta: 'Technical', fa: 'Fundamental', wk: 'Weekly', mo: 'Monthly' };
 
       var items = Array.prototype.slice.call(root.querySelectorAll('[data-ma-item]'));
@@ -4117,6 +4167,7 @@
       var moreRow = root.querySelector('[data-ma-morerow]');
       var moreBtn = root.querySelector('[data-ma-more]');
       var cat = 'all', query = '', shown = PAGE;
+      stripAosHidden(items);
 
       items.forEach(function (el) {
         el._h = el.querySelector('h3 a');
@@ -4407,29 +4458,78 @@
     var statusEl = root.querySelector('[data-pg-status]');
     var emptyEl = root.querySelector('[data-pg-empty]');
     var resetBtn = root.querySelector('[data-pg-reset]');
+    var moreRow = root.querySelector('[data-pg-morerow]');
+    var moreBtn = root.querySelector('[data-pg-more]');
+    var PAGE = parseInt(root.getAttribute('data-page-size'), 10) || 0;
     var cat = 'all';
+    var shown = PAGE || Infinity;
+    stripAosHidden(items);
 
     function apply() {
-      var shown = 0;
-      items.forEach(function (el) {
-        var on = cat === 'all' || el.getAttribute('data-cat') === cat;
-        el.hidden = !on;
-        if (on) shown++;
+      var matched = items.filter(function (el) {
+        return cat === 'all' || el.getAttribute('data-cat') === cat;
       });
+      items.forEach(function (el) { el.hidden = true; });
+      matched.forEach(function (el, i) { el.hidden = i >= shown; });
       chips.forEach(function (b) {
         var on = b.getAttribute('data-pg-cat') === cat;
         b.classList.toggle('is-on', on);
         b.setAttribute('aria-pressed', on ? 'true' : 'false');
       });
-      if (emptyEl) emptyEl.hidden = shown !== 0;
-      if (statusEl) statusEl.textContent = shown ? 'Showing ' + shown + (shown === 1 ? ' item' : ' items') : '';
+      if (moreRow) moreRow.hidden = matched.length <= shown;
+      if (emptyEl) emptyEl.hidden = matched.length !== 0;
+      if (statusEl) {
+        var seen = Math.min(shown, matched.length);
+        statusEl.textContent = matched.length ? 'Showing ' + seen + ' of ' + matched.length + (matched.length === 1 ? ' item' : ' items') : '';
+      }
       if (hasST) ScrollTrigger.refresh();
     }
     chips.forEach(function (b) {
-      b.addEventListener('click', function () { cat = b.getAttribute('data-pg-cat'); apply(); });
+      b.addEventListener('click', function () { cat = b.getAttribute('data-pg-cat'); shown = PAGE || Infinity; apply(); });
     });
-    if (resetBtn) resetBtn.addEventListener('click', function () { cat = 'all'; apply(); });
+    if (resetBtn) resetBtn.addEventListener('click', function () { cat = 'all'; shown = PAGE || Infinity; apply(); });
+    if (moreBtn) moreBtn.addEventListener('click', function () {
+      var first = shown;
+      shown += PAGE;
+      apply();
+      var visible = items.filter(function (el) { return !el.hidden; });
+      var target = visible[first];
+      if (target) {
+        var h = target.querySelector('.nr-h a');
+        if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); }
+      }
+    });
     apply();
+  }
+
+  /* ---------------- Generic listing Load more (knowledge centre) ---------------- */
+  function initLoadMore() {
+    var roots = Array.prototype.slice.call(document.querySelectorAll('[data-lm]'));
+    roots.forEach(function (root) {
+      var items = Array.prototype.slice.call(root.querySelectorAll(root.getAttribute('data-lm')));
+      var moreRow = root.querySelector('[data-lm-morerow]');
+      var moreBtn = root.querySelector('[data-lm-more]');
+      var PAGE = parseInt(root.getAttribute('data-page-size'), 10) || 6;
+      if (!items.length || !moreBtn) return;
+      var shown = PAGE;
+      function apply() {
+        items.forEach(function (el, i) { el.hidden = i >= shown; });
+        if (moreRow) moreRow.hidden = items.length <= shown;
+        if (hasST) ScrollTrigger.refresh();
+      }
+      moreBtn.addEventListener('click', function () {
+        var first = shown;
+        shown += PAGE;
+        apply();
+        var target = items[first];
+        if (target) {
+          var h = target.querySelector('h3 a') || target;
+          h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true });
+        }
+      });
+      apply();
+      stripAosHidden(items);
+    });
   }
 
   /* ---------------- Help centre topic search ---------------- */
@@ -5991,6 +6091,7 @@
     initMarketAnalysis();
     initKnowledge();
     initPageList();
+    initLoadMore();
     initHelpCentre();
     initTelemetry();
     initMtRail();
