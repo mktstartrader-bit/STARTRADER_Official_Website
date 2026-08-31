@@ -34,7 +34,7 @@
   <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=qa56" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=qa57" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* ================= GLOSSARY ================= */
@@ -264,35 +264,6 @@
 }
   </script>
 
-  <!-- Structured data — FAQ -->
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Where should a complete beginner start?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Start at the Basics level and read the forex guide first — it explains what you are actually buying and selling. From there, currency pairs and pips, then risk management before you place a live trade." }
-    },
-    {
-      "@type": "Question",
-      "name": "Do I need an account to use the Knowledge Centre?",
-      "acceptedAnswer": { "@type": "Answer", "text": "No. Every guide, video and glossary entry is free to read without an account. A demo account is useful for practising what you learn on live pricing with virtual funds." }
-    },
-    {
-      "@type": "Question",
-      "name": "How long does each guide take?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Most guides are between four and ten minutes. Each card shows its reading time so you can pick something that fits the gap you have." }
-    },
-    {
-      "@type": "Question",
-      "name": "Is the material specific to STARTRADER?",
-      "acceptedAnswer": { "@type": "Answer", "text": "The concepts apply to trading anywhere. Where a guide covers a platform feature — an order type or a chart tool — it uses MT4, MT5 and the STAR platforms because those are the ones you will have." }
-    }
-  ]
-}
-  </script>
 
 </head>
 
@@ -688,25 +659,28 @@
     <div class="head center">
       <span class="eyebrow" data-aos="fade-up">Resources</span>
       <h2 class="h2" id="kc-guides-title" data-aos="fade-up">Guides for every level.</h2>
-      <p class="head-sub" data-aos="fade-up">Pick a level, then narrow by the market you trade.</p>
+      <p class="head-sub" data-aos="fade-up">Explore the guides below, or open a category to see every article.</p>
     </div>
 
     <div class="kc-bar glass" data-aos="fade-up">
-      <div class="kc-levels" role="tablist" aria-label="Difficulty level">
-        <span class="kc-levels-ind" aria-hidden="true" data-kc-ind></span>
-        <button class="kc-level is-on" type="button" role="tab" aria-selected="true" data-kc-level="basics">Basics</button>
-        <button class="kc-level" type="button" role="tab" aria-selected="false" tabindex="-1" data-kc-level="intermediate">Intermediate</button>
-        <button class="kc-level" type="button" role="tab" aria-selected="false" tabindex="-1" data-kc-level="advanced">Advanced</button>
-      </div>
-
-      <div class="kc-prods" role="group" aria-label="Filter by product">
-        <span class="kc-prods-lbl">Product</span>
-        <button class="ec-chip is-on" type="button" data-kc-prod="all" aria-pressed="true">All</button>
-        <button class="ec-chip" type="button" data-kc-prod="forex" aria-pressed="false">Forex</button>
-        <button class="ec-chip" type="button" data-kc-prod="commodities" aria-pressed="false">Commodities</button>
-        <button class="ec-chip" type="button" data-kc-prod="indices" aria-pressed="false">Indices</button>
-        <button class="ec-chip" type="button" data-kc-prod="shares" aria-pressed="false">Shares</button>
-        <button class="ec-chip" type="button" data-kc-prod="crypto" aria-pressed="false">Crypto</button>
+      <!-- every article category, straight to its live listing (IT 8.31) -->
+      <div class="kc-prods" role="group" aria-label="Article categories">
+        <span class="kc-prods-lbl">Categories</span>
+        <a class="ec-chip" href="https://www.startrader.com/category/mt5/">MT5</a>
+        <a class="ec-chip" href="https://www.startrader.com/category/mt4/">MT4</a>
+        <a class="ec-chip" href="https://www.startrader.com/category/copy-trade/">Copy Trade</a>
+        <a class="ec-chip" href="https://www.startrader.com/category/forex/">Forex</a>
+        <a class="ec-chip" href="https://www.startrader.com/category/cfd/">CFD</a>
+        <a class="ec-chip" href="https://www.startrader.com/category/commodities/">Commodities</a>
+        <a class="ec-chip" href="https://www.startrader.com/category/commodities/energies/">Energies</a>
+        <a class="ec-chip" href="https://www.startrader.com/category/metals/">Metals</a>
+        <a class="ec-chip" href="https://www.startrader.com/category/commodities/gold/">Gold</a>
+        <a class="ec-chip" href="https://www.startrader.com/category/commodities/silver/">Silver</a>
+        <a class="ec-chip" href="https://www.startrader.com/category/commodities/copper/">Copper</a>
+        <a class="ec-chip" href="https://www.startrader.com/category/agriculture/">Agriculture</a>
+        <a class="ec-chip" href="https://www.startrader.com/category/indices/">Indices</a>
+        <a class="ec-chip" href="https://www.startrader.com/category/shares/">Shares</a>
+        <a class="ec-chip" href="https://www.startrader.com/category/etf/">ETF</a>
       </div>
     </div>
 
@@ -1208,38 +1182,6 @@
   </div>
 </section>
 
-<!-- ============ FAQ ============ -->
-<section class="section faq-sec fx-faq" aria-labelledby="kc-faq-title">
-  <div class="container">
-    <div class="head center">
-      <span class="eyebrow" data-aos="fade-up">FAQ</span>
-      <h2 class="h2" id="kc-faq-title" data-aos="fade-up">Getting started</h2>
-    </div>
-    <div class="faq-list" data-aos="fade-up">
-      <details class="faq-item">
-        <summary>Where should a complete beginner start?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Start at the Basics level and read the forex guide first &mdash; it explains what you are actually buying and selling. From there, currency pairs and pips, then risk management before you place a live trade.</div>
-      </details>
-      <details class="faq-item">
-        <summary>Do I need an account to use the Knowledge Centre?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">No. Every guide, video and glossary entry is free to read without an account. A demo account is useful for practising what you learn on live pricing with virtual funds.</div>
-      </details>
-      <details class="faq-item">
-        <summary>How long does each guide take?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Most guides are between four and ten minutes. Each card shows its reading time so you can pick something that fits the gap you have.</div>
-      </details>
-      <details class="faq-item">
-        <summary>Is the material specific to STARTRADER?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">The concepts apply to trading anywhere. Where a guide covers a platform feature &mdash; an order type or a chart tool &mdash; it uses MT4, MT5 and the STAR platforms, because those are the ones you will have.</div>
-      </details>
-      <details class="faq-item">
-        <summary>Will learning this make me profitable?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">No education can promise that. Leveraged products carry a high level of risk and can cost more than your initial deposit. What this material can do is make sure your decisions are informed ones and that you understand the risk you are taking.</div>
-      </details>
-    </div>
-  </div>
-</section>
-
 <!-- ============ EXPLORE MORE ============ -->
 <section class="section fx-more" aria-labelledby="kc-more-title">
   <div class="container">
@@ -1404,6 +1346,6 @@
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=qa56" defer></script>
+<script src="assets/js/main.min.js?v=qa57" defer></script>
 </body>
 </html>

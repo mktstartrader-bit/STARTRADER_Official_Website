@@ -4370,7 +4370,8 @@
       var statusEl = root.querySelector('[data-kc-status]');
       var emptyEl = root.querySelector('[data-kc-empty]');
       var resetBtn = root.querySelector('[data-kc-reset]');
-      var level = 'basics', prod = 'all';
+      // no level tablist on the page means every level shows (education.html, IT 8.31)
+      var level = levels.length ? 'basics' : 'all', prod = 'all';
 
       function moveInd() {
         if (!ind) return;
@@ -4390,7 +4391,7 @@
 
       function apply() {
         var matched = items.filter(function (el) {
-          return el.getAttribute('data-level') === level &&
+          return (level === 'all' || el.getAttribute('data-level') === level) &&
                  (prod === 'all' || el.getAttribute('data-prod') === prod);
         });
         items.forEach(function (el) { el.hidden = true; });
@@ -4416,7 +4417,7 @@
         if (statusEl) {
           statusEl.textContent = matched.length
             ? 'Showing ' + matched.length + (matched.length === 1 ? ' guide' : ' guides') +
-              ' at ' + LEVELS[level] + (prod === 'all' ? '' : ' in ' + PRODS[prod])
+              (level === 'all' ? '' : ' at ' + LEVELS[level]) + (prod === 'all' ? '' : ' in ' + PRODS[prod])
             : '';
         }
         moveInd();
