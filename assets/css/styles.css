@@ -5245,3 +5245,14 @@ html{scroll-behavior:auto}
    keeps its bare strip. */
 .ar-crumb-band{background:#fff}
 .ar-crumb-band .ar-crumb-strip{padding-bottom:4px}
+
+/* ===== HTRADE CTA AT PHONE SIZE (appended batch 2026-08-31) =====
+   MKT: the arrow-disc CTA reads bulky on phones — the 32px disc plus
+   btn-lg's 16px padding stands it 64px tall, half again the site's
+   standard mobile button. Below 560px the family steps down to the
+   standard ~50px: btn-default type, tighter padding, a 28px disc. */
+@media (max-width:560px){
+  .htrade-btn{font-size:14px;padding:11px 9px 11px 22px;gap:12px}
+  .htrade-go{width:28px;height:28px}
+  .htrade-go svg{width:13px;height:13px}
+}
