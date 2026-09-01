@@ -34,7 +34,7 @@
   <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=qa69" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=qa70" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* =================================================================
@@ -547,7 +547,22 @@
 
         <div class="ar-cta glass" data-ar-open-card>
           <h2 class="ar-cta-h">Open <span>Live Account</span></h2>
-          <form class="ar-cta-form" data-ar-open>
+          <form class="ar-cta-form" data-ar-open novalidate>
+            <div class="ar-tabs" role="tablist" aria-label="Sign up with">
+              <button class="ar-tab is-on" type="button" role="tab" aria-selected="true" data-ar-tab="email">Email address</button>
+              <button class="ar-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-ar-tab="phone">Phone number</button>
+            </div>
+
+            <div class="ar-f" data-ar-pane="email">
+              <label for="arOpenEmail">Email <i>*</i></label>
+              <input type="email" id="arOpenEmail" name="email" placeholder="you@example.com" inputmode="email" autocomplete="email" required>
+            </div>
+
+            <div class="ar-f" data-ar-pane="phone" hidden>
+              <label for="arOpenPhone">Phone number <i>*</i></label>
+              <input type="tel" id="arOpenPhone" name="phone" placeholder="+971 50 000 0000" inputmode="tel" autocomplete="tel" disabled>
+            </div>
+
             <div class="ar-f">
               <label for="arCountry">Country <i>*</i></label>
               <div class="wb-selwrap">
@@ -622,20 +637,6 @@
             </div>
 
             <div class="ar-f">
-              <label for="arOpenEmail">Email <i>*</i></label>
-              <input type="email" id="arOpenEmail" name="email" placeholder="you@example.com" inputmode="email" autocomplete="email" required>
-            </div>
-
-            <div class="ar-f">
-              <label for="arCode">Email verification code <i>*</i></label>
-              <div class="ar-code-row">
-                <input type="text" id="arCode" name="code" inputmode="numeric" autocomplete="one-time-code" placeholder="6-digit code" required>
-                <button class="ar-send" type="button" data-ar-send>Send code</button>
-              </div>
-              <p class="ar-sent" data-ar-sent hidden>Code sent &mdash; check your inbox.</p>
-            </div>
-
-            <div class="ar-f">
               <label for="arPass">Password <i>*</i></label>
               <div class="ar-pass-row">
                 <input type="password" id="arPass" name="password" autocomplete="new-password" minlength="8" placeholder="Minimum 8 characters" required>
@@ -643,6 +644,11 @@
                   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="2.8" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
                 </button>
               </div>
+            </div>
+
+            <div class="ar-f">
+              <label for="arRef">Referred by</label>
+              <input type="text" id="arRef" name="referral" placeholder="Referral code (optional)" autocomplete="off">
             </div>
 
             <div class="ar-kind" role="radiogroup" aria-label="Account type">
@@ -655,13 +661,19 @@
               <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
               <span>I confirm that I am not a U.S. person, including a U.S. citizen or resident.</span>
             </label>
-            <label class="ct-check ar-check" for="arPp">
-              <input type="checkbox" id="arPp" required>
+            <label class="ct-check ar-check" for="arMk">
+              <input type="checkbox" id="arMk">
               <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
-              <span>I accept the <a href="privacy-policy-app.html">Privacy Policy</a>.</span>
+              <span>I consent to STARTRADER processing my personal data for marketing and application support. I may withdraw my consent at any time.</span>
+            </label>
+            <label class="ct-check ar-check" for="arTc">
+              <input type="checkbox" id="arTc" required>
+              <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+              <span>I have read, understood, and agree to the <a href="legal-documents.html">Client Agreement</a>, <a href="legal-documents.html">Risk Disclosure</a>, <a href="privacy-policy-app.html">Privacy Policy</a>, and all other applicable terms and policies.</span>
             </label>
 
             <button class="btn btn-primary" type="submit">Create Account <svg class="ico"><use href="#i-arrow-right"/></svg></button>
+            <p class="ar-cta-alt"><a href="getting-started.html">Practice Trading</a><span aria-hidden="true">&middot;</span><a href="https://myaccount.startrader.com/login">Login</a></p>
           </form>
           <p class="ar-cta-note">Regulated broker &middot; Segregated client funds</p>
         </div>
@@ -959,34 +971,43 @@
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=qa69" defer></script>
+<script src="assets/js/main.min.js?v=qa70" defer></script>
 <script>
-// the rail's open-account form: native validation runs first; a valid
-// submit routes to account opening without carrying the fields in the URL
+// the rail's open-account form. Verification moved off this step (MKT 9.01):
+// the secure flow sends the code, so the form collects the account details
+// and hands over. Email or phone — one of the two is required, and the pane
+// that is off is disabled so it cannot block submission.
 document.addEventListener('DOMContentLoaded', function () {
   var f = document.querySelector('[data-ar-open]');
   if (!f) return;
-  f.addEventListener('submit', function (e) {
-    e.preventDefault();
-    window.location.href = 'getting-started.html';
+
+  var tabs = Array.prototype.slice.call(f.querySelectorAll('[data-ar-tab]'));
+  var panes = {
+    email: f.querySelector('[data-ar-pane="email"]'),
+    phone: f.querySelector('[data-ar-pane="phone"]')
+  };
+  function show(which) {
+    tabs.forEach(function (t) {
+      var on = t.getAttribute('data-ar-tab') === which;
+      t.classList.toggle('is-on', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+    });
+    Object.keys(panes).forEach(function (k) {
+      var pane = panes[k], on = k === which, input = pane && pane.querySelector('input');
+      if (!pane) return;
+      pane.hidden = !on;
+      if (input) { input.disabled = !on; input.required = on; }
+    });
+  }
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () { show(t.getAttribute('data-ar-tab')); });
   });
 
-  // send-code is a demo on the static build: it checks the email first,
-  // then arms a resend countdown the way the portal does
-  var send = f.querySelector('[data-ar-send]');
-  var sent = f.querySelector('[data-ar-sent]');
-  var email = f.querySelector('#arOpenEmail');
-  if (send && email) send.addEventListener('click', function () {
-    if (!email.checkValidity()) { email.reportValidity(); return; }
-    if (sent) sent.hidden = false;
-    var left = 60;
-    send.disabled = true;
-    var base = send.textContent;
-    var t = setInterval(function () {
-      left--;
-      send.textContent = 'Resend in ' + left + 's';
-      if (left <= 0) { clearInterval(t); send.disabled = false; send.textContent = base; }
-    }, 1000);
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!f.checkValidity()) { f.reportValidity(); return; }
+    window.location.href = 'https://www.startrader.com/live-account/';
   });
 
   var eye = f.querySelector('[data-ar-eye]');

@@ -32,7 +32,7 @@
   <link rel="preload" href="assets/img/expo-hero-bg.webp" as="image" type="image/webp" fetchpriority="high" />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=qa69" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=qa70" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* =================================================================
@@ -312,23 +312,6 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
             <label for="xpEmail">Email <i>*</i></label>
             <input type="email" id="xpEmail" name="email" placeholder="you@example.com" inputmode="email" autocomplete="email" required>
           </div>
-          <div class="xp-f">
-            <label for="xpCode">Email verification code <i>*</i></label>
-            <div class="xp-code-row">
-              <input type="text" id="xpCode" name="code" inputmode="numeric" autocomplete="one-time-code" placeholder="6-digit code" required>
-              <button class="xp-send" type="button" data-xp-send>Send code</button>
-            </div>
-            <p class="xp-sent" data-xp-sent hidden>Code sent &mdash; check your inbox.</p>
-          </div>
-          <div class="xp-f">
-            <label for="xpPass">Password <i>*</i></label>
-            <div class="xp-pass-row">
-              <input type="password" id="xpPass" name="password" autocomplete="new-password" minlength="8" placeholder="Minimum 8 characters" required>
-              <button class="xp-eye" type="button" data-xp-eye aria-label="Show password" aria-pressed="false">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="2.8" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
-              </button>
-            </div>
-          </div>
           <div class="xp-kind" role="radiogroup" aria-label="Account type">
             <label><input type="radio" name="kind" value="individual" checked><span>Individual</span></label>
             <label><input type="radio" name="kind" value="company"><span>Company</span></label>
@@ -475,20 +458,6 @@ document.addEventListener('DOMContentLoaded', function () {
   f.addEventListener('submit', function (e) {
     e.preventDefault();
     window.location.href = 'https://www.startrader.com/live-account/';
-  });
-  var send = f.querySelector('[data-xp-send]');
-  var sent = f.querySelector('[data-xp-sent]');
-  var email = f.querySelector('#xpEmail');
-  if (send && email) send.addEventListener('click', function () {
-    if (!email.checkValidity()) { email.reportValidity(); return; }
-    if (sent) sent.hidden = false;
-    var left = 60, base = send.textContent;
-    send.disabled = true;
-    var t = setInterval(function () {
-      left--;
-      send.textContent = 'Resend in ' + left + 's';
-      if (left <= 0) { clearInterval(t); send.disabled = false; send.textContent = base; }
-    }, 1000);
   });
   var eye = f.querySelector('[data-xp-eye]');
   var pass = f.querySelector('#xpPass');

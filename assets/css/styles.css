@@ -5570,3 +5570,37 @@ html{scroll-behavior:auto}
 .cat-group--commodities .cat-tile:hover .cat-tile-ic,.cat-group--commodities .cat-tile:hover .cat-tile-go{background:#ac7c59;color:#fff}
 /* the mark takes the Premium bronze itself, not a mixed-down version of it */
 .cat-group--commodities .cat-tile-ic,.cat-group--commodities .cat-tile-go{color:#ac7c59}
+
+/* ===== PAGINATION, AND THE ACCOUNT FORM'S NEW HEAD (appended batch 2026-09-01l) =====
+   The knowledge libraries page rather than load more, so a reader can reach
+   page seven or the footer directly. The rail's form drops the verification
+   step — the secure flow owns that — and gains the email/phone choice, the
+   referral field and the full consent set, with the practice and login exits
+   underneath. */
+.pgr{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:clamp(30px,4vw,44px);flex-wrap:wrap}
+.pgr-list{display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:center}
+.pgr-pg,.pgr-arrow{min-width:40px;height:40px;padding:0 12px;border-radius:12px;cursor:pointer;
+  display:grid;place-items:center;font:inherit;font-size:14px;font-weight:700;color:var(--text-soft);
+  background:#fff;border:1px solid var(--line);
+  transition:color .25s,border-color .25s,background .25s,transform .3s var(--ease)}
+.pgr-pg:hover,.pgr-arrow:hover:not(:disabled){color:var(--blue);border-color:rgba(0,71,187,.34);transform:translateY(-2px)}
+.pgr-pg.is-on{background:var(--blue);border-color:var(--blue);color:#fff;
+  box-shadow:0 12px 26px -14px rgba(0,71,187,.75)}
+.pgr-pg.is-on:hover{transform:none;color:#fff}
+.pgr-arrow svg{width:15px;height:15px}
+.pgr-arrow:disabled{opacity:.4;cursor:not-allowed}
+.pgr-dots{padding:0 2px;color:var(--text-mute);font-weight:700}
+@media (max-width:560px){.pgr-pg,.pgr-arrow{min-width:36px;height:36px;padding:0 9px;font-size:13px}}
+
+.ar-tabs{display:flex;gap:6px;padding:4px;border-radius:14px;background:var(--bg-light);border:1px solid var(--line)}
+.ar-tab{flex:1;height:38px;border:0;border-radius:11px;cursor:pointer;background:transparent;
+  font:inherit;font-size:13px;font-weight:700;color:var(--text-soft);transition:background .25s,color .25s,box-shadow .25s}
+.ar-tab:hover{color:var(--text)}
+.ar-tab.is-on{background:#fff;color:var(--blue);box-shadow:0 6px 16px -10px rgba(20,44,96,.5)}
+.ar-side-h--2{margin-top:18px}
+.ar-tag--primary{background:rgba(0,71,187,.09);border-color:rgba(0,71,187,.22);color:var(--blue);font-weight:700}
+.ar-tag--primary:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+.ar-cta-alt{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:12px;font-size:12.5px}
+.ar-cta-alt a{color:var(--text-soft);font-weight:600;transition:color .25s}
+.ar-cta-alt a:hover{color:var(--blue)}
+.ar-cta-alt span{color:var(--line)}

@@ -4501,6 +4501,74 @@
   }
 
 
+  /* ---------------- Numbered pagination for long archives ----------------
+     MKT 9.01: the knowledge libraries run to twenty pages on the live site,
+     where a load-more (or an endless scroll) buries the footer and gives no
+     way to link page seven. Those listings page instead: first and last are
+     always reachable, the current neighbourhood is spelled out, and the rest
+     collapses to an ellipsis. */
+  function initPager() {
+    Array.prototype.slice.call(document.querySelectorAll('[data-pager]')).forEach(function (nav) {
+      var scope = nav.closest('section') || document;
+      var items = Array.prototype.slice.call(scope.querySelectorAll(nav.getAttribute('data-pager')));
+      var per = parseInt(nav.getAttribute('data-page-size'), 10) || 9;
+      var list = nav.querySelector('[data-pgr-list]');
+      var prev = nav.querySelector('[data-pgr-prev]');
+      var next = nav.querySelector('[data-pgr-next]');
+      if (!items.length || !list) return;
+      var pages = Math.ceil(items.length / per);
+      if (pages < 2) { nav.hidden = true; return; }
+      nav.hidden = false;
+      var page = 1;
+
+      function slots() {
+        var out = [], i;
+        for (i = 1; i <= pages; i++) {
+          if (i === 1 || i === pages || Math.abs(i - page) <= 1) out.push(i);
+          else if (out[out.length - 1] !== '…') out.push('…');
+        }
+        return out;
+      }
+      function render() {
+        list.innerHTML = '';
+        slots().forEach(function (n) {
+          if (n === '…') {
+            var d = document.createElement('span');
+            d.className = 'pgr-dots'; d.setAttribute('aria-hidden', 'true'); d.textContent = '…';
+            list.appendChild(d); return;
+          }
+          var b = document.createElement('button');
+          b.type = 'button'; b.className = 'pgr-pg' + (n === page ? ' is-on' : '');
+          b.textContent = n;
+          b.setAttribute('aria-label', 'Page ' + n);
+          if (n === page) b.setAttribute('aria-current', 'page');
+          b.addEventListener('click', function () { go(n); });
+          list.appendChild(b);
+        });
+        if (prev) prev.disabled = page === 1;
+        if (next) next.disabled = page === pages;
+      }
+      function go(n, quiet) {
+        page = Math.max(1, Math.min(pages, n));
+        items.forEach(function (el, i) {
+          var on = i >= (page - 1) * per && i < page * per;
+          el.hidden = !on;
+          if (on) stripAosOff(el);
+        });
+        render();
+        if (hasST) ScrollTrigger.refresh();
+        if (!quiet) {
+          var first = items[(page - 1) * per];
+          if (first) scrollToTarget(first, -120);
+        }
+      }
+      if (prev) prev.addEventListener('click', function () { go(page - 1); });
+      if (next) next.addEventListener('click', function () { go(page + 1); });
+      go(1, true);
+      stripAosHidden(items);
+    });
+  }
+
   /* ---------------- Category pages — the tab row ---------------- */
   function initCatTabs() {
     var rail = document.querySelector('[data-cat-tabs]');
@@ -6168,6 +6236,7 @@
     initKnowledge();
     initPageList();
     initCatTabs();
+    initPager();
     initLoadMore();
     initHelpCentre();
     initTelemetry();
