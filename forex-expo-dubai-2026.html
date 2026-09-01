@@ -29,8 +29,10 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
 
   <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="assets/img/expo-hero-arrow.webp" as="image" type="image/webp" fetchpriority="high"
+  <link rel="preload" href="assets/img/expo-hero-arrow.webp" as="image" type="image/webp" fetchpriority="high" media="(min-width:1025px)"
         imagesrcset="assets/img/expo-hero-arrow-768w.webp 768w, assets/img/expo-hero-arrow-1152w.webp 1152w, assets/img/expo-hero-arrow-1536w.webp 1536w, assets/img/expo-hero-arrow.webp 1920w" imagesizes="100vw" />
+  <link rel="preload" href="assets/img/expo-hero-arrow-tall.webp" as="image" type="image/webp" fetchpriority="high" media="(max-width:1024px)"
+        imagesrcset="assets/img/expo-hero-arrow-tall-480w.webp 480w, assets/img/expo-hero-arrow-tall-720w.webp 720w, assets/img/expo-hero-arrow-tall.webp 980w" imagesizes="100vw" />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
   <link rel="stylesheet" href="assets/css/styles.min.css?v=qa72" />
@@ -51,6 +53,7 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
 .xp-hero{position:relative;overflow:hidden;isolation:isolate;color:#fff;padding:clamp(48px,7vw,96px) 0 clamp(40px,5vw,72px);background:#04060e}
 /* the artwork fills the hero: the arrow sweeps in from the left and climbs to the target
    on the right, so the copy column falls on its dark end and the glass reads behind the form */
+.xp-hero picture{display:block}
 .xp-hero-bg{position:absolute;inset:0;z-index:-2;display:block;width:100%;height:100%;object-fit:cover;object-position:50% 62%}
 /* the scrim covers the copy side only: heavy under the column, gone by 70% so the arrow,
    target and bars on the right keep the artwork's own colour with nothing laid over them */
@@ -245,10 +248,10 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
 /* ---- responsive ---- */
 @media (max-width:1024px){
   .xp-hero-in{grid-template-columns:1fr;gap:38px}
-  /* the crop narrows below the desktop band, so favour the right of the frame where the
-     arrowhead and target sit — dead centre would show only empty gradient */
-  .xp-hero-bg{object-position:74% 42%}
-  .xp-hero::before{background:linear-gradient(180deg,rgba(4,6,14,.8),rgba(4,6,14,.68) 38%,rgba(4,6,14,.74) 74%,#04060e 100%)}
+  .xp-hero-bg{object-position:50% 50%}
+  /* the portrait cut carries the whole composition, so the veil only has to hold the
+     copy at the top and then gets out of the artwork's way */
+  .xp-hero::before{background:linear-gradient(180deg,rgba(4,6,14,.7) 0%,rgba(4,6,14,.58) 30%,rgba(4,6,14,.4) 52%,rgba(4,6,14,.16) 72%,transparent 88%)}
   .xp-form{max-width:520px;margin-inline:auto;width:100%;margin-top:0}
 }
   </style>
@@ -278,9 +281,13 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
 
 <!-- ============ HERO ============ -->
 <section class="xp-hero" aria-labelledby="xp-h1">
-  <img class="xp-hero-bg" src="assets/img/expo-hero-arrow.webp"
-       srcset="assets/img/expo-hero-arrow-768w.webp 768w, assets/img/expo-hero-arrow-1152w.webp 1152w, assets/img/expo-hero-arrow-1536w.webp 1536w, assets/img/expo-hero-arrow.webp 1920w" sizes="100vw"
-       alt="A glass arrow sweeping upward along blue light trails toward a glowing target, above a rising bar chart" width="1920" height="1080" fetchpriority="high">
+  <picture>
+    <!-- the portrait cut of the same artwork, framed for the narrow band -->
+    <source media="(max-width:1024px)" srcset="assets/img/expo-hero-arrow-tall-480w.webp 480w, assets/img/expo-hero-arrow-tall-720w.webp 720w, assets/img/expo-hero-arrow-tall.webp 980w" sizes="100vw" width="980" height="1200">
+    <img class="xp-hero-bg" src="assets/img/expo-hero-arrow.webp"
+         srcset="assets/img/expo-hero-arrow-768w.webp 768w, assets/img/expo-hero-arrow-1152w.webp 1152w, assets/img/expo-hero-arrow-1536w.webp 1536w, assets/img/expo-hero-arrow.webp 1920w" sizes="100vw"
+         alt="A glass arrow sweeping upward along blue light trails toward a glowing target, above a rising bar chart" width="1920" height="1080" fetchpriority="high">
+  </picture>
   <div class="xp-wrap">
     <a class="xp-brand" href="index.html" aria-label="STARTRADER home">
       <img src="assets/img/logo-startrader.svg" alt="STARTRADER" width="170" height="33">
