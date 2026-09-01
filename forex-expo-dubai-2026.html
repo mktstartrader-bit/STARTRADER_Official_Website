@@ -52,13 +52,12 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
 /* the artwork fills the hero: the arrow sweeps in from the left and climbs to the target
    on the right, so the copy column falls on its dark end and the glass reads behind the form */
 .xp-hero-bg{position:absolute;inset:0;z-index:-2;display:block;width:100%;height:100%;object-fit:cover;object-position:50% 62%}
-/* the scrim: heavy under the copy column, thinning toward the form so the panels glow through the glass,
-   and a fade into the page black at the foot so the hero hands over to the band below */
+/* the scrim covers the copy side only: heavy under the column, gone by 70% so the arrow,
+   target and bars on the right keep the artwork's own colour with nothing laid over them */
 .xp-hero::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
   background:
     radial-gradient(64% 54% at 14% 0%,rgba(0,71,187,.26),transparent 62%),
-    linear-gradient(90deg,rgba(4,6,14,.94) 0%,rgba(4,6,14,.86) 34%,rgba(4,6,14,.6) 56%,rgba(4,6,14,.3) 76%,rgba(4,6,14,.42) 100%),
-    linear-gradient(180deg,rgba(4,6,14,.55),transparent 28%,transparent 60%,#04060e 100%)}
+    linear-gradient(90deg,rgba(4,6,14,.94) 0%,rgba(4,6,14,.9) 30%,rgba(4,6,14,.64) 46%,rgba(4,6,14,.24) 60%,transparent 70%)}
 .xp-hero-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:clamp(30px,4.5vw,64px);align-items:start}
 .xp-brand{display:inline-flex;align-items:center;gap:12px;margin-bottom:clamp(26px,4vw,44px)}
 .xp-brand img{width:170px;height:auto;display:block}
@@ -84,10 +83,12 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
 /* the form rises to meet the logo line (the brand sits above the grid) */
 .xp-form{margin-top:calc(-33px - clamp(26px,4vw,44px))}
 
-/* ---- the open-account form: the house underline fields on dark glass ---- */
+/* ---- the open-account form: the house underline fields on dark glass ----
+   the card stands where the scrim has cleared, so its own fill carries the
+   contrast its labels and fine print need against the lit artwork */
 .xp-form{position:relative;overflow:hidden;padding:clamp(24px,3vw,32px);border-radius:24px;
-  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
-  -webkit-backdrop-filter:blur(24px) saturate(1.4);backdrop-filter:blur(24px) saturate(1.4);
+  background:rgba(4,6,14,.62);border:1px solid rgba(255,255,255,.14);
+  -webkit-backdrop-filter:blur(26px) saturate(1.25);backdrop-filter:blur(26px) saturate(1.25);
   box-shadow:0 40px 84px -40px rgba(0,0,0,.85),inset 0 1px 0 rgba(255,255,255,.16)}
 .xp-form::before{content:"";position:absolute;left:14%;right:14%;top:0;height:1px;border-radius:1px;
   background:linear-gradient(90deg,transparent,rgba(127,178,255,.85),rgba(127,178,255,.4),transparent)}
