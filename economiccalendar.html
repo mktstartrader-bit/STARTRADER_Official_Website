@@ -34,7 +34,7 @@
   <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=qa57" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=qa58" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* ================= ECONOMIC CALENDAR PAGE ================= */
@@ -111,13 +111,19 @@
   /* IT 8.26: with the bar hidden, narrow screens cut the later dates with
      no cue that more exist. The day rail shows a thin bar like the
      announcement tables do. */
-  .ecf-days{display:flex;overflow-x:auto;overflow-y:hidden;padding-bottom:8px;
+  .ecf-days{display:flex;overflow-x:auto;overflow-y:hidden;padding-bottom:10px;
     scrollbar-width:thin;scrollbar-color:rgba(120,160,255,.55) rgba(255,255,255,.08);
-    overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
-  .ecf-days::-webkit-scrollbar{height:6px}
+    overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;
+    /* IT 9.01: a chip could rest half-cut at the rail's edge, reading as
+       overwritten. The rail snaps chip-to-chip and always shows its bar, so
+       what is on screen is always a whole date and more are visibly there. */
+    scroll-snap-type:x proximity;scroll-padding-inline:2px}
+  .ecf-days::-webkit-scrollbar{height:8px;-webkit-appearance:none}
   .ecf-days::-webkit-scrollbar-track{background:rgba(255,255,255,.08);border-radius:6px}
-  .ecf-days::-webkit-scrollbar-thumb{background:rgba(120,160,255,.55);border-radius:6px}
-  .ecf-day{flex:0 0 108px}
+  .ecf-days::-webkit-scrollbar-thumb{background:rgba(120,160,255,.55);border-radius:6px;
+    border:1px solid rgba(255,255,255,.1)}
+  .ecf-days::-webkit-scrollbar-thumb:hover{background:rgba(140,180,255,.8)}
+  .ecf-day{flex:0 0 clamp(96px,29%,118px);scroll-snap-align:start}
   .ecf-tz{margin-left:0}
   .ecf-src{margin-left:0}
 }
@@ -1363,6 +1369,6 @@
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=qa57" defer></script>
+<script src="assets/js/main.min.js?v=qa58" defer></script>
 </body>
 </html>

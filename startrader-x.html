@@ -34,7 +34,7 @@
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/swiper-bundle.min.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=qa57" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=qa58" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <!-- Page-specific styles -->
   <style>
@@ -178,14 +178,18 @@
      belong at every width down to 350px. */
   /* the art runs 118% tall off the stage's bottom, so its top pokes up to
      37px above the stage — the margin reserves that overhang plus air */
-  .x-hand-visual{position:relative;inset:auto;width:min(100%,470px);height:clamp(300px,68vw,430px);
-    margin:68px auto 0}
-  .x-hand-visual img{right:-2%;bottom:-40px;height:118%}
+  /* IT 9.01: stacked, the handset stood as tall as the copy above it. The
+     stage carries its height in one variable so the chips that anchor off it
+     follow, and the whole band reads compact. */
+  .x-hand-visual{--x-stage:clamp(232px,52vw,338px);
+    position:relative;inset:auto;width:min(100%,400px);height:var(--x-stage);
+    margin:46px auto 0}
+  .x-hand-visual img{right:-2%;bottom:-32px;height:118%}
   /* the chips ride the handset itself — anchored to the art's computable
      left edge (102%+16% bottom bleed of the stage height at a 1000:1364
      aspect) and tucked a step onto the bezel, the desktop look */
-  .x-chip--exec{left:auto;right:calc(clamp(300px,68vw,430px)*.8651 - 22px);top:10%}
-  .x-chip--quote{left:auto;right:calc(clamp(300px,68vw,430px)*.8651 - 30px);bottom:22%}
+  .x-chip--exec{left:auto;right:calc(var(--x-stage)*.8651 - 18px);top:10%}
+  .x-chip--quote{left:auto;right:calc(var(--x-stage)*.8651 - 24px);bottom:22%}
 }
 @media (max-width:420px){
   .x-chip--exec{left:2%}
@@ -905,6 +909,6 @@
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/swiper-bundle.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=qa57" defer></script>
+<script src="assets/js/main.min.js?v=qa58" defer></script>
 </body>
 </html>

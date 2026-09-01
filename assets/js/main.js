@@ -1688,12 +1688,27 @@
         // hovering over unrelated fields (IT 8.24 round, style row 70). when
         // the opened side runs out of room, the list closes instead.
         if (!initial && room < Math.min(140, panel.scrollHeight)) { close(false); return; }
+        // the sticky chrome owns the top of the viewport. The panel already
+        // sits below it in the stacking order (styles.css, 8.26 round), so a
+        // list clamped to y=8 would hide behind the menu rather than over it
+        // — it is pinned under the chrome instead, and trimmed to the gap the
+        // chrome leaves, so every option stays reachable (IT 9.01 round).
+        var ceil = 8, chrome = [document.querySelector('.topbar'), document.querySelector('.site-header')];
+        for (var ci = 0; ci < chrome.length; ci++) {
+          var cel = chrome[ci];
+          if (!cel || !cel.getClientRects().length) continue;
+          var cpos = getComputedStyle(cel).position;
+          if (cpos !== 'sticky' && cpos !== 'fixed') continue;
+          var crect = cel.getBoundingClientRect();
+          if (crect.top < vh && crect.bottom + 6 > ceil) ceil = crect.bottom + 6;
+        }
         var max = Math.max(140, Math.min(300, Math.max(room, 140)));
+        max = Math.min(max, Math.max(140, vh - ceil - 8));
         panel.style.maxHeight = max + 'px';
         panel.style.bottom = 'auto';
         var h = Math.min(max, panel.scrollHeight);
         var top = placedBelow ? r.bottom + 6 : r.top - 6 - h;
-        panel.style.top = Math.max(8, Math.min(top, vh - h - 8)) + 'px';
+        panel.style.top = Math.max(ceil, Math.min(top, vh - h - 8)) + 'px';
       }
 
       function setActive(i) {
