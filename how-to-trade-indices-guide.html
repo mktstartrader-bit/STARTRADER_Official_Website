@@ -1,0 +1,1203 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#05070E" />
+
+  <title>How To Trade Indices: A Beginner Guide To Index Trading | STARTRADER</title>
+  <meta name="description" content="Learn how to trade indices like the S&amp;P 500 and Nasdaq 100 using CFDs, futures, and ETFs. A complete beginner&#x27;s guide covering platforms, types, and strategy." />
+  <meta name="keywords" content="How To Trade Indices: A Beginner Guide To Index Trading, Indices, STARTRADER" />
+  <meta name="author" content="STARTRADER" />
+  <link rel="canonical" href="https://www.startrader.com/indices/how-to-trade-indices-guide/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="STARTRADER" />
+  <meta property="og:title" content="How To Trade Indices: A Beginner Guide To Index Trading | STARTRADER" />
+  <meta property="og:description" content="Learn how to trade indices like the S&amp;P 500 and Nasdaq 100 using CFDs, futures, and ETFs. A complete beginner&#x27;s guide covering platforms, types, and strategy." />
+  <meta property="og:url" content="https://www.startrader.com/indices/how-to-trade-indices-guide/" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/learn-cta.webp" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="How To Trade Indices: A Beginner Guide To Index Trading | STARTRADER" />
+  <meta name="twitter:description" content="Learn how to trade indices like the S&amp;P 500 and Nasdaq 100 using CFDs, futures, and ETFs. A complete beginner&#x27;s guide covering platforms, types, and strategy." />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/learn-cta.webp" />
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <!-- Fonts (self-hosted) -->
+  <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="assets/css/aos.min.css" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=qa61" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* =================================================================
+   KNOWLEDGE ARTICLE
+   The article furniture is the shared ar-* system. This page swaps the
+   columns — copy on the left, the rail on the right — and the rail
+   carries the contents index plus an open-account form, both riding
+   the rail's shared sticky position.
+   ================================================================= */
+/* the rail takes the width a real form needs, and the copy column
+   gives it back — shrinking first when the window tightens */
+.ar{--ar-rail:380px;--ar-measure:650px}
+.ar-cols{grid-template-columns:minmax(0,var(--ar-measure)) var(--ar-rail)}
+.ar-main{order:1}
+.ar-rail{order:2}
+/* the rail leads with the article's related tags */
+.ar-rtags{padding:18px 16px;border-radius:16px}
+.ar-rtags-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+
+/* the open-account card in the rail */
+.ar-cta{padding:20px 18px 18px;border-radius:16px}
+.ar-cta-h{font-size:20px;font-weight:800;letter-spacing:-.032em;color:var(--ink);text-align:center}
+.ar-cta-h span{color:var(--blue)}
+.ar-cta-form{display:flex;flex-direction:column;gap:13px;margin-top:14px}
+.ar-f{display:flex;flex-direction:column;gap:6px}
+.ar-f label{font-size:12.5px;font-weight:700;color:var(--text)}
+.ar-f label i{font-style:normal;color:var(--red)}
+/* the site's field language: a quiet underline, not a boxed input */
+.ar-cta-form input,.ar-cta-form select{
+  width:100%;font:inherit;font-size:15px;color:var(--text);padding:10px 2px;
+  background:transparent;border:0;border-bottom:1px solid rgba(20,44,96,.2);border-radius:0;
+  outline:none;appearance:none;transition:border-color .25s;
+}
+.ar-cta-form input::placeholder{color:var(--text-mute)}
+.ar-cta-form input:hover,.ar-cta-form select:hover{border-bottom-color:rgba(20,44,96,.4)}
+.ar-cta-form input:focus,.ar-cta-form select:focus{border-bottom-color:var(--blue)}
+.ar-cta .wb-selwrap .wb-selchev{position:absolute;right:2px;top:50%;transform:translateY(-50%);width:15px;height:15px;color:var(--text-mute);pointer-events:none}
+.ar-code-row{display:flex;gap:8px}
+.ar-code-row input{flex:1;min-width:0}
+.ar-send{
+  flex:none;height:40px;align-self:flex-end;padding:0 14px;border-radius:70px;cursor:pointer;
+  border:1px solid rgba(0,71,187,.35);background:rgba(0,71,187,.06);
+  font:inherit;font-size:12.5px;font-weight:700;color:var(--blue);
+  transition:background .25s,color .25s;
+}
+.ar-send:hover:not(:disabled){background:var(--blue);color:#fff}
+.ar-send:disabled{opacity:.55;cursor:default}
+.ar-sent{font-size:11.5px;color:#0f9d76}
+.ar-pass-row{position:relative}
+.ar-pass-row input{padding-right:40px}
+.ar-eye{position:absolute;right:0;top:50%;transform:translateY(-50%);width:34px;height:34px;display:grid;place-items:center;
+  border:0;border-radius:10px;background:none;color:var(--text-mute);cursor:pointer;transition:color .25s}
+.ar-eye:hover{color:var(--text)}
+.ar-eye[aria-pressed="true"]{color:var(--blue)}
+.ar-eye svg{width:19px;height:19px}
+.ar-kind{display:flex;gap:8px}
+.ar-kind-pill{flex:1;position:relative}
+.ar-kind-pill input{position:absolute;opacity:0;width:0;height:0}
+.ar-kind-pill span{display:flex;align-items:center;justify-content:center;height:40px;border-radius:12px;
+  border:1px solid var(--line);font-size:13px;font-weight:700;color:var(--text-soft);cursor:pointer;
+  transition:background .25s,color .25s,border-color .25s}
+.ar-kind-pill input:checked + span{background:var(--blue);border-color:transparent;color:#fff}
+.ar-kind-pill input:focus-visible + span{outline:2px solid rgba(0,71,187,.5);outline-offset:2px}
+.ar-cta .ar-check{margin-top:0;font-size:12.5px;line-height:1.5}
+.ar-cta-form .btn{width:100%;justify-content:center;margin-top:2px}
+.ar-cta-note{margin-top:10px;font-size:11px;color:var(--text-mute);text-align:center}
+
+@media (max-width:1024px){
+  /* the shared breakpoint flattens the rail into the article column */
+  .ar-cols{grid-template-columns:minmax(0,1fr)}
+  .ar-rtags{order:3;min-width:0}
+  .ar-cta{order:4;min-width:0}
+}
+
+/* the fine print under an illustrative table */
+.ar-body .ar-fine{margin-top:10px;font-size:12px;line-height:1.6;color:var(--text-mute)}
+  </style>
+
+  <!-- Structured data — page entity -->
+
+  <!-- Structured data — breadcrumb -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.startrader.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Education", "item": "https://www.startrader.com/education/learn/knowledge.html" },
+    { "@type": "ListItem", "position": 3, "name": "Knowledge Centre", "item": "https://www.startrader.com/education/learn/knowledge.html" }
+  ]
+}
+  </script>
+
+  <!-- Structured data — FAQ -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Where should a complete beginner start?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Start at the Basics level and read the forex guide first — it explains what you are actually buying and selling. From there, currency pairs and pips, then risk management before you place a live trade." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need an account to use the Knowledge Centre?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Every guide, video and glossary entry is free to read without an account. A demo account is useful for practising what you learn on live pricing with virtual funds." }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does each guide take?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Most guides are between four and ten minutes. Each card shows its reading time so you can pick something that fits the gap you have." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the material specific to STARTRADER?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The concepts apply to trading anywhere. Where a guide covers a platform feature — an order type or a chart tool — it uses MT4, MT5 and the STAR platforms because those are the ones you will have." }
+    }
+  ]
+}
+  </script>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How To Trade Indices: A Beginner Guide To Index Trading",
+  "description": "What a bond is, the main types, how yields work, what interest rates do to prices, and the ways to buy — funds, ETFs and CFDs.",
+  "author": {
+    "@type": "Organization",
+    "name": "STARTRADER Research Desk"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "STARTRADER"
+  },
+  "datePublished": "2026-07-14",
+  "articleSection": "Knowledge Centre — Basics"
+}
+  </script>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Are bonds risk-free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. That is one of the most common misconceptions in investing. Bonds carry credit risk — the issuer may fail to pay — and interest rate risk, because a bond's market value falls when rates rise. Prices move both ways."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between coupon yield and yield to maturity?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Coupon yield is the annual coupon divided by face value. Yield to maturity also accounts for the price you actually paid and any gain or loss against face value, so it is the more useful figure when buying on the secondary market."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do bond prices fall when interest rates rise?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A bond's coupon is fixed. If new bonds are issued paying more, an existing bond has to become cheaper for its yield to compete. The longer the maturity, the larger that adjustment tends to be."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is a bond fund the same as owning a bond?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. A bond held to maturity returns its principal on a known date. A fund has no maturity date, so its unit price keeps moving with the market — the certainty of the maturity date is the thing you give up."
+      }
+    }
+  ]
+}
+  </script>
+
+</head>
+
+<body class="light-top">
+
+<!-- ============ SVG ICON SPRITE ============ -->
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M4 12h15m0 0-6-6m6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-arrow-ur" viewBox="0 0 24 24"><path d="M7 17 17 7m0 0H8m9 0v9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z" fill="currentColor"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.4 3 8.4 7 9.5 4-1.1 7-5.1 7-9.5V6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><path d="M12 3 3 7.5v9L12 21l9-4.5v-9zM3 7.5 12 12l9-4.5M12 12v9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-headset" viewBox="0 0 24 24"><path d="M4 13a8 8 0 0 1 16 0M4 13v3a2 2 0 0 0 2 2h1v-6H6a2 2 0 0 0-2 2Zm16 0v3a2 2 0 0 1-2 2h-1v-6h1a2 2 0 0 1 2 2Zm-3 5a3 3 0 0 1-3 2.5h-2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10m5 10V4m5 16v-7m5 7V8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 2 2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.8 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z" fill="currentColor"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.7 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3Z" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 7v5l3.4 2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M4 18a8 8 0 1 1 16 0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M12 18l4.2-5.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="12" cy="18" r="1.5" fill="currentColor"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-facebook" viewBox="0 0 24 24"><path d="M14 8.5V7c0-.9.6-1 1-1h1.5V3H14c-2.2 0-3.5 1.5-3.5 3.7V8.5H8.5v3h2v8.5h3.5v-8.5h2.3l.4-3z" fill="currentColor"/></symbol>
+  <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="3.6" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="16.5" cy="7.5" r="1.1" fill="currentColor"/></symbol>
+  <symbol id="i-youtube" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m10.5 9.3 4.5 2.7-4.5 2.7z" fill="currentColor"/></symbol>
+  <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M6.5 9v9M6.5 6.2v.01M11 18v-5a2.5 2.5 0 0 1 5 0v5M11 12v6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+  <symbol id="i-caret-up" viewBox="0 0 12 12"><path d="M6 3 10 8H2z" fill="currentColor"/></symbol>
+  <symbol id="i-caret-down" viewBox="0 0 12 12"><path d="M6 9 2 4h8z" fill="currentColor"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M17.5 3h3.2l-7 8 8.2 10.9h-6.4l-5-6.6-5.8 6.6H1.5l7.5-8.6L1.6 3H8l4.5 6zM16.4 19.1h1.8L7.7 4.8H5.8z" fill="currentColor"/></symbol>
+  <symbol id="i-telegram" viewBox="0 0 24 24"><path d="M21.5 4.3 2.9 11.5c-.9.35-.9.9-.15 1.12l4.7 1.46 1.8 5.6c.23.63.4.86 1 .86.46 0 .66-.2.9-.45l2.28-2.2 4.72 3.5c.87.48 1.5.23 1.72-.8l3-14.1c.3-1.28-.5-1.86-1.34-1.5z" fill="currentColor"/></symbol>
+  <symbol id="i-tiktok" viewBox="0 0 24 24"><path d="M16.6 3c.3 1.6 1.3 3 2.7 3.8.6.4 1.4.6 2.2.7v3.1c-1.8 0-3.5-.6-4.9-1.6v6.6a6.3 6.3 0 1 1-6.3-6.3c.3 0 .7 0 1 .1v3.2a3.2 3.2 0 1 0 2.2 3V3z" fill="currentColor"/></symbol>
+  <symbol id="i-user-plus" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3 20a6 6 0 0 1 12 0M18.5 8v5M21 10.5h-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-id" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="8.5" cy="11" r="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M13.5 10h4M13.5 13.5h4M5.6 15.6c.4-1.2 1.6-1.9 2.9-1.9s2.5.7 2.9 1.9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 1 2-2h11.5A1.5 1.5 0 0 0 15 4H5.5" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="6" width="18" height="13" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="16.5" cy="12.5" r="1.3" fill="currentColor"/></symbol>
+  <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9 20h6M12 16v4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M5 15H4.6A1.6 1.6 0 0 1 3 13.4V5a2 2 0 0 1 2-2h8.4A1.6 1.6 0 0 1 15 4.6V5" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 3v5h5M8.5 13h7M8.5 16.5h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-window" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 9h18" stroke="currentColor" stroke-width="1.6"/><circle cx="6" cy="7" r=".7" fill="currentColor"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 18h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-plug" viewBox="0 0 24 24"><path d="M9 3v4M15 3v4M6.5 7h11v3.5a5.5 5.5 0 0 1-11 0zM12 16.5V21" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-swap" viewBox="0 0 24 24"><path d="M4 8h13l-3.5-3.5M20 16H7l3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-cfd" viewBox="0 0 24 24"><path d="M4 15l4.5-4.5 3 3L19 6M14.5 6H19v4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-droplet" viewBox="0 0 24 24"><path d="M12 3.5s6 6.2 6 10.5a6 6 0 0 1-12 0c0-4.3 6-10.5 6-10.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+  <symbol id="i-pie" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M12 3v9h9A9 9 0 0 0 12 3Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 11.5a7.5 7.5 0 0 1-10.9 6.7L4 20l1.8-5.1A7.5 7.5 0 1 1 21 11.5Z" fill="currentColor"/><circle cx="8.5" cy="11.5" r="1.15" fill="#0a2a6b"/><circle cx="12" cy="11.5" r="1.15" fill="#0a2a6b"/><circle cx="15.5" cy="11.5" r="1.15" fill="#0a2a6b"/></symbol>
+  <symbol id="i-bubble" viewBox="0 0 24 24"><path d="M20.5 11.6c0 4-3.8 7.2-8.5 7.2-.9 0-1.8-.12-2.6-.34L4.5 20l1.2-3.5A6.9 6.9 0 0 1 3.5 11.6c0-4 3.8-7.2 8.5-7.2s8.5 3.2 8.5 7.2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.8 11.6h6.4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-cookie" viewBox="0 0 24 24"><path d="M12 2.5a9.5 9.5 0 1 0 9.5 9.5 4 4 0 0 1-4-4 3.2 3.2 0 0 1-3.4-3.4A9.6 9.6 0 0 0 12 2.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="9" cy="12" r="1" fill="currentColor"/><circle cx="13" cy="15" r="1" fill="currentColor"/><circle cx="14.5" cy="10" r="1" fill="currentColor"/><circle cx="8.5" cy="16" r=".8" fill="currentColor"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M4 12 20 4l-6 16-3-6-7-2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8.2" r="3.8" fill="currentColor"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0Z" fill="currentColor"/></symbol>
+  <symbol id="i-cm-bars" viewBox="0 0 24 24"><path d="M3.6 16.4h7.2l1.1 3.4H2.5l1.1-3.4Z" fill="currentColor"/><path d="M13.2 16.4h7.2l1.1 3.4h-9.4l1.1-3.4Z" fill="currentColor" opacity=".78"/><path d="M8.4 11.2h7.2l1.1 3.4H7.3l1.1-3.4Z" fill="currentColor" opacity=".9"/><path d="M8.4 6h7.2l1.1 3.4H7.3L8.4 6Z" fill="currentColor" opacity=".62"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 10h18M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="8.5" cy="14.5" r="1.1" fill="currentColor"/><circle cx="12" cy="14.5" r="1.1" fill="currentColor"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.2-4.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5zM20 5.5A1.5 1.5 0 0 0 18.5 4H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></symbol>
+</svg>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============ TOP DISCLAIMER BAR ============ -->
+<div class="topbar" role="note">
+  <div class="container">
+    <p>CFDs are complex instruments and come with a high risk of losing money rapidly due to leverage. <strong>74% of retail investor accounts lose money</strong> when trading CFDs with this provider.</p>
+  </div>
+</div>
+
+<!-- ============ HEADER / NAV ============ -->
+<header class="site-header" id="siteHeader">
+  <div class="container nav">
+    <div class="nav-brandwrap">
+      <a href="index.html" class="brand" aria-label="STARTRADER home">
+        <img src="assets/img/logo-startrader.svg" alt="STARTRADER" width="180" height="35" />
+      </a>
+      <span class="hp-divider" aria-hidden="true"></span>
+      <span class="header-partners">
+        <img class="hp-logo hp-nba" src="assets/img/nav-nba.svg" alt="NBA" width="156" height="92" loading="lazy">
+        <img class="hp-logo hp-porsche" src="assets/img/nav-porsche.svg" alt="Porsche Carrera Cup Middle East" width="121" height="34" loading="lazy">
+      </span>
+    </div>
+
+    <nav class="nav-menu" aria-label="Primary">
+      <div class="nav-item has-drop has-mega">
+        <button class="nav-link" aria-expanded="false">Trading <svg class="caret"><use href="#i-chevron-down"/></svg></button>
+        <div class="mega" role="menu">
+          <div class="mega-main">
+          <div class="mega-col">
+            <span class="mega-head">Getting Started</span>
+            <a href="getting-started.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-user-plus"/></svg></span><span class="mega-txt"><b>Account Opening</b></span></a>
+            <a href="accounts.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-id"/></svg></span><span class="mega-txt"><b>Trading Account</b></span></a>
+            <a href="prime-ecn-account.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-bolt"/></svg></span><span class="mega-txt"><b>Prime ECN</b></span></a>
+            <a href="funding.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>Funding &amp; Withdrawal</b></span></a>
+          </div>
+          <div class="mega-col">
+            <span class="mega-head">Platforms</span>
+            <a href="mt5.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-monitor"/></svg></span><span class="mega-txt"><b>MT5</b></span></a>
+            <a href="mt4.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-monitor"/></svg></span><span class="mega-txt"><b>MT4</b></span></a>
+            <a href="copy-trade.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-copy"/></svg></span><span class="mega-txt"><b>Copy Trade</b></span></a>
+            <a href="star-copy.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-doc"/></svg></span><span class="mega-txt"><b>STAR Copy <span class="mega-badge">New</span></b></span></a>
+            <a href="star-webtrader.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-cfd"/></svg></span><span class="mega-txt"><b>STAR Web Trading <span class="mega-badge">New</span></b></span></a>
+            <div class="mega-sub">
+              <a href="webtrader.html" class="mega-item mega-sub-toggle"><span class="mega-ico"><svg><use href="#i-window"/></svg></span><span class="mega-txt"><b>Web Trader</b></span><svg class="mega-subchev"><use href="#i-chevron-down"/></svg></a>
+              <div class="mega-subitems">
+                <a href="webtrader-mt4.html">MT4 WebTrader</a>
+                <a href="webtrader-mt5.html">MT5 WebTrader</a>
+              </div>
+            </div>
+            <a href="trading-app.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-phone"/></svg></span><span class="mega-txt"><b>Mobile Apps</b></span></a>
+            <a href="pamm-trade.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-plug"/></svg></span><span class="mega-txt"><b>Pro-Link</b></span></a>
+          </div>
+          <div class="mega-col">
+            <span class="mega-head">Products</span>
+            <a href="forex.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-swap"/></svg></span><span class="mega-txt"><b>Forex</b></span></a>
+            <a href="cfd.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-cfd"/></svg></span><span class="mega-txt"><b>CFD</b></span></a>
+            <a href="commodities.html" class="mega-item mega-item-parent" data-fly="commodities"><span class="mega-ico"><svg><use href="#i-droplet"/></svg></span><span class="mega-txt"><b>Commodities</b></span><svg class="mega-chev" aria-hidden="true"><use href="#i-chevron-right"/></svg></a>
+            <a href="indices.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>Indices</b></span></a>
+            <a href="shares.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-pie"/></svg></span><span class="mega-txt"><b>Shares</b></span></a>
+            <a href="etf.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-layers"/></svg></span><span class="mega-txt"><b>ETFs</b></span></a>
+          </div>
+          </div>
+          <div class="mega-flyout" aria-hidden="true"><div class="fly-inner" data-fly-panel="commodities">
+            <a class="fly-title fly-title-link" href="commodities.html">Commodities <svg class="fly-title-go"><use href="#i-arrow-right"/></svg></a>
+            <div class="fly-group">
+              <h5><a href="commodities/energies.html">Energies</a></h5>
+              <a href="commodities/brent-oil.html">Brent Oil</a>
+              <a href="commodities/natural-gas.html">Natural Gas</a>
+              <a href="commodities/heating-oil.html">Heating Oil</a>
+            </div>
+            <div class="fly-group">
+              <h5><a href="metals.html">Metals</a></h5>
+              <a href="commodities/gold.html">Gold · XAU/USD</a>
+              <a href="commodities/gold-247.html">Gold 24/7 <span class="mega-badge">New</span></a>
+              <a href="commodities/silver.html">Silver · XAG/USD</a>
+              <a href="commodities/copper.html">Copper</a>
+              <a href="commodities/platinum.html">Platinum · XPT/USD</a>
+            <a href="commodities/palladium.html">Palladium · XPD/USD</a>
+            </div>
+            <div class="fly-group">
+              <h5><a href="agriculture.html">Agriculture</a></h5>
+              <a href="commodities/wheat.html">Wheat</a>
+              <a href="commodities/corn.html">Corn</a>
+              <a href="commodities/soybeans.html">Soybeans</a>
+              <a href="commodities/coffee.html">Coffee</a>
+              <a href="commodities/sugar.html">Sugar</a>
+              <a href="commodities/cocoa.html">Cocoa</a>
+              <a href="commodities/cotton.html">Cotton</a>
+            </div>
+          </div></div>
+        </div>
+      </div>
+            <div class="nav-item has-drop has-mega">
+        <button class="nav-link" aria-expanded="false">Education <svg class="caret"><use href="#i-chevron-down"/></svg></button>
+        <div class="mega mega--center" role="menu">
+          <div class="mega-main">
+            <div class="mega-col">
+              <span class="mega-head">Learn</span>
+              <a href="education.html" class="mega-item active" aria-current="page"><span class="mega-ico"><svg><use href="#i-box"/></svg></span><span class="mega-txt"><b>Knowledge Center</b></span></a>
+              <a href="glossary.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-doc"/></svg></span><span class="mega-txt"><b>Glossary</b></span></a>
+              <a href="market-analysis.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>Financial Market Analysis</b></span></a>
+            </div>
+            <div class="mega-col">
+              <span class="mega-head">Analysis</span>
+              <a href="news.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-window"/></svg></span><span class="mega-txt"><b>News Room</b></span></a>
+              <a href="economiccalendar.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-clock"/></svg></span><span class="mega-txt"><b>Economic Calendar</b></span></a>
+            </div>
+            <div class="mega-col">
+              <span class="mega-head">Academy</span>
+              <a href="webinars.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-play"/></svg></span><span class="mega-txt"><b>Webinars</b></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+            <div class="nav-item has-drop has-mega">
+        <button class="nav-link" aria-expanded="false">Promotions <svg class="caret"><use href="#i-chevron-down"/></svg></button>
+        <div class="mega mega--promo mega--center" role="menu">
+          <div class="mega-main">
+            <div class="mega-col">
+              <span class="mega-head">Promotions</span>
+              <a href="promotions.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-send"/></svg></span><span class="mega-txt"><b>Our Promotions</b></span></a>
+              <a href="https://www.startrader.com/star-trading-league-championship/" class="mega-item"><span class="mega-ico"><svg><use href="#i-star"/></svg></span><span class="mega-txt"><b>STAR Trading League</b></span></a>
+              <a href="dailyforexpromo.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-bolt"/></svg></span><span class="mega-txt"><b>Daily Forex Promo</b></span></a>
+              <a href="deposit-bonus-10010-20240513.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>100/10 Deposit Bonus</b></span></a>
+              <a href="deposit-bonus-5020-20250101.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>50/20 Deposit Bonus</b></span></a>
+              <a href="point-mall.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>Point Mall</b></span></a>
+              <a href="deposit-bonus.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>Deposit Bonuses</b></span></a>
+              <a href="switch-allowance.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-swap"/></svg></span><span class="mega-txt"><b>1% Switch Allowance</b></span></a>
+              <a href="vps.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-plug"/></svg></span><span class="mega-txt"><b>VPS</b></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+            <div class="nav-item has-drop has-mega">
+        <button class="nav-link" aria-expanded="false">Company <svg class="caret"><use href="#i-chevron-down"/></svg></button>
+        <div class="mega mega--center" role="menu">
+          <div class="mega-main">
+            <div class="mega-col">
+              <span class="mega-head">About</span>
+              <a href="company.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-shield"/></svg></span><span class="mega-txt"><b>Why STARTRADER</b></span></a>
+              <a href="corporate-social-responsibility.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-user"/></svg></span><span class="mega-txt"><b>CSR</b></span></a>
+              <a href="events.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-clock"/></svg></span><span class="mega-txt"><b>Events</b></span></a>
+              <div class="mega-sub">
+                <a href="sponsorship.html" class="mega-item mega-item--tight mega-sub-toggle"><span class="mega-ico"><svg><use href="#i-star"/></svg></span><span class="mega-txt"><b>Sponsorship</b></span><svg class="mega-subchev"><use href="#i-chevron-down"/></svg></a>
+                <div class="mega-subitems">
+                  <a href="sponsorship/nba.html">Official Partner of the NBA</a>
+                  <a href="sponsorship/pccme.html">Official Partner of the PCCME</a>
+                  <a href="sponsorship/icc.html">ICC Men&rsquo;s T20 World Cup 2026</a>
+                  <a href="sponsorship/asia-cup-2025.html">UAE National Cricket Team</a>
+                  <a href="sponsorship/pfl-champions-series.html">PFL Champions Series</a>
+                  <a href="sponsorship/mena.html">MENA Investment Congress 2025</a>
+                </div>
+              </div>
+              <a href="media.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-doc"/></svg></span><span class="mega-txt"><b>Media Coverage</b></span></a>
+              <a href="achievement.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-globe"/></svg></span><span class="mega-txt"><b>Achievements</b></span></a>
+              <a href="announcements.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-send"/></svg></span><span class="mega-txt"><b>Announcements</b></span></a>
+              <a href="https://www.startrader-careers.com/" target="_blank" rel="noopener" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-user-plus"/></svg></span><span class="mega-txt"><b>Careers</b></span></a>
+              <a href="https://www.starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-headset"/></svg></span><span class="mega-txt"><b>Help Center</b></span></a>
+              <a href="contact.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-bubble"/></svg></span><span class="mega-txt"><b>Contact Us</b></span></a>
+            </div>
+            <div class="mega-col">
+              <span class="mega-head">Corporate</span>
+              <a href="regulation.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-id"/></svg></span><span class="mega-txt"><b>Regulation</b></span></a>
+              <a href="legal-documents.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-doc"/></svg></span><span class="mega-txt"><b>Legal Documents</b></span></a>
+              <div class="mega-sub">
+                <a href="insurance.html" class="mega-item mega-item--tight mega-sub-toggle"><span class="mega-ico"><svg><use href="#i-shield"/></svg></span><span class="mega-txt"><b>Insurance</b></span><svg class="mega-subchev"><use href="#i-chevron-down"/></svg></a>
+                <div class="mega-subitems">
+                  <a href="lloyd-insurance.html">Lloyd&rsquo;s Insurance</a>
+                  <a href="financial-commission.html">Financial Commission</a>
+                </div>
+              </div>
+              <a href="liquidity-providers.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-droplet"/></svg></span><span class="mega-txt"><b>Liquidity Providers</b></span></a>
+            </div>
+            <div class="mega-col">
+              <span class="mega-head">Partnership</span>
+              <a href="partner.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-user"/></svg></span><span class="mega-txt"><b>Partner</b></span></a>
+              <a href="ib-register.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-user-plus"/></svg></span><span class="mega-txt"><b>Introducing Broker</b></span></a>
+              <a href="affiliate-registration.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-globe"/></svg></span><span class="mega-txt"><b>Affiliate</b></span></a>
+              <a href="money-manager.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>Money Manager</b></span></a>
+              <a href="institutional.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-box"/></svg></span><span class="mega-txt"><b>Institutional</b></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="nav-right">
+      <button class="lang" id="langBtn" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="langPop" aria-label="Select language">
+        <svg class="lang-globe" aria-hidden="true"><use href="#i-globe"/></svg>
+        <span class="lang-code" id="langCode">EN</span>
+        <svg class="lang-caret" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+      </button>
+      <div class="lang-pop" id="langPop" role="dialog" aria-label="Select language" aria-hidden="true">
+        <div class="lp-head">
+          <span class="lp-title">Languages</span>
+          <button class="lp-close" id="langClose" type="button" aria-label="Close language menu"><svg><use href="#i-close"/></svg></button>
+        </div>
+        <div class="lp-search">
+          <svg class="lp-search-ic" viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="6.4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M13.8 13.8L18 18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          <input type="text" id="langSearch" placeholder="Search Language" autocomplete="off" spellcheck="false">
+        </div>
+        <div class="lp-grid" id="langGrid">
+          <button class="lp-item is-active" type="button" data-code="EN"><b>English</b></button>
+          <button class="lp-item" type="button" data-code="ZH-CN"><b>简体中文</b> Simplified Chinese</button>
+          <button class="lp-item" type="button" data-code="KO"><b>한국어</b> Korean</button>
+          <button class="lp-item" type="button" data-code="MS"><b>Melayu</b> Malay</button>
+          <button class="lp-item" type="button" data-code="VI"><b>Việt</b> Vietnamese</button>
+          <button class="lp-item" type="button" data-code="TH"><b>ภาษาไทย</b> Thai</button>
+          <button class="lp-item" type="button" data-code="ID"><b>Indonesian</b> Indonesian</button>
+          <button class="lp-item" type="button" data-code="AR"><b>العربية</b> Arabic</button>
+          <button class="lp-item" type="button" data-code="JA"><b>日本語</b> Japanese</button>
+          <button class="lp-item" type="button" data-code="ZH-TW"><b>繁體中文</b> Traditional Chinese</button>
+          <button class="lp-item" type="button" data-code="FR"><b>Français</b> French</button>
+          <button class="lp-item" type="button" data-code="ES"><b>Español</b> Spanish</button>
+          <button class="lp-item" type="button" data-code="PT"><b>Português</b> Portuguese</button>
+          <button class="lp-item" type="button" data-code="DE"><b>Deutsch</b> German</button>
+          <button class="lp-item" type="button" data-code="FA"><b>فارسی</b> Persian</button>
+          <button class="lp-item" type="button" data-code="IT"><b>Italiano</b> Italian</button>
+          <button class="lp-item" type="button" data-code="RU"><b>Русский язык</b> Russian</button>
+          <button class="lp-item" type="button" data-code="TR"><b>Türkçe</b> Turkish</button>
+          <button class="lp-item" type="button" data-code="PL"><b>Polski</b> Polish</button>
+          <button class="lp-item" type="button" data-code="HI"><b>हिंदी</b> Hindi</button>
+          <button class="lp-item" type="button" data-code="NL"><b>Nederlands</b> Dutch</button>
+        </div>
+        <p class="lp-empty" hidden>No languages found</p>
+      </div>
+      <a href="login.html" class="login">Login</a>
+      <a href="https://www.startrader.com/live-account/" class="btn btn-primary btn-sm nav-cta">Open Live Account</a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav aria-label="Mobile">
+    <a href="index.html#markets">Trading</a>
+    <a href="index.html#academy">Education</a>
+    <a href="promotions.html">Promotions</a>
+    <a href="index.html#why">Company</a>
+    <hr>
+    <a href="login.html" class="login">Login</a>
+    <a href="https://www.startrader.com/live-account/" class="btn btn-primary">Open Live Account</a>
+  </nav>
+</div>
+
+<div class="ar-progress" aria-hidden="true"><i data-ar-progress></i></div>
+
+<main id="main">
+
+<article class="ar" itemscope itemtype="https://schema.org/Article">
+  <div class="ar-wrap">
+    <div class="container ar-cols">
+
+      <aside class="ar-rail" aria-label="Article contents and tools">
+        <div class="ar-rtags glass">
+          <h2 class="ar-side-h">Related tags</h2>
+          <div class="ar-rtags-list">
+            <a class="ar-tag" href="category-forex.html">Forex</a>
+            <a class="ar-tag" href="category-commodities.html">Commodities</a>
+            <a class="ar-tag" href="category-indices.html">Indices</a>
+            <a class="ar-tag" href="category-shares.html">Shares</a>
+            <a class="ar-tag" href="category-etf.html">ETFs</a>
+          </div>
+        </div>
+
+        <div class="ar-cta glass" data-ar-open-card>
+          <h2 class="ar-cta-h">Open <span>Live Account</span></h2>
+          <form class="ar-cta-form" data-ar-open>
+            <div class="ar-f">
+              <label for="arCountry">Country <i>*</i></label>
+              <div class="wb-selwrap">
+                <!-- illustrative list — the CMS supplies the licensed country set -->
+                <select id="arCountry" name="country" required>
+                  <option value="">Select your country&hellip;</option>
+                  <option>United Arab Emirates</option>
+                  <option>United Kingdom</option>
+                  <option>Australia</option>
+                  <option>Austria</option>
+                  <option>Bahrain</option>
+                  <option>Bangladesh</option>
+                  <option>Belgium</option>
+                  <option>Brazil</option>
+                  <option>Brunei</option>
+                  <option>Cambodia</option>
+                  <option>Chile</option>
+                  <option>China</option>
+                  <option>Colombia</option>
+                  <option>Cyprus</option>
+                  <option>Czechia</option>
+                  <option>Denmark</option>
+                  <option>Egypt</option>
+                  <option>Finland</option>
+                  <option>France</option>
+                  <option>Germany</option>
+                  <option>Greece</option>
+                  <option>Hong Kong</option>
+                  <option>Hungary</option>
+                  <option>India</option>
+                  <option>Indonesia</option>
+                  <option>Ireland</option>
+                  <option>Italy</option>
+                  <option>Japan</option>
+                  <option>Jordan</option>
+                  <option>Kenya</option>
+                  <option>Kuwait</option>
+                  <option>Laos</option>
+                  <option>Lebanon</option>
+                  <option>Malaysia</option>
+                  <option>Maldives</option>
+                  <option>Mexico</option>
+                  <option>Morocco</option>
+                  <option>Nepal</option>
+                  <option>Netherlands</option>
+                  <option>New Zealand</option>
+                  <option>Nigeria</option>
+                  <option>Norway</option>
+                  <option>Oman</option>
+                  <option>Pakistan</option>
+                  <option>Peru</option>
+                  <option>Philippines</option>
+                  <option>Poland</option>
+                  <option>Portugal</option>
+                  <option>Qatar</option>
+                  <option>Saudi Arabia</option>
+                  <option>Singapore</option>
+                  <option>South Africa</option>
+                  <option>South Korea</option>
+                  <option>Spain</option>
+                  <option>Sri Lanka</option>
+                  <option>Sweden</option>
+                  <option>Switzerland</option>
+                  <option>Taiwan</option>
+                  <option>Thailand</option>
+                  <option>Türkiye</option>
+                  <option>Vietnam</option>
+                  <option>Other</option>
+                </select>
+                <svg class="wb-selchev" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+              </div>
+            </div>
+
+            <div class="ar-f">
+              <label for="arOpenEmail">Email <i>*</i></label>
+              <input type="email" id="arOpenEmail" name="email" placeholder="you@example.com" inputmode="email" autocomplete="email" required>
+            </div>
+
+            <div class="ar-f">
+              <label for="arCode">Email verification code <i>*</i></label>
+              <div class="ar-code-row">
+                <input type="text" id="arCode" name="code" inputmode="numeric" autocomplete="one-time-code" placeholder="6-digit code" required>
+                <button class="ar-send" type="button" data-ar-send>Send code</button>
+              </div>
+              <p class="ar-sent" data-ar-sent hidden>Code sent &mdash; check your inbox.</p>
+            </div>
+
+            <div class="ar-f">
+              <label for="arPass">Password <i>*</i></label>
+              <div class="ar-pass-row">
+                <input type="password" id="arPass" name="password" autocomplete="new-password" minlength="8" placeholder="Minimum 8 characters" required>
+                <button class="ar-eye" type="button" data-ar-eye aria-label="Show password" aria-pressed="false">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="2.8" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="ar-kind" role="radiogroup" aria-label="Account type">
+              <label class="ar-kind-pill"><input type="radio" name="kind" value="individual" checked><span>Individual</span></label>
+              <label class="ar-kind-pill"><input type="radio" name="kind" value="company"><span>Company</span></label>
+            </div>
+
+            <label class="ct-check ar-check" for="arUs">
+              <input type="checkbox" id="arUs" required>
+              <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+              <span>I confirm that I am not a U.S. person, including a U.S. citizen or resident.</span>
+            </label>
+            <label class="ct-check ar-check" for="arPp">
+              <input type="checkbox" id="arPp" required>
+              <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+              <span>I accept the <a href="privacy-policy-app.html">Privacy Policy</a>.</span>
+            </label>
+
+            <button class="btn btn-primary" type="submit">Create Account <svg class="ico"><use href="#i-arrow-right"/></svg></button>
+          </form>
+          <p class="ar-cta-note">Regulated broker &middot; Segregated client funds</p>
+        </div>
+      </aside>
+
+      <div class="ar-main">
+        <nav class="ar-crumb" aria-label="Breadcrumb">
+          <a href="education.html">Knowledge Centre</a>
+          <span aria-hidden="true">/</span>
+          <a href="category-indices.html">Indices</a>
+          <span aria-hidden="true">/</span>
+          <span>How To Trade Indices</span>
+        </nav>
+
+        <h1 class="ar-h1" itemprop="headline">How To Trade Indices: A Beginner Guide To Index Trading</h1>
+        <p class="ar-stand" itemprop="description">Learn how to trade indices like the S&amp;P 500 and Nasdaq 100 using CFDs, futures, and ETFs. A complete beginner's guide covering platforms, types, and strategy.</p>
+
+        <div class="ar-byline">
+          <span class="ar-author">
+            <span class="ar-author-tx"><b>STARTRADER Research Desk</b><span>Published 14 July 2026 &middot; Updated 17 July 2026 &middot; 25 min read</span></span>
+          </span>
+          <div class="ar-share" role="group" aria-label="Share this article">
+            <a class="ar-sh" href="#" aria-label="Share on X"><svg><use href="#i-x"/></svg></a>
+            <a class="ar-sh" href="#" aria-label="Share on Facebook"><svg><use href="#i-facebook"/></svg></a>
+            <a class="ar-sh" href="#" aria-label="Share on LinkedIn"><svg><use href="#i-linkedin"/></svg></a>
+            <button class="ar-sh" type="button" data-ar-copy aria-label="Copy link to this article"><svg><use href="#i-copy"/></svg></button>
+            <button class="ar-sh" type="button" data-ar-print aria-label="Print this article"><svg><use href="#i-doc"/></svg></button>
+            <span class="ar-copied" data-ar-copied hidden role="status">Link copied</span>
+          </div>
+        </div>
+
+        <figure class="ar-fig">
+          <img src="assets/img/fx-case-8.webp" alt="Market data rendered as a rising line" width="1600" height="900" fetchpriority="high" decoding="async" itemprop="image">
+        </figure>
+
+        <div class="ar-body" itemprop="articleBody">
+          <p class="ar-lede">Index trading allows a trader to speculate on the performance of a basket of stocks through a single market instrument.</p>
+          <p>How do traders make money when the market moves big and they don’t have to research hundreds of companies? Learning how to trade indices is the answer in most cases. Rather than purchasing individual shares, market participants utilize indices for extensive exposure to sectors, economies or regions of the world.</p>
+          <p>There are indices that show the combined performance of a group of stocks. Examples include S&amp;P 500, Nasdaq 100, Nifty 50, Sensex, DAX, and FTSE 100. This makes the analytic process simpler. Instead of looking at one company’s earnings report, traders use these benchmarks to gauge broad market sentiment.</p>
+          <p>If you are looking into indices trading for beginners, it is important to know how these markets work. In this extensive guide, we will discuss the various types of indices available today. We will discuss how stock indexes are calculated and weighted.</p>
+          <p>You will also learn how to trade indices with different financial instruments. We will talk about how to use platforms such as MT4 and MT5. Finally, we’ll look at popular global benchmarks, highlight key risks, and identify common beginner mistakes to avoid.</p>
+
+          <div class="ar-note">
+            <b>Quick answer</b>
+            <p>You will first need to select an index such as the S&amp;P 500, Nasdaq 100, Nifty 50 or DAX when trading indices.</p>
+            <p>Then you will select an instrument such as a CFD, futures contract or ETF to open a position depending on your view of the market. If you want to learn how to trade indices successfully, you should know that these markets can be very volatile. Your capital is always at risk and trading indices carries a high level of risk due to the fast-moving nature of the markets.</p>
+          </div>
+
+          <h2 id="what-is-an-index">What Is An Index?</h2>
+          <p>An index is a collection of stocks or securities that tracks the performance of an economy, sector or market.</p>
+          <h3>Index Meaning In Simple Terms</h3>
+          <p>A financial index is a tool to track and report on the combined performance of a selection of assets, providing a snapshot of the market’s health. Think of an index is a financial thermometer of a particular market.</p>
+          <p>Rather than looking at thousands of individual stocks to see if the market is having a good day, you can look at one single number. In stock index trading, the index usually represents a group of listed companies selected according to certain rules, for example, size or the industry in which they operate.</p>
+          <h3>How An Index Reflects Market Performance</h3>
+          <p>If the companies in an index increase or decrease in value, the index value will also increase or decrease. The change in an index is not a blind guess; it is a rigorous mathematical calculation. The exact move will depend on the way the index is calculated and weighted by its governing body.</p>
+          <p>For example, when the tech sector has a big day of growth, an index with lots of tech stocks will see its points go sky high. On the other hand, if there is a sudden sell-off in major banking stocks, an index that tracks the financial sector will lose points.</p>
+          <h3>Common Index Examples</h3>
+          <p>Some of the major global indices are S&amp;P 500, Nasdaq 100, Nifty 50, Sensex, DAX, FTSE 100, etc. These names dominate daily financial news as they are the world’s biggest economic hubs.</p>
+          <p>In the US, the S&amp;P 500 measures 500 of the largest companies, while the Nasdaq 100 is famous for its heavy focus on tech giants. The Nifty 50 and the Sensex are the main barometers of the fast-growing corporate sector in India. In Europe, Germany’s DAX and Britain’s FTSE 100 are the gauges of local market health.</p>
+          <h3>Why Indices Matter To Traders</h3>
+          <p>Indices offer a good benchmark for traders to assess overall market sentiment, economic expectations, sector strength and investor risk appetite. Traders often look at the indices first thing when they wake up and check the markets.</p>
+          <p>Usually, though, a rising global index is a sign of optimism, with investors confidently buying shares. A falling index indicates fear or economic uncertainty. By following these baskets of stocks, traders can get a good idea of where the overall direction of the economy is going.</p>
+
+          <h2 id="what-are-the-main-types-of-indices">What Are The Main Types Of Indices?</h2>
+          <p>Indices can track stocks, bonds, commodities, sectors, regions or synthetic markets. This gives a trader a wide variety of trading opportunities.</p>
+          <h3>Equity Indices</h3>
+          <p>Equity indices group together the shares of publicly traded companies to measure the performance of the stock market. This is the retail trader’s most popular category. Equity indices are a direct barometer of the corporate health of a country or region.</p>
+          <p>Some examples are the S&amp;P 500, Nasdaq 100, Nifty 50, Sensex, DAX and FTSE 100. Equity indices are used by traders to speculate on the rise or fall of the US or European stock markets.</p>
+          <h3>Bond Indices</h3>
+          <p>Bond indices measure the performance of groups of fixed income securities, such as government bonds and corporate bonds. Stocks get most of the headlines, but the bond market is actually huge. A bond index measures the yield and price performance of debt issued by governments or corporations.</p>
+          <p>Traders watch these closely, as bond yields are often viewed as a barometer of interest rate expectations and inflation. If you’re looking to learn more about how fixed-income markets work, getting bond indices explained can be a great way to expand your trading knowledge.</p>
+          <h3>Commodity Indices</h3>
+          <p>Commodity indices track a basket of physical raw materials, such as energy, metals, agriculture, or a mixed commodity group. Instead of trading a single barrel of oil or an ounce of gold, a commodity index lets you trade the broader natural resource market. For example, an energy index might include crude oil, natural gas and heating oil. They are very sensitive indices to global supply chains, weather events and geopolitical tensions.</p>
+          <h3>Sector Indices</h3>
+          <p>Sector indices follow specific segments of the market, like technology, banking, healthcare, energy, or consumer goods. Sometimes a trader doesn’t want to trade the whole economy. They want to trade a specific industry.</p>
+          <p>If a trader believes that there are new medical breakthroughs on the horizon, then they might look at a healthcare sector index. If they think rates will benefit banks, they may look at a financial sector index.</p>
+          <h3>Synthetic Indices</h3>
+          <p>Synthetic indices are computer generated instruments and are not linked to real stock markets. These products are unique and replicate the actual market movements using complex algorithms.</p>
+          <p>You will find them on selected CFD platforms and they have constant volatility, not affected by real world news events. However, being algorithmic, they carry platform-specific risks which are very different from the traditional financial markets.</p>
+          <h3>Types Table</h3>
+          <p>This table breaks down the primary categories of indices and what they measure.</p>
+          <div class="an-tablewrap">
+            <table class="an-table">
+              <caption class="sr-only">Comparison table</caption>
+              <thead><tr><th scope="col">Index Type</th><th scope="col">Examples</th><th scope="col">What It Measures</th></tr></thead>
+              <tbody>
+              <tr><th scope="row">Equity Index</th><td>S&amp;P 500, Nasdaq 100, Nifty 50, Sensex</td><td>Stock market performance</td></tr>
+              <tr><th scope="row">Bond Index</th><td>Government bond index, corporate bond index</td><td>Fixed income market performance</td></tr>
+              <tr><th scope="row">Commodity Index</th><td>Energy index, metals index, agriculture index</td><td>Commodity basket performance</td></tr>
+              <tr><th scope="row">Sector Index</th><td>Technology, banking, energy, healthcare</td><td>Performance of one market sector</td></tr>
+              <tr><th scope="row">Synthetic Index</th><td>Platform-generated volatility indices</td><td>Simulated market movement</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="how-are-stock-indices-calculated">How Are Stock Indices Calculated?</h2>
+          <p>Stock Indices are calculated using weighting methods to determine the amount of influence each company has on the index value.</p>
+          <h3>Price-Weighted Indices</h3>
+          <p>Price-weighted indices give more weight to companies with higher individual share prices. In a price-weighted index it is less important how big the company actually is than the price of its stock.</p>
+          <p>If Company A is $200 a share and Company B is $20 a share, Company A will have ten times the impact on the index’s movement. The best-known example of a price-weighted index is the Dow Jones Industrial Average (DJIA).</p>
+          <h3>Market-Cap Weighted Indices</h3>
+          <p>Market-cap-weighted indices weight larger companies more than smaller companies, based on their total market valuation. This is the most common way to calculate indices today.</p>
+          <p>A company’s market capitalization is calculated by multiplying the company’s share price by the total number of its outstanding shares.</p>
+          <p>Obviously large companies like Apple or Microsoft have a much greater influence on the movement of these indices than smaller companies. Market-cap weighting is a popular method and examples include the S&amp;P 500 and the Nifty 50.</p>
+          <p>If you want to know more about the maths behind these benchmarks, check out our guide to how stock indices are calculated.</p>
+          <h3>Free-Float Weighted Indices</h3>
+          <p>The free-float weighting only considers the shares available for public trading to determine a company’s weight. Many companies have millions of shares locked up by company founders, executives or governments.</p>
+          <p>A free-float index ignores such closely held shares. It only includes those shares that are actually floating on the open market.</p>
+          <p>This prevents a big company with very few public shares from dominating the index unfairly. A lot of the major global indices are based on a free float market cap methodology.</p>
+          <h3>Equal-Weighted Indices</h3>
+          <p>Equal-weighted indexes give every single company in the basket the same weight, no matter how big it is or what its share price is.</p>
+          <p>In an equally weighted S&amp;P 500 index, the smallest company has the same effect on the daily movement of the index as the absolute largest tech giant.</p>
+          <p>This method allows for great diversification. It stops a few mega-corporations from monopolizing the entire market trend.</p>
+          <h3>Index Rebalancing</h3>
+          <p>The index providers rebalance the index periodically to ensure the index continues to track its specific methodology.</p>
+          <p>Markets evolve, companies expand, and some contract. A committee regularly reviews the index to maintain its accuracy.</p>
+          <p>In a rebalancing, they will add emerging companies to the index and remove companies that no longer meet recent standards. This way the index will be a true reflection of economic realities at the moment.</p>
+          <h3>Calculation Method Table</h3>
+          <p>Compare how different weighting formulas change the way an index behaves.</p>
+          <div class="an-tablewrap">
+            <table class="an-table">
+              <caption class="sr-only">Comparison table</caption>
+              <thead><tr><th scope="col">Method</th><th scope="col">How It Works</th><th scope="col">Key Example</th></tr></thead>
+              <tbody>
+              <tr><th scope="row">Price-Weighted</th><td>Higher-priced stocks have more influence</td><td>Dow Jones Industrial Average</td></tr>
+              <tr><th scope="row">Market-Cap Weighted</th><td>Larger companies have more influence</td><td>S&amp;P 500, Nifty 50</td></tr>
+              <tr><th scope="row">Free-Float Weighted</th><td>Uses only publicly available shares</td><td>Many major global indices</td></tr>
+              <tr><th scope="row">Equal-Weighted</th><td>Each component has the same weight</td><td>Equal weight index variants</td></tr>
+              <tr><th scope="row">Rebalanced Index</th><td>Components and weights are reviewed periodically</td><td>Most major stock indices</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="how-to-trade-indices-using-cfds-futures-and-">How To Trade Indices Using CFDs, Futures, And ETFs</h2>
+          <p>Traders can access index markets via CFDs, futures, ETFs and options depending on their experience, goals and risk tolerance.</p>
+          <h3>Index CFDs</h3>
+          <p>CFDs enable traders to speculate on the movement of index prices without actually owning the stocks below.</p>
+          <p>A Contract for Difference, or CFD, is an agreement between a trader and a broker to exchange the difference in the price of an asset from when the contract is opened to when it is closed.</p>
+          <p>CFDs are extremely popular with retail traders. They make it easy to go long (buy) and short (sell).</p>
+          <p>You can also trade CFDs on margin. Leverage is a mechanism that allows traders to control a larger position with a smaller initial investment. This however increases the potential profits and potential losses.</p>
+          <h3>Index Futures</h3>
+          <p>Index futures are standardized contracts that are traded on formal exchanges and have an expiry date. When you trade futures, you are agreeing to buy or sell the value of an index at a specific price on a specific date in the future.</p>
+          <p>Futures are highly leveraged and often used by professional traders, large institutions and portfolio hedgers.</p>
+          <p>You can find official contract specifications on major exchanges like the CME Group. Futures contracts require a good understanding of contract sizes, rollover dates and initial margin requirements.</p>
+          <h3>Index ETFs</h3>
+          <p>ETFs offer index exposure via exchange-traded funds that trade exactly like individual shares. An exchange-traded fund (ETF) buys the basket of stocks that make up an index.</p>
+          <p>Investors then buy shares of the fund. ETFs appeal to long-term market players who want to hold an asset for months or years. For a good overview of how ETFs are regulated and structured, educational resources like Investor.gov are excellent.</p>
+          <p>ETFs have a small management fee, called an expense ratio, because they track an index. For a broader perspective on why this approach is booming see the rise of index investing.</p>
+          <h3>Index Options</h3>
+          <p>Options are complicated derivatives that give the option holder the right, but not the obligation, to buy or sell exposure at a given strike price.</p>
+          <p>Options contracts carry a premium fee and an expiration date. They are very complex instruments and very sensitive to time decay and implied volatility.</p>
+          <p>Options are usually not a good choice for complete novices, as it’s extremely difficult to predict both the direction of the market and the exact moment it will happen.</p>
+          <h3>How To Trade Forex Indices</h3>
+          <p>Most standard indices follow stocks or commodities rather than currency pairs, but beginners often look for how to trade forex indices.</p>
+          <p>There are also specific currency indices, such as the US Dollar Index (DXY), which measures the dollar against a basket of foreign currencies. But forex traders often trade stock index CFDs in addition to their currency pairs.</p>
+          <p>This is because indices provide a wider exposure to the market and usually have clearer long-term trends than choppy currency markets.</p>
+          <h3>Instrument Comparison Table</h3>
+          <p>Review the differences between the most common index trading instruments.</p>
+          <div class="an-tablewrap">
+            <table class="an-table">
+              <caption class="sr-only">Comparison table</caption>
+              <thead><tr><th scope="col">Instrument</th><th scope="col">How It Works</th><th scope="col">Who It Suits</th><th scope="col">Key Consideration</th></tr></thead>
+              <tbody>
+              <tr><th scope="row">Index CFD</th><td>Speculates on index price movement without ownership</td><td>Retail traders who understand leverage</td><td>CFD risk, margin, and overnight costs</td></tr>
+              <tr><th scope="row">Index Futures</th><td>Standardized exchange-traded contracts</td><td>Experienced traders and institutions</td><td>Expiry, margin, and contract size</td></tr>
+              <tr><th scope="row">Index ETF</th><td>Fund tracks an index and trades like a share</td><td>Longer-term investors</td><td>Expense ratio and tracking difference</td></tr>
+              <tr><th scope="row">Index Options</th><td>Derivative based on strike price and expiry</td><td>Advanced traders</td><td>Complex pricing and expiry risk</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="ar-fine">Note: CFD trading involves significant risk. Leverage magnifies both gains and losses. This article is educational and is not investment advice.</p>
+
+          <h2 id="how-to-trade-indices-on-mt4-and-mt5">How To Trade Indices On MT4 And MT5</h2>
+          <p>To trade indices on MT4 or MT5, you need to find the index symbol, open a chart, analyze the price movement and place a well-managed order.</p>
+          <h3>Step 1: Open The Platform</h3>
+          <p>First of all, traders need to create a trading account with a broker that offers access to index instruments.</p>
+          <p>Then they need to open MT4 or MT5. To learn how to trade indices on MT4, you need the software installed on your desktop, mobile device or web browser.</p>
+          <p>Once you enter your broker credentials, you will see the platform interface. Practice safely by ensuring your account is fully funded or logged into a demo environment.</p>
+          <h3>Step 2: Search For The Index Symbol</h3>
+          <p>Find the exact index symbol in the Market Watch window (brokerage naming conventions may vary).</p>
+          <p>Index CFD symbols can look different depending on where you trade, unlike individual stocks which usually have the same ticker everywhere. Common examples include US500 for S&amp;P 500, NAS100 for Nasdaq 100, GER40 for DAX or UK100 for FTSE 100.</p>
+          <p>If you cannot find the symbol you want, right click inside the “Market Watch” window and select “Show All” to see all available instruments.</p>
+          <h3>Step 3: Open The Chart</h3>
+          <p>Drag the symbol to your workspace to open the chart, select a time frame and start using your technical analysis tools.</p>
+          <p>When you open the chart you can select a 5 minute chart (for quick day trading) or a daily chart (for long term swing trading).</p>
+          <p>You can add moving averages, MACD or RSI indicators directly on the chart in MT4 and MT5. You can also use the drawing tools to emphasize key price levels of support and resistance.</p>
+          <h3>Step 4: Choose Order Type</h3>
+          <p>Choose between market orders, limit orders or stop orders, and make sure you calculate your stop-loss and take-profit levels.</p>
+          <p>A market order executes your trade instantly at the current available price. Pending orders such as a Buy Limit or Sell Stop only trigger once the price hits a certain level.</p>
+          <p>Beginners should understand each order type before they start trading with live capital.</p>
+          <h3>Step 5: Place And Manage The Trade</h3>
+          <p>Place your buy or sell order, keep an eye on the price movement and close the position when your strategy demands.</p>
+          <p>Click “New Order”, choose your volume (lot size), enter your risk parameters and click buy or sell. Keep an eye on your available margin once your trade is live and watch out for breaking news that could cause sudden volatility.</p>
+          <p>You can close the position yourself at any time, or you can let it close automatically when your stop-loss or take-profit is hit.</p>
+          <h3>MT4 And MT5 Step Table</h3>
+          <p>When you do index trades on MetaTrader platforms, use this simple checklist.</p>
+          <div class="an-tablewrap">
+            <table class="an-table">
+              <caption class="sr-only">Comparison table</caption>
+              <thead><tr><th scope="col">Step</th><th scope="col">Action</th><th scope="col">Notes</th></tr></thead>
+              <tbody>
+              <tr><th scope="row">1</th><td>Open MT4 Or MT5</td><td>Use a platform connected to an account with index access</td></tr>
+              <tr><th scope="row">2</th><td>Search Symbol</td><td>Broker symbols may include US500, NAS100, GER40, or UK100</td></tr>
+              <tr><th scope="row">3</th><td>Open Chart</td><td>Choose timeframe and apply analysis tools</td></tr>
+              <tr><th scope="row">4</th><td>Add Risk Controls</td><td>Set stop-loss, take-profit, and position size</td></tr>
+              <tr><th scope="row">5</th><td>Place Order</td><td>Use market or pending order depending on plan</td></tr>
+              <tr><th scope="row">6</th><td>Monitor Position</td><td>Watch margin, news, spread, and volatility</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="how-to-trade-synthetic-indices">How To Trade Synthetic Indices</h2>
+          <p>Synthetic indices are computer-generated markets that are designed to replicate real market volatility, without being linked to real stock exchanges.</p>
+          <h3>What Synthetic Indices Are</h3>
+          <p>Synthetic indices are artificial instruments created by platform algorithms to simulate certain market behaviours. When you learn to trade synthetic indices you are moving away from traditional finance.</p>
+          <p>These markets are driven by cryptographically secure random number generators. They are designed to exhibit pre-defined volatility regimes such as constant slow trends or frequent sharp spikes depending on the synthetic index you choose.</p>
+          <h3>How Synthetic Indices Differ From Real Indices</h3>
+          <p>Real indices follow the real-world economy, whereas synthetic indices are entirely unaffected by global financial news. A real equity index like the S&amp;P 500 reacts to inflation reports, corporate earnings calls and global political events.</p>
+          <p>None of that matters to synthetic indices. They don’t track company shares or economic data. They are simply executing mathematical probabilities built into the algorithm.</p>
+          <h3>Why Some Traders Use Synthetic Indices</h3>
+          <p>Synthetic markets are open 24/7, and prices change all the time, not just when the market is open on a weekend. Synthetic indices are computer-generated so they never sleep.</p>
+          <p>If you’re busy during the week, you’ll probably want synthetics, because you can trade them on a Saturday night. Plus, the volatility is algorithmically pre-determined so traders don’t have to worry about a breaking news headline ruining their technical analysis.</p>
+          <h3>Key Risks Of Synthetic Indices</h3>
+          <p>Synthetic indices carry risks such as reliance on a heavy platform, difficulty in product transparency and limited regulation.</p>
+          <p>Because these indices are created by the broker and not by an official international exchange, you are completely dependent on the integrity of the platform’s pricing.</p>
+          <p>They are not regulated by the oversight that rules over major real market indices. Also, the constant non-stop volatility can cause new traders to overtrade.</p>
+
+          <h2 id="what-are-popular-indices-to-trade">What Are Popular Indices To Trade?</h2>
+          <p>Some of the popular global indices are S&amp;P 500, Nasdaq 100, Nifty 50 and DAX. Each of the indices is a reflection of specific region and sector economies.</p>
+          <h3>The S&amp;P 500 (US500)</h3>
+          <p>The S&amp;P 500 is a basket of 500 of the largest publicly traded companies in the U.S. and provides a general indication of the strength of the American economy.</p>
+          <p>The S&amp;P 500 is one of the most popular indices globally and spans a variety of sectors including technology, healthcare, finance and more.</p>
+          <p>It is heavily traded with deep liquidity and relatively smooth, predictable long-term trends vs. smaller indices.</p>
+          <h3>The Nasdaq 100 (NAS100)</h3>
+          <p>The Nasdaq 100 tracks the 100 largest non-financial companies listed on the Nasdaq exchange and is heavily weighted towards the technology sector.</p>
+          <p>If you want exposure to Apple, Google, Tesla, etc., then the Nasdaq 100 is the index to have.</p>
+          <p>This index is far more volatile than the S&amp;P 500 as tech stocks react strongly to changes in interest rates and innovation cycles, making it a favorite for short term day traders.</p>
+          <h3>Top Indices India: Nifty 50 and Sensex</h3>
+          <p>The leading indices tracking the fast-growing Indian stock market are the Nifty 50 and Sensex.</p>
+          <p>The top indices India include the Nifty 50, which tracks 50 of the biggest companies on the National Stock Exchange (NSE), while Sensex tracks 30 major companies on the Bombay Stock Exchange (BSE).</p>
+          <p>Domestic consumption, banking policies and growth of India’s IT sector are strongly influencing these indices. The National Stock Exchange of India provides comprehensive documentation on official index methodology and historical data.</p>
+          <h3>The DAX (GER40)</h3>
+          <p>The DAX tracks 40 major blue-chip companies in Germany and is the most-watched indicator of the European manufacturing and automotive economy.</p>
+          <p>As the economic engine of the Eurozone, Germany makes the DAX highly sensitive to European Central Bank (ECB) data and global export demand. It is one of the most liquid and volatile indices in Europe.</p>
+
+          <h2 id="index-trading-vs-share-trading-what-is-the-d">Index Trading Vs Share Trading: What Is The Difference?</h2>
+          <p>Index trading exposes you to a broad market in a single trade. Share trading is about the specific risks and rewards of individual companies.</p>
+          <h3>Research And Time Investment</h3>
+          <p>Share trading needs deep fundamental analysis of a single company, and index trading needs macroeconomic analysis. When you’re trading individual stocks, you have to read earnings reports, analyze corporate debt and assess the CEO’s leadership.</p>
+          <p>Inside knowledge of the company is necessary. With index trading vs share trading, you are looking at the macro picture. You only need to assess whether the broader economy is expanding or contracting, which saves massive amounts of time.</p>
+          <h3>Diversification And Risk</h3>
+          <p>Index trading automatically spreads your risk across dozens or hundreds of companies. If you put all your capital into one stock and that company goes bankrupt, your investment goes to zero.</p>
+          <p>If one company in the S&amp;P 500 goes bankrupt, the index barely flinches because the other 499 companies absorb the shock. Indices inherently cushion you against single-company failures.</p>
+          <h3>Volatility Profiles</h3>
+          <p>Individual shares can gap up or down wildly on specific news, whereas indices generally experience smoother price action. A pharmaceutical stock might jump 40% in a day if a new drug is approved, or drop 50% if it fails a trial.</p>
+          <p>An index rarely moves more than 1% to 3% in a single day. For beginners, the smoother price action of an index is often easier to manage emotionally.</p>
+
+          <h2 id="why-do-traders-trade-indices">Why Do Traders Trade Indices?</h2>
+          <p>Traders flock to indices for immediate diversification, clear market trends, and protection from individual company failures.</p>
+          <h3>Less Susceptible To Manipulation</h3>
+          <p>Indices are based on massive global markets and are virtually impossible for any one big player to manipulate. A ‘whale’ investor could buy enough shares in a tiny penny stock to artificially manipulate its price.</p>
+          <p>But to move something like the S&amp;P 500 index takes billions of dollars of coordinated institutional buying. This huge liquidity allows retail traders to trade indices on a much more level playing field.</p>
+          <h3>Clear Technical Trends</h3>
+          <p>Individual stocks, particularly low volume stocks, may not respect major support and resistance levels as well as broad market indices. Technical traders like indices because the amount of trading smooths out random price spikes.</p>
+          <p>Chart patterns are very effective. Normally when an index breaks a major trendline there is real institutional momentum behind it.</p>
+          <h3>Easy Access To Global Markets</h3>
+          <p>Indices allow a trader in one country to easily speculate on the economic performance of a completely different continent.</p>
+          <p>You can buy a CFD on the Japanese Nikkei 225 during the Asian session, and switch to trading the UK FTSE 100 during the London session, all from your desk. Indices shatter geographical barriers for retail traders.</p>
+
+          <h2 id="what-are-the-key-risks-of-index-trading">What Are The Key Risks Of Index Trading?</h2>
+          <p>Index trading carries significant risks, including market-wide volatility, leverage magnification, and sudden weekend gap downs.</p>
+          <h3>Systemic Market Risk</h3>
+          <p>When there is a global panic, correlation across all stocks drops to one, and indices will fall fast. An index can protect you from single-company risk, but it will not protect you from systemic risk.</p>
+          <p>During the 2008 financial crisis or the 2020 pandemic crash, almost all stocks in the market were down at the same time. Index values decline when the wider market panics.</p>
+          <h3>Leverage And Margin Risks</h3>
+          <p>Index CFDs are traded on margin so even a small move in the market can result in a large loss. Leverage lets you control a $10,000 position with only $500 of your own money.</p>
+          <p>When the index moves in your favor, your profits go up. But if the index moves against you, your losses are multiplied as well and could result in a margin call that automatically closes out your trade at a large loss.</p>
+          <h3>Gap Risk</h3>
+          <p>Indices can open much higher or lower than their last closing price completely skipping stop-loss orders. Stock exchanges do not open on weekends. If a major geopolitical event takes place on a Saturday, the index will “gap” when it reopens on Monday.</p>
+          <p>So if you were long and the market gaps down, your stop-loss will be filled at the new, much lower price that is available which will result in a greater than expected loss.</p>
+
+          <h2 id="what-common-mistakes-should-beginners-avoid">What Common Mistakes Should Beginners Avoid?</h2>
+          <p>Many new traders often make common mistakes such as over-leveraging their accounts, ignoring important economic news, or trading without a stop-loss strategy in place.</p>
+          <h3>Trading Without A Stop Loss</h3>
+          <p>If you don’t have an exit point defined before entering a trade, you leave your account exposed to a sudden market crash. Hope is not a strategy for trading.</p>
+          <p>Every time you enter an index trade you must put a hard stop loss to protect your capital. The quickest way to blow an account is to let a losing trade run in the hope that the market will “turn around”.</p>
+          <h3>Ignoring Economic Calendars</h3>
+          <p>Trading indices without looking up the schedule for major data releases is like driving blindfolded. Indices are also subject to massive volatility from central bank interest rate decisions, inflation data (CPI) and employment reports (NFP).</p>
+          <p>Many beginners get stopped out of otherwise good trades, just because they did not realize that a major news report was about to drop at that exact minute.</p>
+          <h3>Overleveraging Small Accounts</h3>
+          <p>If you are using max margin with a small account size, even a small pullback will kill your money. A broker offering 100:1 leverage doesn’t mean you have to use it.</p>
+          <p>A professional trader will risk between 1% and 2% of his total account balance on any one index trade. Keep your lot sizes small until you are consistently profitable.</p>
+          <h3>Chasing The Market</h3>
+          <p>If you buy an index after it has already run up for several days you are probably buying at the top. Fear of Missing Out (FOMO) causes a rookie to buy late in the rally.</p>
+          <p>And by the time the retail crowd is buying furiously, the professional institutions are usually selling to take their profits. Don’t chase green candles, wait for pullbacks to major support levels.</p>
+
+          <h2 id="summary-table">Summary Table</h2>
+          <p>A quick reference guide helps beginners compare instruments, costs and common trading strategies for indices.</p>
+          <div class="an-tablewrap">
+            <table class="an-table">
+              <caption class="sr-only">Comparison table</caption>
+              <thead><tr><th scope="col">Feature</th><th scope="col">Index CFDs</th><th scope="col">Index ETFs</th><th scope="col">Individual Shares</th></tr></thead>
+              <tbody>
+              <tr><th scope="row">Ownership</th><td>No (Speculation only)</td><td>Yes (Fund shares)</td><td>Yes (Company equity)</td></tr>
+              <tr><th scope="row">Leverage</th><td>High</td><td>None to Low</td><td>None to Low</td></tr>
+              <tr><th scope="row">Short Selling</th><td>Very easy</td><td>Complex/Restricted</td><td>Complex</td></tr>
+              <tr><th scope="row">Holding Time</th><td>Minutes to weeks</td><td>Months to years</td><td>Days to years</td></tr>
+              <tr><th scope="row">Ideal For</th><td>Active day/swing traders</td><td>Passive investors</td><td>Stock pickers</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="faqs">FAQs</h2>
+          <p>The best way to learn to trade indices is to start with a demo account. Learn to read bigger market trends without risking real capital. Practice buying and selling an index such as the S&amp;P 500 with virtual money. Experiment with different levels of leverage to see the effect on your margin.</p>
+          <p>Index trading is when you speculate on a basket of stocks (like the US tech sector) whereas forex is the trading of the exchange rate between two national currencies (like the Euro and the US Dollar). Indices reflect corporate and economic growth, and forex reflects comparative national interest rates.</p>
+          <p>Affirmative. MT4 is very user-friendly for beginners. Once you find the specific index symbol of your broker in the Market Watch window, you can simply open the chart, apply basic technical indicators and perform trades using the built-in order window.</p>
+          <p>The best hours to trade stock indices depend on the index. The S&amp;P 500 and Nasdaq are most active in the US session (New York hours). DAX and FTSE are most active during the European session. Trading during peak hours means better liquidity and tighter spreads.</p>
+          <p>You need to understand that synthetic indices are algorithmic and are always volatile to trade them safely. Always use strict stop loss orders, never risk more than 1% of your account per trade and remember that these markets do not react to traditional economic news.</p>
+
+          <h2 id="conclusion">Conclusion</h2>
+          <p>Index-trading offers a systematic approach to speculating on entire markets, sectors or economies without analyzing individual stocks.</p>
+          <p>Knowing how to trade indices gives you the chance to profit from macroeconomic trends across the world. Indices offer a diversified way to speculate on the markets, be it the tech-heavy Nasdaq, the broad S&amp;P 500 or regional powerhouses like the Nifty 50.</p>
+          <p>Traders can approach these markets with more confidence by understanding the various ways to calculate, selecting the right instruments like CFDs or ETFs, and becoming proficient with platforms such as MT4 and MT5. Remember that index markets are sensitive to economic data and have their own risks. Always place risk management and continuous education first.</p>
+          <p>To further your learning, delve into the tools and resources for market analysis on platforms such as STARTRADER to gain a deeper understanding of the dynamics of indexes.</p>
+
+          <div class="ar-note">
+            <b>Risk warning</b>
+            <p>This content is provided for educational and informational purposes only. It does not constitute investment advice, financial guidance, or a recommendation to trade any financial instrument.</p>
+          </div>
+        </div>
+
+        <nav class="ar-pager" aria-label="More guides">
+          <a class="ar-pg" href="index-investing-guide.html">
+            <span>Previous guide</span>
+            <b>Index Investing: How To Invest In Index Funds For Beginners</b>
+          </a>
+          <a class="ar-pg ar-pg--next" href="index-trading-guide-for-beginners.html">
+            <span>Next guide</span>
+            <b>How To Trade Index: A Guide For Beginners</b>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============ RELATED ============ -->
+<section class="section ar-rel-sec" aria-labelledby="kb-rel-title">
+  <div class="container">
+    <div class="head center">
+      <span class="eyebrow" data-aos="fade-up">Keep reading</span>
+      <h2 class="h2" id="kb-rel-title" data-aos="fade-up">More Indices guides</h2>
+    </div>
+    <div class="cat-grid">
+      <article class="cat-card" data-aos="fade-up">
+        <a class="cat-card-media" href="index-trading-guide-for-beginners.html" tabindex="-1" aria-hidden="true">
+          <span class="cover-bg" role="img" aria-label="A price chart open on the STARTRADER platform" style="background-image:url('assets/img/platform-hero.webp')"></span>
+          <span class="cat-card-tag"><svg aria-hidden="true"><use href="#i-chart"/></svg>Indices</span>
+        </a>
+        <div class="cat-card-body">
+          <h3 class="cat-card-h"><a href="index-trading-guide-for-beginners.html">How To Trade Index: A Guide For Beginners</a></h3>
+          <span class="cat-card-go">Read article <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
+        </div>
+      </article>
+      <article class="cat-card" data-aos="fade-up" data-aos-delay="100">
+        <a class="cat-card-media" href="index-investing-guide.html" tabindex="-1" aria-hidden="true">
+          <span class="cover-bg" role="img" aria-label="Blue lightning-bolt artwork" style="background-image:url('assets/img/stat-blue.webp')"></span>
+          <span class="cat-card-tag"><svg aria-hidden="true"><use href="#i-chart"/></svg>Indices</span>
+        </a>
+        <div class="cat-card-body">
+          <h3 class="cat-card-h"><a href="index-investing-guide.html">Index Investing: How To Invest In Index Funds For Beginners</a></h3>
+          <span class="cat-card-go">Read article <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+</main>
+
+
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer" id="footer">
+  <div class="container">
+    <div class="foot-cols">
+      <div class="foot-col">
+        <h4>Conditions</h4>
+        <a href="getting-started.html">Account Opening</a><a href="accounts.html">Trading Account</a><a href="prime-ecn-account.html">Prime ECN</a><a href="funding.html">Funding &amp; Withdrawal</a>
+        <h4 class="mt">Partnership</h4>
+        <a href="ib-register.html">Introducing Broker</a><a href="affiliate-registration.html">Affiliate</a><a href="money-manager.html">Money Manager</a><a href="institutional.html">Institutional</a>
+      </div>
+      <div class="foot-col">
+        <h4>Platforms</h4>
+        <a href="mt5.html">MT5</a><a href="mt4.html">MT4</a><a href="copy-trade.html">Copy Trade</a><a href="star-webtrader.html">STAR Web Trading</a><a href="webtrader.html">Web Trader</a><a href="trading-app.html">Mobile Apps</a><a href="pamm-trade.html">Pro-Link</a>
+        <h4 class="mt">Products</h4>
+        <a href="forex.html">Forex</a><a href="cfd.html">CFD</a><a href="commodities.html">Commodities</a><a href="indices.html">Indices</a><a href="shares.html">Shares</a><a href="etf.html">ETFs</a>
+      </div>
+      <div class="foot-col">
+        <h4>Education</h4>
+        <a href="education.html">Knowledge Center</a><a href="market-analysis.html">Market Analysis</a><a href="glossary.html">Glossary</a><a href="news.html">News Room</a><a href="economiccalendar.html">Economic Calendar</a><a href="webinars.html">Webinars</a>
+        <h4 class="mt">Corporate</h4>
+        <a href="regulation.html">Regulation</a><a href="legal-documents.html">Legal Documents</a><a href="insurance.html">Insurance</a><a href="liquidity-providers.html">Liquidity Providers</a>
+      </div>
+      <div class="foot-col">
+        <h4>About</h4>
+        <a href="company.html">Why STARTRADER</a><a href="corporate-social-responsibility.html">CSR</a><a href="events.html">Events</a><a href="media.html">Media Coverage</a><a href="achievement.html">Achievements</a><a href="announcements.html">Announcements</a><a href="https://www.startrader-careers.com/" target="_blank" rel="noopener">Careers</a><a href="https://www.starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">Help Center</a>
+        <h4 class="mt">Contact us</h4>
+        <div class="foot-contact"><span>Support enquiries</span><a href="mailto:support@startrader.com">support@startrader.com</a></div>
+        <div class="foot-contact"><span>Partnerships</span><a href="mailto:partners@startrader.com">partners@startrader.com</a></div>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <span class="foot-brand"><img class="foot-logo" src="assets/img/logo-startrader.svg" alt="STARTRADER" width="180" height="35"><span class="foot-tag">Built on trust. Driven by growth.</span></span>
+      <div class="foot-partners">
+        <img class="fp-nba" src="assets/img/partner-nba.svg" alt="Official Partner of the NBA" height="30" width="45">
+        <img class="fp-porsche" loading="lazy" decoding="async" src="assets/img/partner-porsche.webp" alt="Official Partner of Porsche Carrera Cup Middle East" height="26" width="165">
+      </div>
+    </div>
+
+    <div class="foot-legal-row">
+      <div class="foot-copy">
+        <span>© 2026 STARTRADER. All rights reserved</span>
+        <a href="privacy-policy-app.html">Privacy Policy</a><a href="legal-documents.html">Terms &amp; Conditions</a><a href="legal-documents.html">Cookie Policy</a>
+      </div>
+      <div class="socials">
+        <a href="https://www.facebook.com/Startrader.International/" target="_blank" rel="noopener" aria-label="Facebook"><svg><use href="#i-facebook"/></svg></a>
+        <a href="https://x.com/startrader_int/" target="_blank" rel="noopener" aria-label="X"><svg><use href="#i-x"/></svg></a>
+        <a href="https://www.instagram.com/startrader.official/" target="_blank" rel="noopener" aria-label="Instagram"><svg><use href="#i-instagram"/></svg></a>
+        <a href="https://www.linkedin.com/company/startrader-official/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg><use href="#i-linkedin"/></svg></a>
+        <a href="https://www.youtube.com/@Startrader.international" target="_blank" rel="noopener" aria-label="YouTube"><svg><use href="#i-youtube"/></svg></a>
+        <a href="https://www.tiktok.com/@startraderofficial/" target="_blank" rel="noopener" aria-label="TikTok"><svg><use href="#i-tiktok"/></svg></a>
+      </div>
+    </div>
+
+    <div class="risk">
+      <h5>RISK WARNING</h5>
+      <p>Trading in leveraged derivative products, such as Foreign Exchange (Forex) and Contracts for Difference (CFDs), involves a high level of risk and may result in losses that exceed your initial deposit. These products may not be suitable for all investors. Leverage amplifies both potential profits and losses. When trading these instruments, you do not own or have any rights to the underlying assets. Past performance is not indicative of future results.</p>
+      <p>Before making any investment decisions, you should carefully assess your investment objectives, knowledge, experience, and financial situation. You should only engage in Forex and CFD trading if you possess sufficient knowledge and experience. STARTRADER assumes no liability for any losses incurred from trading, and all trading activities are undertaken at your own risk.</p>
+      <p>The content provided on this website is for general informational purposes only and does not take into account your individual financial circumstances, investment goals, or risk tolerance. You should review the legal documents available on our website to ensure a full understanding of the risks associated with CFD trading. If necessary, seek independent advice from qualified professionals before proceeding.</p>
+
+      <h5>REGIONAL RESTRICTIONS</h5>
+      <p>This website is not intended for distribution to, or use by, any person or entity who is a citizen or resident of certain jurisdictions, including, but not limited to the United States, and jurisdictions listed on the FATF "blacklist" or other major global sanctions lists. It is also not intended for distribution or use in any jurisdiction where such distribution or use would violate local laws or regulations.</p>
+
+      <h5>REGULATOR INFORMATION</h5>
+      <p>STARTRADER is the brand representing a network of regulated and licensed entities across various jurisdictions, each authorised to provide specific financial services in compliance with local regulations. Upon registration, you will be assigned to the appropriate entity based on your location, ensuring that all trading activities are governed by the applicable regulatory authority. While the relevant authorities have granted securities or investment dealer licenses to the licensees, they do not endorse the products or services offered by STARTRADER.</p>
+      <p><strong>STARTRADER</strong> Global Financial Consultation &amp; Financial Analysis L.L.C is a Category 5 licensee regulated by the Capital Market Authority (CMA) of the United Arab Emirates, with License No. 20200000241, authorised to carry out regulated activities of Introduction and Promotion in the UAE. Its registered office is located at Office 815, Al Manara Tower, Business Bay, Dubai, UAE. It is not authorised to provide brokerage services or execute client trades.</p>
+      <p><strong>STARTRADER</strong> Prime Global Pty Ltd is regulated by the Australian Securities and Investments Commission (ASIC), with ACN 156005668 and AFSL No. 421210. Its registered office is located at Level 35, 31 Market Street, Sydney, NSW 2000, Australia.</p>
+      <p><strong>STARTRADER</strong> International Pty Ltd is regulated by the Financial Sector Conduct Authority (FSCA) of South Africa, with FSP No. 52464 and Registration No. 2022/435897/07. Its registered office is located at 18 Cavendish Road, Claremont, Cape Town, Western Cape, 7708, South Africa.</p>
+      <p><strong>STARTRADER</strong> Limited is regulated by the Financial Services Authority (FSA) of Seychelles, with License No. SD049 and Registration No. 8427362-1. Its registered office is located at Suite 3, Global Village, Jivan's Complex, Mont Fleuri, Mahe, Seychelles.</p>
+      <p><strong>STARTRADER</strong> Financial Markets Limited is regulated by the Financial Services Commission (FSC) of Mauritius, with Company No. 212229 GBC and License No. GB24203371. Its registered office is located at Suite 201, 2nd Floor, The Catalyst, 40 Silicon Avenue, Ebene Cybercity, Mauritius.</p>
+      <p><strong>STARTRADER</strong> (CY) Limited, registered in the Republic of Cyprus under registration number HE421001 with its registered address at 160 Archiepiskopou Makariou III, 1st Floor, 3026 Limassol, Cyprus. This entity does not offer regulated financial products or provide trading services.</p>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Back to top"><svg><use href="#i-caret-up"/></svg></button>
+
+<!-- ============ CHAT WIDGET ============ -->
+<button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
+  <img class="chat-fab-ico" src="assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
+</button>
+<div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
+  <div class="chat-head">
+    <span class="chat-avatar"><svg><use href="#i-headset"/></svg><i class="chat-online"></i></span>
+    <div class="chat-head-txt"><b>STARTRADER Support</b><em>Typically replies in a few minutes</em></div>
+    <button class="chat-close" id="chatClose" aria-label="Close chat"><svg><use href="#i-close"/></svg></button>
+  </div>
+  <div class="chat-body">
+    <div class="chat-msg">👋 Hi there! Welcome to STARTRADER. How can we help you today?</div>
+    <div class="chat-quick">
+      <a href="getting-started.html" class="chat-chip">Open a live account</a>
+      <a href="trading-app.html" class="chat-chip">Download a platform</a>
+      <a href="#schedule" class="chat-chip">See the webinar schedule</a>
+      <a href="contact.html" class="chat-chip">Contact us</a>
+    </div>
+  </div>
+  <form class="chat-input" id="chatForm">
+    <input type="text" id="chatText" placeholder="Type your message…" aria-label="Message" autocomplete="off">
+    <button type="submit" class="chat-send" aria-label="Send"><svg><use href="#i-send"/></svg></button>
+  </form>
+</div>
+
+<!-- ============ COOKIE CONSENT ============ -->
+<div class="cookie" id="cookie" role="dialog" aria-label="Cookie notice">
+  <span class="cookie-ic"><svg><use href="#i-cookie"/></svg></span>
+  <span class="cookie-text">We use cookies to enhance your experience on this website.</span>
+  <a href="legal-documents.html" class="cookie-more">More details</a>
+  <button class="cookie-x" id="cookieClose" aria-label="Accept and close"><svg><use href="#i-close"/></svg></button>
+</div>
+
+<script src="assets/js/vendor/gsap.min.js" defer></script>
+<script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
+<script src="assets/js/vendor/lenis.min.js" defer></script>
+<script src="assets/js/vendor/aos.min.js" defer></script>
+<script src="assets/js/main.min.js?v=qa61" defer></script>
+<script>
+// the rail's open-account form: native validation runs first; a valid
+// submit routes to account opening without carrying the fields in the URL
+document.addEventListener('DOMContentLoaded', function () {
+  var f = document.querySelector('[data-ar-open]');
+  if (!f) return;
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    window.location.href = 'getting-started.html';
+  });
+
+  // send-code is a demo on the static build: it checks the email first,
+  // then arms a resend countdown the way the portal does
+  var send = f.querySelector('[data-ar-send]');
+  var sent = f.querySelector('[data-ar-sent]');
+  var email = f.querySelector('#arOpenEmail');
+  if (send && email) send.addEventListener('click', function () {
+    if (!email.checkValidity()) { email.reportValidity(); return; }
+    if (sent) sent.hidden = false;
+    var left = 60;
+    send.disabled = true;
+    var base = send.textContent;
+    var t = setInterval(function () {
+      left--;
+      send.textContent = 'Resend in ' + left + 's';
+      if (left <= 0) { clearInterval(t); send.disabled = false; send.textContent = base; }
+    }, 1000);
+  });
+
+  var eye = f.querySelector('[data-ar-eye]');
+  var pass = f.querySelector('#arPass');
+  if (eye && pass) eye.addEventListener('click', function () {
+    var show = pass.type === 'password';
+    pass.type = show ? 'text' : 'password';
+    eye.setAttribute('aria-pressed', show ? 'true' : 'false');
+    eye.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+  });
+});
+</script>
+</body>
+</html>

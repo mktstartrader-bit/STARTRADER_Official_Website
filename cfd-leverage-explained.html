@@ -1,0 +1,1166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#05070E" />
+
+  <title>CFD Leverage: How It Works, Ratios, Margin, and Risk Management | STARTRADER</title>
+  <meta name="description" content="Understand CFD leverage: how it works, leverage ratios, margin requirements, and how to manage your exposure wisely. Read the full beginner guide today." />
+  <meta name="keywords" content="CFD Leverage: How It Works, Ratios, Margin, and Risk Management, CFD, STARTRADER" />
+  <meta name="author" content="STARTRADER" />
+  <link rel="canonical" href="https://www.startrader.com/cfd/cfd-leverage-explained/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="STARTRADER" />
+  <meta property="og:title" content="CFD Leverage: How It Works, Ratios, Margin, and Risk Management | STARTRADER" />
+  <meta property="og:description" content="Understand CFD leverage: how it works, leverage ratios, margin requirements, and how to manage your exposure wisely. Read the full beginner guide today." />
+  <meta property="og:url" content="https://www.startrader.com/cfd/cfd-leverage-explained/" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/learn-cta.webp" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="CFD Leverage: How It Works, Ratios, Margin, and Risk Management | STARTRADER" />
+  <meta name="twitter:description" content="Understand CFD leverage: how it works, leverage ratios, margin requirements, and how to manage your exposure wisely. Read the full beginner guide today." />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/learn-cta.webp" />
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <!-- Fonts (self-hosted) -->
+  <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="assets/css/aos.min.css" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=qa61" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* =================================================================
+   KNOWLEDGE ARTICLE
+   The article furniture is the shared ar-* system. This page swaps the
+   columns — copy on the left, the rail on the right — and the rail
+   carries the contents index plus an open-account form, both riding
+   the rail's shared sticky position.
+   ================================================================= */
+/* the rail takes the width a real form needs, and the copy column
+   gives it back — shrinking first when the window tightens */
+.ar{--ar-rail:380px;--ar-measure:650px}
+.ar-cols{grid-template-columns:minmax(0,var(--ar-measure)) var(--ar-rail)}
+.ar-main{order:1}
+.ar-rail{order:2}
+/* the rail leads with the article's related tags */
+.ar-rtags{padding:18px 16px;border-radius:16px}
+.ar-rtags-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+
+/* the open-account card in the rail */
+.ar-cta{padding:20px 18px 18px;border-radius:16px}
+.ar-cta-h{font-size:20px;font-weight:800;letter-spacing:-.032em;color:var(--ink);text-align:center}
+.ar-cta-h span{color:var(--blue)}
+.ar-cta-form{display:flex;flex-direction:column;gap:13px;margin-top:14px}
+.ar-f{display:flex;flex-direction:column;gap:6px}
+.ar-f label{font-size:12.5px;font-weight:700;color:var(--text)}
+.ar-f label i{font-style:normal;color:var(--red)}
+/* the site's field language: a quiet underline, not a boxed input */
+.ar-cta-form input,.ar-cta-form select{
+  width:100%;font:inherit;font-size:15px;color:var(--text);padding:10px 2px;
+  background:transparent;border:0;border-bottom:1px solid rgba(20,44,96,.2);border-radius:0;
+  outline:none;appearance:none;transition:border-color .25s;
+}
+.ar-cta-form input::placeholder{color:var(--text-mute)}
+.ar-cta-form input:hover,.ar-cta-form select:hover{border-bottom-color:rgba(20,44,96,.4)}
+.ar-cta-form input:focus,.ar-cta-form select:focus{border-bottom-color:var(--blue)}
+.ar-cta .wb-selwrap .wb-selchev{position:absolute;right:2px;top:50%;transform:translateY(-50%);width:15px;height:15px;color:var(--text-mute);pointer-events:none}
+.ar-code-row{display:flex;gap:8px}
+.ar-code-row input{flex:1;min-width:0}
+.ar-send{
+  flex:none;height:40px;align-self:flex-end;padding:0 14px;border-radius:70px;cursor:pointer;
+  border:1px solid rgba(0,71,187,.35);background:rgba(0,71,187,.06);
+  font:inherit;font-size:12.5px;font-weight:700;color:var(--blue);
+  transition:background .25s,color .25s;
+}
+.ar-send:hover:not(:disabled){background:var(--blue);color:#fff}
+.ar-send:disabled{opacity:.55;cursor:default}
+.ar-sent{font-size:11.5px;color:#0f9d76}
+.ar-pass-row{position:relative}
+.ar-pass-row input{padding-right:40px}
+.ar-eye{position:absolute;right:0;top:50%;transform:translateY(-50%);width:34px;height:34px;display:grid;place-items:center;
+  border:0;border-radius:10px;background:none;color:var(--text-mute);cursor:pointer;transition:color .25s}
+.ar-eye:hover{color:var(--text)}
+.ar-eye[aria-pressed="true"]{color:var(--blue)}
+.ar-eye svg{width:19px;height:19px}
+.ar-kind{display:flex;gap:8px}
+.ar-kind-pill{flex:1;position:relative}
+.ar-kind-pill input{position:absolute;opacity:0;width:0;height:0}
+.ar-kind-pill span{display:flex;align-items:center;justify-content:center;height:40px;border-radius:12px;
+  border:1px solid var(--line);font-size:13px;font-weight:700;color:var(--text-soft);cursor:pointer;
+  transition:background .25s,color .25s,border-color .25s}
+.ar-kind-pill input:checked + span{background:var(--blue);border-color:transparent;color:#fff}
+.ar-kind-pill input:focus-visible + span{outline:2px solid rgba(0,71,187,.5);outline-offset:2px}
+.ar-cta .ar-check{margin-top:0;font-size:12.5px;line-height:1.5}
+.ar-cta-form .btn{width:100%;justify-content:center;margin-top:2px}
+.ar-cta-note{margin-top:10px;font-size:11px;color:var(--text-mute);text-align:center}
+
+@media (max-width:1024px){
+  /* the shared breakpoint flattens the rail into the article column */
+  .ar-cols{grid-template-columns:minmax(0,1fr)}
+  .ar-rtags{order:3;min-width:0}
+  .ar-cta{order:4;min-width:0}
+}
+
+/* the fine print under an illustrative table */
+.ar-body .ar-fine{margin-top:10px;font-size:12px;line-height:1.6;color:var(--text-mute)}
+  </style>
+
+  <!-- Structured data — page entity -->
+
+  <!-- Structured data — breadcrumb -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.startrader.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Education", "item": "https://www.startrader.com/education/learn/knowledge.html" },
+    { "@type": "ListItem", "position": 3, "name": "Knowledge Centre", "item": "https://www.startrader.com/education/learn/knowledge.html" }
+  ]
+}
+  </script>
+
+  <!-- Structured data — FAQ -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Where should a complete beginner start?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Start at the Basics level and read the forex guide first — it explains what you are actually buying and selling. From there, currency pairs and pips, then risk management before you place a live trade." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need an account to use the Knowledge Centre?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Every guide, video and glossary entry is free to read without an account. A demo account is useful for practising what you learn on live pricing with virtual funds." }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does each guide take?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Most guides are between four and ten minutes. Each card shows its reading time so you can pick something that fits the gap you have." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the material specific to STARTRADER?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The concepts apply to trading anywhere. Where a guide covers a platform feature — an order type or a chart tool — it uses MT4, MT5 and the STAR platforms because those are the ones you will have." }
+    }
+  ]
+}
+  </script>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "CFD Leverage: How It Works, Ratios, Margin, and Risk Management",
+  "description": "What a bond is, the main types, how yields work, what interest rates do to prices, and the ways to buy — funds, ETFs and CFDs.",
+  "author": {
+    "@type": "Organization",
+    "name": "STARTRADER Research Desk"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "STARTRADER"
+  },
+  "datePublished": "2026-06-11",
+  "articleSection": "Knowledge Centre — Basics"
+}
+  </script>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Are bonds risk-free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. That is one of the most common misconceptions in investing. Bonds carry credit risk — the issuer may fail to pay — and interest rate risk, because a bond's market value falls when rates rise. Prices move both ways."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between coupon yield and yield to maturity?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Coupon yield is the annual coupon divided by face value. Yield to maturity also accounts for the price you actually paid and any gain or loss against face value, so it is the more useful figure when buying on the secondary market."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do bond prices fall when interest rates rise?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A bond's coupon is fixed. If new bonds are issued paying more, an existing bond has to become cheaper for its yield to compete. The longer the maturity, the larger that adjustment tends to be."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is a bond fund the same as owning a bond?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. A bond held to maturity returns its principal on a known date. A fund has no maturity date, so its unit price keeps moving with the market — the certainty of the maturity date is the thing you give up."
+      }
+    }
+  ]
+}
+  </script>
+
+</head>
+
+<body class="light-top">
+
+<!-- ============ SVG ICON SPRITE ============ -->
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M4 12h15m0 0-6-6m6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-arrow-ur" viewBox="0 0 24 24"><path d="M7 17 17 7m0 0H8m9 0v9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z" fill="currentColor"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.4 3 8.4 7 9.5 4-1.1 7-5.1 7-9.5V6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><path d="M12 3 3 7.5v9L12 21l9-4.5v-9zM3 7.5 12 12l9-4.5M12 12v9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-headset" viewBox="0 0 24 24"><path d="M4 13a8 8 0 0 1 16 0M4 13v3a2 2 0 0 0 2 2h1v-6H6a2 2 0 0 0-2 2Zm16 0v3a2 2 0 0 1-2 2h-1v-6h1a2 2 0 0 1 2 2Zm-3 5a3 3 0 0 1-3 2.5h-2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10m5 10V4m5 16v-7m5 7V8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 2 2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.8 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z" fill="currentColor"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.7 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3Z" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 7v5l3.4 2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M4 18a8 8 0 1 1 16 0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M12 18l4.2-5.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="12" cy="18" r="1.5" fill="currentColor"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-facebook" viewBox="0 0 24 24"><path d="M14 8.5V7c0-.9.6-1 1-1h1.5V3H14c-2.2 0-3.5 1.5-3.5 3.7V8.5H8.5v3h2v8.5h3.5v-8.5h2.3l.4-3z" fill="currentColor"/></symbol>
+  <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="3.6" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="16.5" cy="7.5" r="1.1" fill="currentColor"/></symbol>
+  <symbol id="i-youtube" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m10.5 9.3 4.5 2.7-4.5 2.7z" fill="currentColor"/></symbol>
+  <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M6.5 9v9M6.5 6.2v.01M11 18v-5a2.5 2.5 0 0 1 5 0v5M11 12v6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+  <symbol id="i-caret-up" viewBox="0 0 12 12"><path d="M6 3 10 8H2z" fill="currentColor"/></symbol>
+  <symbol id="i-caret-down" viewBox="0 0 12 12"><path d="M6 9 2 4h8z" fill="currentColor"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M17.5 3h3.2l-7 8 8.2 10.9h-6.4l-5-6.6-5.8 6.6H1.5l7.5-8.6L1.6 3H8l4.5 6zM16.4 19.1h1.8L7.7 4.8H5.8z" fill="currentColor"/></symbol>
+  <symbol id="i-telegram" viewBox="0 0 24 24"><path d="M21.5 4.3 2.9 11.5c-.9.35-.9.9-.15 1.12l4.7 1.46 1.8 5.6c.23.63.4.86 1 .86.46 0 .66-.2.9-.45l2.28-2.2 4.72 3.5c.87.48 1.5.23 1.72-.8l3-14.1c.3-1.28-.5-1.86-1.34-1.5z" fill="currentColor"/></symbol>
+  <symbol id="i-tiktok" viewBox="0 0 24 24"><path d="M16.6 3c.3 1.6 1.3 3 2.7 3.8.6.4 1.4.6 2.2.7v3.1c-1.8 0-3.5-.6-4.9-1.6v6.6a6.3 6.3 0 1 1-6.3-6.3c.3 0 .7 0 1 .1v3.2a3.2 3.2 0 1 0 2.2 3V3z" fill="currentColor"/></symbol>
+  <symbol id="i-user-plus" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3 20a6 6 0 0 1 12 0M18.5 8v5M21 10.5h-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-id" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="8.5" cy="11" r="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M13.5 10h4M13.5 13.5h4M5.6 15.6c.4-1.2 1.6-1.9 2.9-1.9s2.5.7 2.9 1.9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 1 2-2h11.5A1.5 1.5 0 0 0 15 4H5.5" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="6" width="18" height="13" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="16.5" cy="12.5" r="1.3" fill="currentColor"/></symbol>
+  <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9 20h6M12 16v4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M5 15H4.6A1.6 1.6 0 0 1 3 13.4V5a2 2 0 0 1 2-2h8.4A1.6 1.6 0 0 1 15 4.6V5" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 3v5h5M8.5 13h7M8.5 16.5h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-window" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 9h18" stroke="currentColor" stroke-width="1.6"/><circle cx="6" cy="7" r=".7" fill="currentColor"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 18h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-plug" viewBox="0 0 24 24"><path d="M9 3v4M15 3v4M6.5 7h11v3.5a5.5 5.5 0 0 1-11 0zM12 16.5V21" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-swap" viewBox="0 0 24 24"><path d="M4 8h13l-3.5-3.5M20 16H7l3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-cfd" viewBox="0 0 24 24"><path d="M4 15l4.5-4.5 3 3L19 6M14.5 6H19v4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-droplet" viewBox="0 0 24 24"><path d="M12 3.5s6 6.2 6 10.5a6 6 0 0 1-12 0c0-4.3 6-10.5 6-10.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+  <symbol id="i-pie" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M12 3v9h9A9 9 0 0 0 12 3Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 11.5a7.5 7.5 0 0 1-10.9 6.7L4 20l1.8-5.1A7.5 7.5 0 1 1 21 11.5Z" fill="currentColor"/><circle cx="8.5" cy="11.5" r="1.15" fill="#0a2a6b"/><circle cx="12" cy="11.5" r="1.15" fill="#0a2a6b"/><circle cx="15.5" cy="11.5" r="1.15" fill="#0a2a6b"/></symbol>
+  <symbol id="i-bubble" viewBox="0 0 24 24"><path d="M20.5 11.6c0 4-3.8 7.2-8.5 7.2-.9 0-1.8-.12-2.6-.34L4.5 20l1.2-3.5A6.9 6.9 0 0 1 3.5 11.6c0-4 3.8-7.2 8.5-7.2s8.5 3.2 8.5 7.2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.8 11.6h6.4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-cookie" viewBox="0 0 24 24"><path d="M12 2.5a9.5 9.5 0 1 0 9.5 9.5 4 4 0 0 1-4-4 3.2 3.2 0 0 1-3.4-3.4A9.6 9.6 0 0 0 12 2.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="9" cy="12" r="1" fill="currentColor"/><circle cx="13" cy="15" r="1" fill="currentColor"/><circle cx="14.5" cy="10" r="1" fill="currentColor"/><circle cx="8.5" cy="16" r=".8" fill="currentColor"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M4 12 20 4l-6 16-3-6-7-2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8.2" r="3.8" fill="currentColor"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0Z" fill="currentColor"/></symbol>
+  <symbol id="i-cm-bars" viewBox="0 0 24 24"><path d="M3.6 16.4h7.2l1.1 3.4H2.5l1.1-3.4Z" fill="currentColor"/><path d="M13.2 16.4h7.2l1.1 3.4h-9.4l1.1-3.4Z" fill="currentColor" opacity=".78"/><path d="M8.4 11.2h7.2l1.1 3.4H7.3l1.1-3.4Z" fill="currentColor" opacity=".9"/><path d="M8.4 6h7.2l1.1 3.4H7.3L8.4 6Z" fill="currentColor" opacity=".62"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 10h18M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="8.5" cy="14.5" r="1.1" fill="currentColor"/><circle cx="12" cy="14.5" r="1.1" fill="currentColor"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.2-4.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5zM20 5.5A1.5 1.5 0 0 0 18.5 4H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></symbol>
+</svg>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============ TOP DISCLAIMER BAR ============ -->
+<div class="topbar" role="note">
+  <div class="container">
+    <p>CFDs are complex instruments and come with a high risk of losing money rapidly due to leverage. <strong>74% of retail investor accounts lose money</strong> when trading CFDs with this provider.</p>
+  </div>
+</div>
+
+<!-- ============ HEADER / NAV ============ -->
+<header class="site-header" id="siteHeader">
+  <div class="container nav">
+    <div class="nav-brandwrap">
+      <a href="index.html" class="brand" aria-label="STARTRADER home">
+        <img src="assets/img/logo-startrader.svg" alt="STARTRADER" width="180" height="35" />
+      </a>
+      <span class="hp-divider" aria-hidden="true"></span>
+      <span class="header-partners">
+        <img class="hp-logo hp-nba" src="assets/img/nav-nba.svg" alt="NBA" width="156" height="92" loading="lazy">
+        <img class="hp-logo hp-porsche" src="assets/img/nav-porsche.svg" alt="Porsche Carrera Cup Middle East" width="121" height="34" loading="lazy">
+      </span>
+    </div>
+
+    <nav class="nav-menu" aria-label="Primary">
+      <div class="nav-item has-drop has-mega">
+        <button class="nav-link" aria-expanded="false">Trading <svg class="caret"><use href="#i-chevron-down"/></svg></button>
+        <div class="mega" role="menu">
+          <div class="mega-main">
+          <div class="mega-col">
+            <span class="mega-head">Getting Started</span>
+            <a href="getting-started.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-user-plus"/></svg></span><span class="mega-txt"><b>Account Opening</b></span></a>
+            <a href="accounts.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-id"/></svg></span><span class="mega-txt"><b>Trading Account</b></span></a>
+            <a href="prime-ecn-account.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-bolt"/></svg></span><span class="mega-txt"><b>Prime ECN</b></span></a>
+            <a href="funding.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>Funding &amp; Withdrawal</b></span></a>
+          </div>
+          <div class="mega-col">
+            <span class="mega-head">Platforms</span>
+            <a href="mt5.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-monitor"/></svg></span><span class="mega-txt"><b>MT5</b></span></a>
+            <a href="mt4.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-monitor"/></svg></span><span class="mega-txt"><b>MT4</b></span></a>
+            <a href="copy-trade.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-copy"/></svg></span><span class="mega-txt"><b>Copy Trade</b></span></a>
+            <a href="star-copy.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-doc"/></svg></span><span class="mega-txt"><b>STAR Copy <span class="mega-badge">New</span></b></span></a>
+            <a href="star-webtrader.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-cfd"/></svg></span><span class="mega-txt"><b>STAR Web Trading <span class="mega-badge">New</span></b></span></a>
+            <div class="mega-sub">
+              <a href="webtrader.html" class="mega-item mega-sub-toggle"><span class="mega-ico"><svg><use href="#i-window"/></svg></span><span class="mega-txt"><b>Web Trader</b></span><svg class="mega-subchev"><use href="#i-chevron-down"/></svg></a>
+              <div class="mega-subitems">
+                <a href="webtrader-mt4.html">MT4 WebTrader</a>
+                <a href="webtrader-mt5.html">MT5 WebTrader</a>
+              </div>
+            </div>
+            <a href="trading-app.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-phone"/></svg></span><span class="mega-txt"><b>Mobile Apps</b></span></a>
+            <a href="pamm-trade.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-plug"/></svg></span><span class="mega-txt"><b>Pro-Link</b></span></a>
+          </div>
+          <div class="mega-col">
+            <span class="mega-head">Products</span>
+            <a href="forex.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-swap"/></svg></span><span class="mega-txt"><b>Forex</b></span></a>
+            <a href="cfd.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-cfd"/></svg></span><span class="mega-txt"><b>CFD</b></span></a>
+            <a href="commodities.html" class="mega-item mega-item-parent" data-fly="commodities"><span class="mega-ico"><svg><use href="#i-droplet"/></svg></span><span class="mega-txt"><b>Commodities</b></span><svg class="mega-chev" aria-hidden="true"><use href="#i-chevron-right"/></svg></a>
+            <a href="indices.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>Indices</b></span></a>
+            <a href="shares.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-pie"/></svg></span><span class="mega-txt"><b>Shares</b></span></a>
+            <a href="etf.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-layers"/></svg></span><span class="mega-txt"><b>ETFs</b></span></a>
+          </div>
+          </div>
+          <div class="mega-flyout" aria-hidden="true"><div class="fly-inner" data-fly-panel="commodities">
+            <a class="fly-title fly-title-link" href="commodities.html">Commodities <svg class="fly-title-go"><use href="#i-arrow-right"/></svg></a>
+            <div class="fly-group">
+              <h5><a href="commodities/energies.html">Energies</a></h5>
+              <a href="commodities/brent-oil.html">Brent Oil</a>
+              <a href="commodities/natural-gas.html">Natural Gas</a>
+              <a href="commodities/heating-oil.html">Heating Oil</a>
+            </div>
+            <div class="fly-group">
+              <h5><a href="metals.html">Metals</a></h5>
+              <a href="commodities/gold.html">Gold · XAU/USD</a>
+              <a href="commodities/gold-247.html">Gold 24/7 <span class="mega-badge">New</span></a>
+              <a href="commodities/silver.html">Silver · XAG/USD</a>
+              <a href="commodities/copper.html">Copper</a>
+              <a href="commodities/platinum.html">Platinum · XPT/USD</a>
+            <a href="commodities/palladium.html">Palladium · XPD/USD</a>
+            </div>
+            <div class="fly-group">
+              <h5><a href="agriculture.html">Agriculture</a></h5>
+              <a href="commodities/wheat.html">Wheat</a>
+              <a href="commodities/corn.html">Corn</a>
+              <a href="commodities/soybeans.html">Soybeans</a>
+              <a href="commodities/coffee.html">Coffee</a>
+              <a href="commodities/sugar.html">Sugar</a>
+              <a href="commodities/cocoa.html">Cocoa</a>
+              <a href="commodities/cotton.html">Cotton</a>
+            </div>
+          </div></div>
+        </div>
+      </div>
+            <div class="nav-item has-drop has-mega">
+        <button class="nav-link" aria-expanded="false">Education <svg class="caret"><use href="#i-chevron-down"/></svg></button>
+        <div class="mega mega--center" role="menu">
+          <div class="mega-main">
+            <div class="mega-col">
+              <span class="mega-head">Learn</span>
+              <a href="education.html" class="mega-item active" aria-current="page"><span class="mega-ico"><svg><use href="#i-box"/></svg></span><span class="mega-txt"><b>Knowledge Center</b></span></a>
+              <a href="glossary.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-doc"/></svg></span><span class="mega-txt"><b>Glossary</b></span></a>
+              <a href="market-analysis.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>Financial Market Analysis</b></span></a>
+            </div>
+            <div class="mega-col">
+              <span class="mega-head">Analysis</span>
+              <a href="news.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-window"/></svg></span><span class="mega-txt"><b>News Room</b></span></a>
+              <a href="economiccalendar.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-clock"/></svg></span><span class="mega-txt"><b>Economic Calendar</b></span></a>
+            </div>
+            <div class="mega-col">
+              <span class="mega-head">Academy</span>
+              <a href="webinars.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-play"/></svg></span><span class="mega-txt"><b>Webinars</b></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+            <div class="nav-item has-drop has-mega">
+        <button class="nav-link" aria-expanded="false">Promotions <svg class="caret"><use href="#i-chevron-down"/></svg></button>
+        <div class="mega mega--promo mega--center" role="menu">
+          <div class="mega-main">
+            <div class="mega-col">
+              <span class="mega-head">Promotions</span>
+              <a href="promotions.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-send"/></svg></span><span class="mega-txt"><b>Our Promotions</b></span></a>
+              <a href="https://www.startrader.com/star-trading-league-championship/" class="mega-item"><span class="mega-ico"><svg><use href="#i-star"/></svg></span><span class="mega-txt"><b>STAR Trading League</b></span></a>
+              <a href="dailyforexpromo.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-bolt"/></svg></span><span class="mega-txt"><b>Daily Forex Promo</b></span></a>
+              <a href="deposit-bonus-10010-20240513.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>100/10 Deposit Bonus</b></span></a>
+              <a href="deposit-bonus-5020-20250101.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>50/20 Deposit Bonus</b></span></a>
+              <a href="point-mall.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>Point Mall</b></span></a>
+              <a href="deposit-bonus.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>Deposit Bonuses</b></span></a>
+              <a href="switch-allowance.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-swap"/></svg></span><span class="mega-txt"><b>1% Switch Allowance</b></span></a>
+              <a href="vps.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-plug"/></svg></span><span class="mega-txt"><b>VPS</b></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+            <div class="nav-item has-drop has-mega">
+        <button class="nav-link" aria-expanded="false">Company <svg class="caret"><use href="#i-chevron-down"/></svg></button>
+        <div class="mega mega--center" role="menu">
+          <div class="mega-main">
+            <div class="mega-col">
+              <span class="mega-head">About</span>
+              <a href="company.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-shield"/></svg></span><span class="mega-txt"><b>Why STARTRADER</b></span></a>
+              <a href="corporate-social-responsibility.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-user"/></svg></span><span class="mega-txt"><b>CSR</b></span></a>
+              <a href="events.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-clock"/></svg></span><span class="mega-txt"><b>Events</b></span></a>
+              <div class="mega-sub">
+                <a href="sponsorship.html" class="mega-item mega-item--tight mega-sub-toggle"><span class="mega-ico"><svg><use href="#i-star"/></svg></span><span class="mega-txt"><b>Sponsorship</b></span><svg class="mega-subchev"><use href="#i-chevron-down"/></svg></a>
+                <div class="mega-subitems">
+                  <a href="sponsorship/nba.html">Official Partner of the NBA</a>
+                  <a href="sponsorship/pccme.html">Official Partner of the PCCME</a>
+                  <a href="sponsorship/icc.html">ICC Men&rsquo;s T20 World Cup 2026</a>
+                  <a href="sponsorship/asia-cup-2025.html">UAE National Cricket Team</a>
+                  <a href="sponsorship/pfl-champions-series.html">PFL Champions Series</a>
+                  <a href="sponsorship/mena.html">MENA Investment Congress 2025</a>
+                </div>
+              </div>
+              <a href="media.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-doc"/></svg></span><span class="mega-txt"><b>Media Coverage</b></span></a>
+              <a href="achievement.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-globe"/></svg></span><span class="mega-txt"><b>Achievements</b></span></a>
+              <a href="announcements.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-send"/></svg></span><span class="mega-txt"><b>Announcements</b></span></a>
+              <a href="https://www.startrader-careers.com/" target="_blank" rel="noopener" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-user-plus"/></svg></span><span class="mega-txt"><b>Careers</b></span></a>
+              <a href="https://www.starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-headset"/></svg></span><span class="mega-txt"><b>Help Center</b></span></a>
+              <a href="contact.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-bubble"/></svg></span><span class="mega-txt"><b>Contact Us</b></span></a>
+            </div>
+            <div class="mega-col">
+              <span class="mega-head">Corporate</span>
+              <a href="regulation.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-id"/></svg></span><span class="mega-txt"><b>Regulation</b></span></a>
+              <a href="legal-documents.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-doc"/></svg></span><span class="mega-txt"><b>Legal Documents</b></span></a>
+              <div class="mega-sub">
+                <a href="insurance.html" class="mega-item mega-item--tight mega-sub-toggle"><span class="mega-ico"><svg><use href="#i-shield"/></svg></span><span class="mega-txt"><b>Insurance</b></span><svg class="mega-subchev"><use href="#i-chevron-down"/></svg></a>
+                <div class="mega-subitems">
+                  <a href="lloyd-insurance.html">Lloyd&rsquo;s Insurance</a>
+                  <a href="financial-commission.html">Financial Commission</a>
+                </div>
+              </div>
+              <a href="liquidity-providers.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-droplet"/></svg></span><span class="mega-txt"><b>Liquidity Providers</b></span></a>
+            </div>
+            <div class="mega-col">
+              <span class="mega-head">Partnership</span>
+              <a href="partner.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-user"/></svg></span><span class="mega-txt"><b>Partner</b></span></a>
+              <a href="ib-register.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-user-plus"/></svg></span><span class="mega-txt"><b>Introducing Broker</b></span></a>
+              <a href="affiliate-registration.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-globe"/></svg></span><span class="mega-txt"><b>Affiliate</b></span></a>
+              <a href="money-manager.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>Money Manager</b></span></a>
+              <a href="institutional.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-box"/></svg></span><span class="mega-txt"><b>Institutional</b></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="nav-right">
+      <button class="lang" id="langBtn" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="langPop" aria-label="Select language">
+        <svg class="lang-globe" aria-hidden="true"><use href="#i-globe"/></svg>
+        <span class="lang-code" id="langCode">EN</span>
+        <svg class="lang-caret" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+      </button>
+      <div class="lang-pop" id="langPop" role="dialog" aria-label="Select language" aria-hidden="true">
+        <div class="lp-head">
+          <span class="lp-title">Languages</span>
+          <button class="lp-close" id="langClose" type="button" aria-label="Close language menu"><svg><use href="#i-close"/></svg></button>
+        </div>
+        <div class="lp-search">
+          <svg class="lp-search-ic" viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="6.4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M13.8 13.8L18 18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          <input type="text" id="langSearch" placeholder="Search Language" autocomplete="off" spellcheck="false">
+        </div>
+        <div class="lp-grid" id="langGrid">
+          <button class="lp-item is-active" type="button" data-code="EN"><b>English</b></button>
+          <button class="lp-item" type="button" data-code="ZH-CN"><b>简体中文</b> Simplified Chinese</button>
+          <button class="lp-item" type="button" data-code="KO"><b>한국어</b> Korean</button>
+          <button class="lp-item" type="button" data-code="MS"><b>Melayu</b> Malay</button>
+          <button class="lp-item" type="button" data-code="VI"><b>Việt</b> Vietnamese</button>
+          <button class="lp-item" type="button" data-code="TH"><b>ภาษาไทย</b> Thai</button>
+          <button class="lp-item" type="button" data-code="ID"><b>Indonesian</b> Indonesian</button>
+          <button class="lp-item" type="button" data-code="AR"><b>العربية</b> Arabic</button>
+          <button class="lp-item" type="button" data-code="JA"><b>日本語</b> Japanese</button>
+          <button class="lp-item" type="button" data-code="ZH-TW"><b>繁體中文</b> Traditional Chinese</button>
+          <button class="lp-item" type="button" data-code="FR"><b>Français</b> French</button>
+          <button class="lp-item" type="button" data-code="ES"><b>Español</b> Spanish</button>
+          <button class="lp-item" type="button" data-code="PT"><b>Português</b> Portuguese</button>
+          <button class="lp-item" type="button" data-code="DE"><b>Deutsch</b> German</button>
+          <button class="lp-item" type="button" data-code="FA"><b>فارسی</b> Persian</button>
+          <button class="lp-item" type="button" data-code="IT"><b>Italiano</b> Italian</button>
+          <button class="lp-item" type="button" data-code="RU"><b>Русский язык</b> Russian</button>
+          <button class="lp-item" type="button" data-code="TR"><b>Türkçe</b> Turkish</button>
+          <button class="lp-item" type="button" data-code="PL"><b>Polski</b> Polish</button>
+          <button class="lp-item" type="button" data-code="HI"><b>हिंदी</b> Hindi</button>
+          <button class="lp-item" type="button" data-code="NL"><b>Nederlands</b> Dutch</button>
+        </div>
+        <p class="lp-empty" hidden>No languages found</p>
+      </div>
+      <a href="login.html" class="login">Login</a>
+      <a href="https://www.startrader.com/live-account/" class="btn btn-primary btn-sm nav-cta">Open Live Account</a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav aria-label="Mobile">
+    <a href="index.html#markets">Trading</a>
+    <a href="index.html#academy">Education</a>
+    <a href="promotions.html">Promotions</a>
+    <a href="index.html#why">Company</a>
+    <hr>
+    <a href="login.html" class="login">Login</a>
+    <a href="https://www.startrader.com/live-account/" class="btn btn-primary">Open Live Account</a>
+  </nav>
+</div>
+
+<div class="ar-progress" aria-hidden="true"><i data-ar-progress></i></div>
+
+<main id="main">
+
+<article class="ar" itemscope itemtype="https://schema.org/Article">
+  <div class="ar-wrap">
+    <div class="container ar-cols">
+
+      <aside class="ar-rail" aria-label="Article contents and tools">
+        <div class="ar-rtags glass">
+          <h2 class="ar-side-h">Related tags</h2>
+          <div class="ar-rtags-list">
+            <a class="ar-tag" href="category-forex.html">Forex</a>
+            <a class="ar-tag" href="category-commodities.html">Commodities</a>
+            <a class="ar-tag" href="category-indices.html">Indices</a>
+            <a class="ar-tag" href="category-shares.html">Shares</a>
+            <a class="ar-tag" href="category-etf.html">ETFs</a>
+            <a class="ar-tag" href="category-cfd.html">CFD</a>
+          </div>
+        </div>
+
+        <div class="ar-cta glass" data-ar-open-card>
+          <h2 class="ar-cta-h">Open <span>Live Account</span></h2>
+          <form class="ar-cta-form" data-ar-open>
+            <div class="ar-f">
+              <label for="arCountry">Country <i>*</i></label>
+              <div class="wb-selwrap">
+                <!-- illustrative list — the CMS supplies the licensed country set -->
+                <select id="arCountry" name="country" required>
+                  <option value="">Select your country&hellip;</option>
+                  <option>United Arab Emirates</option>
+                  <option>United Kingdom</option>
+                  <option>Australia</option>
+                  <option>Austria</option>
+                  <option>Bahrain</option>
+                  <option>Bangladesh</option>
+                  <option>Belgium</option>
+                  <option>Brazil</option>
+                  <option>Brunei</option>
+                  <option>Cambodia</option>
+                  <option>Chile</option>
+                  <option>China</option>
+                  <option>Colombia</option>
+                  <option>Cyprus</option>
+                  <option>Czechia</option>
+                  <option>Denmark</option>
+                  <option>Egypt</option>
+                  <option>Finland</option>
+                  <option>France</option>
+                  <option>Germany</option>
+                  <option>Greece</option>
+                  <option>Hong Kong</option>
+                  <option>Hungary</option>
+                  <option>India</option>
+                  <option>Indonesia</option>
+                  <option>Ireland</option>
+                  <option>Italy</option>
+                  <option>Japan</option>
+                  <option>Jordan</option>
+                  <option>Kenya</option>
+                  <option>Kuwait</option>
+                  <option>Laos</option>
+                  <option>Lebanon</option>
+                  <option>Malaysia</option>
+                  <option>Maldives</option>
+                  <option>Mexico</option>
+                  <option>Morocco</option>
+                  <option>Nepal</option>
+                  <option>Netherlands</option>
+                  <option>New Zealand</option>
+                  <option>Nigeria</option>
+                  <option>Norway</option>
+                  <option>Oman</option>
+                  <option>Pakistan</option>
+                  <option>Peru</option>
+                  <option>Philippines</option>
+                  <option>Poland</option>
+                  <option>Portugal</option>
+                  <option>Qatar</option>
+                  <option>Saudi Arabia</option>
+                  <option>Singapore</option>
+                  <option>South Africa</option>
+                  <option>South Korea</option>
+                  <option>Spain</option>
+                  <option>Sri Lanka</option>
+                  <option>Sweden</option>
+                  <option>Switzerland</option>
+                  <option>Taiwan</option>
+                  <option>Thailand</option>
+                  <option>Türkiye</option>
+                  <option>Vietnam</option>
+                  <option>Other</option>
+                </select>
+                <svg class="wb-selchev" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+              </div>
+            </div>
+
+            <div class="ar-f">
+              <label for="arOpenEmail">Email <i>*</i></label>
+              <input type="email" id="arOpenEmail" name="email" placeholder="you@example.com" inputmode="email" autocomplete="email" required>
+            </div>
+
+            <div class="ar-f">
+              <label for="arCode">Email verification code <i>*</i></label>
+              <div class="ar-code-row">
+                <input type="text" id="arCode" name="code" inputmode="numeric" autocomplete="one-time-code" placeholder="6-digit code" required>
+                <button class="ar-send" type="button" data-ar-send>Send code</button>
+              </div>
+              <p class="ar-sent" data-ar-sent hidden>Code sent &mdash; check your inbox.</p>
+            </div>
+
+            <div class="ar-f">
+              <label for="arPass">Password <i>*</i></label>
+              <div class="ar-pass-row">
+                <input type="password" id="arPass" name="password" autocomplete="new-password" minlength="8" placeholder="Minimum 8 characters" required>
+                <button class="ar-eye" type="button" data-ar-eye aria-label="Show password" aria-pressed="false">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="2.8" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="ar-kind" role="radiogroup" aria-label="Account type">
+              <label class="ar-kind-pill"><input type="radio" name="kind" value="individual" checked><span>Individual</span></label>
+              <label class="ar-kind-pill"><input type="radio" name="kind" value="company"><span>Company</span></label>
+            </div>
+
+            <label class="ct-check ar-check" for="arUs">
+              <input type="checkbox" id="arUs" required>
+              <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+              <span>I confirm that I am not a U.S. person, including a U.S. citizen or resident.</span>
+            </label>
+            <label class="ct-check ar-check" for="arPp">
+              <input type="checkbox" id="arPp" required>
+              <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+              <span>I accept the <a href="privacy-policy-app.html">Privacy Policy</a>.</span>
+            </label>
+
+            <button class="btn btn-primary" type="submit">Create Account <svg class="ico"><use href="#i-arrow-right"/></svg></button>
+          </form>
+          <p class="ar-cta-note">Regulated broker &middot; Segregated client funds</p>
+        </div>
+      </aside>
+
+      <div class="ar-main">
+        <nav class="ar-crumb" aria-label="Breadcrumb">
+          <a href="education.html">Knowledge Centre</a>
+          <span aria-hidden="true">/</span>
+          <a href="category-cfd.html">CFD</a>
+          <span aria-hidden="true">/</span>
+          <span>CFD Leverage</span>
+        </nav>
+
+        <h1 class="ar-h1" itemprop="headline">CFD Leverage: How It Works, Ratios, Margin, and Risk Management</h1>
+        <p class="ar-stand" itemprop="description">Understand CFD leverage: how it works, leverage ratios, margin requirements, and how to manage your exposure wisely. Read the full beginner guide today.</p>
+
+        <div class="ar-byline">
+          <span class="ar-author">
+            <span class="ar-author-tx"><b>STARTRADER Research Desk</b><span>Published 11 June 2026 &middot; Updated 14 July 2026 &middot; 19 min read</span></span>
+          </span>
+          <div class="ar-share" role="group" aria-label="Share this article">
+            <a class="ar-sh" href="#" aria-label="Share on X"><svg><use href="#i-x"/></svg></a>
+            <a class="ar-sh" href="#" aria-label="Share on Facebook"><svg><use href="#i-facebook"/></svg></a>
+            <a class="ar-sh" href="#" aria-label="Share on LinkedIn"><svg><use href="#i-linkedin"/></svg></a>
+            <button class="ar-sh" type="button" data-ar-copy aria-label="Copy link to this article"><svg><use href="#i-copy"/></svg></button>
+            <button class="ar-sh" type="button" data-ar-print aria-label="Print this article"><svg><use href="#i-doc"/></svg></button>
+            <span class="ar-copied" data-ar-copied hidden role="status">Link copied</span>
+          </div>
+        </div>
+
+        <figure class="ar-fig">
+          <img src="assets/img/platform-hero.webp" alt="A price chart open on the STARTRADER platform" width="1600" height="900" fetchpriority="high" decoding="async" itemprop="image">
+        </figure>
+
+        <div class="ar-body" itemprop="articleBody">
+          <p class="ar-lede">One of the most well-discussed aspects of CFD trading, as well as one of the most misunderstood, is leverage. It’s how traders get into positions much larger than their account balance would normally allow, which sounds great, until you realize how it can be just as effective in the wrong direction.</p>
+          <p>If you’re going to trade CFDs seriously, you will need to understand CFD leverage. It affects the required margin to open a position, the method for determining profit and loss, and the rate at which a margin account can reach a margin call.</p>
+          <p>This guide covers everything, from the basics, how to leverage ratios, what the margin requirement is, how to manage risk, and the most common beginner’s mistakes.</p>
+          <p>This is the perfect place to get started with CFDs if you are a beginner or would like to refresh your CFD knowledge before trading with leverage.</p>
+
+          <div class="ar-note">
+            <b>Quick answer</b>
+            <p>The advantage of trading with CFD leverage is that traders can trade in a much larger market than their total capital. So, when you set the leverage ratio to 10:1, it means you are placing $1,000 on a $10,000 position. Margin is the amount of money used to open and maintain a trade. The leverage is applied to the total position size, not the margin, which means profits and losses are magnified. CFD trading is risky, and you can lose more money than what you put in.</p>
+          </div>
+
+          <h2 id="what-is-cfd-leverage">What Is CFD Leverage?</h2>
+          <p>CFD leverage is a tool that lets traders enter larger positions than their funds allow by requiring only a small margin deposit.</p>
+          <p>If you purchase an asset and pay for it in full, you’re paying the full price. In CFD trading, leverage means that only a percentage of the position value (the margin) must be deposited in the broker’s account, with the remaining value provided by the broker. If you have a 10:1 leverage ratio, you have $1,000 of your own money that you’re using to control a position of $10,000. The full $10,000 moves with the trade, but your $1,000 is what’s at risk.</p>
+          <p>Brokers provide leverage, and a CFD is a derivative asset, which means you never own the underlying asset. This structure makes leverage straightforward and meaningful. It is essential and integral to CFD trading, and that is why it is vital to understand it clearly before you start taking any trades at all.</p>
+          <p>The CFD leverage meaning and margin guide is worth reading alongside this article, as it goes into great detail on how leverage is calculated, how ratios affect exposure, and how losses are compounded.</p>
+          <p>Leverage also alters the approach towards each of the trades. When investing without leverage, a 5% loss on an investment results in a 5% loss of capital. A 20:1 leverage means your margin deposit is wiped out if the market moves 5%. One of the greatest mental shifts for new CFD traders is a shift in focus from absolute price movements to margin impact.</p>
+
+          <h2 id="how-does-cfd-leverage-work">How Does CFD Leverage Work?</h2>
+          <p>CFD leverage works by allowing you to trade a position that is a multiple of your margin deposit, with profits and losses based on the total size of your position, not just the size of your margin deposit.</p>
+          <p>Let’s take a look at how it works:</p>
+          <ul>
+            <li>You select an instrument that you want to trade, for example, a stock index that trades at $5,000.</li>
+            <li>You decide on a position size; one contract worth $5,000</li>
+            <li>With 10:1 leverage, your required margin is $500 (10% of $5,000)</li>
+            <li>The broker opens your full $5,000 position.</li>
+            <li>You’ll see a $100 profit on your $500 margin when the index increases by 2%.</li>
+            <li>You’ll incur a $100 loss on your $500 margin when the index declines by 2%.</li>
+          </ul>
+          <p>This is what the leverage effect is all about. A 2% move in the market is a 20% move on the margin. This is where the leverage works both ways, on gains and losses.</p>
+          <p>Once the concept of leverage is understood, the mechanics of profit calculation become relevant, and the exact movement into and out of the account becomes important — that’s where CFD profit calculation comes in.</p>
+          <h3>Worked Example Table</h3>
+          <div class="an-tablewrap">
+            <table class="an-table">
+              <caption class="sr-only">Comparison table</caption>
+              <thead><tr><th scope="col">Leverage Ratio</th><th scope="col">Trade Size</th><th scope="col">Margin Required</th><th scope="col">1% Move Gain</th><th scope="col">1% Move Loss</th></tr></thead>
+              <tbody>
+              <tr><th scope="row">5:1</th><td>$10,000</td><td>$2,000</td><td>$100 (5%)</td><td>-$100 (-5%)</td></tr>
+              <tr><th scope="row">10:1</th><td>$10,000</td><td>$1,000</td><td>$100 (10%)</td><td>-$100 (-10%)</td></tr>
+              <tr><th scope="row">20:1</th><td>$10,000</td><td>$500</td><td>$100 (20%)</td><td>-$100 (-20%)</td></tr>
+              <tr><th scope="row">50:1</th><td>$10,000</td><td>$200</td><td>$100 (50%)</td><td>-$100 (-50%)</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Obviously, the higher the leverage ratio, the less margin is needed, but the larger the percentage increase or decrease in each market move on that margin. At 50:1, a 1% price change translates to a 50% change in your margin investment.</p>
+
+          <h2 id="cfd-leverage-ratios-explained">CFD Leverage Ratios Explained</h2>
+          <p>A CFD leverage ratio determines the amount of market exposure you have for every unit of margin that you put in, and different leverage ratios have very different risk profiles.</p>
+          <p>The interpretation of a leverage ratio is simple. A 10:1 margin will allow you to use $10 of position for every $1 of margin. 30:1 means $1 controls $30. Depending on the ratio, the same account balance would yield very different position sizes and results.</p>
+          <p>There are no universal leverage ratios for all instruments. Most key jurisdictions have limits that vary by asset class. Trading more liquid assets, such as major forex currency pairs, often has higher leverage limits than trading less liquid assets, like individual stocks, cryptocurrencies, or commodities.</p>
+          <p>Lower maximum leverage is also a typical feature of retail traders compared to professional or institutional traders, depending on the broker’s leverage requirements and the regulatory environment.</p>
+          <p>There is a reason for the gap between retail and professional leverage. Generally, professional classification includes a high volume of trading experience, portfolio size, and a knowledge of risk. Retail limits are set lower as a protective measure, not as an arbitrary restriction.</p>
+          <h3>Leverage Ratio Comparison Table</h3>
+          <div class="an-tablewrap">
+            <table class="an-table">
+              <caption class="sr-only">Comparison table</caption>
+              <thead><tr><th scope="col">Ratio</th><th scope="col">Example Margin Deposit</th><th scope="col">Position Size Controlled</th></tr></thead>
+              <tbody>
+              <tr><th scope="row">5:1</th><td>$1,000</td><td>$5,000</td></tr>
+              <tr><th scope="row">10:1</th><td>$1,000</td><td>$10,000</td></tr>
+              <tr><th scope="row">20:1</th><td>$1,000</td><td>$20,000</td></tr>
+              <tr><th scope="row">30:1</th><td>$1,000</td><td>$30,000</td></tr>
+              <tr><th scope="row">100:1</th><td>$1,000</td><td>$100,000</td></tr>
+              <tr><th scope="row">500:1</th><td>$1,000</td><td>$500,000</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>The higher the ratio, the more opportunity and risk. A 500:1 ratio is a 0.2% loss against your position, which requires you to cover your margin call completely. It is important to know what the ratio truly represents, and that’s understanding the ratio other than as a number, before deciding on the amount of leverage to employ.</p>
+
+          <h2 id="cfd-leverage-vs-margin-what-is-the-differenc">CFD Leverage vs Margin: What Is the Difference?</h2>
+          <p>Leverage and margin are two sides of the same concept, with leverage being the multiplier that determines the size of the position, and margin being the amount of money you need to open and maintain the position.</p>
+          <p>These terms can easily be confused, particularly for beginners, due to their close relationship. Leverage provides information on how many exposures to the deposit. Margin is the money your broker sets aside to cover losses if that position fails.</p>
+          <p>If you have a margin account, a margin call will be issued if your account balance falls below the minimum balance requirements (due to a market loss). The broker can then liquidate some or all of your trades to stop further losses, or ask you to deposit more money to cover the losses right away.</p>
+          <p>Margin calls are among the most stressful events for a leveraged trader, and they are almost always due to insufficient free margin in an account or to taking too many positions.</p>
+          <p>It’s also crucial to understand the free and used margins. Used margin is the number of positions that are currently open. The remaining one is the free margin, where new positions are created or losses can be taken.</p>
+          <p>One of the more practical methods of preventing a margin call is to actively monitor free margin, which is directly linked to the CFD leverage and margin mechanics behind all leveraged trades.</p>
+          <h3>Key Terms Table</h3>
+          <div class="an-tablewrap">
+            <table class="an-table">
+              <caption class="sr-only">Comparison table</caption>
+              <thead><tr><th scope="col">Term</th><th scope="col">Definition</th></tr></thead>
+              <tbody>
+              <tr><th scope="row">Leverage</th><td>The multiplier that determines how much market exposure you control per unit of margin</td></tr>
+              <tr><th scope="row">Margin</th><td>The initial capital needed to gain entry to and keep a leveraged CFD account</td></tr>
+              <tr><th scope="row">Used Margin</th><td>The portion of your account balance currently held as margin for open positions</td></tr>
+              <tr><th scope="row">Free Margin</th><td>Account equity minus used margin — available for new positions or to absorb losses</td></tr>
+              <tr><th scope="row">Margin Call</th><td>A notification that account equity has fallen below the required margin level</td></tr>
+              <tr><th scope="row">Margin Level</th><td>Account equity divided by used margin, expressed as a percentage</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="benefits-of-using-leverage-in-cfd-trading">Benefits of Using Leverage in CFD Trading</h2>
+          <p>Implementing leverage in CFD trading can provide real structural benefits, only if the risks are mastered and comprehended in tandem.</p>
+          <ul>
+            <li>Capital efficiency: Leverage allows traders to enter trades with greater impact without putting a large amount of money into a trade that may not make it, thereby improving capital efficiency.</li>
+            <li>Access to larger markets: Larger markets, such as index futures, commodities, or forex pairs, which would require a large account balance to trade at a reasonable level, become accessible to other traders with smaller account balances.</li>
+            <li>Ability to go long and short: CFD leverage works for both long and short positions. In a way, going short is selling a CFD to profit if the market falls, which really just isn’t possible without leverage. It is important to understand how CFD short positions work and the associated risks before using this feature.</li>
+            <li>Precise position sizing: Leverages lets traders size their positions more accurately based on their risk tolerance and account size than they could with direct ownership of the position.</li>
+            <li>Diversification of positions: Because leverage means less capital is invested per position, a trader can invest smaller amounts in different instruments instead of investing all of their trading capital in a single position.</li>
+          </ul>
+          <p>None of these benefits removes risk. They explain how certain features of leveraged CFD trading can be implemented effectively (or poorly) according to the trader’s knowledge and discipline.</p>
+
+          <h2 id="risks-and-costs-of-cfd-leverage">Risks and Costs of CFD Leverage</h2>
+          <p>Just as a leveraged CFD position generates gains, it also generates losses, and leveraged CFD positions carry costs beyond just the risks associated with adverse price changes.</p>
+          <p>CFD trading is risky, and trading losses may exceed deposits. Not because it is done for legal reasons, but simply because working with leverage increases your risk.</p>
+          <ul>
+            <li>Amplified losses: A 5% loss with a 20:1 leveraged position means a 100% loss of the margin position. When leverage levels are high, the market doesn’t need to move dramatically to cause significant damage.</li>
+            <li>Margin calls: The market can fluctuate rapidly, and account equity may drop below the margin requirement. Automatic closing of positions at a loss can sometimes happen at the least opportune time in a fast-moving market.</li>
+            <li>Overnight financing charges (sometimes called a swap rate): Leveraged CFD positions opened overnight generally incur an overnight financing fee. This is a daily cost that can take a toll over time and may cause loss of profitability on long-term positions. Traders who don’t include overnight finance costs in their trade preparation will often find that daily charges have steadily eaten away at a position that seemed profitable on paper; a cost that multiplies every night that a position remains open.</li>
+            <li>Spread costs: Every CFD trade incurs a spread, the difference between the bid and the offer. When using leverage, the total cost of the spread is greater than it would be if it were not leveraged at the same size. One key factor in determining the actual cost of any leveraged transaction is understanding the spread in CFD trading, including how it widens during volatile periods.</li>
+            <li>Volatility risk: Fast-moving markets can gap through stop-loss levels, causing stops to close at worse prices than desired. The damage to an account is usually most severe when leverage and volatility are high.</li>
+            <li>Weekend gap risk: Positions taken over the weekend are vulnerable to price gaps upon market reopening. Events worldwide on weekends will create large gaps that can trigger stop-loss orders from the preceding week. For traders who frequently trade through the weekend, the details of CFD weekend trading and gap risks, including which markets are still open and which risks still exist, are important to understand.</li>
+          </ul>
+          <h3>Risk Summary Table</h3>
+          <div class="an-tablewrap">
+            <table class="an-table">
+              <caption class="sr-only">Comparison table</caption>
+              <thead><tr><th scope="col">Risk Type</th><th scope="col">What It Means</th><th scope="col">How to Reduce It</th></tr></thead>
+              <tbody>
+              <tr><th scope="row">Amplified losses</th><td>Losses calculated on full position, not just margin</td><td>Use lower leverage ratios</td></tr>
+              <tr><th scope="row">Margin call</th><td>Equity falls below the required margin level</td><td>Monitor free margin regularly</td></tr>
+              <tr><th scope="row">Overnight financing</th><td>Daily cost of holding leveraged positions</td><td>Factor financing into trade planning</td></tr>
+              <tr><th scope="row">Spread cost</th><td>Entry cost relative to margin is higher with leverage</td><td>Account for the spread before entering</td></tr>
+              <tr><th scope="row">Volatility gaps</th><td>Price jumps past stop-loss levels</td><td>Use guaranteed stops where available</td></tr>
+              <tr><th scope="row">Weekend gap risk</th><td>Overnight gaps on Monday open</td><td>Reduce or close positions before the weekend</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="how-to-manage-leverage-risk">How to Manage Leverage Risk</h2>
+          <p>Leverage risk management isn’t the avoidance of leverage; it’s the use of leverage within a defined and acceptable level of risk.</p>
+          <ul>
+            <li>Use stop-loss orders on every leveraged position: This is an order that will be automatically executed when a price falls to a certain level, so the maximum loss in a particular trade is limited. If there is no stop-loss, a leveraged position can theoretically have unlimited losses. The ability to determine acceptable stop locations is learned with trading experience and depends on market structure, not on any price level. Our guide on CFD indicators for managing positions covers analytical tools that help determine positions where logical stop-placement levels are most directly involved in technical analysis and risk management.</li>
+            <li>Size positions relative to account balance, not just margin minimum: The minimum margin required to enter a position is NOT the same as the “right amount of margin” to risk. A lot of seasoned traders set a maximum trading risk percentage, generally 1-2% of their trading account value, even with the minimum margin available.</li>
+            <li>Avoid maximum leverage, especially as a beginner: Just because a broker offers 500:1 leverage doesn’t mean it’s appropriate to use it. Starting with lower ratios while building market experience is a more sustainable approach that allows mistakes to be educational rather than financially devastating.</li>
+            <li>Watch free margin: Real-time tracking of free margin and your margin level provides you with an early warning of the possibility of a margin call. Most trading platforms will display these figures prominently, and it’s a simple practice to learn that will help distinguish disciplined traders from reactive ones.</li>
+            <li>Account for the cost of holding leveraged positions over time: Overnight finance costs accumulate every day. These costs represent a significant impact on performance for roles held for weeks or months. The full breakdown of CFD long-term costs of maintaining leveraged positions, including how swap rates are computed and how they vary by instrument, is vital reading for anyone considering holding leveraged CFDs for more than a few days.</li>
+          </ul>
+          <p>The majority of retail CFD traders lose money, according to the European Securities and Markets Authority (ESMA), which is partly due to the use of leverage, but not necessarily a problem with the product itself. The best risk management strategy for a novice is to understand the mechanics before trading.</p>
+
+          <h2 id="common-mistakes-beginners-make-with-cfd-leve">Common Mistakes Beginners Make with CFD Leverage</h2>
+          <p>Most leverage-related losses follow predictable patterns, and most of those patterns are avoidable with the right preparation.</p>
+          <h3>Mistake/Prevention Table</h3>
+          <div class="an-tablewrap">
+            <table class="an-table">
+              <caption class="sr-only">Comparison table</caption>
+              <thead><tr><th scope="col">Mistake</th><th scope="col">Why It Matters</th><th scope="col">How to Avoid It</th></tr></thead>
+              <tbody>
+              <tr><th scope="row">Using maximum leverage immediately</th><td>Amplifies losses before experience is built</td><td>Start with lower ratios and increase gradually</td></tr>
+              <tr><th scope="row">Ignoring overnight financing costs</th><td>Daily costs accumulate and reduce net returns</td><td>Calculate financing before holding positions overnight</td></tr>
+              <tr><th scope="row">Not placing stop-loss orders</th><td>Losses on leveraged trades have no floor without stops</td><td>Set a stop-loss on every leveraged position before entry</td></tr>
+              <tr><th scope="row">Confusing margin with total position value</th><td>Leads to underestimating actual exposure</td><td>Always calculate the full position value, not just the margin</td></tr>
+              <tr><th scope="row">Over-trading in volatile markets</th><td>Fast moves can trigger margin calls rapidly</td><td>Reduce position size or leverage during high volatility</td></tr>
+              <tr><th scope="row">Ignoring margin level warnings</th><td>Margin calls close positions at the worst time</td><td>Monitor margin level actively and act before the warning threshold</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Real-world example: A beginner opens a forex position using 100:1 leverage, depositing $200 margin to control a $20,000 position. The currency pair moves 1% against them; a move that would be unremarkable on an unleveraged position. On this leveraged trade, that 1% move represents a $200 loss, wiping out the entire margin deposit before a stop-loss is triggered. The trade wasn’t unusual.</p>
+          <p>The leverage ratio made it unmanageable. Had the same trader used 10:1 leverage on the same position, that 1% move would have represented a 10% loss on a $2,000 margin — painful, but survivable and recoverable.</p>
+
+          <h2 id="key-terms-to-know-about-cfd-leverage">Key Terms to Know About CFD Leverage</h2>
+          <p>Understanding the vocabulary of CFD is fundamental: it appears on every platform, broker, and educational tool you will encounter.</p>
+          <div class="an-tablewrap">
+            <table class="an-table">
+              <caption class="sr-only">Comparison table</caption>
+              <thead><tr><th scope="col">Term</th><th scope="col">Definition</th></tr></thead>
+              <tbody>
+              <tr><th scope="row">Leverage</th><td>The ratio of market exposure to margin deposit — e.g. 10:1 means $1 of margin controls $10 of position</td></tr>
+              <tr><th scope="row">Margin</th><td>The amount you need to deposit to open and maintain a leveraged CFD position</td></tr>
+              <tr><th scope="row">Margin Call</th><td>A warning is sent when the equity in an account drops below the minimum margin level</td></tr>
+              <tr><th scope="row">Free Margin</th><td>Account equity minus used margin — this can be used for new trades or for loss absorption</td></tr>
+              <tr><th scope="row">Used Margin</th><td>The fraction of your account balance presently serving as collateral for your open positions</td></tr>
+              <tr><th scope="row">Leverage Ratio</th><td>The amount of leverage specifically used for a position, e.g., 5:1, 30:1, 100:1</td></tr>
+              <tr><th scope="row">Overnight Financing</th><td>A daily fee for leveraged investments held beyond market closing</td></tr>
+              <tr><th scope="row">Spread</th><td>The difference between the buy and sell price of a CFD — the primary transaction cost</td></tr>
+              <tr><th scope="row">Stop-Loss</th><td>An order that automatically closes a position when the price reaches a specified level</td></tr>
+              <tr><th scope="row">Position Size</th><td>The total market value of an open CFD trade — calculated as lots or units multiplied by price</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="summary-table">Summary Table</h2>
+          <div class="an-tablewrap">
+            <table class="an-table">
+              <caption class="sr-only">Comparison table</caption>
+              <thead><tr><th scope="col">Element</th><th scope="col">Key Point</th></tr></thead>
+              <tbody>
+              <tr><th scope="row">What is CFD leverage</th><td>A trading mechanism that lets traders manage the size of their trades that exceeds their deposit amount.</td></tr>
+              <tr><th scope="row">How margin relates to leverage</th><td>Margin is the deposit required; leverage determines the position size that the deposit controls</td></tr>
+              <tr><th scope="row">Main benefit</th><td>Scalability — at no additional cost, benefit from a larger market with lower capital requirements.</td></tr>
+              <tr><th scope="row">Main risk</th><td>Losses compound with gains and can exceed the initial amount invested.</td></tr>
+              <tr><th scope="row">Who leverages suits</th><td>Traders who understand how it works know how to manage risk and trade with a position size appropriate for them.</td></tr>
+              <tr><th scope="row">Key management tip</th><td>Apply stop-loss, watch free margin, and do not use maximum leverage until experience has been gained.</td></tr>
+              <tr><th scope="row">Cost consideration</th><td>Overnight financing charges accumulate daily on all leveraged positions held past market close.</td></tr>
+              <tr><th scope="row">Regulatory note</th><td>Leverage limits vary by instrument type, jurisdiction, and account type.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="faq">Frequently asked questions</h2>
+          <div class="faq-list">
+        <details class="faq-item">
+          <summary>What is CFD leverage?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
+          <div class="faq-a">It’s a method that allows you to take on a position larger than the money you put down. A $500 deposit with 20:1 leverage controls a $10,000 position. Profits and losses are measured from the full $10,000; hence, the effects of leverage on both profits and losses.</div>
+        </details>
+        <details class="faq-item">
+          <summary>How does CFD leverage work?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
+          <div class="faq-a">You put in some money (a portion of the total amount of the trade), and the broker puts in the rest of the money. If you deposit $1,000 at 10:1 leverage, you control a $10,000 position. When the market moves 1%, the move is equal to one dollar — or 10% of your margin. Here’s how CFD leverage works in practice: market movements are multiplied by the leverage ratio on your deposit.</div>
+        </details>
+        <details class="faq-item">
+          <summary>What is a CFD leverage ratio?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
+          <div class="faq-a">CFD leverage ratio indicates the number of positions you have for every unit of margin. The 10:1 ratio is equivalent to 10 times the margin controls 10 times the market exposure. The ratios will differ from instrument to instrument and from regulatory environment to regulatory environment. In many instances, the higher ratio available will be for major forex pairs than for individual stocks or commodities.</div>
+        </details>
+        <details class="faq-item">
+          <summary>What is the difference between CFD leverage and margin?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
+          <div class="faq-a">Leverage is the multiplier — it dictates how much of your deposit you have exposed. CFD margin refers to the real money that must be deposited to open and hold CFD trades. With 20:1 leverage and a $10,000 stake, only $500 is required. If a margin call is issued, it means the investor’s account does not maintain the required margin, and the broker will ask the investor for more money or close out trades.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Is high leverage risky for beginners?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
+          <div class="faq-a">Yes, leverage trading in CFD is a great way to magnify both losses and profits. A small adverse price move when trading on margin at high leverage can blow up a margin deposit. Lower ratios are usually better for beginners as they learn market movements and how to trade positions. CFD trading can be risky and is not for everyone.</div>
+        </details>
+        <details class="faq-item">
+          <summary>What is a margin call in CFD trading?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
+          <div class="faq-a">A margin call occurs when the equity in your account drops below the margin requirement, typically due to trades going against your account. In this case, the broker may automatically liquidate positions to avoid further losses or inform you to make further deposits. Once a margin call is issued, the damage may already be done; proactive monitoring of margin levels becomes important.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Are there limits on CFD leverage?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
+          <div class="faq-a">Yes. The leverage limits for CFD may vary depending on the instrument traded, the regulatory authority overseeing the broker, and whether the account is retail or professional. Contrast the maximum leverage available to retail traders in most regulated markets with that available to their professional counterparts. The limits are highly dependent on the local jurisdiction.</div>
+        </details>
+        <details class="faq-item">
+          <summary>How can I reduce risk when using leverage in CFD trading?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
+          <div class="faq-a">Always use stop-loss orders on every single position; never take trades with maximum leverage; regularly check the free margin; size the position based on the entire account balance, not the minimum margin required; and consider overnight financing expenses when deciding which trades to take. None of these will remove risk, but they provide a formula for leveraging more responsibly.</div>
+        </details>
+          </div>
+
+          <h2 id="conclusion">Conclusion</h2>
+          <p>CFD leverage is one of the most potent tools of CFD trading, and it’s the most respected. It acts as a lever in both directions and affects every trade, regardless of the leverage ratio, position size, or risk management strategy.</p>
+          <p>The traders who use leverage effectively are not the ones looking for the best ratio. They are the ones who know what leverage really does: how it can turn a small market activity into a substantial account event, and build their trading strategy around that fact, not around the myth, if such a thing exists.</p>
+          <p>It’s not just a nice-to-have to understand the mechanics of margin, ratios, financing costs, and stop-loss before trading. It is the base of all the rest. This overview is the logical next read after the detailed CFD leverage guide, which goes into the workings of margin accounts in great depth.</p>
+
+          <div class="ar-note">
+            <b>Risk warning</b>
+            <p>CFDs are complex financial instruments and carry a high risk of losing money rapidly due to leverage. You should ensure you fully understand the risks involved and carefully consider whether you can afford to take the high risk of losing your money before trading.</p>
+          </div>
+          <p>Looking to learn the real-life use of leverage? These mechanics – margin calculations, position sizing, placing stop-losses – can be applied on a demo account where no money is at risk while in real market conditions.</p>
+        </div>
+
+        <nav class="ar-pager" aria-label="More guides">
+          <a class="ar-pg" href="what-is-a-cfd.html">
+            <span>Previous guide</span>
+            <b>What Are CFDs? A Beginner&rsquo;s Guide to Contracts for Difference</b>
+          </a>
+          <a class="ar-pg ar-pg--next" href="cfd-trading-strategies.html">
+            <span>Next guide</span>
+            <b>CFD Trading Strategies: Types and Beginner Setups</b>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============ RELATED ============ -->
+<section class="section ar-rel-sec" aria-labelledby="kb-rel-title">
+  <div class="container">
+    <div class="head center">
+      <span class="eyebrow" data-aos="fade-up">Keep reading</span>
+      <h2 class="h2" id="kb-rel-title" data-aos="fade-up">More CFD guides</h2>
+    </div>
+    <div class="cat-grid">
+      <article class="cat-card" data-aos="fade-up">
+        <a class="cat-card-media" href="cfd-trading-strategies.html" tabindex="-1" aria-hidden="true">
+          <span class="cover-bg" role="img" aria-label="Blue lightning-bolt artwork" style="background-image:url('assets/img/stat-blue.webp')"></span>
+          <span class="cat-card-tag"><svg aria-hidden="true"><use href="#i-cfd"/></svg>CFD</span>
+        </a>
+        <div class="cat-card-body">
+          <h3 class="cat-card-h"><a href="cfd-trading-strategies.html">CFD Trading Strategies: Types and Beginner Setups</a></h3>
+          <span class="cat-card-go">Read article <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
+        </div>
+      </article>
+      <article class="cat-card" data-aos="fade-up" data-aos-delay="100">
+        <a class="cat-card-media" href="cfds-vs-other-instruments.html" tabindex="-1" aria-hidden="true">
+          <span class="cover-bg" role="img" aria-label="Layered abstract artwork in cool tones" style="background-image:url('assets/img/stat-mul.webp')"></span>
+          <span class="cat-card-tag"><svg aria-hidden="true"><use href="#i-cfd"/></svg>CFD</span>
+        </a>
+        <div class="cat-card-body">
+          <h3 class="cat-card-h"><a href="cfds-vs-other-instruments.html">CFD vs Futures: How CFDs Compare to Other Instruments</a></h3>
+          <span class="cat-card-go">Read article <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
+        </div>
+      </article>
+      <article class="cat-card" data-aos="fade-up" data-aos-delay="200">
+        <a class="cat-card-media" href="commodity-cfd-trading-complete-guide.html" tabindex="-1" aria-hidden="true">
+          <span class="cover-bg" role="img" aria-label="STARTRADER product markets on screen" style="background-image:url('assets/img/products-video-poster.webp')"></span>
+          <span class="cat-card-tag"><svg aria-hidden="true"><use href="#i-cfd"/></svg>CFD</span>
+        </a>
+        <div class="cat-card-body">
+          <h3 class="cat-card-h"><a href="commodity-cfd-trading-complete-guide.html">Commodity CFD Trading: What It Is and How It Works</a></h3>
+          <span class="cat-card-go">Read article <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+</main>
+
+
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer" id="footer">
+  <div class="container">
+    <div class="foot-cols">
+      <div class="foot-col">
+        <h4>Conditions</h4>
+        <a href="getting-started.html">Account Opening</a><a href="accounts.html">Trading Account</a><a href="prime-ecn-account.html">Prime ECN</a><a href="funding.html">Funding &amp; Withdrawal</a>
+        <h4 class="mt">Partnership</h4>
+        <a href="ib-register.html">Introducing Broker</a><a href="affiliate-registration.html">Affiliate</a><a href="money-manager.html">Money Manager</a><a href="institutional.html">Institutional</a>
+      </div>
+      <div class="foot-col">
+        <h4>Platforms</h4>
+        <a href="mt5.html">MT5</a><a href="mt4.html">MT4</a><a href="copy-trade.html">Copy Trade</a><a href="star-webtrader.html">STAR Web Trading</a><a href="webtrader.html">Web Trader</a><a href="trading-app.html">Mobile Apps</a><a href="pamm-trade.html">Pro-Link</a>
+        <h4 class="mt">Products</h4>
+        <a href="forex.html">Forex</a><a href="cfd.html">CFD</a><a href="commodities.html">Commodities</a><a href="indices.html">Indices</a><a href="shares.html">Shares</a><a href="etf.html">ETFs</a>
+      </div>
+      <div class="foot-col">
+        <h4>Education</h4>
+        <a href="education.html">Knowledge Center</a><a href="market-analysis.html">Market Analysis</a><a href="glossary.html">Glossary</a><a href="news.html">News Room</a><a href="economiccalendar.html">Economic Calendar</a><a href="webinars.html">Webinars</a>
+        <h4 class="mt">Corporate</h4>
+        <a href="regulation.html">Regulation</a><a href="legal-documents.html">Legal Documents</a><a href="insurance.html">Insurance</a><a href="liquidity-providers.html">Liquidity Providers</a>
+      </div>
+      <div class="foot-col">
+        <h4>About</h4>
+        <a href="company.html">Why STARTRADER</a><a href="corporate-social-responsibility.html">CSR</a><a href="events.html">Events</a><a href="media.html">Media Coverage</a><a href="achievement.html">Achievements</a><a href="announcements.html">Announcements</a><a href="https://www.startrader-careers.com/" target="_blank" rel="noopener">Careers</a><a href="https://www.starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">Help Center</a>
+        <h4 class="mt">Contact us</h4>
+        <div class="foot-contact"><span>Support enquiries</span><a href="mailto:support@startrader.com">support@startrader.com</a></div>
+        <div class="foot-contact"><span>Partnerships</span><a href="mailto:partners@startrader.com">partners@startrader.com</a></div>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <span class="foot-brand"><img class="foot-logo" src="assets/img/logo-startrader.svg" alt="STARTRADER" width="180" height="35"><span class="foot-tag">Built on trust. Driven by growth.</span></span>
+      <div class="foot-partners">
+        <img class="fp-nba" src="assets/img/partner-nba.svg" alt="Official Partner of the NBA" height="30" width="45">
+        <img class="fp-porsche" loading="lazy" decoding="async" src="assets/img/partner-porsche.webp" alt="Official Partner of Porsche Carrera Cup Middle East" height="26" width="165">
+      </div>
+    </div>
+
+    <div class="foot-legal-row">
+      <div class="foot-copy">
+        <span>© 2026 STARTRADER. All rights reserved</span>
+        <a href="privacy-policy-app.html">Privacy Policy</a><a href="legal-documents.html">Terms &amp; Conditions</a><a href="legal-documents.html">Cookie Policy</a>
+      </div>
+      <div class="socials">
+        <a href="https://www.facebook.com/Startrader.International/" target="_blank" rel="noopener" aria-label="Facebook"><svg><use href="#i-facebook"/></svg></a>
+        <a href="https://x.com/startrader_int/" target="_blank" rel="noopener" aria-label="X"><svg><use href="#i-x"/></svg></a>
+        <a href="https://www.instagram.com/startrader.official/" target="_blank" rel="noopener" aria-label="Instagram"><svg><use href="#i-instagram"/></svg></a>
+        <a href="https://www.linkedin.com/company/startrader-official/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg><use href="#i-linkedin"/></svg></a>
+        <a href="https://www.youtube.com/@Startrader.international" target="_blank" rel="noopener" aria-label="YouTube"><svg><use href="#i-youtube"/></svg></a>
+        <a href="https://www.tiktok.com/@startraderofficial/" target="_blank" rel="noopener" aria-label="TikTok"><svg><use href="#i-tiktok"/></svg></a>
+      </div>
+    </div>
+
+    <div class="risk">
+      <h5>RISK WARNING</h5>
+      <p>Trading in leveraged derivative products, such as Foreign Exchange (Forex) and Contracts for Difference (CFDs), involves a high level of risk and may result in losses that exceed your initial deposit. These products may not be suitable for all investors. Leverage amplifies both potential profits and losses. When trading these instruments, you do not own or have any rights to the underlying assets. Past performance is not indicative of future results.</p>
+      <p>Before making any investment decisions, you should carefully assess your investment objectives, knowledge, experience, and financial situation. You should only engage in Forex and CFD trading if you possess sufficient knowledge and experience. STARTRADER assumes no liability for any losses incurred from trading, and all trading activities are undertaken at your own risk.</p>
+      <p>The content provided on this website is for general informational purposes only and does not take into account your individual financial circumstances, investment goals, or risk tolerance. You should review the legal documents available on our website to ensure a full understanding of the risks associated with CFD trading. If necessary, seek independent advice from qualified professionals before proceeding.</p>
+
+      <h5>REGIONAL RESTRICTIONS</h5>
+      <p>This website is not intended for distribution to, or use by, any person or entity who is a citizen or resident of certain jurisdictions, including, but not limited to the United States, and jurisdictions listed on the FATF "blacklist" or other major global sanctions lists. It is also not intended for distribution or use in any jurisdiction where such distribution or use would violate local laws or regulations.</p>
+
+      <h5>REGULATOR INFORMATION</h5>
+      <p>STARTRADER is the brand representing a network of regulated and licensed entities across various jurisdictions, each authorised to provide specific financial services in compliance with local regulations. Upon registration, you will be assigned to the appropriate entity based on your location, ensuring that all trading activities are governed by the applicable regulatory authority. While the relevant authorities have granted securities or investment dealer licenses to the licensees, they do not endorse the products or services offered by STARTRADER.</p>
+      <p><strong>STARTRADER</strong> Global Financial Consultation &amp; Financial Analysis L.L.C is a Category 5 licensee regulated by the Capital Market Authority (CMA) of the United Arab Emirates, with License No. 20200000241, authorised to carry out regulated activities of Introduction and Promotion in the UAE. Its registered office is located at Office 815, Al Manara Tower, Business Bay, Dubai, UAE. It is not authorised to provide brokerage services or execute client trades.</p>
+      <p><strong>STARTRADER</strong> Prime Global Pty Ltd is regulated by the Australian Securities and Investments Commission (ASIC), with ACN 156005668 and AFSL No. 421210. Its registered office is located at Level 35, 31 Market Street, Sydney, NSW 2000, Australia.</p>
+      <p><strong>STARTRADER</strong> International Pty Ltd is regulated by the Financial Sector Conduct Authority (FSCA) of South Africa, with FSP No. 52464 and Registration No. 2022/435897/07. Its registered office is located at 18 Cavendish Road, Claremont, Cape Town, Western Cape, 7708, South Africa.</p>
+      <p><strong>STARTRADER</strong> Limited is regulated by the Financial Services Authority (FSA) of Seychelles, with License No. SD049 and Registration No. 8427362-1. Its registered office is located at Suite 3, Global Village, Jivan's Complex, Mont Fleuri, Mahe, Seychelles.</p>
+      <p><strong>STARTRADER</strong> Financial Markets Limited is regulated by the Financial Services Commission (FSC) of Mauritius, with Company No. 212229 GBC and License No. GB24203371. Its registered office is located at Suite 201, 2nd Floor, The Catalyst, 40 Silicon Avenue, Ebene Cybercity, Mauritius.</p>
+      <p><strong>STARTRADER</strong> (CY) Limited, registered in the Republic of Cyprus under registration number HE421001 with its registered address at 160 Archiepiskopou Makariou III, 1st Floor, 3026 Limassol, Cyprus. This entity does not offer regulated financial products or provide trading services.</p>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Back to top"><svg><use href="#i-caret-up"/></svg></button>
+
+<!-- ============ CHAT WIDGET ============ -->
+<button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
+  <img class="chat-fab-ico" src="assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
+</button>
+<div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
+  <div class="chat-head">
+    <span class="chat-avatar"><svg><use href="#i-headset"/></svg><i class="chat-online"></i></span>
+    <div class="chat-head-txt"><b>STARTRADER Support</b><em>Typically replies in a few minutes</em></div>
+    <button class="chat-close" id="chatClose" aria-label="Close chat"><svg><use href="#i-close"/></svg></button>
+  </div>
+  <div class="chat-body">
+    <div class="chat-msg">👋 Hi there! Welcome to STARTRADER. How can we help you today?</div>
+    <div class="chat-quick">
+      <a href="getting-started.html" class="chat-chip">Open a live account</a>
+      <a href="trading-app.html" class="chat-chip">Download a platform</a>
+      <a href="#schedule" class="chat-chip">See the webinar schedule</a>
+      <a href="contact.html" class="chat-chip">Contact us</a>
+    </div>
+  </div>
+  <form class="chat-input" id="chatForm">
+    <input type="text" id="chatText" placeholder="Type your message…" aria-label="Message" autocomplete="off">
+    <button type="submit" class="chat-send" aria-label="Send"><svg><use href="#i-send"/></svg></button>
+  </form>
+</div>
+
+<!-- ============ COOKIE CONSENT ============ -->
+<div class="cookie" id="cookie" role="dialog" aria-label="Cookie notice">
+  <span class="cookie-ic"><svg><use href="#i-cookie"/></svg></span>
+  <span class="cookie-text">We use cookies to enhance your experience on this website.</span>
+  <a href="legal-documents.html" class="cookie-more">More details</a>
+  <button class="cookie-x" id="cookieClose" aria-label="Accept and close"><svg><use href="#i-close"/></svg></button>
+</div>
+
+<script src="assets/js/vendor/gsap.min.js" defer></script>
+<script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
+<script src="assets/js/vendor/lenis.min.js" defer></script>
+<script src="assets/js/vendor/aos.min.js" defer></script>
+<script src="assets/js/main.min.js?v=qa61" defer></script>
+<script>
+// the rail's open-account form: native validation runs first; a valid
+// submit routes to account opening without carrying the fields in the URL
+document.addEventListener('DOMContentLoaded', function () {
+  var f = document.querySelector('[data-ar-open]');
+  if (!f) return;
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    window.location.href = 'getting-started.html';
+  });
+
+  // send-code is a demo on the static build: it checks the email first,
+  // then arms a resend countdown the way the portal does
+  var send = f.querySelector('[data-ar-send]');
+  var sent = f.querySelector('[data-ar-sent]');
+  var email = f.querySelector('#arOpenEmail');
+  if (send && email) send.addEventListener('click', function () {
+    if (!email.checkValidity()) { email.reportValidity(); return; }
+    if (sent) sent.hidden = false;
+    var left = 60;
+    send.disabled = true;
+    var base = send.textContent;
+    var t = setInterval(function () {
+      left--;
+      send.textContent = 'Resend in ' + left + 's';
+      if (left <= 0) { clearInterval(t); send.disabled = false; send.textContent = base; }
+    }, 1000);
+  });
+
+  var eye = f.querySelector('[data-ar-eye]');
+  var pass = f.querySelector('#arPass');
+  if (eye && pass) eye.addEventListener('click', function () {
+    var show = pass.type === 'password';
+    pass.type = show ? 'text' : 'password';
+    eye.setAttribute('aria-pressed', show ? 'true' : 'false');
+    eye.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+  });
+});
+</script>
+</body>
+</html>

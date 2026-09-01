@@ -5376,3 +5376,15 @@ html{scroll-behavior:auto}
 /* the archive needs its own light ground: without it the section fell through
    to the body's near-black and the heading went dark-on-dark */
 .cat-list{background:linear-gradient(180deg,var(--bg-light,#f4f7fa),#fff)}
+
+/* ===== ARTICLE BODY LISTS (appended batch 2026-09-01c) =====
+   The category articles carry real bullet and numbered lists, which the
+   article body had no rule for — every item had been arriving as its own
+   paragraph. Lists now read as lists, in the body's own measure. */
+.ar-body ul,.ar-body ol{margin:16px 0 0;padding-left:22px;display:flex;flex-direction:column;gap:9px}
+.ar-body ul{list-style:disc}
+.ar-body ol{list-style:decimal}
+.ar-body li{font-size:16px;line-height:1.75;color:var(--text-soft)}
+.ar-body li::marker{color:var(--blue)}
+.ar-body li>strong,.ar-body li>b{color:var(--text)}
+.ar-body ul.ar-levels{list-style:none;padding-left:0}
