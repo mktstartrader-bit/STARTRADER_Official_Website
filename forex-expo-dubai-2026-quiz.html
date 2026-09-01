@@ -29,7 +29,8 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
 
   <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="assets/img/expo-hero-bg.webp" as="image" type="image/webp" fetchpriority="high" />
+  <link rel="preload" href="assets/img/expo-hero-bg.webp" as="image" type="image/webp" fetchpriority="high"
+        imagesrcset="assets/img/expo-hero-bg-768w.webp 768w, assets/img/expo-hero-bg-1152w.webp 1152w, assets/img/expo-hero-bg.webp 1536w" imagesizes="100vw" />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
   <link rel="stylesheet" href="assets/css/styles.min.css?v=qa72" />
@@ -334,6 +335,18 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
   background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.14);transition:background .2s,color .2s,border-color .2s}
 .xp-seg button[aria-pressed="true"]{background:rgba(0,71,187,.34);border-color:#7fb2ff;color:#fff}
 .xp-seg button:focus-visible{outline:2px solid rgba(127,178,255,.7);outline-offset:2px}
+.xp-consult{margin-top:18px;padding-top:22px;border-top:1px solid rgba(255,255,255,.12)}
+.xp-consult-h{font-size:clamp(17px,2.1vw,20px);font-weight:800;letter-spacing:-.01em;color:#fff;margin-bottom:8px}
+.xp-consult .xp-pop-p{font-size:14px;line-height:1.65}
+.xp-consult .xp-pop-p+.xp-pop-p{margin-top:6px}
+.xp-seg-opt{position:relative;display:block}
+.xp-seg-opt input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+.xp-seg-opt span{display:block;text-align:center;font-size:13.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#c4cedf;padding:13px 10px;border-radius:14px;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.16);transition:background .2s ease,border-color .2s ease,color .2s ease}
+.xp-seg-opt:hover span{background:rgba(255,255,255,.09);color:#eaf0fa}
+.xp-seg-opt input:checked+span{background:rgba(0,71,187,.34);border-color:#7fb2ff;color:#fff}
+.xp-seg-opt input:focus-visible+span{outline:2px solid rgba(127,178,255,.7);outline-offset:2px}
+.xp-qr[hidden]{display:none}
 .xp-qr{display:flex;align-items:center;gap:18px;margin-top:18px;padding:14px;border-radius:16px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.13)}
 .xp-qr img{flex:none;width:124px;height:124px;border-radius:10px;background:#fff;padding:8px;display:block}
 .xp-qr p{font-size:14px;line-height:1.6;color:#eaf0fa;font-weight:600}
@@ -393,7 +406,9 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
 
 <!-- ============ HERO: THE QUIZ ============ -->
 <section class="xp-hero" aria-labelledby="xp-h1">
-  <img class="xp-hero-bg" src="assets/img/expo-hero-bg.webp" alt="STARTRADER reception desk lit by a wave of blue glass panels at Forex Expo Dubai" width="1536" height="1024" fetchpriority="high" decoding="async">
+  <img class="xp-hero-bg" src="assets/img/expo-hero-bg.webp"
+       srcset="assets/img/expo-hero-bg-768w.webp 768w, assets/img/expo-hero-bg-1152w.webp 1152w, assets/img/expo-hero-bg.webp 1536w" sizes="100vw"
+       alt="STARTRADER reception desk lit by a wave of blue glass panels at Forex Expo Dubai" width="1536" height="1024" fetchpriority="high">
   <div class="xp-wrap">
     <a class="xp-brand" href="index.html" aria-label="STARTRADER home">
       <img src="assets/img/logo-startrader.svg" alt="STARTRADER" width="170" height="33">
@@ -610,7 +625,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var body = pop.querySelector('[data-pop-body]');
   var live = pop.querySelector('[data-pop-live]');
   var xBtn = pop.querySelector('[data-pop-x]');
-  var COOLDOWN = 5 * 60;  // seconds before the retake unlocks (sheet: 05:00)
+  var COOLDOWN = 2 * 60;  // seconds before the retake unlocks (MKT 9.01: 02:00)
   var PASS = 8;           // 8–10 is the top tier
   var LETTERS = ['A', 'B', 'C', 'D'];
 
@@ -630,7 +645,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // ---- state: survives a close/reopen and a reload within the session ----
   var KEY = 'xpQuizState';
-  var S = { attempt: 0, first: null, second: null, std: null, prm: null, cooldownEnd: 0, details: false };
+  var S = { attempt: 0, first: null, second: null, std: null, prm: null, cooldownEnd: 0, details: false, connect: '' };
   try { var raw = sessionStorage.getItem(KEY); if (raw) S = JSON.parse(raw); } catch (err) {}
   function save() { try { sessionStorage.setItem(KEY, JSON.stringify(S)); } catch (err) {} }
   // integration: the campaign backend issues the real claim codes
@@ -687,6 +702,9 @@ document.addEventListener('DOMContentLoaded', function () {
   // ---- routing: what the button opens depends on where the visitor is ----
   function route() {
     if (S.attempt === 0) return showIntro();
+    // a visitor who closed the popup on the score screen still owes us the
+    // details form — the connect choice lives inside it, so reopen it there
+    if (!S.details) return showForm(S.attempt === 1 ? S.first : S.second);
     if (S.attempt === 1) return S.first >= PASS ? showTopTier() : showKeepLearning();
     return S.second >= PASS ? showSession() : showRoundTwo();
   }
@@ -785,11 +803,35 @@ document.addEventListener('DOMContentLoaded', function () {
              '<p class="xp-pop-p is-strong">See what can help you prepare for your next attempt.</p>') +
       actions(primary(top ? 'See my rewards' : 'See what&rsquo;s next', 'data-go'))
     );
-    body.querySelector('[data-go]').addEventListener('click', function () { S.details ? route() : showForm(); });
+    body.querySelector('[data-go]').addEventListener('click', function () { S.details ? route() : showForm(score); });
   }
 
   // POP-UP 13 — the details form (first attempt only)
-  function showForm() {
+  // the connect choice — asked inside the details form for a first-attempt
+  // pass, and on the session screen for anyone who qualified on the retake
+  function connectChoice() {
+    return '<div class="xp-seg" role="radiogroup" aria-label="How would you like to connect?">' +
+        '<label class="xp-seg-opt"><input type="radio" name="connect" value="online" required data-connect><span>Online</span></label>' +
+        '<em>or</em>' +
+        '<label class="xp-seg-opt"><input type="radio" name="connect" value="booth" required data-connect><span>At the booth</span></label>' +
+      '</div>' +
+      '<div class="xp-qr" data-booth-qr hidden><img src="assets/img/expo-quiz-qr.svg" alt="QR code to book your 15-minute introduction session" width="124" height="124"><p>Scan the QR code to book your session.</p></div>';
+  }
+  function wireConnect(scope) {
+    var qr = scope.querySelector('[data-booth-qr]');
+    Array.prototype.slice.call(scope.querySelectorAll('[data-connect]')).forEach(function (r) {
+      r.addEventListener('change', function () {
+        S.connect = r.value; save();
+        if (qr) qr.hidden = r.value !== 'booth';
+      });
+    });
+  }
+
+  function showForm(score) {
+    // MKT 9.01: an 8+ score earns the introduction session, so how to take it
+    // is asked here — in the form, where the answer lands with the rest of the
+    // lead — rather than on a screen of its own afterwards
+    var top = (typeof score === 'number' ? score : (S.attempt === 1 ? S.first : S.second)) >= PASS;
     var countries = ['United Arab Emirates', 'Saudi Arabia', 'Qatar', 'Kuwait', 'Bahrain', 'Oman', 'Jordan', 'Egypt', 'India', 'Pakistan', 'Philippines', 'Malaysia', 'Indonesia', 'Thailand', 'Vietnam', 'Nigeria', 'South Africa', 'United Kingdom', 'Other'], co = '';
     for (var i = 0; i < countries.length; i++) co += '<option>' + countries[i] + '</option>';
     var chev = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
@@ -805,6 +847,13 @@ document.addEventListener('DOMContentLoaded', function () {
         '<div class="xp-f"><label for="qzPhone">Phone Number <i>*</i></label><input id="qzPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required></div>' +
         '<div class="xp-f"><label for="qzCountry">Country <i>*</i></label><div class="xp-selwrap"><select id="qzCountry" name="country" required><option value="">Select your country&hellip;</option>' + co + '</select>' + chev + '</div></div>' +
         '<div class="xp-f"><label for="qzRef">Referral Code</label><input id="qzRef" name="referral" autocomplete="off"></div>' +
+        (top ?
+        '<div class="xp-f--full xp-consult">' +
+          '<h3 class="xp-consult-h">Your consultation awaits</h3>' +
+          '<p class="xp-pop-p">You&rsquo;ve earned a complimentary <b>15-minute introduction session</b> with a STARTRADER Representative.</p>' +
+          '<p class="xp-pop-p is-strong">Choose how you&rsquo;d like to connect:</p>' +
+          connectChoice() +
+        '</div>' : '') +
         '<div class="xp-f--full">' + actions(primary('Unlock my rewards', 'data-submit')).replace('type="button"', 'type="submit"') +
         '<p class="xp-pop-fine">By submitting your details, you acknowledge and agree to the applicable <a href="privacy-policy-app.html" target="_blank" rel="noopener">Privacy Policy</a> and <a href="legal-documents.html" target="_blank" rel="noopener">Terms &amp; Conditions</a>.</p>' +
         '<label class="xp-pop-consent" for="qzOpt"><input type="checkbox" id="qzOpt" name="optin">' + tick + '<span>I would like to receive further updates, promotions, and event invitations from STARTRADER by email/SMS. You can unsubscribe at any time.</span></label>' +
@@ -812,6 +861,7 @@ document.addEventListener('DOMContentLoaded', function () {
       '</form>'
     );
     var f = body.querySelector('[data-details]');
+    if (top) wireConnect(f);
     f.addEventListener('submit', function (e) {
       e.preventDefault();
       if (!f.checkValidity()) { f.reportValidity(); return; }
@@ -845,7 +895,7 @@ document.addEventListener('DOMContentLoaded', function () {
       '<p class="xp-pop-p is-strong">You have 1 attempt remaining.</p>' +
       actions(primary('Retake the quiz', 'data-retake disabled')) +
       '<p class="xp-pop-fine">Retake available after the cooldown period.</p>' +
-      '<p class="xp-cool" data-cool><span>Cooldown:</span> <b data-cool-t>05:00</b></p>'
+      '<p class="xp-cool" data-cool><span>Cooldown:</span> <b data-cool-t>02:00</b></p>'
     );
     bindCopy();
     var retake = body.querySelector('[data-retake]'), cool = body.querySelector('[data-cool]'), ct = body.querySelector('[data-cool-t]');
@@ -872,8 +922,11 @@ document.addEventListener('DOMContentLoaded', function () {
         rewardItem('📚', 'Free STARACADEMY education pack', 'Keep building your market knowledge with educational content designed to help sharpen your trading know-how.') +
         rewardItem('💬', 'Free 15-minute introduction session', 'Connect with a STARTRADER Representative for a complimentary 15-minute introduction session.') +
       '</ul>' +
+      // the connect choice was made in the details form — echo it back here
+      (S.connect ? '<p class="xp-pop-p is-strong">You chose to connect ' + (S.connect === 'booth' ? '<b>at the booth</b>' : '<b>online</b>') + '.</p>' : '') +
+      (S.connect === 'booth' ? '<div class="xp-qr"><img src="assets/img/expo-quiz-qr.svg" alt="QR code to book your 15-minute introduction session" width="124" height="124"><p>Scan the QR code to book your session.</p></div>' : '') +
       '<p class="xp-pop-sub">Your premium claim code</p>' + codeBox(S.prm) +
-      actions(primary('Save my code', 'data-copy') + line('Download education pack', '', '#') + line('Book my introduction session', '', '#')) // integration: pack + booking URLs
+      actions(primary('Save my code', 'data-copy') + line('Download education pack', '', '#')) // integration: education pack URL
     );
     bindCopy();
   }
@@ -894,23 +947,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // POP-UP 16 — second attempt complete, score 8–10
   function showSession() {
+    // the choice normally comes from the details form, so this screen confirms
+    // it rather than asking twice; no booking CTA (Kate, 9.01)
+    var booth = S.connect === 'booth';
+    var asked = !!S.connect;  // qualifying on the retake skips the form, so ask here
     render(
-      '<h2 class="xp-pop-h" id="xpPopH" data-focus>Your introduction session awaits</h2>' +
+      '<h2 class="xp-pop-h" id="xpPopH" data-focus>Your consultation awaits</h2>' +
       '<p class="xp-pop-p">You&rsquo;ve earned a complimentary <b>15-minute introduction session</b> with a STARTRADER Representative.</p>' +
-      '<p class="xp-pop-p is-strong">Choose how you&rsquo;d like to connect:</p>' +
-      '<div class="xp-seg" role="group" aria-label="How would you like to connect?"><button type="button" data-mode="online" aria-pressed="true">Online</button><em>or</em><button type="button" data-mode="booth" aria-pressed="false">At the booth</button></div>' +
-      '<div data-panel="online">' + actions(primary('Book my 15-minute session', 'data-book')) + '</div>' + // integration: booking URL
-      '<div data-panel="booth" hidden><div class="xp-qr"><img src="assets/img/expo-quiz-qr.svg" alt="QR code to book your 15-minute introduction session" width="124" height="124"><p>Scan the QR code to book your session.</p></div></div>' +
+      (asked
+        ? '<p class="xp-pop-p is-strong">You chose to connect ' + (booth ? '<b>at the booth</b>' : '<b>online</b>') + '.</p>' +
+          (booth
+            ? '<div class="xp-qr"><img src="assets/img/expo-quiz-qr.svg" alt="QR code to book your 15-minute introduction session" width="124" height="124"><p>Scan the QR code to book your session.</p></div>'
+            : '<p class="xp-pop-p">We will use the details you gave us to arrange the session.</p>')
+        : '<p class="xp-pop-p is-strong">Choose how you&rsquo;d like to connect:</p>' + connectChoice()) +
       '<p class="xp-pop-disc"><b>*Disclaimer:</b> The Introduction Session is provided for general informational purposes only. It does not constitute investment advice, a personal recommendation, a trading signal, or an assessment of the suitability of any product or service for your individual circumstances. The STARTRADER Representative conducting this session will not provide advice on account opening, trading strategy, leverage, position sizing, or entry/exit timing, and no such advice should be inferred from anything discussed. STARTRADER Global Financial Consultation &amp; Financial Analysis L.L.C is authorised by the Capital Market Authority (CMA) as a Category 5 firm for Introduction and Promotion activities only. It does not provide trading, brokerage, or investment advisory services, and does not hold client funds. If you require personalised financial or investment advice, you should consult an appropriately licensed financial advisor.</p>'
     );
-    var segs = body.querySelectorAll('[data-mode]');
-    function setMode(m) {
-      for (var i = 0; i < segs.length; i++) segs[i].setAttribute('aria-pressed', segs[i].getAttribute('data-mode') === m ? 'true' : 'false');
-      body.querySelector('[data-panel="online"]').hidden = m !== 'online';
-      body.querySelector('[data-panel="booth"]').hidden = m !== 'booth';
-    }
-    for (var i = 0; i < segs.length; i++) segs[i].addEventListener('click', function () { setMode(this.getAttribute('data-mode')); });
-    body.querySelector('[data-book]').addEventListener('click', function () { /* integration: open the booking link */ });
+    if (!asked) wireConnect(body);
   }
 
   // ---- open / close ----
