@@ -4465,6 +4465,28 @@
   }
 
 
+  /* ---------------- Category pages — the tab row ---------------- */
+  function initCatTabs() {
+    var rail = document.querySelector('[data-cat-tabs]');
+    if (!rail) return;
+    var slug = rail.getAttribute('data-cat-active') || '';
+    var tabs = Array.prototype.slice.call(rail.querySelectorAll('.cat-tab'));
+    var active = null;
+    tabs.forEach(function (t) {
+      if (slug && t.getAttribute('data-cat') === slug) { t.setAttribute('aria-current', 'page'); active = t; }
+      else t.removeAttribute('aria-current');
+    });
+    // the pill for the page being read can sit past the rail's fold — but a
+    // pill already on screen is left where it is, or the rail would scroll the
+    // label and the first categories away for nothing. Measured against the
+    // rail's own box: the rail is not the pill's offset parent.
+    if (active && rail.scrollWidth > rail.clientWidth) {
+      var rr = rail.getBoundingClientRect(), ar = active.getBoundingClientRect(), pad = 16;
+      if (ar.left < rr.left + pad) rail.scrollLeft += (ar.left - rr.left) - pad;
+      else if (ar.right > rr.right - pad) rail.scrollLeft += (ar.right - rr.right) + pad;
+    }
+  }
+
   /* ---------------- Listing filters (CSR / events / media / achievements) ---------------- */
   function initPageList() {
     var root = document.getElementById('latest');
@@ -6107,6 +6129,7 @@
     initMarketAnalysis();
     initKnowledge();
     initPageList();
+    initCatTabs();
     initLoadMore();
     initHelpCentre();
     initTelemetry();

@@ -5264,3 +5264,33 @@ html{scroll-behavior:auto}
 @media (max-width:560px){
   .htrade-btn{align-self:flex-start}
 }
+
+/* ===== CATEGORY PAGES — THE TAB ROW (appended batch 2026-09-01) =====
+   Meer's request: every category inner page carries the whole category set
+   at its top, so a reader can cross straight to another listing instead of
+   going back. The markup is identical on all fifteen pages — only the
+   data-cat-active slug differs, and the script marks the matching pill and
+   scrolls it into view. Below the width where fifteen pills fit, the row
+   travels as one rail with the snap and the always-visible bar the other
+   rails use. */
+.cat-tabs{background:#fff;border-bottom:1px solid var(--line)}
+.cat-tabs-in{display:flex;gap:9px;overflow-x:auto;overflow-y:hidden;padding:15px 0 13px;
+  scrollbar-width:thin;scrollbar-color:rgba(0,71,187,.38) rgba(20,44,96,.08);
+  scroll-snap-type:x proximity;scroll-padding-inline:2px;
+  overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+.cat-tabs-in::-webkit-scrollbar{height:8px;-webkit-appearance:none}
+.cat-tabs-in::-webkit-scrollbar-track{background:rgba(20,44,96,.08);border-radius:6px}
+.cat-tabs-in::-webkit-scrollbar-thumb{background:rgba(0,71,187,.38);border-radius:6px}
+.cat-tabs-in::-webkit-scrollbar-thumb:hover{background:rgba(0,71,187,.6)}
+/* the label carries a snap point of its own: without one the rail snapped the
+   first pill to its start on load and slid the label out of sight */
+.cat-tabs-lbl{flex:0 0 auto;align-self:center;margin-right:4px;font-size:11.5px;font-weight:800;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--text-mute);scroll-snap-align:start}
+.cat-tab{flex:0 0 auto;scroll-snap-align:start}
+.cat-tab[aria-current="page"]{color:#fff;background:var(--blue);border-color:var(--blue);
+  box-shadow:0 12px 26px -14px rgba(0,71,187,.7)}
+.cat-tab[aria-current="page"]:hover{color:#fff;transform:none}
+@media (max-width:720px){
+  .cat-tabs-in{padding:12px 0 11px}
+  .cat-tabs-lbl{display:none}
+}
