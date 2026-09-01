@@ -34,7 +34,7 @@
   <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=qa71" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=qa72" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 
@@ -60,6 +60,9 @@
 .ma-soft-aura{position:absolute;z-index:0;border-radius:50%;filter:blur(92px);pointer-events:none}
 .ma-soft-aura.a1{width:520px;height:520px;top:-12%;right:-8%;background:radial-gradient(circle,rgba(0,71,187,.12),transparent 68%)}
 .ma-soft-aura.a2{width:460px;height:460px;bottom:-14%;left:-10%;background:radial-gradient(circle,rgba(22,233,215,.12),transparent 68%)}
+/* the cadence line is written to break once, after "theme," — the shared
+   600px measure wrapped its first half and made three lines of it */
+.ma-choose-sub{max-width:820px}
 .ma-bento{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:20px}
 .ma-card{display:flex;flex-direction:column;border-radius:22px;padding:26px 24px 24px;min-width:0;overflow:hidden}
 /* wide featured card splits into copy + visual; the other three fill 2/3/3 */
@@ -720,7 +723,7 @@
     <div class="head center">
       <span class="eyebrow" data-aos="fade-up">Analysis</span>
       <h2 class="h2" id="ma-choose-title" data-aos="fade-up">Choose your analysis.</h2>
-      <p class="head-sub" data-aos="fade-up">Four cadences, one desk &mdash; from the intraday chart to the quarter-defining theme,<br> so you read the one that matches the horizon you actually trade.</p>
+      <p class="head-sub ma-choose-sub" data-aos="fade-up">Five cadences, one desk &mdash; from the intraday chart to the quarter-defining theme,<br> so you read the one that matches the horizon you actually trade.</p>
     </div>
 
     <div class="ma-bento" data-ma-spot>
@@ -1059,9 +1062,11 @@
       <button class="btn btn-primary" type="button" data-ma-reset>Reset filters</button>
     </div>
 
-    <div class="ma-morerow" data-ma-morerow hidden>
-      <button class="btn btn-primary btn-lg" type="button" data-ma-more>Load more reports <svg class="ico"><use href="#i-chevron-down"/></svg></button>
-    </div>
+    <nav class="pgr" aria-label="Report pages" data-ma-pager hidden>
+      <button class="pgr-arrow" type="button" data-pgr-prev aria-label="Previous page"><svg aria-hidden="true"><use href="#i-chevron-left"/></svg></button>
+      <span class="pgr-list" data-pgr-list></span>
+      <button class="pgr-arrow" type="button" data-pgr-next aria-label="Next page"><svg aria-hidden="true"><use href="#i-chevron-right"/></svg></button>
+    </nav>
   </div>
 </section>
 
@@ -1418,6 +1423,6 @@
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=qa71" defer></script>
+<script src="assets/js/main.min.js?v=qa72" defer></script>
 </body>
 </html>

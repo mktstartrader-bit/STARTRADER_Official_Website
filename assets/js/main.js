@@ -3123,12 +3123,12 @@
         clearTimeout(t); t = setTimeout(apply, 120);
       });
       input.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && input.value) { input.value = ''; query = ''; shown = PAGE; apply(); }
+        if (e.key === 'Escape' && input.value) { input.value = ''; query = ''; page = 1; apply(); }
       });
     }
     function clearAll() {
       if (input) input.value = '';
-      query = ''; cat = 'all'; shown = PAGE; apply();
+      query = ''; cat = 'all'; page = 1; apply();
     }
     if (clear) clear.addEventListener('click', function () { clearAll(); if (input) input.focus(); });
     if (resetBtn) resetBtn.addEventListener('click', clearAll);
@@ -4214,9 +4214,11 @@
       var emptyEl = root.querySelector('[data-ma-empty]');
       var emptyQ = root.querySelector('[data-ma-empty-q]');
       var resetBtn = root.querySelector('[data-ma-reset]');
-      var moreRow = root.querySelector('[data-ma-morerow]');
-      var moreBtn = root.querySelector('[data-ma-more]');
-      var cat = 'all', query = '', shown = PAGE;
+      var pager = root.querySelector('[data-ma-pager]');
+      var pgList = pager && pager.querySelector('[data-pgr-list]');
+      var pgPrev = pager && pager.querySelector('[data-pgr-prev]');
+      var pgNext = pager && pager.querySelector('[data-pgr-next]');
+      var cat = 'all', query = '', page = 1, pages = 1;
       stripAosHidden(items);
 
       items.forEach(function (el) {
@@ -4239,15 +4241,20 @@
         var matched = items.filter(function (el) {
           return (cat === 'all' || el.getAttribute('data-cat') === cat) && (!q || el._hay.indexOf(q) > -1);
         });
+        // MKT 9.01: the archive pages rather than grows — page seven has to be
+        // reachable, and the footer with it
+        pages = Math.max(1, Math.ceil(matched.length / PAGE));
+        if (page > pages) page = pages;
         items.forEach(function (el) { el.hidden = true; });
         matched.forEach(function (el, i) {
-          el.hidden = i >= shown;
+          el.hidden = i < (page - 1) * PAGE || i >= page * PAGE;
+          if (!el.hidden) stripAosOff(el);
           mark(el._h, el._hRaw, q);
           mark(el._p, el._pRaw, q);
         });
+        paintPager(matched.length);
         if (emptyEl) emptyEl.hidden = matched.length !== 0;
         if (emptyQ) emptyQ.textContent = q ? '“' + query.trim() + '”' : 'that filter';
-        if (moreRow) moreRow.hidden = matched.length <= shown;
         if (clear) clear.hidden = !query;
         chips.forEach(function (b) {
           var on = b.getAttribute('data-ma-cat') === cat;
@@ -4255,7 +4262,7 @@
           b.setAttribute('aria-pressed', on ? 'true' : 'false');
         });
         if (statusEl) {
-          var seen = Math.min(shown, matched.length);
+          var seen = Math.min(page * PAGE, matched.length) - (page - 1) * PAGE;
           statusEl.textContent = matched.length
             ? 'Showing ' + seen + ' of ' + matched.length + (matched.length === 1 ? ' report' : ' reports') +
               (cat === 'all' ? '' : ' in ' + NAMES[cat]) + (q ? ' matching “' + query.trim() + '”' : '')
@@ -4264,25 +4271,57 @@
         if (hasST) ScrollTrigger.refresh();
       }
 
+      function paintPager(total) {
+        if (!pager || !pgList) return;
+        pager.hidden = pages < 2;
+        if (pager.hidden) return;
+        var out = [], i;
+        for (i = 1; i <= pages; i++) {
+          if (i === 1 || i === pages || Math.abs(i - page) <= 1) out.push(i);
+          else if (out[out.length - 1] !== '…') out.push('…');
+        }
+        pgList.innerHTML = '';
+        out.forEach(function (n) {
+          if (n === '…') {
+            var d = document.createElement('span');
+            d.className = 'pgr-dots'; d.setAttribute('aria-hidden', 'true'); d.textContent = '…';
+            pgList.appendChild(d); return;
+          }
+          var b = document.createElement('button');
+          b.type = 'button'; b.className = 'pgr-pg' + (n === page ? ' is-on' : '');
+          b.textContent = n; b.setAttribute('aria-label', 'Page ' + n);
+          if (n === page) b.setAttribute('aria-current', 'page');
+          b.addEventListener('click', function () { goPage(n); });
+          pgList.appendChild(b);
+        });
+        if (pgPrev) pgPrev.disabled = page === 1;
+        if (pgNext) pgNext.disabled = page === pages;
+      }
+      function goPage(n) {
+        page = Math.max(1, Math.min(pages, n));
+        apply();
+        var first = items.filter(function (el) { return !el.hidden; })[0];
+        if (first) scrollToTarget(first, -120);
+      }
+      if (pgPrev) pgPrev.addEventListener('click', function () { goPage(page - 1); });
+      if (pgNext) pgNext.addEventListener('click', function () { goPage(page + 1); });
+
       chips.forEach(function (b) {
-        b.addEventListener('click', function () { cat = b.getAttribute('data-ma-cat'); shown = PAGE; apply(); });
+        b.addEventListener('click', function () { cat = b.getAttribute('data-ma-cat'); page = 1; apply(); });
       });
       if (input) {
         var t;
         input.addEventListener('input', function () {
-          query = input.value; shown = PAGE;
+          query = input.value; page = 1;
           clearTimeout(t); t = setTimeout(apply, 120);
         });
         input.addEventListener('keydown', function (e) {
-          if (e.key === 'Escape' && input.value) { input.value = ''; query = ''; shown = PAGE; apply(); }
+          if (e.key === 'Escape' && input.value) { input.value = ''; query = ''; page = 1; apply(); }
         });
       }
-      function reset() { if (input) input.value = ''; query = ''; cat = 'all'; shown = PAGE; apply(); }
+      function reset() { if (input) input.value = ''; query = ''; cat = 'all'; page = 1; apply(); }
       if (clear) clear.addEventListener('click', function () { reset(); if (input) input.focus(); });
       if (resetBtn) resetBtn.addEventListener('click', reset);
-      if (moreBtn) moreBtn.addEventListener('click', function () { shown += PAGE; apply(); });
-
-      wireAutoLoad(moreBtn, moreRow);
       apply();
     })();
 

@@ -34,7 +34,7 @@
   <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=qa71" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=qa72" />
   <!-- Structured data — page entity -->
   <script type="application/ld+json">
 {
@@ -420,7 +420,7 @@
 
 
 <!-- ============ REPORTS ============ -->
-<section class="section ma-reports" id="reports" aria-labelledby="ma-rep-title">
+<section class="section ma-reports" id="reports" data-page-size="3" aria-labelledby="ma-rep-title">
   <div class="container">
     <div class="head center">
       <span class="eyebrow" data-aos="fade-up">The archive</span>
@@ -450,7 +450,7 @@
 
       <article class="ma-rep glass" data-ma-item data-cat="wk" data-title="Weekly outlook: three central banks and one payrolls print" data-aos="fade-up">
         <div class="ma-head">
-          <span class="ma-cat wk"><svg aria-hidden="true"><use href="#i-calendar"/></svg>Weekly Outlook</span>
+          <span class="ma-cat wk"><svg aria-hidden="true"><use href="#i-calendar"/></svg>Weekly Analysis</span>
           <time class="ma-date" datetime="2026-07-28">28 Jul 2026</time>
         </div>
 
@@ -467,7 +467,7 @@
       </article>
       <article class="ma-rep glass" data-ma-item data-cat="wk" data-title="Weekly outlook: indices carry the momentum into month end" data-aos="fade-up" data-aos-delay="100">
         <div class="ma-head">
-          <span class="ma-cat wk"><svg aria-hidden="true"><use href="#i-calendar"/></svg>Weekly Outlook</span>
+          <span class="ma-cat wk"><svg aria-hidden="true"><use href="#i-calendar"/></svg>Weekly Analysis</span>
           <time class="ma-date" datetime="2026-07-21">21 Jul 2026</time>
         </div>
 
@@ -484,7 +484,7 @@
       </article>
       <article class="ma-rep glass" data-ma-item data-cat="wk" data-title="Weekly outlook: the dollar's bounce meets a heavy calendar" data-aos="fade-up" data-aos-delay="200">
         <div class="ma-head">
-          <span class="ma-cat wk"><svg aria-hidden="true"><use href="#i-calendar"/></svg>Weekly Outlook</span>
+          <span class="ma-cat wk"><svg aria-hidden="true"><use href="#i-calendar"/></svg>Weekly Analysis</span>
           <time class="ma-date" datetime="2026-07-14">14 Jul 2026</time>
         </div>
 
@@ -501,7 +501,7 @@
       </article>
       <article class="ma-rep glass" data-ma-item data-cat="wk" data-title="Weekly outlook: gold consolidates while the miners lead" data-aos="fade-up">
         <div class="ma-head">
-          <span class="ma-cat wk"><svg aria-hidden="true"><use href="#i-calendar"/></svg>Weekly Outlook</span>
+          <span class="ma-cat wk"><svg aria-hidden="true"><use href="#i-calendar"/></svg>Weekly Analysis</span>
           <time class="ma-date" datetime="2026-07-07">7 Jul 2026</time>
         </div>
 
@@ -518,7 +518,7 @@
       </article>
       <article class="ma-rep glass" data-ma-item data-cat="wk" data-title="Weekly outlook: oil's backwardation steepens into the driving season" data-aos="fade-up" data-aos-delay="100">
         <div class="ma-head">
-          <span class="ma-cat wk"><svg aria-hidden="true"><use href="#i-calendar"/></svg>Weekly Outlook</span>
+          <span class="ma-cat wk"><svg aria-hidden="true"><use href="#i-calendar"/></svg>Weekly Analysis</span>
           <time class="ma-date" datetime="2026-06-30">30 Jun 2026</time>
         </div>
 
@@ -535,7 +535,7 @@
       </article>
       <article class="ma-rep glass" data-ma-item data-cat="wk" data-title="Weekly outlook: earnings season opens with the banks set to speak first" data-aos="fade-up" data-aos-delay="200">
         <div class="ma-head">
-          <span class="ma-cat wk"><svg aria-hidden="true"><use href="#i-calendar"/></svg>Weekly Outlook</span>
+          <span class="ma-cat wk"><svg aria-hidden="true"><use href="#i-calendar"/></svg>Weekly Analysis</span>
           <time class="ma-date" datetime="2026-06-23">23 Jun 2026</time>
         </div>
 
@@ -560,9 +560,11 @@
       <button class="btn btn-primary" type="button" data-ma-reset>Reset filters</button>
     </div>
 
-    <div class="ma-morerow" data-ma-morerow hidden>
-      <button class="btn btn-primary btn-lg" type="button" data-ma-more>Load more reports <svg class="ico"><use href="#i-chevron-down"/></svg></button>
-    </div>
+    <nav class="pgr" aria-label="Report pages" data-ma-pager hidden>
+      <button class="pgr-arrow" type="button" data-pgr-prev aria-label="Previous page"><svg aria-hidden="true"><use href="#i-chevron-left"/></svg></button>
+      <span class="pgr-list" data-pgr-list></span>
+      <button class="pgr-arrow" type="button" data-pgr-next aria-label="Next page"><svg aria-hidden="true"><use href="#i-chevron-right"/></svg></button>
+    </nav>
   </div>
 </section>
 
@@ -783,6 +785,6 @@
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=qa71" defer></script>
+<script src="assets/js/main.min.js?v=qa72" defer></script>
 </body>
 </html>
