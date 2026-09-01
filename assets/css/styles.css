@@ -5542,3 +5542,31 @@ html{scroll-behavior:auto}
 .cat-group--markets .cat-tile::after{background:linear-gradient(90deg,#0a9d92,#16e9d7)}
 .cat-group--markets .cat-tile:hover{border-color:rgba(10,157,146,.4)}
 .cat-group--markets .cat-tile:hover .cat-tile-ic,.cat-group--markets .cat-tile:hover .cat-tile-go{background:#0a9d92;color:#fff}
+
+/* ===== CATEGORY FAMILIES, ON THE BRAND SHEET (appended batch 2026-09-01k) =====
+   The washes are now drawn only from the brand palette. Platforms take the
+   Primary blue 0047BB over a wash of Primary DAE3ED; markets take Primary
+   teal 16E9D7, with the Primary navy 0D0D4B as its ink because the teal is
+   too bright to letter on; commodities take Premium bronze AC7C59 over a
+   wash of Secondary sand DFC5AE — the palette's own warm pair, and the right
+   one for the family whose subject is the metal itself. Nothing here is
+   mixed by hand any more. */
+.cat-group--tools .cat-tile{background:linear-gradient(158deg,#f7fafd,#e8eef6);border-color:rgba(0,71,187,.14)}
+.cat-group--tools .cat-tile-ic,.cat-group--tools .cat-tile-go{background:rgba(0,71,187,.10);color:#0047bb}
+.cat-group--tools .cat-tile::after{background:linear-gradient(90deg,#0047bb,#dae3ed)}
+.cat-group--tools .cat-tile:hover{border-color:rgba(0,71,187,.34)}
+.cat-group--tools .cat-tile:hover .cat-tile-ic,.cat-group--tools .cat-tile:hover .cat-tile-go{background:#0047bb;color:#fff}
+
+.cat-group--markets .cat-tile{background:linear-gradient(158deg,#f3fdfb,#dff9f5);border-color:rgba(22,233,215,.42)}
+.cat-group--markets .cat-tile-ic,.cat-group--markets .cat-tile-go{background:rgba(22,233,215,.26);color:#0d0d4b}
+.cat-group--markets .cat-tile::after{background:linear-gradient(90deg,#0d0d4b,#16e9d7)}
+.cat-group--markets .cat-tile:hover{border-color:rgba(22,233,215,.85)}
+.cat-group--markets .cat-tile:hover .cat-tile-ic,.cat-group--markets .cat-tile:hover .cat-tile-go{background:#16e9d7;color:#0d0d4b}
+
+.cat-group--commodities .cat-tile{background:linear-gradient(158deg,#fdf9f5,#f4e6d9);border-color:rgba(172,124,89,.24)}
+.cat-group--commodities .cat-tile-ic,.cat-group--commodities .cat-tile-go{background:rgba(172,124,89,.15);color:#8f6544}
+.cat-group--commodities .cat-tile::after{background:linear-gradient(90deg,#ac7c59,#dfc5ae)}
+.cat-group--commodities .cat-tile:hover{border-color:rgba(172,124,89,.5)}
+.cat-group--commodities .cat-tile:hover .cat-tile-ic,.cat-group--commodities .cat-tile:hover .cat-tile-go{background:#ac7c59;color:#fff}
+/* the mark takes the Premium bronze itself, not a mixed-down version of it */
+.cat-group--commodities .cat-tile-ic,.cat-group--commodities .cat-tile-go{color:#ac7c59}
