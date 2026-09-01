@@ -34,7 +34,7 @@
   <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=qa63" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=qa64" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* ================= GLOSSARY ================= */
@@ -653,6 +653,51 @@
   </div>
 </section>
 
+<!-- ============ BROWSE BY CATEGORY ============
+     The same deck the category pages carry, so the hub and the listings
+     read as one system. No tile is current here — this is the index. -->
+<section class="section kc-browse" aria-labelledby="kc-browse-title">
+  <div class="container">
+    <div class="head center">
+      <span class="eyebrow" data-aos="fade-up">Browse</span>
+      <h2 class="h2" id="kc-browse-title" data-aos="fade-up">Every category</h2>
+      <p class="head-sub" data-aos="fade-up">Fifteen libraries &mdash; open the one that matches what you trade.</p>
+    </div>
+    <div class="cat-deck-in" data-aos="fade-up">
+        <div class="cat-group">
+          <span class="cat-group-lbl">Platforms &amp; tools</span>
+          <div class="cat-group-row">
+          <a class="cat-tile" href="category-mt5.html"><b>MT5</b><span class="cat-tile-n">8<span class="sr-only"> articles</span></span></a>
+          <a class="cat-tile" href="category-mt4.html"><b>MT4</b><span class="cat-tile-n">7<span class="sr-only"> articles</span></span></a>
+          <a class="cat-tile" href="category-copy-trade.html"><b>Copy Trade</b><span class="cat-tile-n">4<span class="sr-only"> articles</span></span></a>
+          </div>
+        </div>
+        <div class="cat-group">
+          <span class="cat-group-lbl">Markets</span>
+          <div class="cat-group-row">
+          <a class="cat-tile" href="category-forex.html"><b>Forex</b><span class="cat-tile-n">9<span class="sr-only"> articles</span></span></a>
+          <a class="cat-tile" href="category-cfd.html"><b>CFD</b><span class="cat-tile-n">6<span class="sr-only"> articles</span></span></a>
+          <a class="cat-tile" href="category-indices.html"><b>Indices</b><span class="cat-tile-n">3<span class="sr-only"> articles</span></span></a>
+          <a class="cat-tile" href="category-shares.html"><b>Shares</b><span class="cat-tile-n">9<span class="sr-only"> articles</span></span></a>
+          <a class="cat-tile" href="category-etf.html"><b>ETF</b><span class="cat-tile-n">2<span class="sr-only"> articles</span></span></a>
+          </div>
+        </div>
+        <div class="cat-group">
+          <span class="cat-group-lbl">Commodities</span>
+          <div class="cat-group-row">
+          <a class="cat-tile" href="category-commodities.html"><b>Commodities</b><span class="cat-tile-n">9<span class="sr-only"> articles</span></span></a>
+          <a class="cat-tile" href="category-energies.html"><b>Energies</b><span class="cat-tile-n">5<span class="sr-only"> articles</span></span></a>
+          <a class="cat-tile" href="category-metals.html"><b>Metals</b><span class="cat-tile-n">2<span class="sr-only"> articles</span></span></a>
+          <a class="cat-tile" href="category-gold.html"><b>Gold</b><span class="cat-tile-n">9<span class="sr-only"> articles</span></span></a>
+          <a class="cat-tile" href="category-silver.html"><b>Silver</b><span class="cat-tile-n">6<span class="sr-only"> articles</span></span></a>
+          <a class="cat-tile" href="category-copper.html"><b>Copper</b><span class="cat-tile-n">4<span class="sr-only"> articles</span></span></a>
+          <a class="cat-tile" href="category-agriculture.html"><b>Agriculture</b><span class="cat-tile-n">2<span class="sr-only"> articles</span></span></a>
+          </div>
+        </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ GUIDES ============ -->
 <section class="section kc-guides" id="guides" aria-labelledby="kc-guides-title">
   <div class="container">
@@ -662,27 +707,6 @@
       <p class="head-sub" data-aos="fade-up">Explore the guides below, or open a category to see every article.</p>
     </div>
 
-    <div class="kc-bar glass" data-aos="fade-up">
-      <!-- every article category, each opening its own listing page (IT 9.01) -->
-      <div class="kc-prods" role="group" aria-label="Article categories">
-        <span class="kc-prods-lbl">Categories</span>
-        <a class="ec-chip" href="category-mt5.html">MT5</a>
-        <a class="ec-chip" href="category-mt4.html">MT4</a>
-        <a class="ec-chip" href="category-copy-trade.html">Copy Trade</a>
-        <a class="ec-chip" href="category-forex.html">Forex</a>
-        <a class="ec-chip" href="category-cfd.html">CFD</a>
-        <a class="ec-chip" href="category-commodities.html">Commodities</a>
-        <a class="ec-chip" href="category-energies.html">Energies</a>
-        <a class="ec-chip" href="category-metals.html">Metals</a>
-        <a class="ec-chip" href="category-gold.html">Gold</a>
-        <a class="ec-chip" href="category-silver.html">Silver</a>
-        <a class="ec-chip" href="category-copper.html">Copper</a>
-        <a class="ec-chip" href="category-agriculture.html">Agriculture</a>
-        <a class="ec-chip" href="category-indices.html">Indices</a>
-        <a class="ec-chip" href="category-shares.html">Shares</a>
-        <a class="ec-chip" href="category-etf.html">ETF</a>
-      </div>
-    </div>
 
     <p class="wb-status" data-kc-status role="status" aria-live="polite"></p>
 
@@ -1325,6 +1349,6 @@
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=qa63" defer></script>
+<script src="assets/js/main.min.js?v=qa64" defer></script>
 </body>
 </html>
