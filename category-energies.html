@@ -34,11 +34,11 @@
   <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=qa59" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=qa60" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
-  <!-- Category inner page — one of fifteen built from the same template.
-       The tab row under the hero is identical on every one; only
-       data-cat-active differs. Cards mirror the live https://www.startrader.com/category/commodities/energies/ listing. -->
+  <!-- Category inner page — one of fifteen from the same template. The
+       deck under the hero is identical on every one; only data-cat-active
+       differs. Cards mirror the live https://www.startrader.com/category/commodities/energies/ listing. -->
   <!-- Structured data — page entity -->
 
   <!-- Structured data — breadcrumb -->
@@ -375,42 +375,60 @@
         <span aria-hidden="true">/</span>
         <span>Energies</span>
       </nav>
-      <span class="eyebrow eyebrow-blue" data-aos="fade-up">Category</span>
+      <span class="cat-hero-ic" aria-hidden="true" data-aos="fade-up"><svg><use href="#i-droplet"/></svg></span>
       <h1 class="kc-h1" id="cat-hero-title" data-aos="fade-up">Energies</h1>
       <p class="kc-lead" data-aos="fade-up">Crude, Brent and natural gas &mdash; what sets the price, and how the energy markets are traded online.</p>
+      <div class="cat-hero-meta" data-aos="fade-up">
+        <span><svg aria-hidden="true"><use href="#i-doc"/></svg>5 articles</span>
+        <span><svg aria-hidden="true"><use href="#i-layers"/></svg>15 categories to explore</span>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============ CATEGORY TABS ============
-     The same markup sits on all fifteen category pages. Only
-     data-cat-active changes per page — the script marks that pill and
-     scrolls it into view, so no other per-page edit is needed. -->
-<nav class="cat-tabs" aria-label="Article categories">
+<!-- ============ CATEGORY DECK ============
+     Every category on one screen, grouped the way the markets are grouped and
+     carrying its article count. The same markup sits on all fifteen pages —
+     only data-cat-active changes, and the script fills that tile. -->
+<nav class="cat-deck" aria-label="Article categories">
   <div class="container">
-    <div class="cat-tabs-in" data-cat-tabs data-cat-active="energies">
-      <span class="cat-tabs-lbl">Categories</span>
-        <a class="ec-chip cat-tab" data-cat="mt5" href="category-mt5.html">MT5</a>
-        <a class="ec-chip cat-tab" data-cat="mt4" href="category-mt4.html">MT4</a>
-        <a class="ec-chip cat-tab" data-cat="copy-trade" href="category-copy-trade.html">Copy Trade</a>
-        <a class="ec-chip cat-tab" data-cat="forex" href="category-forex.html">Forex</a>
-        <a class="ec-chip cat-tab" data-cat="cfd" href="category-cfd.html">CFD</a>
-        <a class="ec-chip cat-tab" data-cat="commodities" href="category-commodities.html">Commodities</a>
-        <a class="ec-chip cat-tab" data-cat="energies" href="category-energies.html">Energies</a>
-        <a class="ec-chip cat-tab" data-cat="metals" href="category-metals.html">Metals</a>
-        <a class="ec-chip cat-tab" data-cat="gold" href="category-gold.html">Gold</a>
-        <a class="ec-chip cat-tab" data-cat="silver" href="category-silver.html">Silver</a>
-        <a class="ec-chip cat-tab" data-cat="copper" href="category-copper.html">Copper</a>
-        <a class="ec-chip cat-tab" data-cat="agriculture" href="category-agriculture.html">Agriculture</a>
-        <a class="ec-chip cat-tab" data-cat="indices" href="category-indices.html">Indices</a>
-        <a class="ec-chip cat-tab" data-cat="shares" href="category-shares.html">Shares</a>
-        <a class="ec-chip cat-tab" data-cat="etf" href="category-etf.html">ETF</a>
+    <div class="cat-deck-in" data-cat-tabs data-cat-active="energies">
+        <div class="cat-group">
+          <span class="cat-group-lbl">Platforms &amp; tools</span>
+          <div class="cat-group-row">
+          <a class="cat-tile cat-tab" data-cat="mt5" href="category-mt5.html"><span class="cat-tile-ic"><svg aria-hidden="true"><use href="#i-window"/></svg></span><span class="cat-tile-tx"><b>MT5</b><em>8 articles</em></span></a>
+          <a class="cat-tile cat-tab" data-cat="mt4" href="category-mt4.html"><span class="cat-tile-ic"><svg aria-hidden="true"><use href="#i-window"/></svg></span><span class="cat-tile-tx"><b>MT4</b><em>7 articles</em></span></a>
+          <a class="cat-tile cat-tab" data-cat="copy-trade" href="category-copy-trade.html"><span class="cat-tile-ic"><svg aria-hidden="true"><use href="#i-copy"/></svg></span><span class="cat-tile-tx"><b>Copy Trade</b><em>4 articles</em></span></a>
+          </div>
+        </div>
+        <div class="cat-group">
+          <span class="cat-group-lbl">Markets</span>
+          <div class="cat-group-row">
+          <a class="cat-tile cat-tab" data-cat="forex" href="category-forex.html"><span class="cat-tile-ic"><svg aria-hidden="true"><use href="#i-globe"/></svg></span><span class="cat-tile-tx"><b>Forex</b><em>9 articles</em></span></a>
+          <a class="cat-tile cat-tab" data-cat="cfd" href="category-cfd.html"><span class="cat-tile-ic"><svg aria-hidden="true"><use href="#i-cfd"/></svg></span><span class="cat-tile-tx"><b>CFD</b><em>6 articles</em></span></a>
+          <a class="cat-tile cat-tab" data-cat="indices" href="category-indices.html"><span class="cat-tile-ic"><svg aria-hidden="true"><use href="#i-chart"/></svg></span><span class="cat-tile-tx"><b>Indices</b><em>3 articles</em></span></a>
+          <a class="cat-tile cat-tab" data-cat="shares" href="category-shares.html"><span class="cat-tile-ic"><svg aria-hidden="true"><use href="#i-pie"/></svg></span><span class="cat-tile-tx"><b>Shares</b><em>9 articles</em></span></a>
+          <a class="cat-tile cat-tab" data-cat="etf" href="category-etf.html"><span class="cat-tile-ic"><svg aria-hidden="true"><use href="#i-pie"/></svg></span><span class="cat-tile-tx"><b>ETF</b><em>2 articles</em></span></a>
+          </div>
+        </div>
+        <div class="cat-group">
+          <span class="cat-group-lbl">Commodities</span>
+          <div class="cat-group-row">
+          <a class="cat-tile cat-tab" data-cat="commodities" href="category-commodities.html"><span class="cat-tile-ic"><svg aria-hidden="true"><use href="#i-droplet"/></svg></span><span class="cat-tile-tx"><b>Commodities</b><em>9 articles</em></span></a>
+          <a class="cat-tile cat-tab" data-cat="energies" href="category-energies.html"><span class="cat-tile-ic"><svg aria-hidden="true"><use href="#i-droplet"/></svg></span><span class="cat-tile-tx"><b>Energies</b><em>5 articles</em></span></a>
+          <a class="cat-tile cat-tab" data-cat="metals" href="category-metals.html"><span class="cat-tile-ic"><svg aria-hidden="true"><use href="#i-layers"/></svg></span><span class="cat-tile-tx"><b>Metals</b><em>2 articles</em></span></a>
+          <a class="cat-tile cat-tab" data-cat="gold" href="category-gold.html"><span class="cat-tile-ic"><svg aria-hidden="true"><use href="#i-layers"/></svg></span><span class="cat-tile-tx"><b>Gold</b><em>9 articles</em></span></a>
+          <a class="cat-tile cat-tab" data-cat="silver" href="category-silver.html"><span class="cat-tile-ic"><svg aria-hidden="true"><use href="#i-layers"/></svg></span><span class="cat-tile-tx"><b>Silver</b><em>6 articles</em></span></a>
+          <a class="cat-tile cat-tab" data-cat="copper" href="category-copper.html"><span class="cat-tile-ic"><svg aria-hidden="true"><use href="#i-layers"/></svg></span><span class="cat-tile-tx"><b>Copper</b><em>4 articles</em></span></a>
+          <a class="cat-tile cat-tab" data-cat="agriculture" href="category-agriculture.html"><span class="cat-tile-ic"><svg aria-hidden="true"><use href="#i-layers"/></svg></span><span class="cat-tile-tx"><b>Agriculture</b><em>2 articles</em></span></a>
+          </div>
+        </div>
     </div>
   </div>
 </nav>
 
 <!-- ============ ARTICLES ============ -->
-<section class="section kc-guides cat-list" id="articles" aria-labelledby="cat-list-title" data-lm=".kc-guide" data-page-size="6">
+<section class="section cat-list" id="articles" aria-labelledby="cat-list-title" data-lm=".cat-card" data-page-size="6">
   <div class="container">
     <div class="head center">
       <span class="eyebrow" data-aos="fade-up">The archive</span>
@@ -418,76 +436,56 @@
       <p class="head-sub" data-aos="fade-up">5 articles in this category. Every one opens on startrader.com.</p>
     </div>
 
-    <div class="kc-grid">
-      <article class="kc-guide glass cat-card" data-aos="fade-up">
-        <div class="kc-head">
-          <span class="kc-cat"><svg aria-hidden="true"><use href="#i-droplet"/></svg>Energies</span>
-        </div>
-
-        <div class="kc-body">
-          <h3 class="kc-h"><a href="https://www.startrader.com/commodities/energies/oil-trading-beginners-guide/">Oil Trading Explained: How Crude Oil Markets Work and How to Trade</a></h3>
-        </div>
-
-        <a class="kc-media" href="https://www.startrader.com/commodities/energies/oil-trading-beginners-guide/" aria-label="Read: Oil Trading Explained: How Crude Oil Markets Work and How to Trade">
+    <div class="cat-grid">
+      <article class="cat-card" data-aos="fade-up">
+        <a class="cat-card-media" href="https://www.startrader.com/commodities/energies/oil-trading-beginners-guide/" tabindex="-1" aria-hidden="true">
           <span class="cover-bg" role="img" aria-label="Blue lightning-bolt artwork" style="background-image:url('assets/img/stat-blue.webp')"></span>
-          <span class="kc-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
+          <span class="cat-card-tag"><svg aria-hidden="true"><use href="#i-droplet"/></svg>Energies</span>
         </a>
+        <div class="cat-card-body">
+          <h3 class="cat-card-h"><a href="https://www.startrader.com/commodities/energies/oil-trading-beginners-guide/">Oil Trading Explained: How Crude Oil Markets Work and How to Trade</a></h3>
+          <span class="cat-card-go">Read article <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
+        </div>
       </article>
-      <article class="kc-guide glass cat-card" data-aos="fade-up" data-aos-delay="100">
-        <div class="kc-head">
-          <span class="kc-cat"><svg aria-hidden="true"><use href="#i-droplet"/></svg>Energies</span>
-        </div>
-
-        <div class="kc-body">
-          <h3 class="kc-h"><a href="https://www.startrader.com/commodities/energies/crude-oil-cfd-trading-guide/">Crude Oil CFDs: How To Trade Oil Online In India</a></h3>
-        </div>
-
-        <a class="kc-media" href="https://www.startrader.com/commodities/energies/crude-oil-cfd-trading-guide/" aria-label="Read: Crude Oil CFDs: How To Trade Oil Online In India">
+      <article class="cat-card" data-aos="fade-up" data-aos-delay="100">
+        <a class="cat-card-media" href="https://www.startrader.com/commodities/energies/crude-oil-cfd-trading-guide/" tabindex="-1" aria-hidden="true">
           <span class="cover-bg" role="img" aria-label="A price chart open on the STARTRADER platform" style="background-image:url('assets/img/platform-hero.webp')"></span>
-          <span class="kc-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
+          <span class="cat-card-tag"><svg aria-hidden="true"><use href="#i-droplet"/></svg>Energies</span>
         </a>
+        <div class="cat-card-body">
+          <h3 class="cat-card-h"><a href="https://www.startrader.com/commodities/energies/crude-oil-cfd-trading-guide/">Crude Oil CFDs: How To Trade Oil Online In India</a></h3>
+          <span class="cat-card-go">Read article <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
+        </div>
       </article>
-      <article class="kc-guide glass cat-card" data-aos="fade-up" data-aos-delay="200">
-        <div class="kc-head">
-          <span class="kc-cat"><svg aria-hidden="true"><use href="#i-droplet"/></svg>Energies</span>
-        </div>
-
-        <div class="kc-body">
-          <h3 class="kc-h"><a href="https://www.startrader.com/commodities/energies/wti-vs-brent-crude-oil/">WTI Vs Brent Crude Oil: What Is The Difference?</a></h3>
-        </div>
-
-        <a class="kc-media" href="https://www.startrader.com/commodities/energies/wti-vs-brent-crude-oil/" aria-label="Read: WTI Vs Brent Crude Oil: What Is The Difference?">
+      <article class="cat-card" data-aos="fade-up" data-aos-delay="200">
+        <a class="cat-card-media" href="https://www.startrader.com/commodities/energies/wti-vs-brent-crude-oil/" tabindex="-1" aria-hidden="true">
           <span class="cover-bg" role="img" aria-label="Gold bars stacked under studio light" style="background-image:url('assets/img/gold247-hero-v2.webp')"></span>
-          <span class="kc-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
+          <span class="cat-card-tag"><svg aria-hidden="true"><use href="#i-droplet"/></svg>Energies</span>
         </a>
+        <div class="cat-card-body">
+          <h3 class="cat-card-h"><a href="https://www.startrader.com/commodities/energies/wti-vs-brent-crude-oil/">WTI Vs Brent Crude Oil: What Is The Difference?</a></h3>
+          <span class="cat-card-go">Read article <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
+        </div>
       </article>
-      <article class="kc-guide glass cat-card" data-aos="fade-up">
-        <div class="kc-head">
-          <span class="kc-cat"><svg aria-hidden="true"><use href="#i-droplet"/></svg>Energies</span>
-        </div>
-
-        <div class="kc-body">
-          <h3 class="kc-h"><a href="https://www.startrader.com/commodities/energies/oil-trading-strategies-guide/">Oil Trading Strategies: Key Approaches for Crude Oil Traders</a></h3>
-        </div>
-
-        <a class="kc-media" href="https://www.startrader.com/commodities/energies/oil-trading-strategies-guide/" aria-label="Read: Oil Trading Strategies: Key Approaches for Crude Oil Traders">
+      <article class="cat-card" data-aos="fade-up">
+        <a class="cat-card-media" href="https://www.startrader.com/commodities/energies/oil-trading-strategies-guide/" tabindex="-1" aria-hidden="true">
           <span class="cover-bg" role="img" aria-label="Market data rendered as a rising line" style="background-image:url('assets/img/fx-case-8.webp')"></span>
-          <span class="kc-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
+          <span class="cat-card-tag"><svg aria-hidden="true"><use href="#i-droplet"/></svg>Energies</span>
         </a>
+        <div class="cat-card-body">
+          <h3 class="cat-card-h"><a href="https://www.startrader.com/commodities/energies/oil-trading-strategies-guide/">Oil Trading Strategies: Key Approaches for Crude Oil Traders</a></h3>
+          <span class="cat-card-go">Read article <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
+        </div>
       </article>
-      <article class="kc-guide glass cat-card" data-aos="fade-up" data-aos-delay="100">
-        <div class="kc-head">
-          <span class="kc-cat"><svg aria-hidden="true"><use href="#i-droplet"/></svg>Energies</span>
-        </div>
-
-        <div class="kc-body">
-          <h3 class="kc-h"><a href="https://www.startrader.com/commodities/energies/natural-gas-trading-guide/">Natural Gas Trading: How The Market Works And How To Trade It</a></h3>
-        </div>
-
-        <a class="kc-media" href="https://www.startrader.com/commodities/energies/natural-gas-trading-guide/" aria-label="Read: Natural Gas Trading: How The Market Works And How To Trade It">
+      <article class="cat-card" data-aos="fade-up" data-aos-delay="100">
+        <a class="cat-card-media" href="https://www.startrader.com/commodities/energies/natural-gas-trading-guide/" tabindex="-1" aria-hidden="true">
           <span class="cover-bg" role="img" aria-label="Blue lightning-bolt artwork" style="background-image:url('assets/img/stat-blue.webp')"></span>
-          <span class="kc-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
+          <span class="cat-card-tag"><svg aria-hidden="true"><use href="#i-droplet"/></svg>Energies</span>
         </a>
+        <div class="cat-card-body">
+          <h3 class="cat-card-h"><a href="https://www.startrader.com/commodities/energies/natural-gas-trading-guide/">Natural Gas Trading: How The Market Works And How To Trade It</a></h3>
+          <span class="cat-card-go">Read article <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
+        </div>
       </article>
     </div>
 
@@ -627,6 +625,6 @@
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=qa59" defer></script>
+<script src="assets/js/main.min.js?v=qa60" defer></script>
 </body>
 </html>

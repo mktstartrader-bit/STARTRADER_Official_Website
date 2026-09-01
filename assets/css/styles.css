@@ -5294,3 +5294,85 @@ html{scroll-behavior:auto}
   .cat-tabs-in{padding:12px 0 11px}
   .cat-tabs-lbl{display:none}
 }
+
+/* ===== CATEGORY PAGES — THE DECK, THE HERO AND THE CARDS (appended batch 2026-09-01b) =====
+   Supersedes the .cat-tabs-in rail in the batch above: fifteen pills in a
+   horizontal scroller left eleven of them behind a swipe, which is the
+   opposite of letting a reader see what else is there. The deck shows every
+   category at once, grouped the way the markets are grouped and carrying each
+   one's article count. `.cat-tab` and its aria-current fill are kept from that
+   batch, so the marking script and the active state are unchanged; only the
+   rail's own layout rules fall out of use.
+
+   The cards become the editorial shape the rest of the site uses — cover
+   first under a scrim with the category riding on it, then the title, then a
+   read row whose arrow steps out on hover. The whole card is the link. */
+.cat-hero-ic{display:inline-grid;place-items:center;width:56px;height:56px;border-radius:16px;margin-bottom:18px;color:#7fb2ff;
+  background:rgba(0,71,187,.28);border:1px solid rgba(127,178,255,.32)}
+.cat-hero-ic svg{width:26px;height:26px}
+.cat-hero-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:clamp(20px,2.6vw,28px)}
+.cat-hero-meta span{display:inline-flex;align-items:center;gap:8px;padding:9px 15px;border-radius:70px;
+  font-size:13px;font-weight:700;color:#eaf0fa;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+.cat-hero-meta svg{width:14px;height:14px;color:#7fb2ff;flex:none}
+
+.cat-deck{padding:clamp(26px,3.4vw,44px) 0;border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg,#fff,var(--bg-light,#f4f7fa))}
+.cat-deck-in{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,2.2vw,30px)}
+.cat-group{min-width:0}
+.cat-group-lbl{display:block;margin-bottom:12px;font-size:11px;font-weight:800;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--text-mute)}
+.cat-group-row{display:flex;flex-wrap:wrap;gap:9px}
+.cat-tile{display:inline-flex;align-items:center;gap:10px;padding:9px 15px 9px 10px;border-radius:14px;
+  background:#fff;border:1px solid var(--line);box-shadow:0 10px 24px -18px rgba(20,44,96,.5);
+  transition:transform .3s var(--ease),border-color .25s,box-shadow .35s var(--ease),background .25s}
+.cat-tile:hover{transform:translateY(-3px);border-color:rgba(0,71,187,.3);box-shadow:0 18px 34px -18px rgba(20,44,96,.55)}
+.cat-tile-ic{flex:none;width:30px;height:30px;border-radius:9px;display:grid;place-items:center;
+  color:var(--blue);background:rgba(0,71,187,.08);transition:background .25s,color .25s}
+.cat-tile-ic svg{width:15px;height:15px}
+.cat-tile-tx{display:grid;min-width:0;line-height:1.2}
+.cat-tile-tx b{font-size:13.5px;font-weight:700;letter-spacing:-.01em;color:var(--text)}
+.cat-tile-tx em{margin-top:2px;font-style:normal;font-size:11px;color:var(--text-mute)}
+.cat-tile[aria-current="page"]{background:linear-gradient(180deg,#2a72ff,var(--blue));border-color:transparent;
+  box-shadow:0 16px 30px -14px rgba(0,71,187,.75)}
+.cat-tile[aria-current="page"] .cat-tile-tx b{color:#fff}
+.cat-tile[aria-current="page"] .cat-tile-tx em{color:rgba(255,255,255,.74)}
+.cat-tile[aria-current="page"] .cat-tile-ic{background:rgba(255,255,255,.2);color:#fff}
+
+.cat-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,24px)}
+.cat-card{position:relative;display:flex;flex-direction:column;overflow:hidden;border-radius:20px;
+  background:#fff;border:1px solid var(--line);box-shadow:0 18px 44px -30px rgba(20,44,96,.5);
+  transition:transform .4s var(--ease),border-color .3s,box-shadow .4s var(--ease)}
+.cat-card:hover{transform:translateY(-6px);border-color:rgba(0,71,187,.24);box-shadow:0 34px 66px -32px rgba(20,44,96,.55)}
+.cat-card-media{position:relative;display:block;aspect-ratio:16/10;overflow:hidden;background:#0a1020}
+.cat-card-media::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(4,8,20,0) 42%,rgba(4,8,20,.58))}
+.cat-card:hover .cat-card-media .cover-bg{transform:scale(1.05)}
+.cat-card-tag{position:absolute;left:13px;bottom:13px;z-index:1;display:inline-flex;align-items:center;gap:7px;
+  padding:6px 12px;border-radius:70px;font-size:11.5px;font-weight:800;letter-spacing:.03em;color:#fff;
+  background:rgba(8,14,30,.58);border:1px solid rgba(255,255,255,.24);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.cat-card-tag svg{width:12px;height:12px}
+.cat-card-body{flex:1;display:flex;flex-direction:column;gap:14px;padding:18px 20px 20px}
+.cat-card-h{font-size:16.5px;font-weight:800;letter-spacing:-.02em;line-height:1.36}
+.cat-card-h a{color:var(--text);transition:color .25s}
+.cat-card-h a::after{content:"";position:absolute;inset:0;z-index:2}
+.cat-card:hover .cat-card-h a{color:var(--blue)}
+.cat-card-go{margin-top:auto;display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:var(--blue)}
+.cat-card-go svg{width:14px;height:14px;transition:transform .3s var(--ease)}
+.cat-card:hover .cat-card-go svg{transform:translateX(3px)}
+@media (max-width:1000px){
+  .cat-deck-in{grid-template-columns:1fr 1fr}
+  .cat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:700px){
+  .cat-deck-in{grid-template-columns:1fr;gap:18px}
+  .cat-grid{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  .cat-tile,.cat-card,.cat-card .cover-bg,.cat-card-go svg{transition:none}
+  .cat-tile:hover,.cat-card:hover{transform:none}
+}
+/* the archive needs its own light ground: without it the section fell through
+   to the body's near-black and the heading went dark-on-dark */
+.cat-list{background:linear-gradient(180deg,var(--bg-light,#f4f7fa),#fff)}
