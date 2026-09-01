@@ -245,11 +245,18 @@
 /* the hand sits flush to the card's lower-right corner */
 .plat-hand{
   position:absolute;right:clamp(-58px,-4vw,-24px);bottom:0;z-index:1;
-  width:auto;height:clamp(300px,88%,486px);max-width:74%;
+  width:auto;height:clamp(280px,78%,430px);max-width:64%;
   object-fit:contain;object-position:100% 100%;
   filter:drop-shadow(0 26px 40px rgba(20,44,96,.28));
   pointer-events:none;
 }
+/* the handset gave back a little width, so the copy column can hold its
+   standfirst in two lines instead of three. Scoped above 480px: below that
+   the shared sheet gives the copy the whole card, and this must not undo it. */
+@media (min-width:481px){
+  .plat-app .plat-copy{max-width:min(100%,53%)}
+}
+
 /* two glass readouts on the left, overlapping the phone rather than sitting on it */
 .plat-chips{
   position:absolute;left:34px;bottom:clamp(104px,21%,136px);z-index:3;
