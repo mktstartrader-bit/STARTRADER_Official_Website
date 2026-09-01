@@ -43,9 +43,97 @@
   <link rel="stylesheet" href="assets/css/styles.min.css?v=qa72" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
-/* ================= NEWS ARTICLE PAGE ================= */
-.ar-crumb .sep{width:13px;height:13px;color:var(--text-mute);flex:none}
-.ar-crumb .cur{color:var(--text-mute)}
+/* ================= NEWS ARTICLE PAGE =================
+   The article shell is the one the knowledge and category articles use, so
+   the two read as one template: copy column left at its own measure, rail
+   right holding the tags and the account form. Without these the page fell
+   back to the shared block layout and the rail landed under the copy. */
+/* =================================================================
+   KNOWLEDGE ARTICLE
+   The article furniture is the shared ar-* system. This page swaps the
+   columns — copy on the left, the rail on the right — and the rail
+   carries the contents index plus an open-account form, both riding
+   the rail's shared sticky position.
+   ================================================================= */
+/* the rail takes the width a real form needs, and the copy column
+   gives it back — shrinking first when the window tightens */
+.ar{--ar-rail:380px;--ar-measure:650px}
+.ar-cols{grid-template-columns:minmax(0,var(--ar-measure)) var(--ar-rail)}
+.ar-main{order:1}
+.ar-rail{order:2}
+/* the rail leads with the article's related tags */
+.ar-rtags{padding:18px 16px;border-radius:16px}
+.ar-rtags-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+
+/* the open-account card in the rail */
+.ar-cta{padding:20px 18px 18px;border-radius:16px}
+.ar-cta-h{font-size:20px;font-weight:800;letter-spacing:-.032em;color:var(--ink);text-align:center}
+.ar-cta-h span{color:var(--blue)}
+.ar-cta-form{display:flex;flex-direction:column;gap:13px;margin-top:14px}
+.ar-f{display:flex;flex-direction:column;gap:6px}
+.ar-f label{font-size:12.5px;font-weight:700;color:var(--text)}
+.ar-f label i{font-style:normal;color:var(--red)}
+/* the site's field language: a quiet underline, not a boxed input */
+.ar-cta-form input,.ar-cta-form select{
+  width:100%;font:inherit;font-size:15px;color:var(--text);padding:10px 2px;
+  background:transparent;border:0;border-bottom:1px solid rgba(20,44,96,.2);border-radius:0;
+  outline:none;appearance:none;transition:border-color .25s;
+}
+.ar-cta-form input::placeholder{color:var(--text-mute)}
+.ar-cta-form input:hover,.ar-cta-form select:hover{border-bottom-color:rgba(20,44,96,.4)}
+.ar-cta-form input:focus,.ar-cta-form select:focus{border-bottom-color:var(--blue)}
+.ar-cta .wb-selwrap .wb-selchev{position:absolute;right:2px;top:50%;transform:translateY(-50%);width:15px;height:15px;color:var(--text-mute);pointer-events:none}
+.ar-code-row{display:flex;gap:8px}
+.ar-code-row input{flex:1;min-width:0}
+.ar-send{
+  flex:none;height:40px;align-self:flex-end;padding:0 14px;border-radius:70px;cursor:pointer;
+  border:1px solid rgba(0,71,187,.35);background:rgba(0,71,187,.06);
+  font:inherit;font-size:12.5px;font-weight:700;color:var(--blue);
+  transition:background .25s,color .25s;
+}
+.ar-send:hover:not(:disabled){background:var(--blue);color:#fff}
+.ar-send:disabled{opacity:.55;cursor:default}
+.ar-sent{font-size:11.5px;color:#0f9d76}
+.ar-pass-row{position:relative}
+.ar-pass-row input{padding-right:40px}
+.ar-eye{position:absolute;right:0;top:50%;transform:translateY(-50%);width:34px;height:34px;display:grid;place-items:center;
+  border:0;border-radius:10px;background:none;color:var(--text-mute);cursor:pointer;transition:color .25s}
+.ar-eye:hover{color:var(--text)}
+.ar-eye[aria-pressed="true"]{color:var(--blue)}
+.ar-eye svg{width:19px;height:19px}
+.ar-kind{display:flex;gap:8px}
+.ar-kind-pill{flex:1;position:relative}
+.ar-kind-pill input{position:absolute;opacity:0;width:0;height:0}
+.ar-kind-pill span{display:flex;align-items:center;justify-content:center;height:40px;border-radius:12px;
+  border:1px solid var(--line);font-size:13px;font-weight:700;color:var(--text-soft);cursor:pointer;
+  transition:background .25s,color .25s,border-color .25s}
+.ar-kind-pill input:checked + span{background:var(--blue);border-color:transparent;color:#fff}
+.ar-kind-pill input:focus-visible + span{outline:2px solid rgba(0,71,187,.5);outline-offset:2px}
+.ar-cta .ar-check{margin-top:0;font-size:12.5px;line-height:1.5}
+.ar-cta-form .btn{width:100%;justify-content:center;margin-top:2px}
+.ar-cta-note{margin-top:10px;font-size:11px;color:var(--text-mute);text-align:center}
+
+@media (max-width:1024px){
+  /* the shared breakpoint flattens the rail into the article column */
+  .ar-cols{grid-template-columns:minmax(0,1fr)}
+  .ar-rtags{order:3;min-width:0}
+  .ar-cta{order:4;min-width:0}
+}
+
+/* the fine print under an illustrative table */
+.ar-body .ar-fine{margin-top:10px;font-size:12px;line-height:1.6;color:var(--text-mute)}
+
+/* this rail carries more than the shared one — tags, the form, the contents
+   and the key levels — so it stays a real column instead of dissolving into
+   the grid the way display:contents would */
+.ar-rail{order:2;display:flex;flex-direction:column;gap:20px;min-width:0;
+  position:sticky;top:calc(var(--chrome-h) + 26px)}
+.ar-extras{display:flex;flex-direction:column;gap:20px;min-width:0}
+.ar-toc{min-width:0}
+@media (max-width:1024px){
+  .ar-rail{position:static;order:3}
+}
+
   </style>
 
   <!-- Structured data — article -->
