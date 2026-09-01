@@ -123,13 +123,10 @@
 /* the fine print under an illustrative table */
 .ar-body .ar-fine{margin-top:10px;font-size:12px;line-height:1.6;color:var(--text-mute)}
 
-/* this rail carries more than the shared one — tags, the form, the contents
-   and the key levels — so it stays a real column instead of dissolving into
-   the grid the way display:contents would */
+/* the rail is a real column rather than dissolving into the grid the way
+   display:contents would */
 .ar-rail{order:2;display:flex;flex-direction:column;gap:20px;min-width:0;
   position:sticky;top:calc(var(--chrome-h) + 26px)}
-.ar-extras{display:flex;flex-direction:column;gap:20px;min-width:0}
-.ar-toc{min-width:0}
 @media (max-width:1024px){
   .ar-rail{position:static;order:3}
 }
@@ -632,34 +629,7 @@
           <p class="ar-cta-note">Regulated broker &middot; Segregated client funds</p>
         </div>
 
-        <div class="ar-toc" data-ar-toc>
-          <h2 class="sr-only">On this page</h2>
-          <nav aria-label="Sections in this article">
-            <a href="#what-happened">What happened</a>
-            <a href="#levels">The levels that matter</a>
-            <a href="#fomc">Into the FOMC</a>
-            <a href="#what-changes">What would change the picture</a>
-            <a href="#risk">Trading it responsibly</a>
-          </nav>
-        </div>
 
-        <div class="ar-extras">
-          <div class="ar-key glass">
-          <h2 class="ar-side-h">Key levels</h2>
-          <ul>
-            <li><span>Resistance</span><b>$4,118</b></li>
-            <li><span>20-day MA</span><b>$4,062</b></li>
-            <li><span>Range base</span><b>$4,015</b></li>
-          </ul>
-          <p class="ar-key-note">Indicative levels at the time of writing.</p>
-        </div>
-
-          <div class="ar-sub glass">
-          <h2 class="ar-side-h">Daily briefing</h2>
-          <p>The desk&rsquo;s read on the overnight session, every trading morning.</p>
-          <a class="btn btn-primary btn-block btn-sm" href="news.html#subscribe">Subscribe <svg class="ico"><use href="#i-arrow-right"/></svg></a>
-        </div>
-        </div>
       </aside>
 
       <div class="ar-main">
