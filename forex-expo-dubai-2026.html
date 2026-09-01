@@ -17,20 +17,20 @@
   <meta property="og:title" content="Forex Expo Dubai 2026 | Meet STARTRADER at Booth 161" />
   <meta property="og:description" content="Think fast. Test your market knowledge. Meet STARTRADER at Booth 161 — Dubai World Trade Center, Halls 1-5, September 22-23, 2026." />
   <meta property="og:url" content="https://www.startrader.com/forex-expo-dubai-2026.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/expo-hero-bg.webp" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/expo-hero-arrow.webp" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Forex Expo Dubai 2026 | Meet STARTRADER at Booth 161" />
   <meta name="twitter:description" content="Think fast. Test your market knowledge. Meet STARTRADER at Booth 161 — Dubai World Trade Center, Halls 1-5, September 22-23, 2026." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/expo-hero-bg.webp" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/expo-hero-arrow.webp" />
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
 
   <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="assets/img/expo-hero-bg.webp" as="image" type="image/webp" fetchpriority="high"
-        imagesrcset="assets/img/expo-hero-bg-768w.webp 768w, assets/img/expo-hero-bg-1152w.webp 1152w, assets/img/expo-hero-bg.webp 1536w" imagesizes="100vw" />
+  <link rel="preload" href="assets/img/expo-hero-arrow.webp" as="image" type="image/webp" fetchpriority="high"
+        imagesrcset="assets/img/expo-hero-arrow-768w.webp 768w, assets/img/expo-hero-arrow-1152w.webp 1152w, assets/img/expo-hero-arrow-1536w.webp 1536w, assets/img/expo-hero-arrow.webp 1920w" imagesizes="100vw" />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
   <link rel="stylesheet" href="assets/css/styles.min.css?v=qa72" />
@@ -40,7 +40,7 @@
    FOREX EXPO DUBAI 2026 — THINK FAST. TEST YOUR MARKET KNOWLEDGE.
    A standalone promotion landing: no site chrome, one dark glass
    surface. The hero lays the campaign copy and the open-account
-   form over the booth photograph; advantages and sponsorships ride frosted glass tiles; the
+   form over the glass-arrow artwork; advantages and sponsorships ride frosted glass tiles; the
    risk warning closes the page.
    ================================================================= */
 body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
@@ -49,7 +49,8 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
 
 /* ---- hero ---- */
 .xp-hero{position:relative;overflow:hidden;isolation:isolate;color:#fff;padding:clamp(48px,7vw,96px) 0 clamp(40px,5vw,72px);background:#04060e}
-/* the booth photograph fills the hero; the desk and its blue panels sit low, behind the meta card */
+/* the artwork fills the hero: the arrow sweeps in from the left and climbs to the target
+   on the right, so the copy column falls on its dark end and the glass reads behind the form */
 .xp-hero-bg{position:absolute;inset:0;z-index:-2;display:block;width:100%;height:100%;object-fit:cover;object-position:50% 62%}
 /* the scrim: heavy under the copy column, thinning toward the form so the panels glow through the glass,
    and a fade into the page black at the foot so the hero hands over to the band below */
@@ -243,7 +244,9 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
 /* ---- responsive ---- */
 @media (max-width:1024px){
   .xp-hero-in{grid-template-columns:1fr;gap:38px}
-  .xp-hero-bg{object-position:50% 50%}
+  /* the crop narrows below the desktop band, so favour the right of the frame where the
+     arrowhead and target sit — dead centre would show only empty gradient */
+  .xp-hero-bg{object-position:74% 42%}
   .xp-hero::before{background:linear-gradient(180deg,rgba(4,6,14,.8),rgba(4,6,14,.68) 38%,rgba(4,6,14,.74) 74%,#04060e 100%)}
   .xp-form{max-width:520px;margin-inline:auto;width:100%;margin-top:0}
 }
@@ -274,9 +277,9 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
 
 <!-- ============ HERO ============ -->
 <section class="xp-hero" aria-labelledby="xp-h1">
-  <img class="xp-hero-bg" src="assets/img/expo-hero-bg.webp"
-       srcset="assets/img/expo-hero-bg-768w.webp 768w, assets/img/expo-hero-bg-1152w.webp 1152w, assets/img/expo-hero-bg.webp 1536w" sizes="100vw"
-       alt="STARTRADER reception desk lit by a wave of blue glass panels at Forex Expo Dubai" width="1536" height="1024" fetchpriority="high">
+  <img class="xp-hero-bg" src="assets/img/expo-hero-arrow.webp"
+       srcset="assets/img/expo-hero-arrow-768w.webp 768w, assets/img/expo-hero-arrow-1152w.webp 1152w, assets/img/expo-hero-arrow-1536w.webp 1536w, assets/img/expo-hero-arrow.webp 1920w" sizes="100vw"
+       alt="A glass arrow sweeping upward along blue light trails toward a glowing target, above a rising bar chart" width="1920" height="1080" fetchpriority="high">
   <div class="xp-wrap">
     <a class="xp-brand" href="index.html" aria-label="STARTRADER home">
       <img src="assets/img/logo-startrader.svg" alt="STARTRADER" width="170" height="33">

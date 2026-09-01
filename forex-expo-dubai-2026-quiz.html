@@ -17,20 +17,20 @@
   <meta property="og:title" content="Think Fast. Test Your Market Edge. | STARTRADER at Forex Expo Dubai 2026" />
   <meta property="og:description" content="Think fast. Test your market edge. 10 questions, exciting rewards — take STARTRADER’s market quiz at Forex Expo Dubai and get free market insights, educational content and exclusive extras along the way." />
   <meta property="og:url" content="https://www.startrader.com/forex-expo-dubai-2026-quiz.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/expo-hero-bg.webp" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/expo-hero-arrow.webp" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Think Fast. Test Your Market Edge. | STARTRADER at Forex Expo Dubai 2026" />
   <meta name="twitter:description" content="Think fast. Test your market edge. 10 questions, exciting rewards — take STARTRADER’s market quiz at Forex Expo Dubai and get free market insights, educational content and exclusive extras along the way." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/expo-hero-bg.webp" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/expo-hero-arrow.webp" />
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
 
   <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="assets/img/expo-hero-bg.webp" as="image" type="image/webp" fetchpriority="high"
-        imagesrcset="assets/img/expo-hero-bg-768w.webp 768w, assets/img/expo-hero-bg-1152w.webp 1152w, assets/img/expo-hero-bg.webp 1536w" imagesizes="100vw" />
+  <link rel="preload" href="assets/img/expo-hero-arrow.webp" as="image" type="image/webp" fetchpriority="high"
+        imagesrcset="assets/img/expo-hero-arrow-768w.webp 768w, assets/img/expo-hero-arrow-1152w.webp 1152w, assets/img/expo-hero-arrow-1536w.webp 1536w, assets/img/expo-hero-arrow.webp 1920w" imagesizes="100vw" />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
   <link rel="stylesheet" href="assets/css/styles.min.css?v=qa72" />
@@ -40,7 +40,7 @@
    FOREX EXPO DUBAI 2026 — THINK FAST. TEST YOUR MARKET EDGE.
    The quiz campaign page, sister to forex-expo-dubai-2026.html: same
    dark glass surface, no site chrome. The hero lays the quiz billboard
-   over the booth photograph; the four steps ride frosted cards on the
+   over the glass-arrow artwork; the four steps ride frosted cards on the
    light ground; the entity notice, advantages and sponsorships follow;
    the disclaimer strip closes the page.
    ================================================================= */
@@ -50,7 +50,8 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
 
 /* ---- hero ---- */
 .xp-hero{position:relative;overflow:hidden;isolation:isolate;color:#fff;padding:clamp(48px,7vw,96px) 0 clamp(40px,5vw,72px);background:#04060e}
-/* the booth photograph fills the hero; the desk and its blue panels sit low, behind the meta card */
+/* the artwork fills the hero: the arrow sweeps in from the left and climbs to the target
+   on the right, so the copy column falls on its dark end and the glass reads past it */
 .xp-hero-bg{position:absolute;inset:0;z-index:-2;display:block;width:100%;height:100%;object-fit:cover;object-position:50% 62%}
 /* the scrim: heavy under the copy column, thinning toward the form so the panels glow through the glass,
    and a fade into the page black at the foot so the hero hands over to the band below */
@@ -371,7 +372,9 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
 /* ---- responsive ---- */
 @media (max-width:1024px){
   .xp-hero-in{grid-template-columns:1fr;gap:30px}
-  .xp-hero-bg{object-position:50% 50%}
+  /* the crop narrows below the desktop band, so favour the right of the frame where the
+     arrowhead and target sit — dead centre would show only empty gradient */
+  .xp-hero-bg{object-position:74% 42%}
   .xp-hero::before{background:linear-gradient(180deg,rgba(4,6,14,.8),rgba(4,6,14,.68) 38%,rgba(4,6,14,.74) 74%,#04060e 100%)}
   .xp-steps{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
@@ -406,9 +409,9 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
 
 <!-- ============ HERO: THE QUIZ ============ -->
 <section class="xp-hero" aria-labelledby="xp-h1">
-  <img class="xp-hero-bg" src="assets/img/expo-hero-bg.webp"
-       srcset="assets/img/expo-hero-bg-768w.webp 768w, assets/img/expo-hero-bg-1152w.webp 1152w, assets/img/expo-hero-bg.webp 1536w" sizes="100vw"
-       alt="STARTRADER reception desk lit by a wave of blue glass panels at Forex Expo Dubai" width="1536" height="1024" fetchpriority="high">
+  <img class="xp-hero-bg" src="assets/img/expo-hero-arrow.webp"
+       srcset="assets/img/expo-hero-arrow-768w.webp 768w, assets/img/expo-hero-arrow-1152w.webp 1152w, assets/img/expo-hero-arrow-1536w.webp 1536w, assets/img/expo-hero-arrow.webp 1920w" sizes="100vw"
+       alt="A glass arrow sweeping upward along blue light trails toward a glowing target, above a rising bar chart" width="1920" height="1080" fetchpriority="high">
   <div class="xp-wrap">
     <a class="xp-brand" href="index.html" aria-label="STARTRADER home">
       <img src="assets/img/logo-startrader.svg" alt="STARTRADER" width="170" height="33">
