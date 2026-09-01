@@ -5495,3 +5495,50 @@ html{scroll-behavior:auto}
   .cat-tile-ic{width:30px;height:30px;border-radius:9px;margin-bottom:5px}
   .cat-tile-ic svg{width:15px;height:15px}
 }
+
+/* ===== CATEGORY CARDS — A PALETTE PER FAMILY (appended batch 2026-09-01i) =====
+   Each group takes its own light gradient so the three families read apart at
+   a glance without shouting: the platforms in the house blue, the markets in
+   a violet cast, the commodities in warm bronze. Tints only — the name and
+   the count keep their ink so the cards stay as readable as plain white ones,
+   and the mark and the arrow pick up their family's colour, filling with it
+   on hover. The current category still fills with the brand blue on every
+   group: that is a state, not a decoration, and it must read the same
+   everywhere. */
+.cat-group--tools .cat-tile{background:linear-gradient(158deg,#f7faff,#eaf1fe);border-color:rgba(0,71,187,.13)}
+.cat-group--tools .cat-tile-ic,.cat-group--tools .cat-tile-go{background:rgba(0,71,187,.10);color:#0047bb}
+.cat-group--tools .cat-tile::after{background:linear-gradient(90deg,#0047bb,#7fb2ff)}
+.cat-group--tools .cat-tile:hover{border-color:rgba(0,71,187,.32)}
+.cat-group--tools .cat-tile:hover .cat-tile-ic,.cat-group--tools .cat-tile:hover .cat-tile-go{background:#0047bb;color:#fff}
+
+.cat-group--markets .cat-tile{background:linear-gradient(158deg,#f9f7ff,#efeaff);border-color:rgba(103,84,232,.14)}
+.cat-group--markets .cat-tile-ic,.cat-group--markets .cat-tile-go{background:rgba(103,84,232,.11);color:#5a48d6}
+.cat-group--markets .cat-tile::after{background:linear-gradient(90deg,#5a48d6,#a99bff)}
+.cat-group--markets .cat-tile:hover{border-color:rgba(103,84,232,.34)}
+.cat-group--markets .cat-tile:hover .cat-tile-ic,.cat-group--markets .cat-tile:hover .cat-tile-go{background:#5a48d6;color:#fff}
+
+.cat-group--commodities .cat-tile{background:linear-gradient(158deg,#fffaf2,#fbf1e2);border-color:rgba(166,110,28,.16)}
+.cat-group--commodities .cat-tile-ic,.cat-group--commodities .cat-tile-go{background:rgba(166,110,28,.12);color:#96621a}
+.cat-group--commodities .cat-tile::after{background:linear-gradient(90deg,#96621a,#e0ab5c)}
+.cat-group--commodities .cat-tile:hover{border-color:rgba(166,110,28,.36)}
+.cat-group--commodities .cat-tile:hover .cat-tile-ic,.cat-group--commodities .cat-tile:hover .cat-tile-go{background:#96621a;color:#fff}
+
+/* the current category outranks its family's tint on every group */
+.cat-deck-in .cat-tile[aria-current="page"]{background:linear-gradient(180deg,#2a72ff,var(--blue));border-color:transparent}
+.cat-deck-in .cat-tile[aria-current="page"] .cat-tile-ic,
+.cat-deck-in .cat-tile[aria-current="page"] .cat-tile-go{background:rgba(255,255,255,.2);color:#fff}
+.cat-deck-in .cat-tile[aria-current="page"]:hover .cat-tile-ic,
+.cat-deck-in .cat-tile[aria-current="page"]:hover .cat-tile-go{background:rgba(255,255,255,.3);color:#fff}
+
+/* ===== MARKETS TAKES THE BRAND TEAL (appended batch 2026-09-01j) =====
+   The violet cast the markets family wore was not ours. #16E9D7 is — it is
+   the colour of the mark in the logo and the partner in the brand's own
+   gradients — so the markets cards now carry a light wash of it, with a
+   deeper teal for the icon and the arrow. Platforms keep the house blue;
+   commodities keep the warm cast, which is the one family where the material
+   itself is the subject. */
+.cat-group--markets .cat-tile{background:linear-gradient(158deg,#f3fdfc,#e4f8f5);border-color:rgba(10,157,146,.17)}
+.cat-group--markets .cat-tile-ic,.cat-group--markets .cat-tile-go{background:rgba(10,157,146,.13);color:#0a8377}
+.cat-group--markets .cat-tile::after{background:linear-gradient(90deg,#0a9d92,#16e9d7)}
+.cat-group--markets .cat-tile:hover{border-color:rgba(10,157,146,.4)}
+.cat-group--markets .cat-tile:hover .cat-tile-ic,.cat-group--markets .cat-tile:hover .cat-tile-go{background:#0a9d92;color:#fff}
