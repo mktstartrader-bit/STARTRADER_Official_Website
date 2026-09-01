@@ -4501,6 +4501,63 @@
   }
 
 
+  /* ---------------- The film opens in place ----------------
+     MKT 9.01: pressing play should show the video, not navigate away. Any
+     [data-video] link opens the shared player; Esc, the backdrop and the
+     close button all end it, and the source is cleared on the way out so
+     nothing keeps buffering behind the page. */
+  function initVideoModal() {
+    var modal = document.getElementById('vidModal');
+    if (!modal) return;
+    var vid = modal.querySelector('[data-vmod-video]');
+    var title = modal.querySelector('.vmod-title');
+    var closeBtn = modal.querySelector('[data-vmod-close]');
+    var last = null;
+
+    function open(src, name, from) {
+      last = from || null;
+      if (title) title.textContent = name || 'Video';
+      vid.src = src;
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      requestAnimationFrame(function () {
+        modal.classList.add('is-open');
+        if (closeBtn) closeBtn.focus();
+        var play = vid.play();
+        if (play && play.catch) play.catch(function () {});
+      });
+    }
+    function close() {
+      modal.classList.remove('is-open');
+      try { vid.pause(); } catch (e) {}
+      vid.removeAttribute('src');
+      vid.load();
+      document.body.style.overflow = '';
+      setTimeout(function () { modal.hidden = true; }, 260);
+      if (last && last.focus) last.focus();
+    }
+
+    document.addEventListener('click', function (e) {
+      var t = e.target.closest ? e.target.closest('[data-video]') : null;
+      if (!t) return;
+      e.preventDefault();
+      open(t.getAttribute('data-video'), t.getAttribute('data-video-title'), t);
+    });
+    if (closeBtn) closeBtn.addEventListener('click', close);
+    modal.addEventListener('click', function (e) { if (e.target === modal) close(); });
+    document.addEventListener('keydown', function (e) {
+      if (modal.hidden) return;
+      if (e.key === 'Escape' || e.keyCode === 27) close();
+      if (e.key === 'Tab') {
+        var f = modal.querySelectorAll('button, video, [href]');
+        if (!f.length) return;
+        var first = f[0], lastEl = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { lastEl.focus(); e.preventDefault(); }
+        else if (!e.shiftKey && document.activeElement === lastEl) { first.focus(); e.preventDefault(); }
+      }
+    });
+  }
+
   /* ---------------- Numbered pagination for long archives ----------------
      MKT 9.01: the knowledge libraries run to twenty pages on the live site,
      where a load-more (or an endless scroll) buries the footer and gives no
@@ -6237,6 +6294,7 @@
     initPageList();
     initCatTabs();
     initPager();
+    initVideoModal();
     initLoadMore();
     initHelpCentre();
     initTelemetry();

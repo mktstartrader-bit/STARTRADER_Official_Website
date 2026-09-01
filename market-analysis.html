@@ -34,7 +34,7 @@
   <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=qa70" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=qa71" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 
@@ -68,7 +68,7 @@
 .ma-card--feat .ma-feat-viz{margin-top:0}
 .ma-card--feat .ma-more{margin-top:auto;padding-top:20px}
 .ma-bento>.ma-card:nth-child(2){grid-column:span 2}
-.ma-bento>.ma-card:nth-child(3),.ma-bento>.ma-card:nth-child(4){grid-column:span 3}
+.ma-bento>.ma-card:nth-child(3),.ma-bento>.ma-card:nth-child(4),.ma-bento>.ma-card:nth-child(5){grid-column:span 2}
 .ma-ribbon{
   align-self:flex-start;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
   color:#fff;background:linear-gradient(120deg,var(--blue),#3b82f6);
@@ -131,6 +131,13 @@
 .ma-card.is-seen .ma-wk-row:nth-child(3)>i::after{transition-delay:.16s}
 .ma-card.is-seen .ma-wk-row:nth-child(4)>i::after{transition-delay:.24s}
 .ma-card.is-seen .ma-wk-row:nth-child(5)>i::after{transition-delay:.32s}
+.ma-qtr{display:flex;align-items:flex-end;gap:10px;margin-top:18px;height:104px}
+.ma-qtr-b{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:7px;height:100%}
+.ma-qtr-b i{display:block;width:100%;height:var(--h);border-radius:8px 8px 4px 4px;
+  background:linear-gradient(180deg,rgba(0,71,187,.28),rgba(0,71,187,.10))}
+.ma-qtr-b.is-on i{background:linear-gradient(180deg,var(--blue),#2a72ff)}
+.ma-qtr-b em{font-style:normal;font-size:11px;font-weight:700;color:var(--text-mute)}
+.ma-qtr-b.is-on em{color:var(--blue)}
 .ma-month{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-top:auto;padding-top:22px}
 .ma-month span{aspect-ratio:1;border-radius:5px;background:rgba(20,44,96,.07);transition:background .4s var(--ease),transform .4s var(--ease)}
 .ma-month span.on{background:rgba(0,71,187,.34)}
@@ -238,7 +245,7 @@
 /* ---- Responsive (page-specific) ---- */
 @media (max-width:1080px){
 .ma-bento{grid-template-columns:repeat(2,minmax(0,1fr))}
-.ma-card--feat,.ma-bento>.ma-card:nth-child(2),.ma-bento>.ma-card:nth-child(3),.ma-bento>.ma-card:nth-child(4){grid-column:span 1}
+.ma-card--feat,.ma-bento>.ma-card:nth-child(2),.ma-bento>.ma-card:nth-child(3),.ma-bento>.ma-card:nth-child(4),.ma-bento>.ma-card:nth-child(5){grid-column:span 1}
 .ma-card--feat{grid-column:span 2;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
 .ma-meth{grid-template-columns:1fr;gap:32px}
 .ma-meth-stage{position:relative;top:auto}
@@ -789,6 +796,19 @@
         </div>
         <a class="ma-more" href="monthly-analysis.html">Know more <svg><use href="#i-arrow-right"/></svg></a>
       </article>
+
+      <article class="ma-card glass" data-aos="fade-up" data-aos-delay="400">
+        <span class="ma-card-ic"><svg><use href="#i-gauge"/></svg></span>
+        <h3>Quarterly Analysis</h3>
+        <p>The quarter read as a whole &mdash; what the flows built, what reversed, and the levels carried into the next three months.</p>
+        <div class="ma-qtr" aria-hidden="true">
+          <span class="ma-qtr-b" style="--h:46%"><i></i><em>Q1</em></span>
+          <span class="ma-qtr-b" style="--h:72%"><i></i><em>Q2</em></span>
+          <span class="ma-qtr-b is-on" style="--h:91%"><i></i><em>Q3</em></span>
+          <span class="ma-qtr-b" style="--h:58%"><i></i><em>Q4</em></span>
+        </div>
+        <a class="ma-more" href="quarterly-analysis.html">Know more <svg><use href="#i-arrow-right"/></svg></a>
+      </article>
     </div>
   </div>
 </section>
@@ -820,6 +840,9 @@
 
     <p class="wb-status" data-ma-status role="status" aria-live="polite"></p>
 
+    <!-- read time is not authored: the CMS takes the article body's word count
+         and rounds up at 200 words a minute — readMinutes = Math.ceil(words / 200)
+         (MKT 9.01). The figures below are the illustrative equivalent. -->
     <div class="ma-grid">
 
       <article class="ma-rep glass" data-ma-item data-cat="ta" data-title="Gold holds the breakout as buyers defend 2,318" data-aos="fade-up">
@@ -875,7 +898,7 @@
       </article>
       <article class="ma-rep glass" data-ma-item data-cat="wk" data-title="Weekly outlook: three central banks and one payrolls print" data-aos="fade-up" data-aos-delay="300">
         <div class="ma-head">
-          <span class="ma-cat wk"><svg aria-hidden="true"><use href="#i-calendar"/></svg>Weekly Outlook</span>
+          <span class="ma-cat wk"><svg aria-hidden="true"><use href="#i-calendar"/></svg>Weekly Analysis</span>
           <time class="ma-date" datetime="2026-07-28">28 Jul 2026</time>
         </div>
 
@@ -909,7 +932,7 @@
       </article>
       <article class="ma-rep glass" data-ma-item data-cat="mo" data-title="Monthly review: the rotation out of defensives finally showed up" data-aos="fade-up" data-aos-delay="500">
         <div class="ma-head">
-          <span class="ma-cat mo"><svg aria-hidden="true"><use href="#i-layers"/></svg>Monthly Review</span>
+          <span class="ma-cat mo"><svg aria-hidden="true"><use href="#i-layers"/></svg>Monthly Analysis</span>
           <time class="ma-date" datetime="2026-07-25">25 Jul 2026</time>
         </div>
 
@@ -943,7 +966,7 @@
       </article>
       <article class="ma-rep glass" data-ma-item data-cat="wk" data-title="Weekly outlook: indices carry the momentum into month end" data-aos="fade-up" data-aos-delay="600">
         <div class="ma-head">
-          <span class="ma-cat wk"><svg aria-hidden="true"><use href="#i-calendar"/></svg>Weekly Outlook</span>
+          <span class="ma-cat wk"><svg aria-hidden="true"><use href="#i-calendar"/></svg>Weekly Analysis</span>
           <time class="ma-date" datetime="2026-07-21">21 Jul 2026</time>
         </div>
 
@@ -960,7 +983,7 @@
       </article>
       <article class="ma-rep glass" data-ma-item data-cat="mo" data-title="Monthly review: gold's quiet quarter was anything but quiet underneath" data-aos="fade-up" data-aos-delay="600">
         <div class="ma-head">
-          <span class="ma-cat mo"><svg aria-hidden="true"><use href="#i-layers"/></svg>Monthly Review</span>
+          <span class="ma-cat mo"><svg aria-hidden="true"><use href="#i-layers"/></svg>Monthly Analysis</span>
           <time class="ma-date" datetime="2026-07-04">4 Jul 2026</time>
         </div>
 
@@ -972,6 +995,57 @@
 
         <a class="ma-media" href="news-article.html" aria-label="Read: Monthly review: gold's quiet quarter was anything but quiet underneath">
           <span class="cover-bg" role="img" aria-label="Award trophies backdrop" style="background-image:url('assets/img/stat-awards.webp')"></span>
+          <span class="ma-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
+        </a>
+      </article>
+      <article class="ma-rep glass" data-ma-item data-cat="fa" data-title="Payrolls miss and the curve reprices the December cut" data-aos="fade-up">
+        <div class="ma-head">
+          <span class="ma-cat fa"><svg aria-hidden="true"><use href="#i-globe"/></svg>Fundamental Analysis</span>
+          <time class="ma-date" datetime="2026-07-22">22 Jul 2026</time>
+        </div>
+
+        <div class="ma-body">
+          <h3 class="ma-h"><a href="news-article.html">Payrolls miss and the curve reprices the December cut</a></h3>
+          <p class="ma-ex">A soft headline with a softer revision — the market moved on the second number, not the first.</p>
+          <span class="ma-read">6 min read</span>
+        </div>
+
+        <a class="ma-media" href="news-article.html" aria-label="Read: Payrolls miss and the curve reprices the December cut">
+          <span class="cover-bg" role="img" aria-label="Blue lightning-bolt artwork" style="background-image:url('assets/img/stat-blue.webp')"></span>
+          <span class="ma-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
+        </a>
+      </article>
+      <article class="ma-rep glass" data-ma-item data-cat="wk" data-title="The week ahead: CPI, two central banks and a quiet Friday" data-aos="fade-up">
+        <div class="ma-head">
+          <span class="ma-cat wk"><svg aria-hidden="true"><use href="#i-calendar"/></svg>Weekly Analysis</span>
+          <time class="ma-date" datetime="2026-07-21">21 Jul 2026</time>
+        </div>
+
+        <div class="ma-body">
+          <h3 class="ma-h"><a href="news-article.html">The week ahead: CPI, two central banks and a quiet Friday</a></h3>
+          <p class="ma-ex">Where the risk sits on the calendar, and which level each print is arguing about.</p>
+          <span class="ma-read">5 min read</span>
+        </div>
+
+        <a class="ma-media" href="news-article.html" aria-label="Read: The week ahead: CPI, two central banks and a quiet Friday">
+          <span class="cover-bg" role="img" aria-label="A price chart open on the STARTRADER platform" style="background-image:url('assets/img/platform-hero.webp')"></span>
+          <span class="ma-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
+        </a>
+      </article>
+      <article class="ma-rep glass" data-ma-item data-cat="mo" data-title="Monthly: the dollar stops leading and the metals take over" data-aos="fade-up">
+        <div class="ma-head">
+          <span class="ma-cat mo"><svg aria-hidden="true"><use href="#i-layers"/></svg>Monthly Analysis</span>
+          <time class="ma-date" datetime="2026-07-18">18 Jul 2026</time>
+        </div>
+
+        <div class="ma-body">
+          <h3 class="ma-h"><a href="news-article.html">Monthly: the dollar stops leading and the metals take over</a></h3>
+          <p class="ma-ex">A rotation that started quietly in the second week and finished the month in charge.</p>
+          <span class="ma-read">7 min read</span>
+        </div>
+
+        <a class="ma-media" href="news-article.html" aria-label="Read: Monthly: the dollar stops leading and the metals take over">
+          <span class="cover-bg" role="img" aria-label="Sculpted bronze abstract artwork" style="background-image:url('assets/img/stat-tan.webp')"></span>
           <span class="ma-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
@@ -1103,7 +1177,7 @@
         <em>Gold, silver, crude and gas &mdash; daily and weekly.</em>
         <svg class="ma-cov-go"><use href="#i-arrow-ur"/></svg>
       </a>
-      <a class="ma-cov glass" href="index.html#markets" data-aos="fade-up" data-aos-delay="200">
+      <a class="ma-cov glass" href="indices.html" data-aos="fade-up" data-aos-delay="200">
         <span class="ma-cov-ic"><svg><use href="#i-chart"/></svg></span>
         <b data-count="9">9</b>
         <span class="ma-cov-l">Indices</span>
@@ -1220,7 +1294,7 @@
     <p data-aos="fade-up">Open an account and trade 1,000+ instruments with ultra-tight spreads and 100-millisecond execution &mdash; or rehearse on a risk-free demo first.</p>
     <div class="cta-actions" data-aos="fade-up">
       <a href="https://www.startrader.com/live-account/" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
-      <a href="getting-started.html" class="btn btn-ghost btn-lg">Try Free Demo</a>
+      <a href="https://www.startrader.com/demo-account/" class="btn btn-ghost btn-lg">Try Free Demo</a>
     </div>
   </div>
 </section>
@@ -1344,6 +1418,6 @@
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=qa70" defer></script>
+<script src="assets/js/main.min.js?v=qa71" defer></script>
 </body>
 </html>

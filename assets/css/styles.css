@@ -5604,3 +5604,27 @@ html{scroll-behavior:auto}
 .ar-cta-alt a{color:var(--text-soft);font-weight:600;transition:color .25s}
 .ar-cta-alt a:hover{color:var(--blue)}
 .ar-cta-alt span{color:var(--line)}
+
+/* ===== THE VIDEO PLAYER (appended batch 2026-09-01m) =====
+   Pressing play holds the reader on the page: the film opens over it on the
+   same dark glass the other overlays use, sized to the video rather than to
+   the screen, and it clears itself on close. */
+.vmod{position:fixed;inset:0;z-index:960;display:grid;place-items:center;padding:20px;
+  background:rgba(4,6,14,.72);-webkit-backdrop-filter:blur(12px) saturate(1.2);backdrop-filter:blur(12px) saturate(1.2);
+  opacity:0;transition:opacity .28s}
+.vmod.is-open{opacity:1}
+.vmod-card{width:min(1000px,100%);max-height:calc(100dvh - 40px);overflow:auto;border-radius:22px;
+  background:linear-gradient(158deg,#0b1630,#04060e 68%);border:1px solid rgba(120,160,255,.26);
+  box-shadow:0 60px 130px -40px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.14);
+  transform:translateY(24px) scale(.96);transition:transform .35s var(--ease)}
+.vmod.is-open .vmod-card{transform:none}
+.vmod-bar{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 18px}
+.vmod-title{font-size:15.5px;font-weight:800;letter-spacing:-.02em;color:#fff;min-width:0}
+.vmod-x{flex:none;width:36px;height:36px;display:grid;place-items:center;border-radius:50%;cursor:pointer;
+  border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.07);color:#c4cedf;
+  transition:background .25s,color .25s,transform .3s var(--ease)}
+.vmod-x:hover{background:rgba(255,255,255,.16);color:#fff;transform:rotate(90deg)}
+.vmod-x svg{width:15px;height:15px}
+.vmod-frame{padding:0 14px 14px}
+.vmod-frame video{display:block;width:100%;aspect-ratio:16/9;border-radius:14px;background:#000}
+@media (prefers-reduced-motion:reduce){.vmod,.vmod-card,.vmod-x{transition:none}}
