@@ -5413,3 +5413,15 @@ html{scroll-behavior:auto}
   .cat-deck-in{grid-template-columns:1fr}
   .cat-group-row{grid-template-columns:repeat(auto-fill,minmax(136px,1fr))}
 }
+
+/* ===== SCROLL-LOADED LISTINGS (appended batch 2026-09-01e) =====
+   Meer (SEO): the next page should arrive on scroll on desktop, with the
+   button kept for phones. Where the observer is running, the button stops
+   asking to be pressed and reads as the quiet status line it now is — it
+   still works, and it is still what keyboard users reach. */
+.nr-morerow.is-autoload .btn{background:transparent;color:var(--text-mute);border:1px solid var(--line);
+  box-shadow:none;font-weight:600;pointer-events:auto}
+.nr-morerow.is-autoload .btn:hover{background:var(--bg-light);color:var(--text)}
+.nr-morerow.is-autoload .btn svg{animation:lmPulse 1.4s ease-in-out infinite}
+@keyframes lmPulse{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(3px);opacity:1}}
+@media (prefers-reduced-motion:reduce){.nr-morerow.is-autoload .btn svg{animation:none}}

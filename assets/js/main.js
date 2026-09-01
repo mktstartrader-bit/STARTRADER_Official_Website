@@ -3007,6 +3007,39 @@
     }, 120);
   }
 
+  /* Meer (SEO, 9.01): on desktop the next page should arrive on scroll rather
+     than on a click; on phones the button stays, because an endless list is
+     harder to escape on a small screen. The button is never removed — it is
+     the keyboard and no-observer fallback, and it simply fires itself once it
+     comes into view on a wide screen. */
+  function wireAutoLoad(moreBtn, moreRow) {
+    if (!moreBtn || !moreRow || !('IntersectionObserver' in window)) return;
+    var wide = window.matchMedia('(min-width:1024px)');
+    var busy = false, io = null;
+    function tick(entries) {
+      if (!entries[0].isIntersecting || busy) return;
+      if (moreRow.hidden || moreBtn.disabled) return;
+      busy = true;
+      moreBtn.click();
+      setTimeout(function () { busy = false; }, 350);
+    }
+    function on() {
+      if (io) return;
+      io = new IntersectionObserver(tick, { rootMargin: '280px 0px' });
+      io.observe(moreRow);
+      moreRow.classList.add('is-autoload');
+    }
+    function off() {
+      if (!io) return;
+      io.disconnect(); io = null;
+      moreRow.classList.remove('is-autoload');
+    }
+    function sync() { wide.matches ? on() : off(); }
+    sync();
+    if (wide.addEventListener) wide.addEventListener('change', sync);
+    else if (wide.addListener) wide.addListener(sync);
+  }
+
   /* ---------------- News room — filter, search, load more ---------------- */
   function initNews() {
     var root = document.getElementById('latest');
@@ -3114,6 +3147,8 @@
         }
       });
     }
+
+    wireAutoLoad(moreBtn, moreRow);
 
     // ?q= deep-links a filtered view
     var q0 = new URLSearchParams(window.location.search).get('q');
@@ -4247,6 +4282,7 @@
       if (resetBtn) resetBtn.addEventListener('click', reset);
       if (moreBtn) moreBtn.addEventListener('click', function () { shown += PAGE; apply(); });
 
+      wireAutoLoad(moreBtn, moreRow);
       apply();
     })();
 
@@ -4537,6 +4573,7 @@
         if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); }
       }
     });
+    wireAutoLoad(moreBtn, moreRow);
     apply();
   }
 
@@ -4566,6 +4603,7 @@
         }
       });
       apply();
+      wireAutoLoad(moreBtn, moreRow);
       stripAosHidden(items);
     });
   }
