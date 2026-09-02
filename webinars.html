@@ -5,25 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#05070E" />
 
-  <title>Trading Webinars — Free Live Sessions &amp; Replays | STARTRADER</title>
-  <meta name="description" content="Join free STARTRADER webinars led by market analysts — live strategy sessions, Fibonacci and Ichimoku masterclasses, risk management workshops and on-demand replays in English, Arabic, Chinese and Thai." />
-  <meta name="keywords" content="STARTRADER, trading webinars, free forex webinars, live trading sessions, trading masterclass, webinar replays, forex education, Fibonacci webinar, Ichimoku webinar, risk management webinar" />
+  <title>Trading Webinars — Free Live Sessions | STARTRADER</title>
+  <meta name="description" content="Join free STARTRADER webinars led by a market analyst — live strategy, technical analysis and risk management sessions. Register for the next one." />
+  <meta name="keywords" content="STARTRADER, trading webinars, free forex webinars, live trading sessions, forex education, Fibonacci webinar, Ichimoku webinar, risk management webinar" />
   <meta name="author" content="STARTRADER" />
   <link rel="canonical" href="https://www.startrader.com/webinars/" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="STARTRADER" />
-  <meta property="og:title" content="Trading Webinars — Free Live Sessions &amp; Replays | STARTRADER" />
-  <meta property="og:description" content="Free live webinars and on-demand replays led by STARTRADER market analysts — strategy, technical analysis, risk management and platform mastery in four languages." />
+  <meta property="og:title" content="Trading Webinars — Free Live Sessions | STARTRADER" />
+  <meta property="og:description" content="Free live webinars led by a STARTRADER market analyst — strategy, technical analysis, risk management and platform training." />
   <meta property="og:url" content="https://www.startrader.com/webinars/" />
   <meta property="og:image" content="https://www.startrader.com/assets/img/academy-1.webp" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Trading Webinars — Free Live Sessions &amp; Replays | STARTRADER" />
-  <meta name="twitter:description" content="Free live webinars and on-demand replays led by STARTRADER market analysts — strategy, technical analysis, risk management and platform mastery in four languages." />
+  <meta name="twitter:title" content="Trading Webinars — Free Live Sessions | STARTRADER" />
+  <meta name="twitter:description" content="Free live webinars led by a STARTRADER market analyst — strategy, technical analysis, risk management and platform training." />
   <meta name="twitter:image" content="https://www.startrader.com/assets/img/academy-1.webp" />
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
@@ -167,7 +167,6 @@
 .wb-ics svg{width:13px;height:13px;flex:none}
 .wb-ics:hover{background:rgba(0,71,187,.08);color:var(--blue-700)}
 .wb-ics.is-done{color:#0f7d5c}
-/* replays — frosted cards: meta header, copy, then the still filling the foot */
 
 
 
@@ -205,14 +204,106 @@
 /* ---- Presenters ---- */
 .wb-team{background:radial-gradient(58% 56% at 90% 4%,rgba(0,71,187,.06),transparent 60%),var(--bg-light-2)}
 .wb-team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px}
-.wb-person{padding:20px 20px 22px;border-radius:22px;transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s}
-.wb-person:hover{transform:translateY(-4px);border-color:#fff;box-shadow:0 28px 56px -30px rgba(20,44,96,.42),inset 0 1px 0 #fff}
-.wb-person-ph{display:block;border-radius:16px;overflow:hidden;aspect-ratio:4/3;margin-bottom:18px}
-.wb-person-ph img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
-.wb-person:hover .wb-person-ph img{transform:scale(1.05)}
-.wb-person h3{font-size:17px;letter-spacing:-.02em;color:var(--text)}
-.wb-person p{margin-top:8px;font-size:13.5px;line-height:1.6;color:var(--text-soft)}
-.wb-person-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+/* ---- quiet state: nothing scheduled ---- */
+.wb-state{
+  position:relative;z-index:2;display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+  margin-top:clamp(28px,3.4vw,44px);padding:20px 22px;border-radius:20px;
+  background:rgba(12,20,40,.62);border:1px solid rgba(120,160,230,.22);
+  -webkit-backdrop-filter:blur(18px) saturate(1.4);backdrop-filter:blur(18px) saturate(1.4);
+}
+.wb-state-ic{
+  flex:none;display:grid;place-items:center;width:46px;height:46px;border-radius:14px;
+  background:rgba(120,175,255,.14);color:#7fb2ff;
+}
+.wb-state-ic svg{width:21px;height:21px}
+.wb-state-tx{flex:1 1 320px;min-width:0}
+.wb-state-tx b{display:block;font-size:16px;letter-spacing:-.022em;color:#fff}
+.wb-state-tx p{margin-top:6px;font-size:13.5px;line-height:1.62;color:#a9bcdb}
+.wb-state-btn{flex:none}
+.wb-cd-now{font-size:14px;font-weight:800;letter-spacing:-.02em;color:#7fb2ff}
+
+/* the toggle now rides inside the dark session card, so its label has to be
+   repainted for that ground — on white it kept the light-page colours */
+.wb-next-mid .wb-tz{margin-top:14px}
+.wb-next-mid .wb-tz-lbl{color:#a9bcdb}
+.wb-next-mid .wb-tz-lbl b{color:#fff}
+.wb-next-mid .wb-tz-track{background:rgba(255,255,255,.22)}
+.wb-next-mid .wb-tz input:checked+.wb-tz-track{background:#2a72ff}
+
+/* ---- one speaker ---- */
+.wb-speaker{
+  display:grid;grid-template-columns:200px minmax(0,1fr);gap:clamp(20px,3vw,34px);align-items:center;
+  max-width:820px;margin:clamp(28px,3.4vw,42px) auto 0;padding:clamp(22px,2.6vw,30px);border-radius:24px;
+}
+.wb-speaker-ph{
+  position:relative;display:grid;place-items:center;border-radius:20px;overflow:hidden;
+  aspect-ratio:1;background:linear-gradient(158deg,rgba(0,71,187,.12),rgba(0,183,178,.12));
+}
+.wb-speaker-ph img{width:100%;height:100%;object-fit:cover}
+.wb-speaker-mono{font-size:44px;font-weight:800;letter-spacing:-.04em;color:var(--blue);opacity:.72}
+.wb-speaker-tx h3{font-size:clamp(20px,2.2vw,26px);letter-spacing:-.032em;color:var(--text)}
+.wb-speaker-role{margin-top:6px;font-size:13.5px;font-weight:700;color:var(--blue)}
+.wb-speaker-bio{margin-top:12px;font-size:14.5px;line-height:1.7;color:var(--text-soft)}
+.wb-speaker-bio:empty{display:none}
+
+/* ---- register panel ---- */
+.wb-reg{background:radial-gradient(58% 50% at 88% 0%,rgba(0,71,187,.5),transparent 62%),#060a16;color:#fff}
+.wb-reg-wrap{max-width:760px;margin-inline:auto;text-align:center}
+.wb-reg-lead{margin-top:14px;font-size:15px;line-height:1.7;color:#a9bcdb;max-width:56ch;margin-inline:auto}
+.wb-reg-facts{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:24px}
+.wb-reg-facts>div{
+  padding:12px 16px;border-radius:14px;min-width:0;
+  background:rgba(255,255,255,.05);border:1px solid rgba(120,160,230,.2);
+}
+.wb-reg-facts dt{font-size:10.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#8ea4c6}
+.wb-reg-facts dd{margin:5px 0 0;font-size:14.5px;font-weight:700;letter-spacing:-.018em;color:#fff}
+/* three short proofs read better side by side under a centred heading */
+.wb-reg-list{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 26px;margin-top:26px}
+.wb-reg-list li{display:flex;align-items:center;gap:10px;font-size:14px;line-height:1.5;color:#c4d2e8;text-align:left}
+.wb-reg-act{margin-top:28px}
+
+/* ---- registration dialog ---- */
+/* the shared sheet resets dialog margins, so centring has to be stated */
+.wb-modal{width:min(560px,calc(100vw - 32px));max-height:calc(100vh - 48px);margin:auto;padding:0;border:0;border-radius:24px;background:transparent;color:var(--text);overflow:visible}
+.wb-modal-in{max-height:calc(100vh - 48px);overflow-y:auto;overscroll-behavior:contain}
+.wb-modal::backdrop{background:rgba(4,8,20,.6);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}
+.wb-modal-in{background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 40px 90px -40px rgba(4,10,30,.6)}
+.wb-modal-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 24px 0}
+.wb-modal-head h2{font-size:19px;letter-spacing:-.028em}
+.wb-modal-x{
+  flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;cursor:pointer;
+  color:var(--text-mute);background:rgba(20,44,96,.06);transition:background .25s,color .25s;
+}
+.wb-modal-x:hover{background:rgba(0,71,187,.12);color:var(--blue)}
+.wb-modal-x svg{width:13px;height:13px}
+.wb-modal-body{padding:18px 24px 24px}
+.wb-modal-session{padding:16px 18px;border-radius:16px;background:var(--bg-light);border:1px solid var(--line);margin-bottom:20px}
+.wb-modal-session b{display:block;font-size:15px;letter-spacing:-.022em;color:var(--text)}
+.wb-modal-session dl{display:flex;flex-wrap:wrap;gap:8px 22px;margin:12px 0 0}
+.wb-modal-session dt{font-size:10.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--text-mute)}
+.wb-modal-session dd{margin:3px 0 0;font-size:13.5px;font-weight:700;color:var(--text)}
+.wb-modal-note{padding:14px 16px;border-radius:14px;background:rgba(0,71,187,.05);border:1px solid rgba(0,71,187,.14);
+  font-size:13.5px;line-height:1.6;color:var(--text-soft);margin-bottom:20px}
+.wb-modal-foot{margin-top:22px}
+.wb-modal-foot .btn{width:100%;justify-content:center}
+.wb-modal-done{text-align:center;padding:12px 0 4px}
+.wb-modal-done h3{margin-top:14px;font-size:20px;letter-spacing:-.028em}
+.wb-modal-done p{margin:10px auto 20px;max-width:42ch;font-size:14px;line-height:1.65;color:var(--text-soft)}
+@media (prefers-reduced-motion:no-preference){
+  .wb-modal[open]{animation:wbModalIn .3s var(--ease-out)}
+  @keyframes wbModalIn{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
+}
+
+/* ---- responsive ---- */
+@media (max-width:900px){
+  .wb-speaker{grid-template-columns:1fr;text-align:center;justify-items:center}
+  .wb-speaker-ph{width:170px}
+}
+@media (max-width:640px){
+  .wb-state{flex-direction:column;align-items:flex-start}
+  .wb-state-btn{width:100%;justify-content:center}
+  .wb-reg-facts>div{flex:1 1 100%}
+}
 .wb-person-meta li{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-mute);background:#eef2f7;padding:5px 10px;border-radius:70px}
 /* ---- Subscribe (dark, validated form) ---- */
 .wb-sub{background:radial-gradient(90% 68% at 50% 0%,rgba(0,46,138,.34),transparent 60%),linear-gradient(180deg,#04060e 0%,#060a18 52%,#04060e 100%);color:#fff}
@@ -318,136 +409,6 @@
   </script>
 
   <!-- Structured data — upcoming sessions -->
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  "name": "STARTRADER upcoming trading webinars",
-  "url": "https://www.startrader.com/education/academy/webinars.html#schedule",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "item": {
-        "@type": "EducationEvent",
-        "name": "Build your own trading & investment strategy",
-        "description": "A live walkthrough of how to turn a market view into a rule-based trading plan with defined entries, exits and risk limits.",
-        "startDate": "2026-08-04T15:00:00Z",
-        "endDate": "2026-08-04T16:00:00Z",
-        "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
-        "eventStatus": "https://schema.org/EventScheduled",
-        "inLanguage": "en",
-        "isAccessibleForFree": true,
-        "url": "https://www.startrader.com/education/academy/webinars.html#schedule",
-        "location": { "@type": "VirtualLocation", "url": "https://www.startrader.com/education/academy/webinars.html" },
-        "organizer": { "@type": "Organization", "name": "STARTRADER", "url": "https://www.startrader.com/" },
-        "performer": { "@type": "Organization", "name": "STARTRADER Market Analysts" },
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://www.startrader.com/education/academy/webinars.html#subscribe" }
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "item": {
-        "@type": "EducationEvent",
-        "name": "Mastering Fibonacci sequences",
-        "description": "How to draw retracements and extensions that hold, and how to combine them with structure for higher-quality entries.",
-        "startDate": "2026-08-06T13:00:00Z",
-        "endDate": "2026-08-06T13:45:00Z",
-        "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
-        "eventStatus": "https://schema.org/EventScheduled",
-        "inLanguage": "en",
-        "isAccessibleForFree": true,
-        "url": "https://www.startrader.com/education/academy/webinars.html#schedule",
-        "location": { "@type": "VirtualLocation", "url": "https://www.startrader.com/education/academy/webinars.html" },
-        "organizer": { "@type": "Organization", "name": "STARTRADER", "url": "https://www.startrader.com/" },
-        "performer": { "@type": "Organization", "name": "STARTRADER Market Analysts" },
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://www.startrader.com/education/academy/webinars.html#subscribe" }
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "item": {
-        "@type": "EducationEvent",
-        "name": "Ichimoku Kinko Hyo explained",
-        "description": "Read the cloud like a professional — kumo twists, Chikou confirmation and the trade setups the system is built for.",
-        "startDate": "2026-08-11T15:00:00Z",
-        "endDate": "2026-08-11T16:00:00Z",
-        "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
-        "eventStatus": "https://schema.org/EventScheduled",
-        "inLanguage": "en",
-        "isAccessibleForFree": true,
-        "url": "https://www.startrader.com/education/academy/webinars.html#schedule",
-        "location": { "@type": "VirtualLocation", "url": "https://www.startrader.com/education/academy/webinars.html" },
-        "organizer": { "@type": "Organization", "name": "STARTRADER", "url": "https://www.startrader.com/" },
-        "performer": { "@type": "Organization", "name": "STARTRADER Market Analysts" },
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://www.startrader.com/education/academy/webinars.html#subscribe" }
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 4,
-      "item": {
-        "@type": "EducationEvent",
-        "name": "Reading market sentiment",
-        "description": "Positioning data, risk-on and risk-off flows and the calendar events that move sentiment fastest — presented in Arabic.",
-        "startDate": "2026-08-13T12:00:00Z",
-        "endDate": "2026-08-13T12:45:00Z",
-        "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
-        "eventStatus": "https://schema.org/EventScheduled",
-        "inLanguage": "ar",
-        "isAccessibleForFree": true,
-        "url": "https://www.startrader.com/education/academy/webinars.html#schedule",
-        "location": { "@type": "VirtualLocation", "url": "https://www.startrader.com/education/academy/webinars.html" },
-        "organizer": { "@type": "Organization", "name": "STARTRADER", "url": "https://www.startrader.com/" },
-        "performer": { "@type": "Organization", "name": "STARTRADER Market Analysts" },
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://www.startrader.com/education/academy/webinars.html#subscribe" }
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 5,
-      "item": {
-        "@type": "EducationEvent",
-        "name": "Risk management in volatile markets",
-        "description": "Position sizing, stop placement and correlation risk when volatility expands — presented in Mandarin.",
-        "startDate": "2026-08-18T15:00:00Z",
-        "endDate": "2026-08-18T16:00:00Z",
-        "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
-        "eventStatus": "https://schema.org/EventScheduled",
-        "inLanguage": "zh",
-        "isAccessibleForFree": true,
-        "url": "https://www.startrader.com/education/academy/webinars.html#schedule",
-        "location": { "@type": "VirtualLocation", "url": "https://www.startrader.com/education/academy/webinars.html" },
-        "organizer": { "@type": "Organization", "name": "STARTRADER", "url": "https://www.startrader.com/" },
-        "performer": { "@type": "Organization", "name": "STARTRADER Market Analysts" },
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://www.startrader.com/education/academy/webinars.html#subscribe" }
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 6,
-      "item": {
-        "@type": "EducationEvent",
-        "name": "MT5 in 45 minutes: orders, charts and alerts",
-        "description": "A guided platform workshop — order types, chart templates, custom alerts and one-click trading on MetaTrader 5.",
-        "startDate": "2026-08-20T11:00:00Z",
-        "endDate": "2026-08-20T11:45:00Z",
-        "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
-        "eventStatus": "https://schema.org/EventScheduled",
-        "inLanguage": "th",
-        "isAccessibleForFree": true,
-        "url": "https://www.startrader.com/education/academy/webinars.html#schedule",
-        "location": { "@type": "VirtualLocation", "url": "https://www.startrader.com/education/academy/webinars.html" },
-        "organizer": { "@type": "Organization", "name": "STARTRADER", "url": "https://www.startrader.com/" },
-        "performer": { "@type": "Organization", "name": "STARTRADER Market Analysts" },
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://www.startrader.com/education/academy/webinars.html#subscribe" }
-      }
-    }
-  ]
-}
-  </script>
 
   <!-- Structured data — FAQ -->
   <script type="application/ld+json">
@@ -458,7 +419,7 @@
     {
       "@type": "Question",
       "name": "Are STARTRADER webinars free to attend?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every live session and every on-demand replay is free, and you do not need a funded trading account to join. You only need to register with your name, email and preferred language so we can send you the joining link and the reminder." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every session is free, and you do not need a funded trading account to join. You register with your name and email so we can send you the joining link and a reminder before it starts." }
     },
     {
       "@type": "Question",
@@ -468,17 +429,17 @@
     {
       "@type": "Question",
       "name": "Which languages are the webinars presented in?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Sessions run in English, Arabic, Mandarin Chinese and Thai. Use the language filter on the schedule to see only the sessions presented in the language you prefer, and choose the same language when you subscribe so the reminders match." }
+      "acceptedAnswer": { "@type": "Answer", "text": "The language of each session is shown with its date and time, and again on the registration form, so you know before you sign up." }
     },
     {
       "@type": "Question",
       "name": "What if I cannot attend a live session?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Register anyway. Every session is recorded and published as an on-demand replay, and registered attendees receive the replay link by email once it is ready — usually within 48 hours of the live broadcast." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Register anyway. We only run a few sessions a year, and registered attendees hear first when the next one is scheduled." }
     },
     {
       "@type": "Question",
       "name": "What level of experience do I need?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Each session carries a level tag — beginner, intermediate, advanced or all levels. The Beginner's Masterclass series starts with no assumed knowledge and builds up over four sessions, while topics such as Ichimoku and market sentiment assume you are comfortable reading a chart." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Each session carries a level tag — beginner, intermediate, advanced or all levels. Sessions are pitched so newcomers can follow, while topics such as Ichimoku and market sentiment assume you are comfortable reading a chart." }
     },
     {
       "@type": "Question",
@@ -801,6 +762,8 @@
 <main id="main">
 
 <!-- ============ HERO ============ -->
+<!-- Two states, both rendered from #wbSession below. WP writes that JSON; nothing
+     here needs touching when a webinar is added, changed or removed. -->
 <section class="wb-hero" aria-labelledby="wb-hero-title">
   <video class="wb-hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/img/webinars-video-poster.webp" aria-hidden="true">
     <source src="assets/video/webinars-banner.mp4" type="video/mp4">
@@ -810,19 +773,24 @@
   <div class="container wb-hero-inner">
     <span class="eyebrow eyebrow-blue" data-aos="fade-up">STARACADEMY</span>
     <h1 class="wb-h1" id="wb-hero-title" data-aos="fade-up">Webinars</h1>
-    <p class="wb-lead" data-aos="fade-up">Sharpen your trading with live webinars, seminars and workshops led by market experts.</p>
-    <div class="wb-hact" data-aos="fade-up">
-      <a href="#schedule" class="btn btn-primary btn-lg magnetic">Browse webinars <svg class="ico"><use href="#i-arrow-right"/></svg></a>
-    </div>
+    <p class="wb-lead" data-aos="fade-up">Sharpen your trading with live sessions led by a market expert &mdash; a few times a year, and worth the diary entry.</p>
   </div>
 
-  <aside class="container wb-next" aria-labelledby="wb-next-title" data-aos="fade-up" data-wb-next
-    data-start="2026-08-04T15:00:00Z" data-dur="60" data-lang="en"
-    data-title="Build your own trading &amp; investment strategy" data-host="Senior Market Analyst" data-topic="Market strategy" data-level="All levels">
+  <!-- STATE A — nothing scheduled. Quiet by design: no clock, no empty fields. -->
+  <aside class="container wb-state wb-state--quiet" data-wb-quiet hidden data-aos="fade-up">
+    <span class="wb-state-ic" aria-hidden="true"><svg><use href="#i-clock"/></svg></span>
+    <div class="wb-state-tx">
+      <b>No webinar is scheduled at the moment</b>
+      <p>We run these a few times a year. Leave your email and we&rsquo;ll tell you when the next one opens for registration.</p>
+    </div>
+    <a class="btn btn-primary wb-state-btn" href="#register">Notify me <svg class="ico"><use href="#i-arrow-right"/></svg></a>
+  </aside>
 
+  <!-- STATE B — a webinar is scheduled. Date, time, countdown, Register. -->
+  <aside class="container wb-next" aria-labelledby="wb-next-title" data-wb-live hidden data-aos="fade-up">
     <div class="wb-next-head">
-      <p class="wb-next-lbl" data-wb-next-lbl>Next live session starts in:</p>
-      <div class="wb-cd" data-wb-cd aria-hidden="true">
+      <p class="wb-next-lbl">Next live session starts in</p>
+      <div class="wb-cd" data-wb-cd role="timer" aria-live="off">
         <span class="wb-cd-u"><b data-cd="d">--</b><em>d</em></span>
         <span class="wb-cd-sep">:</span>
         <span class="wb-cd-u"><b data-cd="h">--</b><em>h</em></span>
@@ -834,422 +802,26 @@
     </div>
 
     <div class="wb-next-mid">
-      <h2 class="wb-next-title" id="wb-next-title" data-wb-next-title>Build your own trading &amp; investment strategy</h2>
+      <h2 class="wb-next-title" id="wb-next-title" data-wb-title></h2>
       <p class="wb-next-meta">
-        <span data-wb-next-time>Tue 4 Aug &middot; 15:00 GMT</span>
+        <span data-wb-when></span>
         <i aria-hidden="true"></i>
-        <span data-wb-next-dur>60 minutes</span>
+        <span data-wb-dur></span>
         <i aria-hidden="true"></i>
-        <span data-wb-next-lang>English</span>
+        <span data-wb-lang></span>
       </p>
+      <!-- the timezone control exists only while a session does -->
+      <label class="wb-tz" for="wbTz">
+        <input type="checkbox" id="wbTz" checked data-wb-tz>
+        <span class="wb-tz-track" aria-hidden="true"><i></i></span>
+        <span class="wb-tz-lbl">Show in <b data-wb-tzname>my timezone</b></span>
+      </label>
     </div>
 
     <div class="wb-next-act">
-      <a class="btn btn-primary wb-next-btn magnetic" href="#subscribe" data-wb-register>Register today <svg class="ico"><use href="#i-arrow-right"/></svg></a>
+      <button class="btn btn-primary wb-next-btn magnetic" type="button" data-wb-open>Register <svg class="ico"><use href="#i-arrow-right"/></svg></button>
     </div>
   </aside>
-</section>
-
-<!-- ============ SCHEDULE: UPCOMING · MASTERCLASS · REPLAYS ============ -->
-<section class="section wb-sched" id="schedule" aria-labelledby="wb-sched-title">
-  <div class="container">
-    <div class="head center">
-      <span class="eyebrow" data-aos="fade-up">Programme</span>
-      <h2 class="h2" id="wb-sched-title" data-aos="fade-up">Upcoming sessions and on-demand replays</h2>
-    </div>
-
-    <div class="wb-bar glass" data-aos="fade-up">
-      <div class="wb-tabs" role="tablist" aria-label="Webinar types">
-        <button class="wb-tab is-on" type="button" role="tab" id="wb-tab-upcoming" aria-selected="true" aria-controls="wb-panel-upcoming" data-wb-tab="upcoming">Upcoming <span class="wb-tab-n" data-wb-count="upcoming">6</span></button>
-        <button class="wb-tab" type="button" role="tab" id="wb-tab-masterclass" aria-selected="false" aria-controls="wb-panel-masterclass" tabindex="-1" data-wb-tab="masterclass">Masterclass <span class="wb-tab-n" data-wb-count="masterclass">4</span></button>
-        <button class="wb-tab" type="button" role="tab" id="wb-tab-replay" aria-selected="false" aria-controls="wb-panel-replay" tabindex="-1" data-wb-tab="replay">Replays <span class="wb-tab-n" data-wb-count="replay">6</span></button>
-      </div>
-
-      <div class="wb-tools">
-        <div class="wb-langs" role="group" aria-label="Filter sessions by language">
-          <button class="wb-chip is-on" type="button" data-wb-lang="all" aria-pressed="true">All</button>
-          <button class="wb-chip" type="button" data-wb-lang="en" aria-pressed="false">English</button>
-          <button class="wb-chip" type="button" data-wb-lang="ar" aria-pressed="false" lang="ar">العربية</button>
-          <button class="wb-chip" type="button" data-wb-lang="zh" aria-pressed="false" lang="zh">简体中文</button>
-          <button class="wb-chip" type="button" data-wb-lang="th" aria-pressed="false" lang="th">ไทย</button>
-        </div>
-
-        <label class="wb-tz" for="wbTz">
-          <input type="checkbox" id="wbTz" checked>
-          <span class="wb-tz-track" aria-hidden="true"><i></i></span>
-          <span class="wb-tz-lbl">Show times in <b data-wb-tzname>my timezone</b></span>
-        </label>
-      </div>
-    </div>
-
-    <p class="wb-status" data-wb-status role="status" aria-live="polite"></p>
-
-    <!-- Upcoming -->
-    <div class="wb-panel" id="wb-panel-upcoming" role="tabpanel" aria-labelledby="wb-tab-upcoming" tabindex="0">
-      <div class="wb-grid">
-
-        <article class="wb-card glass" data-wb-item data-cat="upcoming" data-lang="en" data-start="2026-08-04T15:00:00Z" data-dur="60" data-title="Build your own trading &amp; investment strategy" data-host="Senior Market Analyst" data-topic="Market strategy" data-aos="fade-up">
-          <span class="wb-date" aria-hidden="true"><b data-wb-day>4</b><em data-wb-mon>Aug</em></span>
-          <div class="wb-card-body">
-            <div class="wb-tags">
-              <span class="wb-tag wb-tag--live"><i></i> Live</span>
-              <span class="wb-tag">Market strategy</span>
-              <span class="wb-tag wb-tag--lvl">All levels</span>
-            </div>
-            <h3 class="wb-card-title">Build your own trading &amp; investment strategy</h3>
-            <p class="wb-card-desc">Turn a market view into a rule-based plan &mdash; entries, exits, position sizing and the risk limits that keep you in the game.</p>
-            <ul class="wb-metarow">
-              <li><svg><use href="#i-clock"/></svg><time data-wb-time datetime="2026-08-04T15:00:00Z">4 Aug &middot; 15:00 GMT</time></li>
-              <li><svg><use href="#i-gauge"/></svg>60 min</li>
-              <li><svg><use href="#i-globe"/></svg>English</li>
-              <li><svg><use href="#i-user"/></svg>Senior Market Analyst</li>
-            </ul>
-          </div>
-          <div class="wb-card-act">
-            <a class="btn btn-primary btn-sm" href="#subscribe" data-wb-register>Register today</a>
-            <button class="wb-ics" type="button" data-wb-ics>Add to calendar <svg><use href="#i-plus"/></svg></button>
-          </div>
-        </article>
-
-        <article class="wb-card glass" data-wb-item data-cat="upcoming" data-lang="en" data-start="2026-08-06T13:00:00Z" data-dur="45" data-title="Mastering Fibonacci sequences" data-host="Technical Strategist" data-topic="Technical analysis" data-aos="fade-up" data-aos-delay="100">
-          <span class="wb-date" aria-hidden="true"><b data-wb-day>6</b><em data-wb-mon>Aug</em></span>
-          <div class="wb-card-body">
-            <div class="wb-tags">
-              <span class="wb-tag">Technical analysis</span>
-              <span class="wb-tag wb-tag--lvl">Intermediate</span>
-            </div>
-            <h3 class="wb-card-title">Mastering Fibonacci sequences</h3>
-            <p class="wb-card-desc">Draw retracements and extensions that actually hold, then combine them with market structure for higher-quality entries.</p>
-            <ul class="wb-metarow">
-              <li><svg><use href="#i-clock"/></svg><time data-wb-time datetime="2026-08-06T13:00:00Z">6 Aug &middot; 13:00 GMT</time></li>
-              <li><svg><use href="#i-gauge"/></svg>45 min</li>
-              <li><svg><use href="#i-globe"/></svg>English</li>
-              <li><svg><use href="#i-user"/></svg>Technical Strategist</li>
-            </ul>
-          </div>
-          <div class="wb-card-act">
-            <a class="btn btn-primary btn-sm" href="#subscribe" data-wb-register>Register today</a>
-            <button class="wb-ics" type="button" data-wb-ics>Add to calendar <svg><use href="#i-plus"/></svg></button>
-          </div>
-        </article>
-
-        <article class="wb-card glass" data-wb-item data-cat="upcoming" data-lang="en" data-start="2026-08-11T15:00:00Z" data-dur="60" data-title="Ichimoku Kinko Hyo explained" data-host="Technical Strategist" data-topic="Technical analysis" data-aos="fade-up" data-aos-delay="200">
-          <span class="wb-date" aria-hidden="true"><b data-wb-day>11</b><em data-wb-mon>Aug</em></span>
-          <div class="wb-card-body">
-            <div class="wb-tags">
-              <span class="wb-tag">Technical analysis</span>
-              <span class="wb-tag wb-tag--lvl">Advanced</span>
-            </div>
-            <h3 class="wb-card-title">Ichimoku Kinko Hyo explained</h3>
-            <p class="wb-card-desc">Read the cloud the way it was designed to be read &mdash; kumo twists, Chikou confirmation and the setups the system is built for.</p>
-            <ul class="wb-metarow">
-              <li><svg><use href="#i-clock"/></svg><time data-wb-time datetime="2026-08-11T15:00:00Z">11 Aug &middot; 15:00 GMT</time></li>
-              <li><svg><use href="#i-gauge"/></svg>60 min</li>
-              <li><svg><use href="#i-globe"/></svg>English</li>
-              <li><svg><use href="#i-user"/></svg>Technical Strategist</li>
-            </ul>
-          </div>
-          <div class="wb-card-act">
-            <a class="btn btn-primary btn-sm" href="#subscribe" data-wb-register>Register today</a>
-            <button class="wb-ics" type="button" data-wb-ics>Add to calendar <svg><use href="#i-plus"/></svg></button>
-          </div>
-        </article>
-
-        <article class="wb-card glass" data-wb-item data-cat="upcoming" data-lang="ar" data-start="2026-08-13T12:00:00Z" data-dur="45" data-title="Reading market sentiment" data-host="MENA Market Analyst" data-topic="Market sentiment" data-aos="fade-up" data-aos-delay="300">
-          <span class="wb-date" aria-hidden="true"><b data-wb-day>13</b><em data-wb-mon>Aug</em></span>
-          <div class="wb-card-body">
-            <div class="wb-tags">
-              <span class="wb-tag">Market sentiment</span>
-              <span class="wb-tag wb-tag--lvl">Intermediate</span>
-            </div>
-            <h3 class="wb-card-title">Reading market sentiment</h3>
-            <p class="wb-card-desc">Positioning data, risk-on and risk-off flows, and the calendar events that turn sentiment fastest &mdash; presented in Arabic.</p>
-            <ul class="wb-metarow">
-              <li><svg><use href="#i-clock"/></svg><time data-wb-time datetime="2026-08-13T12:00:00Z">13 Aug &middot; 12:00 GMT</time></li>
-              <li><svg><use href="#i-gauge"/></svg>45 min</li>
-              <li><svg><use href="#i-globe"/></svg>العربية</li>
-              <li><svg><use href="#i-user"/></svg>MENA Market Analyst</li>
-            </ul>
-          </div>
-          <div class="wb-card-act">
-            <a class="btn btn-primary btn-sm" href="#subscribe" data-wb-register>Register today</a>
-            <button class="wb-ics" type="button" data-wb-ics>Add to calendar <svg><use href="#i-plus"/></svg></button>
-          </div>
-        </article>
-
-        <article class="wb-card glass" data-wb-item data-cat="upcoming" data-lang="zh" data-start="2026-08-18T15:00:00Z" data-dur="60" data-title="Risk management in volatile markets" data-host="Head of Education" data-topic="Risk management" data-aos="fade-up" data-aos-delay="400">
-          <span class="wb-date" aria-hidden="true"><b data-wb-day>18</b><em data-wb-mon>Aug</em></span>
-          <div class="wb-card-body">
-            <div class="wb-tags">
-              <span class="wb-tag">Risk management</span>
-              <span class="wb-tag wb-tag--lvl">All levels</span>
-            </div>
-            <h3 class="wb-card-title">Risk management in volatile markets</h3>
-            <p class="wb-card-desc">Position sizing, stop placement and correlation risk when volatility expands &mdash; presented in Mandarin.</p>
-            <ul class="wb-metarow">
-              <li><svg><use href="#i-clock"/></svg><time data-wb-time datetime="2026-08-18T15:00:00Z">18 Aug &middot; 15:00 GMT</time></li>
-              <li><svg><use href="#i-gauge"/></svg>60 min</li>
-              <li><svg><use href="#i-globe"/></svg>简体中文</li>
-              <li><svg><use href="#i-user"/></svg>Head of Education</li>
-            </ul>
-          </div>
-          <div class="wb-card-act">
-            <a class="btn btn-primary btn-sm" href="#subscribe" data-wb-register>Register today</a>
-            <button class="wb-ics" type="button" data-wb-ics>Add to calendar <svg><use href="#i-plus"/></svg></button>
-          </div>
-        </article>
-
-        <article class="wb-card glass" data-wb-item data-cat="upcoming" data-lang="th" data-start="2026-08-20T11:00:00Z" data-dur="45" data-title="MT5 in 45 minutes: orders, charts and alerts" data-host="Platform Specialist" data-topic="Platform workshop" data-aos="fade-up" data-aos-delay="500">
-          <span class="wb-date" aria-hidden="true"><b data-wb-day>20</b><em data-wb-mon>Aug</em></span>
-          <div class="wb-card-body">
-            <div class="wb-tags">
-              <span class="wb-tag">Platform workshop</span>
-              <span class="wb-tag wb-tag--lvl">Beginner</span>
-            </div>
-            <h3 class="wb-card-title">MT5 in 45 minutes: orders, charts and alerts</h3>
-            <p class="wb-card-desc">A guided walkthrough of MetaTrader 5 &mdash; order types, chart templates, custom alerts and one-click trading.</p>
-            <ul class="wb-metarow">
-              <li><svg><use href="#i-clock"/></svg><time data-wb-time datetime="2026-08-20T11:00:00Z">20 Aug &middot; 11:00 GMT</time></li>
-              <li><svg><use href="#i-gauge"/></svg>45 min</li>
-              <li><svg><use href="#i-globe"/></svg>ไทย</li>
-              <li><svg><use href="#i-user"/></svg>Platform Specialist</li>
-            </ul>
-          </div>
-          <div class="wb-card-act">
-            <a class="btn btn-primary btn-sm" href="#subscribe" data-wb-register>Register today</a>
-            <button class="wb-ics" type="button" data-wb-ics>Add to calendar <svg><use href="#i-plus"/></svg></button>
-          </div>
-        </article>
-
-      </div>
-    </div>
-
-    <!-- Masterclass -->
-    <div class="wb-panel" id="wb-panel-masterclass" role="tabpanel" aria-labelledby="wb-tab-masterclass" tabindex="0" hidden>
-      <p class="wb-note" data-aos="fade-up"><b>The Beginner&rsquo;s Masterclass</b> is a four-part series that assumes no prior knowledge. Sessions build on each other, so we recommend taking them in order &mdash; but each one also stands on its own.</p>
-      <div class="wb-grid">
-
-        <article class="wb-card glass" data-wb-item data-cat="masterclass" data-lang="en" data-start="2026-08-24T14:00:00Z" data-dur="60" data-title="Beginner's Masterclass 1: Forex basics" data-host="Head of Education" data-topic="Masterclass · part 1" data-aos="fade-up">
-          <span class="wb-date" aria-hidden="true"><b data-wb-day>24</b><em data-wb-mon>Aug</em></span>
-          <div class="wb-card-body">
-            <div class="wb-tags">
-              <span class="wb-tag wb-tag--series">Part 1 of 4</span>
-              <span class="wb-tag wb-tag--lvl">Beginner</span>
-            </div>
-            <h3 class="wb-card-title">Forex basics</h3>
-            <p class="wb-card-desc">Currency pairs, pips, lots, spreads and leverage &mdash; the vocabulary and the mechanics, explained from zero.</p>
-            <ul class="wb-metarow">
-              <li><svg><use href="#i-clock"/></svg><time data-wb-time datetime="2026-08-24T14:00:00Z">24 Aug &middot; 14:00 GMT</time></li>
-              <li><svg><use href="#i-gauge"/></svg>60 min</li>
-              <li><svg><use href="#i-globe"/></svg>English</li>
-              <li><svg><use href="#i-user"/></svg>Head of Education</li>
-            </ul>
-          </div>
-          <div class="wb-card-act">
-            <a class="btn btn-primary btn-sm" href="#subscribe" data-wb-register>Register today</a>
-            <button class="wb-ics" type="button" data-wb-ics>Add to calendar <svg><use href="#i-plus"/></svg></button>
-          </div>
-        </article>
-
-        <article class="wb-card glass" data-wb-item data-cat="masterclass" data-lang="en" data-start="2026-08-31T14:00:00Z" data-dur="60" data-title="Beginner's Masterclass 2: Risk management" data-host="Head of Education" data-topic="Masterclass · part 2" data-aos="fade-up" data-aos-delay="100">
-          <span class="wb-date" aria-hidden="true"><b data-wb-day>31</b><em data-wb-mon>Aug</em></span>
-          <div class="wb-card-body">
-            <div class="wb-tags">
-              <span class="wb-tag wb-tag--series">Part 2 of 4</span>
-              <span class="wb-tag wb-tag--lvl">Beginner</span>
-            </div>
-            <h3 class="wb-card-title">Risk management</h3>
-            <p class="wb-card-desc">Stop-losses, risk per trade and why survival comes before profit. The session most traders wish they had taken first.</p>
-            <ul class="wb-metarow">
-              <li><svg><use href="#i-clock"/></svg><time data-wb-time datetime="2026-08-31T14:00:00Z">31 Aug &middot; 14:00 GMT</time></li>
-              <li><svg><use href="#i-gauge"/></svg>60 min</li>
-              <li><svg><use href="#i-globe"/></svg>English</li>
-              <li><svg><use href="#i-user"/></svg>Head of Education</li>
-            </ul>
-          </div>
-          <div class="wb-card-act">
-            <a class="btn btn-primary btn-sm" href="#subscribe" data-wb-register>Register today</a>
-            <button class="wb-ics" type="button" data-wb-ics>Add to calendar <svg><use href="#i-plus"/></svg></button>
-          </div>
-        </article>
-
-        <article class="wb-card glass" data-wb-item data-cat="masterclass" data-lang="ar" data-start="2026-09-07T14:00:00Z" data-dur="60" data-title="Beginner's Masterclass 3: Chart patterns" data-host="MENA Market Analyst" data-topic="Masterclass · part 3" data-aos="fade-up" data-aos-delay="200">
-          <span class="wb-date" aria-hidden="true"><b data-wb-day>7</b><em data-wb-mon>Sep</em></span>
-          <div class="wb-card-body">
-            <div class="wb-tags">
-              <span class="wb-tag wb-tag--series">Part 3 of 4</span>
-              <span class="wb-tag wb-tag--lvl">Beginner</span>
-            </div>
-            <h3 class="wb-card-title">Chart patterns</h3>
-            <p class="wb-card-desc">Support, resistance, trends and the handful of patterns worth knowing &mdash; plus how to avoid seeing patterns that are not there.</p>
-            <ul class="wb-metarow">
-              <li><svg><use href="#i-clock"/></svg><time data-wb-time datetime="2026-09-07T14:00:00Z">7 Sep &middot; 14:00 GMT</time></li>
-              <li><svg><use href="#i-gauge"/></svg>60 min</li>
-              <li><svg><use href="#i-globe"/></svg>العربية</li>
-              <li><svg><use href="#i-user"/></svg>MENA Market Analyst</li>
-            </ul>
-          </div>
-          <div class="wb-card-act">
-            <a class="btn btn-primary btn-sm" href="#subscribe" data-wb-register>Register today</a>
-            <button class="wb-ics" type="button" data-wb-ics>Add to calendar <svg><use href="#i-plus"/></svg></button>
-          </div>
-        </article>
-
-        <article class="wb-card glass" data-wb-item data-cat="masterclass" data-lang="en" data-start="2026-09-14T14:00:00Z" data-dur="60" data-title="Beginner's Masterclass 4: Building a trading plan" data-host="Senior Market Analyst" data-topic="Masterclass · part 4" data-aos="fade-up" data-aos-delay="300">
-          <span class="wb-date" aria-hidden="true"><b data-wb-day>14</b><em data-wb-mon>Sep</em></span>
-          <div class="wb-card-body">
-            <div class="wb-tags">
-              <span class="wb-tag wb-tag--series">Part 4 of 4</span>
-              <span class="wb-tag wb-tag--lvl">Beginner</span>
-            </div>
-            <h3 class="wb-card-title">Building a trading plan</h3>
-            <p class="wb-card-desc">Put the first three sessions together into a written plan you can actually follow, review and improve.</p>
-            <ul class="wb-metarow">
-              <li><svg><use href="#i-clock"/></svg><time data-wb-time datetime="2026-09-14T14:00:00Z">14 Sep &middot; 14:00 GMT</time></li>
-              <li><svg><use href="#i-gauge"/></svg>60 min</li>
-              <li><svg><use href="#i-globe"/></svg>English</li>
-              <li><svg><use href="#i-user"/></svg>Senior Market Analyst</li>
-            </ul>
-          </div>
-          <div class="wb-card-act">
-            <a class="btn btn-primary btn-sm" href="#subscribe" data-wb-register>Register today</a>
-            <button class="wb-ics" type="button" data-wb-ics>Add to calendar <svg><use href="#i-plus"/></svg></button>
-          </div>
-        </article>
-
-      </div>
-    </div>
-
-    <!-- Replays -->
-    <div class="wb-panel" id="wb-panel-replay" role="tabpanel" aria-labelledby="wb-tab-replay" tabindex="0" hidden>
-      <div class="wb-rep-grid">
-
-        <article class="wb-rep glass" data-wb-item data-cat="replay" data-lang="en" data-start="2026-07-21T14:00:00Z" data-dur="47" data-datefmt="date" data-title="Live Q'A with our analysts" data-aos="fade-up">
-          <div class="wb-rep-head">
-            <span class="wb-rep-cat"><svg aria-hidden="true"><use href="#i-bubble"/></svg>Live Q&amp;A <i aria-hidden="true"></i> English</span>
-            <time class="wb-rep-date" data-wb-time datetime="2026-07-21T14:00:00Z">21 Jul 2026</time>
-          </div>
-
-          <div class="wb-rep-body">
-            <h3 class="wb-rep-title"><a href="#">Live Q&amp;A with our analysts</a></h3>
-            <p class="wb-rep-desc">Our analysts take live questions on positioning, risk and the week ahead.</p>
-          </div>
-
-          <a class="wb-rep-media" href="#" aria-label="Watch the replay: Live Q&amp;A with our analysts">
-            <span class="cover-bg" role="img" aria-label="Inside a STARTRADER office" style="background-image:url('assets/img/company-office.webp')"></span>
-            <span class="wb-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
-            <span class="wb-dur">47 min</span>
-            <span class="wb-lvl">All levels</span>
-          </a>
-        </article>
-
-        <article class="wb-rep glass" data-wb-item data-cat="replay" data-lang="en" data-start="2026-07-14T14:00:00Z" data-dur="63" data-datefmt="date" data-title="Ichimoku Kinko Hyo deep dive" data-aos="fade-up" data-aos-delay="100">
-          <div class="wb-rep-head">
-            <span class="wb-rep-cat"><svg aria-hidden="true"><use href="#i-cfd"/></svg>Technical analysis <i aria-hidden="true"></i> English</span>
-            <time class="wb-rep-date" data-wb-time datetime="2026-07-14T14:00:00Z">14 Jul 2026</time>
-          </div>
-
-          <div class="wb-rep-body">
-            <h3 class="wb-rep-title"><a href="#">Ichimoku Kinko Hyo deep dive</a></h3>
-            <p class="wb-rep-desc">Kumo twists, Chikou confirmation and the setups the system was built for.</p>
-          </div>
-
-          <a class="wb-rep-media" href="#" aria-label="Watch the replay: Ichimoku Kinko Hyo deep dive">
-            <span class="cover-bg" role="img" aria-label="STARTRADER trader portrait" style="background-image:url('assets/img/person-3.webp')"></span>
-            <span class="wb-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
-            <span class="wb-dur">63 min</span>
-            <span class="wb-lvl">Advanced</span>
-          </a>
-        </article>
-
-        <article class="wb-rep glass" data-wb-item data-cat="replay" data-lang="ar" data-start="2026-07-07T12:00:00Z" data-dur="52" data-datefmt="date" data-title="Fibonacci in practice" data-aos="fade-up" data-aos-delay="200">
-          <div class="wb-rep-head">
-            <span class="wb-rep-cat"><svg aria-hidden="true"><use href="#i-chart"/></svg>Technical analysis <i aria-hidden="true"></i> العربية</span>
-            <time class="wb-rep-date" data-wb-time datetime="2026-07-07T12:00:00Z">7 Jul 2026</time>
-          </div>
-
-          <div class="wb-rep-body">
-            <h3 class="wb-rep-title"><a href="#">Fibonacci in practice</a></h3>
-            <p class="wb-rep-desc">Drawing retracements and extensions that actually hold, on live charts.</p>
-          </div>
-
-          <a class="wb-rep-media" href="#" aria-label="Watch the replay: Fibonacci in practice">
-            <span class="cover-bg" role="img" aria-label="STARTRADER trader portrait" style="background-image:url('assets/img/person-1.webp')"></span>
-            <span class="wb-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
-            <span class="wb-dur">52 min</span>
-            <span class="wb-lvl">Intermediate</span>
-          </a>
-        </article>
-
-        <article class="wb-rep glass" data-wb-item data-cat="replay" data-lang="en" data-start="2026-06-20T14:00:00Z" data-dur="58" data-datefmt="date" data-title="Beginner's Masterclass: Forex basics" data-aos="fade-up" data-aos-delay="300">
-          <div class="wb-rep-head">
-            <span class="wb-rep-cat"><svg aria-hidden="true"><use href="#i-box"/></svg>Masterclass <i aria-hidden="true"></i> English</span>
-            <time class="wb-rep-date" data-wb-time datetime="2026-06-20T14:00:00Z">20 Jun 2026</time>
-          </div>
-
-          <div class="wb-rep-body">
-            <h3 class="wb-rep-title"><a href="#">Beginner&rsquo;s Masterclass: Forex basics</a></h3>
-            <p class="wb-rep-desc">Pairs, pips, lots, spreads and leverage &mdash; the vocabulary, from zero.</p>
-          </div>
-
-          <a class="wb-rep-media" href="#" aria-label="Watch the replay: Beginner&rsquo;s Masterclass, Forex basics">
-            <span class="cover-bg" role="img" aria-label="Market learning illustration" style="background-image:url('assets/img/learn-cta.webp')"></span>
-            <span class="wb-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
-            <span class="wb-dur">58 min</span>
-            <span class="wb-lvl">Beginner</span>
-          </a>
-        </article>
-
-        <article class="wb-rep glass" data-wb-item data-cat="replay" data-lang="en" data-start="2026-06-13T14:00:00Z" data-dur="61" data-datefmt="date" data-title="Beginner's Masterclass: Risk management" data-aos="fade-up" data-aos-delay="400">
-          <div class="wb-rep-head">
-            <span class="wb-rep-cat"><svg aria-hidden="true"><use href="#i-shield"/></svg>Masterclass <i aria-hidden="true"></i> English</span>
-            <time class="wb-rep-date" data-wb-time datetime="2026-06-13T14:00:00Z">13 Jun 2026</time>
-          </div>
-
-          <div class="wb-rep-body">
-            <h3 class="wb-rep-title"><a href="#">Beginner&rsquo;s Masterclass: Risk management</a></h3>
-            <p class="wb-rep-desc">Stop-losses, risk per trade, and why survival comes before profit.</p>
-          </div>
-
-          <a class="wb-rep-media" href="#" aria-label="Watch the replay: Beginner&rsquo;s Masterclass, Risk management">
-            <span class="cover-bg" role="img" aria-label="STARTRADER trader portrait" style="background-image:url('assets/img/person-2.webp')"></span>
-            <span class="wb-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
-            <span class="wb-dur">61 min</span>
-            <span class="wb-lvl">Beginner</span>
-          </a>
-        </article>
-
-        <article class="wb-rep glass" data-wb-item data-cat="replay" data-lang="ar" data-start="2026-06-06T12:00:00Z" data-dur="54" data-datefmt="date" data-title="Beginner's Masterclass: Chart patterns" data-aos="fade-up" data-aos-delay="500">
-          <div class="wb-rep-head">
-            <span class="wb-rep-cat"><svg aria-hidden="true"><use href="#i-cfd"/></svg>Masterclass <i aria-hidden="true"></i> العربية</span>
-            <time class="wb-rep-date" data-wb-time datetime="2026-06-06T12:00:00Z">6 Jun 2026</time>
-          </div>
-
-          <div class="wb-rep-body">
-            <h3 class="wb-rep-title"><a href="#">Beginner&rsquo;s Masterclass: Chart patterns</a></h3>
-            <p class="wb-rep-desc">Support, resistance, trends and the handful of patterns worth knowing.</p>
-          </div>
-
-          <a class="wb-rep-media" href="#" aria-label="Watch the replay: Beginner&rsquo;s Masterclass, Chart patterns">
-            <span class="cover-bg" role="img" aria-label="STARTRADER Web Trader on a laptop" style="background-image:url('assets/img/webtrader-laptop.webp')"></span>
-            <span class="wb-play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
-            <span class="wb-dur">54 min</span>
-            <span class="wb-lvl">Beginner</span>
-          </a>
-        </article>
-
-      </div>
-
-      <div class="wb-allrow"><a class="wb-textlink wb-textlink--lg" href="previous-webinars.html">View all previous webinars <svg><use href="#i-arrow-right"/></svg></a></div>
-    </div>
-
-    <div class="wb-empty" data-wb-empty hidden>
-      <span class="gl-empty-ic" aria-hidden="true"><svg><use href="#i-globe"/></svg></span>
-      <h3>No sessions in <span data-wb-empty-lang>that language</span> yet</h3>
-      <p>We add sessions every week. Clear the filter to see the full programme, or subscribe and we&rsquo;ll email you when a session in your language is scheduled.</p>
-      <button class="btn btn-primary" type="button" data-wb-reset>Show all sessions <svg class="ico"><use href="#i-arrow-right"/></svg></button>
-    </div>
-  </div>
 </section>
 
 <!-- ============ WHAT YOU'LL LEARN ============ -->
@@ -1299,118 +871,56 @@
   </div>
 </section>
 
-<!-- ============ PRESENTERS ============ -->
+<!-- ============ SPEAKER ============ -->
+<!-- One speaker, filled from #wbSession.speaker. No photo set? an initials
+     monogram stands in rather than a stranger's face. -->
 <section class="section wb-team" aria-labelledby="wb-team-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-aos="fade-up">Presenters</span>
-      <h2 class="h2" id="wb-team-title" data-aos="fade-up">Led by analysts who trade the same markets</h2>
-      <p class="head-sub" data-aos="fade-up">Every session is presented by a member of the STARTRADER research and education team &mdash; analysts, regional education leads and platform specialists, never a scripted narrator.</p>
+      <span class="eyebrow" data-aos="fade-up">Your presenter</span>
+      <h2 class="h2" id="wb-team-title" data-aos="fade-up">Led by someone who trades these markets</h2>
     </div>
 
-    <div class="wb-team-grid">
-      <article class="wb-person glass" data-aos="fade-up">
-        <span class="wb-person-ph"><img src="assets/img/person-2.webp" alt="STARTRADER senior market analyst" width="800" height="533" loading="lazy" decoding="async"></span>
-        <h3>Senior Market Analyst</h3>
-        <p>Leads the weekly strategy session and the quarterly outlook, with a focus on FX majors and gold.</p>
-        <ul class="wb-person-meta"><li>English</li><li>Strategy</li></ul>
-      </article>
-
-      <article class="wb-person glass" data-aos="fade-up" data-aos-delay="100">
-        <span class="wb-person-ph"><img src="assets/img/person-3.webp" alt="STARTRADER technical strategist" width="800" height="533" loading="lazy" decoding="async"></span>
-        <h3>Technical Strategist</h3>
-        <p>Runs the chart-craft sessions &mdash; price action, Fibonacci and Ichimoku, always on live markets.</p>
-        <ul class="wb-person-meta"><li>English</li><li>Technicals</li></ul>
-      </article>
-
-      <article class="wb-person glass" data-aos="fade-up" data-aos-delay="200">
-        <span class="wb-person-ph"><img src="assets/img/person-1.webp" alt="STARTRADER MENA market analyst" width="800" height="533" loading="lazy" decoding="async"></span>
-        <h3>MENA Market Analyst</h3>
-        <p>Presents the Arabic programme, covering regional flows, energy markets and sentiment.</p>
-        <ul class="wb-person-meta"><li>العربية</li><li>Sentiment</li></ul>
-      </article>
-
-    </div>
+    <article class="wb-speaker glass" data-aos="fade-up">
+      <span class="wb-speaker-ph" data-wb-sp-ph>
+        <img data-wb-sp-img alt="" width="800" height="800" loading="lazy" decoding="async" hidden>
+        <span class="wb-speaker-mono" data-wb-sp-mono aria-hidden="true"></span>
+      </span>
+      <div class="wb-speaker-tx">
+        <h3 data-wb-sp-name></h3>
+        <p class="wb-speaker-role" data-wb-sp-role></p>
+        <p class="wb-speaker-bio" data-wb-sp-bio></p>
+      </div>
+    </article>
   </div>
 </section>
 
-<!-- ============ SUBSCRIBE ============ -->
-<section class="section wb-sub" id="subscribe" aria-labelledby="wb-sub-title">
-  <div class="container wb-sub-wrap">
-    <div class="wb-sub-copy">
-      <span class="eyebrow eyebrow-blue" data-aos="fade-up">Stay in the loop</span>
-      <h2 class="h2 h2-light" id="wb-sub-title" data-aos="fade-up">Never miss a session</h2>
-      <p class="wb-sub-lead" data-aos="fade-up">Subscribe once and we&rsquo;ll send you the schedule for your language, a reminder an hour before each session starts, and the replay link as soon as it is published.</p>
-      <ul class="wb-sub-list" data-aos="fade-up">
-        <li><span class="wb-tick"><svg><use href="#i-check"/></svg></span>One email per session &mdash; never more</li>
-        <li><span class="wb-tick"><svg><use href="#i-check"/></svg></span>Calendar invite attached to every reminder</li>
-        <li><span class="wb-tick"><svg><use href="#i-check"/></svg></span>Unsubscribe in one click, any time</li>
+<!-- ============ REGISTER ============ -->
+<section class="section wb-reg" id="register" aria-labelledby="wb-reg-title">
+  <div class="container wb-reg-wrap">
+    <div class="wb-reg-copy">
+      <span class="eyebrow eyebrow-blue" data-aos="fade-up">Take your seat</span>
+      <h2 class="h2 h2-light" id="wb-reg-title" data-aos="fade-up" data-wb-reg-h>Register for the next session</h2>
+      <p class="wb-reg-lead" data-aos="fade-up" data-wb-reg-lead></p>
+
+      <!-- the session card only appears when there is a session to describe -->
+      <dl class="wb-reg-facts" data-wb-facts hidden data-aos="fade-up">
+        <div><dt>Date</dt><dd data-wb-f-date></dd></div>
+        <div><dt>Time</dt><dd data-wb-f-time></dd></div>
+        <div><dt>Language</dt><dd data-wb-f-lang></dd></div>
+      </dl>
+
+      <ul class="wb-reg-list" data-aos="fade-up">
+        <li><span class="wb-tick"><svg><use href="#i-check"/></svg></span>Free to attend, no funded account needed</li>
+        <li><span class="wb-tick"><svg><use href="#i-check"/></svg></span>Joining link by email, plus a reminder an hour before</li>
+        <li><span class="wb-tick"><svg><use href="#i-check"/></svg></span>Live Q&amp;A with the presenter</li>
       </ul>
-    </div>
 
-    <div class="wb-formwrap" data-aos="fade-up">
-      <form class="wb-form" id="wbForm" novalidate>
-        <div class="wb-field">
-          <label for="wbName">Full name</label>
-          <input type="text" id="wbName" name="name" autocomplete="name" placeholder="Your full name" aria-describedby="wbNameErr">
-          <p class="wb-err" id="wbNameErr" hidden>Please enter your name so we know who to address.</p>
-        </div>
-
-        <div class="wb-field">
-          <label for="wbEmail">Email</label>
-          <input type="email" id="wbEmail" name="email" autocomplete="email" inputmode="email" placeholder="you@example.com" aria-describedby="wbEmailErr">
-          <p class="wb-err" id="wbEmailErr" hidden>Please enter a valid email address &mdash; that&rsquo;s where the joining link goes.</p>
-        </div>
-
-        <div class="wb-field">
-          <label for="wbPhone">Phone number <em>optional</em></label>
-          <input type="tel" id="wbPhone" name="phone" autocomplete="tel" inputmode="tel" placeholder="+971 50 000 0000" aria-describedby="wbPhoneErr">
-          <p class="wb-err" id="wbPhoneErr" hidden>Please use digits only, with an optional + prefix.</p>
-        </div>
-
-        <div class="wb-field">
-          <label for="wbLang">Language</label>
-          <div class="wb-selwrap">
-            <select id="wbLang" name="language">
-              <option value="en" selected>English</option>
-              <option value="ar">العربية &mdash; Arabic</option>
-              <option value="zh">简体中文 &mdash; Chinese</option>
-              <option value="th">ไทย &mdash; Thai</option>
-            </select>
-            <svg class="wb-selchev" aria-hidden="true"><use href="#i-chevron-down"/></svg>
-          </div>
-        </div>
-
-        <div class="wb-field wb-field--wide">
-          <label for="wbSession">Preferred session</label>
-          <div class="wb-selwrap">
-            <select id="wbSession" name="session" data-wb-sessions>
-              <option value="all" selected>Any session &mdash; send me the full schedule</option>
-            </select>
-            <svg class="wb-selchev" aria-hidden="true"><use href="#i-chevron-down"/></svg>
-          </div>
-          <p class="wb-hint" data-wb-hint>Times are shown in your own timezone.</p>
-        </div>
-
-        <label class="wb-check" for="wbConsent">
-          <input type="checkbox" id="wbConsent" name="consent" aria-describedby="wbConsentErr">
-          <span class="wb-check-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
-          <span class="wb-check-tx">I&rsquo;d like to receive webinar invitations and educational emails from STARTRADER.</span>
-        </label>
-        <p class="wb-err" id="wbConsentErr" hidden>Please confirm you&rsquo;re happy to receive the invitations.</p>
-
-        <button class="btn btn-primary btn-lg btn-block" type="submit">Subscribe <svg class="ico"><use href="#i-arrow-right"/></svg></button>
-        <p class="wb-formnote">Free, and you can unsubscribe at any time. See our <a href="privacy-policy-app.html">Privacy Policy</a>. Webinars are educational only and are not investment advice.</p>
-      </form>
-
-      <div class="wb-ok" id="wbOk" hidden>
-        <span class="wb-ok-ic" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
-        <h3>You&rsquo;re on the list</h3>
-        <p data-wb-ok-msg>We&rsquo;ve noted your preferences. Your joining link arrives by email before the session starts.</p>
-        <button class="btn btn-dark" type="button" data-wb-ics>Add it to my calendar <svg class="ico"><use href="#i-plus"/></svg></button>
-        <button class="wb-textlink" type="button" id="wbAgain">Register someone else</button>
+      <div class="wb-reg-act" data-aos="fade-up">
+        <button class="btn btn-primary btn-lg magnetic" type="button" data-wb-open data-wb-reg-btn>Register</button>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -1424,7 +934,7 @@
     <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
         <summary>Are STARTRADER webinars free to attend?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Yes. Every live session and every on-demand replay is free, and you don&rsquo;t need a funded trading account to join. You only register with your name, email and preferred language so we can send you the joining link and the reminder.</div>
+        <div class="faq-a">Yes. Every session is free, and you don&rsquo;t need a funded trading account to join. You register with your name and email so we can send you the joining link and a reminder before it starts.</div>
       </details>
       <details class="faq-item">
         <summary>Do I need a STARTRADER account to join a webinar?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
@@ -1432,15 +942,15 @@
       </details>
       <details class="faq-item">
         <summary>Which languages are the webinars presented in?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Sessions run in English, Arabic, Mandarin Chinese and Thai. Use the language filter on the schedule above to see only the sessions presented in the language you prefer, and choose the same language when you subscribe so your reminders match.</div>
+        <div class="faq-a">The language of each session is shown with its date and time, and again on the registration form, so you know before you sign up.</div>
       </details>
       <details class="faq-item">
         <summary>What if I can&rsquo;t attend a live session?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Register anyway. Every session is recorded and published as an on-demand replay, and registered attendees receive the replay link by email once it&rsquo;s ready &mdash; usually within 48 hours of the live broadcast.</div>
+        <div class="faq-a">Register anyway. We only run a few sessions a year, and registered attendees hear first when the next one is scheduled.</div>
       </details>
       <details class="faq-item">
         <summary>What level of experience do I need?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Each session carries a level tag &mdash; beginner, intermediate, advanced or all levels. The Beginner&rsquo;s Masterclass series starts with no assumed knowledge and builds up over four sessions, while topics such as Ichimoku and market sentiment assume you&rsquo;re already comfortable reading a chart.</div>
+        <div class="faq-a">Each session carries a level tag &mdash; beginner, intermediate, advanced or all levels. Sessions are pitched so newcomers can follow, while topics such as Ichimoku and market sentiment assume you&rsquo;re already comfortable reading a chart.</div>
       </details>
       <details class="faq-item">
         <summary>How long does a webinar last, and can I ask questions?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
@@ -1498,7 +1008,256 @@
   </div>
 </section>
 
+
+<!-- ============ REGISTRATION DIALOG ============ -->
+<dialog class="wb-modal" id="wbReg" aria-labelledby="wb-modal-h">
+  <div class="wb-modal-in">
+    <div class="wb-modal-head">
+      <h2 id="wb-modal-h">Register for this webinar</h2>
+      <button class="wb-modal-x" type="button" data-wb-close aria-label="Close"><svg><use href="#i-close"/></svg></button>
+    </div>
+
+    <div class="wb-modal-body">
+      <!-- the session being registered for, so nobody signs up blind -->
+      <div class="wb-modal-session" data-wb-m-session hidden>
+        <b data-wb-m-title></b>
+        <dl>
+          <div><dt>Date</dt><dd data-wb-m-date></dd></div>
+          <div><dt>Time</dt><dd data-wb-m-time></dd></div>
+          <div><dt>Language</dt><dd data-wb-m-lang></dd></div>
+        </dl>
+      </div>
+      <p class="wb-modal-note" data-wb-m-note hidden>No session is scheduled yet. Leave your details and we&rsquo;ll email you the moment the next one opens.</p>
+
+      <form id="wbRegForm" novalidate>
+        <div class="ct-grid">
+          <div class="ct-field">
+            <label for="wbName">Full name</label>
+            <input type="text" id="wbName" name="name" autocomplete="name" placeholder="Your full name" aria-describedby="wbNameErr">
+            <p class="ct-err" id="wbNameErr" hidden>Please tell us your name.</p>
+          </div>
+          <div class="ct-field">
+            <label for="wbEmail">Email</label>
+            <input type="email" id="wbEmail" name="email" inputmode="email" autocomplete="email" placeholder="you@example.com" aria-describedby="wbEmailErr">
+            <p class="ct-err" id="wbEmailErr" hidden>We need a valid email to send the joining link.</p>
+          </div>
+        </div>
+
+        <label class="ct-check" for="wbConsent">
+          <input type="checkbox" id="wbConsent" name="consent" aria-describedby="wbConsentErr">
+          <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+          <span>I agree that STARTRADER may email me about this webinar, as set out in the <a href="https://www.startrader.com/pdf/startrader-privacy-policy-20260210.pdf" target="_blank" rel="noopener">Privacy Policy</a>.</span>
+        </label>
+        <p class="ct-err" id="wbConsentErr" hidden>Please confirm before registering.</p>
+
+        <div class="wb-modal-foot">
+          <button class="btn btn-primary btn-lg" type="submit" data-wb-submit>Confirm registration <svg class="ico"><use href="#i-arrow-right"/></svg></button>
+        </div>
+      </form>
+
+      <div class="wb-modal-done" data-wb-done hidden>
+        <span class="ct-done-ic" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+        <h3 tabindex="-1" data-wb-done-h>You&rsquo;re registered</h3>
+        <p data-wb-done-msg></p>
+        <button class="btn btn-primary" type="button" data-wb-close>Close</button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
 </main>
+
+<!-- ============================================================
+     THE ONE PLACE CONTENT LIVES
+     WP admin writes this block. Set "scheduled": false (or leave
+     "start" empty) and the page falls back to its quiet state on
+     its own — hero, register panel, dialog and speaker all follow.
+     ============================================================ -->
+<script type="application/json" id="wbSession">
+{
+  "scheduled": true,
+  "title": "Build your own trading and investment strategy",
+  "start": "2026-11-12T15:00:00Z",
+  "durationMin": 60,
+  "language": "English",
+  "registerUrl": "",
+  "speaker": {
+    "name": "Ghasan",
+    "role": "Senior Market Analyst, STARTRADER",
+    "bio": "",
+    "photo": ""
+  }
+}
+</script>
+
+<script>
+(function () {
+  var host = document.getElementById('wbSession');
+  var S = {};
+  try { S = JSON.parse(host.textContent) || {}; } catch (e) { S = {}; }
+
+  var start = S.start ? new Date(S.start) : null;
+  var valid = !!(start && !isNaN(start.getTime()));
+  // a session in the past is no session at all — the page must not advertise it
+  var live  = S.scheduled !== false && valid && start.getTime() > Date.now();
+
+  var TZ = 'UTC';
+  try { TZ = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC'; } catch (e) {}
+
+  function fmt(opts, useLocal) {
+    if (!valid) return '';
+    var o = {};
+    for (var k in opts) o[k] = opts[k];
+    if (!useLocal) o.timeZone = 'UTC';
+    try { return new Intl.DateTimeFormat('en-GB', o).format(start); } catch (e) { return start.toUTCString(); }
+  }
+  function dateStr(useLocal) { return fmt({ weekday: 'short', day: 'numeric', month: 'long', year: 'numeric' }, useLocal); }
+  function timeStr(useLocal) {
+    var t = fmt({ hour: '2-digit', minute: '2-digit', hour12: false }, useLocal);
+    return t + (useLocal ? ' ' + TZ.replace(/_/g, ' ') : ' GMT');
+  }
+  function set(sel, txt, root) {
+    (root || document).querySelectorAll(sel).forEach(function (el) { el.textContent = txt; });
+  }
+  function show(el, on) { if (el) el.hidden = !on; }
+
+  /* ---------- which hero state ---------- */
+  show(document.querySelector('[data-wb-live]'), live);
+  show(document.querySelector('[data-wb-quiet]'), !live);
+
+  var tzBox = document.querySelector('[data-wb-tz]');
+  function useLocal() { return !!(tzBox && tzBox.checked); }
+
+  function paint() {
+    if (!live) return;
+    var L = useLocal();
+    set('[data-wb-title]', S.title || 'Live webinar');
+    set('[data-wb-when]', dateStr(L) + ' · ' + timeStr(L));
+    set('[data-wb-dur]', (S.durationMin || 60) + ' minutes');
+    set('[data-wb-lang]', S.language || 'English');
+    set('[data-wb-tzname]', L ? TZ.replace(/_/g, ' ') : 'GMT');
+    set('[data-wb-f-date]', dateStr(L));
+    set('[data-wb-f-time]', timeStr(L));
+    set('[data-wb-f-lang]', S.language || 'English');
+    set('[data-wb-m-title]', S.title || 'Live webinar');
+    set('[data-wb-m-date]', dateStr(L));
+    set('[data-wb-m-time]', timeStr(L));
+    set('[data-wb-m-lang]', S.language || 'English');
+  }
+  if (tzBox) tzBox.addEventListener('change', paint);
+  paint();
+
+  /* ---------- countdown, only while a session is ahead ---------- */
+  var cd = document.querySelector('[data-wb-cd]');
+  if (live && cd) {
+    var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+    var tick = function () {
+      var left = start.getTime() - Date.now();
+      if (left <= 0) {
+        // it has begun: stop counting rather than showing zeros forever
+        clearInterval(timer);
+        cd.innerHTML = '<span class="wb-cd-now">Starting now</span>';
+        return;
+      }
+      var s = Math.floor(left / 1000);
+      var parts = { d: Math.floor(s / 86400), h: Math.floor(s % 86400 / 3600), m: Math.floor(s % 3600 / 60), s: s % 60 };
+      for (var k in parts) {
+        var el = cd.querySelector('[data-cd="' + k + '"]');
+        if (el) el.textContent = pad(parts[k]);
+      }
+    };
+    tick();
+    var timer = setInterval(tick, 1000);
+  }
+
+  /* ---------- the register panel speaks to whichever state we are in ---------- */
+  var regH = document.querySelector('[data-wb-reg-h]');
+  var regLead = document.querySelector('[data-wb-reg-lead]');
+  var regBtn = document.querySelector('[data-wb-reg-btn]');
+  show(document.querySelector('[data-wb-facts]'), live);
+  if (live) {
+    if (regH) regH.textContent = 'Register for this session';
+    if (regLead) regLead.textContent = 'Save your seat. We’ll email the joining link straight away and remind you an hour before it starts.';
+    if (regBtn) regBtn.textContent = 'Register';
+  } else {
+    if (regH) regH.textContent = 'Be first to know';
+    if (regLead) regLead.textContent = 'Nothing is scheduled right now. Leave your details and we’ll email you as soon as the next session opens for registration.';
+    if (regBtn) regBtn.textContent = 'Notify me';
+  }
+
+  /* ---------- the speaker ---------- */
+  var sp = S.speaker || {};
+  set('[data-wb-sp-name]', sp.name || '');
+  set('[data-wb-sp-role]', sp.role || '');
+  set('[data-wb-sp-bio]', sp.bio || '');
+  var img = document.querySelector('[data-wb-sp-img]');
+  var mono = document.querySelector('[data-wb-sp-mono]');
+  if (sp.photo && img) {
+    img.src = sp.photo;
+    img.alt = sp.name ? sp.name + ', ' + (sp.role || 'presenter') : 'Webinar presenter';
+    img.hidden = false;
+    if (mono) mono.hidden = true;
+  } else if (mono) {
+    // no photo supplied: initials, not a stock face
+    mono.textContent = (sp.name || '?').trim().split(/\s+/).slice(0, 2)
+      .map(function (w) { return w.charAt(0).toUpperCase(); }).join('');
+  }
+
+  /* ---------- the dialog ---------- */
+  var dlg = document.getElementById('wbReg');
+  var form = document.getElementById('wbRegForm');
+  var done = document.querySelector('[data-wb-done]');
+  show(document.querySelector('[data-wb-m-session]'), live);
+  show(document.querySelector('[data-wb-m-note]'), !live);
+
+  function openDlg() {
+    // an external registration page wins over the built-in form when WP sets one
+    if (live && S.registerUrl) { window.open(S.registerUrl, '_blank', 'noopener'); return; }
+    if (!dlg) return;
+    if (form) form.hidden = false;
+    show(done, false);
+    if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+    var first = dlg.querySelector('input');
+    if (first) first.focus();
+  }
+  function closeDlg() { if (!dlg) return; if (dlg.close) dlg.close(); else dlg.removeAttribute('open'); }
+
+  document.querySelectorAll('[data-wb-open]').forEach(function (b) { b.addEventListener('click', openDlg); });
+  document.querySelectorAll('[data-wb-close]').forEach(function (b) { b.addEventListener('click', closeDlg); });
+  if (dlg) dlg.addEventListener('click', function (e) { if (e.target === dlg) closeDlg(); });
+
+  if (form) {
+    var f = { name: document.getElementById('wbName'), email: document.getElementById('wbEmail'), consent: document.getElementById('wbConsent') };
+    var bad = function (el, on, errId) {
+      if (!el) return;
+      el.closest('.ct-field, .ct-check') && el.closest('.ct-field, .ct-check').classList.toggle('is-bad', on);
+      var err = document.getElementById(errId);
+      if (err) err.hidden = !on;
+      el.setAttribute('aria-invalid', on ? 'true' : 'false');
+    };
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var nOk = f.name && f.name.value.trim().length > 1;
+      var eOk = f.email && /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(f.email.value.trim());
+      var cOk = f.consent && f.consent.checked;
+      bad(f.name, !nOk, 'wbNameErr'); bad(f.email, !eOk, 'wbEmailErr'); bad(f.consent, !cOk, 'wbConsentErr');
+      var first = !nOk ? f.name : !eOk ? f.email : !cOk ? f.consent : null;
+      if (first) { first.focus(); return; }
+
+      var msg = document.querySelector('[data-wb-done-msg]');
+      if (msg) {
+        msg.innerHTML = live
+          ? 'The joining link for <b>' + (S.title || 'the session') + '</b> is on its way to <b>' + f.email.value.trim() + '</b>.'
+          : 'We’ll email <b>' + f.email.value.trim() + '</b> as soon as the next session is scheduled.';
+      }
+      form.hidden = true;
+      show(done, true);
+      var h = document.querySelector('[data-wb-done-h]');
+      if (h) h.focus({ preventScroll: true });
+    });
+  }
+})();
+</script>
 
 
 

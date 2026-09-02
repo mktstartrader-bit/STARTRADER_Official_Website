@@ -73,6 +73,10 @@
   transform:skewX(-18deg) translateX(-140%);
 }
 .pm-coupon:hover .pm-coupon-shine i{transition:transform 1.05s var(--ease);transform:skewX(-18deg) translateX(420%)}
+/* the banner's fine print sits under the button, as in the supplied page */
+.pm-hfine{margin-top:20px;max-width:62ch;font-size:11.5px;line-height:1.65;color:#7a879b;font-style:italic}
+/* the cards carry no status chip, so the title takes the top of the coupon */
+.pm-coupon > h3:first-of-type{margin-top:0}
 .pm-chip{
   display:inline-flex;align-items:center;gap:7px;padding:6px 13px;border-radius:70px;justify-self:start;
   font-size:9.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#fff;
@@ -519,13 +523,14 @@
     <div class="pm-hero-copy">
       <span class="pm-eyebrow" data-aos="fade-up">Promotions</span>
       <h1 class="pm-h1" id="pm-hero-title" data-aos="fade-up">
-        <span>Exciting rewards await.</span>
-        <span class="lit">Explore STARTRADER.</span>
+        <span>Exciting Rewards Await</span>
+        <span>Explore STARTRADER</span>
+        <span class="lit">Promotions</span>
       </h1>
-      <p class="pm-lead" data-aos="fade-up">Points you can redeem, a bonus on what you deposit, and an allowance for bringing your trading across. Three offers, each with its own terms.</p>
       <div class="pm-hact" data-aos="fade-up">
-        <a class="pm-btn" href="funding.html">Deposit now <svg><use href="#i-arrow-right"/></svg></a>
+        <a class="pm-btn" href="funding.html">Deposit Now <svg><use href="#i-arrow-right"/></svg></a>
       </div>
+      <p class="pm-hfine" data-aos="fade-up">The promotions are not intended for distribution or use in any jurisdiction where such distribution or use would violate local laws or regulations. Terms and Conditions Apply. *</p>
     </div>
   </div>
 </section>
@@ -534,65 +539,41 @@
 <section class="section pm-offers-sec" id="offers" aria-labelledby="pm-off-title">
   <div class="container">
     <span class="pm-eyebrow-c" data-aos="fade-up">What is on</span>
-    <h2 class="pm-h2" id="pm-off-title" data-aos="fade-up">Find the perfect offer<br> for you</h2>
-    <p class="pm-sub" data-aos="fade-up">Explore our promotions and maximise your trading experience.</p>
+    <h2 class="pm-h2" id="pm-off-title" data-aos="fade-up">Find the Perfect Offer<br> for You</h2>
+    <p class="pm-sub" data-aos="fade-up">Explore our promotions and maximize your trading experience.</p>
 
     <div class="pm-offers">
-            <article class="pm-coupon " data-aos="fade-up">
+      <article class="pm-coupon" data-aos="fade-up">
         <span class="pm-coupon-shine" aria-hidden="true"><i></i></span>
-        <span class="pm-chip"><i></i>Live now</span>
-        <h3>100/10 Deposit Bonus</h3>
-        <p>Your first deposit doubled up to $1,000, then 10% credit on every deposit after &mdash; to $20,000.</p>
+        <h3>Gold24/7 Cashback</h3>
+        <p>Trade Gold24/7, earn cashback, and get chances to win physical gold.</p>
         <div class="pm-stub">
           <img class="pm-stub-art" src="assets/img/icon-shield-3d.webp" alt="3D shield emblem for insured client funds" width="400" height="490" loading="lazy" decoding="async">
-          <a class="pm-stub-go" href="deposit-bonus-10010-20240513.html">Double your deposit <svg><use href="#i-arrow-right"/></svg></a>
-        </div>
-      </article>
-            <article class="pm-coupon pm-coupon--sand" data-aos="fade-up">
-        <span class="pm-coupon-shine" aria-hidden="true"><i></i></span>
-        <span class="pm-chip"><i></i>Live now</span>
-        <h3>50/20 Deposit Bonus</h3>
-        <p>Half of your first deposit back as credit &mdash; up to $500 &mdash; then 20% on every deposit after.</p>
-        <div class="pm-stub">
-          <img class="pm-stub-art" src="assets/img/icon-shield-3d.webp" alt="3D shield emblem for insured client funds" width="400" height="490" loading="lazy" decoding="async">
-          <a class="pm-stub-go" href="deposit-bonus-5020-20250101.html">Boost your trades <svg><use href="#i-arrow-right"/></svg></a>
+          <a class="pm-stub-go" href="gold-cashback.html">Claim the cashback <svg><use href="#i-arrow-right"/></svg></a>
         </div>
       </article>
       <article class="pm-coupon pm-coupon--sand" data-aos="fade-up">
         <span class="pm-coupon-shine" aria-hidden="true"><i></i></span>
-        <span class="pm-chip"><i></i>Live now</span>
-        <h3>Daily Forex Promo</h3>
-        <p>50% bonus credit on your first deposit, 20% on every one after &mdash; for Europe, New Zealand and Canada.</p>
-        <div class="pm-stub">
-          <img class="pm-stub-art" src="assets/img/icon-shield-3d.webp" alt="3D shield emblem for insured client funds" width="400" height="490" loading="lazy" decoding="async">
-          <a class="pm-stub-go" href="dailyforexpromo.html">See the offer <svg><use href="#i-arrow-right"/></svg></a>
-        </div>
-      </article>
-      <article class="pm-coupon " data-aos="fade-up">
-        <span class="pm-coupon-shine" aria-hidden="true"><i></i></span>
-        <span class="pm-chip"><i></i>Live now</span>
         <h3>Point Mall</h3>
-        <p>Redeem your earned points for exclusive rewards and benefits.</p>
+        <p>Redeem your earned points for exclusive rewards and benefits</p>
         <div class="pm-stub">
           <img class="pm-stub-art" src="assets/img/icon-shield-3d.webp" alt="3D shield emblem for insured client funds" width="400" height="490" loading="lazy" decoding="async">
           <a class="pm-stub-go" href="point-mall.html">Browse the mall <svg><use href="#i-arrow-right"/></svg></a>
         </div>
       </article>
-      <article class="pm-coupon pm-coupon--sand" data-aos="fade-up">
+      <article class="pm-coupon" data-aos="fade-up">
         <span class="pm-coupon-shine" aria-hidden="true"><i></i></span>
-        <span class="pm-chip"><i></i>Ongoing</span>
         <h3>Deposit Bonus</h3>
-        <p>Boost your trading capital instantly, the moment your deposit clears.</p>
+        <p>Boost your trading capital instantly</p>
         <div class="pm-stub">
           <img class="pm-stub-art" src="assets/img/icon-shield-3d.webp" alt="3D shield emblem for insured client funds" width="400" height="490" loading="lazy" decoding="async">
           <a class="pm-stub-go" href="deposit-bonus.html">See the tiers <svg><use href="#i-arrow-right"/></svg></a>
         </div>
       </article>
-      <article class="pm-coupon " data-aos="fade-up">
+      <article class="pm-coupon pm-coupon--sand" data-aos="fade-up">
         <span class="pm-coupon-shine" aria-hidden="true"><i></i></span>
-        <span class="pm-chip"><i></i>Ongoing</span>
-        <h3>1% Switch Allowance</h3>
-        <p>Get rewarded when switching to our platform &mdash; a one per cent allowance on what you bring across.</p>
+        <h3>1% switch Allowance</h3>
+        <p>Get rewarded when switching to our platform</p>
         <div class="pm-stub">
           <img class="pm-stub-art" src="assets/img/icon-shield-3d.webp" alt="3D shield emblem for insured client funds" width="400" height="490" loading="lazy" decoding="async">
           <a class="pm-stub-go" href="switch-allowance.html">Check eligibility <svg><use href="#i-arrow-right"/></svg></a>
@@ -600,46 +581,6 @@
       </article>
     </div>
 
-    <div class="pm-sign" data-aos="fade-up">
-      <img src="assets/img/icon-shield-3d.webp" alt="3D shield emblem for insured client funds" width="400" height="490" loading="lazy" decoding="async">
-      <span class="pm-sign-tx">
-        <b>Every offer states its own terms</b>
-        <em>Trading volume conditions, whether bonuses stack, and when a reward becomes withdrawable are set per promotion &mdash; so the terms are worth the two minutes before you claim.</em>
-      </span>
-      <a class="pm-btn pm-btn--ghost" href="legal-documents.html">Read the terms <svg><use href="#i-arrow-right"/></svg></a>
-    </div>
-
-    <p class="pm-offers-note" data-aos="fade-up">The promotions are not intended for distribution or use in any jurisdiction where such distribution or use would violate local laws or regulations. Terms and conditions apply.</p>
-  </div>
-</section>
-
-<!-- ============ HOW A CLAIM WORKS ============ -->
-<section class="section htrade-sec pm-how" id="how" aria-labelledby="pm-how-title">
-  <div class="container">
-    <div class="htrade">
-      <div class="htrade-intro" data-aos="fade-up">
-        <h2 class="htrade-title" id="pm-how-title">Three steps<br><span>to a claimed reward</span></h2>
-        <p class="htrade-sub">The route is the same whichever offer you pick. Only the conditions change.</p>
-        <a href="getting-started.html" class="btn btn-primary btn-lg htrade-btn magnetic">Open live account <span class="htrade-go"><svg><use href="#i-arrow-right"/></svg></span></a>
-      </div>
-
-      <div>
-        <ol class="htrade-steps" data-htrade>
-          <li class="htrade-step">
-            <span class="htrade-num">01</span>
-            <div class="htrade-txt"><h3>Pick an offer</h3><p>Open the promotion you want from the three above. Each one states what it gives and who it is for.</p></div>
-          </li>
-          <li class="htrade-step">
-            <span class="htrade-num">02</span>
-            <div class="htrade-txt"><h3>Read the terms</h3><p>Trading volume conditions, bonus stacking and withdrawal eligibility differ by promotion. The terms say which apply.</p></div>
-          </li>
-          <li class="htrade-step">
-            <span class="htrade-num">03</span>
-            <div class="htrade-txt"><h3>Claim and trade</h3><p>Follow the instructions on the promotion to participate. The reward lands on the account you claimed it from.</p></div>
-          </li>
-        </ol>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -648,7 +589,7 @@
   <div class="container">
     <div class="head center">
       <span class="eyebrow" data-aos="fade-up">FAQ</span>
-      <h2 class="h2" id="pm-faq-title" data-aos="fade-up">Your questions answered</h2>
+      <h2 class="h2" id="pm-faq-title" data-aos="fade-up">FAQs &ndash; Your Questions Answered</h2>
     </div>
     <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
@@ -675,10 +616,10 @@
 <section class="cta-banner" aria-labelledby="pm-close-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="pm-close-title" data-aos="fade-up">Ready to boost<br>your trading?</h2>
-    <p data-aos="fade-up">Don&rsquo;t miss out on exclusive offers. Open an account, fund it, and claim the promotion that suits how you trade.</p>
+    <h2 id="pm-close-title" data-aos="fade-up">Ready to Boost<br>Your Trading?</h2>
+    <p data-aos="fade-up">Don&rsquo;t miss out on exclusive offers</p>
     <div class="cta-actions" data-aos="fade-up">
-      <a href="funding.html" class="btn btn-primary btn-lg">Claim your reward now <svg class="ico"><use href="#i-arrow-right"/></svg></a>
+      <a href="funding.html" class="btn btn-primary btn-lg">Claim Your Reward Now <svg class="ico"><use href="#i-arrow-right"/></svg></a>
     </div>
   </div>
 </section>
