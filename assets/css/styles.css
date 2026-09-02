@@ -5628,3 +5628,59 @@ html{scroll-behavior:auto}
 .vmod-frame{padding:0 14px 14px}
 .vmod-frame video{display:block;width:100%;aspect-ratio:16/9;border-radius:14px;background:#000}
 @media (prefers-reduced-motion:reduce){.vmod,.vmod-card,.vmod-x{transition:none}}
+
+/* ===== MEGA MENU: REAL FROSTED GLASS (appended batch) =====
+   The panel was a flat opaque slab (#070a12), so the site behind it read as
+   solid black rather than glass.
+
+   The reason it had to be: .site-header owned the backdrop-filter, and an
+   element with one becomes a backdrop root — a descendant like .mega then has
+   nothing left to sample, so its own blur silently did nothing. The header's
+   glass moves to a pseudo-element, which frosts the same strip without making
+   the header a root, and the panel can finally blur the page beneath it. */
+.site-header,.site-header.scrolled{
+  background:transparent;
+  -webkit-backdrop-filter:none;backdrop-filter:none;
+}
+.site-header::before{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:rgba(5,8,15,.82);
+  -webkit-backdrop-filter:blur(30px) saturate(1.5);backdrop-filter:blur(30px) saturate(1.5);
+}
+.mega,.mega--center{
+  background:rgba(6,10,18,.76);
+  -webkit-backdrop-filter:blur(52px) saturate(1.7);backdrop-filter:blur(52px) saturate(1.7);
+  /* the panel hangs off the header, so only its lower corners round */
+  border-radius:0 0 15px 15px;
+  /* the drop shadow fought the glass — it darkened the page just outside the
+     panel, which is the part the frost is meant to let through */
+  box-shadow:none;
+}
+/* the flyout now sits on glass, so it lightens to read as a raised pane */
+.fly-inner{background:linear-gradient(165deg,rgba(30,48,88,.62),rgba(6,10,20,.72))}
+/* phones already drop the sticky blur for cost; the pseudo-element follows suit */
+@media (max-width:720px){
+  .site-header::before{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(5,8,15,.97)}
+}
+/* where the browser cannot blur a backdrop, both surfaces go solid — translucent
+   without blur would let the page read straight through */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))){
+  .site-header::before{background:rgba(5,8,15,.98)}
+  .mega,.mega--center{background:#070a12}
+  .fly-inner{background:linear-gradient(165deg,rgba(26,42,78,.85),rgba(4,7,16,.96))}
+}
+
+/* ===== MEGA MENU: THE PAGE DIMS BEHIND IT (appended batch) =====
+   A scrim on body::after rather than a new element, so no markup changes across
+   the site. z-index 895 puts it over the page and the floating widgets (chat 850,
+   cookie 860) but under the header (900) and topbar (901), so the chrome stays
+   lit while everything it covers recedes. It is inert to the pointer: the menu
+   opens on hover, and a click-blocking layer would only fight that. */
+body::after{
+  content:"";position:fixed;inset:0;z-index:895;
+  background:rgba(4,7,15,.5);
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .3s var(--ease),visibility .3s;
+}
+body:has(.nav-item.has-mega:hover)::after,
+body:has(.nav-item.has-mega:focus-within)::after{opacity:1;visibility:visible}
