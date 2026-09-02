@@ -35,6 +35,16 @@
   <link rel="stylesheet" href="assets/css/swiper-bundle.min.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
   <link rel="stylesheet" href="assets/css/styles.min.css?v=qa72" />
+  <!-- Page-specific styles -->
+  <style>
+/* ---- Events listing ---- */
+/* the count line lost its filter bar, so it sits centred under the heading */
+.ev-status{text-align:center;margin:-10px auto 26px}
+.ev-status:empty{margin:0}
+/* the card head now carries only a date; without the tag beside it, space-between
+   would leave it stranded, so it takes the left edge */
+#latest .nr-head,#expos .nr-head{justify-content:flex-start}
+  </style>
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -336,10 +346,7 @@
             <div class="mega-col">
               <span class="mega-head">Promotions</span>
               <a href="promotions.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-send"/></svg></span><span class="mega-txt"><b>Our Promotions</b></span></a>
-              <a href="https://www.startrader.com/star-trading-league-championship/" class="mega-item"><span class="mega-ico"><svg><use href="#i-star"/></svg></span><span class="mega-txt"><b>STAR Trading League</b></span></a>
-              <a href="dailyforexpromo.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-bolt"/></svg></span><span class="mega-txt"><b>Daily Forex Promo</b></span></a>
-              <a href="deposit-bonus-10010-20240513.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>100/10 Deposit Bonus</b></span></a>
-              <a href="deposit-bonus-5020-20250101.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>50/20 Deposit Bonus</b></span></a>
+              <a href="gold-cashback.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-clock"/></svg></span><span class="mega-txt"><b>Gold 24/7 Cashback</b></span></a>
               <a href="point-mall.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>Point Mall</b></span></a>
               <a href="deposit-bonus.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>Deposit Bonuses</b></span></a>
               <a href="switch-allowance.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-swap"/></svg></span><span class="mega-txt"><b>1% Switch Allowance</b></span></a>
@@ -573,7 +580,6 @@
     <div class="nr-grid">
       <article class="nr-card glass" data-aos="fade-up">
         <div class="nr-head">
-          <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Expo</span>
           <time class="nr-date" datetime="2026-06-04">4 Jun 2026</time>
         </div>
         <div class="nr-body">
@@ -587,7 +593,6 @@
       </article>
       <article class="nr-card glass" data-aos="fade-up" data-aos-delay="100">
         <div class="nr-head">
-          <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Expo</span>
           <time class="nr-date" datetime="2026-04-08">8 Apr 2026</time>
         </div>
         <div class="nr-body">
@@ -601,7 +606,6 @@
       </article>
       <article class="nr-card glass" data-aos="fade-up" data-aos-delay="200">
         <div class="nr-head">
-          <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Expo</span>
           <time class="nr-date" datetime="2026-01-15">15 Jan 2026</time>
         </div>
         <div class="nr-body">
@@ -622,20 +626,17 @@
 </section>
 
 <!-- ============ LATEST ============ -->
-<section class="section pg-list" id="latest" aria-labelledby="pg-list-title" data-page-size="3">
+<section class="section pg-list" id="latest" aria-labelledby="pg-list-title" data-ev-page-size="3">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-aos="fade-up">Latest</span>
-      <h2 class="h2" id="pg-list-title" data-aos="fade-up">The latest from us</h2>
+      <span class="eyebrow" data-aos="fade-up">Events</span>
+      <h2 class="h2" id="pg-list-title" data-aos="fade-up">Latest events</h2>
+      <p class="head-sub" data-aos="fade-up">Expos, summits and client evenings &mdash; where we have been and what we took there.</p>
     </div>
-    <div class="pg-bar glass" data-aos="fade-up">
-      <div class="pg-cats" role="group" aria-label="Filter by category"><button class="ec-chip is-on" type="button" data-pg-cat="all" aria-pressed="true">All</button><button class="ec-chip" type="button" data-pg-cat="brand" aria-pressed="false">Brand</button><button class="ec-chip" type="button" data-pg-cat="client-evening" aria-pressed="false">Client evening</button><button class="ec-chip" type="button" data-pg-cat="expo" aria-pressed="false">Expo</button><button class="ec-chip" type="button" data-pg-cat="summit" aria-pressed="false">Summit</button></div>
-      <p class="pg-status" data-pg-status role="status" aria-live="polite"></p>
-    </div>
+    <p class="pg-status ev-status" data-ev-status role="status" aria-live="polite"></p>
     <div class="nr-grid">
-      <article class="nr-card glass" data-pg-item data-cat="expo" data-title="STARTRADER presents its post-rebrand vision at iFX EXPO Dubai 2026" data-aos="fade-up">
+      <article class="nr-card glass" data-ev-item data-title="STARTRADER presents its post-rebrand vision at iFX EXPO Dubai 2026" data-aos="fade-up">
         <div class="nr-head">
-          <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Expo</span>
           <time class="nr-date" datetime="2026-06-04">4 Jun 2026</time>
         </div>
         <div class="nr-body">
@@ -647,9 +648,8 @@
           <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
-      <article class="nr-card glass" data-pg-item data-cat="summit" data-title="STARTRADER at Dubai Affiliate Summit 2025" data-aos="fade-up" data-aos-delay="100">
+      <article class="nr-card glass" data-ev-item data-title="STARTRADER at Dubai Affiliate Summit 2025" data-aos="fade-up" data-aos-delay="100">
         <div class="nr-head">
-          <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Summit</span>
           <time class="nr-date" datetime="2026-05-16">16 May 2026</time>
         </div>
         <div class="nr-body">
@@ -661,9 +661,8 @@
           <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
-      <article class="nr-card glass" data-pg-item data-cat="expo" data-title="STARTRADER at Forex Expo Dubai 2025" data-aos="fade-up" data-aos-delay="200">
+      <article class="nr-card glass" data-ev-item data-title="STARTRADER at Forex Expo Dubai 2025" data-aos="fade-up" data-aos-delay="200">
         <div class="nr-head">
-          <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Expo</span>
           <time class="nr-date" datetime="2026-04-08">8 Apr 2026</time>
         </div>
         <div class="nr-body">
@@ -675,9 +674,8 @@
           <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
-      <article class="nr-card glass" data-pg-item data-cat="brand" data-title="STARTRADER launches “STARTRADER-it”" data-aos="fade-up" data-aos-delay="300">
+      <article class="nr-card glass" data-ev-item data-title="STARTRADER launches “STARTRADER-it”" data-aos="fade-up" data-aos-delay="300">
         <div class="nr-head">
-          <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Brand</span>
           <time class="nr-date" datetime="2026-03-01">1 Mar 2026</time>
         </div>
         <div class="nr-body">
@@ -689,9 +687,8 @@
           <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
-      <article class="nr-card glass" data-pg-item data-cat="client-evening" data-title="Analyst evening series across the Gulf" data-aos="fade-up" data-aos-delay="400">
+      <article class="nr-card glass" data-ev-item data-title="Analyst evening series across the Gulf" data-aos="fade-up" data-aos-delay="400">
         <div class="nr-head">
-          <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Client evening</span>
           <time class="nr-date" datetime="2026-02-11">11 Feb 2026</time>
         </div>
         <div class="nr-body">
@@ -703,9 +700,8 @@
           <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
         </a>
       </article>
-      <article class="nr-card glass" data-pg-item data-cat="expo" data-title="Money Expo and the year ahead" data-aos="fade-up" data-aos-delay="500">
+      <article class="nr-card glass" data-ev-item data-title="Money Expo and the year ahead" data-aos="fade-up" data-aos-delay="500">
         <div class="nr-head">
-          <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Expo</span>
           <time class="nr-date" datetime="2026-01-15">15 Jan 2026</time>
         </div>
         <div class="nr-body">
@@ -718,14 +714,12 @@
         </a>
       </article>
     </div>
-    <div class="pg-empty" data-pg-empty hidden>
-      <p>Nothing in that category yet.</p>
-      <button class="btn btn-primary" type="button" data-pg-reset>Show everything</button>
-    </div>
 
-    <div class="nr-morerow" data-pg-morerow hidden>
-      <button class="btn btn-primary btn-lg" type="button" data-pg-more>Load more events <svg class="ico"><use href="#i-chevron-down"/></svg></button>
-    </div>
+    <nav class="pgr" aria-label="Event pages" data-ev-pager hidden>
+      <button class="pgr-arrow" type="button" data-ev-prev aria-label="Previous page"><svg aria-hidden="true"><use href="#i-chevron-left"/></svg></button>
+      <span class="pgr-list" data-ev-pglist></span>
+      <button class="pgr-arrow" type="button" data-ev-next aria-label="Next page"><svg aria-hidden="true"><use href="#i-chevron-right"/></svg></button>
+    </nav>
   </div>
 </section>
 
@@ -883,6 +877,97 @@
   <a href="legal-documents.html" class="cookie-more">More details</a>
   <button class="cookie-x" id="cookieClose" aria-label="Accept and close"><svg><use href="#i-close"/></svg></button>
 </div>
+
+<!-- Latest events: paging. Page-local because the shared list script binds a
+     single #latest block and grows it with "load more"; this one pages, the way
+     the analysis archive does. Mirrors that pager's markup and ellipsis rules. -->
+<script>
+(function () {
+  var root = document.getElementById('latest');
+  if (!root) return;
+  var items = Array.prototype.slice.call(root.querySelectorAll('[data-ev-item]'));
+  if (!items.length) return;
+
+  var status = root.querySelector('[data-ev-status]');
+  var pager  = root.querySelector('[data-ev-pager]');
+  var pgList = root.querySelector('[data-ev-pglist]');
+  var pgPrev = root.querySelector('[data-ev-prev]');
+  var pgNext = root.querySelector('[data-ev-next]');
+  var PAGE   = parseInt(root.getAttribute('data-ev-page-size'), 10) || 3;
+  var page = 1, pages = Math.max(1, Math.ceil(items.length / PAGE));
+
+  /* AOS holds a card at opacity 0 until it is scrolled past; a card paged into
+     view is already on screen, so its reveal has to be released by hand */
+  function reveal(el) {
+    el.removeAttribute('data-aos');
+    el.removeAttribute('data-aos-delay');
+    el.classList.remove('aos-init', 'aos-animate');
+    el.style.opacity = '';
+    el.style.transform = '';
+  }
+
+  function apply() {
+    pages = Math.max(1, Math.ceil(items.length / PAGE));
+    if (page > pages) page = pages;
+    items.forEach(function (el, i) {
+      var on = i >= (page - 1) * PAGE && i < page * PAGE;
+      el.hidden = !on;
+      if (on) reveal(el);
+    });
+    if (status) {
+      var from = (page - 1) * PAGE + 1, to = Math.min(page * PAGE, items.length);
+      status.textContent = 'Showing ' + from + '\u2013' + to + ' of ' + items.length +
+        (items.length === 1 ? ' event' : ' events');
+    }
+    paint();
+    if (window.ScrollTrigger && ScrollTrigger.refresh) ScrollTrigger.refresh();
+  }
+
+  function paint() {
+    if (!pager || !pgList) return;
+    pager.hidden = pages < 2;
+    if (pager.hidden) { pgList.innerHTML = ''; return; }
+    var out = [], i;
+    for (i = 1; i <= pages; i++) {
+      if (i === 1 || i === pages || Math.abs(i - page) <= 1) out.push(i);
+      else if (out[out.length - 1] !== '\u2026') out.push('\u2026');
+    }
+    pgList.innerHTML = '';
+    out.forEach(function (n) {
+      if (n === '\u2026') {
+        var d = document.createElement('span');
+        d.className = 'pgr-dots'; d.setAttribute('aria-hidden', 'true'); d.textContent = '\u2026';
+        pgList.appendChild(d); return;
+      }
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'pgr-pg' + (n === page ? ' is-on' : '');
+      b.textContent = n;
+      b.setAttribute('aria-label', 'Page ' + n);
+      if (n === page) b.setAttribute('aria-current', 'page');
+      b.addEventListener('click', function () { go(n); });
+      pgList.appendChild(b);
+    });
+    if (pgPrev) pgPrev.disabled = page === 1;
+    if (pgNext) pgNext.disabled = page === pages;
+  }
+
+  function go(n) {
+    page = Math.max(1, Math.min(pages, n));
+    apply();
+    var first = items.filter(function (el) { return !el.hidden; })[0];
+    if (first) {
+      window.scrollTo({ top: first.getBoundingClientRect().top + window.pageYOffset - 140, behavior: 'smooth' });
+      var h = first.querySelector('.nr-h a');
+      if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); }
+    }
+  }
+
+  if (pgPrev) pgPrev.addEventListener('click', function () { go(page - 1); });
+  if (pgNext) pgNext.addEventListener('click', function () { go(page + 1); });
+  apply();
+})();
+</script>
 
 <script src="assets/js/vendor/gsap.min.js" defer></script>
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>

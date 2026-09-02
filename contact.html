@@ -137,6 +137,11 @@
   padding:11px 14px;border-radius:12px;background:rgba(0,71,187,.055);border:1px solid rgba(0,71,187,.13);
 }
 .ct-route b{color:var(--blue)}
+/* the routing line now lives in the aside, so it sits on its own rather
+   than tucked under a select */
+.ct-route--aside{margin-top:20px;align-items:flex-start}
+.ct-route--aside a{color:inherit}
+.ct-route--aside a:hover{text-decoration:underline;text-underline-offset:3px}
 .ct-panel>*+.ct-radios{margin-top:26px}
 /* two choices as an underlined pair, as in the reference */
 .ct-radios{border:0;padding:0;margin-top:28px}
@@ -251,55 +256,6 @@
 }
   </script>
 
-  <!-- Structured data — FAQ -->
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How quickly will I get a reply?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Live chat is answered around the clock, usually in under a minute. Emails to support@startrader.com are answered within two hours, and messages sent through the form on this page go straight to the desk you select, so they are not passed between teams." }
-    },
-    {
-      "@type": "Question",
-      "name": "Is support really available 24 hours a day?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Live chat and email are staffed 24 hours a day, five days a week while markets are open, with cover over the weekend for account and funding questions. Support is available in more than twenty languages." }
-    },
-    {
-      "@type": "Question",
-      "name": "What should I include when I contact support about my account?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Include your trading account number, the platform you were using, and the time of the event with your timezone. For an order or execution question, add the order ticket number. That is usually enough for the first reply to resolve it rather than ask for more detail." }
-    },
-    {
-      "@type": "Question",
-      "name": "How do I raise a complaint?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Email support@startrader.com with \"Complaint\" in the subject line and include your account number and a description of what happened. Complaints are logged and escalated to the compliance team of the entity your account is registered with, and you will receive written acknowledgement." }
-    },
-    {
-      "@type": "Question",
-      "name": "Which office is my account with?",
-      "acceptedAnswer": { "@type": "Answer", "text": "You are assigned to a STARTRADER entity based on your country of residence when you register, and the entity is named in your account documents. Every entity, its regulator, licence number and registered office address are set out in the regulatory information at the foot of this page." }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I visit an office in person?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Our offices are corporate premises rather than retail branches, so account servicing is handled online or by phone. If you need to meet the team, arrange it in advance through support and we will confirm whether a meeting is possible at that location." }
-    },
-    {
-      "@type": "Question",
-      "name": "Where do partnership and institutional enquiries go?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Introducing broker, affiliate, money manager and institutional enquiries are handled by the partnerships desk at partners@startrader.com, or select Partnerships on the form on this page and it is routed there." }
-    },
-    {
-      "@type": "Question",
-      "name": "Do you offer support in my language?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Support is provided in more than twenty languages including English, Arabic, Simplified and Traditional Chinese, Thai, Vietnamese, Malay, Indonesian, Spanish, Portuguese, Hindi and Turkish. Choose your language on the form and we will reply in it where possible." }
-    }
-  ]
-}
-  </script>
 
 </head>
 <body>
@@ -477,10 +433,7 @@
             <div class="mega-col">
               <span class="mega-head">Promotions</span>
               <a href="promotions.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-send"/></svg></span><span class="mega-txt"><b>Our Promotions</b></span></a>
-              <a href="https://www.startrader.com/star-trading-league-championship/" class="mega-item"><span class="mega-ico"><svg><use href="#i-star"/></svg></span><span class="mega-txt"><b>STAR Trading League</b></span></a>
-              <a href="dailyforexpromo.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-bolt"/></svg></span><span class="mega-txt"><b>Daily Forex Promo</b></span></a>
-              <a href="deposit-bonus-10010-20240513.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>100/10 Deposit Bonus</b></span></a>
-              <a href="deposit-bonus-5020-20250101.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>50/20 Deposit Bonus</b></span></a>
+              <a href="gold-cashback.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-clock"/></svg></span><span class="mega-txt"><b>Gold 24/7 Cashback</b></span></a>
               <a href="point-mall.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>Point Mall</b></span></a>
               <a href="deposit-bonus.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>Deposit Bonuses</b></span></a>
               <a href="switch-allowance.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-swap"/></svg></span><span class="mega-txt"><b>1% Switch Allowance</b></span></a>
@@ -676,13 +629,15 @@
     <div class="ct-form-aside">
       <span class="eyebrow" data-aos="fade-up">Send a message</span>
       <h2 class="h2" id="ct-form-title" data-ct-words>One short form, then the right desk replies</h2>
-      <p class="ct-aside-lead" data-aos="fade-up">Pick the team below and your message goes straight there &mdash; nothing gets passed around.</p>
+      <p class="ct-aside-lead" data-aos="fade-up">Tell us what you need and your message goes straight to the support desk &mdash; nothing gets passed around.</p>
 
       <ul class="ct-aside-list" data-aos="fade-up">
-        <li><span class="wb-tick"><svg><use href="#i-check"/></svg></span>Routed by department, not a shared inbox</li>
-        <li><span class="wb-tick"><svg><use href="#i-check"/></svg></span>Reply target shown before you send</li>
+        <li><span class="wb-tick"><svg><use href="#i-check"/></svg></span>Read by a person, answered within two hours</li>
+        <li><span class="wb-tick"><svg><use href="#i-check"/></svg></span>Staffed around the clock, in more than twenty languages</li>
         <li><span class="wb-tick"><svg><use href="#i-check"/></svg></span>In a hurry? <button class="ct-inline-chat" type="button" data-ct-chat>use live chat instead</button></li>
       </ul>
+
+      <p class="ct-route ct-route--aside" data-aos="fade-up">Goes to <b><a href="mailto:support@startrader.com">support@startrader.com</a></b> &middot; replied within 2 hours</p>
 
       <div class="ct-aside-note">
         <b>Account questions answer fastest</b>
@@ -704,42 +659,12 @@
               <input type="email" id="ctEmail" name="email" inputmode="email" autocomplete="email" placeholder="you@example.com" aria-describedby="ctEmailErr">
               <p class="ct-err" id="ctEmailErr" hidden>We need a valid email to reply to.</p>
             </div>
-            <div class="ct-field">
-              <label for="ctPhone">Phone <em>optional</em></label>
-              <input type="tel" id="ctPhone" name="phone" inputmode="tel" autocomplete="tel" placeholder="+971 50 000 0000" aria-describedby="ctPhoneErr">
-              <p class="ct-err" id="ctPhoneErr" hidden>Use digits only, with an optional + prefix.</p>
-            </div>
-            <div class="ct-field">
-              <label for="ctLang">Reply in</label>
-              <div class="wb-selwrap">
-                <select id="ctLang" name="language">
-                  <option value="en" selected>English</option>
-                  <option value="ar">العربية — Arabic</option>
-                  <option value="zh">简体中文 — Chinese</option>
-                  <option value="th">ไทย — Thai</option>
-                  <option value="vi">Tiếng Việt — Vietnamese</option>
-                  <option value="es">Español — Spanish</option>
-                  <option value="pt">Português — Portuguese</option>
-                </select>
-                <svg class="wb-selchev" aria-hidden="true"><use href="#i-chevron-down"/></svg>
-              </div>
-            </div>
           </div>
 
           <div class="ct-field">
-            <label for="ctDept">Which team do you need?</label>
-            <div class="wb-selwrap">
-              <select id="ctDept" name="department" data-ct-dept>
-                <option value="support" data-desk="client support" data-to="support@startrader.com" data-eta="within 2 hours" selected>Client support — accounts, funding, platforms</option>
-                <option value="partners" data-desk="partnerships" data-to="partners@startrader.com" data-eta="within 1 business day">Partnerships — IB, affiliate, money manager</option>
-                <option value="institutional" data-desk="institutional sales" data-to="partners@startrader.com" data-eta="within 1 business day">Institutional — liquidity and API</option>
-                <option value="media" data-desk="media relations" data-to="info@startrader.com" data-eta="within 2 business days">Media &amp; PR</option>
-                <option value="compliance" data-desk="compliance" data-to="support@startrader.com" data-eta="within 2 business days">Compliance or a complaint</option>
-                <option value="other" data-desk="general enquiries" data-to="info@startrader.com" data-eta="within 2 business days">Something else</option>
-              </select>
-              <svg class="wb-selchev" aria-hidden="true"><use href="#i-chevron-down"/></svg>
-            </div>
-            <p class="ct-route" data-ct-route></p>
+            <label for="ctPhone">Phone <em>optional</em></label>
+            <input type="tel" id="ctPhone" name="phone" inputmode="tel" autocomplete="tel" placeholder="+971 50 000 0000" aria-describedby="ctPhoneErr">
+            <p class="ct-err" id="ctPhoneErr" hidden>Use digits only, with an optional + prefix.</p>
           </div>
 
           <div class="ct-field">
@@ -774,7 +699,7 @@
           <label class="ct-check" for="ctConsent">
             <input type="checkbox" id="ctConsent" name="consent" aria-describedby="ctConsentErr">
             <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
-            <span>I agree that STARTRADER may use these details to respond to my enquiry, as set out in the <a href="privacy-policy-app.html">Privacy Policy</a>.</span>
+            <span>I agree that STARTRADER may use these details to respond to my enquiry, as set out in the <a href="https://www.startrader.com/pdf/startrader-privacy-policy-20260210.pdf" target="_blank" rel="noopener">Privacy Policy</a>.</span>
           </label>
           <p class="ct-err" id="ctConsentErr" hidden>Please confirm before sending.</p>
 
@@ -799,51 +724,6 @@
 </section>
 
 
-<!-- ============ FAQ ============ -->
-<section class="section faq-sec fx-faq" aria-labelledby="ct-faq-title">
-  <div class="container">
-    <div class="head center">
-      <span class="eyebrow" data-aos="fade-up">FAQ</span>
-      <h2 class="h2" id="ct-faq-title" data-ct-words>Before you get in touch</h2>
-    </div>
-    <div class="faq-list" data-aos="fade-up">
-      <details class="faq-item">
-        <summary>How quickly will I get a reply?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Live chat is answered around the clock, usually in under a minute. Emails to <a href="mailto:support@startrader.com">support@startrader.com</a> are answered within two hours, and messages sent through the form on this page go straight to the desk you select, so they aren&rsquo;t passed between teams.</div>
-      </details>
-      <details class="faq-item">
-        <summary>Is support really available 24 hours a day?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Yes. Live chat and email are staffed 24 hours a day, five days a week while markets are open, with cover over the weekend for account and funding questions. Support is available in more than twenty languages.</div>
-      </details>
-      <details class="faq-item">
-        <summary>What should I include when I contact support about my account?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Include your trading account number, the platform you were using, and the time of the event with your timezone. For an order or execution question, add the order ticket number. That&rsquo;s usually enough for the first reply to resolve it rather than ask for more detail.</div>
-      </details>
-      <details class="faq-item">
-        <summary>How do I raise a complaint?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Email <a href="mailto:support@startrader.com">support@startrader.com</a> with &ldquo;Complaint&rdquo; in the subject line and include your account number and a description of what happened. Complaints are logged and escalated to the compliance team of the entity your account is registered with, and you&rsquo;ll receive written acknowledgement.</div>
-      </details>
-      <details class="faq-item">
-        <summary>Which office is my account with?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">You&rsquo;re assigned to a STARTRADER entity based on your country of residence when you register, and the entity is named in your account documents. Every entity, its regulator, licence number and registered office address are set out in the regulatory information at the foot of this page.</div>
-      </details>
-      <details class="faq-item">
-        <summary>Can I visit an office in person?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Our offices are corporate premises rather than retail branches, so account servicing is handled online or by phone. If you need to meet the team, arrange it in advance through support and we&rsquo;ll confirm whether a meeting is possible at that location.</div>
-      </details>
-      <details class="faq-item">
-        <summary>Where do partnership and institutional enquiries go?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Introducing broker, affiliate, money manager and institutional enquiries are handled by the partnerships desk at <a href="mailto:partners@startrader.com">partners@startrader.com</a>, or select Partnerships on the form on this page and it&rsquo;s routed there.</div>
-      </details>
-      <details class="faq-item">
-        <summary>Do you offer support in my language?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Support is provided in more than twenty languages including English, Arabic, Simplified and Traditional Chinese, Thai, Vietnamese, Malay, Indonesian, Spanish, Portuguese, Hindi and Turkish. Choose your language on the form and we&rsquo;ll reply in it where possible.</div>
-      </details>
-    </div>
-  </div>
-</section>
-
-<!-- ============ CLOSING CTA ============ -->
 <section class="cta-banner" aria-labelledby="ct-cta-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">

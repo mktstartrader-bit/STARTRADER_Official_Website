@@ -41,6 +41,18 @@
    Shares the promotions palette and its coupon language. The two tiers
    carry their percentage as the artwork; the estimator does the sums.
    ================================================================= */
+/* ---------------- banner: the small print under the button ---------------- */
+.pm-tc{margin-top:16px;font-size:11.5px;line-height:1.6;color:#7a879b}
+/* the line is muted grey, so the terms link is lifted out of it */
+.pm-tc-link{
+  font-weight:700;color:var(--acc-2);
+  text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px;
+  text-decoration-color:rgba(42,114,255,.4);
+  transition:color .25s,text-decoration-color .25s;
+}
+.pm-tc-link:hover{color:var(--acc);text-decoration-color:currentColor}
+.pm-tc-link:focus-visible{outline:2px solid var(--acc-2);outline-offset:3px;border-radius:3px}
+
 .d5-tier-sec{position:relative;isolation:isolate;overflow:clip;
   background:radial-gradient(50% 44% at 90% 0%,rgba(0,71,187,.08),transparent 62%),var(--bg-light-2)}
 .d5-tier-sec>.container{position:relative;z-index:1}
@@ -138,62 +150,6 @@
     "url": "https://www.startrader.com/trading/products/forex.html",
     "provider": { "@type": "FinancialService", "name": "STARTRADER", "url": "https://www.startrader.com/" }
   }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      { "@type": "Question", "name": "What is forex trading and how does it work?", "acceptedAnswer": { "@type": "Answer", "text": "Forex trading is the buying and selling of currency pairs to profit from changes in their exchange rate. Trades use lots — a standard lot is 100,000 units — and leverage lets you control a larger position with less capital on the 24/5 foreign-exchange market." } },
-      { "@type": "Question", "name": "How many currency pairs can I trade with STARTRADER?", "acceptedAnswer": { "@type": "Answer", "text": "You can trade 80+ currency pairs across major, minor and exotic categories, all with competitive spreads and fast execution." } },
-      { "@type": "Question", "name": "What are the trading hours for the forex market?", "acceptedAnswer": { "@type": "Answer", "text": "The forex market runs 24 hours a day, 5 days a week, closing only on weekends. Sessions overlap across Sydney, Tokyo, London and New York so there is always an active market." } },
-      { "@type": "Question", "name": "What leverage is available on forex?", "acceptedAnswer": { "@type": "Answer", "text": "Flexible leverage is available up to 1:1000. Higher leverage increases both potential profit and risk, and leverage above 1:30 may not be available in some regions." } },
-      { "@type": "Question", "name": "Which platforms can I use to trade forex?", "acceptedAnswer": { "@type": "Answer", "text": "MetaTrader 4 and MetaTrader 5 are the most popular, alongside the STAR Web Trader and mobile apps — all offering advanced charting, indicators and automated trading." } },
-      { "@type": "Question", "name": "What are the best forex pairs to trade?", "acceptedAnswer": { "@type": "Answer", "text": "It depends on your strategy, but the most-traded pairs include EUR/USD, USD/JPY, GBP/USD, AUD/USD and USD/CAD — highly liquid majors with tight spreads." } },
-      { "@type": "Question", "name": "Are there commissions or hidden fees on forex?", "acceptedAnswer": { "@type": "Answer", "text": "STARTRADER charges 0 commission and 0 deposit fees on most channels for Standard accounts. ECN and Prime ECN accounts pay a low commission in exchange for raw spreads from 0.0 pips." } },
-      { "@type": "Question", "name": "How do I get started with forex trading?", "acceptedAnswer": { "@type": "Answer", "text": "Open an account, verify your identity, fund your wallet and start trading — or practise risk-free on a demo account first to build your strategy." } }
-    ]
-  }
-  </script>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How much bonus credit do I get?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Fifty per cent of your first deposit, up to $500 of credit bonus. Every deposit after that earns twenty per cent."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the minimum deposit?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Deposit $100 or more and the bonus credit is applied automatically once you have opted in."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do I have to opt in?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. Activate the deposit bonus from the client portal before you deposit, so the credit can be applied."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I withdraw my profits?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Withdrawals of eligible profits are available, subject to your account terms."
-      }
-    }
-  ]
-}
   </script>
 
 </head>
@@ -370,10 +326,7 @@
             <div class="mega-col">
               <span class="mega-head">Promotions</span>
               <a href="promotions.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-send"/></svg></span><span class="mega-txt"><b>Our Promotions</b></span></a>
-              <a href="https://www.startrader.com/star-trading-league-championship/" class="mega-item"><span class="mega-ico"><svg><use href="#i-star"/></svg></span><span class="mega-txt"><b>STAR Trading League</b></span></a>
-              <a href="dailyforexpromo.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-bolt"/></svg></span><span class="mega-txt"><b>Daily Forex Promo</b></span></a>
-              <a href="deposit-bonus-10010-20240513.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>100/10 Deposit Bonus</b></span></a>
-              <a href="deposit-bonus-5020-20250101.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>50/20 Deposit Bonus</b></span></a>
+              <a href="gold-cashback.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-clock"/></svg></span><span class="mega-txt"><b>Gold 24/7 Cashback</b></span></a>
               <a href="point-mall.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>Point Mall</b></span></a>
               <a href="deposit-bonus.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>Deposit Bonuses</b></span></a>
               <a href="switch-allowance.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-swap"/></svg></span><span class="mega-txt"><b>1% Switch Allowance</b></span></a>
@@ -509,13 +462,13 @@
     <div class="pm-hero-copy">
       <span class="pm-eyebrow" data-aos="fade-up">Deposit bonus</span>
       <h1 class="pm-h1" id="d5-hero-title" data-aos="fade-up">
-        <span>Boost your trades with</span>
-        <span class="lit">the 50/20 deposit bonus.</span>
+        <span>Boost Your Trades</span>
+        <span class="lit">with 50/20 Deposit Bonus</span>
       </h1>
-      <p class="pm-lead" data-aos="fade-up">Fifty per cent credit bonus on your first deposit, up to $500 &mdash; then twenty per cent on every deposit after. Terms and conditions apply.</p>
       <div class="pm-hact" data-aos="fade-up">
-        <a class="pm-btn" href="funding.html">Deposit now <svg><use href="#i-arrow-right"/></svg></a>
+        <a class="pm-btn" href="funding.html">Deposit Now <svg><use href="#i-arrow-right"/></svg></a>
       </div>
+      <p class="pm-tc" data-aos="fade-up">*<a class="pm-tc-link" href="https://www.startrader.com/pdf/pmt100-en.pdf" target="_blank" rel="noopener">Terms &amp; Conditions</a> apply.</p>
     </div>
   </div>
 </section>
@@ -524,20 +477,19 @@
 <section class="section d5-tier-sec" id="tiers" aria-labelledby="d5-tier-title">
   <div class="container">
     <span class="pm-eyebrow-c" data-aos="fade-up">What you get</span>
-    <h2 class="pm-h2" id="d5-tier-title" data-aos="fade-up">Trade bigger with<br> deposit bonus</h2>
-    <p class="pm-sub" data-aos="fade-up">Two rates, one promotion. The first deposit earns the most, and the credit keeps coming after that.</p>
+    <h2 class="pm-h2" id="d5-tier-title" data-aos="fade-up">Trade Bigger with<br> Deposit Bonus</h2>
 
     <div class="d5-tiers">
       <article class="d5-tier" data-aos="fade-up">
         <span class="d5-pc" aria-hidden="true">50<sup>%</sup></span>
-        <h3>On your first deposit</h3>
+        <h3>50% on Your First Deposit</h3>
         <p>Get up to $500 credit bonus when you make your first deposit.</p>
         <span class="d5-tag"><i></i>Up to $500</span>
       </article>
 
       <article class="d5-tier d5-tier--sand" data-aos="fade-up">
         <span class="d5-pc" aria-hidden="true">20<sup>%</sup></span>
-        <h3>On every deposit after</h3>
+        <h3>20% on Every Deposit After</h3>
         <p>Keep earning bonus credit on all your subsequent deposits.</p>
         <span class="d5-tag"><i></i>Every top-up</span>
       </article>
@@ -546,8 +498,8 @@
     <div class="d5-strip" data-aos="fade-up">
       <span class="d5-strip-ic"><svg><use href="#i-wallet"/></svg></span>
       <span class="d5-strip-tx">
-        <b>Profit withdrawals</b>
-        <p>Withdrawals of eligible profits are available, subject to your account terms.</p>
+        <b>Profit Withdrawals</b>
+        <p>Withdrawals of eligible profits are available, subject to account terms.</p>
       </span>
       <a class="btn btn-primary" href="funding.html">Fund your account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
     </div>
@@ -588,55 +540,26 @@
   <div class="container">
     <div class="htrade">
       <div class="htrade-intro" data-aos="fade-up">
-        <h2 class="htrade-title" id="d5-how-title">Three steps<br><span>to your bonus</span></h2>
-        <p class="htrade-sub">Open the account, opt in, then deposit. The credit lands on its own.</p>
-        <a href="getting-started.html" class="btn btn-primary btn-lg htrade-btn magnetic">Open live account <span class="htrade-go"><svg><use href="#i-arrow-right"/></svg></span></a>
+        <h2 class="htrade-title" id="d5-how-title">How to Get Your<br><span>Deposit Bonus?</span></h2>
+        <a href="getting-started.html" class="btn btn-primary btn-lg htrade-btn magnetic">Open Live Account <span class="htrade-go"><svg><use href="#i-arrow-right"/></svg></span></a>
       </div>
 
       <div>
         <ol class="htrade-steps" data-htrade>
           <li class="htrade-step">
             <span class="htrade-num">01</span>
-            <div class="htrade-txt"><h3>Open a live account</h3><p>Sign up for a STARTRADER trading account to get started.</p></div>
+            <div class="htrade-txt"><h3>Open a Live Account</h3><p>Sign up for a STARTRADER trading account to get started.</p></div>
           </li>
           <li class="htrade-step">
             <span class="htrade-num">02</span>
-            <div class="htrade-txt"><h3>Opt in to the promotion</h3><p>Activate the deposit bonus from the client portal.</p></div>
+            <div class="htrade-txt"><h3>Opt-In to the Promotion</h3><p>Activate the deposit bonus via the client portal.</p></div>
           </li>
           <li class="htrade-step">
             <span class="htrade-num">03</span>
-            <div class="htrade-txt"><h3>Deposit and get rewarded</h3><p>Deposit $100 or more and your bonus credit arrives automatically.</p></div>
+            <div class="htrade-txt"><h3>Deposit and Get Rewarded</h3><p>Deposit $100 or more and receive your bonus automatically.</p></div>
           </li>
         </ol>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FAQ ============ -->
-<section class="section faq-sec fx-faq" aria-labelledby="d5-faq-title">
-  <div class="container">
-    <div class="head center">
-      <span class="eyebrow" data-aos="fade-up">FAQ</span>
-      <h2 class="h2" id="d5-faq-title" data-aos="fade-up">About the deposit bonus</h2>
-    </div>
-    <div class="faq-list" data-aos="fade-up">
-      <details class="faq-item">
-        <summary>How much bonus credit do I get?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Fifty per cent of your first deposit, up to $500 of credit bonus. Every deposit after that earns twenty per cent.</div>
-      </details>
-      <details class="faq-item">
-        <summary>What is the minimum deposit?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Deposit $100 or more and the bonus credit is applied automatically once you have opted in.</div>
-      </details>
-      <details class="faq-item">
-        <summary>Do I have to opt in?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Yes. Activate the deposit bonus from the client portal before you deposit, so the credit can be applied.</div>
-      </details>
-      <details class="faq-item">
-        <summary>Can I withdraw my profits?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Withdrawals of eligible profits are available, subject to your account terms.</div>
-      </details>
     </div>
   </div>
 </section>

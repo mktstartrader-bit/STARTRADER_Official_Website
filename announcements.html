@@ -623,10 +623,7 @@
             <div class="mega-col">
               <span class="mega-head">Promotions</span>
               <a href="promotions.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-send"/></svg></span><span class="mega-txt"><b>Our Promotions</b></span></a>
-              <a href="https://www.startrader.com/star-trading-league-championship/" class="mega-item"><span class="mega-ico"><svg><use href="#i-star"/></svg></span><span class="mega-txt"><b>STAR Trading League</b></span></a>
-              <a href="dailyforexpromo.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-bolt"/></svg></span><span class="mega-txt"><b>Daily Forex Promo</b></span></a>
-              <a href="deposit-bonus-10010-20240513.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>100/10 Deposit Bonus</b></span></a>
-              <a href="deposit-bonus-5020-20250101.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>50/20 Deposit Bonus</b></span></a>
+              <a href="gold-cashback.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-clock"/></svg></span><span class="mega-txt"><b>Gold 24/7 Cashback</b></span></a>
               <a href="point-mall.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>Point Mall</b></span></a>
               <a href="deposit-bonus.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>Deposit Bonuses</b></span></a>
               <a href="switch-allowance.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-swap"/></svg></span><span class="mega-txt"><b>1% Switch Allowance</b></span></a>
@@ -806,6 +803,7 @@
       </div>
 
       <p class="an-rail-note">Times are quoted in GMT+3 (server time) unless stated otherwise.</p>
+      <p class="an-rail-note">Notices stay on this page for three months from their publication date.</p>
     </aside>
 
     <!-- list -->
@@ -1381,6 +1379,63 @@
   <a href="legal-documents.html" class="cookie-more">More details</a>
   <button class="cookie-x" id="cookieClose" aria-label="Accept and close"><svg><use href="#i-close"/></svg></button>
 </div>
+
+<!-- Three-month retention window. This runs during parse, so it lands before the
+     deferred main.js builds the list — which means the totals, the type counts,
+     the month buttons and the date pickers all derive from the surviving set
+     rather than needing to be corrected afterwards. -->
+<script>
+(function () {
+  var MONTHS_BACK = 3;
+  var root = document.getElementById('notices');
+  if (!root) return;
+
+  function p2(n) { return (n < 10 ? '0' : '') + n; }
+  function iso(d) { return d.getFullYear() + '-' + p2(d.getMonth() + 1) + '-' + p2(d.getDate()); }
+
+  var now = new Date();
+  var cut = new Date(now.getFullYear(), now.getMonth() - MONTHS_BACK, now.getDate());
+  var min = iso(cut), max = iso(now);
+
+  /* anything published before the cutoff leaves the document entirely, so it is
+     not reachable by filter, by search or by its own #anchor */
+  var monthsKept = {};
+  Array.prototype.slice.call(root.querySelectorAll('[data-an-item]')).forEach(function (el) {
+    var d = el.getAttribute('data-date') || '';
+    if (d && d < min) { el.parentNode.removeChild(el); return; }
+    monthsKept[el.getAttribute('data-month') || d.slice(0, 7)] = true;
+  });
+
+  /* a month button with nothing behind it is a dead end */
+  Array.prototype.slice.call(root.querySelectorAll('[data-an-month]')).forEach(function (b) {
+    var m = b.getAttribute('data-an-month');
+    if (m && m !== 'all' && !monthsKept[m]) b.parentNode.removeChild(b);
+  });
+
+  /* and the pickers cannot be dragged outside the window */
+  ['anFrom', 'anTo'].forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) { el.setAttribute('min', min); el.setAttribute('max', max); }
+  });
+
+  /* if the window itself is empty, the stock message ("no notices match those
+     filters", with a button that clears filters nobody set) would be a lie.
+     Dropping the [data-an-empty-q] and [data-an-reset] hooks also stops the
+     list script writing over this copy — it guards on both. */
+  if (!Object.keys(monthsKept).length) {
+    var empty = root.querySelector('[data-an-empty]');
+    if (empty) {
+      empty.innerHTML =
+        '<span class="gl-empty-ic" aria-hidden="true"><svg><use href="#i-send"/></svg></span>' +
+        '<h3>No notices in the last ' + MONTHS_BACK + ' months</h3>' +
+        '<p>Notices are kept on this page for ' + MONTHS_BACK + ' months from their publication date. ' +
+        'Subscribe below and new ones reach you as they are published.</p>' +
+        '<a class="btn btn-primary" href="#subscribe">Get notices by email ' +
+        '<svg class="ico"><use href="#i-arrow-right"/></svg></a>';
+    }
+  }
+})();
+</script>
 
 <script src="assets/js/vendor/gsap.min.js" defer></script>
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>

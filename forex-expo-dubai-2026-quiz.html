@@ -904,7 +904,7 @@ document.addEventListener('DOMContentLoaded', function () {
         rewardItem('📚', 'Free STARACADEMY education pack', 'Brush up on the essentials, sharpen your knowledge, and get ready for another shot at the quiz.') +
       '</ul>' +
       '<p class="xp-pop-sub">Your claim code</p>' + codeBox(S.std) +
-      actions(primary('Save my code', 'data-copy') + line('Download education pack', '', '#')) + // integration: education pack URL
+      actions(primary('Save my code', 'data-copy') + line('Level Up with Our Education Pack', 'target="_blank" rel="noopener"', 'https://www.startraderacademy.com/course-hub/trading-for-beginners-basic/')) +
       '<hr class="xp-pop-hr">' +
       '<h3 class="xp-pop-h3">Ready for round two?</h3>' +
       '<p class="xp-pop-p">Think you can beat your first score?</p>' +
@@ -943,7 +943,7 @@ document.addEventListener('DOMContentLoaded', function () {
       (S.connect ? '<p class="xp-pop-p is-strong">You chose to connect ' + (S.connect === 'booth' ? '<b>at the booth</b>' : '<b>online</b>') + '.</p>' : '') +
       (S.connect === 'booth' ? '<div class="xp-qr"><img src="assets/img/expo-quiz-qr.svg" alt="QR code to book your 15-minute introduction session" width="124" height="124"><p>Scan the QR code to book your session.</p></div>' : '') +
       '<p class="xp-pop-sub">Your premium claim code</p>' + codeBox(S.prm) +
-      actions(primary('Save my code', 'data-copy') + line('Download education pack', '', '#')) // integration: education pack URL
+      actions(primary('Save my code', 'data-copy') + line('Level Up with Our Education Pack', 'target="_blank" rel="noopener"', 'https://www.startraderacademy.com/course-hub/trading-for-beginners-basic/'))
     );
     bindCopy();
   }

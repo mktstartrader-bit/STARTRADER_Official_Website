@@ -95,6 +95,59 @@
 .aw-crest img{height:34px}
 .aw-crest b{font-size:13px;line-height:1.3}
 .aw-badge em{font-size:10px;letter-spacing:.1em}}
+
+/* the two article bands sit between the light Factors grid and the white FAQ.
+   .nr-card carries no background of its own, so neither band may sit on flat
+   white — the glass would go flat. They step light-2 -> light -> light-2 -> #fff. */
+.ac-latest{background:radial-gradient(56% 50% at 50% 0%,rgba(0,71,187,.07),transparent 62%),var(--bg-light)}
+.ac-spot{background:radial-gradient(54% 48% at 50% 0%,rgba(0,71,187,.06),transparent 62%),var(--bg-light-2)}
+
+/* ---- In the spotlight: one lead card beside three compact rows, so the
+   featured block never reads as a duplicate of the grid beneath it ---- */
+.ac-spot-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:24px;align-items:stretch}
+.ac-spot-lead{min-width:0}
+.ac-spot-lead .nr-media{aspect-ratio:auto;min-height:210px}
+.ac-spot-lead .nr-h{font-size:clamp(19px,2vw,23px);letter-spacing:-.028em}
+.ac-spot-lead .nr-ex{font-size:14.5px;line-height:1.66}
+.ac-spot-rows{display:flex;flex-direction:column;gap:14px}
+.ac-spot-rows .ac-row{flex:1 1 0;min-height:0}
+.ac-row{
+  display:grid;grid-template-columns:104px minmax(0,1fr);gap:16px;align-items:center;
+  padding:12px;border-radius:18px;
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
+}
+.ac-row:hover{transform:translateY(-4px);border-color:rgba(0,71,187,.28);box-shadow:0 28px 52px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff}
+.ac-row-media{position:relative;display:block;border-radius:12px;overflow:hidden;aspect-ratio:4/3}
+.ac-row:hover .ac-row-media .cover-bg{transform:scale(1.06)}
+.ac-row-tx{min-width:0}
+.ac-row-meta{display:flex;align-items:center;gap:9px;flex-wrap:wrap;font-size:11.5px;color:var(--text-mute)}
+.ac-row-cat{display:inline-flex;align-items:center;gap:6px;font-weight:700;color:var(--blue)}
+.ac-row-cat svg{width:13px;height:13px}
+.ac-row-h{margin-top:7px;font-size:15px;font-weight:700;letter-spacing:-.02em;line-height:1.34;color:var(--text)}
+.ac-row:hover .ac-row-h a{color:var(--blue)}
+.ac-row-h a{transition:color .25s}
+
+/* ---- Latest achievements: four to a row, which is also one page ---- */
+.ac-bar{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  padding:12px 16px;border-radius:70px;margin-bottom:26px;
+}
+.ac-cats{display:flex;gap:8px;flex-wrap:wrap}
+.ac-status{font-size:12.5px;color:var(--text-mute);margin:0;font-variant-numeric:tabular-nums}
+.ac-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}
+.ac-empty{text-align:center;padding:44px 20px 8px}
+.ac-empty p{font-size:14.5px;color:var(--text-soft);margin-bottom:18px}
+
+/* ---- Responsive ---- */
+@media (max-width:1080px){
+  .ac-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ac-spot-grid{grid-template-columns:1fr;gap:20px}
+}
+@media (max-width:720px){
+  .ac-grid{grid-template-columns:1fr}
+  .ac-bar{border-radius:20px;flex-direction:column;align-items:flex-start}
+  .ac-row{grid-template-columns:84px minmax(0,1fr);gap:13px}
+}
   </style>
 
   <script type="application/ld+json">
@@ -398,10 +451,7 @@
             <div class="mega-col">
               <span class="mega-head">Promotions</span>
               <a href="promotions.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-send"/></svg></span><span class="mega-txt"><b>Our Promotions</b></span></a>
-              <a href="https://www.startrader.com/star-trading-league-championship/" class="mega-item"><span class="mega-ico"><svg><use href="#i-star"/></svg></span><span class="mega-txt"><b>STAR Trading League</b></span></a>
-              <a href="dailyforexpromo.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-bolt"/></svg></span><span class="mega-txt"><b>Daily Forex Promo</b></span></a>
-              <a href="deposit-bonus-10010-20240513.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>100/10 Deposit Bonus</b></span></a>
-              <a href="deposit-bonus-5020-20250101.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>50/20 Deposit Bonus</b></span></a>
+              <a href="gold-cashback.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-clock"/></svg></span><span class="mega-txt"><b>Gold 24/7 Cashback</b></span></a>
               <a href="point-mall.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>Point Mall</b></span></a>
               <a href="deposit-bonus.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>Deposit Bonuses</b></span></a>
               <a href="switch-allowance.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-swap"/></svg></span><span class="mega-txt"><b>1% Switch Allowance</b></span></a>
@@ -696,6 +746,178 @@
   </div>
 </section>
 
+<!-- ============ LATEST ACHIEVEMENTS ============ -->
+<!-- Four to a page. Adding an article is one <article class="nr-card" data-ac-item>
+     with a data-date and data-cat — the pager counts what it finds. -->
+<section class="section ac-latest" id="latest" aria-labelledby="ac-latest-title" data-ac-page-size="4">
+  <div class="container">
+    <div class="head center">
+      <span class="eyebrow" data-aos="fade-up">The record</span>
+      <h2 class="h2" id="ac-latest-title" data-aos="fade-up">Latest achievements</h2>
+      <p class="head-sub" data-aos="fade-up">Every award and milestone, newest first.</p>
+    </div>
+
+    <div class="ac-bar glass" data-aos="fade-up">
+      <div class="ac-cats" role="group" aria-label="Filter by category">
+        <button class="ec-chip is-on" type="button" data-ac-cat="all" aria-pressed="true">All</button>
+        <button class="ec-chip" type="button" data-ac-cat="award" aria-pressed="false">Award</button>
+        <button class="ec-chip" type="button" data-ac-cat="milestone" aria-pressed="false">Milestone</button>
+      </div>
+      <p class="ac-status" data-ac-status role="status" aria-live="polite"></p>
+    </div>
+
+    <div class="ac-grid">
+        <article class="nr-card glass" data-ac-item data-cat="award" data-date="2026-06-20" data-aos="fade-up">
+          <div class="nr-head">
+            <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Award</span>
+            <time class="nr-date" datetime="2026-06-20">20 Jun 2026</time>
+          </div>
+          <div class="nr-body">
+            <h3 class="nr-h"><a href="award-best-ecn-broker-2026.html">Best ECN Broker &mdash; Global Forex Awards 2026</a></h3>
+            <p class="nr-ex">Recognition tied to execution quality and spread consistency rather than marketing spend.</p>
+          </div>
+          <span class="nr-media">
+            <span class="cover-bg" role="img" aria-label="Best ECN Broker — Global Forex Awards 2026" style="background-image:url('assets/img/stat-awards.webp')"></span>
+            <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
+          </span>
+        </article>
+        <article class="nr-card glass" data-ac-item data-cat="milestone" data-date="2026-06-11" data-aos="fade-up" data-aos-delay="100">
+          <div class="nr-head">
+            <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Milestone</span>
+            <time class="nr-date" datetime="2026-06-11">11 Jun 2026</time>
+          </div>
+          <div class="nr-body">
+            <h3 class="nr-h"><a href="milestone-sca-licence-uae.html">SCA licence secured in the United Arab Emirates</a></h3>
+            <p class="nr-ex">A fifth regulator, and the one that matters most for clients in the Gulf.</p>
+          </div>
+          <span class="nr-media">
+            <span class="cover-bg" role="img" aria-label="SCA licence secured in the United Arab Emirates" style="background-image:url('assets/img/company-hero.webp')"></span>
+            <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
+          </span>
+        </article>
+        <article class="nr-card glass" data-ac-item data-cat="award" data-date="2026-04-25" data-aos="fade-up" data-aos-delay="200">
+          <div class="nr-head">
+            <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Award</span>
+            <time class="nr-date" datetime="2026-04-25">25 Apr 2026</time>
+          </div>
+          <div class="nr-body">
+            <h3 class="nr-h"><a href="award-most-trusted-broker-mena.html">Most Trusted Broker &mdash; MENA region</a></h3>
+            <p class="nr-ex">Voted on trust, which is the slowest of all metrics to move.</p>
+          </div>
+          <span class="nr-media">
+            <span class="cover-bg" role="img" aria-label="Most Trusted Broker — MENA region" style="background-image:url('assets/img/company-2.webp')"></span>
+            <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
+          </span>
+        </article>
+        <article class="nr-card glass" data-ac-item data-cat="milestone" data-date="2026-03-14" data-aos="fade-up" data-aos-delay="300">
+          <div class="nr-head">
+            <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Milestone</span>
+            <time class="nr-date" datetime="2026-03-14">14 Mar 2026</time>
+          </div>
+          <div class="nr-body">
+            <h3 class="nr-h"><a href="milestone-uae-cricket-jersey-launch.html">Emirates Cricket Board jersey launch</a></h3>
+            <p class="nr-ex">STARTRADER on the UAE National Team shirt ahead of the T20 World Cup.</p>
+          </div>
+          <span class="nr-media">
+            <span class="cover-bg" role="img" aria-label="Emirates Cricket Board jersey launch" style="background-image:url('assets/img/ac-g1.webp')"></span>
+            <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
+          </span>
+        </article>
+        <article class="nr-card glass" data-ac-item data-cat="award" data-date="2026-02-08" data-aos="fade-up" data-aos-delay="400">
+          <div class="nr-head">
+            <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Award</span>
+            <time class="nr-date" datetime="2026-02-08">8 Feb 2026</time>
+          </div>
+          <div class="nr-body">
+            <h3 class="nr-h"><a href="award-best-trading-platform.html">Best Trading Platform &mdash; Financial Innovation Awards</a></h3>
+            <p class="nr-ex">For the STAR platform family and the copy trading built into the app.</p>
+          </div>
+          <span class="nr-media">
+            <span class="cover-bg" role="img" aria-label="Best Trading Platform — Financial Innovation Awards" style="background-image:url('assets/img/webtrader-laptop.webp')"></span>
+            <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
+          </span>
+        </article>
+        <article class="nr-card glass" data-ac-item data-cat="award" data-date="2026-01-16" data-aos="fade-up" data-aos-delay="500">
+          <div class="nr-head">
+            <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Award</span>
+            <time class="nr-date" datetime="2026-01-16">16 Jan 2026</time>
+          </div>
+          <div class="nr-body">
+            <h3 class="nr-h"><a href="award-best-customer-service.html">Best Customer Service &mdash; Broker Awards</a></h3>
+            <p class="nr-ex">A 24/7 desk in more than twenty languages, judged on response time and resolution.</p>
+          </div>
+          <span class="nr-media">
+            <span class="cover-bg" role="img" aria-label="Best Customer Service — Broker Awards" style="background-image:url('assets/img/company-office.webp')"></span>
+            <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
+          </span>
+        </article>
+    </div>
+
+    <div class="ac-empty" data-ac-empty hidden>
+      <p>Nothing in that category yet.</p>
+      <button class="btn btn-primary" type="button" data-ac-reset>Show everything</button>
+    </div>
+
+    <nav class="pgr" aria-label="Achievement pages" data-ac-pager hidden>
+      <button class="pgr-arrow" type="button" data-ac-prev aria-label="Previous page"><svg aria-hidden="true"><use href="#i-chevron-left"/></svg></button>
+      <span class="pgr-list" data-ac-pglist></span>
+      <button class="pgr-arrow" type="button" data-ac-next aria-label="Next page"><svg aria-hidden="true"><use href="#i-chevron-right"/></svg></button>
+    </nav>
+  </div>
+</section>
+
+<!-- ============ IN THE SPOTLIGHT ============ -->
+<section class="section ac-spot" id="spotlight" aria-labelledby="ac-spot-title">
+  <div class="container">
+    <div class="head center">
+      <span class="eyebrow" data-aos="fade-up">Featured</span>
+      <h2 class="h2" id="ac-spot-title" data-aos="fade-up">In the spotlight</h2>
+      <p class="head-sub" data-aos="fade-up">The four most recent entries in the record, with the newest given the floor.</p>
+    </div>
+
+    <div class="ac-spot-grid">
+        <article class="ac-spot-lead nr-card glass" data-aos="fade-up">
+          <div class="nr-head">
+            <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Award</span>
+            <time class="nr-date" datetime="2026-06-20">20 Jun 2026</time>
+          </div>
+          <div class="nr-body">
+            <h3 class="nr-h"><a href="award-best-ecn-broker-2026.html">Best ECN Broker &mdash; Global Forex Awards 2026</a></h3>
+            <p class="nr-ex">Recognition tied to execution quality and spread consistency rather than marketing spend.</p>
+          </div>
+          <span class="nr-media">
+            <span class="cover-bg" role="img" aria-label="Best ECN Broker — Global Forex Awards 2026" style="background-image:url('assets/img/stat-awards.webp')"></span>
+            <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
+          </span>
+        </article>
+
+      <div class="ac-spot-rows">
+          <article class="ac-row glass" data-aos="fade-up" data-aos-delay="100">
+            <span class="ac-row-media"><span class="cover-bg" role="img" aria-label="SCA licence secured in the United Arab Emirates" style="background-image:url('assets/img/company-hero.webp')"></span></span>
+            <div class="ac-row-tx">
+              <p class="ac-row-meta"><span class="ac-row-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Milestone</span><time datetime="2026-06-11">11 Jun 2026</time></p>
+              <h3 class="ac-row-h"><a href="milestone-sca-licence-uae.html">SCA licence secured in the United Arab Emirates</a></h3>
+            </div>
+          </article>
+          <article class="ac-row glass" data-aos="fade-up" data-aos-delay="200">
+            <span class="ac-row-media"><span class="cover-bg" role="img" aria-label="Most Trusted Broker — MENA region" style="background-image:url('assets/img/company-2.webp')"></span></span>
+            <div class="ac-row-tx">
+              <p class="ac-row-meta"><span class="ac-row-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Award</span><time datetime="2026-04-25">25 Apr 2026</time></p>
+              <h3 class="ac-row-h"><a href="award-most-trusted-broker-mena.html">Most Trusted Broker &mdash; MENA region</a></h3>
+            </div>
+          </article>
+          <article class="ac-row glass" data-aos="fade-up" data-aos-delay="300">
+            <span class="ac-row-media"><span class="cover-bg" role="img" aria-label="Emirates Cricket Board jersey launch" style="background-image:url('assets/img/ac-g1.webp')"></span></span>
+            <div class="ac-row-tx">
+              <p class="ac-row-meta"><span class="ac-row-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Milestone</span><time datetime="2026-03-14">14 Mar 2026</time></p>
+              <h3 class="ac-row-h"><a href="milestone-uae-cricket-jersey-launch.html">Emirates Cricket Board jersey launch</a></h3>
+            </div>
+          </article>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ FAQ ============ -->
 <section class="section faq-sec fx-faq" aria-labelledby="pg-faq-title">
   <div class="container">
@@ -720,114 +942,6 @@
         <summary>Where can I read about each one?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a">Each award is announced as it is received. The announcements page carries the detail, and the media coverage page carries what was written about it.</div>
       </details>
-    </div>
-  </div>
-</section>
-
-<!-- ============ LATEST ============ -->
-<section class="section pg-list" id="latest" aria-labelledby="pg-list-title" data-page-size="3">
-  <div class="container">
-    <div class="head center">
-      <span class="eyebrow" data-aos="fade-up">Latest</span>
-      <h2 class="h2" id="pg-list-title" data-aos="fade-up">The latest from us</h2>
-    </div>
-    <div class="pg-bar glass" data-aos="fade-up">
-      <div class="pg-cats" role="group" aria-label="Filter by category"><button class="ec-chip is-on" type="button" data-pg-cat="all" aria-pressed="true">All</button><button class="ec-chip" type="button" data-pg-cat="award" aria-pressed="false">Award</button><button class="ec-chip" type="button" data-pg-cat="milestone" aria-pressed="false">Milestone</button></div>
-      <p class="pg-status" data-pg-status role="status" aria-live="polite"></p>
-    </div>
-    <div class="nr-grid">
-      <article class="nr-card glass" data-pg-item data-cat="award" data-title="Best ECN Broker — Global Forex Awards 2026" data-aos="fade-up">
-        <div class="nr-head">
-          <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Award</span>
-          <time class="nr-date" datetime="2026-06-20">20 Jun 2026</time>
-        </div>
-        <div class="nr-body">
-          <h3 class="nr-h"><a href="announcements.html">Best ECN Broker — Global Forex Awards 2026</a></h3>
-          <p class="nr-ex">Recognition tied to execution quality and spread consistency rather than marketing spend.</p>
-        </div>
-        <span class="nr-media">
-          <span class="cover-bg" role="img" aria-label="Best ECN Broker — Global Forex Awards 2026" style="background-image:url('assets/img/award-laurel.svg')"></span>
-          <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
-        </span>
-      </article>
-      <article class="nr-card glass" data-pg-item data-cat="milestone" data-title="SCA licence secured in the United Arab Emirates" data-aos="fade-up" data-aos-delay="100">
-        <div class="nr-head">
-          <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Milestone</span>
-          <time class="nr-date" datetime="2026-06-11">11 Jun 2026</time>
-        </div>
-        <div class="nr-body">
-          <h3 class="nr-h"><a href="announcements.html">SCA licence secured in the United Arab Emirates</a></h3>
-          <p class="nr-ex">A fifth regulator, and the one that matters most for clients in the Gulf.</p>
-        </div>
-        <span class="nr-media">
-          <span class="cover-bg" role="img" aria-label="SCA licence secured in the United Arab Emirates" style="background-image:url('assets/img/company-hero.webp')"></span>
-          <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
-        </span>
-      </article>
-      <article class="nr-card glass" data-pg-item data-cat="award" data-title="Most Trusted Broker — MENA region" data-aos="fade-up" data-aos-delay="200">
-        <div class="nr-head">
-          <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Award</span>
-          <time class="nr-date" datetime="2026-04-25">25 Apr 2026</time>
-        </div>
-        <div class="nr-body">
-          <h3 class="nr-h"><a href="announcements.html">Most Trusted Broker — MENA region</a></h3>
-          <p class="nr-ex">Voted on trust, which is the slowest of all metrics to move.</p>
-        </div>
-        <span class="nr-media">
-          <span class="cover-bg" role="img" aria-label="Most Trusted Broker — MENA region" style="background-image:url('assets/img/stat-awards.webp')"></span>
-          <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
-        </span>
-      </article>
-      <article class="nr-card glass" data-pg-item data-cat="milestone" data-title="Emirates Cricket Board jersey launch" data-aos="fade-up" data-aos-delay="300">
-        <div class="nr-head">
-          <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Milestone</span>
-          <time class="nr-date" datetime="2026-03-14">14 Mar 2026</time>
-        </div>
-        <div class="nr-body">
-          <h3 class="nr-h"><a href="announcements.html">Emirates Cricket Board jersey launch</a></h3>
-          <p class="nr-ex">STARTRADER on the UAE National Team shirt ahead of the T20 World Cup.</p>
-        </div>
-        <span class="nr-media">
-          <span class="cover-bg" role="img" aria-label="Emirates Cricket Board jersey launch" style="background-image:url('assets/img/company-1.webp')"></span>
-          <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
-        </span>
-      </article>
-      <article class="nr-card glass" data-pg-item data-cat="award" data-title="Best Trading Platform — Financial Innovation Awards" data-aos="fade-up" data-aos-delay="400">
-        <div class="nr-head">
-          <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Award</span>
-          <time class="nr-date" datetime="2026-02-08">8 Feb 2026</time>
-        </div>
-        <div class="nr-body">
-          <h3 class="nr-h"><a href="announcements.html">Best Trading Platform — Financial Innovation Awards</a></h3>
-          <p class="nr-ex">For the STAR platform family and the copy trading built into the app.</p>
-        </div>
-        <span class="nr-media">
-          <span class="cover-bg" role="img" aria-label="Best Trading Platform — Financial Innovation Awards" style="background-image:url('assets/img/webtrader-laptop.webp')"></span>
-          <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
-        </span>
-      </article>
-      <article class="nr-card glass" data-pg-item data-cat="award" data-title="Best Customer Service — Broker Awards" data-aos="fade-up" data-aos-delay="500">
-        <div class="nr-head">
-          <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Award</span>
-          <time class="nr-date" datetime="2026-01-16">16 Jan 2026</time>
-        </div>
-        <div class="nr-body">
-          <h3 class="nr-h"><a href="announcements.html">Best Customer Service — Broker Awards</a></h3>
-          <p class="nr-ex">A 24/7 desk in more than twenty languages, judged on response time and resolution.</p>
-        </div>
-        <span class="nr-media">
-          <span class="cover-bg" role="img" aria-label="Best Customer Service — Broker Awards" style="background-image:url('assets/img/company-office.webp')"></span>
-          <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
-        </span>
-      </article>
-    </div>
-    <div class="pg-empty" data-pg-empty hidden>
-      <p>Nothing in that category yet.</p>
-      <button class="btn btn-primary" type="button" data-pg-reset>Show everything</button>
-    </div>
-
-    <div class="nr-morerow" data-pg-morerow hidden>
-      <button class="btn btn-primary btn-lg" type="button" data-pg-more>Load more stories <svg class="ico"><use href="#i-chevron-down"/></svg></button>
     </div>
   </div>
 </section>
@@ -986,6 +1100,129 @@
   <a href="legal-documents.html" class="cookie-more">More details</a>
   <button class="cookie-x" id="cookieClose" aria-label="Accept and close"><svg><use href="#i-close"/></svg></button>
 </div>
+
+<!-- Latest achievements: category filter + paging. Page-local because the shared
+     list script binds a single #latest block and grows it with "load more"; this
+     one pages, the way the analysis archive does, so page four is reachable
+     directly. Mirrors the .pgr markup and ellipsis behaviour of that pager. -->
+<script>
+(function () {
+  var root = document.getElementById('latest');
+  if (!root) return;
+
+  var items  = Array.prototype.slice.call(root.querySelectorAll('[data-ac-item]'));
+  if (!items.length) return;
+  var chips  = Array.prototype.slice.call(root.querySelectorAll('[data-ac-cat]'));
+  var status = root.querySelector('[data-ac-status]');
+  var empty  = root.querySelector('[data-ac-empty]');
+  var reset  = root.querySelector('[data-ac-reset]');
+  var pager  = root.querySelector('[data-ac-pager]');
+  var pgList = root.querySelector('[data-ac-pglist]');
+  var pgPrev = root.querySelector('[data-ac-prev]');
+  var pgNext = root.querySelector('[data-ac-next]');
+  var PAGE   = parseInt(root.getAttribute('data-ac-page-size'), 10) || 4;
+
+  var cat = 'all', page = 1, pages = 1;
+
+  /* newest first, whatever order the markup happens to be in */
+  var grid = items[0].parentNode;
+  items.sort(function (a, b) {
+    return (b.getAttribute('data-date') || '').localeCompare(a.getAttribute('data-date') || '');
+  }).forEach(function (el) { grid.appendChild(el); });
+
+  /* AOS leaves a card at opacity 0 until it is scrolled past; a card revealed by
+     the pager is already in view, so the reveal has to be released by hand */
+  function reveal(el) {
+    el.removeAttribute('data-aos');
+    el.removeAttribute('data-aos-delay');
+    el.classList.remove('aos-init', 'aos-animate');
+    el.style.opacity = '';
+    el.style.transform = '';
+  }
+
+  function apply() {
+    var matched = items.filter(function (el) {
+      return cat === 'all' || el.getAttribute('data-cat') === cat;
+    });
+    pages = Math.max(1, Math.ceil(matched.length / PAGE));
+    if (page > pages) page = pages;
+
+    items.forEach(function (el) { el.hidden = true; });
+    matched.forEach(function (el, i) {
+      var on = i >= (page - 1) * PAGE && i < page * PAGE;
+      el.hidden = !on;
+      if (on) reveal(el);
+    });
+
+    chips.forEach(function (b) {
+      var on = b.getAttribute('data-ac-cat') === cat;
+      b.classList.toggle('is-on', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+
+    if (empty) empty.hidden = matched.length !== 0;
+    if (status) {
+      var from = matched.length ? (page - 1) * PAGE + 1 : 0;
+      var to = Math.min(page * PAGE, matched.length);
+      status.textContent = matched.length
+        ? 'Showing ' + from + '\u2013' + to + ' of ' + matched.length + (matched.length === 1 ? ' entry' : ' entries')
+        : '';
+    }
+    paint();
+    if (window.ScrollTrigger && ScrollTrigger.refresh) ScrollTrigger.refresh();
+  }
+
+  function paint() {
+    if (!pager || !pgList) return;
+    pager.hidden = pages < 2;
+    if (pager.hidden) { pgList.innerHTML = ''; return; }
+    var out = [], i;
+    for (i = 1; i <= pages; i++) {
+      if (i === 1 || i === pages || Math.abs(i - page) <= 1) out.push(i);
+      else if (out[out.length - 1] !== '\u2026') out.push('\u2026');
+    }
+    pgList.innerHTML = '';
+    out.forEach(function (n) {
+      if (n === '\u2026') {
+        var d = document.createElement('span');
+        d.className = 'pgr-dots'; d.setAttribute('aria-hidden', 'true'); d.textContent = '\u2026';
+        pgList.appendChild(d); return;
+      }
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'pgr-pg' + (n === page ? ' is-on' : '');
+      b.textContent = n;
+      b.setAttribute('aria-label', 'Page ' + n);
+      if (n === page) b.setAttribute('aria-current', 'page');
+      b.addEventListener('click', function () { go(n); });
+      pgList.appendChild(b);
+    });
+    if (pgPrev) pgPrev.disabled = page === 1;
+    if (pgNext) pgNext.disabled = page === pages;
+  }
+
+  function go(n) {
+    page = Math.max(1, Math.min(pages, n));
+    apply();
+    var first = items.filter(function (el) { return !el.hidden; })[0];
+    if (first) {
+      var y = first.getBoundingClientRect().top + window.pageYOffset - 140;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+      var h = first.querySelector('.nr-h a');
+      if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); }
+    }
+  }
+
+  chips.forEach(function (b) {
+    b.addEventListener('click', function () { cat = b.getAttribute('data-ac-cat'); page = 1; apply(); });
+  });
+  if (reset)  reset.addEventListener('click', function () { cat = 'all'; page = 1; apply(); });
+  if (pgPrev) pgPrev.addEventListener('click', function () { go(page - 1); });
+  if (pgNext) pgNext.addEventListener('click', function () { go(page + 1); });
+
+  apply();
+})();
+</script>
 
 <script src="assets/js/vendor/gsap.min.js" defer></script>
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>

@@ -155,6 +155,15 @@
 .vp-verdict-tx span{display:block;margin-top:6px;font-size:12.5px;line-height:1.6;color:var(--text-soft)}
 .vp-note{margin:clamp(20px,2.4vw,30px) auto 0;max-width:88ch;font-size:11.5px;line-height:1.7;
   color:var(--text-mute);text-align:center}
+/* the note sits in muted grey, so the link has to be lifted out of it deliberately */
+.vp-note-link{
+  font-weight:700;color:var(--blue);
+  text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;
+  text-decoration-color:rgba(0,71,187,.35);
+  transition:color .25s,text-decoration-color .25s;
+}
+.vp-note-link:hover{color:#0038a0;text-decoration-color:currentColor}
+.vp-note-link:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:3px}
 /* the house case rides the shared dark fx-hours treatment; only the seven-card
    run and the note need saying */
 /* seven cards, spans 2-1-1-2-1-1-1, so the three columns fill exactly */
@@ -181,62 +190,6 @@
     "url": "https://www.startrader.com/trading/products/forex.html",
     "provider": { "@type": "FinancialService", "name": "STARTRADER", "url": "https://www.startrader.com/" }
   }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      { "@type": "Question", "name": "What is forex trading and how does it work?", "acceptedAnswer": { "@type": "Answer", "text": "Forex trading is the buying and selling of currency pairs to profit from changes in their exchange rate. Trades use lots — a standard lot is 100,000 units — and leverage lets you control a larger position with less capital on the 24/5 foreign-exchange market." } },
-      { "@type": "Question", "name": "How many currency pairs can I trade with STARTRADER?", "acceptedAnswer": { "@type": "Answer", "text": "You can trade 80+ currency pairs across major, minor and exotic categories, all with competitive spreads and fast execution." } },
-      { "@type": "Question", "name": "What are the trading hours for the forex market?", "acceptedAnswer": { "@type": "Answer", "text": "The forex market runs 24 hours a day, 5 days a week, closing only on weekends. Sessions overlap across Sydney, Tokyo, London and New York so there is always an active market." } },
-      { "@type": "Question", "name": "What leverage is available on forex?", "acceptedAnswer": { "@type": "Answer", "text": "Flexible leverage is available up to 1:1000. Higher leverage increases both potential profit and risk, and leverage above 1:30 may not be available in some regions." } },
-      { "@type": "Question", "name": "Which platforms can I use to trade forex?", "acceptedAnswer": { "@type": "Answer", "text": "MetaTrader 4 and MetaTrader 5 are the most popular, alongside the STAR Web Trader and mobile apps — all offering advanced charting, indicators and automated trading." } },
-      { "@type": "Question", "name": "What are the best forex pairs to trade?", "acceptedAnswer": { "@type": "Answer", "text": "It depends on your strategy, but the most-traded pairs include EUR/USD, USD/JPY, GBP/USD, AUD/USD and USD/CAD — highly liquid majors with tight spreads." } },
-      { "@type": "Question", "name": "Are there commissions or hidden fees on forex?", "acceptedAnswer": { "@type": "Answer", "text": "STARTRADER charges 0 commission and 0 deposit fees on most channels for Standard accounts. ECN and Prime ECN accounts pay a low commission in exchange for raw spreads from 0.0 pips." } },
-      { "@type": "Question", "name": "How do I get started with forex trading?", "acceptedAnswer": { "@type": "Answer", "text": "Open an account, verify your identity, fund your wallet and start trading — or practise risk-free on a demo account first to build your strategy." } }
-    ]
-  }
-  </script>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What is a VPS and why would I use one?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "A Virtual Private Server runs your platform in a data centre rather than on your own machine. It cuts latency, keeps an Expert Advisor running with your device switched off, and removes the problems a home or office network introduces."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How much is reimbursed?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Up to 20 USD a month on Tier 1 and up to 30 USD a month on Tier 2, provided the thresholds for that tier are met."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What counts as a month?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Thirty calendar days from the date of VPS activation. The activation date is the time shown on your reimbursement voucher."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Which operating systems does it support?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Windows, Mac and Linux, and the platform is reachable from any device and location."
-      }
-    }
-  ]
-}
   </script>
 
 </head>
@@ -413,10 +366,7 @@
             <div class="mega-col">
               <span class="mega-head">Promotions</span>
               <a href="promotions.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-send"/></svg></span><span class="mega-txt"><b>Our Promotions</b></span></a>
-              <a href="https://www.startrader.com/star-trading-league-championship/" class="mega-item"><span class="mega-ico"><svg><use href="#i-star"/></svg></span><span class="mega-txt"><b>STAR Trading League</b></span></a>
-              <a href="dailyforexpromo.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-bolt"/></svg></span><span class="mega-txt"><b>Daily Forex Promo</b></span></a>
-              <a href="deposit-bonus-10010-20240513.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>100/10 Deposit Bonus</b></span></a>
-              <a href="deposit-bonus-5020-20250101.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>50/20 Deposit Bonus</b></span></a>
+              <a href="gold-cashback.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-clock"/></svg></span><span class="mega-txt"><b>Gold 24/7 Cashback</b></span></a>
               <a href="point-mall.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>Point Mall</b></span></a>
               <a href="deposit-bonus.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>Deposit Bonuses</b></span></a>
               <a href="switch-allowance.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-swap"/></svg></span><span class="mega-txt"><b>1% Switch Allowance</b></span></a>
@@ -553,9 +503,9 @@
       <span class="pm-eyebrow" data-aos="fade-up">VPS</span>
       <h1 class="pm-h1" id="vp-hero-title" data-aos="fade-up">
         <span>Trade faster, better,</span>
-        <span class="lit">safer with VPS.</span>
+        <span class="lit">safer with VPS</span>
       </h1>
-      <p class="pm-lead" data-aos="fade-up">Greater privacy and faster execution on a Virtual Private Server. Running from a data centre in a safer location enhances security and lets you trade with confidence.</p>
+      <p class="pm-lead" data-aos="fade-up">Experience greater privacy and faster execution with the Virtual Private Server. By using the data centre system in a safer location, it enhances security and enables you to trade with confidence.</p>
       <div class="pm-hact" data-aos="fade-up">
         <a class="pm-btn" href="#tiers">See the reimbursement <svg><use href="#i-arrow-right"/></svg></a>
       </div>
@@ -568,38 +518,37 @@
   <div class="container">
     <span class="pm-eyebrow-c" data-aos="fade-up">The case for it</span>
     <h2 class="pm-h2" id="vp-why-title" data-aos="fade-up">Why VPS is<br> a great choice</h2>
-    <p class="pm-sub" data-aos="fade-up">Six things a server in a data centre does that a machine on your desk cannot.</p>
 
     <div class="vp-grid">
       <article class="vp-card" data-aos="fade-up">
         <span class="vp-card-ic"><svg><use href="#i-bolt"/></svg></span>
-        <b>Reduces latency</b>
+        <b>Reduces Latency</b>
         <p>VPS acts as a powerful transaction server, providing faster execution.</p>
       </article>
       <article class="vp-card" data-aos="fade-up">
         <span class="vp-card-ic"><svg><use href="#i-clock"/></svg></span>
-        <b>24/6 trading</b>
-        <p>Your Expert Advisor can run around the clock, even with your own device switched off.</p>
+        <b>24/6 Trading</b>
+        <p>The Expert Advisor (EA) can run 24 hours a day, even when the device is turned off.</p>
       </article>
       <article class="vp-card" data-aos="fade-up">
         <span class="vp-card-ic"><svg><use href="#i-globe"/></svg></span>
-        <b>Easy access</b>
-        <p>Reach the platform from any device, in any location.</p>
+        <b>Easy Access</b>
+        <p>Access to the platform is possible from any device and any location.</p>
       </article>
       <article class="vp-card" data-aos="fade-up">
         <span class="vp-card-ic"><svg><use href="#i-shield"/></svg></span>
-        <b>Maximum stability</b>
-        <p>Removes the problems local networks introduce &mdash; poor line quality, dropped connections and the rest.</p>
+        <b>Maximum Stability</b>
+        <p>Removes issues related to local network restrictions such as poor network quality, network connection failures, etc.</p>
       </article>
       <article class="vp-card" data-aos="fade-up">
         <span class="vp-card-ic"><svg><use href="#i-monitor"/></svg></span>
-        <b>Strong compatibility</b>
-        <p>Highly compatible with Windows, Mac and Linux.</p>
+        <b>Strong Compatibility</b>
+        <p>Highly compatible with multiple operating systems &ndash; Windows, Mac, and Linux.</p>
       </article>
       <article class="vp-card" data-aos="fade-up">
         <span class="vp-card-ic"><svg><use href="#i-box"/></svg></span>
-        <b>Private server</b>
-        <p>A dedicated server for Expert Advisor trading, so nothing else competes for it.</p>
+        <b>Private Server</b>
+        <p>A dedicated server for Expert Advisors (EAs) trading. It prevents other applications from running simultaneously.</p>
       </article>
     </div>
   </div>
@@ -610,7 +559,7 @@
   <div class="container">
     <span class="pm-eyebrow-c" data-aos="fade-up">Reimbursement</span>
     <h2 class="pm-h2" id="vp-tier-title" data-aos="fade-up">Optimise your trade<br> with our VPS service</h2>
-    <p class="pm-sub" data-aos="fade-up">We offer attractive reimbursement options for the VPS service. Two tiers, each with its own cap and thresholds.</p>
+    <p class="pm-sub" data-aos="fade-up">We offer attractive reimbursement options for our VPS services. Check out the table below for more information.</p>
 
     <div class="vp-tiers" data-vp-tiers>
       <article class="vp-tier" data-vp-tier="1" data-aos="fade-up">
@@ -619,10 +568,10 @@
           <span class="vp-tier-live">You reach this</span>
         </span>
         <span class="vp-cap">20 <em>USD / month</em></span>
-        <span class="vp-cap-lbl">Reimbursement cap</span>
+        <span class="vp-cap-lbl">Reimbursement Cap</span>
         <div class="vp-reqs">
-          <div class="vp-req"><span class="vp-req-tick"><svg><use href="#i-check"/></svg></span><span>Initial funds over <b>3,000 USD</b></span></div>
-          <div class="vp-req"><span class="vp-req-tick"><svg><use href="#i-check"/></svg></span><span>Monthly volume over <b>USD 0.5 million</b> notional</span></div>
+          <div class="vp-req"><span class="vp-req-tick"><svg><use href="#i-check"/></svg></span><span>Initial funds &gt; <b>3000 USD</b></span></div>
+          <div class="vp-req"><span class="vp-req-tick"><svg><use href="#i-check"/></svg></span><span>Trading lots/month &gt; <b>USD0.5 million</b> notional volume</span></div>
         </div>
       </article>
 
@@ -632,10 +581,10 @@
           <span class="vp-tier-live">You reach this</span>
         </span>
         <span class="vp-cap">30 <em>USD / month</em></span>
-        <span class="vp-cap-lbl">Reimbursement cap</span>
+        <span class="vp-cap-lbl">Reimbursement Cap</span>
         <div class="vp-reqs">
-          <div class="vp-req"><span class="vp-req-tick"><svg><use href="#i-check"/></svg></span><span>Initial funds over <b>5,000 USD</b></span></div>
-          <div class="vp-req"><span class="vp-req-tick"><svg><use href="#i-check"/></svg></span><span>Monthly volume over <b>USD 1 million</b> notional</span></div>
+          <div class="vp-req"><span class="vp-req-tick"><svg><use href="#i-check"/></svg></span><span>Initial funds &gt; <b>5000 USD</b></span></div>
+          <div class="vp-req"><span class="vp-req-tick"><svg><use href="#i-check"/></svg></span><span>Trading lots/month &gt; <b>USD1 million</b> notional volume</span></div>
         </div>
       </article>
     </div>
@@ -667,7 +616,7 @@
       </div>
     </div>
 
-    <p class="vp-note" data-aos="fade-up">&lsquo;Month&rsquo; means thirty calendar days from the date of VPS activation; the activation date is the time shown on your reimbursement voucher. To understand how to buy the VPS service and apply for reimbursement, <a href="contact.html">get in touch with support</a>.</p>
+    <p class="vp-note" data-aos="fade-up">* &lsquo;Month&rsquo; here is defined as 30 calendar days from the date of VPS activation. The activation date is subject to the time indicated in the reimbursement voucher.<br>To understand how to buy the VPS service and apply for reimbursement, <a class="vp-note-link" href="https://www.startrader.com/pdf/vps-promotion-en-20250306.pdf" target="_blank" rel="noopener">click here</a>.</p>
   </div>
 </section>
 
@@ -677,74 +626,45 @@
     <div class="head center">
       <span class="eyebrow eyebrow-blue" data-aos="fade-up">The broker</span>
       <h2 class="h2 h2-light" id="vp-house-title" data-aos="fade-up">Why trade with STARTRADER?</h2>
-      <p class="head-sub" data-aos="fade-up">The server is only half of it. These are the conditions it runs on.</p>
     </div>
     <div class="fx-mh vp-house-grid">
       <article class="fx-mh-card fx-mh--blue fx-mh--wide" data-aos="fade-up">
-        <span class="fx-mh-ic"><svg><use href="#i-bolt"/></svg></span>
-        <h3>100 millisecond execution</h3>
-        <p>Orders fill in milliseconds, which is where the edge in a fast market lives.</p>
+        <span class="fx-mh-ic"><svg><use href="#i-wallet"/></svg></span>
+        <h3>Hassle-Free Transactions</h3>
+        <p>Multiple deposit and withdrawal methods with zero deposit fees on most payment methods.</p>
       </article>
       <article class="fx-mh-card fx-mh--green" data-aos="fade-up" data-aos-delay="100">
-        <span class="fx-mh-ic"><svg><use href="#i-swap"/></svg></span>
-        <h3>Ultra-tight spreads</h3>
-        <p>Ultra-tight spreads on the ECN account.</p>
+        <span class="fx-mh-ic"><svg><use href="#i-bolt"/></svg></span>
+        <h3>100 Milliseconds Execution</h3>
+        <p>Execute trades in milliseconds, gaining an edge in the market</p>
       </article>
       <article class="fx-mh-card fx-mh--orange" data-aos="fade-up" data-aos-delay="200">
-        <span class="fx-mh-ic"><svg><use href="#i-gauge"/></svg></span>
-        <h3>Leverage up to 1:1000</h3>
-        <p>Leverage up to 1:1000 for higher potential, subject to your account type.</p>
+        <span class="fx-mh-ic"><svg><use href="#i-globe"/></svg></span>
+        <h3>Expanding Global Server Network</h3>
+        <p>Stable, ultra-fast trading with our growing global server infrastructure.</p>
       </article>
       <article class="fx-mh-card fx-mh--teal fx-mh--wide vp-wide-2" data-aos="fade-up" data-aos-delay="300">
-        <span class="fx-mh-ic"><svg><use href="#i-droplet"/></svg></span>
-        <h3>Top institutional liquidity</h3>
-        <p>Institutional-level liquidity access, which is what keeps the spreads where they are.</p>
+        <span class="fx-mh-ic"><svg><use href="#i-swap"/></svg></span>
+        <h3>Ultra-Tight Spreads</h3>
+        <p>Enjoy ultra-tight spread on ECN account.</p>
       </article>
       <article class="fx-mh-card fx-mh--purple" data-aos="fade-up" data-aos-delay="400">
-        <span class="fx-mh-ic"><svg><use href="#i-wallet"/></svg></span>
-        <h3>Hassle-free transactions</h3>
-        <p>Multiple deposit and withdrawal methods, with zero deposit fees on most payment channels.</p>
+        <span class="fx-mh-ic"><svg><use href="#i-gauge"/></svg></span>
+        <h3>Leverage Up To 1:1000</h3>
+        <p>Leverage up to 1:1000 for higher potential.</p>
       </article>
       <article class="fx-mh-card fx-mh--blue" data-aos="fade-up" data-aos-delay="500">
-        <span class="fx-mh-ic"><svg><use href="#i-globe"/></svg></span>
-        <h3>Expanding global server network</h3>
-        <p>Stable, ultra-fast trading on a server footprint that keeps growing.</p>
+        <span class="fx-mh-ic"><svg><use href="#i-droplet"/></svg></span>
+        <h3>Top Institutional Liquidity</h3>
+        <p>Institutional-level liquidity access, ensuring ultra-tight spreads.</p>
       </article>
       <article class="fx-mh-card fx-mh--teal" data-aos="fade-up" data-aos-delay="600">
         <span class="fx-mh-ic"><svg><use href="#i-headset"/></svg></span>
-        <h3>24/7 multilingual support</h3>
-        <p>Professional assistance in more than twenty languages, whenever you need it.</p>
+        <h3>24/7 Multilingual Support</h3>
+        <p>Professional assistance in 20+ languages, whenever you need it.</p>
       </article>
     </div>
     <p class="vp-house-note" data-aos="fade-up">Leverage is subject to applicable terms and conditions. Leverage restrictions may apply in accordance with regulatory guidelines.</p>
-  </div>
-</section>
-
-<!-- ============ FAQ ============ -->
-<section class="section faq-sec fx-faq" aria-labelledby="vp-faq-title">
-  <div class="container">
-    <div class="head center">
-      <span class="eyebrow" data-aos="fade-up">FAQ</span>
-      <h2 class="h2" id="vp-faq-title" data-aos="fade-up">About the VPS service</h2>
-    </div>
-    <div class="faq-list" data-aos="fade-up">
-      <details class="faq-item">
-        <summary>What is a VPS and why would I use one?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">A Virtual Private Server runs your platform in a data centre rather than on your own machine. It cuts latency, keeps an Expert Advisor running with your device switched off, and removes the problems a home or office network introduces.</div>
-      </details>
-      <details class="faq-item">
-        <summary>How much is reimbursed?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Up to 20 USD a month on Tier 1 and up to 30 USD a month on Tier 2, provided the thresholds for that tier are met.</div>
-      </details>
-      <details class="faq-item">
-        <summary>What counts as a month?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Thirty calendar days from the date of VPS activation. The activation date is the time shown on your reimbursement voucher.</div>
-      </details>
-      <details class="faq-item">
-        <summary>Which operating systems does it support?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Windows, Mac and Linux, and the platform is reachable from any device and location.</div>
-      </details>
-    </div>
   </div>
 </section>
 
@@ -753,10 +673,10 @@
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
     <h2 id="vp-close-title" data-aos="fade-up">Start trading with a<br>globally leading broker</h2>
-    <p data-aos="fade-up">Open an account, activate the VPS, and let your strategy run without your desk in the way.</p>
+    <p data-aos="fade-up">Want to start trading?</p>
     <div class="cta-actions" data-aos="fade-up">
-      <a href="getting-started.html" class="btn btn-primary btn-lg">Open live account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
-      <a href="getting-started.html" class="btn btn-ghost btn-lg">Open demo account</a>
+      <a href="https://www.startrader.com/live-account/" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
+      <a href="https://www.startrader.com/demo-account/" class="btn btn-ghost btn-lg">Open Demo Account</a>
     </div>
   </div>
 </section>

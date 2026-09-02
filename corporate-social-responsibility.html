@@ -34,6 +34,49 @@
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
   <link rel="stylesheet" href="assets/css/styles.min.css?v=qa72" />
+  <!-- Page-specific styles -->
+  <style>
+/* ---- CSR stories ---- */
+/* the two article bands sit between the Initiatives timeline and the white FAQ.
+   .nr-card carries no background of its own, so neither may sit on flat white
+   or the glass goes flat. Same step as the achievements page. */
+.pg-list#latest{background:radial-gradient(56% 50% at 50% 0%,rgba(0,71,187,.07),transparent 62%),var(--bg-light)}
+.csr-spot{background:radial-gradient(54% 48% at 50% 0%,rgba(0,71,187,.06),transparent 62%),var(--bg-light-2)}
+
+/* ---- Spotlight: one lead card beside three compact rows, so the featured
+   block never reads as a duplicate of the grid above it. Mirrors the
+   achievements page; if this pattern reaches a third page it belongs in
+   styles.css rather than being carried inline a third time. ---- */
+.sp-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:24px;align-items:stretch}
+.sp-lead{min-width:0}
+.sp-lead .nr-media{aspect-ratio:auto;min-height:210px}
+.sp-lead .nr-h{font-size:clamp(19px,2vw,23px);letter-spacing:-.028em}
+.sp-lead .nr-ex{font-size:14.5px;line-height:1.66}
+.sp-rows{display:flex;flex-direction:column;gap:14px}
+.sp-rows .sp-row{flex:1 1 0;min-height:0}
+.sp-row{
+  display:grid;grid-template-columns:104px minmax(0,1fr);gap:16px;align-items:center;
+  padding:12px;border-radius:18px;
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
+}
+.sp-row:hover{transform:translateY(-4px);border-color:rgba(0,71,187,.28);box-shadow:0 28px 52px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff}
+.sp-row-media{position:relative;display:block;border-radius:12px;overflow:hidden;aspect-ratio:4/3}
+.sp-row:hover .sp-row-media .cover-bg{transform:scale(1.06)}
+.sp-row-tx{min-width:0}
+.sp-row-meta{display:flex;align-items:center;gap:9px;flex-wrap:wrap;font-size:11.5px;color:var(--text-mute);margin:0}
+.sp-row-h{margin-top:7px;font-size:15px;font-weight:700;letter-spacing:-.02em;line-height:1.34;color:var(--text)}
+.sp-row:hover .sp-row-h a{color:var(--blue)}
+.sp-row-h a{transition:color .25s}
+@media (max-width:1080px){.sp-grid{grid-template-columns:1fr;gap:20px}}
+@media (max-width:720px){.sp-row{grid-template-columns:84px minmax(0,1fr);gap:13px}}
+
+/* the count line lost its filter bar, so it sits centred under the heading */
+.story-status{text-align:center;margin:-10px auto 26px}
+.story-status:empty{margin:0}
+/* the card head now carries only a date; without a tag beside it, space-between
+   would strand it, so it takes the left edge */
+#latest .nr-head{justify-content:flex-start}
+  </style>
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* =================================================================
@@ -484,10 +527,7 @@
             <div class="mega-col">
               <span class="mega-head">Promotions</span>
               <a href="promotions.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-send"/></svg></span><span class="mega-txt"><b>Our Promotions</b></span></a>
-              <a href="https://www.startrader.com/star-trading-league-championship/" class="mega-item"><span class="mega-ico"><svg><use href="#i-star"/></svg></span><span class="mega-txt"><b>STAR Trading League</b></span></a>
-              <a href="dailyforexpromo.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-bolt"/></svg></span><span class="mega-txt"><b>Daily Forex Promo</b></span></a>
-              <a href="deposit-bonus-10010-20240513.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>100/10 Deposit Bonus</b></span></a>
-              <a href="deposit-bonus-5020-20250101.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>50/20 Deposit Bonus</b></span></a>
+              <a href="gold-cashback.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-clock"/></svg></span><span class="mega-txt"><b>Gold 24/7 Cashback</b></span></a>
               <a href="point-mall.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>Point Mall</b></span></a>
               <a href="deposit-bonus.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>Deposit Bonuses</b></span></a>
               <a href="switch-allowance.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-swap"/></svg></span><span class="mega-txt"><b>1% Switch Allowance</b></span></a>
@@ -789,6 +829,155 @@
   </div>
 </section>
 
+<!-- ============ LATEST STORIES ============ -->
+<section class="section pg-list" id="latest" aria-labelledby="pg-list-title" data-story-page-size="3">
+  <div class="container">
+    <div class="head center">
+      <span class="eyebrow" data-aos="fade-up">The programme</span>
+      <h2 class="h2" id="pg-list-title" data-aos="fade-up">Latest stories</h2>
+      <p class="head-sub" data-aos="fade-up">Every story from the programme, newest first.</p>
+    </div>
+    <p class="pg-status story-status" data-story-status role="status" aria-live="polite"></p>
+    <div class="nr-grid">
+      <article class="nr-card glass" data-story-item data-title="STARTRADER breaks ground on basketball court revamp in Davao City" data-aos="fade-up">
+        <div class="nr-head">
+          <time class="nr-date" datetime="2026-06-18">18 Jun 2026</time>
+        </div>
+        <div class="nr-body">
+          <h3 class="nr-h"><a href="csr-davao-basketball-court.html">STARTRADER breaks ground on basketball court revamp in Davao City</a></h3>
+          <p class="nr-ex">A full rebuild of a public court serving around 20,000 people across the surrounding barangays in the Philippines.</p>
+        </div>
+        <a class="nr-media" href="csr-davao-basketball-court.html" aria-label="Read this story">
+          <span class="cover-bg" role="img" aria-label="STARTRADER breaks ground on basketball court revamp in Davao City" style="background-image:url('assets/img/csr-gal-1.webp')"></span>
+          <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
+        </a>
+      </article>
+      <article class="nr-card glass" data-story-item data-title="STARCARES partners with B-LEAD 2026 in Vietnam" data-aos="fade-up" data-aos-delay="100">
+        <div class="nr-head">
+          <time class="nr-date" datetime="2026-05-30">30 May 2026</time>
+        </div>
+        <div class="nr-body">
+          <h3 class="nr-h"><a href="csr-blead-2026-vietnam.html">STARCARES partners with B-LEAD 2026 in Vietnam</a></h3>
+          <p class="nr-ex">Supporting a programme that puts Vietnam’s next generation of business leaders in front of the people already doing the work.</p>
+        </div>
+        <a class="nr-media" href="csr-blead-2026-vietnam.html" aria-label="Read this story">
+          <span class="cover-bg" role="img" aria-label="STARCARES partners with B-LEAD 2026 in Vietnam" style="background-image:url('assets/img/csr-gal-2.webp')"></span>
+          <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
+        </a>
+      </article>
+      <article class="nr-card glass" data-story-item data-title="Emergency relief delivered to 300 earthquake-affected families" data-aos="fade-up" data-aos-delay="200">
+        <div class="nr-head">
+          <time class="nr-date" datetime="2026-04-12">12 Apr 2026</time>
+        </div>
+        <div class="nr-body">
+          <h3 class="nr-h"><a href="csr-earthquake-relief-300-families.html">Emergency relief delivered to 300 earthquake-affected families</a></h3>
+          <p class="nr-ex">Direct assistance to households displaced by the earthquake in the Philippines, coordinated with local partners.</p>
+        </div>
+        <a class="nr-media" href="csr-earthquake-relief-300-families.html" aria-label="Read this story">
+          <span class="cover-bg" role="img" aria-label="Emergency relief delivered to 300 earthquake-affected families" style="background-image:url('assets/img/csr-gal-4.webp')"></span>
+          <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
+        </a>
+      </article>
+      <article class="nr-card glass" data-story-item data-title="KTH alumni evening in Dubai on AI, technology and innovation" data-aos="fade-up" data-aos-delay="300">
+        <div class="nr-head">
+          <time class="nr-date" datetime="2026-03-22">22 Mar 2026</time>
+        </div>
+        <div class="nr-body">
+          <h3 class="nr-h"><a href="csr-kth-alumni-evening-dubai.html">KTH alumni evening in Dubai on AI, technology and innovation</a></h3>
+          <p class="nr-ex">An evening hosted for KTH alumni exploring where artificial intelligence is genuinely changing practice, and where it is not.</p>
+        </div>
+        <a class="nr-media" href="csr-kth-alumni-evening-dubai.html" aria-label="Read this story">
+          <span class="cover-bg" role="img" aria-label="KTH alumni evening in Dubai on AI, technology and innovation" style="background-image:url('assets/img/csr-gal-5.webp')"></span>
+          <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
+        </a>
+      </article>
+      <article class="nr-card glass" data-story-item data-title="CEO Peter Karsten joins University of Europe for three sessions" data-aos="fade-up" data-aos-delay="400">
+        <div class="nr-head">
+          <time class="nr-date" datetime="2026-02-14">14 Feb 2026</time>
+        </div>
+        <div class="nr-body">
+          <h3 class="nr-h"><a href="csr-university-of-europe-sessions.html">CEO Peter Karsten joins University of Europe for three sessions</a></h3>
+          <p class="nr-ex">Three sessions with students on AI, business operations and market risk — the parts of finance a lecture usually skips.</p>
+        </div>
+        <a class="nr-media" href="csr-university-of-europe-sessions.html" aria-label="Read this story">
+          <span class="cover-bg" role="img" aria-label="CEO Peter Karsten joins University of Europe for three sessions" style="background-image:url('assets/img/csr-gal-3.webp')"></span>
+          <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
+        </a>
+      </article>
+      <article class="nr-card glass" data-story-item data-title="Local sports facilities upgraded across three regions" data-aos="fade-up" data-aos-delay="500">
+        <div class="nr-head">
+          <time class="nr-date" datetime="2026-01-20">20 Jan 2026</time>
+        </div>
+        <div class="nr-body">
+          <h3 class="nr-h"><a href="csr-sports-facilities-three-regions.html">Local sports facilities upgraded across three regions</a></h3>
+          <p class="nr-ex">Equipment, resurfacing and lighting for facilities that were already well used but poorly maintained.</p>
+        </div>
+        <a class="nr-media" href="csr-sports-facilities-three-regions.html" aria-label="Read this story">
+          <span class="cover-bg" role="img" aria-label="Local sports facilities upgraded across three regions" style="background-image:url('assets/img/csr-gal-6.webp')"></span>
+          <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
+        </a>
+      </article>
+    </div>
+
+    <nav class="pgr" aria-label="Story pages" data-story-pager hidden>
+      <button class="pgr-arrow" type="button" data-story-prev aria-label="Previous page"><svg aria-hidden="true"><use href="#i-chevron-left"/></svg></button>
+      <span class="pgr-list" data-story-pglist></span>
+      <button class="pgr-arrow" type="button" data-story-next aria-label="Next page"><svg aria-hidden="true"><use href="#i-chevron-right"/></svg></button>
+    </nav>
+  </div>
+</section>
+
+<!-- ============ IN THE SPOTLIGHT ============ -->
+<section class="section csr-spot" id="spotlight" aria-labelledby="csr-spot-title">
+  <div class="container">
+    <div class="head center">
+      <span class="eyebrow" data-aos="fade-up">Featured</span>
+      <h2 class="h2" id="csr-spot-title" data-aos="fade-up">In the spotlight</h2>
+      <p class="head-sub" data-aos="fade-up">The four most recent from the programme, with the newest given the floor.</p>
+    </div>
+
+    <div class="sp-grid">
+      <article class="sp-lead nr-card glass" data-aos="fade-up">
+        <div class="nr-head">
+          <time class="nr-date" datetime="2026-06-18">18 Jun 2026</time>
+        </div>
+        <div class="nr-body">
+          <h3 class="nr-h"><a href="csr-davao-basketball-court.html">STARTRADER breaks ground on basketball court revamp in Davao City</a></h3>
+          <p class="nr-ex">A full rebuild of a public court serving around 20,000 people across the surrounding barangays in the Philippines.</p>
+        </div>
+        <a class="nr-media" href="csr-davao-basketball-court.html" aria-label="Read: STARTRADER breaks ground on basketball court revamp in Davao City">
+          <span class="cover-bg" role="img" aria-label="STARTRADER breaks ground on basketball court revamp in Davao City" style="background-image:url('assets/img/csr-gal-1.webp')"></span>
+          <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
+        </a>
+      </article>
+
+      <div class="sp-rows">
+          <article class="sp-row glass" data-aos="fade-up" data-aos-delay="100">
+            <a class="sp-row-media" href="csr-blead-2026-vietnam.html" aria-label="Read: STARCARES partners with B-LEAD 2026 in Vietnam"><span class="cover-bg" role="img" aria-label="STARCARES partners with B-LEAD 2026 in Vietnam" style="background-image:url('assets/img/csr-gal-2.webp')"></span></a>
+            <div class="sp-row-tx">
+              <p class="sp-row-meta"><time datetime="2026-05-30">30 May 2026</time></p>
+              <h3 class="sp-row-h"><a href="csr-blead-2026-vietnam.html">STARCARES partners with B-LEAD 2026 in Vietnam</a></h3>
+            </div>
+          </article>
+          <article class="sp-row glass" data-aos="fade-up" data-aos-delay="200">
+            <a class="sp-row-media" href="csr-earthquake-relief-300-families.html" aria-label="Read: Emergency relief delivered to 300 earthquake-affected families"><span class="cover-bg" role="img" aria-label="Emergency relief delivered to 300 earthquake-affected families" style="background-image:url('assets/img/csr-gal-4.webp')"></span></a>
+            <div class="sp-row-tx">
+              <p class="sp-row-meta"><time datetime="2026-04-12">12 Apr 2026</time></p>
+              <h3 class="sp-row-h"><a href="csr-earthquake-relief-300-families.html">Emergency relief delivered to 300 earthquake-affected families</a></h3>
+            </div>
+          </article>
+          <article class="sp-row glass" data-aos="fade-up" data-aos-delay="300">
+            <a class="sp-row-media" href="csr-kth-alumni-evening-dubai.html" aria-label="Read: KTH alumni evening in Dubai on AI, technology and innovation"><span class="cover-bg" role="img" aria-label="KTH alumni evening in Dubai on AI, technology and innovation" style="background-image:url('assets/img/csr-gal-5.webp')"></span></a>
+            <div class="sp-row-tx">
+              <p class="sp-row-meta"><time datetime="2026-03-22">22 Mar 2026</time></p>
+              <h3 class="sp-row-h"><a href="csr-kth-alumni-evening-dubai.html">KTH alumni evening in Dubai on AI, technology and innovation</a></h3>
+            </div>
+          </article>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ FAQ ============ -->
 <section class="section faq-sec fx-faq" aria-labelledby="pg-faq-title">
   <div class="container">
@@ -813,114 +1002,6 @@
         <summary>Where do you operate?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a">Across the markets our licensed entities cover — the UAE, Australia, South Africa, Mauritius and Seychelles among them. CSR work follows that footprint.</div>
       </details>
-    </div>
-  </div>
-</section>
-
-<!-- ============ LATEST ============ -->
-<section class="section pg-list" id="latest" aria-labelledby="pg-list-title" data-page-size="3">
-  <div class="container">
-    <div class="head center">
-      <span class="eyebrow" data-aos="fade-up">Latest</span>
-      <h2 class="h2" id="pg-list-title" data-aos="fade-up">The latest from us</h2>
-    </div>
-    <div class="pg-bar glass" data-aos="fade-up">
-      <div class="pg-cats" role="group" aria-label="Filter by category"><button class="ec-chip is-on" type="button" data-pg-cat="all" aria-pressed="true">All</button><button class="ec-chip" type="button" data-pg-cat="community" aria-pressed="false">Community</button><button class="ec-chip" type="button" data-pg-cat="education" aria-pressed="false">Education</button><button class="ec-chip" type="button" data-pg-cat="relief" aria-pressed="false">Relief</button></div>
-      <p class="pg-status" data-pg-status role="status" aria-live="polite"></p>
-    </div>
-    <div class="nr-grid">
-      <article class="nr-card glass" data-pg-item data-cat="community" data-title="STARTRADER breaks ground on basketball court revamp in Davao City" data-aos="fade-up">
-        <div class="nr-head">
-          <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Community</span>
-          <time class="nr-date" datetime="2026-06-18">18 Jun 2026</time>
-        </div>
-        <div class="nr-body">
-          <h3 class="nr-h"><a href="announcements.html">STARTRADER breaks ground on basketball court revamp in Davao City</a></h3>
-          <p class="nr-ex">A full rebuild of a public court serving around 20,000 people across the surrounding barangays in the Philippines.</p>
-        </div>
-        <span class="nr-media">
-          <span class="cover-bg" role="img" aria-label="STARTRADER breaks ground on basketball court revamp in Davao City" style="background-image:url('assets/img/lp/citadel.webp')"></span>
-          <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
-        </span>
-      </article>
-      <article class="nr-card glass" data-pg-item data-cat="education" data-title="STARCARES partners with B-LEAD 2026 in Vietnam" data-aos="fade-up" data-aos-delay="100">
-        <div class="nr-head">
-          <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Education</span>
-          <time class="nr-date" datetime="2026-05-30">30 May 2026</time>
-        </div>
-        <div class="nr-body">
-          <h3 class="nr-h"><a href="announcements.html">STARCARES partners with B-LEAD 2026 in Vietnam</a></h3>
-          <p class="nr-ex">Supporting a programme that puts Vietnam’s next generation of business leaders in front of the people already doing the work.</p>
-        </div>
-        <span class="nr-media">
-          <span class="cover-bg" role="img" aria-label="STARCARES partners with B-LEAD 2026 in Vietnam" style="background-image:url('assets/img/company-1.webp')"></span>
-          <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
-        </span>
-      </article>
-      <article class="nr-card glass" data-pg-item data-cat="relief" data-title="Emergency relief delivered to 300 earthquake-affected families" data-aos="fade-up" data-aos-delay="200">
-        <div class="nr-head">
-          <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Relief</span>
-          <time class="nr-date" datetime="2026-04-12">12 Apr 2026</time>
-        </div>
-        <div class="nr-body">
-          <h3 class="nr-h"><a href="announcements.html">Emergency relief delivered to 300 earthquake-affected families</a></h3>
-          <p class="nr-ex">Direct assistance to households displaced by the earthquake in the Philippines, coordinated with local partners.</p>
-        </div>
-        <span class="nr-media">
-          <span class="cover-bg" role="img" aria-label="Emergency relief delivered to 300 earthquake-affected families" style="background-image:url('assets/img/company-2.webp')"></span>
-          <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
-        </span>
-      </article>
-      <article class="nr-card glass" data-pg-item data-cat="education" data-title="KTH alumni evening in Dubai on AI, technology and innovation" data-aos="fade-up" data-aos-delay="300">
-        <div class="nr-head">
-          <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Education</span>
-          <time class="nr-date" datetime="2026-03-22">22 Mar 2026</time>
-        </div>
-        <div class="nr-body">
-          <h3 class="nr-h"><a href="announcements.html">KTH alumni evening in Dubai on AI, technology and innovation</a></h3>
-          <p class="nr-ex">An evening hosted for KTH alumni exploring where artificial intelligence is genuinely changing practice, and where it is not.</p>
-        </div>
-        <span class="nr-media">
-          <span class="cover-bg" role="img" aria-label="KTH alumni evening in Dubai on AI, technology and innovation" style="background-image:url('assets/img/company-3.webp')"></span>
-          <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
-        </span>
-      </article>
-      <article class="nr-card glass" data-pg-item data-cat="education" data-title="CEO Peter Karsten joins University of Europe for three sessions" data-aos="fade-up" data-aos-delay="400">
-        <div class="nr-head">
-          <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Education</span>
-          <time class="nr-date" datetime="2026-02-14">14 Feb 2026</time>
-        </div>
-        <div class="nr-body">
-          <h3 class="nr-h"><a href="announcements.html">CEO Peter Karsten joins University of Europe for three sessions</a></h3>
-          <p class="nr-ex">Three sessions with students on AI, business operations and market risk — the parts of finance a lecture usually skips.</p>
-        </div>
-        <span class="nr-media">
-          <span class="cover-bg" role="img" aria-label="CEO Peter Karsten joins University of Europe for three sessions" style="background-image:url('assets/img/company-office.webp')"></span>
-          <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
-        </span>
-      </article>
-      <article class="nr-card glass" data-pg-item data-cat="community" data-title="Local sports facilities upgraded across three regions" data-aos="fade-up" data-aos-delay="500">
-        <div class="nr-head">
-          <span class="nr-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Community</span>
-          <time class="nr-date" datetime="2026-01-20">20 Jan 2026</time>
-        </div>
-        <div class="nr-body">
-          <h3 class="nr-h"><a href="announcements.html">Local sports facilities upgraded across three regions</a></h3>
-          <p class="nr-ex">Equipment, resurfacing and lighting for facilities that were already well used but poorly maintained.</p>
-        </div>
-        <span class="nr-media">
-          <span class="cover-bg" role="img" aria-label="Local sports facilities upgraded across three regions" style="background-image:url('assets/img/learn-cta.webp')"></span>
-          <span class="nr-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
-        </span>
-      </article>
-    </div>
-    <div class="pg-empty" data-pg-empty hidden>
-      <p>Nothing in that category yet.</p>
-      <button class="btn btn-primary" type="button" data-pg-reset>Show everything</button>
-    </div>
-
-    <div class="nr-morerow" data-pg-morerow hidden>
-      <button class="btn btn-primary btn-lg" type="button" data-pg-more>Load more stories <svg class="ico"><use href="#i-chevron-down"/></svg></button>
     </div>
   </div>
 </section>
@@ -1115,6 +1196,97 @@
   <a href="legal-documents.html" class="cookie-more">More details</a>
   <button class="cookie-x" id="cookieClose" aria-label="Accept and close"><svg><use href="#i-close"/></svg></button>
 </div>
+
+<!-- CSR stories: paging. Page-local because the shared list script binds a single
+     #latest block and grows it with "load more"; this one pages, the way the events
+     listing and the analysis archive do. Same .pgr markup and ellipsis rules. -->
+<script>
+(function () {
+  var root = document.getElementById('latest');
+  if (!root) return;
+  var items = Array.prototype.slice.call(root.querySelectorAll('[data-story-item]'));
+  if (!items.length) return;
+
+  var status = root.querySelector('[data-story-status]');
+  var pager  = root.querySelector('[data-story-pager]');
+  var pgList = root.querySelector('[data-story-pglist]');
+  var pgPrev = root.querySelector('[data-story-prev]');
+  var pgNext = root.querySelector('[data-story-next]');
+  var PAGE   = parseInt(root.getAttribute('data-story-page-size'), 10) || 3;
+  var page = 1, pages = Math.max(1, Math.ceil(items.length / PAGE));
+
+  /* AOS holds a card at opacity 0 until it is scrolled past; a card paged into
+     view is already on screen, so its reveal has to be released by hand */
+  function reveal(el) {
+    el.removeAttribute('data-aos');
+    el.removeAttribute('data-aos-delay');
+    el.classList.remove('aos-init', 'aos-animate');
+    el.style.opacity = '';
+    el.style.transform = '';
+  }
+
+  function apply() {
+    pages = Math.max(1, Math.ceil(items.length / PAGE));
+    if (page > pages) page = pages;
+    items.forEach(function (el, i) {
+      var on = i >= (page - 1) * PAGE && i < page * PAGE;
+      el.hidden = !on;
+      if (on) reveal(el);
+    });
+    if (status) {
+      var from = (page - 1) * PAGE + 1, to = Math.min(page * PAGE, items.length);
+      status.textContent = 'Showing ' + from + '\u2013' + to + ' of ' + items.length +
+        (items.length === 1 ? ' story' : ' stories');
+    }
+    paint();
+    if (window.ScrollTrigger && ScrollTrigger.refresh) ScrollTrigger.refresh();
+  }
+
+  function paint() {
+    if (!pager || !pgList) return;
+    pager.hidden = pages < 2;
+    if (pager.hidden) { pgList.innerHTML = ''; return; }
+    var out = [], i;
+    for (i = 1; i <= pages; i++) {
+      if (i === 1 || i === pages || Math.abs(i - page) <= 1) out.push(i);
+      else if (out[out.length - 1] !== '\u2026') out.push('\u2026');
+    }
+    pgList.innerHTML = '';
+    out.forEach(function (n) {
+      if (n === '\u2026') {
+        var d = document.createElement('span');
+        d.className = 'pgr-dots'; d.setAttribute('aria-hidden', 'true'); d.textContent = '\u2026';
+        pgList.appendChild(d); return;
+      }
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'pgr-pg' + (n === page ? ' is-on' : '');
+      b.textContent = n;
+      b.setAttribute('aria-label', 'Page ' + n);
+      if (n === page) b.setAttribute('aria-current', 'page');
+      b.addEventListener('click', function () { go(n); });
+      pgList.appendChild(b);
+    });
+    if (pgPrev) pgPrev.disabled = page === 1;
+    if (pgNext) pgNext.disabled = page === pages;
+  }
+
+  function go(n) {
+    page = Math.max(1, Math.min(pages, n));
+    apply();
+    var first = items.filter(function (el) { return !el.hidden; })[0];
+    if (first) {
+      window.scrollTo({ top: first.getBoundingClientRect().top + window.pageYOffset - 140, behavior: 'smooth' });
+      var h = first.querySelector('.nr-h a');
+      if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); }
+    }
+  }
+
+  if (pgPrev) pgPrev.addEventListener('click', function () { go(page - 1); });
+  if (pgNext) pgNext.addEventListener('click', function () { go(page + 1); });
+  apply();
+})();
+</script>
 
 <script src="assets/js/vendor/gsap.min.js" defer></script>
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>

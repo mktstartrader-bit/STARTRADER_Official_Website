@@ -37,34 +37,64 @@
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* ---- Help centre ---- */
-.hc-search-sec{background:#fff}
-.hc-search{position:relative;display:flex;align-items:center;max-width:640px;margin:0 auto 30px;border-radius:70px;padding:0}
-.hc-search-ic{position:absolute;left:20px;width:18px;height:18px;color:var(--text-mute);pointer-events:none}
+/* the topics band takes the site's card-section wash so the glass reads as
+   glass — on flat white the cards and the search pill both disappeared */
+.hc-search-sec{
+  position:relative;isolation:isolate;overflow:clip;
+  background:radial-gradient(58% 52% at 50% 0%,rgba(0,71,187,.08),transparent 62%),var(--bg-light);
+}
+.hc-search-sec>.container{position:relative;z-index:1}
+.hc-aura{position:absolute;z-index:0;border-radius:50%;filter:blur(92px);pointer-events:none}
+.hc-aura.a1{width:520px;height:520px;top:-16%;left:-10%;background:radial-gradient(circle,rgba(0,71,187,.13),transparent 68%)}
+.hc-aura.a2{width:460px;height:460px;bottom:-18%;right:-8%;background:radial-gradient(circle,rgba(0,183,178,.11),transparent 68%)}
+
+/* ---- Search pill ---- */
+.hc-search{
+  position:relative;display:flex;align-items:center;max-width:640px;margin:0 auto 34px;
+  border-radius:70px;padding:0;background:#fff;border:1px solid rgba(20,44,96,.11);
+  box-shadow:0 20px 44px -30px rgba(20,44,96,.55),inset 0 1px 0 #fff;
+  transition:border-color .3s,box-shadow .3s var(--ease);
+}
+.hc-search-ic{position:absolute;left:22px;width:18px;height:18px;color:var(--text-mute);pointer-events:none;transition:color .3s}
 .hc-search-ic svg{width:100%;height:100%}
-.hc-search input{width:100%;height:56px;padding:0 48px;border:0;background:none;font:inherit;font-size:15px;color:var(--text);border-radius:70px}
+.hc-search input{width:100%;height:58px;padding:0 52px;border:0;background:none;font:inherit;font-size:15px;color:var(--text);border-radius:70px}
 .hc-search input::placeholder{color:var(--text-mute)}
 .hc-search input:focus{outline:none}
-.hc-search:focus-within{border-color:rgba(0,71,187,.4);box-shadow:0 0 0 4px rgba(0,71,187,.1)}
-.hc-clear{position:absolute;right:16px;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;color:var(--text-mute);background:rgba(20,44,96,.07)}
+.hc-search:focus-within{border-color:rgba(0,71,187,.4);box-shadow:0 0 0 4px rgba(0,71,187,.1),0 20px 44px -30px rgba(20,44,96,.55)}
+.hc-search:focus-within .hc-search-ic{color:var(--blue)}
+.hc-clear{position:absolute;right:16px;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;color:var(--text-mute);background:rgba(20,44,96,.07);transition:background .25s,color .25s}
+.hc-clear:hover{background:rgba(0,71,187,.12);color:var(--blue)}
 .hc-clear svg{width:12px;height:12px}
+/* the status line belongs under the centred pill, not adrift at the grid's left edge */
+.hc-search-sec .pg-status{text-align:center;margin:-20px auto 22px}
+.hc-search-sec .pg-status:empty{margin:0}
+
+/* ---- Topic cards: the shared glass card + the one site-wide hover ---- */
 .hc-topics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
 .hc-topic{
-  position:relative;display:flex;flex-direction:column;border-radius:20px;padding:24px 22px 22px;
+  position:relative;display:flex;flex-direction:column;border-radius:20px;padding:26px 24px 24px;min-width:0;
   transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
 }
 .hc-topic:hover{transform:translateY(-4px);border-color:rgba(0,71,187,.28);box-shadow:0 28px 52px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff}
-.hc-topic-ic{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;margin-bottom:16px;background:rgba(0,71,187,.09);color:var(--blue);transition:transform .4s var(--ease)}
-.hc-topic-ic svg{width:21px;height:21px}
+.hc-topic-ic{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;margin-bottom:18px;background:rgba(0,71,187,.09);color:var(--blue);transition:transform .4s var(--ease)}
+.hc-topic-ic svg{width:22px;height:22px}
 .hc-topic:hover .hc-topic-ic{transform:translateY(-3px) scale(1.05)}
-.hc-topic b{font-size:16.5px;letter-spacing:-.024em;color:var(--text);transition:color .25s}
+.hc-topic b{font-size:17px;letter-spacing:-.02em;color:var(--text);transition:color .25s}
 .hc-topic:hover b{color:var(--blue)}
-.hc-topic em{font-style:normal;margin-top:8px;font-size:13px;line-height:1.6;color:var(--text-soft)}
-.hc-topic-n{margin-top:auto;padding-top:18px;font-size:11.5px;font-weight:700;color:var(--text-mute)}
-.hc-topic-go{position:absolute;top:22px;right:20px;width:16px;height:16px;color:var(--text-mute);transition:color .3s,transform .35s var(--ease)}
+.hc-topic em{font-style:normal;margin-top:8px;font-size:13.5px;line-height:1.62;color:var(--text-soft)}
+.hc-topic-n{
+  margin-top:auto;padding-top:20px;font-size:11.5px;font-weight:700;letter-spacing:.02em;color:var(--text-mute);
+  display:inline-flex;align-items:center;gap:7px;
+}
+.hc-topic-n::before{content:"";width:5px;height:5px;border-radius:50%;background:rgba(0,71,187,.34);transition:background .3s}
+.hc-topic:hover .hc-topic-n::before{background:var(--blue)}
+.hc-topic-go{position:absolute;top:24px;right:22px;width:16px;height:16px;color:var(--text-mute);transition:color .3s,transform .35s var(--ease)}
 .hc-topic:hover .hc-topic-go{color:var(--blue);transform:translateX(3px)}
 /* ---- Responsive ---- */
 @media (max-width:1080px){.hc-topics{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:720px){.hc-topics{grid-template-columns:1fr}}
+@media (max-width:720px){.hc-topics{grid-template-columns:1fr}
+.hc-search input{height:54px;padding:0 48px;font-size:14.5px}
+.hc-topic{padding:22px 20px 20px}}
   </style>
 
   <script type="application/ld+json">
@@ -180,6 +210,8 @@
   <symbol id="i-box" viewBox="0 0 24 24"><path d="M12 3 3 7.5v9L12 21l9-4.5v-9zM3 7.5 12 12l9-4.5M12 12v9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
   <symbol id="i-headset" viewBox="0 0 24 24"><path d="M4 13a8 8 0 0 1 16 0M4 13v3a2 2 0 0 0 2 2h1v-6H6a2 2 0 0 0-2 2Zm16 0v3a2 2 0 0 1-2 2h-1v-6h1a2 2 0 0 1 2 2Zm-3 5a3 3 0 0 1-3 2.5h-2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10m5 10V4m5 16v-7m5 7V8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.2-4.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5zM20 5.5A1.5 1.5 0 0 0 18.5 4H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
   <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 2 2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.8 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z" fill="currentColor"/></symbol>
   <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
   <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.7 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3Z" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
@@ -337,10 +369,7 @@
             <div class="mega-col">
               <span class="mega-head">Promotions</span>
               <a href="promotions.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-send"/></svg></span><span class="mega-txt"><b>Our Promotions</b></span></a>
-              <a href="https://www.startrader.com/star-trading-league-championship/" class="mega-item"><span class="mega-ico"><svg><use href="#i-star"/></svg></span><span class="mega-txt"><b>STAR Trading League</b></span></a>
-              <a href="dailyforexpromo.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-bolt"/></svg></span><span class="mega-txt"><b>Daily Forex Promo</b></span></a>
-              <a href="deposit-bonus-10010-20240513.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>100/10 Deposit Bonus</b></span></a>
-              <a href="deposit-bonus-5020-20250101.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>50/20 Deposit Bonus</b></span></a>
+              <a href="gold-cashback.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-clock"/></svg></span><span class="mega-txt"><b>Gold 24/7 Cashback</b></span></a>
               <a href="point-mall.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>Point Mall</b></span></a>
               <a href="deposit-bonus.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>Deposit Bonuses</b></span></a>
               <a href="switch-allowance.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-swap"/></svg></span><span class="mega-txt"><b>1% Switch Allowance</b></span></a>
@@ -477,12 +506,13 @@
       <div class="pf-hact" data-aos="fade-up">
         <a href="#topics" class="btn btn-primary btn-lg magnetic">Browse topics <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       </div>
-      <nav class="pf-subnav" aria-label="On this page" data-aos="fade-up"><a href="#topics">Topics</a></nav>
     </div>
   </div>
 </section>
 
 <section class="section hc-search-sec" id="topics" aria-labelledby="hc-t-title">
+  <span class="hc-aura a1" aria-hidden="true"></span>
+  <span class="hc-aura a2" aria-hidden="true"></span>
   <div class="container">
     <div class="head center">
       <span class="eyebrow" data-aos="fade-up">Knowledgebase</span>
@@ -490,7 +520,7 @@
       <p class="head-sub" data-aos="fade-up">Eight sections covering everything from opening an account to how a swap is charged.</p>
     </div>
 
-    <form class="hc-search glass" role="search" onsubmit="return false" data-aos="fade-up">
+    <form class="hc-search" role="search" onsubmit="return false" data-aos="fade-up">
       <span class="hc-search-ic" aria-hidden="true"><svg><use href="#i-search"/></svg></span>
       <input id="hcSearch" type="search" autocomplete="off" placeholder="Search the knowledgebase&hellip;" aria-label="Search the knowledgebase">
       <button class="hc-clear" type="button" id="hcClear" aria-label="Clear search" hidden><svg><use href="#i-close"/></svg></button>
@@ -505,49 +535,49 @@
         <span class="hc-topic-n">7 articles</span>
         <span class="hc-topic-go"><svg><use href="#i-arrow-right"/></svg></span>
       </a>
-      <a class="hc-topic glass" href="#topics" data-aos="fade-up" data-aos-delay="100">
+      <a class="hc-topic glass" href="how-to-open-an-account.html" data-aos="fade-up" data-aos-delay="100">
         <span class="hc-topic-ic"><svg><use href="#i-id"/></svg></span>
         <b>Accounts</b>
         <em>Opening, verifying, upgrading and closing a trading account.</em>
         <span class="hc-topic-n">14 articles</span>
         <span class="hc-topic-go"><svg><use href="#i-arrow-right"/></svg></span>
       </a>
-      <a class="hc-topic glass" href="#topics" data-aos="fade-up" data-aos-delay="200">
+      <a class="hc-topic glass" href="how-can-i-deposit-funds.html" data-aos="fade-up" data-aos-delay="200">
         <span class="hc-topic-ic"><svg><use href="#i-wallet"/></svg></span>
         <b>Funds management</b>
         <em>Deposits, withdrawals, processing times and the fees on each method.</em>
         <span class="hc-topic-n">12 articles</span>
         <span class="hc-topic-go"><svg><use href="#i-arrow-right"/></svg></span>
       </a>
-      <a class="hc-topic glass" href="#topics" data-aos="fade-up" data-aos-delay="300">
+      <a class="hc-topic glass" href="startrader-server-locations.html" data-aos="fade-up" data-aos-delay="300">
         <span class="hc-topic-ic"><svg><use href="#i-book"/></svg></span>
         <b>Trading knowledge hub</b>
         <em>Margin, leverage, swaps and the mechanics behind an order.</em>
         <span class="hc-topic-n">19 articles</span>
         <span class="hc-topic-go"><svg><use href="#i-arrow-right"/></svg></span>
       </a>
-      <a class="hc-topic glass" href="#topics" data-aos="fade-up" data-aos-delay="400">
+      <a class="hc-topic glass" href="trading-platforms-available.html" data-aos="fade-up" data-aos-delay="400">
         <span class="hc-topic-ic"><svg><use href="#i-monitor"/></svg></span>
         <b>Trading platform</b>
         <em>MT4, MT5, the web terminals and the mobile app.</em>
         <span class="hc-topic-n">16 articles</span>
         <span class="hc-topic-go"><svg><use href="#i-arrow-right"/></svg></span>
       </a>
-      <a class="hc-topic glass" href="#topics" data-aos="fade-up" data-aos-delay="500">
+      <a class="hc-topic glass" href="what-is-star-partners.html" data-aos="fade-up" data-aos-delay="500">
         <span class="hc-topic-ic"><svg><use href="#i-user-plus"/></svg></span>
         <b>Partnership</b>
         <em>Introducing brokers, affiliates, money managers and institutional accounts.</em>
         <span class="hc-topic-n">9 articles</span>
         <span class="hc-topic-go"><svg><use href="#i-arrow-right"/></svg></span>
       </a>
-      <a class="hc-topic glass" href="#topics" data-aos="fade-up" data-aos-delay="600">
+      <a class="hc-topic glass" href="what-promotions-are-available.html" data-aos="fade-up" data-aos-delay="600">
         <span class="hc-topic-ic"><svg><use href="#i-send"/></svg></span>
         <b>Promotions</b>
         <em>Bonuses, competitions and the terms attached to each.</em>
         <span class="hc-topic-n">6 articles</span>
         <span class="hc-topic-go"><svg><use href="#i-arrow-right"/></svg></span>
       </a>
-      <a class="hc-topic glass" href="#topics" data-aos="fade-up" data-aos-delay="600">
+      <a class="hc-topic glass" href="what-is-copy-trade.html" data-aos="fade-up" data-aos-delay="600">
         <span class="hc-topic-ic"><svg><use href="#i-copy"/></svg></span>
         <b>Copy trading</b>
         <em>Copy Trade, STAR Copy, becoming a provider and how fees are charged.</em>

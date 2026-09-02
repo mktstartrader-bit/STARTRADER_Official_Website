@@ -44,6 +44,28 @@
    ================================================================= */
 .dbx{--acc:#0047bb;--acc-2:#2a72ff;--acc-3:#7fb2ff;--mint:#16e9d7;
      --sand:#dfc5ae;--sand-ink:#8a6440;--ink:#04060d}
+/* ---------------- hero: the offer line and the small print ---------------- */
+/* the source sets the offer apart from the lead; it is the reason to read on */
+.pm-claim{
+  margin-top:16px;max-width:56ch;
+  font-size:clamp(14.5px,1.45vw,16.5px);font-weight:700;line-height:1.55;
+  letter-spacing:-.012em;color:var(--acc-2);
+}
+.pm-tc{margin-top:14px;font-size:11.5px;line-height:1.6;color:#7a879b}
+/* the small print sits in muted grey; the terms link is lifted out of it */
+.pm-tc-link{
+  font-weight:700;color:var(--acc-2);
+  text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px;
+  text-decoration-color:rgba(42,114,255,.4);
+  transition:color .25s,text-decoration-color .25s;
+}
+.pm-tc-link:hover{color:var(--acc);text-decoration-color:currentColor}
+.pm-tc-link:focus-visible{outline:2px solid var(--acc-2);outline-offset:3px;border-radius:3px}
+
+/* the three points carry a label only, so the card centres on it */
+.db-point{align-items:center;text-align:center}
+.db-point b{margin-top:16px}
+
 /* ---------------- why switch ---------------- */
 .db-why{position:relative;isolation:isolate;overflow:clip;
   background:radial-gradient(50% 44% at 88% 0%,rgba(0,71,187,.08),transparent 62%),var(--bg-light-2)}
@@ -262,62 +284,6 @@
     "provider": { "@type": "FinancialService", "name": "STARTRADER", "url": "https://www.startrader.com/" }
   }
   </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      { "@type": "Question", "name": "What is forex trading and how does it work?", "acceptedAnswer": { "@type": "Answer", "text": "Forex trading is the buying and selling of currency pairs to profit from changes in their exchange rate. Trades use lots — a standard lot is 100,000 units — and leverage lets you control a larger position with less capital on the 24/5 foreign-exchange market." } },
-      { "@type": "Question", "name": "How many currency pairs can I trade with STARTRADER?", "acceptedAnswer": { "@type": "Answer", "text": "You can trade 80+ currency pairs across major, minor and exotic categories, all with competitive spreads and fast execution." } },
-      { "@type": "Question", "name": "What are the trading hours for the forex market?", "acceptedAnswer": { "@type": "Answer", "text": "The forex market runs 24 hours a day, 5 days a week, closing only on weekends. Sessions overlap across Sydney, Tokyo, London and New York so there is always an active market." } },
-      { "@type": "Question", "name": "What leverage is available on forex?", "acceptedAnswer": { "@type": "Answer", "text": "Flexible leverage is available up to 1:1000. Higher leverage increases both potential profit and risk, and leverage above 1:30 may not be available in some regions." } },
-      { "@type": "Question", "name": "Which platforms can I use to trade forex?", "acceptedAnswer": { "@type": "Answer", "text": "MetaTrader 4 and MetaTrader 5 are the most popular, alongside the STAR Web Trader and mobile apps — all offering advanced charting, indicators and automated trading." } },
-      { "@type": "Question", "name": "What are the best forex pairs to trade?", "acceptedAnswer": { "@type": "Answer", "text": "It depends on your strategy, but the most-traded pairs include EUR/USD, USD/JPY, GBP/USD, AUD/USD and USD/CAD — highly liquid majors with tight spreads." } },
-      { "@type": "Question", "name": "Are there commissions or hidden fees on forex?", "acceptedAnswer": { "@type": "Answer", "text": "STARTRADER charges 0 commission and 0 deposit fees on most channels for Standard accounts. ECN and Prime ECN accounts pay a low commission in exchange for raw spreads from 0.0 pips." } },
-      { "@type": "Question", "name": "How do I get started with forex trading?", "acceptedAnswer": { "@type": "Answer", "text": "Open an account, verify your identity, fund your wallet and start trading — or practise risk-free on a demo account first to build your strategy." } }
-    ]
-  }
-  </script>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How is the 1% switch allowance worked out?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "It is one per cent of the smaller of the two amounts — what you withdrew from your old broker and what you deposited with STARTRADER. Withdraw $2,000 and deposit $1,000 and the allowance is $10; withdraw $500 and deposit $1,000 and it is $5."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is there a cap on the switch allowance?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. There is no maximum limit on that reward, and it is applied instantly once your withdrawal proof is verified."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How much cashback can I earn?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "STP accounts earn $5 per lot traded and ECN accounts $2 per lot, each capped at $200. The earning period runs for 60 days from your first deposit, on deposits of $3,000 or more."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What proof do I need to send?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The withdrawal confirmation from your previous broker. Send it to the support team by email or live chat and they will confirm once it is verified."
-      }
-    }
-  ]
-}
-  </script>
 
 </head>
 <body class="prx dbx light-top">
@@ -493,10 +459,7 @@
             <div class="mega-col">
               <span class="mega-head">Promotions</span>
               <a href="promotions.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-send"/></svg></span><span class="mega-txt"><b>Our Promotions</b></span></a>
-              <a href="https://www.startrader.com/star-trading-league-championship/" class="mega-item"><span class="mega-ico"><svg><use href="#i-star"/></svg></span><span class="mega-txt"><b>STAR Trading League</b></span></a>
-              <a href="dailyforexpromo.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-bolt"/></svg></span><span class="mega-txt"><b>Daily Forex Promo</b></span></a>
-              <a href="deposit-bonus-10010-20240513.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>100/10 Deposit Bonus</b></span></a>
-              <a href="deposit-bonus-5020-20250101.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>50/20 Deposit Bonus</b></span></a>
+              <a href="gold-cashback.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-clock"/></svg></span><span class="mega-txt"><b>Gold 24/7 Cashback</b></span></a>
               <a href="point-mall.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>Point Mall</b></span></a>
               <a href="deposit-bonus.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>Deposit Bonuses</b></span></a>
               <a href="switch-allowance.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-swap"/></svg></span><span class="mega-txt"><b>1% Switch Allowance</b></span></a>
@@ -632,10 +595,12 @@
     <div class="pm-hero-copy">
       <span class="pm-eyebrow" data-aos="fade-up">1% Switch Allowance</span>
       <h1 class="pm-h1" id="db-hero-title" data-aos="fade-up">
-        <span>Still stuck? It&rsquo;s time</span>
-        <span class="lit">to switch to success.</span>
+        <span>Still Stuck? It&rsquo;s Time to</span>
+        <span class="lit">Switch to Success</span>
       </h1>
-      <p class="pm-lead" data-aos="fade-up">The markets move fast &mdash; so should your progress. Earn a 1% cash allowance plus up to $200 cashback when you make the switch. Terms and conditions apply.</p>
+      <p class="pm-lead" data-aos="fade-up">The markets move fast. So should your progress.<br>If your current platform isn&rsquo;t keeping up, maybe it&rsquo;s time for a better match.</p>
+      <p class="pm-claim" data-aos="fade-up">Earn 1% Cash Allowance + Up to $200 Cashback When You Make the Switch</p>
+      <p class="pm-tc" data-aos="fade-up">*<a class="pm-tc-link" href="https://www.startrader.com/pdf/pmt009-en-20260717.pdf" target="_blank" rel="noopener">Terms and Conditions</a> apply</p>
       <div class="pm-hact" data-aos="fade-up">
         <a class="pm-btn" href="#open">Claim the allowance <svg><use href="#i-arrow-right"/></svg></a>
       </div>
@@ -648,24 +613,21 @@
 <section class="section db-why" id="why" aria-labelledby="db-why-title">
   <div class="container">
     <span class="pm-eyebrow-c" data-aos="fade-up">The case for moving</span>
-    <h2 class="pm-h2" id="db-why-title" data-aos="fade-up">Why switch to<br> STARTRADER?</h2>
-    <p class="pm-sub" data-aos="fade-up">Ready to leave your current broker behind? When you withdraw from any other trading platform and deposit with STARTRADER, you receive immediate rewards for making the change.</p>
+    <h2 class="pm-h2" id="db-why-title" data-aos="fade-up">Why Switch to<br> STARTRADER?</h2>
+    <p class="pm-sub" data-aos="fade-up">Ready to leave your current broker behind? We&rsquo;ll make it worth your while. When you withdraw from any other trading platform and deposit with STARTRADER, you&rsquo;ll receive immediate rewards for making the smart choice.</p>
 
     <div class="db-points">
       <article class="db-point" data-aos="fade-up">
         <span class="db-point-ic"><svg><use href="#i-bolt"/></svg></span>
         <b>Bonus credited directly</b>
-        <p>The reward lands on the account you deposited into. Nothing to chase and nobody to remind.</p>
       </article>
       <article class="db-point" data-aos="fade-up">
         <span class="db-point-ic"><svg><use href="#i-check"/></svg></span>
         <b>No gimmicks or complicated steps</b>
-        <p>Withdraw, deposit, send the proof. That is the whole process, and support walks it with you.</p>
       </article>
       <article class="db-point" data-aos="fade-up">
         <span class="db-point-ic"><svg><use href="#i-shield"/></svg></span>
         <b>Built for serious traders making a serious change</b>
-        <p>The rewards scale with what you actually move across, not with how many boxes you tick.</p>
       </article>
     </div>
   </div>
@@ -675,41 +637,35 @@
 <section class="section db-rewards" id="rewards" aria-labelledby="db-rw-title">
   <div class="container">
     <span class="pm-eyebrow-c" data-aos="fade-up">Dual rewards</span>
-    <h2 class="pm-h2" id="db-rw-title" data-aos="fade-up">Two rewards,<br> one switch</h2>
+    <h2 class="pm-h2" id="db-rw-title" data-aos="fade-up">Dual Rewards</h2>
     <div class="db-gate-wrap" data-aos="fade-up">
-      <span class="db-gate"><i></i>Deposit $3,000 or more and unlock both</span>
+      <span class="db-gate"><i></i>Deposit $3,000+ and unlock BOTH rewards:</span>
     </div>
 
     <div class="db-pair">
       <article class="db-card" data-aos="fade-up">
         <span class="db-card-n">Reward #1</span>
         <h3>1% Switch Allowance</h3>
-        <p>One per cent cashback on your switch, measured against the smaller of what you withdrew and what you deposited.</p>
-        <div class="db-list">
-        <div class="db-li"><span class="db-li-tick"><svg><use href="#i-check"/></svg></span><span><b>No maximum limit</b> on this reward</span></div>
-        <div class="db-li"><span class="db-li-tick"><svg><use href="#i-check"/></svg></span><span><b>Applied instantly</b> upon verification</span></div>
-        <div class="db-li"><span class="db-li-tick"><svg><use href="#i-check"/></svg></span><span>Measured on the lesser of your withdrawal and your deposit</span></div>
-        </div>
+        <p>Get 1% cashback on your switch</p>
         <div class="db-eg">
-          <span class="db-eg-lbl">Worked example</span>
-          <div class="db-eg-row">Withdraw <b>$2,000</b>, deposit <b>$1,000</b> &rarr; allowance <em>$10</em></div>
-          <div class="db-eg-row">Withdraw <b>$500</b>, deposit <b>$1,000</b> &rarr; allowance <em>$5</em></div>
+          <span class="db-eg-lbl">Example:</span>
+          <div class="db-eg-row">If you withdraw <b>$2,000</b> from your old broker and deposit <b>$1,000</b> into STARTRADER &rarr; Get <em>$10</em> allowance</div>
+          <div class="db-eg-row">If you withdraw <b>$500</b> from your old broker and deposit <b>$1,000</b> into STARTRADER &rarr; Get <em>$5</em> allowance</div>
+        </div>
+        <div class="db-list">
+        <div class="db-li"><span class="db-li-tick"><svg><use href="#i-check"/></svg></span><span>No maximum limit on this reward</span></div>
+        <div class="db-li"><span class="db-li-tick"><svg><use href="#i-check"/></svg></span><span>Applied instantly upon verification</span></div>
         </div>
       </article>
 
       <article class="db-card db-card--sand" data-aos="fade-up">
         <span class="db-card-n">Reward #2</span>
         <h3>Trading Cashback</h3>
-        <p>Earn while you trade. Available on deposits of $3,000 or more, paid per lot across the earning period.</p>
+        <p>Earn money while you trade with our cashback program (Deposits &ge; $3,000)</p>
         <div class="db-list">
-        <div class="db-li"><span class="db-li-tick"><svg><use href="#i-check"/></svg></span><span><b>STP accounts</b> &mdash; $5 per lot traded, up to $200</span></div>
-        <div class="db-li"><span class="db-li-tick"><svg><use href="#i-check"/></svg></span><span><b>ECN accounts</b> &mdash; $2 per lot traded, up to $200</span></div>
-        <div class="db-li"><span class="db-li-tick"><svg><use href="#i-check"/></svg></span><span><b>60-day earning period</b> from your first deposit</span></div>
-        </div>
-        <div class="db-eg">
-          <span class="db-eg-lbl">Worked example</span>
-          <div class="db-eg-row">STP, <b>20</b> lots traded &rarr; cashback <em>$100</em></div>
-          <div class="db-eg-row">ECN, <b>60</b> lots traded &rarr; cashback <em>$120</em></div>
+        <div class="db-li"><span class="db-li-tick"><svg><use href="#i-check"/></svg></span><span>STP Accounts: $5 per lot traded (Max $200)</span></div>
+        <div class="db-li"><span class="db-li-tick"><svg><use href="#i-check"/></svg></span><span>ECN Accounts: $2 per lot traded (Max $200)</span></div>
+        <div class="db-li"><span class="db-li-tick"><svg><use href="#i-check"/></svg></span><span>60-day earning period from your first deposit</span></div>
         </div>
       </article>
     </div>
@@ -759,32 +715,32 @@
   <div class="container">
     <div class="htrade">
       <div class="htrade-intro" data-aos="fade-up">
-        <h2 class="htrade-title" id="db-how-title">Five steps<br><span>to your rewards</span></h2>
+        <h2 class="htrade-title" id="db-how-title">How to Switch and<br><span>Get Your Rewards</span></h2>
         <p class="htrade-sub">Simple, fast, and backed by a dedicated support team at every step.</p>
-        <a href="funding.html" class="btn btn-primary btn-lg htrade-btn magnetic">Start the switch <span class="htrade-go"><svg><use href="#i-arrow-right"/></svg></span></a>
+        <a href="funding.html" class="btn btn-primary btn-lg htrade-btn magnetic">Start Trading <span class="htrade-go"><svg><use href="#i-arrow-right"/></svg></span></a>
       </div>
 
       <div>
         <ol class="htrade-steps" data-htrade>
           <li class="htrade-step">
             <span class="htrade-num">01</span>
-            <div class="htrade-txt"><h3>Withdraw from your previous broker</h3><p>Take your funds out of the platform you are leaving, and keep the withdrawal confirmation.</p></div>
+            <div class="htrade-txt"><h3>Withdraw your funds from your previous broker</h3></div>
           </li>
           <li class="htrade-step">
             <span class="htrade-num">02</span>
-            <div class="htrade-txt"><h3>Deposit into your STARTRADER account</h3><p>Fund the account you want the rewards on. The switch allowance is measured against this deposit.</p></div>
+            <div class="htrade-txt"><h3>Deposit into your STARTRADER account</h3></div>
           </li>
           <li class="htrade-step">
             <span class="htrade-num">03</span>
-            <div class="htrade-txt"><h3>Submit your withdrawal proof</h3><p>Send the confirmation to our support team by email or live chat, and they will verify it.</p></div>
+            <div class="htrade-txt"><h3>Submit your withdrawal proof to our support team via <a href="mailto:support@startrader.com">email</a> or live chat</h3></div>
           </li>
           <li class="htrade-step">
             <span class="htrade-num">04</span>
-            <div class="htrade-txt"><h3>Start trading to earn your cashback</h3><p>Cashback accrues per lot for sixty days from your first deposit.</p></div>
+            <div class="htrade-txt"><h3>Start trading to earn your cashback</h3></div>
           </li>
           <li class="htrade-step">
             <span class="htrade-num">05</span>
-            <div class="htrade-txt"><h3>Receive your rewards</h3><p>The allowance is applied on verification; the cashback settles across the earning period.</p></div>
+            <div class="htrade-txt"><h3>Receive your rewards</h3></div>
           </li>
         </ol>
       </div>
@@ -907,42 +863,14 @@
   </div>
 </section>
 
-<!-- ============ FAQ ============ -->
-<section class="section faq-sec fx-faq" aria-labelledby="db-faq-title">
-  <div class="container">
-    <div class="head center">
-      <span class="eyebrow" data-aos="fade-up">FAQ</span>
-      <h2 class="h2" id="db-faq-title" data-aos="fade-up">About the switch rewards</h2>
-    </div>
-    <div class="faq-list" data-aos="fade-up">
-      <details class="faq-item">
-        <summary>How is the 1% switch allowance worked out?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">It is one per cent of the smaller of the two amounts — what you withdrew from your old broker and what you deposited with STARTRADER. Withdraw $2,000 and deposit $1,000 and the allowance is $10; withdraw $500 and deposit $1,000 and it is $5.</div>
-      </details>
-      <details class="faq-item">
-        <summary>Is there a cap on the switch allowance?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">No. There is no maximum limit on that reward, and it is applied instantly once your withdrawal proof is verified.</div>
-      </details>
-      <details class="faq-item">
-        <summary>How much cashback can I earn?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">STP accounts earn $5 per lot traded and ECN accounts $2 per lot, each capped at $200. The earning period runs for 60 days from your first deposit, on deposits of $3,000 or more.</div>
-      </details>
-      <details class="faq-item">
-        <summary>What proof do I need to send?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">The withdrawal confirmation from your previous broker. Send it to the support team by email or live chat and they will confirm once it is verified.</div>
-      </details>
-    </div>
-  </div>
-</section>
-
 <!-- ============ THE CLOSING CALL ============ -->
 <section class="cta-banner" aria-labelledby="db-close-title">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="db-close-title" data-aos="fade-up">Ready to switch<br>and earn?</h2>
-    <p data-aos="fade-up">Don&rsquo;t let another day pass with your current broker. Join the traders who have already made the switch to STARTRADER.</p>
+    <h2 id="db-close-title" data-aos="fade-up">Ready to Switch<br>and Earn?</h2>
+    <p data-aos="fade-up">Don&rsquo;t let another day pass with your current broker. Join thousands of traders who&rsquo;ve already made the profitable switch to STARTRADER.</p>
     <div class="cta-actions" data-aos="fade-up">
-      <a href="getting-started.html" class="btn btn-primary btn-lg">Claim your switch rewards <svg class="ico"><use href="#i-arrow-right"/></svg></a>
+      <a href="getting-started.html" class="btn btn-primary btn-lg">Claim Your Switch Rewards Now <svg class="ico"><use href="#i-arrow-right"/></svg></a>
     </div>
   </div>
 </section>

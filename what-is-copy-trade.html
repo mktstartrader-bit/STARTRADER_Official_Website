@@ -1,0 +1,922 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#05070E" />
+
+  <title>What is Copy Trade? | Help Centre | STARTRADER</title>
+  <meta name="description" content="Copy Trade lets investors act as Providers who share strategies or Followers who copy them automatically in real time. Copy trading carries the same risk as direct trading." />
+  <meta name="author" content="STARTRADER" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <link rel="canonical" href="https://www.startrader.com/what-is-copy-trade/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="STARTRADER" />
+  <meta property="og:title" content="What is Copy Trade? | Help Centre | STARTRADER" />
+  <meta property="og:description" content="Copy Trade lets investors act as Providers who share strategies or Followers who copy them automatically in real time. Copy trading carries the same risk as direct trading." />
+  <meta property="og:url" content="https://www.startrader.com/what-is-copy-trade/" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/platform-hero.webp" />
+  <meta property="og:image:alt" content="What is Copy Trade? — STARTRADER" />
+  <meta property="og:locale" content="en_US" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="What is Copy Trade? | Help Centre | STARTRADER" />
+  <meta name="twitter:description" content="Copy Trade lets investors act as Providers who share strategies or Followers who copy them automatically in real time. Copy trading carries the same risk as direct trading." />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/platform-hero.webp" />
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="assets/css/aos.min.css" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=qa72" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ---- Help Centre article ---- */
+/* same proportions as the Knowledge Centre article, so a reader moving between
+   the two libraries meets one measure and one rail width */
+.ar{--ar-rail:380px;--ar-measure:650px}
+.ar-wrap{padding-bottom:clamp(44px,5vw,72px)}
+.hcx-rail{gap:18px}
+
+/* the article takes the left column and the section's navigation sits on the
+   right, the way the guide pages read. Below 1024px the shared sheet unwraps
+   the rail into the article's flow, so this only applies to the two-column view. */
+@media (min-width:1025px){
+  .ar-cols{grid-template-columns:minmax(0,var(--ar-measure)) var(--ar-rail)}
+  .ar-main{order:1;min-width:0}
+  .ar-rail{order:2}
+  /* the contents divider and its active bar move to the rail's inner edge */
+  .ar-toc{padding-right:0;padding-left:var(--toc-pad);border-right:0;border-left:1px solid var(--line)}
+  .ar-toc a::after{right:auto;left:calc(-1 * var(--toc-pad) - 1px)}
+}
+
+/* ---- Rail search ---- */
+.hcx-search{
+  position:relative;display:flex;align-items:center;border-radius:70px;background:#fff;
+  border:1px solid rgba(20,44,96,.12);box-shadow:0 16px 34px -28px rgba(20,44,96,.6),inset 0 1px 0 #fff;
+  transition:border-color .3s,box-shadow .3s var(--ease);
+}
+.hcx-search-ic{position:absolute;left:17px;width:16px;height:16px;color:var(--text-mute);pointer-events:none;transition:color .3s}
+.hcx-search-ic svg{width:100%;height:100%}
+.hcx-search input{width:100%;height:46px;padding:0 42px 0 42px;border:0;background:none;font:inherit;font-size:14px;color:var(--text);border-radius:70px}
+.hcx-search input::placeholder{color:var(--text-mute)}
+.hcx-search input:focus{outline:none}
+.hcx-search:focus-within{border-color:rgba(0,71,187,.4);box-shadow:0 0 0 4px rgba(0,71,187,.1)}
+.hcx-search:focus-within .hcx-search-ic{color:var(--blue)}
+.hcx-clear{position:absolute;right:13px;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;color:var(--text-mute);background:rgba(20,44,96,.07);transition:background .25s,color .25s}
+.hcx-clear:hover{background:rgba(0,71,187,.12);color:var(--blue)}
+.hcx-clear svg{width:10px;height:10px}
+
+/* ---- "Articles in this section" groups ---- */
+.hcx-sec-h{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--text-mute);margin-bottom:-4px}
+.hcx-group{border-radius:16px;overflow:hidden;transition:border-color .3s,box-shadow .4s var(--ease)}
+.hcx-group[open]{border-color:rgba(0,71,187,.2);box-shadow:0 22px 44px -32px rgba(20,44,96,.5),inset 0 1px 0 #fff}
+.hcx-sum{
+  display:flex;align-items:center;gap:11px;padding:14px 15px;cursor:pointer;list-style:none;
+  font-size:14.5px;font-weight:700;letter-spacing:-.018em;color:var(--text);
+  transition:color .25s,background .25s;
+}
+.hcx-sum::-webkit-details-marker{display:none}
+.hcx-sum:hover{color:var(--blue);background:rgba(0,71,187,.04)}
+.hcx-sum-ic{width:30px;height:30px;flex:none;border-radius:10px;display:grid;place-items:center;background:rgba(0,71,187,.09);color:var(--blue);transition:transform .4s var(--ease)}
+.hcx-sum-ic svg{width:15px;height:15px}
+.hcx-group[open] .hcx-sum-ic{transform:scale(1.06)}
+.hcx-sum b{flex:1 1 auto;min-width:0;font-weight:inherit}
+.hcx-caret{width:13px;height:13px;flex:none;color:var(--text-mute);transition:transform .35s var(--ease),color .25s}
+.hcx-group[open] .hcx-caret{transform:rotate(180deg);color:var(--blue)}
+.hcx-list{display:flex;flex-direction:column;padding:2px 9px 11px;border-top:1px solid rgba(20,44,96,.07)}
+.hcx-list a{
+  position:relative;display:block;padding:9px 11px 9px 24px;border-radius:10px;
+  font-size:13px;line-height:1.5;color:var(--text-soft);
+  transition:color .25s,background .25s;
+}
+.hcx-list a::before{
+  content:"";position:absolute;left:10px;top:15px;width:5px;height:5px;border-radius:50%;
+  background:rgba(20,44,96,.22);transition:background .25s,transform .3s var(--ease);
+}
+.hcx-list a:hover{color:var(--blue);background:rgba(0,71,187,.05)}
+.hcx-list a:hover::before{background:var(--blue);transform:scale(1.25)}
+.hcx-list a[aria-current="page"]{color:var(--blue);font-weight:700;background:rgba(0,71,187,.07)}
+.hcx-list a[aria-current="page"]::before{background:var(--blue)}
+
+/* ---- Rail help card ---- */
+.hcx-help{padding:20px 19px 21px;border-radius:16px}
+.hcx-help h2{font-size:16px;letter-spacing:-.024em;color:var(--text)}
+.hcx-help p{margin:9px 0 15px;font-size:13px;line-height:1.62;color:var(--text-soft)}
+.hcx-help .btn{width:100%;justify-content:center}
+
+/* ---- Article column ---- */
+/* the lede is promoted out of the prose to sit under the H1 as a standfirst,
+   the way the Knowledge Centre article reads */
+.ar-stand{max-width:60ch}
+/* related cards reuse the Knowledge Centre's guide card, minus the media strip
+   a help answer has no artwork for */
+.hcx-rel-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.hcx-rel{display:flex;flex-direction:column;padding:24px 22px 22px;border-radius:20px;min-width:0;
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s}
+.hcx-rel:hover{transform:translateY(-4px);border-color:rgba(0,71,187,.28);box-shadow:0 28px 52px -30px rgba(20,44,96,.5),inset 0 1px 0 #fff}
+.hcx-rel-cat{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--blue)}
+.hcx-rel-cat svg{width:14px;height:14px}
+.hcx-rel-h{margin-top:12px;font-size:16.5px;font-weight:700;letter-spacing:-.022em;line-height:1.34;color:var(--text)}
+.hcx-rel:hover .hcx-rel-h a{color:var(--blue)}
+.hcx-rel-h a{transition:color .25s}
+.hcx-rel-ex{margin-top:9px;font-size:13.5px;line-height:1.62;color:var(--text-soft)}
+.hcx-rel-go{margin-top:auto;padding-top:18px;display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:700;color:var(--text-mute);transition:color .25s}
+.hcx-rel-go svg{width:13px;height:13px;transition:transform .3s var(--ease)}
+.hcx-rel:hover .hcx-rel-go{color:var(--blue)}
+.hcx-rel:hover .hcx-rel-go svg{transform:translateX(3px)}
+@media (max-width:1024px){.hcx-rel-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:720px){.hcx-rel-grid{grid-template-columns:1fr}}
+
+/* a list closes with no bottom margin in the shared sheet, so the paragraph
+   that follows one sat flush against the last bullet */
+.ar-body ul+p,.ar-body ol+p{margin-top:18px}
+.ar-body .hcx-lede{font-size:17.5px;line-height:1.72;color:var(--text)}
+.hcx-risk{margin-top:18px;padding:20px 22px;border-radius:16px;background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.18)}
+.hcx-risk p{font-size:14px!important;line-height:1.7;color:var(--text-soft)}
+
+/* ---- Responsive: the rail unwraps into the article's flow ---- */
+@media (max-width:1024px){
+  .ar{--ar-rail:auto}
+  .hcx-search{order:0;max-width:560px;margin:0 auto;width:100%}
+  .ar-extras{order:3;display:flex;flex-direction:column;gap:14px}
+  .hcx-groups{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+}
+@media (max-width:720px){
+  .hcx-groups{grid-template-columns:1fr}
+}
+  </style>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "What is Copy Trade?",
+  "description": "Copy Trade lets investors act as Providers who share strategies or Followers who copy them automatically in real time. Copy trading carries the same risk as direct trading.",
+  "url": "https://www.startrader.com/what-is-copy-trade/",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "STARTRADER",
+    "url": "https://www.startrader.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "STARTRADER",
+    "url": "https://www.startrader.com/",
+    "logo": "https://www.startrader.com/assets/img/logo-startrader.svg"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.startrader.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Copy Trading",
+      "item": "https://www.startrader.com/help-center/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "What is Copy Trade?",
+      "item": "https://www.startrader.com/what-is-copy-trade/"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What is Copy Trade?",
+  "description": "Copy Trade lets investors act as Providers who share strategies or Followers who copy them automatically in real time. Copy trading carries the same risk as direct trading.",
+  "url": "https://www.startrader.com/what-is-copy-trade/",
+  "author": {
+    "@type": "Organization",
+    "name": "STARTRADER"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "STARTRADER",
+    "url": "https://www.startrader.com/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.startrader.com/assets/img/logo-startrader.svg"
+    }
+  },
+  "inLanguage": "en",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "STARTRADER",
+    "url": "https://www.startrader.com/"
+  }
+}
+  </script>
+
+</head>
+<body class="light-top">
+
+<!-- ============ SVG ICON SPRITE ============ -->
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M4 12h15m0 0-6-6m6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-arrow-ur" viewBox="0 0 24 24"><path d="M7 17 17 7m0 0H8m9 0v9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z" fill="currentColor"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.4 3 8.4 7 9.5 4-1.1 7-5.1 7-9.5V6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><path d="M12 3 3 7.5v9L12 21l9-4.5v-9zM3 7.5 12 12l9-4.5M12 12v9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-headset" viewBox="0 0 24 24"><path d="M4 13a8 8 0 0 1 16 0M4 13v3a2 2 0 0 0 2 2h1v-6H6a2 2 0 0 0-2 2Zm16 0v3a2 2 0 0 1-2 2h-1v-6h1a2 2 0 0 1 2 2Zm-3 5a3 3 0 0 1-3 2.5h-2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10m5 10V4m5 16v-7m5 7V8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.2-4.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5zM20 5.5A1.5 1.5 0 0 0 18.5 4H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 2 2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.8 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z" fill="currentColor"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.7 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3Z" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 7v5l3.4 2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M4 18a8 8 0 1 1 16 0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M12 18l4.2-5.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="12" cy="18" r="1.5" fill="currentColor"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-facebook" viewBox="0 0 24 24"><path d="M14 8.5V7c0-.9.6-1 1-1h1.5V3H14c-2.2 0-3.5 1.5-3.5 3.7V8.5H8.5v3h2v8.5h3.5v-8.5h2.3l.4-3z" fill="currentColor"/></symbol>
+  <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="3.6" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="16.5" cy="7.5" r="1.1" fill="currentColor"/></symbol>
+  <symbol id="i-youtube" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m10.5 9.3 4.5 2.7-4.5 2.7z" fill="currentColor"/></symbol>
+  <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M6.5 9v9M6.5 6.2v.01M11 18v-5a2.5 2.5 0 0 1 5 0v5M11 12v6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+  <symbol id="i-caret-up" viewBox="0 0 12 12"><path d="M6 3 10 8H2z" fill="currentColor"/></symbol>
+  <symbol id="i-caret-down" viewBox="0 0 12 12"><path d="M6 9 2 4h8z" fill="currentColor"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M17.5 3h3.2l-7 8 8.2 10.9h-6.4l-5-6.6-5.8 6.6H1.5l7.5-8.6L1.6 3H8l4.5 6zM16.4 19.1h1.8L7.7 4.8H5.8z" fill="currentColor"/></symbol>
+  <symbol id="i-telegram" viewBox="0 0 24 24"><path d="M21.5 4.3 2.9 11.5c-.9.35-.9.9-.15 1.12l4.7 1.46 1.8 5.6c.23.63.4.86 1 .86.46 0 .66-.2.9-.45l2.28-2.2 4.72 3.5c.87.48 1.5.23 1.72-.8l3-14.1c.3-1.28-.5-1.86-1.34-1.5z" fill="currentColor"/></symbol>
+  <symbol id="i-tiktok" viewBox="0 0 24 24"><path d="M16.6 3c.3 1.6 1.3 3 2.7 3.8.6.4 1.4.6 2.2.7v3.1c-1.8 0-3.5-.6-4.9-1.6v6.6a6.3 6.3 0 1 1-6.3-6.3c.3 0 .7 0 1 .1v3.2a3.2 3.2 0 1 0 2.2 3V3z" fill="currentColor"/></symbol>
+  <symbol id="i-user-plus" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3 20a6 6 0 0 1 12 0M18.5 8v5M21 10.5h-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-id" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="8.5" cy="11" r="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M13.5 10h4M13.5 13.5h4M5.6 15.6c.4-1.2 1.6-1.9 2.9-1.9s2.5.7 2.9 1.9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 1 2-2h11.5A1.5 1.5 0 0 0 15 4H5.5" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="6" width="18" height="13" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="16.5" cy="12.5" r="1.3" fill="currentColor"/></symbol>
+  <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9 20h6M12 16v4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M5 15H4.6A1.6 1.6 0 0 1 3 13.4V5a2 2 0 0 1 2-2h8.4A1.6 1.6 0 0 1 15 4.6V5" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 3v5h5M8.5 13h7M8.5 16.5h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-window" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 9h18" stroke="currentColor" stroke-width="1.6"/><circle cx="6" cy="7" r=".7" fill="currentColor"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 18h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-plug" viewBox="0 0 24 24"><path d="M9 3v4M15 3v4M6.5 7h11v3.5a5.5 5.5 0 0 1-11 0zM12 16.5V21" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-swap" viewBox="0 0 24 24"><path d="M4 8h13l-3.5-3.5M20 16H7l3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-cfd" viewBox="0 0 24 24"><path d="M4 15l4.5-4.5 3 3L19 6M14.5 6H19v4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-droplet" viewBox="0 0 24 24"><path d="M12 3.5s6 6.2 6 10.5a6 6 0 0 1-12 0c0-4.3 6-10.5 6-10.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+  <symbol id="i-pie" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M12 3v9h9A9 9 0 0 0 12 3Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 11.5a7.5 7.5 0 0 1-10.9 6.7L4 20l1.8-5.1A7.5 7.5 0 1 1 21 11.5Z" fill="currentColor"/><circle cx="8.5" cy="11.5" r="1.15" fill="#0a2a6b"/><circle cx="12" cy="11.5" r="1.15" fill="#0a2a6b"/><circle cx="15.5" cy="11.5" r="1.15" fill="#0a2a6b"/></symbol>
+  <symbol id="i-bubble" viewBox="0 0 24 24"><path d="M20.5 11.6c0 4-3.8 7.2-8.5 7.2-.9 0-1.8-.12-2.6-.34L4.5 20l1.2-3.5A6.9 6.9 0 0 1 3.5 11.6c0-4 3.8-7.2 8.5-7.2s8.5 3.2 8.5 7.2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.8 11.6h6.4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-cookie" viewBox="0 0 24 24"><path d="M12 2.5a9.5 9.5 0 1 0 9.5 9.5 4 4 0 0 1-4-4 3.2 3.2 0 0 1-3.4-3.4A9.6 9.6 0 0 0 12 2.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="9" cy="12" r="1" fill="currentColor"/><circle cx="13" cy="15" r="1" fill="currentColor"/><circle cx="14.5" cy="10" r="1" fill="currentColor"/><circle cx="8.5" cy="16" r=".8" fill="currentColor"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M4 12 20 4l-6 16-3-6-7-2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8.2" r="3.8" fill="currentColor"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0Z" fill="currentColor"/></symbol>
+</svg>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============ TOP DISCLAIMER BAR ============ -->
+<div class="topbar" role="note">
+  <div class="container">
+    <p>CFDs are complex instruments and come with a high risk of losing money rapidly due to leverage. <strong>74% of retail investor accounts lose money</strong> when trading CFDs with this provider.</p>
+  </div>
+</div>
+
+<!-- ============ HEADER / NAV ============ -->
+<header class="site-header" id="siteHeader">
+  <div class="container nav">
+    <div class="nav-brandwrap">
+      <a href="index.html" class="brand" aria-label="STARTRADER home">
+        <img src="assets/img/logo-startrader.svg" alt="STARTRADER" width="180" height="35" />
+      </a>
+      <span class="hp-divider" aria-hidden="true"></span>
+      <span class="header-partners">
+        <img class="hp-logo hp-nba" src="assets/img/nav-nba.svg" alt="NBA" width="156" height="92" loading="lazy">
+        <img class="hp-logo hp-porsche" src="assets/img/nav-porsche.svg" alt="Porsche Carrera Cup Middle East" width="121" height="34" loading="lazy">
+      </span>
+    </div>
+
+    <nav class="nav-menu" aria-label="Primary">
+      <div class="nav-item has-drop has-mega">
+        <button class="nav-link" aria-expanded="false">Trading <svg class="caret"><use href="#i-chevron-down"/></svg></button>
+        <div class="mega" role="menu">
+          <div class="mega-main">
+          <div class="mega-col">
+            <span class="mega-head">Getting Started</span>
+            <a href="getting-started.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-user-plus"/></svg></span><span class="mega-txt"><b>Account Opening</b></span></a>
+            <a href="accounts.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-id"/></svg></span><span class="mega-txt"><b>Trading Account</b></span></a>
+            <a href="prime-ecn-account.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-bolt"/></svg></span><span class="mega-txt"><b>Prime ECN</b></span></a>
+            <a href="funding.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>Funding &amp; Withdrawal</b></span></a>
+          </div>
+          <div class="mega-col">
+            <span class="mega-head">Platforms</span>
+            <a href="mt5.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-monitor"/></svg></span><span class="mega-txt"><b>MT5</b></span></a>
+            <a href="mt4.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-monitor"/></svg></span><span class="mega-txt"><b>MT4</b></span></a>
+            <a href="copy-trade.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-copy"/></svg></span><span class="mega-txt"><b>Copy Trade</b></span></a>
+            <a href="star-copy.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-doc"/></svg></span><span class="mega-txt"><b>STAR Copy <span class="mega-badge">New</span></b></span></a>
+            <a href="star-webtrader.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-cfd"/></svg></span><span class="mega-txt"><b>STAR Web Trading <span class="mega-badge">New</span></b></span></a>
+            <div class="mega-sub">
+              <a href="webtrader.html" class="mega-item mega-sub-toggle"><span class="mega-ico"><svg><use href="#i-window"/></svg></span><span class="mega-txt"><b>Web Trader</b></span><svg class="mega-subchev"><use href="#i-chevron-down"/></svg></a>
+              <div class="mega-subitems">
+                <a href="webtrader-mt4.html">MT4 WebTrader</a>
+                <a href="webtrader-mt5.html">MT5 WebTrader</a>
+              </div>
+            </div>
+            <a href="trading-app.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-phone"/></svg></span><span class="mega-txt"><b>Mobile Apps</b></span></a>
+            <a href="pamm-trade.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-plug"/></svg></span><span class="mega-txt"><b>Pro-Link</b></span></a>
+          </div>
+          <div class="mega-col">
+            <span class="mega-head">Products</span>
+            <a href="forex.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-swap"/></svg></span><span class="mega-txt"><b>Forex</b></span></a>
+            <a href="cfd.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-cfd"/></svg></span><span class="mega-txt"><b>CFD</b></span></a>
+            <a href="commodities.html" class="mega-item mega-item-parent" data-fly="commodities"><span class="mega-ico"><svg><use href="#i-droplet"/></svg></span><span class="mega-txt"><b>Commodities</b></span><svg class="mega-chev" aria-hidden="true"><use href="#i-chevron-right"/></svg></a>
+            <a href="indices.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>Indices</b></span></a>
+            <a href="shares.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-pie"/></svg></span><span class="mega-txt"><b>Shares</b></span></a>
+            <a href="etf.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-layers"/></svg></span><span class="mega-txt"><b>ETFs</b></span></a>
+          </div>
+          </div>
+          <div class="mega-flyout" aria-hidden="true"><div class="fly-inner" data-fly-panel="commodities">
+            <a class="fly-title fly-title-link" href="commodities.html">Commodities <svg class="fly-title-go"><use href="#i-arrow-right"/></svg></a>
+            <div class="fly-group">
+              <h5><a href="commodities/energies.html">Energies</a></h5>
+              <a href="commodities/brent-oil.html">Brent Oil</a>
+              <a href="commodities/natural-gas.html">Natural Gas</a>
+              <a href="commodities/heating-oil.html">Heating Oil</a>
+            </div>
+            <div class="fly-group">
+              <h5><a href="metals.html">Metals</a></h5>
+              <a href="commodities/gold.html">Gold · XAU/USD</a>
+              <a href="commodities/gold-247.html">Gold 24/7 <span class="mega-badge">New</span></a>
+              <a href="commodities/silver.html">Silver · XAG/USD</a>
+              <a href="commodities/copper.html">Copper</a>
+              <a href="commodities/platinum.html">Platinum · XPT/USD</a>
+            <a href="commodities/palladium.html">Palladium · XPD/USD</a>
+            </div>
+            <div class="fly-group">
+              <h5><a href="agriculture.html">Agriculture</a></h5>
+              <a href="commodities/wheat.html">Wheat</a>
+              <a href="commodities/corn.html">Corn</a>
+              <a href="commodities/soybeans.html">Soybeans</a>
+              <a href="commodities/coffee.html">Coffee</a>
+              <a href="commodities/sugar.html">Sugar</a>
+              <a href="commodities/cocoa.html">Cocoa</a>
+              <a href="commodities/cotton.html">Cotton</a>
+            </div>
+          </div></div>
+        </div>
+      </div>
+            <div class="nav-item has-drop has-mega">
+        <button class="nav-link" aria-expanded="false">Education <svg class="caret"><use href="#i-chevron-down"/></svg></button>
+        <div class="mega mega--center" role="menu">
+          <div class="mega-main">
+            <div class="mega-col">
+              <span class="mega-head">Learn</span>
+              <a href="education.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-box"/></svg></span><span class="mega-txt"><b>Knowledge Center</b></span></a>
+              <a href="glossary.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-doc"/></svg></span><span class="mega-txt"><b>Glossary</b></span></a>
+              <a href="market-analysis.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>Financial Market Analysis</b></span></a>
+            </div>
+            <div class="mega-col">
+              <span class="mega-head">Analysis</span>
+              <a href="news.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-window"/></svg></span><span class="mega-txt"><b>News Room</b></span></a>
+              <a href="economiccalendar.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-clock"/></svg></span><span class="mega-txt"><b>Economic Calendar</b></span></a>
+            </div>
+            <div class="mega-col">
+              <span class="mega-head">Academy</span>
+              <a href="webinars.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-play"/></svg></span><span class="mega-txt"><b>Webinars</b></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+            <div class="nav-item has-drop has-mega">
+        <button class="nav-link" aria-expanded="false">Promotions <svg class="caret"><use href="#i-chevron-down"/></svg></button>
+        <div class="mega mega--promo mega--center" role="menu">
+          <div class="mega-main">
+            <div class="mega-col">
+              <span class="mega-head">Promotions</span>
+              <a href="promotions.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-send"/></svg></span><span class="mega-txt"><b>Our Promotions</b></span></a>
+              <a href="gold-cashback.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-clock"/></svg></span><span class="mega-txt"><b>Gold 24/7 Cashback</b></span></a>
+              <a href="point-mall.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>Point Mall</b></span></a>
+              <a href="deposit-bonus.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>Deposit Bonuses</b></span></a>
+              <a href="switch-allowance.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-swap"/></svg></span><span class="mega-txt"><b>1% Switch Allowance</b></span></a>
+              <a href="vps.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-plug"/></svg></span><span class="mega-txt"><b>VPS</b></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+            <div class="nav-item has-drop has-mega">
+        <button class="nav-link" aria-expanded="false">Company <svg class="caret"><use href="#i-chevron-down"/></svg></button>
+        <div class="mega mega--center" role="menu">
+          <div class="mega-main">
+            <div class="mega-col">
+              <span class="mega-head">About</span>
+              <a href="company.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-shield"/></svg></span><span class="mega-txt"><b>Why STARTRADER</b></span></a>
+              <a href="corporate-social-responsibility.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-user"/></svg></span><span class="mega-txt"><b>CSR</b></span></a>
+              <a href="events.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-clock"/></svg></span><span class="mega-txt"><b>Events</b></span></a>
+              <div class="mega-sub">
+                <a href="sponsorship.html" class="mega-item mega-item--tight mega-sub-toggle"><span class="mega-ico"><svg><use href="#i-star"/></svg></span><span class="mega-txt"><b>Sponsorship</b></span><svg class="mega-subchev"><use href="#i-chevron-down"/></svg></a>
+                <div class="mega-subitems">
+                  <a href="sponsorship/nba.html">Official Partner of the NBA</a>
+                  <a href="sponsorship/pccme.html">Official Partner of the PCCME</a>
+                  <a href="sponsorship/icc.html">ICC Men&rsquo;s T20 World Cup 2026</a>
+                  <a href="sponsorship/asia-cup-2025.html">UAE National Cricket Team</a>
+                  <a href="sponsorship/pfl-champions-series.html">PFL Champions Series</a>
+                  <a href="sponsorship/mena.html">MENA Investment Congress 2025</a>
+                </div>
+              </div>
+              <a href="media.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-doc"/></svg></span><span class="mega-txt"><b>Media Coverage</b></span></a>
+              <a href="achievement.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-globe"/></svg></span><span class="mega-txt"><b>Achievements</b></span></a>
+              <a href="announcements.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-send"/></svg></span><span class="mega-txt"><b>Announcements</b></span></a>
+              <a href="https://www.startrader-careers.com/" target="_blank" rel="noopener" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-user-plus"/></svg></span><span class="mega-txt"><b>Careers</b></span></a>
+              <a href="https://www.starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-headset"/></svg></span><span class="mega-txt"><b>Help Center</b></span></a>
+              <a href="contact.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-bubble"/></svg></span><span class="mega-txt"><b>Contact Us</b></span></a>
+            </div>
+            <div class="mega-col">
+              <span class="mega-head">Corporate</span>
+              <a href="regulation.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-id"/></svg></span><span class="mega-txt"><b>Regulation</b></span></a>
+              <a href="legal-documents.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-doc"/></svg></span><span class="mega-txt"><b>Legal Documents</b></span></a>
+              <div class="mega-sub">
+                <a href="insurance.html" class="mega-item mega-item--tight mega-sub-toggle"><span class="mega-ico"><svg><use href="#i-shield"/></svg></span><span class="mega-txt"><b>Insurance</b></span><svg class="mega-subchev"><use href="#i-chevron-down"/></svg></a>
+                <div class="mega-subitems">
+                  <a href="lloyd-insurance.html">Lloyd&rsquo;s Insurance</a>
+                  <a href="financial-commission.html">Financial Commission</a>
+                </div>
+              </div>
+              <a href="liquidity-providers.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-droplet"/></svg></span><span class="mega-txt"><b>Liquidity Providers</b></span></a>
+            </div>
+            <div class="mega-col">
+              <span class="mega-head">Partnership</span>
+              <a href="partner.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-user"/></svg></span><span class="mega-txt"><b>Partner</b></span></a>
+              <a href="ib-register.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-user-plus"/></svg></span><span class="mega-txt"><b>Introducing Broker</b></span></a>
+              <a href="affiliate-registration.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-globe"/></svg></span><span class="mega-txt"><b>Affiliate</b></span></a>
+              <a href="money-manager.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>Money Manager</b></span></a>
+              <a href="institutional.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-box"/></svg></span><span class="mega-txt"><b>Institutional</b></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="nav-right">
+      <button class="lang" id="langBtn" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="langPop" aria-label="Select language">
+        <svg class="lang-globe" aria-hidden="true"><use href="#i-globe"/></svg>
+        <span class="lang-code" id="langCode">EN</span>
+        <svg class="lang-caret" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+      </button>
+      <div class="lang-pop" id="langPop" role="dialog" aria-label="Select language" aria-hidden="true">
+        <div class="lp-head">
+          <span class="lp-title">Languages</span>
+          <button class="lp-close" id="langClose" type="button" aria-label="Close language menu"><svg><use href="#i-close"/></svg></button>
+        </div>
+        <div class="lp-search">
+          <svg class="lp-search-ic" viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="6.4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M13.8 13.8L18 18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          <input type="text" id="langSearch" placeholder="Search Language" autocomplete="off" spellcheck="false">
+        </div>
+        <div class="lp-grid" id="langGrid">
+          <button class="lp-item is-active" type="button" data-code="EN"><b>English</b></button>
+          <button class="lp-item" type="button" data-code="ZH-CN"><b>简体中文</b> Simplified Chinese</button>
+          <button class="lp-item" type="button" data-code="KO"><b>한국어</b> Korean</button>
+          <button class="lp-item" type="button" data-code="MS"><b>Melayu</b> Malay</button>
+          <button class="lp-item" type="button" data-code="VI"><b>Việt</b> Vietnamese</button>
+          <button class="lp-item" type="button" data-code="TH"><b>ภาษาไทย</b> Thai</button>
+          <button class="lp-item" type="button" data-code="ID"><b>Indonesian</b> Indonesian</button>
+          <button class="lp-item" type="button" data-code="AR"><b>العربية</b> Arabic</button>
+          <button class="lp-item" type="button" data-code="JA"><b>日本語</b> Japanese</button>
+          <button class="lp-item" type="button" data-code="ZH-TW"><b>繁體中文</b> Traditional Chinese</button>
+          <button class="lp-item" type="button" data-code="FR"><b>Français</b> French</button>
+          <button class="lp-item" type="button" data-code="ES"><b>Español</b> Spanish</button>
+          <button class="lp-item" type="button" data-code="PT"><b>Português</b> Portuguese</button>
+          <button class="lp-item" type="button" data-code="DE"><b>Deutsch</b> German</button>
+          <button class="lp-item" type="button" data-code="FA"><b>فارسی</b> Persian</button>
+          <button class="lp-item" type="button" data-code="IT"><b>Italiano</b> Italian</button>
+          <button class="lp-item" type="button" data-code="RU"><b>Русский язык</b> Russian</button>
+          <button class="lp-item" type="button" data-code="TR"><b>Türkçe</b> Turkish</button>
+          <button class="lp-item" type="button" data-code="PL"><b>Polski</b> Polish</button>
+          <button class="lp-item" type="button" data-code="HI"><b>हिंदी</b> Hindi</button>
+          <button class="lp-item" type="button" data-code="NL"><b>Nederlands</b> Dutch</button>
+        </div>
+        <p class="lp-empty" hidden>No languages found</p>
+      </div>
+      <a href="login.html" class="login">Login</a>
+      <a href="https://www.startrader.com/live-account/" class="btn btn-primary btn-sm nav-cta">Open Live Account</a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav aria-label="Mobile">
+    <a href="index.html#markets">Trading</a>
+    <a href="index.html#academy">Education</a>
+    <a href="promotions.html">Promotions</a>
+    <a href="index.html#why">Company</a>
+    <hr>
+    <a href="login.html" class="login">Login</a>
+    <a href="https://www.startrader.com/live-account/" class="btn btn-primary">Open Live Account</a>
+  </nav>
+</div>
+
+<div class="ar-progress" aria-hidden="true"><i data-ar-progress></i></div>
+
+<main id="main">
+
+<article class="ar" itemscope itemtype="https://schema.org/Article">
+  <div class="ar-wrap">
+    <div class="container ar-cols">
+
+      <!-- ============ RAIL: the section's own navigation ============ -->
+      <aside class="ar-rail hcx-rail" aria-label="Help Centre navigation">
+
+        <form class="hcx-search" role="search" action="https://starhelpcenter.com/hc/en-us/search" method="get">
+          <span class="hcx-search-ic" aria-hidden="true"><svg><use href="#i-search"/></svg></span>
+          <input type="search" name="query" id="hcxSearch" autocomplete="off" placeholder="Type your questions here." aria-label="Search the Help Centre">
+          <button class="hcx-clear" type="button" id="hcxClear" aria-label="Clear search" hidden><svg><use href="#i-close"/></svg></button>
+        </form>
+
+        <div class="ar-toc" data-ar-toc>
+          <b class="ar-side-h">In this article</b>
+          <nav aria-label="In this article">
+            <a href="#roles">The two roles</a>
+            <a href="#how">How copying works</a>
+            <a href="#risk">Risk</a>
+            <a href="#help">Need More Help?</a>
+          </nav>
+        </div>
+
+        <div class="ar-extras">
+          <b class="hcx-sec-h">Articles in this section</b>
+
+          <div class="hcx-groups">
+            <!-- DEV NOTE: links marked target="_blank" still point at the Help Centre
+                 root. Swap each for its starhelpcenter.com article URL. -->
+            <details class="hcx-group glass">
+              <summary class="hcx-sum">
+                <span class="hcx-sum-ic"><svg><use href="#i-copy"/></svg></span>
+                <b>STAR Copy &ndash; Overview</b>
+                <svg class="hcx-caret"><use href="#i-chevron-down"/></svg>
+              </summary>
+              <div class="hcx-list">
+                <a href="star-copy.html">What is STAR Copy?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">How can I create a STAR Copy account?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">How do I place manual trades in a STAR Copy account?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">Can manual trading and copy trading be done in the same STAR Copy account?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">Do I need to create an MT4/5 Account to start STAR Copy?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">What is the High Water Mark in STAR Copy?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">How are fees and profit sharing calculated on STAR Copy?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">How can I start using STAR Copy?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">Can I create more than one STAR Copy account?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">Does STAR Copy have any fees?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">Is STAR Copy the same as STARTRADER Copy Trade?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">Which currency can I use in STAR Copy accounts?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">What are the advantages of using STAR Copy Trading?</a>
+              </div>
+            </details>
+
+            <details class="hcx-group glass">
+              <summary class="hcx-sum">
+                <span class="hcx-sum-ic"><svg><use href="#i-send"/></svg></span>
+                <b>STAR Copy &ndash; Signal Provider</b>
+                <svg class="hcx-caret"><use href="#i-chevron-down"/></svg>
+              </summary>
+              <div class="hcx-list">
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">How many strategies can I create on STAR Copy?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">Can I remove a Copier who is already copying my strategy on STAR Copy?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">Can I delete my STAR Copy signal provider account?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">How do I approve or reject copy requests in STAR Copy?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">How can I make my strategy private as a Signal Provider on STAR Copy?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">How can I promote my strategy as a signal provider on STAR Copy?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">How do I edit or delist a strategy in STAR Copy?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">How do I view my profit sharing report on STAR Copy?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">Can I change my existing strategy’s settlement frequency on STAR Copy?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">Can Signal Providers change the profit-sharing ratio on STAR Copy?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">How do I activate my account as a Signal Provider on STAR Copy?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">How often are profit-sharing fees settled for Signal Providers on STAR Copy?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">Can a Signal Provider set minimum requirements for Copiers on STAR Copy?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">How do I create a strategy in STAR Copy?</a>
+              </div>
+            </details>
+
+            <details class="hcx-group glass">
+              <summary class="hcx-sum">
+                <span class="hcx-sum-ic"><svg><use href="#i-user-plus"/></svg></span>
+                <b>STAR Copy &ndash; Copier</b>
+                <svg class="hcx-caret"><use href="#i-chevron-down"/></svg>
+              </summary>
+              <div class="hcx-list">
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">What are the requirements and copy modes on STAR Copy?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">How do I copy a strategy in STAR Copy?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">How to add or remove funds in STAR Copy?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">What are the copy modes in STAR Copy?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">How can I manage or stop copy trades from my STAR Copy?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">Can I manage my copied trades on STAR Copy?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">How to find Signal Providers in STAR Copy?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">How do I add and view favorite strategies in STAR Copy?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">How to check the status of my copy order request in STAR Copy?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">When is profit sharing paid in STAR Copy?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">How to check profit shared with a Signal Provider on STAR Copy?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">What is floating P&amp;L in STAR Copy?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">What happens if one of my STAR Copy copied strategies hits a stop out?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">How to view open copy trades in STAR Copy?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">How to check past trades from copied strategies in STAR Copy?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">How do I deposit and withdraw funds from my STAR Copy account as a copier?</a>
+              </div>
+            </details>
+
+            <details class="hcx-group glass" open>
+              <summary class="hcx-sum">
+                <span class="hcx-sum-ic"><svg><use href="#i-swap"/></svg></span>
+                <b>Copy Trade</b>
+                <svg class="hcx-caret"><use href="#i-chevron-down"/></svg>
+              </summary>
+              <div class="hcx-list">
+                <a href="what-is-copy-trade.html" aria-current="page">What is Copy Trade?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">Can I change the take profit and stop loss on trades copied from a Provider?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">Can I subscribe to multiple Providers at the same time?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">Can I view Providers’ copy trade performance?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">I have opened a Follower Account. How do I fund it and start copying trades?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">How to stop copying a Provider on STARTRADER Copy Trade?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">How to start to follow a Provider?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">How to modify my performance fee as a Provider?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">How do I set the performance fee as a Provider?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">Can I remove my Followers?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">Can I delete my Provider account on STARTRADER Copy Trade?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">What is the performance fee on STARTRADER Copy Trade?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">Can I copy my Provider if we are on different servers?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">What is a STARTRADER Copy Trade Provider and how to become one?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">What are the limitations of STARTRADER Copy Trade?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">What are the benefits of using STARTRADER Copy Trade?</a>
+                <a href="copy-trade.html">How can I access to Copy Trading?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">Are there any fees for participating in STARTRADER Copy Trade?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">What are the Pros and Cons in participating the Copy Trade system?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">Can accounts of different currencies be used for STARTRADER Copy Trade?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">Can a Follower change to a Provider?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">Can I be both a Follower and a Provider at the same time?</a>
+                <a href="https://starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">What is the difference between Copy Trading and Manual Trading?</a>
+              </div>
+            </details>
+          </div>
+
+          <div class="hcx-help glass">
+            <h2>Need Further Assistance?</h2>
+            <p>Can&rsquo;t find the answer? We are here to help. Contact us for personalized support.</p>
+            <a class="btn btn-primary" href="mailto:support@startrader.com">Get help <svg class="ico"><use href="#i-arrow-right"/></svg></a>
+          </div>
+        </div>
+      </aside>
+
+      <!-- ============ ARTICLE ============ -->
+      <div class="ar-main">
+        <nav class="ar-crumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="help-center.html">Help Centre</a>
+          <span aria-hidden="true">/</span>
+          <a href="help-center.html#topics">Copy Trading</a>
+          <span aria-hidden="true">/</span>
+          <span>What is Copy Trade?</span>
+        </nav>
+
+        <h1 class="ar-h1" itemprop="headline">What is Copy Trade?</h1>
+        <p class="ar-stand" itemprop="description">Copy Trade is a feature that allows investors to choose between two roles.</p>
+
+        <div class="ar-byline">
+          <span class="ar-author">
+            <span class="ar-author-tx"><b>STARTRADER Help Centre</b><em>Copy Trading &middot; 2 min read</em></span>
+          </span>
+          <div class="ar-share" role="group" aria-label="Share this article">
+            <a class="ar-sh" href="#" aria-label="Share on X"><svg><use href="#i-x"/></svg></a>
+            <a class="ar-sh" href="#" aria-label="Share on Facebook"><svg><use href="#i-facebook"/></svg></a>
+            <a class="ar-sh" href="#" aria-label="Share on LinkedIn"><svg><use href="#i-linkedin"/></svg></a>
+            <button class="ar-sh" type="button" data-ar-copy aria-label="Copy link to this article"><svg><use href="#i-copy"/></svg></button>
+            <button class="ar-sh" type="button" data-ar-print aria-label="Print this article"><svg><use href="#i-doc"/></svg></button>
+            <span class="ar-copied" data-ar-copied hidden role="status">Link copied</span>
+          </div>
+        </div>
+
+        <div class="ar-body" itemprop="articleBody">
+          <h2 id="roles">The two roles</h2>
+          <ul>
+            <li><strong>Providers:</strong> Make their strategies available to others</li>
+            <li><strong>Followers:</strong> Subscribe to strategies to automatically copy trades</li>
+          </ul>
+
+          <h2 id="how">How copying works</h2>
+          <p>When a Provider performs a trading operation on their account, the same actions are copied in real time to the accounts of their Followers, according to the settings selected by each Follower.</p>
+          <p>This enables investors to participate in the market by following the strategies of experienced traders without executing trades manually.</p>
+
+          <h2 id="risk">Risk</h2>
+          <div class="hcx-risk">
+            <p>Copy trading involves the same level of risk as direct trading. Past performance of a signal provider does not guarantee future results. You may lose part or all of your invested capital.</p>
+          </div>
+
+          <h2 id="help">Need More Help?</h2>
+          <p>Contact Customer Support if you have questions about Copy Trade or about becoming a Provider or Follower. When contacting Customer Support, provide:</p>
+          <ul>
+            <li>Your registered email address</li>
+            <li>Your trading account number</li>
+            <li>Whether you are asking as a Provider or a Follower</li>
+            <li>A description of your question or issue</li>
+          </ul>
+        </div>
+
+        <nav class="ar-pager" aria-label="More Help Centre answers">
+          <a class="ar-pg" href="what-promotions-are-available.html">
+            <span class="dir"><svg aria-hidden="true"><use href="#i-chevron-left"/></svg>Previous</span>
+            <span class="ttl">What promotions are currently available?</span>
+          </a>
+        </nav>
+      </div>
+
+    </div>
+  </div>
+</article>
+
+<!-- ============ KEEP READING ============ -->
+<section class="section ar-rel-sec" aria-labelledby="hcx-rel-title">
+  <div class="container">
+    <div class="head center">
+      <span class="eyebrow" data-aos="fade-up">Keep reading</span>
+      <h2 class="h2" id="hcx-rel-title" data-aos="fade-up">More from the Help Centre</h2>
+    </div>
+    <div class="hcx-rel-grid">
+      <article class="hcx-rel glass" data-aos="fade-up">
+        <span class="hcx-rel-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>STARTRADER</span>
+        <h3 class="hcx-rel-h"><a href="who-is-startrader.html">Who is STARTRADER?</a></h3>
+        <p class="hcx-rel-ex">Who we are, the licences we hold and how the company is structured.</p>
+        <span class="hcx-rel-go">Read the answer <svg><use href="#i-arrow-right"/></svg></span>
+      </article>
+      <article class="hcx-rel glass" data-aos="fade-up" data-aos-delay="100">
+        <span class="hcx-rel-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Accounts</span>
+        <h3 class="hcx-rel-h"><a href="how-to-open-an-account.html">How can I open a STARTRADER account?</a></h3>
+        <p class="hcx-rel-ex">Register, verify your identity and fund the account — in three steps.</p>
+        <span class="hcx-rel-go">Read the answer <svg><use href="#i-arrow-right"/></svg></span>
+      </article>
+      <article class="hcx-rel glass" data-aos="fade-up" data-aos-delay="200">
+        <span class="hcx-rel-cat"><svg aria-hidden="true"><use href="#i-star"/></svg>Funds Management</span>
+        <h3 class="hcx-rel-h"><a href="how-can-i-deposit-funds.html">How can I deposit funds into my account?</a></h3>
+        <p class="hcx-rel-ex">Methods, limits, processing times and how currency conversion is applied.</p>
+        <span class="hcx-rel-go">Read the answer <svg><use href="#i-arrow-right"/></svg></span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NEED FURTHER ASSISTANCE ============ -->
+<section class="section hc-assist" id="assist" aria-labelledby="hc-a2-title">
+  <div class="container">
+    <div class="hc-assist-card" data-aos="fade-up">
+      <span class="hc-assist-aura" aria-hidden="true"></span>
+      <div class="hc-assist-tx">
+        <span class="eyebrow eyebrow-blue">Still stuck?</span>
+        <h2 id="hc-a2-title">Need further assistance?</h2>
+        <p>Contact us via email &mdash; the desk is open 24/7 in more than twenty languages, and a human reads every message.</p>
+      </div>
+      <div class="hc-assist-act">
+        <a class="btn btn-primary btn-lg" href="mailto:support@startrader.com">Email now <svg class="ico"><use href="#i-arrow-right"/></svg></a>
+        <a class="btn btn-ghost btn-lg" href="contact.html">All contact options</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer" id="footer">
+  <div class="container">
+    <div class="foot-cols">
+      <div class="foot-col">
+        <h4>Conditions</h4>
+        <a href="getting-started.html">Account Opening</a><a href="accounts.html">Trading Account</a><a href="prime-ecn-account.html">Prime ECN</a><a href="funding.html">Funding &amp; Withdrawal</a>
+        <h4 class="mt">Partnership</h4>
+        <a href="ib-register.html">Introducing Broker</a><a href="affiliate-registration.html">Affiliate</a><a href="money-manager.html">Money Manager</a><a href="institutional.html">Institutional</a>
+      </div>
+      <div class="foot-col">
+        <h4>Platforms</h4>
+        <a href="mt5.html">MT5</a><a href="mt4.html">MT4</a><a href="copy-trade.html">Copy Trade</a><a href="star-webtrader.html">STAR Web Trading</a><a href="webtrader.html">Web Trader</a><a href="trading-app.html">Mobile Apps</a><a href="pamm-trade.html">Pro-Link</a>
+        <h4 class="mt">Products</h4>
+        <a href="forex.html">Forex</a><a href="cfd.html">CFD</a><a href="commodities.html">Commodities</a><a href="indices.html">Indices</a><a href="shares.html">Shares</a><a href="etf.html">ETFs</a>
+      </div>
+      <div class="foot-col">
+        <h4>Education</h4>
+        <a href="education.html">Knowledge Center</a><a href="market-analysis.html">Market Analysis</a><a href="glossary.html">Glossary</a><a href="news.html">News Room</a><a href="economiccalendar.html">Economic Calendar</a><a href="webinars.html">Webinars</a>
+        <h4 class="mt">Corporate</h4>
+        <a href="regulation.html">Regulation</a><a href="legal-documents.html">Legal Documents</a><a href="insurance.html">Insurance</a><a href="liquidity-providers.html">Liquidity Providers</a>
+      </div>
+      <div class="foot-col">
+        <h4>About</h4>
+        <a href="company.html">Why STARTRADER</a><a href="corporate-social-responsibility.html">CSR</a><a href="events.html">Events</a><a href="media.html">Media Coverage</a><a href="achievement.html">Achievements</a><a href="announcements.html">Announcements</a><a href="https://www.startrader-careers.com/" target="_blank" rel="noopener">Careers</a><a href="https://www.starhelpcenter.com/hc/en-us/" target="_blank" rel="noopener">Help Center</a>
+        <h4 class="mt">Contact us</h4>
+        <div class="foot-contact"><span>Support enquiries</span><a href="mailto:support@startrader.com">support@startrader.com</a></div>
+        <div class="foot-contact"><span>Partnerships</span><a href="mailto:partners@startrader.com">partners@startrader.com</a></div>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <span class="foot-brand"><img class="foot-logo" src="assets/img/logo-startrader.svg" alt="STARTRADER" width="180" height="35"><span class="foot-tag">Built on trust. Driven by growth.</span></span>
+      <div class="foot-partners">
+        <img class="fp-nba" src="assets/img/partner-nba.svg" alt="Official Partner of the NBA" height="30" width="45">
+        <img class="fp-porsche" loading="lazy" decoding="async" src="assets/img/partner-porsche.webp" alt="Official Partner of Porsche Carrera Cup Middle East" height="26" width="165">
+      </div>
+    </div>
+
+    <div class="foot-legal-row">
+      <div class="foot-copy">
+        <span>© 2026 STARTRADER. All rights reserved</span>
+        <a href="privacy-policy-app.html">Privacy Policy</a><a href="legal-documents.html">Terms &amp; Conditions</a><a href="legal-documents.html">Cookie Policy</a>
+      </div>
+      <div class="socials">
+        <a href="https://www.facebook.com/Startrader.International/" target="_blank" rel="noopener" aria-label="Facebook"><svg><use href="#i-facebook"/></svg></a>
+        <a href="https://x.com/startrader_int/" target="_blank" rel="noopener" aria-label="X"><svg><use href="#i-x"/></svg></a>
+        <a href="https://www.instagram.com/startrader.official/" target="_blank" rel="noopener" aria-label="Instagram"><svg><use href="#i-instagram"/></svg></a>
+        <a href="https://www.linkedin.com/company/startrader-official/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg><use href="#i-linkedin"/></svg></a>
+        <a href="https://www.youtube.com/@Startrader.international" target="_blank" rel="noopener" aria-label="YouTube"><svg><use href="#i-youtube"/></svg></a>
+        <a href="https://www.tiktok.com/@startraderofficial/" target="_blank" rel="noopener" aria-label="TikTok"><svg><use href="#i-tiktok"/></svg></a>
+      </div>
+    </div>
+
+    <div class="risk">
+      <h5>RISK WARNING</h5>
+      <p>Trading in leveraged derivative products, such as Foreign Exchange (Forex) and Contracts for Difference (CFDs), involves a high level of risk and may result in losses that exceed your initial deposit. These products may not be suitable for all investors. Leverage amplifies both potential profits and losses. When trading these instruments, you do not own or have any rights to the underlying assets. Past performance is not indicative of future results.</p>
+      <p>Before making any investment decisions, you should carefully assess your investment objectives, knowledge, experience, and financial situation. You should only engage in Forex and CFD trading if you possess sufficient knowledge and experience. STARTRADER assumes no liability for any losses incurred from trading, and all trading activities are undertaken at your own risk.</p>
+      <p>The content provided on this website is for general informational purposes only and does not take into account your individual financial circumstances, investment goals, or risk tolerance. You should review the legal documents available on our website to ensure a full understanding of the risks associated with CFD trading. If necessary, seek independent advice from qualified professionals before proceeding.</p>
+
+      <h5>REGIONAL RESTRICTIONS</h5>
+      <p>This website is not intended for distribution to, or use by, any person or entity who is a citizen or resident of certain jurisdictions, including, but not limited to the United States, and jurisdictions listed on the FATF "blacklist" or other major global sanctions lists. It is also not intended for distribution or use in any jurisdiction where such distribution or use would violate local laws or regulations.</p>
+
+      <h5>REGULATOR INFORMATION</h5>
+      <p>STARTRADER is the brand representing a network of regulated and licensed entities across various jurisdictions, each authorised to provide specific financial services in compliance with local regulations. Upon registration, you will be assigned to the appropriate entity based on your location, ensuring that all trading activities are governed by the applicable regulatory authority. While the relevant authorities have granted securities or investment dealer licenses to the licensees, they do not endorse the products or services offered by STARTRADER.</p>
+      <p><strong>STARTRADER</strong> Global Financial Consultation &amp; Financial Analysis L.L.C is a Category 5 licensee regulated by the Capital Market Authority (CMA) of the United Arab Emirates, with License No. 20200000241, authorised to carry out regulated activities of Introduction and Promotion in the UAE. Its registered office is located at Office 815, Al Manara Tower, Business Bay, Dubai, UAE. It is not authorised to provide brokerage services or execute client trades.</p>
+      <p><strong>STARTRADER</strong> Prime Global Pty Ltd is regulated by the Australian Securities and Investments Commission (ASIC), with ACN 156005668 and AFSL No. 421210. Its registered office is located at Level 35, 31 Market Street, Sydney, NSW 2000, Australia.</p>
+      <p><strong>STARTRADER</strong> International Pty Ltd is regulated by the Financial Sector Conduct Authority (FSCA) of South Africa, with FSP No. 52464 and Registration No. 2022/435897/07. Its registered office is located at 18 Cavendish Road, Claremont, Cape Town, Western Cape, 7708, South Africa.</p>
+      <p><strong>STARTRADER</strong> Limited is regulated by the Financial Services Authority (FSA) of Seychelles, with License No. SD049 and Registration No. 8427362-1. Its registered office is located at Suite 3, Global Village, Jivan's Complex, Mont Fleuri, Mahe, Seychelles.</p>
+      <p><strong>STARTRADER</strong> Financial Markets Limited is regulated by the Financial Services Commission (FSC) of Mauritius, with Company No. 212229 GBC and License No. GB24203371. Its registered office is located at Suite 201, 2nd Floor, The Catalyst, 40 Silicon Avenue, Ebene Cybercity, Mauritius.</p>
+      <p><strong>STARTRADER</strong> (CY) Limited, registered in the Republic of Cyprus under registration number HE421001 with its registered address at 160 Archiepiskopou Makariou III, 1st Floor, 3026 Limassol, Cyprus. This entity does not offer regulated financial products or provide trading services.</p>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Back to top"><svg><use href="#i-caret-up"/></svg></button>
+
+<!-- ============ CHAT WIDGET ============ -->
+<button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
+  <img class="chat-fab-ico" src="assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
+</button>
+<div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
+  <div class="chat-head">
+    <span class="chat-avatar"><svg><use href="#i-headset"/></svg><i class="chat-online"></i></span>
+    <div class="chat-head-txt"><b>STARTRADER Support</b><em>Typically replies in a few minutes</em></div>
+    <button class="chat-close" id="chatClose" aria-label="Close chat"><svg><use href="#i-close"/></svg></button>
+  </div>
+  <div class="chat-body">
+    <div class="chat-msg">👋 Hi there! Welcome to STARTRADER. How can we help you today?</div>
+    <div class="chat-quick">
+      <a href="getting-started.html" class="chat-chip">Open a live account</a>
+      <a href="trading-app.html" class="chat-chip">Download a platform</a>
+      <a href="#fx-pairs-title" class="chat-chip">View forex spreads</a>
+      <a href="contact.html" class="chat-chip">Contact us</a>
+    </div>
+  </div>
+  <form class="chat-input" id="chatForm">
+    <input type="text" id="chatText" placeholder="Type your message…" aria-label="Message" autocomplete="off">
+    <button type="submit" class="chat-send" aria-label="Send"><svg><use href="#i-send"/></svg></button>
+  </form>
+</div>
+
+<!-- ============ COOKIE CONSENT ============ -->
+<div class="cookie" id="cookie" role="dialog" aria-label="Cookie notice">
+  <span class="cookie-ic"><svg><use href="#i-cookie"/></svg></span>
+  <span class="cookie-text">We use cookies to enhance your experience on this website.</span>
+  <a href="legal-documents.html" class="cookie-more">More details</a>
+  <button class="cookie-x" id="cookieClose" aria-label="Accept and close"><svg><use href="#i-close"/></svg></button>
+</div>
+
+<script src="assets/js/vendor/gsap.min.js" defer></script>
+<script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
+<script src="assets/js/vendor/lenis.min.js" defer></script>
+<script src="assets/js/vendor/aos.min.js" defer></script>
+<script src="assets/js/main.min.js?v=qa72" defer></script>
+
+<!-- Rail search: the clear button only exists while there is something to clear -->
+<script>
+(function(){
+  var f = document.getElementById('hcxSearch'), x = document.getElementById('hcxClear');
+  if (!f || !x) return;
+  var sync = function(){ x.hidden = !f.value.trim(); };
+  f.addEventListener('input', sync);
+  x.addEventListener('click', function(){ f.value = ''; sync(); f.focus(); });
+  sync();
+})();
+</script>
+</body>
+</html>
