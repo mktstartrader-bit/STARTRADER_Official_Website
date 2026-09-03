@@ -999,8 +999,15 @@ document.addEventListener('DOMContentLoaded', function () {
           bookingQr(S.connect)
         : '<p class="xp-pop-p is-strong">Choose how you&rsquo;d like to connect:</p>' + connectChoice() +
           '<div data-qr-slot></div>') +
+      // Kate 9.03: the code they earned on the first attempt belongs on this
+      // screen too — the retake adds the session, it does not reissue the code,
+      // so this is the same standard code "Round two complete" shows
+      '<p class="xp-pop-sub">Your claim code</p>' + codeBox(S.std) +
+      '<p class="xp-pop-keep">Take a screenshot of your claim code or keep it somewhere safe. Present it to our Merchandise Coordinator on-site to claim your premium.</p>' +
+      actions(primary('Save my code', 'data-copy')) +
       '<p class="xp-pop-disc"><b>*Disclaimer:</b> The Introduction Session is provided for general informational purposes only. It does not constitute investment advice, a personal recommendation, a trading signal, or an assessment of the suitability of any product or service for your individual circumstances. The STARTRADER Representative conducting this session will not provide advice on account opening, trading strategy, leverage, position sizing, or entry/exit timing, and no such advice should be inferred from anything discussed. STARTRADER Global Financial Consultation &amp; Financial Analysis L.L.C is authorised by the Capital Market Authority (CMA) as a Category 5 firm for Introduction and Promotion activities only. It does not provide trading, brokerage, or investment advisory services, and does not hold client funds. If you require personalised financial or investment advice, you should consult an appropriately licensed financial advisor.</p>'
     );
+    bindCopy();
     if (!asked) wireConnect(body, true);
   }
 
