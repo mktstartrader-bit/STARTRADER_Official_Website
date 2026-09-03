@@ -128,45 +128,6 @@
 .ct-rank-sec .head-sub{color:#a9bcdb}
 .ct-rank-aura{position:absolute;z-index:0;width:680px;height:420px;top:-8%;left:50%;transform:translateX(-50%);border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(0,110,255,.2),transparent 70%);filter:blur(96px)}
 .ct-rank-sec>.container{position:relative;z-index:1}
-/* live top-performer showcase above the widget */
-.ct-top{position:relative;z-index:1;margin-top:38px;opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s var(--ease)}
-.ct-top.is-in{opacity:1;transform:none}
-.ct-top-bar{display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin-bottom:14px}
-.ct-top-tag{display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#9fc3ff}
-.ct-top-tag i{width:7px;height:7px;border-radius:50%;background:#3fd9a8;box-shadow:0 0 0 0 rgba(63,217,168,.55);animation:ctLive 2s infinite}
-@keyframes ctLive{70%{box-shadow:0 0 0 9px rgba(63,217,168,0)}100%{box-shadow:0 0 0 0 rgba(63,217,168,0)}}
-.ct-top-note{font-size:11.5px;color:#7f92b3;text-align:right}
-.ct-top-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-.ct-topcard{position:relative;display:flex;flex-direction:column;overflow:hidden;border-radius:22px;
-  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.022));
-  border:1px solid rgba(255,255,255,.1);
-  transition:transform .35s var(--ease),border-color .3s,box-shadow .35s}
-.ct-topcard::before{content:'';position:absolute;inset:0 0 auto;height:1px;background:linear-gradient(90deg,transparent,rgba(140,190,255,.5),transparent)}
-.ct-topcard:hover{transform:translateY(-4px);border-color:rgba(120,175,255,.4);box-shadow:0 28px 70px -30px rgba(0,90,255,.5)}
-.ct-topcard-in{padding:20px 20px 0}
-.ct-top-hd{display:flex;align-items:center;gap:12px;min-width:0}
-.ct-top-medal{flex:none;width:29px;height:29px;border-radius:10px;display:grid;place-items:center;font-size:11.5px;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--blue),#00b7ff);box-shadow:0 6px 16px -6px rgba(0,120,255,.65)}
-.ct-top-av{position:relative;flex:none;width:40px;height:40px;border-radius:13px;overflow:hidden;display:grid;place-items:center;font-size:13px;font-weight:800;color:#bcd6ff;background:rgba(0,71,187,.32);border:1px solid rgba(120,175,255,.24)}
-.ct-top-av img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-.ct-top-who{min-width:0;flex:1;display:flex;flex-direction:column;gap:3px}
-.ct-top-who b{font-size:14.5px;letter-spacing:-.02em;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.ct-top-who em{font-style:normal;display:flex;align-items:center;gap:6px;font-size:11px;color:#8ea4c6}
-.ct-top-who em img{width:14px;height:10.5px;border-radius:2px;display:block}
-.ct-top-ret{display:flex;align-items:baseline;gap:9px;margin-top:18px}
-.ct-top-ret b{font-size:clamp(26px,2.4vw,31px);font-weight:800;letter-spacing:-.04em;line-height:1;color:#3fd9a8;font-variant-numeric:tabular-nums}
-.ct-top-ret em{font-style:normal;font-size:10.5px;color:#6f86ad}
-.ct-top-chart{position:relative;margin-top:4px;height:88px}
-.ct-top-chart svg{position:absolute;inset:0;width:100%;height:100%}
-.ct-top-line{fill:none;stroke:#3fd9a8;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 6px rgba(63,217,168,.4))}
-.ct-top-gwrap{clip-path:inset(-10px 100% -10px -10px);transition:clip-path 1.2s cubic-bezier(.4,0,.2,1) .15s}
-.ct-topcard.is-drawn .ct-top-gwrap{clip-path:inset(-10px -10px -10px -10px)}
-.ct-top-pulse{position:absolute;width:8px;height:8px;margin:-4px 0 0 -4px;border-radius:50%;background:#3fd9a8;box-shadow:0 0 0 0 rgba(63,217,168,.5);animation:ctLive 2s infinite;opacity:0;transition:opacity .4s ease 1.1s}
-.ct-topcard.is-drawn .ct-top-pulse{opacity:1}
-.ct-top-stats{display:flex;border-top:1px solid rgba(255,255,255,.07)}
-.ct-top-stats span{flex:1;padding:11px 4px 13px;display:flex;flex-direction:column;gap:3px;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:#6f86ad;text-align:center}
-.ct-top-stats span+span{border-left:1px solid rgba(255,255,255,.07)}
-.ct-top-stats b{font-size:14px;font-weight:700;letter-spacing:0;text-transform:none;color:#e6edf8;font-variant-numeric:tabular-nums}
-.ct-topcard.is-skel{min-height:242px;background:linear-gradient(100deg,rgba(255,255,255,.045) 40%,rgba(255,255,255,.09) 50%,rgba(255,255,255,.045) 60%);background-size:200% 100%;animation:ctSkel 1.4s infinite}
 @keyframes ctSkel{to{background-position:-200% 0}}
 /* live provider ranking widget, housed in a light billboard panel */
 .ct-rank-panel{
@@ -198,9 +159,6 @@
 /* ---- Responsive ---- */
 @media (max-width:1080px){.ct-paths{grid-template-columns:1fr}
 .ct-video-in{grid-template-columns:1fr;gap:30px}}
-@media (max-width:900px){.ct-top-grid{grid-template-columns:1fr}
-.ct-top-bar{flex-direction:column;align-items:flex-start;gap:4px}
-.ct-top-note{text-align:left}}
 @media (max-width:720px){.ct-steer .h2 br,.ct-video .h2 br,.ct-path h3 br{display:none}
 .ct-path-ico{width:78px}}
 /* The player is a 16/9 frame with the copy over its foot and the disc centred
@@ -905,13 +863,6 @@
   </div>
 
   <div class="container">
-    <div class="ct-top" id="ctTop" hidden>
-      <div class="ct-top-bar">
-        <span class="ct-top-tag"><i></i>Top performers</span>
-        <span class="ct-top-note">Ranked by all-time return &middot; live from the copy trading platform</span>
-      </div>
-      <div class="ct-top-grid" id="ctTopGrid"></div>
-    </div>
     <div class="trade_ranking_div ct-rank-panel" data-aos="fade-up">
       <iframe id="widgetFrame" title="Trade Ranking" data-src="https://rating.startrader.com/widgets/ratings?widgetKey=social_platform_ratings&amp;theme=light&amp;lang=en" style="min-width:100%" scrolling="no" frameborder="0"></iframe>
     </div>
@@ -1226,8 +1177,9 @@
 <script src="assets/js/vendor/aos.min.js" defer></script>
 <script src="assets/js/main.min.js?v=qa72" defer></script>
 <script>
-/* Trade Ranking widget (rating.startrader.com) — lazy-loads near viewport, auto-sizes via iframeResizer.
-   Above it, a native top-performer showcase drawn from the same rating API. */
+/* Trade Ranking widget (rating.startrader.com) — lazy-loads near viewport,
+   auto-sizes via iframeResizer. The widget IS the ranking: it owns its own
+   layout, sorting and paging, so nothing is rebuilt from its API beside it. */
 (function(){
   var frame = document.getElementById('widgetFrame');
   if(!frame) return;
@@ -1236,106 +1188,9 @@
     if(window.iFrameResize) window.iFrameResize({checkOrigin:false}, '#widgetFrame');
   };
 
-  function ctNum(v, dec){
-    var p = Number(v || 0).toFixed(dec).split('.');
-    p[0] = p[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    return p.join('.');
-  }
-  function ctSpark(entries){
-    var pts = [], i, n = entries.length, max = -1e9, min = 1e9;
-    if(n < 2) return null;
-    var step = Math.max(1, Math.floor(n / 56));
-    for(i = 0; i < n; i += step) pts.push(entries[i].rt || 0);
-    if(pts[pts.length - 1] !== (entries[n - 1].rt || 0)) pts.push(entries[n - 1].rt || 0);
-    for(i = 0; i < pts.length; i++){ if(pts[i] > max) max = pts[i]; if(pts[i] < min) min = pts[i]; }
-    if(max === min) max = min + 1;
-    var xy = [];
-    for(i = 0; i < pts.length; i++){
-      xy.push({
-        x: (i / (pts.length - 1)) * 100,
-        y: 90 - ((pts[i] - min) / (max - min)) * 76
-      });
-    }
-    // Catmull-Rom -> cubic Beziers, control Ys clamped to the segment's own
-    // range so the vertical equity jumps round off without overshoot bounce
-    function cl(v, a, b){ var lo = Math.min(a, b), hi = Math.max(a, b); return v < lo ? lo : (v > hi ? hi : v); }
-    var d = 'M' + xy[0].x.toFixed(2) + ' ' + xy[0].y.toFixed(2);
-    for(i = 0; i < xy.length - 1; i++){
-      var p0 = xy[i - 1] || xy[i], p1 = xy[i], p2 = xy[i + 1], p3 = xy[i + 2] || p2;
-      var c1x = p1.x + (p2.x - p0.x) / 6, c1y = cl(p1.y + (p2.y - p0.y) / 6, p1.y, p2.y);
-      var c2x = p2.x - (p3.x - p1.x) / 6, c2y = cl(p2.y - (p3.y - p1.y) / 6, p1.y, p2.y);
-      d += 'C' + c1x.toFixed(2) + ' ' + c1y.toFixed(2) + ' ' + c2x.toFixed(2) + ' ' + c2y.toFixed(2) + ' ' + p2.x.toFixed(2) + ' ' + p2.y.toFixed(2);
-    }
-    var last = xy[xy.length - 1];
-    return { d: d, ex: last.x, ey: last.y };
-  }
-  function ctCard(it, idx){
-    var pub = it.public || {}, acc = it.account || {};
-    var name = pub.alternativeName || it.accountName || 'Provider';
-    name = name.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-    var initials = name.replace(/&[^;]+;/g, '').slice(0, 2).toUpperCase();
-    var cc = (acc.countryCode || '').toLowerCase(); if(cc === 'ae') cc = 'uae';
-    var sp = ctSpark((it.history && it.history.entries) || []);
-    var gid = 'ctTopGrad' + idx;
-    var av = '<span class="ct-top-av">' + initials +
-      (pub.avatarPath ? '<img src="' + pub.avatarPath + '" alt="' + name + ' avatar" onerror="this.style.display=\'none\'">' : '') + '</span>';
-    var flag = cc ? '<img src="assets/img/flags/' + cc + '.svg" alt="' + (acc.country || cc) + '" onerror="this.style.display=\'none\'">' : '';
-    var chart = sp ?
-      '<div class="ct-top-chart">' +
-        '<svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">' +
-          '<defs><linearGradient id="' + gid + '" x1="0" y1="0" x2="0" y2="1">' +
-            '<stop offset="0" stop-color="#3fd9a8" stop-opacity=".3"/>' +
-            '<stop offset="1" stop-color="#3fd9a8" stop-opacity="0"/>' +
-          '</linearGradient></defs>' +
-          '<g class="ct-top-gwrap">' +
-            '<path class="ct-top-fill" d="' + sp.d + 'L100 100L0 100Z" fill="url(#' + gid + ')"/>' +
-            '<path class="ct-top-line" d="' + sp.d + '" vector-effect="non-scaling-stroke"/>' +
-          '</g>' +
-        '</svg>' +
-        '<span class="ct-top-pulse" style="left:' + sp.ex.toFixed(2) + '%;top:' + sp.ey.toFixed(2) + '%"></span>' +
-      '</div>' : '';
-    return '<article class="ct-topcard">' +
-      '<div class="ct-topcard-in">' +
-        '<div class="ct-top-hd">' +
-          '<span class="ct-top-medal">#' + (idx + 1) + '</span>' + av +
-          '<span class="ct-top-who"><b>' + name + '</b><em>' + flag + ctNum(it.totalClosedTrades, 0) + ' closed trades</em></span>' +
-        '</div>' +
-        '<div class="ct-top-ret"><b>+' + ctNum(it.returnAllTime, 1) + '%</b><em>All-time return</em></div>' +
-      '</div>' + chart +
-      '<div class="ct-top-stats">' +
-        '<span>Win rate<b>' + Number(it.winRate || 0).toFixed(1) + '%</b></span>' +
-        '<span>Max drawdown<b>' + Number(it.maxDrawdown || 0).toFixed(1) + '%</b></span>' +
-        '<span>Monthly avg<b>+' + Number(it.geometricAverageReturnMonthly || 0).toFixed(1) + '%</b></span>' +
-      '</div>' +
-    '</article>';
-  }
-  function showcase(){
-    var box = document.getElementById('ctTop'), grid = document.getElementById('ctTopGrid');
-    if(!box || !grid || !window.fetch) return;
-    box.hidden = false;
-    requestAnimationFrame(function(){ box.className += ' is-in'; });
-    grid.innerHTML = '<div class="ct-topcard is-skel"></div><div class="ct-topcard is-skel"></div><div class="ct-topcard is-skel"></div>';
-    var url = 'https://rating.startrader.com/api/rating/1?$top=3' +
-      '&$filter=' + encodeURIComponent('returnAllTime gt 50 and maxDrawdown lt 25 and winRate gt 60') +
-      '&$orderby=' + encodeURIComponent('returnAllTime desc') +
-      '&$count=false&widget_key=social_platform_ratings';
-    fetch(url).then(function(r){ return r.json(); }).then(function(d){
-      if(!d.items || d.items.length < 3) throw new Error('short');
-      var html = '', i;
-      for(i = 0; i < 3; i++) html += ctCard(d.items[i], i);
-      grid.innerHTML = html;
-      var cards = grid.getElementsByClassName('ct-topcard'), j;
-      for(j = 0; j < cards.length; j++){
-        (function(el, delay){
-          setTimeout(function(){ el.className += ' is-drawn'; }, delay);
-        })(cards[j], 250 + j * 220);
-      }
-    }).catch(function(){ box.hidden = true; });
-  }
 
   function load(){
     if(loaded) return; loaded = true;
-    showcase();
     frame.onload = function(){ panel.className += ' is-ready'; window.copyTradeSetIframe(); };
     frame.src = frame.getAttribute('data-src');
     var s = document.createElement('script');
