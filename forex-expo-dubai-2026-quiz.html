@@ -849,15 +849,9 @@ document.addEventListener('DOMContentLoaded', function () {
       '" alt="QR code to book your 15-minute introduction session" width="124" height="124">' +
       '<p>Scan the QR code to book your session.</p></div>';
   }
-  function wireConnect(scope, reveal) {
-    // on the session screen the choice is itself the last step, so the QR
-    // follows it straight away; inside the details form it waits for submit
-    var slot = reveal ? scope.querySelector('[data-qr-slot]') : null;
+  function wireConnect(scope) {
     Array.prototype.slice.call(scope.querySelectorAll('[data-connect]')).forEach(function (r) {
-      r.addEventListener('change', function () {
-        S.connect = r.value; save();
-        if (slot) slot.innerHTML = bookingQr(r.value);
-      });
+      r.addEventListener('change', function () { S.connect = r.value; save(); });
     });
   }
 
@@ -994,21 +988,34 @@ document.addEventListener('DOMContentLoaded', function () {
     render(
       '<h2 class="xp-pop-h" id="xpPopH" data-focus>Your consultation awaits</h2>' +
       '<p class="xp-pop-p">You&rsquo;ve earned a complimentary <b>15-minute introduction session</b> with a STARTRADER Representative.</p>' +
+      /* Kate 9.03: picking a channel is not the same as asking for the booking.
+         The choice is submitted first, and only then does this screen give up
+         the QR and the code earned before the retake — the retake adds the
+         session, it does not reissue the code, so it is the same standard code
+         "Round two complete" shows. Nothing is written to state until submit,
+         so a visitor who picks and closes is asked again rather than skipped
+         past it. */
       (asked
         ? '<p class="xp-pop-p is-strong">You chose to connect ' + (booth ? '<b>at the booth</b>' : '<b>online</b>') + '.</p>' +
-          bookingQr(S.connect)
-        : '<p class="xp-pop-p is-strong">Choose how you&rsquo;d like to connect:</p>' + connectChoice() +
-          '<div data-qr-slot></div>') +
-      // Kate 9.03: the code they earned on the first attempt belongs on this
-      // screen too — the retake adds the session, it does not reissue the code,
-      // so this is the same standard code "Round two complete" shows
-      '<p class="xp-pop-sub">Your claim code</p>' + codeBox(S.std) +
-      '<p class="xp-pop-keep">Take a screenshot of your claim code or keep it somewhere safe. Present it to our Merchandise Coordinator on-site to claim your merch.</p>' +
-      actions(primary('Save my code', 'data-copy')) +
+          bookingQr(S.connect) +
+          '<p class="xp-pop-sub">Your claim code</p>' + codeBox(S.std) +
+          '<p class="xp-pop-keep">Take a screenshot of your claim code or keep it somewhere safe. Present it to our Merchandise Coordinator on-site to claim your merch.</p>' +
+          actions(primary('Save my code', 'data-copy'))
+        : '<p class="xp-pop-p is-strong">Choose how you&rsquo;d like to connect:</p>' +
+          '<form data-connect-form novalidate>' + connectChoice() +
+          actions(primary('Submit', 'data-connect-go')).replace('type="button"', 'type="submit"') +
+          '</form>') +
       '<p class="xp-pop-disc"><b>*Disclaimer:</b> The Introduction Session is provided for general informational purposes only. It does not constitute investment advice, a personal recommendation, a trading signal, or an assessment of the suitability of any product or service for your individual circumstances. The STARTRADER Representative conducting this session will not provide advice on account opening, trading strategy, leverage, position sizing, or entry/exit timing, and no such advice should be inferred from anything discussed. STARTRADER Global Financial Consultation &amp; Financial Analysis L.L.C is authorised by the Capital Market Authority (CMA) as a Category 5 firm for Introduction and Promotion activities only. It does not provide trading, brokerage, or investment advisory services, and does not hold client funds. If you require personalised financial or investment advice, you should consult an appropriately licensed financial advisor.</p>'
     );
-    bindCopy();
-    if (!asked) wireConnect(body, true);
+    if (asked) { bindCopy(); return; }
+    var cf = body.querySelector('[data-connect-form]');
+    cf.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var picked = cf.querySelector('[data-connect]:checked');
+      if (!picked) { cf.reportValidity(); return; }
+      S.connect = picked.value; save();
+      showSession();   // re-render, now confirming the choice
+    });
   }
 
   // ---- open / close ----
