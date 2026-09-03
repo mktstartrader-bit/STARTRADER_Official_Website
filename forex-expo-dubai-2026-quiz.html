@@ -271,6 +271,7 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
 .btn:disabled:hover{background:var(--blue)}
 .btn-line:disabled:hover{background:rgba(255,255,255,.06)}
 .xp-pop-fine{margin-top:12px;font-size:12px;font-style:italic;line-height:1.65;color:#8ea4c6}
+.xp-pop-keep{margin-top:10px;font-size:12.5px;line-height:1.6;color:#a9b8d0}
 .xp-pop-fine a,.xp-pop-consent a{color:#7fb2ff;text-decoration:underline;text-underline-offset:3px}
 .xp-pop-hr{height:1px;margin:26px 0 4px;border:0;background:linear-gradient(90deg,transparent,rgba(127,178,255,.4),transparent)}
 /* the question: the progress trail leads the card */
@@ -314,6 +315,8 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
 .xp-pop-form .xp-selwrap{position:relative}
 .xp-pop-form .xp-selwrap svg{position:absolute;right:2px;top:50%;transform:translateY(-50%);width:15px;height:15px;color:#8ea4c6;pointer-events:none}
 .xp-pop-consent{display:flex;align-items:flex-start;gap:11px;margin-top:14px;cursor:pointer;font-size:12.5px;line-height:1.55;color:#c4cedf}
+/* sitting above the submit button it needs the room the button used to take */
+.xp-pop-consent--pre{margin-top:22px}
 .xp-pop-consent input{position:absolute;opacity:0;width:0;height:0}
 .xp-pop-consent .xp-box{flex:none;width:18px;height:18px;margin-top:1px;border-radius:6px;display:grid;place-items:center;
   border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.06);color:#fff;transition:background .2s,border-color .2s}
@@ -831,15 +834,29 @@ document.addEventListener('DOMContentLoaded', function () {
         '<label class="xp-seg-opt"><input type="radio" name="connect" value="online" required data-connect><span>Online</span></label>' +
         '<em>or</em>' +
         '<label class="xp-seg-opt"><input type="radio" name="connect" value="booth" required data-connect><span>At the booth</span></label>' +
-      '</div>' +
-      '<div class="xp-qr" data-booth-qr hidden><img src="assets/img/expo-quiz-qr.svg" alt="QR code to book your 15-minute introduction session" width="124" height="124"><p>Scan the QR code to book your session.</p></div>';
+      '</div>';
   }
-  function wireConnect(scope) {
-    var qr = scope.querySelector('[data-booth-qr]');
+  /* MKT 9.03: the booking QR used to appear inside the details form the moment
+     "at the booth" was picked, so it could be scanned and the form abandoned
+     before the lead was captured. It now waits until the details are in, and
+     both channels get one — each booking form is its own Lark link. */
+  var BOOK_QR = {
+    online: 'assets/img/expo-quiz-qr-online.svg',
+    booth: 'assets/img/expo-quiz-qr-booth.svg'
+  };
+  function bookingQr(channel) {
+    return '<div class="xp-qr"><img src="' + BOOK_QR[channel === 'booth' ? 'booth' : 'online'] +
+      '" alt="QR code to book your 15-minute introduction session" width="124" height="124">' +
+      '<p>Scan the QR code to book your session.</p></div>';
+  }
+  function wireConnect(scope, reveal) {
+    // on the session screen the choice is itself the last step, so the QR
+    // follows it straight away; inside the details form it waits for submit
+    var slot = reveal ? scope.querySelector('[data-qr-slot]') : null;
     Array.prototype.slice.call(scope.querySelectorAll('[data-connect]')).forEach(function (r) {
       r.addEventListener('change', function () {
         S.connect = r.value; save();
-        if (qr) qr.hidden = r.value !== 'booth';
+        if (slot) slot.innerHTML = bookingQr(r.value);
       });
     });
   }
@@ -871,9 +888,11 @@ document.addEventListener('DOMContentLoaded', function () {
           '<p class="xp-pop-p is-strong">Choose how you&rsquo;d like to connect:</p>' +
           connectChoice() +
         '</div>' : '') +
-        '<div class="xp-f--full">' + actions(primary('Unlock my rewards', 'data-submit')).replace('type="button"', 'type="submit"') +
+        '<div class="xp-f--full">' +
+        // MKT 9.03: the opt-in is asked before the button that submits it
+        '<label class="xp-pop-consent xp-pop-consent--pre" for="qzOpt"><input type="checkbox" id="qzOpt" name="optin">' + tick + '<span>I would like to receive further updates, promotions, and event invitations from STARTRADER by email/SMS. You can unsubscribe at any time.</span></label>' +
+        actions(primary('Unlock my rewards', 'data-submit')).replace('type="button"', 'type="submit"') +
         '<p class="xp-pop-fine">By submitting your details, you acknowledge and agree to the applicable <a href="privacy-policy-app.html" target="_blank" rel="noopener">Privacy Policy</a> and <a href="legal-documents.html" target="_blank" rel="noopener">Terms &amp; Conditions</a>.</p>' +
-        '<label class="xp-pop-consent" for="qzOpt"><input type="checkbox" id="qzOpt" name="optin">' + tick + '<span>I would like to receive further updates, promotions, and event invitations from STARTRADER by email/SMS. You can unsubscribe at any time.</span></label>' +
         '</div>' +
       '</form>'
     );
@@ -904,6 +923,7 @@ document.addEventListener('DOMContentLoaded', function () {
         rewardItem('📚', 'Free STARACADEMY education pack', 'Brush up on the essentials, sharpen your knowledge, and get ready for another shot at the quiz.') +
       '</ul>' +
       '<p class="xp-pop-sub">Your claim code</p>' + codeBox(S.std) +
+'<p class="xp-pop-keep">Take a screenshot of your claim code or keep it somewhere safe. Present it to our Merchandise Coordinator on-site to claim your premium.</p>' +
       actions(primary('Save my code', 'data-copy') + line('Level Up with Our Education Pack', 'target="_blank" rel="noopener"', 'https://www.startraderacademy.com/course-hub/trading-for-beginners-basic/')) +
       '<hr class="xp-pop-hr">' +
       '<h3 class="xp-pop-h3">Ready for round two?</h3>' +
@@ -940,9 +960,11 @@ document.addEventListener('DOMContentLoaded', function () {
         rewardItem('💬', 'Free 15-minute introduction session', 'Connect with a STARTRADER Representative for a complimentary 15-minute introduction session.') +
       '</ul>' +
       // the connect choice was made in the details form — echo it back here
-      (S.connect ? '<p class="xp-pop-p is-strong">You chose to connect ' + (S.connect === 'booth' ? '<b>at the booth</b>' : '<b>online</b>') + '.</p>' : '') +
-      (S.connect === 'booth' ? '<div class="xp-qr"><img src="assets/img/expo-quiz-qr.svg" alt="QR code to book your 15-minute introduction session" width="124" height="124"><p>Scan the QR code to book your session.</p></div>' : '') +
+      (S.connect ? '<p class="xp-pop-p is-strong">You chose to connect ' + (S.connect === 'booth' ? '<b>at the booth</b>' : '<b>online</b>') + '.</p>' +
+        bookingQr(S.connect) : '') +
       '<p class="xp-pop-sub">Your premium claim code</p>' + codeBox(S.prm) +
+'<p class="xp-pop-keep">Take a screenshot of your claim code or keep it somewhere safe. Present it to our Merchandise Coordinator on-site to claim your premium.</p>' +
+
       actions(primary('Save my code', 'data-copy') + line('Level Up with Our Education Pack', 'target="_blank" rel="noopener"', 'https://www.startraderacademy.com/course-hub/trading-for-beginners-basic/'))
     );
     bindCopy();
@@ -957,6 +979,7 @@ document.addEventListener('DOMContentLoaded', function () {
       '<p class="xp-score" aria-label="' + S.second + ' out of 10">' + S.second + '<small>/10</small></p>' +
       '<p class="xp-pop-p">Your <b>standard merchandise reward remains unlocked</b>, and your claim code is ready to use at the STARTRADER booth.</p>' +
       '<p class="xp-pop-sub">Your claim code</p>' + codeBox(S.std) +
+'<p class="xp-pop-keep">Take a screenshot of your claim code or keep it somewhere safe. Present it to our Merchandise Coordinator on-site to claim your premium.</p>' +
       actions(primary('Save my code', 'data-copy'))
     );
     bindCopy();
@@ -973,13 +996,12 @@ document.addEventListener('DOMContentLoaded', function () {
       '<p class="xp-pop-p">You&rsquo;ve earned a complimentary <b>15-minute introduction session</b> with a STARTRADER Representative.</p>' +
       (asked
         ? '<p class="xp-pop-p is-strong">You chose to connect ' + (booth ? '<b>at the booth</b>' : '<b>online</b>') + '.</p>' +
-          (booth
-            ? '<div class="xp-qr"><img src="assets/img/expo-quiz-qr.svg" alt="QR code to book your 15-minute introduction session" width="124" height="124"><p>Scan the QR code to book your session.</p></div>'
-            : '<p class="xp-pop-p">We will use the details you gave us to arrange the session.</p>')
-        : '<p class="xp-pop-p is-strong">Choose how you&rsquo;d like to connect:</p>' + connectChoice()) +
+          bookingQr(S.connect)
+        : '<p class="xp-pop-p is-strong">Choose how you&rsquo;d like to connect:</p>' + connectChoice() +
+          '<div data-qr-slot></div>') +
       '<p class="xp-pop-disc"><b>*Disclaimer:</b> The Introduction Session is provided for general informational purposes only. It does not constitute investment advice, a personal recommendation, a trading signal, or an assessment of the suitability of any product or service for your individual circumstances. The STARTRADER Representative conducting this session will not provide advice on account opening, trading strategy, leverage, position sizing, or entry/exit timing, and no such advice should be inferred from anything discussed. STARTRADER Global Financial Consultation &amp; Financial Analysis L.L.C is authorised by the Capital Market Authority (CMA) as a Category 5 firm for Introduction and Promotion activities only. It does not provide trading, brokerage, or investment advisory services, and does not hold client funds. If you require personalised financial or investment advice, you should consult an appropriately licensed financial advisor.</p>'
     );
-    if (!asked) wireConnect(body);
+    if (!asked) wireConnect(body, true);
   }
 
   // ---- open / close ----
