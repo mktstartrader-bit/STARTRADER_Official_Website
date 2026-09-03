@@ -665,7 +665,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // ---- state: survives a close/reopen and a reload within the session ----
   var KEY = 'xpQuizState';
-  var S = { attempt: 0, first: null, second: null, std: null, prm: null, cooldownEnd: 0, details: false, connect: '' };
+  var S = { attempt: 0, first: null, second: null, std: null, prm: null, cooldownEnd: 0, details: false, connect: '', connectDone: false };
   try { var raw = sessionStorage.getItem(KEY); if (raw) S = JSON.parse(raw); } catch (err) {}
   function save() { try { sessionStorage.setItem(KEY, JSON.stringify(S)); } catch (err) {} }
   // integration: the campaign backend issues the real claim codes
@@ -984,7 +984,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // the choice normally comes from the details form, so this screen confirms
     // it rather than asking twice; no booking CTA (Kate, 9.01)
     var booth = S.connect === 'booth';
-    var asked = !!S.connect;  // qualifying on the retake skips the form, so ask here
+    // the choice counts as made only once it has been submitted on this screen.
+    // Reading S.connect alone would let a value that was merely selected — as
+    // an earlier build saved it on change — walk straight past the submit.
+    var asked = !!S.connect && !!S.connectDone;
     render(
       '<h2 class="xp-pop-h" id="xpPopH" data-focus>Your consultation awaits</h2>' +
       '<p class="xp-pop-p">You&rsquo;ve earned a complimentary <b>15-minute introduction session</b> with a STARTRADER Representative.</p>' +
@@ -1013,7 +1016,7 @@ document.addEventListener('DOMContentLoaded', function () {
       e.preventDefault();
       var picked = cf.querySelector('[data-connect]:checked');
       if (!picked) { cf.reportValidity(); return; }
-      S.connect = picked.value; save();
+      S.connect = picked.value; S.connectDone = true; save();
       showSession();   // re-render, now confirming the choice
     });
   }
