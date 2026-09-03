@@ -260,6 +260,11 @@
 }
 .an-clearall svg{width:11px;height:11px}
 .an-clearall:hover{color:var(--blue);background:rgba(0,71,187,.07)}
+/* the window is enforced by min/max on the inputs, but that is invisible until
+   you open a picker — so it is also stated in words under the control */
+.an-range{margin-top:9px;font-size:11.5px;line-height:1.5;color:var(--text-mute)}
+.an-range b{color:var(--text-soft);font-weight:700}
+.an-dates input:out-of-range{color:#b0342f}
 /* reads as a single control, though it holds two real date inputs */
 .an-dates{
   display:flex;align-items:center;gap:10px;width:100%;
@@ -1173,6 +1178,7 @@
           <label class="sr-only" for="anTo">To</label>
           <input type="date" id="anTo" data-an-to placeholder="yy/mm/dd" min="2026-01-01" max="2026-12-31">
         </div>
+        <p class="an-range" data-an-range></p>
       </div>
 
       <div class="an-modal-cols">
@@ -1412,11 +1418,35 @@
     if (m && m !== 'all' && !monthsKept[m]) b.parentNode.removeChild(b);
   });
 
-  /* and the pickers cannot be dragged outside the window */
-  ['anFrom', 'anTo'].forEach(function (id) {
-    var el = document.getElementById(id);
-    if (el) { el.setAttribute('min', min); el.setAttribute('max', max); }
+  /* and the pickers cannot be dragged outside the window. min/max greys the
+     out-of-range days in the native calendar, but a date can still be typed —
+     so anything outside the window is snapped back to the nearest edge. */
+  var pickers = ['anFrom', 'anTo'].map(function (id) { return document.getElementById(id); }).filter(Boolean);
+  pickers.forEach(function (el) {
+    el.setAttribute('min', min);
+    el.setAttribute('max', max);
+    el.addEventListener('change', function () {
+      if (!el.value) return;
+      if (el.value < min) el.value = min;
+      else if (el.value > max) el.value = max;
+    });
   });
+
+  /* say the window out loud: the greying only shows once a picker is open */
+  /* the dialog is a sibling of #notices, not a child, so this is document-scoped */
+  var range = document.querySelector('[data-an-range]');
+  if (range) {
+    // a fixed table rather than Intl: en-GB renders September as 'Sept', which
+    // sits oddly next to 'Jun' in the same sentence
+    var MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var pretty = function (iso) {
+      var b = iso.split('-');
+      return parseInt(b[2], 10) + ' ' + MON[parseInt(b[1], 10) - 1] + ' ' + b[0];
+    };
+    range.innerHTML = 'Notices are kept for ' + MONTHS_BACK + ' months, so dates before ' +
+      '<b>' + pretty(min) + '</b> cannot be selected. Available range: <b>' +
+      pretty(min) + '</b> to <b>' + pretty(max) + '</b>.';
+  }
 
   /* if the window itself is empty, the stock message ("no notices match those
      filters", with a button that clears filters nobody set) would be a lie.
