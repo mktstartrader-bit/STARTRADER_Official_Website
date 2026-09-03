@@ -5684,3 +5684,19 @@ body::after{
 }
 body:has(.nav-item.has-mega:hover)::after,
 body:has(.nav-item.has-mega:focus-within)::after{opacity:1;visibility:visible}
+
+/* ===== LANGUAGE PANEL HANGS UNDER THE BAR AGAIN (appended batch) =====
+   The earlier language-panel batch set `top:calc(100% + 12px)` on the belief
+   that the blurred header was this panel's containing block. That held only
+   while .site-header itself carried the backdrop-filter — a filtered ancestor
+   is a containing block for its fixed-position descendants. Moving that blur
+   onto .site-header::before, so the mega menu could have glass of its own,
+   took the containing block with it, and the 100% on a position:fixed element
+   went back to meaning the viewport: the panel opened a full screen-height
+   below the fold, invisible at every desktop width.
+
+   The offset is now stated against the chrome it belongs to rather than
+   inherited from whoever happens to be filtered — --topbar-h is measured onto
+   :root at runtime and the sticky header sits at topbar-h - 1 with a height of
+   --nav-h, so this lands the panel 11px under the bar at any scroll position. */
+.lang-pop{top:calc(var(--topbar-h,44px) + var(--nav-h,70px) + 10px)}

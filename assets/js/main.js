@@ -1194,13 +1194,21 @@
     var items = Array.prototype.slice.call(pop.querySelectorAll('.lp-item'));
     var empty = pop.querySelector('.lp-empty');
 
-    function open() {
+    // whether the panel on screen was put there by the pointer merely arriving
+    // on the button, rather than by a deliberate click, tap or keypress
+    var openedByHover = false;
+
+    function open(byHover) {
+      openedByHover = !!byHover;
       pop.classList.add('open');
       pop.setAttribute('aria-hidden', 'false');
       btn.setAttribute('aria-expanded', 'true');
-      setTimeout(function () { if (search) search.focus(); }, 80);
+      // a pointer crossing the header must not take the keyboard off the page,
+      // so the search box is only focused when the panel was actually asked for
+      if (!byHover) setTimeout(function () { if (search) search.focus(); }, 80);
     }
     function close() {
+      openedByHover = false;
       pop.classList.remove('open');
       pop.setAttribute('aria-hidden', 'true');
       btn.setAttribute('aria-expanded', 'false');
@@ -1208,7 +1216,22 @@
 
     btn.addEventListener('click', function (e) {
       e.stopPropagation();
-      pop.classList.contains('open') ? close() : open();
+      /* On a mouse the panel is already open by the time the click lands: the
+         pointer arriving on the button opened it through the mouseenter below.
+         A plain toggle therefore shut the very panel the click was meant to
+         open, and the button read as dead. A click on a hover-opened panel is
+         the same intent, so it only takes ownership of it — the next click
+         still dismisses, and hovering away still closes it. */
+      if (pop.classList.contains('open')) {
+        if (openedByHover) {
+          openedByHover = false;
+          if (search) search.focus();
+          return;
+        }
+        close();
+        return;
+      }
+      open();
     });
 
     // desktop: open on hover like the other nav menus. The panel hangs 12px
@@ -1234,7 +1257,7 @@
       };
       var cancelClose = function () { if (hoverT) { clearTimeout(hoverT); hoverT = null; } };
       [btn, pop].forEach(function (el) {
-        el.addEventListener('mouseenter', function () { cancelClose(); if (!pop.classList.contains('open')) open(); });
+        el.addEventListener('mouseenter', function () { cancelClose(); if (!pop.classList.contains('open')) open(true); });
         el.addEventListener('mouseleave', scheduleClose);
       });
     }
