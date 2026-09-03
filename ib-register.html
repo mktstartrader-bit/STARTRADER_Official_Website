@@ -75,6 +75,24 @@
   .pt-hours .fx-mh{grid-template-columns:minmax(0,1fr)}
   .pt-hours .fx-mh--wide,.pt-hours .fx-mh--full{grid-column:auto}
 }
+
+/* ---- IB application form: dial-code row and password reveal ----
+   Both reuse the shared field furniture (.ct-field, .wb-selwrap, .ct-check,
+   .ct-err) so the form looks exactly as it did; only the two new composite
+   controls need geometry of their own. The eye sits inside .pt-passrow, which
+   wraps the input alone, so `top:50%` centres on the input and not on the
+   label above it. Mirrors the pattern already used on knowledge-article.html. */
+.pt-telrow{display:grid;grid-template-columns:116px minmax(0,1fr);gap:10px;align-items:start}
+.pt-telrow .wb-selwrap{min-width:0}
+.pt-passrow{position:relative}
+.pt-passrow input{padding-right:42px}
+.pt-eye{position:absolute;right:0;top:50%;transform:translateY(-50%);width:36px;height:36px;
+  display:grid;place-items:center;border:0;border-radius:10px;background:none;
+  color:var(--text-mute);cursor:pointer;transition:color .25s var(--ease)}
+.pt-eye:hover{color:var(--text)}
+.pt-eye[aria-pressed="true"]{color:var(--blue)}
+.pt-eye svg{width:19px;height:19px}
+@media (max-width:400px){.pt-telrow{grid-template-columns:100px minmax(0,1fr);gap:8px}}
   </style>
 
   <!-- Structured data — the programme -->
@@ -692,22 +710,17 @@
         <div class="pt-panel">
           <div class="ct-grid">
             <div class="ct-field">
-              <label for="ptName">Full name</label>
-              <input type="text" id="ptName" name="name" autocomplete="name" placeholder="Your full name" aria-describedby="ptNameErr">
+              <label for="ptName">Name</label>
+              <input type="text" id="ptName" name="name" autocomplete="given-name" placeholder="Your given name" aria-describedby="ptNameErr">
               <p class="ct-err" id="ptNameErr" hidden>Please tell us your name.</p>
             </div>
             <div class="ct-field">
-              <label for="ptEmail">Email</label>
-              <input type="email" id="ptEmail" name="email" inputmode="email" autocomplete="email" placeholder="you@example.com" aria-describedby="ptEmailErr">
-              <p class="ct-err" id="ptEmailErr" hidden>We need a valid email to reply to.</p>
+              <label for="ptSurname">Surname</label>
+              <input type="text" id="ptSurname" name="surname" autocomplete="family-name" placeholder="Your family name" aria-describedby="ptSurnameErr">
+              <p class="ct-err" id="ptSurnameErr" hidden>Please tell us your surname.</p>
             </div>
             <div class="ct-field">
-              <label for="ptPhone">Phone <em>optional</em></label>
-              <input type="tel" id="ptPhone" name="phone" inputmode="tel" autocomplete="tel" placeholder="+971 50 000 0000" aria-describedby="ptPhoneErr">
-              <p class="ct-err" id="ptPhoneErr" hidden>Use digits only, with an optional + prefix.</p>
-            </div>
-            <div class="ct-field">
-              <label for="ptCountry">Country or region</label>
+              <label for="ptCountry">Country</label>
               <div class="wb-selwrap">
                 <select id="ptCountry" name="country" aria-describedby="ptCountryErr">
                   <option value="">Select&hellip;</option>
@@ -726,7 +739,62 @@
                 </select>
                 <svg class="wb-selchev" aria-hidden="true"><use href="#i-chevron-down"/></svg>
               </div>
-              <p class="ct-err" id="ptCountryErr" hidden>Please choose your country or region.</p>
+              <p class="ct-err" id="ptCountryErr" hidden>Please choose your country.</p>
+            </div>
+            <div class="ct-field">
+              <label for="ptPhone">Phone number</label>
+              <div class="pt-telrow">
+                <div class="wb-selwrap">
+                  <select id="ptDial" name="dial" aria-label="Dial code">
+                    <option>+1</option>
+                    <option>+7</option>
+                    <option>+20</option>
+                    <option>+27</option>
+                    <option>+33</option>
+                    <option>+34</option>
+                    <option>+39</option>
+                    <option>+44</option>
+                    <option>+49</option>
+                    <option>+52</option>
+                    <option>+55</option>
+                    <option>+60</option>
+                    <option>+61</option>
+                    <option>+62</option>
+                    <option>+63</option>
+                    <option>+65</option>
+                    <option>+66</option>
+                    <option>+81</option>
+                    <option>+82</option>
+                    <option>+84</option>
+                    <option>+86</option>
+                    <option>+90</option>
+                    <option>+91</option>
+                    <option>+92</option>
+                    <option>+234</option>
+                    <option>+966</option>
+                    <option selected>+971</option>
+                    <option>+974</option>
+                  </select>
+                  <svg class="wb-selchev" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+                </div>
+                <input type="tel" id="ptPhone" name="phone" inputmode="tel" autocomplete="tel-national" placeholder="50 000 0000" aria-describedby="ptPhoneErr">
+              </div>
+              <p class="ct-err" id="ptPhoneErr" hidden>Please enter a phone number we can reach you on.</p>
+            </div>
+            <div class="ct-field">
+              <label for="ptEmail">Email</label>
+              <input type="email" id="ptEmail" name="email" inputmode="email" autocomplete="email" placeholder="you@example.com" aria-describedby="ptEmailErr">
+              <p class="ct-err" id="ptEmailErr" hidden>We need a valid email to reply to.</p>
+            </div>
+            <div class="ct-field">
+              <label for="ptPass">Password</label>
+              <div class="pt-passrow">
+                <input type="password" id="ptPass" name="password" autocomplete="new-password" placeholder="Minimum 8 characters" aria-describedby="ptPassErr">
+                <button class="pt-eye" type="button" data-pt-eye aria-label="Show password" aria-pressed="false">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="2.8" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+                </button>
+              </div>
+              <p class="ct-err" id="ptPassErr" hidden>Use at least 8 characters.</p>
             </div>
           </div>
 
@@ -739,10 +807,17 @@
             </div>
           </div>
 
+          <label class="ct-check" for="ptUs">
+            <input type="checkbox" id="ptUs" name="nonus" aria-describedby="ptUsErr">
+            <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+            <span>I am not a U.S. resident.</span>
+          </label>
+          <p class="ct-err" id="ptUsErr" hidden>We can only accept applications from outside the United States.</p>
+
           <label class="ct-check" for="ptConsent">
             <input type="checkbox" id="ptConsent" name="consent" aria-describedby="ptConsentErr">
             <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
-            <span>I agree that STARTRADER may use these details to assess and respond to my partnership application, as set out in the <a href="privacy-policy-app.html">Privacy Policy</a>.</span>
+            <span>I agree to STARTRADER using my data for product/service information, offers, events, and application support. You can unsubscribe anytime. For details, see our <a href="privacy-policy-app.html">Privacy Policy</a>.</span>
           </label>
           <p class="ct-err" id="ptConsentErr" hidden>Please confirm before sending.</p>
 
@@ -936,5 +1011,71 @@
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
 <script src="assets/js/main.min.js?v=qa72" defer></script>
+
+<script>
+/* ---- IB application form: the fields this page adds on top of the shared one ----
+   #ptForm is shared by five partnership pages and validated in main.js, which
+   builds its field map by id and skips anything it cannot find — so surname,
+   dial code, password and the U.S.-resident confirmation are invisible to it.
+   This runs during parse, before the deferred main.min.js attaches its own
+   submit handler, so it is first in the listener queue: it validates the whole
+   set at once, and only stops the event when something actually fails. When
+   everything passes it does nothing and main.js proceeds as it always has. */
+(function () {
+  var f = document.getElementById('ptForm');
+  if (!f) return;
+  var $ = function (id) { return document.getElementById(id); };
+
+  var eye = f.querySelector('[data-pt-eye]'), pass = $('ptPass');
+  if (eye && pass) eye.addEventListener('click', function () {
+    var show = pass.type === 'password';
+    pass.type = show ? 'text' : 'password';
+    eye.setAttribute('aria-pressed', show ? 'true' : 'false');
+    eye.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+  });
+
+  var checks = [
+    ['ptName',    function (e) { return e.value.trim().length >= 2; }],
+    ['ptSurname', function (e) { return e.value.trim().length >= 2; }],
+    ['ptCountry', function (e) { return !!e.value; }],
+    ['ptPhone',   function (e) { return /^[\d\s()-]{6,20}$/.test(e.value.trim()); }],
+    ['ptEmail',   function (e) { return /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(e.value.trim()); }],
+    ['ptPass',    function (e) { return e.value.length >= 8; }],
+    ['ptUs',      function (e) { return e.checked; }],
+    ['ptConsent', function (e) { return e.checked; }]
+  ];
+
+  function bad(el, on) {
+    var wrap = el.closest('.ct-field') || el.closest('.ct-check');
+    var err = $(el.id + 'Err');
+    if (wrap) wrap.classList.toggle('is-bad', on);
+    if (err) err.hidden = !on;
+    el.setAttribute('aria-invalid', on ? 'true' : 'false');
+  }
+
+  checks.forEach(function (c) {
+    var el = $(c[0]);
+    if (!el) return;
+    var clear = function () { if (c[1](el)) bad(el, false); };
+    el.addEventListener('input', clear);
+    el.addEventListener('change', clear);
+  });
+
+  f.addEventListener('submit', function (e) {
+    var first = null;
+    checks.forEach(function (c) {
+      var el = $(c[0]);
+      if (!el) return;
+      var ok = c[1](el);
+      bad(el, !ok);
+      if (!ok && !first) first = el;
+    });
+    if (!first) return;                 /* clean — hand over to main.js */
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    first.focus();
+  });
+})();
+</script>
 </body>
 </html>
