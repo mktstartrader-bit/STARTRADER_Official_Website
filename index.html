@@ -483,12 +483,28 @@
 .ac-mini-body .ac-foot{margin-top:auto}
 .ac-mini-body .ac-meta{color:var(--text-mute)}
 /* ---------- Sponsors ---------- */
-.sponsors-title{text-align:center;font-size:clamp(19px,2.3vw,26px);color:var(--text);font-weight:600;line-height:1.2;margin-bottom:40px}
-.sponsor-cards{display:flex;justify-content:center;gap:24px;flex-wrap:wrap}
-.sponsor-card{width:300px;height:160px;text-decoration:none;cursor:pointer;background:rgba(255,255,255,.46);-webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6);border:1px solid rgba(255,255,255,.75);border-radius:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;box-shadow:0 12px 34px -18px rgba(20,44,96,.26),inset 0 1px 0 rgba(255,255,255,.9);transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s}
-.sponsor-card:hover{transform:translateY(-5px);box-shadow:0 24px 54px -22px rgba(20,44,96,.34),inset 0 1px 0 rgba(255,255,255,.95);border-color:#fff}
-.sponsor-card img{height:44px;width:auto}
-.sponsor-card span{font-size:13.5px;color:var(--text-soft)}
+.partner-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.partner-card{position:relative;display:flex;min-height:clamp(300px,25vw,336px);border-radius:26px;overflow:hidden;background:#0b0e14;color:#fff;text-decoration:none;isolation:isolate;box-shadow:0 22px 50px -26px rgba(8,16,40,.55);transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+.partner-card:hover{transform:translateY(-5px);box-shadow:0 34px 70px -28px rgba(8,16,40,.62)}
+.partner-art{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--art-x,70%) 50%;transform-origin:var(--art-x,70%) 50%;transition:transform .8s var(--ease)}
+.partner-card:hover .partner-art{transform:scale(1.04)}
+.partner-card--pccme .partner-art{object-fit:contain;object-position:100% 50%;transform-origin:100% 50%}
+.partner-shade{position:absolute;inset:0;background:linear-gradient(90deg,#0b0e14 0%,#0b0e14 30%,rgba(11,14,20,.92) 42%,rgba(11,14,20,.5) 58%,rgba(11,14,20,0) 76%),linear-gradient(180deg,rgba(11,14,20,.18),rgba(11,14,20,0) 45%,rgba(11,14,20,.32))}
+.partner-body{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:26px;width:100%;padding:clamp(24px,3vw,40px)}
+.partner-tags{display:flex;flex-wrap:wrap;gap:8px}
+.partner-tags span{display:inline-flex;align-items:center;padding:8px 14px;border-radius:9px;background:rgba(255,255,255,.1);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.08);font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.88);line-height:1.2}
+.partner-body h3{margin:0;font-size:24px;font-weight:600;line-height:1.2;letter-spacing:-.012em;color:#fff;max-width:20ch}
+.partner-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-width:176px;padding:14px 26px;border-radius:12px;border:1px solid rgba(255,255,255,.55);color:#fff;font-weight:600;font-size:15px;line-height:1.2;transition:background .3s,color .3s,border-color .3s}
+.partner-btn .ico{width:16px;height:16px;transition:transform .3s var(--ease)}
+.partner-card:hover .partner-btn{background:#fff;color:#0b0e14;border-color:#fff}
+.partner-card:hover .partner-btn .ico{transform:translateX(3px)}
+.partner-card:focus-visible{outline:2px solid var(--brand);outline-offset:3px}
+@media (max-width:900px){.partner-cards{grid-template-columns:1fr;max-width:640px;margin-inline:auto}.partner-card{min-height:320px}}
+@media (max-width:640px){.partner-card{min-height:440px}
+.partner-art,.partner-card--pccme .partner-art{object-fit:cover;object-position:var(--art-mx,58%) 8%;transform-origin:50% 0}
+.partner-shade{background:linear-gradient(180deg,rgba(11,14,20,.45) 0%,rgba(11,14,20,.05) 26%,rgba(11,14,20,.55) 52%,#0b0e14 78%)}
+.partner-body{justify-content:flex-end;gap:16px;padding:24px}
+.partner-btn{margin-top:6px}}
 /* ---------- Hero network graphic ---------- */
 .cc-row{display:flex;align-items:center;gap:8px}
 .cc-name{font-size:13px;font-weight:600;color:#fff}
@@ -506,8 +522,7 @@
 .trusted-stats li{flex:1 0 100%;padding:18px 0}
 .trusted-stats li+li::before{display:none}
 .academy-grid{grid-template-columns:1fr}}
-@media (max-width:460px){.sponsor-card{width:100%;max-width:320px}
-.ac-mini{flex-direction:column}
+@media (max-width:460px){.ac-mini{flex-direction:column}
 .ac-thumb{flex-basis:auto;width:100%;height:170px;min-height:0}}
   </style>
 
@@ -1374,15 +1389,27 @@
 <!-- ============ SPONSORS ============ -->
 <section class="section sponsors" id="sponsors" aria-labelledby="sponsors-title">
   <div class="container">
-    <h2 class="sponsors-title" id="sponsors-title" data-aos="fade-up">Official partnerships</h2>
-    <div class="sponsor-cards">
-      <a href="https://www.nba.com" target="_blank" rel="noopener" class="sponsor-card" aria-label="Official Partner of the NBA" data-aos="fade-up">
-        <img src="assets/img/sponsor-nba.svg" alt="NBA" width="108" height="61">
-        <span>Official Partner of the NBA</span>
+    <div class="head center">
+      <h2 class="h2" id="sponsors-title" data-aos="fade-up">Official partnerships</h2>
+    </div>
+    <div class="partner-cards">
+      <a href="sponsorship/nba.html" class="partner-card partner-card--nba" style="--art-x:72%;--art-mx:58%" data-aos="fade-up">
+        <img class="partner-art" src="assets/img/partner-nba-card.webp" alt="NBA logo rendered as a glass emblem surrounded by basketballs" width="1600" height="Official Partner<br>of the NBA" loading="lazy" decoding="async">
+        <div class="partner-shade" aria-hidden="true"></div>
+        <div class="partner-body">
+          <div class="partner-tags"><span>NBA</span><span>Official Partner</span></div>
+          <h3>Official Partner<br>of the NBA</h3>
+          <span class="partner-btn">NBA Partnership <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
+        </div>
       </a>
-      <a href="https://www.porsche.com" target="_blank" rel="noopener" class="sponsor-card" aria-label="Official Partner of the Porsche Carrera Cup Middle East" data-aos="fade-up" data-aos-delay="100">
-        <img src="assets/img/sponsor-porsche.svg" alt="Porsche Carrera Cup Middle East" width="221" height="61">
-        <span>Official Partner of the PCCME</span>
+      <a href="sponsorship/pccme.html" class="partner-card partner-card--pccme" style="--art-x:100%;--art-mx:62%" data-aos="fade-up" data-aos-delay="100">
+        <img class="partner-art" src="assets/img/partner-pccme-card.webp" alt="PCCME emblem with a Porsche Carrera Cup race car on the track" width="1448" height="Official Partner<br>of the PCCME" loading="lazy" decoding="async">
+        <div class="partner-shade" aria-hidden="true"></div>
+        <div class="partner-body">
+          <div class="partner-tags"><span>PCCME</span><span>Official Partner</span></div>
+          <h3>Official Partner<br>of the PCCME</h3>
+          <span class="partner-btn">PCCME Partnership <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
+        </div>
       </a>
     </div>
   </div>
