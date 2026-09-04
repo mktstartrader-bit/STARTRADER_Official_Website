@@ -287,6 +287,21 @@
         var m = document.createElement('a');
         m.href = a.getAttribute('href') || '#';
         m.textContent = lbl;
+        // links that leave the site keep their new-tab behaviour and marker
+        if (a.getAttribute('target')) {
+          m.setAttribute('target', a.getAttribute('target'));
+          m.setAttribute('rel', a.getAttribute('rel') || 'noopener');
+        }
+        if (a.querySelector('.mega-ext')) {
+          var ex = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+          ex.setAttribute('class', 'mm-ext');
+          ex.setAttribute('aria-hidden', 'true');
+          var exu = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+          exu.setAttribute('href', '#i-arrow-ur');
+          exu.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '#i-arrow-ur');
+          ex.appendChild(exu);
+          m.appendChild(ex);
+        }
         if (isNew) {
           var em = document.createElement('em');
           em.className = 'mm-new';
