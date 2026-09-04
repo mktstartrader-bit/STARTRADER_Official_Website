@@ -5265,7 +5265,7 @@
     }
   }
 
-  var PC_CORNERS = [["Performance", "Performance is the outcome, never the plan. On the grid and on the screen it is what is left over once preparation, discipline and equipment have all been accounted for."], ["Strategy", "Every race is a decision tree — tyres, fuel, when to push and when to hold. Every position is the same problem in a different language."], ["Endurance", "Championships are won across a season, not in a single lap. Consistency under repeated pressure beats one heroic afternoon."], ["Precision", "On this circuit the margin between a good lap and a lost one is measured in tenths. Precision is not a flourish; it is the whole job."], ["Control", "Speed without control ends in the barrier. Risk management is what turns raw pace into a finish, and a position into a return."]];
+  var PC_CORNERS = [["Performance", "The Porsche 911 GT3 Cup is engineered for optimal output. STARTRADER's platforms are built to deliver seamless, powerful execution."], ["Strategy", "Every overtake is calculated. Every trade is considered. Success belongs to those who prepare, adapt, and execute with clarity."], ["Endurance", "Championships aren't won in a single lap. Lasting success on the track or in the markets is built season after season, trade after trade."], ["Precision", "On the track, the margin between victory and defeat is measured in fractions. In trading, precision execution separates opportunity from missed potential."], ["Control", "Drivers master every corner with discipline and composure. Traders navigate volatility with sound judgment and risk management."]];
 
   /* ---------------- Porsche Carrera Cup Middle East ---------------- */
   function initPccme() {
@@ -5448,7 +5448,7 @@
     ['Powerful platforms', 'STARTRADER App, STAR Copy and STAR Matrix sharpen execution speed, risk management and strategy tools.'],
     ['Updates', 'Daily insights, market analysis and tailored updates, so a decision is made on information rather than instinct.'],
     ['24/7 support staff', 'Multilingual customer care to guide traders, at whatever hour the market decides to move.'],
-    ['Regulators', 'Global licences \u2014 CIMA, ASIC, FSCA, FSA and FSC \u2014 provide a secure, compliant trading environment. Full regulatory disclosures are on our website.']
+    ['Regulators', 'Our global licenses (CMA, ASIC, FSCA, FSA, FSC) provide a secure, compliant trading environment. For full regulatory disclosures, please visit our website.']
   ];
 
   function initPfl() {
