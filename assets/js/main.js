@@ -1072,6 +1072,33 @@
     });
   }
 
+  /* ---------------- Closing-banner emblem scrub ---------------- */
+  // The glass emblem above the footer rises, levels out of a backward tilt
+  // and settles to full size as the closing banner scrolls in, then keeps a
+  // slow upward drift while the footer scrolls past. Touch devices, reduced
+  // motion and pages without GSAP keep the plain AOS fade-up the markup
+  // already carries, so this must run before initAOS() claims the element.
+  function initEmblemParallax() {
+    var wraps = document.querySelectorAll('.cta-emblem');
+    if (!wraps.length || prefersReduced || COARSE || !hasGSAP || !hasST) return;
+    Array.prototype.forEach.call(wraps, function (wrap) {
+      var img = wrap.querySelector('img');
+      if (!img) return;
+      img.removeAttribute('data-aos');
+      img.removeAttribute('data-aos-delay');
+      wrap.classList.add('cta-emblem--scrub');
+      gsap.set(img, { transformPerspective: 1200, transformOrigin: '50% 100%' });
+      gsap.fromTo(img, { y: 170, rotateX: 22, scale: 0.82, autoAlpha: 0 }, {
+        y: 0, rotateX: 0, scale: 1, autoAlpha: 1, ease: 'none',
+        scrollTrigger: { trigger: wrap, start: 'top bottom', end: 'top 48%', scrub: 0.6 }
+      });
+      gsap.fromTo(img, { yPercent: 0 }, {
+        yPercent: -9, ease: 'none',
+        scrollTrigger: { trigger: wrap, start: 'top 48%', end: 'bottom top', scrub: true }
+      });
+    });
+  }
+
   /* ---------------- Sparkline dot (why-cards) ---------------- */
   // The leverage chart fills its card with preserveAspectRatio="none", so the
   // viewBox is scaled unevenly and a round dot renders as an ellipse. Even the
@@ -6338,6 +6365,7 @@
     initDropdowns();
     initMega();
     initLangPop();
+    initEmblemParallax();
     initAOS();
     initReveals();
     initHowtoScrub();
