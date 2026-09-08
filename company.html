@@ -32,10 +32,13 @@
 
   <!-- Fonts (self-hosted) -->
   <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <!-- TradingView widgets (live quotes) -->
+  <link rel="preconnect" href="https://s3.tradingview.com" />
+  <link rel="preconnect" href="https://www.tradingview-widget.com" />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/swiper-bundle.min.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=qa81" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=qa82" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* ---- FAQ (minimal divider list) ---- */
@@ -209,10 +212,6 @@
 .tr-core-g{background:linear-gradient(160deg,#16c98c,#0a9c6b);box-shadow:0 22px 42px -14px rgba(16,180,120,.55),inset 0 1px 0 rgba(255,255,255,.32)}
 .tr-ring{position:absolute;z-index:1;top:50%;left:50%;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:26px;border:2px solid rgba(0,71,187,.4)}
 .tr-ring-g{border-color:rgba(16,200,140,.45)}
-.tr-chip{position:absolute;z-index:3;display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--text-soft);background:#fff;border:1px solid var(--line);border-radius:70px;padding:7px 13px;box-shadow:0 12px 26px -12px rgba(20,44,96,.42)}
-.tr-chip b{color:var(--text);font-weight:800}
-.tr-chip-a{top:24px;right:12%}
-.tr-chip-b{bottom:24px;left:12%}
 .co-trust-card h3{font-size:20px;color:var(--text);letter-spacing:-.01em;margin-bottom:8px}
 .co-trust-card p{font-size:14.5px;color:var(--text-soft);line-height:1.66}
 .co-trust-badges{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:34px}
@@ -264,44 +263,6 @@
   .plat-app .plat-copy{max-width:min(100%,max(58%,212px))}
 }
 
-/* two glass readouts on the left, overlapping the phone rather than sitting on it */
-.plat-chips{
-  position:absolute;left:34px;bottom:clamp(104px,21%,136px);z-index:3;
-  display:flex;flex-direction:column;gap:10px;width:clamp(152px,40%,184px);pointer-events:none;
-}
-.plat-chip{
-  display:flex;flex-direction:column;gap:6px;
-  padding:12px 14px;border-radius:14px;
-  background:rgba(255,255,255,.62);
-  -webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);
-  border:1px solid rgba(255,255,255,.86);
-  box-shadow:0 16px 34px -22px rgba(20,44,96,.45),inset 0 1px 0 #fff;
-}
-.plat-chip b{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mute)}
-.plat-chip-row{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
-.plat-chip em{font-style:normal;font-size:16px;font-weight:700;letter-spacing:-.02em;
-  font-variant-numeric:tabular-nums;color:var(--text)}
-.plat-chip i{font-style:normal;font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px}
-.plat-chip i.up{color:#0f9d76;background:rgba(16,185,129,.14)}
-/* the stat chip leads with the figure */
-.plat-chip--stat b{font-size:23px;font-weight:800;letter-spacing:-.04em;text-transform:none;
-  color:var(--blue);font-variant-numeric:tabular-nums}
-.plat-chip--stat b small{font-size:12px;font-weight:800;margin-left:2px;color:var(--text-mute)}
-.plat-chip--stat span{font-size:11.5px;line-height:1.4;color:var(--text-soft)}
-@media (prefers-reduced-motion:no-preference){.plat-app .plat-chip{animation:platFloat 6.5s var(--ease) infinite}
-.plat-app .plat-chip--stat{animation-delay:-3.2s}}
-@media (max-width:900px){.plat-chips{width:clamp(132px,44%,168px);bottom:clamp(88px,18%,118px)}
-.plat-chip--stat b{font-size:20px}}
-/* the web card's readouts sit lower and smaller — it is a short, wide card */
-.plat-chips--web{
-  left:auto;right:clamp(150px,30%,240px);top:50%;bottom:auto;transform:translateY(-50%);
-  width:clamp(150px,26%,176px);
-}
-.plat-chips--web .plat-chip{padding:11px 13px;gap:5px}
-.plat-chips--web .plat-chip em{font-size:15px}
-.plat-chips--web .plat-chip--stat b{font-size:20px}
-.plat-chips--web .plat-chip--stat span{font-size:11px}
-@media (max-width:1080px){.plat-chips--web{display:none}}
 /* a veil of blur climbing off the bottom edge, with the store buttons on it */
 .plat-veil{
   position:absolute;left:0;right:0;bottom:0;z-index:4;
@@ -687,7 +648,7 @@
       </article>
       <article class="co-statx sx-dark">
         <div class="sx-body">
-          <div class="sx-num"><span class="num" data-count="13">13</span></div>
+          <div class="sx-num"><span class="num" data-count="30">30</span></div>
           <div class="sx-lab">Global awards</div>
         </div>
       </article>
@@ -780,18 +741,6 @@
           <p>The full account in your pocket available for iOS &amp; Android.</p>
         </div>
 
-        <!-- two minimal readouts, lapping the phone's left edge -->
-        <div class="plat-chips" aria-hidden="true">
-          <span class="plat-chip plat-chip--tick">
-            <b>GBPUSD</b>
-            <span class="plat-chip-row"><em>1.25413</em><i class="up">+0.44%</i></span>
-          </span>
-          <span class="plat-chip plat-chip--stat">
-            <b>100<small>ms</small></b>
-            <span>average execution</span>
-          </span>
-        </div>
-
         <img class="plat-hand" src="assets/img/app-hand.webp" alt="The STARTRADER app open on a phone" width="1000" height="1364" loading="lazy" decoding="async">
 
         <!-- the veil rises off the lower edge, and the buttons sit on it -->
@@ -811,14 +760,6 @@
           <p>The full trading terminal in your browser with no download needed.</p>
         </div>
         <a href="webtrader.html" class="link-ur">Launch web trader <svg class="ico"><use href="#i-arrow-ur"/></svg></a>
-        <!-- one readout, lapping the laptop -->
-        <div class="plat-chips plat-chips--web" aria-hidden="true">
-          <span class="plat-chip plat-chip--tick">
-            <b>XAUUSD</b>
-            <span class="plat-chip-row"><em>3,279.96</em><i class="up">+1.18%</i></span>
-          </span>
-        </div>
-
         <img class="plat-tablet" src="assets/img/webtrader-laptop.webp" alt="Web Trader terminal open on a laptop" width="619" height="458" loading="lazy">
       </article>
 
@@ -953,9 +894,7 @@
         <div class="fx-w2-viz">
           <div class="fx-cs">
             <div class="fx-cs-meter">
-              <div class="big">0.0<em>pips</em></div>
               <div class="fx-cs-bars"><span></span><span></span><span></span><span></span></div>
-              <span class="sym">EUR/USD live spread</span>
             </div>
             <span class="fx-cs-chip c1"><span class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>Transparent</span>
             <span class="fx-cs-chip c2"><span class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>Cost-efficient</span>
@@ -1013,11 +952,10 @@
 
       <!-- 1000+ Instruments -->
       <article class="fx-w2">
-        <div class="fx-w2-viz">
-          <div class="fx-pw">
-            <div class="fx-pw-row" data-fx-quote><span class="q-sym">EUR/USD</span><span class="q-px">1.08420</span><span class="q-chg up">+0.13%</span></div>
-            <div class="fx-pw-row" data-fx-quote><span class="q-sym">XAU/USD</span><span class="q-px">3280.40</span><span class="q-chg up">+0.42%</span></div>
-            <div class="fx-pw-row" data-fx-quote><span class="q-sym">US500</span><span class="q-px">5321.80</span><span class="q-chg down">-0.08%</span></div>
+        <div class="fx-w2-viz fx-w2-viz--tv">
+          <div class="fx-pw fx-pw--tv">
+            <!-- live EUR/USD, XAU/USD and US500 quotes: TradingView's compact ticker-tape, the one widget that shows all three at this card width; main.js mounts it as the card scrolls near -->
+            <div class="fx-pw-tv" data-tv-widget="ticker-tape" data-tv-config='{"symbols":[{"proName":"FX:EURUSD","title":"EUR/USD"},{"proName":"OANDA:XAUUSD","title":"XAU/USD"},{"proName":"FOREXCOM:SPXUSD","title":"US500"}],"showSymbolLogo":false,"isTransparent":true,"displayMode":"compact","colorTheme":"light","locale":"en"}'></div>
             <div class="fx-pw-more">+997 more instruments</div>
           </div>
         </div>
@@ -1082,7 +1020,6 @@
         <div class="co-trust-viz">
           <span class="tr-ring"></span><span class="tr-ring tr-ring-2"></span>
           <span class="tr-core"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v5c0 5-3.4 8.5-8 10-4.6-1.5-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
-          <span class="tr-chip tr-chip-a"><b>$0.00</b> max loss</span>
         </div>
         <h3>Negative Balance Protection</h3>
         <p>You can never lose more than the money in your account, your balance can&rsquo;t fall below zero, even in fast-moving markets.</p>
@@ -1091,15 +1028,13 @@
         <div class="co-trust-viz">
           <span class="tr-ring tr-ring-g"></span><span class="tr-ring tr-ring-g tr-ring-2"></span>
           <span class="tr-core tr-core-g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15.5" r="1.4" fill="currentColor" stroke="none"/></svg></span>
-          <span class="tr-chip tr-chip-b"><b>256-bit</b> SSL</span>
         </div>
         <h3>SSL Encryption Technology</h3>
-        <p>Every session is protected with 256-bit SSL &mdash; the same standard trusted by PayPal, eBay and major banks.</p>
+        <p>Every session is protected with SSL encryption &mdash; the same standard trusted by PayPal, eBay and major banks.</p>
       </article>
     </div>
     <div class="co-trust-badges" data-aos="fade-up">
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v5c0 5-3.4 8.5-8 10-4.6-1.5-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg> Negative balance protection</span>
-      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg> 256-bit SSL encryption</span>
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V10l7-4 7 4v11M9.5 21v-5h5v5"/></svg> Segregated client funds</span>
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l7 3v6c0 4.4-3 7.6-7 8.9C8 18.6 5 15.4 5 11V5z"/><path d="M9.5 11.5l1.8 1.8L15 9.5"/></svg> Regulated by 5 authorities</span>
     </div>
@@ -1239,7 +1174,7 @@
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/swiper-bundle.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=qa81" defer></script>
+<script src="assets/js/main.min.js?v=qa82" defer></script>
 
 <!-- Company page: robust scroll reveals + hero parallax (self-contained, never leaves content hidden) -->
 <script>

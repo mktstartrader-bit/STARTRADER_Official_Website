@@ -36,10 +36,13 @@
 
   <!-- Fonts (self-hosted) -->
   <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <!-- TradingView widgets (live quotes) -->
+  <link rel="preconnect" href="https://s3.tradingview.com" />
+  <link rel="preconnect" href="https://www.tradingview-widget.com" />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/swiper-bundle.min.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=qa81" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=qa82" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* ---- welcome popup (dark glass) ---- */
@@ -259,44 +262,6 @@
   .plat-app .plat-copy{max-width:min(100%,53%)}
 }
 
-/* two glass readouts on the left, overlapping the phone rather than sitting on it */
-.plat-chips{
-  position:absolute;left:34px;bottom:clamp(104px,21%,136px);z-index:3;
-  display:flex;flex-direction:column;gap:10px;width:clamp(152px,40%,184px);pointer-events:none;
-}
-.plat-chip{
-  display:flex;flex-direction:column;gap:6px;
-  padding:12px 14px;border-radius:14px;
-  background:rgba(255,255,255,.62);
-  -webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);
-  border:1px solid rgba(255,255,255,.86);
-  box-shadow:0 16px 34px -22px rgba(20,44,96,.45),inset 0 1px 0 #fff;
-}
-.plat-chip b{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mute)}
-.plat-chip-row{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
-.plat-chip em{font-style:normal;font-size:16px;font-weight:700;letter-spacing:-.02em;
-  font-variant-numeric:tabular-nums;color:var(--text)}
-.plat-chip i{font-style:normal;font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px}
-.plat-chip i.up{color:#0f9d76;background:rgba(16,185,129,.14)}
-/* the stat chip leads with the figure */
-.plat-chip--stat b{font-size:23px;font-weight:800;letter-spacing:-.04em;text-transform:none;
-  color:var(--blue);font-variant-numeric:tabular-nums}
-.plat-chip--stat b small{font-size:12px;font-weight:800;margin-left:2px;color:var(--text-mute)}
-.plat-chip--stat span{font-size:11.5px;line-height:1.4;color:var(--text-soft)}
-@media (prefers-reduced-motion:no-preference){.plat-app .plat-chip{animation:platFloat 6.5s var(--ease) infinite}
-.plat-app .plat-chip--stat{animation-delay:-3.2s}}
-@media (max-width:900px){.plat-chips{width:clamp(132px,44%,168px);bottom:clamp(88px,18%,118px)}
-.plat-chip--stat b{font-size:20px}}
-/* the web card's readouts sit lower and smaller — it is a short, wide card */
-.plat-chips--web{
-  left:auto;right:clamp(150px,30%,240px);top:50%;bottom:auto;transform:translateY(-50%);
-  width:clamp(150px,26%,176px);
-}
-.plat-chips--web .plat-chip{padding:11px 13px;gap:5px}
-.plat-chips--web .plat-chip em{font-size:15px}
-.plat-chips--web .plat-chip--stat b{font-size:20px}
-.plat-chips--web .plat-chip--stat span{font-size:11px}
-@media (max-width:1080px){.plat-chips--web{display:none}}
 /* a veil of blur climbing off the bottom edge, with the store buttons on it */
 .plat-veil{
   position:absolute;left:0;right:0;bottom:0;z-index:4;
@@ -1015,18 +980,6 @@
           <p>The full account in your pocket &mdash; iOS &amp; Android.</p>
         </div>
 
-        <!-- two minimal readouts, lapping the phone's left edge -->
-        <div class="plat-chips" aria-hidden="true">
-          <span class="plat-chip plat-chip--tick">
-            <b>GBPUSD</b>
-            <span class="plat-chip-row"><em>1.25413</em><i class="up">+0.44%</i></span>
-          </span>
-          <span class="plat-chip plat-chip--stat">
-            <b>100<small>ms</small></b>
-            <span>average execution</span>
-          </span>
-        </div>
-
         <img class="plat-hand" src="assets/img/app-hand.webp" alt="The STARTRADER app open on a phone" width="1000" height="1364" loading="lazy" decoding="async">
 
         <!-- the veil rises off the lower edge, and the buttons sit on it -->
@@ -1046,14 +999,6 @@
           <p>The full trading terminal in your browser — no download needed.</p>
         </div>
         <a href="webtrader.html" class="link-ur">Launch web trader <svg class="ico"><use href="#i-arrow-ur"/></svg></a>
-        <!-- one readout, lapping the laptop -->
-        <div class="plat-chips plat-chips--web" aria-hidden="true">
-          <span class="plat-chip plat-chip--tick">
-            <b>XAUUSD</b>
-            <span class="plat-chip-row"><em>3,279.96</em><i class="up">+1.18%</i></span>
-          </span>
-        </div>
-
         <img class="plat-tablet" src="assets/img/webtrader-laptop.webp" alt="Web Trader terminal open on a laptop" width="619" height="458" loading="lazy">
       </article>
 
@@ -1598,6 +1543,6 @@
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/swiper-bundle.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=qa81" defer></script>
+<script src="assets/js/main.min.js?v=qa82" defer></script>
 </body>
 </html>
