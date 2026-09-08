@@ -5736,3 +5736,25 @@ body:has(.nav-item.has-mega:focus-within)::after{opacity:1;visibility:visible}
 .ck-h1,.nb-h1{font-weight:700;letter-spacing:-.03em;line-height:1.08;text-shadow:none}
 .ck-h1 span:first-child{text-shadow:none}
 .ck-h1 .hollow,.nb-h1 .hollow{color:#fff;-webkit-text-stroke:0;text-shadow:none}
+
+/* ===== TRADINGVIEW LIVE QUOTES (appended batch, 2026-09-08) =====
+   the hero ticker strip and the "1000+ instruments" quote card stop faking
+   movement with jittered hard-coded numbers and host TradingView's own
+   ticker-tape widgets, mounted by main.js. The strip keeps its
+   glass shell and the widget iframe fills it edge to edge; a small
+   attribution line sits under the strip (and under the card's quotes) */
+.hero-ticker--tv .hero-ticker-track{display:block;width:100%;will-change:auto}
+.hero-ticker--tv .tradingview-widget-container,.hero-ticker--tv .tradingview-widget-container__widget{width:100%}
+.hero-ticker--tv iframe{display:block;width:100%!important}
+.tv-credit{font-size:11px;line-height:1.4;color:rgba(255,255,255,.5)}
+.tv-credit a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+.tv-credit a:hover{color:#fff}
+.hero-ticker--tv+.tv-credit{position:relative;z-index:3;width:min(1160px,calc(100% - 48px));margin:8px auto 0;text-align:right}
+@media (max-width:720px){.hero-ticker--tv+.tv-credit{display:none}}
+.fx-w2-viz--tv{height:auto;min-height:206px}
+.fx-pw--tv{width:100%;max-width:300px;gap:6px}
+.fx-pw--tv .tradingview-widget-container{width:100%}
+.fx-pw--tv .fx-pw-tv{width:100%;border-radius:11px;background:rgba(255,255,255,.72);border:1px solid #fff;box-shadow:0 10px 24px -16px rgba(20,44,96,.35);overflow:hidden}
+.fx-pw--tv iframe{display:block;width:100%!important}
+.fx-pw--tv .tv-credit{text-align:center;color:var(--text-mute);margin-top:4px}
+.fx-pw--tv .tv-credit a:hover{color:var(--text)}

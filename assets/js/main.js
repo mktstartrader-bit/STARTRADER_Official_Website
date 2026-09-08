@@ -76,68 +76,85 @@
     { sym: 'GER40', price: '18,411', chg: '+0.34%', dir: 'up' },
     { sym: 'AAPL', price: '228.11', chg: '-0.21%', dir: 'down' }
   ];
-  var heroPairs = [
-    { c: 'EURCHF', n: 'Euro vs Swiss Franc', a: 'eu', b: 'ch', p: '0.92963', chg: -0.14, dir: 'down' },
-    { c: 'EURAUD', n: 'Euro vs Australian Dollar', a: 'eu', b: 'au', p: '1.62889', chg: 0.31, dir: 'up' },
-    { c: 'GBPCHF', n: 'Great Britain Pound vs Swiss Franc', a: 'gb', b: 'ch', p: '1.08842', chg: -0.09, dir: 'down' },
-    { c: 'NZDCHF', n: 'New Zealand Dollar vs Swiss Franc', a: 'nz', b: 'ch', p: '0.47272', chg: 0.22, dir: 'up' },
-    { c: 'GBPCAD', n: 'Great Britain Pound vs Canadian Dollar', a: 'gb', b: 'ca', p: '1.88057', chg: -0.18, dir: 'down' },
-    { c: 'USDJPY', n: 'US Dollar vs Japanese Yen', a: 'us', b: 'jp', p: '163.562', chg: 0.24, dir: 'up' },
-    { c: 'EURUSD', n: 'Euro vs US Dollar', a: 'eu', b: 'us', p: '1.08420', chg: 0.13, dir: 'up' },
-    { c: 'GBPUSD', n: 'Great Britain Pound vs US Dollar', a: 'gb', b: 'us', p: '1.27180', chg: -0.11, dir: 'down' }
-  ];
+  /* ---------------- TradingView live quotes ----------------
+     Every live-looking quote on the site is TradingView's own widget —
+     no scripted jitter on hard-coded numbers. A host element carries
+     data-tv-widget="<name>" (the suffix of TradingView's embed-widget-<name>.js)
+     and data-tv-config='{…}' (that widget's JSON settings); mountTradingView()
+     drops the official embed snippet inside it — container, settings script,
+     attribution link. Hosts below the fold mount lazily as they scroll near;
+     the hero ticker mounts at once because it sits in the first viewport. */
+  var TV_EMBED = 'https://s3.tradingview.com/external-embedding/embed-widget-';
+  // TradingView's locale codes for the site's page languages
+  var TV_LOCALES = { en: 'en', ru: 'ru', de: 'de_DE', es: 'es', fr: 'fr', it: 'it', ja: 'ja', ko: 'kr', pt: 'br', tr: 'tr', pl: 'pl', nl: 'nl_NL', th: 'th_TH', vi: 'vi_VN', id: 'id_ID', ms: 'ms_MY', ar: 'ar_AE', zh: 'zh_CN' };
+  function tvLocale() {
+    var lang = (doc.getAttribute('lang') || 'en').toLowerCase();
+    if (lang === 'zh-tw' || lang === 'zh-hant') return 'zh_TW';
+    return TV_LOCALES[lang.split('-')[0]] || 'en';
+  }
+  function tvCredit() {
+    var credit = document.createElement('div');
+    credit.className = 'tradingview-widget-copyright tv-credit';
+    credit.innerHTML = '<a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">Live market data by TradingView</a>';
+    return credit;
+  }
+  function mountTradingView(host) {
+    if (!host || host.getAttribute('data-tv-mounted')) return;
+    host.setAttribute('data-tv-mounted', '1');
+    var cfg = {};
+    try { cfg = JSON.parse(host.getAttribute('data-tv-config') || '{}'); } catch (e) { cfg = {}; }
+    if (!cfg.locale) cfg.locale = tvLocale();
+    // TradingView's snippet order: widget slot, attribution, then the settings script
+    var wrap = document.createElement('div');
+    wrap.className = 'tradingview-widget-container';
+    var slot = document.createElement('div');
+    slot.className = 'tradingview-widget-container__widget';
+    wrap.appendChild(slot);
+    if (host.getAttribute('data-tv-credit') !== 'none') wrap.appendChild(tvCredit());
+    var s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.src = TV_EMBED + host.getAttribute('data-tv-widget') + '.js';
+    s.async = true;
+    s.text = JSON.stringify(cfg);
+    wrap.appendChild(s);
+    host.appendChild(wrap);
+  }
+  function initTradingViewEmbeds() {
+    var hosts = Array.prototype.slice.call(document.querySelectorAll('[data-tv-widget]:not([data-tv-mounted])'));
+    if (!hosts.length) return;
+    if (!('IntersectionObserver' in window)) { hosts.forEach(mountTradingView); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        io.unobserve(en.target);
+        mountTradingView(en.target);
+      });
+    }, { rootMargin: '480px 0px' });
+    hosts.forEach(function (h) { io.observe(h); });
+  }
+
+  /* ---------------- Hero ticker strip ----------------
+     the same eight FX pairs the banner has always carried, now as
+     TradingView's ticker-tape inside the glass bar; the attribution line
+     sits just under the bar so the strip itself stays one clean row */
+  var heroTickerSymbols = ['EURCHF', 'EURAUD', 'GBPCHF', 'NZDCHF', 'GBPCAD', 'USDJPY', 'EURUSD', 'GBPUSD'];
   function initHeroTicker() {
     var track = document.getElementById('heroTicker');
     if (!track) return;
-    var diag = { up: 'M7 17 17 7M17 7H9M17 7v8', down: 'M7 7l10 10M17 17H9M17 17V9' };
-    var html = heroPairs.map(function (m) {
-      return '<a class="mkt-cell ' + m.dir + '" href="https://www.startrader.com/live-account/" data-c="' + m.c + '" aria-label="Trade ' + m.c + ' — ' + m.n + '">' +
-        '<span class="mkt-cell-ic"><img src="' + ROOT + 'assets/img/flags/' + m.a + '.svg" alt="" loading="lazy"><img src="' + ROOT + 'assets/img/flags/' + m.b + '.svg" alt="" loading="lazy"></span>' +
-        '<span class="mkt-cell-tx"><b>' + m.c + '</b>' +
-          '<span class="mkt-cell-q"><em data-ht-px>' + m.p + '</em>' +
-          '<i><span data-ht-chg>' + (m.chg >= 0 ? '+' : '') + m.chg.toFixed(2) + '%</span>' +
-          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="' + diag[m.dir] + '"/></svg></i></span>' +
-        '</span>' +
-        '<span class="mkt-cell-trade">Trade</span>' +
-        '</a>';
-    }).join('');
-    track.innerHTML = html + html; // duplicate for seamless loop
-
-    // live ticking across both marquee copies
-    var live = {};
-    heroPairs.forEach(function (m) {
-      var dec = (m.p.split('.')[1] || '').length;
-      live[m.c] = { base: parseFloat(m.p), cur: parseFloat(m.p), d: dec, chg0: m.chg };
-    });
-    if (!prefersReduced) {
-      setInterval(function () {
-        heroPairs.forEach(function (m) {
-          if (Math.random() > 0.45) return;
-          var st = live[m.c];
-          var step = st.base * 0.0006 * (Math.random() * 2 - 1);
-          st.cur = st.cur + step + (st.base - st.cur) * 0.06;
-          var chg = st.chg0 + ((st.cur - st.base) / st.base) * 100;
-          var ps = st.cur.toFixed(st.d);
-          var cs = (chg >= 0 ? '+' : '') + chg.toFixed(2) + '%';
-          var cells = track.querySelectorAll('[data-c="' + m.c + '"]');
-          Array.prototype.forEach.call(cells, function (cell) {
-            var pe = cell.querySelector('[data-ht-px]'), ce = cell.querySelector('[data-ht-chg]');
-            if (pe) { pe.textContent = ps; pe.classList.remove('flash-up', 'flash-down'); void pe.offsetWidth; pe.classList.add(step >= 0 ? 'flash-up' : 'flash-down'); }
-            if (ce) ce.textContent = cs;
-          });
-        });
-      }, 1700);
-    }
-
-    if (prefersReduced || !hasGSAP) return;
-    var half = track.scrollWidth / 2;
-    var speed = 38; // px/s
-    var tween = gsap.to(track, {
-      x: -half, duration: half / speed, ease: 'none', repeat: -1,
-      modifiers: { x: function (x) { return (parseFloat(x) % half) + 'px'; } }
-    });
-    track.addEventListener('mouseenter', function () { tween.timeScale(0.1); });
-    track.addEventListener('mouseleave', function () { tween.timeScale(1); });
+    var bar = track.parentNode;
+    if (bar && bar.classList) bar.classList.add('hero-ticker--tv');
+    track.innerHTML = '';
+    track.setAttribute('data-tv-widget', 'ticker-tape');
+    track.setAttribute('data-tv-credit', 'none');
+    track.setAttribute('data-tv-config', JSON.stringify({
+      symbols: heroTickerSymbols.map(function (c) { return { proName: 'FX:' + c, title: c.slice(0, 3) + '/' + c.slice(3) }; }),
+      showSymbolLogo: true,
+      isTransparent: true,
+      displayMode: 'adaptive',
+      colorTheme: 'dark'
+    }));
+    mountTradingView(track);
+    if (bar && bar.parentNode) bar.parentNode.insertBefore(tvCredit(), bar.nextSibling);
   }
 
   function buildTicker() {
@@ -6393,6 +6410,7 @@
     initPartner();
     initCompany();
     initHeroTicker();
+    initTradingViewEmbeds();
     initMarkets();
     initMarketAnalysis();
     initKnowledge();
