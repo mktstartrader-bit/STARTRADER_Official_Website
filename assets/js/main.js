@@ -134,10 +134,27 @@
   }
 
   /* ---------------- Hero ticker strip ----------------
-     the same eight FX pairs the banner has always carried, now as
-     TradingView's ticker-tape inside the glass bar; the attribution line
-     sits just under the bar so the strip itself stays one clean row */
-  var heroTickerSymbols = ['EURCHF', 'EURAUD', 'GBPCHF', 'NZDCHF', 'GBPCAD', 'USDJPY', 'EURUSD', 'GBPUSD'];
+     TradingView's ticker-tape inside the glass bar, carrying the mix the
+     home banner is meant to show: forex majors and minors, commodities and
+     precious metals, the most-watched US stocks and the US indices. Each
+     entry is [TradingView symbol, label]; the attribution line sits just
+     under the bar so the strip itself stays one clean row */
+  var heroTickerSymbols = [
+    // forex majors
+    ['FX:EURUSD', 'EUR/USD'], ['FX:GBPUSD', 'GBP/USD'], ['FX:USDJPY', 'USD/JPY'], ['FX:USDCHF', 'USD/CHF'],
+    ['FX:AUDUSD', 'AUD/USD'], ['FX:USDCAD', 'USD/CAD'], ['FX:NZDUSD', 'NZD/USD'],
+    // forex minors
+    ['FX:EURGBP', 'EUR/GBP'], ['FX:EURJPY', 'EUR/JPY'], ['FX:GBPJPY', 'GBP/JPY'],
+    ['FX:EURAUD', 'EUR/AUD'], ['FX:EURCHF', 'EUR/CHF'], ['FX:AUDJPY', 'AUD/JPY'],
+    // commodities and precious metals
+    ['OANDA:XAUUSD', 'XAU/USD'], ['OANDA:XAGUSD', 'XAG/USD'], ['OANDA:XPTUSD', 'XPT/USD'], ['OANDA:XPDUSD', 'XPD/USD'],
+    ['TVC:USOIL', 'WTI Crude'], ['TVC:UKOIL', 'Brent Crude'], ['OANDA:NATGASUSD', 'Natural Gas'], ['OANDA:XCUUSD', 'Copper'],
+    // most-watched US stocks
+    ['NASDAQ:AAPL', 'Apple'], ['NASDAQ:MSFT', 'Microsoft'], ['NASDAQ:NVDA', 'NVIDIA'], ['NASDAQ:AMZN', 'Amazon'],
+    ['NASDAQ:GOOGL', 'Alphabet'], ['NASDAQ:META', 'Meta'], ['NASDAQ:TSLA', 'Tesla'],
+    // US indices
+    ['FOREXCOM:SPXUSD', 'US500'], ['FOREXCOM:NSXUSD', 'US100'], ['FOREXCOM:DJI', 'US30']
+  ];
   function initHeroTicker() {
     var track = document.getElementById('heroTicker');
     if (!track) return;
@@ -147,7 +164,7 @@
     track.setAttribute('data-tv-widget', 'ticker-tape');
     track.setAttribute('data-tv-credit', 'none');
     track.setAttribute('data-tv-config', JSON.stringify({
-      symbols: heroTickerSymbols.map(function (c) { return { proName: 'FX:' + c, title: c.slice(0, 3) + '/' + c.slice(3) }; }),
+      symbols: heroTickerSymbols.map(function (s) { return { proName: s[0], title: s[1] }; }),
       showSymbolLogo: true,
       isTransparent: true,
       displayMode: 'adaptive',
@@ -1582,12 +1599,12 @@
     function render(changed) {
       var a = accounts[state.acct], p = products[state.prod];
       var spread = (p.base + a.spreadAdd);
-      var spreadTxt = spread <= 0.001 ? 'from 0.0' : spread.toFixed(1);
+      var spreadTxt = spread <= 0.001 ? 'Raw <em>spread</em>' : spread.toFixed(1) + ' <em>pips</em>';
       if (elSym) elSym.textContent = p.sym;
       if (elName) elName.textContent = p.name;
       if (elPrice) elPrice.textContent = p.price;
       if (elChg) { elChg.textContent = p.chg; elChg.className = 'ta-quote-chg ' + p.dir; }
-      if (elSpread) elSpread.innerHTML = spreadTxt + ' <em>pips</em>';
+      if (elSpread) elSpread.innerHTML = spreadTxt;
       if (elComm) elComm.textContent = a.comm;
       if (elCommNote) elCommNote.textContent = a.commNote;
       if (elLev) elLev.textContent = p.lev;
