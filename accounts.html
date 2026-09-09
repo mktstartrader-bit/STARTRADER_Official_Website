@@ -82,6 +82,8 @@
 .spec-yes{display:inline-grid;place-items:center;width:24px;height:24px}
 .spec-yes svg{width:21px;height:21px;color:#1f2a3d;stroke-width:2.4}
 .ta-col-rec .spec-yes svg{color:var(--blue)}
+.ta-table td a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+.ta-table td a:hover{color:var(--blue)}
 /* ---- Closing CTA: two actions ---- */
 @media (max-width:980px){.ta-hero .acct-hero-bg::after{background:linear-gradient(180deg,rgba(4,6,14,.72),rgba(4,6,14,.92))}
 .ta-cards{grid-template-columns:1fr 1fr}}
@@ -531,56 +533,68 @@
         <thead>
           <tr>
             <th scope="col">Compare features</th>
-            <th scope="col">Standard</th>
-            <th scope="col">ECN</th>
-            <th scope="col" class="ta-col-rec">Prime ECN <span class="ta-rec-badge">Recommended</span></th>
+            <th scope="col">Standard Account</th>
+            <th scope="col">ECN Account</th>
+            <th scope="col" class="ta-col-rec">Prime ECN Account</th>
           </tr>
         </thead>
         <tbody>
           <tr>
+            <td><span class="spec-feat"><span class="spec-ic"><svg><use href="#i-monitor"/></svg></span> Platform</span></td>
+            <td>MT4, MT5, WebTrader, App</td>
+            <td>MT4, MT5, WebTrader, App</td>
+            <td class="ta-col-rec">MT4, MT5, WebTrader, App</td>
+          </tr>
+          <tr>
             <td><span class="spec-feat"><span class="spec-ic"><svg><use href="#i-chart"/></svg></span> Spreads</span></td>
             <td>As low as 1.3 pips</td>
             <td>Ultra-tight spreads</td>
-            <td class="ta-col-rec">Spreads starting from 0.0 pips</td>
+            <td class="ta-col-rec">As low as 0.0 pips</td>
           </tr>
           <tr>
-            <td><span class="spec-feat"><span class="spec-ic"><svg><use href="#i-wallet"/></svg></span> Commission</span></td>
-            <td>$0 (except indices)</td>
-            <td>From $3.50 / lot</td>
-            <td class="ta-col-rec">From $2.00 / lot</td>
-          </tr>
-          <tr>
-            <td><span class="spec-feat"><span class="spec-ic"><svg><use href="#i-box"/></svg></span> Minimum volume</span></td>
+            <td><span class="spec-feat"><span class="spec-ic"><svg><use href="#i-box"/></svg></span> Minimum Volume</span></td>
             <td>0.01 lots</td>
             <td>0.01 lots</td>
             <td class="ta-col-rec">0.01 lots</td>
           </tr>
           <tr>
-            <td><span class="spec-feat"><span class="spec-ic"><svg><use href="#i-bolt"/></svg></span> Order execution type</span></td>
+            <td><span class="spec-feat"><span class="spec-ic"><svg><use href="#i-bolt"/></svg></span> Order Execution Type</span></td>
             <td>Market</td>
             <td>Market</td>
             <td class="ta-col-rec">Market</td>
           </tr>
           <tr>
-            <td><span class="spec-feat"><span class="spec-ic"><svg><use href="#i-globe"/></svg></span> Account currencies</span></td>
+            <td><span class="spec-feat"><span class="spec-ic"><svg><use href="#i-doc"/></svg></span> Max Pending/Open Orders</span></td>
+            <td>MT4 is 2000, MT5 is unlimited, please refer to this chart <a href="https://www.startrader.com/products-en-eu/" target="_blank" rel="noopener">STP</a></td>
+            <td>MT4 is 2000, MT5 is unlimited, please refer to this chart <a href="https://www.startrader.com/products-en-eu/" target="_blank" rel="noopener">ECN</a></td>
+            <td class="ta-col-rec">MT4 is 2000, MT5 is unlimited, please refer to this chart <a href="https://www.startrader.com/products-en-eu/" target="_blank" rel="noopener">Prime ECN</a></td>
+          </tr>
+          <tr>
+            <td><span class="spec-feat"><span class="spec-ic"><svg><use href="#i-globe"/></svg></span> Account Currency Types</span></td>
             <td>AUD, CAD, EUR, GBP, USD, NZD</td>
             <td>AUD, CAD, EUR, GBP, USD, NZD</td>
             <td class="ta-col-rec">AUD, CAD, EUR, GBP, USD, NZD</td>
           </tr>
           <tr>
-            <td><span class="spec-feat"><span class="spec-ic"><svg><use href="#i-pie"/></svg></span> Trading products</span></td>
-            <td>50+ FX, 700+ stocks, 20+ indices</td>
-            <td>50+ FX, 700+ stocks, 20+ indices</td>
-            <td class="ta-col-rec">50+ FX, 700+ stocks, 20+ indices</td>
+            <td><span class="spec-feat"><span class="spec-ic"><svg><use href="#i-wallet"/></svg></span> Payment Methods</span></td>
+            <td>Visa/Mastercard, E-Wallet, International Bank Wire Transfer</td>
+            <td>Visa/Mastercard, E-Wallet, International Bank Wire Transfer</td>
+            <td class="ta-col-rec">Visa/Mastercard, E-Wallet, International Bank Wire Transfer</td>
           </tr>
           <tr>
-            <td><span class="spec-feat"><span class="spec-ic"><svg><use href="#i-phone"/></svg></span> Mobile trading</span></td>
+            <td><span class="spec-feat"><span class="spec-ic"><svg><use href="#i-pie"/></svg></span> Trading Products</span></td>
+            <td>50+ currency pairs, 700+ stocks, 10+ commodities, 20+ indices</td>
+            <td>50+ currency pairs, 700+ stocks, 10+ commodities, 20+ indices</td>
+            <td class="ta-col-rec">50+ currency pairs, 700+ stocks, 10+ commodities, 20+ indices</td>
+          </tr>
+          <tr>
+            <td><span class="spec-feat"><span class="spec-ic"><svg><use href="#i-phone"/></svg></span> Mobile Trading</span></td>
             <td><span class="spec-yes"><svg><use href="#i-check"/></svg></span></td>
             <td><span class="spec-yes"><svg><use href="#i-check"/></svg></span></td>
             <td class="ta-col-rec"><span class="spec-yes"><svg><use href="#i-check"/></svg></span></td>
           </tr>
           <tr>
-            <td><span class="spec-feat"><span class="spec-ic"><svg><use href="#i-cfd"/></svg></span> One-click trading</span></td>
+            <td><span class="spec-feat"><span class="spec-ic"><svg><use href="#i-cfd"/></svg></span> One-Click Trading</span></td>
             <td><span class="spec-yes"><svg><use href="#i-check"/></svg></span></td>
             <td><span class="spec-yes"><svg><use href="#i-check"/></svg></span></td>
             <td class="ta-col-rec"><span class="spec-yes"><svg><use href="#i-check"/></svg></span></td>
@@ -598,13 +612,19 @@
             <td class="ta-col-rec"><span class="spec-yes"><svg><use href="#i-check"/></svg></span></td>
           </tr>
           <tr>
-            <td><span class="spec-feat"><span class="spec-ic"><svg><use href="#i-monitor"/></svg></span> 24-hour trading</span></td>
+            <td><span class="spec-feat"><span class="spec-ic"><svg><use href="#i-monitor"/></svg></span> 24-Hour Trading</span></td>
             <td><span class="spec-yes"><svg><use href="#i-check"/></svg></span></td>
             <td><span class="spec-yes"><svg><use href="#i-check"/></svg></span></td>
             <td class="ta-col-rec"><span class="spec-yes"><svg><use href="#i-check"/></svg></span></td>
           </tr>
           <tr>
-            <td><span class="spec-feat"><span class="spec-ic"><svg><use href="#i-headset"/></svg></span> 1-to-1 client manager</span></td>
+            <td><span class="spec-feat"><span class="spec-ic"><svg><use href="#i-headset"/></svg></span> 1-to-1 Client Manager</span></td>
+            <td><span class="spec-yes"><svg><use href="#i-check"/></svg></span></td>
+            <td><span class="spec-yes"><svg><use href="#i-check"/></svg></span></td>
+            <td class="ta-col-rec"><span class="spec-yes"><svg><use href="#i-check"/></svg></span></td>
+          </tr>
+          <tr>
+            <td><span class="spec-feat"><span class="spec-ic"><svg><use href="#i-user"/></svg></span> Live Account</span></td>
             <td><span class="spec-yes"><svg><use href="#i-check"/></svg></span></td>
             <td><span class="spec-yes"><svg><use href="#i-check"/></svg></span></td>
             <td class="ta-col-rec"><span class="spec-yes"><svg><use href="#i-check"/></svg></span></td>
