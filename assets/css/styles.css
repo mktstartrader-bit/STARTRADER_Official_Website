@@ -5758,3 +5758,66 @@ body:has(.nav-item.has-mega:focus-within)::after{opacity:1;visibility:visible}
 .fx-pw--tv iframe{display:block;width:100%!important}
 .fx-pw--tv .tv-credit{text-align:center;color:var(--text-mute);margin-top:4px}
 .fx-pw--tv .tv-credit a:hover{color:var(--text)}
+
+/* ===== PARTNER FORMS MATCH THE OFFICIAL SITE (appended batch, 2026-09-09) =====
+   The programme tabs are links to each programme's own page, landing on its
+   form, instead of switching fields in place; the IB, CPA Affiliate and
+   Money Manager cards carry the fields of the matching form on the official
+   website. Shared furniture the three forms now need: dial-code + number
+   row, password with an eye, section headings inside the card, dashed upload
+   boxes, the live-account Email/Phone switch and its footer links. */
+.pt-tab{display:block;text-align:center;text-decoration:none}
+.pt-tab[aria-current="page"],.pt-tab.is-on{background:#fff;color:var(--blue);box-shadow:0 8px 20px -12px rgba(20,44,96,.4)}
+.pt-tabnote{margin-top:16px}
+.pt-telrow{display:grid;grid-template-columns:128px minmax(0,1fr);gap:10px;align-items:start}
+.pt-telrow .wb-selwrap{min-width:0}
+.pt-passrow{position:relative}
+.pt-passrow input{padding-right:42px}
+.pt-eye{position:absolute;right:0;top:50%;transform:translateY(-50%);width:36px;height:36px;display:grid;place-items:center;border:0;border-radius:10px;background:none;color:var(--text-mute);cursor:pointer;transition:color .25s var(--ease)}
+.pt-eye:hover{color:var(--text)}
+.pt-eye[aria-pressed="true"]{color:var(--blue)}
+.pt-eye svg{width:19px;height:19px}
+.ct-field label .req,.pt-fs-t .req{color:#d0453b;font-weight:700;margin-left:1px}
+.pt-fs{margin-top:32px}
+.pt-fs:first-child{margin-top:0}
+.pt-fs-t{font-size:15.5px;font-weight:700;letter-spacing:-.01em;color:var(--text);margin-bottom:4px}
+.pt-fs-t em{font-style:normal;font-weight:500;color:var(--text-mute)}
+.pt-fs-d{font-size:13px;line-height:1.55;color:var(--text-soft);margin-bottom:6px}
+.pt-fs .ct-grid{margin-top:14px}
+.pt-ups{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.pt-up{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;padding:22px 18px 18px;border-radius:16px;border:1.5px dashed rgba(20,44,96,.22);background:rgba(255,255,255,.55);transition:border-color .25s,background .25s}
+.pt-up:hover,.pt-up.is-drag{border-color:rgba(0,71,187,.5);background:rgba(255,255,255,.85)}
+.pt-up.is-bad{border-color:#d0453b}
+.pt-up--wide{grid-column:1 / -1}
+.pt-up-ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;color:var(--blue);background:rgba(0,71,187,.08)}
+.pt-up-ic svg{width:20px;height:20px}
+.pt-up-t{font-size:13.5px;font-weight:600;line-height:1.5;color:var(--text);max-width:34ch}
+.pt-up-l{list-style:none;padding:0;margin:0;font-size:12.5px;line-height:1.6;color:var(--text-soft)}
+.pt-up input[type="file"]{position:absolute;opacity:0;width:0;height:0}
+.pt-up-btn{display:inline-flex;align-items:center;gap:7px;margin-top:4px;padding:9px 16px;border-radius:70px;font-size:12.5px;font-weight:700;color:var(--blue);background:#fff;border:1px solid rgba(0,71,187,.25);cursor:pointer;transition:background .25s,border-color .25s,color .25s}
+.pt-up-btn svg{width:14px;height:14px}
+.pt-up-btn:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+.pt-up input:focus-visible + .pt-up-btn{outline:2px solid var(--blue);outline-offset:2px}
+.pt-up-note{font-size:11.5px;line-height:1.5;color:var(--text-mute)}
+.pt-up-name{font-size:12.5px;font-weight:600;color:var(--text);word-break:break-all}
+.pt-up-name:empty{display:none}
+.pt-up .ct-err{margin:0}
+.pt-agree{margin-top:30px;padding:16px 18px;border-radius:14px;background:rgba(0,71,187,.055);border:1px solid rgba(0,71,187,.13);font-size:13px;line-height:1.6;color:var(--text-soft)}
+.pt-agree b{display:block;font-size:14.5px;color:var(--text);margin-bottom:6px}
+.la-title{margin-bottom:16px}
+.la-full{grid-column:1 / -1}
+.la-modes{display:flex;gap:6px;padding:5px;border-radius:14px;background:rgba(20,44,96,.05);border:1px solid rgba(20,44,96,.08);margin-bottom:24px}
+.la-mode{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-size:13px;font-weight:600;padding:11px 10px;border-radius:10px;color:var(--text-soft);background:transparent;border:0;cursor:pointer;transition:background .25s,color .25s,box-shadow .25s}
+.la-mode svg{width:16px;height:16px;flex:none}
+.la-mode:hover{color:var(--text)}
+.la-mode[aria-pressed="true"]{background:#fff;color:var(--blue);box-shadow:0 8px 20px -12px rgba(20,44,96,.4)}
+.la-types{display:flex;flex-wrap:wrap;gap:12px 28px;margin-top:26px}
+.la-types .ct-check{margin-top:0}
+.la-consents .ct-check{margin-top:14px}
+.la-consents .ct-check:first-child{margin-top:26px}
+.la-links{display:flex;justify-content:center;gap:34px;margin-top:18px;font-size:13px;font-weight:600}
+.la-links a{color:var(--text-soft)}
+.la-links a:hover{color:var(--blue)}
+.ct-form-sec{scroll-margin-top:calc(var(--chrome-h,114px) + 20px)}
+@media (max-width:720px){.pt-ups{grid-template-columns:1fr}.la-mode{font-size:12.5px;padding:10px 6px}}
+@media (max-width:400px){.pt-telrow{grid-template-columns:104px minmax(0,1fr);gap:8px}}

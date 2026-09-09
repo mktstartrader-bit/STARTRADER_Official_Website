@@ -681,6 +681,19 @@
         scrollToTarget(Math.max(0, y));
       });
     });
+    // arriving from another page at #apply (the partner programme tabs do this):
+    // after the browser's own jump, glide onto the form with the header offset
+    var landing = null;
+    if (/^#[A-Za-z][\w-]*$/.test(window.location.hash || '')) landing = document.querySelector(window.location.hash);
+    if (landing && landing.classList.contains('ct-form-sec')) {
+      window.addEventListener('load', function () {
+        setTimeout(function () {
+          var off = (tb ? tb.offsetHeight : 0) + (hd ? hd.offsetHeight : 0) + 14;
+          var y = landing.getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop || 0) - off;
+          scrollToTarget(Math.max(0, y));
+        }, 250);
+      });
+    }
   }
 
   /* ---------------- Scroll reveal + counters ---------------- */
@@ -4043,120 +4056,137 @@
   }
 
   /* ---------------- Partner pages — tabbed application, form validation ---------------- */
+  /* ---------------- Partner application forms ----------------
+     ib-register, affiliate-registration, money-manager and partner share the
+     #ptForm card. The programme tabs are plain links to each programme's own
+     page (landing on its form), so nothing switches in place; each page
+     carries the fields of the matching form on the official website.
+     Validation is attribute-driven: every control marked required — plus any
+     email or tel field with a value — is checked, and its message lives in
+     #<id>Err. Nothing posts anywhere yet: the card shows its confirmation
+     panel, and the dev team wires the action to the same endpoints the
+     official pages use. */
   function initPartner() {
     var form = document.getElementById('ptForm');
     if (!form) return;
 
     var MAX = 800;
     var done = document.querySelector('[data-pt-done]');
-    var tabs = Array.prototype.slice.call(document.querySelectorAll('[data-pt-tab]'));
-    var note = document.querySelector('[data-pt-note]');
     var progInput = document.getElementById('ptProgram');
 
-    var f = {
-      name: document.getElementById('ptName'),
-      email: document.getElementById('ptEmail'),
-      phone: document.getElementById('ptPhone'),
-      country: document.getElementById('ptCountry'),
-      msg: document.getElementById('ptMsg'),
-      consent: document.getElementById('ptConsent')
-    };
-    var rules = {
-      name: function (v) { return v.trim().length >= 2; },
-      email: function (v) { return /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(v.trim()); },
-      phone: function (v) { return !v.trim() || /^\+?[\d\s()-]{6,20}$/.test(v.trim()); },
-      country: function (v) { return !!v; },
-      msg: function (v) { return !v.trim() || v.trim().length <= MAX; }
-    };
-
+    function controls() {
+      return Array.prototype.slice.call(form.querySelectorAll('input, select, textarea')).filter(function (el) {
+        if (el.type === 'hidden' || el.disabled || !el.id) return false;
+        if (el.closest('[hidden]')) return false;
+        return el.hasAttribute('required') || el.type === 'email' || el.type === 'tel' || el.hasAttribute('maxlength');
+      });
+    }
+    function valid(el) {
+      var required = el.hasAttribute('required');
+      if (el.type === 'radio') return !required || !!form.querySelector('input[name="' + el.name + '"]:checked');
+      if (el.type === 'checkbox') return !required || el.checked;
+      if (el.type === 'file') return !required || (el.files && el.files.length > 0);
+      var v = (el.value || '').trim();
+      if (!v) return !required;
+      if (el.type === 'email') return /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(v);
+      if (el.type === 'tel') return /^\+?[\d\s()-]{6,20}$/.test(v);
+      var min = parseInt(el.getAttribute('minlength') || '0', 10), max = parseInt(el.getAttribute('maxlength') || '0', 10);
+      if (min && v.length < min) return false;
+      if (max && v.length > max) return false;
+      return true;
+    }
     function bad(el, on) {
       if (!el) return;
-      var wrap = el.closest('.ct-field') || el.closest('.ct-check');
+      var wrap = el.closest('.ct-field') || el.closest('.ct-check') || el.closest('.pt-up');
       var err = document.getElementById(el.id + 'Err');
       if (wrap) wrap.classList.toggle('is-bad', on);
       if (err) err.hidden = !on;
       el.setAttribute('aria-invalid', on ? 'true' : 'false');
     }
-    Object.keys(rules).forEach(function (k) {
-      var el = f[k];
-      if (!el) return;
-      el.addEventListener('input', function () { if (rules[k](el.value)) bad(el, false); });
-      el.addEventListener('change', function () { if (rules[k](el.value)) bad(el, false); });
-    });
+    function clearOnFix(e) { var el = e.target; if (el && el.id && valid(el)) bad(el, false); }
+    form.addEventListener('input', clearOnFix);
+    form.addEventListener('change', clearOnFix);
     function check() {
       var first = null;
-      Object.keys(rules).forEach(function (k) {
-        var el = f[k];
-        if (!el) return;
-        var ok = rules[k](el.value);
+      controls().forEach(function (el) {
+        var ok = valid(el);
         bad(el, !ok);
         if (!ok && !first) first = el;
       });
       return first;
     }
 
-    /* one form, three programmes — the tab sets what the enquiry is for */
-    function select(key) {
-      var hit = null;
-      tabs.forEach(function (t) {
-        var on = t.getAttribute('data-pt-tab') === key;
-        t.setAttribute('aria-selected', on ? 'true' : 'false');
-        t.tabIndex = on ? 0 : -1;
-        if (on) hit = t;
-      });
-      if (hit && note) note.innerHTML = hit.getAttribute('data-pt-desc') || '';
-      if (hit && progInput) progInput.value = hit.textContent.trim();
-    }
-    tabs.forEach(function (t) {
-      t.addEventListener('click', function () { select(t.getAttribute('data-pt-tab')); });
-      // arrow keys move between tabs, as a tablist should
-      t.addEventListener('keydown', function (e) {
-        var i = tabs.indexOf(t);
-        var n = e.key === 'ArrowRight' ? i + 1 : e.key === 'ArrowLeft' ? i - 1 : -1;
-        if (n < 0 || n >= tabs.length) return;
-        e.preventDefault();
-        tabs[n].focus();
-        select(tabs[n].getAttribute('data-pt-tab'));
+    // the eye beside a password field
+    Array.prototype.forEach.call(form.querySelectorAll('[data-pt-eye]'), function (eye) {
+      var pass = eye.parentNode.querySelector('input');
+      if (!pass) return;
+      eye.addEventListener('click', function () {
+        var show = pass.type === 'password';
+        pass.type = show ? 'text' : 'password';
+        eye.setAttribute('aria-pressed', show ? 'true' : 'false');
+        eye.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
       });
     });
-    // a page can preselect its own programme, and #form?model= deep links work too
-    var initial = form.getAttribute('data-pt-initial') || (tabs[0] && tabs[0].getAttribute('data-pt-tab'));
-    var hashModel = (window.location.hash.match(/model=([a-z]+)/) || [])[1];
-    if (hashModel && tabs.some(function (t) { return t.getAttribute('data-pt-tab') === hashModel; })) initial = hashModel;
-    if (tabs.length) select(initial);
 
+    // upload boxes name what was chosen and accept a drop
+    Array.prototype.forEach.call(form.querySelectorAll('.pt-up input[type="file"]'), function (inp) {
+      var box = inp.closest('.pt-up'), name = box && box.querySelector('[data-pt-file-name]');
+      function show() {
+        if (name) name.textContent = inp.files && inp.files.length ? Array.prototype.map.call(inp.files, function (f) { return f.name; }).join(', ') : '';
+      }
+      inp.addEventListener('change', show);
+      if (!box) return;
+      ['dragenter', 'dragover'].forEach(function (ev) { box.addEventListener(ev, function (e) { e.preventDefault(); box.classList.add('is-drag'); }); });
+      ['dragleave', 'drop'].forEach(function (ev) { box.addEventListener(ev, function (e) { e.preventDefault(); box.classList.remove('is-drag'); }); });
+      box.addEventListener('drop', function (e) {
+        if (!e.dataTransfer || !e.dataTransfer.files.length) return;
+        try { inp.files = e.dataTransfer.files; } catch (err) { /* older engines: leave the picker */ }
+        show(); bad(inp, false);
+      });
+    });
+
+    // the live-account card registers by email or by phone
+    var modes = Array.prototype.slice.call(form.querySelectorAll('[data-la-mode]'));
+    function setMode(key) {
+      modes.forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-la-mode') === key ? 'true' : 'false'); });
+      Array.prototype.forEach.call(form.querySelectorAll('[data-la-panel]'), function (p) {
+        var on = p.getAttribute('data-la-panel') === key;
+        p.hidden = !on;
+        Array.prototype.forEach.call(p.querySelectorAll('[data-la-required]'), function (el) {
+          if (on) el.setAttribute('required', ''); else { el.removeAttribute('required'); bad(el, false); }
+        });
+      });
+    }
+    modes.forEach(function (b) { b.addEventListener('click', function () { setMode(b.getAttribute('data-la-mode')); }); });
+    if (modes.length) setMode('email');
+
+    // a free-text field keeps its counter where a form still carries one
     var count = document.querySelector('[data-pt-count]');
-    if (f.msg && count) {
+    var msgEl = document.getElementById('ptMsg');
+    if (msgEl && count) {
       var tick = function () {
-        var n = f.msg.value.length;
+        var n = msgEl.value.length;
         count.textContent = n + ' / ' + MAX;
         count.classList.toggle('is-over', n > MAX);
       };
-      f.msg.addEventListener('input', tick);
+      msgEl.addEventListener('input', tick);
       tick();
     }
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var first = check();
-      var cOk = !f.consent || f.consent.checked;
-      if (f.consent) {
-        var cWrap = f.consent.closest('.ct-check');
-        var cErr = document.getElementById('ptConsentErr');
-        if (cWrap) cWrap.classList.toggle('is-bad', !cOk);
-        if (cErr) cErr.hidden = cOk;
-      }
-      if (!cOk && !first) first = f.consent;
       if (first) { first.focus(); return; }
 
       var msg = document.querySelector('[data-pt-done-msg]');
       if (msg) {
-        // the institutional page is an enquiry to a different desk, not an application
         var prog = progInput ? progInput.value : 'partnership';
         var noun = form.getAttribute('data-pt-noun') || 'application';
         var desk = form.getAttribute('data-pt-desk') || 'partnerships';
+        var emailEl = form.querySelector('input[type="email"]');
+        var to = emailEl && !emailEl.closest('[hidden]') && emailEl.value.trim() ? emailEl.value.trim() : '';
         msg.innerHTML = 'Your <b>' + prog + '</b> ' + noun + ' is with the ' + desk + ' desk. ' +
-          'We\u2019ll reply to <b>' + (f.email ? f.email.value.trim() : 'your email') + '</b> within one business day.';
+          (to ? 'We’ll reply to <b>' + to + '</b> within one business day.' : 'We’ll be in touch within one business day.');
       }
       form.hidden = true;
       if (done) {
@@ -4170,12 +4200,11 @@
     var again = document.querySelector('[data-pt-again]');
     if (again) again.addEventListener('click', function () {
       form.reset();
-      Object.keys(rules).forEach(function (k) { bad(f[k], false); });
-      var cErr = document.getElementById('ptConsentErr');
-      if (cErr) cErr.hidden = true;
+      Array.prototype.forEach.call(form.querySelectorAll('[aria-invalid="true"]'), function (el) { bad(el, false); });
+      Array.prototype.forEach.call(form.querySelectorAll('[data-pt-file-name]'), function (n) { n.textContent = ''; });
+      if (modes.length) setMode('email');
       if (done) done.hidden = true;
       form.hidden = false;
-      if (tabs.length) select(initial);
       if (hasST) ScrollTrigger.refresh();
     });
 
