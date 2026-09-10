@@ -1140,13 +1140,28 @@ document.addEventListener('DOMContentLoaded', function () {
     var tcx = clamp(rr.right - tw / 2 - 6 + ox, tw / 2 + 8, W - tw / 2 - 8), tcy = rr.top + 2 + oy;
     tag.style.left = tcx + 'px'; tag.style.top = tcy + 'px';
     var x1 = tcx + tw / 2 - 12, y1 = tcy + th / 2 - 2;
-    var x2 = clamp(br.right - 48 + ox, br.left + 40 + ox, br.right - 30 + ox), y2 = br.top - 9 + oy;
-    var dy = y2 - y1;
-    var c1x = clamp(x1 + 72, x1, W - 10), c1y = y1 + dy * 0.35;
-    var c2x = clamp(x2 + 92, x2, W - 10), c2y = y2 - dy * 0.35;
+    // the arrow stays in the card's side margin the whole way down, so it never crosses the claim
+    // code or the copy between the reward and the button, then hooks onto the button's top-right corner
+    var lane = Math.max(rr.right + ox, br.right + ox) + Math.max(10, (W - Math.max(rr.right + ox, br.right + ox)) * 0.55);
+    lane = Math.min(lane, W - 8);
+    // when the buttons stack (narrow screens) the arrow comes in from the side, so it never clips
+    // the button above; otherwise it lands on the button's top-right corner
+    var prev = btn.previousElementSibling, pr = prev ? prev.getBoundingClientRect() : null;
+    var stacked = !!(pr && pr.bottom <= br.top + 1 && br.top - pr.bottom < 24 && pr.right > br.left + 40);
+    var x2 = stacked ? br.right + 3 + ox : br.right - 16 + ox, y2 = stacked ? br.top + br.height / 2 + oy : br.top - 7 + oy;
+    var dy = y2 - y1, d;
+    if (dy > 150) {
+      // long drop: swing out to the lane, run straight down it, hook in onto the button
+      var hook = stacked
+        ? ' L ' + lane + ' ' + (y2 - 44) + ' C ' + lane + ' ' + (y2 - 14) + ', ' + (x2 + 16) + ' ' + (y2 - 1) + ', ' + x2 + ' ' + y2
+        : ' L ' + lane + ' ' + (y2 - 64) + ' C ' + lane + ' ' + (y2 - 26) + ', ' + (x2 + 24) + ' ' + (y2 - 14) + ', ' + x2 + ' ' + y2;
+      d = 'M' + x1 + ' ' + y1 + ' C ' + (x1 + 28) + ' ' + (y1 + 6) + ', ' + lane + ' ' + (y1 + 16) + ', ' + lane + ' ' + (y1 + 52) + hook;
+    } else {
+      d = 'M' + x1 + ' ' + y1 + ' C ' + lane + ' ' + (y1 + dy * 0.3) + ', ' + lane + ' ' + (y2 - dy * 0.4) + ', ' + x2 + ' ' + y2;
+    }
     svg.setAttribute('width', card.scrollWidth); svg.setAttribute('height', card.scrollHeight);
     svg.setAttribute('viewBox', '0 0 ' + card.scrollWidth + ' ' + card.scrollHeight);
-    path.setAttribute('d', 'M' + x1 + ' ' + y1 + ' C ' + c1x + ' ' + c1y + ', ' + c2x + ' ' + c2y + ', ' + x2 + ' ' + y2);
+    path.setAttribute('d', d);
     var len = path.getTotalLength(), near = path.getPointAtLength(Math.max(0, len - 6));
     var ang = Math.atan2(y2 - near.y, x2 - near.x) * 180 / Math.PI;
     headG.setAttribute('transform', 'translate(' + x2 + ' ' + y2 + ') rotate(' + ang + ')');
