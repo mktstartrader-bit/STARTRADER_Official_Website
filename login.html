@@ -11,138 +11,149 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/styles.min.css?v=qa87" />
+  <link rel="preload" as="image" href="assets/img/pccme-banner-hero.webp" type="image/webp" fetchpriority="high" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
-/* ---- the room: soft glass sky, card dead centre ---- */
-.lg-wrap{min-height:100svh;min-height:100vh;display:grid;place-items:center;padding:24px 16px;
+/* =================================================================
+   CLIENT PORTAL LOGIN — split screen, in the site's glass language.
+   Left: a frosted panel carrying the brand, the official partner marks
+   and the sign-in card. Right: the STARTRADER Cup car, full height,
+   with the language switch and two floating helpers riding on it.
+   ================================================================= */
+.lg-wrap{position:relative;min-height:100svh;min-height:100vh;display:grid;grid-template-columns:minmax(0,48%) minmax(0,52%);
   background:
-    radial-gradient(52% 60% at 12% 6%,rgba(42,114,255,.07),transparent 62%),
-    radial-gradient(56% 64% at 90% 94%,rgba(122,164,255,.07),transparent 62%),
-    linear-gradient(180deg,#eff4fc 0%,#e2eaf7 100%)}
-.lg-shell{display:grid;grid-template-columns:1fr;width:min(560px,100%)}
-.lg-wrap{position:relative;overflow:clip}
-.lg-wrap::before,.lg-wrap::after{content:"";position:absolute;border-radius:50%;pointer-events:none}
-.lg-wrap::before{width:56vmin;height:56vmin;left:4%;top:6%;
-  background:radial-gradient(closest-side,rgba(42,114,255,.09),transparent 72%)}
-.lg-wrap::after{width:64vmin;height:64vmin;right:2%;bottom:2%;
-  background:radial-gradient(closest-side,rgba(125,164,247,.09),transparent 72%)}
-.lg-shell{position:relative;z-index:1}
-.lg-panel{background:rgba(255,255,255,.55);border-radius:30px;border:1px solid rgba(255,255,255,.85);
-  -webkit-backdrop-filter:blur(24px) saturate(1.45);backdrop-filter:blur(24px) saturate(1.45);
-  box-shadow:0 2px 4px rgba(15,32,68,.04),0 40px 84px -38px rgba(30,70,150,.35),
-    inset 0 1px 0 #fff}
-@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
-  .lg-panel{background:rgba(255,255,255,.94)}
-}
-.lg-panel--form{display:grid;place-items:center;padding:clamp(64px,7vw,84px) clamp(20px,4vw,56px) clamp(36px,4vw,52px)}
-
-@media (max-width:980px){
-  .lg-shell{grid-template-columns:1fr;min-height:auto}
-  }
-.lg-card{width:min(420px,100%);animation:lgIn .6s cubic-bezier(.22,.61,.36,1) both}
+    radial-gradient(60% 70% at 10% 0%,rgba(42,114,255,.08),transparent 60%),
+    radial-gradient(50% 60% at 40% 100%,rgba(122,164,255,.08),transparent 62%),
+    linear-gradient(180deg,#f4f7fc 0%,#e8eef9 100%);overflow:clip}
+/* ---- the frosted form panel ---- */
+.lg-panel{position:relative;display:flex;flex-direction:column;
+  background:rgba(255,255,255,.62);-webkit-backdrop-filter:blur(26px) saturate(1.45);backdrop-filter:blur(26px) saturate(1.45);
+  border-right:1px solid rgba(255,255,255,.9);box-shadow:inset 0 1px 0 #fff,24px 0 60px -40px rgba(30,70,150,.25)}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.lg-panel{background:rgba(255,255,255,.94)}}
+.lg-panel::before,.lg-panel::after{content:"";position:absolute;border-radius:50%;pointer-events:none;z-index:0}
+.lg-panel::before{width:46vmin;height:46vmin;left:-14%;top:8%;background:radial-gradient(closest-side,rgba(42,114,255,.10),transparent 72%)}
+.lg-panel::after{width:52vmin;height:52vmin;right:-10%;bottom:-8%;background:radial-gradient(closest-side,rgba(125,164,247,.12),transparent 72%)}
+.lg-top{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:24px;
+  padding:clamp(22px,3vw,36px) clamp(22px,4vw,48px) 0}
+.lg-brand img{display:block;width:clamp(150px,13vw,190px);height:auto}
+.lg-partners{display:flex;align-items:center;gap:clamp(18px,3vw,40px)}
+.lg-partners img{display:block;height:clamp(34px,3.2vw,46px);width:auto}
+.lg-partners .lg-porsche{height:clamp(36px,3.4vw,50px)}
+.lg-body{position:relative;z-index:1;flex:1;display:grid;place-items:center;padding:clamp(28px,4vw,56px) clamp(22px,4vw,48px) clamp(32px,4vw,56px)}
+/* ---- the card ---- */
+.lg-card{width:min(460px,100%);animation:lgIn .6s cubic-bezier(.22,.61,.36,1) both}
 @keyframes lgIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 .lg-card>*{animation:lgIn .55s cubic-bezier(.22,.61,.36,1) both}
-.lg-card>*:nth-child(2){animation-delay:.05s}
-.lg-card>*:nth-child(3){animation-delay:.1s}
-.lg-card>*:nth-child(4){animation-delay:.14s}
-.lg-card>*:nth-child(5){animation-delay:.18s}
-.lg-card>*:nth-child(6){animation-delay:.22s}
-.lg-card>*:nth-child(7){animation-delay:.26s}
-.lg-card>*:nth-child(8){animation-delay:.3s}
-.lg-card>*:nth-child(9){animation-delay:.34s}
+.lg-card>*:nth-child(2){animation-delay:.05s}.lg-card>*:nth-child(3){animation-delay:.1s}.lg-card>*:nth-child(4){animation-delay:.14s}
+.lg-card>*:nth-child(5){animation-delay:.18s}.lg-card>*:nth-child(6){animation-delay:.22s}.lg-card>*:nth-child(7){animation-delay:.26s}
+.lg-card>*:nth-child(8){animation-delay:.3s}.lg-card>*:nth-child(9){animation-delay:.34s}.lg-card>*:nth-child(10){animation-delay:.38s}
 @media (prefers-reduced-motion:reduce){.lg-card,.lg-card>*{animation:none}}
-.lg-card h1{text-align:center;font-size:clamp(22px,2.6vw,26px);letter-spacing:-.03em;color:#0c1526;margin-bottom:24px}
+.lg-card h1{text-align:center;font-size:clamp(24px,2.4vw,30px);letter-spacing:-.03em;color:#0c1526;margin-bottom:26px}
 /* ---- the email / phone switch ---- */
-.lg-tabs{position:relative;display:grid;grid-template-columns:1fr 1fr;padding:6px;border-radius:22px;
-  background:rgba(12,21,38,.05);border:1px solid rgba(255,255,255,.7);margin-bottom:18px}
+.lg-tabs{position:relative;display:grid;grid-template-columns:1fr 1fr;padding:6px;border-radius:18px;
+  background:rgba(12,21,38,.05);border:1px solid rgba(255,255,255,.8);margin-bottom:16px}
 .lg-tabs::before{content:"";position:absolute;top:6px;bottom:6px;left:6px;width:calc(50% - 6px);
-  border-radius:17px;background:#fff;box-shadow:0 4px 14px -4px rgba(15,32,68,.18),0 0 0 1px #e9eef7;
+  border-radius:13px;background:#fff;box-shadow:0 4px 14px -4px rgba(15,32,68,.18),0 0 0 1px #e9eef7;
   transition:transform .35s cubic-bezier(.22,.61,.36,1)}
 .lg-tabs.is-phone::before{transform:translateX(100%)}
 .lg-tab{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:9px;
-  padding:17px 6px;border:0;background:none;border-radius:17px;cursor:pointer;
-  font:600 16px/1 inherit;font-family:inherit;color:#8a94a8;transition:color .25s}
-.lg-tab svg{width:18px;height:18px;opacity:.75}
+  padding:14px 6px;border:0;background:none;border-radius:13px;cursor:pointer;
+  font:600 15px/1 inherit;font-family:inherit;color:#8a94a8;transition:color .25s}
+.lg-tab svg{width:17px;height:17px;opacity:.75}
 .lg-tab.is-on{color:#0c1526;font-weight:700}
 .lg-tab.is-on svg{color:#2a72ff;opacity:1}
 /* ---- fields ---- */
 .lg-field{position:relative;margin-bottom:14px}
-.lg-ic{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:42px;height:42px;
-  display:grid;place-items:center;border-radius:12px;background:rgba(42,114,255,.07);color:#2a72ff;
-  transition:background .25s,color .25s}
-.lg-ic svg{width:19px;height:19px}
-.lg-field input{width:100%;height:62px;padding:22px 18px 6px 62px;border-radius:18px;border:1px solid rgba(255,255,255,.9);
-  background:rgba(255,255,255,.72);color:#0c1526;font:600 15.5px/1.3 inherit;font-family:inherit;outline:none;
-  transition:border-color .25s,box-shadow .25s}
-.lg-field label{position:absolute;left:62px;top:50%;transform:translateY(-50%);pointer-events:none;
-  color:#9aa4b6;font-size:15px;font-weight:500;
+.lg-ic{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:40px;height:40px;
+  display:grid;place-items:center;border-radius:12px;background:rgba(42,114,255,.07);color:#2a72ff;transition:background .25s,color .25s}
+.lg-ic svg{width:18px;height:18px}
+.lg-field input{width:100%;height:60px;padding:22px 18px 6px 60px;border-radius:16px;border:1px solid rgba(20,44,96,.12);
+  background:rgba(255,255,255,.78);color:#0c1526;font:600 15.5px/1.3 inherit;font-family:inherit;outline:none;
+  transition:border-color .25s,box-shadow .25s,background .25s}
+.lg-field label{position:absolute;left:60px;top:50%;transform:translateY(-50%);pointer-events:none;color:#6b7686;font-size:15px;font-weight:500;
   transition:top .22s var(--ease),font-size .22s var(--ease),color .22s,transform .22s var(--ease)}
-.lg-field input:focus ~ label,
-.lg-field input:not(:placeholder-shown) ~ label{top:9px;transform:none;font-size:10.5px;font-weight:700;
-  letter-spacing:.06em;text-transform:uppercase;color:#2a72ff}
+.lg-field label .req{font-style:normal;color:#2a72ff;margin-left:1px}
+.lg-field input:focus ~ label,.lg-field input:not(:placeholder-shown) ~ label{top:9px;transform:none;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#2a72ff}
 .lg-field input:not(:focus):not(:placeholder-shown) ~ label{color:#8a94a8}
-.lg-field input:hover{border-color:#d5deed}
+.lg-field input:hover{border-color:#c9d6ea}
 .lg-field input:focus{border-color:#2a72ff;background:#fff;box-shadow:0 0 0 4px rgba(42,114,255,.1)}
 .lg-field input:focus ~ .lg-ic{background:rgba(42,114,255,.12)}
 .lg-field--pw input{padding-right:52px}
-.lg-eye{position:absolute;right:9px;top:50%;transform:translateY(-50%);z-index:1;width:38px;height:38px;
-  display:grid;place-items:center;border:0;background:none;border-radius:50%;cursor:pointer;color:#9aa4b6;
-  transition:color .25s,background .25s}
+.lg-eye{position:absolute;right:9px;top:50%;transform:translateY(-50%);z-index:1;width:38px;height:38px;display:grid;place-items:center;
+  border:0;background:none;border-radius:50%;cursor:pointer;color:#9aa4b6;transition:color .25s,background .25s}
 .lg-eye:hover{color:#2a72ff;background:rgba(42,114,255,.07)}
 .lg-eye svg{width:19px;height:19px}
-.lg-eye .off{display:none}
-.lg-eye.show .on{display:none}
-.lg-eye.show .off{display:block}
-.lg-forgot{display:block;text-align:right;margin:4px 2px 22px;font-size:13px;font-weight:700;color:#2a72ff}
+.lg-eye .off{display:none}.lg-eye.show .on{display:none}.lg-eye.show .off{display:block}
+.lg-forgot{display:inline-block;margin:2px 2px 24px;font-size:14px;font-weight:600;color:#2a72ff}
 .lg-forgot:hover{text-decoration:underline;text-underline-offset:3px}
 /* ---- actions ---- */
-.lg-submit{position:relative;overflow:hidden;width:100%;justify-content:center;gap:9px;height:58px;
-  border-radius:18px;font-size:15px;letter-spacing:.01em;
+.lg-submit{position:relative;overflow:hidden;width:100%;justify-content:center;gap:9px;height:58px;border-radius:14px;font-size:16px;letter-spacing:.01em;
   transition:transform .25s var(--ease),box-shadow .3s}
-.lg-submit::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;
-  background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);
-  transform:skewX(-18deg);transition:left .6s var(--ease)}
+.lg-submit::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-18deg);transition:left .6s var(--ease)}
 .lg-submit:hover::after{left:120%}
-.lg-submit .ico{transition:transform .3s var(--ease)}
-.lg-submit:hover .ico{transform:translateX(4px)}
 .lg-submit:active{transform:scale(.985)}
 @media (prefers-reduced-motion:reduce){.lg-submit::after{display:none}}
-.lg-div{display:flex;align-items:center;gap:14px;margin:22px 0;color:#9aa4b6;font-size:12.5px}
-.lg-div::before,.lg-div::after{content:"";flex:1;height:0;border-top:1px dashed #dbe3f0}
-.lg-alt{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;height:54px;border-radius:18px;
-  background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.9);color:#0c1526;font-weight:700;font-size:14.5px;
-  transition:border-color .25s,box-shadow .3s,transform .3s var(--ease)}
-.lg-alt:hover{border-color:#c9d6ea;box-shadow:0 12px 26px -16px rgba(15,32,68,.25);transform:translateY(-2px)}
-.lg-alt svg{width:19px;height:19px;color:#2AABEE}
-.lg-foot{margin-top:22px;text-align:center;font-size:13px;color:#5a6478}
-.lg-foot a{font-weight:700;color:#2a72ff}
-.lg-foot a:hover{text-decoration:underline;text-underline-offset:3px}
-  
-/* ---- promo slider ---- */
-.lg-panel--form{position:relative}
-/* ---- language chip ---- */
-.lg-top{position:absolute;top:20px;left:24px;right:20px;z-index:5;
-  display:flex;align-items:center;justify-content:space-between}
-.lg-brand img{display:block;width:150px;height:auto}
-.lg-lang{position:relative}
-.lg-lang-btn{display:inline-flex;align-items:center;gap:7px;padding:9px 14px;border-radius:40px;cursor:pointer;
-  background:#f2f5fa;border:1px solid #e9eef7;color:#33415e;font:700 12.5px/1 inherit;font-family:inherit;
-  transition:background .25s,border-color .25s}
-.lg-lang-btn:hover{background:#fff;border-color:#d5deed}
-.lg-lang-btn svg{width:15px;height:15px;color:#8a94a8}
-.lg-lang-pop{position:absolute;top:calc(100% + 8px);right:0;width:200px;max-height:280px;overflow:auto;
-  padding:6px;border-radius:16px;background:#fff;border:1px solid #e9eef7;
-  box-shadow:0 24px 54px -24px rgba(15,32,68,.35)}
-.lg-lang-pop button{display:block;width:100%;text-align:left;padding:10px 12px;border:0;background:none;
-  border-radius:10px;cursor:pointer;font:600 13.5px/1.2 inherit;font-family:inherit;color:#33415e;
-  transition:background .2s,color .2s}
+.lg-div{display:flex;align-items:center;gap:14px;margin:28px 0 18px;color:#5a6478;font-size:14px}
+.lg-div::before,.lg-div::after{content:"";flex:1;height:0;border-top:1px solid #dbe3f0}
+.lg-social{display:flex;justify-content:center;gap:14px}
+.lg-social a{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.85);border:1px solid rgba(20,44,96,.1);
+  box-shadow:0 8px 20px -14px rgba(15,32,68,.35);transition:transform .3s var(--ease),box-shadow .3s,border-color .25s}
+.lg-social a:hover{transform:translateY(-3px);border-color:#c9d6ea;box-shadow:0 14px 28px -16px rgba(15,32,68,.35)}
+.lg-social svg{width:20px;height:20px;color:#2AABEE}
+.lg-foot{margin:28px 0 12px;text-align:center;font-size:14px;color:#33415e}
+.lg-open{display:flex;align-items:center;justify-content:center;width:100%;height:58px;border-radius:14px;color:#fff;font-weight:700;font-size:16px;
+  background:linear-gradient(120deg,#0a2f8a 0%,#0047bb 55%,#1a5fe0 100%);box-shadow:0 18px 36px -20px rgba(0,71,187,.6);
+  transition:transform .3s var(--ease),box-shadow .3s}
+.lg-open:hover{transform:translateY(-2px);box-shadow:0 26px 48px -22px rgba(0,71,187,.65);color:#fff}
+/* ---- the picture panel ---- */
+.lg-art{position:relative;overflow:hidden;background:#061033}
+.lg-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:78% 50%}
+.lg-art::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(90deg,rgba(6,16,51,.55) 0%,rgba(6,16,51,0) 32%),linear-gradient(180deg,rgba(6,16,51,.35) 0%,rgba(6,16,51,0) 26%,rgba(6,16,51,.2) 100%)}
+.lg-court{position:absolute;left:-6%;right:-6%;bottom:-2%;height:46%;z-index:1;pointer-events:none;opacity:.14;
+  background:url(assets/img/court-lines.svg) center bottom/100% auto no-repeat;
+  -webkit-mask-image:linear-gradient(180deg,transparent,#000 40%);mask-image:linear-gradient(180deg,transparent,#000 40%)}
+/* language switch rides top-right on the picture */
+.lg-lang{position:absolute;top:clamp(18px,3vw,30px);right:clamp(18px,3vw,36px);z-index:3}
+.lg-lang-btn{display:inline-flex;align-items:center;gap:9px;padding:10px 16px;border-radius:40px;cursor:pointer;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);color:#fff;font:600 14px/1 inherit;font-family:inherit;
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);transition:background .25s,border-color .25s}
+.lg-lang-btn:hover{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.4)}
+.lg-lang-btn svg{width:16px;height:16px;color:#fff}
+.lg-lang-pop{position:absolute;top:calc(100% + 8px);right:0;width:210px;max-height:300px;overflow:auto;padding:6px;border-radius:16px;
+  background:#fff;border:1px solid #e9eef7;box-shadow:0 24px 54px -24px rgba(15,32,68,.45)}
+.lg-lang-pop button{display:block;width:100%;text-align:left;padding:10px 12px;border:0;background:none;border-radius:10px;cursor:pointer;
+  font:600 13.5px/1.2 inherit;font-family:inherit;color:#33415e;transition:background .2s,color .2s}
 .lg-lang-pop button:hover{background:#f2f5fa;color:#0c1526}
 .lg-lang-pop button.is-on{color:#2a72ff;background:rgba(42,114,255,.07)}
-
-/* ---- official partnerships, as worn by the site header ---- */
-.lg-partners{margin-top:24px;display:flex;align-items:center;justify-content:center;gap:18px}
-.lg-partners img{height:40px;width:auto;display:block}
-</style>
+/* two floating helpers, bottom-right */
+.lg-fabs{position:absolute;right:clamp(18px,3vw,36px);bottom:clamp(18px,3vw,36px);z-index:3;display:flex;flex-direction:column;gap:12px}
+.lg-fab{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;color:#fff;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  transition:background .25s,transform .3s var(--ease)}
+.lg-fab:hover{background:rgba(255,255,255,.2);transform:translateY(-2px);color:#fff}
+.lg-fab svg{width:20px;height:20px}
+/* ---- narrow screens: the picture becomes a short banner above the form ---- */
+@media (max-width:980px){
+  .lg-wrap{grid-template-columns:1fr}
+  .lg-art{order:-1;min-height:220px}
+  .lg-art img{object-position:70% 50%}
+  .lg-panel{border-right:0;box-shadow:none}
+  .lg-body{padding-top:28px}
+  .lg-fabs{display:none}
+}
+@media (max-width:640px){
+  .lg-top{flex-wrap:wrap;gap:14px 18px}
+  .lg-partners{gap:16px}
+  .lg-partners img{height:30px}
+  .lg-partners .lg-porsche{height:32px}
+  .lg-art{min-height:180px}
+  .lg-tab{padding:12px 4px;font-size:13.5px}
+}
+@media (max-width:400px){
+  .lg-tab svg{display:none}
+}
+  </style>
 </head>
 <body>
 
@@ -152,16 +163,62 @@
 </svg>
 
 <main class="lg-wrap">
-  <div class="lg-shell">
-  <section class="lg-panel lg-panel--form">
-  <div class="lg-top">
-  <a class="lg-brand" href="index.html" aria-label="STARTRADER home">
-    <img src="assets/img/logo-startrader-dark.svg" alt="STARTRADER" width="150" height="29">
-  </a>
+  <section class="lg-panel" aria-labelledby="lg-title">
+    <div class="lg-top">
+      <a class="lg-brand" href="index.html" aria-label="STARTRADER home">
+        <img src="assets/img/logo-startrader-dark.svg" alt="STARTRADER" width="190" height="37">
+      </a>
+      <div class="lg-partners" aria-label="Official partnerships">
+        <img src="assets/img/nba-dark.svg" alt="Official Partner of the NBA" width="75" height="49">
+        <img class="lg-porsche" src="assets/img/porsche-dark.webp" alt="Official Partner of the Porsche Carrera Cup Middle East" width="198" height="41">
+      </div>
+    </div>
+
+    <div class="lg-body">
+      <form class="lg-card" autocomplete="on" novalidate>
+        <h1 id="lg-title">Client Portal Login</h1>
+
+<div class="lg-tabs" id="lgTabs" role="tablist" aria-label="Login method">
+      <button type="button" class="lg-tab is-on" id="lgTabEmail" role="tab" aria-selected="true"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="3" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m4.5 7.5 7.5 5.5 7.5-5.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Email Address</button>
+      <button type="button" class="lg-tab" id="lgTabPhone" role="tab" aria-selected="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M10.5 18h3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>Phone Number</button>
+    </div>
+
+    <div class="lg-field">
+      <span class="lg-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="3" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m4.5 7.5 7.5 5.5 7.5-5.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <input type="email" id="lgId" name="username" placeholder=" " autocomplete="username">
+      <label for="lgId" id="lgIdLabel">Email<i class="req" aria-hidden="true">*</i></label>
+    </div>
+    <div class="lg-field lg-field--pw">
+      <span class="lg-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="12" cy="15.5" r="1.4" fill="currentColor"/></svg></span>
+      <input type="password" id="lgPw" name="password" placeholder=" " autocomplete="current-password">
+      <label for="lgPw">Password<i class="req" aria-hidden="true">*</i></label>
+      <button type="button" class="lg-eye" id="lgEye" aria-label="Show password" aria-pressed="false">
+        <svg class="on" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+        <svg class="off" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 20 20 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <a class="lg-forgot" href="#">Forgot Password?</a>
+
+        <button type="submit" class="btn btn-primary lg-submit"><span>Login</span></button>
+
+        <div class="lg-div">Or continue with</div>
+        <div class="lg-social">
+          <a href="#" aria-label="Continue with Telegram"><svg aria-hidden="true"><use href="#i-telegram"/></svg></a>
+        </div>
+
+        <p class="lg-foot">Not a client?</p>
+        <a class="lg-open" href="https://www.startrader.com/live-account/">Open Live Account</a>
+      </form>
+    </div>
+  </section>
+
+  <aside class="lg-art" aria-label="STARTRADER, Official Partner of the Porsche Carrera Cup Middle East and the NBA">
+    <img src="assets/img/pccme-banner-hero.webp" alt="The STARTRADER Porsche Cup car under arena lights" width="1920" height="1081" fetchpriority="high" decoding="async">
+    <span class="lg-court" aria-hidden="true"></span>
   <div class="lg-lang" id="lgLang">
     <button type="button" class="lg-lang-btn" aria-haspopup="listbox" aria-expanded="false">
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.7 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3Z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
-      <b id="lgLangCode">EN</b>
+      <b id="lgLangCode">English</b>
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </button>
     <div class="lg-lang-pop" role="listbox" aria-label="Language" hidden>
@@ -179,46 +236,12 @@
       <button type="button" data-code="TR" role="option" aria-selected="false">Türkçe</button>
     </div>
   </div>
-  </div>
-  <form class="lg-card" autocomplete="on" novalidate>
-    <h1>Client Portal Login</h1>
 
-    <div class="lg-tabs" id="lgTabs" role="tablist" aria-label="Login method">
-      <button type="button" class="lg-tab is-on" id="lgTabEmail" role="tab" aria-selected="true"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="3" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m4.5 7.5 7.5 5.5 7.5-5.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Email Address</button>
-      <button type="button" class="lg-tab" id="lgTabPhone" role="tab" aria-selected="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M10.5 18h3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>Phone Number</button>
+    <div class="lg-fabs">
+      <a class="lg-fab" href="https://www.startrader.com/live-account/" aria-label="Open a live account"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4l10.5-10.5a2.1 2.1 0 0 0-3-3L5 17v3Z"/><path d="M13.5 6.5l3 3"/></svg></a>
+      <a class="lg-fab" href="contact.html" aria-label="Contact support"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13a8 8 0 0 1 16 0"/><path d="M4 13v3a2 2 0 0 0 2 2h1v-6H6a2 2 0 0 0-2 1Z"/><path d="M20 13v3a2 2 0 0 1-2 2h-1v-6h1a2 2 0 0 1 2 1Z"/><path d="M12 21h4"/></svg></a>
     </div>
-
-    <div class="lg-field">
-      <span class="lg-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="3" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m4.5 7.5 7.5 5.5 7.5-5.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      <input type="email" id="lgId" name="username" placeholder=" " autocomplete="username">
-      <label for="lgId" id="lgIdLabel">Email</label>
-    </div>
-    <div class="lg-field lg-field--pw">
-      <span class="lg-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="12" cy="15.5" r="1.4" fill="currentColor"/></svg></span>
-      <input type="password" id="lgPw" name="password" placeholder=" " autocomplete="current-password">
-      <label for="lgPw">Password</label>
-      <button type="button" class="lg-eye" id="lgEye" aria-label="Show password" aria-pressed="false">
-        <svg class="on" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
-        <svg class="off" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 20 20 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-      </button>
-    </div>
-    <a class="lg-forgot" href="#">Forgot Password?</a>
-
-    <button type="submit" class="btn btn-primary lg-submit"><span>Log in</span><svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
-
-    <div class="lg-div">Other Login Method</div>
-    <a class="lg-alt" href="#"><svg aria-hidden="true"><use href="#i-telegram"/></svg>Telegram</a>
-
-    <p class="lg-foot">Not A Client? <a href="https://www.startrader.com/live-account/">Open Live Account</a></p>
-
-    <div class="lg-partners" aria-label="Official partnerships">
-      <img src="assets/img/nba-dark.svg" alt="Official Partner of the NBA" width="75" height="49">
-      <img src="assets/img/porsche-dark.webp" alt="Official Partner of the Porsche Carrera Cup Middle East" width="198" height="41">
-    </div>
-  </form>
-  </section>
-  
-  </div>
+  </aside>
 </main>
 
 <script>
@@ -278,7 +301,7 @@
       pop.querySelectorAll('button').forEach(function (x) { x.classList.remove('is-on'); x.setAttribute('aria-selected', 'false'); });
       b.classList.add('is-on');
       b.setAttribute('aria-selected', 'true');
-      code.textContent = b.getAttribute('data-code');
+      code.textContent = b.textContent;
       pop.hidden = true;
       btn.setAttribute('aria-expanded', 'false');
     });
