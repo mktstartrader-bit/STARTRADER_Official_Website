@@ -292,6 +292,28 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
 @keyframes xpEduGlow{0%,100%{box-shadow:0 0 0 0 rgba(42,114,255,.45),0 12px 30px -18px rgba(42,114,255,.7)}
   50%{box-shadow:0 0 0 7px rgba(42,114,255,0),0 16px 34px -16px rgba(42,114,255,.9)}}
 @keyframes xpEduShine{0%,55%{left:-45%}100%{left:130%}}
+/* the reward-to-button cue */
+.xp-rw li[data-rw-edu]{cursor:pointer;transition:transform .25s var(--ease),border-color .25s,background .25s}
+.xp-rw li[data-rw-edu]:hover,.xp-rw li[data-rw-edu].is-cueing{border-color:rgba(46,230,197,.55);background:rgba(46,230,197,.07)}
+.xp-rw li[data-rw-edu]:focus-visible{outline:2px solid rgba(46,230,197,.7);outline-offset:2px}
+.xp-cue{position:absolute;left:0;top:0;z-index:3;pointer-events:none;overflow:visible;opacity:0;transition:opacity .2s}
+.xp-cue.is-on{opacity:1}
+.xp-cue-path{fill:none;stroke:#2ee6c5;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;
+  filter:drop-shadow(0 2px 0 rgba(4,16,31,.55)) drop-shadow(0 0 8px rgba(46,230,197,.45));transition:stroke-dashoffset .75s cubic-bezier(.22,.61,.36,1)}
+.xp-cue-head{fill:#2ee6c5;stroke:#2ee6c5;stroke-width:2;stroke-linejoin:round;opacity:0;transition:opacity .2s .6s;
+  filter:drop-shadow(0 2px 0 rgba(4,16,31,.55))}
+.xp-cue.is-on .xp-cue-head{opacity:1}
+.xp-cue-tag{position:absolute;z-index:4;pointer-events:none;transform:translate(-50%,-50%) rotate(-6deg) scale(.85);padding:6px 11px;border-radius:9px;
+  background:#2ee6c5;color:#04101f;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;
+  box-shadow:0 8px 20px -10px rgba(46,230,197,.7);opacity:0;transition:opacity .2s .4s,transform .35s .4s cubic-bezier(.34,1.56,.64,1)}
+.xp-cue-tag.is-on{opacity:1;transform:translate(-50%,-50%) rotate(-6deg) scale(1)}
+.btn-line[data-edu].is-cued{border-color:#2ee6c5;box-shadow:0 0 0 5px rgba(46,230,197,.22),0 18px 36px -16px rgba(46,230,197,.7)}
+@media (prefers-reduced-motion:no-preference){
+  .btn-line[data-edu].is-cued{animation:xpCueBounce .75s ease-in-out infinite}
+  .xp-cue.is-on .xp-cue-head{animation:xpCueNudge .75s ease-in-out .8s infinite}
+}
+@keyframes xpCueBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@keyframes xpCueNudge{0%,100%{transform:translateX(-5px)}50%{transform:translateX(0)}}
 .xp-pop-fine{margin-top:12px;font-size:12px;font-style:italic;line-height:1.65;color:#8ea4c6}
 .xp-pop-keep{margin-top:10px;font-size:12.5px;line-height:1.6;color:#a9b8d0}
 .xp-pop-fine a,.xp-pop-consent a{color:#7fb2ff;text-decoration:underline;text-underline-offset:3px}
@@ -923,8 +945,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  function rewardItem(ic, title, copy) {
-    return '<li><span class="xp-rw-ic" aria-hidden="true">' + ic + '</span><div><b>' + title + '</b><p>' + copy + '</p></div></li>';
+  function rewardItem(ic, title, copy, attr) {
+    return '<li' + (attr ? ' ' + attr : '') + '><span class="xp-rw-ic" aria-hidden="true">' + ic + '</span><div><b>' + title + '</b><p>' + copy + '</p></div></li>';
   }
   var EDU = rewardItem('📚', 'Free STARACADEMY education pack', '');
 
@@ -936,7 +958,7 @@ document.addEventListener('DOMContentLoaded', function () {
       '<p class="xp-pop-p">You&rsquo;re on the right track, and you&rsquo;ve still earned a reward.</p>' +
       '<p class="xp-pop-sub">Your rewards:</p><ul class="xp-rw">' +
         rewardItem('🎁', 'Standard STARTRADER merchandise', 'Claim your standard merchandise at the STARTRADER booth using your unique code.') +
-        rewardItem('📚', 'Free STARACADEMY education pack', 'Brush up on the essentials, sharpen your knowledge, and get ready for another shot at the quiz.') +
+        rewardItem('📚', 'Free STARACADEMY education pack', 'Brush up on the essentials, sharpen your knowledge, and get ready for another shot at the quiz.', 'data-rw-edu tabindex="0" role="button" aria-describedby="xpEduHint"') +
       '</ul>' +
       '<p class="xp-pop-sub">Your claim code</p>' + codeBox(S.std) +
 '<p class="xp-pop-keep">Take a screenshot of your claim code or keep it somewhere safe. Present it to our Merchandise Coordinator on-site to claim your merch.</p>' +
@@ -972,7 +994,7 @@ document.addEventListener('DOMContentLoaded', function () {
       '<p class="xp-pop-p">Sharp thinking. You nailed it on your first attempt and earned our <b>top reward tier</b>.</p>' +
       '<p class="xp-pop-sub">Your rewards:</p><ul class="xp-rw">' +
         rewardItem('👑', 'Premium STARTRADER merchandise', 'Claim your premium merchandise at the STARTRADER booth using your unique code.') +
-        rewardItem('📚', 'Free STARACADEMY education pack', 'Keep building your market knowledge with educational content designed to help sharpen your trading know-how.') +
+        rewardItem('📚', 'Free STARACADEMY education pack', 'Keep building your market knowledge with educational content designed to help sharpen your trading know-how.', 'data-rw-edu tabindex="0" role="button" aria-describedby="xpEduHint"') +
         rewardItem('💬', 'Free 15-minute introduction session', 'Connect with a STARTRADER Representative for a complimentary 15-minute introduction session.') +
       '</ul>' +
       // the connect choice was made in the details form — echo it back here
@@ -1081,6 +1103,78 @@ document.addEventListener('DOMContentLoaded', function () {
     var r = card.getBoundingClientRect();
     card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
     card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%');
+  });
+})();
+</script>
+
+<script>
+/* the education-pack reward points at its button: hover (or tap, or focus) the reward and a
+   hand-drawn arrow draws itself from the reward's title, out through the card's margin and into
+   "Level Up with Our Education Pack"; a small tag rides the curve and the button bounces until
+   the pointer leaves — page-scoped */
+(function () {
+  var card = document.querySelector('.xp-pop-card');
+  if (!card) return;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var NS = 'http://www.w3.org/2000/svg';
+  var svg = document.createElementNS(NS, 'svg'); svg.setAttribute('class', 'xp-cue'); svg.setAttribute('aria-hidden', 'true');
+  var path = document.createElementNS(NS, 'path'); path.setAttribute('class', 'xp-cue-path');
+  var headG = document.createElementNS(NS, 'g'); headG.setAttribute('class', 'xp-cue-headg');
+  var head = document.createElementNS(NS, 'path'); head.setAttribute('class', 'xp-cue-head'); head.setAttribute('d', 'M1 0 L-17 -10 L-12 0 L-17 10 Z');
+  headG.appendChild(head); svg.appendChild(path); svg.appendChild(headG);
+  var tag = document.createElement('span'); tag.className = 'xp-cue-tag'; tag.textContent = 'Grab your pack';
+  var hint = document.createElement('span'); hint.id = 'xpEduHint'; hint.className = 'sr-only'; hint.textContent = 'Claim it with the Level Up with Our Education Pack button below.';
+  card.appendChild(svg); card.appendChild(tag); card.appendChild(hint);
+  var hideT = null, current = null;
+  function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+
+  function show(reward) {
+    var btn = card.querySelector('[data-edu]');
+    if (!btn) return;
+    clearTimeout(hideT); current = reward;
+    var cr = card.getBoundingClientRect(), rr = reward.getBoundingClientRect(), br = btn.getBoundingClientRect();
+    var ox = -cr.left + card.scrollLeft, oy = -cr.top + card.scrollTop, W = card.clientWidth;
+    // the tag sits on the reward's top-right corner like a sticker; the arrow leaves its lower-right
+    // corner, swings through the card's side margin and lands on the button from above
+    var tw = tag.offsetWidth || 130, th = tag.offsetHeight || 26;
+    var tcx = clamp(rr.right - tw / 2 - 6 + ox, tw / 2 + 8, W - tw / 2 - 8), tcy = rr.top + 2 + oy;
+    tag.style.left = tcx + 'px'; tag.style.top = tcy + 'px';
+    var x1 = tcx + tw / 2 - 12, y1 = tcy + th / 2 - 2;
+    var x2 = clamp(br.right - 48 + ox, br.left + 40 + ox, br.right - 30 + ox), y2 = br.top - 9 + oy;
+    var dy = y2 - y1;
+    var c1x = clamp(x1 + 72, x1, W - 10), c1y = y1 + dy * 0.35;
+    var c2x = clamp(x2 + 92, x2, W - 10), c2y = y2 - dy * 0.35;
+    svg.setAttribute('width', card.scrollWidth); svg.setAttribute('height', card.scrollHeight);
+    svg.setAttribute('viewBox', '0 0 ' + card.scrollWidth + ' ' + card.scrollHeight);
+    path.setAttribute('d', 'M' + x1 + ' ' + y1 + ' C ' + c1x + ' ' + c1y + ', ' + c2x + ' ' + c2y + ', ' + x2 + ' ' + y2);
+    var len = path.getTotalLength(), near = path.getPointAtLength(Math.max(0, len - 6));
+    var ang = Math.atan2(y2 - near.y, x2 - near.x) * 180 / Math.PI;
+    headG.setAttribute('transform', 'translate(' + x2 + ' ' + y2 + ') rotate(' + ang + ')');
+    path.style.transition = 'none'; path.style.strokeDasharray = len; path.style.strokeDashoffset = reduce ? 0 : len;
+    void path.getBoundingClientRect();
+    path.style.transition = '';
+    svg.classList.add('is-on'); tag.classList.add('is-on'); btn.classList.add('is-cued'); reward.classList.add('is-cueing');
+    requestAnimationFrame(function () { path.style.strokeDashoffset = 0; });
+  }
+  function hide() {
+    var btn = card.querySelector('[data-edu]');
+    svg.classList.remove('is-on'); tag.classList.remove('is-on');
+    if (btn) btn.classList.remove('is-cued');
+    if (current) current.classList.remove('is-cueing');
+    current = null;
+  }
+  function rewardOf(e) { return e.target && e.target.closest ? e.target.closest('[data-rw-edu]') : null; }
+  card.addEventListener('mouseover', function (e) { var r = rewardOf(e); if (r && r !== current) show(r); });
+  card.addEventListener('mouseout', function (e) { var r = rewardOf(e); if (r && !(e.relatedTarget && r.contains(e.relatedTarget))) hide(); });
+  card.addEventListener('focusin', function (e) { var r = rewardOf(e); if (r) show(r); });
+  card.addEventListener('focusout', function (e) { if (rewardOf(e)) hide(); });
+  card.addEventListener('click', function (e) {
+    var r = rewardOf(e); if (!r) return;
+    show(r); clearTimeout(hideT); hideT = setTimeout(hide, 2600);
+  });
+  card.addEventListener('keydown', function (e) {
+    var r = rewardOf(e);
+    if (r && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); var b = card.querySelector('[data-edu]'); if (b) b.focus(); }
   });
 })();
 </script>
