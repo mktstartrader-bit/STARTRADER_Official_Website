@@ -137,8 +137,8 @@
      TradingView's ticker-tape inside the glass bar, carrying the mix the
      home banner is meant to show: forex majors and minors, commodities and
      precious metals, the most-watched US stocks and the US indices. Each
-     entry is [TradingView symbol, label]; the attribution line sits just
-     under the bar so the strip itself stays one clean row */
+     entry is [TradingView symbol, label]. The tape carries TradingView's own
+     mark, so no attribution line is added under the bar */
   var heroTickerSymbols = [
     // forex majors
     ['FX:EURUSD', 'EUR/USD'], ['FX:GBPUSD', 'GBP/USD'], ['FX:USDJPY', 'USD/JPY'], ['FX:USDCHF', 'USD/CHF'],
@@ -171,7 +171,6 @@
       colorTheme: 'dark'
     }));
     mountTradingView(track);
-    if (bar && bar.parentNode) bar.parentNode.insertBefore(tvCredit(), bar.nextSibling);
   }
 
   function buildTicker() {
