@@ -111,7 +111,10 @@
 @media (max-width:1080px){.syn-glance,.syn-series{grid-template-columns:1fr;max-width:520px;margin-inline:auto}}
   /* ---- standalone page: no site header, so the banner carries its own top spacing ---- */
 :root{--topbar-h:0px;--nav-h:0px}
-.pf-hero{padding-top:clamp(56px,7vw,88px)}
+.solo-head{position:absolute;top:0;left:0;right:0;z-index:5;padding:clamp(18px,2.4vw,28px) 0}
+.solo-brand{display:inline-block}
+.solo-brand img{display:block;width:clamp(150px,13vw,180px);height:auto}
+.pf-hero{padding-top:clamp(112px,12vw,150px)}
 </style>
   <script type="application/ld+json">
   {
@@ -199,6 +202,13 @@
 
 <!-- ============ HEADER / NAV ============ -->
 
+
+<!-- Standalone page: the brand only, no navigation -->
+<header class="solo-head">
+  <div class="container">
+    <a class="solo-brand" href="index.html" aria-label="STARTRADER home"><img src="assets/img/logo-startrader.svg" alt="STARTRADER" width="180" height="35" decoding="async"></a>
+  </div>
+</header>
 
 <main id="main">
 
