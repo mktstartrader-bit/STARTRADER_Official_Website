@@ -695,7 +695,7 @@
           <p class="ecx-empty" id="ecxEmpty" hidden>No events match the current filters &mdash; widen the impact or instrument selection.</p>
         </div>
       </div>
-      <p class="ec-credit">Illustrative schedule for design preview &mdash; the production build connects this table to the live data feed. Times follow your device timezone.</p>
+      <p class="ec-credit" data-ec-credit>Loading the live economic calendar from TradingView&hellip; Times follow your device timezone.</p>
     </div>
 
     <p class="ec-note">Times, forecasts and figures are supplied by a third party and may be revised or rescheduled by the issuing institution. Shown for information only &mdash; not investment advice.</p>
@@ -1007,7 +1007,7 @@
     two(week[0].getDate()) + '/' + two(week[0].getMonth() + 1) + ' – ' +
     two(week[6].getDate()) + '/' + two(week[6].getMonth() + 1) + '/' + String(week[6].getFullYear()).slice(-2);
 
-  /* offline fallback: an illustrative trading week */
+  /* reference schedule shown only while the live feed loads, or if it cannot be reached */
   var FB = [
     [0, '08:30', 'EUR', 'EU', 'Sentix Investor Confidence', 'Aug', 'low', '-3.2', '-4.1', '-5.9'],
     [0, '11:30', 'INR', 'IN', 'RBI Interest Rate Decision', '', 'high', '5.50%', '5.50%', '5.50%'],
@@ -1163,7 +1163,7 @@
       .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
       .then(function (res) {
         var list = res && res.result;
-        if (!list || !list.length) return;
+        if (!list || !list.length) { rows = []; setCredit('live'); render(); return; }
         var fmt = function (v, e) {
           if (v === null || v === undefined || v === '') return '—';
           return String(v) + (e.scale || '') + (e.unit || '');
@@ -1182,13 +1182,24 @@
             actual: fmt(e.actual, e), forecast: fmt(e.forecast, e), prior: fmt(e.previous, e),
             restricted: false, holiday: hol });
         });
-        if (!out.length) return;
+        if (!out.length) { rows = []; setCredit('live'); render(); return; }
         rows = out;
-        var credit = document.querySelector('.ec-credit');
-        if (credit) credit.innerHTML = 'Live <a href="https://www.tradingview.com/economic-calendar/" rel="noopener nofollow" target="_blank">economic calendar</a> data by TradingView &mdash; actual, forecast and prior update as figures are published. Times follow your device timezone.';
+        setCredit('live');
         render();
       })
-      .catch(function () { /* keep fallback */ });
+      .catch(function () {
+        // the relay is down or blocked: say so, keep the reference rows, and try again shortly
+        setCredit('down');
+        if (retries++ < 3) setTimeout(loadLive, 60000);
+      });
+  }
+  var retries = 0;
+  var creditEl = document.querySelector('[data-ec-credit]');
+  function setCredit(state) {
+    if (!creditEl) return;
+    creditEl.innerHTML = state === 'live'
+      ? 'Live <a href="https://www.tradingview.com/economic-calendar/" rel="noopener nofollow" target="_blank">economic calendar</a> data by TradingView &mdash; actual, forecast and prior update as figures are published. Times follow your device timezone.'
+      : 'Live calendar data is temporarily unavailable &mdash; showing a reference schedule while we reconnect. Times follow your device timezone.';
   }
   loadLive();
 
