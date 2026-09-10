@@ -270,6 +270,28 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
 .btn:disabled{opacity:.45;cursor:not-allowed}
 .btn:disabled:hover{background:var(--blue)}
 .btn-line:disabled:hover{background:rgba(255,255,255,.06)}
+/* the education-pack button asks to be clicked: a slow shine sweeps it at rest and its
+   glow breathes; on hover it lifts, fills brand blue and the arrow steps forward */
+.btn-line[data-edu]{position:relative;overflow:hidden;gap:9px;flex:2 1 260px;white-space:nowrap;border-color:rgba(120,175,255,.55);
+  background:linear-gradient(135deg,rgba(42,114,255,.22),rgba(22,233,215,.12));color:#fff;
+  box-shadow:0 0 0 0 rgba(42,114,255,.45),0 12px 30px -18px rgba(42,114,255,.7);
+  transition:transform .3s var(--ease),background .3s,border-color .3s,box-shadow .3s}
+.btn-line[data-edu]::after{content:"";position:absolute;top:-20%;bottom:-20%;left:-45%;width:38%;pointer-events:none;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.34),transparent);transform:skewX(-18deg)}
+.btn-line[data-edu] .ico{width:18px;height:18px;flex:none;transition:transform .3s var(--ease)}
+.btn-line[data-edu]:hover{transform:translateY(-2px);border-color:rgba(120,175,255,.95);
+  background:linear-gradient(135deg,#2a72ff,#0047bb);box-shadow:0 0 0 4px rgba(42,114,255,.22),0 20px 40px -18px rgba(42,114,255,.85)}
+.btn-line[data-edu]:hover .ico{transform:translateX(5px)}
+.btn-line[data-edu]:active{transform:translateY(0)}
+@media (prefers-reduced-motion:no-preference){
+  .btn-line[data-edu]{animation:xpEduGlow 2.6s ease-in-out infinite}
+  .btn-line[data-edu]::after{animation:xpEduShine 3.6s var(--ease) infinite}
+  .btn-line[data-edu]:hover{animation:none}
+  .btn-line[data-edu]:hover::after{animation:xpEduShine .7s var(--ease) 1 forwards}
+}
+@keyframes xpEduGlow{0%,100%{box-shadow:0 0 0 0 rgba(42,114,255,.45),0 12px 30px -18px rgba(42,114,255,.7)}
+  50%{box-shadow:0 0 0 7px rgba(42,114,255,0),0 16px 34px -16px rgba(42,114,255,.9)}}
+@keyframes xpEduShine{0%,55%{left:-45%}100%{left:130%}}
 .xp-pop-fine{margin-top:12px;font-size:12px;font-style:italic;line-height:1.65;color:#8ea4c6}
 .xp-pop-keep{margin-top:10px;font-size:12.5px;line-height:1.6;color:#a9b8d0}
 .xp-pop-fine a,.xp-pop-consent a{color:#7fb2ff;text-decoration:underline;text-underline-offset:3px}
@@ -918,7 +940,7 @@ document.addEventListener('DOMContentLoaded', function () {
       '</ul>' +
       '<p class="xp-pop-sub">Your claim code</p>' + codeBox(S.std) +
 '<p class="xp-pop-keep">Take a screenshot of your claim code or keep it somewhere safe. Present it to our Merchandise Coordinator on-site to claim your merch.</p>' +
-      actions(primary('Save my code', 'data-copy') + line('Level Up with Our Education Pack', 'target="_blank" rel="noopener"', 'https://www.startraderacademy.com/course-hub/trading-for-beginners-basic/')) +
+      actions(primary('Save my code', 'data-copy') + line('Level Up with Our Education Pack <svg class="ico"><use href="#xp-arrow"/></svg>', 'target="_blank" rel="noopener" data-edu', 'https://www.startraderacademy.com/course-hub/trading-for-beginners-basic/')) +
       '<hr class="xp-pop-hr">' +
       '<h3 class="xp-pop-h3">Ready for round two?</h3>' +
       '<p class="xp-pop-p">Think you can beat your first score?</p>' +
@@ -959,7 +981,7 @@ document.addEventListener('DOMContentLoaded', function () {
       '<p class="xp-pop-sub">Your premium claim code</p>' + codeBox(S.prm) +
 '<p class="xp-pop-keep">Take a screenshot of your claim code or keep it somewhere safe. Present it to our Merchandise Coordinator on-site to claim your premium.</p>' +
 
-      actions(primary('Save my code', 'data-copy') + line('Level Up with Our Education Pack', 'target="_blank" rel="noopener"', 'https://www.startraderacademy.com/course-hub/trading-for-beginners-basic/'))
+      actions(primary('Save my code', 'data-copy') + line('Level Up with Our Education Pack <svg class="ico"><use href="#xp-arrow"/></svg>', 'target="_blank" rel="noopener" data-edu', 'https://www.startraderacademy.com/course-hub/trading-for-beginners-basic/'))
     );
     bindCopy();
   }
