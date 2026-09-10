@@ -3765,8 +3765,10 @@
 
   /* ---------------- Contact — enquiry form, routing, chat hooks ---------------- */
   function initContact() {
+    // the page keeps its motion and chat affordances whether or not it carries the message form
     var form = document.getElementById('ctForm');
-    if (!form) return;
+    if (!form && !document.querySelector('.ct-hero, [data-ct-cards]')) return;
+    if (form) {
 
     var MAX = 1200;
     var done = document.querySelector('[data-ct-done]');
@@ -3886,6 +3888,8 @@
       route();
       if (hasST) ScrollTrigger.refresh();
     });
+
+    }
 
     /* every "live chat" affordance opens the existing chat panel */
     document.querySelectorAll('[data-ct-chat]').forEach(function (b) {
