@@ -135,17 +135,20 @@
   .lg-wrap{grid-template-columns:1fr}
   .lg-art{display:none}
   .lg-panel{border-right:0;box-shadow:none}
-  .lg-top{padding-right:150px}
+  .lg-top{flex-direction:column;align-items:stretch;gap:0;padding-right:150px}
+  .lg-brand{display:flex;align-items:center;height:40px}
+  .lg-brand img{width:150px}
+  .lg-partners{width:calc(100% + 150px);margin-top:16px;padding-top:16px;border-top:1px solid rgba(20,44,96,.08);justify-content:center;gap:28px}
+  .lg-partners img,.lg-partners .lg-porsche{height:34px}
+  .lg-lang{top:22px;right:22px}
   .lg-body{padding-top:28px}
   .lg-lang-btn{background:#f2f5fa;border-color:#e9eef7;color:#33415e;-webkit-backdrop-filter:none;backdrop-filter:none}
   .lg-lang-btn:hover{background:#fff;border-color:#d5deed}
   .lg-lang-btn svg{color:#8a94a8}
 }
 @media (max-width:640px){
-  .lg-top{flex-wrap:wrap;gap:14px 18px}
-  .lg-partners{gap:16px}
-  .lg-partners img{height:30px}
-  .lg-partners .lg-porsche{height:32px}
+  .lg-partners{gap:22px}
+  .lg-partners img,.lg-partners .lg-porsche{height:30px}
   .lg-tab{padding:12px 4px;font-size:13.5px}
 }
 @media (max-width:400px){
