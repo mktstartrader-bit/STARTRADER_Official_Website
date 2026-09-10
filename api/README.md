@@ -12,6 +12,52 @@ does not whitelist, so the page cannot call it directly. The relay makes the
 request server-side with the accepted origin and returns the JSON from the
 site's own domain, cached for five minutes at the edge.
 
+## How the page calls it
+
+`economiccalendar.html` makes one request on load, from `loadLive()` in its
+inline script, for the current Monday-to-Monday week and a fixed country
+list, then again about two minutes after each release passes so the
+actual figure fills in:
+
+```js
+fetch('/api/calendar?from=' + from.toISOString() +
+      '&to=' + to.toISOString() +
+      '&countries=US,EU,GB,JP,DE,FR,IT,CA,AU,NZ,CH,CN,IN,BR,MX,KR,ZA,TR,ES,HK',
+  { headers: { 'Accept': 'application/json' } })
+```
+
+To test the endpoint on its own:
+
+```
+curl "https://<host>/api/calendar?from=2026-09-07T00:00:00.000Z&to=2026-09-14T00:00:00.000Z&countries=US,EU,GB"
+```
+
+A successful answer looks like this (one event shown, taken from a live
+response on 2026-09-10):
+
+```json
+{
+  "status": "ok",
+  "result": [
+    {
+      "id": "420442",
+      "title": "Treasury Gilt 2030 Auction",
+      "country": "GB",
+      "indicator": "Calendar",
+      "period": "",
+      "date": "2026-09-10T09:00:00.000Z",
+      "importance": -1,
+      "actual": null,
+      "forecast": null,
+      "previous": 4.358,
+      "unit": "%",
+      "currency": "GBP",
+      "category": "gov"
+    }
+  ]
+}
+```
+
 ## Contract
 
 ```
