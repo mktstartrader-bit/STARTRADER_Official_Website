@@ -34,7 +34,30 @@
   <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=qa88" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=qa89" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ---- the quarter ships as one PDF report ---- */
+.ma-bar--chips{justify-content:center}
+.ma-bar--chips .ma-cats{margin-left:0}
+.ma-pdf{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:clamp(24px,3.4vw,52px);align-items:center;
+  margin-top:26px;padding:clamp(20px,2.6vw,34px);border-radius:var(--radius-xl)}
+.ma-pdf-cover{display:block;border-radius:14px;overflow:hidden;box-shadow:0 26px 54px -30px rgba(20,44,96,.45);
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease)}
+.ma-pdf-cover:hover{transform:translateY(-6px);box-shadow:0 36px 66px -30px rgba(20,44,96,.5)}
+.ma-pdf-cover img{display:block;width:100%;height:auto}
+.ma-pdf-h{margin-top:16px;font-size:clamp(24px,2.6vw,34px);letter-spacing:-.03em;line-height:1.12;color:var(--text)}
+.ma-pdf-ex{margin-top:12px;font-size:15.5px;line-height:1.65;color:var(--text-soft);max-width:52ch}
+.ma-pdf-meta{list-style:none;padding:0;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:10px 22px;font-size:13px;color:var(--text-mute)}
+.ma-pdf-meta li{display:inline-flex;align-items:center;gap:7px}
+.ma-pdf-meta svg{width:15px;height:15px;color:var(--blue)}
+.ma-pdf-acts{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;margin-top:26px}
+.ma-pdf-open{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:700;color:var(--blue)}
+.ma-pdf-open svg{width:14px;height:14px}
+.ma-pdf-open:hover{text-decoration:underline;text-underline-offset:3px}
+.ma-pdf-note{margin-top:18px;text-align:center;font-size:12.5px;color:var(--text-mute)}
+@media (max-width:720px){.ma-pdf{grid-template-columns:1fr}.ma-pdf-cover{max-width:260px;margin:0 auto}}
+  </style>
   <!-- Structured data — page entity -->
   <script type="application/ld+json">
 {
@@ -417,21 +440,15 @@
 
 
 <!-- ============ REPORTS ============ -->
-<section class="section ma-reports" id="reports" data-page-size="3" aria-labelledby="ma-rep-title">
+<section class="section ma-reports" id="reports" aria-labelledby="ma-rep-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-aos="fade-up">The archive</span>
-      <h2 class="h2" id="ma-rep-title" data-aos="fade-up">Latest monthly review reports</h2>
-      <p class="head-sub" data-aos="fade-up">Search the archive, or switch cadence &mdash; every read comes from the same desk.</p>
+      <span class="eyebrow" data-aos="fade-up">The report</span>
+      <h2 class="h2" id="ma-rep-title" data-aos="fade-up">Quarterly Analysis</h2>
+      <p class="head-sub" data-aos="fade-up">The desk&rsquo;s quarterly review is published as a PDF report. Download the latest issue below, or switch cadence.</p>
     </div>
 
-    <div class="ma-bar glass" data-aos="fade-up">
-      <form class="ma-search" role="search" onsubmit="return false">
-        <span class="ma-search-ic" aria-hidden="true"><svg><use href="#i-search"/></svg></span>
-        <input id="maSearch" type="search" autocomplete="off" placeholder="Search reports&hellip;" aria-label="Search analysis reports">
-        <button class="ma-clear" type="button" id="maClear" aria-label="Clear search" hidden><svg><use href="#i-close"/></svg></button>
-      </form>
-
+    <div class="ma-bar ma-bar--chips glass" data-aos="fade-up">
       <div class="ma-cats" role="group" aria-label="Analysis cadences">
         <a class="ec-chip" href="market-analysis.html#reports">All</a>
         <a class="ec-chip" href="daily-technical-analysis.html">Technical</a>
@@ -441,127 +458,25 @@
       </div>
     </div>
 
-    <p class="wb-status" data-ma-status role="status" aria-live="polite"></p>
-
-    <div class="ma-grid">
-
-      <article class="ma-rep glass" data-ma-item data-cat="mo" data-title="Monthly review: the rotation out of defensives finally showed up" data-aos="fade-up">
-        <div class="ma-head">
-          <span class="ma-cat mo"><svg aria-hidden="true"><use href="#i-layers"/></svg>Quarterly Analysis</span>
-          <time class="ma-date" datetime="2026-07-25">25 Jul 2026</time>
+    <article class="ma-pdf glass" data-aos="fade-up">
+      <a class="ma-pdf-cover" href="assets/pdf/startrader-quarterly-analysis.pdf" target="_blank" rel="noopener" aria-label="Open the Q3 2026 Quarterly Report (PDF, opens in a new tab)">
+        <img src="assets/img/quarterly-report-cover.webp" alt="Cover of the STARTRADER Q3 2026 Quarterly Report" width="989" height="1400" loading="lazy" decoding="async">
+      </a>
+      <div class="ma-pdf-body">
+        <span class="ma-cat mo"><svg aria-hidden="true"><use href="#i-layers"/></svg>Quarterly Analysis</span>
+        <h3 class="ma-pdf-h">Q3 2026 Quarterly Report</h3>
+        <p class="ma-pdf-ex">Global markets review &amp; forecast &mdash; equities, commodities, FX and digital assets, read as one quarter.</p>
+        <ul class="ma-pdf-meta">
+          <li><svg aria-hidden="true"><use href="#i-doc"/></svg>PDF &middot; 36 pages &middot; 1.9 MB</li>
+          <li><svg aria-hidden="true"><use href="#i-clock"/></svg>Published 31 Jul 2026</li>
+        </ul>
+        <div class="ma-pdf-acts">
+          <a class="btn btn-primary" href="assets/pdf/startrader-quarterly-analysis.pdf" download="STARTRADER-Q3-2026-Quarterly-Report.pdf">Download PDF <svg class="ico"><use href="#i-arrow-right"/></svg></a>
+          <a class="ma-pdf-open" href="assets/pdf/startrader-quarterly-analysis.pdf" target="_blank" rel="noopener">Read online <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></a>
         </div>
-
-        <div class="ma-body">
-          <h3 class="ma-h"><a href="news-article.html">Monthly review: the rotation out of defensives finally showed up</a></h3>
-          <p class="ma-ex">Six months of positioning unwound in three weeks. What the flows say about where the next leg comes from.</p>
-          <span class="ma-read">9 min read</span>
-        </div>
-
-        <a class="ma-media" href="news-article.html" aria-label="Read: Monthly review: the rotation out of defensives finally showed up">
-          <span class="cover-bg" role="img" aria-label="Award trophies backdrop" style="background-image:url('assets/img/stat-awards.webp')"></span>
-          <span class="ma-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
-        </a>
-      </article>
-      <article class="ma-rep glass" data-ma-item data-cat="mo" data-title="Monthly review: gold's quiet quarter was anything but quiet underneath" data-aos="fade-up" data-aos-delay="100">
-        <div class="ma-head">
-          <span class="ma-cat mo"><svg aria-hidden="true"><use href="#i-layers"/></svg>Quarterly Analysis</span>
-          <time class="ma-date" datetime="2026-07-04">4 Jul 2026</time>
-        </div>
-
-        <div class="ma-body">
-          <h3 class="ma-h"><a href="news-article.html">Monthly review: gold's quiet quarter was anything but quiet underneath</a></h3>
-          <p class="ma-ex">Flat on the month, transformed on the tape. Central-bank buying kept absorbing every attempt to sell the rallies.</p>
-          <span class="ma-read">8 min read</span>
-        </div>
-
-        <a class="ma-media" href="news-article.html" aria-label="Read: Monthly review: gold's quiet quarter was anything but quiet underneath">
-          <span class="cover-bg" role="img" aria-label="Award trophies backdrop" style="background-image:url('assets/img/stat-awards.webp')"></span>
-          <span class="ma-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
-        </a>
-      </article>
-      <article class="ma-rep glass" data-ma-item data-cat="mo" data-title="Monthly review: the dollar's quarter of two halves" data-aos="fade-up" data-aos-delay="200">
-        <div class="ma-head">
-          <span class="ma-cat mo"><svg aria-hidden="true"><use href="#i-layers"/></svg>Quarterly Analysis</span>
-          <time class="ma-date" datetime="2026-06-05">5 Jun 2026</time>
-        </div>
-
-        <div class="ma-body">
-          <h3 class="ma-h"><a href="news-article.html">Monthly review: the dollar's quarter of two halves</a></h3>
-          <p class="ma-ex">Strength into the Fed, weakness out of it. The desk walks through what flipped, which flows drove it and what carries into the new quarter.</p>
-          <span class="ma-read">8 min read</span>
-        </div>
-
-        <a class="ma-media" href="news-article.html" aria-label="Read: Monthly review: the dollar's quarter of two halves">
-          <span class="cover-bg" role="img" aria-label="Abstract blue light wave" style="background-image:url('assets/img/home-hero-wave.webp')"></span>
-          <span class="ma-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
-        </a>
-      </article>
-      <article class="ma-rep glass" data-ma-item data-cat="mo" data-title="Monthly review: indices climbed a wall of thin volume" data-aos="fade-up">
-        <div class="ma-head">
-          <span class="ma-cat mo"><svg aria-hidden="true"><use href="#i-layers"/></svg>Quarterly Analysis</span>
-          <time class="ma-date" datetime="2026-05-01">1 May 2026</time>
-        </div>
-
-        <div class="ma-body">
-          <h3 class="ma-h"><a href="news-article.html">Monthly review: indices climbed a wall of thin volume</a></h3>
-          <p class="ma-ex">New highs on the lightest tape of the year. Breadth, positioning and the seasonals — what the rally is standing on, and what would knock it over.</p>
-          <span class="ma-read">7 min read</span>
-        </div>
-
-        <a class="ma-media" href="news-article.html" aria-label="Read: Monthly review: indices climbed a wall of thin volume">
-          <span class="cover-bg" role="img" aria-label="Blue lightning-bolt artwork" style="background-image:url('assets/img/stat-blue.webp')"></span>
-          <span class="ma-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
-        </a>
-      </article>
-      <article class="ma-rep glass" data-ma-item data-cat="mo" data-title="Monthly review: the energy complex quietly re-priced the winter" data-aos="fade-up" data-aos-delay="100">
-        <div class="ma-head">
-          <span class="ma-cat mo"><svg aria-hidden="true"><use href="#i-layers"/></svg>Quarterly Analysis</span>
-          <time class="ma-date" datetime="2026-04-03">3 Apr 2026</time>
-        </div>
-
-        <div class="ma-body">
-          <h3 class="ma-h"><a href="news-article.html">Monthly review: the energy complex quietly re-priced the winter</a></h3>
-          <p class="ma-ex">While attention sat on crude, the gas curve moved first. A month of storage data, weather models and the spreads that told the story early.</p>
-          <span class="ma-read">7 min read</span>
-        </div>
-
-        <a class="ma-media" href="news-article.html" aria-label="Read: Monthly review: the energy complex quietly re-priced the winter">
-          <span class="cover-bg" role="img" aria-label="Trading education illustration" style="background-image:url('assets/img/learn-viz.webp')"></span>
-          <span class="ma-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
-        </a>
-      </article>
-      <article class="ma-rep glass" data-ma-item data-cat="mo" data-title="Monthly review: metals led, and the miners finally followed" data-aos="fade-up" data-aos-delay="200">
-        <div class="ma-head">
-          <span class="ma-cat mo"><svg aria-hidden="true"><use href="#i-layers"/></svg>Quarterly Analysis</span>
-          <time class="ma-date" datetime="2026-03-06">6 Mar 2026</time>
-        </div>
-
-        <div class="ma-body">
-          <h3 class="ma-h"><a href="news-article.html">Monthly review: metals led, and the miners finally followed</a></h3>
-          <p class="ma-ex">Copper's breakout was the headline, but the ratio work underneath mattered more. The cycle read, updated with the quarter's flows.</p>
-          <span class="ma-read">8 min read</span>
-        </div>
-
-        <a class="ma-media" href="news-article.html" aria-label="Read: Monthly review: metals led, and the miners finally followed">
-          <span class="cover-bg" role="img" aria-label="Sculpted bronze abstract artwork" style="background-image:url('assets/img/stat-tan.webp')"></span>
-          <span class="ma-readmark" aria-hidden="true"><svg><use href="#i-arrow-ur"/></svg></span>
-        </a>
-      </article>
-
-    </div>
-
-    <div class="ma-empty" data-ma-empty hidden>
-      <span class="ma-empty-ic"><svg><use href="#i-search"/></svg></span>
-      <h3>Nothing matched <span data-ma-empty-q>that filter</span></h3>
-      <p>Try clearing the search, or switch to another cadence above.</p>
-      <button class="btn btn-primary" type="button" data-ma-reset>Reset filters</button>
-    </div>
-
-    <nav class="pgr" aria-label="Report pages" data-ma-pager hidden>
-      <button class="pgr-arrow" type="button" data-pgr-prev aria-label="Previous page"><svg aria-hidden="true"><use href="#i-chevron-left"/></svg></button>
-      <span class="pgr-list" data-pgr-list></span>
-      <button class="pgr-arrow" type="button" data-pgr-next aria-label="Next page"><svg aria-hidden="true"><use href="#i-chevron-right"/></svg></button>
-    </nav>
+      </div>
+    </article>
+    <p class="ma-pdf-note" data-aos="fade-up">Earlier quarters are added here as each report is published.</p>
   </div>
 </section>
 
@@ -785,6 +700,6 @@
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=qa88" defer></script>
+<script src="assets/js/main.min.js?v=qa89" defer></script>
 </body>
 </html>
