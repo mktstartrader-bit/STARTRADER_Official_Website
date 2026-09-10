@@ -133,18 +133,19 @@
 /* ---- narrow screens: the picture becomes a short banner above the form ---- */
 @media (max-width:980px){
   .lg-wrap{grid-template-columns:1fr}
-  .lg-art{order:-1;min-height:220px}
-  .lg-art img{object-position:50% 42%}
+  .lg-art{display:none}
   .lg-panel{border-right:0;box-shadow:none}
+  .lg-top{padding-right:150px}
   .lg-body{padding-top:28px}
-  .lg-fabs{display:none}
+  .lg-lang-btn{background:#f2f5fa;border-color:#e9eef7;color:#33415e;-webkit-backdrop-filter:none;backdrop-filter:none}
+  .lg-lang-btn:hover{background:#fff;border-color:#d5deed}
+  .lg-lang-btn svg{color:#8a94a8}
 }
 @media (max-width:640px){
   .lg-top{flex-wrap:wrap;gap:14px 18px}
   .lg-partners{gap:16px}
   .lg-partners img{height:30px}
   .lg-partners .lg-porsche{height:32px}
-  .lg-art{min-height:180px}
   .lg-tab{padding:12px 4px;font-size:13.5px}
 }
 @media (max-width:400px){
@@ -211,6 +212,12 @@
 
   <aside class="lg-art" aria-label="STARTRADER, Official Partner of the Porsche Carrera Cup Middle East and the NBA">
     <img src="assets/img/login-court.webp" alt="The STARTRADER Porsche Cup car and a basketball on an arena court" width="1000" height="1080" fetchpriority="high" decoding="async">
+
+    <div class="lg-fabs">
+      <a class="lg-fab" href="https://www.startrader.com/live-account/" aria-label="Open a live account"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4l10.5-10.5a2.1 2.1 0 0 0-3-3L5 17v3Z"/><path d="M13.5 6.5l3 3"/></svg></a>
+      <a class="lg-fab" href="contact.html" aria-label="Contact support"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13a8 8 0 0 1 16 0"/><path d="M4 13v3a2 2 0 0 0 2 2h1v-6H6a2 2 0 0 0-2 1Z"/><path d="M20 13v3a2 2 0 0 1-2 2h-1v-6h1a2 2 0 0 1 2 1Z"/><path d="M12 21h4"/></svg></a>
+    </div>
+  </aside>
   <div class="lg-lang" id="lgLang">
     <button type="button" class="lg-lang-btn" aria-haspopup="listbox" aria-expanded="false">
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.7 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3Z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
@@ -232,12 +239,6 @@
       <button type="button" data-code="TR" role="option" aria-selected="false">Türkçe</button>
     </div>
   </div>
-
-    <div class="lg-fabs">
-      <a class="lg-fab" href="https://www.startrader.com/live-account/" aria-label="Open a live account"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4l10.5-10.5a2.1 2.1 0 0 0-3-3L5 17v3Z"/><path d="M13.5 6.5l3 3"/></svg></a>
-      <a class="lg-fab" href="contact.html" aria-label="Contact support"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13a8 8 0 0 1 16 0"/><path d="M4 13v3a2 2 0 0 0 2 2h1v-6H6a2 2 0 0 0-2 1Z"/><path d="M20 13v3a2 2 0 0 1-2 2h-1v-6h1a2 2 0 0 1 2 1Z"/><path d="M12 21h4"/></svg></a>
-    </div>
-  </aside>
 </main>
 
 <script>
