@@ -1,9 +1,46 @@
-# `/api/calendar` — TradingView economic-calendar relay
+# Economic calendar: widget in the page, `/api/calendar` relay as the API option
 
-The economic calendar page (`economiccalendar.html`) renders its own table,
-day tabs, impact filters and release countdowns. It does **not** embed a
-vendor iframe. The rows come from TradingView's economic-calendar API,
-fetched through this small same-origin relay.
+`economiccalendar.html` embeds **TradingView's official Economic Calendar
+widget** (`embed-widget-events.js`) inside the page's glass card. That is
+the use TradingView's widget terms permit, so it needs no consent request
+and no server-side code. The widget's `locale` is not listed per language:
+the site's mount helper (`mountTradingView()` in `assets/js/main.js`) reads
+the page's `<html lang>` and maps it to TradingView's locale code, so the
+same markup serves every language folder.
+
+The markup the page carries:
+
+```html
+<div class="ec-tv" data-tv-widget="events"
+     data-tv-config='{"colorTheme":"light","isTransparent":true,"width":"100%","height":780,
+                      "importanceFilter":"-1,0,1",
+                      "countryFilter":"us,eu,gb,jp,de,fr,it,ca,au,nz,ch,cn,in,br,mx,kr,za,tr,es,hk"}'></div>
+```
+
+`mountTradingView()` turns that into TradingView's standard snippet when the
+element scrolls near:
+
+```html
+<div class="tradingview-widget-container">
+  <div class="tradingview-widget-container__widget"></div>
+  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">…</a></div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-events.js" async>
+  { "colorTheme": "light", "isTransparent": true, "width": "100%", "height": 780, "locale": "en",
+    "importanceFilter": "-1,0,1", "countryFilter": "us,eu,gb,…" }
+  </script>
+</div>
+```
+
+On a stack without `main.js`, paste that snippet directly in place of the
+`.ec-tv` div. Nothing else on the page depends on it.
+
+---
+
+# `/api/calendar` — the API alternative (only with TradingView's written permission)
+
+The relay below is kept for the case where TradingView authorises direct
+use of its events feed for a custom table. It is **not** wired to the page
+today.
 
 ## Why a relay
 
@@ -12,12 +49,12 @@ does not whitelist, so the page cannot call it directly. The relay makes the
 request server-side with the accepted origin and returns the JSON from the
 site's own domain, cached for five minutes at the edge.
 
-## How the page calls it
+## How a page would call it
 
-`economiccalendar.html` makes one request on load, from `loadLive()` in its
-inline script, for the current Monday-to-Monday week and a fixed country
-list, then again about two minutes after each release passes so the
-actual figure fills in:
+The custom-table build (git history before 2026-09-10, commit `6b626444`)
+made one request on load for the current Monday-to-Monday week and a fixed
+country list, then again about two minutes after each release passed so the
+actual figure filled in:
 
 ```js
 fetch('/api/calendar?from=' + from.toISOString() +
