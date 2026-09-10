@@ -11,7 +11,7 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/styles.min.css?v=qa87" />
-  <link rel="preload" as="image" href="assets/img/pccme-banner-hero.webp" type="image/webp" fetchpriority="high" />
+  <link rel="preload" as="image" href="assets/img/login-court.webp" type="image/webp" fetchpriority="high" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* =================================================================
@@ -107,12 +107,9 @@
 .lg-open:hover{transform:translateY(-2px);box-shadow:0 26px 48px -22px rgba(0,71,187,.65);color:#fff}
 /* ---- the picture panel ---- */
 .lg-art{position:relative;overflow:hidden;background:#061033}
-.lg-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:78% 50%}
+.lg-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%}
 .lg-art::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:linear-gradient(90deg,rgba(6,16,51,.55) 0%,rgba(6,16,51,0) 32%),linear-gradient(180deg,rgba(6,16,51,.35) 0%,rgba(6,16,51,0) 26%,rgba(6,16,51,.2) 100%)}
-.lg-court{position:absolute;left:-6%;right:-6%;bottom:-2%;height:46%;z-index:1;pointer-events:none;opacity:.14;
-  background:url(assets/img/court-lines.svg) center bottom/100% auto no-repeat;
-  -webkit-mask-image:linear-gradient(180deg,transparent,#000 40%);mask-image:linear-gradient(180deg,transparent,#000 40%)}
+  background:linear-gradient(90deg,rgba(6,16,51,.28) 0%,rgba(6,16,51,0) 22%),linear-gradient(180deg,rgba(6,16,51,.22) 0%,rgba(6,16,51,0) 24%)}
 /* language switch rides top-right on the picture */
 .lg-lang{position:absolute;top:clamp(18px,3vw,30px);right:clamp(18px,3vw,36px);z-index:3}
 .lg-lang-btn{display:inline-flex;align-items:center;gap:9px;padding:10px 16px;border-radius:40px;cursor:pointer;
@@ -137,7 +134,7 @@
 @media (max-width:980px){
   .lg-wrap{grid-template-columns:1fr}
   .lg-art{order:-1;min-height:220px}
-  .lg-art img{object-position:70% 50%}
+  .lg-art img{object-position:50% 42%}
   .lg-panel{border-right:0;box-shadow:none}
   .lg-body{padding-top:28px}
   .lg-fabs{display:none}
@@ -213,8 +210,7 @@
   </section>
 
   <aside class="lg-art" aria-label="STARTRADER, Official Partner of the Porsche Carrera Cup Middle East and the NBA">
-    <img src="assets/img/pccme-banner-hero.webp" alt="The STARTRADER Porsche Cup car under arena lights" width="1920" height="1081" fetchpriority="high" decoding="async">
-    <span class="lg-court" aria-hidden="true"></span>
+    <img src="assets/img/login-court.webp" alt="The STARTRADER Porsche Cup car and a basketball on an arena court" width="1000" height="1080" fetchpriority="high" decoding="async">
   <div class="lg-lang" id="lgLang">
     <button type="button" class="lg-lang-btn" aria-haspopup="listbox" aria-expanded="false">
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.7 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3Z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
