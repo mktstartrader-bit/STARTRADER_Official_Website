@@ -132,6 +132,22 @@
 }
 
 .ar-author-role{font-weight:500;color:var(--text-mute);font-size:12.5px}
+
+/* the author profile card in the rail */
+.ar-auth{padding:18px 16px;border-radius:16px}
+.ar-auth-head{display:flex;align-items:center;gap:13px;margin-top:12px}
+.ar-auth-head img{flex:none;width:64px;height:64px;border-radius:50%;object-fit:cover;box-shadow:0 8px 20px -10px rgba(15,40,110,.45)}
+.ar-auth-head>div{display:flex;flex-direction:column;gap:2px;min-width:0}
+.ar-auth-name{font-size:16.5px;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
+.ar-auth-role{font-size:12.5px;font-weight:600;color:var(--text-mute)}
+.ar-auth-bio{margin-top:12px;font-size:14px;line-height:1.65;color:var(--text)}
+.ar-auth-links{display:flex;flex-direction:column;gap:6px;margin-top:12px;padding-top:12px;border-top:1px solid rgba(20,44,96,.12)}
+.ar-auth-link{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:700;color:var(--blue);text-decoration:none;transition:gap .25s var(--ease)}
+.ar-auth-link .ico{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;flex:none}
+.ar-auth-link:hover{gap:10px;text-decoration:underline}
+.ar-author-link{color:inherit;text-decoration:none}
+.ar-author-link:hover{color:var(--blue);text-decoration:underline}
+@media (max-width:1024px){ .ar-auth{order:3;min-width:0} .ar-rtags{order:2} }
   </style>
 
   <!-- Structured data — article -->
@@ -149,7 +165,7 @@
   "inLanguage": "en",
   "wordCount": 780,
   "isAccessibleForFree": true,
-  "author": { "@type": "Person", "name": "Ghassan", "jobTitle": "Market Analyst", "worksFor": { "@type": "Organization", "name": "STARTRADER Research" } },
+  "author": { "@type": "Person", "name": "Ghassan", "jobTitle": "Market Analyst", "worksFor": { "@type": "Organization", "name": "STARTRADER Research" }, "image": "https://www.startrader.com/assets/img/author-ghassan.webp", "description": "Market analyst with STARTRADER Research, writing the daily technical and fundamental analysis on forex, gold, indices and commodities.", "url": "https://www.startrader.com/education/analysis/analysis-article.html#author" },
   "publisher": {
     "@type": "Organization",
     "name": "STARTRADER",
@@ -494,6 +510,22 @@
           </div>
         </div>
 
+        <div class="ar-auth glass" id="author" itemprop="author" itemscope itemtype="https://schema.org/Person">
+          <h2 class="ar-side-h">About the author</h2>
+          <div class="ar-auth-head">
+            <img src="assets/img/author-ghassan.webp" alt="Ghassan, STARTRADER market analyst" width="64" height="64" loading="lazy" decoding="async" itemprop="image">
+            <div>
+              <b class="ar-auth-name" itemprop="name">Ghassan</b>
+              <span class="ar-auth-role" itemprop="jobTitle">Market Analyst, STARTRADER Research</span>
+            </div>
+          </div>
+          <p class="ar-auth-bio" itemprop="description">Ghassan is a market analyst with STARTRADER Research. He writes the daily technical and fundamental analysis, following forex, gold, indices and commodities through the levels, data and central-bank decisions that move them, and setting out what each session means for traders in plain language.</p>
+          <div class="ar-auth-links">
+            <a class="ar-auth-link" href="daily-technical-analysis.html">Daily technical analysis <svg class="ico"><use href="#i-arrow-right"/></svg></a>
+            <a class="ar-auth-link" href="daily-fundamental-analysis.html">Daily fundamental analysis <svg class="ico"><use href="#i-arrow-right"/></svg></a>
+          </div>
+        </div>
+
         <div class="ar-cta glass" data-ar-open-card>
           <h2 class="ar-cta-h">Open <span>Live Account</span></h2>
           <form class="ar-cta-form" data-ar-open novalidate>
@@ -647,7 +679,7 @@
           <span class="ar-author">
             <img src="assets/img/author-ghassan.webp" alt="Ghassan, STARTRADER market analyst" width="80" height="80" loading="lazy" decoding="async">
             <span class="ar-author-tx">
-              <b itemprop="author">Ghassan <span class="ar-author-role">&middot; STARTRADER Research</span></b>
+              <b><a class="ar-author-link" href="#author">Ghassan</a> <span class="ar-author-role">&middot; STARTRADER Research</span></b>
               <em><time datetime="2026-07-28T09:30:00Z" itemprop="datePublished">28.07.2026</time> &middot; 5 min read</em>
             </span>
           </span>
