@@ -55,6 +55,9 @@
   /* why section: a single card, centred, now that the dispute card is gone */
 .pt-hours .fx-mh{grid-template-columns:minmax(0,760px);justify-content:center}
 .pt-hours .fx-mh--wide{grid-column:auto}
+/* the coverage table now has a single value column, so it may shrink with the viewport */
+.pt-spec--1{min-width:0;width:100%}
+.pt-spec--1 th:first-child,.pt-spec--1 td:first-child{width:42%}
 </style>
 
   <!-- Structured data — page entity -->
@@ -526,45 +529,39 @@
 <section class="section pt-sec pt-light-2" aria-labelledby="ll-s-title">
   <div class="container">
     <div class="head center">
-      <span class="eyebrow" data-aos="fade-up">Two layers</span>
+      <span class="eyebrow" data-aos="fade-up">More About Lloyd</span>
       <h2 class="h2" id="ll-s-title" data-aos="fade-up">Lloyd&rsquo;s vs STARTRADER Coverage Comparison</h2>
       <p class="head-sub" data-aos="fade-up">The cover is built in two layers, which is what &ldquo;in excess of US$20,000&rdquo; means in practice.</p>
     </div>
     <div class="ta-spec-wrap pt-spec-wrap" data-aos="fade-up">
-      <table class="ta-table pt-spec pt-spec--2">
+      <table class="ta-table pt-spec pt-spec--1">
         <caption class="sr-only">How the insurance layers are structured</caption>
         <thead>
           <tr>
             <th scope="col">Compare</th>
-            <th scope="col" class="ta-col-rec">Lloyd&rsquo;s layer <span class="ta-rec-badge">Up to $1,000,000</span></th>
-            <th scope="col">STARTRADER layer</th>
+            <th scope="col" class="ta-col-rec">Lloyd&rsquo;s layer <span class="ta-rec-badge">Up to $30,000,000</span></th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td><span class="spec-feat"><span class="spec-ic"><svg><use href="#i-wallet"/></svg></span> Amount</span></td>
-            <td class="ta-col-rec">Up to US$1,000,000</td>
-            <td>First US$20,000</td>
+            <td class="ta-col-rec">Up to US$30,000,000</td>
           </tr>
           <tr>
             <td><span class="spec-feat"><span class="spec-ic"><svg><use href="#i-shield"/></svg></span> Who bears it</span></td>
             <td class="ta-col-rec">Lloyd&rsquo;s of London</td>
-            <td>STARTRADER</td>
           </tr>
           <tr>
             <td><span class="spec-feat"><span class="spec-ic"><svg><use href="#i-box"/></svg></span> What it covers</span></td>
             <td class="ta-col-rec">Client funds &mdash; balance and open positions</td>
-            <td>Client funds &mdash; balance and open positions</td>
           </tr>
           <tr>
             <td><span class="spec-feat"><span class="spec-ic"><svg><use href="#i-bolt"/></svg></span> When it applies</span></td>
             <td class="ta-col-rec">Insolvency of STARTRADER</td>
-            <td>Insolvency of STARTRADER</td>
           </tr>
           <tr>
             <td><span class="spec-feat"><span class="spec-ic"><svg><use href="#i-cal"/></svg></span> Cost to the client</span></td>
             <td class="ta-col-rec">Nil</td>
-            <td>Nil</td>
           </tr>
         </tbody>
       </table>
