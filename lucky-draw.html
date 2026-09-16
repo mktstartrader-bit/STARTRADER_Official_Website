@@ -198,9 +198,8 @@
 .ld-prize--1 .ld-prize-art{position:absolute;inset:0;display:block;min-height:0;z-index:0;overflow:hidden;border-radius:inherit}
 .ld-prize--1 .ld-prize-art img{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:124%;max-width:none;max-height:none;height:auto;filter:none}
 .ld-prize--1>.ld-rank{margin-bottom:auto}
-.ld-prize--1 .ld-prize-art::before{content:"";position:absolute;left:0;right:0;bottom:0;height:44%;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  -webkit-mask:linear-gradient(to top,#000 30%,transparent 100%);mask:linear-gradient(to top,#000 30%,transparent 100%)}
-.ld-prize--1 .ld-prize-art::after{content:"";position:absolute;left:0;right:0;bottom:0;height:52%;background:linear-gradient(to top,rgba(7,10,22,.94) 0%,rgba(7,10,22,.5) 50%,rgba(7,10,22,0) 100%)}
+.ld-prize--1 .ld-prize-art .ld-prize-blur{filter:blur(20px);-webkit-mask:linear-gradient(to top,#000 0%,#000 30%,transparent 66%);mask:linear-gradient(to top,#000 0%,#000 30%,transparent 66%)}
+.ld-prize--1 .ld-prize-art::after{content:"";position:absolute;left:0;right:0;bottom:0;height:52%;background:linear-gradient(to top,rgba(7,10,22,.82) 0%,rgba(7,10,22,.38) 50%,rgba(7,10,22,0) 100%)}
 .ld-prize--1>.ld-rank,.ld-prize--1>h3,.ld-prize--1>p{position:relative;z-index:1}
 .ld-prize--1:hover .ld-prize-art img{transform:translateX(-50%)}
 .ld-prize-art img{display:block;width:auto;max-width:82%;max-height:200px;height:auto;object-fit:contain;filter:drop-shadow(0 28px 36px rgba(0,0,0,.55)) drop-shadow(0 0 30px rgba(42,114,255,.25));transition:transform .5s var(--ease)}
@@ -481,7 +480,7 @@
     <div class="ld-prize-grid">
       <article class="ld-card ld-prize ld-prize--1" data-aos="fade-up">
         <span class="ld-rank"><svg><use href="#ld-crown"/></svg>1st Draw Winner</span>
-        <div class="ld-prize-art"><img src="assets/img/lucky-prize-1.webp" alt="iPhone Duo held open in two hands" width="1600" height="1080" loading="lazy" decoding="async"></div>
+        <div class="ld-prize-art"><img src="assets/img/lucky-prize-1.webp" alt="iPhone Duo held open in two hands" width="1600" height="1080" loading="lazy" decoding="async"><img class="ld-prize-blur" src="assets/img/lucky-prize-1.webp" alt="" aria-hidden="true" width="1600" height="1080" loading="lazy" decoding="async"></div>
         <h3>Iphone Duo 256GB</h3>
         <p>Cash Equivalent (USD): <b>1,599 USD</b></p>
       </article>
