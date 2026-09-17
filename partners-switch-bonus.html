@@ -85,7 +85,7 @@
 .psb-actions .btn{min-width:240px}
 /* the banner scene sits behind the hero; its calm left third carries the copy */
 .psb-hero{min-height:min(760px,calc(100vh - var(--topbar-h,44px)));display:flex;align-items:center}
-.psb-banner{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:78% 50%;display:block}
+.psb-banner{position:absolute;left:0;right:0;top:var(--nav-h);bottom:0;z-index:-2;width:100%;height:calc(100% - var(--nav-h));object-fit:cover;object-position:78% 0%;display:block}
 .psb-hero-veil{position:absolute;inset:0;z-index:-1;pointer-events:none;
   background:linear-gradient(90deg,rgba(4,6,13,.96) 0%,rgba(4,6,13,.9) 30%,rgba(4,6,13,.55) 52%,rgba(4,6,13,.08) 72%,rgba(4,6,13,0) 100%),
              linear-gradient(180deg,rgba(4,6,13,.55) 0%,rgba(4,6,13,0) 28%,rgba(4,6,13,0) 70%,rgba(4,6,13,.9) 100%)}
@@ -95,18 +95,12 @@
   background:rgba(8,14,30,.66);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 24px 48px -24px rgba(0,0,0,.85);white-space:nowrap;animation:psbFloat 8s ease-in-out infinite}
 .psb-chip b{font-size:clamp(20px,1.9vw,28px);line-height:1;letter-spacing:-.03em;color:#fff;font-variant-numeric:tabular-nums}
 .psb-chip b small{font-size:.5em;font-weight:700;letter-spacing:0;color:var(--acc-3);margin-right:.35em;vertical-align:.3em}
-.psb-chip span{font-size:11.5px;font-weight:600;letter-spacing:.02em;color:#aeb8cc;white-space:normal;max-width:190px;line-height:1.4}
+.psb-chip>span{font-size:11.5px;font-weight:600;letter-spacing:.02em;color:#aeb8cc;white-space:normal;max-width:190px;line-height:1.4}
+.psb-chip b span{font:inherit;color:inherit}
 .psb-chip--sand b small{color:var(--sand)}
 .psb-chip.c1{left:0;top:2%;animation-delay:-2s}
 .psb-chip.c2{right:0;top:18%;animation-delay:-5s}
 .psb-chip.c3{left:6%;bottom:12%;animation-delay:-3.5s}
-/* the brand badge: the real logo on a bronze-edged glass card */
-.psb-chip--brand{right:2%;bottom:-4%;flex-direction:row;align-items:center;gap:12px;padding:14px 18px 14px 16px;border-color:rgba(223,197,174,.42);
-  background:linear-gradient(135deg,rgba(172,124,89,.28),rgba(8,14,30,.78) 55%);animation-delay:-6.5s}
-.psb-chip--brand::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(135deg,rgba(223,197,174,.7),transparent 50%,rgba(223,197,174,.35));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
-.psb-chip--brand img{display:block;width:clamp(120px,10vw,150px);height:auto}
-.psb-chip--brand span{max-width:none;padding-left:12px;border-left:1px solid rgba(223,197,174,.35);font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--sand)}
-
 /* ---------- figures marquee ---------- */
 .psb-marq-sec{position:relative;z-index:2;background:#04060d;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06)}
 .psb-marq{padding:16px 0;-webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
@@ -289,9 +283,7 @@ tr.is-on td.req{color:var(--acc)}
   .psb-hero-veil{display:none}
   .psb-stage{min-height:0;display:grid;gap:10px}
   .psb-chip{position:static;animation:none;flex-direction:row;align-items:baseline;flex-wrap:wrap;gap:4px 12px;padding:12px 14px}
-  .psb-chip span{max-width:none;flex:1 1 180px}
-  .psb-chip--brand{justify-content:center;background:linear-gradient(135deg,rgba(172,124,89,.28),rgba(8,14,30,.78) 55%)}
-  .psb-chip--brand span{flex:none}
+  .psb-chip>span{max-width:none;flex:1 1 180px}
   .psb-rules{grid-template-columns:1fr}
   .psb-result{grid-template-columns:auto minmax(0,1fr)}
   .psb-result-amt{grid-column:1/-1;justify-self:start}
@@ -669,7 +661,6 @@ tr.is-on td.req{color:var(--acc)}
       <div class="psb-chip c1"><b><small>Up to</small><span data-count="12000" data-prefix="USD " data-comma>USD 12,000</span></b><span>Maximum bonus per monthly performance period</span></div>
       <div class="psb-chip c2 psb-chip--sand"><b><span data-count="6">6</span></b><span>Monthly performance periods per partner</span></div>
       <div class="psb-chip c3"><b><small>Up to</small><span data-count="72000" data-prefix="USD " data-comma>USD 72,000</span></b><span>Maximum total bonus under the promotion</span></div>
-      <div class="psb-chip psb-chip--brand c4" aria-label="STARTRADER Partners"><img src="assets/img/logo-startrader.svg" alt="STARTRADER" width="180" height="35" decoding="async"><span>Partners</span></div>
     </div>
   </div>
 </section>
