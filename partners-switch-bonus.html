@@ -16,19 +16,19 @@
   <meta property="og:title" content="Partners Switch Bonus | Switch to STARTRADER Partners" />
   <meta property="og:description" content="Eligible new partners joining from another broker may qualify for up to USD 12,000 per month — up to USD 72,000 over six monthly performance periods." />
   <meta property="og:url" content="https://www.startrader.com/partners-switch-bonus.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/psb-hero-3d.webp" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/psb-hero-banner.webp" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Partners Switch Bonus | Switch to STARTRADER Partners" />
   <meta name="twitter:description" content="Eligible new partners joining from another broker may qualify for up to USD 12,000 per month — up to USD 72,000 over six monthly performance periods." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/psb-hero-3d.webp" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/psb-hero-banner.webp" />
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="favicon.svg" />
   <link rel="manifest" href="site.webmanifest" />
-  <link rel="preload" href="assets/img/psb-hero-3d.webp" as="image" type="image/webp" fetchpriority="high" />
+  <link rel="preload" href="assets/img/psb-hero-banner.webp" as="image" type="image/webp" fetchpriority="high" />
 
   <!-- Fonts (self-hosted) -->
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
@@ -83,21 +83,25 @@
 .psb-qual{margin:18px 0 0;max-width:62ch;font-size:13.5px;line-height:1.7;color:#8f9db5}
 .psb-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;margin-top:30px}
 .psb-actions .btn{min-width:240px}
-/* the artwork with its floating figure chips */
-.psb-art{position:relative;aspect-ratio:1;max-width:620px;margin:0 auto;transform-style:preserve-3d;transition:transform .5s var(--ease)}
-.psb-art-glow{position:absolute;inset:8% 6% 2%;border-radius:50%;background:radial-gradient(closest-side,rgba(42,114,255,.4),rgba(172,124,89,.12) 60%,transparent);filter:blur(34px);z-index:0;animation:psbDrift 14s ease-in-out infinite}
-.psb-art img{position:relative;z-index:1;display:block;width:100%;height:auto;filter:drop-shadow(0 40px 60px rgba(0,0,0,.6));animation:psbFloat 7s ease-in-out infinite}
+/* the banner scene sits behind the hero; its calm left third carries the copy */
+.psb-hero{min-height:min(760px,calc(100vh - var(--topbar-h,44px)));display:flex;align-items:center}
+.psb-banner{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:78% 50%;display:block}
+.psb-hero-veil{position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(90deg,rgba(4,6,13,.96) 0%,rgba(4,6,13,.9) 30%,rgba(4,6,13,.55) 52%,rgba(4,6,13,.08) 72%,rgba(4,6,13,0) 100%),
+             linear-gradient(180deg,rgba(4,6,13,.55) 0%,rgba(4,6,13,0) 28%,rgba(4,6,13,0) 70%,rgba(4,6,13,.9) 100%)}
+.psb-hero .psb-orb.o2{z-index:-1}
+.psb-stage{position:relative;min-height:420px}
 .psb-chip{position:absolute;z-index:2;display:flex;flex-direction:column;gap:2px;padding:14px 18px;border-radius:18px;border:1px solid rgba(255,255,255,.14);
-  background:rgba(8,14,30,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 24px 48px -24px rgba(0,0,0,.85);white-space:nowrap;animation:psbFloat 8s ease-in-out infinite}
+  background:rgba(8,14,30,.66);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 24px 48px -24px rgba(0,0,0,.85);white-space:nowrap;animation:psbFloat 8s ease-in-out infinite}
 .psb-chip b{font-size:clamp(20px,1.9vw,28px);line-height:1;letter-spacing:-.03em;color:#fff;font-variant-numeric:tabular-nums}
 .psb-chip b small{font-size:.5em;font-weight:700;letter-spacing:0;color:var(--acc-3);margin-right:.35em;vertical-align:.3em}
 .psb-chip span{font-size:11.5px;font-weight:600;letter-spacing:.02em;color:#aeb8cc;white-space:normal;max-width:190px;line-height:1.4}
 .psb-chip--sand b small{color:var(--sand)}
-.psb-chip.c1{left:-6%;top:6%;animation-delay:-2s}
-.psb-chip.c2{right:-6%;top:22%;animation-delay:-5s}
-.psb-chip.c3{left:-2%;bottom:14%;animation-delay:-3.5s}
+.psb-chip.c1{left:0;top:2%;animation-delay:-2s}
+.psb-chip.c2{right:0;top:18%;animation-delay:-5s}
+.psb-chip.c3{left:6%;bottom:12%;animation-delay:-3.5s}
 /* the brand badge: the real logo on a bronze-edged glass card */
-.psb-chip--brand{right:-4%;bottom:4%;flex-direction:row;align-items:center;gap:12px;padding:14px 18px 14px 16px;border-color:rgba(223,197,174,.42);
+.psb-chip--brand{right:2%;bottom:-4%;flex-direction:row;align-items:center;gap:12px;padding:14px 18px 14px 16px;border-color:rgba(223,197,174,.42);
   background:linear-gradient(135deg,rgba(172,124,89,.28),rgba(8,14,30,.78) 55%);animation-delay:-6.5s}
 .psb-chip--brand::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(135deg,rgba(223,197,174,.7),transparent 50%,rgba(223,197,174,.35));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
 .psb-chip--brand img{display:block;width:clamp(120px,10vw,150px);height:auto}
@@ -275,19 +279,24 @@ tr.is-on td.req{color:var(--acc)}
   .psb-how-intro{position:static}
 }
 @media (max-width:900px){
-  .psb-hero-grid{grid-template-columns:1fr;gap:28px}
-  .psb-art{max-width:520px}
+  /* narrow screens: copy, then the banner as a full-width band, then the chips */
+  .psb-hero{min-height:0;display:grid;gap:22px}
+  .psb-hero>.container.psb-hero-grid{display:contents}
+  .psb-hero-copy{order:1;padding:0 var(--gutter)}
+  .psb-banner{order:2;position:relative;inset:auto;z-index:0;width:100%;height:auto;aspect-ratio:16/9;object-position:68% 50%;
+    -webkit-mask:linear-gradient(180deg,transparent,#000 12%,#000 88%,transparent);mask:linear-gradient(180deg,transparent,#000 12%,#000 88%,transparent)}
+  .psb-stage{order:3;padding:0 var(--gutter)}
+  .psb-hero-veil{display:none}
+  .psb-stage{min-height:0;display:grid;gap:10px}
+  .psb-chip{position:static;animation:none;flex-direction:row;align-items:baseline;flex-wrap:wrap;gap:4px 12px;padding:12px 14px}
+  .psb-chip span{max-width:none;flex:1 1 180px}
+  .psb-chip--brand{justify-content:center;background:linear-gradient(135deg,rgba(172,124,89,.28),rgba(8,14,30,.78) 55%)}
+  .psb-chip--brand span{flex:none}
   .psb-rules{grid-template-columns:1fr}
   .psb-result{grid-template-columns:auto minmax(0,1fr)}
   .psb-result-amt{grid-column:1/-1;justify-self:start}
 }
 @media (max-width:640px){
-  .psb-art{max-width:none;aspect-ratio:auto;display:grid;gap:10px}
-  .psb-art img{width:80%;margin:0 auto;animation:none}
-  .psb-chip{position:static;animation:none;flex-direction:row;align-items:baseline;flex-wrap:wrap;gap:4px 12px;padding:12px 14px}
-  .psb-chip span{max-width:none;flex:1 1 180px}
-  .psb-chip--brand{justify-content:center;background:linear-gradient(135deg,rgba(172,124,89,.28),rgba(8,14,30,.78) 55%)}
-  .psb-chip--brand span{flex:none}
   .psb-table{min-width:0}
   .psb-table th,.psb-table td{padding:14px 10px;font-size:13.5px}
   .psb-table thead th{font-size:10px;letter-spacing:.08em}
@@ -307,7 +316,7 @@ tr.is-on td.req{color:var(--acc)}
   .psb-period{font-size:11px;border-radius:9px}
 }
 @media (prefers-reduced-motion:reduce){
-  .psb-orb,.psb-art img,.psb-art-glow,.psb-chip,.psb-eyebrow i,.psb-aside-art,.psb-period::before,.psb-rule .ic::after,.psb .btn-primary::after,.psb-done .tick{animation:none}
+  .psb-orb,.psb-chip,.psb-eyebrow i,.psb-aside-art,.psb-period::before,.psb-rule .ic::after,.psb .btn-primary::after,.psb-done .tick{animation:none}
   .psb-period::before{height:100%}
   .psb-stat,.psb-rule,.psb-step,.psb-why-card,.psb-seg-thumb{transition:none}
 }
@@ -640,7 +649,8 @@ tr.is-on td.req{color:var(--acc)}
 
 <!-- ============ HERO ============ -->
 <section class="psb-hero" aria-labelledby="psb-title">
-  <span class="psb-orb o1" aria-hidden="true"></span>
+  <img class="psb-banner" src="assets/img/psb-hero-banner.webp" alt="" aria-hidden="true" width="2048" height="1158" fetchpriority="high" decoding="async">
+  <span class="psb-hero-veil" aria-hidden="true"></span>
   <span class="psb-orb o2" aria-hidden="true"></span>
   <div class="container psb-hero-grid">
     <div class="psb-hero-copy">
@@ -655,9 +665,7 @@ tr.is-on td.req{color:var(--acc)}
       </div>
     </div>
 
-    <div class="psb-art" data-psb-tilt data-aos="fade-up" data-aos-delay="200">
-      <span class="psb-art-glow" aria-hidden="true"></span>
-      <img src="assets/img/psb-hero-3d.webp" alt="3D artwork of a bronze arrow rising from a glass plinth to a bronze plinth with coin stacks, chart, percent and calendar tiles on a navy plate" width="1400" height="1400" fetchpriority="high" decoding="async">
+    <div class="psb-stage" data-aos="fade-up" data-aos-delay="200">
       <div class="psb-chip c1"><b><small>Up to</small><span data-count="12000" data-prefix="USD " data-comma>USD 12,000</span></b><span>Maximum bonus per monthly performance period</span></div>
       <div class="psb-chip c2 psb-chip--sand"><b><span data-count="6">6</span></b><span>Monthly performance periods per partner</span></div>
       <div class="psb-chip c3"><b><small>Up to</small><span data-count="72000" data-prefix="USD " data-comma>USD 72,000</span></b><span>Maximum total bonus under the promotion</span></div>
