@@ -16,36 +16,39 @@
   <meta property="og:title" content="Partners Switch Bonus | Switch to STARTRADER Partners" />
   <meta property="og:description" content="Eligible new partners joining from another broker may qualify for up to USD 12,000 per month — up to USD 72,000 over six monthly performance periods." />
   <meta property="og:url" content="https://www.startrader.com/partners-switch-bonus.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/partner-pccme-card.webp" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/psb-hero-3d.webp" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Partners Switch Bonus | Switch to STARTRADER Partners" />
   <meta name="twitter:description" content="Eligible new partners joining from another broker may qualify for up to USD 12,000 per month — up to USD 72,000 over six monthly performance periods." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/partner-pccme-card.webp" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/psb-hero-3d.webp" />
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="favicon.svg" />
   <link rel="manifest" href="site.webmanifest" />
+  <link rel="preload" href="assets/img/psb-hero-3d.webp" as="image" type="image/webp" fetchpriority="high" />
 
   <!-- Fonts (self-hosted) -->
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="assets/css/swiper-bundle.min.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
   <link rel="stylesheet" href="assets/css/styles.min.css?v=qa89" />
 
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* ============================================================
-   Partners Switch Bonus — landing page
-   Dark hero and "how it works" bands alternate with light tier,
-   why-partner and application sections; glass cards throughout,
-   blue primary with the sand / bronze accent.
+   Partners Switch Bonus — campaign landing page
+   Dark hero, figures marquee, light tier explorer, dark scroll-drawn
+   steps with the six-period infographic, light partner cards with 3D
+   icons, and the application form. Glass cards throughout; blue
+   primary with the sand / bronze accent.
    ============================================================ */
 .psb{--sand:#dfc5ae;--sand-ink:#8a6440;--bronze:#ac7c59;--ink:#04060d}
 .psb-eyebrow{display:inline-flex;align-items:center;gap:10px;padding:8px 14px;border-radius:999px;border:1px solid rgba(223,197,174,.42);background:rgba(172,124,89,.16);
   color:#f3e7da;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
-.psb-eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--sand);box-shadow:0 0 0 4px rgba(223,197,174,.2)}
+.psb-eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--sand);box-shadow:0 0 0 4px rgba(223,197,174,.2);animation:psbPulse 2.2s ease-in-out infinite}
 .psb-eyebrow--light{border-color:rgba(138,100,64,.3);background:rgba(223,197,174,.28);color:var(--sand-ink)}
 .psb-eyebrow--light i{background:var(--sand-ink);box-shadow:0 0 0 4px rgba(138,100,64,.14)}
 .psb .h2{letter-spacing:-.035em;line-height:1.08}
@@ -53,13 +56,26 @@
 .psb-lede b{color:var(--text);font-weight:700}
 .psb-link{color:var(--sand);font-weight:600;font-size:15px;text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px;text-decoration-color:rgba(223,197,174,.55);transition:color .25s,text-decoration-color .25s}
 .psb-link:hover{color:#fff;text-decoration-color:#fff}
+/* the primary button carries a slow shine sweep */
+.psb .btn-primary{position:relative;overflow:hidden}
+.psb .btn-primary::after{content:"";position:absolute;top:-40%;bottom:-40%;left:-45%;width:34%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.34),transparent);transform:skewX(-18deg);animation:psbShine 4.2s ease-in-out infinite}
+.psb .btn-primary>*{position:relative;z-index:1}
+@keyframes psbShine{0%,62%{left:-45%}100%{left:130%}}
+@keyframes psbPulse{0%,100%{box-shadow:0 0 0 4px rgba(223,197,174,.2)}50%{box-shadow:0 0 0 8px rgba(223,197,174,.05)}}
+@keyframes psbFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes psbDrift{0%{transform:translate(0,0) scale(1)}33%{transform:translate(4%,-6%) scale(1.06)}66%{transform:translate(-3%,4%) scale(.96)}100%{transform:translate(0,0) scale(1)}}
+/* dark bands share drifting aurora orbs */
+.psb-orb{position:absolute;z-index:0;pointer-events:none;border-radius:50%;filter:blur(60px);opacity:.9;animation:psbDrift 18s ease-in-out infinite}
+.psb-orb.o1{top:-10%;right:-6%;width:min(560px,60vw);aspect-ratio:1;background:radial-gradient(circle,rgba(0,71,187,.5),transparent 68%)}
+.psb-orb.o2{bottom:-16%;left:-8%;width:min(440px,50vw);aspect-ratio:1;background:radial-gradient(circle,rgba(172,124,89,.28),transparent 68%);animation-delay:-7s;animation-duration:22s}
+.psb-orb.o3{top:30%;left:38%;width:min(320px,40vw);aspect-ratio:1;background:radial-gradient(circle,rgba(42,114,255,.22),transparent 70%);animation-delay:-12s;animation-duration:26s}
 
 /* ---------- hero (dark) ---------- */
 .psb-hero{position:relative;isolation:isolate;overflow:hidden;color:#fff;margin-top:calc(-1 * var(--nav-h));
-  padding:calc(var(--nav-h) + clamp(88px,10vw,132px)) 0 clamp(64px,7vw,100px);
-  background:radial-gradient(70% 55% at 82% 8%,rgba(0,71,187,.55),transparent 62%),radial-gradient(40% 40% at 6% 92%,rgba(172,124,89,.18),transparent 70%),
-             linear-gradient(180deg,#04060d 0%,#070b16 58%,#04060d 100%)}
-.psb-hero-grid{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);gap:clamp(32px,5vw,72px);align-items:center}
+  padding:calc(var(--nav-h) + clamp(84px,9vw,124px)) 0 clamp(56px,6vw,88px);
+  background:linear-gradient(180deg,#04060d 0%,#070b16 58%,#04060d 100%)}
+.psb-hero>.container{position:relative;z-index:1}
+.psb-hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.96fr);gap:clamp(32px,5vw,72px);align-items:center}
 .psb-h1{margin:22px 0 0;font-size:clamp(36px,4.9vw,68px);line-height:1.02;letter-spacing:-.04em;font-weight:800;color:#fff}
 .psb-h1 .g{background:linear-gradient(92deg,#7fb2ff 0%,#dfc5ae 65%,#f3e7da 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .psb-sub{margin:22px 0 0;max-width:56ch;font-size:clamp(16px,1.5vw,19px);line-height:1.6;color:#c7d2e6}
@@ -67,38 +83,90 @@
 .psb-qual{margin:18px 0 0;max-width:62ch;font-size:13.5px;line-height:1.7;color:#8f9db5}
 .psb-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;margin-top:30px}
 .psb-actions .btn{min-width:240px}
-.psb-stats{display:grid;gap:14px}
-.psb-stat{position:relative;padding:22px 24px 20px;border-radius:20px;transition:transform .35s var(--ease),border-color .35s}
-.psb-stat:hover{transform:translateY(-4px);border-color:rgba(127,178,255,.4)}
-.psb-stat b{display:block;font-size:clamp(28px,2.6vw,40px);line-height:1.05;letter-spacing:-.035em;color:#fff;font-variant-numeric:tabular-nums}
-.psb-stat b small{font-size:.46em;font-weight:700;letter-spacing:0;color:var(--acc-3);margin-right:.4em;vertical-align:.3em}
-.psb-stat span{display:block;margin-top:8px;font-size:13.5px;line-height:1.5;color:#aeb8cc;max-width:26ch}
-.psb-stat .ic{position:absolute;right:18px;top:18px;width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:rgba(127,178,255,.14);color:var(--acc-3)}
-.psb-stat .ic svg{width:18px;height:18px}
-.psb-stat--sand .ic{background:rgba(172,124,89,.22);color:var(--sand)}
-.psb-stat--sand b small{color:var(--sand)}
+/* the artwork with its floating figure chips */
+.psb-art{position:relative;aspect-ratio:1;max-width:620px;margin:0 auto;transform-style:preserve-3d;transition:transform .5s var(--ease)}
+.psb-art-glow{position:absolute;inset:8% 6% 2%;border-radius:50%;background:radial-gradient(closest-side,rgba(42,114,255,.4),rgba(172,124,89,.12) 60%,transparent);filter:blur(34px);z-index:0;animation:psbDrift 14s ease-in-out infinite}
+.psb-art img{position:relative;z-index:1;display:block;width:100%;height:auto;filter:drop-shadow(0 40px 60px rgba(0,0,0,.6));animation:psbFloat 7s ease-in-out infinite}
+.psb-chip{position:absolute;z-index:2;display:flex;flex-direction:column;gap:2px;padding:14px 18px;border-radius:18px;border:1px solid rgba(255,255,255,.14);
+  background:rgba(8,14,30,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 24px 48px -24px rgba(0,0,0,.85);white-space:nowrap;animation:psbFloat 8s ease-in-out infinite}
+.psb-chip b{font-size:clamp(20px,1.9vw,28px);line-height:1;letter-spacing:-.03em;color:#fff;font-variant-numeric:tabular-nums}
+.psb-chip b small{font-size:.5em;font-weight:700;letter-spacing:0;color:var(--acc-3);margin-right:.35em;vertical-align:.3em}
+.psb-chip span{font-size:11.5px;font-weight:600;letter-spacing:.02em;color:#aeb8cc;white-space:normal;max-width:190px;line-height:1.4}
+.psb-chip--sand b small{color:var(--sand)}
+.psb-chip.c1{left:-4%;top:12%;animation-delay:-2s}
+.psb-chip.c2{right:-3%;top:30%;animation-delay:-5s}
+.psb-chip.c3{left:6%;bottom:8%;animation-delay:-3.5s}
 
-/* ---------- monthly switch bonus (light) ---------- */
+/* ---------- figures marquee ---------- */
+.psb-marq-sec{position:relative;z-index:2;background:#04060d;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06)}
+.psb-marq{padding:16px 0;-webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.psb-marq .swiper-wrapper{align-items:center}
+.psb-marq-item{display:inline-flex;align-items:center;gap:14px;width:auto;padding:0 8px;font-size:13.5px;font-weight:600;letter-spacing:.01em;color:#c7d2e6;white-space:nowrap}
+.psb-marq-item b{color:#fff;font-weight:800}
+.psb-marq-item i{width:6px;height:6px;border-radius:50%;background:var(--sand);flex:none;margin-left:14px}
+
+/* ---------- monthly switch bonus: the tier explorer (light) ---------- */
 .psb-tier{position:relative;isolation:isolate;overflow:clip;background:radial-gradient(52% 44% at 50% -6%,rgba(0,71,187,.07),transparent 62%),var(--bg-light-2)}
-.psb-table-wrap{margin-top:44px;overflow:auto;border-radius:22px;border:1px solid rgba(20,44,96,.1);background:#fff;box-shadow:0 30px 60px -42px rgba(20,44,96,.4)}
-.psb-table{width:100%;min-width:600px;border-collapse:separate;border-spacing:0}
-.psb-table th,.psb-table td{padding:18px 24px;text-align:left;vertical-align:middle;border-bottom:1px solid rgba(20,44,96,.08);font-size:15px}
+.psb-seg{display:inline-grid;grid-auto-flow:column;position:relative;padding:5px;border-radius:999px;border:1px solid rgba(20,44,96,.14);background:#fff;box-shadow:0 12px 30px -22px rgba(20,44,96,.5)}
+.psb-seg-thumb{position:absolute;top:5px;bottom:5px;left:5px;width:calc(50% - 5px);border-radius:999px;background:linear-gradient(135deg,var(--acc-2),var(--acc));box-shadow:0 10px 22px -12px rgba(42,114,255,.9);transition:transform .45s cubic-bezier(.22,.61,.36,1),background .35s}
+.psb-seg.is-t2 .psb-seg-thumb{transform:translateX(100%);background:linear-gradient(135deg,#dfc5ae,#ac7c59)}
+.psb-seg button{position:relative;z-index:1;padding:11px 26px;border-radius:999px;border:0;background:none;font:inherit;font-size:13.5px;font-weight:800;letter-spacing:.04em;color:var(--text-soft);cursor:pointer;transition:color .3s}
+.psb-seg button[aria-selected="true"]{color:#fff}
+.psb-seg.is-t2 button[aria-selected="true"]{color:var(--ink)}
+.psb-tier-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin-top:40px}
+.psb-tier-head p{margin:0;font-size:13.5px;color:var(--text-soft)}
+.psb-tier-head p b{color:var(--text)}
+.psb-table-wrap{margin-top:16px;overflow:auto;border-radius:22px;border:1px solid rgba(20,44,96,.1);background:#fff;box-shadow:0 30px 60px -42px rgba(20,44,96,.4)}
+.psb-table{width:100%;min-width:640px;border-collapse:separate;border-spacing:0}
+.psb-table th,.psb-table td{padding:18px 22px;text-align:left;vertical-align:middle;border-bottom:1px solid rgba(20,44,96,.08);font-size:15px;transition:background .35s,color .35s,opacity .35s}
 .psb-table thead th{font-size:11.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--text-mute);background:var(--bg-light)}
 .psb-table thead th.t1{color:#fff;background:linear-gradient(135deg,#2a72ff,#0047bb)}
 .psb-table thead th.t2{color:var(--sand-ink);background:rgba(223,197,174,.28)}
-.psb-table td:first-child{color:var(--text);font-weight:600;max-width:34ch}
+.psb-table td.req{color:var(--text);font-weight:600}
 .psb-table td.t1{font-weight:800;color:var(--ink);background:rgba(0,71,187,.045);font-variant-numeric:tabular-nums}
 .psb-table td.t2{font-weight:700;color:var(--text);background:rgba(223,197,174,.12);font-variant-numeric:tabular-nums}
-.psb-table tbody tr:first-child td{font-size:17px}
+.psb-table tbody tr.bonus td{font-size:17px}
+.psb-table tbody tr.bonus td.t1{color:var(--acc)}
+.psb-table tbody tr.bonus td.t2{color:var(--sand-ink)}
 .psb-table tbody tr:last-child td{border-bottom:0}
 .psb-table sup{color:var(--sand-ink);font-weight:800;margin-left:3px}
+/* the selected tier lights its column; the other steps back */
+.psb-table.is-t1 td.t2,.psb-table.is-t1 th.t2{opacity:.45}
+.psb-table.is-t2 td.t1,.psb-table.is-t2 th.t1{opacity:.45}
+/* requirement rows are toggles */
+.psb-chk{display:inline-flex;align-items:center;gap:12px;background:none;border:0;padding:0;font:inherit;color:inherit;cursor:pointer;text-align:left}
+.psb-chk .bx{flex:none;width:24px;height:24px;border-radius:8px;border:1.5px solid rgba(20,44,96,.28);background:#fff;display:grid;place-items:center;color:#fff;transition:background .3s,border-color .3s,transform .3s}
+.psb-chk .bx svg{width:13px;height:13px;opacity:0;transform:scale(.5);transition:opacity .25s,transform .35s cubic-bezier(.34,1.56,.64,1)}
+tr.is-on .psb-chk .bx{background:linear-gradient(135deg,var(--acc-2),var(--acc));border-color:transparent}
+.psb-table.is-t2 tr.is-on .psb-chk .bx{background:linear-gradient(135deg,#dfc5ae,#ac7c59)}
+tr.is-on .psb-chk .bx svg{opacity:1;transform:scale(1)}
+tr.is-on td.req{color:var(--acc)}
+.psb-table.is-t2 tr.is-on td.req{color:var(--sand-ink)}
+.psb-chk:focus-visible .bx{outline:2px solid var(--acc-2);outline-offset:2px}
+.psb-result{margin-top:16px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:18px 22px;align-items:center;padding:20px 24px;border-radius:20px;transition:border-color .35s,box-shadow .35s}
+.psb-result.is-hit{border-color:rgba(0,71,187,.3);box-shadow:0 26px 52px -30px rgba(0,71,187,.45)}
+.psb-result.is-hit.is-t2{border-color:rgba(138,100,64,.4);box-shadow:0 26px 52px -30px rgba(138,100,64,.4)}
+.psb-result-ring{position:relative;width:64px;height:64px;border-radius:50%;display:grid;place-items:center;font-size:15px;font-weight:800;color:var(--text);
+  background:conic-gradient(var(--acc) calc(var(--p,0) * 1%),rgba(20,44,96,.1) 0);transition:--p .5s}
+.psb-result.is-t2 .psb-result-ring{background:conic-gradient(#ac7c59 calc(var(--p,0) * 1%),rgba(20,44,96,.1) 0)}
+.psb-result-ring::before{content:"";position:absolute;inset:5px;border-radius:50%;background:#fff}
+.psb-result-ring span{position:relative}
+.psb-result-tx b{display:block;font-size:clamp(17px,1.5vw,20px);letter-spacing:-.02em;color:var(--text)}
+.psb-result-tx span{display:block;margin-top:4px;font-size:13.5px;line-height:1.55;color:var(--text-soft)}
+.psb-result-amt{font-size:clamp(24px,2.4vw,34px);font-weight:800;letter-spacing:-.035em;color:var(--acc);font-variant-numeric:tabular-nums;white-space:nowrap;opacity:.35;transition:opacity .35s,color .35s,transform .45s cubic-bezier(.34,1.56,.64,1)}
+.psb-result.is-hit .psb-result-amt{opacity:1;transform:scale(1.04)}
+.psb-result.is-t2 .psb-result-amt{color:var(--sand-ink)}
 .psb-rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:22px}
-.psb-rule{padding:22px 22px 20px;border-radius:18px;transition:transform .35s var(--ease),box-shadow .35s}
+.psb-rule{position:relative;padding:22px 22px 20px;border-radius:18px;overflow:hidden;transition:transform .35s var(--ease),box-shadow .35s}
 .psb-rule:hover{transform:translateY(-4px)}
-.psb-rule .ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:rgba(0,71,187,.08);color:var(--acc)}
-.psb-rule .ic svg{width:18px;height:18px}
-.psb-rule b{display:block;margin-top:14px;font-size:16.5px;letter-spacing:-.02em;color:var(--text)}
+.psb-rule .ic{position:relative;width:44px;height:44px;border-radius:13px;display:grid;place-items:center;background:rgba(0,71,187,.08);color:var(--acc)}
+.psb-rule .ic::after{content:"";position:absolute;inset:-6px;border-radius:17px;border:1.5px dashed rgba(0,71,187,.25);animation:psbSpin 14s linear infinite}
+.psb-rule:nth-child(2) .ic{background:rgba(223,197,174,.32);color:var(--sand-ink)}
+.psb-rule:nth-child(2) .ic::after{border-color:rgba(138,100,64,.3)}
+.psb-rule .ic svg{width:19px;height:19px}
+.psb-rule b{display:block;margin-top:18px;font-size:16.5px;letter-spacing:-.02em;color:var(--text)}
 .psb-rule p{margin:6px 0 0;font-size:14px;line-height:1.62;color:var(--text-soft)}
+@keyframes psbSpin{to{transform:rotate(360deg)}}
 .psb-foot{margin-top:26px;padding:20px 22px;border-radius:16px;border-left:3px solid var(--sand);background:rgba(223,197,174,.14)}
 .psb-foot p{margin:0;font-size:13px;line-height:1.7;color:var(--text-soft)}
 .psb-foot p+p{margin-top:8px}
@@ -106,20 +174,40 @@
 .psb-foot .m{display:inline-block;min-width:1.1em;color:var(--sand-ink);font-weight:800}
 
 /* ---------- how it works (dark) ---------- */
-.psb-how{position:relative;isolation:isolate;overflow:clip;color:#fff;
-  background:radial-gradient(80% 60% at 12% 0%,rgba(0,44,130,.42),transparent 62%),radial-gradient(40% 40% at 96% 100%,rgba(172,124,89,.16),transparent 70%),linear-gradient(180deg,#04060e,#080b16 58%,#04060e)}
+.psb-how{position:relative;isolation:isolate;overflow:clip;color:#fff;background:linear-gradient(180deg,#04060e,#080b16 58%,#04060e)}
+.psb-how>.container{position:relative;z-index:1}
 .psb-how .h2{color:#fff}
 .psb-how .psb-lede{color:#aeb8cc;margin-left:0}
 .psb-how .psb-lede b{color:#fff}
-.psb-how-grid{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:clamp(28px,4vw,64px);align-items:start}
+.psb-how-grid{display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);gap:clamp(28px,4vw,64px);align-items:start}
 .psb-how-intro{position:sticky;top:calc(var(--chrome-h) + 26px)}
-.psb-how-intro .btn{margin-top:28px}
-.psb-steps{list-style:none;margin:0;padding:0;display:grid;gap:14px}
-.psb-step{position:relative;display:grid;grid-template-columns:56px minmax(0,1fr);gap:18px;padding:22px 24px;border-radius:20px;transition:transform .35s var(--ease),border-color .35s}
-.psb-step:hover{transform:translateY(-3px);border-color:rgba(127,178,255,.4)}
-.psb-step-n{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;font-size:14px;font-weight:800;letter-spacing:.06em;color:#fff;
-  background:linear-gradient(135deg,var(--acc-2),var(--acc));box-shadow:0 14px 28px -14px rgba(42,114,255,.9)}
-.psb-step:nth-child(even) .psb-step-n{background:linear-gradient(135deg,#dfc5ae,#ac7c59);color:var(--ink)}
+.psb-how-intro .btn{margin-top:26px}
+/* the six-period infographic */
+.psb-periods{margin-top:26px;padding:20px 20px 18px;border-radius:20px}
+.psb-periods-hd{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--sand)}
+.psb-periods-hd em{font-style:normal;font-weight:600;letter-spacing:0;text-transform:none;color:#8f9db5}
+.psb-periods-row{position:relative;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin-top:16px}
+.psb-period{position:relative;aspect-ratio:1/1.15;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);overflow:hidden;display:grid;place-items:end center;padding-bottom:8px;font-size:12px;font-weight:800;color:#c7d2e6}
+.psb-period::before{content:"";position:absolute;left:0;right:0;bottom:0;height:0;background:linear-gradient(180deg,rgba(42,114,255,.5),rgba(0,71,187,.9));animation:psbFill 9s ease-in-out infinite;animation-delay:calc(var(--i) * .9s)}
+.psb-period:nth-child(even)::before{background:linear-gradient(180deg,rgba(223,197,174,.6),rgba(172,124,89,.95))}
+.psb-period span{position:relative}
+@keyframes psbFill{0%,6%{height:0}18%,72%{height:100%}88%,100%{height:0}}
+.psb-periods-start{position:absolute;left:0;top:-8px;bottom:-8px;width:2px;border-radius:2px;background:linear-gradient(180deg,transparent,var(--sand),transparent)}
+.psb-periods-cap{margin:12px 0 0;font-size:12.5px;line-height:1.55;color:#8f9db5}
+.psb-periods-cap b{color:#e6ebf5;font-weight:700}
+/* the steps and the line that draws between them */
+.psb-steps-wrap{position:relative;padding-left:0}
+.psb-steps{list-style:none;margin:0;padding:0;display:grid;gap:14px;position:relative}
+.psb-steps::before{content:"";position:absolute;left:51px;top:28px;bottom:28px;width:2px;background:rgba(255,255,255,.08);border-radius:2px}
+.psb-line{position:absolute;left:51px;top:28px;bottom:28px;width:2px;border-radius:2px;background:linear-gradient(180deg,var(--acc-2),var(--sand));transform-origin:top;transform:scaleY(0)}
+.psb-step{position:relative;display:grid;grid-template-columns:56px minmax(0,1fr);gap:18px;padding:22px 24px;border-radius:20px;transition:transform .35s var(--ease),border-color .45s,box-shadow .45s,background .45s}
+.psb-step:hover{transform:translateY(-3px)}
+.psb-step.is-lit{border-color:rgba(127,178,255,.36);box-shadow:0 30px 60px -36px rgba(42,114,255,.55)}
+.psb-step:nth-child(even).is-lit{border-color:rgba(223,197,174,.4);box-shadow:0 30px 60px -36px rgba(172,124,89,.5)}
+.psb-step-n{position:relative;z-index:1;width:56px;height:56px;border-radius:16px;display:grid;place-items:center;font-size:14px;font-weight:800;letter-spacing:.06em;color:#fff;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);transition:background .45s,color .45s,transform .45s cubic-bezier(.34,1.56,.64,1),box-shadow .45s}
+.psb-step.is-lit .psb-step-n{background:linear-gradient(135deg,var(--acc-2),var(--acc));border-color:transparent;transform:scale(1.06);box-shadow:0 14px 28px -12px rgba(42,114,255,.9)}
+.psb-step:nth-child(even).is-lit .psb-step-n{background:linear-gradient(135deg,#dfc5ae,#ac7c59);color:var(--ink);box-shadow:0 14px 28px -12px rgba(172,124,89,.9)}
 .psb-step h3{margin:0;font-size:clamp(18px,1.7vw,22px);letter-spacing:-.02em;color:#fff}
 .psb-step p{margin:6px 0 0;font-size:14.5px;line-height:1.66;color:#aeb8cc}
 .psb-note{margin-top:18px;padding:18px 22px;border-radius:16px;border:1px solid rgba(223,197,174,.32);background:rgba(172,124,89,.12)}
@@ -129,30 +217,47 @@
 /* ---------- why partner (light) ---------- */
 .psb-why{position:relative;isolation:isolate;overflow:clip;background:radial-gradient(60% 50% at 90% 0%,rgba(223,197,174,.28),transparent 60%),var(--bg-light)}
 .psb-why-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:44px}
-.psb-why-card{padding:26px 24px 24px;border-radius:20px;min-height:170px;display:flex;flex-direction:column;justify-content:flex-end;transition:transform .35s var(--ease),box-shadow .35s}
-.psb-why-card:hover{transform:translateY(-4px)}
-.psb-why-card .ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(42,114,255,.18),rgba(0,71,187,.08));color:var(--acc);margin-bottom:auto}
-.psb-why-card:nth-child(even) .ic{background:linear-gradient(135deg,rgba(223,197,174,.5),rgba(172,124,89,.18));color:var(--sand-ink)}
-.psb-why-card .ic svg{width:20px;height:20px}
-.psb-why-card h3{margin:20px 0 0;font-size:clamp(17px,1.5vw,20px);letter-spacing:-.02em;color:var(--text)}
+.psb-why-card{position:relative;padding:22px 22px 24px;border-radius:22px;min-height:260px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;transform-style:preserve-3d;transition:transform .45s var(--ease),box-shadow .45s}
+.psb-why-card::after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(60% 50% at var(--mx,50%) var(--my,20%),rgba(42,114,255,.14),transparent 70%);opacity:0;transition:opacity .35s;pointer-events:none}
+.psb-why-card:hover::after{opacity:1}
+.psb-why-card:nth-child(even)::after{background:radial-gradient(60% 50% at var(--mx,50%) var(--my,20%),rgba(172,124,89,.18),transparent 70%)}
+.psb-why-card:hover{box-shadow:0 34px 64px -36px rgba(20,44,96,.5)}
+.psb-why-card .art{display:grid;place-items:center;margin-bottom:auto;padding:6px 0 10px}
+.psb-why-card .art img{width:clamp(120px,10vw,150px);height:auto;filter:drop-shadow(0 26px 30px rgba(20,44,96,.28));transition:transform .5s var(--ease)}
+.psb-why-card:hover .art img{transform:translateY(-6px) scale(1.04)}
+.psb-why-card h3{margin:0;font-size:clamp(17px,1.5vw,20px);letter-spacing:-.02em;color:var(--text)}
 
 /* ---------- application form (light) ---------- */
 .psb-apply{position:relative;isolation:isolate;overflow:clip;background:radial-gradient(52% 44% at 8% 0%,rgba(0,71,187,.08),transparent 62%),var(--bg-light-2)}
 .psb-apply .pt-form-aside .h2{text-align:left}
 .psb-apply .pt-form-aside .psb-lede{margin-left:0;text-align:left}
+.psb-aside-art{display:block;width:min(70%,260px);height:auto;margin:26px 0 0;filter:drop-shadow(0 30px 40px rgba(20,44,96,.3));animation:psbFloat 8s ease-in-out infinite}
 .psb-aside-note{margin-top:22px;padding:18px 20px;border-radius:16px;font-size:13.5px;line-height:1.65;color:var(--text-soft)}
 .psb-aside-note b{color:var(--text)}
-.psb-seg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
-.psb-seg label{position:relative;display:flex;align-items:center;justify-content:center;min-height:48px;padding:10px 12px;border-radius:12px;border:1px solid rgba(20,44,96,.16);background:#fff;
-  font-size:14px;font-weight:600;color:var(--text);text-align:center;cursor:pointer;transition:border-color .25s,background .25s,color .25s}
-.psb-seg input{position:absolute;inset:0;opacity:0;cursor:pointer;margin:0}
-.psb-seg label:has(input:checked){border-color:var(--acc);background:rgba(0,71,187,.07);color:var(--acc)}
-.psb-seg label:has(input:focus-visible){outline:2px solid var(--acc-2);outline-offset:2px}
+.psb-prog{display:flex;align-items:center;gap:14px;margin-bottom:22px;font-size:12.5px;font-weight:700;letter-spacing:.04em;color:var(--text-soft)}
+.psb-prog-bar{flex:1;height:6px;border-radius:999px;background:rgba(20,44,96,.1);overflow:hidden}
+.psb-prog-bar i{display:block;height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,var(--acc-2),var(--acc) 60%,#ac7c59);transition:width .5s cubic-bezier(.22,.61,.36,1)}
+.psb-prog b{color:var(--text);font-variant-numeric:tabular-nums}
+.ct-form-card .ct-field input:focus,.ct-form-card .ct-field select:focus{box-shadow:0 8px 0 -6px rgba(42,114,255,.35)}
+.psb-type{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px;position:relative}
+.psb-type label{position:relative;display:flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:10px 14px;border-radius:14px;border:1px solid rgba(20,44,96,.16);background:#fff;
+  font-size:14px;font-weight:700;color:var(--text);text-align:center;cursor:pointer;transition:border-color .3s,background .3s,color .3s,transform .3s}
+.psb-type label svg{width:18px;height:18px;flex:none;color:var(--text-mute);transition:color .3s}
+.psb-type input{position:absolute;inset:0;opacity:0;cursor:pointer;margin:0}
+.psb-type label:hover{border-color:rgba(0,71,187,.35)}
+.psb-type label:has(input:checked){border-color:var(--acc);background:rgba(0,71,187,.07);color:var(--acc);transform:translateY(-2px)}
+.psb-type label:has(input:checked) svg{color:var(--acc)}
+.psb-type label:has(input:focus-visible){outline:2px solid var(--acc-2);outline-offset:2px}
 .psb-label{font-size:12.5px;font-weight:600;letter-spacing:.02em;color:var(--text-soft)}
-.psb-done{padding:clamp(24px,3vw,36px);border-radius:20px;border:1px solid rgba(0,71,187,.18);background:rgba(0,71,187,.05)}
+.ct-submit.is-busy{pointer-events:none;opacity:.85}
+.ct-submit.is-busy .ico{animation:psbSpin .9s linear infinite}
+.psb-done{position:relative;overflow:hidden;padding:clamp(24px,3vw,36px);border-radius:20px;border:1px solid rgba(0,71,187,.18);background:rgba(0,71,187,.05)}
 .psb-done[hidden]{display:none}
-.psb-done .tick{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--acc-2),var(--acc));color:#fff;box-shadow:0 16px 30px -14px rgba(42,114,255,.8)}
-.psb-done .tick svg{width:24px;height:24px}
+.psb-done canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.psb-done>*:not(canvas){position:relative}
+.psb-done .tick{width:60px;height:60px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--acc-2),var(--acc));color:#fff;box-shadow:0 16px 30px -14px rgba(42,114,255,.8);animation:psbPop .6s cubic-bezier(.34,1.56,.64,1) both}
+.psb-done .tick svg{width:26px;height:26px}
+@keyframes psbPop{0%{transform:scale(.3);opacity:0}100%{transform:none;opacity:1}}
 .psb-done h3{margin:18px 0 0;font-size:clamp(20px,1.9vw,26px);letter-spacing:-.025em;color:var(--text)}
 .psb-done b{display:block;margin-top:16px;font-size:15px;color:var(--text)}
 .psb-done p{margin:8px 0 0;font-size:14.5px;line-height:1.7;color:var(--text-soft)}
@@ -165,28 +270,39 @@
   .psb-how-intro{position:static}
 }
 @media (max-width:900px){
-  .psb-hero-grid{grid-template-columns:1fr;gap:36px}
-  .psb-stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .psb-hero-grid{grid-template-columns:1fr;gap:28px}
+  .psb-art{max-width:520px}
   .psb-rules{grid-template-columns:1fr}
+  .psb-result{grid-template-columns:auto minmax(0,1fr)}
+  .psb-result-amt{grid-column:1/-1;justify-self:start}
 }
 @media (max-width:640px){
+  .psb-art{max-width:none;aspect-ratio:auto;display:grid;gap:10px}
+  .psb-art img{width:80%;margin:0 auto;animation:none}
+  .psb-chip{position:static;animation:none;flex-direction:row;align-items:baseline;flex-wrap:wrap;gap:4px 12px;padding:12px 14px}
+  .psb-chip span{max-width:none;flex:1 1 180px}
   .psb-table{min-width:0}
-  .psb-table th,.psb-table td{padding:14px 12px;font-size:13.5px}
+  .psb-table th,.psb-table td{padding:14px 10px;font-size:13.5px}
   .psb-table thead th{font-size:10px;letter-spacing:.08em}
-  .psb-table tbody tr:first-child td{font-size:14.5px}
-  .psb-table td:first-child{font-weight:600;line-height:1.35}
-  .psb-stats{grid-template-columns:1fr}
+  .psb-table tbody tr.bonus td{font-size:14.5px}
+  .psb-chk .bx{width:20px;height:20px;border-radius:6px}
+  .psb-seg button{padding:10px 18px;font-size:12.5px}
   .psb-why-grid{grid-template-columns:1fr}
   .psb-why-card{min-height:0;flex-direction:row;align-items:center;gap:16px}
-  .psb-why-card .ic{margin-bottom:0;flex:none}
-  .psb-why-card h3{margin:0}
+  .psb-why-card .art{margin:0;padding:0;flex:none}
+  .psb-why-card .art img{width:76px}
   .psb-actions .btn{width:100%;min-width:0}
   .psb-step{grid-template-columns:44px minmax(0,1fr);gap:14px;padding:18px}
   .psb-step-n{width:44px;height:44px;border-radius:13px;font-size:12.5px}
-  .psb-seg{grid-template-columns:1fr}
+  .psb-steps::before,.psb-line{left:39px}
+  .psb-type{grid-template-columns:1fr}
+  .psb-periods-row{gap:6px}
+  .psb-period{font-size:11px;border-radius:9px}
 }
 @media (prefers-reduced-motion:reduce){
-  .psb-stat,.psb-rule,.psb-step,.psb-why-card{transition:none}
+  .psb-orb,.psb-art img,.psb-art-glow,.psb-chip,.psb-eyebrow i,.psb-aside-art,.psb-period::before,.psb-rule .ic::after,.psb .btn-primary::after,.psb-done .tick{animation:none}
+  .psb-period::before{height:100%}
+  .psb-stat,.psb-rule,.psb-step,.psb-why-card,.psb-seg-thumb{transition:none}
 }
   </style>
 
@@ -517,7 +633,8 @@
 
 <!-- ============ HERO ============ -->
 <section class="psb-hero" aria-labelledby="psb-title">
-  <span class="pt-aura a1" aria-hidden="true"></span>
+  <span class="psb-orb o1" aria-hidden="true"></span>
+  <span class="psb-orb o2" aria-hidden="true"></span>
   <div class="container psb-hero-grid">
     <div class="psb-hero-copy">
       <span class="psb-eyebrow" data-aos="fade-up"><i aria-hidden="true"></i>Partners Switch Bonus</span>
@@ -525,31 +642,35 @@
       <p class="psb-sub" data-aos="fade-up" data-aos-delay="200">Eligible new partners joining from another broker may qualify for up to <b>USD 12,000</b> per month &mdash; up to <b>USD 72,000</b> over six monthly performance periods.</p>
       <p class="psb-qual" data-aos="fade-up" data-aos-delay="250">Opt in using the application form on this page. Your participation starts only once your Account Manager has approved your application and STARTRADER has issued your registration confirmation email. A bonus is payable only where the performance requirements are fully met and verified. Participation does not guarantee a bonus.</p>
       <div class="psb-actions" data-aos="fade-up" data-aos-delay="300">
-        <a class="btn btn-primary btn-lg" href="#apply">Opt in to the promotion <svg class="ico"><use href="#i-arrow-right"/></svg></a>
+        <a class="btn btn-primary btn-lg" href="#apply"><span>Opt in to the promotion</span> <svg class="ico"><use href="#i-arrow-right"/></svg></a>
         <!-- integration: point at the promotion's Terms & Conditions PDF once it is published -->
         <a class="psb-link" href="legal-documents.html">Terms &amp; Conditions</a>
       </div>
     </div>
 
-    <div class="psb-stats" data-aos="fade-up" data-aos-delay="200">
-      <div class="psb-stat glass-dark">
-        <span class="ic" aria-hidden="true"><svg><use href="#i-wallet"/></svg></span>
-        <b><small>Up to</small>USD 12,000</b>
-        <span>Maximum bonus per monthly performance period</span>
-      </div>
-      <div class="psb-stat glass-dark psb-stat--sand">
-        <span class="ic" aria-hidden="true"><svg><use href="#i-clock"/></svg></span>
-        <b>6</b>
-        <span>Monthly performance periods per partner</span>
-      </div>
-      <div class="psb-stat glass-dark">
-        <span class="ic" aria-hidden="true"><svg><use href="#i-chart"/></svg></span>
-        <b><small>Up to</small>USD 72,000</b>
-        <span>Maximum total bonus under the promotion</span>
-      </div>
+    <div class="psb-art" data-psb-tilt data-aos="fade-up" data-aos-delay="200">
+      <span class="psb-art-glow" aria-hidden="true"></span>
+      <img src="assets/img/psb-hero-3d.webp" alt="3D artwork of a gold arrow switching from a small grey podium to a STARTRADER blue podium with a partner badge and gold coins" width="1024" height="1024" fetchpriority="high" decoding="async">
+      <div class="psb-chip c1"><b><small>Up to</small><span data-count="12000" data-prefix="USD " data-comma>USD 12,000</span></b><span>Maximum bonus per monthly performance period</span></div>
+      <div class="psb-chip c2 psb-chip--sand"><b><span data-count="6">6</span></b><span>Monthly performance periods per partner</span></div>
+      <div class="psb-chip c3"><b><small>Up to</small><span data-count="72000" data-prefix="USD " data-comma>USD 72,000</span></b><span>Maximum total bonus under the promotion</span></div>
     </div>
   </div>
 </section>
+
+<!-- ============ FIGURES MARQUEE ============ -->
+<div class="psb-marq-sec" aria-label="Promotion figures">
+  <div class="psb-marq swiper st-marquee" data-marquee-speed="40">
+    <div class="swiper-wrapper">
+      <span class="psb-marq-item swiper-slide"><b>Up to USD 12,000</b> Maximum bonus per monthly performance period <i aria-hidden="true"></i></span>
+      <span class="psb-marq-item swiper-slide"><b>6</b> Monthly performance periods per partner <i aria-hidden="true"></i></span>
+      <span class="psb-marq-item swiper-slide"><b>Up to USD 72,000</b> Maximum total bonus under the promotion <i aria-hidden="true"></i></span>
+      <span class="psb-marq-item swiper-slide"><b>Two of three is enough</b> <i aria-hidden="true"></i></span>
+      <span class="psb-marq-item swiper-slide"><b>Higher tier only</b> <i aria-hidden="true"></i></span>
+      <span class="psb-marq-item swiper-slide"><b>Assessed monthly</b> <i aria-hidden="true"></i></span>
+    </div>
+  </div>
+</div>
 
 <!-- ============ MONTHLY SWITCH BONUS ============ -->
 <section class="section psb-tier" id="bonus" aria-labelledby="psb-tier-title">
@@ -560,8 +681,18 @@
       <p class="psb-lede" data-aos="fade-up">Meet any <b>two of the three</b> requirements under the same tier in a monthly performance period.</p>
     </div>
 
+    <!-- the tier explorer: pick a tier, tick the requirements you expect to meet -->
+    <div class="psb-tier-head" data-aos="fade-up" data-psb-explorer>
+      <div class="psb-seg" role="tablist" aria-label="Tier" data-psb-seg>
+        <span class="psb-seg-thumb" aria-hidden="true"></span>
+        <button type="button" role="tab" aria-selected="true" data-psb-tier="t1">Tier 1</button>
+        <button type="button" role="tab" aria-selected="false" data-psb-tier="t2">Tier 2</button>
+      </div>
+      <p>Tick the requirements you expect to meet in a period. <b>Two of the three</b> under the same tier earns that tier&rsquo;s bonus.</p>
+    </div>
+
     <div class="psb-table-wrap" data-aos="fade-up">
-      <table class="psb-table">
+      <table class="psb-table is-t1" data-psb-table>
         <caption class="sr-only">Monthly Switch Bonus requirements by tier</caption>
         <thead>
           <tr>
@@ -571,12 +702,21 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td>Monthly Switch Bonus</td><td class="t1">USD 12,000</td><td class="t2">USD 6,000</td></tr>
-          <tr><td>New Qualified Clients<sup>*</sup></td><td class="t1">40</td><td class="t2">20</td></tr>
-          <tr><td>Total Net Deposit<sup>&dagger;</sup></td><td class="t1">USD 150,000</td><td class="t2">USD 75,000</td></tr>
-          <tr><td>Total Notional Volume<sup>&Dagger;</sup></td><td class="t1">USD 100 million</td><td class="t2">USD 50 million</td></tr>
+          <tr class="bonus"><td class="req">Monthly Switch Bonus</td><td class="t1">USD 12,000</td><td class="t2">USD 6,000</td></tr>
+          <tr data-psb-req><td class="req"><button type="button" class="psb-chk" aria-pressed="false"><span class="bx" aria-hidden="true"><svg><use href="#i-check"/></svg></span><span>New Qualified Clients<sup>*</sup></span></button></td><td class="t1">40</td><td class="t2">20</td></tr>
+          <tr data-psb-req><td class="req"><button type="button" class="psb-chk" aria-pressed="false"><span class="bx" aria-hidden="true"><svg><use href="#i-check"/></svg></span><span>Total Net Deposit<sup>&dagger;</sup></span></button></td><td class="t1">USD 150,000</td><td class="t2">USD 75,000</td></tr>
+          <tr data-psb-req><td class="req"><button type="button" class="psb-chk" aria-pressed="false"><span class="bx" aria-hidden="true"><svg><use href="#i-check"/></svg></span><span>Total Notional Volume<sup>&Dagger;</sup></span></button></td><td class="t1">USD 100 million</td><td class="t2">USD 50 million</td></tr>
         </tbody>
       </table>
+    </div>
+
+    <div class="psb-result glass" data-psb-result data-aos="fade-up" aria-live="polite">
+      <div class="psb-result-ring" style="--p:0"><span data-psb-count>0/3</span></div>
+      <div class="psb-result-tx">
+        <b data-psb-title>Tick two requirements under Tier 1</b>
+        <span data-psb-copy>Each period is assessed separately, and a bonus is payable only where the performance requirements are fully met and verified.</span>
+      </div>
+      <div class="psb-result-amt" data-psb-amt>USD 12,000</div>
     </div>
 
     <div class="psb-rules">
@@ -608,16 +748,31 @@
 
 <!-- ============ HOW IT WORKS ============ -->
 <section class="section psb-how" id="how" aria-labelledby="psb-how-title">
-  <span class="pt-aura a1" aria-hidden="true"></span>
+  <span class="psb-orb o1" aria-hidden="true"></span>
+  <span class="psb-orb o3" aria-hidden="true"></span>
   <div class="container psb-how-grid">
     <div class="psb-how-intro">
       <span class="psb-eyebrow" data-aos="fade-up"><i aria-hidden="true"></i>How it works</span>
       <h2 class="h2" id="psb-how-title" data-aos="fade-up" style="margin-top:18px">How it works</h2>
       <p class="psb-lede" data-aos="fade-up">Opt in, get approved, then refer. Your six monthly periods run from your own start date, not from calendar months.</p>
-      <a class="btn btn-primary btn-lg" href="#apply" data-aos="fade-up">Opt in to the promotion <svg class="ico"><use href="#i-arrow-right"/></svg></a>
+      <div class="psb-periods glass-dark" data-aos="fade-up" aria-hidden="true">
+        <div class="psb-periods-hd"><span>Six monthly performance periods</span><em>From your start date</em></div>
+        <div class="psb-periods-row">
+          <span class="psb-periods-start"></span>
+          <span class="psb-period" style="--i:0"><span>1</span></span>
+          <span class="psb-period" style="--i:1"><span>2</span></span>
+          <span class="psb-period" style="--i:2"><span>3</span></span>
+          <span class="psb-period" style="--i:3"><span>4</span></span>
+          <span class="psb-period" style="--i:4"><span>5</span></span>
+          <span class="psb-period" style="--i:5"><span>6</span></span>
+        </div>
+        <p class="psb-periods-cap"><b>Each period is assessed separately.</b> Missing one month does not affect the remaining periods.</p>
+      </div>
+      <a class="btn btn-primary btn-lg" href="#apply" data-aos="fade-up"><span>Opt in to the promotion</span> <svg class="ico"><use href="#i-arrow-right"/></svg></a>
     </div>
-    <div>
-      <ol class="psb-steps">
+    <div class="psb-steps-wrap">
+      <ol class="psb-steps" data-psb-steps>
+        <span class="psb-line" data-psb-line aria-hidden="true"></span>
         <li class="psb-step glass-dark" data-aos="fade-up">
           <span class="psb-step-n" aria-hidden="true">01</span>
           <div><h3>Register</h3><p>Apply as an Introducing Broker or CPA Affiliate and be approved as a STARTRADER Partner.</p></div>
@@ -654,11 +809,11 @@
       <h2 class="h2" id="psb-why-title" data-aos="fade-up" style="margin-top:18px">Why partner with STARTRADER</h2>
     </div>
     <!-- content: card bodies are pending verified claims from MKT; headings only until then -->
-    <div class="psb-why-grid">
-      <article class="psb-why-card glass" data-aos="fade-up"><span class="ic" aria-hidden="true"><svg><use href="#i-headset"/></svg></span><h3>Dedicated support</h3></article>
-      <article class="psb-why-card glass" data-aos="fade-up" data-aos-delay="100"><span class="ic" aria-hidden="true"><svg><use href="#i-window"/></svg></span><h3>Partner portal</h3></article>
-      <article class="psb-why-card glass" data-aos="fade-up" data-aos-delay="200"><span class="ic" aria-hidden="true"><svg><use href="#i-layers"/></svg></span><h3>Marketing resources</h3></article>
-      <article class="psb-why-card glass" data-aos="fade-up" data-aos-delay="300"><span class="ic" aria-hidden="true"><svg><use href="#i-shield"/></svg></span><h3>Regulatory standing</h3></article>
+    <div class="psb-why-grid" data-psb-cards>
+      <article class="psb-why-card glass" data-aos="fade-up"><span class="art"><img src="assets/img/psb-why-support-3d.webp" alt="3D gold headset and speech bubble on a blue glass podium" width="600" height="600" loading="lazy" decoding="async"></span><h3>Dedicated support</h3></article>
+      <article class="psb-why-card glass" data-aos="fade-up" data-aos-delay="100"><span class="art"><img src="assets/img/psb-why-portal-3d.webp" alt="3D laptop and phone dashboard on a blue glass podium" width="600" height="600" loading="lazy" decoding="async"></span><h3>Partner portal</h3></article>
+      <article class="psb-why-card glass" data-aos="fade-up" data-aos-delay="200"><span class="art"><img src="assets/img/psb-why-marketing-3d.webp" alt="3D gold megaphone with media tiles on a blue glass podium" width="600" height="600" loading="lazy" decoding="async"></span><h3>Marketing resources</h3></article>
+      <article class="psb-why-card glass" data-aos="fade-up" data-aos-delay="300"><span class="art"><img src="assets/img/psb-why-regulation-3d.webp" alt="3D glass shield with a gold checkmark on a blue glass podium" width="600" height="600" loading="lazy" decoding="async"></span><h3>Regulatory standing</h3></article>
     </div>
   </div>
 </section>
@@ -671,6 +826,7 @@
       <h2 class="h2" id="psb-apply-title" data-aos="fade-up" style="margin-top:18px">Application form</h2>
       <p class="psb-lede" data-aos="fade-up">Approved STARTRADER Partners can apply to opt in here. Your Account Manager will review your application and confirm the outcome by email.</p>
       <div class="psb-aside-note glass" data-aos="fade-up">Submitting the form is an application only; it does not confirm participation. <b>Participation does not guarantee a bonus.</b></div>
+      <img class="psb-aside-art" src="assets/img/psb-apply-3d.webp" alt="3D application document with a user badge and a plus sign" width="600" height="600" loading="lazy" decoding="async" data-aos="fade-up">
     </div>
 
     <div class="pt-form-card glass ct-form-card" data-aos="fade-up">
@@ -678,6 +834,7 @@
            submission emailed to fred.chen@startrader.com and ivy.liu@startrader.com during the test
            stage; the form posts nowhere until the endpoint is wired (see the inline script) -->
       <form id="psbForm" novalidate>
+        <div class="psb-prog" aria-live="polite"><span>Application</span><span class="psb-prog-bar"><i data-psb-prog></i></span><b><span data-psb-prog-n>0</span> / 6</b></div>
         <div class="ct-grid">
           <div class="ct-field">
             <label for="psbName">Full name <span class="req" aria-hidden="true">*</span></label>
@@ -691,9 +848,9 @@
           </div>
           <div class="ct-field" style="grid-column:1/-1">
             <span class="psb-label" id="psbTypeLbl">Partner type <span class="req" aria-hidden="true">*</span></span>
-            <div class="psb-seg" role="radiogroup" aria-labelledby="psbTypeLbl" aria-describedby="psbTypeErr">
-              <label><input type="radio" name="partnerType" value="Introducing Broker (IB)" required>Introducing Broker (IB)</label>
-              <label><input type="radio" name="partnerType" value="CPA Affiliate" required>CPA Affiliate</label>
+            <div class="psb-type" role="radiogroup" aria-labelledby="psbTypeLbl" aria-describedby="psbTypeErr">
+              <label><input type="radio" name="partnerType" value="Introducing Broker (IB)" required><svg aria-hidden="true"><use href="#i-user"/></svg>Introducing Broker (IB)</label>
+              <label><input type="radio" name="partnerType" value="CPA Affiliate" required><svg aria-hidden="true"><use href="#i-globe"/></svg>CPA Affiliate</label>
             </div>
             <p class="ct-err" id="psbTypeErr" hidden>Please choose your partner type.</p>
           </div>
@@ -942,11 +1099,12 @@
         <p class="ct-err" id="psbConsentErr" hidden>Please confirm before submitting.</p>
 
         <div class="ct-actions">
-          <button class="btn btn-primary btn-lg ct-submit" type="submit">Submit application <svg class="ico"><use href="#i-arrow-right"/></svg></button>
+          <button class="btn btn-primary btn-lg ct-submit" type="submit"><span data-psb-submit-tx>Submit application</span> <svg class="ico"><use href="#i-arrow-right"/></svg></button>
         </div>
       </form>
 
       <div class="psb-done" id="psbDone" hidden tabindex="-1" role="status" aria-live="polite">
+        <canvas data-psb-confetti aria-hidden="true"></canvas>
         <span class="tick" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
         <h3>Form submitted successfully.</h3>
         <b>What happens next.</b>
@@ -1071,49 +1229,161 @@
 <script src="assets/js/vendor/gsap.min.js" defer></script>
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
+<script src="assets/js/vendor/swiper-bundle.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
 <script src="assets/js/main.min.js?v=qa89" defer></script>
 <script>
-/* the application form: front-end validation and the confirmation state; the shared main.js
-   handles the site chrome. integration: POST the FormData to the partner-promotions endpoint,
-   record each submission where the team can review it, and email it to the test-stage
-   recipients (fred.chen@startrader.com, ivy.liu@startrader.com) until go-live */
-(function () {
-  var form = document.getElementById('psbForm'), done = document.getElementById('psbDone');
-  if (!form || !done) return;
-  function flag(el, errId, bad) {
-    var err = document.getElementById(errId), wrap = el.closest('.ct-field');
-    if (err) err.hidden = !bad;
-    if (wrap) wrap.classList.toggle('is-bad', !!bad);
-    el.setAttribute('aria-invalid', bad ? 'true' : 'false');
-  }
-  var checks = [
-    ['psbName', 'psbNameErr', function (v) { return v.trim().length >= 2; }],
-    ['psbEmail', 'psbEmailErr', function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()); }],
-    ['psbAccount', 'psbAccountErr', function (v) { return v.trim().length >= 3; }],
-    ['psbCountry', 'psbCountryErr', function (v) { return v !== ''; }],
-    ['psbBroker', 'psbBrokerErr', function (v) { return v.trim().length >= 2; }]
-  ];
-  checks.forEach(function (c) {
-    var el = document.getElementById(c[0]);
-    el.addEventListener(el.tagName === 'SELECT' ? 'change' : 'input', function () {
-      if (el.getAttribute('aria-invalid') === 'true') flag(el, c[1], !c[2](el.value));
+/* Partners Switch Bonus: the page's own interactions. The shared main.js handles the chrome,
+   the AOS reveals, the [data-count] counters and the figures marquee. */
+document.addEventListener('DOMContentLoaded', function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine = window.matchMedia && window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+  /* ---- hero artwork leans toward the cursor ---- */
+  (function () {
+    var art = document.querySelector('[data-psb-tilt]');
+    if (!art || reduce || !fine) return;
+    var hero = art.closest('.psb-hero');
+    hero.addEventListener('mousemove', function (e) {
+      var r = art.getBoundingClientRect(), dx = (e.clientX - (r.left + r.width / 2)) / r.width, dy = (e.clientY - (r.top + r.height / 2)) / r.height;
+      art.style.transform = 'perspective(1200px) rotateY(' + (dx * 9).toFixed(2) + 'deg) rotateX(' + (-dy * 7).toFixed(2) + 'deg)';
     });
-  });
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var first = null;
-    checks.forEach(function (c) { var el = document.getElementById(c[0]), bad = !c[2](el.value); flag(el, c[1], bad); if (bad && !first) first = el; });
-    var type = form.querySelector('input[name="partnerType"]:checked'), typeErr = document.getElementById('psbTypeErr');
-    typeErr.hidden = !!type; if (!type && !first) first = form.querySelector('input[name="partnerType"]');
-    var consent = document.getElementById('psbConsent'), consentErr = document.getElementById('psbConsentErr');
-    consentErr.hidden = consent.checked; if (!consent.checked && !first) first = consent;
-    if (first) { first.focus(); return; }
-    // integration: send new FormData(form) here and show the confirmation once the server accepts it
-    form.hidden = true; done.hidden = false; done.focus();
-    if (done.scrollIntoView) done.scrollIntoView({ block: 'center', behavior: 'smooth' });
-  });
-})();
+    hero.addEventListener('mouseleave', function () { art.style.transform = ''; });
+  })();
+
+  /* ---- tier explorer: pick a tier, tick requirements, read the bonus ---- */
+  (function () {
+    var root = document.querySelector('[data-psb-explorer]'); if (!root) return;
+    var seg = root.querySelector('[data-psb-seg]'), tabs = seg.querySelectorAll('[data-psb-tier]');
+    var table = document.querySelector('[data-psb-table]'), rows = table.querySelectorAll('[data-psb-req]');
+    var res = document.querySelector('[data-psb-result]'), ring = res.querySelector('.psb-result-ring');
+    var count = res.querySelector('[data-psb-count]'), title = res.querySelector('[data-psb-title]'), copy = res.querySelector('[data-psb-copy]'), amt = res.querySelector('[data-psb-amt]');
+    var TIER = { t1: { name: 'Tier 1', bonus: 'USD 12,000' }, t2: { name: 'Tier 2', bonus: 'USD 6,000' } };
+    var tier = 't1';
+    function paint() {
+      var on = 0; rows.forEach(function (r) { if (r.classList.contains('is-on')) on++; });
+      var t = TIER[tier], hit = on >= 2;
+      ring.style.setProperty('--p', Math.round(on / 3 * 100)); count.textContent = on + '/3';
+      amt.textContent = t.bonus;
+      res.classList.toggle('is-hit', hit); res.classList.toggle('is-t2', tier === 't2');
+      if (hit) {
+        title.textContent = on + ' of 3 requirements under ' + t.name + ' — ' + t.bonus + ' Monthly Switch Bonus';
+        copy.textContent = 'If both tiers are met in the same period, only the higher bonus is awarded. A bonus is payable only where the performance requirements are fully met and verified.';
+      } else {
+        title.textContent = on === 1 ? 'One more requirement under ' + t.name : 'Tick two requirements under ' + t.name;
+        copy.textContent = 'Each period is assessed separately, and a bonus is payable only where the performance requirements are fully met and verified.';
+      }
+    }
+    tabs.forEach(function (b) {
+      b.addEventListener('click', function () {
+        tier = b.getAttribute('data-psb-tier');
+        tabs.forEach(function (x) { x.setAttribute('aria-selected', x === b ? 'true' : 'false'); });
+        seg.classList.toggle('is-t2', tier === 't2');
+        table.classList.toggle('is-t1', tier === 't1'); table.classList.toggle('is-t2', tier === 't2');
+        paint();
+      });
+    });
+    rows.forEach(function (r) {
+      var btn = r.querySelector('.psb-chk');
+      btn.addEventListener('click', function () { var on = !r.classList.contains('is-on'); r.classList.toggle('is-on', on); btn.setAttribute('aria-pressed', on ? 'true' : 'false'); paint(); });
+    });
+    paint();
+  })();
+
+  /* ---- how it works: the line draws with the scroll, steps light as they arrive ---- */
+  (function () {
+    var list = document.querySelector('[data-psb-steps]'), line = document.querySelector('[data-psb-line]');
+    if (!list) return;
+    var steps = list.querySelectorAll('.psb-step');
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) e.target.classList.add('is-lit'); }); }, { rootMargin: '0px 0px -30% 0px', threshold: 0.2 });
+      steps.forEach(function (s) { io.observe(s); });
+    } else { steps.forEach(function (s) { s.classList.add('is-lit'); }); }
+    if (!line) return;
+    if (reduce || !window.gsap || !window.ScrollTrigger) { line.style.transform = 'scaleY(1)'; return; }
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.to(line, { scaleY: 1, ease: 'none', scrollTrigger: { trigger: list, start: 'top 70%', end: 'bottom 60%', scrub: 0.6 } });
+  })();
+
+  /* ---- partner cards: a soft light follows the cursor, the card tilts a touch ---- */
+  (function () {
+    var cards = document.querySelectorAll('[data-psb-cards] .psb-why-card');
+    if (!cards.length || reduce || !fine) return;
+    cards.forEach(function (c) {
+      c.addEventListener('mousemove', function (e) {
+        var r = c.getBoundingClientRect(), px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+        c.style.setProperty('--mx', (px * 100).toFixed(1) + '%'); c.style.setProperty('--my', (py * 100).toFixed(1) + '%');
+        c.style.transform = 'perspective(900px) rotateY(' + ((px - .5) * 6).toFixed(2) + 'deg) rotateX(' + ((.5 - py) * 6).toFixed(2) + 'deg) translateY(-4px)';
+      });
+      c.addEventListener('mouseleave', function () { c.style.transform = ''; });
+    });
+  })();
+
+  /* ---- the application form: progress, validation, the confirmation ----
+     integration: POST new FormData(form) to the partner-promotions endpoint, record each
+     submission where the team can review it, and email it to the test-stage recipients
+     (fred.chen@startrader.com, ivy.liu@startrader.com) until go-live */
+  (function () {
+    var form = document.getElementById('psbForm'), done = document.getElementById('psbDone');
+    if (!form || !done) return;
+    var prog = form.querySelector('[data-psb-prog]'), progN = form.querySelector('[data-psb-prog-n]');
+    var checks = [
+      ['psbName', 'psbNameErr', function (v) { return v.trim().length >= 2; }],
+      ['psbEmail', 'psbEmailErr', function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()); }],
+      ['psbAccount', 'psbAccountErr', function (v) { return v.trim().length >= 3; }],
+      ['psbCountry', 'psbCountryErr', function (v) { return v !== ''; }],
+      ['psbBroker', 'psbBrokerErr', function (v) { return v.trim().length >= 2; }]
+    ];
+    function typeOk() { return !!form.querySelector('input[name="partnerType"]:checked'); }
+    function progress() {
+      var n = 0; checks.forEach(function (c) { if (c[2](document.getElementById(c[0]).value)) n++; }); if (typeOk()) n++;
+      prog.style.width = (n / 6 * 100) + '%'; progN.textContent = n;
+    }
+    function flag(el, errId, bad) {
+      var err = document.getElementById(errId), wrap = el.closest('.ct-field');
+      if (err) err.hidden = !bad; if (wrap) wrap.classList.toggle('is-bad', !!bad);
+      el.setAttribute('aria-invalid', bad ? 'true' : 'false');
+    }
+    checks.forEach(function (c) {
+      var el = document.getElementById(c[0]);
+      el.addEventListener(el.tagName === 'SELECT' ? 'change' : 'input', function () { if (el.getAttribute('aria-invalid') === 'true') flag(el, c[1], !c[2](el.value)); progress(); });
+    });
+    form.querySelectorAll('input[name="partnerType"]').forEach(function (r) { r.addEventListener('change', function () { document.getElementById('psbTypeErr').hidden = true; progress(); }); });
+    document.getElementById('psbConsent').addEventListener('change', function (e) { if (e.target.checked) document.getElementById('psbConsentErr').hidden = true; });
+
+    function confetti() {
+      var c = done.querySelector('[data-psb-confetti]'); if (!c || reduce) return;
+      var ctx = c.getContext('2d'), r = done.getBoundingClientRect(); c.width = r.width; c.height = r.height;
+      var cols = ['#dfc5ae', '#ac7c59', '#2a72ff', '#7fb2ff', '#ffffff'], ps = [], t0 = performance.now();
+      for (var i = 0; i < 70; i++) ps.push({ x: 40 + Math.random() * 40, y: 40, vx: (Math.random() - .3) * 7, vy: -3 - Math.random() * 6, w: 4 + Math.random() * 5, h: 3 + Math.random() * 4, r: Math.random() * Math.PI, vr: (Math.random() - .5) * .3, col: cols[Math.floor(Math.random() * cols.length)] });
+      function frame(now) {
+        var t = (now - t0) / 1000; ctx.clearRect(0, 0, c.width, c.height);
+        ps.forEach(function (p) { p.vy += .22; p.x += p.vx; p.y += p.vy; p.r += p.vr; ctx.save(); ctx.globalAlpha = Math.max(0, 1 - t / 2.2); ctx.translate(p.x, p.y); ctx.rotate(p.r); ctx.fillStyle = p.col; ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h); ctx.restore(); });
+        if (t < 2.4) requestAnimationFrame(frame); else ctx.clearRect(0, 0, c.width, c.height);
+      }
+      requestAnimationFrame(frame);
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var first = null;
+      checks.forEach(function (c) { var el = document.getElementById(c[0]), bad = !c[2](el.value); flag(el, c[1], bad); if (bad && !first) first = el; });
+      var typeErr = document.getElementById('psbTypeErr'); typeErr.hidden = typeOk(); if (!typeOk() && !first) first = form.querySelector('input[name="partnerType"]');
+      var consent = document.getElementById('psbConsent'), consentErr = document.getElementById('psbConsentErr');
+      consentErr.hidden = consent.checked; if (!consent.checked && !first) first = consent;
+      if (first) { first.focus(); return; }
+      var btn = form.querySelector('.ct-submit'), tx = btn.querySelector('[data-psb-submit-tx]');
+      btn.classList.add('is-busy'); btn.setAttribute('aria-busy', 'true'); if (tx) tx.textContent = 'Sending…';
+      // integration: send new FormData(form) here and show the confirmation once the server accepts it
+      setTimeout(function () {
+        form.hidden = true; done.hidden = false; done.focus();
+        if (done.scrollIntoView) done.scrollIntoView({ block: 'center', behavior: reduce ? 'auto' : 'smooth' });
+        confetti();
+      }, reduce ? 0 : 700);
+    });
+    progress();
+  })();
+});
 </script>
 </body>
 </html>
