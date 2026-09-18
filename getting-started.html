@@ -98,6 +98,90 @@
 .faq-a p{margin:0 0 10px}
 .faq-a p:last-child{margin-bottom:0}
 .faq-a ul{margin:0 0 10px;padding-left:20px;display:grid;gap:6px;list-style:disc}
+
+/* ---------- verification visuals ----------
+   Built in markup rather than shipped as pictures, so each card can show
+   what the requirement means and move a little on hover. The blocks are
+   decorative (their wrappers are aria-hidden) and carry no wording, so
+   they need no translation. */
+.vb-viz{background:linear-gradient(160deg,#eef4fc,#e3ecfa);display:grid;place-items:center;padding:16px}
+.vb-viz::before,.vb-viz::after{display:none}
+.vz-doc{position:relative;display:flex;flex-direction:column;gap:9px;width:min(84%,238px);padding:14px;border-radius:14px;overflow:hidden;
+  background:#fff;box-shadow:0 18px 34px -20px rgba(20,44,96,.42),inset 0 1px 0 #fff;
+  transform:rotate(-3deg);transition:transform .55s var(--ease),box-shadow .55s}
+.vb-card:hover .vz-doc{transform:rotate(-1deg) translateY(-5px);box-shadow:0 28px 46px -20px rgba(20,44,96,.5)}
+.vz-hd{display:flex;align-items:center;gap:7px}
+.vz-hd i{height:5px;border-radius:3px;background:rgba(0,71,187,.45)}
+.vz-hd i:first-child{width:34%}
+.vz-hd i:last-child{width:16%;background:rgba(20,44,96,.14)}
+.vz-body{display:flex;gap:11px;align-items:flex-start}
+.vz-photo{flex:none;width:46px;height:56px;border-radius:9px;display:grid;place-items:center;color:#0047bb;
+  background:linear-gradient(160deg,rgba(0,71,187,.18),rgba(0,71,187,.06))}
+.vz-photo svg{width:22px;height:22px;fill:currentColor}
+.vz-rows{display:flex;flex-direction:column;gap:6px;flex:1;min-width:0}
+.vz-rows i{height:5px;border-radius:3px;background:rgba(20,44,96,.14)}
+.vz-rows i:nth-child(1){width:82%}
+.vz-rows i:nth-child(2){width:62%}
+.vz-rows i:nth-child(3){width:74%}
+.vz-rows i:nth-child(4){width:46%}
+.vz-rows--flat{flex-direction:row;gap:8px}
+.vz-rows--flat i{flex:1;width:auto}
+/* the pill that reads as a confirmed state */
+.vz-pill{display:inline-flex;align-items:center;gap:7px;align-self:flex-start;padding:5px 10px;border-radius:999px;
+  background:rgba(0,71,187,.08);border:1px solid rgba(0,71,187,.2)}
+.vz-pill svg{width:11px;height:11px;flex:none;fill:none;stroke:#0047bb;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.vz-pill i{width:38px;height:4px;border-radius:2px;background:rgba(0,71,187,.35)}
+.vz-pill--ok{background:rgba(16,185,129,.12);border-color:rgba(16,185,129,.34)}
+.vz-pill--ok svg{stroke:#0e9f6e;stroke-width:3}
+.vz-pill--ok i{background:rgba(16,185,129,.45)}
+/* the scan sweep over the ID */
+.vz-scan{position:absolute;left:0;right:0;top:0;height:38%;pointer-events:none;opacity:0;
+  background:linear-gradient(180deg,rgba(42,114,255,0),rgba(42,114,255,.2),rgba(42,114,255,0))}
+.vb-card:hover .vz-scan{animation:vzScan 1.7s ease-in-out infinite}
+@keyframes vzScan{0%{opacity:0;transform:translateY(-20%)}12%{opacity:1}80%{opacity:1}100%{opacity:0;transform:translateY(200%)}}
+/* the address block, highlighted */
+.vz-doc--bill{width:min(86%,244px)}
+.vz-addr{position:relative;display:flex;flex-direction:column;gap:5px;padding:8px 9px;border-radius:9px;overflow:hidden;background:rgba(0,71,187,.06)}
+.vz-addr>i{height:5px;border-radius:3px;background:rgba(20,44,96,.22)}
+.vz-addr>i:nth-child(1){width:68%}
+.vz-addr>i:nth-child(2){width:88%}
+.vz-addr>i:nth-child(3){width:52%}
+.vz-mark{position:absolute;inset:0;transform:translateX(-100%);pointer-events:none;
+  background:linear-gradient(90deg,rgba(42,114,255,.28),rgba(42,114,255,0))}
+.vb-card:hover .vz-mark{animation:vzSweep 1.8s ease-in-out infinite}
+@keyframes vzSweep{0%{transform:translateX(-100%)}55%,100%{transform:translateX(100%)}}
+/* the three-month window bar */
+.vz-foot{display:flex;align-items:center;gap:10px}
+.vz-win{flex:1;height:5px;border-radius:3px;background:rgba(20,44,96,.1);overflow:hidden}
+.vz-win i{display:block;height:100%;width:76%;border-radius:3px;background:linear-gradient(90deg,#2a72ff,#0047bb);
+  transition:width .7s cubic-bezier(.22,.61,.36,1)}
+.vb-card:hover .vz-win i{width:88%}
+/* accepted against rejected */
+.vz-pair{display:flex;align-items:center;justify-content:center;gap:14px;width:100%}
+.vz-mini{position:relative;flex:0 0 40%;max-width:106px;padding:13px 11px;border-radius:12px;background:#fff;
+  display:flex;flex-direction:column;box-shadow:0 14px 26px -16px rgba(20,44,96,.42),inset 0 1px 0 #fff;
+  transition:transform .55s var(--ease),box-shadow .55s}
+.vz-mini--bad{transform:rotate(-5deg);background:#f7f9fc}
+.vz-mini--bad .vz-rows{filter:blur(1.8px);opacity:.85;transition:filter .55s,opacity .55s}
+.vz-mini--good{transform:rotate(3deg)}
+.vb-card:hover .vz-mini--bad{transform:rotate(-6deg) translateY(4px)}
+.vb-card:hover .vz-mini--bad .vz-rows{filter:blur(3px);opacity:.6}
+.vb-card:hover .vz-mini--good{transform:rotate(1deg) translateY(-7px);box-shadow:0 24px 36px -16px rgba(20,44,96,.5)}
+.vz-badge{position:absolute;right:-8px;top:-8px;width:25px;height:25px;border-radius:50%;display:grid;place-items:center;
+  box-shadow:0 8px 16px -8px rgba(20,44,96,.6)}
+.vz-badge svg{width:11px;height:11px;fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.vz-badge--no{background:#e0574b}
+.vz-badge--yes{background:linear-gradient(135deg,#2a72ff,#0047bb)}
+.vb-card:hover .vz-badge--yes{animation:vzPop .7s cubic-bezier(.34,1.56,.64,1)}
+@keyframes vzPop{0%{transform:scale(1)}40%{transform:scale(1.2)}100%{transform:scale(1)}}
+@media (max-width:640px){
+  .vz-doc,.vz-doc--bill{width:min(78%,220px)}
+  .vz-pair{gap:10px}
+}
+@media (prefers-reduced-motion:reduce){
+  .vz-doc,.vz-mini,.vz-mini--bad .vz-rows,.vz-win i,.vz-badge{transition:none}
+  .vb-card:hover .vz-scan,.vb-card:hover .vz-mark,.vb-card:hover .vz-badge--yes{animation:none}
+}
 </style>
 
   <!-- Structured data -->
@@ -499,21 +583,52 @@
           <h3>Valid photo ID</h3>
           <p>A passport, national ID or driver's license: clear and within its validity date.</p>
         </div>
-        <div class="vb-img vb-img-photo" aria-hidden="true"><img src="assets/img/verify-id.webp" alt="Identity document example" loading="lazy" width="1200" height="1067"></div>
+        <div class="vb-img vb-viz" aria-hidden="true">
+          <span class="vz-doc">
+            <span class="vz-scan"></span>
+            <span class="vz-hd"><i></i><i></i></span>
+            <span class="vz-body">
+              <span class="vz-photo"><svg><use href="#i-user"/></svg></span>
+              <span class="vz-rows"><i></i><i></i><i></i><i></i></span>
+            </span>
+            <span class="vz-pill vz-pill--ok"><svg><use href="#i-check"/></svg><i></i></span>
+          </span>
+        </div>
       </article>
       <article class="vb-card" data-aos="fade-up" data-aos-delay="100">
         <div class="vb-top">
           <h3>Proof of address</h3>
           <p>A utility bill or bank statement dated within the last three months.</p>
         </div>
-        <div class="vb-img vb-img-photo vb-img-address" aria-hidden="true"><img src="assets/img/verify-address.webp" alt="Proof of address document example" loading="lazy" width="1104" height="869"></div>
+        <div class="vb-img vb-viz" aria-hidden="true">
+          <span class="vz-doc vz-doc--bill">
+            <span class="vz-hd"><i></i><i></i></span>
+            <span class="vz-addr"><i></i><i></i><i></i><span class="vz-mark"></span></span>
+            <span class="vz-rows vz-rows--flat"><i></i><i></i></span>
+            <span class="vz-foot">
+              <span class="vz-pill"><svg><use href="#i-clock"/></svg><i></i></span>
+              <span class="vz-win"><i></i></span>
+            </span>
+          </span>
+        </div>
       </article>
       <article class="vb-card" data-aos="fade-up" data-aos-delay="200">
         <div class="vb-top">
           <h3>Clear documents</h3>
           <p>Full-colour and fully visible, not scanned, blurry, cropped or damaged.</p>
         </div>
-        <div class="vb-img vb-img-photo" aria-hidden="true"><img src="assets/img/verify-clear.webp" alt="Clear, uncropped document example" loading="lazy" width="819" height="1000"></div>
+        <div class="vb-img vb-viz" aria-hidden="true">
+          <span class="vz-pair">
+            <span class="vz-mini vz-mini--bad">
+              <span class="vz-rows"><i></i><i></i><i></i><i></i></span>
+              <span class="vz-badge vz-badge--no"><svg><use href="#i-close"/></svg></span>
+            </span>
+            <span class="vz-mini vz-mini--good">
+              <span class="vz-rows"><i></i><i></i><i></i><i></i></span>
+              <span class="vz-badge vz-badge--yes"><svg><use href="#i-check"/></svg></span>
+            </span>
+          </span>
+        </div>
       </article>
       <article class="vb-wide" data-aos="fade-up" data-aos-delay="300">
         <div class="vb-wide-copy">
