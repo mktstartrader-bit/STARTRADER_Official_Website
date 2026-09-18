@@ -4671,6 +4671,43 @@
   }
 
 
+  /* ---------------- Banner films: iPad / iOS autoplay ----------------
+     Safari on iPad only autoplays a film that is muted, inline and already
+     allowed to start; the attributes alone are not always honoured (some
+     WebKit builds ignore the muted attribute until the property is set), and
+     Low Power Mode refuses autoplay outright until the visitor touches the
+     page. So every autoplay film gets its properties set from script, a
+     play() attempt that swallows the rejection, and a retry on the first
+     gesture or when the tab comes back into view. Reduced-motion visitors
+     keep the poster frame. */
+  function initBannerFilms() {
+    var films = Array.prototype.slice.call(document.querySelectorAll('video[autoplay]'));
+    if (!films.length) return;
+    function nudge(v) {
+      if (prefersReduced || !v.isConnected || !v.paused) return;
+      var p;
+      try { p = v.play(); } catch (e) { return; }
+      if (p && typeof p.catch === 'function') p.catch(function () {});
+    }
+    films.forEach(function (v) {
+      v.muted = true; v.defaultMuted = true; v.playsInline = true;
+      v.setAttribute('muted', ''); v.setAttribute('playsinline', ''); v.setAttribute('webkit-playsinline', '');
+      if (prefersReduced) { v.removeAttribute('autoplay'); try { v.pause(); } catch (e) {} return; }
+      nudge(v);
+      v.addEventListener('loadedmetadata', function () { nudge(v); }, { once: true });
+      v.addEventListener('canplay', function () { nudge(v); }, { once: true });
+    });
+    if (prefersReduced) return;
+    var events = ['pointerdown', 'touchstart', 'keydown', 'scroll'];
+    function unbind() { events.forEach(function (ev) { window.removeEventListener(ev, retry, true); }); }
+    function retry() {
+      films.forEach(nudge);
+      if (!films.some(function (v) { return v.paused; })) unbind();
+    }
+    events.forEach(function (ev) { window.addEventListener(ev, retry, { capture: true, passive: true }); });
+    document.addEventListener('visibilitychange', function () { if (!document.hidden) films.forEach(nudge); });
+  }
+
   /* ---------------- The film opens in place ----------------
      MKT 9.01: pressing play should show the video, not navigate away. Any
      [data-video] link opens the shared player; Esc, the backdrop and the
@@ -6466,6 +6503,7 @@
     initPageList();
     initCatTabs();
     initPager();
+    initBannerFilms();
     initVideoModal();
     initLoadMore();
     initHelpCentre();
