@@ -111,74 +111,28 @@
 
 /* ---------- monthly switch bonus: the tier explorer (light) ---------- */
 .psb-tier{position:relative;isolation:isolate;overflow:clip;background:radial-gradient(52% 44% at 50% -6%,rgba(0,71,187,.07),transparent 62%),var(--bg-light-2)}
-.psb-seg{display:inline-grid;grid-auto-flow:column;position:relative;padding:5px;border-radius:999px;border:1px solid rgba(20,44,96,.14);background:#fff;box-shadow:0 12px 30px -22px rgba(20,44,96,.5)}
-.psb-seg-thumb{position:absolute;top:5px;bottom:5px;left:5px;width:calc(50% - 5px);border-radius:999px;background:linear-gradient(135deg,var(--acc-2),var(--acc));box-shadow:0 10px 22px -12px rgba(42,114,255,.9);transition:transform .45s cubic-bezier(.22,.61,.36,1),background .35s}
-.psb-seg.is-t2 .psb-seg-thumb{transform:translateX(100%);background:linear-gradient(135deg,#dfc5ae,#ac7c59)}
-.psb-seg button{position:relative;z-index:1;padding:11px 26px;border-radius:999px;border:0;background:none;font:inherit;font-size:13.5px;font-weight:800;letter-spacing:.04em;color:var(--text-soft);cursor:pointer;transition:color .3s}
-.psb-seg button[aria-selected="true"]{color:#fff}
-.psb-seg.is-t2 button[aria-selected="true"]{color:var(--ink)}
-.psb-tier-head{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:16px 30px;margin-top:40px}
-.psb-tier-pick{display:flex;align-items:center;gap:14px}
-.psb-tier-lbl{font-size:11.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--text-mute);white-space:nowrap}
-.psb-tier-hint{display:flex;align-items:flex-start;gap:10px;margin:0;justify-self:end;max-width:56ch;padding:11px 15px;border-radius:12px;font-size:13px;line-height:1.55;color:var(--text-soft);background:rgba(0,71,187,.05);border:1px solid rgba(0,71,187,.12)}
-.psb-tier-hint svg{width:15px;height:15px;flex:none;margin-top:2px;color:var(--acc)}
-.psb-tier-hint b{color:var(--text)}
-.psb-table-wrap{margin-top:18px;overflow:auto;border-radius:22px;border:1px solid rgba(20,44,96,.1);background:#fff;box-shadow:0 30px 60px -42px rgba(20,44,96,.4)}
-.psb-table{width:100%;min-width:620px;table-layout:fixed;border-collapse:separate;border-spacing:0}
-.psb-table th,.psb-table td{padding:16px 22px;text-align:left;vertical-align:middle;border-bottom:1px solid rgba(20,44,96,.07);font-size:15px;transition:background .35s,color .35s}
-.psb-table th.t1,.psb-table td.t1,.psb-table th.t2,.psb-table td.t2{width:23%;text-align:right;font-variant-numeric:tabular-nums}
-/* one calm header band; the tier names carry the colour in a pill, so the
-   columns below can stay white and the numbers do the talking */
-.psb-table thead th{padding-top:17px;padding-bottom:17px;font-size:11.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mute);background:var(--bg-light);border-bottom-color:rgba(20,44,96,.1)}
-.psb-table thead th .sub{display:block;margin-top:5px;font-size:11px;font-weight:600;letter-spacing:.01em;text-transform:none;color:var(--text-mute)}
-.psb-th-pill{display:inline-block;padding:7px 16px;border-radius:999px;font-size:12px;font-weight:800;letter-spacing:.08em;color:var(--text-soft);background:#fff;border:1px solid rgba(20,44,96,.14);transition:background .35s,color .35s,border-color .35s,box-shadow .35s}
-.psb-table.is-t1 thead th.t1 .psb-th-pill{color:#fff;background:linear-gradient(135deg,#2a72ff,#0047bb);border-color:transparent;box-shadow:0 10px 22px -14px rgba(42,114,255,.9)}
-.psb-table.is-t2 thead th.t2 .psb-th-pill{color:#fff;background:linear-gradient(135deg,#c79b74,#ac7c59);border-color:transparent;box-shadow:0 10px 22px -14px rgba(138,100,64,.85)}
+/* the tiers are a straight comparison: both columns carry their own figures, no
+   picker, no tick toggles, no running total */
+.psb-table-wrap{margin-top:34px;overflow:auto;border-radius:18px;border:1px solid rgba(20,44,96,.12);background:#fff;box-shadow:0 26px 54px -42px rgba(20,44,96,.38)}
+.psb-table{width:100%;min-width:560px;table-layout:fixed;border-collapse:separate;border-spacing:0}
+.psb-table th,.psb-table td{padding:12px 20px;text-align:left;vertical-align:middle;border-bottom:1px solid rgba(20,44,96,.07);font-size:14.5px}
+.psb-table th.t1,.psb-table td.t1,.psb-table th.t2,.psb-table td.t2{width:24%;text-align:right;font-variant-numeric:tabular-nums}
+.psb-table thead th{padding-top:13px;padding-bottom:13px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mute);background:var(--bg-light);border-bottom-color:rgba(20,44,96,.1)}
+.psb-table thead th .sub{display:block;margin-top:3px;font-size:10.5px;font-weight:600;letter-spacing:.01em;text-transform:none;color:var(--text-mute)}
+.psb-th-pill{display:inline-block;padding:5px 14px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.08em;color:#fff;background:linear-gradient(135deg,#2a72ff,#0047bb)}
+.psb-table thead th.t2 .psb-th-pill{background:linear-gradient(135deg,#c79b74,#ac7c59)}
+.psb-table th.t1{background:rgba(0,71,187,.05)}
+.psb-table th.t2{background:rgba(223,197,174,.2)}
 .psb-table td.req{color:var(--text);font-weight:600}
-/* the unselected tier stays fully legible, just quiet: no 45% ghosting */
-.psb-table td.t1,.psb-table td.t2{font-weight:600;color:var(--text-soft);background:transparent}
-.psb-table.is-t1 td.t1,.psb-table.is-t2 td.t2{font-weight:800;color:var(--ink)}
-.psb-table.is-t1 th.t1,.psb-table.is-t1 td.t1{background:rgba(0,71,187,.045)}
-.psb-table.is-t2 th.t2,.psb-table.is-t2 td.t2{background:rgba(223,197,174,.16)}
-/* the payout row sits under the header, indented to the tick column so the
-   labels below line up with it */
-.psb-table tbody tr.bonus td{padding-top:19px;padding-bottom:19px;background:rgba(20,44,96,.025);font-size:16.5px}
-.psb-table tbody tr.bonus td.req{padding-left:58px;font-weight:800}
-.psb-table.is-t1 tbody tr.bonus td.t1{color:var(--acc);background:rgba(0,71,187,.06)}
-.psb-table.is-t2 tbody tr.bonus td.t2{color:var(--sand-ink);background:rgba(223,197,174,.2)}
+.psb-table td.t1{font-weight:800;color:var(--ink);background:rgba(0,71,187,.045)}
+.psb-table td.t2{font-weight:800;color:var(--ink);background:rgba(223,197,174,.16)}
+.psb-table tbody tr.bonus td{padding-top:15px;padding-bottom:15px;font-size:15.5px;background:rgba(20,44,96,.028)}
+.psb-table tbody tr.bonus td.req{font-weight:800}
+.psb-table tbody tr.bonus td.t1{color:var(--acc);background:rgba(0,71,187,.06)}
+.psb-table tbody tr.bonus td.t2{color:var(--sand-ink);background:rgba(223,197,174,.2)}
 .psb-table tbody tr:last-child td{border-bottom:0}
-.psb-table sup.fn{margin-left:4px;font-size:11px;font-weight:700;color:var(--text-mute);cursor:help}
-.psb-table-only{display:none;margin:12px 2px 0;font-size:12.5px;color:var(--text-soft)}
-.psb-table-only b{color:var(--text)}
-/* requirement rows are toggles */
-.psb-chk{display:flex;align-items:center;gap:12px;width:100%;background:none;border:0;padding:0;font:inherit;font-weight:600;color:inherit;cursor:pointer;text-align:left}
-.psb-chk:hover .bx{border-color:rgba(0,71,187,.5)}
-.psb-chk .bx{flex:none;width:24px;height:24px;border-radius:8px;border:1.5px solid rgba(20,44,96,.28);background:#fff;display:grid;place-items:center;color:#fff;transition:background .3s,border-color .3s,transform .3s}
-.psb-chk .bx svg{width:13px;height:13px;opacity:0;transform:scale(.5);transition:opacity .25s,transform .35s cubic-bezier(.34,1.56,.64,1)}
-tr.is-on .psb-chk .bx{background:linear-gradient(135deg,var(--acc-2),var(--acc));border-color:transparent}
-.psb-table.is-t2 tr.is-on .psb-chk .bx{background:linear-gradient(135deg,#dfc5ae,#ac7c59)}
-tr.is-on .psb-chk .bx svg{opacity:1;transform:scale(1)}
-tr.is-on td.req{color:var(--acc)}
-.psb-table.is-t2 tr.is-on td.req{color:var(--sand-ink)}
-.psb-chk:focus-visible .bx{outline:2px solid var(--acc-2);outline-offset:2px}
-.psb-result{margin-top:16px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:18px 22px;align-items:center;padding:20px 24px;border-radius:20px;transition:border-color .35s,box-shadow .35s}
-.psb-result.is-hit{border-color:rgba(0,71,187,.3);box-shadow:0 26px 52px -30px rgba(0,71,187,.45)}
-.psb-result.is-hit.is-t2{border-color:rgba(138,100,64,.4);box-shadow:0 26px 52px -30px rgba(138,100,64,.4)}
-.psb-result-ring{position:relative;width:64px;height:64px;border-radius:50%;display:grid;place-items:center;font-size:15px;font-weight:800;color:var(--text);
-  background:conic-gradient(var(--acc) calc(var(--p,0) * 1%),rgba(20,44,96,.1) 0);transition:--p .5s}
-.psb-result.is-t2 .psb-result-ring{background:conic-gradient(#ac7c59 calc(var(--p,0) * 1%),rgba(20,44,96,.1) 0)}
-.psb-result-ring::before{content:"";position:absolute;inset:5px;border-radius:50%;background:#fff}
-.psb-result-ring span{position:relative}
-.psb-result-tx b{display:block;font-size:clamp(17px,1.5vw,20px);letter-spacing:-.02em;color:var(--text)}
-.psb-result-tx span{display:block;margin-top:4px;font-size:13.5px;line-height:1.55;color:var(--text-soft)}
-.psb-result-amt{display:flex;flex-direction:column;align-items:flex-end;gap:3px;padding:12px 18px;border-radius:16px;border:1px solid rgba(20,44,96,.12);background:rgba(20,44,96,.03);white-space:nowrap;transition:border-color .35s,background .35s,transform .45s cubic-bezier(.34,1.56,.64,1)}
-.psb-result-amt .k{font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--text-mute)}
-.psb-result-amt .v{font-size:clamp(22px,2vw,30px);font-weight:800;letter-spacing:-.035em;color:var(--text-soft);font-variant-numeric:tabular-nums;transition:color .35s}
-.psb-result.is-hit .psb-result-amt{border-color:rgba(0,71,187,.28);background:rgba(0,71,187,.06);transform:scale(1.02)}
-.psb-result.is-hit .psb-result-amt .v{color:var(--acc)}
-.psb-result.is-hit.is-t2 .psb-result-amt{border-color:rgba(138,100,64,.34);background:rgba(223,197,174,.22)}
-.psb-result.is-hit.is-t2 .psb-result-amt .v{color:var(--sand-ink)}
-.psb-rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:22px}
+.psb-table sup.fn{margin-left:3px;font-size:10.5px;font-weight:700;color:var(--text-mute);cursor:help}
+.psb-rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:18px}
 .psb-rule{position:relative;padding:22px 22px 20px;border-radius:18px;overflow:hidden;transition:transform .35s var(--ease),box-shadow .35s}
 .psb-rule:hover{transform:translateY(-4px)}
 .psb-rule .ic{position:relative;width:44px;height:44px;border-radius:13px;display:grid;place-items:center;background:rgba(0,71,187,.08);color:var(--acc)}
@@ -265,8 +219,13 @@ tr.is-on td.req{color:var(--acc)}
 .ct-form-card .ct-field input:focus,.ct-form-card .ct-field select:focus{box-shadow:0 8px 0 -6px rgba(42,114,255,.35)}
 /* the three fields that need the full width say so in a class, not inline */
 .psb-full{grid-column:1/-1}
-.psb-side-note{align-self:start;display:flex;align-items:flex-start;gap:9px;margin:23px 0 0;padding:11px 14px;border-radius:12px;font-size:12.5px;line-height:1.55;color:var(--text-soft);background:rgba(20,44,96,.04);border:1px solid rgba(20,44,96,.09)}
-.psb-side-note svg{width:14px;height:14px;flex:none;margin-top:2px;color:var(--text-mute)}
+/* one column is easier to fill in than two when the fields are this short; the
+   measure is capped so a single underline never stretches the width of the card
+   once the aside stacks above it */
+.psb-apply .ct-grid{grid-template-columns:minmax(0,1fr);gap:22px}
+.psb-apply .ct-form-card form,.psb-apply .psb-done{max-width:620px;margin-left:auto;margin-right:auto}
+.psb-side-note{display:flex;align-items:flex-start;gap:7px;margin:7px 0 0;font-size:12px;line-height:1.5;color:var(--text-mute)}
+.psb-side-note svg{width:13px;height:13px;flex:none;margin-top:2px}
 /* the country control kept its native arrow stripped with nothing put back, so
    it read as a dead text field; the chevron returns and the placeholder greys */
 .psb .ct-field .wb-selwrap select:invalid{color:var(--text-mute)}
@@ -314,30 +273,15 @@ tr.is-on td.req{color:var(--acc)}
   .psb-chip{position:static;animation:none;flex-direction:row;align-items:baseline;flex-wrap:wrap;gap:4px 12px;padding:12px 14px}
   .psb-chip>span{max-width:none;flex:1 1 180px}
   .psb-rules{grid-template-columns:1fr}
-  .psb-tier-head{grid-template-columns:1fr}
-  .psb-tier-hint{justify-self:stretch;max-width:none}
-  .psb-result{grid-template-columns:auto minmax(0,1fr)}
-  .psb-result-amt{grid-column:1/-1;flex-direction:row;align-items:center;justify-content:space-between;gap:16px}
-}
-@media (max-width:720px){
-  .psb-side-note{margin-top:0}
 }
 @media (max-width:640px){
-  /* three columns cannot hold their figures on a phone, so the table shows the
-     tier that is selected and the control above swaps it: no wrapped numbers,
-     no sideways scroll */
   .psb-table{min-width:0}
-  .psb-table th,.psb-table td{padding:14px 12px;font-size:13.5px}
-  .psb-table th.t1,.psb-table td.t1,.psb-table th.t2,.psb-table td.t2{width:38%}
-  .psb-table.is-t1 th.t2,.psb-table.is-t1 td.t2,.psb-table.is-t2 th.t1,.psb-table.is-t2 td.t1{display:none}
-  .psb-table thead th{font-size:10px;letter-spacing:.08em}
-  .psb-table thead th .sub{font-size:10.5px;letter-spacing:0}
-  .psb-table tbody tr.bonus td{font-size:15px}
-  .psb-table tbody tr.bonus td.req{padding-left:12px}
-  .psb-table-only{display:block}
-  .psb-tier-pick{flex-direction:column;align-items:flex-start;gap:8px}
-  .psb-chk .bx{width:20px;height:20px;border-radius:6px}
-  .psb-seg button{padding:10px 18px;font-size:12.5px}
+  .psb-table th,.psb-table td{padding:11px 10px;font-size:13px}
+  .psb-table th.t1,.psb-table td.t1,.psb-table th.t2,.psb-table td.t2{width:27%}
+  .psb-table thead th{font-size:10px;letter-spacing:.06em}
+  .psb-table thead th .sub{font-size:10px;letter-spacing:0}
+  .psb-th-pill{padding:4px 10px;font-size:10px;letter-spacing:.05em}
+  .psb-table tbody tr.bonus td{font-size:14px}
   .psb-why-grid{grid-template-columns:1fr}
   .psb-why-card{min-height:0;flex-direction:row;align-items:center;gap:16px}
   .psb-why-card .art{margin:0;padding:0;flex:none}
@@ -350,10 +294,28 @@ tr.is-on td.req{color:var(--acc)}
   .psb-periods-row{gap:6px}
   .psb-period{font-size:11px;border-radius:9px}
 }
+@media (max-width:560px){
+  .psb-table-wrap{border-radius:16px}
+  .psb-table thead{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+  .psb-table,.psb-table tbody,.psb-table tr{display:block;width:auto}
+  .psb-table tr{padding:12px 14px;border-bottom:1px solid rgba(20,44,96,.07)}
+  .psb-table tr:last-child{border-bottom:0}
+  .psb-table td{display:block;width:auto;padding:0;border:0;background:none}
+  .psb-table td.req{font-size:13.5px;font-weight:700}
+  .psb-table td.t1,.psb-table td.t2{display:flex;flex-direction:column;align-items:flex-start;gap:1px;width:calc(50% - 4px);margin-top:8px;padding:6px 10px 7px;border-radius:9px;font-size:13.5px;font-weight:800;text-align:left;vertical-align:top}
+  .psb-table td.t1{float:left;background:rgba(0,71,187,.055)}
+  .psb-table td.t2{float:right;background:rgba(223,197,174,.2)}
+  .psb-table tr::after{content:"";display:block;clear:both}
+  .psb-table td.t1::before,.psb-table td.t2::before{content:attr(data-label);font-size:9.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--text-mute)}
+  .psb-table td.t2::before{color:var(--sand-ink);opacity:.8}
+  .psb-table tbody tr.bonus{background:rgba(20,44,96,.028)}
+  .psb-table tbody tr.bonus td{padding:0;font-size:14px}
+  .psb-table tbody tr.bonus td.t1,.psb-table tbody tr.bonus td.t2{padding:6px 10px 7px;font-size:14px}
+}
 @media (prefers-reduced-motion:reduce){
   .psb-orb,.psb-chip,.psb-eyebrow i,.psb-aside-art,.psb-period::before,.psb-rule .ic::after,.psb .btn-primary::after,.psb-done .tick{animation:none}
   .psb-period::before{height:100%}
-  .psb-stat,.psb-rule,.psb-step,.psb-why-card,.psb-seg-thumb{transition:none}
+  .psb-stat,.psb-rule,.psb-step,.psb-why-card{transition:none}
 }
   </style>
 
@@ -732,20 +694,8 @@ tr.is-on td.req{color:var(--acc)}
     </div>
 
     <!-- the tier explorer: pick a tier, tick the requirements you expect to meet -->
-    <div class="psb-tier-head" data-aos="fade-up" data-psb-explorer>
-      <div class="psb-tier-pick">
-        <span class="psb-tier-lbl" id="psbTierLbl">Choose a tier</span>
-        <div class="psb-seg" role="tablist" aria-labelledby="psbTierLbl" data-psb-seg>
-          <span class="psb-seg-thumb" aria-hidden="true"></span>
-          <button type="button" role="tab" aria-selected="true" data-psb-tier="t1">Tier 1</button>
-          <button type="button" role="tab" aria-selected="false" data-psb-tier="t2">Tier 2</button>
-        </div>
-      </div>
-      <p class="psb-tier-hint"><svg aria-hidden="true"><use href="#i-check"/></svg><span>Tick the requirements you expect to meet in a period. <b>Two of the three</b> under the same tier earns that tier&rsquo;s bonus.</span></p>
-    </div>
-
     <div class="psb-table-wrap" data-aos="fade-up">
-      <table class="psb-table is-t1" data-psb-table>
+      <table class="psb-table">
         <caption class="sr-only">Monthly Switch Bonus requirements by tier</caption>
         <thead>
           <tr>
@@ -755,22 +705,12 @@ tr.is-on td.req{color:var(--acc)}
           </tr>
         </thead>
         <tbody>
-          <tr class="bonus"><td class="req">Monthly Switch Bonus</td><td class="t1">USD 12,000</td><td class="t2">USD 6,000</td></tr>
-          <tr data-psb-req><td class="req"><button type="button" class="psb-chk" aria-pressed="false"><span class="bx" aria-hidden="true"><svg><use href="#i-check"/></svg></span><span>New Qualified Clients<sup class="fn" title="See the definition below the table">*</sup></span></button></td><td class="t1">40</td><td class="t2">20</td></tr>
-          <tr data-psb-req><td class="req"><button type="button" class="psb-chk" aria-pressed="false"><span class="bx" aria-hidden="true"><svg><use href="#i-check"/></svg></span><span>Total Net Deposit<sup class="fn" title="See the definition below the table">&dagger;</sup></span></button></td><td class="t1">USD 150,000</td><td class="t2">USD 75,000</td></tr>
-          <tr data-psb-req><td class="req"><button type="button" class="psb-chk" aria-pressed="false"><span class="bx" aria-hidden="true"><svg><use href="#i-check"/></svg></span><span>Total Notional Volume<sup class="fn" title="See the definition below the table">&Dagger;</sup></span></button></td><td class="t1">USD 100 million</td><td class="t2">USD 50 million</td></tr>
+          <tr class="bonus"><td class="req">Monthly Switch Bonus</td><td class="t1" data-label="Tier 1">USD 12,000</td><td class="t2" data-label="Tier 2">USD 6,000</td></tr>
+          <tr><td class="req">New Qualified Clients<sup class="fn" title="See the definition below the table">*</sup></td><td class="t1" data-label="Tier 1">40</td><td class="t2" data-label="Tier 2">20</td></tr>
+          <tr><td class="req">Total Net Deposit<sup class="fn" title="See the definition below the table">&dagger;</sup></td><td class="t1" data-label="Tier 1">USD 150,000</td><td class="t2" data-label="Tier 2">USD 75,000</td></tr>
+          <tr><td class="req">Total Notional Volume<sup class="fn" title="See the definition below the table">&Dagger;</sup></td><td class="t1" data-label="Tier 1">USD 100 million</td><td class="t2" data-label="Tier 2">USD 50 million</td></tr>
         </tbody>
       </table>
-    </div>
-    <p class="psb-table-only">Showing <b data-psb-only>Tier 1</b>. Switch above to compare.</p>
-
-    <div class="psb-result glass" data-psb-result data-aos="fade-up" aria-live="polite">
-      <div class="psb-result-ring" style="--p:0"><span data-psb-count>0/3</span></div>
-      <div class="psb-result-tx">
-        <b data-psb-title>Tick two requirements under Tier 1</b>
-        <span data-psb-copy>Each period is assessed separately, and a bonus is payable only where the performance requirements are fully met and verified.</span>
-      </div>
-      <div class="psb-result-amt"><span class="k">Monthly bonus</span><span class="v" data-psb-amt>USD 12,000</span></div>
     </div>
 
     <div class="psb-rules">
@@ -1145,10 +1085,10 @@ tr.is-on td.req{color:var(--acc)}
           </div>
           <div class="ct-field">
             <label for="psbBroker">Current or previous broker <span class="req" aria-hidden="true">*</span></label>
-            <input type="text" id="psbBroker" name="previousBroker" autocomplete="organization" required aria-describedby="psbBrokerErr">
+            <input type="text" id="psbBroker" name="previousBroker" autocomplete="organization" required aria-describedby="psbBrokerErr psbBrokerHelp">
+            <p class="psb-side-note" id="psbBrokerHelp"><svg aria-hidden="true"><use href="#i-shield"/></svg><span>Your Account Manager may request reasonable information to verify this affiliation.</span></p>
             <p class="ct-err" id="psbBrokerErr" hidden>Please name your current or previous broker.</p>
           </div>
-          <p class="psb-side-note"><svg aria-hidden="true"><use href="#i-shield"/></svg><span>Your Account Manager may request reasonable information to verify this affiliation.</span></p>
         </div>
 
         <label class="ct-check pt-agree" for="psbConsent">
@@ -1309,47 +1249,6 @@ document.addEventListener('DOMContentLoaded', function () {
       art.style.transform = 'perspective(1200px) rotateY(' + (dx * 9).toFixed(2) + 'deg) rotateX(' + (-dy * 7).toFixed(2) + 'deg)';
     });
     hero.addEventListener('mouseleave', function () { art.style.transform = ''; });
-  })();
-
-  /* ---- tier explorer: pick a tier, tick requirements, read the bonus ---- */
-  (function () {
-    var root = document.querySelector('[data-psb-explorer]'); if (!root) return;
-    var seg = root.querySelector('[data-psb-seg]'), tabs = seg.querySelectorAll('[data-psb-tier]');
-    var table = document.querySelector('[data-psb-table]'), rows = table.querySelectorAll('[data-psb-req]');
-    var res = document.querySelector('[data-psb-result]'), ring = res.querySelector('.psb-result-ring');
-    var count = res.querySelector('[data-psb-count]'), title = res.querySelector('[data-psb-title]'), copy = res.querySelector('[data-psb-copy]'), amt = res.querySelector('[data-psb-amt]');
-    var only = document.querySelector('[data-psb-only]');
-    var TIER = { t1: { name: 'Tier 1', bonus: 'USD 12,000' }, t2: { name: 'Tier 2', bonus: 'USD 6,000' } };
-    var tier = 't1';
-    function paint() {
-      var on = 0; rows.forEach(function (r) { if (r.classList.contains('is-on')) on++; });
-      var t = TIER[tier], hit = on >= 2;
-      ring.style.setProperty('--p', Math.round(on / 3 * 100)); count.textContent = on + '/3';
-      amt.textContent = t.bonus;
-      if (only) only.textContent = t.name;
-      res.classList.toggle('is-hit', hit); res.classList.toggle('is-t2', tier === 't2');
-      if (hit) {
-        title.textContent = on + ' of 3 requirements under ' + t.name + ' — ' + t.bonus + ' Monthly Switch Bonus';
-        copy.textContent = 'If both tiers are met in the same period, only the higher bonus is awarded. A bonus is payable only where the performance requirements are fully met and verified.';
-      } else {
-        title.textContent = on === 1 ? 'One more requirement under ' + t.name : 'Tick two requirements under ' + t.name;
-        copy.textContent = 'Each period is assessed separately, and a bonus is payable only where the performance requirements are fully met and verified.';
-      }
-    }
-    tabs.forEach(function (b) {
-      b.addEventListener('click', function () {
-        tier = b.getAttribute('data-psb-tier');
-        tabs.forEach(function (x) { x.setAttribute('aria-selected', x === b ? 'true' : 'false'); });
-        seg.classList.toggle('is-t2', tier === 't2');
-        table.classList.toggle('is-t1', tier === 't1'); table.classList.toggle('is-t2', tier === 't2');
-        paint();
-      });
-    });
-    rows.forEach(function (r) {
-      var btn = r.querySelector('.psb-chk');
-      btn.addEventListener('click', function () { var on = !r.classList.contains('is-on'); r.classList.toggle('is-on', on); btn.setAttribute('aria-pressed', on ? 'true' : 'false'); paint(); });
-    });
-    paint();
   })();
 
   /* ---- how it works: the line draws with the scroll, steps light as they arrive ---- */
