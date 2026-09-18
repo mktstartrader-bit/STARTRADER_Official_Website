@@ -117,28 +117,42 @@
 .psb-seg button{position:relative;z-index:1;padding:11px 26px;border-radius:999px;border:0;background:none;font:inherit;font-size:13.5px;font-weight:800;letter-spacing:.04em;color:var(--text-soft);cursor:pointer;transition:color .3s}
 .psb-seg button[aria-selected="true"]{color:#fff}
 .psb-seg.is-t2 button[aria-selected="true"]{color:var(--ink)}
-.psb-tier-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin-top:40px}
-.psb-tier-head p{margin:0;font-size:13.5px;color:var(--text-soft)}
-.psb-tier-head p b{color:var(--text)}
-.psb-table-wrap{margin-top:16px;overflow:auto;border-radius:22px;border:1px solid rgba(20,44,96,.1);background:#fff;box-shadow:0 30px 60px -42px rgba(20,44,96,.4)}
-.psb-table{width:100%;min-width:640px;border-collapse:separate;border-spacing:0}
-.psb-table th,.psb-table td{padding:18px 22px;text-align:left;vertical-align:middle;border-bottom:1px solid rgba(20,44,96,.08);font-size:15px;transition:background .35s,color .35s,opacity .35s}
-.psb-table thead th{font-size:11.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--text-mute);background:var(--bg-light)}
-.psb-table thead th.t1{color:#fff;background:linear-gradient(135deg,#2a72ff,#0047bb)}
-.psb-table thead th.t2{color:var(--sand-ink);background:rgba(223,197,174,.28)}
+.psb-tier-head{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:16px 30px;margin-top:40px}
+.psb-tier-pick{display:flex;align-items:center;gap:14px}
+.psb-tier-lbl{font-size:11.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--text-mute);white-space:nowrap}
+.psb-tier-hint{display:flex;align-items:flex-start;gap:10px;margin:0;justify-self:end;max-width:56ch;padding:11px 15px;border-radius:12px;font-size:13px;line-height:1.55;color:var(--text-soft);background:rgba(0,71,187,.05);border:1px solid rgba(0,71,187,.12)}
+.psb-tier-hint svg{width:15px;height:15px;flex:none;margin-top:2px;color:var(--acc)}
+.psb-tier-hint b{color:var(--text)}
+.psb-table-wrap{margin-top:18px;overflow:auto;border-radius:22px;border:1px solid rgba(20,44,96,.1);background:#fff;box-shadow:0 30px 60px -42px rgba(20,44,96,.4)}
+.psb-table{width:100%;min-width:620px;table-layout:fixed;border-collapse:separate;border-spacing:0}
+.psb-table th,.psb-table td{padding:16px 22px;text-align:left;vertical-align:middle;border-bottom:1px solid rgba(20,44,96,.07);font-size:15px;transition:background .35s,color .35s}
+.psb-table th.t1,.psb-table td.t1,.psb-table th.t2,.psb-table td.t2{width:23%;text-align:right;font-variant-numeric:tabular-nums}
+/* one calm header band; the tier names carry the colour in a pill, so the
+   columns below can stay white and the numbers do the talking */
+.psb-table thead th{padding-top:17px;padding-bottom:17px;font-size:11.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mute);background:var(--bg-light);border-bottom-color:rgba(20,44,96,.1)}
+.psb-table thead th .sub{display:block;margin-top:5px;font-size:11px;font-weight:600;letter-spacing:.01em;text-transform:none;color:var(--text-mute)}
+.psb-th-pill{display:inline-block;padding:7px 16px;border-radius:999px;font-size:12px;font-weight:800;letter-spacing:.08em;color:var(--text-soft);background:#fff;border:1px solid rgba(20,44,96,.14);transition:background .35s,color .35s,border-color .35s,box-shadow .35s}
+.psb-table.is-t1 thead th.t1 .psb-th-pill{color:#fff;background:linear-gradient(135deg,#2a72ff,#0047bb);border-color:transparent;box-shadow:0 10px 22px -14px rgba(42,114,255,.9)}
+.psb-table.is-t2 thead th.t2 .psb-th-pill{color:#fff;background:linear-gradient(135deg,#c79b74,#ac7c59);border-color:transparent;box-shadow:0 10px 22px -14px rgba(138,100,64,.85)}
 .psb-table td.req{color:var(--text);font-weight:600}
-.psb-table td.t1{font-weight:800;color:var(--ink);background:rgba(0,71,187,.045);font-variant-numeric:tabular-nums}
-.psb-table td.t2{font-weight:700;color:var(--text);background:rgba(223,197,174,.12);font-variant-numeric:tabular-nums}
-.psb-table tbody tr.bonus td{font-size:17px}
-.psb-table tbody tr.bonus td.t1{color:var(--acc)}
-.psb-table tbody tr.bonus td.t2{color:var(--sand-ink)}
+/* the unselected tier stays fully legible, just quiet: no 45% ghosting */
+.psb-table td.t1,.psb-table td.t2{font-weight:600;color:var(--text-soft);background:transparent}
+.psb-table.is-t1 td.t1,.psb-table.is-t2 td.t2{font-weight:800;color:var(--ink)}
+.psb-table.is-t1 th.t1,.psb-table.is-t1 td.t1{background:rgba(0,71,187,.045)}
+.psb-table.is-t2 th.t2,.psb-table.is-t2 td.t2{background:rgba(223,197,174,.16)}
+/* the payout row sits under the header, indented to the tick column so the
+   labels below line up with it */
+.psb-table tbody tr.bonus td{padding-top:19px;padding-bottom:19px;background:rgba(20,44,96,.025);font-size:16.5px}
+.psb-table tbody tr.bonus td.req{padding-left:58px;font-weight:800}
+.psb-table.is-t1 tbody tr.bonus td.t1{color:var(--acc);background:rgba(0,71,187,.06)}
+.psb-table.is-t2 tbody tr.bonus td.t2{color:var(--sand-ink);background:rgba(223,197,174,.2)}
 .psb-table tbody tr:last-child td{border-bottom:0}
-.psb-table sup{color:var(--sand-ink);font-weight:800;margin-left:3px}
-/* the selected tier lights its column; the other steps back */
-.psb-table.is-t1 td.t2,.psb-table.is-t1 th.t2{opacity:.45}
-.psb-table.is-t2 td.t1,.psb-table.is-t2 th.t1{opacity:.45}
+.psb-table sup.fn{margin-left:4px;font-size:11px;font-weight:700;color:var(--text-mute);cursor:help}
+.psb-table-only{display:none;margin:12px 2px 0;font-size:12.5px;color:var(--text-soft)}
+.psb-table-only b{color:var(--text)}
 /* requirement rows are toggles */
-.psb-chk{display:inline-flex;align-items:center;gap:12px;background:none;border:0;padding:0;font:inherit;color:inherit;cursor:pointer;text-align:left}
+.psb-chk{display:flex;align-items:center;gap:12px;width:100%;background:none;border:0;padding:0;font:inherit;font-weight:600;color:inherit;cursor:pointer;text-align:left}
+.psb-chk:hover .bx{border-color:rgba(0,71,187,.5)}
 .psb-chk .bx{flex:none;width:24px;height:24px;border-radius:8px;border:1.5px solid rgba(20,44,96,.28);background:#fff;display:grid;place-items:center;color:#fff;transition:background .3s,border-color .3s,transform .3s}
 .psb-chk .bx svg{width:13px;height:13px;opacity:0;transform:scale(.5);transition:opacity .25s,transform .35s cubic-bezier(.34,1.56,.64,1)}
 tr.is-on .psb-chk .bx{background:linear-gradient(135deg,var(--acc-2),var(--acc));border-color:transparent}
@@ -157,25 +171,32 @@ tr.is-on td.req{color:var(--acc)}
 .psb-result-ring span{position:relative}
 .psb-result-tx b{display:block;font-size:clamp(17px,1.5vw,20px);letter-spacing:-.02em;color:var(--text)}
 .psb-result-tx span{display:block;margin-top:4px;font-size:13.5px;line-height:1.55;color:var(--text-soft)}
-.psb-result-amt{font-size:clamp(24px,2.4vw,34px);font-weight:800;letter-spacing:-.035em;color:var(--acc);font-variant-numeric:tabular-nums;white-space:nowrap;opacity:.35;transition:opacity .35s,color .35s,transform .45s cubic-bezier(.34,1.56,.64,1)}
-.psb-result.is-hit .psb-result-amt{opacity:1;transform:scale(1.04)}
-.psb-result.is-t2 .psb-result-amt{color:var(--sand-ink)}
+.psb-result-amt{display:flex;flex-direction:column;align-items:flex-end;gap:3px;padding:12px 18px;border-radius:16px;border:1px solid rgba(20,44,96,.12);background:rgba(20,44,96,.03);white-space:nowrap;transition:border-color .35s,background .35s,transform .45s cubic-bezier(.34,1.56,.64,1)}
+.psb-result-amt .k{font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--text-mute)}
+.psb-result-amt .v{font-size:clamp(22px,2vw,30px);font-weight:800;letter-spacing:-.035em;color:var(--text-soft);font-variant-numeric:tabular-nums;transition:color .35s}
+.psb-result.is-hit .psb-result-amt{border-color:rgba(0,71,187,.28);background:rgba(0,71,187,.06);transform:scale(1.02)}
+.psb-result.is-hit .psb-result-amt .v{color:var(--acc)}
+.psb-result.is-hit.is-t2 .psb-result-amt{border-color:rgba(138,100,64,.34);background:rgba(223,197,174,.22)}
+.psb-result.is-hit.is-t2 .psb-result-amt .v{color:var(--sand-ink)}
 .psb-rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:22px}
 .psb-rule{position:relative;padding:22px 22px 20px;border-radius:18px;overflow:hidden;transition:transform .35s var(--ease),box-shadow .35s}
 .psb-rule:hover{transform:translateY(-4px)}
 .psb-rule .ic{position:relative;width:44px;height:44px;border-radius:13px;display:grid;place-items:center;background:rgba(0,71,187,.08);color:var(--acc)}
-.psb-rule .ic::after{content:"";position:absolute;inset:-6px;border-radius:17px;border:1.5px dashed rgba(0,71,187,.25);animation:psbSpin 14s linear infinite}
+.psb-rule .ic::after{content:"";position:absolute;inset:-6px;border-radius:17px;border:1px solid rgba(0,71,187,.14);transition:transform .4s var(--ease),border-color .35s}
+.psb-rule:hover .ic::after{transform:scale(1.06);border-color:rgba(0,71,187,.28)}
 .psb-rule:nth-child(2) .ic{background:rgba(223,197,174,.32);color:var(--sand-ink)}
-.psb-rule:nth-child(2) .ic::after{border-color:rgba(138,100,64,.3)}
+.psb-rule:nth-child(2) .ic::after{border-color:rgba(138,100,64,.2)}
+.psb-rule:nth-child(2):hover .ic::after{border-color:rgba(138,100,64,.38)}
 .psb-rule .ic svg{width:19px;height:19px}
 .psb-rule b{display:block;margin-top:18px;font-size:16.5px;letter-spacing:-.02em;color:var(--text)}
 .psb-rule p{margin:6px 0 0;font-size:14px;line-height:1.62;color:var(--text-soft)}
 @keyframes psbSpin{to{transform:rotate(360deg)}}
-.psb-foot{margin-top:26px;padding:20px 22px;border-radius:16px;border-left:3px solid var(--sand);background:rgba(223,197,174,.14)}
-.psb-foot p{margin:0;font-size:13px;line-height:1.7;color:var(--text-soft)}
-.psb-foot p+p{margin-top:8px}
-.psb-foot p b{color:var(--text);font-weight:700}
-.psb-foot .m{display:inline-block;min-width:1.1em;color:var(--sand-ink);font-weight:800}
+.psb-foot{margin-top:26px;padding:22px 24px;border-radius:16px;border:1px solid rgba(138,100,64,.16);border-left:3px solid var(--sand);background:rgba(223,197,174,.12)}
+.psb-foot dl{display:grid;grid-template-columns:1.4em minmax(0,1fr);gap:12px;margin:0}
+.psb-foot dt{font-size:13px;font-weight:800;line-height:1.7;color:var(--sand-ink);text-align:center}
+.psb-foot dd{margin:0;font-size:13px;line-height:1.7;color:var(--text-soft)}
+.psb-foot dd b{color:var(--text);font-weight:700}
+.psb-foot .note{margin:16px 0 0;padding-top:14px;border-top:1px solid rgba(138,100,64,.18);font-size:12.5px;line-height:1.7;color:var(--text-soft)}
 
 /* ---------- how it works (dark) ---------- */
 .psb-how{position:relative;isolation:isolate;overflow:clip;color:#fff;background:linear-gradient(180deg,#04060e,#080b16 58%,#04060e)}
@@ -242,7 +263,15 @@ tr.is-on td.req{color:var(--acc)}
 .psb-prog-bar i{display:block;height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,var(--acc-2),var(--acc) 60%,#ac7c59);transition:width .5s cubic-bezier(.22,.61,.36,1)}
 .psb-prog b{color:var(--text);font-variant-numeric:tabular-nums}
 .ct-form-card .ct-field input:focus,.ct-form-card .ct-field select:focus{box-shadow:0 8px 0 -6px rgba(42,114,255,.35)}
-.psb-type{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px;position:relative}
+/* the three fields that need the full width say so in a class, not inline */
+.psb-full{grid-column:1/-1}
+.psb-side-note{align-self:start;display:flex;align-items:flex-start;gap:9px;margin:23px 0 0;padding:11px 14px;border-radius:12px;font-size:12.5px;line-height:1.55;color:var(--text-soft);background:rgba(20,44,96,.04);border:1px solid rgba(20,44,96,.09)}
+.psb-side-note svg{width:14px;height:14px;flex:none;margin-top:2px;color:var(--text-mute)}
+/* the country control kept its native arrow stripped with nothing put back, so
+   it read as a dead text field; the chevron returns and the placeholder greys */
+.psb .ct-field .wb-selwrap select:invalid{color:var(--text-mute)}
+.psb .pt-agree{align-items:flex-start;gap:12px}
+.psb-type{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:2px;position:relative}
 .psb-type label{position:relative;display:flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:10px 14px;border-radius:14px;border:1px solid rgba(20,44,96,.16);background:#fff;
   font-size:14px;font-weight:700;color:var(--text);text-align:center;cursor:pointer;transition:border-color .3s,background .3s,color .3s,transform .3s}
 .psb-type label svg{width:18px;height:18px;flex:none;color:var(--text-mute);transition:color .3s}
@@ -285,14 +314,28 @@ tr.is-on td.req{color:var(--acc)}
   .psb-chip{position:static;animation:none;flex-direction:row;align-items:baseline;flex-wrap:wrap;gap:4px 12px;padding:12px 14px}
   .psb-chip>span{max-width:none;flex:1 1 180px}
   .psb-rules{grid-template-columns:1fr}
+  .psb-tier-head{grid-template-columns:1fr}
+  .psb-tier-hint{justify-self:stretch;max-width:none}
   .psb-result{grid-template-columns:auto minmax(0,1fr)}
-  .psb-result-amt{grid-column:1/-1;justify-self:start}
+  .psb-result-amt{grid-column:1/-1;flex-direction:row;align-items:center;justify-content:space-between;gap:16px}
+}
+@media (max-width:720px){
+  .psb-side-note{margin-top:0}
 }
 @media (max-width:640px){
+  /* three columns cannot hold their figures on a phone, so the table shows the
+     tier that is selected and the control above swaps it: no wrapped numbers,
+     no sideways scroll */
   .psb-table{min-width:0}
-  .psb-table th,.psb-table td{padding:14px 10px;font-size:13.5px}
+  .psb-table th,.psb-table td{padding:14px 12px;font-size:13.5px}
+  .psb-table th.t1,.psb-table td.t1,.psb-table th.t2,.psb-table td.t2{width:38%}
+  .psb-table.is-t1 th.t2,.psb-table.is-t1 td.t2,.psb-table.is-t2 th.t1,.psb-table.is-t2 td.t1{display:none}
   .psb-table thead th{font-size:10px;letter-spacing:.08em}
-  .psb-table tbody tr.bonus td{font-size:14.5px}
+  .psb-table thead th .sub{font-size:10.5px;letter-spacing:0}
+  .psb-table tbody tr.bonus td{font-size:15px}
+  .psb-table tbody tr.bonus td.req{padding-left:12px}
+  .psb-table-only{display:block}
+  .psb-tier-pick{flex-direction:column;align-items:flex-start;gap:8px}
   .psb-chk .bx{width:20px;height:20px;border-radius:6px}
   .psb-seg button{padding:10px 18px;font-size:12.5px}
   .psb-why-grid{grid-template-columns:1fr}
@@ -690,12 +733,15 @@ tr.is-on td.req{color:var(--acc)}
 
     <!-- the tier explorer: pick a tier, tick the requirements you expect to meet -->
     <div class="psb-tier-head" data-aos="fade-up" data-psb-explorer>
-      <div class="psb-seg" role="tablist" aria-label="Tier" data-psb-seg>
-        <span class="psb-seg-thumb" aria-hidden="true"></span>
-        <button type="button" role="tab" aria-selected="true" data-psb-tier="t1">Tier 1</button>
-        <button type="button" role="tab" aria-selected="false" data-psb-tier="t2">Tier 2</button>
+      <div class="psb-tier-pick">
+        <span class="psb-tier-lbl" id="psbTierLbl">Choose a tier</span>
+        <div class="psb-seg" role="tablist" aria-labelledby="psbTierLbl" data-psb-seg>
+          <span class="psb-seg-thumb" aria-hidden="true"></span>
+          <button type="button" role="tab" aria-selected="true" data-psb-tier="t1">Tier 1</button>
+          <button type="button" role="tab" aria-selected="false" data-psb-tier="t2">Tier 2</button>
+        </div>
       </div>
-      <p>Tick the requirements you expect to meet in a period. <b>Two of the three</b> under the same tier earns that tier&rsquo;s bonus.</p>
+      <p class="psb-tier-hint"><svg aria-hidden="true"><use href="#i-check"/></svg><span>Tick the requirements you expect to meet in a period. <b>Two of the three</b> under the same tier earns that tier&rsquo;s bonus.</span></p>
     </div>
 
     <div class="psb-table-wrap" data-aos="fade-up">
@@ -703,19 +749,20 @@ tr.is-on td.req{color:var(--acc)}
         <caption class="sr-only">Monthly Switch Bonus requirements by tier</caption>
         <thead>
           <tr>
-            <th scope="col">Requirement (per monthly performance period)</th>
-            <th scope="col" class="t1">Tier 1</th>
-            <th scope="col" class="t2">Tier 2</th>
+            <th scope="col">Requirement<span class="sub">per monthly performance period</span></th>
+            <th scope="col" class="t1"><span class="psb-th-pill">Tier 1</span></th>
+            <th scope="col" class="t2"><span class="psb-th-pill">Tier 2</span></th>
           </tr>
         </thead>
         <tbody>
           <tr class="bonus"><td class="req">Monthly Switch Bonus</td><td class="t1">USD 12,000</td><td class="t2">USD 6,000</td></tr>
-          <tr data-psb-req><td class="req"><button type="button" class="psb-chk" aria-pressed="false"><span class="bx" aria-hidden="true"><svg><use href="#i-check"/></svg></span><span>New Qualified Clients<sup>*</sup></span></button></td><td class="t1">40</td><td class="t2">20</td></tr>
-          <tr data-psb-req><td class="req"><button type="button" class="psb-chk" aria-pressed="false"><span class="bx" aria-hidden="true"><svg><use href="#i-check"/></svg></span><span>Total Net Deposit<sup>&dagger;</sup></span></button></td><td class="t1">USD 150,000</td><td class="t2">USD 75,000</td></tr>
-          <tr data-psb-req><td class="req"><button type="button" class="psb-chk" aria-pressed="false"><span class="bx" aria-hidden="true"><svg><use href="#i-check"/></svg></span><span>Total Notional Volume<sup>&Dagger;</sup></span></button></td><td class="t1">USD 100 million</td><td class="t2">USD 50 million</td></tr>
+          <tr data-psb-req><td class="req"><button type="button" class="psb-chk" aria-pressed="false"><span class="bx" aria-hidden="true"><svg><use href="#i-check"/></svg></span><span>New Qualified Clients<sup class="fn" title="See the definition below the table">*</sup></span></button></td><td class="t1">40</td><td class="t2">20</td></tr>
+          <tr data-psb-req><td class="req"><button type="button" class="psb-chk" aria-pressed="false"><span class="bx" aria-hidden="true"><svg><use href="#i-check"/></svg></span><span>Total Net Deposit<sup class="fn" title="See the definition below the table">&dagger;</sup></span></button></td><td class="t1">USD 150,000</td><td class="t2">USD 75,000</td></tr>
+          <tr data-psb-req><td class="req"><button type="button" class="psb-chk" aria-pressed="false"><span class="bx" aria-hidden="true"><svg><use href="#i-check"/></svg></span><span>Total Notional Volume<sup class="fn" title="See the definition below the table">&Dagger;</sup></span></button></td><td class="t1">USD 100 million</td><td class="t2">USD 50 million</td></tr>
         </tbody>
       </table>
     </div>
+    <p class="psb-table-only">Showing <b data-psb-only>Tier 1</b>. Switch above to compare.</p>
 
     <div class="psb-result glass" data-psb-result data-aos="fade-up" aria-live="polite">
       <div class="psb-result-ring" style="--p:0"><span data-psb-count>0/3</span></div>
@@ -723,7 +770,7 @@ tr.is-on td.req{color:var(--acc)}
         <b data-psb-title>Tick two requirements under Tier 1</b>
         <span data-psb-copy>Each period is assessed separately, and a bonus is payable only where the performance requirements are fully met and verified.</span>
       </div>
-      <div class="psb-result-amt" data-psb-amt>USD 12,000</div>
+      <div class="psb-result-amt"><span class="k">Monthly bonus</span><span class="v" data-psb-amt>USD 12,000</span></div>
     </div>
 
     <div class="psb-rules">
@@ -745,10 +792,15 @@ tr.is-on td.req{color:var(--acc)}
     </div>
 
     <div class="psb-foot" data-aos="fade-up">
-      <p><span class="m">*</span><b>New Qualified Client</b> &mdash; a new client directly referred by you who, within the same monthly performance period, has their STARTRADER trading account approved, completes a minimum Net Deposit of USD 500, and completes at least 2 standard lots of closed trades in FX pairs, Oil, Gold, Silver or BTCUSD. Each position must be held for at least 10 minutes; only completely closed positions count.</p>
-      <p><span class="m">&dagger;</span><b>Total Net Deposit</b> &mdash; eligible deposits from your directly referred clients less their eligible withdrawals in the same period. A negative Net Deposit is carried forward and deducted from the following period(s).</p>
-      <p><span class="m">&Dagger;</span><b>Total Notional Volume</b> &mdash; eligible closed trading volume from your directly referred clients in the same period. Open positions are not counted.</p>
-      <p>Only clients directly referred under your partner account count. Sub-IB and sub-affiliate activity does not count unless approved by STARTRADER. Full definitions are set out in the Terms and Conditions.</p>
+      <dl>
+        <dt>*</dt>
+        <dd><b>New Qualified Client</b> &mdash; a new client directly referred by you who, within the same monthly performance period, has their STARTRADER trading account approved, completes a minimum Net Deposit of USD 500, and completes at least 2 standard lots of closed trades in FX pairs, Oil, Gold, Silver or BTCUSD. Each position must be held for at least 10 minutes; only completely closed positions count.</dd>
+        <dt>&dagger;</dt>
+        <dd><b>Total Net Deposit</b> &mdash; eligible deposits from your directly referred clients less their eligible withdrawals in the same period. A negative Net Deposit is carried forward and deducted from the following period(s).</dd>
+        <dt>&Dagger;</dt>
+        <dd><b>Total Notional Volume</b> &mdash; eligible closed trading volume from your directly referred clients in the same period. Open positions are not counted.</dd>
+      </dl>
+      <p class="note">Only clients directly referred under your partner account count. Sub-IB and sub-affiliate activity does not count unless approved by STARTRADER. Full definitions are set out in the Terms and Conditions.</p>
     </div>
   </div>
 </section>
@@ -852,7 +904,7 @@ tr.is-on td.req{color:var(--acc)}
             <input type="email" id="psbEmail" name="businessEmail" autocomplete="email" inputmode="email" required aria-describedby="psbEmailErr">
             <p class="ct-err" id="psbEmailErr" hidden>Please enter a valid business email.</p>
           </div>
-          <div class="ct-field" style="grid-column:1/-1">
+          <div class="ct-field psb-full">
             <span class="psb-label" id="psbTypeLbl">Partner type <span class="req" aria-hidden="true">*</span></span>
             <div class="psb-type" role="radiogroup" aria-labelledby="psbTypeLbl" aria-describedby="psbTypeErr">
               <label><input type="radio" name="partnerType" value="Introducing Broker (IB)" required><svg aria-hidden="true"><use href="#i-user"/></svg>Introducing Broker (IB)</label>
@@ -1087,17 +1139,19 @@ tr.is-on td.req{color:var(--acc)}
                   <option value="Zambia">Zambia</option>
                   <option value="Zimbabwe">Zimbabwe</option>
               </select>
+              <svg class="wb-selchev" aria-hidden="true"><use href="#i-chevron-down"/></svg>
             </div>
             <p class="ct-err" id="psbCountryErr" hidden>Please choose your country or region.</p>
           </div>
-          <div class="ct-field" style="grid-column:1/-1">
+          <div class="ct-field">
             <label for="psbBroker">Current or previous broker <span class="req" aria-hidden="true">*</span></label>
             <input type="text" id="psbBroker" name="previousBroker" autocomplete="organization" required aria-describedby="psbBrokerErr">
             <p class="ct-err" id="psbBrokerErr" hidden>Please name your current or previous broker.</p>
           </div>
+          <p class="psb-side-note"><svg aria-hidden="true"><use href="#i-shield"/></svg><span>Your Account Manager may request reasonable information to verify this affiliation.</span></p>
         </div>
 
-        <label class="ct-check pt-agree" for="psbConsent" style="display:flex;gap:12px;align-items:flex-start">
+        <label class="ct-check pt-agree" for="psbConsent">
           <input type="checkbox" id="psbConsent" name="consent" required aria-describedby="psbConsentErr">
           <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
           <span>I confirm that I currently maintain, or have previously maintained, an IB, CPA Affiliate or comparable partnership with another broker, and that I have read and accept the Promotion <a href="legal-documents.html">Terms and Conditions</a> and the <a href="https://www.startrader.com/pdf/startrader-privacy-policy-20260210.pdf" target="_blank" rel="noopener">Privacy Policy</a>.</span>
@@ -1264,6 +1318,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var table = document.querySelector('[data-psb-table]'), rows = table.querySelectorAll('[data-psb-req]');
     var res = document.querySelector('[data-psb-result]'), ring = res.querySelector('.psb-result-ring');
     var count = res.querySelector('[data-psb-count]'), title = res.querySelector('[data-psb-title]'), copy = res.querySelector('[data-psb-copy]'), amt = res.querySelector('[data-psb-amt]');
+    var only = document.querySelector('[data-psb-only]');
     var TIER = { t1: { name: 'Tier 1', bonus: 'USD 12,000' }, t2: { name: 'Tier 2', bonus: 'USD 6,000' } };
     var tier = 't1';
     function paint() {
@@ -1271,6 +1326,7 @@ document.addEventListener('DOMContentLoaded', function () {
       var t = TIER[tier], hit = on >= 2;
       ring.style.setProperty('--p', Math.round(on / 3 * 100)); count.textContent = on + '/3';
       amt.textContent = t.bonus;
+      if (only) only.textContent = t.name;
       res.classList.toggle('is-hit', hit); res.classList.toggle('is-t2', tier === 't2');
       if (hit) {
         title.textContent = on + ' of 3 requirements under ' + t.name + ' — ' + t.bonus + ' Monthly Switch Bonus';
