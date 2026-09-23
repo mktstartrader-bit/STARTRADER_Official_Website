@@ -5859,3 +5859,114 @@ body:has(.nav-item.has-mega:focus-within)::after{opacity:1;visibility:visible}
 /* Approved status label under a why-STARTRADER card (fx-w2 family) */
 .fx-w2-note{margin-top:12px;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--text-soft)}
 .fx-w2-note::before{content:"";width:7px;height:7px;border-radius:50%;background:#34d99b;flex:none}
+
+/* ===== HOW-TO-TRADE HEADING (appended batch, 2026-09-23) ===== */
+/* MKT's approved copy runs much longer than the old two-word heading ("How to
+   Start Index CFD Trading With STARTRADER" against "How to trade indices"), so the
+   54px ceiling filled the card. Caps at 40px; the responsive floor below ~910px is
+   unchanged, so phones keep the size they already had. */
+.htrade-title{font-size:clamp(34px,4.4vw,40px)}
+
+/* ===== PRODUCT STATEMENT BENTO (appended batch, 2026-09-23) =====
+   The .pd-copy statement blocks keep their approved copy word for word; what
+   changes is the layout. The block becomes a light glass bento: a photo cell
+   beside one card per approved statement, each numbered, at the same paragraph
+   size as the card components on these pages (.fx-mh-card, .htrade-txt). One
+   photo per page, so it never repeats; a second statement group becomes a row
+   of the same cards without a photo. Asset-name lists keep their pill row. */
+.pd-glass{position:relative;overflow:hidden;color:var(--text);
+  --pdg-hi:rgba(255,255,255,.9);
+  --pdg-edge:rgba(255,255,255,.72);
+  --pdg-fill:linear-gradient(142deg,rgba(255,255,255,.66),rgba(223,234,252,.44));
+  --pdg-cast:0 28px 58px -30px rgba(12,28,70,.3);
+  --pdg-blur:blur(30px) saturate(1.85);
+  background:
+    radial-gradient(54% 46% at 6% -2%,rgba(3,72,205,.19),transparent 62%),
+    radial-gradient(44% 40% at 97% 12%,rgba(84,62,222,.18),transparent 64%),
+    radial-gradient(46% 40% at 80% 92%,rgba(0,110,220,.14),transparent 66%),
+    radial-gradient(52% 44% at 22% 104%,rgba(0,71,187,.13),transparent 62%),
+    linear-gradient(180deg,#EFF4FB 0%,#E5ECF7 52%,#EEF3FA 100%)}
+.pd-glass .container{position:relative;display:flex;flex-direction:column;gap:clamp(48px,5.6vw,80px)}
+.pd-glass-grp{display:flex;flex-direction:column;gap:clamp(26px,3vw,40px)}
+.pd-glass .h2,.pd-glass .h2-light{color:var(--ink)}
+.pd-glass .head.center{margin-bottom:0}
+
+/* ---- the bento ---- */
+.pd-bento{display:grid;gap:clamp(14px,1.3vw,20px);
+  grid-template-columns:minmax(0,1.14fr) minmax(0,1fr) minmax(0,1fr);
+  counter-reset:pdstep}
+/* the photo cell holds the left column for the whole bento */
+.pd-bento-media{position:relative;grid-column:1;grid-row:1 / span 2;min-height:300px;border-radius:28px;overflow:hidden;
+  border:1px solid var(--pdg-edge);box-shadow:inset 0 1px 0 var(--pdg-hi),0 34px 72px -34px rgba(12,28,70,.46)}
+.pd-bento-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:58% 50%;
+  transform:scale(1.05) translateY(var(--pd-y,0px));transition:transform .9s var(--ease)}
+.pd-bento:hover .pd-bento-media img{transform:scale(1.1) translateY(var(--pd-y,0px))}
+/* the specular pass that makes the frame read as glass */
+.pd-bento-media::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(140deg,rgba(255,255,255,.34) 0%,rgba(255,255,255,.04) 24%,transparent 44%),
+             linear-gradient(0deg,rgba(9,20,48,.3),transparent 44%)}
+
+/* one card per approved statement */
+.pd-bento-card{position:relative;overflow:hidden;counter-increment:pdstep;
+  display:flex;flex-direction:column;gap:15px;justify-content:flex-start;
+  padding:clamp(22px,2.1vw,30px);border-radius:26px;background:var(--pdg-fill);border:1px solid var(--pdg-edge);
+  -webkit-backdrop-filter:var(--pdg-blur);backdrop-filter:var(--pdg-blur);
+  box-shadow:inset 0 1px 0 var(--pdg-hi),var(--pdg-cast);
+  transition:transform .42s var(--ease),box-shadow .42s}
+.pd-bento-card::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(140deg,rgba(255,255,255,.5),rgba(255,255,255,0) 40%)}
+.pd-bento-card:hover{transform:translateY(-4px);box-shadow:inset 0 1px 0 var(--pdg-hi),0 38px 72px -30px rgba(12,28,70,.38)}
+.pd-bento-card p{position:relative;z-index:1;margin:0;font-size:14.5px;line-height:1.7;color:var(--text-soft)}
+/* the ordinal is drawn by the counter, so it never enters the page's text */
+.pd-bento-num{position:relative;z-index:1;flex:none;display:inline-flex;align-items:center;justify-content:center;
+  width:38px;height:38px;border-radius:50%;font-size:12.5px;font-weight:700;letter-spacing:.04em;color:var(--blue);
+  background:rgba(255,255,255,.82);border:1px solid rgba(255,255,255,.95);
+  box-shadow:inset 0 1px 0 #fff,0 8px 18px -10px rgba(14,30,72,.34);
+  transition:background .42s,color .42s,transform .42s var(--ease)}
+.pd-bento-num::before{content:counter(pdstep,decimal-leading-zero)}
+.pd-bento-card:hover .pd-bento-num{background:var(--blue);color:#fff;transform:translateY(-2px)}
+
+/* three statements read better as two over one wide than as a ragged column */
+.pd-bento.is-n3 .pd-bento-card:nth-child(4){grid-column:2 / span 2}
+.pd-bento.is-n3 .pd-bento-card:nth-child(4) p{max-width:62ch}
+.pd-bento.is-n1 .pd-bento-media{grid-row:1 / span 1}
+.pd-bento.is-n1 .pd-bento-card{grid-column:2 / span 2;grid-row:1;justify-content:center}
+.pd-bento.is-n1 .pd-bento-card p{font-size:15.5px;max-width:52ch}
+/* a group with one statement has nothing to number, and its card keeps a measure */
+.pd-bento.is-n1 .pd-bento-num,.pd-bento--flat .pd-bento-card:only-child .pd-bento-num{display:none}
+.pd-bento--flat .pd-bento-card:only-child p{max-width:78ch}
+
+/* a further statement group: the same cards, no second photograph */
+.pd-bento--flat{grid-template-columns:repeat(auto-fit,minmax(258px,1fr))}
+.pd-bento--flat .pd-bento-card{grid-column:auto;grid-row:auto}
+
+/* ---- approved asset-name lists keep their pill treatment ---- */
+.pd-chips{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.pd-chips li{display:inline-flex;align-items:center;gap:9px;padding:9px 16px 9px 11px;border-radius:70px;
+  font-size:14px;font-weight:600;color:var(--ink);
+  background:rgba(255,255,255,.74);border:1px solid rgba(255,255,255,.92);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 10px 22px -14px rgba(14,30,72,.3);
+  transition:transform .3s var(--ease),box-shadow .3s}
+.pd-chips li.is-plain{padding-left:16px}
+.pd-chips li:hover{transform:translateY(-3px);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 16px 30px -14px rgba(14,30,72,.4)}
+.pd-chips img{width:22px;height:22px;border-radius:50%;flex:none}
+
+@media (max-width:1080px){
+  .pd-bento{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .pd-bento-media{grid-column:1 / -1;grid-row:auto;min-height:0;aspect-ratio:21/9}
+  .pd-bento.is-n3 .pd-bento-card:nth-child(4){grid-column:1 / -1}
+  .pd-bento.is-n1 .pd-bento-card{grid-column:1 / -1;grid-row:auto}
+  .pd-bento-media{grid-row:auto !important}
+}
+@media (max-width:680px){
+  .pd-bento{grid-template-columns:1fr}
+  .pd-bento-media{aspect-ratio:4/3;border-radius:22px}
+  .pd-bento-card{border-radius:22px}
+  .pd-bento.is-n3 .pd-bento-card:nth-child(4),.pd-bento.is-n1 .pd-bento-card{grid-column:auto}
+  .pd-chips li{font-size:13px;padding:8px 14px 8px 10px}
+}
+@media (prefers-reduced-motion:reduce){
+  .pd-bento-media img,.pd-bento-card,.pd-bento-num{transition:none}
+  .pd-bento-media img{transform:scale(1.05)}
+  .pd-bento:hover .pd-bento-media img{transform:scale(1.05)}
+}

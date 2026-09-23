@@ -5029,6 +5029,38 @@
   }
 
 
+  /* ---------------- Product pages: statement bento ----------------
+     The cards and pills reveal with AOS and carry their own hover states; the
+     only thing JavaScript adds is a slow parallax on the photo cell, so the
+     bento has some life as it scrolls through. Nothing here is required for
+     the copy to read. */
+  function initPdStack() {
+    var cells = [].slice.call(document.querySelectorAll('[data-pd-media] img'));
+    if (!cells.length || prefersReduced) return;
+
+    var queued = false;
+    function frame() {
+      queued = false;
+      var vh = window.innerHeight;
+      cells.forEach(function (img) {
+        var r = img.parentNode.getBoundingClientRect();
+        if (r.bottom < -80 || r.top > vh + 80) return;
+        // -1 entering from the bottom, +1 leaving at the top
+        var p = 1 - 2 * ((r.top + r.height / 2) / (vh + r.height));
+        img.style.setProperty('--pd-y', (p * 14).toFixed(1) + 'px');
+      });
+    }
+    function onScroll() {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(frame);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    frame();
+  }
+
+
   /* ---------------- MT pages: horizontal rail with its own controls ---------------- */
   function initMtRail() {
     var sec = document.querySelector('[data-mt-rail]');
@@ -6509,6 +6541,7 @@
     initHelpCentre();
     initTelemetry();
     initMtRail();
+    initPdStack();
     initCopyTrade();
     initStarCopy();
     initStarWeb();
