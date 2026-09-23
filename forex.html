@@ -32,9 +32,29 @@
 
   <!-- Fonts (self-hosted) -->
   <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/img/fx-hero-banner.webp" as="image" type="image/webp" fetchpriority="high" />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
   <link rel="stylesheet" href="assets/css/styles.min.css?v=qa90" />
+
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ---------- forex hero: a still banner, not footage ----------
+   The artwork carries its own dark left third, so the hero needs no scrim
+   over it (.fx-hero already clears .acct-hero-bg::after). It deliberately
+   keeps its 16:9 composition in the stacked mobile band rather than taking
+   the 4:3 / 1:1 crop the video family uses, because the subject sits in the
+   right 40% and a square centre-crop would cut through it. The banner's own
+   edge is rgb(3,7,14), which meets the section ground with no seam. */
+.fx-hero-banner{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% center;z-index:-2}
+@media (max-width:980px){
+  .fx-hero-banner{position:static;order:99;width:100%;height:auto;aspect-ratio:16/9;
+    margin:30px 0 0;border-radius:0;box-shadow:none;object-position:70% center}
+}
+@media (max-width:560px){
+  .fx-hero-banner{aspect-ratio:3/2;object-position:74% center}
+}
+  </style>
 
   <!-- Structured data -->
   <script type="application/ld+json">
@@ -364,9 +384,7 @@
 
 <!-- ============ HERO ============ -->
 <section class="acct-hero fx-hero" aria-labelledby="fx-hero-title">
-  <video class="acct-hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/img/forex-video-poster.webp" aria-hidden="true">
-    <source src="assets/video/forex-banner.mp4" type="video/mp4">
-  </video>
+  <img class="fx-hero-banner" src="assets/img/fx-hero-banner.webp" alt="Two machined metal plates engraved GBP/USD and EUR/USD, lit by a turquoise seam of light" width="2560" height="1432" fetchpriority="high" decoding="async">
   <div class="acct-hero-bg" aria-hidden="true"></div>
   <div class="container fx-hero-copy-wrap">
     <div class="fx-hero-copy">
