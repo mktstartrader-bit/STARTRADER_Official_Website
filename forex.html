@@ -32,7 +32,8 @@
 
   <!-- Fonts (self-hosted) -->
   <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="assets/img/fx-hero-banner.webp" as="image" type="image/webp" fetchpriority="high" />
+  <link rel="preload" href="assets/img/fx-hero-banner.webp" as="image" type="image/webp" media="(min-width:981px)" fetchpriority="high" />
+  <link rel="preload" href="assets/img/fx-hero-banner-portrait.webp" as="image" type="image/webp" media="(max-width:980px)" fetchpriority="high" />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
   <link rel="stylesheet" href="assets/css/styles.min.css?v=qa90" />
@@ -40,22 +41,40 @@
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* ---------- forex hero: a still banner, not footage ----------
-   The artwork carries its own dark left third, so the hero needs no scrim
-   over it (.fx-hero already clears .acct-hero-bg::after). It deliberately
-   keeps its 16:9 composition in the stacked mobile band rather than taking
-   the 4:3 / 1:1 crop the video family uses, because the subject sits in the
-   right 40% and a square centre-crop would cut through it. The banner's own
-   edge is rgb(3,7,14), which meets the section ground with no seam.
-   It starts at --nav-h rather than the hero's top edge: the header is
-   transparent and the hero is pulled up under it, so inset:0 hid the top
-   of the composition behind the nav links. */
+   Desktop art carries its own dark left third, so the hero needs no scrim
+   over it (.fx-hero already clears .acct-hero-bg::after), and the copy sits
+   on that clear side. The image starts at --nav-h rather than the hero's top
+   edge: the header is transparent and the hero is pulled up beneath it, so
+   inset:0 hid the top of the composition behind the nav links.
+   The hero's ground is set to the artwork's own tone so the strip behind the
+   transparent header reads as part of the image, not a band above it. */
+.fx-hero{background:#0a111d}
 .fx-hero-banner{position:absolute;top:var(--nav-h);left:0;right:0;width:100%;height:calc(100% - var(--nav-h));object-fit:cover;object-position:62% center;z-index:-2}
 @media (max-width:980px){
-  .fx-hero-banner{position:static;order:99;width:100%;height:auto;aspect-ratio:16/9;
-    margin:30px 0 0;border-radius:0;box-shadow:none;object-position:70% center}
-}
-@media (max-width:560px){
-  .fx-hero-banner{aspect-ratio:3/2;object-position:74% center}
+  /* mobile follows MKT's reference: the art is the full-bleed background and the
+     copy sits over its clear lower half, rather than the stacked band the video
+     family uses. A portrait crop of the same shoot is served here because the
+     16:9 frame cropped to portrait cuts through the plates and the engraving. */
+  .fx-hero{background:#06090f;display:flex;flex-direction:column;justify-content:flex-end;
+    text-align:left;min-height:660px;min-height:clamp(640px,90svh,800px);
+    padding:calc(var(--nav-h) + 24px) 0 44px}
+  .fx-hero-banner{position:absolute;top:var(--nav-h);left:0;right:0;bottom:0;
+    width:100%;height:calc(100% - var(--nav-h));aspect-ratio:auto;margin:0;order:0;
+    object-fit:cover;object-position:center top}
+  /* the portrait art's top edge is #1f2937, lighter than the strip behind the
+     transparent header, which left a visible step where the image began. The
+     hero's existing scrim element (unused on this page) fades the ground colour
+     down into the artwork so the two meet invisibly. */
+  .fx-hero .acct-hero-bg::after{background:
+    linear-gradient(180deg,#06090f 0%,#06090f 9%,rgba(6,9,15,.78) 15%,rgba(6,9,15,0) 30%),
+    linear-gradient(0deg,#06090f 0%,rgba(6,9,15,.86) 20%,rgba(6,9,15,0) 46%)}
+  .fx-hero-copy-wrap{position:relative;z-index:2}
+  .fx-hero-copy{max-width:none;margin:0;text-align:left}
+  .fx-hero .acct-hero-sub{margin-inline:0;max-width:34ch}
+  /* the shared sheet centres this hero's CTA on mobile and explicitly skips
+     .fx-hero in the 721-980 left-align fix, because this hero used to be
+     centred. It is left-aligned now, so the button follows the copy. */
+  .fx-hero .acct-hero-cta{justify-content:flex-start}
 }
   </style>
 
@@ -387,7 +406,10 @@
 
 <!-- ============ HERO ============ -->
 <section class="acct-hero fx-hero" aria-labelledby="fx-hero-title">
-  <img class="fx-hero-banner" src="assets/img/fx-hero-banner.webp" alt="Two machined metal plates engraved GBP/USD and EUR/USD, lit by a turquoise seam of light" width="2560" height="1432" fetchpriority="high" decoding="async">
+  <picture>
+    <source media="(max-width:980px)" srcset="assets/img/fx-hero-banner-portrait.webp" width="1200" height="1786">
+    <img class="fx-hero-banner" src="assets/img/fx-hero-banner.webp" alt="Two machined metal plates engraved GBP/USD and EUR/USD, lit by a turquoise seam of light" width="2560" height="1432" fetchpriority="high" decoding="async">
+  </picture>
   <div class="acct-hero-bg" aria-hidden="true"></div>
   <div class="container fx-hero-copy-wrap">
     <div class="fx-hero-copy">
