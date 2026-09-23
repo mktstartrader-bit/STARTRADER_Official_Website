@@ -45,8 +45,11 @@
    keeps its 16:9 composition in the stacked mobile band rather than taking
    the 4:3 / 1:1 crop the video family uses, because the subject sits in the
    right 40% and a square centre-crop would cut through it. The banner's own
-   edge is rgb(3,7,14), which meets the section ground with no seam. */
-.fx-hero-banner{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% center;z-index:-2}
+   edge is rgb(3,7,14), which meets the section ground with no seam.
+   It starts at --nav-h rather than the hero's top edge: the header is
+   transparent and the hero is pulled up under it, so inset:0 hid the top
+   of the composition behind the nav links. */
+.fx-hero-banner{position:absolute;top:var(--nav-h);left:0;right:0;width:100%;height:calc(100% - var(--nav-h));object-fit:cover;object-position:62% center;z-index:-2}
 @media (max-width:980px){
   .fx-hero-banner{position:static;order:99;width:100%;height:auto;aspect-ratio:16/9;
     margin:30px 0 0;border-radius:0;box-shadow:none;object-position:70% center}
