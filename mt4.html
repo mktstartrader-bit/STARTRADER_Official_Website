@@ -33,13 +33,21 @@
   <link rel="preload" as="image" fetchpriority="high" href="assets/img/platform-hero.webp" />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb06" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb09" />
 
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
   /* the terminal rail now carries the tour video only, so it centres instead of
      starting at the track's left gutter */
   .mt-beyond .mt-rail{width:100%;justify-content:center}
+  /* the intro paragraph runs long, so it gets a wider measure, and the single
+     video card grows to a broad 16:10 frame instead of a narrow tile */
+  .mt-beyond .head-sub{max-width:920px}
+  .mt-beyond .mt-rail-card--video{width:min(960px,calc(100vw - 48px));min-height:0;aspect-ratio:16/10}
+  /* download section: the laptop render shared with the MT5 page. Its surround
+     is darker than the section on every channel, so no mask is needed. */
+  .mt-dl-img--mt5{-webkit-mask-image:none;mask-image:none}
+  .mt-dl-stage:has(.mt-dl-img--mt5){max-width:min(1120px,96%)}
   </style>
 
   <script type="application/ld+json">
@@ -485,7 +493,7 @@
       <p class="head-sub" data-aos="fade-up">You can download the MT4 PC or mobile version to take off in a world-class trading journey of success. MT4 trading offers advanced charting tools, automated strategies, and a user-friendly interface for all experience levels. Start trading today! Download Metatrader 4 (MT4) for Windows or mobile available for Android and iOS powered devices.</p>
     </div>
     <div class="mt-dl-stage" data-aos="fade-up" aria-hidden="true">
-      <img class="mt-dl-img" src="assets/img/mt-laptop-dl.webp" alt="MetaTrader 4 terminal on a laptop" width="1200" height="940" loading="lazy" decoding="async">
+      <img class="mt-dl-img mt-dl-img--mt5" src="assets/img/mt5-laptop-dl.webp" alt="MetaTrader terminal on a laptop" width="1448" height="1086" loading="lazy" decoding="async">
     </div>
     <div class="mt-dl-btns">
         <a class="mt-dl-btn" href="https://www.startrader.com/mt4-ios/" data-aos="fade-up">
@@ -895,6 +903,6 @@
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=pb06" defer></script>
+<script src="assets/js/main.min.js?v=pb09" defer></script>
 </body>
 </html>

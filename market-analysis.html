@@ -32,9 +32,11 @@
 
   <!-- Fonts (self-hosted) -->
   <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/img/ma-hero-banner-v1.webp" as="image" type="image/webp" media="(min-width:861px)" fetchpriority="high" />
+  <link rel="preload" href="assets/img/ma-hero-banner-portrait-v1.webp" as="image" type="image/webp" media="(max-width:860px)" fetchpriority="high" />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb06" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb09" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 
@@ -316,6 +318,30 @@
 }
 @media (prefers-reduced-motion:no-preference) and (max-width:560px){
   .mv-price{stroke-dasharray:620;stroke-dashoffset:620}
+}
+/* ---------- market analysis hero: a still banner ----------
+   Same treatment and framing as the product heroes (2560x1432, full-bleed cover,
+   starting at --nav-h under the transparent header), with its own artwork: four
+   clear glass panes layered in depth, each etched with one view of the market -
+   line and moving average, candlesticks, volume, trend on a grid - and the front
+   pane etched with the STARTRADER star (the logo's own vector outline, in the
+   same frosted white as the charts). The panes sit in 61-96% x 21-74% of the art,
+   clear of the copy (to ~55%) and of the live ticker along the bottom edge. The
+   shared family hero's auras are switched off here only. */
+.ma-hero{background:#020612}
+.ma-hero .ma-hero-aura{display:none}
+.ma-hero-banner{position:absolute;top:var(--nav-h);left:0;right:0;width:100%;height:calc(100% - var(--nav-h));object-fit:cover;object-position:62% center;z-index:-2}
+@media (min-width:861px) and (max-width:1280px){.ma-hero .ma-hero-copy{max-width:52%}}
+@media (max-width:860px){
+  /* the art is the full-bleed background and the copy sits over its clear lower
+     half; sized by width, the copy starts where the panes end (51.2% of the art's
+     height, 0.512 x 1807/1200 = 77.2% of the width, so 78vw plus a 28px breath) */
+  .ma-hero{background:#010510;justify-content:flex-start;min-height:0;
+    padding:calc(var(--nav-h) + 78vw + 28px) 0 40px}
+  .ma-hero-banner{bottom:auto;height:auto;aspect-ratio:1200/1807;object-position:center top}
+  .ma-hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+    background:linear-gradient(180deg,#010510 0%,#010510 calc(var(--nav-h) + 2px),rgba(1,5,16,0) calc(var(--nav-h) + 40px)),
+               linear-gradient(0deg,#010510 0%,rgba(1,5,16,.86) 20%,rgba(1,5,16,0) 46%)}
 }
 </style>
 
@@ -693,6 +719,10 @@
 <!-- Content only: heading, subline, one button. The live strip is the same
      component the home page banner uses (#heroTicker, built in main.js). -->
 <section class="ma-hero" aria-labelledby="ma-hero-title">
+  <picture>
+    <source media="(max-width:860px)" srcset="assets/img/ma-hero-banner-portrait-v1.webp" width="1200" height="1807">
+    <img class="ma-hero-banner" src="assets/img/ma-hero-banner-v1.webp" alt="Four clear glass panes layered in depth, etched with a line chart, candlesticks, volume bars and a trend on a grid, the front pane etched with the STARTRADER star" width="2560" height="1432" fetchpriority="high" decoding="async">
+  </picture>
   <span class="ma-hero-aura a1" aria-hidden="true"></span>
   <span class="ma-hero-aura a2" aria-hidden="true"></span>
 
@@ -1423,6 +1453,6 @@
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=pb06" defer></script>
+<script src="assets/js/main.min.js?v=pb09" defer></script>
 </body>
 </html>

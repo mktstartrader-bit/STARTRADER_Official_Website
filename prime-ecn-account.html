@@ -34,7 +34,7 @@
   <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb06" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb09" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* ================= PRIME ECN PAGE ================= */
@@ -115,6 +115,16 @@
 .pe-figure{position:relative}
 .pe-figure-img{border-radius:var(--radius-xl);overflow:hidden;aspect-ratio:1076/1440;box-shadow:0 30px 70px -30px rgba(16,30,54,.4)}
 .pe-figure-img img{width:100%;height:100%;object-fit:cover;object-position:center}
+/* the balance chip that used to be baked into the photo, rebuilt as a glass element
+   so it stays crisp and on-brand at any size (decorative, hidden from screen readers) */
+.pe-figure-card{position:absolute;left:7%;right:7%;bottom:6%;display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:20px;
+  background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.85);-webkit-backdrop-filter:blur(18px) saturate(1.6);backdrop-filter:blur(18px) saturate(1.6);
+  box-shadow:0 18px 40px -18px rgba(16,30,54,.45),inset 0 1px 0 #fff}
+.pe-figure-card-ic{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--blue);color:#fff;font-weight:800;font-size:20px}
+.pe-figure-card-txt{display:flex;flex-direction:column;min-width:0;flex:1}
+.pe-figure-card-txt b{font-size:clamp(17px,1.8vw,22px);letter-spacing:-.02em;color:var(--text);font-variant-numeric:tabular-nums}
+.pe-figure-card-txt small{font-size:13px;color:var(--text-soft)}
+.pe-figure-card-delta{flex:none;padding:6px 11px;border-radius:70px;font-size:13.5px;font-weight:700;color:#0a7a4f;background:rgba(16,185,129,.14);font-variant-numeric:tabular-nums}
 @media (max-width:980px){.pe-upgrade-grid{grid-template-columns:1fr;gap:40px}
 .pe-figure{max-width:520px;margin-inline:auto;width:100%}
 .pe-card--wide{flex-direction:column;align-items:flex-start;gap:26px}
@@ -786,7 +796,12 @@
       </div>
 
       <div class="pe-figure" data-aos="fade-up">
-        <div class="pe-figure-img"><img src="assets/img/prime-upgrade.webp" alt="A professional trader checking markets on mobile" loading="lazy" width="900" height="1204"></div>
+        <div class="pe-figure-img"><img src="assets/img/prime-upgrade-v2.webp" alt="A professional in a suit checking the markets on his phone at his desk" loading="lazy" decoding="async" width="1076" height="1440"></div>
+        <div class="pe-figure-card" aria-hidden="true">
+          <span class="pe-figure-card-ic">$</span>
+          <span class="pe-figure-card-txt"><b>$30,225.00</b><small>Total balance</small></span>
+          <span class="pe-figure-card-delta">+$139.00</span>
+        </div>
       </div>
     </div>
   </div>
@@ -958,6 +973,6 @@
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=pb06" defer></script>
+<script src="assets/js/main.min.js?v=pb09" defer></script>
 </body>
 </html>
