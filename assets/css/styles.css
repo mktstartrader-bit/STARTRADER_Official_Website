@@ -5996,3 +5996,51 @@ a.cat-pager-btn:hover{transform:translateY(-2px);border-color:rgba(0,71,187,.4);
   .cat-pager-step{padding:0;width:44px}
   .cat-pager-step span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 }
+
+/* ===== PRODUCT STATEMENT BENTO - CLEAN GROUND (appended batch, 2026-09-24) =====
+   The statement sections sat on four coloured radial glows over a three-shade
+   gradient; the frosted cards blurred those glows into patchy tints. One flat
+   light ground now, the same #F4F7FB as the MT5 "Beyond the classic" section,
+   and the cards become plain white glass with a hairline edge. */
+.pd-glass{background:#F4F7FB;
+  --pdg-fill:rgba(255,255,255,.86);
+  --pdg-edge:rgba(16,40,90,.07);
+  --pdg-cast:0 24px 48px -32px rgba(12,28,70,.22)}
+.pd-glass .pd-bento-card::before{background:linear-gradient(140deg,rgba(255,255,255,.6),rgba(255,255,255,0) 38%)}
+
+/* ===== MEGA MENU MEETS THE BAR WITHOUT A SEAM (appended batch, 2026-09-24) =====
+   The menu row measured 40.47px, so the bar came out 72.47px and every edge under
+   it landed on a half pixel. The header glass (::before) ended at y+.47 and the
+   panel began at the same y+.47: that shared pixel was half-covered by each
+   translucent layer, and the page showed through as a 1px bright line (on light
+   pages its content read as tick marks). The two layers also carried different
+   tints and blurs (.82/30px against .76/52px), so there was a shade step too.
+   A whole-pixel row puts both edges on the pixel grid, and while a menu is open
+   the bar takes the panel's own glass so the two read as one sheet. */
+.site-header .nav-menu{height:40px}
+.site-header:has(.nav-item.has-mega:hover)::before,
+.site-header:has(.nav-item.has-mega:focus-within)::before,
+.site-header:has(.nav-item.has-mega.is-open)::before{
+  background:rgba(6,10,18,.76);
+  -webkit-backdrop-filter:blur(52px) saturate(1.7);backdrop-filter:blur(52px) saturate(1.7);
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))){
+  .site-header:has(.nav-item.has-mega:hover)::before,
+  .site-header:has(.nav-item.has-mega:focus-within)::before,
+  .site-header:has(.nav-item.has-mega.is-open)::before{background:#070a12}
+}
+
+/* ===== MEGA MENU PANEL GOES SOLID (appended batch, 2026-09-24) =====
+   At .76 the panel let the page underneath read through: dark cards, images and
+   section edges showed up inside the menu as soft blocks and rectangles, which
+   looked like broken layout. The panel is now a near-solid surface in the same
+   hue, so the menu reads as one clean sheet whatever page it opens over. */
+.mega,.mega--center{background:rgba(12,16,26,.97)}
+/* fully solid: at .97 the page still ghosted through faintly. While a menu is
+   open the bar takes the same solid colour, so bar and panel are one surface
+   with no tone step (and no half-pixel seam where the page shows through). */
+.mega,.mega--center{background:#0c101a;-webkit-backdrop-filter:none;backdrop-filter:none}
+.site-header .nav-menu{height:40px}
+.site-header:has(.nav-item.has-mega:hover)::before,
+.site-header:has(.nav-item.has-mega:focus-within)::before,
+.site-header:has(.nav-item.has-mega.is-open)::before{background:#0c101a;-webkit-backdrop-filter:none;backdrop-filter:none}
