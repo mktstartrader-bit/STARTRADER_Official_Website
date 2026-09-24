@@ -4940,6 +4940,107 @@
     });
   }
 
+  /* ---------------- Category archives: numbered pagination ----------------
+     [data-pager] lists page through their cards, data-page-size at a time, with
+     numbered links (1 2 3 ... Prev / Next) built into [data-pager-nav]. Nothing
+     is built for a list that fits on one page. Every card stays in the markup,
+     so crawlers and visitors without JavaScript still get the whole archive;
+     this only hides the cards off the current page. Links are real ?page=N
+     URLs, so a page can be shared or opened in a new tab, and the back button
+     steps between pages. */
+  function initPager() {
+    var roots = [].slice.call(document.querySelectorAll('[data-pager]'));
+    roots.forEach(function (root) {
+      var items = [].slice.call(root.querySelectorAll(root.getAttribute('data-pager')));
+      var nav = root.querySelector('[data-pager-nav]');
+      var SIZE = parseInt(root.getAttribute('data-page-size'), 10) || 6;
+      var pages = Math.ceil(items.length / SIZE);
+      if (!nav || pages < 2) return;
+      var current = 0;
+      var file = location.pathname.split('/').pop() || 'index.html';
+
+      function readPage() {
+        var m = /[?&]page=(\d+)/.exec(location.search);
+        var n = m ? parseInt(m[1], 10) : 1;
+        return Math.min(Math.max(n || 1, 1), pages);
+      }
+      // keeps any other query parameters (campaign tags) and drops page=1
+      function href(n) {
+        var keep = location.search.replace(/^\?/, '').split('&').filter(function (p) {
+          return p && p.indexOf('page=') !== 0;
+        });
+        if (n > 1) keep.push('page=' + n);
+        return file + (keep.length ? '?' + keep.join('&') : '') + (root.id ? '#' + root.id : '');
+      }
+      // every number when there are few pages; otherwise 1 ... n-1 n n+1 ... last
+      function numbers() {
+        var out = [], i;
+        if (pages <= 7) { for (i = 1; i <= pages; i++) out.push(i); return out; }
+        var a = Math.max(2, current - 1), b = Math.min(pages - 1, current + 1);
+        out.push(1);
+        if (a > 2) out.push(0);
+        for (i = a; i <= b; i++) out.push(i);
+        if (b < pages - 1) out.push(0);
+        out.push(pages);
+        return out;
+      }
+      function step(dir, n, enabled) {
+        var icon = '<svg aria-hidden="true"><use href="#i-chevron-' + (dir === 'prev' ? 'left' : 'right') + '"/></svg>';
+        var word = '<span>' + (dir === 'prev' ? 'Prev' : 'Next') + '</span>';
+        var inner = dir === 'prev' ? icon + word : word + icon;
+        var name = dir === 'prev' ? 'Previous page' : 'Next page';
+        if (!enabled) return '<li><span class="cat-pager-btn cat-pager-step" aria-disabled="true" aria-label="' + name + '">' + inner + '</span></li>';
+        return '<li><a class="cat-pager-btn cat-pager-step" href="' + href(n) + '" data-page="' + n + '" rel="' + dir + '" aria-label="' + name + '">' + inner + '</a></li>';
+      }
+      function render() {
+        var html = '<ul class="cat-pager-list">' + step('prev', current - 1, current > 1);
+        numbers().forEach(function (n) {
+          if (!n) { html += '<li class="cat-pager-gap" aria-hidden="true">&hellip;</li>'; return; }
+          html += '<li><a class="cat-pager-btn" href="' + href(n) + '" data-page="' + n + '" aria-label="Page ' + n + '"' +
+            (n === current ? ' aria-current="page"' : '') + '>' + n + '</a></li>';
+        });
+        html += step('next', current + 1, current < pages) + '</ul>';
+        var from = (current - 1) * SIZE + 1, to = Math.min(current * SIZE, items.length);
+        html += '<p class="cat-pager-status" aria-live="polite">Showing ' + (from === to ? from : from + '&ndash;' + to) +
+          ' of ' + items.length + ' articles</p>';
+        nav.innerHTML = html;
+      }
+      function show(n, how) {
+        current = n;
+        items.forEach(function (el, i) { el.hidden = i < (n - 1) * SIZE || i >= n * SIZE; });
+        render();
+        if (how === 'push') history.pushState({ pager: n }, '', href(n));
+        if (how !== 'init') {
+          // back to the top of the list, clear of the sticky header
+          var header = document.querySelector('.site-header');
+          var off = header ? header.getBoundingClientRect().bottom : 0;
+          var top = root.getBoundingClientRect().top + window.pageYOffset - off;
+          window.scrollTo({ top: top, behavior: prefersReduced ? 'auto' : 'smooth' });
+          var first = items[(n - 1) * SIZE];
+          var link = first && (first.querySelector('h3 a') || first);
+          if (link) link.focus({ preventScroll: true });
+        }
+        if (hasST) ScrollTrigger.refresh();
+      }
+
+      nav.addEventListener('click', function (e) {
+        var a = e.target.closest('a[data-page]');
+        if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        e.preventDefault();
+        var n = parseInt(a.getAttribute('data-page'), 10);
+        if (n !== current) show(n, 'push');
+      });
+      window.addEventListener('popstate', function () {
+        var n = readPage();
+        if (n !== current) show(n, 'pop');
+      });
+
+      nav.hidden = false;
+      show(readPage(), 'init');
+      stripAosHidden(items);
+    });
+  }
+
   /* ---------------- Help centre topic search ---------------- */
   function initHelpCentre() {
     var input = document.getElementById('hcSearch');
@@ -6538,6 +6639,7 @@
     initBannerFilms();
     initVideoModal();
     initLoadMore();
+    initPager();
     initHelpCentre();
     initTelemetry();
     initMtRail();
