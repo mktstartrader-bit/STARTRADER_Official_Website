@@ -6044,3 +6044,10 @@ a.cat-pager-btn:hover{transform:translateY(-2px);border-color:rgba(0,71,187,.4);
 .site-header:has(.nav-item.has-mega:hover)::before,
 .site-header:has(.nav-item.has-mega:focus-within)::before,
 .site-header:has(.nav-item.has-mega.is-open)::before{background:#0c101a;-webkit-backdrop-filter:none;backdrop-filter:none}
+
+/* ===== CURRENT PAGE IN THE MENU (appended batch, 2026-09-24) =====
+   main.js initCurrentNav() marks the link to the page in view with .is-current;
+   .mega-item.is-current already carries the highlight, so these cover the
+   flyout, sub-list and mobile-menu links that had no current state. */
+.fly-group a.is-current,.fly-group h5 a.is-current,.fly-title-link.is-current,.mega-subitems a.is-current{color:#5b9dff}
+.mobile-menu a.is-current{color:#5b9dff}

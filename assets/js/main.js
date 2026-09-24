@@ -198,6 +198,40 @@
     track.addEventListener('mouseleave', function () { tween.timeScale(1); });
   }
 
+  /* ---------------- Current page in the menu ----------------
+     Marks the link to the page being viewed, instead of a class baked into each
+     template (copied pages kept the Forex or Education highlight). Every menu link
+     is compared by resolved path; a match inside a flyout also marks its parent,
+     and a match in a sub-list marks its toggle, so the right branch reads as open. */
+  function initCurrentNav() {
+    var norm = function (p) {
+      p = (p || '').split('#')[0].split('?')[0].replace(/\/index\.html$/, '/').replace(/\.html$/, '');
+      return p.replace(/\/$/, '') || '/';
+    };
+    var here = norm(window.location.pathname);
+    var links = document.querySelectorAll('.nav-menu a[href], .mobile-menu a[href]');
+    [].forEach.call(links, function (a) {
+      var href = a.getAttribute('href');
+      if (!href || href.charAt(0) === '#' || /^(mailto|tel|javascript):/i.test(href)) return;
+      var u;
+      try { u = new URL(href, window.location.href); } catch (e) { return; }
+      if (u.origin !== window.location.origin || norm(u.pathname) !== here) return;
+      a.classList.add('is-current');
+      a.setAttribute('aria-current', 'page');
+      var panel = a.closest('.fly-inner[data-fly-panel]');
+      if (panel) {
+        var parent = document.querySelector('.mega-item-parent[data-fly="' + panel.getAttribute('data-fly-panel') + '"]');
+        if (parent) parent.classList.add('is-current');
+      }
+      var sub = a.closest('.mega-subitems');
+      if (sub && sub.previousElementSibling && sub.previousElementSibling.classList.contains('mega-sub-toggle')) {
+        sub.previousElementSibling.classList.add('is-current');
+      }
+      var item = a.closest('.nav-item');
+      if (item) { var top = item.querySelector('.nav-link'); if (top) top.classList.add('is-current'); }
+    });
+  }
+
   /* ---------------- Header behaviour ---------------- */
   function initHeader() {
     var header = document.getElementById('siteHeader');
@@ -6595,6 +6629,7 @@
     initLenis();
     buildTicker();
     initHeader();
+    initCurrentNav();
     initSmartBanner();
     initMobileMenu();
     initAnchors();
