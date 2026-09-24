@@ -32,9 +32,11 @@
 
   <!-- Fonts (self-hosted) -->
   <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/img/cm-hero-banner-v5.webp" as="image" type="image/webp" media="(min-width:981px)" fetchpriority="high" />
+  <link rel="preload" href="assets/img/cm-hero-banner-portrait-v5.webp" as="image" type="image/webp" media="(max-width:980px)" fetchpriority="high" />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb05" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb06" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* ================= LEARN CARD (shared: dark takeaway card) ================= */
@@ -90,6 +92,44 @@
 .cm-acc-row.is-on i{border-color:var(--blue);background:var(--blue);box-shadow:0 0 0 4px rgba(0,71,187,.12)}
 .cm-acc-row.is-on i::after{opacity:1}
 @media (max-width:900px){.learn-card{grid-template-columns:1fr;gap:22px}}
+/* ---------- commodities hero: a still banner, not footage ----------
+   Same treatment and framing as the forex hero, with its own artwork after the
+   reference MKT supplied: floating kilo bullion bars lit in warm amber with only a
+   faint cool rim, each die-stamped with its weight and a STARTRADER hallmark. The hallmark is the logo's exact
+   vector outline cut into the bar in the same depth and light as the stamped
+   lettering (the image model only rendered the bars). Desktop art carries its own dark left side, so the copy
+   sits there with no scrim. It is sized and framed exactly like the forex
+   banner (2560x1432, full-bleed cover): all three bars sit within 17-85% of the
+   height, inside what the crop keeps even at 1920; blue is kept to a faint rim. The image starts at --nav-h: the header is transparent and the
+   hero is pulled up beneath it, so inset:0 would hide the top of the art behind
+   the nav links. The hero's ground is the art's own edge tone, so the strip
+   behind the header reads as part of the image. */
+.fx-hero{background:#050711}
+.fx-hero-banner{position:absolute;top:var(--nav-h);left:0;right:0;width:100%;height:calc(100% - var(--nav-h));object-fit:cover;object-position:62% center;z-index:-2}
+@media (max-width:980px){
+  /* the art is the full-bleed background and the copy sits over its clear lower
+     half; a portrait render is served because the 16:9 frame cropped to portrait
+     loses the column. As on CFD, the art is sized by width and the copy starts
+     where the subject ends: the lowest bar ends at 51.6% of the art's
+     height, i.e. 0.516 x 1807/1200 = 77.7% of the width, so 78vw plus a 28px
+     breath. The art's lower half is its own ground, the same as the hero's. */
+  .fx-hero{background:#04060f;display:flex;flex-direction:column;justify-content:flex-start;
+    text-align:left;min-height:0;
+    padding:calc(var(--nav-h) + 78vw + 28px) 0 44px}
+  .fx-hero-banner{position:absolute;top:var(--nav-h);left:0;right:0;bottom:auto;
+    width:100%;height:auto;aspect-ratio:1200/1807;margin:0;order:0;
+    object-fit:cover;object-position:center top}
+  /* the scrim fades the ground into the top of the art so the strip behind the
+     transparent header meets it invisibly, and keeps a dark base under the copy */
+  .fx-hero .acct-hero-bg::after{background:
+    linear-gradient(180deg,#04060f 0%,#04060f 3%,rgba(4,6,15,0) 9%),
+    linear-gradient(0deg,#04060f 0%,rgba(4,6,15,.86) 20%,rgba(4,6,15,0) 46%)}
+  .fx-hero-copy-wrap{position:relative;z-index:2}
+  .fx-hero-copy{max-width:none;margin:0;text-align:left}
+  .fx-hero .acct-hero-sub{margin-inline:0;max-width:34ch}
+  /* the shared sheet centres this hero's CTA on mobile; it follows the copy */
+  .fx-hero .acct-hero-cta{justify-content:flex-start}
+}
   </style>
 
   <!-- Structured data -->
@@ -108,12 +148,6 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      {"@type": "Question", "name": "What is commodity trading and how does it work?", "acceptedAnswer": {"@type": "Answer", "text": "Commodity trading is speculating on the price of raw materials — metals such as gold and copper, energies such as crude oil and natural gas, and agricultural products such as wheat and coffee. With CFDs you never take delivery of the physical goods: you open a position on the price direction, go long or short, and settle the difference in cash when you close."}},
-      {"@type": "Question", "name": "Which commodities can I trade with STARTRADER?", "acceptedAnswer": {"@type": "Answer", "text": "You can trade 25+ commodity CFDs across three sectors — metals (gold, silver, platinum, palladium and copper), energies (WTI, Brent and natural gas) and agriculture (wheat, corn, coffee, sugar, cocoa and soybeans) — all on MT4, MT5 and the STAR platforms."}},
-      {"@type": "Question", "name": "What are the trading hours for commodities?", "acceptedAnswer": {"@type": "Answer", "text": "Metals and energies trade almost 24 hours a day, five days a week, with a short daily break. Agricultural markets follow their exchange sessions and are open for a shorter window each day. Exact hours per instrument are shown in the platform's contract specifications."}},
-      {"@type": "Question", "name": "What leverage is available on commodities?", "acceptedAnswer": {"@type": "Answer", "text": "Flexible leverage is available up to 1:1000, letting you take a larger position with less capital. Higher leverage magnifies losses as well as gains, so use stop-losses and size positions carefully. Leverage above 1:30 may not be available in certain regions due to regulatory restrictions."}},
-      {"@type": "Question", "name": "Which platform features help with commodity trading?", "acceptedAnswer": {"@type": "Answer", "text": "Real-time pricing, interactive charts and technical analysis tools, a live news feed, market, limit and stop orders, stop-loss and take-profit levels, portfolio tracking, custom price alerts and a demo mode for practising strategies risk-free — all available on desktop, web and mobile."}},
-      {"@type": "Question", "name": "Are commodities a good hedge against inflation?", "acceptedAnswer": {"@type": "Answer", "text": "Hard assets such as gold and oil have historically held value during inflationary periods, which is why many traders use them to balance a portfolio. Past performance is never a guarantee of future results, and commodity prices can be volatile — so treat any hedge as one part of a wider risk-management plan."}},
       {"@type": "Question", "name": "How can I start commodity trading using the STARTRADER app?", "acceptedAnswer": {"@type": "Answer", "text": "To commence trading using the STARTRADER app, one of the best commodity trading apps available, you need to go through the following steps: Go to your device’s app store and download the STARTRADER app. Install and open the application on your device. Fill out your personal information that is required as registration for an account. Complete KYC (Know Your Customer) by submitting necessary documents. Deposit funds in your account using various payment options provided in the app. Familiarize yourself with how the app looks and feels like. Use the various tools provided to study different commodities and trends in markets. Start with small trades to gain experience and confidence. Gradually, raise your trading volume as you become more comfortable with the app. You should take advantage of these resources from the app and even use its demo trading feature to enhance your skills. In order to facilitate easy maneuverability through the complex world of commodity trading, STARTRADER provides the best commodity market app that offers an user-friendly interface, real-time market data, advanced trading tools and many more features."}},
       {"@type": "Question", "name": "What features does the STARTRADER app offer for commodity trading?", "acceptedAnswer": {"@type": "Answer", "text": "The STARTRADER app, the first-rate commodity market app, offers multiple features for trading commodities such as: Real-time market data: You can look up current prices and where they are heading to in just fractions of a second. Live charts and technical analysis tools: These charts are interactive hence enabling you to study price movements and trends. News feed: Commodity traders get real-time updates on market trends and news. Order placement: You can place various types of orders including market orders, limit orders and order stops. Portfolio tracking: Monitor your positions as well as overall performance in real time. Risk management tools: Manage your risk exposure by placing stop-loss and take-profit levels. Alerts and notifications: Users receive alerts customized for price changes as well as market events. Virtual trading: Practice trading strategies risk-free with a commodity virtual trading app/demo account feature. Multi-commodity support: This includes energy products or even agricultural goods. Mobile optimization: Enjoy a smooth trading experience on any device of your choice. Account management: Easily deposit and withdraw funds, view transaction history, and generate reports. These features make STARTRADER a comprehensive commodity market app for both beginners and experienced traders."}},
       {"@type": "Question", "name": "How do I open a commodity trading account with STARTRADER?", "acceptedAnswer": {"@type": "Answer", "text": "To open commodity trading account with STARTRADER, you have to follow these steps: Install the STARTRADER app. Click on the “Open Account” or “Sign Up” option. Fill in the online application form with your personal details. Provide your documents of identification for KYC verification (e.g., national ID, proof of residence). Financial details including income, net worth and trading experience must be completed. Agree to the terms and conditions in the commodity account opening agreement. Submit application for review. Once approved, fund your account by using one of the available payment methods. The commodity account opening process with STARTRADER is designed to be straightforward and user-friendly, allowing you to start trading quickly and efficiently."}},
@@ -424,9 +458,10 @@
 
 <!-- ============ HERO ============ -->
 <section class="acct-hero fx-hero cm-hero" aria-labelledby="cm-hero-title">
-  <video class="acct-hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/img/products-video-poster.webp" aria-hidden="true">
-    <source src="assets/video/products-banner.mp4" type="video/mp4">
-  </video>
+  <picture>
+    <source media="(max-width:980px)" srcset="assets/img/cm-hero-banner-portrait-v5.webp" width="1200" height="1807">
+    <img class="fx-hero-banner" src="assets/img/cm-hero-banner-v5.webp" alt="Floating kilo bullion bars stamped 1 KILO GOLD 999.9, each carrying a STARTRADER star hallmark, lit in warm amber" width="2560" height="1432" fetchpriority="high" decoding="async">
+  </picture>
   <div class="acct-hero-bg" aria-hidden="true"></div>
   <div class="container fx-hero-copy-wrap">
     <div class="fx-hero-copy">
@@ -766,30 +801,6 @@
     </div>
     <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
-        <summary>What is commodity trading and how does it work?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Commodity trading is speculating on the price of raw materials — metals such as gold and copper, energies such as crude oil and natural gas, and agricultural products such as wheat and coffee. With CFDs you never take delivery of the physical goods: you open a position on the price direction, go long or short, and settle the difference in cash when you close.</div>
-      </details>
-      <details class="faq-item">
-        <summary>Which commodities can I trade with STARTRADER?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">You can trade 25+ commodity CFDs across three sectors — metals (gold, silver, platinum, palladium and copper), energies (WTI, Brent and natural gas) and agriculture (wheat, corn, coffee, sugar, cocoa and soybeans) — all on MT4, MT5 and the STAR platforms.</div>
-      </details>
-      <details class="faq-item">
-        <summary>What are the trading hours for commodities?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Metals and energies trade almost 24 hours a day, five days a week, with a short daily break. Agricultural markets follow their exchange sessions and are open for a shorter window each day. Exact hours per instrument are shown in the platform's contract specifications.</div>
-      </details>
-      <details class="faq-item">
-        <summary>What leverage is available on commodities?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Flexible leverage is available up to 1:1000, letting you take a larger position with less capital. Higher leverage magnifies losses as well as gains, so use stop-losses and size positions carefully. Leverage above 1:30 may not be available in certain regions due to regulatory restrictions.</div>
-      </details>
-      <details class="faq-item">
-        <summary>Which platform features help with commodity trading?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Real-time pricing, interactive charts and technical analysis tools, a live news feed, market, limit and stop orders, stop-loss and take-profit levels, portfolio tracking, custom price alerts and a demo mode for practising strategies risk-free — all available on desktop, web and mobile.</div>
-      </details>
-      <details class="faq-item">
-        <summary>Are commodities a good hedge against inflation?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Hard assets such as gold and oil have historically held value during inflationary periods, which is why many traders use them to balance a portfolio. Past performance is never a guarantee of future results, and commodity prices can be volatile — so treat any hedge as one part of a wider risk-management plan.</div>
-      </details>
-      <details class="faq-item">
         <summary>How can I start commodity trading using the STARTRADER app?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a"><p>To commence trading using the STARTRADER app, one of the best commodity trading apps available, you need to go through the following steps:</p><ul><li>Go to your device’s app store and download the STARTRADER app.</li><li>Install and open the application on your device.</li><li>Fill out your personal information that is required as registration for an account.</li><li>Complete KYC (Know Your Customer) by submitting necessary documents.</li><li>Deposit funds in your account using various payment options provided in the app.</li><li>Familiarize yourself with how the app looks and feels like.</li><li>Use the various tools provided to study different commodities and trends in markets.</li><li>Start with small trades to gain experience and confidence.</li><li>Gradually, raise your trading volume as you become more comfortable with the app.</li><li>You should take advantage of these resources from the app and even use its demo trading feature to enhance your skills.</li><li>In order to facilitate easy maneuverability through the complex world of commodity trading, STARTRADER provides the best commodity market app that offers an user-friendly interface, real-time market data, advanced trading tools and many more features.</li></ul></div>
       </details>
@@ -944,6 +955,6 @@
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=pb05" defer></script>
+<script src="assets/js/main.min.js?v=pb06" defer></script>
 </body>
 </html>

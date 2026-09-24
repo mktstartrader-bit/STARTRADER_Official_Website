@@ -31,9 +31,49 @@
 
   <!-- Fonts (self-hosted) -->
   <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/img/ix-hero-banner-v3.webp" as="image" type="image/webp" media="(min-width:981px)" fetchpriority="high" />
+  <link rel="preload" href="assets/img/ix-hero-banner-portrait-v3.webp" as="image" type="image/webp" media="(max-width:980px)" fetchpriority="high" />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb05" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb06" />
+
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ---------- indices hero: a still banner, not footage ----------
+   Same treatment and framing as the forex hero (2560x1432, full-bleed cover),
+   with its own artwork, after the reference MKT supplied: six identical smoky
+   glass index cards turned to one angle, each with its name and ticker, one lit
+   in brand blue, each carrying its market's flag as a round badge set at the
+   card's own angle (flags rather than the index providers' trademarked logos). The cards hang from cords that run off the top edge, so the crop is
+   weighted to the top (20%): the cords never break and the cards, composed into
+   the top 11-73% of the art, stay whole to 1920 and beyond. */
+.fx-hero{background:#030712}
+.fx-hero-banner{position:absolute;top:var(--nav-h);left:0;right:0;width:100%;height:calc(100% - var(--nav-h));object-fit:cover;object-position:62% 20%;z-index:-2}
+@media (max-width:980px){
+  /* the art is the full-bleed background and the copy sits over its clear lower
+     half; a portrait render is served because the 16:9 frame cropped to portrait
+     loses most of the tiles. The art is sized by width and the copy starts where
+     the cards end: the lowest card finishes at 65.1% of the art's height, i.e.
+     0.651 x 1807/1200 = 98% of the width, so 98vw plus a 28px breath. The
+     art's lower half is its own ground, the same as the hero's. */
+  .fx-hero{background:#050a19;display:flex;flex-direction:column;justify-content:flex-start;
+    text-align:left;min-height:0;
+    padding:calc(var(--nav-h) + 98vw + 28px) 0 44px}
+  .fx-hero-banner{position:absolute;top:var(--nav-h);left:0;right:0;bottom:auto;
+    width:100%;height:auto;aspect-ratio:1200/1807;margin:0;order:0;
+    object-fit:cover;object-position:center top}
+  /* the scrim meets the strip behind the header to the top of the art, and
+     keeps a dark base under the copy */
+  .fx-hero .acct-hero-bg::after{background:
+    linear-gradient(180deg,#050a19 0%,#050a19 2%,rgba(5,10,25,0) 7%),
+    linear-gradient(0deg,#050a19 0%,rgba(5,10,25,.86) 20%,rgba(5,10,25,0) 46%)}
+  .fx-hero-copy-wrap{position:relative;z-index:2}
+  .fx-hero-copy{max-width:none;margin:0;text-align:left}
+  .fx-hero .acct-hero-sub{margin-inline:0;max-width:34ch}
+  /* the shared sheet centres this hero's CTA on mobile; it follows the copy */
+  .fx-hero .acct-hero-cta{justify-content:flex-start}
+}
+  </style>
 
   <!-- Structured data -->
   <script type="application/ld+json">
@@ -51,11 +91,6 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      {"@type": "Question", "name": "What is index trading?", "acceptedAnswer": {"@type": "Answer", "text": "You trade a CFD on the index level rather than buying every constituent. A position on US500 rises and falls with the basket as a whole, so one company’s bad day matters far less than it would on a single share."}},
-      {"@type": "Question", "name": "Which indices can I trade?", "acceptedAnswer": {"@type": "Answer", "text": "More than twenty across the Americas, Europe and Asia-Pacific — including US30, US500, NAS100, GER40, UK100, FRA40, JPN225, HK50 and AUS200."}},
-      {"@type": "Question", "name": "When are indices tradable?", "acceptedAnswer": {"@type": "Answer", "text": "Most index CFDs quote nearly around the clock on weekdays, pausing for a short daily break and around the underlying exchange’s auctions. Liquidity is deepest while the home market is open."}},
-      {"@type": "Question", "name": "Is there an expiry?", "acceptedAnswer": {"@type": "Answer", "text": "No. Our index CFDs are cash instruments, so there is no contract to roll. Positions held overnight carry a financing adjustment instead."}},
-      {"@type": "Question", "name": "What leverage applies?", "acceptedAnswer": {"@type": "Answer", "text": "Up to 1:1000 on eligible accounts, though index volatility means a smaller multiple is usually the wiser choice. Restrictions apply in some jurisdictions."}},
       {"@type": "Question", "name": "What is indices trading?", "acceptedAnswer": {"@type": "Answer", "text": "Trading indices is a well-liked way of participating in the financial market where speculators have a chance to invest in the general direction of an array of stocks. With an indices trading platform, users are allowed to engage in multiple companies under one index like the S&P 500 or FTSE 100. Instead of individual stocks, this form of trading works by following changes in prices for the whole index, as a single unit. The trading usually happens through Contract for Difference (CFDs) that allows you to trade with leverage and margin, which may magnify losses or gains. By going short or long on the index, traders can potentially gain profit or loss from both upward and downward markets."}},
       {"@type": "Question", "name": "What indices can I trade on your platform?", "acceptedAnswer": {"@type": "Answer", "text": "Our platform offers a wide range of indices trading online. These include major US indices such as the Dow Jones Industrial Average, SPX500, NAS100, AUS200, JPN225, US30 among many other indices. Also available are emerging market indices, enabling investors to take advantage of different economies and sectors."}},
       {"@type": "Question", "name": "What are the trading hours for the indices available on your platform?", "acceptedAnswer": {"@type": "Answer", "text": "Depending on the index and its home jurisdiction, trading hours for indices trading online may differ. Generally, many of the major indices can be traded during stock exchange hours in their respective countries. For instance, American indices are usually available for trading from 9:30 a.m. to 4:00 p.m. Eastern Time, while European indices follow local market timings. Our platform also offers extended or even full week (24/5) trading on particular indices which is very convenient for investment."}},
@@ -368,9 +403,10 @@
 
 <!-- ============ HERO ============ -->
 <section class="acct-hero fx-hero" aria-labelledby="pd-hero-title">
-  <video class="acct-hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/img/products-video-poster.webp" aria-hidden="true">
-    <source src="assets/video/products-banner.mp4" type="video/mp4">
-  </video>
+  <picture>
+    <source media="(max-width:980px)" srcset="assets/img/ix-hero-banner-portrait-v3.webp" width="1200" height="1807">
+    <img class="fx-hero-banner" src="assets/img/ix-hero-banner-v3.webp" alt="Smoky glass cards for the S&amp;P 500, NASDAQ 100, Dow Jones, DAX, FTSE 100 and NIKKEI 225, each with its ticker and its market's flag, hanging on fine cords" width="2560" height="1432" fetchpriority="high" decoding="async">
+  </picture>
   <div class="acct-hero-bg" aria-hidden="true"></div>
   <div class="container fx-hero-copy-wrap">
     <div class="fx-hero-copy">
@@ -620,26 +656,6 @@
     </div>
     <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
-        <summary>What is index trading?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">You trade a CFD on the index level rather than buying every constituent. A position on US500 rises and falls with the basket as a whole, so one company&rsquo;s bad day matters far less than it would on a single share.</div>
-      </details>
-      <details class="faq-item">
-        <summary>Which indices can I trade?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">More than twenty across the Americas, Europe and Asia-Pacific — including US30, US500, NAS100, GER40, UK100, FRA40, JPN225, HK50 and AUS200.</div>
-      </details>
-      <details class="faq-item">
-        <summary>When are indices tradable?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Most index CFDs quote nearly around the clock on weekdays, pausing for a short daily break and around the underlying exchange&rsquo;s auctions. Liquidity is deepest while the home market is open.</div>
-      </details>
-      <details class="faq-item">
-        <summary>Is there an expiry?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">No. Our index CFDs are cash instruments, so there is no contract to roll. Positions held overnight carry a financing adjustment instead.</div>
-      </details>
-      <details class="faq-item">
-        <summary>What leverage applies?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Up to 1:1000 on eligible accounts, though index volatility means a smaller multiple is usually the wiser choice. Restrictions apply in some jurisdictions.</div>
-      </details>
-      <details class="faq-item">
         <summary>What is indices trading?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a"><p>Trading indices is a well-liked way of participating in the financial market where speculators have a chance to invest in the general direction of an array of stocks. With an indices trading platform, users are allowed to engage in multiple companies under one index like the S&amp;P 500 or FTSE 100.</p><p>Instead of individual stocks, this form of trading works by following changes in prices for the whole index, as a single unit. The trading usually happens through Contract for Difference (CFDs) that allows you to trade with leverage and margin, which may magnify losses or gains. By going short or long on the index, traders can potentially gain profit or loss from both upward and downward markets.</p></div>
       </details>
@@ -806,6 +822,6 @@
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=pb05" defer></script>
+<script src="assets/js/main.min.js?v=pb06" defer></script>
 </body>
 </html>

@@ -32,11 +32,11 @@
 
   <!-- Fonts (self-hosted) -->
   <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="assets/img/fx-hero-banner.webp" as="image" type="image/webp" media="(min-width:981px)" fetchpriority="high" />
-  <link rel="preload" href="assets/img/fx-hero-banner-portrait.webp" as="image" type="image/webp" media="(max-width:980px)" fetchpriority="high" />
+  <link rel="preload" href="assets/img/fx-hero-banner-v4.webp" as="image" type="image/webp" media="(min-width:981px)" fetchpriority="high" />
+  <link rel="preload" href="assets/img/fx-hero-banner-portrait-v4.webp" as="image" type="image/webp" media="(max-width:980px)" fetchpriority="high" />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb05" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb06" />
 
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
@@ -48,26 +48,30 @@
    inset:0 hid the top of the composition behind the nav links.
    The hero's ground is set to the artwork's own tone so the strip behind the
    transparent header reads as part of the image, not a band above it. */
-.fx-hero{background:#0a111d}
+.fx-hero{background:#000613}
 .fx-hero-banner{position:absolute;top:var(--nav-h);left:0;right:0;width:100%;height:calc(100% - var(--nav-h));object-fit:cover;object-position:62% center;z-index:-2}
 @media (max-width:980px){
   /* mobile follows MKT's reference: the art is the full-bleed background and the
      copy sits over its clear lower half, rather than the stacked band the video
      family uses. A portrait crop of the same shoot is served here because the
      16:9 frame cropped to portrait cuts through the plates and the engraving. */
-  .fx-hero{background:#06090f;display:flex;flex-direction:column;justify-content:flex-end;
-    text-align:left;min-height:660px;min-height:clamp(640px,90svh,800px);
-    padding:calc(var(--nav-h) + 24px) 0 44px}
-  .fx-hero-banner{position:absolute;top:var(--nav-h);left:0;right:0;bottom:0;
-    width:100%;height:calc(100% - var(--nav-h));aspect-ratio:auto;margin:0;order:0;
+  /* sized by width, with the copy starting where the slabs end (their lower
+     edge sits at 49% of the art's height, 0.49 x 1807/1200 = 73.8% of the width,
+     so 74vw plus a 28px breath). The fixed min-height this hero used to take let
+     the copy climb into the slabs at 350px and on every tablet. */
+  .fx-hero{background:#000613;display:flex;flex-direction:column;justify-content:flex-start;
+    text-align:left;min-height:0;
+    padding:calc(var(--nav-h) + 74vw + 28px) 0 44px}
+  .fx-hero-banner{position:absolute;top:var(--nav-h);left:0;right:0;bottom:auto;
+    width:100%;height:auto;aspect-ratio:1200/1807;margin:0;order:0;
     object-fit:cover;object-position:center top}
   /* the portrait art's top edge is #1f2937, lighter than the strip behind the
      transparent header, which left a visible step where the image began. The
      hero's existing scrim element (unused on this page) fades the ground colour
      down into the artwork so the two meet invisibly. */
   .fx-hero .acct-hero-bg::after{background:
-    linear-gradient(180deg,#06090f 0%,#06090f 9%,rgba(6,9,15,.78) 15%,rgba(6,9,15,0) 30%),
-    linear-gradient(0deg,#06090f 0%,rgba(6,9,15,.86) 20%,rgba(6,9,15,0) 46%)}
+    linear-gradient(180deg,#000613 0%,#000613 5%,rgba(0,6,19,.72) 10%,rgba(0,6,19,0) 18%),
+    linear-gradient(0deg,#000613 0%,rgba(0,6,19,.86) 20%,rgba(0,6,19,0) 46%)}
   .fx-hero-copy-wrap{position:relative;z-index:2}
   .fx-hero-copy{max-width:none;margin:0;text-align:left}
   .fx-hero .acct-hero-sub{margin-inline:0;max-width:34ch}
@@ -407,8 +411,8 @@
 <!-- ============ HERO ============ -->
 <section class="acct-hero fx-hero" aria-labelledby="fx-hero-title">
   <picture>
-    <source media="(max-width:980px)" srcset="assets/img/fx-hero-banner-portrait.webp" width="1200" height="1786">
-    <img class="fx-hero-banner" src="assets/img/fx-hero-banner.webp" alt="Two machined metal plates engraved GBP/USD and EUR/USD, lit by a turquoise seam of light" width="2560" height="1432" fetchpriority="high" decoding="async">
+    <source media="(max-width:980px)" srcset="assets/img/fx-hero-banner-portrait-v4.webp" width="1200" height="1807">
+    <img class="fx-hero-banner" src="assets/img/fx-hero-banner-v4.webp" alt="Two machined metal slabs engraved GBP/USD and EUR/USD with an engraved candlestick chart, lit by a turquoise seam of light" width="2560" height="1432" fetchpriority="high" decoding="async">
   </picture>
   <div class="acct-hero-bg" aria-hidden="true"></div>
   <div class="container fx-hero-copy-wrap">
@@ -915,6 +919,6 @@
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=pb05" defer></script>
+<script src="assets/js/main.min.js?v=pb06" defer></script>
 </body>
 </html>

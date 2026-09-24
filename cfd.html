@@ -31,9 +31,58 @@
 
   <!-- Fonts (self-hosted) -->
   <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/img/cfd-hero-banner-v3.webp" as="image" type="image/webp" media="(min-width:981px)" fetchpriority="high" />
+  <link rel="preload" href="assets/img/cfd-hero-banner-portrait-v3.webp" as="image" type="image/webp" media="(max-width:980px)" fetchpriority="high" />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb05" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb06" />
+
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ---------- cfd hero: a still banner, not footage ----------
+   Same treatment and framing as the forex hero, with its own artwork: a
+   long/short arrow pair engraved US500 and XAU/USD on a basalt plinth with the
+   STARTRADER star carved into the stone itself (the logo's vector outline, cut
+   in the plinth's own material and light rather than inlaid). The art is composed so
+   the whole group sits in the band a cover crop keeps at every desktop width. Desktop art carries its own dark left side, so the copy sits there with no scrim.
+   The image starts at --nav-h rather than the hero's top edge: the header is
+   transparent and the hero is pulled up beneath it, so inset:0 would hide the
+   top of the composition behind the nav links. The hero's ground is the
+   artwork's own top-edge tone, so the strip behind the header reads as part of
+   the image rather than a band above it. */
+.fx-hero{background:#000719}
+.fx-hero-banner{position:absolute;top:var(--nav-h);left:0;right:0;width:100%;height:calc(100% - var(--nav-h));object-fit:cover;object-position:62% center;z-index:-2}
+@media (max-width:980px){
+  /* the art is the full-bleed background and the copy sits over its clear lower
+     half. A portrait render is served here because the 16:9 frame cropped to
+     portrait cuts the arrow pair in half.
+     Forex sizes this hero by a fixed min-height and cover-scales the art to it,
+     which lets the copy ride up into the art wherever the copy runs long for
+     the width (360px, and every tablet). Here the art is sized by width instead,
+     and the copy starts where the art's subject ends: the arrows' reflection
+     fades out at 57.3% of the art's height, i.e. 0.573 x 1807/1200 = 86.3% of
+     the width, so 87vw plus a 28px breath. The art's lower half is its own
+     ground (#01081c), the same as the hero's, so the
+     copy sits over the art or past it with no seam either way. */
+  .fx-hero{background:#01081d;display:flex;flex-direction:column;justify-content:flex-start;
+    text-align:left;min-height:0;
+    padding:calc(var(--nav-h) + 87vw + 28px) 0 44px}
+  .fx-hero-banner{position:absolute;top:var(--nav-h);left:0;right:0;bottom:auto;
+    width:100%;height:auto;aspect-ratio:1200/1807;margin:0;order:0;
+    object-fit:cover;object-position:center top}
+  /* the portrait art's top edge is #000b25, bluer than the strip behind the
+     transparent header; the hero's scrim fades the ground down into the artwork
+     so the two meet invisibly, and keeps a dark base under the copy */
+  .fx-hero .acct-hero-bg::after{background:
+    linear-gradient(180deg,#01081c 0%,#01081c 6%,rgba(1,8,28,.7) 11%,rgba(1,8,28,0) 20%),
+    linear-gradient(0deg,#01081c 0%,rgba(1,8,28,.86) 20%,rgba(1,8,28,0) 46%)}
+  .fx-hero-copy-wrap{position:relative;z-index:2}
+  .fx-hero-copy{max-width:none;margin:0;text-align:left}
+  .fx-hero .acct-hero-sub{margin-inline:0;max-width:34ch}
+  /* the shared sheet centres this hero's CTA on mobile; it follows the copy */
+  .fx-hero .acct-hero-cta{justify-content:flex-start}
+}
+  </style>
 
   <!-- Structured data -->
   <script type="application/ld+json">
@@ -368,9 +417,10 @@
 
 <!-- ============ HERO ============ -->
 <section class="acct-hero fx-hero" aria-labelledby="pd-hero-title">
-  <video class="acct-hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/img/products-video-poster.webp" aria-hidden="true">
-    <source src="assets/video/products-banner.mp4" type="video/mp4">
-  </video>
+  <picture>
+    <source media="(max-width:980px)" srcset="assets/img/cfd-hero-banner-portrait-v3.webp" width="1200" height="1807">
+    <img class="fx-hero-banner" src="assets/img/cfd-hero-banner-v3.webp" alt="Two sculpted graphite arrows engraved US500 and XAU/USD, one pointing up and one down, on a stone plinth carved with the STARTRADER star" width="2560" height="1432" fetchpriority="high" decoding="async">
+  </picture>
   <div class="acct-hero-bg" aria-hidden="true"></div>
   <div class="container fx-hero-copy-wrap">
     <div class="fx-hero-copy">
@@ -835,6 +885,6 @@
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=pb05" defer></script>
+<script src="assets/js/main.min.js?v=pb06" defer></script>
 </body>
 </html>

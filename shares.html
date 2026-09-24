@@ -31,9 +31,44 @@
 
   <!-- Fonts (self-hosted) -->
   <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/img/sh-hero-banner-v1.webp" as="image" type="image/webp" media="(min-width:981px)" fetchpriority="high" />
+  <link rel="preload" href="assets/img/sh-hero-banner-portrait-v1.webp" as="image" type="image/webp" media="(max-width:980px)" fetchpriority="high" />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb05" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb06" />
+
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ---------- shares hero: a still banner, not footage ----------
+   Same treatment and framing as the forex hero (2560x1432, full-bleed cover),
+   with its own artwork: stacks of brushed metal share tokens
+   engraved AMZN, AAPL and TSLA rising like a bar chart, the tallest topped by a
+   blue anodized token. The STARTRADER star is the logo's own vector
+   outline cut into the object's material. The subject sits inside what the
+   cover crop keeps at every desktop width, and the image starts at --nav-h
+   because the header is transparent and the hero is pulled up beneath it. */
+.fx-hero{background:#02080f}
+.fx-hero-banner{position:absolute;top:var(--nav-h);left:0;right:0;width:100%;height:calc(100% - var(--nav-h));object-fit:cover;object-position:62% center;z-index:-2}
+@media (max-width:980px){
+  /* the art is the full-bleed background and the copy sits over its clear lower
+     half; sized by width, the copy starts where the subject ends (49.8% of the
+     art's height, so 76vw plus a 28px breath) */
+  .fx-hero{background:#040710;display:flex;flex-direction:column;justify-content:flex-start;
+    text-align:left;min-height:0;
+    padding:calc(var(--nav-h) + 76vw + 28px) 0 44px}
+  .fx-hero-banner{position:absolute;top:var(--nav-h);left:0;right:0;bottom:auto;
+    width:100%;height:auto;aspect-ratio:1200/1807;margin:0;order:0;
+    object-fit:cover;object-position:center top}
+  .fx-hero .acct-hero-bg::after{background:
+    linear-gradient(180deg,#040710 0%,#040710 3%,rgba(4,7,16,0) 9%),
+    linear-gradient(0deg,#040710 0%,rgba(4,7,16,.86) 20%,rgba(4,7,16,0) 46%)}
+  .fx-hero-copy-wrap{position:relative;z-index:2}
+  .fx-hero-copy{max-width:none;margin:0;text-align:left}
+  .fx-hero .acct-hero-sub{margin-inline:0;max-width:34ch}
+  /* the shared sheet centres this hero's CTA on mobile; it follows the copy */
+  .fx-hero .acct-hero-cta{justify-content:flex-start}
+}
+  </style>
 
   <!-- Structured data -->
   <script type="application/ld+json">
@@ -51,11 +86,6 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      {"@type": "Question", "name": "What is a share CFD?", "acceptedAnswer": {"@type": "Answer", "text": "A contract on a company’s share price rather than the share itself. You take the price move in either direction without owning the stock, and without the settlement and custody that ownership brings."}},
-      {"@type": "Question", "name": "Do I receive dividends?", "acceptedAnswer": {"@type": "Answer", "text": "You do not receive a dividend, but a cash adjustment is applied when the underlying goes ex-dividend — credited on a long position and debited on a short one."}},
-      {"@type": "Question", "name": "Which shares can I trade?", "acceptedAnswer": {"@type": "Answer", "text": "More than a hundred names across US, European and Asian listings, weighted toward the most liquid large caps where the spread stays tight."}},
-      {"@type": "Question", "name": "Do share CFDs have voting rights?", "acceptedAnswer": {"@type": "Answer", "text": "No. A CFD carries no shareholder rights, because there is no share in your name. If voting matters to you, an outright holding is the right instrument."}},
-      {"@type": "Question", "name": "When can I trade them?", "acceptedAnswer": {"@type": "Answer", "text": "During the underlying exchange’s hours. US names quote through the US session, European names through the European session, and the spread widens near the open and the close."}},
       {"@type": "Question", "name": "What is online share trading?", "acceptedAnswer": {"@type": "Answer", "text": "Online share trading or online stock trading is a way of trading the shares of publicly traded companies through an online platform. This method of stock investment allows any individual to trade the stocks from the comforts of their home without going to a stock brokerage. Key points: Employs the use of information technology in transaction of shares Provides segmentation as well as direct addressing of stock market Offering of instant trade and monitoring of activities Execute your first trade As much as pursuing this exciting cumulative sense of greenbacks as if there is no tomorrow sounds enticing, it is very important to take your time and learn about the stock market and its prevailing trends that guide the investment market sentiment."}},
       {"@type": "Question", "name": "How can I buy shares online?", "acceptedAnswer": {"@type": "Answer", "text": "Buying shares online is a straightforward process. Here are the steps you need to follow to buy stocks online after you open your stock brokerage account. Log into your online stock trading account Select the stock you wish to purchase. Enter the number of shares or the amount you want to invest Choose the order type (market order, limit order, etc.) Review and confirm your order Monitor your investment Most online share brokers offer user-friendly interfaces that guide you through the process of buying stocks and shares. While online share trading offers numerous benefits, it's important to be aware of the potential risks: Potential for financial loss Technical issues with online platforms Mitigate these risks by diversifying your portfolio, staying informed about market trends, and using secure online trading platforms. The quality of the interface and the number of the platforms Assistance and availability of support services Range of available investment products When investing in stocks online, It is better to explore different online brokerage platforms when you're looking for a trading platform that fits you the best."}},
       {"@type": "Question", "name": "Can I trade shares online with a small investment?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, you can place orders online on the share market. Many online share trading platforms cater to investors with varying budgets. Here are some facts worth mentioning: A number of brokers let you invest in fractional shares Look for low or no minimum deposits and balances Initially, only invest funds which you're comfortable risking Gradually increase your investment as you gain experience Furthermore, you need to remember that each investment, no matter how small, has the potential to multiply over quite a long period of time, if done in the right way."}},
@@ -366,9 +396,10 @@
 
 <!-- ============ HERO ============ -->
 <section class="acct-hero fx-hero" aria-labelledby="pd-hero-title">
-  <video class="acct-hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/img/products-video-poster.webp" aria-hidden="true">
-    <source src="assets/video/products-banner.mp4" type="video/mp4">
-  </video>
+  <picture>
+    <source media="(max-width:980px)" srcset="assets/img/sh-hero-banner-portrait-v1.webp" width="1200" height="1807">
+    <img class="fx-hero-banner" src="assets/img/sh-hero-banner-v1.webp" alt="Stacks of brushed metal share tokens engraved AMZN, AAPL and TSLA rising like a bar chart, topped by a blue token engraved with the STARTRADER star" width="2560" height="1432" fetchpriority="high" decoding="async">
+  </picture>
   <div class="acct-hero-bg" aria-hidden="true"></div>
   <div class="container fx-hero-copy-wrap">
     <div class="fx-hero-copy">
@@ -629,26 +660,6 @@
     </div>
     <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
-        <summary>What is a share CFD?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">A contract on a company&rsquo;s share price rather than the share itself. You take the price move in either direction without owning the stock, and without the settlement and custody that ownership brings.</div>
-      </details>
-      <details class="faq-item">
-        <summary>Do I receive dividends?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">You do not receive a dividend, but a cash adjustment is applied when the underlying goes ex-dividend — credited on a long position and debited on a short one.</div>
-      </details>
-      <details class="faq-item">
-        <summary>Which shares can I trade?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">More than a hundred names across US, European and Asian listings, weighted toward the most liquid large caps where the spread stays tight.</div>
-      </details>
-      <details class="faq-item">
-        <summary>Do share CFDs have voting rights?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">No. A CFD carries no shareholder rights, because there is no share in your name. If voting matters to you, an outright holding is the right instrument.</div>
-      </details>
-      <details class="faq-item">
-        <summary>When can I trade them?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">During the underlying exchange&rsquo;s hours. US names quote through the US session, European names through the European session, and the spread widens near the open and the close.</div>
-      </details>
-      <details class="faq-item">
         <summary>What is online share trading?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a"><p>Online share trading or online stock trading is a way of trading the shares of publicly traded companies through an online platform. This method of stock investment allows any individual to trade the stocks from the comforts of their home without going to a stock brokerage.</p><p>Key points:</p><ul><li>Employs the use of information technology in transaction of shares</li><li>Provides segmentation as well as direct addressing of stock market</li><li>Offering of instant trade and monitoring of activities</li><li>Execute your first trade</li></ul><p>As much as pursuing this exciting cumulative sense of greenbacks as if there is no tomorrow sounds enticing, it is very important to take your time and learn about the stock market and its prevailing trends that guide the investment market sentiment.</p></div>
       </details>
@@ -811,6 +822,6 @@
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=pb05" defer></script>
+<script src="assets/js/main.min.js?v=pb06" defer></script>
 </body>
 </html>

@@ -31,9 +31,43 @@
 
   <!-- Fonts (self-hosted) -->
   <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/img/etf-hero-banner-v1.webp" as="image" type="image/webp" media="(min-width:981px)" fetchpriority="high" />
+  <link rel="preload" href="assets/img/etf-hero-banner-portrait-v1.webp" as="image" type="image/webp" media="(max-width:980px)" fetchpriority="high" />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb05" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb06" />
+
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ---------- etf hero: a still banner, not footage ----------
+   Same treatment and framing as the forex hero (2560x1432, full-bleed cover),
+   with its own artwork: a clear glass cube holding a bar chart
+   of metal blocks, one in blue, on a basalt plinth - a basket of assets. The STARTRADER star is the logo's own vector
+   outline cut into the object's material. The subject sits inside what the
+   cover crop keeps at every desktop width, and the image starts at --nav-h
+   because the header is transparent and the hero is pulled up beneath it. */
+.fx-hero{background:#05070f}
+.fx-hero-banner{position:absolute;top:var(--nav-h);left:0;right:0;width:100%;height:calc(100% - var(--nav-h));object-fit:cover;object-position:62% center;z-index:-2}
+@media (max-width:980px){
+  /* the art is the full-bleed background and the copy sits over its clear lower
+     half; sized by width, the copy starts where the subject ends (52.4% of the
+     art's height, so 80vw plus a 28px breath) */
+  .fx-hero{background:#04050d;display:flex;flex-direction:column;justify-content:flex-start;
+    text-align:left;min-height:0;
+    padding:calc(var(--nav-h) + 80vw + 28px) 0 44px}
+  .fx-hero-banner{position:absolute;top:var(--nav-h);left:0;right:0;bottom:auto;
+    width:100%;height:auto;aspect-ratio:1200/1807;margin:0;order:0;
+    object-fit:cover;object-position:center top}
+  .fx-hero .acct-hero-bg::after{background:
+    linear-gradient(180deg,#04050d 0%,#04050d 3%,rgba(4,5,13,0) 9%),
+    linear-gradient(0deg,#04050d 0%,rgba(4,5,13,.86) 20%,rgba(4,5,13,0) 46%)}
+  .fx-hero-copy-wrap{position:relative;z-index:2}
+  .fx-hero-copy{max-width:none;margin:0;text-align:left}
+  .fx-hero .acct-hero-sub{margin-inline:0;max-width:34ch}
+  /* the shared sheet centres this hero's CTA on mobile; it follows the copy */
+  .fx-hero .acct-hero-cta{justify-content:flex-start}
+}
+  </style>
 
   <!-- Structured data -->
   <script type="application/ld+json">
@@ -51,11 +85,6 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      {"@type": "Question", "name": "What is an ETF CFD?", "acceptedAnswer": {"@type": "Answer", "text": "A contract on the price of an exchange-traded fund. The fund itself holds a basket of assets, so a single position gives you exposure to all of them — but as a CFD you trade the price rather than buying units."}},
-      {"@type": "Question", "name": "How is this different from buying the ETF?", "acceptedAnswer": {"@type": "Answer", "text": "You can go short, you can use leverage, and there is no fund minimum or custody to arrange. What you give up is ownership of the units and the shareholder rights that come with them."}},
-      {"@type": "Question", "name": "Which ETFs can I trade?", "acceptedAnswer": {"@type": "Answer", "text": "Equity baskets covering broad markets and sectors, commodity baskets tracking gold, silver and oil, and bond baskets across government and credit."}},
-      {"@type": "Question", "name": "Are dividends handled?", "acceptedAnswer": {"@type": "Answer", "text": "Distributions from the underlying fund are reflected as a cash adjustment — credited on a long position and debited on a short one."}},
-      {"@type": "Question", "name": "What are the trading hours?", "acceptedAnswer": {"@type": "Answer", "text": "The hours of the exchange the fund is listed on, which for the US-listed baskets means the US session. Spreads are tightest once that market is properly open."}},
       {"@type": "Question", "name": "What is ETF Trading?", "acceptedAnswer": {"@type": "Answer", "text": "ETF trading represents buying and selling of Exchange-Traded Funds just like individual stocks, on the stock exchange. An ETF stands for an exchange-traded fund; it represents a fund investing in a selected index, sector, commodity, or asset class. It can offer the merits of mutual funds and the adaptability of stocks. Thus, they are gaining much popularity these days among most investors."}},
       {"@type": "Question", "name": "What is the advantage of trading ETFs?", "acceptedAnswer": {"@type": "Answer", "text": "Diversification: With one ETF added to your portfolio, you add a basket of assets, thus reducing risks. Liquidity: Whenever the market is open, you can buy and sell ETFs any time. Flexibility: You can trade ETFs like stocks using limit orders, stop orders, and margin accounts. Cost-Effective: If compared to mutual funds, ETF trading is less costly."}},
       {"@type": "Question", "name": "What is a Forex ETF?", "acceptedAnswer": {"@type": "Answer", "text": "A Forex ETF, also known as a currency ETF, is an Exchange-Traded Fund that tracks the performance of a particular currency or basket of currencies. For instance, a Euro ETF could track the performance of the euro against the US dollar. The Forex ETF gives investors exposure to the foreign exchange market without actually trading the forex pairs directly, hence it is easier for currency trading."}},
@@ -364,9 +393,10 @@
 
 <!-- ============ HERO ============ -->
 <section class="acct-hero fx-hero" aria-labelledby="pd-hero-title">
-  <video class="acct-hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/img/products-video-poster.webp" aria-hidden="true">
-    <source src="assets/video/products-banner.mp4" type="video/mp4">
-  </video>
+  <picture>
+    <source media="(max-width:980px)" srcset="assets/img/etf-hero-banner-portrait-v1.webp" width="1200" height="1807">
+    <img class="fx-hero-banner" src="assets/img/etf-hero-banner-v1.webp" alt="A clear glass cube holding a bar chart of metal blocks, one in blue, on a basalt plinth carved with the STARTRADER star" width="2560" height="1432" fetchpriority="high" decoding="async">
+  </picture>
   <div class="acct-hero-bg" aria-hidden="true"></div>
   <div class="container fx-hero-copy-wrap">
     <div class="fx-hero-copy">
@@ -610,26 +640,6 @@
     </div>
     <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
-        <summary>What is an ETF CFD?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">A contract on the price of an exchange-traded fund. The fund itself holds a basket of assets, so a single position gives you exposure to all of them — but as a CFD you trade the price rather than buying units.</div>
-      </details>
-      <details class="faq-item">
-        <summary>How is this different from buying the ETF?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">You can go short, you can use leverage, and there is no fund minimum or custody to arrange. What you give up is ownership of the units and the shareholder rights that come with them.</div>
-      </details>
-      <details class="faq-item">
-        <summary>Which ETFs can I trade?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Equity baskets covering broad markets and sectors, commodity baskets tracking gold, silver and oil, and bond baskets across government and credit.</div>
-      </details>
-      <details class="faq-item">
-        <summary>Are dividends handled?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Distributions from the underlying fund are reflected as a cash adjustment — credited on a long position and debited on a short one.</div>
-      </details>
-      <details class="faq-item">
-        <summary>What are the trading hours?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">The hours of the exchange the fund is listed on, which for the US-listed baskets means the US session. Spreads are tightest once that market is properly open.</div>
-      </details>
-      <details class="faq-item">
         <summary>What is ETF Trading?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a"><p>ETF trading represents buying and selling of Exchange-Traded Funds just like individual stocks, on the stock exchange. An ETF stands for an exchange-traded fund; it represents a fund investing in a selected index, sector, commodity, or asset class. It can offer the merits of mutual funds and the adaptability of stocks. Thus, they are gaining much popularity these days among most investors.</p></div>
       </details>
@@ -780,6 +790,6 @@
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=pb05" defer></script>
+<script src="assets/js/main.min.js?v=pb06" defer></script>
 </body>
 </html>
