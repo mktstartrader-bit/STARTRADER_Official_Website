@@ -32,6 +32,8 @@
 
   <!-- Fonts (self-hosted) -->
   <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/img/ed-hero-banner-v1.webp" as="image" type="image/webp" media="(min-width:861px)" fetchpriority="high" />
+  <link rel="preload" href="assets/img/ed-hero-banner-portrait-v1.webp" as="image" type="image/webp" media="(max-width:860px)" fetchpriority="high" />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
   <link rel="stylesheet" href="assets/css/styles.min.css?v=pb06" />
@@ -236,6 +238,32 @@
    onto a second row instead now — the same longer-copy style the product
    filter beside them already uses — and the sliding indicator travels
    vertically as well as horizontally to follow a tab onto any row. */
+/* ---------- knowledge centre hero: a still banner ----------
+   Same treatment and framing as the product heroes (2560x1432, full-bleed cover,
+   starting at --nav-h under the transparent header), with its own artwork: three
+   hardcover books stacked as the page's three levels, their brushed spine plates
+   engraved BASICS / INTERMEDIATE / ADVANCED and each linen spine blind-debossed
+   with the STARTRADER star (the logo's own vector outline). This hero's copy runs
+   to ~55% of the width, so the books are composed into 61-97% of the art. The
+   shared family hero's blue and teal auras are switched off here so they do not
+   wash over the art; this block only reaches education.html. */
+.kc-hero{background:#040711}
+.kc-hero .kc-hero-aura{display:none}
+.kc-hero-banner{position:absolute;top:var(--nav-h);left:0;right:0;width:100%;height:calc(100% - var(--nav-h));object-fit:cover;object-position:62% center;z-index:-2}
+/* between 861 and 1280 the shared hero lets the copy run to (or past) the books;
+   held to 52% of the container it stays clear of their 61% start */
+@media (min-width:861px) and (max-width:1280px){.kc-hero .kc-hero-copy{max-width:52%}}
+@media (max-width:860px){
+  /* the art is the full-bleed background and the copy sits over its clear lower
+     half; sized by width, the copy starts where the books end (49.6% of the art's
+     height, 0.496 x 1807/1200 = 74.7% of the width, so 75vw plus a 28px breath) */
+  .kc-hero{background:#03040e;align-items:flex-start;min-height:0;
+    padding:calc(var(--nav-h) + 75vw + 28px) 0 56px}
+  .kc-hero-banner{bottom:auto;height:auto;aspect-ratio:1200/1807;object-position:center top}
+  .kc-hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+    background:linear-gradient(180deg,#03040e 0%,#03040e calc(var(--nav-h) + 2px),rgba(3,4,14,0) calc(var(--nav-h) + 40px)),
+               linear-gradient(0deg,#03040e 0%,rgba(3,4,14,.86) 20%,rgba(3,4,14,0) 46%)}
+}
   </style>
 
   <!-- Structured data — page entity -->
@@ -573,6 +601,10 @@
 
 <!-- ============ HERO ============ -->
 <section class="kc-hero" aria-labelledby="kc-hero-title">
+  <picture>
+    <source media="(max-width:860px)" srcset="assets/img/ed-hero-banner-portrait-v1.webp" width="1200" height="1807">
+    <img class="kc-hero-banner" src="assets/img/ed-hero-banner-v1.webp" alt="Three hardcover books stacked as steps, their metal spines engraved Basics, Intermediate and Advanced, each spine debossed with the STARTRADER star" width="2560" height="1432" fetchpriority="high" decoding="async">
+  </picture>
   <span class="kc-hero-aura a1" aria-hidden="true"></span>
   <span class="kc-hero-aura a2" aria-hidden="true"></span>
 
