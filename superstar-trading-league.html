@@ -1,0 +1,902 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#05070E" />
+
+  <title>SuperStar Trading League: Path to Glory | STARTRADER</title>
+  <meta name="description" content="Opt in to each Session, climb the leaderboard and compete for a USD 50,000 Season MVP prize. 7 Sessions, 2 Conferences, Oct–Dec 2026." />
+  <meta name="keywords" content="STARTRADER, SuperStar Trading League, trading competition, Season MVP, Sessions, Conferences, Points rewards" />
+  <meta name="author" content="STARTRADER" />
+  <link rel="canonical" href="https://www.startrader.com/superstar-trading-league/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="STARTRADER" />
+  <meta property="og:title" content="SuperStar Trading League: Path to Glory | STARTRADER" />
+  <meta property="og:description" content="Opt in to each Session, climb the leaderboard and compete for a USD 50,000 Season MVP prize. 7 Sessions, 2 Conferences, Oct–Dec 2026." />
+  <meta property="og:url" content="https://www.startrader.com/superstar-trading-league/" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/stl-hero-v2.webp" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SuperStar Trading League: Path to Glory | STARTRADER" />
+  <meta name="twitter:description" content="Opt in to each Session, climb the leaderboard and compete for a USD 50,000 Season MVP prize. 7 Sessions, 2 Conferences, Oct–Dec 2026." />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/stl-hero-v2.webp" />
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <!-- Fonts (self-hosted) -->
+  <link rel="stylesheet" href="assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="assets/css/aos.min.css" />
+  <link rel="preload" as="image" href="assets/img/stl-hero-v2.webp" type="image/webp" fetchpriority="high" media="(min-width:761px)" />
+  <link rel="preload" as="image" href="assets/img/stl-hero-portrait-v2.webp" type="image/webp" fetchpriority="high" media="(max-width:760px)" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb10" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ===== SuperStar Trading League: Path to Glory (page-specific) ===== */
+.stl{--stl-ground:#F4F7FB;--stl-night:#050914;--stl-gold:#E9B949;--stl-gold-2:#F7DB8C;background:var(--stl-ground)}
+.stl .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* shared glass */
+.stl-glass{position:relative;background:rgba(255,255,255,.82);border:1px solid rgba(16,40,90,.07);border-radius:24px;
+  -webkit-backdrop-filter:blur(18px) saturate(1.6);backdrop-filter:blur(18px) saturate(1.6);
+  box-shadow:0 1px 0 rgba(16,40,90,.03),0 24px 48px -32px rgba(12,28,70,.28),inset 0 1px 0 #fff}
+.stl-dglass{position:relative;border-radius:24px;background:linear-gradient(150deg,rgba(255,255,255,.09),rgba(255,255,255,.03));
+  border:1px solid rgba(255,255,255,.12);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 30px 60px -36px rgba(0,0,0,.7)}
+/* cursor spotlight on glass */
+.stl-spot{overflow:hidden;transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .3s}
+.stl-spot::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .35s;
+  background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(0,71,187,.09),transparent 65%)}
+.stl-spot:hover::after{opacity:1}
+.stl-spot:hover{transform:translateY(-4px);border-color:rgba(0,71,187,.18);box-shadow:0 30px 60px -34px rgba(12,28,70,.36),inset 0 1px 0 #fff}
+
+.stl-h2{margin:0;font-weight:800;font-size:clamp(30px,3.6vw,48px);line-height:1.12;letter-spacing:-.02em;color:var(--ink);text-wrap:balance}
+.stl-h2--light{color:#fff}
+.stl-center{text-align:center}
+
+/* buttons */
+.stl-btn{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 26px;border-radius:999px;
+  font-weight:700;font-size:15.5px;color:#fff;text-decoration:none;white-space:nowrap;
+  background:linear-gradient(180deg,#1F5EFF,#0047BB);box-shadow:0 14px 30px -12px rgba(0,71,187,.7),inset 0 1px 0 rgba(255,255,255,.35);
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.stl-btn svg{width:18px;height:18px;transition:transform .3s var(--ease)}
+.stl-btn:hover{box-shadow:0 18px 36px -12px rgba(0,71,187,.85),inset 0 1px 0 rgba(255,255,255,.35)}
+.stl-btn:hover svg{transform:translateX(4px)}
+.stl-btn--ghost{background:rgba(255,255,255,.08);box-shadow:inset 0 0 0 1px rgba(255,255,255,.28)}
+.stl-btn--ghost:hover{background:rgba(255,255,255,.14);box-shadow:inset 0 0 0 1px rgba(255,255,255,.4)}
+.stl-link{display:inline-flex;align-items:center;gap:8px;color:#fff;font-weight:600;font-size:15px;text-decoration:none;opacity:.88}
+.stl-link svg{width:16px;height:16px;transition:transform .3s var(--ease)}
+.stl-link:hover{opacity:1}.stl-link:hover svg{transform:translateX(4px)}
+
+/* ---------- hero ---------- */
+.stl-hero{position:relative;isolation:isolate;overflow:hidden;
+  min-height:min(860px,calc(100vh - var(--topbar-h,44px)));display:flex;align-items:center;
+  padding:120px 0 160px;background:#03060F;color:#fff}
+.stl-hero-art{position:absolute;inset:0;z-index:-1}
+.stl-hero-art img{width:100%;height:100%;object-fit:cover;object-position:68% 42%;transform:scale(1.02);transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.stl-hero-art::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(3,6,15,.55) 0%,rgba(3,6,15,0) 48%),linear-gradient(0deg,rgba(3,6,15,.85),transparent 26%)}
+.stl-hero-copy{max-width:640px}
+.stl-h1{margin:0 0 22px;font-weight:800;font-size:clamp(38px,5.2vw,72px);line-height:1.04;letter-spacing:-.03em}
+.stl-h1 span{display:block}
+.stl-grad{background:linear-gradient(95deg,#fff 0%,#9DB9FF 45%,var(--stl-gold-2) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
+  background-size:200% 100%;animation:stlSheen 7s ease-in-out infinite}
+@keyframes stlSheen{0%,100%{background-position:0 0}50%{background-position:100% 0}}
+.stl-sub{margin:0 0 14px;font-size:clamp(16px,1.35vw,19px);line-height:1.6;color:rgba(255,255,255,.9);font-weight:600}
+.stl-lead{margin:0 0 32px;font-size:16px;line-height:1.7;color:rgba(255,255,255,.72)}
+.stl-hact{display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px}
+.stl-hnote{margin:20px 0 0;font-size:13px;color:rgba(255,255,255,.55)}
+
+/* ---------- countdown ---------- */
+.stl-cd-sec{position:relative;z-index:2;margin-top:-96px}
+.stl-cd{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:26px 30px;border-radius:28px;background:rgba(255,255,255,.96)}
+.stl-cd-main{display:flex;flex-direction:column;gap:16px;min-width:0}
+.stl-cd-lab{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:13.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--blue)}
+.stl-cd-lab i{width:8px;height:8px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 0 rgba(0,71,187,.5);animation:stlPing 1.8s ease-out infinite}
+@keyframes stlPing{0%{box-shadow:0 0 0 0 rgba(0,71,187,.45)}100%{box-shadow:0 0 0 10px rgba(0,71,187,0)}}
+.stl-cd-row{display:flex;gap:12px}
+.stl-cd-cell{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:92px;padding:14px 10px 12px;border-radius:18px;
+  background:linear-gradient(180deg,#fff,#EEF3FB);border:1px solid rgba(16,40,90,.07)}
+.stl-cd-cell b{font-weight:800;font-size:clamp(28px,3vw,40px);line-height:1;color:var(--ink);font-variant-numeric:tabular-nums;display:inline-block}
+.stl-cd-cell b.is-tick{animation:stlTick .45s cubic-bezier(.2,.8,.2,1)}
+@keyframes stlTick{0%{transform:translateY(-35%);opacity:0}100%{transform:none;opacity:1}}
+.stl-cd-cell span{font-size:12px;font-weight:600;color:var(--text-soft)}
+
+/* ---------- how it works ---------- */
+.stl-how-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(32px,5vw,80px);align-items:start}
+.stl-how-intro{position:sticky;top:calc(var(--topbar-h,44px) + var(--nav-h,70px) + 40px);display:flex;flex-direction:column;align-items:flex-start;gap:26px}
+.stl-steps{position:relative;list-style:none;margin:0;padding:0 0 0 34px;display:flex;flex-direction:column;gap:16px;--prog:0}
+.stl-steps::before,.stl-steps::after{content:"";position:absolute;left:10px;top:18px;bottom:18px;width:3px;border-radius:3px}
+.stl-steps::before{background:rgba(16,40,90,.08)}
+.stl-steps::after{background:linear-gradient(180deg,#1F5EFF,#0047BB);transform-origin:top;transform:scaleY(var(--prog))}
+.stl-step{display:flex;gap:18px;align-items:flex-start;padding:22px 24px}
+.stl-step::before{content:"";position:absolute;left:-30px;top:30px;width:13px;height:13px;border-radius:50%;background:#fff;border:3px solid rgba(16,40,90,.14);transition:border-color .4s,background .4s,box-shadow .4s}
+.stl-step.is-on::before{border-color:var(--blue);background:var(--blue);box-shadow:0 0 0 5px rgba(0,71,187,.14)}
+.stl-step-n{flex:none;font-weight:800;font-size:15px;color:var(--text-mute);letter-spacing:.04em;padding-top:2px;transition:color .4s}
+.stl-step.is-on .stl-step-n{color:var(--blue)}
+.stl-step h3{margin:0 0 6px;font-weight:800;font-size:18.5px;color:var(--ink)}
+.stl-step p{margin:0;font-size:14.5px;line-height:1.7;color:var(--text-soft)}
+
+/* ---------- prizes (dark) ---------- */
+.stl-prize{position:relative;overflow:hidden;background:radial-gradient(90% 60% at 50% 0%,#0E1B44 0%,#060A18 60%);color:#fff}
+.stl-prize-glow{position:absolute;left:50%;top:170px;width:620px;height:420px;transform:translateX(-50%);border-radius:50%;
+  background:radial-gradient(closest-side,rgba(233,185,73,.2),transparent);filter:blur(20px);pointer-events:none}
+.stl-prize-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:18px;margin-top:40px}
+.stl-prize-grid h3{margin:0 0 18px;font-weight:700;font-size:16px;line-height:1.5;color:#fff}
+.stl-pts{padding:28px}
+.stl-pts-meter{display:flex;align-items:baseline;gap:8px;margin-bottom:10px}
+.stl-pts-meter b{font-weight:800;font-size:56px;line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums;color:#fff}
+.stl-range{-webkit-appearance:none;appearance:none;width:100%;height:8px;border-radius:8px;margin:6px 0 22px;cursor:pointer;
+  background:linear-gradient(90deg,#1F5EFF var(--fill,37%),rgba(255,255,255,.14) var(--fill,37%))}
+.stl-range::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:#fff;border:0;box-shadow:0 0 0 6px rgba(31,94,255,.35),0 6px 16px rgba(0,0,0,.4);transition:transform .2s}
+.stl-range::-moz-range-thumb{width:26px;height:26px;border-radius:50%;background:#fff;border:0;box-shadow:0 0 0 6px rgba(31,94,255,.35)}
+.stl-range:active::-webkit-slider-thumb{transform:scale(1.12)}
+.stl-range:focus-visible{outline:2px solid #9DB9FF;outline-offset:6px}
+.stl-tiers{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.stl-tiers li{display:block;padding:12px 16px;border-radius:14px;font-size:14.5px;color:rgba(255,255,255,.6);
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);transition:background .35s,color .35s,border-color .35s,transform .35s var(--ease)}
+.stl-tiers li b{color:rgba(255,255,255,.85)}
+.stl-tiers li.is-reached{color:rgba(255,255,255,.82)}
+.stl-tiers li.is-top{color:#fff;background:linear-gradient(90deg,rgba(31,94,255,.34),rgba(31,94,255,.08));border-color:rgba(157,185,255,.45);transform:translateX(6px)}
+.stl-prize-side{display:flex;flex-direction:column;gap:18px}
+.stl-sp{padding:28px}
+.stl-medals{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stl-medal{display:flex;flex-direction:column;align-items:center;gap:6px;padding:18px 8px;border-radius:18px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);text-align:center}
+.stl-medal i{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;font-style:normal;font-weight:800;color:#1b1406;margin-bottom:4px}
+.stl-medal--1 i{background:linear-gradient(180deg,#FFE7A3,#E0A93A)}
+.stl-medal--2 i{background:linear-gradient(180deg,#F3F6FA,#AEB8C6)}
+.stl-medal--3 i{background:linear-gradient(180deg,#F2C49C,#B97444)}
+.stl-medal b{font-size:13.5px;color:rgba(255,255,255,.7)}
+.stl-medal span{font-weight:800;font-size:18px;color:#fff}
+.stl-bonus{position:relative;display:flex;gap:16px;align-items:flex-start;padding:24px 26px;border-radius:24px;background:rgba(10,18,44,.7);overflow:hidden;isolation:isolate}
+.stl-bonus::before{content:"";position:absolute;inset:-2px;z-index:-2;background:conic-gradient(from var(--ang,0deg),transparent 0 70%,#1F5EFF 80%,#9DB9FF 86%,transparent 92%);animation:stlSpin 5s linear infinite}
+.stl-bonus::after{content:"";position:absolute;inset:1px;z-index:-1;border-radius:23px;background:linear-gradient(150deg,#101c44,#070c1d)}
+@property --ang{syntax:"<angle>";initial-value:0deg;inherits:false}
+@keyframes stlSpin{to{--ang:360deg}}
+.stl-bonus-ic{flex:none;display:grid;place-items:center;width:46px;height:46px;border-radius:14px;background:linear-gradient(180deg,#1F5EFF,#0047BB);color:#fff;animation:stlFloat 3.5s ease-in-out infinite}
+.stl-bonus-ic svg{width:22px;height:22px}
+.stl-bonus p{margin:0;font-size:14.5px;line-height:1.7;color:rgba(255,255,255,.78)}
+.stl-bonus p b{color:#fff}
+.stl-tilt{transition:transform .5s var(--ease)}
+
+/* ---------- who can join ---------- */
+.stl-who-grid{list-style:none;margin:40px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.stl-who-card{display:flex;gap:16px;align-items:flex-start;padding:24px}
+.stl-who-card p{margin:0;font-size:15px;line-height:1.7;color:var(--text-soft)}
+.stl-who-ic{flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:rgba(0,71,187,.09);color:var(--blue)}
+.stl-who-ic svg{width:20px;height:20px}
+.stl-who-card.is-yes .stl-who-ic{background:rgba(16,185,129,.12);color:#0B9A6B}
+.stl-who-card.is-no .stl-who-ic{background:rgba(239,68,68,.1);color:#D23B3B}
+
+/* ---------- closing ---------- */
+.stl-cta{padding:20px 0 96px}
+.stl-cta-card{position:relative;overflow:hidden;isolation:isolate;padding:clamp(40px,6vw,76px) clamp(24px,5vw,64px);border-radius:32px;text-align:center;color:#fff;
+  background:radial-gradient(80% 90% at 50% 110%,#1741B8 0%,#0A1A4D 45%,#050914 100%);box-shadow:0 40px 80px -40px rgba(0,30,110,.6)}
+.stl-cta-rings{position:absolute;inset:0;z-index:-1;pointer-events:none}
+.stl-cta-rings i{position:absolute;left:50%;top:100%;border-radius:50%;border:1px solid rgba(157,185,255,.22);transform:translate(-50%,-50%);animation:stlRing 6s ease-in-out infinite}
+.stl-cta-rings i:nth-child(1){width:380px;height:380px}
+.stl-cta-rings i:nth-child(2){width:640px;height:640px;animation-delay:-2s}
+.stl-cta-rings i:nth-child(3){width:900px;height:900px;animation-delay:-4s}
+@keyframes stlRing{0%,100%{opacity:.35;transform:translate(-50%,-50%) scale(1)}50%{opacity:.8;transform:translate(-50%,-50%) scale(1.04)}}
+.stl-cta-card h2{margin:0 0 30px;font-weight:800;font-size:clamp(30px,4vw,52px);line-height:1.12;letter-spacing:-.02em}
+.stl-cta-card h2 span{background:linear-gradient(95deg,#fff,#9DB9FF);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stl-cta-act{display:flex;flex-wrap:wrap;justify-content:center;gap:14px}
+.stl-cta-note{margin:24px auto 0;max-width:620px;font-size:13.5px;line-height:1.6;color:rgba(255,255,255,.66)}
+.stl-fine{max-width:980px;margin:34px auto 0;display:flex;flex-direction:column;gap:12px}
+.stl-fine p{margin:0;font-size:12.5px;line-height:1.75;color:var(--text-mute)}
+
+/* no navbar here, so the disclaimer bar scrolls away with the page and is fully opaque;
+   sticky and translucent, the hero slid up underneath it and showed through */
+.stl .topbar{position:relative;background:#05070E;-webkit-backdrop-filter:none;backdrop-filter:none}
+/* ---------- brand (no navbar on this page) ---------- */
+.stl-brand{position:absolute;top:34px;left:var(--gutter,24px);display:inline-flex;z-index:2}
+.stl-hero-in{position:static}
+.stl-brand img{width:168px;height:auto;display:block}
+@media (min-width:1248px){.stl-brand{left:calc((100vw - var(--maxw,1200px)) / 2)}}
+
+/* ---------- overview: scoreboard ---------- */
+.stl-ov{padding-top:88px}
+.stl-board{position:relative;overflow:hidden;isolation:isolate;display:grid;grid-template-columns:repeat(3,1fr);
+  border-radius:32px;padding:clamp(28px,4vw,48px) clamp(16px,3vw,40px);color:#fff;
+  background:radial-gradient(120% 140% at 50% -40%,#1A3A9E 0%,#0A1638 46%,#050914 100%);
+  box-shadow:0 40px 80px -44px rgba(0,30,110,.7),inset 0 1px 0 rgba(255,255,255,.12)}
+.stl-board::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.5;
+  background-image:radial-gradient(rgba(157,185,255,.22) 1px,transparent 1.4px);background-size:18px 18px;
+  -webkit-mask-image:radial-gradient(70% 90% at 50% 0%,#000,transparent);mask-image:radial-gradient(70% 90% at 50% 0%,#000,transparent)}
+.stl-board-glow{position:absolute;inset:auto 10% -60% 10%;height:120%;z-index:-1;border-radius:50%;background:radial-gradient(closest-side,rgba(31,94,255,.35),transparent);filter:blur(20px)}
+.stl-gauge{display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center;position:relative}
+.stl-gauge + .stl-gauge::before{content:"";position:absolute;left:0;top:14%;bottom:14%;width:1px;background:linear-gradient(transparent,rgba(255,255,255,.18),transparent)}
+.stl-gauge-dial{position:relative;width:clamp(116px,13vw,164px);aspect-ratio:1;display:grid;place-items:center;transition:transform .5s var(--ease)}
+.stl-gauge:hover .stl-gauge-dial{transform:scale(1.05) rotate(-6deg)}
+.stl-ring{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.stl-ring circle{fill:none;stroke-width:7;stroke-linecap:round}
+.stl-ring-bg{stroke:rgba(255,255,255,.08)}
+.stl-ring-fg{transition:stroke-dashoffset 1.6s cubic-bezier(.2,.7,.2,1);filter:drop-shadow(0 0 6px rgba(31,94,255,.55))}
+.stl-gauge--mvp .stl-ring-fg{filter:drop-shadow(0 0 8px rgba(233,185,73,.6))}
+.stl-gauge-dial b{position:relative;font-weight:800;font-size:clamp(46px,5.4vw,70px);line-height:1;letter-spacing:-.04em;font-variant-numeric:tabular-nums;
+  background:linear-gradient(180deg,#fff,#A9C2FF);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stl-gauge--mvp .stl-gauge-dial b{background:linear-gradient(180deg,#FFF3CF,var(--stl-gold));-webkit-background-clip:text;background-clip:text}
+.stl-gauge > span{font-weight:700;font-size:clamp(14px,1.3vw,17px);color:rgba(255,255,255,.88)}
+
+.stl-ov-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:20px;margin-top:20px}
+.stl-ov-copy{padding:clamp(26px,3vw,40px);display:flex;align-items:center}
+.stl-ov-copy p{margin:0;font-size:16.5px;line-height:1.85;color:var(--text-soft)}
+.stl-ov-copy strong{color:var(--ink);font-weight:600;background:linear-gradient(transparent 68%,rgba(0,71,187,.1) 68%)}
+.stl-split{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stl-half{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;gap:6px;min-height:230px;padding:22px;border-radius:24px;
+  background:#fff;border:1px solid rgba(16,40,90,.07);box-shadow:0 24px 48px -32px rgba(12,28,70,.28);transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .3s}
+.stl-half::before{content:"";position:absolute;inset:0;opacity:.7;transition:opacity .4s;
+  background-image:radial-gradient(rgba(0,71,187,.22) 1.1px,transparent 1.5px);background-size:12px 12px;
+  -webkit-mask-image:radial-gradient(60% 55% at 60% 38%,#000 30%,transparent 72%);mask-image:radial-gradient(60% 55% at 60% 38%,#000 30%,transparent 72%)}
+.stl-half--w::before{-webkit-mask-image:radial-gradient(60% 55% at 38% 42%,#000 30%,transparent 72%);mask-image:radial-gradient(60% 55% at 38% 42%,#000 30%,transparent 72%)}
+.stl-half:hover{transform:translateY(-6px);border-color:rgba(0,71,187,.25);box-shadow:0 34px 60px -32px rgba(0,71,187,.4)}
+.stl-half:hover::before{opacity:1}
+.stl-half > *{position:relative}
+.stl-half b{font-weight:800;font-size:17px;color:var(--ink)}
+.stl-half > span:not(.stl-half-ic){font-size:14px;line-height:1.45;color:var(--text-soft)}
+.stl-half-ic{position:absolute!important;top:20px;left:20px;display:grid;place-items:center;width:44px;height:44px;border-radius:14px;background:linear-gradient(180deg,#1F5EFF,#0047BB);color:#fff;box-shadow:0 10px 22px -10px rgba(0,71,187,.8)}
+.stl-half-ic svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;animation:stlSpinY 9s linear infinite}
+@keyframes stlSpinY{to{transform:rotate(360deg)}}
+.stl-pulse{position:absolute!important;width:10px;height:10px;border-radius:50%;background:#1F5EFF;box-shadow:0 0 0 0 rgba(31,94,255,.5);animation:stlPing 2s ease-out infinite}
+.stl-split-vs{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:grid;place-items:center;width:46px;height:46px;border-radius:50%;
+  background:#fff;border:1px solid rgba(16,40,90,.08);box-shadow:0 10px 24px -10px rgba(12,28,70,.35);font-weight:800;color:var(--blue);z-index:2}
+
+/* ---------- calendar: season timeline ---------- */
+.stl-tl{position:relative;margin-top:48px}
+.stl-tl-rail{position:absolute;left:0;right:0;top:92px;height:4px;border-radius:4px;background:rgba(16,40,90,.08);overflow:hidden}
+.stl-tl-rail i{position:absolute;inset:0 auto 0 0;width:var(--fill,0%);border-radius:4px;background:linear-gradient(90deg,#1F5EFF,#0047BB);transition:width 1.4s cubic-bezier(.2,.7,.2,1)}
+.stl-tl-rail::after{content:"";position:absolute;top:0;bottom:0;width:120px;background:linear-gradient(90deg,transparent,rgba(31,94,255,.55),transparent);animation:stlRun 3.6s ease-in-out infinite}
+@keyframes stlRun{0%{left:-120px}100%{left:100%}}
+.stl-tl-list{position:relative;list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:12px}
+.stl-sess{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding:0 4px 0;cursor:default}
+.stl-sess-num{font-weight:800;font-size:clamp(46px,5vw,68px);line-height:1;letter-spacing:-.04em;
+  background:linear-gradient(180deg,rgba(0,71,187,.2),rgba(0,71,187,.06));-webkit-background-clip:text;background-clip:text;color:transparent;
+  transition:transform .45s var(--ease),filter .4s}
+.stl-sess-node{width:18px;height:18px;margin:6px 0 14px;border-radius:50%;background:#fff;border:4px solid rgba(16,40,90,.16);box-shadow:0 0 0 6px var(--stl-ground);transition:border-color .4s,background .4s,transform .4s var(--ease)}
+.stl-sess b{font-weight:800;font-size:16px;color:var(--ink)}
+.stl-sess-d{font-size:13.5px;line-height:1.5;color:var(--text-soft)}
+.stl-sess:hover .stl-sess-num,.stl-sess.is-now .stl-sess-num{background-image:linear-gradient(180deg,#1F5EFF,#0047BB)}
+.stl-sess:hover .stl-sess-num{transform:translateY(-4px)}
+.stl-sess:hover .stl-sess-node{border-color:var(--blue);transform:scale(1.15)}
+.stl-sess.is-done .stl-sess-node{background:var(--blue);border-color:var(--blue)}
+.stl-sess.is-now .stl-sess-node{background:#fff;border-color:var(--blue);animation:stlPing 1.8s ease-out infinite}
+.stl-sess.is-now b{color:var(--blue)}
+
+/* ---------- podium ---------- */
+.stl-podium{position:relative;display:grid;grid-template-columns:1fr 1.15fr 1fr;align-items:end;gap:0;max-width:920px;margin:56px auto 0}
+.stl-pod{position:relative;display:flex;flex-direction:column;align-items:stretch}
+.stl-pod-head{display:flex;flex-direction:column;align-items:center;gap:6px;padding:0 10px 22px;text-align:center;transition:transform .5s var(--ease)}
+.stl-pod:hover .stl-pod-head{transform:translateY(-8px)}
+.stl-pod-t{font-weight:700;font-size:15px;color:rgba(255,255,255,.72);letter-spacing:.01em}
+.stl-pod-v{font-weight:800;font-size:clamp(24px,2.6vw,36px);letter-spacing:-.02em;color:#fff;text-shadow:0 10px 30px rgba(31,94,255,.45)}
+.stl-pod-v em{font-style:normal;font-variant-numeric:tabular-nums}
+.stl-pod--1 .stl-pod-v{font-size:clamp(32px,3.8vw,54px);background:linear-gradient(180deg,#FFF6D8,var(--stl-gold));-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none;filter:drop-shadow(0 10px 26px rgba(233,185,73,.45))}
+.stl-pod-block{position:relative;display:grid;place-items:center;border-radius:0 0 10px 10px;overflow:hidden;
+  background:linear-gradient(180deg,#1B2750 0%,#0E1733 60%,#0A1128 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.14),inset 1px 0 0 rgba(255,255,255,.05),inset -1px 0 0 rgba(0,0,0,.4)}
+.stl-pod--2 .stl-pod-block{height:170px;border-radius:14px 0 0 10px}
+.stl-pod--1 .stl-pod-block{height:240px;border-radius:14px 14px 10px 10px;z-index:1;
+  background:linear-gradient(180deg,#6E5520 0%,#3A2D12 45%,#1E1709 100%);box-shadow:0 30px 80px -24px rgba(233,185,73,.55),inset 0 1px 0 rgba(255,236,170,.6)}
+.stl-pod--3 .stl-pod-block{height:128px;border-radius:0 14px 10px 0}
+.stl-pod-cap{position:absolute;left:0;right:0;top:0;height:16px;background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,.04));border-bottom:1px solid rgba(255,255,255,.12)}
+.stl-pod--1 .stl-pod-cap{background:linear-gradient(180deg,rgba(255,236,170,.55),rgba(255,236,170,.08))}
+.stl-pod-face{font-weight:800;font-size:clamp(70px,8vw,120px);line-height:1;letter-spacing:-.04em;color:rgba(255,255,255,.07);
+  text-shadow:0 1px 0 rgba(255,255,255,.14),0 -1px 0 rgba(0,0,0,.6);transition:color .4s}
+.stl-pod--1 .stl-pod-face{color:rgba(255,230,160,.16);text-shadow:0 1px 0 rgba(255,236,170,.4),0 -1px 0 rgba(0,0,0,.6)}
+.stl-pod:hover .stl-pod-face{color:rgba(255,255,255,.14)}
+.stl-pod-block::after{content:"";position:absolute;inset:-40% -60%;background:linear-gradient(105deg,transparent 44%,rgba(255,255,255,.14) 50%,transparent 56%);transform:translateX(-60%);animation:stlGleam 6s ease-in-out infinite}
+.stl-pod--2 .stl-pod-block::after{animation-delay:-2s}.stl-pod--3 .stl-pod-block::after{animation-delay:-4s}
+@keyframes stlGleam{0%,60%{transform:translateX(-60%)}100%{transform:translateX(60%)}}
+.stl-pod-beam{position:absolute;left:50%;bottom:200px;width:140%;height:520px;transform:translateX(-50%);pointer-events:none;
+  background:conic-gradient(from 180deg at 50% 0%,transparent 160deg,rgba(255,230,160,.18) 175deg,rgba(255,230,160,.28) 180deg,rgba(255,230,160,.18) 185deg,transparent 200deg);
+  -webkit-mask-image:linear-gradient(180deg,transparent,#000 40%,transparent);mask-image:linear-gradient(180deg,transparent,#000 40%,transparent);animation:stlBeam 5s ease-in-out infinite}
+@keyframes stlBeam{0%,100%{opacity:.7}50%{opacity:1}}
+.stl-pod-crown{display:grid;place-items:center;width:58px;height:58px;margin-bottom:6px;border-radius:50%;background:linear-gradient(180deg,var(--stl-gold-2),var(--stl-gold));color:#3a2a05;box-shadow:0 12px 28px -10px rgba(233,185,73,.8);animation:stlFloat 4s ease-in-out infinite}
+.stl-pod-crown svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round}
+.stl-spark{position:absolute;width:12px;height:12px;pointer-events:none;background:radial-gradient(closest-side,#FFF3CF,transparent);animation:stlTwinkle 2.6s ease-in-out infinite}
+.stl-spark::before{content:"";position:absolute;inset:-6px 5px;background:linear-gradient(#FFF3CF,#FFF3CF) center/2px 100% no-repeat,linear-gradient(#FFF3CF,#FFF3CF) center/100% 2px no-repeat;opacity:.8}
+@keyframes stlTwinkle{0%,100%{opacity:0;transform:scale(.4)}50%{opacity:1;transform:scale(1)}}
+
+/* ---------- responsive ---------- */
+@media (max-width:1100px){
+  .stl-ov-grid{grid-template-columns:1fr}
+}
+@media (max-width:900px){
+  .stl-cd{flex-direction:column;align-items:stretch}
+  .stl-cd .stl-btn{justify-content:center}
+  .stl-how-grid{grid-template-columns:1fr}
+  .stl-how-intro{position:static}
+  .stl-prize-grid{grid-template-columns:1fr}
+  .stl-who-grid{grid-template-columns:1fr}
+  .stl-tl-rail{display:none}
+  .stl-tl-list{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 18px;scrollbar-width:none;gap:26px}
+  .stl-tl-list::-webkit-scrollbar{display:none}
+  .stl-sess{flex:0 0 min(46vw,200px);scroll-snap-align:start}
+}
+@media (max-width:760px){
+  .stl-hero{min-height:0;align-items:flex-start;padding:92vw 0 128px}
+  .stl-hero-art{bottom:auto;height:148.2vw}
+  .stl-hero-art img{height:100%;object-position:center top;transform:none}
+  .stl-hero-art::after{background:linear-gradient(0deg,rgba(3,6,15,1) 0%,rgba(3,6,15,.6) 30%,rgba(3,6,15,0) 48%)}
+  .stl-brand{top:20px}
+  .stl-brand img{width:140px}
+  .stl-board{grid-template-columns:1fr;gap:26px}
+  .stl-gauge{flex-direction:row;justify-content:flex-start;text-align:left;gap:20px}
+  .stl-gauge + .stl-gauge::before{left:10%;right:10%;top:-13px;bottom:auto;width:auto;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent)}
+  .stl-gauge-dial{width:96px}
+  .stl-gauge-dial b{font-size:40px}
+  .stl-split{grid-template-columns:1fr}
+  .stl-half{min-height:180px}
+  .stl-split-vs{display:none}
+  .stl-pulse{display:none}
+  .stl-podium{grid-template-columns:1fr 1.15fr 1fr;margin-top:40px}
+  .stl-pod-head{padding:0 2px 14px}
+  .stl-pod-t{font-size:11.5px}
+  .stl-pod-v{font-size:15px}
+  .stl-pod--1 .stl-pod-v{font-size:20px}
+  .stl-pod--2 .stl-pod-block{height:110px}.stl-pod--1 .stl-pod-block{height:160px}.stl-pod--3 .stl-pod-block{height:84px}
+  .stl-pod-crown{width:44px;height:44px}
+  .stl-pod-crown svg{width:22px;height:22px}
+}
+@media (max-width:480px){
+  .stl-cd{padding:22px 18px}
+  .stl-cd-row{gap:8px}
+  .stl-cd-cell{min-width:0;flex:1;padding:12px 4px 10px}
+  .stl-medal{padding:14px 4px}
+  .stl-medal span{font-size:15px}
+  .stl-ov-copy p{font-size:15.5px;line-height:1.75}
+  .stl-hact{flex-direction:column;align-items:flex-start}
+  .stl-btn{white-space:normal;text-align:left}
+  .stl-cta-act .stl-btn{width:100%;justify-content:center}
+  .stl-pod-v{font-size:13px}
+  .stl-pod--1 .stl-pod-v{font-size:17px}
+}
+@media (prefers-reduced-motion:reduce){
+  .stl *,.stl *::before,.stl *::after{animation:none!important;transition:none!important}
+}
+  </style>
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "SuperStar Trading League: Path to Glory | STARTRADER",
+    "description": "Opt in to each Session, climb the leaderboard and compete for a USD 50,000 Season MVP prize. 7 Sessions, 2 Conferences, Oct–Dec 2026.",
+    "url": "https://www.startrader.com/superstar-trading-league/"
+  }
+  </script>
+</head>
+<body class="prx stl">
+
+<!-- ============ SVG ICON SPRITE ============ -->
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M4 12h15m0 0-6-6m6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-arrow-ur" viewBox="0 0 24 24"><path d="M7 17 17 7m0 0H8m9 0v9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z" fill="currentColor"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.4 3 8.4 7 9.5 4-1.1 7-5.1 7-9.5V6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><path d="M12 3 3 7.5v9L12 21l9-4.5v-9zM3 7.5 12 12l9-4.5M12 12v9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-headset" viewBox="0 0 24 24"><path d="M4 13a8 8 0 0 1 16 0M4 13v3a2 2 0 0 0 2 2h1v-6H6a2 2 0 0 0-2 2Zm16 0v3a2 2 0 0 1-2 2h-1v-6h1a2 2 0 0 1 2 2Zm-3 5a3 3 0 0 1-3 2.5h-2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10m5 10V4m5 16v-7m5 7V8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 2 2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.8 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z" fill="currentColor"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.7 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3Z" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 7v5l3.4 2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M4 18a8 8 0 1 1 16 0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M12 18l4.2-5.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="12" cy="18" r="1.5" fill="currentColor"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-facebook" viewBox="0 0 24 24"><path d="M14 8.5V7c0-.9.6-1 1-1h1.5V3H14c-2.2 0-3.5 1.5-3.5 3.7V8.5H8.5v3h2v8.5h3.5v-8.5h2.3l.4-3z" fill="currentColor"/></symbol>
+  <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="3.6" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="16.5" cy="7.5" r="1.1" fill="currentColor"/></symbol>
+  <symbol id="i-youtube" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m10.5 9.3 4.5 2.7-4.5 2.7z" fill="currentColor"/></symbol>
+  <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M6.5 9v9M6.5 6.2v.01M11 18v-5a2.5 2.5 0 0 1 5 0v5M11 12v6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+  <symbol id="i-caret-up" viewBox="0 0 12 12"><path d="M6 3 10 8H2z" fill="currentColor"/></symbol>
+  <symbol id="i-caret-down" viewBox="0 0 12 12"><path d="M6 9 2 4h8z" fill="currentColor"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M17.5 3h3.2l-7 8 8.2 10.9h-6.4l-5-6.6-5.8 6.6H1.5l7.5-8.6L1.6 3H8l4.5 6zM16.4 19.1h1.8L7.7 4.8H5.8z" fill="currentColor"/></symbol>
+  <symbol id="i-telegram" viewBox="0 0 24 24"><path d="M21.5 4.3 2.9 11.5c-.9.35-.9.9-.15 1.12l4.7 1.46 1.8 5.6c.23.63.4.86 1 .86.46 0 .66-.2.9-.45l2.28-2.2 4.72 3.5c.87.48 1.5.23 1.72-.8l3-14.1c.3-1.28-.5-1.86-1.34-1.5z" fill="currentColor"/></symbol>
+  <symbol id="i-tiktok" viewBox="0 0 24 24"><path d="M16.6 3c.3 1.6 1.3 3 2.7 3.8.6.4 1.4.6 2.2.7v3.1c-1.8 0-3.5-.6-4.9-1.6v6.6a6.3 6.3 0 1 1-6.3-6.3c.3 0 .7 0 1 .1v3.2a3.2 3.2 0 1 0 2.2 3V3z" fill="currentColor"/></symbol>
+  <symbol id="i-user-plus" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3 20a6 6 0 0 1 12 0M18.5 8v5M21 10.5h-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-id" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="8.5" cy="11" r="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M13.5 10h4M13.5 13.5h4M5.6 15.6c.4-1.2 1.6-1.9 2.9-1.9s2.5.7 2.9 1.9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 1 2-2h11.5A1.5 1.5 0 0 0 15 4H5.5" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="6" width="18" height="13" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="16.5" cy="12.5" r="1.3" fill="currentColor"/></symbol>
+  <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9 20h6M12 16v4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M5 15H4.6A1.6 1.6 0 0 1 3 13.4V5a2 2 0 0 1 2-2h8.4A1.6 1.6 0 0 1 15 4.6V5" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 3v5h5M8.5 13h7M8.5 16.5h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-window" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 9h18" stroke="currentColor" stroke-width="1.6"/><circle cx="6" cy="7" r=".7" fill="currentColor"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 18h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-plug" viewBox="0 0 24 24"><path d="M9 3v4M15 3v4M6.5 7h11v3.5a5.5 5.5 0 0 1-11 0zM12 16.5V21" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-swap" viewBox="0 0 24 24"><path d="M4 8h13l-3.5-3.5M20 16H7l3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-cfd" viewBox="0 0 24 24"><path d="M4 15l4.5-4.5 3 3L19 6M14.5 6H19v4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-droplet" viewBox="0 0 24 24"><path d="M12 3.5s6 6.2 6 10.5a6 6 0 0 1-12 0c0-4.3 6-10.5 6-10.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+  <symbol id="i-pie" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M12 3v9h9A9 9 0 0 0 12 3Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 11.5a7.5 7.5 0 0 1-10.9 6.7L4 20l1.8-5.1A7.5 7.5 0 1 1 21 11.5Z" fill="currentColor"/><circle cx="8.5" cy="11.5" r="1.15" fill="#0a2a6b"/><circle cx="12" cy="11.5" r="1.15" fill="#0a2a6b"/><circle cx="15.5" cy="11.5" r="1.15" fill="#0a2a6b"/></symbol>
+  <symbol id="i-bubble" viewBox="0 0 24 24"><path d="M20.5 11.6c0 4-3.8 7.2-8.5 7.2-.9 0-1.8-.12-2.6-.34L4.5 20l1.2-3.5A6.9 6.9 0 0 1 3.5 11.6c0-4 3.8-7.2 8.5-7.2s8.5 3.2 8.5 7.2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.8 11.6h6.4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-cookie" viewBox="0 0 24 24"><path d="M12 2.5a9.5 9.5 0 1 0 9.5 9.5 4 4 0 0 1-4-4 3.2 3.2 0 0 1-3.4-3.4A9.6 9.6 0 0 0 12 2.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="9" cy="12" r="1" fill="currentColor"/><circle cx="13" cy="15" r="1" fill="currentColor"/><circle cx="14.5" cy="10" r="1" fill="currentColor"/><circle cx="8.5" cy="16" r=".8" fill="currentColor"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M4 12 20 4l-6 16-3-6-7-2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8.2" r="3.8" fill="currentColor"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0Z" fill="currentColor"/></symbol>
+</svg>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============ TOP DISCLAIMER BAR ============ -->
+<div class="topbar" role="note">
+  <div class="container">
+    <p><strong>Disclaimer:</strong> CFDs are complex instruments and come with a high risk of losing money rapidly due to leverage. You should consider whether you understand how CFDs work and whether you can afford to take the high risk of losing your money.</p>
+  </div>
+</div>
+
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<section class="stl-hero" aria-labelledby="stl-title" data-stl-hero>
+  <div class="stl-hero-art" aria-hidden="true">
+    <picture>
+      <source media="(max-width:760px)" srcset="assets/img/stl-hero-portrait-v2.webp">
+      <img src="assets/img/stl-hero-v2.webp" alt="A crystal championship trophy with a gold rim and handles on a black stone pedestal set with the STARTRADER star in gold" width="2560" height="1434" fetchpriority="high" decoding="async" data-stl-parallax>
+    </picture>
+  </div>
+  <div class="container stl-hero-in">
+    <a class="stl-brand" href="index.html" aria-label="STARTRADER home"><img src="assets/img/logo-startrader.svg" alt="STARTRADER" width="180" height="35"></a>
+    <div class="stl-hero-copy">
+      <h1 class="stl-h1" id="stl-title" data-aos="fade-up">
+        <span>SuperStar Trading League:</span>
+        <span class="stl-grad">Path to Glory</span>
+      </h1>
+      <p class="stl-sub" data-aos="fade-up" data-aos-delay="100">Seven Sessions. Two Conferences. One Season MVP. Compete for Session cash prizes, Points rewards and a USD 50,000 Season MVP prize.</p>
+      <p class="stl-lead" data-aos="fade-up" data-aos-delay="200">Opt in to any Session and climb the leaderboard for a shot at the Season MVP title.</p>
+      <div class="stl-hact" data-aos="fade-up" data-aos-delay="300">
+        <a class="stl-btn magnetic" href="https://myaccount.startrader.com" rel="noopener">Opt In via Client Portal <svg><use href="#i-arrow-right"/></svg></a>
+        <a class="stl-link" href="legal-documents.html">Read the Full Terms &amp; Conditions <svg><use href="#i-arrow-right"/></svg></a>
+      </div>
+      <p class="stl-hnote" data-aos="fade-up" data-aos-delay="300">Eligibility criteria and qualifying trading conditions apply.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COUNTDOWN ============ -->
+<section class="stl-cd-sec" aria-label="Countdown">
+  <div class="container">
+    <div class="stl-cd stl-glass" data-stl-cd data-aos="fade-up">
+      <div class="stl-cd-main">
+        <span class="stl-cd-lab"><i aria-hidden="true"></i><span data-stl-cd-lab>Promotion opens in</span></span>
+        <div class="stl-cd-row" aria-live="off">
+          <div class="stl-cd-cell"><b data-stl-d>00</b><span>Days</span></div>
+          <div class="stl-cd-cell"><b data-stl-h>00</b><span>Hours</span></div>
+          <div class="stl-cd-cell"><b data-stl-m>00</b><span>Minutes</span></div>
+          <div class="stl-cd-cell"><b data-stl-s>00</b><span>Seconds</span></div>
+        </div>
+      </div>
+      <a class="stl-btn stl-btn--solid magnetic" href="https://myaccount.startrader.com" rel="noopener">Opt In via Client Portal <svg><use href="#i-arrow-right"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SEASON OVERVIEW ============ -->
+<section class="section stl-ov" aria-label="Season overview">
+  <div class="container">
+    <div class="stl-board" data-stl-board data-aos="fade-up" aria-hidden="true">
+      <span class="stl-board-glow"></span>
+      <div class="stl-gauge">
+        <div class="stl-gauge-dial"><svg class="stl-ring " viewBox="0 0 120 120"><circle class="stl-ring-bg" cx="60" cy="60" r="52"/><circle class="stl-ring-fg" cx="60" cy="60" r="52" data-seg="7" stroke="url(#stlBlue)"/></svg><b data-stl-count="7">0</b></div>
+        <span>Seven Sessions.</span>
+      </div>
+      <div class="stl-gauge">
+        <div class="stl-gauge-dial"><svg class="stl-ring " viewBox="0 0 120 120"><circle class="stl-ring-bg" cx="60" cy="60" r="52"/><circle class="stl-ring-fg" cx="60" cy="60" r="52" data-seg="2" stroke="url(#stlBlue)"/></svg><b data-stl-count="2">0</b></div>
+        <span>Two Conferences.</span>
+      </div>
+      <div class="stl-gauge stl-gauge--mvp">
+        <div class="stl-gauge-dial"><svg class="stl-ring " viewBox="0 0 120 120"><circle class="stl-ring-bg" cx="60" cy="60" r="52"/><circle class="stl-ring-fg" cx="60" cy="60" r="52" data-seg="1" stroke="url(#stlGold)"/></svg><b data-stl-count="1">0</b></div>
+        <span>One Season MVP.</span>
+      </div>
+      <svg width="0" height="0" style="position:absolute"><defs>
+        <linearGradient id="stlBlue" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9DB9FF"/><stop offset="1" stop-color="#1F5EFF"/></linearGradient>
+        <linearGradient id="stlGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF1C4"/><stop offset="1" stop-color="#E0A93A"/></linearGradient>
+      </defs></svg>
+    </div>
+
+    <div class="stl-ov-grid">
+      <div class="stl-ov-copy stl-glass stl-spot" data-aos="fade-up">
+        <p>From <strong>1 October to 31 December 2026</strong>, the Promotion runs across <strong>seven Sessions</strong>, split into an <strong>Eastern Conference (MENA &amp; Asia)</strong> and a <strong>Western Conference (EU, North America &amp; Latin America)</strong>. Rank by Profit Rate in each Session to earn Points and compete for Session cash prizes. Points add up all Season long &ndash; the three Clients with the most cumulative Points across both Conferences after Session 7 are crowned <strong>Season MVP, Runner-Up and Third Place</strong>.</p>
+      </div>
+      <div class="stl-split" data-aos="fade-up" data-aos-delay="100" aria-hidden="true">
+        <div class="stl-half stl-half--e">
+          <span class="stl-half-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.5 3.6 5.3 3.6 8.5s-1.2 6-3.6 8.5M12 3.5C9.6 6 8.4 8.8 8.4 12s1.2 6 3.6 8.5"/></svg></span>
+          <b>Eastern Conference</b><span>MENA &amp; Asia</span>
+          <i class="stl-pulse" style="left:68%;top:38%"></i><i class="stl-pulse" style="left:80%;top:56%;animation-delay:-.8s"></i>
+        </div>
+        <div class="stl-half stl-half--w">
+          <span class="stl-half-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.5 3.6 5.3 3.6 8.5s-1.2 6-3.6 8.5M12 3.5C9.6 6 8.4 8.8 8.4 12s1.2 6 3.6 8.5"/></svg></span>
+          <b>Western Conference</b><span>EU, North America &amp; Latin America</span>
+          <i class="stl-pulse" style="left:26%;top:40%;animation-delay:-.4s"></i><i class="stl-pulse" style="left:40%;top:62%;animation-delay:-1.2s"></i>
+        </div>
+        <span class="stl-split-vs">&amp;</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="section stl-how" id="how" aria-labelledby="stl-how-title">
+  <div class="container stl-how-grid">
+    <div class="stl-how-intro" data-aos="fade-up">
+      <h2 class="stl-h2" id="stl-how-title">How It Works</h2>
+      <a class="stl-btn stl-btn--solid magnetic" href="https://myaccount.startrader.com" rel="noopener">Opt In via Client Portal <svg><use href="#i-arrow-right"/></svg></a>
+    </div>
+    <ol class="stl-steps" data-stl-steps>
+      <li class="stl-step stl-glass stl-spot">
+        <span class="stl-step-n">01</span>
+        <div><h3>Opt In Each Session</h3><p>Opt in through the Client Portal for every Session you want to compete in. Your opt-in does not carry over to the next Session.</p></div>
+      </li>
+      <li class="stl-step stl-glass stl-spot">
+        <span class="stl-step-n">02</span>
+        <div><h3>Deposit at Least USD 300</h3><p>Make a minimum qualifying deposit of USD 300 from your own funds into your account for that Session.</p></div>
+      </li>
+      <li class="stl-step stl-glass stl-spot">
+        <span class="stl-step-n">03</span>
+        <div><h3>Trade &amp; Rank</h3><p>Trade Eligible Products and keep your Profit Rate at 0% or above. Your Profit Rate sets your rank within your Conference for that Session.</p></div>
+      </li>
+      <li class="stl-step stl-glass stl-spot">
+        <span class="stl-step-n">04</span>
+        <div><h3>Earn Points</h3><p>The top 30 in each Conference earn Points on a 30-point scale, plus bonus Points for the top 3.</p></div>
+      </li>
+      <li class="stl-step stl-glass stl-spot">
+        <span class="stl-step-n">05</span>
+        <div><h3>Chase the Season MVP</h3><p>Points add up across all seven Sessions. The top three overall take the Season titles.</p></div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ SESSION CALENDAR ============ -->
+<section class="section stl-cal" id="calendar" aria-labelledby="stl-cal-title">
+  <div class="container">
+    <h2 class="stl-h2 stl-center" id="stl-cal-title" data-aos="fade-up">Session Calendar</h2>
+    <div class="stl-tl">
+      <div class="stl-tl-rail" aria-hidden="true"><i data-stl-rail></i></div>
+      <ol class="stl-tl-list" data-stl-cal>
+      <li class="stl-sess" data-aos="fade-up" data-aos-delay="0"><span class="stl-sess-num" aria-hidden="true">01</span><span class="stl-sess-node" aria-hidden="true"></span><b>Session 1</b><span class="stl-sess-d">1-14 October 2026</span></li>
+      <li class="stl-sess" data-aos="fade-up" data-aos-delay="100"><span class="stl-sess-num" aria-hidden="true">02</span><span class="stl-sess-node" aria-hidden="true"></span><b>Session 2</b><span class="stl-sess-d">15-28 October 2026</span></li>
+      <li class="stl-sess" data-aos="fade-up" data-aos-delay="200"><span class="stl-sess-num" aria-hidden="true">03</span><span class="stl-sess-node" aria-hidden="true"></span><b>Session 3</b><span class="stl-sess-d">29 October - 11 November 2026</span></li>
+      <li class="stl-sess" data-aos="fade-up" data-aos-delay="300"><span class="stl-sess-num" aria-hidden="true">04</span><span class="stl-sess-node" aria-hidden="true"></span><b>Session 4</b><span class="stl-sess-d">12-25 November 2026</span></li>
+      <li class="stl-sess" data-aos="fade-up" data-aos-delay="400"><span class="stl-sess-num" aria-hidden="true">05</span><span class="stl-sess-node" aria-hidden="true"></span><b>Session 5</b><span class="stl-sess-d">26 November - 9 December 2026</span></li>
+      <li class="stl-sess" data-aos="fade-up" data-aos-delay="500"><span class="stl-sess-num" aria-hidden="true">06</span><span class="stl-sess-node" aria-hidden="true"></span><b>Session 6</b><span class="stl-sess-d">10-23 December 2026</span></li>
+      <li class="stl-sess" data-aos="fade-up" data-aos-delay="600"><span class="stl-sess-num" aria-hidden="true">07</span><span class="stl-sess-node" aria-hidden="true"></span><b>Session 7</b><span class="stl-sess-d">24-31 December 2026</span></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRIZES ============ -->
+<section class="section stl-prize" id="prizes" aria-label="Prize highlights">
+  <span class="stl-prize-glow" aria-hidden="true"></span>
+  <div class="container">
+    <h2 class="stl-h2 stl-h2--light stl-center" data-aos="fade-up">Season Prizes</h2>
+    <div class="stl-podium">
+      <div class="stl-pod stl-pod--2" data-aos="fade-up" data-aos-delay="150">
+        <div class="stl-pod-head"><b class="stl-pod-t">Season Runner-Up</b><span class="stl-pod-v">USD <em data-stl-count="20000" data-stl-fmt>20,000</em></span></div>
+        <div class="stl-pod-block" aria-hidden="true"><span class="stl-pod-cap"></span><span class="stl-pod-face">2</span></div>
+      </div>
+      <div class="stl-pod stl-pod--1" data-aos="fade-up">
+        <span class="stl-pod-beam" aria-hidden="true"></span>
+        <span class="stl-spark" aria-hidden="true" style="left:12%;top:8%"></span><span class="stl-spark" aria-hidden="true" style="right:10%;top:18%;animation-delay:-.9s"></span><span class="stl-spark" aria-hidden="true" style="left:22%;top:34%;animation-delay:-1.6s"></span><span class="stl-spark" aria-hidden="true" style="right:20%;top:2%;animation-delay:-2.3s"></span>
+        <div class="stl-pod-head">
+          <span class="stl-pod-crown" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 8l4.2 3.6L12 5l4.3 6.6L20.5 8l-1.8 10.5H5.3z"/><path d="M5.3 18.5h13.4"/></svg></span>
+          <b class="stl-pod-t">Season MVP</b><span class="stl-pod-v">USD <em data-stl-count="50000" data-stl-fmt>50,000</em></span>
+        </div>
+        <div class="stl-pod-block" aria-hidden="true"><span class="stl-pod-cap"></span><span class="stl-pod-face">1</span></div>
+      </div>
+      <div class="stl-pod stl-pod--3" data-aos="fade-up" data-aos-delay="300">
+        <div class="stl-pod-head"><b class="stl-pod-t">Season Third Place</b><span class="stl-pod-v">USD <em data-stl-count="10000" data-stl-fmt>10,000</em></span></div>
+        <div class="stl-pod-block" aria-hidden="true"><span class="stl-pod-cap"></span><span class="stl-pod-face">3</span></div>
+      </div>
+    </div>
+
+    <div class="stl-prize-grid">
+      <div class="stl-pts stl-dglass" data-stl-pts data-aos="fade-up">
+        <h3>Points Rewards (Clients ranked 4th or lower in the Season standings; highest tier reached only)</h3>
+        <div class="stl-pts-meter" aria-hidden="true"><b data-stl-pts-val>60</b></div>
+        <label class="sr-only" for="stlPts">Points</label>
+        <input class="stl-range" id="stlPts" type="range" min="0" max="160" step="1" value="60">
+        <ul class="stl-tiers">
+          <li data-tier="20"><b>20+ Points:</b> USD 10 Trade Credit</li>
+          <li data-tier="30"><b>30+ Points:</b> STARTRADER Premium Gift Set</li>
+          <li data-tier="50"><b>50+ Points:</b> USD 100 Trade Credit</li>
+          <li data-tier="120"><b>120+ Points:</b> iPhone 18 Pro Max</li>
+          <li data-tier="150"><b>150+ Points:</b> iPhone Duo</li>
+        </ul>
+      </div>
+
+      <div class="stl-prize-side">
+        <div class="stl-sp stl-dglass" data-aos="fade-up" data-aos-delay="100">
+          <h3>Session Prizes (top 3 per Conference, every Session)</h3>
+          <div class="stl-medals">
+            <div class="stl-medal stl-medal--1 stl-tilt"><i aria-hidden="true">1</i><b>1st:</b> <span>USD 2,000</span></div>
+            <div class="stl-medal stl-medal--2 stl-tilt"><i aria-hidden="true">2</i><b>2nd:</b> <span>USD 1,000</span></div>
+            <div class="stl-medal stl-medal--3 stl-tilt"><i aria-hidden="true">3</i><b>3rd:</b> <span>USD 500</span></div>
+          </div>
+        </div>
+        <div class="stl-bonus" data-aos="fade-up" data-aos-delay="200">
+          <span class="stl-bonus-ic" aria-hidden="true"><svg><use href="#i-bolt"/></svg></span>
+          <p><b>3-Point Contest:</b> A surprise 3-day bonus window that may drop during a Session (not guaranteed every Session). Earn bonus Points and a prize for the top 3 by trading volume within each Conference.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHO CAN JOIN ============ -->
+<section class="section stl-who" id="eligibility" aria-labelledby="stl-who-title">
+  <div class="container">
+    <h2 class="stl-h2 stl-center" id="stl-who-title" data-aos="fade-up">Who Can Join</h2>
+    <ul class="stl-who-grid">
+      <li class="stl-who-card stl-glass stl-spot is-yes" data-aos="fade-up"><span class="stl-who-ic" aria-hidden="true"><svg><use href="#i-check"/></svg></span><p>Open to STARTRADER live-account Clients.</p></li>
+      <li class="stl-who-card stl-glass stl-spot is-no" data-aos="fade-up" data-aos-delay="100"><span class="stl-who-ic" aria-hidden="true"><svg><use href="#i-close"/></svg></span><p>STARTRADER employees, IB clients, and Clients excluded under STARTRADER's standard promotional eligibility policy do not qualify.</p></li>
+      <li class="stl-who-card stl-glass stl-spot" data-aos="fade-up" data-aos-delay="200"><span class="stl-who-ic" aria-hidden="true"><svg><use href="#i-user"/></svg></span><p>One trading account per Client. Multiple registrations or accounts may be consolidated or disqualified.</p></li>
+      <li class="stl-who-card stl-glass stl-spot" data-aos="fade-up" data-aos-delay="300"><span class="stl-who-ic" aria-hidden="true"><svg><use href="#i-globe"/></svg></span><p>Conference assignment (Eastern: MENA &amp; Asia - Western: EU, North America &amp; Latin America) is based on the trading region on your STARTRADER account, at STARTRADER's sole discretion.</p></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ CLOSING CALL ============ -->
+<section class="stl-cta" aria-labelledby="stl-cta-title">
+  <div class="container">
+    <div class="stl-cta-card" data-aos="fade-up">
+      <span class="stl-cta-rings" aria-hidden="true"><i></i><i></i><i></i></span>
+      <h2 id="stl-cta-title">Ready to Chase Glory?<br><span>Opt In to Your First Session</span></h2>
+      <div class="stl-cta-act">
+        <a class="stl-btn magnetic" href="https://myaccount.startrader.com" rel="noopener">Opt In via Client Portal <svg><use href="#i-arrow-right"/></svg></a>
+        <a class="stl-btn stl-btn--ghost" href="legal-documents.html">Read the Full Terms &amp; Conditions <svg><use href="#i-arrow-right"/></svg></a>
+      </div>
+      <p class="stl-cta-note">Participation is voluntary. Session opt-in, minimum qualifying deposit and all other Terms and Conditions apply.</p>
+    </div>
+    <div class="stl-fine" data-aos="fade-up">
+      <p>RISK WARNING: This Promotion is provided solely for educational and marketing purposes. It does not constitute investment advice, financial guidance, or a recommendation to participate in any trading strategy or activity. Trading in Forex and CFDs carries a high level of risk and may not be suitable for all investors. Past performance, including Session or leaderboard rankings, is not indicative of future results. Clients should ensure they fully understand the risks involved, seek independent professional advice where necessary, and only trade with funds they can afford to lose. References to the NBA and Porsche Carrera Cup Middle East reflect STARTRADER's official partnerships and do not constitute an endorsement of trading outcomes by the NBA, Porsche, or any affiliated party.</p>
+      <p>This Promotion is void where prohibited by applicable local law or regulation.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script>
+/* SuperStar Trading League — page-scoped: countdown, session state, count-ups,
+   step progress, points tiers and the pointer effects */
+(function () {
+  var RM = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var FINE = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  var nf = function (n) { return Number(n).toLocaleString('en-US'); };
+
+  /* ---------- the seven Sessions (local time, whole days) ---------- */
+  var SESS = [['2026-10-01', '2026-10-14'], ['2026-10-15', '2026-10-28'], ['2026-10-29', '2026-11-11'],
+              ['2026-11-12', '2026-11-25'], ['2026-11-26', '2026-12-09'], ['2026-12-10', '2026-12-23'],
+              ['2026-12-24', '2026-12-31']].map(function (p) {
+    var a = p[0].split('-'), b = p[1].split('-');
+    return { start: new Date(+a[0], a[1] - 1, +a[2], 0, 0, 0), end: new Date(+b[0], b[1] - 1, +b[2], 23, 59, 59) };
+  });
+  function current(now) {
+    for (var i = 0; i < SESS.length; i++) if (now >= SESS[i].start && now <= SESS[i].end) return i;
+    return -1;
+  }
+  function paintSessions(now) {
+    var cur = current(now);
+    var marks = [].slice.call(document.querySelectorAll('[data-stl-track] li'))
+      .concat([].slice.call(document.querySelectorAll('[data-stl-cal] .stl-sess')));
+    marks.forEach(function (el, k) {
+      var i = k % 7;
+      el.classList.toggle('is-now', i === cur);
+      el.classList.toggle('is-done', now > SESS[i].end);
+      if (i === cur && el.tagName === 'LI' && el.classList.contains('stl-sess')) el.setAttribute('aria-current', 'true');
+      else el.removeAttribute('aria-current');
+    });
+  }
+
+  /* ---------- countdown: before the Season, to 1 October; during it, to the end of the current Session ---------- */
+  (function () {
+    var root = document.querySelector('[data-stl-cd]');
+    if (!root) return;
+    var lab = root.querySelector('[data-stl-cd-lab]');
+    var cells = { d: root.querySelector('[data-stl-d]'), h: root.querySelector('[data-stl-h]'),
+                  m: root.querySelector('[data-stl-m]'), s: root.querySelector('[data-stl-s]') };
+    function pad(n) { return (n < 10 ? '0' : '') + n; }
+    function set(el, v) {
+      if (el.textContent === v) return;
+      el.textContent = v;
+      if (!RM) { el.classList.remove('is-tick'); void el.offsetWidth; el.classList.add('is-tick'); }
+    }
+    function tick() {
+      var now = new Date(), target;
+      if (now < SESS[0].start) { target = SESS[0].start; lab.textContent = 'Promotion opens in'; }
+      else {
+        lab.textContent = 'Current Session ends in';
+        var i = current(now);
+        if (i < 0) {
+          // between Sessions: count to the end of the next one; after the Season: zero
+          for (var k = 0; k < SESS.length; k++) if (now < SESS[k].start) { i = k; break; }
+        }
+        target = i < 0 ? now : SESS[i].end;
+      }
+      var left = Math.max(0, Math.floor((target - now) / 1000));
+      var dd = Math.floor(left / 86400);
+      set(cells.d, dd < 100 ? pad(dd) : String(dd));
+      set(cells.h, pad(Math.floor(left % 86400 / 3600)));
+      set(cells.m, pad(Math.floor(left % 3600 / 60)));
+      set(cells.s, pad(left % 60));
+      paintSessions(now);
+    }
+    tick(); setInterval(tick, 1000);
+  })();
+
+  /* ---------- count-ups ---------- */
+  (function () {
+    var els = [].slice.call(document.querySelectorAll('[data-stl-count]'));
+    if (!els.length) return;
+    function run(el) {
+      var to = +el.getAttribute('data-stl-count'), fmt = el.hasAttribute('data-stl-fmt');
+      if (RM) { el.textContent = fmt ? nf(to) : to; return; }
+      var t0 = null, dur = to > 100 ? 1600 : 900;
+      function step(t) {
+        if (!t0) t0 = t;
+        var p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3), v = Math.round(to * e);
+        el.textContent = fmt ? nf(v) : v;
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    if (!('IntersectionObserver' in window)) { els.forEach(run); return; }
+    var io = new IntersectionObserver(function (en) {
+      en.forEach(function (e) { if (e.isIntersecting) { run(e.target); io.unobserve(e.target); } });
+    }, { threshold: .6 });
+    els.forEach(function (el) { io.observe(el); });
+  })();
+
+  /* ---------- scoreboard rings: one arc per Session / Conference / MVP, drawn in turn ---------- */
+  (function () {
+    var board = document.querySelector('[data-stl-board]');
+    if (!board) return;
+    var C = 2 * Math.PI * 52, NS = 'http://www.w3.org/2000/svg';
+    [].forEach.call(board.querySelectorAll('.stl-ring-fg'), function (fg) {
+      var n = +fg.getAttribute('data-seg'), gap = n > 1 ? 12 : 0, seg = C / n - gap, stroke = fg.getAttribute('stroke');
+      var svg = fg.parentNode; svg.removeChild(fg);
+      for (var i = 0; i < n; i++) {
+        var c = document.createElementNS(NS, 'circle');
+        c.setAttribute('cx', 60); c.setAttribute('cy', 60); c.setAttribute('r', 52);
+        c.setAttribute('class', 'stl-ring-fg'); c.setAttribute('stroke', stroke);
+        c.setAttribute('stroke-dasharray', seg + ' ' + C);
+        c.setAttribute('transform', 'rotate(' + (i * 360 / n + (gap / C) * 180) + ' 60 60)');
+        c.style.strokeDashoffset = RM ? 0 : seg;
+        c.style.transitionDelay = (i * 0.16) + 's';
+        svg.appendChild(c);
+      }
+    });
+    function draw() { [].forEach.call(board.querySelectorAll('.stl-ring-fg'), function (c) { c.style.strokeDashoffset = 0; }); }
+    if (RM || !('IntersectionObserver' in window)) { draw(); return; }
+    var io = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { draw(); io.disconnect(); } }, { threshold: .4 });
+    io.observe(board);
+  })();
+
+  /* ---------- timeline rail fills to today ---------- */
+  (function () {
+    var rail = document.querySelector('[data-stl-rail]');
+    if (!rail) return;
+    var now = new Date(), a = SESS[0].start, b = SESS[6].end;
+    var f = Math.max(0, Math.min(1, (now - a) / (b - a)));
+    rail.style.setProperty('--fill', (f * 100).toFixed(2) + '%');
+  })();
+
+  /* ---------- How It Works: the rail fills as you scroll, steps light up ---------- */
+  (function () {
+    var list = document.querySelector('[data-stl-steps]');
+    if (!list) return;
+    var steps = [].slice.call(list.children), ticking = false;
+    function update() {
+      ticking = false;
+      var r = list.getBoundingClientRect(), vh = window.innerHeight, mark = vh * .62;
+      var p = Math.max(0, Math.min(1, (mark - r.top) / r.height));
+      list.style.setProperty('--prog', p.toFixed(3));
+      steps.forEach(function (s) { var b = s.getBoundingClientRect(); s.classList.toggle('is-on', b.top + 30 < mark); });
+    }
+    window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  /* ---------- Points Rewards: only the highest tier reached lights up ---------- */
+  (function () {
+    var root = document.querySelector('[data-stl-pts]');
+    if (!root) return;
+    var range = root.querySelector('#stlPts'), out = root.querySelector('[data-stl-pts-val]');
+    var tiers = [].slice.call(root.querySelectorAll('[data-tier]'));
+    function render() {
+      var v = +range.value, top = null;
+      range.style.setProperty('--fill', (v / +range.max * 100) + '%');
+      out.textContent = v;
+      tiers.forEach(function (t) { var need = +t.getAttribute('data-tier'); t.classList.toggle('is-reached', v >= need); if (v >= need) top = t; });
+      tiers.forEach(function (t) { t.classList.toggle('is-top', t === top); });
+    }
+    range.addEventListener('input', render);
+    render();
+  })();
+
+  if (RM || !FINE) return;
+
+  /* ---------- cursor spotlight on glass cards ---------- */
+  document.addEventListener('pointermove', function (e) {
+    var c = e.target.closest && e.target.closest('.stl-spot');
+    if (!c) return;
+    var r = c.getBoundingClientRect();
+    c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  }, { passive: true });
+
+  /* ---------- gentle 3D tilt on the prize cards ---------- */
+  [].forEach.call(document.querySelectorAll('.stl-tilt'), function (el) {
+    el.addEventListener('pointermove', function (e) {
+      var r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      el.style.transform = 'perspective(900px) rotateY(' + (x * 8).toFixed(2) + 'deg) rotateX(' + (-y * 8).toFixed(2) + 'deg) translateY(-4px)';
+    });
+    el.addEventListener('pointerleave', function () { el.style.transform = ''; });
+  });
+
+  /* ---------- hero art follows the pointer a touch ---------- */
+  (function () {
+    var hero = document.querySelector('[data-stl-hero]'), img = document.querySelector('[data-stl-parallax]');
+    if (!hero || !img) return;
+    hero.addEventListener('pointermove', function (e) {
+      var r = hero.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      img.style.transform = 'scale(1.06) translate(' + (-x * 14).toFixed(1) + 'px,' + (-y * 10).toFixed(1) + 'px)';
+    });
+    hero.addEventListener('pointerleave', function () { img.style.transform = ''; });
+  })();
+})();
+</script>
+
+<button class="to-top" id="toTop" aria-label="Back to top"><svg><use href="#i-caret-up"/></svg></button>
+
+<!-- ============ CHAT WIDGET ============ -->
+<button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
+  <img class="chat-fab-ico" src="assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
+</button>
+<div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
+  <div class="chat-head">
+    <span class="chat-avatar"><svg><use href="#i-headset"/></svg><i class="chat-online"></i></span>
+    <div class="chat-head-txt"><b>STARTRADER Support</b><em>Typically replies in a few minutes</em></div>
+    <button class="chat-close" id="chatClose" aria-label="Close chat"><svg><use href="#i-close"/></svg></button>
+  </div>
+  <div class="chat-body">
+    <div class="chat-msg">👋 Hi there! Welcome to STARTRADER. How can we help you today?</div>
+    <div class="chat-quick">
+      <a href="https://www.startrader.com/live-account/" class="chat-chip">Open a live account</a>
+      <a href="trading-app.html" class="chat-chip">Download a platform</a>
+      <a href="#fx-pairs-title" class="chat-chip">View forex spreads</a>
+      <a href="contact.html" class="chat-chip">Contact us</a>
+    </div>
+  </div>
+  <form class="chat-input" id="chatForm">
+    <input type="text" id="chatText" placeholder="Type your message…" aria-label="Message" autocomplete="off">
+    <button type="submit" class="chat-send" aria-label="Send"><svg><use href="#i-send"/></svg></button>
+  </form>
+</div>
+
+<!-- ============ COOKIE CONSENT ============ -->
+<div class="cookie" id="cookie" role="dialog" aria-label="Cookie notice">
+  <span class="cookie-ic"><svg><use href="#i-cookie"/></svg></span>
+  <span class="cookie-text">We use cookies to enhance your experience on this website.</span>
+  <a href="legal-documents.html" class="cookie-more">More details</a>
+  <button class="cookie-x" id="cookieClose" aria-label="Accept and close"><svg><use href="#i-close"/></svg></button>
+</div>
+
+<script src="assets/js/vendor/gsap.min.js" defer></script>
+<script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
+<script src="assets/js/vendor/lenis.min.js" defer></script>
+<script src="assets/js/vendor/aos.min.js" defer></script>
+<script src="assets/js/main.min.js?v=pb10" defer></script>
+</body>
+</html>
