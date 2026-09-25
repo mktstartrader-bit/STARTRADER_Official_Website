@@ -615,6 +615,16 @@
 .stl-who-tx{min-width:0}
 .stl .stl-who-card p + p{margin-top:10px}
 .stl .stl-who-card strong{color:#fff;font-weight:700}
+
+/* Who Can Join on phones: icon above the copy so the text gets the card's full width */
+@media (max-width:640px){
+  .stl .stl-who-grid{gap:12px}
+  .stl .stl-who-card{flex-direction:column;gap:12px;padding:20px 18px}
+  .stl .stl-who-ic{width:36px;height:36px;border-radius:11px}
+  .stl .stl-who-card p{font-size:14.5px;line-height:1.65}
+  .stl .stl-who-card p + p{margin-top:12px}
+  .stl-who-note{margin-top:16px;font-size:12px}
+}
 </style>
 
   <!-- Structured data -->
@@ -1078,7 +1088,7 @@
   <div class="container">
     <h2 class="stl-h2 stl-center" id="stl-who-title" data-aos="fade-up">Who Can Join</h2>
     <ul class="stl-who-grid">
-      <li class="stl-who-card stl-glass stl-spot is-yes" data-aos="fade-up"><span class="stl-who-ic" aria-hidden="true"><svg><use href="#i-check"/></svg></span><p>Open to STARTRADER live-account Clients.</p></li>
+      <li class="stl-who-card stl-glass stl-spot is-yes" data-aos="fade-up"><span class="stl-who-ic" aria-hidden="true"><svg><use href="#i-check"/></svg></span><p>Open to STARTRADER live&#8209;account Clients.</p></li>
       <li class="stl-who-card stl-glass stl-spot" data-aos="fade-up" data-aos-delay="100"><span class="stl-who-ic" aria-hidden="true"><svg><use href="#i-user"/></svg></span><div class="stl-who-tx"><p><strong>One Account at a Time:</strong> Each client can participate with <strong>one active promotional account</strong> concurrently. Duplicate or multiple simultaneous accounts will be disqualified.</p><p><strong>Re-Entry After Loss:</strong> Experienced a stop-out? You can formally close your depleted account and <strong>apply for a new one</strong> to join subsequent or ongoing promotions.</p></div></li>
       <li class="stl-who-card stl-glass stl-spot" data-aos="fade-up" data-aos-delay="200"><span class="stl-who-ic" aria-hidden="true"><svg><use href="#i-globe"/></svg></span><p>Conference assignment (Eastern: MENA &amp; Asia - Western: EU, North America &amp; Latin America) is based on the trading region on your STARTRADER account, at STARTRADER's sole discretion.</p></li>
     </ul>
