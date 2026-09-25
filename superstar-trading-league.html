@@ -544,6 +544,17 @@
 .stl .stl-h1{line-height:1.08}
 .stl .stl-h1 span{padding-bottom:.12em;margin-bottom:-.12em}
 .stl .stl-h2{padding-bottom:.1em}
+
+/* standard banner size (same as the product banners): min(780px, viewport - disclaimer bar).
+   The art is fitted to that height and anchored right, so the characters and the lettering are
+   never cropped; its left edge fades into the stage behind the copy. */
+@media (min-width:901px){
+  .stl .stl-hero{aspect-ratio:auto;min-height:min(780px,calc(100vh - var(--topbar-h,44px)));height:min(780px,calc(100vh - var(--topbar-h,44px)));padding:40px 0}
+  .stl-hero-bg img{position:absolute;top:0;right:0;left:auto;height:100%;width:auto;max-width:none;object-fit:contain;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 16%);mask-image:linear-gradient(90deg,transparent 0,#000 16%)}
+  .stl-hero-bg::after{background:linear-gradient(90deg,rgba(5,6,13,.6) 0%,rgba(5,6,13,.15) 40%,transparent 55%),linear-gradient(0deg,#05060D 0%,rgba(5,6,13,0) 6%)}
+}
+@media (min-width:901px) and (max-width:1180px){.stl .stl-hero{height:auto}.stl .stl-hero-copy{max-width:41%}}
 </style>
 
   <!-- Structured data -->
