@@ -571,6 +571,45 @@
 .stl-lb-card--e tbody tr:hover td{background:rgba(111,168,255,.07)}
 .stl-lb-card--w tbody tr:hover td{background:rgba(255,90,120,.07)}
 @media (max-width:900px){.stl-lb-grid{grid-template-columns:1fr}}
+
+/* leaderboard: blurred preview rows, the full-list button and the popup */
+.stl [data-stl-lb-card]{cursor:pointer}
+.stl-lb-more{position:relative;height:118px;overflow:hidden;pointer-events:none;
+  -webkit-mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.55) 45%,transparent 100%);mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.55) 45%,transparent 100%)}
+.stl-lb-more .stl-lb-table{filter:blur(3.5px);opacity:.75}
+.stl-lb-more .stl-lb-table tbody tr{opacity:1;transform:none}
+.stl .stl-lb-ghost tbody tr td.lb-no{color:var(--stl-mute)}
+.stl .stl-lb-ghost tbody tr td.lb-no span{background:none!important;box-shadow:none!important}
+.stl .stl-lb-ghost tbody tr td.lb-pts{color:#fff}
+.stl-lb-btn{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;gap:10px;margin:-64px auto 22px;min-height:48px;padding:0 24px;border:0;border-radius:999px;cursor:pointer;
+  font:inherit;font-weight:700;font-size:14.5px;color:#fff;background:rgba(10,12,24,.72);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.22),0 14px 30px -14px rgba(0,0,0,.8);transition:transform .3s var(--ease),box-shadow .3s}
+.stl-lb-btn svg{width:17px;height:17px;transition:transform .3s var(--ease)}
+.stl-lb-card--e .stl-lb-btn{box-shadow:inset 0 0 0 1px rgba(111,168,255,.55),0 14px 30px -12px rgba(47,107,255,.7)}
+.stl-lb-card--w .stl-lb-btn{box-shadow:inset 0 0 0 1px rgba(255,110,140,.55),0 14px 30px -12px rgba(255,45,85,.6)}
+.stl [data-stl-lb-card]:hover .stl-lb-btn{transform:translateY(-2px)}
+.stl [data-stl-lb-card]:hover .stl-lb-btn svg{transform:translateX(4px)}
+.stl-lb-btn:focus-visible{outline:2px solid #9FC2FF;outline-offset:3px}
+
+.stl-lbm{position:fixed;inset:0;margin:auto;height:fit-content;width:min(760px,calc(100vw - 32px));max-height:min(86vh,860px);padding:0;border:0;border-radius:24px;color:var(--stl-soft);overflow:hidden;
+  background:linear-gradient(170deg,#10132A,#07081200);background-color:#080A16;box-shadow:0 40px 120px -30px rgba(0,0,0,.9),inset 0 0 0 1px rgba(255,255,255,.1)}
+.stl-lbm::backdrop{background:rgba(3,4,10,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.stl-lbm[open]{animation:stlLbmIn .35s cubic-bezier(.2,.8,.2,1)}
+@keyframes stlLbmIn{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}
+.stl-lbm-in{display:flex;flex-direction:column;max-height:inherit}
+.stl-lbm-top{display:flex;align-items:center;justify-content:space-between;padding:22px 24px 8px}
+.stl-lbm-top h3{margin:0;font-weight:800;font-size:22px;color:#fff}
+.stl-lbm-x{display:grid;place-items:center;width:40px;height:40px;border:0;border-radius:50%;cursor:pointer;color:#fff;background:rgba(255,255,255,.08)}
+.stl-lbm-x svg{width:18px;height:18px}
+.stl-lbm-x:hover{background:rgba(255,255,255,.16)}
+.stl-lbm-tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:8px 24px 0;padding:5px;border-radius:14px;background:rgba(255,255,255,.05)}
+.stl-lbm-tab{min-height:42px;border:0;border-radius:10px;cursor:pointer;font:inherit;font-weight:700;font-size:14px;color:var(--stl-soft);background:transparent;transition:background .25s,color .25s}
+.stl-lbm-tab.is-e[aria-selected="true"]{color:#fff;background:linear-gradient(90deg,#2F6BFF,#5A8BFF)}
+.stl-lbm-tab.is-w[aria-selected="true"]{color:#fff;background:linear-gradient(90deg,#E0264B,#FF5A5A)}
+.stl-lbm-upd{margin:12px 24px 0;font-size:12.5px;color:var(--stl-mute)}
+.stl-lbm-scroll{overflow:auto;margin-top:8px;overscroll-behavior:contain}
+.stl-lbm-table thead th{position:sticky;top:0;background:#0B0D1C;z-index:1}
+@media (max-width:640px){.stl-lbm-top{padding:18px 16px 6px}.stl-lbm-tabs{margin:6px 16px 0}.stl-lbm-upd{margin:10px 16px 0}.stl-lbm-tab{font-size:13px}}
 </style>
 
   <!-- Structured data -->
@@ -785,19 +824,22 @@
 </section>
 
 <!-- ============ LEADERBOARD ============ -->
-<!-- WEEKLY UPDATE: edit the date in <time> and the 10 rows in EACH conference table below (No. / Client Name / Points).
-     Rows 1-3 get the gold / silver / bronze treatment automatically. Keep client names masked
-     as agreed with compliance (e.g. "A***d K."). "—" shows as a placeholder until data is in. -->
+<!-- WEEKLY UPDATE (one place only):
+     1. change the date in <time> below
+     2. edit the LEADERBOARD DATA block under this section: one ["Client Name", points] line per client,
+        already in rank order, for "east" and "west". Add as many lines as the full leaderboard needs.
+     The top-10 tables, the blurred preview rows and the "View Full Leaderboard" popup are all built from it.
+     Keep client names masked as agreed with compliance (e.g. "A***d K."). Empty data shows "—". -->
 <section class="section stl-lb" id="leaderboard" aria-labelledby="stl-lb-title">
   <div class="container">
     <h2 class="stl-h2 stl-center" id="stl-lb-title" data-aos="fade-up">Leaderboard</h2>
     <p class="stl-lb-upd" data-aos="fade-up"><i aria-hidden="true"></i>Top 10 &middot; Updated <time datetime="2026-10-01">1 October 2026</time></p>
     <div class="stl-lb-grid">
-    <div class="stl-lb-card stl-lb-card--e" data-aos="fade-up">
+    <div class="stl-lb-card stl-lb-card--e" data-aos="fade-up" data-stl-lb-card="east">
       <div class="stl-lb-head"><b>Eastern Conference</b><span>MENA &amp; Asia</span></div>
       <table class="stl-lb-table" aria-label="Eastern Conference top 10">
         <thead><tr><th scope="col">No.</th><th scope="col">Client Name</th><th scope="col">Points</th></tr></thead>
-        <tbody>
+        <tbody data-stl-lb-top="east">
           <tr><td class="lb-no"><span>1</span></td><td class="lb-name">&mdash;</td><td class="lb-pts">&mdash;</td></tr>
           <tr><td class="lb-no"><span>2</span></td><td class="lb-name">&mdash;</td><td class="lb-pts">&mdash;</td></tr>
           <tr><td class="lb-no"><span>3</span></td><td class="lb-name">&mdash;</td><td class="lb-pts">&mdash;</td></tr>
@@ -810,12 +852,14 @@
           <tr><td class="lb-no"><span>10</span></td><td class="lb-name">&mdash;</td><td class="lb-pts">&mdash;</td></tr>
         </tbody>
       </table>
+      <div class="stl-lb-more" aria-hidden="true"><table class="stl-lb-table stl-lb-ghost"><tbody data-stl-lb-ghost="east"></tbody></table></div>
+      <button type="button" class="stl-lb-btn" data-stl-lb-open="east">View Full Leaderboard <svg><use href="#i-arrow-right"/></svg></button>
     </div>
-    <div class="stl-lb-card stl-lb-card--w" data-aos="fade-up">
+    <div class="stl-lb-card stl-lb-card--w" data-aos="fade-up" data-stl-lb-card="west">
       <div class="stl-lb-head"><b>Western Conference</b><span>EU, North America &amp; Latin America</span></div>
       <table class="stl-lb-table" aria-label="Western Conference top 10">
         <thead><tr><th scope="col">No.</th><th scope="col">Client Name</th><th scope="col">Points</th></tr></thead>
-        <tbody>
+        <tbody data-stl-lb-top="west">
           <tr><td class="lb-no"><span>1</span></td><td class="lb-name">&mdash;</td><td class="lb-pts">&mdash;</td></tr>
           <tr><td class="lb-no"><span>2</span></td><td class="lb-name">&mdash;</td><td class="lb-pts">&mdash;</td></tr>
           <tr><td class="lb-no"><span>3</span></td><td class="lb-name">&mdash;</td><td class="lb-pts">&mdash;</td></tr>
@@ -828,10 +872,143 @@
           <tr><td class="lb-no"><span>10</span></td><td class="lb-name">&mdash;</td><td class="lb-pts">&mdash;</td></tr>
         </tbody>
       </table>
+      <div class="stl-lb-more" aria-hidden="true"><table class="stl-lb-table stl-lb-ghost"><tbody data-stl-lb-ghost="west"></tbody></table></div>
+      <button type="button" class="stl-lb-btn" data-stl-lb-open="west">View Full Leaderboard <svg><use href="#i-arrow-right"/></svg></button>
     </div>
     </div>
   </div>
 </section>
+
+<!-- ============ LEADERBOARD DATA (edit weekly) ============ -->
+<script type="application/json" id="stlLbData">
+{
+  "east": [
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""]
+  ],
+  "west": [
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""]
+  ]
+}
+</script>
+
+<!-- ============ FULL LEADERBOARD POPUP ============ -->
+<dialog class="stl-lbm" id="stlLbModal" aria-labelledby="stlLbmTitle">
+  <div class="stl-lbm-in">
+    <div class="stl-lbm-top">
+      <h3 id="stlLbmTitle">Full Leaderboard</h3>
+      <button type="button" class="stl-lbm-x" data-stl-lb-close aria-label="Close"><svg><use href="#i-close"/></svg></button>
+    </div>
+    <div class="stl-lbm-tabs" role="tablist" aria-label="Conference">
+      <button type="button" role="tab" class="stl-lbm-tab is-e" data-stl-lb-tab="east" aria-selected="true">Eastern Conference</button>
+      <button type="button" role="tab" class="stl-lbm-tab is-w" data-stl-lb-tab="west" aria-selected="false">Western Conference</button>
+    </div>
+    <p class="stl-lbm-upd" data-stl-lbm-upd></p>
+    <div class="stl-lbm-scroll">
+      <table class="stl-lb-table stl-lbm-table is-in">
+        <thead><tr><th scope="col">No.</th><th scope="col">Client Name</th><th scope="col">Points</th></tr></thead>
+        <tbody data-stl-lbm-body></tbody>
+      </table>
+    </div>
+  </div>
+</dialog>
 
 <!-- ============ PRIZES ============ -->
 <section class="section stl-prize" id="prizes" aria-label="Prize highlights">
@@ -1062,6 +1239,57 @@
       var cur = list.querySelector('.stl-sess.is-now') || list.querySelector('.stl-sess:not(.is-done)');
       if (cur && list.scrollWidth > list.clientWidth) list.scrollLeft = Math.max(0, cur.offsetLeft - list.offsetLeft - 8);
     }, 60);
+  })();
+
+  /* ---------- leaderboard: one data block feeds the top 10, the blurred preview and the popup ---------- */
+  (function () {
+    var src = document.getElementById('stlLbData');
+    var data = { east: [], west: [] };
+    try { if (src) data = JSON.parse(src.textContent); } catch (e) {}
+    var esc = function (t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+    function row(r, i) {
+      var name = r && r[0] !== '' && r[0] != null ? esc(r[0]) : '&mdash;';
+      var pts = r && r[1] !== '' && r[1] != null ? esc(typeof r[1] === 'number' ? nf(r[1]) : r[1]) : '&mdash;';
+      return '<tr><td class="lb-no"><span>' + (i + 1) + '</span></td><td class="lb-name">' + name + '</td><td class="lb-pts">' + pts + '</td></tr>';
+    }
+    function rows(list, from, to) {
+      var out = '';
+      for (var i = from; i < to; i++) out += row(list[i], i);
+      return out;
+    }
+    ['east', 'west'].forEach(function (k) {
+      var list = data[k] || [];
+      var top = document.querySelector('[data-stl-lb-top="' + k + '"]');
+      var ghost = document.querySelector('[data-stl-lb-ghost="' + k + '"]');
+      if (top) top.innerHTML = rows(list, 0, 10);
+      if (ghost) ghost.innerHTML = rows(list, 10, 13);
+    });
+
+    var dlg = document.getElementById('stlLbModal');
+    if (!dlg) return;
+    var body = dlg.querySelector('[data-stl-lbm-body]');
+    var tabs = [].slice.call(dlg.querySelectorAll('[data-stl-lb-tab]'));
+    var upd = dlg.querySelector('[data-stl-lbm-upd]'), when = document.querySelector('.stl-lb-upd time');
+    function show(k) {
+      var list = data[k] || [];
+      body.innerHTML = rows(list, 0, Math.max(list.length, 10));
+      tabs.forEach(function (t) { t.setAttribute('aria-selected', t.getAttribute('data-stl-lb-tab') === k ? 'true' : 'false'); });
+      if (upd && when) upd.textContent = 'Updated ' + when.textContent;
+      var sc = dlg.querySelector('.stl-lbm-scroll'); if (sc) sc.scrollTop = 0;
+    }
+    function open(k) {
+      show(k);
+      if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+      document.documentElement.style.overflow = 'hidden';
+    }
+    function close() { if (dlg.close) dlg.close(); else dlg.removeAttribute('open'); }
+    dlg.addEventListener('close', function () { document.documentElement.style.overflow = ''; });
+    [].forEach.call(document.querySelectorAll('[data-stl-lb-card]'), function (c) {
+      c.addEventListener('click', function () { open(c.getAttribute('data-stl-lb-card')); });
+    });
+    tabs.forEach(function (t) { t.addEventListener('click', function () { show(t.getAttribute('data-stl-lb-tab')); }); });
+    dlg.querySelector('[data-stl-lb-close]').addEventListener('click', close);
+    dlg.addEventListener('click', function (e) { if (e.target === dlg) close(); });   // backdrop
   })();
 
   /* ---------- leaderboard rows rise in one after another ---------- */
