@@ -17,14 +17,14 @@
   <meta property="og:title" content="SuperStar Trading League: Path to Glory | STARTRADER" />
   <meta property="og:description" content="Opt in to each Session, climb the leaderboard and compete for a USD 50,000 Season MVP prize. 7 Sessions, 2 Conferences, Oct–Dec 2026." />
   <meta property="og:url" content="https://www.startrader.com/superstar-trading-league/" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/stl-hero-v2.webp" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/stl-hero-v4.webp" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="SuperStar Trading League: Path to Glory | STARTRADER" />
   <meta name="twitter:description" content="Opt in to each Session, climb the leaderboard and compete for a USD 50,000 Season MVP prize. 7 Sessions, 2 Conferences, Oct–Dec 2026." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/stl-hero-v2.webp" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/stl-hero-v4.webp" />
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="favicon.svg" />
@@ -33,8 +33,8 @@
   <!-- Fonts (self-hosted) -->
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
-  <link rel="preload" as="image" href="assets/img/stl-hero-v2.webp" type="image/webp" fetchpriority="high" media="(min-width:761px)" />
-  <link rel="preload" as="image" href="assets/img/stl-hero-portrait-v2.webp" type="image/webp" fetchpriority="high" media="(max-width:760px)" />
+  <link rel="preload" as="image" href="assets/img/stl-hero-v4.webp" type="image/webp" fetchpriority="high" media="(min-width:901px)" />
+  <link rel="preload" as="image" href="assets/img/stl-hero-portrait-v4.webp" type="image/webp" fetchpriority="high" media="(max-width:900px)" />
   <link rel="stylesheet" href="assets/css/styles.min.css?v=pb10" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
@@ -359,7 +359,177 @@
 @media (prefers-reduced-motion:reduce){
   .stl *,.stl *::before,.stl *::after{animation:none!important;transition:none!important}
 }
-  </style>
+  
+/* ===== THEME: All-Star neon (feedback 2026-09-25) =====
+   The page follows the key art: near-black stage, red (Western) and blue (Eastern)
+   neon, chrome-silver headings, dark glass cards. Declared last so it overrides the
+   earlier light sections without rewriting them. */
+.stl{--stl-ground:#05060D;--stl-red:#FF2D55;--stl-red-2:#FF6B3D;--stl-blu:#2F6BFF;--stl-blu-2:#6FA8FF;
+  --stl-ink:#F2F5FF;--stl-soft:rgba(226,232,250,.72);--stl-mute:rgba(226,232,250,.5);
+  background:radial-gradient(60% 40% at 0% 0%,rgba(255,45,85,.12),transparent 60%),radial-gradient(60% 40% at 100% 8%,rgba(47,107,255,.16),transparent 60%),#05060D;color:var(--stl-soft)}
+.stl .section{background:transparent}
+.stl .stl-h2{color:transparent;background:linear-gradient(180deg,#FFFFFF 0%,#C9D2E4 55%,#8E9BB6 100%);-webkit-background-clip:text;background-clip:text;text-shadow:none}
+.stl .stl-h2--light{background:linear-gradient(180deg,#FFFFFF 0%,#C9D2E4 55%,#8E9BB6 100%);-webkit-background-clip:text;background-clip:text}
+/* glass → dark glass with a neon hairline */
+.stl .stl-glass{background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.1);
+  box-shadow:0 30px 60px -36px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.08)}
+.stl .stl-spot::after{background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(111,168,255,.14),transparent 65%)}
+.stl .stl-spot:hover{border-color:rgba(111,168,255,.35);box-shadow:0 30px 60px -30px rgba(47,107,255,.35),inset 0 1px 0 rgba(255,255,255,.1)}
+.stl .stl-btn{background:linear-gradient(90deg,#E0264B 0%,#7A3DFF 50%,#2F6BFF 100%);box-shadow:0 14px 34px -12px rgba(122,61,255,.7),inset 0 1px 0 rgba(255,255,255,.3)}
+.stl .stl-btn:hover{box-shadow:0 18px 40px -12px rgba(122,61,255,.9),inset 0 1px 0 rgba(255,255,255,.35)}
+.stl .stl-btn--ghost{background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px rgba(255,255,255,.28)}
+
+/* hero: stage + streaks + square key art */
+.stl .stl-hero{background:#05060D;min-height:0;padding:110px 0 150px}
+.stl-hero-fx{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.stl-hero-fx::before{content:"";position:absolute;inset:0;background:radial-gradient(40% 70% at 12% 30%,rgba(255,45,85,.22),transparent 70%),radial-gradient(40% 70% at 90% 30%,rgba(47,107,255,.26),transparent 70%)}
+.stl-hero-fx i{position:absolute;top:-10%;width:2px;height:120%;border-radius:2px;filter:blur(.5px);opacity:.75;animation:stlStreak 6s ease-in-out infinite}
+.stl-hero-fx .r1{left:6%;background:linear-gradient(transparent,#FF2D55,transparent)}
+.stl-hero-fx .r2{left:9%;width:5px;background:linear-gradient(transparent,rgba(255,107,61,.7),transparent);animation-delay:-2s;filter:blur(3px)}
+.stl-hero-fx .r3{left:14%;background:linear-gradient(transparent,rgba(255,45,85,.6),transparent);animation-delay:-4s}
+.stl-hero-fx .b1{right:6%;background:linear-gradient(transparent,#2F6BFF,transparent);animation-delay:-1s}
+.stl-hero-fx .b2{right:10%;width:5px;background:linear-gradient(transparent,rgba(111,168,255,.7),transparent);animation-delay:-3s;filter:blur(3px)}
+.stl-hero-fx .b3{right:15%;background:linear-gradient(transparent,rgba(47,107,255,.6),transparent);animation-delay:-5s}
+@keyframes stlStreak{0%,100%{transform:translateY(-6%);opacity:.35}50%{transform:translateY(6%);opacity:.9}}
+.stl .stl-hero-in{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(28px,4vw,64px);align-items:center}
+.stl .stl-hero-copy{max-width:none}
+.stl .stl-h1 span:first-child{color:transparent;background:linear-gradient(180deg,#FFFFFF 0%,#D5DCEA 50%,#8A96B0 100%);-webkit-background-clip:text;background-clip:text}
+.stl .stl-grad{background:linear-gradient(95deg,#6FA8FF 0%,#9C7BFF 50%,#FF6B8B 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
+.stl .stl-sub{color:rgba(242,245,255,.9)}
+.stl .stl-lead{color:var(--stl-soft)}
+.stl-hero-sq{position:relative;margin:0;aspect-ratio:1;width:100%;max-width:560px;justify-self:end;border-radius:28px;overflow:hidden;
+  box-shadow:-24px 0 70px -30px rgba(255,45,85,.55),24px 0 70px -30px rgba(47,107,255,.6),0 40px 90px -40px rgba(0,0,0,.9)}
+.stl-hero-sq::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;z-index:2;pointer-events:none;
+  background:linear-gradient(135deg,rgba(255,45,85,.8),rgba(255,255,255,.15) 45%,rgba(47,107,255,.85));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.stl-hero-sq img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+
+/* countdown */
+.stl .stl-cd{background:linear-gradient(160deg,rgba(18,22,40,.92),rgba(10,12,24,.92))}
+.stl .stl-cd-lab{color:var(--stl-blu-2)}
+.stl .stl-cd-lab i{background:var(--stl-red)}
+.stl .stl-cd-cell{background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.02));border-color:rgba(255,255,255,.1)}
+.stl .stl-cd-cell b{color:#fff}
+.stl .stl-cd-cell span{color:var(--stl-mute)}
+
+/* overview */
+.stl .stl-board{background:radial-gradient(90% 140% at 0% 0%,rgba(255,45,85,.18),transparent 55%),radial-gradient(90% 140% at 100% 0%,rgba(47,107,255,.22),transparent 55%),linear-gradient(180deg,#0B0E1E,#070812);border:1px solid rgba(255,255,255,.08)}
+.stl .stl-ov-copy p{color:var(--stl-soft)}
+.stl .stl-ov-copy strong{color:#fff;background:linear-gradient(transparent 70%,rgba(111,168,255,.22) 70%)}
+.stl .stl-half{background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border-color:rgba(255,255,255,.1)}
+.stl .stl-half b{color:#fff}
+.stl .stl-half > span:not(.stl-half-ic){color:var(--stl-soft)}
+.stl .stl-half--e::before{background-image:radial-gradient(rgba(111,168,255,.4) 1.1px,transparent 1.5px)}
+.stl .stl-half--w::before{background-image:radial-gradient(rgba(255,90,120,.4) 1.1px,transparent 1.5px)}
+.stl .stl-half--w .stl-half-ic{background:linear-gradient(180deg,#FF4D6D,#C8173E);box-shadow:0 10px 22px -10px rgba(255,45,85,.8)}
+.stl .stl-half--w .stl-pulse{background:var(--stl-red)}
+.stl .stl-half--e:hover{border-color:rgba(111,168,255,.45);box-shadow:0 30px 60px -30px rgba(47,107,255,.45)}
+.stl .stl-half--w:hover{border-color:rgba(255,90,120,.45);box-shadow:0 30px 60px -30px rgba(255,45,85,.4)}
+.stl .stl-split-vs{background:#0B0E1E;border-color:rgba(255,255,255,.14);color:#fff}
+
+/* how it works */
+.stl .stl-step h3{color:#fff}
+.stl .stl-step p{color:var(--stl-soft)}
+.stl .stl-step-n{color:var(--stl-mute)}
+.stl .stl-step.is-on .stl-step-n{color:var(--stl-blu-2)}
+.stl .stl-steps::before{background:rgba(255,255,255,.08)}
+.stl .stl-steps::after{background:linear-gradient(180deg,#FF2D55,#7A3DFF,#2F6BFF)}
+.stl .stl-step::before{background:#0B0E1E;border-color:rgba(255,255,255,.2)}
+.stl .stl-step.is-on::before{border-color:var(--stl-blu-2);background:var(--stl-blu);box-shadow:0 0 0 5px rgba(47,107,255,.2)}
+
+/* session calendar: follows the real date */
+.stl .stl-tl-rail{background:rgba(255,255,255,.08)}
+.stl .stl-tl-rail i{background:linear-gradient(90deg,#FF2D55,#7A3DFF,#2F6BFF)}
+.stl .stl-tl-rail::after{background:linear-gradient(90deg,transparent,rgba(156,123,255,.6),transparent)}
+.stl .stl-sess-num{position:relative;background:linear-gradient(180deg,rgba(226,232,250,.34),rgba(226,232,250,.12));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stl .stl-sess b{color:#fff}
+.stl .stl-sess-d{color:var(--stl-soft)}
+.stl .stl-sess-node{background:#0B0E1E;border-color:rgba(255,255,255,.22);box-shadow:0 0 0 6px var(--stl-ground)}
+.stl .stl-sess:hover .stl-sess-num{background-image:linear-gradient(180deg,#FFFFFF,#9FB8FF)}
+/* live session */
+.stl .stl-sess.is-now .stl-sess-num{background-image:linear-gradient(180deg,#9FC2FF,#2F6BFF);filter:drop-shadow(0 0 14px rgba(47,107,255,.75));animation:stlLive 2.4s ease-in-out infinite}
+@keyframes stlLive{0%,100%{filter:drop-shadow(0 0 8px rgba(47,107,255,.5))}50%{filter:drop-shadow(0 0 22px rgba(47,107,255,.95))}}
+.stl .stl-sess.is-now .stl-sess-node{background:var(--stl-blu);border-color:#9FC2FF;animation:stlPing 1.8s ease-out infinite}
+.stl .stl-sess.is-now b{color:var(--stl-blu-2)}
+.stl .stl-sess-live{display:none;margin-top:4px;align-self:flex-start;padding:3px 9px;border-radius:999px;font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:linear-gradient(90deg,#FF2D55,#2F6BFF)}
+.stl .stl-sess.is-now .stl-sess-live{display:inline-block}
+/* passed sessions: dimmed and struck through, the line drawing across */
+.stl .stl-sess.is-done{opacity:1}
+.stl .stl-sess.is-done .stl-sess-num{background-image:linear-gradient(180deg,rgba(226,232,250,.16),rgba(226,232,250,.06))}
+.stl .stl-sess-num::after{content:"";position:absolute;left:-6%;top:63%;margin-top:-1px;height:3px;width:112%;border-radius:3px;
+  background:linear-gradient(90deg,#FF2D55,#FF6B3D);box-shadow:0 0 10px rgba(255,45,85,.7);transform:rotate(-8deg) scaleX(0);transform-origin:left center;transition:transform .9s cubic-bezier(.2,.8,.2,1)}
+.stl .stl-sess.is-done .stl-sess-num::after{transform:rotate(-8deg) scaleX(1)}
+.stl .stl-sess-num{display:inline-block}
+.stl .stl-sess.is-done b,.stl .stl-sess.is-done .stl-sess-d{opacity:.45;transition:opacity .8s}
+.stl .stl-sess.is-done .stl-sess-node{background:rgba(255,45,85,.6);border-color:rgba(255,45,85,.6)}
+
+/* leaderboard */
+.stl-lb-upd{display:flex;align-items:center;justify-content:center;gap:10px;margin:14px 0 0;font-size:14px;font-weight:600;color:var(--stl-soft)}
+.stl-lb-upd i{width:8px;height:8px;border-radius:50%;background:var(--stl-red);animation:stlPing 1.8s ease-out infinite}
+.stl-lb-card{position:relative;max-width:860px;margin:32px auto 0;border-radius:24px;overflow:hidden;
+  background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.1);
+  box-shadow:-30px 0 80px -50px rgba(255,45,85,.6),30px 0 80px -50px rgba(47,107,255,.7),inset 0 1px 0 rgba(255,255,255,.08)}
+.stl-lb-card::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,#FF2D55,#7A3DFF,#2F6BFF)}
+.stl-lb-table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.stl-lb-table th{padding:18px 24px;text-align:left;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--stl-mute);border-bottom:1px solid rgba(255,255,255,.08)}
+.stl-lb-table th:last-child,.stl-lb-table td:last-child{text-align:right}
+.stl-lb-table td{padding:15px 24px;font-size:15.5px;color:rgba(242,245,255,.92);border-bottom:1px solid rgba(255,255,255,.05);transition:background .25s}
+.stl-lb-table tbody tr:last-child td{border-bottom:0}
+.stl-lb-table tbody tr:hover td{background:rgba(111,168,255,.06)}
+.stl-lb-table .lb-no{width:88px}
+.stl-lb-table td.lb-no{font-weight:800;color:var(--stl-mute)}
+.stl-lb-table .lb-name{font-weight:600}
+.stl-lb-table .lb-pts{font-weight:800;color:#fff}
+.stl-lb-table tbody tr:nth-child(-n+3) td.lb-no{position:relative;color:#1B1406}
+.stl-lb-table td.lb-no span{display:inline-grid;place-items:center;width:30px;height:30px;margin:-6px 0;border-radius:50%}
+.stl-lb-table tbody tr:nth-child(1) td.lb-no span{background:linear-gradient(180deg,#FFE7A3,#E0A93A);box-shadow:0 0 16px rgba(233,185,73,.5)}
+.stl-lb-table tbody tr:nth-child(2) td.lb-no span{background:linear-gradient(180deg,#F3F6FA,#AEB8C6)}
+.stl-lb-table tbody tr:nth-child(3) td.lb-no span{background:linear-gradient(180deg,#F2C49C,#B97444)}
+.stl-lb-table tbody tr:nth-child(1) td.lb-pts{color:#FFE08A}
+.stl-lb-table tbody tr{opacity:0;transform:translateY(10px)}
+.stl-lb-table.is-in tbody tr{opacity:1;transform:none;transition:opacity .5s,transform .5s cubic-bezier(.2,.8,.2,1)}
+
+/* who can join / closing / fine print */
+.stl .stl-who-card p{color:var(--stl-soft)}
+.stl .stl-who-ic{background:rgba(111,168,255,.12);color:var(--stl-blu-2)}
+.stl .stl-fine p{color:var(--stl-mute)}
+.stl .stl-cta-card{background:radial-gradient(60% 100% at 0% 100%,rgba(255,45,85,.35),transparent 60%),radial-gradient(60% 100% at 100% 100%,rgba(47,107,255,.45),transparent 60%),linear-gradient(180deg,#0B0E1E,#05060D);border:1px solid rgba(255,255,255,.1)}
+.stl .stl-cta-card h2 span{background:linear-gradient(95deg,#6FA8FF,#9C7BFF,#FF6B8B);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stl .stl-prize{background:radial-gradient(70% 55% at 50% 0%,rgba(122,61,255,.18),transparent 60%),transparent}
+
+@media (max-width:900px){
+  .stl .stl-hero-in{grid-template-columns:1fr}
+  .stl-hero-sq{justify-self:center;max-width:520px;order:-1}
+  .stl .stl-hero{padding:96px 0 128px}
+}
+@media (max-width:760px){
+  .stl .stl-hero{padding:84px 0 120px}
+  .stl-hero-fx i{opacity:.4}
+  .stl-lb-table th,.stl-lb-table td{padding:13px 14px}
+  .stl-lb-table .lb-no{width:56px}
+  .stl-lb-table td{font-size:14.5px}
+}
+
+/* hero: the key art is the whole banner; copy sits in its dark left half */
+.stl .stl-hero{min-height:0;aspect-ratio:1672/941;max-height:none;padding:40px 0;align-items:center}
+.stl .stl-cd-sec{margin-top:28px}
+.stl .stl-h1{font-size:clamp(34px,4.2vw,64px)}
+.stl .stl-h1 span:first-child{white-space:normal}
+.stl-hero-bg{position:absolute;inset:0;z-index:-1}
+.stl-hero-bg img{width:100%;height:100%;object-fit:cover;object-position:70% center;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.stl-hero-bg::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(5,6,13,.72) 0%,rgba(5,6,13,.25) 34%,transparent 52%),linear-gradient(0deg,#05060D 0%,rgba(5,6,13,0) 7%)}
+.stl .stl-hero-in{display:block}
+.stl .stl-hero-copy{max-width:min(620px,47%)}
+@media (min-width:901px) and (max-width:1180px){.stl .stl-hero{aspect-ratio:auto;min-height:calc(100vw * 941 / 1672)}.stl .stl-sub{font-size:15px}.stl .stl-hero-bg img{object-position:78% center}}
+@media (max-width:900px){
+  /* phones/tablets: the art (887x941) sits on top at full width, the copy follows under it */
+  .stl .stl-hero{aspect-ratio:auto;min-height:0;align-items:flex-start;padding:calc(106vw + 8px) 0 40px}
+  .stl-hero-bg{bottom:auto;height:auto;aspect-ratio:887/941}
+  .stl-hero-bg img{object-position:center top;transform:none!important}
+  .stl-hero-bg::after{background:linear-gradient(0deg,#05060D 0%,rgba(5,6,13,0) 8%)}
+  .stl .stl-hero-copy{max-width:none}
+}
+</style>
 
   <!-- Structured data -->
   <script type="application/ld+json">
@@ -437,12 +607,10 @@
 
 <!-- ============ HERO ============ -->
 <section class="stl-hero" aria-labelledby="stl-title" data-stl-hero>
-  <div class="stl-hero-art" aria-hidden="true">
-    <picture>
-      <source media="(max-width:760px)" srcset="assets/img/stl-hero-portrait-v2.webp">
-      <img src="assets/img/stl-hero-v2.webp" alt="A crystal championship trophy with a gold rim and handles on a black stone pedestal set with the STARTRADER star in gold" width="2560" height="1434" fetchpriority="high" decoding="async" data-stl-parallax>
-    </picture>
-  </div>
+  <picture class="stl-hero-bg">
+    <source media="(max-width:900px)" srcset="assets/img/stl-hero-portrait-v4.webp" width="887" height="941">
+    <img src="assets/img/stl-hero-v4.webp" alt="All Star Trading League: Path to Glory - red and blue neon astronaut traders around a championship trophy beneath a chrome star" width="1672" height="941" fetchpriority="high" decoding="async" data-stl-parallax>
+  </picture>
   <div class="container stl-hero-in">
     <a class="stl-brand" href="index.html" aria-label="STARTRADER home"><img src="assets/img/logo-startrader.svg" alt="STARTRADER" width="180" height="35"></a>
     <div class="stl-hero-copy">
@@ -562,14 +730,42 @@
     <div class="stl-tl">
       <div class="stl-tl-rail" aria-hidden="true"><i data-stl-rail></i></div>
       <ol class="stl-tl-list" data-stl-cal>
-      <li class="stl-sess" data-aos="fade-up" data-aos-delay="0"><span class="stl-sess-num" aria-hidden="true">01</span><span class="stl-sess-node" aria-hidden="true"></span><b>Session 1</b><span class="stl-sess-d">1-14 October 2026</span></li>
-      <li class="stl-sess" data-aos="fade-up" data-aos-delay="100"><span class="stl-sess-num" aria-hidden="true">02</span><span class="stl-sess-node" aria-hidden="true"></span><b>Session 2</b><span class="stl-sess-d">15-28 October 2026</span></li>
-      <li class="stl-sess" data-aos="fade-up" data-aos-delay="200"><span class="stl-sess-num" aria-hidden="true">03</span><span class="stl-sess-node" aria-hidden="true"></span><b>Session 3</b><span class="stl-sess-d">29 October - 11 November 2026</span></li>
-      <li class="stl-sess" data-aos="fade-up" data-aos-delay="300"><span class="stl-sess-num" aria-hidden="true">04</span><span class="stl-sess-node" aria-hidden="true"></span><b>Session 4</b><span class="stl-sess-d">12-25 November 2026</span></li>
-      <li class="stl-sess" data-aos="fade-up" data-aos-delay="400"><span class="stl-sess-num" aria-hidden="true">05</span><span class="stl-sess-node" aria-hidden="true"></span><b>Session 5</b><span class="stl-sess-d">26 November - 9 December 2026</span></li>
-      <li class="stl-sess" data-aos="fade-up" data-aos-delay="500"><span class="stl-sess-num" aria-hidden="true">06</span><span class="stl-sess-node" aria-hidden="true"></span><b>Session 6</b><span class="stl-sess-d">10-23 December 2026</span></li>
-      <li class="stl-sess" data-aos="fade-up" data-aos-delay="600"><span class="stl-sess-num" aria-hidden="true">07</span><span class="stl-sess-node" aria-hidden="true"></span><b>Session 7</b><span class="stl-sess-d">24-31 December 2026</span></li>
+      <li class="stl-sess" data-aos="fade-up" data-aos-delay="0"><span class="stl-sess-num" aria-hidden="true">01</span><span class="stl-sess-node" aria-hidden="true"></span><b>Session 1</b><span class="stl-sess-d">1-14 October 2026</span><span class="stl-sess-live" aria-hidden="true">Live</span></li>
+      <li class="stl-sess" data-aos="fade-up" data-aos-delay="100"><span class="stl-sess-num" aria-hidden="true">02</span><span class="stl-sess-node" aria-hidden="true"></span><b>Session 2</b><span class="stl-sess-d">15-28 October 2026</span><span class="stl-sess-live" aria-hidden="true">Live</span></li>
+      <li class="stl-sess" data-aos="fade-up" data-aos-delay="200"><span class="stl-sess-num" aria-hidden="true">03</span><span class="stl-sess-node" aria-hidden="true"></span><b>Session 3</b><span class="stl-sess-d">29 October - 11 November 2026</span><span class="stl-sess-live" aria-hidden="true">Live</span></li>
+      <li class="stl-sess" data-aos="fade-up" data-aos-delay="300"><span class="stl-sess-num" aria-hidden="true">04</span><span class="stl-sess-node" aria-hidden="true"></span><b>Session 4</b><span class="stl-sess-d">12-25 November 2026</span><span class="stl-sess-live" aria-hidden="true">Live</span></li>
+      <li class="stl-sess" data-aos="fade-up" data-aos-delay="400"><span class="stl-sess-num" aria-hidden="true">05</span><span class="stl-sess-node" aria-hidden="true"></span><b>Session 5</b><span class="stl-sess-d">26 November - 9 December 2026</span><span class="stl-sess-live" aria-hidden="true">Live</span></li>
+      <li class="stl-sess" data-aos="fade-up" data-aos-delay="500"><span class="stl-sess-num" aria-hidden="true">06</span><span class="stl-sess-node" aria-hidden="true"></span><b>Session 6</b><span class="stl-sess-d">10-23 December 2026</span><span class="stl-sess-live" aria-hidden="true">Live</span></li>
+      <li class="stl-sess" data-aos="fade-up" data-aos-delay="600"><span class="stl-sess-num" aria-hidden="true">07</span><span class="stl-sess-node" aria-hidden="true"></span><b>Session 7</b><span class="stl-sess-d">24-31 December 2026</span><span class="stl-sess-live" aria-hidden="true">Live</span></li>
       </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LEADERBOARD ============ -->
+<!-- WEEKLY UPDATE: edit the date in <time> and the 10 rows below (No. / Client Name / Points).
+     Rows 1-3 get the gold / silver / bronze treatment automatically. Keep client names masked
+     as agreed with compliance (e.g. "A***d K."). "—" shows as a placeholder until data is in. -->
+<section class="section stl-lb" id="leaderboard" aria-labelledby="stl-lb-title">
+  <div class="container">
+    <h2 class="stl-h2 stl-center" id="stl-lb-title" data-aos="fade-up">Leaderboard</h2>
+    <p class="stl-lb-upd" data-aos="fade-up"><i aria-hidden="true"></i>Top 10 &middot; Updated <time datetime="2026-10-01">1 October 2026</time></p>
+    <div class="stl-lb-card" data-aos="fade-up">
+      <table class="stl-lb-table">
+        <thead><tr><th scope="col">No.</th><th scope="col">Client Name</th><th scope="col">Points</th></tr></thead>
+        <tbody data-stl-lb>
+          <tr><td class="lb-no"><span>1</span></td><td class="lb-name">&mdash;</td><td class="lb-pts">&mdash;</td></tr>
+          <tr><td class="lb-no"><span>2</span></td><td class="lb-name">&mdash;</td><td class="lb-pts">&mdash;</td></tr>
+          <tr><td class="lb-no"><span>3</span></td><td class="lb-name">&mdash;</td><td class="lb-pts">&mdash;</td></tr>
+          <tr><td class="lb-no"><span>4</span></td><td class="lb-name">&mdash;</td><td class="lb-pts">&mdash;</td></tr>
+          <tr><td class="lb-no"><span>5</span></td><td class="lb-name">&mdash;</td><td class="lb-pts">&mdash;</td></tr>
+          <tr><td class="lb-no"><span>6</span></td><td class="lb-name">&mdash;</td><td class="lb-pts">&mdash;</td></tr>
+          <tr><td class="lb-no"><span>7</span></td><td class="lb-name">&mdash;</td><td class="lb-pts">&mdash;</td></tr>
+          <tr><td class="lb-no"><span>8</span></td><td class="lb-name">&mdash;</td><td class="lb-pts">&mdash;</td></tr>
+          <tr><td class="lb-no"><span>9</span></td><td class="lb-name">&mdash;</td><td class="lb-pts">&mdash;</td></tr>
+          <tr><td class="lb-no"><span>10</span></td><td class="lb-name">&mdash;</td><td class="lb-pts">&mdash;</td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </section>
@@ -673,6 +869,10 @@
   var RM = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var FINE = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   var nf = function (n) { return Number(n).toLocaleString('en-US'); };
+  /* ?stlnow=YYYY-MM-DD previews the page on another date (review only) */
+  var FAKE = (location.search.match(/[?&]stlnow=(\d{4})-(\d{2})-(\d{2})/) || null);
+  var OFFSET = FAKE ? (new Date(+FAKE[1], FAKE[2] - 1, +FAKE[3], 12, 0, 0) - new Date()) : 0;
+  function NOW() { return new Date(Date.now() + OFFSET); }
 
   /* ---------- the seven Sessions (local time, whole days) ---------- */
   var SESS = [['2026-10-01', '2026-10-14'], ['2026-10-15', '2026-10-28'], ['2026-10-29', '2026-11-11'],
@@ -712,7 +912,7 @@
       if (!RM) { el.classList.remove('is-tick'); void el.offsetWidth; el.classList.add('is-tick'); }
     }
     function tick() {
-      var now = new Date(), target;
+      var now = NOW(), target;
       if (now < SESS[0].start) { target = SESS[0].start; lab.textContent = 'Promotion opens in'; }
       else {
         lab.textContent = 'Current Session ends in';
@@ -786,9 +986,29 @@
   (function () {
     var rail = document.querySelector('[data-stl-rail]');
     if (!rail) return;
-    var now = new Date(), a = SESS[0].start, b = SESS[6].end;
+    var now = NOW(), a = SESS[0].start, b = SESS[6].end;
     var f = Math.max(0, Math.min(1, (now - a) / (b - a)));
     rail.style.setProperty('--fill', (f * 100).toFixed(2) + '%');
+  })();
+
+  /* ---------- phones: the swipeable calendar opens on the live Session ---------- */
+  (function () {
+    var list = document.querySelector('[data-stl-cal]');
+    if (!list) return;
+    setTimeout(function () {
+      var cur = list.querySelector('.stl-sess.is-now') || list.querySelector('.stl-sess:not(.is-done)');
+      if (cur && list.scrollWidth > list.clientWidth) list.scrollLeft = Math.max(0, cur.offsetLeft - list.offsetLeft - 8);
+    }, 60);
+  })();
+
+  /* ---------- leaderboard rows rise in one after another ---------- */
+  (function () {
+    var t = document.querySelector('.stl-lb-table');
+    if (!t) return;
+    [].forEach.call(t.querySelectorAll('tbody tr'), function (r, i) { r.style.transitionDelay = (i * 60) + 'ms'; });
+    if (RM || !('IntersectionObserver' in window)) { t.classList.add('is-in'); return; }
+    var io = new IntersectionObserver(function (e) { if (e[0].isIntersecting) { t.classList.add('is-in'); io.disconnect(); } }, { threshold: .25 });
+    io.observe(t);
   })();
 
   /* ---------- How It Works: the rail fills as you scroll, steps light up ---------- */
@@ -851,7 +1071,7 @@
     if (!hero || !img) return;
     hero.addEventListener('pointermove', function (e) {
       var r = hero.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
-      img.style.transform = 'scale(1.06) translate(' + (-x * 14).toFixed(1) + 'px,' + (-y * 10).toFixed(1) + 'px)';
+      img.style.transform = 'scale(1.05) translate(' + (-x * 10).toFixed(1) + 'px,' + (-y * 8).toFixed(1) + 'px)';
     });
     hero.addEventListener('pointerleave', function () { img.style.transform = ''; });
   })();
