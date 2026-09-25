@@ -34,14 +34,31 @@
   <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
+  <link rel="preload" href="assets/img/nr-hero-banner-v2.webp" as="image" type="image/webp" media="(min-width:861px)" fetchpriority="high" />
+  <link rel="preload" href="assets/img/nr-hero-banner-portrait-v2.webp" as="image" type="image/webp" media="(max-width:860px)" fetchpriority="high" />
   <link rel="stylesheet" href="assets/css/styles.min.css?v=pb10" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* ---- Hero (two-column: copy + interactive panel over video) ---- */
 .ta-metric.flash{animation:taMetric .55s ease}
 /* ================= NEWS ROOM PAGE ================= */
-/* banner: the same video shell and left-aligned copy as the calendar */
-.nr-hero{justify-content:center}
+/* banner: its own artwork (a folded glass newspaper, a news-feed tablet and a
+   commentary bubble etched with the STARTRADER star) on the Market Analysis
+   framing - full-bleed under the bar, the group in 53-96% x of the art, clear
+   of the copy, whose lead is capped so it never reaches the bubble */
+.nr-hero{justify-content:center;background:#020612}
+.nr-hero-banner{position:absolute;top:var(--nav-h);left:0;right:0;width:100%;height:calc(100% - var(--nav-h));object-fit:cover;object-position:62% center;z-index:-2}
+.nr-hero .wb-lead{max-width:560px}
+@media (min-width:861px) and (max-width:1280px){.nr-hero .wb-hero-inner{max-width:100%}.nr-hero .wb-hero-inner>*{max-width:48%}}
+@media (max-width:860px){
+  /* the art sits at the top sized by width; the group ends at half its height
+     (0.5 x 1778/1200 = 74% of the width), so the copy starts at 76vw + 28px */
+  .nr-hero{background:#020612;justify-content:flex-start;min-height:0;padding:calc(var(--nav-h) + 76vw + 28px) 0 44px}
+  .nr-hero-banner{bottom:auto;height:auto;aspect-ratio:1200/1778;object-position:center top}
+  .nr-hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+    background:linear-gradient(180deg,#020612 0%,#020612 calc(var(--nav-h) + 2px),rgba(2,6,18,0) calc(var(--nav-h) + 40px)),
+               linear-gradient(0deg,#020612 0%,rgba(2,6,18,.86) 20%,rgba(2,6,18,0) 46%)}
+}
 /* ---- Lead story ---- */
 .nr-lead-sec{background:radial-gradient(58% 46% at 6% 0%,rgba(0,71,187,.07),transparent 62%),var(--bg-light)}
 .nr-lead{
@@ -558,10 +575,10 @@
 
 <!-- ============ HERO ============ -->
 <section class="wb-hero nr-hero" aria-labelledby="nr-hero-title">
-  <video class="wb-hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/img/webinars-video-poster.webp" aria-hidden="true">
-    <source src="assets/video/webinars-banner.mp4" type="video/mp4">
-  </video>
-  <div class="wb-hero-scrim" aria-hidden="true"></div>
+  <picture>
+    <source media="(max-width:860px)" srcset="assets/img/nr-hero-banner-portrait-v2.webp" width="1200" height="1778">
+    <img class="nr-hero-banner" src="assets/img/nr-hero-banner-v2.webp" alt="A newspaper of glass pages in a polished titanium frame, a graphite tablet showing a news feed, a steel-framed glass speech bubble and a brushed steel disc" width="2560" height="1434" fetchpriority="high" decoding="async">
+  </picture>
 
   <div class="container wb-hero-inner">
     <span class="eyebrow eyebrow-blue" data-aos="fade-up">Analysis</span>
