@@ -34,13 +34,28 @@
   <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
+  <link rel="preload" href="assets/img/ec-hero-banner-v1.webp" as="image" type="image/webp" media="(min-width:861px)" fetchpriority="high" />
+  <link rel="preload" href="assets/img/ec-hero-banner-portrait-v1.webp" as="image" type="image/webp" media="(max-width:860px)" fetchpriority="high" />
   <link rel="stylesheet" href="assets/css/styles.min.css?v=pb10" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* ================= ECONOMIC CALENDAR PAGE ================= */
 /* the banner reuses the .wb-hero video shell, but its copy is left-aligned
    and there is no session strip beneath it */
-.ec-hero{justify-content:center}
+.ec-hero{justify-content:center;background:#020612}
+/* banner: its own artwork (glass calendar with event days lit, a release list with
+   actual / forecast / previous and an impact marker, a clock for timing and a
+   volatility gauge) on the News Room framing - group in 53-96% x, clear of the copy */
+.ec-hero-banner{position:absolute;top:var(--nav-h);left:0;right:0;width:100%;height:calc(100% - var(--nav-h));object-fit:cover;object-position:62% center;z-index:-2}
+.ec-hero .wb-lead{max-width:560px}
+@media (min-width:861px) and (max-width:1280px){.ec-hero .wb-hero-inner>*{max-width:48%}}
+@media (max-width:860px){
+  .ec-hero{justify-content:flex-start;min-height:0;padding:calc(var(--nav-h) + 76vw + 28px) 0 44px}
+  .ec-hero-banner{bottom:auto;height:auto;aspect-ratio:1200/1778;object-position:center top}
+  .ec-hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+    background:linear-gradient(180deg,#020612 0%,#020612 calc(var(--nav-h) + 2px),rgba(2,6,18,0) calc(var(--nav-h) + 40px)),
+               linear-gradient(0deg,#020612 0%,rgba(2,6,18,.86) 20%,rgba(2,6,18,0) 46%)}
+}
 /* ---- Calendar section (live third-party feed) ---- */
 .ec-sec{
   background:
@@ -621,10 +636,10 @@
 
 <!-- ============ HERO ============ -->
 <section class="wb-hero ec-hero" aria-labelledby="ec-hero-title">
-  <video class="wb-hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/img/webinars-video-poster.webp" aria-hidden="true">
-    <source src="assets/video/webinars-banner.mp4" type="video/mp4">
-  </video>
-  <div class="wb-hero-scrim" aria-hidden="true"></div>
+  <picture>
+    <source media="(max-width:860px)" srcset="assets/img/ec-hero-banner-portrait-v1.webp" width="1200" height="1778">
+    <img class="ec-hero-banner" src="assets/img/ec-hero-banner-v1.webp" alt="A crystal glass desk calendar on a titanium stand with event days lit in blue, a tablet listing economic releases with actual, forecast and previous values, a steel clock and a glass volatility gauge" width="2560" height="1434" fetchpriority="high" decoding="async">
+  </picture>
 
   <div class="container wb-hero-inner">
     <span class="eyebrow eyebrow-blue" data-aos="fade-up">Analysis</span>
