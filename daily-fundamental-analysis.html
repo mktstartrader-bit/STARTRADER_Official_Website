@@ -34,7 +34,7 @@
   <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb10" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb11" />
   <!-- Structured data — page entity -->
   <script type="application/ld+json">
 {
@@ -71,6 +71,19 @@
 
   <!-- Structured data — FAQ -->
 
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* About the analyst */
+.fa-bio-sec{background:var(--bg-light);padding-block:clamp(48px,6vw,80px)}
+.fa-bio{display:grid;grid-template-columns:minmax(220px,.36fr) 1fr;gap:clamp(24px,4vw,56px);padding:clamp(24px,3.4vw,44px);border-radius:24px;align-items:start}
+.fa-bio-head{display:flex;flex-direction:column;gap:16px}
+.fa-bio-head img{width:96px;height:96px;border-radius:50%;object-fit:cover;box-shadow:0 12px 28px -14px rgba(15,40,110,.5)}
+.fa-bio-name{font-size:clamp(22px,2.2vw,28px);font-weight:800;letter-spacing:-.02em;color:var(--ink);margin-top:8px}
+.fa-bio-role{display:block;margin-top:4px;font-size:14px;color:var(--text-soft)}
+.fa-bio-tx p{font-size:15.5px;line-height:1.75;color:var(--text-soft)}
+.fa-bio-tx p+p{margin-top:14px}
+@media (max-width:820px){.fa-bio{grid-template-columns:1fr}.fa-bio-head{flex-direction:row;align-items:center}}
+  </style>
 </head>
 
 <body>
@@ -394,7 +407,7 @@
       <p class="ma-lead" data-aos="fade-up">Follow the latest fundamental analysis across stocks, forex and global markets, with insights into economic data, central bank decisions, market developments and other factors influencing price movements.</p>
       <div class="ma-analyst" data-aos="fade-up">
         <img src="assets/img/author-ghassan.webp" alt="Ghassan, STARTRADER market analyst" width="56" height="56" loading="lazy" decoding="async">
-        <span class="ma-analyst-tx"><b>Ghassan</b><em>Market analyst &middot; STARTRADER Research</em></span>
+        <span class="ma-analyst-tx"><b>Ghassan Albohotori</b><em>Senior Market Analyst &middot; STARTRADER Research</em></span>
       </div>
       <div class="ma-hact" data-aos="fade-up">
         <a href="#reports" class="btn btn-primary btn-lg magnetic">Read today&rsquo;s analysis <svg class="ico"><use href="#i-arrow-right"/></svg></a>
@@ -554,6 +567,28 @@
       <span class="pgr-list" data-pgr-list></span>
       <button class="pgr-arrow" type="button" data-pgr-next aria-label="Next page"><svg aria-hidden="true"><use href="#i-chevron-right"/></svg></button>
     </nav>
+  </div>
+</section>
+
+<!-- ============ ABOUT THE ANALYST ============ -->
+<section class="section fa-bio-sec" aria-labelledby="fa-bio-title">
+  <div class="container">
+    <div class="fa-bio glass" data-aos="fade-up">
+      <div class="fa-bio-head">
+        <img src="assets/img/author-ghassan.webp" alt="Ghassan Albohotori, Senior Market Analyst at STARTRADER" width="96" height="96" loading="lazy" decoding="async">
+        <div>
+          <span class="eyebrow">About the analyst</span>
+          <h2 class="fa-bio-name" id="fa-bio-title">Ghassan Albohotori</h2>
+          <span class="fa-bio-role">Senior Market Analyst &middot; STARTRADER Research</span>
+        </div>
+      </div>
+      <div class="fa-bio-tx">
+        <p>As a Senior Market Analyst with more than 10 years of experience, Mr. Albohotori has spent much of his career helping people feel less overwhelmed by the markets.</p>
+        <p>He understands that market news can often feel too fast, too technical, and difficult to connect. That is why his sessions focus on making market movements easier to understand, showing what is driving prices, why it matters, and how global events, commodities, and economic shifts come together in real market behavior.</p>
+        <p>His commentary has been featured on leading regional business media, including CNBC Arabia, Asharq Business, and Al Arabiya. But what truly defines his approach is his ability to make complex market topics feel practical, accessible, and relevant.</p>
+        <p>Known for his interactive style, he helps participants connect the dots and leave with a clearer sense of what they are looking at, and why it matters.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -722,6 +757,6 @@
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=pb10" defer></script>
+<script src="assets/js/main.min.js?v=pb11" defer></script>
 </body>
 </html>

@@ -33,7 +33,7 @@
   <!-- Fonts (self-hosted) -->
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb10" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb11" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* =================================================================
@@ -115,7 +115,14 @@
   body.has-sb .mn-sec{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
   body.has-sb.ck-open .mn-sec{padding-bottom:calc(214px + env(safe-area-inset-bottom,0px))}
 }
-  </style>
+  
+/* language switch: one language shown at a time */
+.mn-lang{display:inline-flex;gap:4px;margin-top:22px;padding:4px;border-radius:999px;background:rgba(20,40,80,.06);border:1px solid rgba(20,40,80,.08)}
+.mn-lang-b{min-width:74px;padding:8px 16px;border:0;border-radius:999px;background:transparent;font:inherit;font-weight:700;font-size:13.5px;color:var(--text-soft);cursor:pointer;transition:background .25s,color .25s}
+.mn-lang-b[aria-selected="true"]{background:#fff;color:var(--blue);box-shadow:0 4px 12px -6px rgba(20,40,80,.35)}
+.mn-lang-b:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.mn-zh{margin-top:clamp(20px,2.6vw,28px)}
+</style>
 
   <!-- Structured data -->
   <script type="application/ld+json">
@@ -437,14 +444,19 @@
         <img src="assets/img/icon-shield-3d.webp" alt="3D shield emblem for insured client funds" width="400" height="490" loading="eager" decoding="async">
       </div>
 
+      <div class="mn-lang" role="tablist" aria-label="Language">
+        <button type="button" role="tab" class="mn-lang-b" data-mn-lang="en" aria-selected="true">EN</button>
+        <button type="button" role="tab" class="mn-lang-b" data-mn-lang="zh" aria-selected="false" lang="zh-Hans">简体中文</button>
+      </div>
+
+      <div class="mn-en" data-mn-pane="en">
       <h1 class="mn-h1" id="mn-title">Client Portal<br><span>Upgrade Announcement</span></h1>
 
       <p class="mn-lead" data-aos="fade-up" data-aos-delay="100">Our Client Portal is currently undergoing scheduled maintenance and upgrades. During this time, access will be temporarily unavailable. Once complete, you can look forward to an enhanced and more seamless experience.</p>
       <p class="mn-thanks" data-aos="fade-up" data-aos-delay="150">Thank you for your continued support, and we wish you a pleasant trading journey!</p>
+      </div>
 
-      <div class="mn-div" aria-hidden="true">中文</div>
-
-      <div class="mn-zh" lang="zh-Hans" data-aos="fade-up" data-aos-delay="200">
+      <div class="mn-zh" lang="zh-Hans" data-mn-pane="zh" hidden>
         <b>客户后台升级公告</b>
         尊敬的客户：我们的客户后台目前正在进行系统维护与升级，在此期间将暂时无法访问。升级完成后，您将获得更加流畅优质的使用体验。感谢您的耐心等待与一直以来的支持，祝您交易愉快！
       </div>
@@ -574,6 +586,17 @@
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=pb10" defer></script>
+<script src="assets/js/main.min.js?v=pb11" defer></script>
+
+<script>
+/* EN / 简体中文 switch - ?lang=zh or #zh opens the Chinese notice */
+(function(){
+  var bs=[].slice.call(document.querySelectorAll('[data-mn-lang]')), ps=[].slice.call(document.querySelectorAll('[data-mn-pane]'));
+  if(!bs.length) return;
+  function set(l){ bs.forEach(function(b){b.setAttribute('aria-selected',b.getAttribute('data-mn-lang')===l?'true':'false');}); ps.forEach(function(p){p.hidden=p.getAttribute('data-mn-pane')!==l;}); }
+  bs.forEach(function(b){ b.addEventListener('click',function(){ set(b.getAttribute('data-mn-lang')); }); });
+  if(/[?&]lang=zh|#zh/.test(location.search+location.hash)) set('zh');
+})();
+</script>
 </body>
 </html>

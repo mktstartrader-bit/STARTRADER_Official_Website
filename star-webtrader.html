@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="assets/css/aos.min.css" />
   <link rel="preload" href="assets/img/star-webtrader-hero-banner-v1.webp" as="image" type="image/webp" media="(min-width:981px)" fetchpriority="high" />
   <link rel="preload" href="assets/img/star-webtrader-hero-banner-portrait-v1.webp" as="image" type="image/webp" media="(max-width:980px)" fetchpriority="high" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb10" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb11" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* ---- the dashboard, built rather than photographed: the panel you pick is
@@ -337,6 +337,11 @@
     background:linear-gradient(180deg,#03060F 0%,#03060F calc(var(--nav-h) + 2px),rgba(3,6,15,0) calc(var(--nav-h) + 40px)),
                linear-gradient(0deg,#03060F 0%,rgba(3,6,15,.86) 20%,rgba(3,6,15,0) 46%)}
 }
+
+/* testing feedback: the terminal preview showed sample quotes that read as live prices;
+   values are neutral skeleton bars so the UI illustrates the layout, not a price */
+.mk-sk{display:inline-block;width:3.4em;max-width:100%;height:.62em;border-radius:4px;background:currentColor;opacity:.22;vertical-align:middle}
+.up .mk-sk,.up>.mk-sk{opacity:.4}.down .mk-sk{opacity:.4}
 </style>
 
   <script type="application/ld+json">
@@ -744,14 +749,14 @@
           data-name="Market Watch" data-desc="Real-time quotes with search across every instrument you can trade, ordered however you like to read them.">
           <span class="swx-zone-hd"><span class="swx-n">1</span><b>Market Watch</b></span>
           <span class="swx-rows">
-            <span class="swx-r"><b>EUR/USD</b><em>1.08420</em><u class="up">+0.13%</u></span>
-            <span class="swx-r"><b>XAU/USD</b><em>2,318.65</em><u class="up">+0.42%</u></span>
-            <span class="swx-r"><b>US30</b><em>39,142.0</em><u class="down">&minus;0.18%</u></span>
-            <span class="swx-r"><b>GBP/JPY</b><em>197.284</em><u class="up">+0.26%</u></span>
-            <span class="swx-r"><b>USOIL</b><em>78.94</em><u class="down">&minus;0.61%</u></span>
-            <span class="swx-r"><b>GER40</b><em>18,214.7</em><u class="up">+0.34%</u></span>
-            <span class="swx-r"><b>AUD/USD</b><em>0.65842</em><u class="down">&minus;0.09%</u></span>
-            <span class="swx-r"><b>SPX500</b><em>5,263.40</em><u class="up">+0.21%</u></span>
+            <span class="swx-r"><b>EUR/USD</b><em><i class="mk-sk" aria-hidden="true"></i></em><u class="up"><i class="mk-sk" aria-hidden="true"></i></u></span>
+            <span class="swx-r"><b>XAU/USD</b><em><i class="mk-sk" aria-hidden="true"></i></em><u class="up"><i class="mk-sk" aria-hidden="true"></i></u></span>
+            <span class="swx-r"><b>US30</b><em><i class="mk-sk" aria-hidden="true"></i></em><u class="down"><i class="mk-sk" aria-hidden="true"></i></u></span>
+            <span class="swx-r"><b>GBP/JPY</b><em><i class="mk-sk" aria-hidden="true"></i></em><u class="up"><i class="mk-sk" aria-hidden="true"></i></u></span>
+            <span class="swx-r"><b>USOIL</b><em><i class="mk-sk" aria-hidden="true"></i></em><u class="down"><i class="mk-sk" aria-hidden="true"></i></u></span>
+            <span class="swx-r"><b>GER40</b><em><i class="mk-sk" aria-hidden="true"></i></em><u class="up"><i class="mk-sk" aria-hidden="true"></i></u></span>
+            <span class="swx-r"><b>AUD/USD</b><em><i class="mk-sk" aria-hidden="true"></i></em><u class="down"><i class="mk-sk" aria-hidden="true"></i></u></span>
+            <span class="swx-r"><b>SPX500</b><em><i class="mk-sk" aria-hidden="true"></i></em><u class="up"><i class="mk-sk" aria-hidden="true"></i></u></span>
           </span>
         </button>
 
@@ -775,8 +780,8 @@
           <span class="swx-zone-hd"><span class="swx-n">3</span><b>Trading Panel</b></span>
           <span class="swx-ticket">
             <span class="fld">Volume <b>0.50 lots</b></span>
-            <span class="sell">Sell 1.08418</span>
-            <span class="buy">Buy 1.08420</span>
+            <span class="sell">Sell</span>
+            <span class="buy">Buy</span>
           </span>
         </button>
 
@@ -784,10 +789,10 @@
           data-name="Account Overview" data-desc="Balance, equity and free margin, recalculated as each position moves so you always know what is at risk.">
           <span class="swx-zone-hd"><span class="swx-n">4</span><b>Account</b></span>
           <span class="swx-stats">
-            <span class="swx-stat">Balance <b>24,860.40</b></span>
-            <span class="swx-stat">Equity <b>25,112.85</b></span>
-            <span class="swx-stat">Free margin <b>21,940.10</b></span>
-            <span class="swx-stat">Margin used <b>12.4%</b></span>
+            <span class="swx-stat">Balance <b><i class="mk-sk" aria-hidden="true"></i></b></span>
+            <span class="swx-stat">Equity <b><i class="mk-sk" aria-hidden="true"></i></b></span>
+            <span class="swx-stat">Free margin <b><i class="mk-sk" aria-hidden="true"></i></b></span>
+            <span class="swx-stat">Margin used <b><i class="mk-sk" aria-hidden="true"></i></b></span>
             <span class="swx-meter" aria-hidden="true"><i></i></span>
           </span>
         </button>
@@ -797,9 +802,9 @@
           <span class="swx-zone-hd"><span class="swx-n">5</span><b>Positions &amp; Orders</b></span>
           <span class="swx-tbl">
             <span class="swx-th"><span>Symbol</span><span>Side</span><span>Volume</span><span>Open</span><span>Current</span><span>P&amp;L</span></span>
-            <span class="swx-td"><b>EUR/USD</b><span class="swx-side">Buy</span><span>0.50</span><span>1.08180</span><span>1.08420</span><span class="up">+120.00</span></span>
-            <span class="swx-td"><b>XAU/USD</b><span class="swx-side s">Sell</span><span>0.20</span><span>2,324.10</span><span>2,318.65</span><span class="up">+109.00</span></span>
-            <span class="swx-td"><b>US30</b><span class="swx-side">Buy</span><span>1.00</span><span>39,215.0</span><span>39,142.0</span><span class="down">&minus;73.00</span></span>
+            <span class="swx-td"><b>EUR/USD</b><span class="swx-side">Buy</span><span><i class="mk-sk" aria-hidden="true"></i></span><span><i class="mk-sk" aria-hidden="true"></i></span><span><i class="mk-sk" aria-hidden="true"></i></span><span class="up"><i class="mk-sk" aria-hidden="true"></i></span></span>
+            <span class="swx-td"><b>XAU/USD</b><span class="swx-side s">Sell</span><span><i class="mk-sk" aria-hidden="true"></i></span><span><i class="mk-sk" aria-hidden="true"></i></span><span><i class="mk-sk" aria-hidden="true"></i></span><span class="up"><i class="mk-sk" aria-hidden="true"></i></span></span>
+            <span class="swx-td"><b>US30</b><span class="swx-side">Buy</span><span><i class="mk-sk" aria-hidden="true"></i></span><span><i class="mk-sk" aria-hidden="true"></i></span><span><i class="mk-sk" aria-hidden="true"></i></span><span class="down"><i class="mk-sk" aria-hidden="true"></i></span></span>
           </span>
         </button>
       </div>
@@ -811,11 +816,11 @@
         <em>Real-time quotes with search across every instrument you can trade, ordered however you like to read them.</em>
       </span>
       <span class="swx-dots">
-        <button class="swx-dot is-on" type="button" data-swx-dot="1" aria-label="Market Watch">1</button>
-        <button class="swx-dot" type="button" data-swx-dot="2" aria-label="Chart Panel">2</button>
-        <button class="swx-dot" type="button" data-swx-dot="3" aria-label="Trading Panel">3</button>
-        <button class="swx-dot" type="button" data-swx-dot="4" aria-label="Account Overview">4</button>
-        <button class="swx-dot" type="button" data-swx-dot="5" aria-label="Positions and Orders">5</button>
+        <button class="swx-dot is-on" type="button" data-swx-dot="1" aria-label="Market Watch"><i class="mk-sk" aria-hidden="true"></i></button>
+        <button class="swx-dot" type="button" data-swx-dot="2" aria-label="Chart Panel"><i class="mk-sk" aria-hidden="true"></i></button>
+        <button class="swx-dot" type="button" data-swx-dot="3" aria-label="Trading Panel"><i class="mk-sk" aria-hidden="true"></i></button>
+        <button class="swx-dot" type="button" data-swx-dot="4" aria-label="Account Overview"><i class="mk-sk" aria-hidden="true"></i></button>
+        <button class="swx-dot" type="button" data-swx-dot="5" aria-label="Positions and Orders"><i class="mk-sk" aria-hidden="true"></i></button>
       </span>
     </div>
 
@@ -990,11 +995,11 @@
         <div class="sw-panel-bar"><i></i><i></i><i></i><span data-sw-label>Market watch</span></div>
 
         <div class="sw-view is-on" data-sw-view="1">
-          <div class="sw-q"><b>EUR/USD</b><em>1.08420</em><u class="up">+0.13%</u></div>
-          <div class="sw-q"><b>XAU/USD</b><em>2,318.65</em><u class="up">+0.42%</u></div>
-          <div class="sw-q"><b>US30</b><em>39,142.0</em><u class="down">&minus;0.18%</u></div>
-          <div class="sw-q"><b>GBP/JPY</b><em>197.284</em><u class="up">+0.26%</u></div>
-          <div class="sw-q"><b>USOIL</b><em>78.94</em><u class="down">&minus;0.61%</u></div>
+          <div class="sw-q"><b>EUR/USD</b><em><i class="mk-sk" aria-hidden="true"></i></em><u class="up"><i class="mk-sk" aria-hidden="true"></i></u></div>
+          <div class="sw-q"><b>XAU/USD</b><em><i class="mk-sk" aria-hidden="true"></i></em><u class="up"><i class="mk-sk" aria-hidden="true"></i></u></div>
+          <div class="sw-q"><b>US30</b><em><i class="mk-sk" aria-hidden="true"></i></em><u class="down"><i class="mk-sk" aria-hidden="true"></i></u></div>
+          <div class="sw-q"><b>GBP/JPY</b><em><i class="mk-sk" aria-hidden="true"></i></em><u class="up"><i class="mk-sk" aria-hidden="true"></i></u></div>
+          <div class="sw-q"><b>USOIL</b><em><i class="mk-sk" aria-hidden="true"></i></em><u class="down"><i class="mk-sk" aria-hidden="true"></i></u></div>
           <div class="sw-pills"><span>Search any symbol</span><span>Live quotes</span></div>
         </div>
 
@@ -1024,7 +1029,7 @@
             <span class="sw-field">Take profit <b>1.08940</b></span>
             <span class="sw-field">Margin used <b>12.4%</b></span>
           </div>
-          <div class="sw-side"><span class="sell">Sell 1.08418</span><span class="buy">Buy 1.08420</span></div>
+          <div class="sw-side"><span class="sell">Sell</span><span class="buy">Buy</span></div>
         </div>
       </div>
     </div>
@@ -1143,7 +1148,7 @@
       </a>
       <a class="fx-more-card" href="trading-app.html" data-aos="fade-up" data-aos-delay="200">
         <span class="fx-more-media"><img src="assets/img/next-trading-app.webp" alt="Mobile app page banner" width="640" height="349" loading="lazy" decoding="async"></span>
-        <p class="fx-more-desc">MT4 and MT5 in one app, with live pricing and full risk management.</p>
+        <p class="fx-more-desc">Manage your account, monitor markets and stay connected with the STARTRADER App.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Mobile app</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
       <a class="fx-more-card" href="copy-trade.html" data-aos="fade-up" data-aos-delay="300">
@@ -1288,6 +1293,6 @@
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=pb10" defer></script>
+<script src="assets/js/main.min.js?v=pb11" defer></script>
 </body>
 </html>

@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="assets/css/aos.min.css" />
   <link rel="preload" href="assets/img/webtrader-hero-banner-v1.webp" as="image" type="image/webp" media="(min-width:981px)" fetchpriority="high" />
   <link rel="preload" href="assets/img/webtrader-hero-banner-portrait-v1.webp" as="image" type="image/webp" media="(max-width:980px)" fetchpriority="high" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb10" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb11" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* ---- ten reasons: a spec sheet, not ten boxes ---- */
@@ -100,6 +100,11 @@
     background:linear-gradient(180deg,#03060F 0%,#03060F calc(var(--nav-h) + 2px),rgba(3,6,15,0) calc(var(--nav-h) + 40px)),
                linear-gradient(0deg,#03060F 0%,rgba(3,6,15,.86) 20%,rgba(3,6,15,0) 46%)}
 }
+
+/* testing feedback: the terminal preview showed sample quotes that read as live prices;
+   values are neutral skeleton bars so the UI illustrates the layout, not a price */
+.mk-sk{display:inline-block;width:3.4em;max-width:100%;height:.62em;border-radius:4px;background:currentColor;opacity:.22;vertical-align:middle}
+.up .mk-sk,.up>.mk-sk{opacity:.4}.down .mk-sk{opacity:.4}
 </style>
 
   <script type="application/ld+json">
@@ -589,18 +594,18 @@
         <div class="wt-ui-main">
           <div class="wt-ui-mw">
             <span class="wt-ui-hd">Market Watch</span>
-            <span class="wt-ui-q"><b>XAU/USD</b><em>2,318.65</em><u class="up">2,318.91</u></span><span class="wt-ui-q"><b>EUR/USD</b><em>1.08418</em><u class="up">1.08420</u></span><span class="wt-ui-q"><b>GBP/JPY</b><em>197.281</em><u class="up">197.304</u></span><span class="wt-ui-q"><b>US30</b><em>39,142.0</em><u class="down">39,143.4</u></span><span class="wt-ui-q"><b>USOIL</b><em>78.92</em><u class="down">78.96</u></span><span class="wt-ui-q"><b>GER40</b><em>18,214.7</em><u class="up">18,216.1</u></span>
+            <span class="wt-ui-q"><b>XAU/USD</b><em><i class="mk-sk" aria-hidden="true"></i></em><u class="up"><i class="mk-sk" aria-hidden="true"></i></u></span><span class="wt-ui-q"><b>EUR/USD</b><em><i class="mk-sk" aria-hidden="true"></i></em><u class="up"><i class="mk-sk" aria-hidden="true"></i></u></span><span class="wt-ui-q"><b>GBP/JPY</b><em><i class="mk-sk" aria-hidden="true"></i></em><u class="up"><i class="mk-sk" aria-hidden="true"></i></u></span><span class="wt-ui-q"><b>US30</b><em><i class="mk-sk" aria-hidden="true"></i></em><u class="down"><i class="mk-sk" aria-hidden="true"></i></u></span><span class="wt-ui-q"><b>USOIL</b><em><i class="mk-sk" aria-hidden="true"></i></em><u class="down"><i class="mk-sk" aria-hidden="true"></i></u></span><span class="wt-ui-q"><b>GER40</b><em><i class="mk-sk" aria-hidden="true"></i></em><u class="up"><i class="mk-sk" aria-hidden="true"></i></u></span>
           </div>
           <div class="wt-ui-plot">
             <span class="wt-ui-sym">XAU/USD &middot; Gold vs US Dollar <b>H1</b></span>
             <svg class="wt-ui-chart" viewBox="0 0 560 196" preserveAspectRatio="none" aria-hidden="true"><line class="kuw" x1="6.1" y1="182.7" x2="6.1" y2="190.0"/><rect class="ku" x="2.4" y="190.0" width="7.3" height="1.4"/><line class="kuw" x1="18.3" y1="171.0" x2="18.3" y2="187.7"/><rect class="ku" x="14.6" y="173.0" width="7.3" height="7.4"/><line class="kdw" x1="30.4" y1="159.7" x2="30.4" y2="172.6"/><rect class="kd" x="26.7" y="165.9" width="7.3" height="4.9"/><line class="kdw" x1="42.6" y1="148.8" x2="42.6" y2="165.2"/><rect class="kd" x="38.9" y="154.1" width="7.3" height="4.3"/><line class="kuw" x1="54.8" y1="128.6" x2="54.8" y2="143.3"/><rect class="ku" x="51.1" y="132.0" width="7.3" height="7.7"/><line class="kdw" x1="67.0" y1="121.3" x2="67.0" y2="134.8"/><rect class="kd" x="63.3" y="128.4" width="7.3" height="1.4"/><line class="kdw" x1="79.1" y1="123.5" x2="79.1" y2="136.3"/><rect class="kd" x="75.4" y="123.9" width="7.3" height="7.3"/><line class="kuw" x1="91.3" y1="103.7" x2="91.3" y2="120.4"/><rect class="ku" x="87.6" y="110.6" width="7.3" height="5.2"/><line class="kuw" x1="103.5" y1="97.9" x2="103.5" y2="112.1"/><rect class="ku" x="99.8" y="102.0" width="7.3" height="3.8"/><line class="kdw" x1="115.7" y1="92.0" x2="115.7" y2="107.3"/><rect class="kd" x="112.0" y="96.7" width="7.3" height="7.8"/><line class="kuw" x1="127.8" y1="72.9" x2="127.8" y2="87.7"/><rect class="ku" x="124.1" y="79.5" width="7.3" height="1.4"/><line class="kuw" x1="140.0" y1="56.4" x2="140.0" y2="65.7"/><rect class="ku" x="136.3" y="57.6" width="7.3" height="7.0"/><line class="kdw" x1="152.2" y1="48.8" x2="152.2" y2="69.0"/><rect class="kd" x="148.5" y="56.0" width="7.3" height="5.7"/><line class="kdw" x1="164.3" y1="46.9" x2="164.3" y2="53.7"/><rect class="kd" x="160.6" y="49.6" width="7.3" height="3.3"/><line class="kuw" x1="176.5" y1="36.9" x2="176.5" y2="57.7"/><rect class="ku" x="172.8" y="42.7" width="7.3" height="7.9"/><line class="kdw" x1="188.7" y1="56.1" x2="188.7" y2="66.3"/><rect class="kd" x="185.0" y="61.9" width="7.3" height="1.8"/><line class="kdw" x1="200.9" y1="69.6" x2="200.9" y2="85.5"/><rect class="kd" x="197.2" y="72.3" width="7.3" height="6.7"/><line class="kuw" x1="213.0" y1="69.2" x2="213.0" y2="86.8"/><rect class="ku" x="209.3" y="76.5" width="7.3" height="6.1"/><line class="kuw" x1="225.2" y1="90.4" x2="225.2" y2="99.7"/><rect class="ku" x="221.5" y="91.6" width="7.3" height="2.8"/><line class="kdw" x1="237.4" y1="92.4" x2="237.4" y2="112.5"/><rect class="kd" x="233.7" y="99.0" width="7.3" height="7.8"/><line class="kuw" x1="249.6" y1="95.0" x2="249.6" y2="105.9"/><rect class="ku" x="245.9" y="99.7" width="7.3" height="2.4"/><line class="kuw" x1="261.7" y1="99.8" x2="261.7" y2="116.9"/><rect class="ku" x="258.0" y="103.9" width="7.3" height="6.4"/><line class="kdw" x1="273.9" y1="110.4" x2="273.9" y2="125.9"/><rect class="kd" x="270.2" y="117.3" width="7.3" height="6.5"/><line class="kdw" x1="286.1" y1="127.3" x2="286.1" y2="137.1"/><rect class="kd" x="282.4" y="127.7" width="7.3" height="2.2"/><line class="kuw" x1="298.3" y1="128.9" x2="298.3" y2="144.2"/><rect class="ku" x="294.6" y="136.0" width="7.3" height="7.9"/><line class="kdw" x1="310.4" y1="150.8" x2="310.4" y2="164.4"/><rect class="kd" x="306.7" y="154.2" width="7.3" height="2.9"/><line class="kdw" x1="322.6" y1="154.2" x2="322.6" y2="167.0"/><rect class="kd" x="318.9" y="159.5" width="7.3" height="6.0"/><line class="kuw" x1="334.8" y1="148.8" x2="334.8" y2="168.6"/><rect class="ku" x="331.1" y="155.0" width="7.3" height="6.8"/><line class="kuw" x1="347.0" y1="149.3" x2="347.0" y2="156.2"/><rect class="ku" x="343.3" y="151.2" width="7.3" height="1.6"/><line class="kdw" x1="359.1" y1="131.8" x2="359.1" y2="152.9"/><rect class="kd" x="355.4" y="139.1" width="7.3" height="7.8"/><line class="kuw" x1="371.3" y1="122.8" x2="371.3" y2="133.0"/><rect class="ku" x="367.6" y="124.7" width="7.3" height="3.5"/><line class="kuw" x1="383.5" y1="102.8" x2="383.5" y2="119.3"/><rect class="ku" x="379.8" y="109.0" width="7.3" height="5.6"/><line class="kdw" x1="395.7" y1="98.7" x2="395.7" y2="117.2"/><rect class="kd" x="392.0" y="104.0" width="7.3" height="7.1"/><line class="kdw" x1="407.8" y1="96.5" x2="407.8" y2="104.2"/><rect class="kd" x="404.1" y="100.0" width="7.3" height="1.4"/><line class="kuw" x1="420.0" y1="76.9" x2="420.0" y2="98.7"/><rect class="ku" x="416.3" y="84.1" width="7.3" height="7.7"/><line class="kdw" x1="432.2" y1="80.9" x2="432.2" y2="86.6"/><rect class="kd" x="428.5" y="81.3" width="7.3" height="3.9"/><line class="kdw" x1="444.3" y1="64.5" x2="444.3" y2="83.9"/><rect class="kd" x="440.6" y="71.4" width="7.3" height="5.2"/><line class="kuw" x1="456.5" y1="43.2" x2="456.5" y2="55.1"/><rect class="ku" x="452.8" y="47.3" width="7.3" height="7.3"/><line class="kuw" x1="468.7" y1="32.6" x2="468.7" y2="44.9"/><rect class="ku" x="465.0" y="37.3" width="7.3" height="1.4"/><line class="kdw" x1="480.9" y1="22.0" x2="480.9" y2="38.5"/><rect class="kd" x="477.2" y="28.6" width="7.3" height="7.6"/><line class="kuw" x1="493.0" y1="15.9" x2="493.0" y2="28.1"/><rect class="ku" x="489.3" y="17.1" width="7.3" height="4.5"/><line class="kuw" x1="505.2" y1="10.0" x2="505.2" y2="26.0"/><rect class="ku" x="501.5" y="17.3" width="7.3" height="4.7"/><line class="kdw" x1="517.4" y1="29.9" x2="517.4" y2="45.6"/><rect class="kd" x="513.7" y="32.6" width="7.3" height="7.5"/><line class="kuw" x1="529.6" y1="36.2" x2="529.6" y2="47.6"/><rect class="ku" x="525.9" y="42.0" width="7.3" height="1.4"/><line class="kuw" x1="541.7" y1="38.2" x2="541.7" y2="55.5"/><rect class="ku" x="538.0" y="44.0" width="7.3" height="7.4"/><line class="kdw" x1="553.9" y1="59.7" x2="553.9" y2="73.8"/><rect class="kd" x="550.2" y="62.4" width="7.3" height="4.9"/></svg>
-            <span class="wt-ui-axis"><span>2,330</span><span>2,325</span><span>2,320</span><span class="now">2,318.65</span><span>2,312</span></span>
+            <span class="wt-ui-axis"><span><i class="mk-sk" aria-hidden="true"></i></span><span><i class="mk-sk" aria-hidden="true"></i></span><span><i class="mk-sk" aria-hidden="true"></i></span><span class="now"><i class="mk-sk" aria-hidden="true"></i></span><span><i class="mk-sk" aria-hidden="true"></i></span></span>
           </div>
         </div>
         <div class="wt-ui-term">
           <span class="wt-ui-hd">Terminal &mdash; open positions</span>
           <span class="wt-ui-th"><span>Symbol</span><span>Type</span><span>Volume</span><span>Price</span><span>Current</span><span>Profit</span></span>
-          <span class="wt-ui-tr"><b>XAU/USD</b><span class="wt-ui-side s">sell</span><span>0.20</span><span>2,324.10</span><span>2,318.65</span><u class="up">+109.00</u></span><span class="wt-ui-tr"><b>EUR/USD</b><span class="wt-ui-side ">buy</span><span>0.50</span><span>1.08180</span><span>1.08420</span><u class="up">+120.00</u></span><span class="wt-ui-tr"><b>US30</b><span class="wt-ui-side ">buy</span><span>1.00</span><span>39,215.0</span><span>39,142.0</span><u class="down">−73.00</u></span><span class="wt-ui-tr"><b>GBP/JPY</b><span class="wt-ui-side ">buy</span><span>0.30</span><span>196.940</span><span>197.281</span><u class="up">+102.30</u></span>
+          <span class="wt-ui-tr"><b>XAU/USD</b><span class="wt-ui-side s">sell</span><span><i class="mk-sk" aria-hidden="true"></i></span><span><i class="mk-sk" aria-hidden="true"></i></span><span><i class="mk-sk" aria-hidden="true"></i></span><u class="up"><i class="mk-sk" aria-hidden="true"></i></u></span><span class="wt-ui-tr"><b>EUR/USD</b><span class="wt-ui-side ">buy</span><span><i class="mk-sk" aria-hidden="true"></i></span><span><i class="mk-sk" aria-hidden="true"></i></span><span><i class="mk-sk" aria-hidden="true"></i></span><u class="up"><i class="mk-sk" aria-hidden="true"></i></u></span><span class="wt-ui-tr"><b>US30</b><span class="wt-ui-side ">buy</span><span><i class="mk-sk" aria-hidden="true"></i></span><span><i class="mk-sk" aria-hidden="true"></i></span><span><i class="mk-sk" aria-hidden="true"></i></span><u class="down"><i class="mk-sk" aria-hidden="true"></i></u></span><span class="wt-ui-tr"><b>GBP/JPY</b><span class="wt-ui-side ">buy</span><span><i class="mk-sk" aria-hidden="true"></i></span><span><i class="mk-sk" aria-hidden="true"></i></span><span><i class="mk-sk" aria-hidden="true"></i></span><u class="up"><i class="mk-sk" aria-hidden="true"></i></u></span>
         </div>
       </div>
     </div>
@@ -649,7 +654,7 @@
         <span class="fx-mh-ic"><svg><use href="#i-bolt"/></svg></span>
         <h3>Ultra-Fast Execution</h3>
         <p>Our low-latency infrastructure is designed to support efficient trade execution as markets move.</p>
-        <div class="fx-mh-viz"><div class="fx-mh-panel fx-mh-quote"><span class="q-sym">EUR/USD</span><span class="q-r"><span class="q-px">1.08420</span> <span class="q-chg up">+0.13%</span></span></div></div>
+        <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="fx-mh-status"><i></i> Low-latency infrastructure</span></div></div>
       </article>
 
       <article class="fx-mh-card fx-mh--teal" data-aos="fade-up" data-aos-delay="100">
@@ -760,7 +765,7 @@
       </a>
       <a class="fx-more-card" href="trading-app.html" data-aos="fade-up" data-aos-delay="300">
         <span class="fx-more-media"><img src="assets/img/next-trading-app.webp" alt="Mobile app page banner" width="640" height="349" loading="lazy" decoding="async"></span>
-        <p class="fx-more-desc">MT4 and MT5 in one app, with live pricing and full risk management.</p>
+        <p class="fx-more-desc">Manage your account, monitor markets and stay connected with the STARTRADER App.</p>
         <span class="fx-more-foot"><span class="fx-more-tag">Mobile app</span><span class="fx-more-go"><svg><use href="#i-arrow-right"/></svg></span></span>
       </a>
     </div>
@@ -900,6 +905,6 @@
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=pb10" defer></script>
+<script src="assets/js/main.min.js?v=pb11" defer></script>
 </body>
 </html>

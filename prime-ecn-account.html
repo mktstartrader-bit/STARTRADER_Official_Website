@@ -34,7 +34,7 @@
   <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb10" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb11" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* ================= PRIME ECN PAGE ================= */
@@ -246,6 +246,11 @@
 .pe-step-b a{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
 .pe-step-b a:hover{color:var(--blue-700)}
 @media (max-width:980px){.pe-step-list{max-width:none}}
+
+/* testing feedback: 0.0 starting spreads joins the account conditions */
+.pe-stats--3{grid-template-columns:repeat(3,1fr);max-width:1100px}
+@media (max-width:720px){.pe-stats--3{grid-template-columns:1fr;max-width:360px}}
+.pe-spread-val small{font-size:.42em;font-weight:600;opacity:.75;margin-left:4px}
 </style>
 
   <!-- Structured data -->
@@ -612,7 +617,7 @@
   <div class="container acct-hero-inner">
     <span class="eyebrow eyebrow-blue" data-aos="fade-up">Prime ECN Account</span>
     <h1 class="acct-hero-title" id="pe-hero-title" data-aos="fade-up">Professional Trading Conditions</h1>
-    <p class="acct-hero-sub" data-aos="fade-up">Conditions built for professionals — raw spreads, tier-1 liquidity<br>and ultra-fast execution on the instruments you trade most.</p>
+    <p class="acct-hero-sub" data-aos="fade-up">Conditions built for professionals: 0.0-pip spreads, tier-1 liquidity<br>and ultra-fast execution on the instruments you trade most.</p>
     <div class="acct-hero-cta" data-aos="fade-up">
       <a href="https://www.startrader.com/live-account/" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
     </div>
@@ -626,11 +631,12 @@
       <span class="eyebrow" data-aos="fade-up">Prime ECN</span>
       <h2 class="h2" id="pe-metrics-title" data-aos="fade-up">ECN Account Conditions Made for the Pros</h2>
     </div>
-    <div class="pe-stats">
+    <div class="pe-stats pe-stats--3">
+      <div class="pe-stat" data-aos="fade-up"><b>0.0</b><span>Starting spreads</span></div>
       <div class="pe-stat" data-aos="fade-up" data-aos-delay="100"><b data-count="2" data-prefix="$">$2</b><span>Minimum commission</span></div>
       <div class="pe-stat" data-aos="fade-up" data-aos-delay="200"><b data-count="10000" data-comma data-prefix="$">$10,000</b><span>Minimum deposit</span></div>
     </div>
-    <p class="pe-metrics-note" data-aos="fade-up">Prime ECN offers highly competitive commissions from just USD 2 per standard FX or gold lot, per side, giving you the freedom to trade more efficiently and maximise every opportunity.</p>
+    <p class="pe-metrics-note" data-aos="fade-up">Prime ECN offers highly competitive commissions from just USD 2 per standard FX or gold lot, per side, giving you the freedom to trade more efficiently and maximize potential return.</p>
   </div>
 </section>
 
@@ -680,18 +686,14 @@
           <p>Trade with precision in milliseconds and zero requotes — engineered for professionals who demand speed and accuracy. Access transparent pricing and consistent fills, powered by institutional-grade liquidity providers.</p>
         </div>
         <div class="pe-card-viz">
-          <div class="pe-exec" data-pe-exec>
+          <div class="pe-exec">
             <div class="pe-exec-top">
               <span class="pe-exec-sym">XAU/USD</span>
               <span class="pe-tag">Prime ECN</span>
             </div>
-            <div class="pe-quote-row">
-              <div class="pe-bidask"><small>Bid</small><b data-el="bid">3279.94</b></div>
-              <div class="pe-bidask"><small>Ask</small><b data-el="ask">3279.96</b></div>
-            </div>
             <div class="pe-filled">
               <span class="ok"><i></i> Filled</span>
-              <em data-el="ms">Executed in 38 ms</em>
+              <em>Zero requotes</em>
             </div>
           </div>
         </div>
@@ -699,13 +701,13 @@
 
       <article class="pe-card pe-card--r2" data-aos="fade-up" data-aos-delay="100">
         <div class="pe-card-body">
-          <h3>Ultra-Tight Spreads</h3>
-          <p>Experience ultra-tight, razor-thin spreads designed to reduce trading costs for professionals and support maximum value and precision on every trade, no matter your strategy.</p>
+          <h3>Spreads from 0.0 Pips</h3>
+          <p>Experience ultra-tight, razor-thin spreads designed to reduce trading costs for professionals. With spreads starting from 0.0 pips, Prime ECN ensures maximum value and precision on every trade, no matter your strategy.</p>
         </div>
         <div class="pe-card-viz">
           <div class="pe-spread">
             <div class="pe-spread-sym"><em>Spreads</em></div>
-            <div class="pe-spread-val pe-spread-val--word">Ultra-tight</div>
+            <div class="pe-spread-val">0.0<small> pips</small></div>
             <div class="pe-spread-bars"><span></span><span></span><span></span><span></span></div>
           </div>
         </div>
@@ -973,6 +975,6 @@
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=pb10" defer></script>
+<script src="assets/js/main.min.js?v=pb11" defer></script>
 </body>
 </html>
