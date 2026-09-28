@@ -104,6 +104,18 @@
 .faq-a p{margin:0 0 10px}
 .faq-a p:last-child{margin-bottom:0}
 .faq-a ul{margin:0 0 10px;padding-left:20px;display:grid;gap:6px;list-style:disc}
+
+/* banner film: a titanium stand whose three account cards (titanium, anodised blue,
+   smoked glass) rise in turn to stepped heights, the tallest lighting blue as it locks;
+   it plays once and rests on the finished set. The group sits right, crops keep it. */
+.ta-hero-video{object-position:66% 28%}
+@media (max-width:980px){.ta-hero-video{object-position:76% center}}
+/* copy column held clear of the card stand; the crop leans left so the stand sits further right */
+@media (min-width:981px){
+  .ta-hero .acct-hero-sub{max-width:min(500px,38vw)}
+  .ta-hero .acct-hero-sub br{display:none}
+  .ta-hero-video{object-position:36% 28%}
+}
 </style>
 
   <!-- Structured data -->
@@ -448,8 +460,8 @@
 
 <!-- ============ HERO ============ -->
 <section class="acct-hero ta-hero" aria-labelledby="ta-hero-title">
-  <video class="acct-hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/img/account-video-poster.webp" aria-hidden="true">
-    <source src="assets/video/account-banner.mp4" type="video/mp4">
+  <video class="acct-hero-video ta-hero-video" autoplay muted playsinline preload="metadata" poster="assets/img/accounts-hero-poster-v2.webp" aria-hidden="true">
+    <source src="assets/video/accounts-banner-v2.mp4" type="video/mp4">
   </video>
   <div class="acct-hero-bg" aria-hidden="true"></div>
   <div class="container acct-hero-inner">
