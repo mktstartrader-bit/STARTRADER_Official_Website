@@ -139,6 +139,15 @@
   .vb-viz>img,.vz-badge{transition:none}
   .vb-card:hover .vz-scan,.vb-card:hover .vz-ring{animation:none}
 }
+
+/* banner film: a titanium plinth whose three machined rings rise in turn (the few steps
+   to an account) and light up blue when the last one locks; it plays once and rests on
+   the finished stack. The group sits on the right, so crops keep the right side. */
+.ga-hero-video{object-position:66% 28%}
+@media (max-width:980px){.ga-hero-video{object-position:76% center}}
+
+/* hero title on two lines */
+.ga-h1-l{display:block;white-space:nowrap}
 </style>
 
   <!-- Structured data -->
@@ -483,13 +492,13 @@
 
 <!-- ============ BANNER ============ -->
 <section class="acct-hero" aria-labelledby="acct-hero-title">
-  <video class="acct-hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/img/account-video-poster.webp" aria-hidden="true">
-    <source src="assets/video/account-banner.mp4" type="video/mp4">
+  <video class="acct-hero-video ga-hero-video" autoplay muted playsinline preload="metadata" poster="assets/img/account-hero-poster-v2.webp" aria-hidden="true">
+    <source src="assets/video/account-banner-v2.mp4" type="video/mp4">
   </video>
   <div class="acct-hero-bg" aria-hidden="true"></div>
   <div class="container acct-hero-inner">
     <span class="eyebrow eyebrow-blue" data-aos="fade-up">Getting Started</span>
-    <h1 class="acct-hero-title" id="acct-hero-title" data-aos="fade-up">Open an Account with STARTRADER</h1>
+    <h1 class="acct-hero-title" id="acct-hero-title" data-aos="fade-up"><span class="ga-h1-l">Open an Account</span> <span class="ga-h1-l">with STARTRADER</span></h1>
     <p class="acct-hero-sub" data-aos="fade-up">At STARTRADER, we keep trading straightforward and customer-focused, with just a few steps to get started.</p>
     <div class="acct-hero-cta" data-aos="fade-up">
       <a href="https://www.startrader.com/live-account/" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
