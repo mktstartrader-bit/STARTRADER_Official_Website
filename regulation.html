@@ -34,6 +34,8 @@
   <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
+  <link rel="preload" href="assets/img/regulation-hero-banner-v1.webp" as="image" type="image/webp" media="(min-width:981px)" fetchpriority="high" />
+  <link rel="preload" href="assets/img/regulation-hero-banner-portrait-v1.webp" as="image" type="image/webp" media="(max-width:980px)" fetchpriority="high" />
   <link rel="stylesheet" href="assets/css/styles.min.css?v=pb10" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
@@ -229,7 +231,21 @@
 .rg-ent-tag{order:3}
 .rg-aura{filter:blur(54px)}}
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.rg-scope-card{background:rgba(12,18,36,.94)}}
-  </style>
+  
+/* banner: corporate family (the platform framing) - five titanium seals for the
+   regulators, full-bleed under the bar with the subject on the right */
+.rg-hero{background:#03060F;min-height:min(780px,calc(100vh - var(--topbar-h,44px)));display:flex;align-items:center}
+.rg-hero .gl-orb{display:none}
+.rgn-hero-banner{position:absolute;top:var(--nav-h);left:0;right:0;width:100%;height:calc(100% - var(--nav-h));object-fit:cover;object-position:62% center;z-index:-2}
+@media (min-width:981px){.rg-hero .rg-hero-in>*{max-width:min(600px,46%)}}
+@media (max-width:980px){
+  .rg-hero{align-items:flex-start;min-height:0;padding:calc(var(--nav-h) + 76vw + 28px) 0 44px}
+  .rgn-hero-banner{bottom:auto;height:auto;aspect-ratio:1200/1778;object-position:center top}
+  .rg-hero::after{content:"";display:block;position:absolute;inset:0;z-index:-1;pointer-events:none;
+    background:linear-gradient(180deg,#03060F 0%,#03060F calc(var(--nav-h) + 2px),rgba(3,6,15,0) calc(var(--nav-h) + 40px)),
+               linear-gradient(0deg,#03060F 0%,rgba(3,6,15,.86) 20%,rgba(3,6,15,0) 46%)}
+}
+</style>
 
   <!-- Structured data — the group and each licensed entity -->
   <script type="application/ld+json">
@@ -591,6 +607,10 @@
 
 <!-- ============ HEADER (compact, no banner artwork) ============ -->
 <section class="rg-hero" aria-labelledby="rg-title">
+  <picture>
+    <source media="(max-width:980px)" srcset="assets/img/regulation-hero-banner-portrait-v1.webp" width="1200" height="1778">
+    <img class="rgn-hero-banner" src="assets/img/regulation-hero-banner-v1.webp" alt="Five titanium seals engraved with scales, a pillared building, a shield, a globe and a document, standing on a plinth lit by a seam of blue light" width="2560" height="1434" fetchpriority="high" decoding="async">
+  </picture>
   <span class="gl-orb o1" aria-hidden="true"></span>
   <span class="gl-orb o3" aria-hidden="true"></span>
 
