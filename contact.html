@@ -34,6 +34,8 @@
   <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
+  <link rel="preload" href="assets/img/contact-hero-banner-v1.webp" as="image" type="image/webp" media="(min-width:861px)" fetchpriority="high" />
+  <link rel="preload" href="assets/img/contact-hero-banner-portrait-v1.webp" as="image" type="image/webp" media="(max-width:860px)" fetchpriority="high" />
   <link rel="stylesheet" href="assets/css/styles.min.css?v=pb12" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
@@ -202,7 +204,25 @@
 .ct-seg{flex-wrap:wrap;gap:6px 20px}
 .ct-ch{padding:22px 20px 20px}
 .ct-ch--lead{padding:26px 22px 22px}}
-  </style>
+  
+/* banner: corporate family - titanium, liquid glass and one blue light for 24/7 support;
+   height-fit and anchored right so the headset and dial are never cropped */
+.ct-hero{background:#03060F}
+.ct-hero .wb-hero-scrim,.ct-hero .ct-hero-veil{display:none}
+.ct-hero-banner{position:absolute;top:var(--nav-h);left:auto;right:0;width:auto;max-width:none;height:calc(100% - var(--nav-h));object-fit:cover;object-position:62% center;z-index:-2}
+@media (min-width:861px){
+  .ct-hero-banner{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 16%);mask-image:linear-gradient(90deg,transparent 0,#000 16%)}
+  .ct-hero .wb-hero-inner>*{max-width:min(600px,calc(50vw - max(24px,(100vw - 1152px)/2) - 24px))}
+}
+@media (min-width:861px) and (max-width:1279px){.ct-hero-banner{right:-10vw}}
+@media (max-width:860px){
+  .ct-hero{display:block;min-height:0;padding:calc(var(--nav-h) + 76vw + 28px) 0 44px}
+  .ct-hero-banner{left:0;width:100%;height:auto;aspect-ratio:1200/1786;object-position:center top}
+  .ct-hero::after{content:"";display:block;position:absolute;inset:0;z-index:-1;pointer-events:none;
+    background:linear-gradient(180deg,#03060F 0%,#03060F calc(var(--nav-h) + 2px),rgba(3,6,15,0) calc(var(--nav-h) + 40px)),
+               linear-gradient(0deg,#03060F 0%,#03060F 22%,rgba(3,6,15,.9) 40%,rgba(3,6,15,0) 58%)}
+}
+</style>
 
   <!-- Structured data — organisation, contact points and offices -->
   <script type="application/ld+json">
@@ -560,8 +580,10 @@
 
 <!-- ============ BANNER ============ -->
 <section class="wb-hero ct-hero" aria-labelledby="ct-hero-title">
-  <img class="wb-hero-video" src="assets/img/contact-hero.webp" alt="STARTRADER support team at work" width="2000" height="806"
-       fetchpriority="high" decoding="async">
+  <picture>
+    <source media="(max-width:860px)" srcset="assets/img/contact-hero-banner-portrait-v1.webp" width="1200" height="1786">
+    <img class="ct-hero-banner" src="assets/img/contact-hero-banner-v1.webp" alt="A titanium and frosted glass support headset on a plinth inside a glowing blue 24-hour dial, with glass chat bubbles, an envelope and a phone" width="2560" height="1434" fetchpriority="high" decoding="async">
+  </picture>
   <div class="wb-hero-scrim" aria-hidden="true"></div>
 
   <span class="ct-hero-veil" aria-hidden="true"></span>
