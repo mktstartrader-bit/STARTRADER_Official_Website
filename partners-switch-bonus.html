@@ -61,6 +61,7 @@
 .psb-lede b{color:var(--text);font-weight:700}
 .psb-link{color:var(--tq);font-weight:600;font-size:15px;text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px;text-decoration-color:rgba(22,233,215,.5);transition:color .25s,text-decoration-color .25s}
 .psb-link:hover{color:#fff;text-decoration-color:#fff}
+.psb-tnc{font-weight:600;font-size:15px;color:rgba(255,255,255,.72)}
 /* the primary button carries a slow shine sweep */
 .psb .btn-primary{position:relative;overflow:hidden}
 .psb .btn-primary::after{content:"";position:absolute;top:-40%;bottom:-40%;left:-45%;width:34%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.34),transparent);transform:skewX(-18deg);animation:psbShine 4.2s ease-in-out infinite}
@@ -663,8 +664,7 @@
       <p class="psb-qual" data-aos="fade-up" data-aos-delay="250">Opt in using the application form on this page. Your participation starts only once your Account Manager has approved your application and STARTRADER has issued your registration confirmation email. A bonus is payable only where the performance requirements are fully met and verified. Participation does not guarantee a bonus.</p>
       <div class="psb-actions" data-aos="fade-up" data-aos-delay="300">
         <a class="btn btn-primary btn-lg" href="#apply"><span>Opt in to the promotion</span> <svg class="ico"><use href="#i-arrow-right"/></svg></a>
-        <!-- integration: point at the promotion's Terms & Conditions PDF once it is published -->
-        <a class="psb-link" href="legal-documents.html">Terms &amp; Conditions</a>
+        <span class="psb-tnc">T&amp;C upon request</span>
       </div>
     </div>
 
@@ -830,7 +830,6 @@
       <h2 class="h2" id="psb-apply-title" data-aos="fade-up" style="margin-top:18px">Application form</h2>
       <p class="psb-lede" data-aos="fade-up">Approved STARTRADER Partners can apply to opt in here. Your Account Manager will review your application and confirm the outcome by email.</p>
       <div class="psb-aside-note glass" data-aos="fade-up">Submitting the form is an application only; it does not confirm participation. <b>Participation does not guarantee a bonus.</b></div>
-      <span class="psb-aside-ic" aria-hidden="true" data-aos="fade-up"><svg><use href="#i-user-plus"/></svg></span>
     </div>
 
     <div class="pt-form-card glass ct-form-card" data-aos="fade-up">
@@ -1100,7 +1099,7 @@
         <label class="ct-check pt-agree" for="psbConsent">
           <input type="checkbox" id="psbConsent" name="consent" required aria-describedby="psbConsentErr">
           <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
-          <span>I confirm that I currently maintain, or have previously maintained, an IB, CPA Affiliate or comparable partnership with another broker, and that I have read and accept the Promotion <a href="legal-documents.html">Terms and Conditions</a> and the <a href="https://www.startrader.com/pdf/startrader-privacy-policy-20260210.pdf" target="_blank" rel="noopener">Privacy Policy</a>.</span>
+          <span>I confirm that I currently maintain, or have previously maintained, an IB, CPA Affiliate or comparable partnership with another broker, and that I have read and accept the Promotion Terms and Conditions and the <a href="https://www.startrader.com/pdf/startrader-privacy-policy-20260210.pdf" target="_blank" rel="noopener">Privacy Policy</a>.</span>
         </label>
         <p class="ct-err" id="psbConsentErr" hidden>Please confirm before submitting.</p>
 
