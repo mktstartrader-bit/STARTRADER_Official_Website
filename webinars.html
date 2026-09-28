@@ -34,6 +34,8 @@
   <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
+  <link rel="preload" href="assets/img/wb-hero-banner-v1.webp" as="image" type="image/webp" media="(min-width:861px)" fetchpriority="high" />
+  <link rel="preload" href="assets/img/wb-hero-banner-portrait-v1.webp" as="image" type="image/webp" media="(max-width:860px)" fetchpriority="high" />
   <link rel="stylesheet" href="assets/css/styles.min.css?v=pb10" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
@@ -394,7 +396,21 @@
 .wb-form{grid-template-columns:1fr}
 .wb-tools{flex-direction:column;align-items:flex-start;gap:14px}}
 @media (max-width:560px){.wb-cd-u b{font-size:20px}}
-  </style>
+  
+/* banner: its own artwork (a laptop streaming a live, expert-led trading session,
+   a studio mic, a play tile and a calendar for the diary entry) in place of the stock
+   film; the group sits in the upper right, clear of the copy and of the session strip */
+.wb-hero-banner{position:absolute;top:var(--nav-h);left:0;right:0;width:100%;height:calc(100% - var(--nav-h));object-fit:cover;object-position:62% 30%;z-index:-2}
+.wb-hero-scrim--art{background:linear-gradient(90deg,rgba(2,6,18,.5) 0%,rgba(2,6,18,0) 45%),linear-gradient(180deg,rgba(2,6,18,0) 60%,rgba(2,6,18,.85) 88%,#020612 100%)}
+.wb-hero{background:#020612}
+.wb-hero .wb-lead{max-width:600px}
+@media (min-width:861px) and (max-width:1280px){.wb-hero .wb-hero-inner>*{max-width:50%}}
+@media (max-width:860px){
+  .wb-hero{padding-top:calc(var(--nav-h) + 76vw + 28px);min-height:0}
+  .wb-hero-banner{bottom:auto;height:auto;aspect-ratio:1200/1778;object-position:center top}
+  .wb-hero-scrim--art{background:linear-gradient(180deg,#020612 0%,#020612 calc(var(--nav-h) + 2px),rgba(2,6,18,0) calc(var(--nav-h) + 40px)),linear-gradient(0deg,#020612 0%,#020612 30%,rgba(2,6,18,.86) 42%,rgba(2,6,18,0) 60%)}
+}
+</style>
 
   <!-- Structured data — breadcrumb -->
   <script type="application/ld+json">
@@ -765,10 +781,11 @@
 <!-- Two states, both rendered from #wbSession below. WP writes that JSON; nothing
      here needs touching when a webinar is added, changed or removed. -->
 <section class="wb-hero" aria-labelledby="wb-hero-title">
-  <video class="wb-hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/img/webinars-video-poster.webp" aria-hidden="true">
-    <source src="assets/video/webinars-banner.mp4" type="video/mp4">
-  </video>
-  <div class="wb-hero-scrim" aria-hidden="true"></div>
+  <picture>
+    <source media="(max-width:860px)" srcset="assets/img/wb-hero-banner-portrait-v1.webp" width="1200" height="1778">
+    <img class="wb-hero-banner" src="assets/img/wb-hero-banner-v1.webp" alt="A titanium laptop streaming a live trading webinar with a market chart and a presenter, a steel studio microphone, a glass play button and a glass desk calendar" width="2560" height="1434" fetchpriority="high" decoding="async">
+  </picture>
+  <div class="wb-hero-scrim wb-hero-scrim--art" aria-hidden="true"></div>
 
   <div class="container wb-hero-inner">
     <span class="eyebrow eyebrow-blue" data-aos="fade-up">STARACADEMY</span>
