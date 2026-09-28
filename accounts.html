@@ -105,17 +105,19 @@
 .faq-a p:last-child{margin-bottom:0}
 .faq-a ul{margin:0 0 10px;padding-left:20px;display:grid;gap:6px;list-style:disc}
 
-/* banner film: a titanium stand whose three account cards (titanium, anodised blue,
-   smoked glass) rise in turn to stepped heights, the tallest lighting blue as it locks;
-   it plays once and rests on the finished set. The group sits right, crops keep it. */
+/* banner film: a chrome conveyor carries frosted glass cards through a glowing titanium
+   arch, where they emerge as titanium, anodised-blue and smoked-glass account cards;
+   a seamless loop (its last second dissolves into its first). */
 .ta-hero-video{object-position:66% 28%}
 @media (max-width:980px){.ta-hero-video{object-position:76% center}}
 /* copy column held clear of the card stand; the crop leans left so the stand sits further right */
 @media (min-width:981px){
-  .ta-hero .acct-hero-sub{max-width:min(500px,38vw)}
+  .ta-hero .acct-hero-sub{max-width:min(420px,30vw)}
   .ta-hero .acct-hero-sub br{display:none}
-  .ta-hero-video{object-position:36% 28%}
+  .ta-hero-video{object-position:0% 30%}
 }
+/* the conveyor film carries its own depth: the scrim only shades the copy column */
+@media (min-width:981px){.ta-hero .acct-hero-bg::after{background:linear-gradient(90deg,rgba(3,6,15,.9) 0%,rgba(3,6,15,.7) 30%,rgba(3,6,15,0) 56%)}}
 </style>
 
   <!-- Structured data -->
@@ -460,8 +462,8 @@
 
 <!-- ============ HERO ============ -->
 <section class="acct-hero ta-hero" aria-labelledby="ta-hero-title">
-  <video class="acct-hero-video ta-hero-video" autoplay muted playsinline preload="metadata" poster="assets/img/accounts-hero-poster-v2.webp" aria-hidden="true">
-    <source src="assets/video/accounts-banner-v2.mp4" type="video/mp4">
+  <video class="acct-hero-video ta-hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/img/accounts-hero-poster-v3.webp" aria-hidden="true">
+    <source src="assets/video/accounts-banner-v3.mp4" type="video/mp4">
   </video>
   <div class="acct-hero-bg" aria-hidden="true"></div>
   <div class="container acct-hero-inner">
