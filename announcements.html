@@ -764,9 +764,6 @@
     <h1 class="an-h1" id="an-hero-title" data-aos="fade-up">Announcements</h1>
     <p class="an-lead" data-aos="fade-up">Stay informed about new product launches, changes in trading hours, market updates and other important notices while trading.</p>
 
-    <ul class="an-hero-meta" data-aos="fade-up">
-      <li><a href="#subscribe">Get notices by email</a></li>
-    </ul>
   </div>
 </section>
 
@@ -1208,29 +1205,6 @@
   </div>
 </dialog>
 
-<!-- ============ SUBSCRIBE ============ -->
-<section class="section an-subsec" id="subscribe" aria-labelledby="an-sub-title">
-  <div class="container">
-    <div class="nr-sub glass" data-aos="fade-up">
-      <div class="nr-sub-copy">
-        <span class="eyebrow">Stay ahead of changes</span>
-        <h2 class="nr-sub-h" id="an-sub-title">Get notices before they affect your positions</h2>
-        <p>Trading-hour changes, leverage adjustments and maintenance windows, emailed the moment they are published &mdash; so a holiday session never catches you out.</p>
-      </div>
-      <form class="nr-sub-form" id="anSubForm" novalidate>
-        <div class="nr-sub-field">
-          <label class="sr-only" for="anEmail">Email address</label>
-          <input type="email" id="anEmail" name="email" inputmode="email" autocomplete="email" placeholder="you@example.com" aria-describedby="anEmailErr">
-          <button class="btn btn-primary" type="submit">Subscribe <svg class="ico"><use href="#i-arrow-right"/></svg></button>
-        </div>
-        <p class="nr-err" id="anEmailErr" hidden>Please enter a valid email address.</p>
-        <p class="nr-sub-ok" id="anSubOk" hidden>Thanks &mdash; you&rsquo;ll get the next notice by email.</p>
-        <p class="nr-sub-note">Operational notices only, and you can unsubscribe any time.</p>
-      </form>
-    </div>
-  </div>
-</section>
-
 <!-- ============ EXPLORE MORE ============ -->
 <section class="section fx-more wb-more" aria-labelledby="an-more-title">
   <div class="container">
@@ -1460,9 +1434,7 @@
         '<span class="gl-empty-ic" aria-hidden="true"><svg><use href="#i-send"/></svg></span>' +
         '<h3>No notices in the last ' + MONTHS_BACK + ' months</h3>' +
         '<p>Notices are kept on this page for ' + MONTHS_BACK + ' months from their publication date. ' +
-        'Subscribe below and new ones reach you as they are published.</p>' +
-        '<a class="btn btn-primary" href="#subscribe">Get notices by email ' +
-        '<svg class="ico"><use href="#i-arrow-right"/></svg></a>';
+        'New notices appear here as they are published.</p>';
     }
   }
 })();

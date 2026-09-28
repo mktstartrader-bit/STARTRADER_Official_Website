@@ -125,6 +125,10 @@
    values are neutral skeleton bars so the UI illustrates the layout, not a price */
 .mk-sk{display:inline-block;width:3.4em;max-width:100%;height:.62em;border-radius:4px;background:currentColor;opacity:.22;vertical-align:middle}
 .up .mk-sk,.up>.mk-sk{opacity:.4}.down .mk-sk{opacity:.4}
+.wt-ui-tfs{flex-wrap:wrap}
+.wt-ui-qh{padding-top:0}
+.wt-ui-qh b,.wt-ui-qh em,.wt-ui-qh u{font-size:8.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#6f86ad}
+.wt-ui-qh em,.wt-ui-qh u{min-width:3.4em;text-align:right}
 </style>
 </head>
 <body>
@@ -510,18 +514,19 @@
     <div class="wt-frame" data-aos="fade-up">
       <div class="wt-frame-bar" aria-hidden="true">
         <i></i><i></i><i></i>
-        <span class="wt-frame-url"><svg><use href="#i-shield"/></svg>web.startrader.com</span>
+        <span class="wt-frame-url"><svg><use href="#i-shield"/></svg>www.startrader.com/webterminal</span>
         <span class="wt-frame-live"><b></b>Live</span>
       </div>
       <div class="wt-ui">
         <div class="wt-ui-top">
           <span class="wt-ui-tabs"><span class="on">GER40,H1</span><span>XAUUSD,H4</span><span>SPX500,D1</span></span>
-          <span class="wt-ui-tfs"><span>M1</span><span>M10</span><span>M30</span><span class="on">H1</span><span>H8</span><span>W1</span></span>
+          <span class="wt-ui-tfs"><span>M1</span><span>M5</span><span>M15</span><span>M30</span><span class="on">H1</span><span>H4</span><span>D1</span><span>W1</span><span>MN</span></span>
         </div>
         <div class="wt-ui-main">
           <div class="wt-ui-mw">
             <span class="wt-ui-hd">Market Watch</span>
-            <span class="wt-ui-q"><b>GER40</b><em><i class="mk-sk" aria-hidden="true"></i></em><u class="up"><i class="mk-sk" aria-hidden="true"></i></u></span><span class="wt-ui-q"><b>SPX500</b><em><i class="mk-sk" aria-hidden="true"></i></em><u class="up"><i class="mk-sk" aria-hidden="true"></i></u></span><span class="wt-ui-q"><b>XAU/USD</b><em><i class="mk-sk" aria-hidden="true"></i></em><u class="up"><i class="mk-sk" aria-hidden="true"></i></u></span><span class="wt-ui-q"><b>USDJPY</b><em><i class="mk-sk" aria-hidden="true"></i></em><u class="down"><i class="mk-sk" aria-hidden="true"></i></u></span><span class="wt-ui-q"><b>NAS100</b><em><i class="mk-sk" aria-hidden="true"></i></em><u class="up"><i class="mk-sk" aria-hidden="true"></i></u></span><span class="wt-ui-q"><b>XAG/USD</b><em><i class="mk-sk" aria-hidden="true"></i></em><u class="down"><i class="mk-sk" aria-hidden="true"></i></u></span>
+            <span class="wt-ui-q wt-ui-qh"><b>Symbol</b><em>Bid</em><u>Ask</u></span>
+            <span class="wt-ui-q"><b>GER40</b><em><i class="mk-sk" aria-hidden="true"></i></em><u class="up"><i class="mk-sk" aria-hidden="true"></i></u></span><span class="wt-ui-q"><b>SPX500</b><em><i class="mk-sk" aria-hidden="true"></i></em><u class="up"><i class="mk-sk" aria-hidden="true"></i></u></span><span class="wt-ui-q"><b>XAUUSD</b><em><i class="mk-sk" aria-hidden="true"></i></em><u class="up"><i class="mk-sk" aria-hidden="true"></i></u></span><span class="wt-ui-q"><b>USDJPY</b><em><i class="mk-sk" aria-hidden="true"></i></em><u class="down"><i class="mk-sk" aria-hidden="true"></i></u></span><span class="wt-ui-q"><b>NAS100</b><em><i class="mk-sk" aria-hidden="true"></i></em><u class="up"><i class="mk-sk" aria-hidden="true"></i></u></span><span class="wt-ui-q"><b>XAGUSD</b><em><i class="mk-sk" aria-hidden="true"></i></em><u class="down"><i class="mk-sk" aria-hidden="true"></i></u></span>
           </div>
           <div class="wt-ui-plot">
             <span class="wt-ui-sym">GER40 &middot; Germany 40 Index <b>H1</b></span>
@@ -530,9 +535,9 @@
           </div>
         </div>
         <div class="wt-ui-term">
-          <span class="wt-ui-hd">Terminal &mdash; open positions</span>
-          <span class="wt-ui-th"><span>Symbol</span><span>Type</span><span>Volume</span><span>Price</span><span>Current</span><span>Profit</span></span>
-          <span class="wt-ui-tr"><b>GER40</b><span class="wt-ui-side">buy</span><span><i class="mk-sk" aria-hidden="true"></i></span><span><i class="mk-sk" aria-hidden="true"></i></span><span><i class="mk-sk" aria-hidden="true"></i></span><u class="up"><i class="mk-sk" aria-hidden="true"></i></u></span><span class="wt-ui-tr"><b>SPX500</b><span class="wt-ui-side">buy</span><span><i class="mk-sk" aria-hidden="true"></i></span><span><i class="mk-sk" aria-hidden="true"></i></span><span><i class="mk-sk" aria-hidden="true"></i></span><u class="up"><i class="mk-sk" aria-hidden="true"></i></u></span><span class="wt-ui-tr"><b>USDJPY</b><span class="wt-ui-side s">sell</span><span><i class="mk-sk" aria-hidden="true"></i></span><span><i class="mk-sk" aria-hidden="true"></i></span><span><i class="mk-sk" aria-hidden="true"></i></span><u class="up"><i class="mk-sk" aria-hidden="true"></i></u></span><span class="wt-ui-tr"><b>XAG/USD</b><span class="wt-ui-side">buy</span><span><i class="mk-sk" aria-hidden="true"></i></span><span><i class="mk-sk" aria-hidden="true"></i></span><span><i class="mk-sk" aria-hidden="true"></i></span><u class="down"><i class="mk-sk" aria-hidden="true"></i></u></span>
+          <span class="wt-ui-hd">Toolbox &mdash; Trade</span>
+          <span class="wt-ui-th"><span>Symbol</span><span>Type</span><span>Volume</span><span>Open price</span><span>Price</span><span>Profit</span></span>
+          <span class="wt-ui-tr"><b>GER40</b><span class="wt-ui-side">buy</span><span><i class="mk-sk" aria-hidden="true"></i></span><span><i class="mk-sk" aria-hidden="true"></i></span><span><i class="mk-sk" aria-hidden="true"></i></span><u class="up"><i class="mk-sk" aria-hidden="true"></i></u></span><span class="wt-ui-tr"><b>SPX500</b><span class="wt-ui-side">buy</span><span><i class="mk-sk" aria-hidden="true"></i></span><span><i class="mk-sk" aria-hidden="true"></i></span><span><i class="mk-sk" aria-hidden="true"></i></span><u class="up"><i class="mk-sk" aria-hidden="true"></i></u></span><span class="wt-ui-tr"><b>USDJPY</b><span class="wt-ui-side s">sell</span><span><i class="mk-sk" aria-hidden="true"></i></span><span><i class="mk-sk" aria-hidden="true"></i></span><span><i class="mk-sk" aria-hidden="true"></i></span><u class="up"><i class="mk-sk" aria-hidden="true"></i></u></span><span class="wt-ui-tr"><b>XAGUSD</b><span class="wt-ui-side">buy</span><span><i class="mk-sk" aria-hidden="true"></i></span><span><i class="mk-sk" aria-hidden="true"></i></span><span><i class="mk-sk" aria-hidden="true"></i></span><u class="down"><i class="mk-sk" aria-hidden="true"></i></u></span>
         </div>
       </div>
     </div>
@@ -540,7 +545,7 @@
     <ul class="wt-caps">
       <li class="wt-cap" data-aos="fade-up">
         <span class="wt-cap-ic"><svg><use href="#i-chart"/></svg></span>
-        <b>50+ indicators</b><em>and analytical objects</em>
+        <b>30+ indicators</b><em>and analytical tools</em>
       </li>
       <li class="wt-cap" data-aos="fade-up" data-aos-delay="100">
         <span class="wt-cap-ic"><svg><use href="#i-clock"/></svg></span>
@@ -746,7 +751,7 @@
   <div class="cta-glow" aria-hidden="true"></div>
   <div class="container cta-inner">
     <h2 id="pf-cta-title" data-aos="fade-up">Start trading with a<br>globally leading broker</h2>
-    <p data-aos="fade-up">Open an account and trade 1,000+ instruments with ultra-tight spreads and ultra-fast execution, or practise on a demo account first.</p>
+    <p data-aos="fade-up">Open an account and access a broad range of CFD products with competitive spreads, fast execution and flexible leverage, subject to applicable terms and conditions.</p>
     <div class="cta-actions" data-aos="fade-up">
       <a href="https://www.startrader.com/live-account/" class="btn btn-primary btn-lg">Open Live Account <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       <a href="https://www.startrader.com/demo-account/" class="btn btn-ghost btn-lg">Try Free Demo</a>
