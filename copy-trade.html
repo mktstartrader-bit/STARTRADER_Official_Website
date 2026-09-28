@@ -36,6 +36,8 @@
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/swiper-bundle.min.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
+  <link rel="preload" href="assets/img/copy-trade-hero-banner-v1.webp" as="image" type="image/webp" media="(min-width:981px)" fetchpriority="high" />
+  <link rel="preload" href="assets/img/copy-trade-hero-banner-portrait-v1.webp" as="image" type="image/webp" media="(max-width:980px)" fetchpriority="high" />
   <link rel="stylesheet" href="assets/css/styles.min.css?v=pb10" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
@@ -174,7 +176,24 @@
   .ct-player-btn{top:40%;width:56px;height:56px}
   .ct-player-btn svg{width:22px;height:22px}
 }
-  </style>
+  
+/* banner: platform family (the MT5 framing) - glossy titanium, engraved detail and
+   a blue beam, full-bleed under the bar with the subject on the right */
+.pf-hero{background:#03060F}
+.pf-hero .pf-hero-bg,.pf-hero .mt-hero-visual{display:none}
+.pf-hero::before,.pf-hero::after{display:none}
+.plf-hero-banner{position:absolute;top:var(--nav-h);left:0;right:0;width:100%;height:calc(100% - var(--nav-h));object-fit:cover;object-position:62% center;z-index:-2}
+@media (min-width:981px){.pf-hero .pf-hero-copy{max-width:min(600px,46%)}}
+.pf-hero .pf-lead br{display:none}
+@media (max-width:980px){
+  .pf-hero{justify-content:flex-start;align-items:flex-start;min-height:0;padding:calc(var(--nav-h) + 76vw + 28px) 0 44px}
+  .plf-hero-banner{bottom:auto;height:auto;aspect-ratio:1200/1778;object-position:center top}
+  .pf-hero .pf-hero-copy{max-width:none}
+  .pf-hero::after{content:"";display:block;position:absolute;inset:0;z-index:-1;pointer-events:none;
+    background:linear-gradient(180deg,#03060F 0%,#03060F calc(var(--nav-h) + 2px),rgba(3,6,15,0) calc(var(--nav-h) + 40px)),
+               linear-gradient(0deg,#03060F 0%,rgba(3,6,15,.86) 20%,rgba(3,6,15,0) 46%)}
+}
+</style>
 
   <script type="application/ld+json">
 {
@@ -548,6 +567,10 @@
 
 <!-- ============ BANNER ============ -->
 <section class="pf-hero" aria-labelledby="pf-hero-title">
+  <picture>
+    <source media="(max-width:980px)" srcset="assets/img/copy-trade-hero-banner-portrait-v1.webp" width="1200" height="1778">
+    <img class="plf-hero-banner" src="assets/img/copy-trade-hero-banner-v1.webp" alt="Two titanium slabs engraved with the same rising chart, a beam of blue light passing from the leading slab to the one copying it" width="2560" height="1434" fetchpriority="high" decoding="async">
+  </picture>
   <div class="pf-hero-bg" aria-hidden="true"></div>
   <div class="container pf-hero-in">
     <div class="pf-hero-copy">

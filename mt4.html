@@ -33,6 +33,8 @@
   <link rel="preload" as="image" fetchpriority="high" href="assets/img/platform-hero.webp" />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
+  <link rel="preload" href="assets/img/mt4-hero-banner-v1.webp" as="image" type="image/webp" media="(min-width:981px)" fetchpriority="high" />
+  <link rel="preload" href="assets/img/mt4-hero-banner-portrait-v1.webp" as="image" type="image/webp" media="(max-width:980px)" fetchpriority="high" />
   <link rel="stylesheet" href="assets/css/styles.min.css?v=pb10" />
 
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
@@ -48,7 +50,24 @@
      is darker than the section on every channel, so no mask is needed. */
   .mt-dl-img--mt5{-webkit-mask-image:none;mask-image:none}
   .mt-dl-stage:has(.mt-dl-img--mt5){max-width:min(1120px,96%)}
-  </style>
+  
+/* banner: platform family (the MT5 framing) - glossy titanium, engraved detail and
+   a blue beam, full-bleed under the bar with the subject on the right */
+.pf-hero{background:#03060F}
+.pf-hero .pf-hero-bg,.pf-hero .mt-hero-visual{display:none}
+.pf-hero::before,.pf-hero::after{display:none}
+.plf-hero-banner{position:absolute;top:var(--nav-h);left:0;right:0;width:100%;height:calc(100% - var(--nav-h));object-fit:cover;object-position:62% center;z-index:-2}
+@media (min-width:981px){.pf-hero .pf-hero-copy{max-width:min(600px,46%)}}
+.pf-hero .pf-lead br{display:none}
+@media (max-width:980px){
+  .pf-hero{justify-content:flex-start;align-items:flex-start;min-height:0;padding:calc(var(--nav-h) + 76vw + 28px) 0 44px}
+  .plf-hero-banner{bottom:auto;height:auto;aspect-ratio:1200/1778;object-position:center top}
+  .pf-hero .pf-hero-copy{max-width:none}
+  .pf-hero::after{content:"";display:block;position:absolute;inset:0;z-index:-1;pointer-events:none;
+    background:linear-gradient(180deg,#03060F 0%,#03060F calc(var(--nav-h) + 2px),rgba(3,6,15,0) calc(var(--nav-h) + 40px)),
+               linear-gradient(0deg,#03060F 0%,rgba(3,6,15,.86) 20%,rgba(3,6,15,0) 46%)}
+}
+</style>
 
   <script type="application/ld+json">
 {
@@ -417,6 +436,10 @@
 
 <!-- ============ BANNER ============ -->
 <section class="pf-hero pf-hero--mt" aria-labelledby="pf-hero-title">
+  <picture>
+    <source media="(max-width:980px)" srcset="assets/img/mt4-hero-banner-portrait-v1.webp" width="1200" height="1778">
+    <img class="plf-hero-banner" src="assets/img/mt4-hero-banner-v1.webp" alt="A glossy titanium slab engraved MT4 with forex, oil, index and share icons on a plinth lit by a seam of blue light" width="2560" height="1434" fetchpriority="high" decoding="async">
+  </picture>
   <div class="container pf-hero-in">
     <div class="pf-hero-copy">
       <span class="eyebrow eyebrow-blue" data-aos="fade-up">MetaTrader 4</span>
@@ -426,9 +449,6 @@
         <a href="#download" class="btn btn-primary btn-lg magnetic">Download MT4 <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       </div>
     </div>
-  </div>
-  <div class="mt-hero-visual" aria-hidden="true">
-    <img class="mt-hero-img" src="assets/img/mt-laptop-hero.webp" alt="MetaTrader terminal on a laptop" width="1190" height="1046" fetchpriority="high" decoding="async">
   </div>
 </section>
 
