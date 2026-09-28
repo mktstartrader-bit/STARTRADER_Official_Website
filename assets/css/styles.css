@@ -6071,3 +6071,19 @@ a.cat-pager-btn:hover{transform:translateY(-2px);border-color:rgba(0,71,187,.4);
 .fx-tv-in{top:-44px;height:152px}
 @media (max-width:860px){.fx-tv{width:280px}.ta-table td.fx-live{width:292px}}
 .fx-tv-in iframe,.fx-tv-in .tradingview-widget-container__widget{height:152px!important;width:100%!important}
+/* live cell, compact: the widget renders at 400px and is scaled to 55%, so its price,
+   day change and sparkline sit at table-text size; its symbol header is cropped away */
+.ta-table td.fx-live{width:232px}
+.fx-tv{width:220px;height:74px;border-radius:0}
+.fx-tv-in{top:-27px;left:0;right:auto;width:400px;height:190px;transform:scale(.55);transform-origin:0 0}
+.fx-tv-in iframe,.fx-tv-in .tradingview-widget-container__widget{height:190px!important;width:400px!important}
+@media (max-width:860px){.fx-tv{width:220px}.ta-table td.fx-live{width:232px}}
+.fx-tv-note{font-size:11px;color:#8a97ab}
+/* live cell refinement: 62% scale reads at table size; every header in one quiet style */
+.fx-tv{width:248px;height:80px}
+.fx-tv-in{top:-30px;transform:scale(.62)}
+.ta-table td.fx-live{width:260px}
+.fx-pairs .ta-table thead th{font-size:13.5px;font-weight:600;color:var(--text-mute);letter-spacing:.01em}
+.fx-pairs .ta-table td.fx-lot{font-size:14.5px}
+.fx-tv-note{padding:0 18px 4px;margin-top:10px}
+@media (max-width:860px){.fx-tv{width:248px}.ta-table td.fx-live{width:260px}}
