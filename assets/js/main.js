@@ -2255,9 +2255,6 @@
         return '<tr>' +
           '<td><span class="spec-feat">' + set.badge(p) +
           '<span class="fx-pair-name">' + p.sym + '<em>' + p.name + '</em></span></span></td>' +
-          '<td><span class="fx-px" data-el="bid">' + fmt(bid, p.dec) + '</span></td>' +
-          '<td><span class="fx-px" data-el="ask">' + fmt(ask, p.dec) + '</span></td>' +
-          '<td><span class="fx-spread-pill" data-el="spread">' + set.spread(p.spread, p) + '</span></td>' +
           '<td class="ta-td-act"><a class="fx-trade" href="https://www.startrader.com/live-account/">' +
           'Trade<svg aria-hidden="true"><use href="#i-arrow-right"/></svg>' +
           '<span class="sr-only"> ' + p.sym + '</span></a></td>' +
@@ -2307,8 +2304,9 @@
       });
     });
 
+    // tester feedback: the illustrative quotes read as STARTRADER's live prices and
+    // did not match the market, so the table lists instruments only (no bid/ask/spread)
     render(defaultCat);
-    setInterval(tick, 1500);
   }
 
   function initForexHours() {
