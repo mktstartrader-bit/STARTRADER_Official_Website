@@ -289,9 +289,12 @@
   .psb-table thead th .sub{font-size:10px;letter-spacing:0}
   .psb-th-pill{padding:4px 10px;font-size:10px;letter-spacing:.05em}
   .psb-table tbody tr.bonus td{font-size:14px}
-  .psb-why-grid{grid-template-columns:1fr}
-  .psb-why-card{min-height:0;flex-direction:row;align-items:center;gap:16px}
+  /* phones: a tidy 2 x 2 - icon top-left, heading under it, every card the same height */
+  .psb-why-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:28px}
+  .psb-why-card{min-height:148px;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:16px;padding:18px 16px 18px}
   .psb-why-card .art{margin:0;padding:0;flex:none}
+  .psb-why-card .psb-ic{width:52px;height:52px;border-radius:15px}
+  .psb-why-card h3{font-size:16px;line-height:1.3}
   .psb-actions .btn{width:100%;min-width:0}
   .psb-step{grid-template-columns:44px minmax(0,1fr);gap:14px;padding:18px}
   .psb-step-n{width:44px;height:44px;border-radius:13px;font-size:12.5px}
