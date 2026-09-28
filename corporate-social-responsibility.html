@@ -33,6 +33,8 @@
   <link rel="preload" as="image" fetchpriority="high" href="assets/img/platform-hero.webp" />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
+  <link rel="preload" href="assets/img/csr-hero-banner-v1.webp" as="image" type="image/webp" media="(min-width:981px)" fetchpriority="high" />
+  <link rel="preload" href="assets/img/csr-hero-banner-portrait-v1.webp" as="image" type="image/webp" media="(max-width:980px)" fetchpriority="high" />
   <link rel="stylesheet" href="assets/css/styles.min.css?v=pb12" />
   <!-- Page-specific styles -->
   <style>
@@ -76,7 +78,27 @@
 /* the card head now carries only a date; without a tag beside it, space-between
    would strand it, so it takes the left edge */
 #latest .nr-head{justify-content:flex-start}
-  </style>
+  
+/* banner: corporate family - titanium, liquid glass and one blue light; height-fit and
+   anchored right so the sapling is never cropped, the copy held to the left half */
+.pf-hero{background:#03060F}
+.pf-hero .pf-hero-bg{display:none}
+.pf-hero::before,.pf-hero::after{display:none}
+.csr-hero-banner{position:absolute;top:var(--nav-h);left:auto;right:0;width:auto;max-width:none;height:calc(100% - var(--nav-h));object-fit:cover;object-position:62% center;z-index:-2}
+@media (min-width:981px){
+  .csr-hero-banner{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 16%);mask-image:linear-gradient(90deg,transparent 0,#000 16%)}
+  .pf-hero .pf-hero-copy{max-width:min(600px,calc(50vw - max(24px,(100vw - 1152px)/2) - 24px))}
+}
+.pf-hero .pf-lead br{display:none}
+@media (max-width:980px){
+  .pf-hero{justify-content:flex-start;align-items:flex-start;min-height:0;padding:calc(var(--nav-h) + 76vw + 28px) 0 44px}
+  .csr-hero-banner{left:0;width:100%;height:auto;aspect-ratio:1200/1786;object-position:center top}
+  .pf-hero .pf-hero-copy{max-width:none}
+  .pf-hero::after{content:"";display:block;position:absolute;inset:0;z-index:-1;pointer-events:none;
+    background:linear-gradient(180deg,#03060F 0%,#03060F calc(var(--nav-h) + 2px),rgba(3,6,15,0) calc(var(--nav-h) + 40px)),
+               linear-gradient(0deg,#03060F 0%,#03060F 22%,rgba(3,6,15,.9) 40%,rgba(3,6,15,0) 58%)}
+}
+</style>
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* =================================================================
@@ -656,6 +678,10 @@
 
 <!-- ============ BANNER ============ -->
 <section class="pf-hero" aria-labelledby="pg-hero-title">
+  <picture>
+    <source media="(max-width:980px)" srcset="assets/img/csr-hero-banner-portrait-v1.webp" width="1200" height="1786">
+    <img class="csr-hero-banner" src="assets/img/csr-hero-banner-v1.webp" alt="Frosted glass hands cradling a glowing titanium sapling on a titanium plinth, with glass orbs holding a basketball, a home, a graduation cap and a heart" width="2560" height="1434" fetchpriority="high" decoding="async">
+  </picture>
   <div class="pf-hero-bg" aria-hidden="true"></div>
   <div class="container pf-hero-in">
     <div class="pf-hero-copy">
