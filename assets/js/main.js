@@ -2171,8 +2171,7 @@
         { sym: 'JPN225', name: 'Japan 225 Index', flag: 'jp', mid: 39980.0, dec: 1, spread: 8.00, sdec: 1 },
         { sym: 'HK50', name: 'Hong Kong 50 Index', flag: 'hk', mid: 18320.0, dec: 1, spread: 8.00, sdec: 1 },
         { sym: 'AUS200', name: 'Australia 200 Index', flag: 'au', mid: 7810.50, dec: 2, spread: 1.60, sdec: 2 },
-        { sym: 'SGP20', name: 'Singapore 20 Index', flag: 'sg', mid: 3402.80, dec: 2, spread: 1.80, sdec: 2 },
-        { sym: 'TWN50', name: 'Taiwan 50 Index', flag: 'tw', mid: 19640.0, dec: 1, spread: 9.00, sdec: 1 }
+        { sym: 'SGP20', name: 'Singapore 20 Index', flag: 'sg', mid: 3402.80, dec: 2, spread: 1.80, sdec: 2 }
       ]
     });
 
@@ -2193,8 +2192,7 @@
       intl: [
         { sym: 'ASML', name: 'ASML Holding N.V.', flag: 'nl', mid: 982.50, dec: 2, spread: 0.42, sdec: 2 },
         { sym: 'SAP', name: 'SAP SE', flag: 'de', mid: 188.20, dec: 2, spread: 0.12, sdec: 2 },
-        { sym: 'MC', name: 'LVMH Moet Hennessy', flag: 'fr', mid: 712.00, dec: 2, spread: 0.38, sdec: 2 },
-        { sym: '7203', name: 'Toyota Motor Corporation', flag: 'jp', mid: 2842.0, dec: 1, spread: 1.60, sdec: 1 }
+        { sym: 'MC', name: 'LVMH Moet Hennessy', flag: 'fr', mid: 712.00, dec: 2, spread: 0.38, sdec: 2 }
       ]
     });
 
@@ -2243,6 +2241,24 @@
     var firstCat = (cats.filter(function (c) { return c.classList.contains('active'); })[0] || cats[0] || {}).dataset;
     var defaultCat = (firstCat && firstCat.fxCat) || Object.keys(set.data)[0];
 
+    // live quotes come from TradingView's embeddable mini overview (price, day change,
+    // 1D sparkline); lot limits are STARTRADER's own, as its product tables list them
+    var TV = {'EUR/USD':'OANDA:EURUSD','GBP/USD':'OANDA:GBPUSD','USD/JPY':'OANDA:USDJPY','USD/CHF':'OANDA:USDCHF','AUD/USD':'OANDA:AUDUSD','USD/CAD':'OANDA:USDCAD','EUR/GBP':'OANDA:EURGBP','EUR/JPY':'OANDA:EURJPY','GBP/JPY':'OANDA:GBPJPY','AUD/JPY':'OANDA:AUDJPY','EUR/AUD':'OANDA:EURAUD','NZD/JPY':'OANDA:NZDJPY','USD/TRY':'OANDA:USDTRY','USD/ZAR':'OANDA:USDZAR','USD/MXN':'OANDA:USDMXN','USD/SGD':'OANDA:USDSGD','USD/HKD':'OANDA:USDHKD','EUR/TRY':'OANDA:EURTRY','XAU/USD':'OANDA:XAUUSD','XAG/USD':'OANDA:XAGUSD','XPT/USD':'OANDA:XPTUSD','XPD/USD':'OANDA:XPDUSD','COPPER':'OANDA:XCUUSD','XTI/USD':'OANDA:WTICOUSD','XBR/USD':'OANDA:BCOUSD','XNG/USD':'OANDA:NATGASUSD','HOIL':'CAPITALCOM:HEATINGOIL','WHEAT':'OANDA:WHEATUSD','CORN':'OANDA:CORNUSD','SOYBEAN':'OANDA:SOYBNUSD','COFFEE':'CAPITALCOM:COFFEEARABICA','SUGAR':'OANDA:SUGARUSD','COCOA':'CAPITALCOM:COCOA','COTTON':'CAPITALCOM:COTTON','US30':'OANDA:US30USD','US500':'OANDA:SPX500USD','NAS100':'OANDA:NAS100USD','US2000':'OANDA:US2000USD','CA60':'TSX:TX60','BRZ60':'BMFBOVESPA:IBOV','GER40':'OANDA:DE30EUR','UK100':'OANDA:UK100GBP','FRA40':'OANDA:FR40EUR','EUSTX50':'OANDA:EU50EUR','NETH25':'OANDA:NL25EUR','SWI20':'OANDA:CH20CHF','JPN225':'OANDA:JP225USD','HK50':'OANDA:HK33HKD','AUS200':'OANDA:AU200AUD','SGP20':'OANDA:SG30SGD','AAPL':'NASDAQ:AAPL','MSFT':'NASDAQ:MSFT','NVDA':'NASDAQ:NVDA','GOOGL':'NASDAQ:GOOGL','AMZN':'NASDAQ:AMZN','TSLA':'NASDAQ:TSLA','JPM':'NYSE:JPM','KO':'NYSE:KO','BA':'NYSE:BA','ASML':'EURONEXT:ASML','SAP':'XETR:SAP','MC':'EURONEXT:MC','SPY':'AMEX:SPY','QQQ':'NASDAQ:QQQ','IWM':'AMEX:IWM','EEM':'AMEX:EEM','GLD':'AMEX:GLD','SLV':'AMEX:SLV','USO':'AMEX:USO','TLT':'NASDAQ:TLT','AGG':'AMEX:AGG','HYG':'AMEX:HYG'};
+    var LOT = {'EUR/USD':['0.01','100'],'GBP/USD':['0.01','100'],'USD/JPY':['0.01','100'],'USD/CHF':['0.01','100'],'AUD/USD':['0.01','100'],'US30':['0.1','500'],'NAS100':['0.1','500'],'US500':['0.1','500'],'GER40':['0.1','500'],'JPN225':['1','500'],'TSLA':['0.1','1500'],'NVDA':['0.1','1500'],'AAPL':['0.1','1500'],'XBR/USD':['0.01','100'],'XTI/USD':['0.1','100'],'XNG/USD':['0.1','40'],'COPPER':['0.1','40'],'COFFEE':['0.1','40']};
+    var tvOn = false;
+    function tvMount(el) {
+      if (el.getAttribute('data-tv-on')) return;
+      el.setAttribute('data-tv-on', '1');
+      var inner = el.querySelector('.fx-tv-in');
+      var sc = document.createElement('script');
+      sc.src = 'https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js';
+      sc.async = true;
+      sc.text = JSON.stringify({ symbol: el.getAttribute('data-tv'), width: '100%', height: '100%', locale: 'en',
+        dateRange: '1D', colorTheme: 'light', isTransparent: true, autosize: true, noTimeScale: true, largeChartUrl: '' });
+      inner.appendChild(sc);
+    }
+    function tvMountAll() { if (tvOn) Array.prototype.forEach.call(body.querySelectorAll('[data-tv]'), tvMount); }
+
     var live = [];
     function fmt(n, d) { return n.toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d }); }
 
@@ -2255,6 +2271,9 @@
         return '<tr>' +
           '<td><span class="spec-feat">' + set.badge(p) +
           '<span class="fx-pair-name">' + p.sym + '<em>' + p.name + '</em></span></span></td>' +
+          '<td class="fx-lot"><span class="fx-lot-chip">' + (LOT[p.sym] ? LOT[p.sym][0] : '&ndash;') + '</span></td>' +
+          '<td class="fx-lot">' + (LOT[p.sym] ? LOT[p.sym][1] : '&ndash;') + '</td>' +
+          '<td class="fx-live">' + (TV[p.sym] ? '<div class="fx-tv" data-tv="' + TV[p.sym] + '"><div class="fx-tv-in tradingview-widget-container"><div class="tradingview-widget-container__widget"></div></div></div>' : '') + '</td>' +
           '<td class="ta-td-act"><a class="fx-trade" href="https://www.startrader.com/live-account/">' +
           'Trade<svg aria-hidden="true"><use href="#i-arrow-right"/></svg>' +
           '<span class="sr-only"> ' + p.sym + '</span></a></td>' +
@@ -2301,12 +2320,22 @@
       c.addEventListener('click', function () {
         cats.forEach(function (x) { x.classList.toggle('active', x === c); x.setAttribute('aria-selected', x === c ? 'true' : 'false'); });
         render(c.dataset.fxCat);
+        tvMountAll();
       });
     });
 
     // tester feedback: the illustrative quotes read as STARTRADER's live prices and
     // did not match the market, so the table lists instruments only (no bid/ask/spread)
     render(defaultCat);
+
+    // the widgets are iframes: start them only once the table is near the viewport
+    function tvStart() { tvOn = true; tvMountAll(); }
+    if ('IntersectionObserver' in window) {
+      var tvIo = new IntersectionObserver(function (en) {
+        if (en[0].isIntersecting) { tvIo.disconnect(); tvStart(); }
+      }, { rootMargin: '300px 0px' });
+      tvIo.observe(body);
+    } else tvStart();
   }
 
   function initForexHours() {

@@ -6051,3 +6051,23 @@ a.cat-pager-btn:hover{transform:translateY(-2px);border-color:rgba(0,71,187,.4);
    flyout, sub-list and mobile-menu links that had no current state. */
 .fly-group a.is-current,.fly-group h5 a.is-current,.fly-title-link.is-current,.mega-subitems a.is-current{color:#5b9dff}
 .mobile-menu a.is-current{color:#5b9dff}
+
+/* ===== PRODUCT TABLES: LOT LIMITS AND LIVE TRADINGVIEW QUOTES (2026-09-28, appended batch) =====
+   Instrument / Minimum Lot / Maximum Lot / live price, day change and 1D sparkline / Trade.
+   The TradingView mini overview is cropped to its price row and chart (its symbol header
+   repeats the instrument column); attribution sits under the table. */
+.ta-table td.fx-lot{font-variant-numeric:tabular-nums;font-weight:600;color:var(--ink);white-space:nowrap}
+.fx-lot-chip{display:inline-block;min-width:64px;padding:8px 14px;border-radius:8px;background:rgba(0,71,187,.07);text-align:center}
+.ta-table td.fx-live{width:252px;padding-top:6px;padding-bottom:6px}
+.fx-tv{position:relative;width:240px;height:86px;overflow:hidden;border-radius:10px}
+.fx-tv-in{position:absolute;left:0;right:0;top:-46px;height:134px}
+.fx-tv-in iframe{display:block}
+.fx-tv-note{margin-top:12px;font-size:12px;line-height:1.5;color:#6b7a90;text-align:right}
+.fx-tv-note a{color:var(--blue);font-weight:600}
+@media (max-width:860px){.fx-tv{width:210px}.ta-table td.fx-live{width:222px}.fx-tv-note{text-align:left}}
+/* live cell: wide enough for the day change beside the price, tall enough for the sparkline */
+.ta-table td.fx-live{width:312px}
+.fx-tv{width:300px;height:104px}
+.fx-tv-in{top:-44px;height:152px}
+@media (max-width:860px){.fx-tv{width:280px}.ta-table td.fx-live{width:292px}}
+.fx-tv-in iframe,.fx-tv-in .tradingview-widget-container__widget{height:152px!important;width:100%!important}
