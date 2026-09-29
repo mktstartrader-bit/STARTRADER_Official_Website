@@ -116,6 +116,91 @@
 .hero::before{background:radial-gradient(46% 40% at 50% 34%,rgba(4,6,14,.55),rgba(4,6,14,0) 72%),linear-gradient(180deg,rgba(4,6,14,.35) 0%,rgba(4,6,14,0) 20%,rgba(4,6,14,0) 70%,rgba(4,6,14,.55) 100%)}
 .hero-art{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:50% 62%;z-index:-2;pointer-events:none}
 @media (max-width:720px){.hero-art{object-position:50% 70%}}
+
+/* ---- Trade your way: bento with the app first ----
+   a wide dark app card (phone, features, store badges, scan-to-download) leads; the web
+   trader and MetaTrader cards sit beside it as lighter supporting tiles */
+.tw-bento{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,2.5fr) minmax(0,2.5fr);gap:18px;margin-top:40px}
+.tw-card{position:relative;overflow:hidden;border-radius:26px;isolation:isolate}
+.tw-app{grid-column:1;grid-row:1 / span 2;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);min-height:560px;
+  background:radial-gradient(90% 80% at 85% 85%,rgba(31,94,255,.34),rgba(31,94,255,0) 60%),linear-gradient(160deg,#0B1330 0%,#060A18 62%,#050814 100%);
+  color:#fff;box-shadow:0 30px 60px -34px rgba(6,12,40,.6);border:1px solid rgba(255,255,255,.06)}
+.tw-app-copy{position:relative;z-index:2;display:flex;flex-direction:column;padding:clamp(26px,3vw,40px)}
+.tw-tag{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;padding:7px 13px 7px 10px;border-radius:70px;font-size:12px;font-weight:700;letter-spacing:.04em;color:#cfdcff;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)}
+.tw-tag svg{width:15px;height:15px}
+.tw-app-h{margin-top:18px;font-size:clamp(26px,2.5vw,36px);font-weight:800;letter-spacing:-.035em;line-height:1.1;color:#fff}
+.tw-app-p{margin-top:12px;font-size:15px;line-height:1.6;color:#aebbd6;max-width:34ch}
+.tw-feats{display:grid;grid-template-columns:1fr 1fr;gap:10px 14px;margin-top:22px}
+.tw-feats li{display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:600;color:#e6ecf7}
+.tw-feats svg{flex:none;width:30px;height:30px;padding:7px;border-radius:9px;color:#8fb4ff;background:rgba(47,107,255,.16);border:1px solid rgba(143,180,255,.18)}
+.tw-get{display:flex;align-items:center;gap:18px;margin-top:auto;padding-top:26px}
+.tw-badges{display:flex;flex-direction:column;gap:10px}
+.tw-badges img{display:block;height:44px;width:auto;border-radius:9px;transition:transform .3s var(--ease)}
+.tw-badges a:hover img{transform:translateY(-2px)}
+.tw-qr{display:flex;align-items:center;gap:12px;padding:10px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1)}
+.tw-qr img{display:block;width:76px;height:76px;padding:6px;border-radius:10px;background:#fff}
+.tw-qr span{font-size:12.5px;font-weight:600;line-height:1.35;color:#cfd9ec}
+.tw-more{display:inline-flex;align-items:center;gap:8px;margin-top:18px;font-size:14px;font-weight:700;color:#8fb4ff}
+.tw-more svg{width:15px;height:15px;transition:transform .3s var(--ease)}
+.tw-more:hover{color:#fff}.tw-more:hover svg{transform:translateX(3px)}
+.tw-app-art{position:relative;z-index:1;display:flex;align-items:flex-end;justify-content:center;margin-right:-10px}
+.tw-app-glow{position:absolute;left:10%;right:0;bottom:6%;height:60%;border-radius:50%;background:radial-gradient(closest-side,rgba(47,107,255,.45),rgba(47,107,255,0));filter:blur(10px)}
+.tw-app-art img{position:relative;display:block;width:118%;max-width:none;height:auto;margin-bottom:-4%;mix-blend-mode:lighten;
+  -webkit-mask-image:radial-gradient(75% 80% at 55% 55%,#000 60%,transparent 100%);mask-image:radial-gradient(75% 80% at 55% 55%,#000 60%,transparent 100%)}
+.tw-plat{display:flex;flex-direction:column;padding:26px;color:var(--text);text-decoration:none;
+  background:linear-gradient(160deg,#ffffff 0%,#f3f7fd 100%);border:1px solid rgba(20,44,96,.08);box-shadow:0 18px 40px -30px rgba(20,44,96,.35);transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s}
+.tw-plat:hover{transform:translateY(-4px);box-shadow:0 26px 50px -30px rgba(20,44,96,.45);border-color:rgba(0,71,187,.22)}
+.tw-plat-top{display:flex;align-items:flex-start;justify-content:space-between}
+.tw-ico{display:grid;place-items:center;width:44px;height:44px;border-radius:13px;color:var(--blue);background:rgba(0,71,187,.08)}
+.tw-ico svg{width:22px;height:22px}
+.tw-go{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;color:var(--blue);border:1px solid rgba(0,71,187,.18);transition:background .3s,color .3s}
+.tw-go svg{width:15px;height:15px}
+.tw-plat:hover .tw-go{background:var(--blue);color:#fff}
+.tw-plat h3{margin-top:18px;font-size:19px;font-weight:700;letter-spacing:-.02em}
+.tw-plat p{margin-top:6px;font-size:14px;line-height:1.55;color:var(--text-soft)}
+.tw-link{margin-top:auto;padding-top:16px;font-size:13.5px;font-weight:700;color:var(--blue)}
+.tw-web{grid-column:2 / span 2;grid-row:1;padding-right:44%;min-height:271px}
+.tw-web-img{position:absolute;right:-6%;bottom:-2%;width:52%;height:auto;filter:drop-shadow(0 18px 26px rgba(20,44,96,.22))}
+.tw-mt{min-height:271px}
+.tw-mt5{grid-column:2;grid-row:2}
+.tw-mt4{grid-column:3;grid-row:2}
+.tw-mt-ico{width:52px;height:52px;object-fit:contain}
+@media (max-width:1180px){
+  .tw-bento{grid-template-columns:1fr 1fr}
+  .tw-app{grid-column:1 / -1;grid-row:auto;min-height:0}
+  .tw-web{grid-column:1 / -1;grid-row:auto}
+  .tw-mt5,.tw-mt4{grid-column:auto;grid-row:auto}
+}
+@media (max-width:720px){
+  .tw-bento{gap:14px;margin-top:28px}
+  .tw-app{grid-template-columns:1fr}
+  .tw-app-art{order:-1;height:250px;margin:0;overflow:hidden}
+  .tw-app-art img{width:min(420px,112%);margin-bottom:-8%}
+  .tw-app-copy{padding:4px 22px 26px}
+  .tw-app-h br{display:none}
+  .tw-feats{grid-template-columns:1fr 1fr;gap:10px}
+  .tw-feats li{font-size:12.5px;align-items:flex-start}
+  .tw-qr{display:none}
+  .tw-badges{flex-direction:row;flex-wrap:wrap}
+  .tw-badges img{height:42px}
+  .tw-web{padding-right:26px;min-height:0}
+  .tw-web-img{position:static;width:78%;margin:14px -34px -30px auto}
+  .tw-mt{min-height:0;padding:20px}
+  .tw-mt p{font-size:13px}
+}
+/* refinements: roomier app card, single-column features, phone edges fully feathered */
+.tw-bento{grid-template-columns:minmax(0,7.6fr) minmax(0,2.2fr) minmax(0,2.2fr);margin-bottom:44px}
+.tw-app{grid-template-columns:minmax(0,1fr) minmax(0,.9fr)}
+.tw-feats{grid-template-columns:1fr;gap:10px}
+.tw-app-h{font-size:clamp(26px,2.4vw,34px)}
+.tw-app-art img{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 30%),linear-gradient(180deg,transparent 0,#000 22%);-webkit-mask-composite:source-in;
+  mask-image:linear-gradient(90deg,transparent 0,#000 30%),linear-gradient(180deg,transparent 0,#000 22%);mask-composite:intersect}
+.tw-mt{min-height:0}
+@media (max-width:1180px){.tw-bento{grid-template-columns:1fr 1fr}}
+@media (max-width:720px){.tw-feats{grid-template-columns:1fr 1fr}.tw-bento{margin-bottom:30px}
+  .tw-app-art img{-webkit-mask-image:linear-gradient(0deg,transparent 0,#000 30%);mask-image:linear-gradient(0deg,transparent 0,#000 30%);-webkit-mask-composite:source-over;mask-composite:add}}
+@media (min-width:721px) and (max-width:1180px){.tw-web{padding-right:48%}.tw-web-img{width:auto;height:92%;right:3%;bottom:0}}
+@media (max-width:720px){.tw-app{grid-template-columns:1fr}.tw-feats li{font-size:12.5px}.tw-app-copy{padding:0 20px 24px}}
 </style>
   <style>
 /* ---------- Layout ---------- */
@@ -985,58 +1070,60 @@
     <div class="head center">
       <span class="eyebrow" data-aos="fade-up">PLATFORMS</span>
       <h2 class="h2" id="platforms-title" data-aos="fade-up">Trade your way</h2>
+      <p class="head-sub" data-aos="fade-up">Start on the STARTRADER app, or trade from your browser, MT4 or MT5 &mdash; one account across every platform.</p>
     </div>
 
-    <div class="plat-grid">
-      <!-- App card -->
-      <article class="plat-card plat-app" data-aos="fade-up">
-        <div class="plat-copy">
-          <h3>STARTRADER: Trading &amp; Investing App</h3>
-          <p>The full account in your pocket &mdash; iOS &amp; Android.</p>
-        </div>
-
-        <img class="plat-hand" src="assets/img/app-hand.webp" alt="The STARTRADER app open on a phone" width="1000" height="1364" loading="lazy" decoding="async">
-
-        <!-- the veil rises off the lower edge, and the buttons sit on it -->
-        <div class="plat-veil">
-          <span class="avail">Available on</span>
-          <div class="badges">
-            <a href="https://startrader.onelink.me/PWbI/canpg4vy" target="_blank" rel="noopener" aria-label="Download on the App Store"><img src="assets/img/badge-appstore.webp" alt="Download on the App Store" width="140" height="41" loading="lazy"></a>
-            <a href="https://play.google.com/store/apps/details?id=cn.com.startrader" target="_blank" rel="noopener" aria-label="Get it on Google Play"><img src="assets/img/badge-googleplay.webp" alt="Get it on Google Play" width="140" height="41" loading="lazy"></a>
+    <div class="tw-bento">
+      <!-- the app leads: wide dark card with phone, features, store badges and a scan-to-download code -->
+      <article class="tw-card tw-app" data-aos="fade-up">
+        <div class="tw-app-copy">
+          <span class="tw-tag"><svg aria-hidden="true"><use href="#i-phone"/></svg>STARTRADER App</span>
+          <h3 class="tw-app-h">Your whole account,<br> in your pocket</h3>
+          <p class="tw-app-p">Trade, fund and follow the markets from one app on iOS and Android.</p>
+          <ul class="tw-feats">
+            <li><svg aria-hidden="true"><use href="#i-layers"/></svg>1,000+ instruments</li>
+            <li><svg aria-hidden="true"><use href="#i-chart"/></svg>Technical analysis tools</li>
+            <li><svg aria-hidden="true"><use href="#i-star"/></svg>Watchlists for your markets</li>
+            <li><svg aria-hidden="true"><use href="#i-wallet"/></svg>Deposits &amp; withdrawals</li>
+          </ul>
+          <div class="tw-get">
+            <div class="tw-badges">
+              <a href="https://startrader.onelink.me/PWbI/canpg4vy" target="_blank" rel="noopener" aria-label="Download on the App Store"><img src="assets/img/badge-appstore.webp" alt="Download on the App Store" width="140" height="41" loading="lazy" decoding="async"></a>
+              <a href="https://play.google.com/store/apps/details?id=cn.com.startrader" target="_blank" rel="noopener" aria-label="Get it on Google Play"><img src="assets/img/badge-googleplay.webp" alt="Get it on Google Play" width="140" height="41" loading="lazy" decoding="async"></a>
+            </div>
+            <div class="tw-qr">
+              <img src="assets/img/app-download-qr.svg" alt="QR code to download the STARTRADER app" width="76" height="76" loading="lazy" decoding="async">
+              <span>Scan to<br> download</span>
+            </div>
           </div>
+          <a href="trading-app.html" class="tw-more">Explore the app <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </div>
+        <div class="tw-app-art" aria-hidden="true">
+          <span class="tw-app-glow"></span>
+          <img src="assets/img/app-hero-phone-v2.webp" alt="" width="1072" height="1052" loading="lazy" decoding="async">
         </div>
       </article>
 
-      <!-- Web trader (blue) -->
-      <article class="plat-card plat-web" data-aos="fade-up" data-aos-delay="100">
-        <div class="plat-copy">
-          <h3>Web Trader</h3>
-          <p>The full trading terminal in your browser — no download needed.</p>
-        </div>
-        <a href="webtrader.html" class="link-ur">Launch web trader <svg class="ico"><use href="#i-arrow-ur"/></svg></a>
-        <img class="plat-tablet" src="assets/img/webtrader-laptop.webp" alt="Web Trader terminal open on a laptop" width="619" height="458" loading="lazy">
-      </article>
-
-      <!-- MT4 -->
-      <article class="plat-card plat-mt" data-aos="fade-up" data-aos-delay="200">
-        <div class="plat-copy">
-          <h3>MetaTrader 4</h3>
-          <p>The classic — EAs, indicators, proven reliability.</p>
-        </div>
-        <a href="mt4.html" class="link-ur">Download MT4 <svg class="ico"><use href="#i-arrow-ur"/></svg></a>
-
-        <img class="plat-mt-ico" src="assets/img/mt4-stack.webp" alt="MetaTrader 4" width="520" height="498" loading="lazy" decoding="async">
-      </article>
-
-      <!-- MT5 -->
-      <article class="plat-card plat-mt" data-aos="fade-up" data-aos-delay="300">
-        <div class="plat-copy">
-          <h3>MetaTrader 5</h3>
-          <p>Multi-asset, depth of market, full algo support.</p>
-        </div>
-        <a href="mt5.html" class="link-ur">Download MT5 <svg class="ico"><use href="#i-arrow-ur"/></svg></a>
-        <img class="plat-mt-ico" src="assets/img/mt5-stack.webp" alt="MetaTrader 5" width="520" height="520" loading="lazy" decoding="async">
-      </article>
+      <!-- supporting platforms -->
+      <a class="tw-card tw-plat tw-web" href="webtrader.html" data-aos="fade-up" data-aos-delay="100">
+        <span class="tw-plat-top"><span class="tw-ico"><svg aria-hidden="true"><use href="#i-monitor"/></svg></span><span class="tw-go"><svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></span></span>
+        <h3>Web Trader</h3>
+        <p>The full trading terminal in your browser &mdash; no download needed.</p>
+        <span class="tw-link">Launch web trader</span>
+        <img class="tw-web-img" src="assets/img/webtrader-laptop.webp" alt="Web Trader terminal open on a laptop" width="619" height="458" loading="lazy" decoding="async">
+      </a>
+      <a class="tw-card tw-plat tw-mt tw-mt5" href="mt5.html" data-aos="fade-up" data-aos-delay="150">
+        <span class="tw-plat-top"><img class="tw-mt-ico" src="assets/img/mt5-stack.webp" alt="MetaTrader 5" width="520" height="520" loading="lazy" decoding="async"><span class="tw-go"><svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></span></span>
+        <h3>MetaTrader 5</h3>
+        <p>Multi-asset, depth of market, full algo support.</p>
+        <span class="tw-link">Download MT5</span>
+      </a>
+      <a class="tw-card tw-plat tw-mt tw-mt4" href="mt4.html" data-aos="fade-up" data-aos-delay="200">
+        <span class="tw-plat-top"><img class="tw-mt-ico" src="assets/img/mt4-stack.webp" alt="MetaTrader 4" width="520" height="498" loading="lazy" decoding="async"><span class="tw-go"><svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></span></span>
+        <h3>MetaTrader 4</h3>
+        <p>The classic &mdash; EAs, indicators, proven reliability.</p>
+        <span class="tw-link">Download MT4</span>
+      </a>
     </div>
 
     <div class="center" data-aos="fade-up">
