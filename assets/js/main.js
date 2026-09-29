@@ -1531,8 +1531,16 @@
         s.src = 'https://static.zdassets.com/ekr/snippet.js?key=' + ZE_KEY;
         document.head.appendChild(s);
       };
-      if (document.readyState === 'complete') setTimeout(loadZe, 1500);
-      else window.addEventListener('load', function () { setTimeout(loadZe, 1500); });
+      // the widget is ~330 KB of script: load it on the visitor's first interaction
+      // (or after 5s idle) so it stays out of the page-load and blocking-time window
+      var zeStart = function () {
+        ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (ev) { window.removeEventListener(ev, zeStart, true); });
+        loadZe();
+      };
+      ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (ev) { window.addEventListener(ev, zeStart, { capture: true, passive: true, once: true }); });
+      var zeIdle = function () { setTimeout(zeStart, 5000); };
+      if (document.readyState === 'complete') zeIdle();
+      else window.addEventListener('load', zeIdle);
 
       // our brand bubble is the launcher; Zendesk's stays hidden
       var whenZE = function (cb) {
@@ -1558,6 +1566,7 @@
         ]);
       });
       if (fab) fab.addEventListener('click', function () {
+        loadZe();
         whenZE(function () {
           var shown = zeApi([['messenger', 'show'], ['webWidget', 'show']]);
           var opened = zeApi([['messenger', 'open'], ['webWidget', 'open']]);
