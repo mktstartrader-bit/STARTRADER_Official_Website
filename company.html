@@ -314,6 +314,74 @@
 
 /* small laptops: the art slides right so it clears the copy column */
 @media (min-width:981px) and (max-width:1279px){.co-hero-banner{right:-12vw}}
+
+/* platforms section: same styling as the homepage "Trade your way" cards */
+/* ---------- Platforms ---------- */
+/* the hand sits flush to the card's lower-right corner */
+.plat-hand{
+  position:absolute;right:clamp(-58px,-4vw,-24px);bottom:0;z-index:1;
+  width:auto;height:clamp(280px,78%,430px);max-width:64%;
+  object-fit:contain;object-position:100% 100%;
+  filter:drop-shadow(0 26px 40px rgba(20,44,96,.28));
+  pointer-events:none;
+}
+/* the handset gave back a little width, so the copy column can hold its
+   standfirst in two lines instead of three. Scoped above 480px: below that
+   the shared sheet gives the copy the whole card, and this must not undo it. */
+@media (min-width:481px){
+  .plat-app .plat-copy{max-width:min(100%,53%)}
+}
+
+/* a veil of blur climbing off the bottom edge, with the store buttons on it */
+.plat-veil{
+  position:absolute;left:0;right:0;bottom:0;z-index:4;
+  padding:56px 34px 26px;
+  -webkit-backdrop-filter:blur(16px) saturate(1.2);backdrop-filter:blur(16px) saturate(1.2);
+  background:linear-gradient(180deg,rgba(240,245,252,0) 0%,rgba(240,245,252,.62) 42%,rgba(240,245,252,.9) 100%);
+  /* the blur itself fades out towards the top, so there is no hard edge */
+  -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 46%,#000 100%);
+  mask-image:linear-gradient(180deg,transparent 0%,#000 46%,#000 100%);
+}
+.plat-veil .avail{
+  display:block;font-size:10.5px;font-weight:800;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--text-mute);
+}
+.plat-veil .badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:11px}
+.plat-veil .badges img{height:38px;width:auto;display:block;
+  border-radius:8px;box-shadow:0 10px 22px -12px rgba(20,44,96,.5);
+  transition:transform .3s var(--ease),box-shadow .3s}
+.plat-veil .badges a:hover img{transform:translateY(-3px);box-shadow:0 16px 30px -12px rgba(20,44,96,.6)}
+@media (max-width:900px){.plat-hand{height:clamp(240px,78%,400px);max-width:62%}
+.plat-veil{padding:48px 22px 20px}}
+/* app card, as the reference: the hand and phone centred and larger between the title and
+   the store buttons, the standfirst on one line, bigger store badges */
+.plat-app .plat-copy{max-width:100%}
+.plat-app .plat-copy p{max-width:none}
+.plat-hand{right:auto;left:50%;transform:translateX(-46%);bottom:0;height:clamp(300px,74%,470px);max-width:none;object-position:50% 100%}
+.plat-app:hover .plat-hand{transform:translateX(-46%)}
+.plat-veil .badges img{height:clamp(40px,3.4vw,48px)}
+.plat-veil .avail{font-size:11.5px}
+@media (max-width:900px){.plat-hand{height:clamp(260px,72%,420px);max-width:none}}
+@media (max-width:480px){.plat-hand{height:auto;width:min(270px,78%)}.plat-veil .badges img{height:40px}}
+@media (min-width:481px){.plat-app .plat-copy{max-width:100%}}
+.plat-app{min-height:600px}
+.plat-hand{height:clamp(300px,68%,470px)}
+@media (max-width:900px){.plat-app{min-height:520px}.plat-hand{height:clamp(260px,64%,400px)}}
+@media (max-width:480px){.plat-app{min-height:520px}.plat-hand{height:auto;width:min(240px,66%)}}
+.plat-app .plat-copy,.plat-app .plat-copy p{max-width:none!important}
+@media (min-width:901px){.plat-app .plat-hand{height:470px}}
+@media (max-width:480px){.plat-app{min-height:540px}}
+/* app card v2: phone larger and closer to the copy; no drop shadow behind the hand or the laptop */
+.plat-hand,.plat-tablet{filter:none!important}
+@media (min-width:901px){.plat-app{min-height:600px}.plat-app .plat-hand{height:540px}}
+@media (min-width:481px) and (max-width:900px){.plat-app{min-height:560px}.plat-hand{height:450px}}
+@media (max-width:480px){.plat-app{min-height:560px}.plat-hand{width:min(300px,84%)}}
+@media (min-width:901px){.plat-app .plat-hand{height:500px}}
+@media (min-width:481px) and (max-width:900px){.plat-app .plat-hand{height:440px;width:auto}}
+@media (max-width:480px){.plat-app{min-height:0;height:540px}.plat-app .plat-hand{height:410px;width:auto}}
+.plat-app .plat-hand{max-width:none!important;object-position:50% 0}
+.plat-mt .plat-mt-ico{bottom:-22px}
+@media (min-width:901px){.plat-app{min-height:620px}.plat-app .plat-hand{height:480px}}
 </style>
   <script>document.documentElement.classList.add('js-reveal');</script>
 
@@ -791,7 +859,7 @@
           <p>The full trading terminal in your browser with no download needed.</p>
         </div>
         <a href="webtrader.html" class="link-ur">Launch web trader <svg class="ico"><use href="#i-arrow-ur"/></svg></a>
-        <img class="plat-tablet" src="assets/img/webtrader-laptop.webp" alt="Web Trader terminal open on a laptop" width="619" height="458" loading="lazy">
+        <img class="plat-tablet" src="assets/img/webtrader-laptop-v3.webp" alt="Web Trader terminal open on a laptop" width="1238" height="924" loading="lazy">
       </article>
 
       <!-- MT4 -->
@@ -802,7 +870,7 @@
         </div>
         <a href="mt4.html" class="link-ur">Download MT4 <svg class="ico"><use href="#i-arrow-ur"/></svg></a>
 
-        <img class="plat-mt-ico" src="assets/img/mt4-stack.webp" alt="MetaTrader 4" width="520" height="498" loading="lazy" decoding="async">
+        <img class="plat-mt-ico" src="assets/img/mt4-stack-v2.webp" alt="MetaTrader 4" width="520" height="498" loading="lazy" decoding="async">
       </article>
 
       <!-- MT5 -->
@@ -812,7 +880,7 @@
           <p>Multi-asset, depth of market, full algo support.</p>
         </div>
         <a href="mt5.html" class="link-ur">Download MT5 <svg class="ico"><use href="#i-arrow-ur"/></svg></a>
-        <img class="plat-mt-ico" src="assets/img/mt5-stack.webp" alt="MetaTrader 5" width="520" height="520" loading="lazy" decoding="async">
+        <img class="plat-mt-ico" src="assets/img/mt5-stack-v2.webp" alt="MetaTrader 5" width="520" height="520" loading="lazy" decoding="async">
       </article>
     </div>
 
