@@ -116,6 +116,25 @@
 .hero::before{background:radial-gradient(46% 40% at 50% 34%,rgba(4,6,14,.55),rgba(4,6,14,0) 72%),linear-gradient(180deg,rgba(4,6,14,.35) 0%,rgba(4,6,14,0) 20%,rgba(4,6,14,0) 70%,rgba(4,6,14,.55) 100%)}
 .hero-art{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:50% 62%;z-index:-2;pointer-events:none}
 @media (max-width:720px){.hero-art{object-position:50% 70%}}
+
+/* app card, as the reference: the hand and phone centred and larger between the title and
+   the store buttons, the standfirst on one line, bigger store badges */
+.plat-app .plat-copy{max-width:100%}
+.plat-app .plat-copy p{max-width:none}
+.plat-hand{right:auto;left:50%;transform:translateX(-46%);bottom:0;height:clamp(300px,74%,470px);max-width:none;object-position:50% 100%}
+.plat-app:hover .plat-hand{transform:translateX(-46%)}
+.plat-veil .badges img{height:clamp(40px,3.4vw,48px)}
+.plat-veil .avail{font-size:11.5px}
+@media (max-width:900px){.plat-hand{height:clamp(260px,72%,420px);max-width:none}}
+@media (max-width:480px){.plat-hand{height:auto;width:min(270px,78%)}.plat-veil .badges img{height:40px}}
+@media (min-width:481px){.plat-app .plat-copy{max-width:100%}}
+.plat-app{min-height:600px}
+.plat-hand{height:clamp(300px,68%,470px)}
+@media (max-width:900px){.plat-app{min-height:520px}.plat-hand{height:clamp(260px,64%,400px)}}
+@media (max-width:480px){.plat-app{min-height:520px}.plat-hand{height:auto;width:min(240px,66%)}}
+.plat-app .plat-copy,.plat-app .plat-copy p{max-width:none!important}
+@media (min-width:901px){.plat-app .plat-hand{height:470px}}
+@media (max-width:480px){.plat-app{min-height:540px}}
 </style>
   <style>
 /* ---------- Layout ---------- */
