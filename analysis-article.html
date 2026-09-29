@@ -154,7 +154,14 @@
 .ar-auth-bio p+p{margin-top:10px}
 /* the rail now carries the full analyst bio and is taller than a screen: it scrolls with
    the article instead of pinning, so nothing in it sits out of reach */
-.ar-rail{position:static}
+
+/* author bio at the end of the article, full width of the text column */
+.ar-auth--end{margin-top:36px;padding:clamp(22px,3vw,32px);border-radius:22px}
+.ar-auth--end .ar-auth-head img{width:72px;height:72px}
+.ar-auth--end .ar-auth-bio{font-size:15.5px;line-height:1.7}
+.ar-auth--end .ar-auth-links{display:flex;flex-wrap:wrap;gap:10px 22px}
+.ar-auth--end .ar-side-h{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--text-mute);margin:0 0 16px;line-height:1.4}
+.ar-auth--end .ar-auth-links{flex-direction:row}
 </style>
 
   <!-- Structured data — article -->
@@ -516,27 +523,6 @@
           </div>
         </div>
 
-        <div class="ar-auth glass" id="author" itemprop="author" itemscope itemtype="https://schema.org/Person">
-          <h2 class="ar-side-h">About the author</h2>
-          <div class="ar-auth-head">
-            <img src="assets/img/author-ghassan.webp" alt="Ghassan Albohotori, Senior Market Analyst at STARTRADER" width="64" height="64" loading="lazy" decoding="async" itemprop="image">
-            <div>
-              <b class="ar-auth-name" itemprop="name">Ghassan Albohotori</b>
-              <span class="ar-auth-role" itemprop="jobTitle">Senior Market Analyst &middot; STARTRADER Research</span>
-            </div>
-          </div>
-          <div class="ar-auth-bio" itemprop="description">
-            <p>As a Senior Market Analyst with more than 10 years of experience, Mr. Albohotori has spent much of his career helping people feel less overwhelmed by the markets.</p>
-            <p>He understands that market news can often feel too fast, too technical, and difficult to connect. That is why his sessions focus on making market movements easier to understand, showing what is driving prices, why it matters, and how global events, commodities, and economic shifts come together in real market behavior.</p>
-            <p>His commentary has been featured on leading regional business media, including CNBC Arabia, Asharq Business, and Al Arabiya. But what truly defines his approach is his ability to make complex market topics feel practical, accessible, and relevant.</p>
-            <p>Known for his interactive style, he helps participants connect the dots and leave with a clearer sense of what they are looking at, and why it matters.</p>
-          </div>
-          <div class="ar-auth-links">
-            <a class="ar-auth-link" href="daily-technical-analysis.html">Daily technical analysis <svg class="ico"><use href="#i-arrow-right"/></svg></a>
-            <a class="ar-auth-link" href="daily-fundamental-analysis.html">Daily fundamental analysis <svg class="ico"><use href="#i-arrow-right"/></svg></a>
-          </div>
-        </div>
-
         <div class="ar-cta glass" data-ar-open-card>
           <h2 class="ar-cta-h">Open <span>Live Account</span></h2>
           <form class="ar-cta-form" data-ar-open novalidate>
@@ -752,6 +738,28 @@
           <a class="ar-tag" href="news.html?q=fomc">FOMC</a>
           <a class="ar-tag" href="news.html?q=technical">Technical analysis</a>
         </div>
+
+        <div class="ar-auth ar-auth--end glass" id="author" itemprop="author" itemscope itemtype="https://schema.org/Person">
+          <h2 class="ar-side-h">About the author</h2>
+          <div class="ar-auth-head">
+            <img src="assets/img/author-ghassan.webp" alt="Ghassan Albohotori, Senior Market Analyst at STARTRADER" width="64" height="64" loading="lazy" decoding="async" itemprop="image">
+            <div>
+              <b class="ar-auth-name" itemprop="name">Ghassan Albohotori</b>
+              <span class="ar-auth-role" itemprop="jobTitle">Senior Market Analyst &middot; STARTRADER Research</span>
+            </div>
+          </div>
+          <div class="ar-auth-bio" itemprop="description">
+            <p>As a Senior Market Analyst with more than 10 years of experience, Mr. Albohotori has spent much of his career helping people feel less overwhelmed by the markets.</p>
+            <p>He understands that market news can often feel too fast, too technical, and difficult to connect. That is why his sessions focus on making market movements easier to understand, showing what is driving prices, why it matters, and how global events, commodities, and economic shifts come together in real market behavior.</p>
+            <p>His commentary has been featured on leading regional business media, including CNBC Arabia, Asharq Business, and Al Arabiya. But what truly defines his approach is his ability to make complex market topics feel practical, accessible, and relevant.</p>
+            <p>Known for his interactive style, he helps participants connect the dots and leave with a clearer sense of what they are looking at, and why it matters.</p>
+          </div>
+          <div class="ar-auth-links">
+            <a class="ar-auth-link" href="daily-technical-analysis.html">Daily technical analysis <svg class="ico"><use href="#i-arrow-right"/></svg></a>
+            <a class="ar-auth-link" href="daily-fundamental-analysis.html">Daily fundamental analysis <svg class="ico"><use href="#i-arrow-right"/></svg></a>
+          </div>
+        </div>
+
       </div>
 
         <nav class="ar-pager" aria-label="More stories">
