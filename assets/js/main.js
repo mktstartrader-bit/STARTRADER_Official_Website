@@ -167,7 +167,7 @@
       symbols: heroTickerSymbols.map(function (s) { return { proName: s[0], title: s[1] }; }),
       showSymbolLogo: true,
       isTransparent: true,
-      displayMode: 'adaptive',
+      displayMode: 'regular',
       colorTheme: 'dark'
     }));
     mountTradingView(track);

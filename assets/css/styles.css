@@ -6103,3 +6103,5 @@ a.cat-pager-btn:hover{transform:translateY(-2px);border-color:rgba(0,71,187,.4);
   body:has(.nav-item.has-mega.is-open)::before,body:has(.nav-item.has-drop:hover)::before{opacity:1;visibility:visible;transition:opacity .35s var(--ease),visibility 0s}
 }
 @media (min-width:1081px) and (prefers-reduced-transparency:reduce){body::before{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(6,9,20,.6)}}
+/* ticker: the TradingView tape draws its row near the top of its frame; nudge it onto the pill's centre line */
+.hero-ticker--tv iframe{transform:translateY(6px)}
