@@ -1816,7 +1816,7 @@
       }
 
       function onOutside(e) { if (!panel.contains(e.target) && e.target !== hit) close(false); }
-      function onReflow() { place(); }
+      function onReflow(e) { if (e && e.type === 'scroll' && panel && (e.target === panel || panel.contains(e.target))) return; place(); }
 
       // the panel hangs under the control, flips above it when the room is
       // there instead, and is clamped inside the viewport either way — a
@@ -1896,6 +1896,9 @@
         panel.className = 'stsel-panel' + (isDark(sel) ? ' stsel-panel--dark' : '');
         panel.setAttribute('role', 'listbox');
         panel.tabIndex = -1;
+        // the list scrolls itself: keep the smooth-scroll library (and the page) from taking the wheel/touch
+        panel.setAttribute('data-lenis-prevent', '');
+        panel.style.overscrollBehavior = 'contain';
         opts = [];
         Array.prototype.forEach.call(sel.options, function (o, i) {
           var el = document.createElement('div');
