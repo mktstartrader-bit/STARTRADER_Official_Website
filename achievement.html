@@ -33,6 +33,8 @@
   <link rel="preload" as="image" fetchpriority="high" href="assets/img/platform-hero.webp" />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
+  <link rel="preload" as="image" type="image/webp" media="(min-width:981px)" fetchpriority="high" imagesrcset="assets/img/achievement-hero-banner-v1-1920.webp 1920w, assets/img/achievement-hero-banner-v1.webp 2560w" imagesizes="100vw" />
+  <link rel="preload" href="assets/img/achievement-hero-banner-portrait-v1.webp" as="image" type="image/webp" media="(max-width:980px)" fetchpriority="high" />
   <link rel="stylesheet" href="assets/css/styles.min.css?v=pb19" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
@@ -148,7 +150,28 @@
   .ac-bar{border-radius:20px;flex-direction:column;align-items:flex-start}
   .ac-row{grid-template-columns:84px minmax(0,1fr);gap:13px}
 }
-  </style>
+  
+/* banner: corporate family - titanium, liquid glass and one blue light; height-fit and
+   anchored right so the trophy is never cropped, the copy held to the left half */
+.pf-hero{background:#03060F}
+.pf-hero .pf-hero-bg{display:none}
+.pf-hero::before,.pf-hero::after{display:none}
+.ac-hero-banner{position:absolute;top:var(--nav-h);left:auto;right:0;width:auto;max-width:none;height:calc(100% - var(--nav-h));object-fit:cover;object-position:62% center;z-index:-2}
+@media (min-width:981px){
+  .ac-hero-banner{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 16%);mask-image:linear-gradient(90deg,transparent 0,#000 16%)}
+  .pf-hero .pf-hero-copy{max-width:min(600px,calc(50vw - max(24px,(100vw - 1152px)/2) - 24px))}
+}
+@media (min-width:981px) and (max-width:1279px){.ac-hero-banner{right:-12vw}}
+.pf-hero .pf-lead br{display:none}
+@media (max-width:980px){
+  .pf-hero{justify-content:flex-start;align-items:flex-start;min-height:0;padding:calc(var(--nav-h) + 76vw + 28px) 0 44px}
+  .ac-hero-banner{left:0;width:100%;height:auto;aspect-ratio:1200/1800;object-position:center top}
+  .pf-hero .pf-hero-copy{max-width:none}
+  .pf-hero::after{content:"";display:block;position:absolute;inset:0;z-index:-1;pointer-events:none;
+    background:linear-gradient(180deg,#03060F 0%,#03060F calc(var(--nav-h) + 2px),rgba(3,6,15,0) calc(var(--nav-h) + 40px)),
+               linear-gradient(0deg,#03060F 0%,#03060F 22%,rgba(3,6,15,.9) 40%,rgba(3,6,15,0) 58%)}
+}
+</style>
 
   <script type="application/ld+json">
 {
@@ -538,6 +561,10 @@
 
 <!-- ============ BANNER ============ -->
 <section class="pf-hero" aria-labelledby="pg-hero-title">
+  <picture>
+    <source media="(max-width:980px)" srcset="assets/img/achievement-hero-banner-portrait-v1.webp" width="1200" height="1800">
+    <img class="ac-hero-banner" src="assets/img/achievement-hero-banner-v1-1920.webp" srcset="assets/img/achievement-hero-banner-v1-1920.webp 1920w, assets/img/achievement-hero-banner-v1.webp 2560w" sizes="100vw" alt="A crystal star trophy on a black plinth beside two frosted glass award plaques" width="2560" height="1440" fetchpriority="high" decoding="async">
+  </picture>
   <div class="pf-hero-bg" aria-hidden="true"></div>
   <div class="container pf-hero-in">
     <div class="pf-hero-copy">
