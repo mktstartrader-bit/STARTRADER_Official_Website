@@ -5392,57 +5392,106 @@
       // (the ticker rail is a Swiper marquee now)
     }
 
-    /* --- the deck: five cards on an arc, reordering around the one you pick --- */
+    /* --- the wheel: square cards riding a wide arc, drifting continuously; drag or use the dots --- */
     var arc = document.querySelector('[data-nb-arc]');
     if (arc) {
-      var cards = Array.prototype.slice.call(arc.querySelectorAll('[data-nb-card]'));
+      var base = Array.prototype.slice.call(arc.querySelectorAll('[data-nb-card]'));
       var dots = Array.prototype.slice.call(document.querySelectorAll('[data-nb-dot]'));
-      var at = 2, hold = false, spin = null;
-
-      function lay() {
-        var wide = window.matchMedia('(min-width:721px)').matches;
-        cards.forEach(function (c, i) {
-          c.classList.toggle('is-on', i === at);
-          if (!wide) { c.style.cssText = ''; return; }
-          // shortest way round, so the deck always fans on both sides
-          var n = cards.length, d = i - at;
-          if (d > n / 2) d -= n;
-          if (d < -n / 2) d += n;
-          var ad = Math.abs(d);
-          c.style.setProperty('--x', (d * 70) + '%');
-          c.style.setProperty('--y', (ad * ad * 18) + 'px');
-          c.style.setProperty('--r', (d * 8) + 'deg');
-          c.style.setProperty('--z', (-ad * 130) + 'px');
-          c.style.setProperty('--s', (1 - ad * 0.08).toFixed(3));
-          c.style.opacity = ad > 2 ? 0 : (1 - ad * 0.2);
-          c.style.zIndex = 20 - ad;
-        });
-        dots.forEach(function (d, i) { d.classList.toggle('is-on', i === at); });
-      }
-      function pick(i) { at = (i + cards.length) % cards.length; lay(); }
-
-      cards.forEach(function (c, i) {
-        c.addEventListener('click', function () { hold = true; pick(i); });
-        c.addEventListener('focus', function () { hold = true; pick(i); });
+      var n = base.length;
+      // a second set so the rim is full on wide screens; clones are decorative only
+      base.forEach(function (c) {
+        var k = c.cloneNode(true);
+        k.setAttribute('aria-hidden', 'true'); k.tabIndex = -1; k.classList.remove('is-on');
+        arc.appendChild(k);
       });
-      dots.forEach(function (d, i) { d.addEventListener('click', function () { hold = true; pick(i); }); });
+      var cards = Array.prototype.slice.call(arc.querySelectorAll('[data-nb-card]'));
+      var total = cards.length;
+      var pos = 2, target = null, vel = 0, dragging = false, lastX = 0, hover = false, visible = false, raf = null;
+      var drift = prefersReduced ? 0 : 0.0022;   // cards per frame
+
+      function metrics() {
+        var cw = cards[0].offsetWidth || 260;
+        var gap = Math.max(22, cw * 0.14);
+        var R = Math.max(1100, window.innerWidth * 1.9);
+        return { step: (cw + gap) / R, R: R, cw: cw };
+      }
+      var m = metrics();
+
+      function wrap(d) { d = ((d % total) + total) % total; return d > total / 2 ? d - total : d; }
+
+      function render() {
+        var active = ((Math.round(pos) % total) + total) % total;
+        cards.forEach(function (c, i) {
+          var d = wrap(i - pos);
+          var th = d * m.step;
+          var x = Math.sin(th) * m.R, y = (1 - Math.cos(th)) * m.R;
+          var far = Math.abs(th) > 1.25;
+          c.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0) rotate(' + (th * 57.2958).toFixed(2) + 'deg)';
+          c.style.opacity = far ? 0 : 1;
+          c.style.zIndex = 50 - Math.round(Math.abs(d) * 4);
+          c.classList.toggle('is-on', i === active);
+        });
+        var real = active % n;
+        dots.forEach(function (d, i) { d.classList.toggle('is-on', i === real); });
+      }
+
+      function tick() {
+        if (target !== null) {
+          var diff = wrap(target - pos);
+          pos += diff * 0.12;
+          if (Math.abs(diff) < 0.002) { pos = target; target = null; }
+        } else if (!dragging) {
+          if (Math.abs(vel) > 0.0005) { pos += vel; vel *= 0.92; }
+          else if (!hover) pos += drift;
+        }
+        pos = ((pos % total) + total) % total;
+        render();
+        raf = visible ? requestAnimationFrame(tick) : null;
+      }
+      function start() { if (!raf) raf = requestAnimationFrame(tick); }
+
+      function go(i) { target = i; start(); }
+      cards.forEach(function (c, i) {
+        c.addEventListener('click', function (e) { if (moved > 6) { e.preventDefault(); return; } go(i); });
+      });
+      dots.forEach(function (d, i) {
+        d.addEventListener('click', function () {
+          // nearest copy of that card
+          var a = i, b2 = i + n;
+          go(Math.abs(wrap(a - pos)) <= Math.abs(wrap(b2 - pos)) ? a : b2);
+        });
+      });
       arc.addEventListener('keydown', function (e) {
         var k = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
-        if (!k) return;
-        e.preventDefault(); hold = true; pick(at + k); cards[at].focus();
+        if (!k) return; e.preventDefault(); go(Math.round(pos) + k);
       });
-      window.addEventListener('resize', lay);
-      lay();
+      arc.addEventListener('mouseenter', function () { hover = true; });
+      arc.addEventListener('mouseleave', function () { hover = false; });
 
-      // the deck deals itself until someone reaches for it
-      if (!prefersReduced && 'IntersectionObserver' in window) {
+      var moved = 0;
+      arc.addEventListener('pointerdown', function (e) {
+        dragging = true; moved = 0; lastX = e.clientX; target = null; vel = 0;
+        arc.classList.add('is-drag');
+      });
+      window.addEventListener('pointermove', function (e) {
+        if (!dragging) return;
+        var dx = e.clientX - lastX; lastX = e.clientX; moved += Math.abs(dx);
+        var dpos = -dx / (m.step * m.R);
+        pos += dpos; vel = dpos; start();
+      });
+      window.addEventListener('pointerup', function () {
+        if (!dragging) return; dragging = false; arc.classList.remove('is-drag');
+        if (Math.abs(vel) < 0.01) go(Math.round(pos));
+      });
+      window.addEventListener('resize', function () { m = metrics(); render(); });
+
+      render();
+      if ('IntersectionObserver' in window) {
         new IntersectionObserver(function (es) {
-          es.forEach(function (e) {
-            if (e.isIntersecting && !spin && !hold) spin = setInterval(function () { if (hold) { clearInterval(spin); spin = null; return; } pick(at + 1); }, 3600);
-            else if (!e.isIntersecting && spin) { clearInterval(spin); spin = null; }
-          });
-        }, { threshold: 0.3 }).observe(arc);
-      }
+          visible = es[0].isIntersecting;
+          if (visible) start();
+        }, { threshold: 0.05 }).observe(arc);
+      } else { visible = true; start(); }
     }
 
     /* --- the locker: one screen, and a wall of team designs behind it --- */

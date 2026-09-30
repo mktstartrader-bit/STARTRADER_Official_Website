@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="../assets/fonts/fonts.css" />
   <link rel="stylesheet" href="../assets/css/swiper-bundle.min.css" />
   <link rel="stylesheet" href="../assets/css/aos.min.css" />
-  <link rel="stylesheet" href="../assets/css/styles.min.css?v=qa90" />
+  <link rel="stylesheet" href="../assets/css/styles.min.css?v=pb19" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* =================================================================
@@ -312,7 +312,7 @@
 @media (max-width:720px){.nb-hero{min-height:0;padding-bottom:112px}
 .nb-h1{font-size:clamp(34px,11vw,52px)}
 .nb-arc{height:auto;perspective:none;display:flex;flex-direction:column;gap:14px}
-.nb-card{position:relative;left:auto;top:auto;margin:0;width:100%;aspect-ratio:16/10;transform:none!important;opacity:1!important}
+.nb-card:not(.nb-arc .nb-card){position:relative;left:auto;top:auto;margin:0;width:100%;aspect-ratio:16/10;transform:none!important;opacity:1!important}
 .nb-card .nb-card-tx em{max-height:110px;opacity:1;margin-top:10px}
 .nb-arc-dots{display:none}
 .nb-reps{grid-template-columns:1fr}}
@@ -348,7 +348,31 @@
 .nb-seams--left{top:auto;bottom:-12%;right:auto;left:-9%;width:min(460px,58vw);opacity:.05}
 @media (max-width:720px){.nb-court{width:190%;opacity:.08}
 .nb-seams{display:none}}
-  </style>
+  
+/* ---- legacy wheel: square cards riding a wide arc (reference layout), dark theme ---- */
+.nb-arc{position:relative;height:clamp(340px,30vw,420px);margin-top:clamp(36px,4.5vw,64px);perspective:none;overflow:visible;touch-action:pan-y;cursor:grab;user-select:none}
+.nb-arc.is-drag{cursor:grabbing}
+.nb-arc-sec{overflow:hidden}
+.nb-arc .nb-card{position:absolute;left:50%;top:0;width:clamp(210px,21vw,290px);aspect-ratio:1/1;margin-left:calc(clamp(210px,21vw,290px) / -2);
+  border-radius:clamp(22px,2.2vw,30px);transform-origin:50% 50%;transition:border-color .4s,box-shadow .5s var(--ease),opacity .4s;
+  background:#0b1018;border:1px solid rgba(255,255,255,.1);box-shadow:0 34px 70px -40px rgba(0,0,0,.95),inset 0 1px 0 rgba(255,255,255,.06);will-change:transform}
+.nb-arc .nb-card img{opacity:.78;pointer-events:none;-webkit-user-drag:none;transform:scale(1.02)}
+.nb-arc .nb-card::after{background:linear-gradient(180deg,rgba(5,7,13,0) 38%,rgba(5,7,13,.55) 62%,rgba(5,7,13,.94) 100%)}
+.nb-arc .nb-card-tx{left:clamp(16px,1.6vw,22px);right:clamp(16px,1.6vw,22px);bottom:clamp(14px,1.4vw,20px)}
+.nb-arc .nb-card-tx b{font-size:clamp(19px,1.9vw,26px);font-weight:800;letter-spacing:-.035em;line-height:1.1}
+.nb-arc .nb-card-tx em{font-size:12.5px;line-height:1.5}
+.nb-arc .nb-card.is-on{border-color:rgba(10,92,245,.7);box-shadow:0 40px 80px -36px rgba(10,92,245,.55),0 0 0 1px rgba(10,92,245,.35)}
+.nb-arc .nb-card.is-on img{opacity:.95}
+.nb-arc .nb-card.is-on .nb-card-tx em{max-height:90px;opacity:1;margin-top:8px}
+.nb-arc .nb-card:hover img{transform:scale(1.07)}
+@media (max-width:720px){
+  .nb-arc{height:clamp(300px,86vw,380px);display:block;flex-direction:initial;gap:0}
+  .nb-arc .nb-card{position:absolute;width:62vw;margin-left:-31vw;aspect-ratio:1/1}
+  .nb-arc .nb-card .nb-card-tx em{max-height:0;opacity:0;margin-top:0}
+  .nb-arc .nb-card.is-on .nb-card-tx em{max-height:90px;opacity:1;margin-top:8px}
+  .nb-arc-dots{display:flex}
+}
+</style>
 
   <script type="application/ld+json">
 {
@@ -1117,7 +1141,7 @@
 <script src="../assets/js/vendor/lenis.min.js" defer></script>
 <script src="../assets/js/vendor/swiper-bundle.min.js" defer></script>
 <script src="../assets/js/vendor/aos.min.js" defer></script>
-<script src="../assets/js/main.min.js?v=qa90" defer></script>
+<script src="../assets/js/main.min.js?v=pb19" defer></script>
 
 <!-- Company page: robust scroll reveals + hero parallax (self-contained, never leaves content hidden) -->
 <script>
