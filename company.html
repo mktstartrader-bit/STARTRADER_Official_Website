@@ -411,6 +411,9 @@
 .plat-app .plat-copy,.plat-app .plat-hand{z-index:2}.plat-app .plat-veil{z-index:4}
 /* store badges: same size as the homepage app card */
 .plat-veil .badges img{height:38px!important}
+/* web trader card: soft white silk artwork, low opacity, over the matching gradient */
+.plat-web::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:url(assets/img/web-card-silk.webp) center/cover no-repeat;opacity:.45;mix-blend-mode:multiply;border-radius:inherit}
+.plat-web .link-ur,.plat-web .plat-tablet{z-index:2}
 </style>
   <script>document.documentElement.classList.add('js-reveal');</script>
 
