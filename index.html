@@ -533,6 +533,13 @@
 /* app card: soft blue glass-stripe backdrop */
 .plat-app{background:#f6f9fe url(assets/img/app-card-bg.webp) center/cover no-repeat}
 .plat-app::before{display:none}
+
+/* MT4/MT5 cards: isometric frosted-glass tile grid with a raised blue MetaTrader tile, as the card background */
+.plat-mt4{background:#f3f6fb url(assets/img/mt4-card-bg.webp) 62% 70%/cover no-repeat}
+.plat-mt5{background:#f3f6fb url(assets/img/mt5-card-bg.webp) 62% 70%/cover no-repeat}
+.plat-mt4 .plat-mt-ico,.plat-mt5 .plat-mt-ico{display:none}
+.plat-mt4::before,.plat-mt5::before{display:none}
+@media (max-width:720px){.plat-mt4,.plat-mt5{background-size:auto 130%;background-position:right -80px top 70%}}
 </style>
 
   <!-- Hero background (LCP) -->
@@ -1051,7 +1058,7 @@
       </article>
 
       <!-- MT4 -->
-      <article class="plat-card plat-mt" data-aos="fade-up" data-aos-delay="200">
+      <article class="plat-card plat-mt plat-mt4" data-aos="fade-up" data-aos-delay="200">
         <div class="plat-copy">
           <h3>MetaTrader 4</h3>
           <p>The classic — EAs, indicators, proven reliability.</p>
@@ -1062,7 +1069,7 @@
       </article>
 
       <!-- MT5 -->
-      <article class="plat-card plat-mt" data-aos="fade-up" data-aos-delay="300">
+      <article class="plat-card plat-mt plat-mt5" data-aos="fade-up" data-aos-delay="300">
         <div class="plat-copy">
           <h3>MetaTrader 5</h3>
           <p>Multi-asset, depth of market, full algo support.</p>
