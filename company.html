@@ -381,7 +381,6 @@
 @media (max-width:480px){.plat-app{min-height:0;height:540px}.plat-app .plat-hand{height:410px;width:auto}}
 .plat-app .plat-hand{max-width:none!important;object-position:50% 0}
 .plat-mt .plat-mt-ico{bottom:-22px}
-@media (min-width:901px){.plat-app{min-height:620px}.plat-app .plat-hand{height:480px}}
 
 /* app card: soft blue glass-stripe backdrop */
 .plat-app{background:#f6f9fe url(assets/img/app-card-bg.webp) center/cover no-repeat}
@@ -406,6 +405,10 @@
 .plat-web .link-ur:hover,.plat-mt4 .link-ur:hover,.plat-mt5 .link-ur:hover{background:linear-gradient(135deg,rgba(31,94,255,.9),rgba(0,71,187,.82));border-color:rgba(255,255,255,.45);color:#fff}
 /* web trader card: the MT cards' gradient colours only (no tile artwork) */
 .plat-web{background:radial-gradient(70% 90% at 30% 45%,#f4f9fe 0%,rgba(244,249,254,0) 70%),linear-gradient(135deg,#e8f0f9 0%,#eff4fb 45%,#dfe8f5 100%)}
+/* app card: the web trader gradient, with the stripe artwork faded in softly on top */
+.plat-app{background:radial-gradient(70% 90% at 30% 45%,#f4f9fe 0%,rgba(244,249,254,0) 70%),linear-gradient(135deg,#e8f0f9 0%,#eff4fb 45%,#dfe8f5 100%)}
+.plat-app::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:url(assets/img/app-card-bg.webp) center/cover no-repeat;opacity:.35}
+.plat-app .plat-copy,.plat-app .plat-hand{z-index:2}.plat-app .plat-veil{z-index:4}
 </style>
   <script>document.documentElement.classList.add('js-reveal');</script>
 
@@ -861,7 +864,7 @@
       <article class="plat-card plat-app" data-aos="fade-up">
         <div class="plat-copy">
           <h3>STARTRADER: Trading &amp; Investing App</h3>
-          <p>The full account in your pocket available for iOS &amp; Android.</p>
+          <p>The full account in your pocket &mdash; iOS &amp; Android.</p>
         </div>
 
         <img class="plat-hand" src="assets/img/app-hand.webp" alt="The STARTRADER app open on a phone" width="1000" height="1364" loading="lazy" decoding="async">
