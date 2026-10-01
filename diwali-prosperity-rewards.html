@@ -203,7 +203,7 @@
 .dwl-flow::before,.dwl-flow::after{content:"";position:absolute;left:12.5%;right:12.5%;top:58px;height:2px;border-radius:2px;z-index:0}
 .dwl-flow::before{background:repeating-linear-gradient(90deg,rgba(247,223,166,.3) 0 6px,transparent 6px 12px)}
 .dwl-flow::after{right:auto;width:calc(75% * var(--burn,0));background:linear-gradient(90deg,#FFC233,#FF8A1F);
-  box-shadow:0 0 12px rgba(255,160,40,.8);transition:width 1.4s var(--ease)}
+  box-shadow:0 0 12px rgba(255,160,40,.8);transition:width .18s linear}
 .dwl-step{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;
   padding:0 clamp(14px,1.6vw,22px) clamp(22px,2.4vw,30px);border-radius:24px;
   background:linear-gradient(180deg,rgba(255,255,255,0) 0,rgba(255,255,255,0) 40px,var(--glass-d) 40px);
@@ -846,7 +846,7 @@
 
       <article class="dwl-pod dwl-pod--1" data-aos="fade-up">
         <span class="dwl-pod-rank">1st</span>
-        <div class="dwl-pod-art"><img src="assets/img/diwali-prize-gold-v1.webp" alt="A polished 50 gram fine gold bar engraved with a lotus emblem" width="318" height="600" loading="lazy" decoding="async"></div>
+        <div class="dwl-pod-art"><img src="assets/img/diwali-prize-gold-v2.webp" alt="A polished 50 gram fine gold bar engraved with the STARTRADER star, 50 g and Fine Gold 999.9" width="314" height="600" loading="lazy" decoding="async"></div>
         <h3>50g Physical Gold</h3>
         <p>1st place</p>
         <div class="dwl-pod-base" aria-hidden="true">1</div>
@@ -884,7 +884,7 @@
 
     <div class="dwl-draw">
       <div class="dwl-coin-wrap" data-aos="fade-up">
-        <div class="dwl-coin"><img src="assets/img/diwali-lucky-coin-v1.webp" alt="A polished 10 gram gold coin with a raised lotus and rangoli relief, engraved 10 g and Fine Gold 999.9" width="639" height="720" loading="lazy" decoding="async"></div>
+        <div class="dwl-coin"><img src="assets/img/diwali-lucky-coin-v2.webp" alt="A polished 10 gram gold coin struck with a raised 3D STARTRADER star, 10 g and Fine Gold 999.9" width="635" height="718" loading="lazy" decoding="async"></div>
         <div class="dwl-coin-cap"><b>1 Winner</b><span>10g physical gold coin</span></div>
       </div>
 
@@ -1023,25 +1023,36 @@
     if (tick()) { var id = setInterval(function () { if (!tick()) clearInterval(id); }, 1000); }
   })();
 
-  /* ---------- the four lamps light one after another in view ---------- */
+  /* ---------- the four lamps follow the scroll ----------
+     The wick burns with scroll progress through the section and each diya
+     lights as the flame reaches it; scrolling back up puts them out again. */
   (function () {
     var flow = document.querySelector('[data-dwl-flow]');
     if (!flow) return;
     var steps = Array.prototype.slice.call(flow.querySelectorAll('.dwl-step'));
-    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    function light() {
+    var n = steps.length;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      steps.forEach(function (st) { st.classList.add('is-lit'); });
+      flow.style.setProperty('--burn', 1);
+      return;
+    }
+    var ticking = false;
+    function update() {
+      ticking = false;
+      var r = flow.getBoundingClientRect(), vh = window.innerHeight || 800;
+      // 0 when the row's top reaches 85% of the viewport, 1 when its bottom reaches 60%
+      var start = vh * .85, end = vh * .6;
+      var p = (start - r.top) / ((start - end) + r.height);
+      p = Math.max(0, Math.min(1, p));
+      flow.style.setProperty('--burn', p);
       steps.forEach(function (st, i) {
-        setTimeout(function () {
-          st.classList.add('is-lit');
-          flow.style.setProperty('--burn', i / (steps.length - 1));
-        }, reduce ? 0 : 450 + i * 520);
+        st.classList.toggle('is-lit', p >= (n > 1 ? i / (n - 1) : 0) * .96 + .02);
       });
     }
-    if (!('IntersectionObserver' in window)) { light(); return; }
-    var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (e.isIntersecting) { light(); io.disconnect(); } });
-    }, { threshold: .35 });
-    io.observe(flow);
+    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    update();
   })();
 
   /* ---------- lucky draw tickets ----------
