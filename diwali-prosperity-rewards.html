@@ -39,14 +39,14 @@
   <meta property="og:title" content="Diwali Prosperity Rewards: Win 1 of 11 Rewards | STARTRADER" />
   <meta property="og:description" content="Celebrate Diwali with STARTRADER. Deposit, trade and climb the leaderboard from 6 October to 5 November 2026 for a chance to win 50g of physical gold and 10 more rewards." />
   <meta property="og:url" content="https://www.startrader.com/diwali-prosperity-rewards/" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/diwali-hero-banner-v10.webp" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/diwali-hero-banner-v11.webp" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Diwali Prosperity Rewards: Win 1 of 11 Rewards | STARTRADER" />
   <meta name="twitter:description" content="Celebrate Diwali with STARTRADER. Deposit, trade and climb the leaderboard from 6 October to 5 November 2026 for a chance to win 50g of physical gold and 10 more rewards." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/diwali-hero-banner-v10.webp" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/diwali-hero-banner-v11.webp" />
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="favicon.svg" />
@@ -55,8 +55,8 @@
   <!-- Fonts (self-hosted) -->
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
-  <link rel="preload" href="assets/img/diwali-hero-banner-v10.webp" imagesrcset="assets/img/diwali-hero-banner-1920-v10.webp 1920w, assets/img/diwali-hero-banner-v10.webp 2560w" imagesizes="100vw" as="image" type="image/webp" media="(min-width:981px)" fetchpriority="high" />
-  <link rel="preload" href="assets/img/diwali-hero-banner-portrait-v10.webp" as="image" type="image/webp" media="(max-width:980px)" fetchpriority="high" />
+  <link rel="preload" href="assets/img/diwali-hero-banner-v11.webp" imagesrcset="assets/img/diwali-hero-banner-1920-v11.webp 1920w, assets/img/diwali-hero-banner-v11.webp 2560w" imagesizes="100vw" as="image" type="image/webp" media="(min-width:981px)" fetchpriority="high" />
+  <link rel="preload" href="assets/img/diwali-hero-banner-portrait-v11.webp" as="image" type="image/webp" media="(max-width:980px)" fetchpriority="high" />
   <link rel="stylesheet" href="assets/css/styles.min.css?v=pb19" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
@@ -150,8 +150,11 @@
   padding:calc(var(--nav-h) + 40px) 0 70px}
 /* desktop: height-fit and right-anchored so wide screens never crop the art;
    below 1700px it slides right so the left diya clears the copy */
-.dwl-hero-banner{position:absolute;top:0;right:max(-300px,min(0px,calc((100vw - 1440px) * .9)));width:auto;max-width:none;height:100%;aspect-ratio:16/9;object-fit:cover;z-index:-2;
-  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14%);mask-image:linear-gradient(90deg,transparent 0,#000 14%)}
+/* desktop: full-width art pinned to the bottom of the banner; the scene sits in its
+   right half, the extended backdrop on the left carries the copy, and the top edge
+   fades into the banner ground */
+.dwl-hero-banner{position:absolute;left:0;right:0;bottom:0;top:auto;width:100%;max-width:none;height:auto;aspect-ratio:3840/1648;object-fit:cover;z-index:-2;
+  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 14%);mask-image:linear-gradient(180deg,transparent 0,#000 14%)}
 .dwl-hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
   background:linear-gradient(90deg,rgba(1,4,18,.92) 0%,rgba(1,4,18,.7) 30%,rgba(1,4,18,0) 58%),
              linear-gradient(0deg,rgba(1,4,18,.85) 0%,rgba(1,4,18,0) 22%)}
@@ -379,8 +382,8 @@
   .dwl-hero::after{display:none}
   .dwl-hero .container{order:1}
   .dwl-hero picture{order:2;display:block;margin-top:-4vw}
-  .dwl-hero-banner{position:relative;top:auto;right:auto;z-index:0;width:100%;height:auto;aspect-ratio:1200/1180;
-    object-fit:cover;object-position:center 0;
+  .dwl-hero-banner{position:relative;top:auto;right:auto;z-index:0;width:100%;height:auto;aspect-ratio:1/1;
+    object-fit:cover;object-position:center;
     -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 74%,transparent 100%);
     mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 74%,transparent 100%)}
   .dwl-hero-copy{max-width:none}
@@ -731,8 +734,8 @@
 <!-- ============ BANNER ============ -->
 <section class="dwl-hero" aria-labelledby="dwl-hero-title">
   <picture>
-    <source media="(max-width:980px)" srcset="assets/img/diwali-hero-banner-portrait-v10.webp" width="1200" height="1800">
-    <img class="dwl-hero-banner" src="assets/img/diwali-hero-banner-v10.webp" srcset="assets/img/diwali-hero-banner-1920-v10.webp 1920w, assets/img/diwali-hero-banner-v10.webp 2560w" sizes="100vw" alt="Elegant Diwali scene: a polished gold bar embossed with the STARTRADER star beside a stack of gold coins, brass diyas and a marigold on a deep navy ground with golden lights" width="2560" height="1440" fetchpriority="high" decoding="async">
+    <source media="(max-width:980px)" srcset="assets/img/diwali-hero-banner-portrait-v11.webp" width="1200" height="1200">
+    <img class="dwl-hero-banner" src="assets/img/diwali-hero-banner-v11.webp" srcset="assets/img/diwali-hero-banner-1920-v11.webp 1920w, assets/img/diwali-hero-banner-v11.webp 2560w" sizes="100vw" alt="Diwali still life: a gold bar marked with the STARTRADER star, gold coins, lit brass diyas, marigolds and an ornate brass urli bowl of flowers on a glossy black table before a royal-blue fluted backdrop" width="2560" height="1099" fetchpriority="high" decoding="async">
   </picture>
   <div class="container">
     <div class="dwl-hero-copy">
