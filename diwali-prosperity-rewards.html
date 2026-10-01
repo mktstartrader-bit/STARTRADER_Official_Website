@@ -371,11 +371,20 @@
   .dwl-vrow{grid-template-columns:repeat(4,1fr)}
 }
 @media (max-width:980px){
-  .dwl-hero{display:block;min-height:0;padding:calc(var(--nav-h) + 84vw) 0 54px}
-  .dwl-hero-banner{top:var(--nav-h);right:0;width:100%;height:auto;-webkit-mask-image:none;mask-image:none;aspect-ratio:1200/1800;object-position:center top}
-  .dwl-hero::after{background:linear-gradient(0deg,#010412 0%,rgba(1,4,18,.94) 36%,rgba(1,4,18,0) 62%)}
+  /* phones and tablets: copy first, the art below it, on one continuous ground
+     sampled from the art's own navy-to-black so there is no visible seam */
+  .dwl-hero{display:flex;flex-direction:column;align-items:stretch;min-height:0;padding:calc(var(--nav-h) + 34px) 0 0;
+    background:linear-gradient(180deg,#000E32 0%,#000A26 40%,#010412 100%)}
+  .dwl-hero::after{display:none}
+  .dwl-hero .container{order:1}
+  .dwl-hero picture{order:2;display:block;margin-top:-4vw}
+  .dwl-hero-banner{position:relative;top:auto;right:auto;z-index:0;width:100%;height:auto;aspect-ratio:1200/1260;
+    object-fit:cover;object-position:center 6%;
+    -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 18%,#000 70%,transparent 100%);
+    mask-image:linear-gradient(180deg,transparent 0,#000 18%,#000 70%,transparent 100%)}
   .dwl-hero-copy{max-width:none}
 }
+
 @media (max-width:900px){
   .dwl-flow{grid-template-columns:1fr 1fr;row-gap:28px}
   .dwl-flow::before,.dwl-flow::after{display:none}
