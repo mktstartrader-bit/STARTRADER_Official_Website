@@ -29,6 +29,25 @@
   <link rel="alternate" hreflang="hi" href="https://www.startrader.com/in/superstar-trading-league.html" />
   <link rel="alternate" hreflang="nl" href="https://www.startrader.com/nl/superstar-trading-league.html" />
   <link rel="alternate" hreflang="x-default" href="https://www.startrader.com/superstar-trading-league.html" />
+  <link rel="alternate" hreflang="en" href="https://www.startrader.com/superstar-trading-league.html" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://www.startrader.com/scn/superstar-trading-league.html" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://www.startrader.com/tw/superstar-trading-league.html" />
+  <link rel="alternate" hreflang="ko" href="https://www.startrader.com/kr/superstar-trading-league.html" />
+  <link rel="alternate" hreflang="ja" href="https://www.startrader.com/ja/superstar-trading-league.html" />
+  <link rel="alternate" hreflang="ms" href="https://www.startrader.com/my/superstar-trading-league.html" />
+  <link rel="alternate" hreflang="id" href="https://www.startrader.com/id/superstar-trading-league.html" />
+  <link rel="alternate" hreflang="vi" href="https://www.startrader.com/vn/superstar-trading-league.html" />
+  <link rel="alternate" hreflang="th" href="https://www.startrader.com/th/superstar-trading-league.html" />
+  <link rel="alternate" hreflang="ar" href="https://www.startrader.com/ar/superstar-trading-league.html" />
+  <link rel="alternate" hreflang="fr" href="https://www.startrader.com/fr/superstar-trading-league.html" />
+  <link rel="alternate" hreflang="es" href="https://www.startrader.com/es/superstar-trading-league.html" />
+  <link rel="alternate" hreflang="pt" href="https://www.startrader.com/pt/superstar-trading-league.html" />
+  <link rel="alternate" hreflang="de" href="https://www.startrader.com/de/superstar-trading-league.html" />
+  <link rel="alternate" hreflang="it" href="https://www.startrader.com/it/superstar-trading-league.html" />
+  <link rel="alternate" hreflang="pl" href="https://www.startrader.com/pl/superstar-trading-league.html" />
+  <link rel="alternate" hreflang="hi" href="https://www.startrader.com/in/superstar-trading-league.html" />
+  <link rel="alternate" hreflang="nl" href="https://www.startrader.com/nl/superstar-trading-league.html" />
+  <link rel="alternate" hreflang="x-default" href="https://www.startrader.com/superstar-trading-league.html" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -662,6 +681,38 @@
 .stl-medal span{white-space:nowrap;font-size:clamp(12.5px,3.4vw,18px)}
 /* long translated copy: let words wrap rather than overflow on small phones */
 .stl-step h3,.stl-who-card p,.stl-pts h3,.stl-sp h3,.stl-tiers li,.stl-sess b,.stl-sess-d{overflow-wrap:anywhere}
+
+/* ===== Three Sessions, top-10 Session prizes (2026-10-02 copy update) ===== */
+.stl-tl-list{grid-template-columns:repeat(3,minmax(0,1fr))}
+.stl-medals{grid-template-columns:repeat(6,minmax(0,1fr))}
+.stl-medal{grid-column:span 2;min-width:0}
+.stl-medal--4,.stl-medal--5{grid-column:span 3}
+.stl-medal--4 i,.stl-medal--5 i{width:auto;min-width:42px;padding:0 12px;border-radius:21px;font-size:13px;background:linear-gradient(180deg,#E3EBFF,#8EA8E6)}
+.stl-medal b{overflow-wrap:anywhere}
+.stl-medal span{white-space:nowrap;font-size:clamp(12.5px,3.4vw,18px)}
+/* long translated copy: let words wrap rather than overflow on small phones */
+.stl-step h3,.stl-who-card p,.stl-pts h3,.stl-sp h3,.stl-tiers li,.stl-sess b,.stl-sess-d{overflow-wrap:anywhere}
+
+/* ===== Language switcher in the landing-page top bar ===== */
+.stl-lang{position:absolute;top:30px;right:var(--gutter,24px);z-index:6}
+@media (min-width:1248px){.stl-lang{right:calc((100vw - var(--maxw,1200px)) / 2)}}
+.stl .stl-lang .lang{display:flex;height:42px;padding:0 14px 0 12px;border-radius:999px;color:#fff;
+  background:rgba(8,12,26,.42);border:1px solid rgba(255,255,255,.22);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);transition:background .25s,border-color .25s}
+.stl .stl-lang .lang:hover,.stl .stl-lang .lang[aria-expanded="true"]{background:rgba(8,12,26,.66);border-color:rgba(255,255,255,.4)}
+.stl .stl-lang .lang-caret{color:#cfd8ea}
+.stl .stl-lang .lang-code{font-size:13px;font-weight:700;letter-spacing:.04em}
+/* the page has no nav bar, so the panel hangs under the switcher itself */
+.stl .lang-pop{display:block;top:calc(var(--topbar-h,44px) + 86px)}
+@media (max-width:900px){
+  .stl-lang{top:16px}
+  .stl .lang-pop{top:calc(var(--topbar-h,44px) + 68px);padding:22px 20px 26px;max-height:calc(100vh - var(--topbar-h,44px) - 96px)}
+  .stl .lp-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px 10px}
+}
+[dir="rtl"] .stl-lang{right:auto;left:var(--gutter,24px)}
+@media (min-width:1248px){[dir="rtl"] .stl-lang{left:calc((100vw - var(--maxw,1200px)) / 2)}}
+[dir="rtl"] .stl-brand{left:auto;right:var(--gutter,24px)}
+@media (min-width:1248px){[dir="rtl"] .stl-brand{right:calc((100vw - var(--maxw,1200px)) / 2)}}
 </style>
 
   <!-- Structured data -->
@@ -746,6 +797,47 @@
   </picture>
   <div class="container stl-hero-in">
     <a class="stl-brand" href="../index.html" aria-label="STARTRADER home"><img src="../assets/img/logo-startrader.svg" alt="STARTRADER" width="180" height="35"></a>
+    <div class="stl-lang">
+      <button class="lang" id="langBtn" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="langPop" aria-label="Select language">
+        <svg class="lang-globe" aria-hidden="true"><use href="#i-globe"/></svg>
+        <span class="lang-code" id="langCode">EN</span>
+        <svg class="lang-caret" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+      </button>
+      <div class="lang-pop" id="langPop" role="dialog" aria-label="Select language" aria-hidden="true">
+        <div class="lp-head">
+          <span class="lp-title">Languages</span>
+          <button class="lp-close" id="langClose" type="button" aria-label="Close language menu"><svg><use href="#i-close"/></svg></button>
+        </div>
+        <div class="lp-search">
+          <svg class="lp-search-ic" viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="6.4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M13.8 13.8L18 18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          <input type="text" id="langSearch" placeholder="Search Language" autocomplete="off" spellcheck="false">
+        </div>
+        <div class="lp-grid" id="langGrid">
+          <button class="lp-item is-active" type="button" data-code="EN"><b>English</b></button>
+          <button class="lp-item" type="button" data-code="ZH-CN"><b>简体中文</b> Simplified Chinese</button>
+          <button class="lp-item" type="button" data-code="KO"><b>한국어</b> Korean</button>
+          <button class="lp-item" type="button" data-code="MS"><b>Melayu</b> Malay</button>
+          <button class="lp-item" type="button" data-code="VI"><b>Việt</b> Vietnamese</button>
+          <button class="lp-item" type="button" data-code="TH"><b>ภาษาไทย</b> Thai</button>
+          <button class="lp-item" type="button" data-code="ID"><b>Indonesian</b> Indonesian</button>
+          <button class="lp-item" type="button" data-code="AR"><b>العربية</b> Arabic</button>
+          <button class="lp-item" type="button" data-code="JA"><b>日本語</b> Japanese</button>
+          <button class="lp-item" type="button" data-code="ZH-TW"><b>繁體中文</b> Traditional Chinese</button>
+          <button class="lp-item" type="button" data-code="FR"><b>Français</b> French</button>
+          <button class="lp-item" type="button" data-code="ES"><b>Español</b> Spanish</button>
+          <button class="lp-item" type="button" data-code="PT"><b>Português</b> Portuguese</button>
+          <button class="lp-item" type="button" data-code="DE"><b>Deutsch</b> German</button>
+          <button class="lp-item" type="button" data-code="FA"><b>فارسی</b> Persian</button>
+          <button class="lp-item" type="button" data-code="IT"><b>Italiano</b> Italian</button>
+          <button class="lp-item" type="button" data-code="RU"><b>Русский язык</b> Russian</button>
+          <button class="lp-item" type="button" data-code="TR"><b>Türkçe</b> Turkish</button>
+          <button class="lp-item" type="button" data-code="PL"><b>Polski</b> Polish</button>
+          <button class="lp-item" type="button" data-code="HI"><b>हिंदी</b> Hindi</button>
+          <button class="lp-item" type="button" data-code="NL"><b>Nederlands</b> Dutch</button>
+        </div>
+        <p class="lp-empty" hidden>No languages found</p>
+      </div>
+    </div>
     <div class="stl-hero-copy">
       <h1 class="stl-h1" id="stl-title" data-aos="fade-up">
         <span>超級巨星交易聯賽：</span>
