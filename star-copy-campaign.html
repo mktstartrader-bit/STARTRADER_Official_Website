@@ -128,7 +128,7 @@
 .scc-panel-t{position:absolute;left:24px;bottom:26px;font-size:clamp(17px,1.5vw,20px);font-weight:800;line-height:1.25;letter-spacing:-.01em;
   writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap;transition:opacity .3s}
 .scc-panel.is-open .scc-panel-t{opacity:0}
-.scc-panel-ico{position:absolute;right:-20px;top:30px;width:min(230px,54%);opacity:0;transform:translateY(16px) scale(.92);transition:opacity .5s .15s,transform .7s .15s var(--ease)}
+.scc-panel-ico{position:absolute;right:22px;top:22px;width:min(190px,40%);height:auto;aspect-ratio:1/1;object-fit:contain;filter:drop-shadow(0 24px 30px rgba(0,0,0,.55));opacity:0;transform:translateY(16px) scale(.92);transition:opacity .5s .15s,transform .7s .15s var(--ease)}
 .scc-panel-body{z-index:1;position:absolute;left:24px;right:24px;bottom:26px;max-width:440px;opacity:0;transform:translateY(14px);transition:opacity .45s .2s,transform .6s .2s var(--ease)}
 .scc-panel.is-open .scc-panel-ico,.scc-panel.is-open .scc-panel-body{opacity:1;transform:none}
 .scc-panel-body b{display:block;font-size:clamp(20px,1.9vw,26px);font-weight:800;letter-spacing:-.015em;line-height:1.2}
@@ -264,12 +264,11 @@
   /* panels stack: the open one shows its body */
   .scc-panels{flex-direction:column;height:auto}
   .scc-panel{flex:none;min-height:76px;transition:min-height .6s var(--ease),border-color .4s,background .4s}
-  .scc-panel.is-open{min-height:330px}
+  .scc-panel.is-open{min-height:360px}
   .scc-panel-t{writing-mode:horizontal-tb;transform:none;left:70px;top:24px;bottom:auto;white-space:normal;right:60px}
   .scc-panel-n{top:28px}
   .scc-panel-plus{top:20px;bottom:auto}
-  .scc-panel-ico{width:130px;top:14px;right:-10px}
-  .scc-panel.is-open .scc-panel-ico{opacity:.55}
+  .scc-panel-ico{width:118px;top:64px;right:16px}
   .scc-panel-body{z-index:1;right:20px}
 }
 @media (max-width:900px){
