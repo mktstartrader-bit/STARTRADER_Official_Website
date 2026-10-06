@@ -52,7 +52,7 @@
   --chrome:linear-gradient(135deg,#F2F7FF 0%,#9CC3FF 28%,#3D86FF 58%,#D6E6FF 100%);
   --btn-face:linear-gradient(135deg,#5EA0FF 0%,#2F7BFF 38%,#0047BB 72%,#2F7BFF 100%);
   --line:rgba(143,187,255,.16);--glass:rgba(255,255,255,.05);--txt:#CBD6EA;--mute:#8E9BB5;
-  --gold:#E9B949;--gold-2:#F5D37A;--bronze:#B8832A;--gold-face:linear-gradient(135deg,#F7DF9A 0%,#E9B949 45%,#B8832A 100%);
+  --brown:#AC7C59;--brown-2:#C99A7B;--brown-3:#7F5A40;--brown-face:linear-gradient(135deg,#D9B59A 0%,#AC7C59 48%,#7F5A40 100%);
   --ease:cubic-bezier(.22,1,.36,1);
   background:var(--k);color:#fff}
 .raf .container{position:relative;z-index:2}
@@ -106,9 +106,9 @@
 .raf-split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,1.8vw,22px);max-width:980px;margin:clamp(30px,3.6vw,48px) auto 0}
 .raf-reward{text-align:left}
 .raf-reward--you{border-color:rgba(111,168,255,.45);background:linear-gradient(160deg,rgba(47,123,255,.22),rgba(47,123,255,.05) 60%,rgba(255,255,255,.03))}
-.raf-reward--friend{border-color:rgba(233,185,73,.42);background:linear-gradient(160deg,rgba(233,185,73,.16),rgba(233,185,73,.04) 60%,rgba(255,255,255,.03))}
+.raf-reward--friend{border-color:rgba(172,124,89,.42);background:linear-gradient(160deg,rgba(172,124,89,.16),rgba(172,124,89,.04) 60%,rgba(255,255,255,.03))}
 .raf-reward .raf-ic{display:grid;place-items:center;width:46px;height:46px;border-radius:14px;background:var(--btn-face);color:#fff;box-shadow:0 12px 24px -12px rgba(47,123,255,.9)}
-.raf-reward--friend .raf-ic{background:var(--gold-face);color:#2a1205;box-shadow:0 12px 24px -12px rgba(233,185,73,.9)}
+.raf-reward--friend .raf-ic{background:var(--brown-face);color:#2a1205;box-shadow:0 12px 24px -12px rgba(172,124,89,.9)}
 .raf-ic svg{width:22px;height:22px}
 .raf-reward h3{margin-top:18px;font-size:clamp(18px,1.8vw,22px);font-weight:800;color:#fff}
 .raf-reward p{margin-top:8px;font-size:15px;line-height:1.7;color:var(--txt)}
@@ -124,18 +124,18 @@
 .raf-steps{background:var(--navy)}
 .raf-tracks{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2.2vw,28px);margin-top:clamp(30px,3.6vw,48px)}
 .raf-track{padding:clamp(22px,2.6vw,32px);border-radius:28px;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid var(--line)}
-.raf-track--referee{border-color:rgba(233,185,73,.35)}
+.raf-track--referee{border-color:rgba(172,124,89,.35)}
 .raf-track h3{display:flex;align-items:center;gap:12px;font-size:clamp(20px,2vw,26px);font-weight:800;color:#fff}
 .raf-track h3 .raf-eyebrow{font-size:10px;padding:5px 11px}
 .raf-track ol{list-style:none;margin:22px 0 0;padding:0;display:flex;flex-direction:column;gap:14px;counter-reset:raf}
 .raf-step{position:relative;display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start}
 .raf-step::before{counter-increment:raf;content:counter(raf,decimal-leading-zero);display:grid;place-items:center;width:44px;height:44px;border-radius:50%;
   font-size:13px;font-weight:800;color:#061437;background:linear-gradient(135deg,#F2F7FF,#9CC3FF 50%,#2F7BFF);box-shadow:0 10px 24px -10px rgba(47,123,255,.8)}
-.raf-track--referee .raf-step::before{color:#2a1205;background:var(--gold-face);box-shadow:0 10px 24px -10px rgba(233,185,73,.8)}
+.raf-track--referee .raf-step::before{color:#2a1205;background:var(--brown-face);box-shadow:0 10px 24px -10px rgba(172,124,89,.8)}
 .raf-step b{display:block;font-size:16px;font-weight:800;color:#fff}
 .raf-step span{display:block;margin-top:4px;font-size:14.5px;line-height:1.65;color:var(--txt)}
 .raf-step span:first-child{margin-top:10px;font-size:15px}
-.raf-note{margin-top:18px;padding:14px 16px;border-radius:14px;font-size:13.5px;line-height:1.6;color:var(--txt);background:rgba(233,185,73,.08);border:1px solid rgba(233,185,73,.28)}
+.raf-note{margin-top:18px;padding:14px 16px;border-radius:14px;font-size:13.5px;line-height:1.6;color:var(--txt);background:rgba(172,124,89,.08);border:1px solid rgba(172,124,89,.28)}
 /* ---------- 6. terms ---------- */
 .raf-terms{background:var(--k)}
 .raf-terms-box{max-width:900px;margin:clamp(30px,3.6vw,48px) auto 0;padding:clamp(22px,2.6vw,34px);border-radius:28px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
@@ -154,7 +154,7 @@
 .raf-faq-item[open] summary i{transform:rotate(45deg)}
 .raf-faq-a{padding:0 22px 20px;font-size:14.5px;line-height:1.7;color:var(--txt)}
 /* ---------- 8. closing ---------- */
-.raf-close{text-align:center;background:radial-gradient(50% 60% at 50% 100%,rgba(233,185,73,.12),transparent 65%),radial-gradient(60% 60% at 50% 0%,rgba(47,123,255,.2),transparent 65%),var(--navy)}
+.raf-close{text-align:center;background:radial-gradient(50% 60% at 50% 100%,rgba(172,124,89,.12),transparent 65%),radial-gradient(60% 60% at 50% 0%,rgba(47,123,255,.2),transparent 65%),var(--navy)}
 .raf-close .raf-h2{max-width:16ch;margin-inline:auto}
 .raf-close-act{margin-top:30px;display:flex;justify-content:center}
 .raf-close .raf-cd-sub{margin:18px auto 0}
@@ -513,7 +513,7 @@
       <p class="raf-sub" data-aos="fade-up">Add STARTRADER on LINE, share your link, and earn USD 200 for every friend who joins and trades. They get USD 100 too.</p>
       <div class="raf-hero-act" data-aos="fade-up">
         <!-- TODO (MKT): point this href at the STARTRADER official LINE account (add-friend) URL -->
-        <a class="raf-btn" href="#"><svg aria-hidden="true"><use href="#i-chat"/></svg>Add STARTRADER on LINE</a>
+        <a class="raf-btn" href="#">Add STARTRADER on LINE</a>
       </div>
     </div>
   </div>
@@ -700,7 +700,7 @@
     <span class="raf-eyebrow" data-aos="fade-up"><i aria-hidden="true"></i>Refer a Friend</span>
     <h2 class="raf-h2" id="raf-close-title" data-aos="fade-up">Refer Friends. <span>Earn up to USD 1,000.</span></h2>
     <div class="raf-close-act" data-aos="fade-up">
-      <a class="raf-btn" href="#"><svg aria-hidden="true"><use href="#i-chat"/></svg>Add STARTRADER on LINE</a>
+      <a class="raf-btn" href="#">Add STARTRADER on LINE</a>
     </div>
     <p class="raf-cd-sub" data-aos="fade-up">Rewards are limited to a USD 50,000 pool and may run out before the deadline.</p>
   </div>
