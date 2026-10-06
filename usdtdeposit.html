@@ -105,7 +105,25 @@
 }
 @media (max-width:560px){
 }
-  </style>
+  /* hero lines carried over from the live page */
+.pm-claim{margin-top:14px;font-size:clamp(16px,1.6vw,19px);font-weight:700;color:var(--acc-2,var(--blue))}
+.pm-lead + .pm-lead{margin-top:10px}
+.ud-only{margin-top:16px;font-size:15px;color:var(--ink)}
+.ud-only b{color:var(--acc-2,var(--blue))}
+.ud-chips{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 0;padding:0;list-style:none}
+.ud-chips li{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:40px;font-size:13px;font-weight:600;color:var(--ink);
+  background:rgba(0,71,187,.07);border:1px solid rgba(0,71,187,.18)}
+.ud-chips svg{width:14px;height:14px;color:var(--acc-2,var(--blue));flex:none}
+.pm-tc{margin-top:16px;font-size:11.5px;line-height:1.6;color:#7a879b}
+.pm-tc-link{font-weight:700;color:var(--acc-2,var(--blue));text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px;
+  text-decoration-color:rgba(42,114,255,.4);transition:color .25s,text-decoration-color .25s}
+.pm-tc-link:hover{color:var(--acc,var(--blue));text-decoration-color:currentColor}
+.pm-tc-link:focus-visible{outline:2px solid var(--acc-2,var(--blue));outline-offset:3px;border-radius:3px}
+.ud-start{margin-top:18px;font-size:14px;font-weight:600;color:var(--ink)}
+.ud-cta-tc{margin-top:18px;font-size:13.5px}
+.ud-cta-tc a{color:var(--acc-2,var(--blue));font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.ud-cta-tc a:hover{color:var(--acc,var(--blue))}
+</style>
 
   <!-- Structured data -->
 
@@ -123,13 +141,13 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      {"@type": "Question", "name": "Who can participate in the USDT deposit reward?", "acceptedAnswer": {"@type": "Answer", "text": "The promotion is available exclusively to clients registered in India — both new and existing clients are eligible."}},
-      {"@type": "Question", "name": "How do I qualify for a reward?", "acceptedAnswer": {"@type": "Answer", "text": "Opt in through the Client Portal, make a qualifying USDT deposit, then complete the required trading lots for your tier."}},
-      {"@type": "Question", "name": "Can I receive more than one reward?", "acceptedAnswer": {"@type": "Answer", "text": "No. Each Client Portal account qualifies for one reward only, based on the highest deposit tier achieved."}},
-      {"@type": "Question", "name": "How is my reward calculated?", "acceptedAnswer": {"@type": "Answer", "text": "By your deposit size and completed trading volume — from $150 for a $1,000–$2,000 deposit with 40 lots, up to $750 for a $30,001–$50,000 deposit with 200 lots."}},
-      {"@type": "Question", "name": "When is the reward credited?", "acceptedAnswer": {"@type": "Answer", "text": "Eligible rewards are manually reviewed and credited within 14 days after the trading requirements are completed."}},
-      {"@type": "Question", "name": "Can I withdraw the reward?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Once credited, the reward is cash balance — it may be traded or withdrawn without restriction."}},
-      {"@type": "Question", "name": "What if I withdraw before completing the lots?", "acceptedAnswer": {"@type": "Answer", "text": "Withdrawing before completing the required trading volume results in disqualification from the promotion."}}
+      {"@type": "Question", "name": "Who can participate?", "acceptedAnswer": {"@type": "Answer", "text": "This promotion is available only to clients registered in India, including both new and existing clients."}},
+      {"@type": "Question", "name": "How do I qualify for rewards?", "acceptedAnswer": {"@type": "Answer", "text": "Opt in, make a qualifying USDT deposit, and complete the required trading lots for your tier."}},
+      {"@type": "Question", "name": "Can I receive more than one reward?", "acceptedAnswer": {"@type": "Answer", "text": "No. Each Client Portal can qualify once, based on the highest deposit tier achieved."}},
+      {"@type": "Question", "name": "How is my reward calculated?", "acceptedAnswer": {"@type": "Answer", "text": "Rewards are based on deposit size and completed trading volume."}},
+      {"@type": "Question", "name": "How are rewards credited?", "acceptedAnswer": {"@type": "Answer", "text": "Eligible rewards are manually reviewed and credited within 14 days after trading requirements are completed."}},
+      {"@type": "Question", "name": "Can I withdraw the reward?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Once credited, the reward is cash balance and may be traded or withdrawn without restriction."}},
+      {"@type": "Question", "name": "What happens if I withdraw before completing the lot requirement?", "acceptedAnswer": {"@type": "Answer", "text": "Withdrawing before completing the required trading volume will result in disqualification."}}
     ]
   }
   </script>
@@ -443,13 +461,23 @@
     <div class="pm-hero-copy">
       <span class="pm-eyebrow" data-aos="fade-up">USDT Deposit Reward &middot; India</span>
       <h1 class="pm-h1" id="ud-hero-title" data-aos="fade-up">
-        <span>Put your USDT to work.</span>
-        <span class="lit">Earn up to $750.</span>
+        <span>USDT Deposit Reward</span>
+        <span class="lit">Promotion</span>
       </h1>
-      <p class="pm-lead" data-aos="fade-up">Deposit bigger. Trade smarter. Earn more. Fund your trading account with USDT, complete the required trading volume, and unlock cash rewards of up to USD 750. Terms and conditions apply.</p>
+      <p class="pm-claim" data-aos="fade-up">Put Your USDT Deposit to Work and Earn Up to $750</p>
+      <p class="pm-lead" data-aos="fade-up">Deposit Bigger. Trade Smarter. Earn More.</p>
+      <p class="pm-lead" data-aos="fade-up">Fund your trading account with USDT, complete the required trading volume, and unlock cash rewards of up to USD 750.</p>
+      <p class="ud-only" data-aos="fade-up">Available exclusively for clients registered in <b>India</b></p>
+      <ul class="ud-chips" data-aos="fade-up" aria-label="Promotion highlights">
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg>Limited Reward Pool &mdash; First Come, First Served</li>
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg>Tiered Cash Rewards</li>
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg>Simple 3-Step Participation</li>
+      </ul>
+      <p class="pm-tc" data-aos="fade-up">*<a class="pm-tc-link" href="https://www.startrader.com/pdf/pmt271-usdtdeposit.pdf" target="_blank" rel="noopener">T&amp;C Apply</a></p>
       <div class="pm-hact" data-aos="fade-up">
-        <a class="pm-btn" href="getting-started.html">Opt In Now <svg><use href="#i-arrow-right"/></svg></a>
+        <a class="pm-btn" href="https://myaccount.startrader.com/login">Opt In Now <svg><use href="#i-arrow-right"/></svg></a>
       </div>
+      <p class="ud-start" data-aos="fade-up">Promotion starts 7 May 2026 and runs until the reward pool is fully utilized.</p>
     </div>
   </div>
 </section>
@@ -459,7 +487,7 @@
   <div class="container">
     <span class="pm-eyebrow-c" data-aos="fade-up">The offer</span>
     <h2 class="pm-h2" id="ud-glance-title" data-aos="fade-up">Put your capital to work<br> &amp; get rewarded</h2>
-    <p class="pm-sub" data-aos="fade-up">Pair a qualifying USDT deposit with completed trading volume and the reward lands<br> as cash balance &mdash; yours to trade or withdraw, no strings attached.</p>
+    <p class="pm-sub" data-aos="fade-up">Designed for active traders, this promotion rewards qualifying USDT deposits paired with completed trading volume.<br> Choose your tier, trade toward your target, and unlock a cash reward that can be traded, withdrawn, or used without restriction once credited.</p>
 
     <div class="dfp-glance">
       <article class="dfp-stat dfp-stat--blue" data-aos="fade-up">
@@ -492,7 +520,7 @@
     <div class="ta-spec-wrap" data-aos="fade-up">
       <table class="ta-table">
         <thead>
-          <tr><th scope="col">USDT deposit</th><th scope="col">Required volume</th><th scope="col">Cash reward</th></tr>
+          <tr><th scope="col">USDT deposit</th><th scope="col">Required lots</th><th scope="col">Cash reward</th></tr>
         </thead>
         <tbody>
           <tr><td>$1,000 &ndash; $2,000</td><td>40 lots</td><td><span class="fx-spread-pill">$150</span></td></tr>
@@ -511,8 +539,8 @@
   <div class="container">
     <div class="htrade">
       <div class="htrade-intro" data-aos="fade-up">
-        <h2 class="htrade-title" id="ud-how-title">Three steps,<br><span>one cash reward</span></h2>
-        <p class="htrade-sub">From opt-in to withdrawable cash</p>
+        <h2 class="htrade-title" id="ud-how-title">How it<br><span>works</span></h2>
+        <p class="htrade-sub">Start in 3 simple steps</p>
         <a href="getting-started.html" class="btn btn-primary btn-lg htrade-btn magnetic">Opt In Now <span class="htrade-go"><svg><use href="#i-arrow-right"/></svg></span></a>
         <img class="htrade-mark" src="assets/img/icon-shield-3d.webp" alt="3D shield emblem for insured client funds" width="400" height="490" loading="lazy" decoding="async">
       </div>
@@ -546,31 +574,31 @@
       <article class="fx-mh-card fx-mh--wide fx-mh--blue" data-aos="fade-up">
         <span class="fx-mh-ic"><svg><use href="#i-bolt"/></svg></span>
         <h3>Fast deposits</h3>
-        <p>USDT transfers settle quickly, so your balance is ready when the market is &mdash; move on opportunities while they are still opportunities.</p>
+        <p>Move quickly on market opportunities.</p>
         <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="fx-mh-status"><i></i> Built to move quickly on market opportunities</span></div></div>
       </article>
       <article class="fx-mh-card fx-mh--purple" data-aos="fade-up" data-aos-delay="100">
         <span class="fx-mh-ic"><svg><use href="#i-swap"/></svg></span>
         <h3>Low transfer friction</h3>
-        <p>Less lost to intermediaries on the way in &mdash; more of your capital arrives ready to trade.</p>
+        <p>Keep more capital trading.</p>
         <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="fx-mh-status"><i></i> Keep more capital trading</span></div></div>
       </article>
       <article class="fx-mh-card fx-mh--green" data-aos="fade-up" data-aos-delay="150">
         <span class="fx-mh-ic"><svg><use href="#i-shield"/></svg></span>
         <h3>USD-linked stability</h3>
-        <p>Fund with the efficiency of crypto and the stability of the dollar it tracks.</p>
+        <p>Fund with efficient dollar stability.</p>
         <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="fx-mh-status"><i></i> Dollar-referenced funding</span></div></div>
       </article>
       <article class="fx-mh-card fx-mh--orange" data-aos="fade-up" data-aos-delay="200">
         <span class="fx-mh-ic"><svg><use href="#i-globe"/></svg></span>
         <h3>Global access</h3>
-        <p>A convenient funding rail for global markets, wherever you bank.</p>
+        <p>Convenient funding for global markets.</p>
         <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="fx-mh-status"><i></i> Funding without borders</span></div></div>
       </article>
       <article class="fx-mh-card fx-mh--teal" data-aos="fade-up" data-aos-delay="250">
         <span class="fx-mh-ic"><svg><use href="#i-gauge"/></svg></span>
         <h3>Smooth trading</h3>
-        <p>Built for speed and consistency, from deposit to execution.</p>
+        <p>Built for speed and consistency.</p>
         <div class="fx-mh-viz"><div class="fx-mh-panel"><span class="fx-mh-status"><i></i> Speed and consistency, end to end</span></div></div>
       </article>
     </div>
@@ -616,31 +644,31 @@
     <div class="faq-list" data-aos="fade-up">
       <details class="faq-item">
         <summary>Who can participate?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">The promotion is available exclusively to clients registered in India — both new and existing clients are eligible.</div>
+        <div class="faq-a">This promotion is available only to clients registered in India, including both new and existing clients.</div>
       </details>
       <details class="faq-item">
-        <summary>How do I qualify for a reward?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Opt in through your Client Portal, make a qualifying USDT deposit, then complete the required trading lots for your tier.</div>
+        <summary>How do I qualify for rewards?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
+        <div class="faq-a">Opt in, make a qualifying USDT deposit, and complete the required trading lots for your tier.</div>
       </details>
       <details class="faq-item">
         <summary>Can I receive more than one reward?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">No. Each Client Portal account qualifies once, based on the highest deposit tier achieved.</div>
+        <div class="faq-a">No. Each Client Portal can qualify once, based on the highest deposit tier achieved.</div>
       </details>
       <details class="faq-item">
         <summary>How is my reward calculated?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">By deposit size and completed trading volume — from $150 for a $1,000–$2,000 deposit with 40 lots, up to $750 for a $30,001–$50,000 deposit with 200 lots.</div>
+        <div class="faq-a">Rewards are based on deposit size and completed trading volume.</div>
       </details>
       <details class="faq-item">
-        <summary>When is the reward credited?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Eligible rewards are manually reviewed and credited within 14 days after your trading requirements are completed.</div>
+        <summary>How are rewards credited?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
+        <div class="faq-a">Eligible rewards are manually reviewed and credited within 14 days after trading requirements are completed.</div>
       </details>
       <details class="faq-item">
         <summary>Can I withdraw the reward?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Yes. Once credited, the reward is cash balance — trade it or withdraw it without restriction.</div>
+        <div class="faq-a">Yes. Once credited, the reward is cash balance and may be traded or withdrawn without restriction.</div>
       </details>
       <details class="faq-item">
-        <summary>What if I withdraw before completing the lots?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
-        <div class="faq-a">Withdrawing before completing the required trading volume results in disqualification from the promotion.</div>
+        <summary>What happens if I withdraw before completing the lot requirement?<span class="faq-q-ic"><svg><use href="#i-plus"/></svg></span></summary>
+        <div class="faq-a">Withdrawing before completing the required trading volume will result in disqualification.</div>
       </details>
     </div>
     <p class="dfp-table-note" data-aos="fade-up">Promotion available only to eligible clients registered in India. Rewards subject to verification and availability. CFDs are complex instruments and come with a high risk of losing money rapidly due to leverage.</p>
@@ -651,11 +679,12 @@
 <section class="cta-banner cta-banner--emblem" aria-labelledby="ud-cta-title">
   <div class="cta-glow" aria-hidden="true"></div>
   <div class="container cta-inner">
-    <h2 id="ud-cta-title" data-aos="fade-up">Your USDT is ready<br>to earn more</h2>
-    <p data-aos="fade-up">Opt in, deposit, trade — and take the reward as cash. While the pool lasts.</p>
+    <h2 id="ud-cta-title" data-aos="fade-up">Opt in, qualify, and unlock your reward<br>while the promotion pool remains available.</h2>
+    <p data-aos="fade-up">Promotion available only to eligible clients registered in India.<br>Rewards subject to verification and availability.</p>
     <div class="cta-actions" data-aos="fade-up">
-      <a href="getting-started.html" class="btn btn-primary btn-lg">Opt In Now <svg class="ico"><use href="#i-arrow-right"/></svg></a>
+      <a href="https://myaccount.startrader.com/login" class="btn btn-primary btn-lg">Opt In via Client Portal <svg class="ico"><use href="#i-arrow-right"/></svg></a>
     </div>
+    <p class="ud-cta-tc" data-aos="fade-up"><a href="https://www.startrader.com/pdf/pmt271-usdtdeposit.pdf" target="_blank" rel="noopener">Terms &amp; Conditions Apply.</a></p>
   </div>
   <div class="cta-emblem" aria-hidden="true">
     <img src="assets/img/footer-emblem.webp" alt="STARTRADER glass emblem" width="1254" height="657" loading="lazy" decoding="async" data-aos="fade-up" data-aos-delay="100">
