@@ -17,14 +17,14 @@
   <meta property="og:title" content="กิจกรรมเทรด XAUUSD พร้อมรางวัลรับเทศกาลลอยกระทง | STARTRADER" />
   <meta property="og:description" content="เทรด XAUUSD กับ STARTRADER ได้ตั้งแต่วันที่ 1 ตุลาคม ถึง 25 พฤศจิกายน 2026 พร้อมปลดล็อกทองคำหนักสูงสุด 5 บาท สงวนสิทธิ์เฉพาะลูกค้าที่ผ่านการยืนยันตัวตนแล้ว และต้องพำนักอยู่ในประเทศ/ภูมิภาคที่มีสิทธิ์เข้าร่วม เงื่อนไขเป็นไปตามที่บริษัทกำหนด CFD มีความเสี่ยงสูง" />
   <meta property="og:url" content="https://www.startrader.com/th/loy-krathong-gold-rewards.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/lk-hero-v1.webp" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/lk-hero-1920-v2.webp" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="กิจกรรมเทรด XAUUSD พร้อมรางวัลรับเทศกาลลอยกระทง | STARTRADER" />
   <meta name="twitter:description" content="เทรด XAUUSD กับ STARTRADER ได้ตั้งแต่วันที่ 1 ตุลาคม ถึง 25 พฤศจิกายน 2026 พร้อมปลดล็อกทองคำหนักสูงสุด 5 บาท สงวนสิทธิ์เฉพาะลูกค้าที่ผ่านการยืนยันตัวตนแล้ว และต้องพำนักอยู่ในประเทศ/ภูมิภาคที่มีสิทธิ์เข้าร่วม เงื่อนไขเป็นไปตามที่บริษัทกำหนด CFD มีความเสี่ยงสูง" />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/lk-hero-v1.webp" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/lk-hero-1920-v2.webp" />
 
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../favicon.svg" />
@@ -36,8 +36,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700;800&amp;display=swap" />
-  <link rel="preload" as="image" href="../assets/img/lk-hero-v1.webp" imagesrcset="../assets/img/lk-hero-1920-v1.webp 1920w, ../assets/img/lk-hero-v1.webp 2560w" imagesizes="100vw" type="image/webp" media="(min-width:901px)" fetchpriority="high" />
-  <link rel="preload" as="image" href="../assets/img/lk-hero-portrait-v1.webp" type="image/webp" media="(max-width:900px)" fetchpriority="high" />
+  <link rel="preload" as="image" href="../assets/img/lk-hero-1920-v2.webp" type="image/webp" media="(min-width:901px)" fetchpriority="high" />
+  <link rel="preload" as="image" href="../assets/img/lk-hero-portrait-v2.webp" type="image/webp" media="(max-width:900px)" fetchpriority="high" />
   <link rel="stylesheet" href="../assets/css/styles.min.css?v=pb20" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
@@ -83,7 +83,7 @@
 .lk-hero{position:relative;isolation:isolate;overflow:clip;min-height:min(860px,calc(100vh - var(--topbar-h,44px)));
   display:flex;align-items:center;padding:calc(var(--nav-h) + 40px) 0 90px;background:#030816}
 .lk-hero-bg{position:absolute;inset:0;z-index:-2}
-.lk-hero-bg img{width:100%;height:100%;object-fit:cover;object-position:68% center}
+.lk-hero-bg img{width:100%;height:100%;object-fit:cover;object-position:62% center}
 .lk-hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
   background:linear-gradient(90deg,rgba(3,8,22,.94) 0%,rgba(3,8,22,.72) 36%,rgba(3,8,22,0) 62%),linear-gradient(0deg,var(--lk-bg) 0%,rgba(3,8,22,0) 24%)}
 .lk-hero-copy{max-width:620px;position:relative;z-index:2}
@@ -194,10 +194,12 @@
   .lk-cd{grid-template-columns:1fr}
 }
 @media (max-width:900px){
-  .lk-hero{display:block;min-height:0;padding:calc(var(--nav-h) + 100vw) 0 90px}
-  .lk-hero-bg{bottom:auto;aspect-ratio:4/5}
+  .lk-hero{display:block;min-height:0;padding:calc(var(--nav-h) + 126vw) 0 90px}
+  .lk-hero-bg{bottom:auto;aspect-ratio:890/1200}
   .lk-hero-bg img{object-position:center top}
-  .lk-hero::after{background:linear-gradient(0deg,var(--lk-bg) 0%,rgba(3,8,22,.96) 30%,rgba(3,8,22,0) 54%)}
+  /* the fade sits on the artwork itself, so its foot always dissolves into the page no matter how tall the copy runs */
+  .lk-hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,var(--lk-bg) 0%,rgba(3,8,22,.9) 9%,rgba(3,8,22,0) 26%)}
+  .lk-hero::after{background:none}
 }
 @media (max-width:600px){
   .lk-steps,.lk-pcols{grid-template-columns:1fr}
@@ -510,8 +512,8 @@
 <!-- ============ HERO ============ -->
 <section class="lk-hero" aria-labelledby="lk-title">
   <picture class="lk-hero-bg">
-    <source media="(max-width:900px)" srcset="../assets/img/lk-hero-portrait-v1.webp" width="1080" height="1350">
-    <img src="../assets/img/lk-hero-v1.webp" srcset="../assets/img/lk-hero-1920-v1.webp 1920w, ../assets/img/lk-hero-v1.webp 2560w" sizes="100vw" alt="กระทงดอกบัวประดับเทียนลอยบนแม่น้ำยามค่ำคืน บรรทุกทองคำแท่งและเหรียญทอง" width="2560" height="1440" fetchpriority="high" decoding="async">
+    <source media="(max-width:900px)" srcset="../assets/img/lk-hero-portrait-v2.webp" width="890" height="1200">
+    <img src="../assets/img/lk-hero-1920-v2.webp" alt="กระทงดอกไม้ลอยบนแม่น้ำยามค่ำคืนใต้โคมลอยและพระจันทร์เต็มดวง บรรทุกทองคำแท่ง iPhone iPad หูฟังและของรางวัลจาก STARTRADER" width="1920" height="1080" fetchpriority="high" decoding="async">
   </picture>
   <div class="lk-fire" aria-hidden="true"><i style="left:54%;--s:6px;--d:9s;--dl:-0s;--x:30px"></i><i style="left:62%;--s:4px;--d:11s;--dl:-3s;--x:-20px"></i><i style="left:70%;--s:5px;--d:8s;--dl:-5s;--x:24px"></i><i style="left:78%;--s:7px;--d:12s;--dl:-1s;--x:-36px"></i><i style="left:86%;--s:4px;--d:10s;--dl:-7s;--x:18px"></i><i style="left:92%;--s:5px;--d:9s;--dl:-2s;--x:-14px"></i><i style="left:66%;--s:3px;--d:13s;--dl:-8s;--x:40px"></i></div>
   <div class="container">
