@@ -239,33 +239,35 @@
 
 /* ---------- 5. reward podium ----------------------------------- */
 .ibp-reward-sec{background:linear-gradient(180deg,var(--navy) 0%,var(--k) 100%)}
-.ibp-podium{display:grid;grid-template-columns:1fr 1.14fr 1fr;align-items:end;gap:clamp(12px,1.6vw,20px);max-width:1040px;margin:clamp(40px,4.6vw,64px) auto 0}
-.ibp-pod{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;
-  padding:clamp(18px,2vw,26px) clamp(16px,1.8vw,24px) 0;border-radius:26px 26px 0 0;
-  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid var(--line);border-bottom:0;
+.ibp-garage{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,1.8vw,22px);max-width:1080px;margin:clamp(40px,4.6vw,64px) auto 0}
+.ibp-car{position:relative;isolation:isolate;overflow:hidden;display:flex;flex-direction:column;padding:clamp(22px,2.4vw,30px);border-radius:26px;
+  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid var(--line);
   transition:transform .5s var(--ease),border-color .5s}
-.ibp-pod:hover{transform:translateY(-8px);border-color:rgba(111,168,255,.5)}
-.ibp-pod--1{border-color:rgba(111,168,255,.5);background:linear-gradient(180deg,rgba(47,123,255,.22),rgba(47,123,255,.05))}
-.ibp-rank{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;font-size:14px;font-weight:800;letter-spacing:-.01em;
-  background:linear-gradient(135deg,#F2F7FF,#9CC3FF 50%,#2F7BFF);color:#061437;box-shadow:0 10px 24px -10px rgba(47,123,255,.8)}
-.ibp-pod--2 .ibp-rank{background:linear-gradient(135deg,#F4F6FA,#B9C0CC 50%,#8B93A2);color:#1d2330}
-.ibp-pod--3 .ibp-rank{background:linear-gradient(135deg,#F6CFA6,#C47F45 50%,#8A4E22);color:#2a1205}
-.ibp-pod-art{height:clamp(96px,10vw,150px);width:100%;display:grid;place-items:center;margin-top:clamp(18px,2vw,26px)}
-.ibp-pod--1 .ibp-pod-art{height:clamp(130px,14vw,200px)}
-.ibp-pod-art img{display:block;height:100%;width:auto;max-width:100%;object-fit:contain;
+/* a pool of headlight-blue under each car */
+.ibp-car::before{content:"";position:absolute;z-index:-1;left:-10%;right:-10%;bottom:-30%;height:60%;pointer-events:none;
+  background:radial-gradient(50% 50% at 50% 50%,rgba(47,123,255,.3),transparent 70%)}
+.ibp-car:hover{transform:translateY(-6px);border-color:rgba(111,168,255,.5)}
+.ibp-car--lead{grid-column:1/-1;flex-direction:row;align-items:center;gap:clamp(20px,3vw,48px);border-color:rgba(111,168,255,.45);
+  background:linear-gradient(120deg,rgba(47,123,255,.22) 0%,rgba(47,123,255,.05) 55%,rgba(255,255,255,.03) 100%)}
+.ibp-car--lead::before{left:40%;right:-10%;bottom:-40%;height:80%}
+.ibp-car--lead .ibp-car-copy{flex:0 1 44%}
+.ibp-car--lead .ibp-car-art{flex:1 1 56%}
+.ibp-car-copy{position:relative;z-index:1}
+.ibp-car-art{position:relative;display:grid;place-items:center;padding:clamp(8px,1vw,14px) 0;min-height:clamp(140px,16vw,210px)}
+.ibp-car--lead .ibp-car-art{min-height:clamp(180px,22vw,320px)}
+.ibp-car-art img{display:block;width:100%;height:auto;max-height:100%;object-fit:contain;
   filter:drop-shadow(0 26px 28px rgba(0,0,0,.6));transition:transform .5s var(--ease)}
-.ibp-pod:hover .ibp-pod-art img{transform:translateY(-6px) scale(1.04)}
-.ibp-pod h3{margin-top:14px;font-size:clamp(18px,1.8vw,22px);font-weight:800;color:#fff}
-.ibp-pod p{margin-top:6px;font-size:13px;line-height:1.55;color:var(--mute)}
-.ibp-pod-base{position:relative;align-self:stretch;margin:clamp(18px,2vw,24px) calc(-1 * clamp(16px,1.8vw,24px)) 0;
-  display:grid;place-items:center;overflow:hidden;font-weight:800;line-height:1;color:rgba(220,235,255,.12);
-  background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border-top:1px solid var(--line)}
-.ibp-pod-base::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;
-  background:repeating-conic-gradient(#E8EEF8 0 25%,#0B0F1A 0 50%) 0 0/12px 12px;opacity:.8}
-/* each numeral is sized to the base it sits in so it never spills past the bottom edge */
-.ibp-pod--1 .ibp-pod-base{height:150px;font-size:clamp(64px,6vw,84px);color:rgba(156,195,255,.22)}
-.ibp-pod--2 .ibp-pod-base{height:100px;font-size:clamp(44px,4.2vw,58px)}
-.ibp-pod--3 .ibp-pod-base{height:72px;font-size:clamp(32px,3vw,42px)}
+.ibp-car:hover .ibp-car-art img{transform:translateY(-6px) scale(1.03)}
+.ibp-car-tag{display:inline-flex;align-items:center;padding:7px 13px;border-radius:40px;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  color:#061437;background:linear-gradient(135deg,#F2F7FF,#9CC3FF 50%,#2F7BFF);box-shadow:0 10px 24px -10px rgba(47,123,255,.8)}
+.ibp-car--2 .ibp-car-tag{background:linear-gradient(135deg,#F4F6FA,#B9C0CC 50%,#8B93A2);color:#1d2330}
+.ibp-car--3 .ibp-car-tag{background:linear-gradient(135deg,#F6CFA6,#C47F45 50%,#8A4E22);color:#2a1205}
+.ibp-car h3{margin-top:16px;font-size:clamp(20px,2vw,27px);font-weight:800;line-height:1.2;letter-spacing:-.01em;color:#fff}
+.ibp-car--lead h3{font-size:clamp(26px,2.8vw,38px)}
+.ibp-car h3 span{background:var(--chrome);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ibp-car p{margin-top:10px;max-width:46ch;font-size:14.5px;line-height:1.65;color:var(--txt)}
+.ibp-car-spec{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.ibp-car-spec span{padding:6px 12px;border-radius:40px;font-size:12px;font-weight:700;color:#DCE6F7;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)}
 .ibp-invite{margin-top:clamp(28px,3vw,40px);text-align:center;font-size:14px;line-height:1.7;color:var(--mute)}
 
 /* ---------- 6. registration + the agreement card --------------- */
@@ -344,11 +346,14 @@
   .ibp-track{grid-template-columns:1fr 1fr;row-gap:28px}
   .ibp-trackwrap::before,.ibp-trackwrap::after{display:none}
 }
+@media (max-width:860px){
+  .ibp-car--lead{flex-direction:column;align-items:stretch;gap:8px}
+  .ibp-car--lead .ibp-car-copy,.ibp-car--lead .ibp-car-art{flex:none}
+  .ibp-car--lead .ibp-car-art{order:-1}
+  .ibp-car--lead::before{left:-10%;right:-10%}
+}
 @media (max-width:700px){
-  .ibp-podium{grid-template-columns:1fr;align-items:stretch;max-width:420px}
-  .ibp-pod{border-radius:26px;border-bottom:1px solid var(--line);padding-bottom:24px}
-  .ibp-pod--1{order:-1}
-  .ibp-pod-base{display:none}
+  .ibp-garage{grid-template-columns:1fr;max-width:460px}
   .ibp-stats{grid-template-columns:1fr 1fr 1fr}
 }
 @media (max-width:560px){
@@ -868,36 +873,40 @@
   <div class="container">
     <div class="ibp-head" data-aos="fade-up">
       <span class="ibp-eyebrow"><i aria-hidden="true"></i>Reward</span>
-      <h2 class="ibp-h2 ibp-h2--lg" id="ibp-reward-title">Cross the finish line first, second, or third, and <span>drive home in a Porsche</span> &mdash; yours to enjoy for up to 3 months.</h2>
+      <h2 class="ibp-h2 ibp-h2--lg" id="ibp-reward-title">Finish in the top three and <span>drive home in a Porsche</span> &mdash; yours to enjoy for up to 3 months.</h2>
+      <p class="ibp-sub">Three winners, three different Porsches. The top IB takes the higher-spec car; second and third each drive a Porsche from a different range.</p>
     </div>
 
-    <div class="ibp-podium">
-      <article class="ibp-pod ibp-pod--2" data-aos="fade-up" data-aos-delay="100">
-        <span class="ibp-rank">2nd</span>
-        <div class="ibp-pod-art"><img src="assets/img/porsche-ib-car-v1.webp" alt="A sapphire-blue Porsche 911, three-quarter front view, for the second-placed IB" width="1200" height="645" loading="lazy" decoding="async"></div>
-        <h3>Porsche</h3>
-        <p>Yours to enjoy for up to 3 months</p>
-        <div class="ibp-pod-base" aria-hidden="true">2</div>
+    <div class="ibp-garage">
+      <article class="ibp-car ibp-car--lead ibp-car--1" data-aos="fade-up">
+        <div class="ibp-car-copy">
+          <span class="ibp-car-tag">Top IB</span>
+          <h3>Takes the keys to the <span>higher-spec Porsche</span></h3>
+          <p>Finish first and you drive the flagship of the line-up &mdash; the highest specification in the campaign, yours for up to 3 months.</p>
+          <div class="ibp-car-spec" aria-hidden="true"><span>Higher-spec model</span><span>Up to 3 months</span></div>
+        </div>
+        <div class="ibp-car-art"><img src="assets/img/porsche-ib-car-v1.webp" alt="A sapphire-blue Porsche 911 sports car, three-quarter front view, the higher-spec Porsche for the top IB" width="1200" height="645" loading="lazy" decoding="async"></div>
       </article>
-
-      <article class="ibp-pod ibp-pod--1" data-aos="fade-up">
-        <span class="ibp-rank">1st</span>
-        <div class="ibp-pod-art"><img src="assets/img/porsche-ib-car-v1.webp" alt="A sapphire-blue Porsche 911, three-quarter front view, for the first-placed IB" width="1200" height="645" loading="lazy" decoding="async"></div>
-        <h3>Porsche</h3>
-        <p>Yours to enjoy for up to 3 months</p>
-        <div class="ibp-pod-base" aria-hidden="true">1</div>
+      <article class="ibp-car ibp-car--2" data-aos="fade-up" data-aos-delay="100">
+        <div class="ibp-car-art"><img src="assets/img/porsche-ib-car-cayenne-v1.webp" alt="A sapphire-blue Porsche Cayenne SUV, three-quarter front view, a Porsche from a different range for the second-placed IB" width="1600" height="946" loading="lazy" decoding="async"></div>
+        <div class="ibp-car-copy">
+          <span class="ibp-car-tag">Second place</span>
+          <h3>A Porsche from a different range</h3>
+          <p>Second across the line drives a Porsche from a different range &mdash; a different silhouette, the same badge, for up to 3 months.</p>
+          <div class="ibp-car-spec" aria-hidden="true"><span>Different range</span><span>Up to 3 months</span></div>
+        </div>
       </article>
-
-      <article class="ibp-pod ibp-pod--3" data-aos="fade-up" data-aos-delay="200">
-        <span class="ibp-rank">3rd</span>
-        <div class="ibp-pod-art"><img src="assets/img/porsche-ib-car-v1.webp" alt="A sapphire-blue Porsche 911, three-quarter front view, for the third-placed IB" width="1200" height="645" loading="lazy" decoding="async"></div>
-        <h3>Porsche</h3>
-        <p>Yours to enjoy for up to 3 months</p>
-        <div class="ibp-pod-base" aria-hidden="true">3</div>
+      <article class="ibp-car ibp-car--3" data-aos="fade-up" data-aos-delay="200">
+        <div class="ibp-car-art"><img src="assets/img/porsche-ib-car-macan-v1.webp" alt="A sapphire-blue Porsche Macan SUV, three-quarter front view, a Porsche from a different range for the third-placed IB" width="1600" height="944" loading="lazy" decoding="async"></div>
+        <div class="ibp-car-copy">
+          <span class="ibp-car-tag">Third place</span>
+          <h3>A Porsche from a different range</h3>
+          <p>Third place is still a Porsche &mdash; a model from a different range to the winner&rsquo;s, yours for up to 3 months.</p>
+          <div class="ibp-car-spec" aria-hidden="true"><span>Different range</span><span>Up to 3 months</span></div>
+        </div>
       </article>
     </div>
-
-    <p class="ibp-invite" data-aos="fade-up">By invitation only. Terms and conditions apply. <a class="ibp-link" href="legal-documents.html">View full T&amp;C <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></a></p>
+    <p class="ibp-invite" data-aos="fade-up">Models shown are indicative. By invitation only. Terms and conditions apply. <a class="ibp-link" href="legal-documents.html">View full T&amp;C <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></a></p>
   </div>
 </section>
 
