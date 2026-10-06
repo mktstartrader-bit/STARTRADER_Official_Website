@@ -292,14 +292,54 @@
 .db-hero-form{position:relative;z-index:2;width:100%;max-width:460px;justify-self:end;scroll-margin-top:calc(var(--nav-h) + 16px);
   background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);
   box-shadow:0 36px 80px -34px rgba(16,30,54,.45),0 0 0 1px rgba(255,255,255,.7) inset}
-.db-hero-form .ct-grid{grid-template-columns:1fr;gap:18px}
-.db-hero-form .ct-actions{margin-top:24px}
 .db-open-in{grid-template-columns:minmax(0,760px)}
 .db-open-act{margin-top:clamp(22px,2.6vw,30px)}
 @media (max-width:980px){
   .db-hero-grid{grid-template-columns:1fr;gap:28px}
   .db-hero-form{justify-self:stretch;max-width:none}
 }
+/* the account card follows the live site's form prototype */
+.db-hero-form{padding:clamp(24px,2.8vw,34px);border-radius:28px;background:#fff}
+.oa-h{font-size:clamp(20px,2.2vw,24px);font-weight:700;letter-spacing:-.02em;color:var(--ink);text-align:center}
+.oa-seg{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:22px;padding:4px;border-radius:14px;background:#EEF1F6}
+.oa-seg-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;border:0;border-radius:11px;background:transparent;
+  font:inherit;font-size:13.5px;font-weight:600;color:#7a879b;cursor:pointer;transition:background .25s,color .25s,box-shadow .25s}
+.oa-seg-btn svg{width:16px;height:16px;color:#A9B3C4}
+.oa-seg-btn.is-on{background:#fff;color:var(--ink);box-shadow:0 4px 12px rgba(16,30,54,.08)}
+.oa-seg-btn.is-on svg{color:#7a879b}
+.oa-fld{position:relative;margin-top:14px;height:56px;border:1px solid #DFE5EF;border-radius:12px;background:#fff;transition:border-color .25s,box-shadow .25s}
+.oa-fld[hidden]{display:none}
+.oa-fld:focus-within{border-color:var(--acc-2,var(--blue));box-shadow:0 0 0 4px rgba(42,114,255,.12)}
+.oa-fld.is-bad{border-color:#e5484d}
+.oa-fld-ic{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:#A9B3C4;pointer-events:none}
+.oa-fld label{position:absolute;left:46px;top:50%;transform:translateY(-50%);margin:0;pointer-events:none;font-size:14px;font-weight:600;color:#55637a;
+  transition:top .2s,font-size .2s,transform .2s,color .2s}
+.oa-fld label b{color:#e5484d;font-weight:700;margin-left:1px}
+.oa-fld:focus-within label,.oa-fld.has-val label,.oa-fld:has(input:not(:placeholder-shown)) label{top:9px;transform:none;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#7a879b}
+.oa-fld input,.oa-fld select{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:inherit;background:transparent;font:inherit;font-size:14.5px;color:var(--ink);outline:none;padding:19px 16px 5px 46px}
+.oa-fld select{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:44px}
+.oa-fld-chev{position:absolute;right:16px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:#A9B3C4;pointer-events:none}
+.oa-fld--pass input{padding-right:50px}
+.oa-eye{position:absolute;right:10px;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:32px;height:32px;border:0;border-radius:9px;background:transparent;color:#A9B3C4;cursor:pointer;transition:color .25s}
+.oa-eye:hover{color:var(--ink)}
+.oa-eye svg{width:19px;height:19px}
+.oa-type{display:flex;gap:clamp(26px,4vw,44px);margin-top:18px}
+.db-hero-form .ct-check{margin-top:12px;font-size:12.5px;line-height:1.55;color:#41506a}
+.oa-type .ct-check{margin-top:0;align-items:center;font-size:13.5px;color:var(--ink)}
+.db-hero-form .an-box{width:20px;height:20px;border-radius:6px;background:#fff;border-color:#C9D2E0}
+.db-hero-form .ct-check input:checked + .an-box{background:var(--acc-2,var(--blue));border-color:var(--acc-2,var(--blue));color:#fff}
+.db-hero-form .ct-check input:focus-visible + .an-box{outline:2px solid var(--acc-2,var(--blue));outline-offset:2px}
+.db-hero-form .ct-check.is-bad .an-box{border-color:#e5484d}
+.db-hero-form .ct-check a{color:var(--acc-2,var(--blue));font-weight:600}
+.db-hero-form .ct-err{margin-top:6px;font-size:12px}
+.oa-submit{display:block;width:100%;margin-top:22px;height:52px;border:0;border-radius:12px;background:linear-gradient(90deg,#0A1C6B,#1739C9);color:#fff;
+  font:inherit;font-size:15.5px;font-weight:700;cursor:pointer;box-shadow:0 14px 28px -14px rgba(10,28,107,.6);transition:transform .25s,filter .25s}
+.oa-submit:hover{transform:translateY(-2px);filter:brightness(1.06)}
+.oa-note{margin-top:12px;text-align:center;font-size:12.5px;color:#55637a}
+.oa-note.is-ok{color:#0f8a5f}
+.oa-links{display:flex;justify-content:center;gap:clamp(40px,8vw,90px);margin-top:16px}
+.oa-links a{font-size:13px;color:#7a879b;text-decoration:none;transition:color .25s}
+.oa-links a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
 </style>
 
   <!-- Structured data -->
@@ -324,7 +364,11 @@
   <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m3.5 7 8.5 6 8.5-6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M8 10V8a4 4 0 0 1 8 0v2" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+<symbol id="i-eye-off" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m4.5 4 15 16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></symbol>
   <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z" fill="currentColor"/></symbol>
   <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.4 3 8.4 7 9.5 4-1.1 7-5.1 7-9.5V6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
@@ -634,102 +678,121 @@
         <a class="pm-btn" href="#open-account">Claim the allowance <svg><use href="#i-arrow-right"/></svg></a>
       </div>
     </div>
-    <div class="ct-form-card pt-form-card glass db-hero-form" id="open-account" data-db-form data-aos="fade-up" data-aos-delay="100">
-      <h3 class="db-form-h">Open <span>Live Account</span></h3>
-
-      <form novalidate data-db-signup>
-        <div class="ct-grid">
-          <div class="ct-field" data-db-fld>
-            <label for="dbCountry">Country or region</label>
-            <div class="wb-selwrap">
-              <select id="dbCountry" name="country" data-db-country aria-describedby="dbCountryErr">
-                <option value="">Select&hellip;</option>
-                  <option>United Arab Emirates</option>
-                  <option>United Kingdom</option>
-                  <option>Singapore</option>
-                  <option>Malaysia</option>
-                  <option>Indonesia</option>
-                  <option>Thailand</option>
-                  <option>Vietnam</option>
-                  <option>India</option>
-                  <option>South Africa</option>
-                  <option>Nigeria</option>
-                  <option>Kenya</option>
-                  <option>Egypt</option>
-                  <option>Saudi Arabia</option>
-                  <option>Kuwait</option>
-                  <option>Qatar</option>
-                  <option>Bahrain</option>
-                  <option>Oman</option>
-                  <option>Jordan</option>
-                  <option>Turkey</option>
-                  <option>Spain</option>
-                  <option>Italy</option>
-                  <option>Germany</option>
-                  <option>France</option>
-                  <option>Netherlands</option>
-                  <option>Poland</option>
-                  <option>Brazil</option>
-                  <option>Mexico</option>
-                  <option>Chile</option>
-                  <option>Japan</option>
-                  <option>South Korea</option>
-                  <option>Hong Kong SAR</option>
-                  <option>Taiwan</option>
-                  <option>Philippines</option>
-                  <option>Other</option>
-              </select>
-              <svg class="wb-selchev" aria-hidden="true"><use href="#i-chevron-down"/></svg>
-            </div>
-            <p class="ct-err" id="dbCountryErr" hidden>Please choose your country or region.</p>
-          </div>
-
-          <div class="ct-field" data-db-fld>
-            <label for="dbEmail">Email</label>
-            <input type="email" id="dbEmail" name="email" inputmode="email" autocomplete="email"
-              placeholder="you@example.com" data-db-email aria-describedby="dbEmailErr">
-            <p class="ct-err" id="dbEmailErr" hidden>We need a valid email to reply to.</p>
-          </div>
-
-
-          <div class="ct-field" data-db-fld>
-            <label for="dbPass">Password</label>
-            <input type="password" id="dbPass" name="password" autocomplete="new-password"
-              placeholder="8&ndash;16 characters" data-db-pass aria-describedby="dbPassErr">
-            <div class="ct-below">
-              <p class="ct-err" id="dbPassErr" hidden>8&ndash;16 characters, mixed case, a number and a symbol.</p>
-              <p class="db-hint">Mixed case, number, symbol</p>
-              <button class="db-send db-send--quiet" type="button" data-db-peek aria-label="Show password">Show</button>
-            </div>
-          </div>
+    <div class="ct-form-card db-hero-form" id="open-account" data-aos="fade-up" data-aos-delay="100">
+      <h3 class="oa-h">Open Live Account</h3>
+      <form id="oaForm" novalidate>
+        <div class="oa-seg" role="tablist" aria-label="Sign up with">
+          <button type="button" class="oa-seg-btn is-on" role="tab" aria-selected="true" data-oa-mode="email"><svg aria-hidden="true"><use href="#i-mail"/></svg>Email Address</button>
+          <button type="button" class="oa-seg-btn" role="tab" aria-selected="false" data-oa-mode="phone"><svg aria-hidden="true"><use href="#i-phone"/></svg>Phone Number</button>
         </div>
 
-        <button class="db-more" type="button" data-db-more aria-expanded="false" aria-controls="dbRefWrap">
-          Have a referral code? <span aria-hidden="true">+</span>
-        </button>
-        <div class="ct-field db-ref" id="dbRefWrap" data-db-refwrap hidden>
-          <label for="dbRef">Referred by <em>optional</em></label>
-          <input type="text" id="dbRef" name="referral" placeholder="Referral code" data-db-ref>
+        <div class="oa-fld" data-oa-email>
+          <svg class="oa-fld-ic" aria-hidden="true"><use href="#i-mail"/></svg>
+          <label for="oaEmail">Email<b>*</b></label>
+          <input type="email" id="oaEmail" name="email" inputmode="email" autocomplete="email" placeholder=" " aria-describedby="oaEmailErr">
+        </div>
+        <p class="ct-err" id="oaEmailErr" hidden>We need a valid email to reach you on.</p>
+
+        <div class="oa-fld" data-oa-phone hidden>
+          <svg class="oa-fld-ic" aria-hidden="true"><use href="#i-phone"/></svg>
+          <label for="oaPhone">Phone Number<b>*</b></label>
+          <input type="tel" id="oaPhone" name="phone" inputmode="tel" autocomplete="tel" placeholder=" " aria-describedby="oaPhoneErr">
+        </div>
+        <p class="ct-err" id="oaPhoneErr" hidden>Enter a valid phone number, with country code.</p>
+
+        <div class="oa-fld oa-fld--sel">
+          <svg class="oa-fld-ic" aria-hidden="true"><use href="#i-globe"/></svg>
+          <label for="oaCountry">Country<b>*</b></label>
+          <select id="oaCountry" name="country" autocomplete="country-name" aria-describedby="oaCountryErr">
+            <option value=""></option>
+            <option>United Arab Emirates</option>
+            <option>United Kingdom</option>
+            <option>Singapore</option>
+            <option>Malaysia</option>
+            <option>Indonesia</option>
+            <option>Thailand</option>
+            <option>Vietnam</option>
+            <option>India</option>
+            <option>South Africa</option>
+            <option>Nigeria</option>
+            <option>Kenya</option>
+            <option>Egypt</option>
+            <option>Saudi Arabia</option>
+            <option>Kuwait</option>
+            <option>Qatar</option>
+            <option>Bahrain</option>
+            <option>Oman</option>
+            <option>Jordan</option>
+            <option>Turkey</option>
+            <option>Spain</option>
+            <option>Italy</option>
+            <option>Germany</option>
+            <option>France</option>
+            <option>Netherlands</option>
+            <option>Poland</option>
+            <option>Brazil</option>
+            <option>Mexico</option>
+            <option>Chile</option>
+            <option>Japan</option>
+            <option>South Korea</option>
+            <option>Hong Kong SAR</option>
+            <option>Taiwan</option>
+            <option>Philippines</option>
+            <option>Other</option>
+          </select>
+          <svg class="oa-fld-chev" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+        </div>
+        <p class="ct-err" id="oaCountryErr" hidden>Please choose your country.</p>
+
+        <div class="oa-fld oa-fld--pass">
+          <svg class="oa-fld-ic" aria-hidden="true"><use href="#i-lock"/></svg>
+          <label for="oaPass">Password<b>*</b></label>
+          <input type="password" id="oaPass" name="password" autocomplete="new-password" placeholder=" " aria-describedby="oaPassErr">
+          <button type="button" class="oa-eye" id="oaEye" aria-label="Show password" aria-pressed="false"><svg aria-hidden="true"><use href="#i-eye-off"/></svg></button>
+        </div>
+        <p class="ct-err" id="oaPassErr" hidden>Use at least 8 characters.</p>
+
+        <div class="oa-type" role="radiogroup" aria-label="Account type">
+          <label class="ct-check" for="oaTypeInd">
+            <input type="radio" id="oaTypeInd" name="acctType" value="Individual" checked>
+            <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+            <span>Individual</span>
+          </label>
+          <label class="ct-check" for="oaTypeCo">
+            <input type="radio" id="oaTypeCo" name="acctType" value="Company">
+            <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+            <span>Company</span>
+          </label>
         </div>
 
-        <label class="ct-check" for="dbUs" data-db-check>
-          <input type="checkbox" id="dbUs" name="us" data-db-us>
+        <label class="ct-check" for="oaUs">
+          <input type="checkbox" id="oaUs" name="notUs" aria-describedby="oaUsErr">
           <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
-          <span>I am not a US resident.</span>
+          <span>I confirm that I am not a U.S. person, including a U.S citizen or resident.</span>
+        </label>
+        <p class="ct-err" id="oaUsErr" hidden>The product is not available to U.S. persons.</p>
+
+        <label class="ct-check" for="oaMkt">
+          <input type="checkbox" id="oaMkt" name="marketing">
+          <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+          <span>I consent to STARTRADER processing my personal data for marketing and application support. I may withdraw my consent at any time.</span>
         </label>
 
-        <label class="ct-check" for="dbConsent" data-db-check>
-          <input type="checkbox" id="dbConsent" name="consent" data-db-consent>
+        <label class="ct-check" for="oaTerms">
+          <input type="checkbox" id="oaTerms" name="terms" aria-describedby="oaTermsErr">
           <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
-          <span>I agree to STARTRADER using these details as set out in the <a href="privacy-policy-app.html">Privacy Policy</a>.</span>
+          <span>I have read, understood, and agree to the <a href="legal-documents.html">Client Agreement</a>, <a href="legal-documents.html">Risk Disclosure</a>, <a href="privacy-policy-app.html">Privacy Policy</a>, and all other applicable terms and policies.</span>
         </label>
+        <p class="ct-err" id="oaTermsErr" hidden>Please agree to continue.</p>
 
-        <div class="ct-actions">
-          <button class="btn btn-primary btn-lg ct-submit" type="submit">Create account <svg class="ico"><use href="#i-arrow-right"/></svg></button>
+        <button class="oa-submit" type="submit">Create Account</button>
+        <p class="oa-note" data-oa-note hidden></p>
+
+        <div class="oa-links">
+          <a href="getting-started.html">Practice Trading</a>
+          <a href="https://myaccount.startrader.com" rel="noopener">Login</a>
         </div>
       </form>
-
-      <p class="db-form-note">Verification completes on the secure account-opening flow.</p>
     </div>
    </div>
   </div>
@@ -1023,6 +1086,65 @@
   <button class="cookie-x" id="cookieClose" aria-label="Accept and close"><svg><use href="#i-close"/></svg></button>
 </div>
 
+<script>
+/* banner account card: email/phone switch, password toggle, inline validation */
+(function () {
+  var form = document.getElementById('oaForm');
+  if (!form) return;
+  var mode = 'email';
+  var segs = Array.prototype.slice.call(form.querySelectorAll('[data-oa-mode]'));
+  var emailW = form.querySelector('[data-oa-email]'), phoneW = form.querySelector('[data-oa-phone]');
+  var email = document.getElementById('oaEmail'), phone = document.getElementById('oaPhone');
+  var pass = document.getElementById('oaPass'), country = document.getElementById('oaCountry');
+  var eye = document.getElementById('oaEye'), note = form.querySelector('[data-oa-note]');
+  function err(id, bad) {
+    var el = document.getElementById(id);
+    if (el) el.hidden = !bad;
+    var ctl = document.getElementById(id.replace(/Err$/, ''));
+    var wrap = ctl && (ctl.closest('.oa-fld') || ctl.closest('.ct-check'));
+    if (wrap) wrap.classList.toggle('is-bad', !!bad);
+    return !bad;
+  }
+  segs.forEach(function (b) {
+    b.addEventListener('click', function () {
+      mode = b.getAttribute('data-oa-mode');
+      segs.forEach(function (x) { var on = x === b; x.classList.toggle('is-on', on); x.setAttribute('aria-selected', on ? 'true' : 'false'); });
+      emailW.hidden = mode !== 'email';
+      phoneW.hidden = mode !== 'phone';
+      err('oaEmailErr', false); err('oaPhoneErr', false);
+      (mode === 'email' ? email : phone).focus();
+    });
+  });
+  country.addEventListener('change', function () { country.closest('.oa-fld').classList.toggle('has-val', !!country.value); });
+  eye.addEventListener('click', function () {
+    var show = pass.type === 'password';
+    pass.type = show ? 'text' : 'password';
+    eye.setAttribute('aria-pressed', show ? 'true' : 'false');
+    eye.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+    eye.querySelector('use').setAttribute('href', show ? '#i-eye' : '#i-eye-off');
+  });
+  function emailOk() { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim()); }
+  function phoneOk() { return /^\+?[0-9 ()-]{7,20}$/.test(phone.value.trim()); }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var ok = true;
+    if (mode === 'email') ok = err('oaEmailErr', !emailOk()) && ok; else ok = err('oaPhoneErr', !phoneOk()) && ok;
+    ok = err('oaCountryErr', !country.value) && ok;
+    ok = err('oaPassErr', pass.value.length < 8) && ok;
+    ok = err('oaUsErr', !document.getElementById('oaUs').checked) && ok;
+    ok = err('oaTermsErr', !document.getElementById('oaTerms').checked) && ok;
+    if (!ok) { var bad = form.querySelector('.is-bad'); if (bad) bad.scrollIntoView({ block: 'center', behavior: 'smooth' }); return; }
+    note.hidden = false; note.classList.add('is-ok');
+    note.textContent = 'Details received \u2014 taking you to account opening\u2026';
+    setTimeout(function () { window.location.href = 'getting-started.html'; }, 900);
+  });
+  ['oaEmail', 'oaPhone', 'oaCountry', 'oaPass'].forEach(function (id) {
+    var el = document.getElementById(id);
+    ['input', 'change'].forEach(function (ev) { el.addEventListener(ev, function () { err(id + 'Err', false); }); });
+  });
+  ['oaUs', 'oaTerms'].forEach(function (id) { document.getElementById(id).addEventListener('change', function () { err(id + 'Err', false); }); });
+})();
+</script>
 <script src="assets/js/vendor/gsap.min.js" defer></script>
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
