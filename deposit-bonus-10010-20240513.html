@@ -154,7 +154,30 @@
 }
 @media (max-width:560px){
 }
-  </style>
+  .pm-tc{margin-top:16px;font-size:11.5px;line-height:1.6;color:#7a879b}
+.pm-tc-link{font-weight:700;color:var(--acc-2,var(--blue));text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px;
+  text-decoration-color:rgba(42,114,255,.4);transition:color .25s,text-decoration-color .25s}
+.pm-tc-link:hover{color:var(--acc,var(--blue));text-decoration-color:currentColor}
+.pm-tc-link:focus-visible{outline:2px solid var(--acc-2,var(--blue));outline-offset:3px;border-radius:3px}
+/* ---------- the full terms, as published ---------- */
+.dfp-terms-sec{background:#fff;scroll-margin-top:calc(var(--nav-h) + 20px)}
+.dfp-terms-period{margin-top:18px;font-size:14px;line-height:1.6;color:#4d5c74}
+.dfp-terms-period b{color:var(--ink)}
+.dfp-terms{margin-top:clamp(26px,3vw,38px);max-width:900px;padding:clamp(22px,2.8vw,36px);border-radius:clamp(18px,2.2vw,28px);
+  background:#f6f8fc;border:1px solid rgba(16,30,54,.08)}
+.dfp-terms h3{margin-top:clamp(22px,2.6vw,30px);font-size:17px;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
+.dfp-terms h3:first-child{margin-top:0}
+.dfp-terms p,.dfp-terms li{font-size:14px;line-height:1.72;color:#4d5c74}
+.dfp-terms p{margin-top:10px}
+.dfp-terms ol{margin:12px 0 0;padding-left:22px;display:flex;flex-direction:column;gap:10px}
+.dfp-terms ol ol{margin-top:8px;gap:4px;list-style:lower-alpha}
+.dfp-terms li::marker{font-weight:700;color:var(--ink)}
+.dfp-ftd{width:100%;max-width:640px;margin-top:12px;border-collapse:separate;border-spacing:0;font-size:13.5px;background:#fff;
+  border:1px solid rgba(16,30,54,.1);border-radius:12px;overflow:hidden}
+.dfp-ftd th,.dfp-ftd td{padding:10px 14px;text-align:left;border-bottom:1px solid rgba(16,30,54,.08);color:#4d5c74;white-space:nowrap}
+.dfp-ftd th{font-weight:700;color:var(--ink);background:rgba(0,71,187,.06)}
+.dfp-ftd tr:last-child td{border-bottom:0}
+</style>
 
   <!-- Structured data -->
 
@@ -493,7 +516,8 @@
         <span>Your first deposit, doubled.</span>
         <span class="lit">100% first, 10% forever after.</span>
       </h1>
-      <p class="pm-lead" data-aos="fade-up">Bonus credit on every qualifying deposit &mdash; 100% on your first, up to $1,000, then 10% on each one after, to a $20,000 total. From a $50 minimum deposit. Terms and conditions apply.</p>
+      <p class="pm-lead" data-aos="fade-up">Bonus credit on every qualifying deposit &mdash; 100% on your first, up to $1,000, then 10% on each one after, to a $20,000 total. From a $50 minimum deposit.</p>
+      <p class="pm-tc" data-aos="fade-up">*<a class="pm-tc-link" href="#terms">T&amp;C Apply</a></p>
       <div class="pm-hact" data-aos="fade-up">
         <a class="pm-btn" href="https://myaccount.startrader.com/login">Deposit now <svg><use href="#i-arrow-right"/></svg></a>
       </div>
@@ -697,6 +721,60 @@
   </div>
 </section>
 
+<!-- ============ TERMS & CONDITIONS ============ -->
+<section class="section dfp-terms-sec" id="terms" aria-labelledby="dfp-terms-title">
+  <div class="container">
+    <span class="pm-eyebrow-c" data-aos="fade-up">Terms &amp; conditions</span>
+    <h2 class="pm-h2" id="dfp-terms-title" data-aos="fade-up">The full terms,<br> as they apply</h2>
+    <p class="dfp-terms-period" data-aos="fade-up"><b>Registration period:</b> from 00:00 June 1, 2024 to 23:59 December 31, 2026 (based on server time).</p>
+    <div class="dfp-terms" data-aos="fade-up">
+      <h3>Applicable regions</h3>
+      <p>This activity is only applicable to designated clients.</p>
+      <h3>Eligibility</h3>
+      <p>This promotion is exclusively available to STARTRADER new accounts or accounts under the same name. Only new deposits made during the promotional period will be considered for the bonus.</p>
+      <p>Accounts designated as Cent accounts, Cryptocurrency accounts, PAMM, and MAM are excluded from participation in this promotional event.</p>
+      <h3>Terms and conditions</h3>
+      <ol>
+        <li>The following terms and conditions are legally binding. By participating in this promotion, you agree to these terms.</li>
+        <li>To participate in this promotion, client must opt-in to be part of this Promotion by confirming his or her decision via client portal.</li>
+        <li>Credit bonus will be issued for every deposit amount over/equal to 50 USD.</li>
+        <li>Eligible clients will receive credit bonus as per below:
+          <ol><li>100% of your first deposit, up to $1,000 credit (base currency)</li><li>10% of your subsequent deposits</li></ol>
+          <p>&ldquo;First Deposit&rdquo; refers to the initial amount of money deposited into a STARTRADER account from the date of account opening.</p>
+          <p>&ldquo;Subsequent Deposits&rdquo; means any deposits you made after your first deposit, or the part that exceeds $1,000 (base currency) from your first deposit.</p>
+          <p>Here are some examples of how much credit bonus you will get based on your first-time deposit (FTD) amount:</p>
+          <div class="ta-spec-wrap"><table class="dfp-ftd"><thead><tr><th scope="col">Your FTD</th><th scope="col">Your subsequent deposits</th><th scope="col">Your credit bonus</th></tr></thead><tbody>
+            <tr><td>$500</td><td>$0</td><td>$500</td></tr>
+            <tr><td>$1,000</td><td>$0</td><td>$1,000</td></tr>
+            <tr><td>$5,000</td><td>$0</td><td>($1,000 + $400) = $1,400</td></tr>
+            <tr><td>$1,000</td><td>$1,000</td><td>$1,000 + $100 = $1,100</td></tr>
+            <tr><td>$2,000</td><td>$5,000</td><td>($1,000 + $100) + $500 = $1,600</td></tr>
+          </tbody></table></div>
+        </li>
+        <li>For qualified clients, the bonus will be credited into the trading account as credit automatically.</li>
+        <li>The credit amount is capped at a maximum of $20,000 USD per eligible client at any time during this Promotion.</li>
+        <li>Internal transfers, balance or cash adjustments, Introducer/Affiliate rebates or commissions of any kind will not be considered new deposits and therefore will not be counted towards this Promotion.</li>
+        <li>Credit amounts cannot be withdrawn. Profits made will be reflected in your account value. Similarly, any losses made will be deducted from your account value. Any profits generated from the utilization of the bonus are available for withdrawal as per our withdrawal procedure.</li>
+        <li>If clients choose to make an internal transfer/withdraw a portion or the entirety of their deposit and/or profits, a corresponding portion of their trading credit, or the entire credit amount, will be deducted from their account accordingly. Please note that STARTRADER still reserves the right to the credit bonus. If a client still holds a position at the time of bonus removal, please ensure that there is sufficient margin to avoid liquidation.</li>
+        <li>You cannot directly transfer your bonus between your trading accounts.</li>
+        <li>If your account equity is less than the trading credit on your account, the remaining credit may be withdrawn at our discretion, which could in turn force a stop out of all open positions.</li>
+        <li>Bonus can be used to hedge losses.</li>
+        <li>This promotion cannot be used in conjunction with other promotional privileges. If the client is already participating in an ongoing promotion, the previous promotion needs to be completed before joining a new one. If the client terminates the previous promotion before completing it, the client needs to acknowledge that all bonuses and rewards have been given up voluntarily.</li>
+        <li>Clients have the full obligation to keep a sufficient margin level within the promotion period, as STARTRADER may not remind you when your equity/credit is less than or equal to 120%. Withdrawal or bonus cancellation might result in a lower margin for your positions and might cause liquidation due to insufficient margin. Clients should carefully consider their risk tolerance level and financial situation prior to making any withdrawal request.</li>
+        <li>During the promotion, STARTRADER reserves the right to deny the client&rsquo;s qualification for participation, deduct any improper profits, or even terminate the partnership with clients if any breach of these terms and conditions is found. Breach behaviors include (but are not limited to): using the same IP address to trade simultaneously, conducting multiple accounts (including STARTRADER internal accounts or between different brokers) for arbitrage, scalping, high-frequency trading, latency arbitrage, malicious hedging, trading oversized positions during trading hours, putting accounts under single exposure with multiple similar trades, trading products that are too concentrated and pose a high-risk condition, etc. (or when participating in the bonus promotion, if more than 70% of the account&rsquo;s trading volume is concentrated on specific products or maintains a fixed trading direction).
+          <p>Any termination of the partnership (including disqualification from events, deduction of improper profits, etc.) caused by improper trading shall be borne by the traders themselves. STARTRADER has sole discretion in determining trading methods. Additionally, for the protection of client rights and privacy, STARTRADER may not be able to provide relevant proof.</p>
+          <p>Clients participating in this event are considered to fully understand and accept the above content. If clients are judged to have engaged in improper trading behavior, they do not have the right to post malicious comments or engage in activities that would damage the reputation of STARTRADER on any social media or channels; otherwise, they will be held legally responsible.</p>
+        </li>
+        <li>When a client&rsquo;s balance becomes negative during the promotion, the bonus will be offset against the loss caused by the negative balance. When your negative balance exceeds 1000 USD, STARTRADER reserves the right to refuse the client&rsquo;s request to clear the negative balance.</li>
+        <li>STARTRADER reserves the final right to suspend, modify or terminate this promotion.</li>
+      </ol>
+      <h3>Risk warning</h3>
+      <p>The purpose of the bonus is set to increase in profits instead of credit loan, thus clients should always be aware of its actual margin amount at any time. When the actual available margin in your account is insufficient, you shall add more margin in time to avoid automatic position closure to your account. Accordingly, please note that STARTRADER will not be responsible for any risks emitted from the above mentioned.</p>
+      <p>STARTRADER provides leveraged derivative products including forex and CFD. Please note that leveraged products may NOT be suitable for all investors since these carry high level of risk to your capital and it is possible to lose more than your net deposit. It is your responsibility to fully understand that when trading on a margin or leverage basis, your capital is at risk, and carefully consider your investment objectives, trading knowledge, experience, and affordability. Please do not trade if you are unable to afford the loss that the trading may bring. It is recommended to seek independent and professional suggestions if you have any questions or concerns about the products STARTRADER provides.</p>
+      <p>Please note that STARTRADER do NOT intervene or take responsibility for the loss caused by following trading advice or copy trades.</p>
+    </div>
+  </div>
+</section>
 <!-- ============ FAQ ============ -->
 <section class="section faq-sec fx-faq" aria-labelledby="dfp-faq-title">
   <div class="container">

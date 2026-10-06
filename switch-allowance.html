@@ -287,6 +287,19 @@
   .pm-hero::after{content:"";display:block;position:absolute;inset:0;z-index:-1;pointer-events:none;
     background:linear-gradient(0deg,#F0F2F6 0%,rgba(240,242,246,.9) 22%,rgba(240,242,246,0) 48%)}
 }
+/* the account form sits in the banner, as on the live page */
+.db-hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,440px);gap:clamp(24px,4vw,56px);align-items:center}
+.db-hero-form{position:relative;z-index:2;width:100%;max-width:460px;justify-self:end;scroll-margin-top:calc(var(--nav-h) + 16px);
+  background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);
+  box-shadow:0 36px 80px -34px rgba(16,30,54,.45),0 0 0 1px rgba(255,255,255,.7) inset}
+.db-hero-form .ct-grid{grid-template-columns:1fr;gap:18px}
+.db-hero-form .ct-actions{margin-top:24px}
+.db-open-in{grid-template-columns:minmax(0,760px)}
+.db-open-act{margin-top:clamp(22px,2.6vw,30px)}
+@media (max-width:980px){
+  .db-hero-grid{grid-template-columns:1fr;gap:28px}
+  .db-hero-form{justify-self:stretch;max-width:none}
+}
 </style>
 
   <!-- Structured data -->
@@ -607,6 +620,7 @@
     <img class="pm-hero-banner" src="assets/img/switch-allowance-hero-banner-v1.webp" alt="A chrome toggle switch flipped on over a frosted glass plate lit blue, beside a stack of silver coins" width="2560" height="1434" fetchpriority="high" decoding="async">
   </picture>
   <div class="container pm-hero-in">
+   <div class="db-hero-grid">
     <div class="pm-hero-copy">
       <span class="pm-eyebrow" data-aos="fade-up">1% Switch Allowance</span>
       <h1 class="pm-h1" id="db-hero-title" data-aos="fade-up">
@@ -617,10 +631,107 @@
       <p class="pm-claim" data-aos="fade-up">Earn 1% Cash Allowance + Up to $200 Cashback When You Make the Switch</p>
       <p class="pm-tc" data-aos="fade-up">*<a class="pm-tc-link" href="https://www.startrader.com/pdf/pmt009-en-20260717.pdf" target="_blank" rel="noopener">T&amp;C Apply</a></p>
       <div class="pm-hact" data-aos="fade-up">
-        <a class="pm-btn" href="https://myaccount.startrader.com/login">Claim the allowance <svg><use href="#i-arrow-right"/></svg></a>
+        <a class="pm-btn" href="#open-account">Claim the allowance <svg><use href="#i-arrow-right"/></svg></a>
       </div>
     </div>
+    <div class="ct-form-card pt-form-card glass db-hero-form" id="open-account" data-db-form data-aos="fade-up" data-aos-delay="100">
+      <h3 class="db-form-h">Open <span>Live Account</span></h3>
 
+      <form novalidate data-db-signup>
+        <div class="ct-grid">
+          <div class="ct-field" data-db-fld>
+            <label for="dbCountry">Country or region</label>
+            <div class="wb-selwrap">
+              <select id="dbCountry" name="country" data-db-country aria-describedby="dbCountryErr">
+                <option value="">Select&hellip;</option>
+                  <option>United Arab Emirates</option>
+                  <option>United Kingdom</option>
+                  <option>Singapore</option>
+                  <option>Malaysia</option>
+                  <option>Indonesia</option>
+                  <option>Thailand</option>
+                  <option>Vietnam</option>
+                  <option>India</option>
+                  <option>South Africa</option>
+                  <option>Nigeria</option>
+                  <option>Kenya</option>
+                  <option>Egypt</option>
+                  <option>Saudi Arabia</option>
+                  <option>Kuwait</option>
+                  <option>Qatar</option>
+                  <option>Bahrain</option>
+                  <option>Oman</option>
+                  <option>Jordan</option>
+                  <option>Turkey</option>
+                  <option>Spain</option>
+                  <option>Italy</option>
+                  <option>Germany</option>
+                  <option>France</option>
+                  <option>Netherlands</option>
+                  <option>Poland</option>
+                  <option>Brazil</option>
+                  <option>Mexico</option>
+                  <option>Chile</option>
+                  <option>Japan</option>
+                  <option>South Korea</option>
+                  <option>Hong Kong SAR</option>
+                  <option>Taiwan</option>
+                  <option>Philippines</option>
+                  <option>Other</option>
+              </select>
+              <svg class="wb-selchev" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+            </div>
+            <p class="ct-err" id="dbCountryErr" hidden>Please choose your country or region.</p>
+          </div>
+
+          <div class="ct-field" data-db-fld>
+            <label for="dbEmail">Email</label>
+            <input type="email" id="dbEmail" name="email" inputmode="email" autocomplete="email"
+              placeholder="you@example.com" data-db-email aria-describedby="dbEmailErr">
+            <p class="ct-err" id="dbEmailErr" hidden>We need a valid email to reply to.</p>
+          </div>
+
+
+          <div class="ct-field" data-db-fld>
+            <label for="dbPass">Password</label>
+            <input type="password" id="dbPass" name="password" autocomplete="new-password"
+              placeholder="8&ndash;16 characters" data-db-pass aria-describedby="dbPassErr">
+            <div class="ct-below">
+              <p class="ct-err" id="dbPassErr" hidden>8&ndash;16 characters, mixed case, a number and a symbol.</p>
+              <p class="db-hint">Mixed case, number, symbol</p>
+              <button class="db-send db-send--quiet" type="button" data-db-peek aria-label="Show password">Show</button>
+            </div>
+          </div>
+        </div>
+
+        <button class="db-more" type="button" data-db-more aria-expanded="false" aria-controls="dbRefWrap">
+          Have a referral code? <span aria-hidden="true">+</span>
+        </button>
+        <div class="ct-field db-ref" id="dbRefWrap" data-db-refwrap hidden>
+          <label for="dbRef">Referred by <em>optional</em></label>
+          <input type="text" id="dbRef" name="referral" placeholder="Referral code" data-db-ref>
+        </div>
+
+        <label class="ct-check" for="dbUs" data-db-check>
+          <input type="checkbox" id="dbUs" name="us" data-db-us>
+          <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+          <span>I am not a US resident.</span>
+        </label>
+
+        <label class="ct-check" for="dbConsent" data-db-check>
+          <input type="checkbox" id="dbConsent" name="consent" data-db-consent>
+          <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+          <span>I agree to STARTRADER using these details as set out in the <a href="privacy-policy-app.html">Privacy Policy</a>.</span>
+        </label>
+
+        <div class="ct-actions">
+          <button class="btn btn-primary btn-lg ct-submit" type="submit">Create account <svg class="ico"><use href="#i-arrow-right"/></svg></button>
+        </div>
+      </form>
+
+      <p class="db-form-note">Verification completes on the secure account-opening flow.</p>
+    </div>
+   </div>
   </div>
 </section>
 
@@ -775,106 +886,12 @@
         <span><span class="db-open-tick"><svg><use href="#i-check"/></svg></span>Applied instantly once verified</span>
         <span><span class="db-open-tick"><svg><use href="#i-check"/></svg></span>Cashback runs 60 days from your first deposit</span>
       </div>
+      <div class="db-open-act" data-aos="fade-up">
+        <a class="pm-btn" href="#open-account">Open your live account <svg><use href="#i-arrow-right"/></svg></a>
+      </div>
       <img class="db-open-mark" src="assets/img/icon-shield-3d.webp" alt="3D shield emblem for insured client funds" width="400" height="490" loading="lazy" decoding="async" data-aos="fade-up">
     </div>
 
-    <div class="ct-form-card pt-form-card glass" data-db-form data-aos="fade-up">
-      <h3 class="db-form-h">Open <span>Live Account</span></h3>
-
-      <form novalidate data-db-signup>
-        <div class="ct-grid">
-          <div class="ct-field" data-db-fld>
-            <label for="dbCountry">Country or region</label>
-            <div class="wb-selwrap">
-              <select id="dbCountry" name="country" data-db-country aria-describedby="dbCountryErr">
-                <option value="">Select&hellip;</option>
-                  <option>United Arab Emirates</option>
-                  <option>United Kingdom</option>
-                  <option>Singapore</option>
-                  <option>Malaysia</option>
-                  <option>Indonesia</option>
-                  <option>Thailand</option>
-                  <option>Vietnam</option>
-                  <option>India</option>
-                  <option>South Africa</option>
-                  <option>Nigeria</option>
-                  <option>Kenya</option>
-                  <option>Egypt</option>
-                  <option>Saudi Arabia</option>
-                  <option>Kuwait</option>
-                  <option>Qatar</option>
-                  <option>Bahrain</option>
-                  <option>Oman</option>
-                  <option>Jordan</option>
-                  <option>Turkey</option>
-                  <option>Spain</option>
-                  <option>Italy</option>
-                  <option>Germany</option>
-                  <option>France</option>
-                  <option>Netherlands</option>
-                  <option>Poland</option>
-                  <option>Brazil</option>
-                  <option>Mexico</option>
-                  <option>Chile</option>
-                  <option>Japan</option>
-                  <option>South Korea</option>
-                  <option>Hong Kong SAR</option>
-                  <option>Taiwan</option>
-                  <option>Philippines</option>
-                  <option>Other</option>
-              </select>
-              <svg class="wb-selchev" aria-hidden="true"><use href="#i-chevron-down"/></svg>
-            </div>
-            <p class="ct-err" id="dbCountryErr" hidden>Please choose your country or region.</p>
-          </div>
-
-          <div class="ct-field" data-db-fld>
-            <label for="dbEmail">Email</label>
-            <input type="email" id="dbEmail" name="email" inputmode="email" autocomplete="email"
-              placeholder="you@example.com" data-db-email aria-describedby="dbEmailErr">
-            <p class="ct-err" id="dbEmailErr" hidden>We need a valid email to reply to.</p>
-          </div>
-
-
-          <div class="ct-field" data-db-fld>
-            <label for="dbPass">Password</label>
-            <input type="password" id="dbPass" name="password" autocomplete="new-password"
-              placeholder="8&ndash;16 characters" data-db-pass aria-describedby="dbPassErr">
-            <div class="ct-below">
-              <p class="ct-err" id="dbPassErr" hidden>8&ndash;16 characters, mixed case, a number and a symbol.</p>
-              <p class="db-hint">Mixed case, number, symbol</p>
-              <button class="db-send db-send--quiet" type="button" data-db-peek aria-label="Show password">Show</button>
-            </div>
-          </div>
-        </div>
-
-        <button class="db-more" type="button" data-db-more aria-expanded="false" aria-controls="dbRefWrap">
-          Have a referral code? <span aria-hidden="true">+</span>
-        </button>
-        <div class="ct-field db-ref" id="dbRefWrap" data-db-refwrap hidden>
-          <label for="dbRef">Referred by <em>optional</em></label>
-          <input type="text" id="dbRef" name="referral" placeholder="Referral code" data-db-ref>
-        </div>
-
-        <label class="ct-check" for="dbUs" data-db-check>
-          <input type="checkbox" id="dbUs" name="us" data-db-us>
-          <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
-          <span>I am not a US resident.</span>
-        </label>
-
-        <label class="ct-check" for="dbConsent" data-db-check>
-          <input type="checkbox" id="dbConsent" name="consent" data-db-consent>
-          <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
-          <span>I agree to STARTRADER using these details as set out in the <a href="privacy-policy-app.html">Privacy Policy</a>.</span>
-        </label>
-
-        <div class="ct-actions">
-          <button class="btn btn-primary btn-lg ct-submit" type="submit">Create account <svg class="ico"><use href="#i-arrow-right"/></svg></button>
-        </div>
-      </form>
-
-      <p class="db-form-note">Verification completes on the secure account-opening flow.</p>
-    </div>
   </div>
 </section>
 
