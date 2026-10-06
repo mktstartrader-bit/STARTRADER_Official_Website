@@ -3243,7 +3243,12 @@
     var moreBtn = root.querySelector('[data-nr-more]');
     var moreRow = root.querySelector('.nr-morerow');
 
-    var cat = 'all', query = '', shown = PAGE;
+    var cat = 'all', query = '', shown = PAGE, page = 1;
+    // numbered pages when the section carries [data-nr-pager]; the load-more button otherwise
+    var pager = root.querySelector('[data-nr-pager]');
+    var pgList = pager ? pager.querySelector('[data-pgr-list]') : null;
+    var pgPrev = pager ? pager.querySelector('[data-pgr-prev]') : null;
+    var pgNext = pager ? pager.querySelector('[data-pgr-next]') : null;
     stripAosHidden(items);
 
     // cache the searchable text and the original markup for highlighting
@@ -3262,18 +3267,66 @@
       el.innerHTML = raw.replace(new RegExp('(' + esc(q) + ')', 'ig'), '<mark>$1</mark>');
     }
 
+    // 1 2 3 when there are few pages; otherwise 1 ... n-1 n n+1 ... last
+    function pagerSlots(pages) {
+      var out = [], i;
+      for (i = 1; i <= pages; i++) {
+        if (i === 1 || i === pages || Math.abs(i - page) <= 1) out.push(i);
+        else if (out[out.length - 1] !== 0) out.push(0);
+      }
+      return out;
+    }
+    function goPage(num) {
+      page = num;
+      apply();
+      // back to the top of the list, and focus the first story so keyboard users keep their place
+      var first = items.filter(function (el) { return !el.hidden; })[0];
+      if (first) {
+        scrollToTarget(first, -120);
+        var h = first.querySelector('.nr-h a');
+        if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); }
+      }
+    }
+    function renderPager(pages) {
+      if (!pgList) return;
+      pager.hidden = pages < 2;
+      pgList.innerHTML = '';
+      pagerSlots(pages).forEach(function (num) {
+        if (!num) {
+          var d = document.createElement('span');
+          d.className = 'pgr-dots'; d.setAttribute('aria-hidden', 'true'); d.textContent = '\u2026';
+          pgList.appendChild(d); return;
+        }
+        var b = document.createElement('button');
+        b.type = 'button'; b.className = 'pgr-pg' + (num === page ? ' is-on' : '');
+        b.textContent = num;
+        b.setAttribute('aria-label', 'Page ' + num);
+        if (num === page) b.setAttribute('aria-current', 'page');
+        b.addEventListener('click', function () { if (num !== page) goPage(num); });
+        pgList.appendChild(b);
+      });
+      if (pgPrev) pgPrev.disabled = page === 1;
+      if (pgNext) pgNext.disabled = page === pages;
+    }
+    if (pgPrev) pgPrev.addEventListener('click', function () { if (page > 1) goPage(page - 1); });
+    if (pgNext) pgNext.addEventListener('click', function () { goPage(page + 1); });
+
     function apply() {
       var q = query.trim().toLowerCase();
       var matched = items.filter(function (el) {
         return (cat === 'all' || el.getAttribute('data-cat') === cat) && (!q || el._hay.indexOf(q) > -1);
       });
 
+      var pages = pager ? Math.max(1, Math.ceil(matched.length / PAGE)) : 1;
+      if (pager) page = Math.min(Math.max(page, 1), pages);
+      var lo = pager ? (page - 1) * PAGE : 0, hi = pager ? page * PAGE : shown;
       items.forEach(function (el) { el.hidden = true; });
       matched.forEach(function (el, i) {
-        el.hidden = i >= shown;
+        el.hidden = i < lo || i >= hi;
         mark(el._h, el._hRaw, q);
         mark(el._e, el._eRaw, q);
       });
+      if (pager) renderPager(pages);
 
       if (emptyEl) emptyEl.hidden = matched.length !== 0;
       if (emptyQ) emptyQ.textContent = q ? '\u201C' + query.trim() + '\u201D' : 'that filter';
@@ -3288,8 +3341,10 @@
 
       if (statusEl) {
         var seen = Math.min(shown, matched.length);
+        var last = Math.min(hi, matched.length);
+        var range = pager ? (lo + 1) + (last > lo + 1 ? '\u2013' + last : '') : String(seen);
         statusEl.textContent = matched.length
-          ? 'Showing ' + seen + ' of ' + matched.length + (matched.length === 1 ? ' story' : ' stories') +
+          ? 'Showing ' + range + ' of ' + matched.length + (matched.length === 1 ? ' story' : ' stories') +
             (cat === 'all' ? '' : ' in ' + CATS[cat]) + (q ? ' matching \u201C' + query.trim() + '\u201D' : '')
           : '';
       }
@@ -3297,13 +3352,13 @@
     }
 
     chips.forEach(function (b) {
-      b.addEventListener('click', function () { cat = b.getAttribute('data-nr-cat'); shown = PAGE; apply(); });
+      b.addEventListener('click', function () { cat = b.getAttribute('data-nr-cat'); shown = PAGE; page = 1; apply(); });
     });
 
     if (input) {
       var t;
       input.addEventListener('input', function () {
-        query = input.value; shown = PAGE;
+        query = input.value; shown = PAGE; page = 1;
         clearTimeout(t); t = setTimeout(apply, 120);
       });
       input.addEventListener('keydown', function (e) {
