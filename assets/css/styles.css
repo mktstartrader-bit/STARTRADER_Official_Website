@@ -6105,3 +6105,21 @@ a.cat-pager-btn:hover{transform:translateY(-2px);border-color:rgba(0,71,187,.4);
 @media (min-width:1081px) and (prefers-reduced-transparency:reduce){body::before{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(6,9,20,.6)}}
 /* ticker: the TradingView tape draws its row near the top of its frame; nudge it onto the pill's centre line */
 .hero-ticker--tv iframe{transform:translateY(6px)}
+
+/* ===== HEADER AND FOOTER LABELS ARE NOT HEADINGS (appended batch, 2026-10-07) ===== */
+/* The Commodities flyout group titles, the footer column titles and the risk-block
+   titles were h5/h4/h5 and polluted every page's outline (they sat above the H1).
+   They are now spans: .fly-group h5 -> .fly-head, .foot-col h4 -> .foot-head,
+   .risk h5 -> .risk-head. These rules reproduce the heading reset plus the old
+   per-selector styling exactly, so nothing moves. */
+.fly-head,.foot-head,.risk-head{display:block;line-height:1.1;letter-spacing:-.02em;font-weight:700;text-wrap:balance;overflow-wrap:break-word}
+.fly-group .fly-head{font-size:12px;font-weight:700;color:#dfe6f2;margin-bottom:6px}
+.fly-group .fly-head a{color:inherit;transition:color .2s}
+.fly-group .fly-head a:hover,.fly-group .fly-head a:focus-visible{color:#5b9dff}
+.fly-group .fly-head+a::before{content:"›";margin-right:9px;font-weight:600;color:#6d7893;transition:color .2s}
+.fly-group .fly-head a::before{content:none}
+.fly-group .fly-head a.is-current{color:#5b9dff}
+.foot-col .foot-head{font-size:16px;color:#fff;font-weight:700;letter-spacing:-.01em;margin-bottom:18px}
+.foot-col .foot-head.mt{margin-top:38px}
+.risk .risk-head{font-size:12.5px;letter-spacing:.06em;color:#c7cddb;font-weight:700;margin:22px 0 10px}
+.risk .risk-head:first-child{margin-top:0}

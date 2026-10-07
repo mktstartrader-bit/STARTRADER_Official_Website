@@ -55,6 +55,18 @@ the shared layer must never shift under them.
 - GSAP/ScrollTrigger/Lenis stay ONLY for pinned scroll scrubs, count-up
   counters, and hero parallax. No new GSAP reveals or marquees.
 
+## Heading hygiene (SEO request, 2026-10-07)
+
+- One `<h1>` per page, section titles `<h2>`, card/sub titles `<h3>`. No
+  `<h4>`–`<h6>` anywhere in the shared chrome: the Commodities flyout group
+  titles are `<span class="fly-head">`, footer column titles are
+  `<span class="foot-head">` (`.mt` for the spaced ones) and the risk-block
+  titles are `<span class="risk-head">`. Their styling lives in the appended
+  "HEADER AND FOOTER LABELS ARE NOT HEADINGS" batch in `styles.css`; never
+  reintroduce heading tags there, and never use a heading tag just for its look.
+- Inside `<h1>`/`<h2>`, put a space before every `<br>` (`forex <br>market`),
+  otherwise crawlers and SEO tools read the two lines as one word.
+
 ## Paths (dev-team requirement, 2026-08-27)
 
 - **Never root-absolute.** All intra-site references (`href`, `src`, `poster`,
