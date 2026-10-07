@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#05070E" />
 
-  <title>SuperStar Trading League: Path to Glory | STARTRADER</title>
-  <meta name="description" content="اشترك في كل جولة، وتقدّم في لوحة الترتيب، ونافس على جائزة MVP الموسم بقيمة 50,000 USD. 3 جولات، ومؤتمران، من أكتوبر إلى ديسمبر 2026." />
+  <title>دوري SuperStar للتداول: طريقك نحو اللقب | STARTRADER</title>
+  <meta name="description" content="شارك في كل جولة، وتقدّم على لوحة الترتيب، ونافس على جائزة الموسم (MVP) بقيمة 50,000 دولار أمريكي. 3 جولات، مؤتمران، وموسم يمتد من أكتوبر إلى ديسمبر 2026." />
   <meta name="keywords" content="STARTRADER, SuperStar Trading League, trading competition, Season MVP, Sessions, Conferences, Points rewards" />
   <meta name="author" content="STARTRADER" />
   <link rel="canonical" href="https://www.startrader.com/ar/superstar-trading-league.html" />
@@ -52,16 +52,16 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="STARTRADER" />
-  <meta property="og:title" content="SuperStar Trading League: Path to Glory | STARTRADER" />
-  <meta property="og:description" content="اشترك في كل جولة، وتقدّم في لوحة الترتيب، ونافس على جائزة MVP الموسم بقيمة 50,000 USD. 3 جولات، ومؤتمران، من أكتوبر إلى ديسمبر 2026." />
+  <meta property="og:title" content="دوري SuperStar للتداول: طريقك نحو اللقب | STARTRADER" />
+  <meta property="og:description" content="شارك في كل جولة، وتقدّم على لوحة الترتيب، ونافس على جائزة الموسم (MVP) بقيمة 50,000 دولار أمريكي. 3 جولات، مؤتمران، وموسم يمتد من أكتوبر إلى ديسمبر 2026." />
   <meta property="og:url" content="https://www.startrader.com/ar/superstar-trading-league.html" />
   <meta property="og:image" content="https://www.startrader.com/assets/img/stl-hero-v5.webp" />
   <meta property="og:locale" content="ar_AE" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="SuperStar Trading League: Path to Glory | STARTRADER" />
-  <meta name="twitter:description" content="اشترك في كل جولة، وتقدّم في لوحة الترتيب، ونافس على جائزة MVP الموسم بقيمة 50,000 USD. 3 جولات، ومؤتمران، من أكتوبر إلى ديسمبر 2026." />
+  <meta name="twitter:title" content="دوري SuperStar للتداول: طريقك نحو اللقب | STARTRADER" />
+  <meta name="twitter:description" content="شارك في كل جولة، وتقدّم على لوحة الترتيب، ونافس على جائزة الموسم (MVP) بقيمة 50,000 دولار أمريكي. 3 جولات، مؤتمران، وموسم يمتد من أكتوبر إلى ديسمبر 2026." />
   <meta name="twitter:image" content="https://www.startrader.com/assets/img/stl-hero-v5.webp" />
 
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
@@ -713,26 +713,71 @@
 @media (min-width:1248px){[dir="rtl"] .stl-lang{left:calc((100vw - var(--maxw,1200px)) / 2)}}
 [dir="rtl"] .stl-brand{left:auto;right:var(--gutter,24px)}
 @media (min-width:1248px){[dir="rtl"] .stl-brand{right:calc((100vw - var(--maxw,1200px)) / 2)}}
-
-/* ===== Arabic (RTL) ===== */
+/* ============ RTL ADAPTATION (Arabic) ============
+   Mirrored composition, not just mirrored text: the copy, art, rails, step
+   markers, fills, strikes, accents and arrows all follow the right-to-left
+   reading flow. Logos, product art, numerals and the English disclaimer/footer
+   blocks are deliberately left as they are. */
+[dir="rtl"] .stl-lang{right:auto;left:var(--gutter,24px)}
+@media (min-width:1248px){[dir="rtl"] .stl-lang{left:calc((100vw - var(--maxw,1200px)) / 2)}}
+[dir="rtl"] .stl-brand{left:auto;right:var(--gutter,24px)}
+@media (min-width:1248px){[dir="rtl"] .stl-brand{right:calc((100vw - var(--maxw,1200px)) / 2)}}
 [dir="rtl"] .skip-link{left:auto;right:auto;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 [dir="rtl"] .skip-link:focus{right:12px;top:12px;width:auto;height:auto;padding:10px 16px;clip-path:none;overflow:visible}
-/* forward arrows point the way the reader is going */
+/* arrows point the reading way, and nudge the same way on hover */
 [dir="rtl"] .stl-btn svg,[dir="rtl"] .stl-link svg,[dir="rtl"] .stl-lb-btn svg{transform:scaleX(-1)}
-/* figures keep their own order inside right-to-left runs */
-[dir="rtl"] .stl-pod-v,[dir="rtl"] .stl-medal span,[dir="rtl"] .stl-cd-cell b,[dir="rtl"] .stl-step-n,[dir="rtl"] .stl-sess-num{unicode-bidi:isolate}
-/* the range fill is an angled gradient, which does not follow direction */
-[dir="rtl"] .stl-range{direction:ltr}
-/* the hero art is composed with the copy on the left (the mascots fill the right),
-   so the column keeps its place and only the type inside it runs right-to-left */
-[dir="rtl"] .stl-hero-in{direction:ltr}
-[dir="rtl"] .stl-hero-copy{direction:rtl;text-align:right}
-[dir="rtl"] .stl-hero-copy .stl-hact{justify-content:flex-start}
-/* the league name stays in English, so it keeps English punctuation order */
-[dir="rtl"] .stl-h1{direction:ltr;text-align:right}
-/* rank ranges like 4–5 read left to right */
-[dir="rtl"] .stl-medal i{direction:ltr;unicode-bidi:isolate}
-/* the disclaimer bar and footer stay English, so they keep English punctuation order */
+[dir="rtl"] .stl-btn:hover svg,[dir="rtl"] .stl-link:hover svg,[dir="rtl"] [data-stl-lb-card]:hover .stl-lb-btn svg{transform:scaleX(-1) translateX(4px)}
+/* numerals and amounts stay left-to-right inside the right-to-left flow */
+[dir="rtl"] .stl-pod-v,[dir="rtl"] .stl-medal span,[dir="rtl"] .stl-medal i,[dir="rtl"] .stl-cd-cell b,[dir="rtl"] .stl-step-n,[dir="rtl"] .stl-sess-num,
+[dir="rtl"] .stl-gauge-dial b,[dir="rtl"] .stl-pts-meter b,[dir="rtl"] .lb-no,[dir="rtl"] .lb-pts,[dir="rtl"] .stl-pod-face{direction:ltr;unicode-bidi:isolate}
+/* hero: art anchored left, its right edge fades under the copy on the right */
+[dir="rtl"] .stl-hero-bg img{object-position:30% center}
+@media (min-width:901px) and (max-width:1180px){[dir="rtl"] .stl .stl-hero-bg img,[dir="rtl"] .stl-hero-bg img{object-position:22% center}}
+[dir="rtl"] .stl-hero-bg::after{background:linear-gradient(270deg,rgba(5,6,13,.72) 0%,rgba(5,6,13,.25) 34%,transparent 52%),linear-gradient(0deg,#05060D 0%,rgba(5,6,13,0) 7%)}
+@media (min-width:901px){
+  /* the art is not flipped (the kits and the ticker carry lettering); it slides left so the trophy and the
+     red mascot stay clear, and its bright right edge is dimmed under the copy as the stadium side is in English */
+  [dir="rtl"] .stl-hero-bg img{right:auto;left:-20%;-webkit-mask-image:linear-gradient(270deg,transparent 0,#000 30%);mask-image:linear-gradient(270deg,transparent 0,#000 30%)}
+  [dir="rtl"] .stl-hero-bg::after{background:linear-gradient(270deg,rgba(5,6,13,.9) 0%,rgba(5,6,13,.72) 36%,rgba(5,6,13,.2) 56%,transparent 66%),linear-gradient(0deg,#05060D 0%,rgba(5,6,13,0) 6%)}
+}
+[dir="rtl"] .stl-hero-copy{margin-left:auto}
+[dir="rtl"] .stl-hero-fx::before{background:radial-gradient(40% 70% at 88% 30%,rgba(255,45,85,.22),transparent 70%),radial-gradient(40% 70% at 10% 30%,rgba(47,107,255,.26),transparent 70%)}
+[dir="rtl"] .stl-hero-fx .r1{left:auto;right:6%}[dir="rtl"] .stl-hero-fx .r2{left:auto;right:9%}[dir="rtl"] .stl-hero-fx .r3{left:auto;right:14%}
+[dir="rtl"] .stl-hero-fx .b1{right:auto;left:6%}[dir="rtl"] .stl-hero-fx .b2{right:auto;left:10%}[dir="rtl"] .stl-hero-fx .b3{right:auto;left:15%}
+/* overview: gauge dividers and the conference badges sit on the leading (right) side */
+[dir="rtl"] .stl-gauge + .stl-gauge::before{left:auto;right:0}
+[dir="rtl"] .stl-half-ic{left:auto;right:20px}
+/* how it works: the progress rail and step markers run down the right edge */
+[dir="rtl"] .stl-steps{padding:0 34px 0 0}
+[dir="rtl"] .stl-steps::before,[dir="rtl"] .stl-steps::after{left:auto;right:10px}
+[dir="rtl"] .stl-step::before{left:auto;right:-30px}
+/* calendar: the season advances from right to left, fill, sweep and strike included */
+[dir="rtl"] .stl-tl-rail i{inset:0 0 0 auto;background:linear-gradient(270deg,#FF2D55,#7A3DFF,#2F6BFF)}
+[dir="rtl"] .stl-tl-rail::after{left:auto;animation-name:stlRunRtl}
+@keyframes stlRunRtl{0%{right:-120px}100%{right:100%}}
+[dir="rtl"] .stl-sess-num::after{left:auto;right:-6%;transform-origin:right center;transform:rotate(8deg) scaleX(0)}
+[dir="rtl"] .stl-sess.is-done .stl-sess-num::after{transform:rotate(8deg) scaleX(1)}
+[dir="rtl"] .stl-sess-live{background:linear-gradient(270deg,#FF2D55,#FF6B3D)}
+/* prizes: the points slider fills from the right, the reached tier steps out to the left */
+[dir="rtl"] .stl-range{direction:rtl;background:linear-gradient(270deg,#1F5EFF var(--fill,37%),rgba(255,255,255,.14) var(--fill,37%))}
+[dir="rtl"] .stl-tiers li.is-top{background:linear-gradient(270deg,rgba(31,94,255,.34),rgba(31,94,255,.08));transform:translateX(-6px)}
+[dir="rtl"] .stl-pod-block::after{transform:translateX(60%);animation-name:stlGleamRtl}
+@keyframes stlGleamRtl{0%,60%{transform:translateX(60%)}100%{transform:translateX(-60%)}}
+/* leaderboard: rank column on the right, points on the left */
+[dir="rtl"] .stl-lb-table th{text-align:right}
+[dir="rtl"] .stl-lb-table th:last-child,[dir="rtl"] .stl-lb-table td:last-child{text-align:left}
+[dir="rtl"] .stl-lb-head span{text-align:left}
+[dir="rtl"] .stl-lb-card::before{background:linear-gradient(270deg,#FF2D55,#7A3DFF,#2F6BFF)}
+[dir="rtl"] .stl-lb-card--e::before{background:linear-gradient(270deg,#2F6BFF,#6FA8FF)}
+[dir="rtl"] .stl-lb-card--w::before{background:linear-gradient(270deg,#FF2D55,#FF6B3D)}
+/* phones */
+@media (max-width:900px){
+  [dir="rtl"] .stl-gauge{text-align:right}
+  [dir="rtl"] .stl-btn{text-align:right}
+  [dir="rtl"] .stl-who-note{text-align:right}
+  [dir="rtl"] .stl-gauge + .stl-gauge::before{left:10%;right:10%}
+}
+/* the English disclaimer bar and footer are shared site components and stay left-to-right */
 [dir="rtl"] .topbar,[dir="rtl"] .site-footer{direction:ltr}
 </style>
 
@@ -821,7 +866,7 @@
     <div class="stl-lang">
       <button class="lang" id="langBtn" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="langPop" aria-label="Select language">
         <svg class="lang-globe" aria-hidden="true"><use href="#i-globe"/></svg>
-        <span class="lang-code" id="langCode">EN</span>
+        <span class="lang-code" id="langCode">AR</span>
         <svg class="lang-caret" aria-hidden="true"><use href="#i-chevron-down"/></svg>
       </button>
       <div class="lang-pop" id="langPop" role="dialog" aria-label="Select language" aria-hidden="true">
@@ -834,14 +879,14 @@
           <input type="text" id="langSearch" placeholder="Search Language" autocomplete="off" spellcheck="false">
         </div>
         <div class="lp-grid" id="langGrid">
-          <button class="lp-item is-active" type="button" data-code="EN"><b>English</b></button>
+          <button class="lp-item" type="button" data-code="EN"><b>English</b></button>
           <button class="lp-item" type="button" data-code="ZH-CN"><b>简体中文</b> Simplified Chinese</button>
           <button class="lp-item" type="button" data-code="KO"><b>한국어</b> Korean</button>
           <button class="lp-item" type="button" data-code="MS"><b>Melayu</b> Malay</button>
           <button class="lp-item" type="button" data-code="VI"><b>Việt</b> Vietnamese</button>
           <button class="lp-item" type="button" data-code="TH"><b>ภาษาไทย</b> Thai</button>
           <button class="lp-item" type="button" data-code="ID"><b>Indonesian</b> Indonesian</button>
-          <button class="lp-item" type="button" data-code="AR"><b>العربية</b> Arabic</button>
+          <button class="lp-item is-active" type="button" data-code="AR"><b>العربية</b> Arabic</button>
           <button class="lp-item" type="button" data-code="JA"><b>日本語</b> Japanese</button>
           <button class="lp-item" type="button" data-code="ZH-TW"><b>繁體中文</b> Traditional Chinese</button>
           <button class="lp-item" type="button" data-code="FR"><b>Français</b> French</button>
@@ -861,16 +906,16 @@
     </div>
     <div class="stl-hero-copy">
       <h1 class="stl-h1" id="stl-title" data-aos="fade-up">
-        <span>SuperStar Trading League:</span>
-        <span class="stl-grad">Path to Glory</span>
+        <span>دوري SuperStar للتداول:</span>
+        <span class="stl-grad">طريقك نحو اللقب</span>
       </h1>
-      <p class="stl-sub" data-aos="fade-up" data-aos-delay="100"><span class="stl-tagline">ثلاث جولات. مؤتمران. MVP واحد للموسم.</span> نافس على جوائز نقدية في كل جولة، ومكافآت النقاط، وجائزة MVP الموسم بقيمة 50,000 USD.</p>
-      <p class="stl-lead" data-aos="fade-up" data-aos-delay="200">اشترك في أي جولة وتقدّم في لوحة الترتيب لتنافس على لقب MVP الموسم.</p>
+      <p class="stl-sub" data-aos="fade-up" data-aos-delay="100"><span class="stl-tagline">ثلاث جولات. مؤتمران. <span class="stl-nw">وبطل واحد للموسم.</span></span> نافس على جوائز نقدية في كل جولة، ومكافآت بالنقاط، وفرصة للفوز بجائزة MVP للموسم بقيمة 50,000 دولار أمريكي.</p>
+      <p class="stl-lead" data-aos="fade-up" data-aos-delay="200">شارك في أي جولة، وتقدّم في الترتيب، ونافس على لقب بطل الموسم (MVP).</p>
       <div class="stl-hact" data-aos="fade-up" data-aos-delay="300">
         <a class="stl-btn magnetic" href="https://myaccount.startrader.com" rel="noopener">اشترك عبر بوابة العملاء <svg><use href="#i-arrow-right"/></svg></a>
-        <a class="stl-link" href="https://www.startrader.com/pdf/pmt314-ar.pdf" target="_blank" rel="noopener">اقرأ الشروط والأحكام كاملة <svg><use href="#i-arrow-right"/></svg></a>
+        <a class="stl-link" href="https://www.startrader.com/pdf/pmt314-ar.pdf" target="_blank" rel="noopener">اطّلع على الشروط والأحكام كاملة <svg><use href="#i-arrow-right"/></svg></a>
       </div>
-      <p class="stl-hnote" data-aos="fade-up" data-aos-delay="300">تنطبق معايير الأهلية وشروط التداول المؤهلة.</p>
+      <p class="stl-hnote" data-aos="fade-up" data-aos-delay="300">تخضع المشاركة لشروط الأهلية ومتطلبات التداول المعتمدة.</p>
     </div>
   </div>
 </section>
@@ -898,7 +943,7 @@
   <div class="container">
     <div class="stl-board" data-stl-board data-aos="fade-up" aria-hidden="true">
       <span class="stl-board-glow"></span>
-      <div class="stl-gauge"><div class="stl-gauge-dial"><svg class="stl-ring " viewBox="0 0 120 120"><circle class="stl-ring-bg" cx="60" cy="60" r="52"/><circle class="stl-ring-fg" cx="60" cy="60" r="52" data-seg="3" stroke="url(#stlBlue)"/></svg><b data-stl-count="3">0</b></div><span>ثلاث جولات</span></div><div class="stl-gauge"><div class="stl-gauge-dial"><svg class="stl-ring " viewBox="0 0 120 120"><circle class="stl-ring-bg" cx="60" cy="60" r="52"/><circle class="stl-ring-fg" cx="60" cy="60" r="52" data-seg="2" stroke="url(#stlBlue)"/></svg><b data-stl-count="2">0</b></div><span>مؤتمران</span></div><div class="stl-gauge stl-gauge--mvp"><div class="stl-gauge-dial"><svg class="stl-ring " viewBox="0 0 120 120"><circle class="stl-ring-bg" cx="60" cy="60" r="52"/><circle class="stl-ring-fg" cx="60" cy="60" r="52" data-seg="1" stroke="url(#stlGold)"/></svg><b data-stl-count="1">0</b></div><span>MVP واحد للموسم</span></div>
+      <div class="stl-gauge"><div class="stl-gauge-dial"><svg class="stl-ring " viewBox="0 0 120 120"><circle class="stl-ring-bg" cx="60" cy="60" r="52"/><circle class="stl-ring-fg" cx="60" cy="60" r="52" data-seg="3" stroke="url(#stlBlue)"/></svg><b data-stl-count="3">0</b></div><span>ثلاث جولات</span></div><div class="stl-gauge"><div class="stl-gauge-dial"><svg class="stl-ring " viewBox="0 0 120 120"><circle class="stl-ring-bg" cx="60" cy="60" r="52"/><circle class="stl-ring-fg" cx="60" cy="60" r="52" data-seg="2" stroke="url(#stlBlue)"/></svg><b data-stl-count="2">0</b></div><span>مؤتمران</span></div><div class="stl-gauge stl-gauge--mvp"><div class="stl-gauge-dial"><svg class="stl-ring " viewBox="0 0 120 120"><circle class="stl-ring-bg" cx="60" cy="60" r="52"/><circle class="stl-ring-fg" cx="60" cy="60" r="52" data-seg="1" stroke="url(#stlGold)"/></svg><b data-stl-count="1">0</b></div><span>وبطل واحد للموسم</span></div>
       <svg width="0" height="0" style="position:absolute"><defs>
         <linearGradient id="stlBlue" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9DB9FF"/><stop offset="1" stop-color="#1F5EFF"/></linearGradient>
         <linearGradient id="stlGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF1C4"/><stop offset="1" stop-color="#E0A93A"/></linearGradient>
@@ -907,18 +952,19 @@
 
     <div class="stl-ov-grid">
       <div class="stl-ov-copy stl-glass stl-spot" data-aos="fade-up">
-        <p>من 5 أكتوبر حتى 31 ديسمبر 2026، يُقام العرض الترويجي على ثلاث جولات موزعة بين المؤتمر الشرقي (الشرق الأوسط وشمال أفريقيا وآسيا) والمؤتمر الغربي (الاتحاد الأوروبي وأمريكا الشمالية وأمريكا اللاتينية). معدل ربحك يحدد ترتيبك في كل جولة لتجمع النقاط وتنافس على الجوائز النقدية. وتتراكم النقاط طوال الموسم – وبعد الجولة 3، يُتوَّج أصحاب أعلى ثلاثة مجاميع نقاط عبر المؤتمرين بألقاب MVP الموسم والوصيف والمركز الثالث.</p>
+        <p>يستمر الدوري <strong>من 5 أكتوبر حتى 31 ديسمبر 2026</strong>، ويتكوّن من <strong>ثلاث جولات</strong> موزعة بين مؤتمرين: <strong>المؤتمر الشرقي</strong> الذي يشمل الشرق الأوسط وشمال أفريقيا وآسيا، و<strong>المؤتمر الغربي</strong> الذي يشمل الاتحاد الأوروبي وأمريكا الشمالية وأمريكا اللاتينية.</p>
+        <p>في كل جولة، يحدد معدل ربحك ترتيبك على لوحة المتصدرين، لتجمع النقاط وتنافس على الجوائز النقدية. وتتراكم نقاطك طوال الموسم، وبعد انتهاء الجولة الثالثة، يحصل أصحاب أعلى ثلاثة أرصدة من النقاط في كلا المؤتمرين على المركز الأول في الموسم (MVP)، والمركز الثاني، والمركز الثالث.</p>
       </div>
       <div class="stl-split" data-aos="fade-up" data-aos-delay="100" aria-hidden="true">
         <div class="stl-half stl-half--e">
           <span class="stl-half-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.5 3.6 5.3 3.6 8.5s-1.2 6-3.6 8.5M12 3.5C9.6 6 8.4 8.8 8.4 12s1.2 6 3.6 8.5"/></svg></span>
           <b>المؤتمر الشرقي</b><span>الشرق الأوسط وشمال أفريقيا وآسيا</span>
-          <i class="stl-pulse" style="left:68%;top:38%"></i><i class="stl-pulse" style="left:80%;top:56%;animation-delay:-.8s"></i>
+          <i class="stl-pulse" style="right:68%;top:38%"></i><i class="stl-pulse" style="right:80%;top:56%;animation-delay:-.8s"></i>
         </div>
         <div class="stl-half stl-half--w">
           <span class="stl-half-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.5 3.6 5.3 3.6 8.5s-1.2 6-3.6 8.5M12 3.5C9.6 6 8.4 8.8 8.4 12s1.2 6 3.6 8.5"/></svg></span>
           <b>المؤتمر الغربي</b><span>الاتحاد الأوروبي وأمريكا الشمالية وأمريكا اللاتينية</span>
-          <i class="stl-pulse" style="left:26%;top:40%;animation-delay:-.4s"></i><i class="stl-pulse" style="left:40%;top:62%;animation-delay:-1.2s"></i>
+          <i class="stl-pulse" style="right:26%;top:40%;animation-delay:-.4s"></i><i class="stl-pulse" style="right:40%;top:62%;animation-delay:-1.2s"></i>
         </div>
         <span class="stl-split-vs">&amp;</span>
       </div>
@@ -950,9 +996,9 @@
     <div class="stl-tl">
       <div class="stl-tl-rail" aria-hidden="true"><i data-stl-rail></i></div>
       <ol class="stl-tl-list" data-stl-cal>
-      <li class="stl-sess" data-aos="fade-up" data-aos-delay="0"><span class="stl-sess-num" aria-hidden="true">01</span><span class="stl-sess-node" aria-hidden="true"></span><b>الجولة 1</b><span class="stl-sess-d">5-31 أكتوبر 2026</span><span class="stl-sess-live" aria-hidden="true">مباشر</span></li>
-      <li class="stl-sess" data-aos="fade-up" data-aos-delay="150"><span class="stl-sess-num" aria-hidden="true">02</span><span class="stl-sess-node" aria-hidden="true"></span><b>الجولة 2</b><span class="stl-sess-d">1-30 نوفمبر 2026</span><span class="stl-sess-live" aria-hidden="true">مباشر</span></li>
-      <li class="stl-sess" data-aos="fade-up" data-aos-delay="300"><span class="stl-sess-num" aria-hidden="true">03</span><span class="stl-sess-node" aria-hidden="true"></span><b>الجولة 3</b><span class="stl-sess-d">1-31 ديسمبر 2026</span><span class="stl-sess-live" aria-hidden="true">مباشر</span></li>
+      <li class="stl-sess" data-aos="fade-up" data-aos-delay="0"><span class="stl-sess-num" aria-hidden="true">01</span><span class="stl-sess-node" aria-hidden="true"></span><b>الجولة 1</b><span class="stl-sess-d">من 5 إلى 31 أكتوبر 2026</span><span class="stl-sess-live" aria-hidden="true">مباشر</span></li>
+      <li class="stl-sess" data-aos="fade-up" data-aos-delay="150"><span class="stl-sess-num" aria-hidden="true">02</span><span class="stl-sess-node" aria-hidden="true"></span><b>الجولة 2</b><span class="stl-sess-d">من 1 إلى 30 نوفمبر 2026</span><span class="stl-sess-live" aria-hidden="true">مباشر</span></li>
+      <li class="stl-sess" data-aos="fade-up" data-aos-delay="300"><span class="stl-sess-num" aria-hidden="true">03</span><span class="stl-sess-node" aria-hidden="true"></span><b>الجولة 3</b><span class="stl-sess-d">من 1 إلى 31 ديسمبر 2026</span><span class="stl-sess-live" aria-hidden="true">مباشر</span></li>
       </ol>
     </div>
   </div>
@@ -963,7 +1009,7 @@
      1. change the date in <time> below
      2. edit the LEADERBOARD DATA block under this section: one ["Client Name", points] line per client,
         already in rank order, for "east" and "west". Add as many lines as the full leaderboard needs.
-     The top-10 tables, the blurred preview rows and the "View Full Leaderboard" popup are all built from it.
+     The top-10 tables, the blurred preview rows and the "عرض لوحة الصدارة كاملة   " popup are all built from it.
      Keep client names masked as agreed with compliance (e.g. "A***d K."). Empty data shows "—". -->
 <section class="section stl-lb" id="leaderboard" aria-labelledby="stl-lb-title">
   <div class="container">
@@ -977,7 +1023,7 @@
         <tbody data-stl-lb-top="east"><tr><td class="lb-no"><span>1</span></td><td class="lb-name">&mdash;</td><td class="lb-pts">&mdash;</td></tr><tr><td class="lb-no"><span>2</span></td><td class="lb-name">&mdash;</td><td class="lb-pts">&mdash;</td></tr><tr><td class="lb-no"><span>3</span></td><td class="lb-name">&mdash;</td><td class="lb-pts">&mdash;</td></tr><tr><td class="lb-no"><span>4</span></td><td class="lb-name">&mdash;</td><td class="lb-pts">&mdash;</td></tr><tr><td class="lb-no"><span>5</span></td><td class="lb-name">&mdash;</td><td class="lb-pts">&mdash;</td></tr><tr><td class="lb-no"><span>6</span></td><td class="lb-name">&mdash;</td><td class="lb-pts">&mdash;</td></tr><tr><td class="lb-no"><span>7</span></td><td class="lb-name">&mdash;</td><td class="lb-pts">&mdash;</td></tr><tr><td class="lb-no"><span>8</span></td><td class="lb-name">&mdash;</td><td class="lb-pts">&mdash;</td></tr><tr><td class="lb-no"><span>9</span></td><td class="lb-name">&mdash;</td><td class="lb-pts">&mdash;</td></tr><tr><td class="lb-no"><span>10</span></td><td class="lb-name">&mdash;</td><td class="lb-pts">&mdash;</td></tr></tbody>
       </table>
       <div class="stl-lb-more" aria-hidden="true"><table class="stl-lb-table stl-lb-ghost"><tbody data-stl-lb-ghost="east"></tbody></table></div>
-      <button type="button" class="stl-lb-btn" data-stl-lb-open="east">عرض لوحة الصدارة كاملة <svg><use href="#i-arrow-right"/></svg></button>
+      <button type="button" class="stl-lb-btn" data-stl-lb-open="east">عرض لوحة الصدارة كاملة    <svg><use href="#i-arrow-right"/></svg></button>
     </div>
     <div class="stl-lb-card stl-lb-card--w" data-aos="fade-up" data-stl-lb-card="west">
       <div class="stl-lb-head"><b>المؤتمر الغربي</b><span>الاتحاد الأوروبي وأمريكا الشمالية وأمريكا اللاتينية</span></div>
@@ -986,7 +1032,7 @@
         <tbody data-stl-lb-top="west"><tr><td class="lb-no"><span>1</span></td><td class="lb-name">&mdash;</td><td class="lb-pts">&mdash;</td></tr><tr><td class="lb-no"><span>2</span></td><td class="lb-name">&mdash;</td><td class="lb-pts">&mdash;</td></tr><tr><td class="lb-no"><span>3</span></td><td class="lb-name">&mdash;</td><td class="lb-pts">&mdash;</td></tr><tr><td class="lb-no"><span>4</span></td><td class="lb-name">&mdash;</td><td class="lb-pts">&mdash;</td></tr><tr><td class="lb-no"><span>5</span></td><td class="lb-name">&mdash;</td><td class="lb-pts">&mdash;</td></tr><tr><td class="lb-no"><span>6</span></td><td class="lb-name">&mdash;</td><td class="lb-pts">&mdash;</td></tr><tr><td class="lb-no"><span>7</span></td><td class="lb-name">&mdash;</td><td class="lb-pts">&mdash;</td></tr><tr><td class="lb-no"><span>8</span></td><td class="lb-name">&mdash;</td><td class="lb-pts">&mdash;</td></tr><tr><td class="lb-no"><span>9</span></td><td class="lb-name">&mdash;</td><td class="lb-pts">&mdash;</td></tr><tr><td class="lb-no"><span>10</span></td><td class="lb-name">&mdash;</td><td class="lb-pts">&mdash;</td></tr></tbody>
       </table>
       <div class="stl-lb-more" aria-hidden="true"><table class="stl-lb-table stl-lb-ghost"><tbody data-stl-lb-ghost="west"></tbody></table></div>
-      <button type="button" class="stl-lb-btn" data-stl-lb-open="west">عرض لوحة الصدارة كاملة <svg><use href="#i-arrow-right"/></svg></button>
+      <button type="button" class="stl-lb-btn" data-stl-lb-open="west">عرض لوحة الصدارة كاملة    <svg><use href="#i-arrow-right"/></svg></button>
     </div>
     </div>
   </div>
@@ -1130,7 +1176,7 @@
     <h2 class="stl-h2 stl-h2--light stl-center" data-aos="fade-up">جوائز الموسم</h2>
     <div class="stl-podium">
       <div class="stl-pod stl-pod--2" data-aos="fade-up" data-aos-delay="150">
-        <div class="stl-pod-head"><b class="stl-pod-t">وصيف الموسم</b><span class="stl-pod-v"><em>20,000</em> USD</span></div>
+        <div class="stl-pod-head"><b class="stl-pod-t">المركز الثاني في الموسم</b><span class="stl-pod-v"><em data-stl-count="20000" data-stl-fmt>20,000</em> دولار أمريكي</span></div>
         <div class="stl-pod-block" aria-hidden="true"><span class="stl-pod-cap"></span><span class="stl-pod-face">2</span></div>
       </div>
       <div class="stl-pod stl-pod--1" data-aos="fade-up">
@@ -1138,45 +1184,45 @@
         <span class="stl-spark" aria-hidden="true" style="left:12%;top:8%"></span><span class="stl-spark" aria-hidden="true" style="right:10%;top:18%;animation-delay:-.9s"></span><span class="stl-spark" aria-hidden="true" style="left:22%;top:34%;animation-delay:-1.6s"></span><span class="stl-spark" aria-hidden="true" style="right:20%;top:2%;animation-delay:-2.3s"></span>
         <div class="stl-pod-head">
           <span class="stl-pod-crown" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 8l4.2 3.6L12 5l4.3 6.6L20.5 8l-1.8 10.5H5.3z"/><path d="M5.3 18.5h13.4"/></svg></span>
-          <b class="stl-pod-t">MVP الموسم</b><span class="stl-pod-v"><em>50,000</em> USD</span>
+          <b class="stl-pod-t">المركز الأول في الموسم (MVP)</b><span class="stl-pod-v"><em data-stl-count="50000" data-stl-fmt>50,000</em> دولار أمريكي</span>
         </div>
         <div class="stl-pod-block" aria-hidden="true"><span class="stl-pod-cap"></span><span class="stl-pod-face">1</span></div>
       </div>
       <div class="stl-pod stl-pod--3" data-aos="fade-up" data-aos-delay="300">
-        <div class="stl-pod-head"><b class="stl-pod-t">المركز الثالث في الموسم</b><span class="stl-pod-v"><em>10,000</em> USD</span></div>
+        <div class="stl-pod-head"><b class="stl-pod-t">المركز الثالث في الموسم</b><span class="stl-pod-v"><em data-stl-count="10000" data-stl-fmt>10,000</em> دولار أمريكي</span></div>
         <div class="stl-pod-block" aria-hidden="true"><span class="stl-pod-cap"></span><span class="stl-pod-face">3</span></div>
       </div>
     </div>
 
     <div class="stl-prize-grid">
       <div class="stl-pts stl-dglass" data-stl-pts data-aos="fade-up">
-        <h3>مكافآت النقاط (للعملاء في المركز الرابع فما دون في ترتيب الموسم؛ تُمنح جائزة أعلى مستوى يتم بلوغه فقط)</h3>
+        <h3>مكافآت النقاط (تُمنح للعملاء الذين يحتلون المركز الرابع وما بعده في الترتيب النهائي للموسم، مع منح مكافأة واحدة فقط وفق أعلى مستوى من النقاط يتم بلوغه.)</h3>
         <div class="stl-pts-meter" aria-hidden="true"><b data-stl-pts-val>40</b></div>
         <label class="sr-only" for="stlPts">النقاط</label>
         <input class="stl-range" id="stlPts" type="range" min="0" max="100" step="1" value="40">
         <ul class="stl-tiers">
-          <li data-tier="20"><b>+20 نقطة:</b> رصيد تداول بقيمة 10 USD</li>
-          <li data-tier="30"><b>+30 نقطة:</b> مجموعة هدايا STARTRADER المميزة</li>
-          <li data-tier="50"><b>+50 نقطة:</b> رصيد تداول بقيمة 100 USD</li>
-          <li data-tier="65"><b>+65 نقطة:</b> iPhone 18 Pro Max</li>
-          <li data-tier="75"><b>+75 نقطة:</b> iPhone Duo</li>
+          <li data-tier="20"><b>20+ نقطة:</b> رصيد تداول بقيمة 10 دولارات أمريكية</li>
+          <li data-tier="30"><b>30+ نقطة:</b> مجموعة هدايا مميزة من STARTRADER</li>
+          <li data-tier="50"><b>50+ نقطة:</b> رصيد تداول بقيمة 100 دولار أمريكي</li>
+          <li data-tier="65"><b>65+ نقطة:</b> iPhone 18 Pro Max</li>
+          <li data-tier="75"><b>75+ نقطة:</b> iPhone Duo</li>
           </ul>
       </div>
 
       <div class="stl-prize-side">
         <div class="stl-sp stl-dglass" data-aos="fade-up" data-aos-delay="100">
-          <h3>جوائز الجولات (أفضل 10 في كل مؤتمر، في كل جولة)</h3>
+          <h3>جوائز الجولة (أفضل 10 متداولين في كل مجموعة، في كل جولة)</h3>
           <div class="stl-medals">
-            <div class="stl-medal stl-medal--1 stl-tilt"><i aria-hidden="true">1</i><b>الأول</b> <span>5,000 USD</span></div>
-            <div class="stl-medal stl-medal--2 stl-tilt"><i aria-hidden="true">2</i><b>الثاني</b> <span>3,000 USD</span></div>
-            <div class="stl-medal stl-medal--3 stl-tilt"><i aria-hidden="true">3</i><b>الثالث</b> <span>1,000 USD</span></div>
-            <div class="stl-medal stl-medal--4 stl-tilt"><i aria-hidden="true">4–5</i><b>الرابع والخامس</b> <span>500 USD لكل منهما</span></div>
-            <div class="stl-medal stl-medal--5 stl-tilt"><i aria-hidden="true">6–10</i><b>من السادس إلى العاشر</b> <span>100 USD لكل منهم</span></div>
+            <div class="stl-medal stl-medal--1 stl-tilt"><i aria-hidden="true">1</i><b>المركز الأول</b> <span>5,000 دولار أمريكي</span></div>
+            <div class="stl-medal stl-medal--2 stl-tilt"><i aria-hidden="true">2</i><b>المركز الثاني</b> <span>3,000 دولار أمريكي</span></div>
+            <div class="stl-medal stl-medal--3 stl-tilt"><i aria-hidden="true">3</i><b>المركز الثالث</b> <span>1,000 دولار أمريكي</span></div>
+            <div class="stl-medal stl-medal--4 stl-tilt"><i aria-hidden="true">4–5</i><b>المركزان الرابع–الخامس</b> <span>500 دولار أمريكي لكل فائز</span></div>
+            <div class="stl-medal stl-medal--5 stl-tilt"><i aria-hidden="true">6–10</i><b>المراكز السادس–العاشر</b> <span>100 دولار أمريكي لكل فائز</span></div>
             </div>
         </div>
         <div class="stl-bonus" data-aos="fade-up" data-aos-delay="200">
           <span class="stl-bonus-ic" aria-hidden="true"><svg><use href="#i-bolt"/></svg></span>
-          <p><b>مسابقة الثلاث نقاط:</b> نافذة مفاجئة لمدة 3 أيام لاحتساب نقاط إضافية قد تُفتح خلال إحدى الجولات (غير مضمونة في كل جولة)، يفوز فيها أعلى 3 من حيث حجم التداول في كل مؤتمر بنقاط إضافية وجائزة.</p>
+          <p><b>مسابقة النقاط الثلاثية:</b> قد تتضمن إحدى الجولات فرصة إضافية تمتد لمدة 3 أيام (وقد لا تُقام في كل جولة)، يمكنك خلالها كسب نقاط إضافية والتنافس على جائزة مخصصة لأفضل 3 متداولين من حيث حجم التداول في كل مجموعة.</p>
         </div>
       </div>
     </div>
@@ -1186,13 +1232,13 @@
 <!-- ============ WHO CAN JOIN ============ -->
 <section class="section stl-who" id="eligibility" aria-labelledby="stl-who-title">
   <div class="container">
-    <h2 class="stl-h2 stl-center" id="stl-who-title" data-aos="fade-up">من يحق له المشاركة</h2>
+    <h2 class="stl-h2 stl-center" id="stl-who-title" data-aos="fade-up">من يمكنه المشاركة؟</h2>
     <ul class="stl-who-grid">
-      <li class="stl-who-card stl-glass stl-spot is-yes" data-aos="fade-up"><span class="stl-who-ic" aria-hidden="true"><svg><use href="#i-check"/></svg></span><p>العرض متاح لعملاء STARTRADER أصحاب الحسابات الحقيقية.</p></li>
-      <li class="stl-who-card stl-glass stl-spot" data-aos="fade-up" data-aos-delay="100"><span class="stl-who-ic" aria-hidden="true"><svg><use href="#i-user"/></svg></span><div class="stl-who-tx"><p>حساب تداول واحد لكل عميل، وقد تُدمج التسجيلات أو الحسابات المتعددة أو تُستبعد.</p></div></li>
-      <li class="stl-who-card stl-glass stl-spot" data-aos="fade-up" data-aos-delay="200"><span class="stl-who-ic" aria-hidden="true"><svg><use href="#i-globe"/></svg></span><p>يُحدَّد مؤتمرك (الشرقي: الشرق الأوسط وشمال أفريقيا وآسيا - الغربي: الاتحاد الأوروبي وأمريكا الشمالية وأمريكا اللاتينية) بناءً على منطقة التداول المرتبطة بحسابك لدى STARTRADER، وفق تقدير STARTRADER وحدها.</p></li>
+      <li class="stl-who-card stl-glass stl-spot is-yes" data-aos="fade-up"><span class="stl-who-ic" aria-hidden="true"><svg><use href="#i-check"/></svg></span><p>المشاركة متاحة لعملاء STARTRADER أصحاب الحسابات الحقيقية.</p></li>
+      <li class="stl-who-card stl-glass stl-spot" data-aos="fade-up" data-aos-delay="100"><span class="stl-who-ic" aria-hidden="true"><svg><use href="#i-user"/></svg></span><div class="stl-who-tx"><p><strong>حساب واحد في كل مرة:</strong> يمكن لكل عميل المشاركة باستخدام حساب ترويجي نشط واحد فقط في الوقت نفسه. وسيتم استبعاد أي حسابات مكررة أو حسابات متعددة تشارك بالتزامن.</p><p><strong>إعادة المشاركة بعد خسارة الحساب:</strong> في حال الوصول إلى مستوى الإغلاق الإجباري (Stop-Out)، يمكن إغلاق الحساب المستنفد رسمياً والتقدم بحساب جديد للمشاركة في الجولات الحالية أو اللاحقة، وفق الشروط المعمول بها.</p></div></li>
+      <li class="stl-who-card stl-glass stl-spot" data-aos="fade-up" data-aos-delay="200"><span class="stl-who-ic" aria-hidden="true"><svg><use href="#i-globe"/></svg></span><p><strong>تحديد المؤتمر:</strong> يتم توزيع المشاركين على المؤتمر الشرقي (الشرق الأوسط وشمال أفريقيا وآسيا) أو المؤتمر الغربي (الاتحاد الأوروبي وأمريكا الشمالية وأمريكا اللاتينية) وفق منطقة التداول المسجلة في حساب STARTRADER، وذلك وفقاً لتقدير STARTRADER وحدها.</p></li>
     </ul>
-    <p class="stl-who-note" data-aos="fade-up">لا يحق المشاركة لموظفي STARTRADER وعملاء الوسطاء المعرّفين (IB) والعملاء المستبعدين بموجب سياسة الأهلية الترويجية المعتمدة لدى STARTRADER.</p>
+    <p class="stl-who-note" data-aos="fade-up">لا يحق لموظفي STARTRADER، أو عملاء الوسطاء المعرّفين (IB)، أو العملاء المستبعدين وفق شروط الأهلية المعتمدة للعروض الترويجية لدى STARTRADER المشاركة.</p>
   </div>
 </section>
 
@@ -1201,16 +1247,18 @@
   <div class="container">
     <div class="stl-cta-card" data-aos="fade-up">
       <span class="stl-cta-rings" aria-hidden="true"><i></i><i></i><i></i></span>
-      <h2 id="stl-cta-title">هل أنت مستعد لخوض طريق المجد؟<br><span>اشترك في جولتك الأولى</span></h2>
+      <h2 id="stl-cta-title">مستعد لبدء رحلتك نحو اللقب؟<br><span>سجّل للمشاركة في جولتك الأولى.</span></h2>
       <div class="stl-cta-act">
         <a class="stl-btn magnetic" href="https://myaccount.startrader.com" rel="noopener">اشترك عبر بوابة العملاء <svg><use href="#i-arrow-right"/></svg></a>
-        <a class="stl-btn stl-btn--ghost" href="https://www.startrader.com/pdf/pmt314-ar.pdf" target="_blank" rel="noopener">اقرأ الشروط والأحكام كاملة <svg><use href="#i-arrow-right"/></svg></a>
+        <a class="stl-btn stl-btn--ghost" href="https://www.startrader.com/pdf/pmt314-ar.pdf" target="_blank" rel="noopener">اطّلع على الشروط والأحكام كاملة <svg><use href="#i-arrow-right"/></svg></a>
       </div>
-      <p class="stl-cta-note">المشاركة اختيارية، ويسري شرط الاشتراك في كل جولة والحد الأدنى للإيداع المؤهل وسائر الشروط والأحكام.</p>
+      <p class="stl-cta-note">المشاركة اختيارية. ويخضع الاشتراك في كل جولة للحد الأدنى للإيداع المؤهل، بالإضافة إلى جميع الشروط والأحكام الأخرى المعمول بها.</p>
     </div>
     <div class="stl-fine" data-aos="fade-up">
-      <p>تحذير المخاطر: يُقدَّم هذا العرض الترويجي لأغراض تعليمية وتسويقية فقط، ولا يُشكّل نصيحة استثمارية أو توجيهًا ماليًا أو توصية بالمشاركة في أي استراتيجية أو نشاط تداول. ينطوي تداول الفوركس وعقود الفروقات على مستوى عالٍ من المخاطر، وقد لا يكون مناسبًا لجميع المستثمرين. والأداء السابق، بما في ذلك ترتيب الجولات أو لوحات الترتيب، لا يُعدّ مؤشرًا على النتائج المستقبلية. يجب على العملاء التأكد من فهمهم الكامل للمخاطر المترتبة، والحصول على استشارة مهنية مستقلة عند الحاجة، وعدم التداول إلا بأموال يمكنهم تحمّل خسارتها. تعكس الإشارات إلى NBA وPorsche Carrera Cup Middle East الشراكات الرسمية لـSTARTRADER، ولا تُعدّ تأييدًا لنتائج التداول من جانب NBA أو Porsche أو أي جهة تابعة لهما.</p>
-      <p>يُعدّ هذا العرض الترويجي لاغيًا حيثما يحظره القانون أو اللوائح المحلية المعمول بها.</p>
+      <p>تحذير المخاطر: يُقدَّم هذا العرض لأغراض تعليمية وتسويقية فقط، ولا يُعد نصيحة استثمارية أو توجيهاً مالياً أو توصية بالمشاركة في أي استراتيجية أو نشاط تداول. ينطوي تداول الفوركس وعقود الفروقات على مستوى مرتفع من المخاطر وقد لا يكون مناسباً لجميع المستثمرين. ولا يُعد الأداء السابق، بما في ذلك النتائج المحققة خلال الجولات أو المراكز على لوحة الترتيب، مؤشراً على النتائج المستقبلية.</p>
+      <p>ينبغي للعملاء التأكد من فهمهم الكامل للمخاطر المرتبطة بالتداول، والحصول على استشارة مهنية مستقلة عند الحاجة، وعدم التداول إلا بأموال يمكنهم تحمل خسارتها.</p>
+      <p>تأتي الإشارة إلى NBA وPorsche Carrera Cup Middle East في إطار الشراكات الرسمية لـ STARTRADER، ولا تعني تأييد NBA أو Porsche أو أي من الجهات التابعة لهما لأي نتائج مرتبطة بالتداول.</p>
+      <p>يُعد هذا العرض غير ساري في أي دولة أو منطقة تحظره فيها القوانين أو اللوائح المحلية المعمول بها.</p>
     </div>
   </div>
 </section>
