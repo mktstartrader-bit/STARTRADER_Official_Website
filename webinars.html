@@ -410,6 +410,16 @@
   .wb-hero-banner{bottom:auto;height:auto;aspect-ratio:1200/1778;object-position:center top}
   .wb-hero-scrim--art{background:linear-gradient(180deg,#020612 0%,#020612 calc(var(--nav-h) + 2px),rgba(2,6,18,0) calc(var(--nav-h) + 40px)),linear-gradient(0deg,#020612 0%,#020612 30%,rgba(2,6,18,.86) 42%,rgba(2,6,18,0) 60%)}
 }
+/* mobile hero: copy first, art below (team rule 2026-10-07) */
+@media (max-width:980px){
+  .wb-hero{display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;min-height:0!important;height:auto!important;aspect-ratio:auto!important;padding:calc(var(--nav-h,70px) + 36px) 0 0!important;gap:28px}
+  .wb-hero::before,.wb-hero::after{display:none!important}
+  .wb-hero > picture{display:block!important;position:relative!important;inset:auto!important;top:auto!important;right:auto!important;bottom:auto!important;left:auto!important;order:2;width:100%!important;max-width:none!important;height:auto!important;aspect-ratio:auto!important;margin:0!important;transform:none!important;-webkit-mask-image:none!important;mask-image:none!important;z-index:0!important;flex:none}
+  .wb-hero > picture::before,.wb-hero > picture::after{display:none!important}
+  .wb-hero > picture img,.wb-hero > picture video{display:block!important;position:static!important;width:100%!important;max-width:none!important;height:auto!important;aspect-ratio:auto!important;object-fit:cover;object-position:center top;transform:none!important;-webkit-mask-image:none!important;mask-image:none!important}
+  .wb-hero > .container{order:1;position:relative;z-index:2}
+}
+@media (max-width:980px){.wb-hero > .acct-hero-bg,.wb-hero > .pf-hero-bg,.wb-hero > .wb-hero-scrim,.wb-hero > .ct-hero-veil,.wb-hero > .hero-glow,.wb-hero > .hero-shape,.wb-hero > .pm-hero-video,.wb-hero > .wb-hero-video,.wb-hero > .acct-hero-video{display:none!important}}
 </style>
 
   <!-- Structured data — breadcrumb -->

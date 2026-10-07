@@ -298,6 +298,16 @@
 .scc-tab-ind,.scc-side li i,.scc-mv-av{background:linear-gradient(135deg,#3D7BFF,#0047BB)}
 .scc-side--m li i{background:linear-gradient(135deg,#8FB3FF,#4C7BEA)}
 .scc-play{background:rgba(31,94,255,.95)}
+/* mobile hero: copy first, art below (team rule 2026-10-07) */
+@media (max-width:980px){
+  .scc-hero{display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;min-height:0!important;height:auto!important;aspect-ratio:auto!important;padding:calc(var(--nav-h,70px) + 36px) 0 0!important;gap:28px}
+  .scc-hero::before,.scc-hero::after{display:none!important}
+  .scc-hero > .scc-hero-bg{display:block!important;position:relative!important;inset:auto!important;top:auto!important;right:auto!important;bottom:auto!important;left:auto!important;order:2;width:100%!important;max-width:none!important;height:auto!important;aspect-ratio:auto!important;margin:0!important;transform:none!important;-webkit-mask-image:none!important;mask-image:none!important;z-index:0!important;flex:none}
+  .scc-hero > .scc-hero-bg::before,.scc-hero > .scc-hero-bg::after{display:none!important}
+  .scc-hero > .scc-hero-bg img,.scc-hero > .scc-hero-bg video{display:block!important;position:static!important;width:100%!important;max-width:none!important;height:auto!important;aspect-ratio:auto!important;object-fit:cover;object-position:center top;transform:none!important;-webkit-mask-image:none!important;mask-image:none!important}
+  .scc-hero > .container{order:1;position:relative;z-index:2}
+}
+@media (max-width:980px){.scc-hero > .acct-hero-bg,.scc-hero > .pf-hero-bg,.scc-hero > .wb-hero-scrim,.scc-hero > .ct-hero-veil,.scc-hero > .hero-glow,.scc-hero > .hero-shape,.scc-hero > .pm-hero-video,.scc-hero > .wb-hero-video,.scc-hero > .acct-hero-video{display:none!important}}
 </style>
 </head>
 <body class="prx scc">

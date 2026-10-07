@@ -100,6 +100,16 @@
     background:linear-gradient(180deg,#03060F 0%,#03060F calc(var(--nav-h) + 2px),rgba(3,6,15,0) calc(var(--nav-h) + 40px)),
                linear-gradient(0deg,#03060F 0%,rgba(3,6,15,.86) 20%,rgba(3,6,15,0) 46%)}
 }
+/* mobile hero: copy first, art below (team rule 2026-10-07) */
+@media (max-width:980px){
+  .pf-hero--mt{display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;min-height:0!important;height:auto!important;aspect-ratio:auto!important;padding:calc(var(--nav-h,70px) + 36px) 0 0!important;gap:28px}
+  .pf-hero--mt::before,.pf-hero--mt::after{display:none!important}
+  .pf-hero--mt > picture{display:block!important;position:relative!important;inset:auto!important;top:auto!important;right:auto!important;bottom:auto!important;left:auto!important;order:2;width:100%!important;max-width:none!important;height:auto!important;aspect-ratio:auto!important;margin:0!important;transform:none!important;-webkit-mask-image:none!important;mask-image:none!important;z-index:0!important;flex:none}
+  .pf-hero--mt > picture::before,.pf-hero--mt > picture::after{display:none!important}
+  .pf-hero--mt > picture img,.pf-hero--mt > picture video{display:block!important;position:static!important;width:100%!important;max-width:none!important;height:auto!important;aspect-ratio:auto!important;object-fit:cover;object-position:center top;transform:none!important;-webkit-mask-image:none!important;mask-image:none!important}
+  .pf-hero--mt > .container{order:1;position:relative;z-index:2}
+}
+@media (max-width:980px){.pf-hero--mt > .acct-hero-bg,.pf-hero--mt > .pf-hero-bg,.pf-hero--mt > .wb-hero-scrim,.pf-hero--mt > .ct-hero-veil,.pf-hero--mt > .hero-glow,.pf-hero--mt > .hero-shape,.pf-hero--mt > .pm-hero-video,.pf-hero--mt > .wb-hero-video,.pf-hero--mt > .acct-hero-video{display:none!important}}
 </style>
 
   <script type="application/ld+json">

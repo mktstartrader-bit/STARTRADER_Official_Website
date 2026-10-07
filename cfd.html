@@ -82,7 +82,17 @@
   /* the shared sheet centres this hero's CTA on mobile; it follows the copy */
   .fx-hero .acct-hero-cta{justify-content:flex-start}
 }
-  </style>
+  /* mobile hero: copy first, art below (team rule 2026-10-07) */
+@media (max-width:980px){
+  .fx-hero{display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;min-height:0!important;height:auto!important;aspect-ratio:auto!important;padding:calc(var(--nav-h,70px) + 36px) 0 0!important;gap:28px}
+  .fx-hero::before,.fx-hero::after{display:none!important}
+  .fx-hero > picture{display:block!important;position:relative!important;inset:auto!important;top:auto!important;right:auto!important;bottom:auto!important;left:auto!important;order:2;width:100%!important;max-width:none!important;height:auto!important;aspect-ratio:auto!important;margin:0!important;transform:none!important;-webkit-mask-image:none!important;mask-image:none!important;z-index:0!important;flex:none}
+  .fx-hero > picture::before,.fx-hero > picture::after{display:none!important}
+  .fx-hero > picture img,.fx-hero > picture video{display:block!important;position:static!important;width:100%!important;max-width:none!important;height:auto!important;aspect-ratio:auto!important;object-fit:cover;object-position:center top;transform:none!important;-webkit-mask-image:none!important;mask-image:none!important}
+  .fx-hero > .container{order:1;position:relative;z-index:2}
+}
+@media (max-width:980px){.fx-hero > .acct-hero-bg,.fx-hero > .pf-hero-bg,.fx-hero > .wb-hero-scrim,.fx-hero > .ct-hero-veil,.fx-hero > .hero-glow,.fx-hero > .hero-shape,.fx-hero > .pm-hero-video,.fx-hero > .wb-hero-video,.fx-hero > .acct-hero-video{display:none!important}}
+</style>
 
   <!-- Structured data -->
   <script type="application/ld+json">

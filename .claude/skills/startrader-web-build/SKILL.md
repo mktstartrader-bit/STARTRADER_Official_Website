@@ -87,6 +87,12 @@ the shared layer must never shift under them.
   widths; never `white-space:nowrap` on translatable UI without min-width room.
 - Minimum supported viewport is **350px**. Wide content (tables, rails,
   code) scrolls inside its own container; the page never scrolls horizontally.
+- **Mobile hero order (team rule, 2026-10-07): copy first, art second.** On
+  phones and tablets the hero stacks as heading, subline, buttons, then the
+  banner image below them. Never place the art above the copy, and never
+  reserve top padding for an absolutely positioned banner. Keep the art
+  in flow (`position:relative`, natural height, `order:2`) and the copy
+  container `order:1`. Desktop keeps its side-by-side composition.
 - Heroes carry only heading, subline and one button — no background patterns.
   Cards are glassmorphic and share the one site-wide hover effect.
 

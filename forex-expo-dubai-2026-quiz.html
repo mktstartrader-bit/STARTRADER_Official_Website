@@ -439,7 +439,17 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
   .xp-steps{grid-template-columns:1fr}
   .xp-stats{flex-direction:column;align-items:flex-start}
 }
-  </style>
+  /* mobile hero: copy first, art below (team rule 2026-10-07) */
+@media (max-width:980px){
+  .xp-hero{display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;min-height:0!important;height:auto!important;aspect-ratio:auto!important;padding:calc(var(--nav-h,70px) + 36px) 0 0!important;gap:28px}
+  .xp-hero::before,.xp-hero::after{display:none!important}
+  .xp-hero > picture{display:block!important;position:relative!important;inset:auto!important;top:auto!important;right:auto!important;bottom:auto!important;left:auto!important;order:2;width:100%!important;max-width:none!important;height:auto!important;aspect-ratio:auto!important;margin:0!important;transform:none!important;-webkit-mask-image:none!important;mask-image:none!important;z-index:0!important;flex:none}
+  .xp-hero > picture::before,.xp-hero > picture::after{display:none!important}
+  .xp-hero > picture img,.xp-hero > picture video{display:block!important;position:static!important;width:100%!important;max-width:none!important;height:auto!important;aspect-ratio:auto!important;object-fit:cover;object-position:center top;transform:none!important;-webkit-mask-image:none!important;mask-image:none!important}
+  .xp-hero > .container{order:1;position:relative;z-index:2}
+}
+@media (max-width:980px){.xp-hero > .acct-hero-bg,.xp-hero > .pf-hero-bg,.xp-hero > .wb-hero-scrim,.xp-hero > .ct-hero-veil,.xp-hero > .hero-glow,.xp-hero > .hero-shape,.xp-hero > .pm-hero-video,.xp-hero > .wb-hero-video,.xp-hero > .acct-hero-video{display:none!important}}
+</style>
 
   <!-- Structured data — the expo as an event -->
   <script type="application/ld+json">

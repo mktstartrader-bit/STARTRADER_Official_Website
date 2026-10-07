@@ -69,6 +69,16 @@
 }
 .fx-cs-meter .big{font-size:clamp(22px,2.1vw,29px);white-space:nowrap}
 @media (max-width:480px){.fx-cs-meter .big{font-size:clamp(20px,6.4vw,26px)}.fx-cs-meter .big em{font-size:12px}}
+/* mobile hero: copy first, art below (team rule 2026-10-07) */
+@media (max-width:980px){
+  .pt-hero{display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;min-height:0!important;height:auto!important;aspect-ratio:auto!important;padding:calc(var(--nav-h,70px) + 36px) 0 0!important;gap:28px}
+  .pt-hero::before,.pt-hero::after{display:none!important}
+  .pt-hero > picture{display:block!important;position:relative!important;inset:auto!important;top:auto!important;right:auto!important;bottom:auto!important;left:auto!important;order:2;width:100%!important;max-width:none!important;height:auto!important;aspect-ratio:auto!important;margin:0!important;transform:none!important;-webkit-mask-image:none!important;mask-image:none!important;z-index:0!important;flex:none}
+  .pt-hero > picture::before,.pt-hero > picture::after{display:none!important}
+  .pt-hero > picture img,.pt-hero > picture video{display:block!important;position:static!important;width:100%!important;max-width:none!important;height:auto!important;aspect-ratio:auto!important;object-fit:cover;object-position:center top;transform:none!important;-webkit-mask-image:none!important;mask-image:none!important}
+  .pt-hero > .container{order:1;position:relative;z-index:2}
+}
+@media (max-width:980px){.pt-hero > .acct-hero-bg,.pt-hero > .pf-hero-bg,.pt-hero > .wb-hero-scrim,.pt-hero > .ct-hero-veil,.pt-hero > .hero-glow,.pt-hero > .hero-shape,.pt-hero > .pm-hero-video,.pt-hero > .wb-hero-video,.pt-hero > .acct-hero-video{display:none!important}}
 </style>
 
   <!-- Structured data — breadcrumb -->
