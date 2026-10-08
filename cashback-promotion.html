@@ -41,25 +41,25 @@
 /* =================================================================
    THE CASHBACK PROMOTION (PMT331) — PREMIUM PROMOTIONS FAMILY
    A deep-navy hero with the studio render, floating bronze coins and
-   turquoise light; a tier ticker; a proof strip with the headline
+   royal-blue light; a tier ticker; a proof strip with the headline
    figure, date pills and a live countdown; the shared How It Works
    stepper; the tier ladder that grows on scroll beside a draggable
    lots machine; a frosted eligibility card; a closing call with the
    wallet emblem. Copy is the Landing Page sheet, column C, verbatim.
    ================================================================= */
 .cbp{
-  --tq:#16E9D7;--tq-2:#0FB7A9;--tq-3:#9FF5EE;
-  --tq-face:linear-gradient(135deg,#C9FBF6 0%,#16E9D7 42%,#0FB7A9 100%);
-  --tq-line:rgba(22,233,215,.3);--tq-wash:rgba(22,233,215,.1);
+  --ac:#2A72FF;--ac-2:#0047BB;--ac-3:#9CC0FF;
+  --ac-face:linear-gradient(135deg,#DCE9FF 0%,#7FB2FF 40%,#2A72FF 100%);
+  --ac-line:rgba(42,114,255,.38);--ac-wash:rgba(42,114,255,.14);
   --bronze:#AC7C59;--bronze-2:#E8B48A;
   --bronze-face:linear-gradient(135deg,#F6DCC4 0%,#E0A878 34%,#AC7C59 64%,#F0C9A6 100%);
   --ink-1:#00102D;--ink-2:#000B20;--ink-0:#070B2A;
 }
 /* ---------- promo primitives ---------- */
 .cbp-spark{position:absolute;width:var(--sp,18px);height:var(--sp,18px);pointer-events:none;
-  background:var(--sp-c,#9FF5EE);
+  background:var(--sp-c,#9CC0FF);
   clip-path:polygon(50% 0%,59% 41%,100% 50%,59% 59%,50% 100%,41% 59%,0% 50%,41% 41%);
-  filter:drop-shadow(0 0 6px rgba(22,233,215,.6));
+  filter:drop-shadow(0 0 6px rgba(42,114,255,.6));
   animation:cbpTwinkle var(--sp-dur,3.4s) ease-in-out infinite var(--sp-delay,0s)}
 @keyframes cbpTwinkle{0%,100%{transform:scale(.55) rotate(0);opacity:.35}50%{transform:scale(1) rotate(35deg);opacity:1}}
 .cbp-shine{position:absolute;inset:0;overflow:hidden;border-radius:inherit;pointer-events:none}
@@ -78,7 +78,7 @@
 .cbp-hero{position:relative;isolation:isolate;overflow:hidden;margin-top:calc(-1 * var(--nav-h));
   min-height:min(820px,calc(100vh - var(--topbar-h,44px)));display:flex;align-items:center;color:#fff;
   padding:calc(var(--nav-h) + 72px) 0 96px;
-  background:radial-gradient(60% 56% at 78% 36%,rgba(22,233,215,.16),transparent 62%),linear-gradient(180deg,var(--ink-0),var(--ink-2))}
+  background:radial-gradient(60% 56% at 78% 36%,rgba(42,114,255,.16),transparent 62%),linear-gradient(180deg,var(--ink-0),var(--ink-2))}
 .cbp-hero > picture{position:absolute;inset:0;z-index:-2;display:block}
 .cbp-hero > picture img{width:100%;height:100%;object-fit:cover;object-position:76% center;display:block;will-change:transform}
 @media (min-width:981px){.cbp-hero > picture img{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 34%);mask-image:linear-gradient(90deg,transparent 0,#000 34%)}}
@@ -88,23 +88,23 @@
 .cbp-hero > .container{position:relative;z-index:2}
 .cbp-hero-copy{max-width:620px}
 .cbp-pill{display:inline-flex;align-items:center;gap:9px;padding:8px 16px;border-radius:40px;
-  font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--tq-3);
-  background:var(--tq-wash);border:1px solid var(--tq-line);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
-.cbp-pill i{width:7px;height:7px;border-radius:50%;background:var(--tq);animation:cbpBeat 1.6s ease-in-out infinite}
+  font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--ac-3);
+  background:var(--ac-wash);border:1px solid var(--ac-line);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.cbp-pill i{width:7px;height:7px;border-radius:50%;background:var(--ac);animation:cbpBeat 1.6s ease-in-out infinite}
 .cbp-pill svg{width:15px;height:15px}
 @keyframes cbpBeat{0%,100%{opacity:.35;transform:scale(.8)}50%{opacity:1;transform:scale(1.15)}}
 .cbp-h1{margin-top:22px;font-size:clamp(40px,5.4vw,78px);font-weight:800;letter-spacing:-.045em;line-height:1.02;color:#fff}
 .cbp-h1 span{display:block}
-.cbp-h1 .lit{padding-bottom:.08em;color:transparent;background:var(--tq-face);-webkit-background-clip:text;background-clip:text;
-  filter:drop-shadow(0 10px 30px rgba(22,233,215,.25))}
+.cbp-h1 .lit{padding-bottom:.08em;color:transparent;background:var(--ac-face);-webkit-background-clip:text;background-clip:text;
+  filter:drop-shadow(0 10px 30px rgba(42,114,255,.25))}
 .cbp-lead{margin-top:22px;max-width:50ch;font-size:clamp(15.5px,1.55vw,18px);line-height:1.72;color:#C9D4EE}
 .cbp-lead b{color:#fff;font-weight:800}
 .cbp-hact{display:flex;flex-wrap:wrap;align-items:center;gap:clamp(14px,2vw,22px);margin-top:32px}
 .cbp-btn{display:inline-flex;align-items:center;gap:10px;padding:16px 30px;border-radius:70px;white-space:nowrap;
-  font-size:14.5px;font-weight:800;letter-spacing:-.01em;color:#04203A;background:var(--tq-face);
-  box-shadow:0 22px 46px -18px rgba(22,233,215,.7);position:relative;overflow:hidden;
+  font-size:14.5px;font-weight:800;letter-spacing:-.01em;color:#fff;background:linear-gradient(135deg,#5B9DFF 0%,#2A72FF 45%,#0047BB 100%);
+  box-shadow:0 22px 46px -18px rgba(42,114,255,.7);position:relative;overflow:hidden;
   transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
-.cbp-btn:hover{transform:translateY(-3px);box-shadow:0 30px 58px -18px rgba(22,233,215,.85)}
+.cbp-btn:hover{transform:translateY(-3px);box-shadow:0 30px 58px -18px rgba(42,114,255,.85)}
 .cbp-btn:hover .cbp-shine i{transform:rotate(18deg) translateX(340%)}
 .cbp-btn svg{width:16px;height:16px;flex:none;transition:transform .3s var(--ease)}
 .cbp-btn:hover svg{transform:translateX(4px)}
@@ -112,7 +112,7 @@
   font-size:14px;font-weight:700;color:#EAF0FA;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);
   -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
   transition:transform .35s var(--ease),background .35s,border-color .35s}
-.cbp-ghost:hover{transform:translateY(-3px);background:rgba(255,255,255,.12);border-color:var(--tq-line)}
+.cbp-ghost:hover{transform:translateY(-3px);background:rgba(255,255,255,.12);border-color:var(--ac-line)}
 .cbp-ghost svg{width:15px;height:15px;flex:none}
 .cbp-hero-coins{position:absolute;inset:0;z-index:0;pointer-events:none}
 
@@ -129,42 +129,42 @@
   font-size:13px;font-weight:700;color:#DCE6F7;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)}
 .cbp-ticker li i{width:16px;height:16px;border-radius:50%;flex:none;
   background:radial-gradient(circle at 35% 30%,#F6DCC4,#D9A074 40%,#AC7C59 70%,#7F5A40)}
-.cbp-ticker li b{color:var(--tq)}
+.cbp-ticker li b{color:var(--ac)}
 
 /* ---------- 3. proof strip ---------- */
 .cbp-proof{position:relative;isolation:isolate;overflow:clip;color:#fff;padding-block:clamp(60px,7vw,110px);
-  background:radial-gradient(58% 46% at 50% -6%,rgba(22,233,215,.22),transparent 62%),
+  background:radial-gradient(58% 46% at 50% -6%,rgba(42,114,255,.22),transparent 62%),
              radial-gradient(70% 60% at 84% 108%,rgba(0,71,187,.26),transparent 64%),
              linear-gradient(180deg,var(--ink-1),var(--ink-2))}
 .cbp-proof > .container{position:relative;z-index:2}
 .cbp-rays{position:absolute;left:50%;top:-14%;width:min(1180px,150%);aspect-ratio:1;translate:-50% 0;z-index:0;pointer-events:none;
-  background:conic-gradient(from 0deg,rgba(22,233,215,.12) 0 1.4deg,transparent 1.4deg 7.5deg);
+  background:conic-gradient(from 0deg,rgba(42,114,255,.12) 0 1.4deg,transparent 1.4deg 7.5deg);
   -webkit-mask:radial-gradient(closest-side,transparent 6%,rgba(0,0,0,.5) 30%,transparent 72%);
   mask:radial-gradient(closest-side,transparent 6%,rgba(0,0,0,.5) 30%,transparent 72%);
   animation:cbpSpin 90s linear infinite}
 @keyframes cbpSpin{to{rotate:360deg}}
 .cbp-figure{text-align:center}
-.cbp-figure em{display:block;font-style:normal;font-size:clamp(14px,1.7vw,20px);font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:var(--tq-3);opacity:.9}
+.cbp-figure em{display:block;font-style:normal;font-size:clamp(14px,1.7vw,20px);font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:var(--ac-3);opacity:.9}
 .cbp-figure b{display:block;margin-top:.02em;font-size:clamp(66px,13vw,176px);font-weight:800;line-height:.9;letter-spacing:-.045em;
-  font-variant-numeric:tabular-nums;background:var(--tq-face);-webkit-background-clip:text;background-clip:text;color:transparent;
-  filter:drop-shadow(0 14px 34px rgba(22,233,215,.3))}
+  font-variant-numeric:tabular-nums;background:var(--ac-face);-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 14px 34px rgba(42,114,255,.3))}
 .cbp-figure-cap{margin:clamp(14px,1.8vw,22px) auto 0;max-width:52ch;font-size:clamp(15px,1.6vw,18px);font-weight:600;line-height:1.6;color:#CFDCEE;text-align:center}
 .cbp-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(10px,1.4vw,16px);margin-top:clamp(28px,3.4vw,44px)}
 .cbp-pillc{display:inline-flex;align-items:center;gap:12px;padding:14px 22px;border-radius:44px;text-align:left;
   font-size:13.5px;font-weight:600;line-height:1.45;color:#EAF0FA;
   background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
   transition:transform .35s var(--ease),background .35s,border-color .35s}
-.cbp-pillc:hover{transform:translateY(-3px);background:rgba(255,255,255,.11);border-color:var(--tq-line)}
-.cbp-pillc svg{flex:none;width:18px;height:18px;color:var(--tq)}
-.cbp-pillc b{color:var(--tq-3);font-weight:800;letter-spacing:.04em;text-transform:uppercase;font-size:11.5px;margin-right:2px}
+.cbp-pillc:hover{transform:translateY(-3px);background:rgba(255,255,255,.11);border-color:var(--ac-line)}
+.cbp-pillc svg{flex:none;width:18px;height:18px;color:var(--ac)}
+.cbp-pillc b{color:var(--ac-3);font-weight:800;letter-spacing:.04em;text-transform:uppercase;font-size:11.5px;margin-right:2px}
 .cbp-cd{margin-top:clamp(30px,3.6vw,46px);display:flex;flex-direction:column;align-items:center;gap:14px}
-.cbp-cd-lab{display:inline-flex;align-items:center;gap:9px;padding:7px 15px;border-radius:40px;font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--tq-3);background:var(--tq-wash);border:1px solid var(--tq-line)}
-.cbp-cd-lab i{width:7px;height:7px;border-radius:50%;background:var(--tq);animation:cbpBeat 1.6s ease-in-out infinite}
+.cbp-cd-lab{display:inline-flex;align-items:center;gap:9px;padding:7px 15px;border-radius:40px;font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--ac-3);background:var(--ac-wash);border:1px solid var(--ac-line)}
+.cbp-cd-lab i{width:7px;height:7px;border-radius:50%;background:var(--ac);animation:cbpBeat 1.6s ease-in-out infinite}
 .cbp-cd-row{display:flex;gap:clamp(8px,1.2vw,14px);flex-wrap:wrap;justify-content:center}
 .cbp-cd-cell{min-width:clamp(66px,8vw,96px);padding:clamp(12px,1.6vw,18px) clamp(8px,1.2vw,14px);border-radius:16px;text-align:center;
   background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
 .cbp-cd-cell b{display:block;font-size:clamp(26px,3.4vw,42px);font-weight:800;line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums;
-  background:var(--tq-face);-webkit-background-clip:text;background-clip:text;color:transparent}
+  background:var(--ac-face);-webkit-background-clip:text;background-clip:text;color:transparent}
 .cbp-cd-cell span{display:block;margin-top:8px;font-size:10.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#8EA4C6}
 .cbp-note{margin-top:clamp(20px,2.4vw,30px);font-size:12.5px;line-height:1.7;color:#8EA4C6;text-align:center}
 
@@ -176,13 +176,13 @@
 
 /* ---------- 5. cashback tiers: ladder + machine ---------- */
 .cbp-mech{position:relative;isolation:isolate;overflow:clip;color:#fff;
-  background:radial-gradient(60% 50% at 12% -10%,rgba(22,233,215,.18),transparent 60%),
+  background:radial-gradient(60% 50% at 12% -10%,rgba(42,114,255,.18),transparent 60%),
              radial-gradient(60% 50% at 92% 106%,rgba(0,71,187,.22),transparent 62%),var(--ink-1)}
 .cbp-mech > .container{position:relative;z-index:2}
 .cbp-mech-head{display:grid;grid-template-columns:minmax(0,1fr) clamp(240px,28vw,380px);gap:clamp(20px,3vw,48px);align-items:center}
-.cbp-mech .pm-eyebrow-c{text-align:left;color:var(--tq)}
+.cbp-mech .pm-eyebrow-c{text-align:left;color:var(--ac)}
 .cbp-mech .pm-h2{text-align:left;color:#fff;letter-spacing:-.035em;line-height:1.1}
-.cbp-mech .pm-h2 span{background:var(--tq-face);-webkit-background-clip:text;background-clip:text;color:transparent}
+.cbp-mech .pm-h2 span{background:var(--ac-face);-webkit-background-clip:text;background-clip:text;color:transparent}
 .cbp-stack{position:relative;line-height:0}
 .cbp-stack img{display:block;width:100%;height:auto;filter:drop-shadow(0 34px 50px rgba(0,0,0,.6));animation:cbpHover 6s ease-in-out infinite}
 @keyframes cbpHover{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-12px) rotate(1deg)}}
@@ -200,32 +200,32 @@
 .cbp-tier-lots{font-size:14px;font-weight:700;color:#DCE6F7;white-space:nowrap}
 .cbp-tier-bar{position:relative;height:30px;border-radius:9px;overflow:hidden;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.08)}
 .cbp-tier-bar i{position:absolute;inset:0;width:var(--p);border-radius:9px;transform:scaleX(0);transform-origin:left;
-  background:linear-gradient(90deg,rgba(22,233,215,.35),var(--tq));box-shadow:0 0 18px rgba(22,233,215,.35)}
+  background:linear-gradient(90deg,rgba(42,114,255,.35),#5B9DFF);box-shadow:0 0 18px rgba(42,114,255,.35)}
 .cbp-tier--top .cbp-tier-bar i{background:var(--bronze-face);box-shadow:0 0 22px rgba(232,180,138,.5)}
 .cbp-tier-usd{min-width:88px;text-align:right;font-size:16px;font-weight:800;letter-spacing:-.01em;white-space:nowrap;font-variant-numeric:tabular-nums;color:#fff}
 .cbp-tier--top .cbp-tier-usd{font-size:19px;background:var(--bronze-face);-webkit-background-clip:text;background-clip:text;color:transparent}
-.cbp-tier.is-on .cbp-tier-lots{color:var(--tq)}
+.cbp-tier.is-on .cbp-tier-lots{color:var(--ac)}
 .cbp-amt{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;margin-top:18px}
 .cbp-amt em{font-style:normal;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#8EA4C6}
 .cbp-amt b{font-size:clamp(22px,2.8vw,34px);font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
 .cbp-range{width:100%;margin-top:14px;-webkit-appearance:none;appearance:none;height:8px;border-radius:8px;
-  background:linear-gradient(90deg,var(--tq) var(--fill,20%),rgba(255,255,255,.13) var(--fill,20%));outline-offset:6px;cursor:grab}
+  background:linear-gradient(90deg,var(--ac) var(--fill,20%),rgba(255,255,255,.13) var(--fill,20%));outline-offset:6px;cursor:grab}
 .cbp-range:active{cursor:grabbing}
 .cbp-range::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:24px;height:24px;border-radius:50%;background:#fff;border:0;
-  box-shadow:0 0 0 5px rgba(22,233,215,.32),0 6px 16px rgba(0,0,0,.5);transition:box-shadow .25s var(--ease),transform .25s var(--ease)}
-.cbp-range::-webkit-slider-thumb:hover{transform:scale(1.14);box-shadow:0 0 0 9px rgba(22,233,215,.26),0 6px 16px rgba(0,0,0,.5)}
-.cbp-range::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:#fff;border:0;box-shadow:0 0 0 5px rgba(22,233,215,.32)}
+  box-shadow:0 0 0 5px rgba(42,114,255,.32),0 6px 16px rgba(0,0,0,.5);transition:box-shadow .25s var(--ease),transform .25s var(--ease)}
+.cbp-range::-webkit-slider-thumb:hover{transform:scale(1.14);box-shadow:0 0 0 9px rgba(42,114,255,.26),0 6px 16px rgba(0,0,0,.5)}
+.cbp-range::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:#fff;border:0;box-shadow:0 0 0 5px rgba(42,114,255,.32)}
 .cbp-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 .cbp-chip{padding:7px 14px;border-radius:40px;font-size:12.5px;font-weight:700;color:#CDD9EC;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);cursor:pointer;
   transition:background .25s,color .25s,border-color .25s,transform .25s var(--ease)}
 .cbp-chip:hover{transform:translateY(-2px);background:rgba(255,255,255,.13)}
-.cbp-chip.is-on{background:var(--tq-face);border-color:transparent;color:#04203A}
+.cbp-chip.is-on{background:linear-gradient(135deg,#5B9DFF,#2A72FF 60%,#0047BB);border-color:transparent;color:#fff}
 .cbp-out{margin-top:clamp(20px,2.4vw,28px);padding-top:clamp(18px,2.2vw,24px);border-top:1px solid rgba(255,255,255,.11)}
 .cbp-out em{display:block;font-style:normal;font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#8EA4C6}
 .cbp-out b{display:block;margin-top:8px;font-size:clamp(36px,5vw,62px);font-weight:800;letter-spacing:-.035em;line-height:1;font-variant-numeric:tabular-nums;
-  background:var(--tq-face);-webkit-background-clip:text;background-clip:text;color:transparent;transition:filter .3s}
+  background:var(--ac-face);-webkit-background-clip:text;background-clip:text;color:transparent;transition:filter .3s}
 .cbp-out b.is-cap{background:var(--bronze-face);-webkit-background-clip:text;background-clip:text}
-.cbp-out b.is-bump{filter:drop-shadow(0 0 18px rgba(22,233,215,.5))}
+.cbp-out b.is-bump{filter:drop-shadow(0 0 18px rgba(42,114,255,.5))}
 .cbp-tierline{display:inline-flex;align-items:center;gap:8px;margin-top:12px;padding:7px 14px;border-radius:40px;font-size:12.5px;font-weight:700;color:#DCE6F7;
   background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14)}
 .cbp-tierline[hidden]{display:none}
@@ -233,16 +233,16 @@
 .cbp-meter{margin-top:16px}
 .cbp-meter-top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;font-size:11.5px;font-weight:700;color:#8EA4C6}
 .cbp-meter-bar{position:relative;height:12px;margin-top:9px;border-radius:8px;overflow:hidden;background:rgba(255,255,255,.09)}
-.cbp-meter-bar i{display:block;height:100%;width:var(--fill,0%);border-radius:8px;background:var(--tq-face);transition:width .55s var(--ease)}
+.cbp-meter-bar i{display:block;height:100%;width:var(--fill,0%);border-radius:8px;background:var(--ac-face);transition:width .55s var(--ease)}
 .cbp-meter-bar.is-cap i{background:var(--bronze-face)}
 .cbp-copy{margin-top:clamp(20px,2.6vw,30px);display:flex;gap:14px;align-items:flex-start;padding:clamp(16px,2vw,22px) clamp(18px,2.4vw,26px);border-radius:18px;
   background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.1)}
-.cbp-copy svg{flex:none;width:20px;height:20px;color:var(--tq);margin-top:2px}
+.cbp-copy svg{flex:none;width:20px;height:20px;color:var(--ac);margin-top:2px}
 .cbp-copy p{font-size:14.5px;line-height:1.75;color:#C2D1E6}
 .cbp-copy b{color:#fff;font-weight:700}
 
 /* ---------- 6. eligibility ---------- */
-.cbp-who-sec{position:relative;isolation:isolate;overflow:clip;background:radial-gradient(52% 44% at 14% 0%,rgba(22,233,215,.1),transparent 62%),var(--bg-light-2)}
+.cbp-who-sec{position:relative;isolation:isolate;overflow:clip;background:radial-gradient(52% 44% at 14% 0%,rgba(42,114,255,.1),transparent 62%),var(--bg-light-2)}
 .cbp-who-sec > .container{position:relative;z-index:1}
 .cbp-who{max-width:900px;margin:clamp(30px,3.6vw,46px) auto 0;border-radius:clamp(18px,2.2vw,28px);padding:clamp(20px,2.8vw,38px);
   background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.94);
@@ -255,18 +255,18 @@
 .cbp-who-ic{flex:none;display:grid;place-items:center;width:30px;height:30px;margin-top:3px;border-radius:9px;transition:transform .3s var(--ease)}
 .cbp-who li:hover .cbp-who-ic{transform:scale(1.12) rotate(-6deg)}
 .cbp-who-ic svg{width:15px;height:15px}
-.cbp-who li.is-yes .cbp-who-ic{background:rgba(15,183,169,.14);color:var(--tq-2)}
+.cbp-who li.is-yes .cbp-who-ic{background:rgba(0,71,187,.14);color:var(--ac-2)}
 .cbp-who li.is-note .cbp-who-ic{background:rgba(172,124,89,.12);color:var(--bronze)}
 
 /* ---------- 7. closing call ---------- */
 .cbp-cta{position:relative;isolation:isolate;overflow:clip;color:#fff;text-align:center;padding-block:0 clamp(64px,8vw,120px);
-  background:radial-gradient(58% 60% at 50% 0%,rgba(22,233,215,.22),transparent 64%),
+  background:radial-gradient(58% 60% at 50% 0%,rgba(42,114,255,.22),transparent 64%),
              radial-gradient(70% 70% at 84% 110%,rgba(0,71,187,.3),transparent 62%),linear-gradient(180deg,var(--ink-2),#04060B)}
 .cbp-cta > .container{position:relative;z-index:2}
 .cbp .cta-emblem{width:clamp(300px,42vw,560px);margin:0 0 -1vw 50%}
-.cbp .cta-emblem img{filter:drop-shadow(0 34px 60px rgba(22,233,215,.22))}
+.cbp .cta-emblem img{filter:drop-shadow(0 34px 60px rgba(42,114,255,.22))}
 .cbp-cta h2{margin-top:clamp(10px,2vw,24px);font-size:clamp(28px,4vw,54px);font-weight:800;letter-spacing:-.035em;line-height:1.12}
-.cbp-cta h2 span{background:var(--tq-face);-webkit-background-clip:text;background-clip:text;color:transparent}
+.cbp-cta h2 span{background:var(--ac-face);-webkit-background-clip:text;background-clip:text;color:transparent}
 .cbp-cta-sub{margin:16px auto 0;max-width:56ch;font-size:clamp(15px,1.5vw,17px);line-height:1.7;color:#C9D4EE}
 .cbp-cta-act{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:clamp(26px,3vw,38px)}
 .cbp-cta-fine{max-width:820px;margin:clamp(26px,3vw,40px) auto 0}
@@ -613,7 +613,7 @@
 <section class="cbp-hero" aria-labelledby="cbp-hero-title" data-cbp-hero>
   <picture data-cbp-art>
     <source media="(max-width:980px)" srcset="assets/img/cashback-promo-hero-portrait-v1.webp" width="1200" height="1493">
-    <img src="assets/img/cashback-promo-hero-v1.webp" srcset="assets/img/cashback-promo-hero-1920-v1.webp 1920w, assets/img/cashback-promo-hero-v1.webp 2560w" sizes="100vw" alt="A frosted-glass navy trading card with bronze coins arcing back into its wallet slot, lit in STARTRADER navy and turquoise" width="2560" height="1434" fetchpriority="high" decoding="async">
+    <img src="assets/img/cashback-promo-hero-v1.webp" srcset="assets/img/cashback-promo-hero-1920-v1.webp 1920w, assets/img/cashback-promo-hero-v1.webp 2560w" sizes="100vw" alt="A frosted-glass navy trading card with bronze coins arcing back into its wallet slot, lit in STARTRADER navy and royal-blue" width="2560" height="1434" fetchpriority="high" decoding="async">
   </picture>
   <div class="cbp-hero-coins" aria-hidden="true">
     <span class="cbp-coin" data-cbp-coin="1.4" style="--s:54px;left:57%;top:14%;--d:7.5s"></span>
@@ -688,7 +688,7 @@
       <div class="htrade-intro" data-aos="fade-up">
         <h2 class="htrade-title" id="cbp-how-title">How It <br><span>Works</span></h2>
         <a href="https://myaccount.startrader.com" rel="noopener" class="btn btn-primary btn-lg htrade-btn">Start Trading <span class="htrade-go"><svg><use href="#i-arrow-right"/></svg></span></a>
-        <img class="htrade-mark" src="assets/img/cashback-wallet-3d-v1.webp" alt="An open navy glass wallet with bronze coins dropping back in and a glowing turquoise check mark above it" width="1400" height="954" loading="lazy" decoding="async">
+        <img class="htrade-mark" src="assets/img/cashback-wallet-3d-v1.webp" alt="An open navy glass wallet with bronze coins dropping back in and a glowing royal-blue check mark above it" width="1400" height="931" loading="lazy" decoding="async">
       </div>
       <ol class="htrade-steps" data-htrade>
         <li class="htrade-step">
@@ -722,7 +722,7 @@
         <span class="pm-eyebrow-c" data-aos="fade-up">Cashback Tiers</span>
         <h2 class="pm-h2" id="cbp-tiers-title" data-aos="fade-up">You receive the cashback of <br><span>the highest tier you reach.</span></h2>
       </div>
-      <div class="cbp-stack" data-cbp-stack data-aos="fade-up" data-aos-delay="100"><img src="assets/img/cashback-tiers-3d-v1.webp" alt="Seven rising stacks of bronze coins on a navy glass platform, the tallest topped with a glowing turquoise star" width="1600" height="1075" loading="lazy" decoding="async"></div>
+      <div class="cbp-stack" data-cbp-stack data-aos="fade-up" data-aos-delay="100"><img src="assets/img/cashback-tiers-3d-v1.webp" alt="Seven rising stacks of bronze coins on a navy glass platform, the tallest topped with a glowing royal-blue star" width="1600" height="1049" loading="lazy" decoding="async"></div>
     </div>
 
     <div class="cbp-grid">
@@ -792,9 +792,9 @@
 <section class="cbp-cta" aria-labelledby="cbp-cta-title">
   <span class="cbp-spark" aria-hidden="true" style="--sp:24px;left:16%;bottom:26%"></span>
   <span class="cbp-spark" aria-hidden="true" style="--sp:17px;right:24%;top:34%;--sp-delay:-1.3s"></span>
-  <div class="cta-emblem" aria-hidden="true"><img src="assets/img/cashback-wallet-3d-v1.webp" alt="" width="1400" height="954" loading="lazy" decoding="async"></div>
+  <div class="cta-emblem" aria-hidden="true"><img src="assets/img/cashback-wallet-3d-v1.webp" alt="" width="1400" height="931" loading="lazy" decoding="async"></div>
   <div class="container">
-    <span class="pm-eyebrow-c" data-aos="fade-up" style="color:var(--tq)">The Cashback Promotion</span>
+    <span class="pm-eyebrow-c" data-aos="fade-up" style="color:var(--ac)">The Cashback Promotion</span>
     <h2 id="cbp-cta-title" data-aos="fade-up">Reach a trading volume tier and <br><span>unlock a fixed cash reward.</span></h2>
     <p class="cbp-cta-sub" data-aos="fade-up">The more lots you trade, the higher your cashback, up to USD 650.</p>
     <div class="cbp-cta-act" data-aos="fade-up">
