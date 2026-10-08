@@ -70,6 +70,18 @@ text placed inside an English layout.
     is derived from a sentence (for a stat or chip), drop only connectives and
     punctuation, never reword.
 
+## Typeface
+
+- Arabic pages are set in **Tajawal** (self-hosted in `assets/fonts`, weights
+  400/500/700/800, Arabic + Latin subsets, registered in `fonts.css`). The
+  shared `styles.css` switches `--font` to Tajawal for `html[lang="ar"]`, so a
+  page only needs the correct `lang` attribute. Never load Google Fonts at
+  runtime.
+- Plus Jakarta Sans has no Arabic glyphs; if a page shows system Arabic
+  glyphs, its `lang` is wrong or the stylesheet stamp is stale.
+- Keep tracking at 0 on Arabic text: Arabic is cursive, and the Latin
+  `letter-spacing` values in the site's headings and kickers must not apply.
+
 ## Verification
 
 - Screenshot desktop (1440) and phone (390) and compare against the English

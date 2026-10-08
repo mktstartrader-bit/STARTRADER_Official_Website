@@ -6123,3 +6123,11 @@ a.cat-pager-btn:hover{transform:translateY(-2px);border-color:rgba(0,71,187,.4);
 .foot-col .foot-head.mt{margin-top:38px}
 .risk .risk-head{font-size:12.5px;letter-spacing:.06em;color:#c7cddb;font-weight:700;margin:22px 0 10px}
 .risk .risk-head:first-child{margin-top:0}
+
+/* ===== ARABIC PAGES SET IN TAJAWAL (appended batch, 2026-10-08) ===== */
+/* Plus Jakarta Sans has no Arabic glyphs, so Arabic pages fell back to the system
+   font. Tajawal (self-hosted in assets/fonts) is the Arabic face; Latin words on
+   those pages take Tajawal's Latin so the two scripts sit on one baseline. */
+html[lang="ar"]{--font:'Tajawal','Plus Jakarta Sans',system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+/* Arabic is a cursive script: the Latin tracking on the site's headings and kickers must not open gaps between joined letters */
+[lang="ar"] *{letter-spacing:0!important}
