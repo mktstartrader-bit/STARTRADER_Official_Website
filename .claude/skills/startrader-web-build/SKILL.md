@@ -105,6 +105,14 @@ the shared layer must never shift under them.
   reserve top padding for an absolutely positioned banner. Keep the art
   in flow (`position:relative`, natural height, `order:2`) and the copy
   container `order:1`. Desktop keeps its side-by-side composition.
+- **The art must read as part of the hero, not a pasted picture** (team
+  feedback 2026-10-08): sit it close under the copy (`gap:6px`), fade its
+  top and bottom edges into the hero ground with a mask
+  (`linear-gradient(180deg,transparent 0,#000 14%,#000 86%,transparent 100%)`),
+  give the wrapper no stacking context (`z-index:auto`) so blend modes keep
+  working, and on light heroes let studio renders on a white sweep
+  `mix-blend-mode:multiply` into the ground. The hero background colour must
+  match the artwork's edge tone.
 - Heroes carry only heading, subline and one button — no background patterns.
   Cards are glassmorphic and share the one site-wide hover effect.
 
