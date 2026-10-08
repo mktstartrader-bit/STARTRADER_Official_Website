@@ -108,7 +108,8 @@ the shared layer must never shift under them.
 - **The art must read as part of the hero, not a pasted picture** (team
   feedback 2026-10-08): sit it close under the copy (`gap:6px`), fade its
   top and bottom edges into the hero ground with a mask
-  (`linear-gradient(180deg,transparent 0,#000 14%,#000 86%,transparent 100%)`),
+  (`linear-gradient(180deg,transparent 0,#000 12%,#000 95%,transparent 100%)`; the
+  bottom edge stays short so no empty band opens above the next section),
   give the wrapper no stacking context (`z-index:auto`) so blend modes keep
   working, and on light heroes let studio renders on a white sweep
   `mix-blend-mode:multiply` into the ground. The hero background colour must
