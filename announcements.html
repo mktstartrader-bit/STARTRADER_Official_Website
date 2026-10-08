@@ -82,7 +82,7 @@
 .an-clear svg{width:12px;height:12px}
 .an-clear:hover{background:rgba(0,71,187,.16);transform:rotate(90deg)}
 .an-group{padding:16px 14px 14px;border-radius:18px}
-.an-group-h{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-mute);padding-inline:4px}
+.an-group-h{font-size:11px;font-weight:700;line-height:1.1;letter-spacing:.12em;text-transform:uppercase;color:var(--text-mute);padding-inline:4px;text-wrap:balance;overflow-wrap:break-word}
 .an-filters{display:flex;flex-direction:column;gap:2px;margin-top:10px}
 .an-filters--row{flex-direction:row;flex-wrap:wrap;gap:6px}
 .an-f{
@@ -166,8 +166,8 @@
 @media (prefers-reduced-motion:no-preference){.an-item details[open] .an-body{animation:anOpen .4s var(--ease-out)}}
 .an-closed{color:#c0392f;font-weight:700}
 .an-empty{text-align:center;padding:54px 20px 8px}
-.an-empty h3{font-size:20px;color:var(--text);letter-spacing:-.02em}
-.an-empty h3 span{color:var(--blue)}
+.an-empty .an-empty-h{font-size:20px;font-weight:700;line-height:1.1;color:var(--text);letter-spacing:-.02em;text-wrap:balance;overflow-wrap:break-word}
+.an-empty .an-empty-h span{color:var(--blue)}
 .an-empty p{max-width:520px;margin:10px auto 0;font-size:14.5px;line-height:1.6;color:var(--text-soft)}
 .an-empty .btn{margin-top:24px}
 .an-subsec{background:radial-gradient(58% 56% at 90% 4%,rgba(0,71,187,.06),transparent 60%),var(--bg-light-2)}
@@ -244,7 +244,7 @@
 .an-modal[open]::backdrop{animation:anFadeIn .32s ease}}
 .an-modal-in{display:flex;flex-direction:column;max-height:inherit}
 .an-modal-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:26px 30px 0}
-.an-modal-head h2{font-size:24px;letter-spacing:-.028em;color:var(--text)}
+.an-modal-head .an-modal-h{font-size:24px;font-weight:700;line-height:1.1;letter-spacing:-.028em;color:var(--text);text-wrap:balance;overflow-wrap:break-word}
 .an-modal-x{
   width:34px;height:34px;border-radius:50%;display:grid;place-items:center;cursor:pointer;
   color:var(--text-mute);background:var(--bg-light);transition:background .25s,color .25s,transform .3s var(--ease);
@@ -779,7 +779,7 @@
       </form>
 
       <div class="an-group glass">
-        <h2 class="an-group-h">Type</h2>
+        <div class="an-group-h">Type</div>
         <div class="an-filters" role="group" aria-label="Filter by type">
           <button class="an-f is-on" type="button" data-an-cat="all" aria-pressed="true">All<span class="an-n" data-an-count="all">12</span></button>
           <button class="an-f" type="button" data-an-cat="closure" aria-pressed="false">Market closure<span class="an-n" data-an-count="closure">4</span></button>
@@ -792,7 +792,7 @@
       </div>
 
       <div class="an-group glass">
-        <h2 class="an-group-h">Month</h2>
+        <div class="an-group-h">Month</div>
         <div class="an-filters an-filters--row" role="group" aria-label="Filter by month">
           <button class="an-f is-on" type="button" data-an-month="all" aria-pressed="true">All</button>
           <button class="an-f" type="button" data-an-month="2026-07" aria-pressed="false">July</button>
@@ -1142,7 +1142,7 @@
 
       <div class="an-empty" data-an-empty hidden>
         <span class="gl-empty-ic" aria-hidden="true"><svg><use href="#i-send"/></svg></span>
-        <h3>No notices match <span data-an-empty-q></span></h3>
+        <div class="an-empty-h">No notices match <span data-an-empty-q></span></div>
         <p>Try a shorter search, or clear the filters to see every announcement.</p>
         <button class="btn btn-primary" type="button" data-an-reset>Show all notices <svg class="ico"><use href="#i-arrow-right"/></svg></button>
       </div>
@@ -1154,7 +1154,7 @@
 <dialog class="an-modal" id="anFilter" aria-labelledby="an-filter-title">
   <div class="an-modal-in">
     <div class="an-modal-head">
-      <h2 id="an-filter-title">Filter</h2>
+      <div class="an-modal-h" id="an-filter-title">Filter</div>
       <button class="an-modal-x" type="button" data-an-close aria-label="Close filter"><svg><use href="#i-close"/></svg></button>
     </div>
 
@@ -1431,7 +1431,7 @@
     if (empty) {
       empty.innerHTML =
         '<span class="gl-empty-ic" aria-hidden="true"><svg><use href="#i-send"/></svg></span>' +
-        '<h3>No notices in the last ' + MONTHS_BACK + ' months</h3>' +
+        '<div class="an-empty-h">No notices in the last ' + MONTHS_BACK + ' months</div>' +
         '<p>Notices are kept on this page for ' + MONTHS_BACK + ' months from their publication date. ' +
         'New notices appear here as they are published.</p>';
     }
