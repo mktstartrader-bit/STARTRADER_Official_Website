@@ -48,6 +48,8 @@
    because the header is transparent and the hero is pulled up beneath it. */
 .fx-hero{background:#05070f}
 .fx-hero-banner{position:absolute;top:var(--nav-h);left:0;right:0;width:100%;height:calc(100% - var(--nav-h));object-fit:cover;object-position:62% center;z-index:-2}
+/* desktop banner: whole art, anchored right, scaled so the subject clears the copy (QA 2026-10-09) */
+@media (min-width:981px){.fx-hero-banner{left:auto!important;right:0!important;width:auto!important;max-width:none!important;height:min(calc(100% - var(--nav-h)),58vw)!important;object-fit:contain!important;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 20%),linear-gradient(0deg,transparent 0,#000 10%);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent 0,#000 20%),linear-gradient(0deg,transparent 0,#000 10%);mask-composite:intersect}}
 @media (max-width:980px){
   /* the art is the full-bleed background and the copy sits over its clear lower
      half; sized by width, the copy starts where the subject ends (52.4% of the

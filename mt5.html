@@ -92,6 +92,8 @@
 .pf-hero--mt{background:#03060F}
 .pf-hero--mt::before,.pf-hero--mt::after{display:none}
 .mt5-hero-banner{position:absolute;top:var(--nav-h);left:0;right:0;width:100%;height:calc(100% - var(--nav-h));object-fit:cover;object-position:62% center;z-index:-2}
+/* desktop banner: whole art, anchored right, scaled so the subject clears the copy (QA 2026-10-09) */
+@media (min-width:981px){.mt5-hero-banner{left:auto!important;right:0!important;width:auto!important;max-width:none!important;height:min(calc(100% - var(--nav-h)),58vw)!important;object-fit:contain!important;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 20%),linear-gradient(0deg,transparent 0,#000 10%);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent 0,#000 20%),linear-gradient(0deg,transparent 0,#000 10%);mask-composite:intersect}}
 @media (max-width:980px){
   .pf-hero--mt{justify-content:flex-start;align-items:flex-start;min-height:0;padding:calc(var(--nav-h) + 76vw + 28px) 0 44px}
   .mt5-hero-banner{bottom:auto;height:auto;aspect-ratio:1200/1778;object-position:center top}
@@ -106,7 +108,7 @@
   .pf-hero--mt::before,.pf-hero--mt::after{display:none!important}
   .pf-hero--mt > picture{display:block!important;position:relative!important;inset:auto!important;top:auto!important;right:auto!important;bottom:auto!important;left:auto!important;order:2;width:100%!important;max-width:none!important;height:auto!important;aspect-ratio:auto!important;margin:0!important;transform:none!important;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 12%,#000 95%,transparent 100%)!important;mask-image:linear-gradient(180deg,transparent 0,#000 12%,#000 95%,transparent 100%)!important;z-index:auto!important;flex:none}
   .pf-hero--mt > picture::before,.pf-hero--mt > picture::after{display:none!important}
-  .pf-hero--mt > picture img,.pf-hero--mt > picture video{display:block!important;position:static!important;width:100%!important;max-width:none!important;height:min(80vw,340px)!important;aspect-ratio:auto!important;object-fit:cover!important;object-position:center 23%!important;transform:none!important;-webkit-mask-image:none!important;mask-image:none!important}
+  .pf-hero--mt > picture img,.pf-hero--mt > picture video{display:block!important;position:static!important;width:100%!important;max-width:none!important;height:min(80vw,340px)!important;aspect-ratio:auto!important;object-fit:cover!important;object-position:center 20%!important;transform:none!important;-webkit-mask-image:none!important;mask-image:none!important}
   .pf-hero--mt > .container{order:1;position:relative;z-index:2}
 }
 @media (max-width:980px){.pf-hero--mt > .acct-hero-bg,.pf-hero--mt > .pf-hero-bg,.pf-hero--mt > .wb-hero-scrim,.pf-hero--mt > .ct-hero-veil,.pf-hero--mt > .hero-glow,.pf-hero--mt > .hero-shape,.pf-hero--mt > .pm-hero-video,.pf-hero--mt > .wb-hero-video,.pf-hero--mt > .acct-hero-video{display:none!important}}

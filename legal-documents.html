@@ -118,6 +118,8 @@
 .pt-hero{background:#03060F;min-height:min(780px,calc(100vh - var(--topbar-h,44px)))}
 .pt-hero .gl-orb{display:none}
 .ptn-hero-banner{position:absolute;top:var(--nav-h);left:0;right:0;width:100%;height:calc(100% - var(--nav-h));object-fit:cover;object-position:62% center;z-index:-2}
+/* desktop banner: whole art, anchored right, scaled so the subject clears the copy (QA 2026-10-09) */
+@media (min-width:981px){.ptn-hero-banner{left:auto!important;right:0!important;width:auto!important;max-width:none!important;height:min(calc(100% - var(--nav-h)),58vw)!important;object-fit:contain!important;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 20%),linear-gradient(0deg,transparent 0,#000 10%);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent 0,#000 20%),linear-gradient(0deg,transparent 0,#000 10%);mask-composite:intersect}}
 @media (min-width:981px){.pt-hero .pt-hero-in>*{max-width:min(600px,46%)}.pt-hero .pt-lead br{display:none}.pt-hero .pt-hero-in>.pt-h1{max-width:min(660px,50%);font-size:clamp(34px,4vw,58px)}}
 @media (max-width:980px){
   .pt-hero{justify-content:flex-start;align-items:flex-start;min-height:0;padding:calc(var(--nav-h) + 76vw + 28px) 0 44px}
@@ -132,7 +134,7 @@
   .pt-hero::before,.pt-hero::after{display:none!important}
   .pt-hero > picture{display:block!important;position:relative!important;inset:auto!important;top:auto!important;right:auto!important;bottom:auto!important;left:auto!important;order:2;width:100%!important;max-width:none!important;height:auto!important;aspect-ratio:auto!important;margin:0!important;transform:none!important;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 12%,#000 95%,transparent 100%)!important;mask-image:linear-gradient(180deg,transparent 0,#000 12%,#000 95%,transparent 100%)!important;z-index:auto!important;flex:none}
   .pt-hero > picture::before,.pt-hero > picture::after{display:none!important}
-  .pt-hero > picture img,.pt-hero > picture video{display:block!important;position:static!important;width:100%!important;max-width:none!important;height:min(80vw,340px)!important;aspect-ratio:auto!important;object-fit:cover!important;object-position:center 24%!important;transform:none!important;-webkit-mask-image:none!important;mask-image:none!important}
+  .pt-hero > picture img,.pt-hero > picture video{display:block!important;position:static!important;width:100%!important;max-width:none!important;height:min(80vw,340px)!important;aspect-ratio:auto!important;object-fit:cover!important;object-position:center 17%!important;transform:none!important;-webkit-mask-image:none!important;mask-image:none!important}
   .pt-hero > .container{order:1;position:relative;z-index:2}
 }
 @media (max-width:980px){.pt-hero > .acct-hero-bg,.pt-hero > .pf-hero-bg,.pt-hero > .wb-hero-scrim,.pt-hero > .ct-hero-veil,.pt-hero > .hero-glow,.pt-hero > .hero-shape,.pt-hero > .pm-hero-video,.pt-hero > .wb-hero-video,.pt-hero > .acct-hero-video{display:none!important}}
