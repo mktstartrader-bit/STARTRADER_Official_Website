@@ -158,4 +158,4 @@ the shared layer must never shift under them.
   unique deployment URL 302s due to deployment protection; that is normal.
 
 ### Mobile hero image height (head-team feedback 2026-10-09)
-On phones the hero art below the copy is capped by height (`height:min(80vw,340px); aspect-ratio:auto; object-fit:cover; object-position:center <subject y>%`), about 310px at 390px and never over 340px on tablets. Never let a portrait source render at full height (~580px). Pick the y% so the subject stays in frame.
+On phones the hero art below the copy is shown WHOLE, never cropped (head team 2026-10-09: "bring full image without cutting"): `width:auto; max-width:100%; height:auto; max-height:min(118vw,560px); object-fit:contain; margin-inline:auto` with soft side fades. On desktop, banners use object-fit:contain anchored right, never cover. Check every size in the QA table: 1920x1080, 1440x900, 1366x768, 1280x800, 1024x768, 768x1024, 430x932, 393x852, 375x812, 320x568.

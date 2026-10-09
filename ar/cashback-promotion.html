@@ -88,6 +88,8 @@
 .cbp-hero > picture{position:absolute;inset:0;z-index:-2;display:block}
 .cbp-hero > picture img{width:100%;height:100%;object-fit:cover;object-position:76% center;display:block;will-change:transform}
 @media (min-width:981px){.cbp-hero > picture img{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 34%);mask-image:linear-gradient(90deg,transparent 0,#000 34%)}}
+/* desktop: whole render, never trimmed at the top (QA 2026-10-09) */
+@media (min-width:981px){.cbp-hero > picture img{object-fit:contain;object-position:right center}}
 .cbp-hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
   background:linear-gradient(90deg,rgba(7,11,42,.92) 0%,rgba(7,11,42,.62) 34%,rgba(7,11,42,0) 60%),
              linear-gradient(0deg,var(--ink-2) 0%,transparent 22%)}
@@ -299,7 +301,7 @@
   .cbp-hero{display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;min-height:0!important;height:auto!important;aspect-ratio:auto!important;padding:calc(var(--nav-h,70px) + 36px) 0 0!important;gap:6px}
   .cbp-hero::before,.cbp-hero::after{display:none!important}
   .cbp-hero > picture{display:block!important;position:relative!important;inset:auto!important;order:2;width:100%!important;max-width:none!important;height:auto!important;margin:0!important;transform:none!important;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 12%,#000 95%,transparent 100%)!important;mask-image:linear-gradient(180deg,transparent 0,#000 12%,#000 95%,transparent 100%)!important;z-index:auto!important;flex:none}
-  .cbp-hero > picture img{display:block!important;position:static!important;width:100%!important;height:min(80vw,340px)!important;aspect-ratio:auto!important;object-fit:cover!important;object-position:center 5%!important;transform:none!important;-webkit-mask-image:none!important;mask-image:none!important}
+  .cbp-hero > picture img{display:block!important;position:static!important;width:100%!important;width:auto!important;max-width:100%!important;height:auto!important;max-height:min(118vw,560px)!important;margin-inline:auto!important;aspect-ratio:auto!important;object-fit:contain!important;object-position:center!important;transform:none!important;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%)!important;mask-image:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%)!important}
   .cbp-hero > .container{order:1;position:relative;z-index:2}
 }
 /* ============ RTL ADAPTATION (Arabic) ============
