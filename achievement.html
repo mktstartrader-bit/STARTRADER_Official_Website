@@ -144,6 +144,8 @@
 @media (max-width:1080px){
   .ac-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .ac-spot-grid{grid-template-columns:1fr;gap:20px}
+  /* stacked: the rows no longer share the lead card's height, so each sizes to its content */
+  .ac-spot-rows .ac-row{flex:none;min-height:auto}
 }
 @media (max-width:720px){
   .ac-grid{grid-template-columns:1fr}
