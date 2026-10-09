@@ -158,4 +158,4 @@ the shared layer must never shift under them.
   unique deployment URL 302s due to deployment protection; that is normal.
 
 ### Mobile hero image height (head-team feedback 2026-10-09)
-On phones the hero art below the copy is capped at a 5:4 crop (`aspect-ratio:5/4; object-fit:cover; object-position:center <subject y>%`), about 310px at 390px wide. Never let a portrait source render at full height (~580px). Pick the y% so the subject stays in frame.
+On phones the hero art below the copy is capped by height (`height:min(80vw,340px); aspect-ratio:auto; object-fit:cover; object-position:center <subject y>%`), about 310px at 390px and never over 340px on tablets. Never let a portrait source render at full height (~580px). Pick the y% so the subject stays in frame.
