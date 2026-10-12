@@ -38,7 +38,7 @@
   <link rel="stylesheet" href="assets/css/aos.min.css" />
   <link rel="preload" href="assets/img/copy-trade-hero-banner-v1.webp" as="image" type="image/webp" media="(min-width:981px)" fetchpriority="high" />
   <link rel="preload" href="assets/img/copy-trade-hero-banner-portrait-v1.webp" as="image" type="image/webp" media="(max-width:980px)" fetchpriority="high" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb23" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb29" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* =================================================================
@@ -205,6 +205,9 @@
   .pf-hero > .container{order:1;position:relative;z-index:2}
 }
 @media (max-width:980px){.pf-hero > .acct-hero-bg,.pf-hero > .pf-hero-bg,.pf-hero > .wb-hero-scrim,.pf-hero > .ct-hero-veil,.pf-hero > .hero-glow,.pf-hero > .hero-shape,.pf-hero > .pm-hero-video,.pf-hero > .wb-hero-video,.pf-hero > .acct-hero-video{display:none!important}}
+
+/* subject-trim: the portrait art keeps its whole subject; only the empty dark band above and below it is trimmed so the art sits close to the copy (QA 2026-10-12) */
+@media (max-width:980px){.pf-hero > picture{height:calc(0.540 * min(118vw,560px))!important;overflow:hidden!important;margin-top:0!important;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 9%,#000 88%,transparent 100%)!important;mask-image:linear-gradient(180deg,transparent 0,#000 9%,#000 88%,transparent 100%)!important}.pf-hero > picture img{margin-top:calc(-0.140 * min(118vw,560px))!important}}
 </style>
 
   <script type="application/ld+json">
@@ -611,7 +614,7 @@
           <span class="ct-path-tag">New to trading</span>
           <img class="ct-path-ico" src="assets/img/copy-path-new-3d.webp" alt="With our advanced copy trading tool, taking off in the financial market is easy and seamless." width="600" height="600" loading="lazy" decoding="async">
         </div>
-        <h3>You can simply copy trades<br> from expert signal providers</h3>
+        <h3>You can simply copy trades <br> from expert signal providers</h3>
         <ul class="ct-path-list">
           <li><svg><use href="#i-check"/></svg>View their performance</li>
           <li><svg><use href="#i-check"/></svg>choose those whose goals align with yours</li>
@@ -626,7 +629,7 @@
           <span class="ct-path-tag alt">Already experienced</span>
           <img class="ct-path-ico" src="assets/img/copy-path-expert-3d.webp" alt="For experienced investors, our copy trading tool offers added advantages" width="600" height="600" loading="lazy" decoding="async">
         </div>
-        <h3>for managing and diversifying<br> your portfolio.</h3>
+        <h3>for managing and diversifying <br> your portfolio.</h3>
         <ul class="ct-path-list">
           <li><svg><use href="#i-check"/></svg>minimises the need for constant market monitoring</li>
           <li><svg><use href="#i-check"/></svg>and simplifies portfolio management</li>
@@ -1084,7 +1087,7 @@
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/swiper-bundle.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=pb23" defer></script>
+<script src="assets/js/main.min.js?v=pb29" defer></script>
 <script>
 /* Trade Ranking widget (rating.startrader.com) — lazy-loads near viewport,
    auto-sizes via iframeResizer. The widget IS the ranking: it owns its own

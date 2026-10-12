@@ -36,7 +36,7 @@
   <link rel="stylesheet" href="assets/css/aos.min.css" />
   <link rel="preload" as="image" type="image/webp" media="(min-width:981px)" fetchpriority="high" imagesrcset="assets/img/media-hero-banner-v2-1920.webp 1920w, assets/img/media-hero-banner-v2.webp 2560w" imagesizes="100vw" />
   <link rel="preload" href="assets/img/media-hero-banner-portrait-v2.webp" as="image" type="image/webp" media="(max-width:980px)" fetchpriority="high" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb23" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb29" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* =================================================================
@@ -153,6 +153,9 @@ a.mc-clip-media{display:block;cursor:pointer}
   .pf-hero > .container{order:1;position:relative;z-index:2}
 }
 @media (max-width:980px){.pf-hero > .acct-hero-bg,.pf-hero > .pf-hero-bg,.pf-hero > .wb-hero-scrim,.pf-hero > .ct-hero-veil,.pf-hero > .hero-glow,.pf-hero > .hero-shape,.pf-hero > .pm-hero-video,.pf-hero > .wb-hero-video,.pf-hero > .acct-hero-video{display:none!important}}
+
+/* subject-trim: the portrait art keeps its whole subject; only the empty dark band above and below it is trimmed so the art sits close to the copy (QA 2026-10-12) */
+@media (max-width:980px){.pf-hero > picture{height:calc(0.530 * min(118vw,560px))!important;overflow:hidden!important;margin-top:0!important;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 9%,#000 88%,transparent 100%)!important;mask-image:linear-gradient(180deg,transparent 0,#000 9%,#000 88%,transparent 100%)!important}.pf-hero > picture img{margin-top:calc(-0.070 * min(118vw,560px))!important}}
 </style>
 
   <script type="application/ld+json">
@@ -1043,7 +1046,7 @@ a.mc-clip-media{display:block;cursor:pointer}
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/swiper-bundle.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=pb23" defer></script>
+<script src="assets/js/main.min.js?v=pb29" defer></script>
 
 <!-- Company page: robust scroll reveals + hero parallax (self-contained, never leaves content hidden) -->
 <script>

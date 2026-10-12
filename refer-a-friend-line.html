@@ -38,7 +38,7 @@
   <link rel="stylesheet" href="assets/css/aos.min.css" />
   <link rel="preload" href="assets/img/raf-line-hero-v4.webp" imagesrcset="assets/img/raf-line-hero-v4.webp 1920w" imagesizes="100vw" as="image" type="image/webp" media="(min-width:981px)" fetchpriority="high" />
   <link rel="preload" href="assets/img/raf-line-hero-portrait-v4.webp" as="image" type="image/webp" media="(max-width:980px)" fetchpriority="high" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb23" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb29" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* =================================================================
@@ -180,6 +180,9 @@
   .raf-hero > .container{order:1;position:relative;z-index:2}
 }
 @media (max-width:980px){.raf-hero > .acct-hero-bg,.raf-hero > .pf-hero-bg,.raf-hero > .wb-hero-scrim,.raf-hero > .ct-hero-veil,.raf-hero > .hero-glow,.raf-hero > .hero-shape,.raf-hero > .pm-hero-video,.raf-hero > .wb-hero-video,.raf-hero > .acct-hero-video{display:none!important}}
+
+/* subject-trim: the portrait art keeps its whole subject; only the empty dark band above and below it is trimmed so the art sits close to the copy (QA 2026-10-12) */
+@media (max-width:980px){.raf-hero > .raf-hero-bg{height:calc(0.670 * min(118vw,560px))!important;overflow:hidden!important;margin-top:0!important;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 9%,#000 88%,transparent 100%)!important;mask-image:linear-gradient(180deg,transparent 0,#000 9%,#000 88%,transparent 100%)!important}.raf-hero > .raf-hero-bg img{margin-top:calc(-0.010 * min(118vw,560px))!important}}
 </style>
   <script type="application/ld+json">
   {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Who can join?", "acceptedAnswer": {"@type": "Answer", "text": "Clients residing in an Eligible Country. Referrers must be existing STARTRADER clients with an Active Account; Referees must be New Eligible Clients who have never previously registered with or held an account with STARTRADER."}}, {"@type": "Question", "name": "How much can I earn?", "acceptedAnswer": {"@type": "Answer", "text": "USD 200 per Successful Referral, up to 5 referrals (maximum USD 1,000). Your friend receives USD 100."}}, {"@type": "Question", "name": "What makes a referral successful?", "acceptedAnswer": {"@type": "Answer", "text": "Your friend must sign up using your referral link, complete identity verification within 48 hours, deposit a minimum of USD 100, and complete at least 5 Eligible Lots within 30 days, all during the Promotion Period."}}, {"@type": "Question", "name": "Why do I need to add STARTRADER on LINE?", "acceptedAnswer": {"@type": "Answer", "text": "Both the Referrer and Referee must follow STARTRADER’s official LINE account to qualify. Your referral link and reward updates are also provided via LINE."}}, {"@type": "Question", "name": "When do I get my reward?", "acceptedAnswer": {"@type": "Answer", "text": "Within 5 business days after your friend’s 30-day qualification period ends, subject to review."}}, {"@type": "Question", "name": "What counts as an Eligible Lot?", "acceptedAnswer": {"@type": "Answer", "text": "A closed, round-turn trade (one standard lot) in FX, Gold, Crude Oil or BTC CFDs, with the position held for at least 10 minutes."}}, {"@type": "Question", "name": "Can the promotion end early?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Once the USD 50,000 reward pool is fully allocated, the Promotion will close, even before 12 November."}}]}
@@ -759,6 +762,6 @@
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=pb23" defer></script>
+<script src="assets/js/main.min.js?v=pb29" defer></script>
 </body>
 </html>

@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="assets/css/aos.min.css" />
   <link rel="preload" href="assets/img/pamm-trade-hero-banner-v1.webp" as="image" type="image/webp" media="(min-width:981px)" fetchpriority="high" />
   <link rel="preload" href="assets/img/pamm-trade-hero-banner-portrait-v1.webp" as="image" type="image/webp" media="(max-width:980px)" fetchpriority="high" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb23" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb29" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* =================================================================
@@ -134,6 +134,9 @@
   .pf-hero > .container{order:1;position:relative;z-index:2}
 }
 @media (max-width:980px){.pf-hero > .acct-hero-bg,.pf-hero > .pf-hero-bg,.pf-hero > .wb-hero-scrim,.pf-hero > .ct-hero-veil,.pf-hero > .hero-glow,.pf-hero > .hero-shape,.pf-hero > .pm-hero-video,.pf-hero > .wb-hero-video,.pf-hero > .acct-hero-video{display:none!important}}
+
+/* subject-trim: the portrait art keeps its whole subject; only the empty dark band above and below it is trimmed so the art sits close to the copy (QA 2026-10-12) */
+@media (max-width:980px){.pf-hero > picture{height:calc(0.530 * min(118vw,560px))!important;overflow:hidden!important;margin-top:0!important;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 9%,#000 88%,transparent 100%)!important;mask-image:linear-gradient(180deg,transparent 0,#000 9%,#000 88%,transparent 100%)!important}.pf-hero > picture img{margin-top:calc(-0.130 * min(118vw,560px))!important}}
 </style>
 
   <script type="application/ld+json">
@@ -511,7 +514,7 @@
     <div class="pf-hero-copy">
       <span class="eyebrow eyebrow-blue" data-aos="fade-up">Pro-Link &middot; PAMM</span>
       <h1 class="pf-h1" id="pf-hero-title" data-aos="fade-up">Soar high for less. <br> Start a PAMM account</h1>
-      <p class="pf-lead" data-aos="fade-up">Pool with other investors, allocate to managers with a record you can inspect,<br> and pay a fee tied to the performance that earned it.</p>
+      <p class="pf-lead" data-aos="fade-up">Pool with other investors, allocate to managers with a record you can inspect, <br> and pay a fee tied to the performance that earned it.</p>
       <div class="pf-hact" data-aos="fade-up">
         <a href="contact.html" class="btn btn-primary btn-lg magnetic">Speak to Your Team <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       </div>
@@ -530,7 +533,7 @@
 
     <div class="pl-intro" data-aos="fade-up">
       <img src="assets/img/pk-steered-3d.webp" alt="3D ship's helm wheel beside a rising chart, with pooled glass coins and an eye tile" width="600" height="600" loading="lazy" decoding="async">
-      <p><b>Your Investments With Pro-Link</b><br>With STARTRADER Pro-Link, investors can access PAMM investment solutions that pool resources from multiple investors and allow strategy managers to manage allocated funds across available portfolios. This structure can support portfolio diversification while giving investors access to strategy management through the Pro-Link investor portal.</p>
+      <p><b>Your Investments With Pro-Link</b> <br>With STARTRADER Pro-Link, investors can access PAMM investment solutions that pool resources from multiple investors and allow strategy managers to manage allocated funds across available portfolios. This structure can support portfolio diversification while giving investors access to strategy management through the Pro-Link investor portal.</p>
     </div>
 
     <div class="pl-cards">
@@ -1182,7 +1185,7 @@
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=pb23" defer></script>
+<script src="assets/js/main.min.js?v=pb29" defer></script>
 
 <script>
 /* Pro-Link contact form: validate, then confirm. No endpoint yet - wire the POST here. */

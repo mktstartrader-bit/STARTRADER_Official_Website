@@ -41,7 +41,7 @@
   <link rel="stylesheet" href="../assets/css/aos.min.css" />
   <link rel="preload" href="../assets/img/cashback-promo-hero-v1.webp" imagesrcset="../assets/img/cashback-promo-hero-1920-v1.webp 1920w, ../assets/img/cashback-promo-hero-v1.webp 2560w" imagesizes="100vw" as="image" type="image/webp" media="(min-width:981px)" fetchpriority="high" />
   <link rel="preload" href="../assets/img/cashback-promo-hero-portrait-v1.webp" as="image" type="image/webp" media="(max-width:980px)" fetchpriority="high" />
-  <link rel="stylesheet" href="../assets/css/styles.min.css?v=pb23" />
+  <link rel="stylesheet" href="../assets/css/styles.min.css?v=pb29" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* =================================================================
@@ -344,6 +344,9 @@ html[lang="ar"] .cbp-figure b{font-size:clamp(50px,9vw,124px);line-height:1.05}
 [dir="rtl"] .cbp-range{direction:rtl;background:linear-gradient(270deg,var(--ac) var(--fill,20%),rgba(255,255,255,.13) var(--fill,20%))}
 [dir="rtl"] .cbp-cd-cell b,[dir="rtl"] [data-cbp-captxt],[dir="rtl"] .cbp-tier-usd,[dir="rtl"] .cbp-out b,[dir="rtl"] .cbp-figure b,[dir="rtl"] .cbp-amt b,[dir="rtl"] .cbp-tier-lots,[dir="rtl"] .cbp-ticker li,[dir="rtl"] .cbp-tierline span{unicode-bidi:plaintext}
 @media (max-width:980px){[dir="rtl"] .htrade-title span{margin-left:0;margin-right:.28em}}
+
+/* subject-trim: the portrait art keeps its whole subject; only the empty dark band above and below it is trimmed so the art sits close to the copy (QA 2026-10-12) */
+@media (max-width:980px){.cbp-hero > picture{height:calc(0.930 * min(118vw,560px))!important;overflow:hidden!important;margin-top:0!important;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 9%,#000 88%,transparent 100%)!important;mask-image:linear-gradient(180deg,transparent 0,#000 9%,#000 88%,transparent 100%)!important}.cbp-hero > picture img{margin-top:calc(-0.070 * min(118vw,560px))!important}}
 </style>
 
   <!-- Structured data -->
@@ -1089,6 +1092,6 @@ html[lang="ar"] .cbp-figure b{font-size:clamp(50px,9vw,124px);line-height:1.05}
 <script src="../assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../assets/js/vendor/lenis.min.js" defer></script>
 <script src="../assets/js/vendor/aos.min.js" defer></script>
-<script src="../assets/js/main.min.js?v=pb23" defer></script>
+<script src="../assets/js/main.min.js?v=pb29" defer></script>
 </body>
 </html>

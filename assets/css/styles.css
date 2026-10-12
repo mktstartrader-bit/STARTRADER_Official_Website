@@ -6137,3 +6137,31 @@ html[lang="ar"]{--font:'Tajawal','Plus Jakarta Sans',system-ui,-apple-system,"Se
    each other (economic calendar at 768px), so the right one steps down */
 .fx-cs{container-type:inline-size}
 @container (max-width:300px){.fx-cs-chip.c1{top:38px}}
+
+/* ===== 320 HEADER AND TOUCH TARGETS (QA 2026-10-12, appended batch) =====
+   At 320px the brand, the CTA pill and the burger asked for more than the
+   row has, pushing the burger off the right edge. The brand and pill step
+   down a size under 360px. Header controls keep their look but take taps
+   over at least 44px: an invisible hit area, no change to the drawing. */
+@media (max-width:359px){
+  .site-header .nav{gap:8px}
+  .site-header .brand img{min-width:0;width:108px;height:auto}
+  .site-header .nav-right{gap:8px}
+  .site-header .nav-cta{padding:8px 10px;font-size:11px}
+}
+.hamburger,.site-header .nav-cta,.lang{position:relative}
+.hamburger::before{content:"";position:absolute;inset:-6px}
+.site-header .nav-cta::before{content:"";position:absolute;inset:-9px -4px}
+.lang::before{content:"";position:absolute;inset:-12px -4px}
+/* small controls (pager, slide dots, share, language toggle) keep their
+   drawn size but take taps over 44px on touch screens */
+@media (pointer:coarse),(max-width:1024px){
+  .pgr-arrow,.pgr-pg,.swx-dot,.an-share-btn,.mn-lang-b{position:relative}
+  .pgr-arrow::before,.pgr-pg::before{content:"";position:absolute;inset:-4px}
+  .swx-dot::before{content:"";position:absolute;inset:-5px}
+  .an-share-btn::before{content:"";position:absolute;inset:-6px}
+  .mn-lang-b::before{content:"";position:absolute;inset:-4px 0}
+}
+@media (pointer:coarse),(max-width:1024px){.ec-chip{position:relative}.ec-chip::before{content:"";position:absolute;inset:-6px 0}}
+/* product-photo thumbnails (laptops) show the whole device, not a cover crop */
+.fx-more-media img[src*="laptop"]{object-fit:contain!important}
