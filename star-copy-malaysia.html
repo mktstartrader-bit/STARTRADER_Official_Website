@@ -158,7 +158,7 @@
 .scm-less h3{margin-top:22px;font-size:clamp(20px,2.2vw,26px);font-weight:800;color:var(--blue)}
 .scm-less p{margin-top:10px;font-size:clamp(17px,1.8vw,22px);font-weight:600;line-height:1.5;color:var(--ink)}
 .scm-less p b{font-weight:800;color:transparent;background:linear-gradient(96deg,#0047BB,#2A72FF);-webkit-background-clip:text;background-clip:text}
-.scm-coin{position:relative;max-width:380px;margin-inline:auto;line-height:0}
+.scm-coin{position:relative;max-width:440px;margin-inline:auto;line-height:0}
 .scm-coin img{width:100%;height:auto;filter:drop-shadow(0 40px 50px rgba(0,40,120,.35))}
 .scm-float{animation:scmFloat 6s ease-in-out infinite}
 @keyframes scmFloat{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-16px) rotate(3deg)}}
@@ -175,6 +175,47 @@
 .scm-ctl button.is-on span{background:linear-gradient(135deg,#5B9DFF,#2A72FF 55%,#0047BB);box-shadow:0 14px 30px -10px rgba(42,114,255,.9);transform:scale(1.06)}
 .scm-panel{max-width:760px;margin:clamp(30px,4vw,50px) auto 0;line-height:0}
 .scm-panel img{width:100%;height:auto;filter:drop-shadow(0 40px 60px rgba(0,0,0,.55))}
+
+/* ---------- 5. controls: the section pins and scroll walks through Monitor > Adjust > Change > Stop ---------- */
+.scm-cs{position:relative;height:340vh;color:#fff;background:radial-gradient(60% 50% at 80% 30%,rgba(42,114,255,.18),transparent 62%),var(--ink-2)}
+.scm-cs-stick{position:sticky;top:var(--chrome-h,114px);height:calc(100vh - var(--chrome-h,114px));display:flex;align-items:center;overflow:hidden}
+.scm-cs-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,4vw,64px);align-items:center;width:100%}
+.scm-cs-list{list-style:none;margin:clamp(26px,3vw,40px) 0 0;padding:0;display:grid;gap:4px}
+.scm-cs-list button{position:relative;display:flex;align-items:center;gap:18px;width:100%;padding:12px 0;border:0;background:none;color:rgba(255,255,255,.28);font:inherit;cursor:pointer;text-align:left;transition:color .45s}
+.scm-cs-list .n{font-size:13px;font-weight:800;letter-spacing:.14em;color:inherit;font-variant-numeric:tabular-nums}
+.scm-cs-list b{font-size:clamp(30px,4vw,58px);font-weight:800;letter-spacing:-.04em;line-height:1;transition:transform .5s var(--ease)}
+.scm-cs-list i{flex:1;height:2px;margin-left:8px;border-radius:2px;background:rgba(255,255,255,.08);position:relative;overflow:hidden}
+.scm-cs-list i::after{content:"";position:absolute;inset:0;transform-origin:left;transform:scaleX(var(--f,0));background:linear-gradient(90deg,#5B9DFF,#2A72FF)}
+.scm-cs-list button.is-on{color:#fff}
+.scm-cs-list button.is-on b{transform:translateX(8px);background:var(--ac-face);-webkit-background-clip:text;background-clip:text;color:transparent}
+.scm-cs-list button.is-done{color:rgba(255,255,255,.55)}
+.scm-cs-stage{position:relative;aspect-ratio:1;max-height:calc(100vh - var(--chrome-h,114px) - 60px);margin-inline:auto;width:100%;display:grid;place-items:center}
+.scm-cs-ring{position:absolute;inset:4%;width:92%;height:92%;transform:rotate(-90deg)}
+.scm-cs-ring circle{fill:none;stroke:rgba(255,255,255,.08);stroke-width:1.2}
+.scm-cs-ring .p{stroke:#2A72FF;stroke-width:2.4;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:calc(100 - var(--prog,0) * 100);filter:drop-shadow(0 0 6px rgba(42,114,255,.9))}
+.scm-cs-orbs{position:absolute;top:16%;left:50%;width:120px;height:120px;transform:translateX(-50%);z-index:2}
+.scm-cs-orb{position:absolute;inset:0;display:grid;place-items:center;border-radius:34px;color:#fff;background:linear-gradient(135deg,#5B9DFF,#2A72FF 55%,#0047BB);
+  box-shadow:0 0 0 10px rgba(42,114,255,.12),0 30px 60px -18px rgba(42,114,255,.95);opacity:0;transform:scale(.6) rotate(-14deg) translateY(20px);transition:opacity .45s,transform .6s var(--ease)}
+.scm-cs-orb svg{width:54px;height:54px}
+.scm-cs-orb.is-on{opacity:1;transform:none}
+.scm-cs-panel{position:absolute;left:4%;right:4%;bottom:12%;line-height:0}
+.scm-cs-panel img{width:100%;height:auto;filter:drop-shadow(0 40px 60px rgba(0,0,0,.6))}
+.scm-cs-spot{position:absolute;left:var(--sx,21%);top:var(--sy,50%);width:26%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;
+  background:radial-gradient(closest-side,rgba(91,157,255,.75),rgba(42,114,255,.25) 55%,transparent);mix-blend-mode:screen;transition:left .6s var(--ease),top .6s var(--ease)}
+@media (max-width:980px){
+  .scm-cs{height:300vh}
+  .scm-cs-grid{grid-template-columns:1fr;gap:10px}
+  .scm-cs-copy{text-align:center}
+  .scm-cs-list{display:flex;justify-content:center;flex-wrap:wrap;gap:6px 10px;margin-top:18px}
+  .scm-cs-list button{width:auto;padding:8px 14px;border-radius:40px;border:1px solid rgba(255,255,255,.12);gap:0}
+  .scm-cs-list .n,.scm-cs-list i{display:none}
+  .scm-cs-list b{font-size:15px;letter-spacing:0}
+  .scm-cs-list button.is-on{border-color:var(--ac-line);background:rgba(42,114,255,.16)}
+  .scm-cs-list button.is-on b{transform:none}
+  .scm-cs-stage{max-height:min(56vh,460px);max-width:min(56vh,460px)}
+  .scm-cs-orbs{width:88px;height:88px}.scm-cs-orb{border-radius:26px}.scm-cs-orb svg{width:40px;height:40px}
+}
+@media (prefers-reduced-motion:reduce){.scm-cs{height:auto}.scm-cs-stick{position:static;height:auto;padding-block:80px}}
 
 /* ---------- 6. Enter STAR Copy ---------- */
 .scm-enter{text-align:center;padding-block:clamp(80px,10vw,140px);background:radial-gradient(56% 64% at 50% 0%,rgba(42,114,255,.3),transparent 66%),linear-gradient(180deg,var(--ink-2),#03050B)}
@@ -202,6 +243,55 @@
   .scm-less{text-align:center}
 }
 @media (max-width:420px){.scm-ctl button{padding:24px 10px}.scm-btn{width:100%}}
+
+/* the account card follows the live site's form prototype */
+.db-hero-form{padding:clamp(24px,2.8vw,34px);border-radius:28px;background:#fff}
+.oa-h{font-size:clamp(20px,2.2vw,24px);font-weight:700;letter-spacing:-.02em;color:var(--ink);text-align:center}
+.oa-seg{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:22px;padding:4px;border-radius:14px;background:#EEF1F6}
+.oa-seg-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;border:0;border-radius:11px;background:transparent;
+  font:inherit;font-size:13.5px;font-weight:600;color:#7a879b;cursor:pointer;transition:background .25s,color .25s,box-shadow .25s}
+.oa-seg-btn svg{width:16px;height:16px;color:#A9B3C4}
+.oa-seg-btn.is-on{background:#fff;color:var(--ink);box-shadow:0 4px 12px rgba(16,30,54,.08)}
+.oa-seg-btn.is-on svg{color:#7a879b}
+.oa-fld{position:relative;margin-top:14px;height:56px;border:1px solid #DFE5EF;border-radius:12px;background:#fff;transition:border-color .25s,box-shadow .25s}
+.oa-fld[hidden]{display:none}
+.oa-fld:focus-within{border-color:var(--acc-2,var(--blue));box-shadow:0 0 0 4px rgba(42,114,255,.12)}
+.oa-fld.is-bad{border-color:#e5484d}
+.oa-fld-ic{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:#A9B3C4;pointer-events:none}
+.oa-fld label{position:absolute;left:46px;top:50%;transform:translateY(-50%);margin:0;pointer-events:none;font-size:14px;font-weight:600;color:#55637a;
+  transition:top .2s,font-size .2s,transform .2s,color .2s}
+.oa-fld label b{color:#e5484d;font-weight:700;margin-left:1px}
+.oa-fld:focus-within label,.oa-fld.has-val label,.oa-fld:has(input:not(:placeholder-shown)) label{top:9px;transform:none;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#7a879b}
+.oa-fld input,.oa-fld select{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:inherit;background:transparent;font:inherit;font-size:14.5px;color:var(--ink);outline:none;padding:19px 16px 5px 46px}
+.oa-fld select{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:44px}
+.oa-fld-chev{position:absolute;right:16px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:#A9B3C4;pointer-events:none}
+.oa-fld .stsel{position:absolute;inset:0;border-radius:inherit}
+.oa-fld label,.oa-fld-ic,.oa-fld-chev{z-index:2}
+.oa-fld--pass input{padding-right:50px}
+.oa-eye{position:absolute;right:10px;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:32px;height:32px;border:0;border-radius:9px;background:transparent;color:#A9B3C4;cursor:pointer;transition:color .25s}
+.oa-eye:hover{color:var(--ink)}
+.oa-eye svg{width:19px;height:19px}
+.oa-type{display:flex;gap:clamp(26px,4vw,44px);margin-top:18px}
+.db-hero-form .ct-check{margin-top:12px;font-size:12.5px;line-height:1.55;color:#41506a}
+.oa-type .ct-check{margin-top:0;align-items:center;font-size:13.5px;color:var(--ink)}
+.db-hero-form .an-box{width:20px;height:20px;border-radius:6px;background:#fff;border-color:#C9D2E0}
+.db-hero-form .ct-check input:checked + .an-box{background:var(--acc-2,var(--blue));border-color:var(--acc-2,var(--blue));color:#fff}
+.db-hero-form .ct-check input:focus-visible + .an-box{outline:2px solid var(--acc-2,var(--blue));outline-offset:2px}
+.db-hero-form .ct-check.is-bad .an-box{border-color:#e5484d}
+.db-hero-form .ct-check a{color:var(--acc-2,var(--blue));font-weight:600}
+.db-hero-form .ct-err{margin-top:6px;font-size:12px}
+.oa-submit{display:block;width:100%;margin-top:22px;height:52px;border:0;border-radius:12px;background:linear-gradient(90deg,#0A1C6B,#1739C9);color:#fff;
+  font:inherit;font-size:15.5px;font-weight:700;cursor:pointer;box-shadow:0 14px 28px -14px rgba(10,28,107,.6);transition:transform .25s,filter .25s}
+.oa-submit:hover{transform:translateY(-2px);filter:brightness(1.06)}
+.oa-note{margin-top:12px;text-align:center;font-size:12.5px;color:#55637a}
+.oa-note.is-ok{color:#0f8a5f}
+.oa-links{display:flex;justify-content:center;gap:clamp(40px,8vw,90px);margin-top:16px}
+.oa-links a{font-size:13px;color:#7a879b;text-decoration:none;transition:color .25s}
+.oa-links a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+/* STAR Copy hero fit: the light card sits on the navy hero */
+.scm-oa{position:relative;box-shadow:0 40px 90px -40px rgba(0,0,0,.85),0 0 0 1px rgba(127,178,255,.25)}
+.scm-oa .oa-h{font-size:15px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#0E1524}
+.scm-oa .scm-form-note{margin-top:14px;font-size:12px;line-height:1.6;color:#6B7590;text-align:center}
 
 </style>
 
@@ -261,6 +351,10 @@
   <symbol id="i-send" viewBox="0 0 24 24"><path d="M4 12 20 4l-6 16-3-6-7-2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
   <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
   <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3.2" y="5" width="17.6" height="15.5" rx="2.6" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3.2 9.6h17.6M8 3.4v3.2M16 3.4v3.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><rect x="6.8" y="12.4" width="3" height="2.6" rx=".7" fill="currentColor"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m3.5 7 8.5 6 8.5-6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M8 10V8a4 4 0 0 1 8 0v2" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+  <symbol id="i-eye-off" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m4.5 4 15 16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
   <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8.2" r="3.8" fill="currentColor"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0Z" fill="currentColor"/></symbol>
 </svg>
 
@@ -525,239 +619,123 @@
       <div class="scm-hero-art"><img src="assets/img/scm-hero-portrait-v1.webp" alt="Glass STAR Master profile cards linked by blue light to a phone showing a copy toggle" width="1200" height="1500" decoding="async"></div>
     </div>
 
-    <form class="scm-form" id="access" novalidate data-aos="fade-up" aria-labelledby="scm-form-title">
-      <h2 id="scm-form-title">ACCESS STAR COPY</h2>
-      <div class="scm-fields">
-        <div class="scm-f"><input id="scmName" name="name" type="text" autocomplete="name" placeholder=" " required><label for="scmName">Full Name</label></div>
-        <div class="scm-f"><input id="scmPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder=" " required><label for="scmPhone">Mobile Number</label></div>
-        <div class="scm-f"><input id="scmEmail" name="email" type="email" inputmode="email" autocomplete="email" placeholder=" " required><label for="scmEmail">Email Address</label></div>
-        <div class="scm-f scm-f--sel"><select id="scmCountry" name="country" autocomplete="country-name" required data-native>
-              <option value="United Kingdom">United Kingdom</option>
-              <option value="China">China</option>
-              <option value="France">France</option>
-              <option value="Spain">Spain</option>
-              <option value="Italy">Italy</option>
-              <option value="Estonia">Estonia</option>
-              <option value="Thailand">Thailand</option>
-              <option value="Vietnam">Vietnam</option>
-              <option value="Malaysia" selected>Malaysia</option>
-              <option value="Indonesia">Indonesia</option>
-              <option value="Afghanistan">Afghanistan</option>
-              <option value="Albania">Albania</option>
-              <option value="Algeria">Algeria</option>
-              <option value="Andorra">Andorra</option>
-              <option value="Angola">Angola</option>
-              <option value="Anguilla">Anguilla</option>
-              <option value="Antarctica">Antarctica</option>
-              <option value="Antigua and Barbuda">Antigua and Barbuda</option>
-              <option value="Argentina">Argentina</option>
-              <option value="Armenia">Armenia</option>
-              <option value="Aruba">Aruba</option>
-              <option value="Australia">Australia</option>
-              <option value="Austria">Austria</option>
-              <option value="Azerbaijan">Azerbaijan</option>
-              <option value="Bahamas">Bahamas</option>
-              <option value="Bahrain">Bahrain</option>
-              <option value="Bangladesh">Bangladesh</option>
-              <option value="Barbados">Barbados</option>
-              <option value="Belarus">Belarus</option>
-              <option value="Belgium">Belgium</option>
-              <option value="Belize">Belize</option>
-              <option value="Benin">Benin</option>
-              <option value="Bermuda">Bermuda</option>
-              <option value="Bhutan">Bhutan</option>
-              <option value="Bolivia">Bolivia</option>
-              <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
-              <option value="Botswana">Botswana</option>
-              <option value="Brazil">Brazil</option>
-              <option value="Brunei Darussalam">Brunei Darussalam</option>
-              <option value="Bulgaria">Bulgaria</option>
-              <option value="Burkina Faso">Burkina Faso</option>
-              <option value="Burundi">Burundi</option>
-              <option value="Cambodia">Cambodia</option>
-              <option value="Cameroon">Cameroon</option>
-              <option value="Canada">Canada</option>
-              <option value="Cape Verde">Cape Verde</option>
-              <option value="Cayman Islands">Cayman Islands</option>
-              <option value="Central African Republic">Central African Republic</option>
-              <option value="Chad">Chad</option>
-              <option value="Chile">Chile</option>
-              <option value="Colombia">Colombia</option>
-              <option value="Comoros">Comoros</option>
-              <option value="Congo, Democratic Republic of the">Congo, Democratic Republic of the</option>
-              <option value="Congo, Republic of the">Congo, Republic of the</option>
-              <option value="Cook Islands">Cook Islands</option>
-              <option value="Costa Rica">Costa Rica</option>
-              <option value="Cote d&amp;#x27;Ivoire">Cote d&amp;#x27;Ivoire</option>
-              <option value="Croatia">Croatia</option>
-              <option value="Curacao">Curacao</option>
-              <option value="Cyprus">Cyprus</option>
-              <option value="Czech Republic">Czech Republic</option>
-              <option value="Denmark">Denmark</option>
-              <option value="Djibouti">Djibouti</option>
-              <option value="Dominica">Dominica</option>
-              <option value="Dominican Republic">Dominican Republic</option>
-              <option value="Dominican Republic">Dominican Republic</option>
-              <option value="Dominican Republic">Dominican Republic</option>
-              <option value="Ecuador">Ecuador</option>
-              <option value="Egypt">Egypt</option>
-              <option value="El Salvador">El Salvador</option>
-              <option value="Equatorial Guinea">Equatorial Guinea</option>
-              <option value="Eritrea">Eritrea</option>
-              <option value="Eswatini">Eswatini</option>
-              <option value="Ethiopia">Ethiopia</option>
-              <option value="Faroe Islands">Faroe Islands</option>
-              <option value="Federated States Of Micronesia Micronesia">Federated States Of Micronesia Micronesia</option>
-              <option value="Fiji">Fiji</option>
-              <option value="Finland">Finland</option>
-              <option value="French Polynesia">French Polynesia</option>
-              <option value="Gabon">Gabon</option>
-              <option value="Gambia">Gambia</option>
-              <option value="Gaza Strip">Gaza Strip</option>
-              <option value="Georgia">Georgia</option>
-              <option value="Germany">Germany</option>
-              <option value="Ghana">Ghana</option>
-              <option value="Gibraltar">Gibraltar</option>
-              <option value="Greece">Greece</option>
-              <option value="Greenland">Greenland</option>
-              <option value="Grenada">Grenada</option>
-              <option value="Guadeloupe">Guadeloupe</option>
-              <option value="Guatemala">Guatemala</option>
-              <option value="Guernsey">Guernsey</option>
-              <option value="Guinea">Guinea</option>
-              <option value="Guinea-Bissau">Guinea-Bissau</option>
-              <option value="Guyana">Guyana</option>
-              <option value="Haiti">Haiti</option>
-              <option value="Honduras">Honduras</option>
-              <option value="HongKong">HongKong</option>
-              <option value="Hungary">Hungary</option>
-              <option value="Iceland">Iceland</option>
-              <option value="India">India</option>
-              <option value="Iraq">Iraq</option>
-              <option value="Ireland">Ireland</option>
-              <option value="Isle Of Man">Isle Of Man</option>
-              <option value="Israel">Israel</option>
-              <option value="Jamaica">Jamaica</option>
-              <option value="Jersey">Jersey</option>
-              <option value="Jordan">Jordan</option>
-              <option value="Kazakhstan">Kazakhstan</option>
-              <option value="Kenya">Kenya</option>
-              <option value="Kiribati">Kiribati</option>
-              <option value="Korea, Republic Of">Korea, Republic Of</option>
-              <option value="Kosovo">Kosovo</option>
-              <option value="Kuwait">Kuwait</option>
-              <option value="Kyrgyzstan">Kyrgyzstan</option>
-              <option value="Latvia">Latvia</option>
-              <option value="Lebanon">Lebanon</option>
-              <option value="Lesotho">Lesotho</option>
-              <option value="Liberia">Liberia</option>
-              <option value="Libya">Libya</option>
-              <option value="Liechtenstein">Liechtenstein</option>
-              <option value="Lithuania">Lithuania</option>
-              <option value="Luxembourg">Luxembourg</option>
-              <option value="Macao">Macao</option>
-              <option value="Macedonia">Macedonia</option>
-              <option value="Madagascar">Madagascar</option>
-              <option value="Malawi">Malawi</option>
-              <option value="Maldives">Maldives</option>
-              <option value="Mali">Mali</option>
-              <option value="Malta">Malta</option>
-              <option value="Marshall Islands">Marshall Islands</option>
-              <option value="Martinique">Martinique</option>
-              <option value="Mauritania">Mauritania</option>
-              <option value="Mauritius">Mauritius</option>
-              <option value="Mexico">Mexico</option>
-              <option value="Moldova">Moldova</option>
-              <option value="Monaco">Monaco</option>
-              <option value="Mongolia">Mongolia</option>
-              <option value="Montenegro">Montenegro</option>
-              <option value="Montserrat">Montserrat</option>
-              <option value="Morocco">Morocco</option>
-              <option value="Mozambique">Mozambique</option>
-              <option value="Namibia">Namibia</option>
-              <option value="Nauru">Nauru</option>
-              <option value="Nepal">Nepal</option>
-              <option value="Netherlands">Netherlands</option>
-              <option value="New Caledonia">New Caledonia</option>
-              <option value="New Zealand">New Zealand</option>
-              <option value="Nicaragua">Nicaragua</option>
-              <option value="Niger">Niger</option>
-              <option value="Nigeria">Nigeria</option>
-              <option value="Niue">Niue</option>
-              <option value="Norway">Norway</option>
-              <option value="Oman">Oman</option>
-              <option value="Pakistan">Pakistan</option>
-              <option value="Palau">Palau</option>
-              <option value="Palestinian Territory, Occupied">Palestinian Territory, Occupied</option>
-              <option value="Panama">Panama</option>
-              <option value="Papua New Guinea">Papua New Guinea</option>
-              <option value="Paraguay">Paraguay</option>
-              <option value="Peru">Peru</option>
-              <option value="Philippines">Philippines</option>
-              <option value="Poland">Poland</option>
-              <option value="Portugal">Portugal</option>
-              <option value="Qatar">Qatar</option>
-              <option value="Reunion">Reunion</option>
-              <option value="Romania">Romania</option>
-              <option value="Russia">Russia</option>
-              <option value="Rwanda">Rwanda</option>
-              <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
-              <option value="Saint Lucia">Saint Lucia</option>
-              <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
-              <option value="San Marino">San Marino</option>
-              <option value="Sao Tome and Principe">Sao Tome and Principe</option>
-              <option value="Saudi Arabia">Saudi Arabia</option>
-              <option value="Senegal">Senegal</option>
-              <option value="Serbia">Serbia</option>
-              <option value="Seychelles">Seychelles</option>
-              <option value="Sierra Leone">Sierra Leone</option>
-              <option value="Sint Maarten">Sint Maarten</option>
-              <option value="Slovakia">Slovakia</option>
-              <option value="Slovenia">Slovenia</option>
-              <option value="Solomon Islands">Solomon Islands</option>
-              <option value="Somalia">Somalia</option>
-              <option value="South Africa">South Africa</option>
-              <option value="Sri Lanka">Sri Lanka</option>
-              <option value="Sudan">Sudan</option>
-              <option value="Sudan, South">Sudan, South</option>
-              <option value="Suriname">Suriname</option>
-              <option value="Sweden">Sweden</option>
-              <option value="Switzerland">Switzerland</option>
-              <option value="Syria">Syria</option>
-              <option value="Taiwan">Taiwan</option>
-              <option value="Tajikistan">Tajikistan</option>
-              <option value="Tanzania, United Republic Of">Tanzania, United Republic Of</option>
-              <option value="Timor">Timor</option>
-              <option value="Togo">Togo</option>
-              <option value="Tonga">Tonga</option>
-              <option value="Trinidad and Tobago">Trinidad and Tobago</option>
-              <option value="Tunisia">Tunisia</option>
-              <option value="Turkey">Turkey</option>
-              <option value="Turkmenistan">Turkmenistan</option>
-              <option value="Turks And Caicos Islands">Turks And Caicos Islands</option>
-              <option value="Tuvalu">Tuvalu</option>
-              <option value="Uganda">Uganda</option>
-              <option value="Ukraine">Ukraine</option>
-              <option value="United Arab Emirates">United Arab Emirates</option>
-              <option value="Uruguay">Uruguay</option>
-              <option value="Uzbekistan">Uzbekistan</option>
-              <option value="Vanuatu">Vanuatu</option>
-              <option value="Vatican City State">Vatican City State</option>
-              <option value="Venezuela">Venezuela</option>
-              <option value="Virgin Islands, British">Virgin Islands, British</option>
-              <option value="Yemen">Yemen</option>
-              <option value="Zambia">Zambia</option>
-              <option value="Zimbabwe">Zimbabwe</option>
-          </select><label for="scmCountry">Country of Residence</label><svg class="chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></div>
-        <div class="scm-f"><input id="scmPass" name="password" type="password" autocomplete="new-password" placeholder=" " minlength="8" required><label for="scmPass">Password</label></div>
-        <!-- TODO (Compliance): the document names this item only as "Required Consents"; insert the approved consent wording here -->
-        <label class="scm-check" for="scmConsent"><input id="scmConsent" name="consent" type="checkbox" required><span class="scm-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>Required Consents</label>
-      </div>
-      <!-- TODO (MKT): point submission at the STARTRADER live-account sign-up for STAR Copy -->
-      <button class="scm-btn" type="submit">CREATE ACCOUNT <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
-      <p class="scm-ok" data-scm-ok aria-live="polite"></p>
-      <p class="scm-form-note">Creates a STARTRADER Live Account to access STAR Copy, subject to eligibility and applicable terms and conditions..</p>
-    </form>
+    <div class="ct-form-card db-hero-form scm-oa" id="access" data-aos="fade-up" aria-labelledby="scm-form-title">
+      <h2 class="oa-h" id="scm-form-title">ACCESS STAR COPY</h2>
+      <form id="oaForm" novalidate>
+        <div class="oa-seg" role="tablist" aria-label="Sign up with">
+          <button type="button" class="oa-seg-btn is-on" role="tab" aria-selected="true" data-oa-mode="email"><svg aria-hidden="true"><use href="#i-mail"/></svg>Email Address</button>
+          <button type="button" class="oa-seg-btn" role="tab" aria-selected="false" data-oa-mode="phone"><svg aria-hidden="true"><use href="#i-phone"/></svg>Phone Number</button>
+        </div>
+
+        <div class="oa-fld" data-oa-email>
+          <svg class="oa-fld-ic" aria-hidden="true"><use href="#i-mail"/></svg>
+          <label for="oaEmail">Email<b>*</b></label>
+          <input type="email" id="oaEmail" name="email" inputmode="email" autocomplete="email" placeholder=" " aria-describedby="oaEmailErr">
+        </div>
+        <p class="ct-err" id="oaEmailErr" hidden>We need a valid email to reach you on.</p>
+
+        <div class="oa-fld" data-oa-phone hidden>
+          <svg class="oa-fld-ic" aria-hidden="true"><use href="#i-phone"/></svg>
+          <label for="oaPhone">Phone Number<b>*</b></label>
+          <input type="tel" id="oaPhone" name="phone" inputmode="tel" autocomplete="tel" placeholder=" " aria-describedby="oaPhoneErr">
+        </div>
+        <p class="ct-err" id="oaPhoneErr" hidden>Enter a valid phone number, with country code.</p>
+
+        <div class="oa-fld oa-fld--sel has-val">
+          <svg class="oa-fld-ic" aria-hidden="true"><use href="#i-globe"/></svg>
+          <label for="oaCountry">Country<b>*</b></label>
+          <select id="oaCountry" name="country" autocomplete="country-name" aria-describedby="oaCountryErr">
+            <option value=""></option>
+            <option>United Arab Emirates</option>
+            <option>United Kingdom</option>
+            <option>Singapore</option>
+            <option selected>Malaysia</option>
+            <option>Indonesia</option>
+            <option>Thailand</option>
+            <option>Vietnam</option>
+            <option>India</option>
+            <option>South Africa</option>
+            <option>Nigeria</option>
+            <option>Kenya</option>
+            <option>Egypt</option>
+            <option>Saudi Arabia</option>
+            <option>Kuwait</option>
+            <option>Qatar</option>
+            <option>Bahrain</option>
+            <option>Oman</option>
+            <option>Jordan</option>
+            <option>Turkey</option>
+            <option>Spain</option>
+            <option>Italy</option>
+            <option>Germany</option>
+            <option>France</option>
+            <option>Netherlands</option>
+            <option>Poland</option>
+            <option>Brazil</option>
+            <option>Mexico</option>
+            <option>Chile</option>
+            <option>Japan</option>
+            <option>South Korea</option>
+            <option>Hong Kong SAR</option>
+            <option>Taiwan</option>
+            <option>Philippines</option>
+            <option>Other</option>
+          </select>
+          <svg class="oa-fld-chev" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+        </div>
+        <p class="ct-err" id="oaCountryErr" hidden>Please choose your country.</p>
+
+        <div class="oa-fld oa-fld--pass">
+          <svg class="oa-fld-ic" aria-hidden="true"><use href="#i-lock"/></svg>
+          <label for="oaPass">Password<b>*</b></label>
+          <input type="password" id="oaPass" name="password" autocomplete="new-password" placeholder=" " aria-describedby="oaPassErr">
+          <button type="button" class="oa-eye" id="oaEye" aria-label="Show password" aria-pressed="false"><svg aria-hidden="true"><use href="#i-eye-off"/></svg></button>
+        </div>
+        <p class="ct-err" id="oaPassErr" hidden>Use at least 8 characters.</p>
+
+        <div class="oa-type" role="radiogroup" aria-label="Account type">
+          <label class="ct-check" for="oaTypeInd">
+            <input type="radio" id="oaTypeInd" name="acctType" value="Individual" checked>
+            <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+            <span>Individual</span>
+          </label>
+          <label class="ct-check" for="oaTypeCo">
+            <input type="radio" id="oaTypeCo" name="acctType" value="Company">
+            <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+            <span>Company</span>
+          </label>
+        </div>
+
+        <label class="ct-check" for="oaUs">
+          <input type="checkbox" id="oaUs" name="notUs" aria-describedby="oaUsErr">
+          <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+          <span>I confirm that I am not a U.S. person, including a U.S citizen or resident.</span>
+        </label>
+        <p class="ct-err" id="oaUsErr" hidden>The product is not available to U.S. persons.</p>
+
+        <label class="ct-check" for="oaMkt">
+          <input type="checkbox" id="oaMkt" name="marketing">
+          <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+          <span>I consent to STARTRADER processing my personal data for marketing and application support. I may withdraw my consent at any time.</span>
+        </label>
+
+        <label class="ct-check" for="oaTerms">
+          <input type="checkbox" id="oaTerms" name="terms" aria-describedby="oaTermsErr">
+          <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+          <span>I have read, understood, and agree to the <a href="legal-documents.html">Client Agreement</a>, <a href="legal-documents.html">Risk Disclosure</a>, <a href="privacy-policy-app.html">Privacy Policy</a>, and all other applicable terms and policies.</span>
+        </label>
+        <p class="ct-err" id="oaTermsErr" hidden>Please agree to continue.</p>
+
+        <button class="oa-submit" type="submit">Create Account</button>
+        <p class="oa-note" data-oa-note hidden></p>
+
+        <div class="oa-links">
+          <a href="getting-started.html">Practice Trading</a>
+          <a href="https://myaccount.startrader.com" rel="noopener">Login</a>
+        </div>
+        <p class="scm-form-note">Creates a STARTRADER Live Account to access STAR Copy, subject to eligibility and applicable terms and conditions..</p>
+      </form>
+    </div>
   </div>
 </section>
 
@@ -801,22 +779,24 @@
       <h3>Less to Start.</h3>
       <p>Selected strategies available from <b>USD 10.</b>*</p>
     </div>
-    <div class="scm-coin" data-aos="fade-up" data-aos-delay="100"><img class="scm-float" src="assets/img/scm-coin-v1.webp" alt="A navy glass coin with a glowing blue star" width="1000" height="1000" loading="lazy" decoding="async"></div>
+    <div class="scm-coin" data-aos="fade-up" data-aos-delay="100"><img class="scm-float" src="assets/img/scm-less-v1.webp" alt="A single small coin dropping into a glass STAR Master strategy card that lights up, beside a low first step" width="1000" height="753" loading="lazy" decoding="async"></div>
   </div>
 </section>
 
-<!-- ============ 5. YOUR CONTROLS ============ -->
-<section class="scm-sec scm-sec--deep" aria-labelledby="scm-ctl-t">
-  <span class="scm-spark" aria-hidden="true" style="--sp:18px;left:7%;top:18%"></span>
-  <div class="container">
-    <h2 class="scm-h2 scm-c" id="scm-ctl-t" data-aos="fade-up">Automatic Copying. <span class="lit">Your Controls.</span></h2>
-    <div class="scm-ctl" role="group" aria-label="Monitor · Adjust · Change · Stop" data-scm-ctl>
-      <button type="button" class="is-on" data-aos="fade-up"><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></svg></span><b>Monitor</b></button>
-      <button type="button" data-aos="fade-up" data-aos-delay="80"><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2.2"/><circle cx="10" cy="17" r="2.2"/></svg></span><b>Adjust</b></button>
-      <button type="button" data-aos="fade-up" data-aos-delay="160"><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg></span><b>Change</b></button>
-      <button type="button" data-aos="fade-up" data-aos-delay="240"><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8.5"/><rect x="9" y="9" width="6" height="6" rx="1" fill="currentColor" stroke="none"/></svg></span><b>Stop</b></button>
+<!-- ============ 5. YOUR CONTROLS (pinned scroll sequence) ============ -->
+<section class="scm-cs" aria-labelledby="scm-ctl-t" data-scm-cs data-spots='["21% 50%","41% 47%","59% 44%","78% 41%"]'>
+  <div class="scm-cs-stick">
+    <div class="container scm-cs-grid">
+      <div class="scm-cs-copy">
+        <h2 class="scm-h2" id="scm-ctl-t">Automatic Copying. <span class="lit">Your Controls.</span></h2>
+        <ol class="scm-cs-list" role="group" aria-label="Monitor · Adjust · Change · Stop"><li><button type="button" data-i="0" class="is-on"><span class="n">01</span><b>Monitor</b><i aria-hidden="true"></i></button></li><li><button type="button" data-i="1"><span class="n">02</span><b>Adjust</b><i aria-hidden="true"></i></button></li><li><button type="button" data-i="2"><span class="n">03</span><b>Change</b><i aria-hidden="true"></i></button></li><li><button type="button" data-i="3"><span class="n">04</span><b>Stop</b><i aria-hidden="true"></i></button></li></ol>
+      </div>
+      <div class="scm-cs-stage" aria-hidden="true">
+        <svg class="scm-cs-ring" viewBox="0 0 120 120"><circle cx="60" cy="60" r="54"/><circle class="p" cx="60" cy="60" r="54" pathLength="100"/></svg>
+        <div class="scm-cs-orbs"><span class="scm-cs-orb is-on" data-i="0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></svg></span><span class="scm-cs-orb" data-i="1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2.2"/><circle cx="10" cy="17" r="2.2"/></svg></span><span class="scm-cs-orb" data-i="2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg></span><span class="scm-cs-orb" data-i="3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><rect x="9" y="9" width="6" height="6" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+        <div class="scm-cs-panel"><img src="assets/img/scm-controls-v1.webp" alt="" width="1600" height="1112" loading="lazy" decoding="async"><span class="scm-cs-spot"></span></div>
+      </div>
     </div>
-    <div class="scm-panel" data-aos="fade-up"><img src="assets/img/scm-controls-v1.webp" alt="A navy glass control panel with monitor, adjust, change and stop controls glowing blue" width="1600" height="1112" loading="lazy" decoding="async"></div>
   </div>
 </section>
 
@@ -839,37 +819,69 @@
 </main>
 
 <script>
+/* banner account card: email/phone switch, password toggle, inline validation */
+(function () {
+  var form = document.getElementById('oaForm');
+  if (!form) return;
+  var mode = 'email';
+  var segs = Array.prototype.slice.call(form.querySelectorAll('[data-oa-mode]'));
+  var emailW = form.querySelector('[data-oa-email]'), phoneW = form.querySelector('[data-oa-phone]');
+  var email = document.getElementById('oaEmail'), phone = document.getElementById('oaPhone');
+  var pass = document.getElementById('oaPass'), country = document.getElementById('oaCountry');
+  var eye = document.getElementById('oaEye'), note = form.querySelector('[data-oa-note]');
+  function err(id, bad) {
+    var el = document.getElementById(id);
+    if (el) el.hidden = !bad;
+    var ctl = document.getElementById(id.replace(/Err$/, ''));
+    var wrap = ctl && (ctl.closest('.oa-fld') || ctl.closest('.ct-check'));
+    if (wrap) wrap.classList.toggle('is-bad', !!bad);
+    return !bad;
+  }
+  segs.forEach(function (b) {
+    b.addEventListener('click', function () {
+      mode = b.getAttribute('data-oa-mode');
+      segs.forEach(function (x) { var on = x === b; x.classList.toggle('is-on', on); x.setAttribute('aria-selected', on ? 'true' : 'false'); });
+      emailW.hidden = mode !== 'email';
+      phoneW.hidden = mode !== 'phone';
+      err('oaEmailErr', false); err('oaPhoneErr', false);
+      (mode === 'email' ? email : phone).focus();
+    });
+  });
+  country.addEventListener('change', function () { country.closest('.oa-fld').classList.toggle('has-val', !!country.value); });
+  eye.addEventListener('click', function () {
+    var show = pass.type === 'password';
+    pass.type = show ? 'text' : 'password';
+    eye.setAttribute('aria-pressed', show ? 'true' : 'false');
+    eye.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+    eye.querySelector('use').setAttribute('href', show ? '#i-eye' : '#i-eye-off');
+  });
+  function emailOk() { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim()); }
+  function phoneOk() { return /^\+?[0-9 ()-]{7,20}$/.test(phone.value.trim()); }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var ok = true;
+    if (mode === 'email') ok = err('oaEmailErr', !emailOk()) && ok; else ok = err('oaPhoneErr', !phoneOk()) && ok;
+    ok = err('oaCountryErr', !country.value) && ok;
+    ok = err('oaPassErr', pass.value.length < 8) && ok;
+    ok = err('oaUsErr', !document.getElementById('oaUs').checked) && ok;
+    ok = err('oaTermsErr', !document.getElementById('oaTerms').checked) && ok;
+    if (!ok) { var bad = form.querySelector('.is-bad'); if (bad) bad.scrollIntoView({ block: 'center', behavior: 'smooth' }); return; }
+    note.hidden = false; note.classList.add('is-ok');
+    note.textContent = 'Details received \u2014 taking you to account opening\u2026';
+    setTimeout(function () { window.location.href = 'getting-started.html'; }, 900);
+  });
+  ['oaEmail', 'oaPhone', 'oaCountry', 'oaPass'].forEach(function (id) {
+    var el = document.getElementById(id);
+    ['input', 'change'].forEach(function (ev) { el.addEventListener(ev, function () { err(id + 'Err', false); }); });
+  });
+  ['oaUs', 'oaTerms'].forEach(function (id) { document.getElementById(id).addEventListener('change', function () { err(id + 'Err', false); }); });
+})();
+</script>
+<script>
 /* STAR Copy Malaysia — page-scoped: account card validation, step rail on
    scroll, profile chips that move the glow, control tiles, hero parallax */
 (function () {
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* ---------- account card ---------- */
-  var form = document.getElementById('access');
-  if (form) {
-    var sel = document.getElementById('scmCountry');
-    var ok = form.querySelector('[data-scm-ok]');
-    function valid(el) {
-      if (el.type === 'checkbox') return el.checked;
-      var v = (el.value || '').trim(); if (!v) return false;
-      if (el.type === 'email') return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
-      if (el.type === 'tel') return /^\+?[\d\s()-]{6,20}$/.test(v);
-      if (el.minLength > 0 && v.length < el.minLength) return false;
-      return true;
-    }
-    function mark(el, bad) { var w = el.closest('.scm-f') || el.closest('.scm-check'); if (w) w.classList.toggle('is-bad', bad); el.setAttribute('aria-invalid', bad ? 'true' : 'false'); }
-    form.addEventListener('input', function (e) { if (e.target.required && valid(e.target)) mark(e.target, false); });
-    form.addEventListener('change', function (e) { if (e.target.required && valid(e.target)) mark(e.target, false); });
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var first = null;
-      Array.prototype.forEach.call(form.querySelectorAll('[required]'), function (el) { var b = !valid(el); mark(el, b); if (b && !first) first = el; });
-      if (first) { first.focus(); return; }
-      ok.textContent = '✓';
-      ok.classList.add('is-on');
-      setTimeout(function () { window.location.href = 'https://myaccount.startrader.com'; }, 700);
-    });
-  }
 
   /* ---------- profile chips move the glow behind the card ---------- */
   var chips = Array.prototype.slice.call(document.querySelectorAll('[data-scm-chips] .scm-chip'));
@@ -882,10 +894,32 @@
   chips.forEach(function (c) { c.addEventListener('click', function () { pick(c); }); });
   if (chips.length) pick(chips[0]);
 
-  /* ---------- control tiles ---------- */
-  var ctl = Array.prototype.slice.call(document.querySelectorAll('[data-scm-ctl] button'));
-  ctl.forEach(function (b) { b.setAttribute('aria-pressed', b.classList.contains('is-on') ? 'true' : 'false');
-    b.addEventListener('click', function () { ctl.forEach(function (x) { var on = x === b; x.classList.toggle('is-on', on); x.setAttribute('aria-pressed', on ? 'true' : 'false'); }); }); });
+  /* ---------- controls: scroll position picks the control ---------- */
+  (function () {
+    var sec = document.querySelector('[data-scm-cs]'); if (!sec) return;
+    var btns = Array.prototype.slice.call(sec.querySelectorAll('.scm-cs-list button'));
+    var orbs = Array.prototype.slice.call(sec.querySelectorAll('.scm-cs-orb'));
+    var spot = sec.querySelector('.scm-cs-spot'), stage = sec.querySelector('.scm-cs-stage');
+    var spots = JSON.parse(sec.getAttribute('data-spots')); var cur = -1, n = btns.length;
+    function show(i) {
+      if (i === cur) return; cur = i;
+      btns.forEach(function (b, k) { b.classList.toggle('is-on', k === i); b.classList.toggle('is-done', k < i); b.setAttribute('aria-pressed', k === i ? 'true' : 'false'); });
+      orbs.forEach(function (o, k) { o.classList.toggle('is-on', k === i); });
+      var xy = spots[i].split(' '); spot.style.setProperty('--sx', xy[0]); spot.style.setProperty('--sy', xy[1]);
+    }
+    function onScroll() {
+      var r = sec.getBoundingClientRect(), span = sec.offsetHeight - window.innerHeight;
+      var p = span > 0 ? Math.min(1, Math.max(0, -r.top / span)) : 0;
+      stage.style.setProperty('--prog', p.toFixed(4));
+      var seg = p * n, i = Math.min(n - 1, Math.floor(seg));
+      btns.forEach(function (b, k) { var f = Math.min(1, Math.max(0, seg - k)); b.querySelector('i').style.setProperty('--f', f.toFixed(3)); });
+      show(i);
+    }
+    btns.forEach(function (b, k) { b.addEventListener('click', function () {
+      var span = sec.offsetHeight - window.innerHeight, y = sec.getBoundingClientRect().top + window.scrollY + span * (k + 0.5) / n;
+      window.scrollTo({ top: y, behavior: reduced ? 'auto' : 'smooth' }); show(k); }); });
+    window.addEventListener('scroll', onScroll, { passive: true }); window.addEventListener('resize', onScroll); onScroll(); show(0);
+  })();
 
   /* ---------- scroll choreography ---------- */
   document.addEventListener('DOMContentLoaded', function () {
@@ -902,8 +936,6 @@
     if (art && window.innerWidth > 980) gsap.to(art, { yPercent: 10, scale: 1.05, ease: 'none', scrollTrigger: { trigger: '.scm-hero', start: 'top top', end: 'bottom top', scrub: true } });
     var pro = document.querySelector('.scm-pro-art img');
     if (pro && window.innerWidth > 980) gsap.fromTo(pro, { yPercent: 8, rotate: -2 }, { yPercent: -8, rotate: 2, ease: 'none', scrollTrigger: { trigger: pro, start: 'top bottom', end: 'bottom top', scrub: true } });
-    var panel = document.querySelector('.scm-panel img');
-    if (panel) gsap.fromTo(panel, { y: 60, rotateX: 18, transformPerspective: 1200, autoAlpha: .4 }, { y: 0, rotateX: 0, autoAlpha: 1, ease: 'none', scrollTrigger: { trigger: panel, start: 'top bottom', end: 'top 55%', scrub: 0.6 } });
   });
 })();
 </script>
