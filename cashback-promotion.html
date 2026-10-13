@@ -308,6 +308,15 @@
 /* hero banner v2 (2026-10-12): the square mobile crop has no empty band, so show it whole */
 @media (max-width:980px){.cbp-hero > picture{height:auto!important}.cbp-hero > picture img{margin-top:0!important}}
 @media (min-width:981px) and (max-width:1199px){.cbp-hero-copy{max-width:50%}}
+
+/* QA 2026-10-13: (1) the closing emblem gets breathing room under the section above and is
+   centred with auto margins (the shared translateX centring drifts in RTL);
+   (2) desktop hero keeps a 16:9-or-wider frame so the banner fills it; where the copy
+   makes the hero taller (981-1279px) the art covers instead of letterboxing */
+.cbp-cta{padding-top:clamp(48px,6vw,96px)}
+.cbp .cta-emblem{margin:0 auto -1vw;transform:none}
+@media (min-width:981px){.cbp-hero{min-height:min(820px,calc(100vh - var(--topbar-h,44px)),56.25vw)}}
+@media (min-width:981px) and (max-width:1279px){.cbp-hero > picture img{object-fit:cover!important;object-position:right center!important}}
 </style>
 
   <!-- Structured data -->
