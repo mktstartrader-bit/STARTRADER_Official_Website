@@ -423,6 +423,12 @@
   .ibp-oa-fld label{left:15px}
   .ibp-oa-fld input,.ibp-oa-fld select{padding:19px 15px 5px}
 }
+
+/* reward line-up: two models (Boxster S x1, Cayman x2), no ranking */
+.ibp-garage--two{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+.ibp-garage--two .ibp-car{flex-direction:column;align-items:stretch;text-align:center}
+.ibp-garage--two .ibp-car-copy{display:flex;flex-direction:column;align-items:center}
+@media (max-width:760px){.ibp-garage--two{grid-template-columns:1fr!important}}
 </style>
 </head>
 <body class="prx ibp">
@@ -862,39 +868,26 @@
     <div class="ibp-head" data-aos="fade-up">
       <span class="ibp-eyebrow"><i aria-hidden="true"></i>Reward</span>
       <h2 class="ibp-h2 ibp-h2--lg" id="ibp-reward-title">Finish in the top three and <span>drive home in a Porsche</span> &mdash; yours to enjoy for up to 3 months.</h2>
-      <p class="ibp-sub">Three winners, three different Porsches. The top IB takes the higher-spec car; second and third each drive a Porsche from a different range.</p>
+      <p class="ibp-sub">The top 3 eligible IBs who meet the qualification criteria will each have the opportunity to enjoy a Porsche driving experience for up to 3 months, subject to the official Terms & Conditions.</p>
     </div>
 
-    <div class="ibp-garage">
-      <article class="ibp-car ibp-car--lead ibp-car--1" data-aos="fade-up">
+    <div class="ibp-garage ibp-garage--two">
+      <article class="ibp-car" data-aos="fade-up">
+        <div class="ibp-car-art"><img src="assets/img/porsche-ib-car-boxster-s-v1.webp" alt="A blue Porsche 718 Boxster S roadster with the roof open, three-quarter front view" width="1330" height="583" loading="lazy" decoding="async"></div>
         <div class="ibp-car-copy">
-          <span class="ibp-car-tag">Top IB</span>
-          <h3>Takes the keys to the <span>higher-spec Porsche</span></h3>
-          <p>Finish first and you drive the sports car of the line-up &mdash; the Porsche 911 Carrera, the highest specification in the campaign, yours for up to 3 months.</p>
-          <ul class="ibp-car-spec" aria-label="Porsche 911 Carrera, basic specifications"><li>911 Carrera coup&eacute;</li><li>3.0-litre twin-turbo flat-six</li><li>385 PS</li><li>0&ndash;100 km/h in 4.2 s</li></ul>
-        </div>
-        <div class="ibp-car-art"><img src="assets/img/porsche-ib-car-v1.webp" alt="A sapphire-blue Porsche 911 sports car, three-quarter front view, the higher-spec Porsche for the top IB" width="1200" height="645" loading="lazy" decoding="async"></div>
-      </article>
-      <article class="ibp-car ibp-car--2" data-aos="fade-up" data-aos-delay="100">
-        <div class="ibp-car-art"><img src="assets/img/porsche-ib-car-cayenne-v1.webp" alt="A sapphire-blue Porsche Cayenne SUV, three-quarter front view, a Porsche from a different range for the second-placed IB" width="1600" height="946" loading="lazy" decoding="async"></div>
-        <div class="ibp-car-copy">
-          <span class="ibp-car-tag">Second place</span>
-          <h3>Porsche <span>Cayenne</span></h3>
-          <p>Second across the line drives a Porsche from a different range &mdash; the luxury SUV, with room for five, for up to 3 months.</p>
-          <ul class="ibp-car-spec" aria-label="Porsche Cayenne, basic specifications"><li>Luxury SUV, 5 seats</li><li>3.0-litre V6 turbo</li><li>353 PS</li><li>0&ndash;100 km/h in 6.0 s</li><li>All-wheel drive</li></ul>
+          <span class="ibp-car-tag">&times;1</span>
+          <h3>Porsche <span>Boxster S</span> (2019)</h3>
         </div>
       </article>
-      <article class="ibp-car ibp-car--3" data-aos="fade-up" data-aos-delay="200">
-        <div class="ibp-car-art"><img src="assets/img/porsche-ib-car-macan-v1.webp" alt="A sapphire-blue Porsche Macan SUV, three-quarter front view, a Porsche from a different range for the third-placed IB" width="1600" height="944" loading="lazy" decoding="async"></div>
+      <article class="ibp-car" data-aos="fade-up" data-aos-delay="100">
+        <div class="ibp-car-art"><img src="assets/img/porsche-ib-car-cayman-v1.webp" alt="A blue Porsche 718 Cayman coupe, three-quarter front view" width="1324" height="616" loading="lazy" decoding="async"></div>
         <div class="ibp-car-copy">
-          <span class="ibp-car-tag">Third place</span>
-          <h3>Porsche <span>Macan</span></h3>
-          <p>Third place is still a Porsche &mdash; the compact sports SUV from a different range to the winner&rsquo;s, yours for up to 3 months.</p>
-          <ul class="ibp-car-spec" aria-label="Porsche Macan, basic specifications"><li>Compact SUV, 5 seats</li><li>2.0-litre turbo four-cylinder</li><li>265 PS</li><li>0&ndash;100 km/h in 6.2 s</li><li>All-wheel drive</li></ul>
+          <span class="ibp-car-tag">&times;2</span>
+          <h3>Porsche <span>Cayman</span> (2018)</h3>
         </div>
       </article>
     </div>
-    <p class="ibp-invite" data-aos="fade-up">Models shown and specifications are indicative, based on the base variant of each model. By invitation only. Terms and conditions apply. <a class="ibp-link" href="assets/pdf/ib-reward-program-agreement-porsche.pdf?v=20261009" target="_blank" rel="noopener">View full T&amp;C <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></a></p>
+    <p class="ibp-invite" data-aos="fade-up">By invitation only. Eligibility criteria, Terms & Conditions apply. <a class="ibp-link" href="assets/pdf/ib-reward-program-agreement-porsche.pdf?v=20261009" target="_blank" rel="noopener">View full T&Cs <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></a></p>
   </div>
 </section>
 

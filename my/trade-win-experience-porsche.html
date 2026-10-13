@@ -406,6 +406,12 @@
   .ibp-oa-fld input,.ibp-oa-fld select{padding:19px 15px 5px}
 }
 
+/* reward line-up: two models (Boxster S x1, Cayman x2), no ranking */
+.ibp-garage--two{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+.ibp-garage--two .ibp-car{flex-direction:column;align-items:stretch;text-align:center}
+.ibp-garage--two .ibp-car-copy{display:flex;flex-direction:column;align-items:center}
+@media (max-width:760px){.ibp-garage--two{grid-template-columns:1fr!important}}
+
 /* ---------- localised page additions (lede, car line-up) ---------- */
 .ibp-lede--my{grid-template-columns:1fr!important;max-width:860px;margin-inline:auto;text-align:center}
 .ibp-lede--my p+p{margin-top:14px}
@@ -415,8 +421,12 @@
 .ibp-my-cars img{width:100%;height:auto;aspect-ratio:16/10;object-fit:contain}
 .ibp-my-cars figcaption{margin-top:10px;font-weight:800;color:#fff}
 @media (max-width:760px){.ibp-my-cars{grid-template-columns:1fr}}
+.ibp-my-cars--two{grid-template-columns:repeat(2,minmax(0,1fr));max-width:900px;margin-inline:auto}
+.ibp-my-cars figcaption b{margin-left:6px;padding:2px 9px;border-radius:20px;font-size:13px;color:#fff;background:rgba(47,123,255,.35)}
+@media (max-width:760px){.ibp-my-cars--two{grid-template-columns:1fr}}
 /* CJK headline: keep each phrase whole (no break inside a word) */
 .ibp-nw{font-style:normal;white-space:nowrap;display:inline-block}
+@media (max-width:400px){html[lang="zh-Hans"] .ibp-lede h2{font-size:clamp(22px,7.6vw,28px)}}
 </style>
 </head>
 <body class="prx ibp">
@@ -798,10 +808,9 @@
       <h2 class="ibp-h2 ibp-h2--lg" id="ibp-reward-title">Ganjaran</h2>
       <p class="ibp-sub">3 IB teratas yang layak dan memenuhi kriteria kelayakan masing-masing akan berpeluang menikmati pengalaman memandu Porsche sehingga 3 bulan, tertakluk kepada Terma &amp; Syarat rasmi.</p>
     </div>
-    <div class="ibp-my-cars" data-aos="fade-up">
-      <figure><img src="../assets/img/porsche-ib-car-v1.webp" alt="Porsche 911 Carrera" loading="lazy" decoding="async"><figcaption>Porsche 911 Carrera</figcaption></figure>
-      <figure><img src="../assets/img/porsche-ib-car-cayenne-v1.webp" alt="Porsche Cayenne" loading="lazy" decoding="async"><figcaption>Porsche Cayenne</figcaption></figure>
-      <figure><img src="../assets/img/porsche-ib-car-macan-v1.webp" alt="Porsche Macan" loading="lazy" decoding="async"><figcaption>Porsche Macan</figcaption></figure>
+    <div class="ibp-my-cars ibp-my-cars--two" data-aos="fade-up">
+      <figure><img src="../assets/img/porsche-ib-car-boxster-s-v1.webp" alt="Porsche Boxster S (2019)" width="1330" height="583" loading="lazy" decoding="async"><figcaption>Porsche Boxster S (2019) <b>&times;1</b></figcaption></figure>
+      <figure><img src="../assets/img/porsche-ib-car-cayman-v1.webp" alt="Porsche Cayman (2018)" width="1324" height="616" loading="lazy" decoding="async"><figcaption>Porsche Cayman (2018) <b>&times;2</b></figcaption></figure>
     </div>
     <p class="ibp-invite" data-aos="fade-up">Melalui jemputan sahaja. Kriteria kelayakan serta Terma &amp; Syarat terpakai. <a class="ibp-link" href="../assets/pdf/ib-reward-program-agreement-porsche.pdf?v=20261009" target="_blank" rel="noopener">Lihat Terma &amp; Syarat penuh <svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></a></p>
   </div>
