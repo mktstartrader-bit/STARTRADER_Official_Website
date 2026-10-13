@@ -50,14 +50,14 @@
   --ink-0:#050A26;--ink-1:#00102D;--ink-2:#000B20;
   --glass:rgba(255,255,255,.055);--glass-line:rgba(255,255,255,.12);
 }
-.scm-eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--ac-3)}
-.scm-eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--ac);box-shadow:0 0 0 4px rgba(42,114,255,.22);animation:scmBeat 1.8s ease-in-out infinite}
 @keyframes scmBeat{0%,100%{opacity:.4;transform:scale(.8)}50%{opacity:1;transform:scale(1.15)}}
 .scm-spark{position:absolute;width:var(--sp,16px);height:var(--sp,16px);pointer-events:none;background:#BFD6FF;
   clip-path:polygon(50% 0%,59% 41%,100% 50%,59% 59%,50% 100%,41% 59%,0% 50%,41% 41%);filter:drop-shadow(0 0 6px rgba(42,114,255,.7));
   animation:scmTw var(--d,3.6s) ease-in-out infinite var(--dl,0s)}
 @keyframes scmTw{0%,100%{transform:scale(.5) rotate(0);opacity:.3}50%{transform:scale(1) rotate(35deg);opacity:1}}
-@media (prefers-reduced-motion:reduce){.scm-spark,.scm-eyebrow i,.scm-float,.scm-rail i{animation:none!important}}
+@media (prefers-reduced-motion:reduce){
+  .scm-spark,.scm-float,.scm-rail i{animation:none!important}
+}
 .scm-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 30px;border-radius:70px;font-size:14.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#fff;
   background:linear-gradient(135deg,#5B9DFF 0%,#2A72FF 45%,#0047BB 100%);box-shadow:0 22px 46px -18px rgba(42,114,255,.75);position:relative;overflow:hidden;border:0;cursor:pointer;font-family:inherit;
   transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
@@ -81,35 +81,6 @@
 .scm-lead{margin-top:22px;max-width:46ch;font-size:clamp(16px,1.5vw,18.5px);line-height:1.7;color:#C9D4EE}
 .scm-lead + .scm-lead{margin-top:10px;color:#9FB0CF}
 .scm-hero-art{display:none}
-/* the account card */
-.scm-form{position:relative;border-radius:26px;padding:clamp(22px,2.6vw,34px);background:rgba(10,18,48,.62);border:1px solid var(--glass-line);
-  -webkit-backdrop-filter:blur(22px) saturate(1.4);backdrop-filter:blur(22px) saturate(1.4);box-shadow:0 40px 90px -40px rgba(0,0,0,.85),inset 0 1px 0 rgba(255,255,255,.12)}
-.scm-form::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;pointer-events:none;
-  background:linear-gradient(140deg,rgba(127,178,255,.7),transparent 35%,transparent 65%,rgba(42,114,255,.55));
-  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
-.scm-form h2{font-size:15px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#fff;text-align:center}
-.scm-fields{display:grid;gap:12px;margin-top:20px}
-.scm-f{position:relative}
-.scm-f label{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:14px;font-weight:600;color:#8EA4C6;pointer-events:none;transition:top .2s,font-size .2s,transform .2s,color .2s}
-.scm-f input,.scm-f select{width:100%;height:56px;padding:20px 16px 6px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);color:#fff;font:inherit;font-size:15px;outline:none;transition:border-color .25s,box-shadow .25s,background .25s}
-.scm-f select{appearance:none;-webkit-appearance:none;padding-right:44px;cursor:pointer}
-.scm-f select option{background:#0b1224;color:#fff}
-.scm-f .chev{position:absolute;right:16px;top:50%;width:16px;height:16px;transform:translateY(-50%);color:#8EA4C6;pointer-events:none}
-.scm-f input:focus,.scm-f select:focus{border-color:var(--ac);background:rgba(42,114,255,.08);box-shadow:0 0 0 4px rgba(42,114,255,.18)}
-.scm-f:focus-within label,.scm-f.has-v label,.scm-f:has(input:not(:placeholder-shown)) label,.scm-f--sel label{top:9px;transform:none;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ac-3)}
-.scm-f.is-bad input,.scm-f.is-bad select{border-color:#F97066}
-.scm-check{display:flex;align-items:center;gap:12px;margin-top:4px;padding:6px 2px;cursor:pointer;font-size:14px;font-weight:600;color:#DCE6F7}
-.scm-check input{position:absolute;opacity:0;width:0;height:0}
-.scm-box{flex:none;display:grid;place-items:center;width:22px;height:22px;border-radius:7px;border:1.5px solid rgba(255,255,255,.3);background:rgba(255,255,255,.04);transition:background .2s,border-color .2s}
-.scm-box svg{width:12px;height:12px;color:transparent}
-.scm-check input:checked + .scm-box{background:var(--ac);border-color:var(--ac)}
-.scm-check input:checked + .scm-box svg{color:#fff}
-.scm-check input:focus-visible + .scm-box{outline:2px solid var(--ac-3);outline-offset:2px}
-.scm-check.is-bad .scm-box{border-color:#F97066}
-.scm-form .scm-btn{width:100%;margin-top:18px}
-.scm-form-note{margin-top:14px;font-size:12px;line-height:1.6;color:#8EA4C6;text-align:center}
-.scm-ok{display:none;margin-top:12px;text-align:center;font-size:13px;font-weight:700;color:var(--ac-3)}
-.scm-ok.is-on{display:block}
 
 /* ---------- shared section look ---------- */
 .scm-sec{position:relative;isolation:isolate;overflow:clip;padding-block:clamp(70px,8vw,120px);color:#fff;background:var(--ink-1)}
@@ -163,26 +134,12 @@
 .scm-float{animation:scmFloat 6s ease-in-out infinite}
 @keyframes scmFloat{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-16px) rotate(3deg)}}
 
-/* ---------- 5. Your Controls ---------- */
-.scm-ctl{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:clamp(36px,4vw,56px)}
-.scm-ctl button{position:relative;display:flex;flex-direction:column;align-items:center;gap:16px;padding:30px 16px;border-radius:22px;font:inherit;color:#DCE6F7;cursor:pointer;
-  background:var(--glass);border:1px solid var(--glass-line);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);transition:transform .4s var(--ease),border-color .4s,background .4s,box-shadow .4s}
-.scm-ctl button span{display:grid;place-items:center;width:62px;height:62px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);transition:background .4s,box-shadow .4s,transform .4s var(--ease)}
-.scm-ctl svg{width:28px;height:28px}
-.scm-ctl b{font-size:clamp(17px,1.7vw,21px);font-weight:800;letter-spacing:-.01em}
-.scm-ctl button:hover{transform:translateY(-6px);border-color:var(--ac-line)}
-.scm-ctl button.is-on{background:rgba(42,114,255,.14);border-color:var(--ac-line);box-shadow:0 30px 60px -36px rgba(42,114,255,.8);color:#fff}
-.scm-ctl button.is-on span{background:linear-gradient(135deg,#5B9DFF,#2A72FF 55%,#0047BB);box-shadow:0 14px 30px -10px rgba(42,114,255,.9);transform:scale(1.06)}
-.scm-panel{max-width:760px;margin:clamp(30px,4vw,50px) auto 0;line-height:0}
-.scm-panel img{width:100%;height:auto;filter:drop-shadow(0 40px 60px rgba(0,0,0,.55))}
-
 /* ---------- 5. controls: the section pins and scroll walks through Monitor > Adjust > Change > Stop ---------- */
 .scm-cs{position:relative;height:340vh;color:#fff;background:radial-gradient(60% 50% at 80% 30%,rgba(42,114,255,.18),transparent 62%),var(--ink-2)}
 .scm-cs-stick{position:sticky;top:var(--chrome-h,114px);height:calc(100vh - var(--chrome-h,114px));display:flex;align-items:center;overflow:hidden}
 .scm-cs-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,4vw,64px);align-items:center;width:100%}
 .scm-cs-list{list-style:none;margin:clamp(26px,3vw,40px) 0 0;padding:0;display:grid;gap:4px}
 .scm-cs-list button{position:relative;display:flex;align-items:center;gap:18px;width:100%;padding:12px 0;border:0;background:none;color:rgba(255,255,255,.28);font:inherit;cursor:pointer;text-align:left;transition:color .45s}
-.scm-cs-list .n{font-size:13px;font-weight:800;letter-spacing:.14em;color:inherit;font-variant-numeric:tabular-nums}
 .scm-cs-list b{font-size:clamp(30px,4vw,58px);font-weight:800;letter-spacing:-.04em;line-height:1;transition:transform .5s var(--ease)}
 .scm-cs-list i{flex:1;height:2px;margin-left:8px;border-radius:2px;background:rgba(255,255,255,.08);position:relative;overflow:hidden}
 .scm-cs-list i::after{content:"";position:absolute;inset:0;transform-origin:left;transform:scaleX(var(--f,0));background:linear-gradient(90deg,#5B9DFF,#2A72FF)}
@@ -208,7 +165,7 @@
   .scm-cs-copy{text-align:center}
   .scm-cs-list{display:flex;justify-content:center;flex-wrap:wrap;gap:6px 10px;margin-top:18px}
   .scm-cs-list button{width:auto;padding:8px 14px;border-radius:40px;border:1px solid rgba(255,255,255,.12);gap:0}
-  .scm-cs-list .n,.scm-cs-list i{display:none}
+  .scm-cs-list i{display:none}
   .scm-cs-list b{font-size:15px;letter-spacing:0}
   .scm-cs-list button.is-on{border-color:var(--ac-line);background:rgba(42,114,255,.16)}
   .scm-cs-list button.is-on b{transform:none}
@@ -229,12 +186,12 @@
   .scm-hero{padding:calc(var(--nav-h) + 40px) 0 56px}
   .scm-hero > picture{display:none}
   .scm-hero-grid,.scm-pro,.scm-less{grid-template-columns:1fr}
-  .scm-hero-copy{text-align:center}.scm-lead{margin-inline:auto}
+  .scm-hero-copy{text-align:center}
+  .scm-lead{margin-inline:auto}
   .scm-hero-art{display:block;margin:6px auto 0;max-width:560px;line-height:0;
     -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 12%,#000 88%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 12%,#000 88%,transparent 100%)}
   .scm-hero-art img{width:100%;height:auto}
   .scm-pro-art{max-width:520px;margin-inline:auto}
-  .scm-ctl{grid-template-columns:repeat(2,1fr)}
   .scm-coin{max-width:300px}
 }
 @media (max-width:720px){
@@ -242,19 +199,14 @@
   .scm-pro{text-align:center}.scm-pro .scm-h2{margin-inline:auto}.scm-chips{justify-content:center}
   .scm-less{text-align:center}
 }
-@media (max-width:420px){.scm-ctl button{padding:24px 10px}.scm-btn{width:100%}}
+@media (max-width:420px){
+  .scm-btn{width:100%}
+}
 
 /* the account card follows the live site's form prototype */
 .db-hero-form{padding:clamp(24px,2.8vw,34px);border-radius:28px;background:#fff}
 .oa-h{font-size:clamp(20px,2.2vw,24px);font-weight:700;letter-spacing:-.02em;color:var(--ink);text-align:center}
-.oa-seg{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:22px;padding:4px;border-radius:14px;background:#EEF1F6}
-.oa-seg-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;border:0;border-radius:11px;background:transparent;
-  font:inherit;font-size:13.5px;font-weight:600;color:#7a879b;cursor:pointer;transition:background .25s,color .25s,box-shadow .25s}
-.oa-seg-btn svg{width:16px;height:16px;color:#A9B3C4}
-.oa-seg-btn.is-on{background:#fff;color:var(--ink);box-shadow:0 4px 12px rgba(16,30,54,.08)}
-.oa-seg-btn.is-on svg{color:#7a879b}
 .oa-fld{position:relative;margin-top:14px;height:56px;border:1px solid #DFE5EF;border-radius:12px;background:#fff;transition:border-color .25s,box-shadow .25s}
-.oa-fld[hidden]{display:none}
 .oa-fld:focus-within{border-color:var(--acc-2,var(--blue));box-shadow:0 0 0 4px rgba(42,114,255,.12)}
 .oa-fld.is-bad{border-color:#e5484d}
 .oa-fld-ic{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:#A9B3C4;pointer-events:none}
@@ -271,23 +223,18 @@
 .oa-eye{position:absolute;right:10px;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:32px;height:32px;border:0;border-radius:9px;background:transparent;color:#A9B3C4;cursor:pointer;transition:color .25s}
 .oa-eye:hover{color:var(--ink)}
 .oa-eye svg{width:19px;height:19px}
-.oa-type{display:flex;gap:clamp(26px,4vw,44px);margin-top:18px}
+.oa-consents{margin:18px 0 0;padding:0;border:0;min-width:0}
+.oa-consents legend{padding:0;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#7a879b}
+.oa-consents .ct-check:first-of-type{margin-top:8px}
 .db-hero-form .ct-check{margin-top:12px;font-size:12.5px;line-height:1.55;color:#41506a}
-.oa-type .ct-check{margin-top:0;align-items:center;font-size:13.5px;color:var(--ink)}
 .db-hero-form .an-box{width:20px;height:20px;border-radius:6px;background:#fff;border-color:#C9D2E0}
 .db-hero-form .ct-check input:checked + .an-box{background:var(--acc-2,var(--blue));border-color:var(--acc-2,var(--blue));color:#fff}
 .db-hero-form .ct-check input:focus-visible + .an-box{outline:2px solid var(--acc-2,var(--blue));outline-offset:2px}
 .db-hero-form .ct-check.is-bad .an-box{border-color:#e5484d}
 .db-hero-form .ct-check a{color:var(--acc-2,var(--blue));font-weight:600}
-.db-hero-form .ct-err{margin-top:6px;font-size:12px}
 .oa-submit{display:block;width:100%;margin-top:22px;height:52px;border:0;border-radius:12px;background:linear-gradient(90deg,#0A1C6B,#1739C9);color:#fff;
   font:inherit;font-size:15.5px;font-weight:700;cursor:pointer;box-shadow:0 14px 28px -14px rgba(10,28,107,.6);transition:transform .25s,filter .25s}
 .oa-submit:hover{transform:translateY(-2px);filter:brightness(1.06)}
-.oa-note{margin-top:12px;text-align:center;font-size:12.5px;color:#55637a}
-.oa-note.is-ok{color:#0f8a5f}
-.oa-links{display:flex;justify-content:center;gap:clamp(40px,8vw,90px);margin-top:16px}
-.oa-links a{font-size:13px;color:#7a879b;text-decoration:none;transition:color .25s}
-.oa-links a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
 /* STAR Copy hero fit: the light card sits on the navy hero */
 .scm-oa{position:relative;box-shadow:0 40px 90px -40px rgba(0,0,0,.85),0 0 0 1px rgba(127,178,255,.25)}
 .scm-oa .oa-h{font-size:15px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#0E1524}
@@ -622,29 +569,28 @@
     <div class="ct-form-card db-hero-form scm-oa" id="access" data-aos="fade-up" aria-labelledby="scm-form-title">
       <h2 class="oa-h" id="scm-form-title">ACCESS STAR COPY</h2>
       <form id="oaForm" novalidate>
-        <div class="oa-seg" role="tablist" aria-label="Sign up with">
-          <button type="button" class="oa-seg-btn is-on" role="tab" aria-selected="true" data-oa-mode="email"><svg aria-hidden="true"><use href="#i-mail"/></svg>Email Address</button>
-          <button type="button" class="oa-seg-btn" role="tab" aria-selected="false" data-oa-mode="phone"><svg aria-hidden="true"><use href="#i-phone"/></svg>Phone Number</button>
+        <div class="oa-fld">
+          <svg class="oa-fld-ic" aria-hidden="true"><use href="#i-user"/></svg>
+          <label for="oaName">Full Name<b>*</b></label>
+          <input type="text" id="oaName" name="name" autocomplete="name" placeholder=" ">
         </div>
 
-        <div class="oa-fld" data-oa-email>
-          <svg class="oa-fld-ic" aria-hidden="true"><use href="#i-mail"/></svg>
-          <label for="oaEmail">Email<b>*</b></label>
-          <input type="email" id="oaEmail" name="email" inputmode="email" autocomplete="email" placeholder=" " aria-describedby="oaEmailErr">
-        </div>
-        <p class="ct-err" id="oaEmailErr" hidden>We need a valid email to reach you on.</p>
-
-        <div class="oa-fld" data-oa-phone hidden>
+        <div class="oa-fld">
           <svg class="oa-fld-ic" aria-hidden="true"><use href="#i-phone"/></svg>
-          <label for="oaPhone">Phone Number<b>*</b></label>
-          <input type="tel" id="oaPhone" name="phone" inputmode="tel" autocomplete="tel" placeholder=" " aria-describedby="oaPhoneErr">
+          <label for="oaPhone">Mobile Number<b>*</b></label>
+          <input type="tel" id="oaPhone" name="phone" inputmode="tel" autocomplete="tel" placeholder=" ">
         </div>
-        <p class="ct-err" id="oaPhoneErr" hidden>Enter a valid phone number, with country code.</p>
+
+        <div class="oa-fld">
+          <svg class="oa-fld-ic" aria-hidden="true"><use href="#i-mail"/></svg>
+          <label for="oaEmail">Email Address<b>*</b></label>
+          <input type="email" id="oaEmail" name="email" inputmode="email" autocomplete="email" placeholder=" ">
+        </div>
 
         <div class="oa-fld oa-fld--sel has-val">
           <svg class="oa-fld-ic" aria-hidden="true"><use href="#i-globe"/></svg>
-          <label for="oaCountry">Country<b>*</b></label>
-          <select id="oaCountry" name="country" autocomplete="country-name" aria-describedby="oaCountryErr">
+          <label for="oaCountry">Country of Residence<b>*</b></label>
+          <select id="oaCountry" name="country" autocomplete="country-name">
             <option value=""></option>
             <option>United Arab Emirates</option>
             <option>United Kingdom</option>
@@ -683,56 +629,32 @@
           </select>
           <svg class="oa-fld-chev" aria-hidden="true"><use href="#i-chevron-down"/></svg>
         </div>
-        <p class="ct-err" id="oaCountryErr" hidden>Please choose your country.</p>
 
         <div class="oa-fld oa-fld--pass">
           <svg class="oa-fld-ic" aria-hidden="true"><use href="#i-lock"/></svg>
           <label for="oaPass">Password<b>*</b></label>
-          <input type="password" id="oaPass" name="password" autocomplete="new-password" placeholder=" " aria-describedby="oaPassErr">
+          <input type="password" id="oaPass" name="password" autocomplete="new-password" placeholder=" " minlength="8">
           <button type="button" class="oa-eye" id="oaEye" aria-label="Show password" aria-pressed="false"><svg aria-hidden="true"><use href="#i-eye-off"/></svg></button>
         </div>
-        <p class="ct-err" id="oaPassErr" hidden>Use at least 8 characters.</p>
 
-        <div class="oa-type" role="radiogroup" aria-label="Account type">
-          <label class="ct-check" for="oaTypeInd">
-            <input type="radio" id="oaTypeInd" name="acctType" value="Individual" checked>
+        <fieldset class="oa-consents">
+          <legend>Required Consents</legend>
+          <!-- TODO (Compliance): the content sheet names this item only as "Required Consents"; the two
+               mandatory consents of the live account form are kept until the approved wording is supplied -->
+          <label class="ct-check" for="oaUs">
+            <input type="checkbox" id="oaUs" name="notUs">
             <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
-            <span>Individual</span>
+            <span>I confirm that I am not a U.S. person, including a U.S citizen or resident.</span>
           </label>
-          <label class="ct-check" for="oaTypeCo">
-            <input type="radio" id="oaTypeCo" name="acctType" value="Company">
+          <label class="ct-check" for="oaTerms">
+            <input type="checkbox" id="oaTerms" name="terms">
             <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
-            <span>Company</span>
+            <span>I have read, understood, and agree to the <a href="legal-documents.html">Client Agreement</a>, <a href="legal-documents.html">Risk Disclosure</a>, <a href="privacy-policy-app.html">Privacy Policy</a>, and all other applicable terms and policies.</span>
           </label>
-        </div>
+        </fieldset>
 
-        <label class="ct-check" for="oaUs">
-          <input type="checkbox" id="oaUs" name="notUs" aria-describedby="oaUsErr">
-          <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
-          <span>I confirm that I am not a U.S. person, including a U.S citizen or resident.</span>
-        </label>
-        <p class="ct-err" id="oaUsErr" hidden>The product is not available to U.S. persons.</p>
-
-        <label class="ct-check" for="oaMkt">
-          <input type="checkbox" id="oaMkt" name="marketing">
-          <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
-          <span>I consent to STARTRADER processing my personal data for marketing and application support. I may withdraw my consent at any time.</span>
-        </label>
-
-        <label class="ct-check" for="oaTerms">
-          <input type="checkbox" id="oaTerms" name="terms" aria-describedby="oaTermsErr">
-          <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
-          <span>I have read, understood, and agree to the <a href="legal-documents.html">Client Agreement</a>, <a href="legal-documents.html">Risk Disclosure</a>, <a href="privacy-policy-app.html">Privacy Policy</a>, and all other applicable terms and policies.</span>
-        </label>
-        <p class="ct-err" id="oaTermsErr" hidden>Please agree to continue.</p>
-
-        <button class="oa-submit" type="submit">Create Account</button>
-        <p class="oa-note" data-oa-note hidden></p>
-
-        <div class="oa-links">
-          <a href="getting-started.html">Practice Trading</a>
-          <a href="https://myaccount.startrader.com" rel="noopener">Login</a>
-        </div>
+        <!-- TODO (MKT): point submission at the STARTRADER live-account sign-up for STAR Copy -->
+        <button class="oa-submit" type="submit">CREATE ACCOUNT</button>
         <p class="scm-form-note">Creates a STARTRADER Live Account to access STAR Copy, subject to eligibility and applicable terms and conditions..</p>
       </form>
     </div>
@@ -789,7 +711,7 @@
     <div class="container scm-cs-grid">
       <div class="scm-cs-copy">
         <h2 class="scm-h2" id="scm-ctl-t">Automatic Copying. <span class="lit">Your Controls.</span></h2>
-        <ol class="scm-cs-list" role="group" aria-label="Monitor · Adjust · Change · Stop"><li><button type="button" data-i="0" class="is-on"><span class="n">01</span><b>Monitor</b><i aria-hidden="true"></i></button></li><li><button type="button" data-i="1"><span class="n">02</span><b>Adjust</b><i aria-hidden="true"></i></button></li><li><button type="button" data-i="2"><span class="n">03</span><b>Change</b><i aria-hidden="true"></i></button></li><li><button type="button" data-i="3"><span class="n">04</span><b>Stop</b><i aria-hidden="true"></i></button></li></ol>
+        <ol class="scm-cs-list" role="group" aria-label="Monitor · Adjust · Change · Stop"><li><button type="button" data-i="0" class="is-on"><b>Monitor</b><i aria-hidden="true"></i></button></li><li><button type="button" data-i="1"><b>Adjust</b><i aria-hidden="true"></i></button></li><li><button type="button" data-i="2"><b>Change</b><i aria-hidden="true"></i></button></li><li><button type="button" data-i="3"><b>Stop</b><i aria-hidden="true"></i></button></li></ol>
       </div>
       <div class="scm-cs-stage" aria-hidden="true">
         <svg class="scm-cs-ring" viewBox="0 0 120 120"><circle cx="60" cy="60" r="54"/><circle class="p" cx="60" cy="60" r="54" pathLength="100"/></svg>
@@ -819,34 +741,27 @@
 </main>
 
 <script>
-/* banner account card: email/phone switch, password toggle, inline validation */
+/* banner account card (fields per the content sheet): password toggle and
+   validation - invalid fields are outlined and the first one gets focus */
 (function () {
   var form = document.getElementById('oaForm');
   if (!form) return;
-  var mode = 'email';
-  var segs = Array.prototype.slice.call(form.querySelectorAll('[data-oa-mode]'));
-  var emailW = form.querySelector('[data-oa-email]'), phoneW = form.querySelector('[data-oa-phone]');
-  var email = document.getElementById('oaEmail'), phone = document.getElementById('oaPhone');
-  var pass = document.getElementById('oaPass'), country = document.getElementById('oaCountry');
-  var eye = document.getElementById('oaEye'), note = form.querySelector('[data-oa-note]');
-  function err(id, bad) {
-    var el = document.getElementById(id);
-    if (el) el.hidden = !bad;
-    var ctl = document.getElementById(id.replace(/Err$/, ''));
-    var wrap = ctl && (ctl.closest('.oa-fld') || ctl.closest('.ct-check'));
-    if (wrap) wrap.classList.toggle('is-bad', !!bad);
-    return !bad;
+  var $ = function (id) { return document.getElementById(id); };
+  var pass = $('oaPass'), country = $('oaCountry'), eye = $('oaEye');
+  var CHECKS = {
+    oaName: function (el) { return el.value.trim().length > 1; },
+    oaPhone: function (el) { return /^\+?[0-9 ()-]{7,20}$/.test(el.value.trim()); },
+    oaEmail: function (el) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim()); },
+    oaCountry: function (el) { return !!el.value; },
+    oaPass: function (el) { return el.value.length >= 8; },
+    oaUs: function (el) { return el.checked; },
+    oaTerms: function (el) { return el.checked; }
+  };
+  function mark(el, bad) {
+    var wrap = el.closest('.oa-fld') || el.closest('.ct-check');
+    if (wrap) wrap.classList.toggle('is-bad', bad);
+    el.setAttribute('aria-invalid', bad ? 'true' : 'false');
   }
-  segs.forEach(function (b) {
-    b.addEventListener('click', function () {
-      mode = b.getAttribute('data-oa-mode');
-      segs.forEach(function (x) { var on = x === b; x.classList.toggle('is-on', on); x.setAttribute('aria-selected', on ? 'true' : 'false'); });
-      emailW.hidden = mode !== 'email';
-      phoneW.hidden = mode !== 'phone';
-      err('oaEmailErr', false); err('oaPhoneErr', false);
-      (mode === 'email' ? email : phone).focus();
-    });
-  });
   country.addEventListener('change', function () { country.closest('.oa-fld').classList.toggle('has-val', !!country.value); });
   eye.addEventListener('click', function () {
     var show = pass.type === 'password';
@@ -855,30 +770,21 @@
     eye.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
     eye.querySelector('use').setAttribute('href', show ? '#i-eye' : '#i-eye-off');
   });
-  function emailOk() { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim()); }
-  function phoneOk() { return /^\+?[0-9 ()-]{7,20}$/.test(phone.value.trim()); }
+  Object.keys(CHECKS).forEach(function (id) {
+    ['input', 'change'].forEach(function (ev) { $(id).addEventListener(ev, function () { if (CHECKS[id]($(id))) mark($(id), false); }); });
+  });
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    var ok = true;
-    if (mode === 'email') ok = err('oaEmailErr', !emailOk()) && ok; else ok = err('oaPhoneErr', !phoneOk()) && ok;
-    ok = err('oaCountryErr', !country.value) && ok;
-    ok = err('oaPassErr', pass.value.length < 8) && ok;
-    ok = err('oaUsErr', !document.getElementById('oaUs').checked) && ok;
-    ok = err('oaTermsErr', !document.getElementById('oaTerms').checked) && ok;
-    if (!ok) { var bad = form.querySelector('.is-bad'); if (bad) bad.scrollIntoView({ block: 'center', behavior: 'smooth' }); return; }
-    note.hidden = false; note.classList.add('is-ok');
-    note.textContent = 'Details received \u2014 taking you to account opening\u2026';
-    setTimeout(function () { window.location.href = 'getting-started.html'; }, 900);
+    var first = null;
+    Object.keys(CHECKS).forEach(function (id) { var el = $(id), bad = !CHECKS[id](el); mark(el, bad); if (bad && !first) first = el; });
+    if (first) { first.focus(); return; }
+    /* TODO (MKT): replace with the STAR Copy live-account sign-up endpoint */
+    window.location.href = 'https://www.startrader.com/live-account/';
   });
-  ['oaEmail', 'oaPhone', 'oaCountry', 'oaPass'].forEach(function (id) {
-    var el = document.getElementById(id);
-    ['input', 'change'].forEach(function (ev) { el.addEventListener(ev, function () { err(id + 'Err', false); }); });
-  });
-  ['oaUs', 'oaTerms'].forEach(function (id) { document.getElementById(id).addEventListener('change', function () { err(id + 'Err', false); }); });
 })();
 </script>
 <script>
-/* STAR Copy Malaysia — page-scoped: account card validation, step rail on
+/* STAR Copy Malaysia — page-scoped: step rail on
    scroll, profile chips that move the glow, control tiles, hero parallax */
 (function () {
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
