@@ -72,6 +72,14 @@
 .ar-cta-h{font-size:20px;font-weight:800;letter-spacing:-.032em;color:var(--ink);text-align:center}
 .ar-cta-h span{color:var(--blue)}
 .ar-cta-form{display:flex;flex-direction:column;gap:13px;margin-top:14px}
+/* desktop: the sign-up form scrolls inside its card so the sticky rail stays within the screen */
+@media (min-width:1025px){
+.ar-cta-form{max-height:clamp(300px,calc(100vh - var(--chrome-h,110px) - 330px),520px);overflow-y:auto;overscroll-behavior:contain;padding:2px 10px 4px 2px;margin-right:-10px;margin-left:-2px}
+.ar-cta-form::-webkit-scrollbar{width:6px}
+.ar-cta-form::-webkit-scrollbar-track{background:rgba(20,44,96,.06);border-radius:6px}
+.ar-cta-form::-webkit-scrollbar-thumb{background:rgba(20,44,96,.3);border-radius:6px}
+@supports not selector(::-webkit-scrollbar){.ar-cta-form{scrollbar-width:thin;scrollbar-color:rgba(20,44,96,.3) rgba(20,44,96,.06)}}
+}
 .ar-f{display:flex;flex-direction:column;gap:6px}
 .ar-f label{font-size:12.5px;font-weight:700;color:var(--text)}
 .ar-f label i{font-style:normal;color:var(--red)}

@@ -70,6 +70,14 @@
 .ar-cta-h{font-size:20px;font-weight:800;letter-spacing:-.032em;color:var(--ink);text-align:center}
 .ar-cta-h span{color:var(--blue)}
 .ar-cta-form{display:flex;flex-direction:column;gap:13px;margin-top:14px}
+/* desktop: the sign-up form scrolls inside its card so the sticky rail stays within the screen */
+@media (min-width:1025px){
+.ar-cta-form{max-height:clamp(300px,calc(100vh - var(--chrome-h,110px) - 330px),520px);overflow-y:auto;overscroll-behavior:contain;padding:2px 10px 4px 2px;margin-right:-10px;margin-left:-2px}
+.ar-cta-form::-webkit-scrollbar{width:6px}
+.ar-cta-form::-webkit-scrollbar-track{background:rgba(20,44,96,.06);border-radius:6px}
+.ar-cta-form::-webkit-scrollbar-thumb{background:rgba(20,44,96,.3);border-radius:6px}
+@supports not selector(::-webkit-scrollbar){.ar-cta-form{scrollbar-width:thin;scrollbar-color:rgba(20,44,96,.3) rgba(20,44,96,.06)}}
+}
 .ar-f{display:flex;flex-direction:column;gap:6px}
 .ar-f label{font-size:12.5px;font-weight:700;color:var(--text)}
 .ar-f label i{font-style:normal;color:var(--red)}
@@ -162,6 +170,8 @@
 .ar-auth--end .ar-auth-links{display:flex;flex-wrap:wrap;gap:10px 22px}
 .ar-auth--end .ar-side-h{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--text-mute);margin:0 0 16px;line-height:1.4}
 .ar-auth--end .ar-auth-links{flex-direction:row}
+/* article body: plain CMS tags only (no classes); spacing after lists matches paragraphs */
+.ar-body ul+p,.ar-body ol+p{margin-top:18px}
 </style>
 
   <!-- Structured data — article -->
@@ -704,16 +714,13 @@
 
         <h2 id="levels">The levels that matter</h2>
         <p>Three prices frame the next few sessions. Traders watching for continuation should treat the first as the line in the sand:</p>
-        <ul class="ar-levels">
-          <li><b>$4,118</b><span>Today&rsquo;s high and the third rejection this month. A close above it puts the range high back in play.</span></li>
-          <li><b>$4,062</b><span>The 20-day moving average, which has caught every dip since the start of the quarter.</span></li>
-          <li><b>$4,015</b><span>The base of the July range. Losing it would turn the recent consolidation into a distribution pattern.</span></li>
+        <ul>
+          <li><strong>$4,118</strong> &ndash; Today&rsquo;s high and the third rejection this month. A close above it puts the range high back in play.</li>
+          <li><strong>$4,062</strong> &ndash; The 20-day moving average, which has caught every dip since the start of the quarter.</li>
+          <li><strong>$4,015</strong> &ndash; The base of the July range. Losing it would turn the recent consolidation into a distribution pattern.</li>
         </ul>
 
-        <blockquote class="ar-quote">
-          <p>The pattern here is not weakness in gold &mdash; it is strength in the Dollar. Until the index turns, rallies in the metal keep meeting the same ceiling.</p>
-          <cite>STARTRADER Research</cite>
-        </blockquote>
+        <p>&ldquo;The pattern here is not weakness in gold &mdash; it is strength in the Dollar. Until the index turns, rallies in the metal keep meeting the same ceiling.&rdquo; &ndash; STARTRADER Research</p>
 
         <h2 id="fomc">Into the FOMC</h2>
         <p>Wednesday&rsquo;s Federal Reserve decision is the obvious catalyst. The rate itself is not in question &mdash; the market has been priced for no change for weeks &mdash; so the move will come from the statement language and the press conference that follows half an hour later.</p>
@@ -727,10 +734,7 @@
         <h2 id="risk">Trading it responsibly</h2>
         <p>Ranges compress before events like this one, and compression resolves quickly. Position sizes that feel comfortable in a quiet session become uncomfortable in the first minute after a policy statement, so size for the volatility you expect rather than the volatility you can currently see. Stops placed just beyond an obvious level are the ones most likely to be swept in the initial reaction.</p>
 
-        <div class="ar-note">
-          <b>Risk warning</b>
-          <p>This commentary is general information published by STARTRADER Research. It does not take account of your objectives, financial situation or needs, and it is not a recommendation to trade any instrument. Trading leveraged products carries a high risk of losing money rapidly. Past performance is not indicative of future results.</p>
-        </div>
+        <p><strong>Risk warning:</strong> This commentary is general information published by STARTRADER Research. It does not take account of your objectives, financial situation or needs, and it is not a recommendation to trade any instrument. Trading leveraged products carries a high risk of losing money rapidly. Past performance is not indicative of future results.</p>
 
         <div class="ar-tags">
           <span class="ar-tags-l">Tagged</span>
