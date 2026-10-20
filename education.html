@@ -274,6 +274,9 @@
   .kc-hero > .container{order:1;position:relative;z-index:2}
 }
 @media (max-width:980px){.kc-hero > .acct-hero-bg,.kc-hero > .pf-hero-bg,.kc-hero > .wb-hero-scrim,.kc-hero > .ct-hero-veil,.kc-hero > .hero-glow,.kc-hero > .hero-shape,.kc-hero > .pm-hero-video,.kc-hero > .wb-hero-video,.kc-hero > .acct-hero-video{display:none!important}}
+
+/* heading-structure pass (as forex.html): the empty-state message is a status line, not a heading; same look */
+.kc-empty .kc-empty-t{text-wrap:balance;overflow-wrap:break-word;display:block;font-weight:700;font-style:normal;line-height:1.1;letter-spacing:-0.022em;color:rgb(16, 22, 35);margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;padding-top:0px;padding-bottom:0px;text-align:center;text-transform:none;font-size:19px}
 </style>
 
   <!-- Structured data — page entity -->
@@ -1102,7 +1105,7 @@
 
     <div class="kc-empty" data-kc-empty hidden>
       <span class="kc-empty-ic"><svg><use href="#i-search"/></svg></span>
-      <h3>No guides for this product at this level yet</h3>
+      <p class="kc-empty-t">No guides for this product at this level yet</p>
       <p>Try another product, or move up or down a level &mdash; the library is growing every week.</p>
       <button class="btn btn-primary" type="button" data-kc-reset>Show all products</button>
     </div>

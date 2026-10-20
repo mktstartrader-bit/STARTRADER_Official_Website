@@ -172,6 +172,10 @@
   .nr-hero > .container{order:1;position:relative;z-index:2}
 }
 @media (max-width:980px){.nr-hero > .acct-hero-bg,.nr-hero > .pf-hero-bg,.nr-hero > .wb-hero-scrim,.nr-hero > .ct-hero-veil,.nr-hero > .hero-glow,.nr-hero > .hero-shape,.nr-hero > .pm-hero-video,.nr-hero > .wb-hero-video,.nr-hero > .acct-hero-video{display:none!important}}
+
+/* heading-structure pass (as forex.html): the empty-state message is a status line, not a heading; same look */
+.nr-empty .nr-empty-t{text-wrap:balance;overflow-wrap:break-word;display:block;font-weight:700;font-style:normal;line-height:1.1;letter-spacing:-0.02em;color:rgb(16, 22, 35);margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;padding-top:0px;padding-bottom:0px;text-align:center;text-transform:none;font-size:20px}
+.nr-empty .nr-empty-t span{color:rgb(0, 71, 187)}
 </style>
 
   <!-- Structured data — breadcrumb -->
@@ -860,7 +864,7 @@
 
     <div class="nr-empty" data-nr-empty hidden>
       <span class="gl-empty-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg></span>
-      <h3>Nothing matches <span data-nr-empty-q></span></h3>
+      <p class="nr-empty-t">Nothing matches <span data-nr-empty-q></span></p>
       <p>Try a shorter search, or clear the filters to see every story.</p>
       <button class="btn btn-primary" type="button" data-nr-reset>Show all stories <svg class="ico"><use href="#i-arrow-right"/></svg></button>
     </div>

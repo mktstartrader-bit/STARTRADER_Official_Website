@@ -357,6 +357,9 @@
 
 /* subject-trim: the portrait art keeps its whole subject; only the empty dark band above and below it is trimmed so the art sits close to the copy (QA 2026-10-12) */
 @media (max-width:980px){.pm-hero > picture{height:calc(0.370 * min(118vw,560px))!important;overflow:hidden!important;margin-top:0!important;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 9%,#000 88%,transparent 100%)!important;mask-image:linear-gradient(180deg,transparent 0,#000 9%,#000 88%,transparent 100%)!important}.pm-hero > picture img{margin-top:calc(-0.180 * min(118vw,560px))!important}}
+
+/* heading-structure pass (as forex.html): the form card title is an h2 (it came before any h2 as an h3); same look */
+.ct-form-card h2.oa-h{display:block;font-weight:700;font-style:normal;line-height:1.1;letter-spacing:-0.02em;color:rgb(4, 6, 13);margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;padding-top:0px;padding-bottom:0px;text-align:center;text-transform:none}
 </style>
 
   <!-- Structured data -->
@@ -697,7 +700,7 @@
       </div>
     </div>
     <div class="ct-form-card db-hero-form" id="open-account" data-aos="fade-up" data-aos-delay="100">
-      <h3 class="oa-h">Open Live Account</h3>
+      <h2 class="oa-h">Open Live Account</h2>
       <form id="oaForm" novalidate>
         <div class="oa-seg" role="tablist" aria-label="Sign up with">
           <button type="button" class="oa-seg-btn is-on" role="tab" aria-selected="true" data-oa-mode="email"><svg aria-hidden="true"><use href="#i-mail"/></svg>Email Address</button>

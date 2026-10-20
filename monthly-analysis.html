@@ -83,6 +83,11 @@
   }
   </script>
 
+<style>
+/* heading-structure pass (as forex.html): the empty-state message is a status line, not a heading; same look */
+.ma-empty .ma-empty-t{text-wrap:balance;overflow-wrap:break-word;display:block;font-weight:700;font-style:normal;line-height:1.1;letter-spacing:-0.022em;color:rgb(16, 22, 35);margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;padding-top:0px;padding-bottom:0px;text-align:center;text-transform:none;font-size:19px}
+.ma-empty .ma-empty-t span{color:rgb(16, 22, 35)}
+</style>
 </head>
 
 <body>
@@ -552,7 +557,7 @@
 
     <div class="ma-empty" data-ma-empty hidden>
       <span class="ma-empty-ic"><svg><use href="#i-search"/></svg></span>
-      <h3>Nothing matched <span data-ma-empty-q>that filter</span></h3>
+      <p class="ma-empty-t">Nothing matched <span data-ma-empty-q>that filter</span></p>
       <p>Try clearing the search, or switch to another cadence above.</p>
       <button class="btn btn-primary" type="button" data-ma-reset>Reset filters</button>
     </div>
