@@ -247,6 +247,7 @@
 .wb-speaker-role{margin-top:6px;font-size:13.5px;font-weight:700;color:var(--blue)}
 .wb-speaker-bio{margin-top:12px;font-size:14.5px;line-height:1.7;color:var(--text-soft)}
 .wb-speaker-bio:empty{display:none}
+.wb-speaker-bio p+p{margin-top:10px}
 
 /* ---- register panel ---- */
 .wb-reg{background:radial-gradient(58% 50% at 88% 0%,rgba(0,71,187,.5),transparent 62%),#060a16;color:#fff}
@@ -916,7 +917,12 @@
       <div class="wb-speaker-tx">
         <h3 data-wb-sp-name></h3>
         <p class="wb-speaker-role" data-wb-sp-role></p>
-        <p class="wb-speaker-bio" data-wb-sp-bio></p>
+        <div class="wb-speaker-bio" data-wb-sp-bio>
+          <p>As a Senior Market Analyst with more than 10 years of experience, Mr. Albohotori has spent much of his career helping people feel less overwhelmed by the markets.</p>
+          <p>He understands that market news can often feel too fast, too technical, and difficult to connect. That is why his sessions focus on making market movements easier to understand, showing what is driving prices, why it matters, and how global events, commodities, and economic shifts come together in real market behavior.</p>
+          <p>His commentary has been featured on leading regional business media, including CNBC Arabia, Asharq Business, and Al Arabiya. But what truly defines his approach is his ability to make complex market topics feel practical, accessible, and relevant.</p>
+          <p>Known for his interactive style, he helps participants connect the dots and leave with a clearer sense of what they are looking at, and why it matters.</p>
+        </div>
       </div>
     </article>
   </div>
@@ -1114,7 +1120,12 @@
   "speaker": {
     "name": "Ghasan",
     "role": "Senior Market Analyst, STARTRADER",
-    "bio": "",
+    "bio": [
+      "As a Senior Market Analyst with more than 10 years of experience, Mr. Albohotori has spent much of his career helping people feel less overwhelmed by the markets.",
+      "He understands that market news can often feel too fast, too technical, and difficult to connect. That is why his sessions focus on making market movements easier to understand, showing what is driving prices, why it matters, and how global events, commodities, and economic shifts come together in real market behavior.",
+      "His commentary has been featured on leading regional business media, including CNBC Arabia, Asharq Business, and Al Arabiya. But what truly defines his approach is his ability to make complex market topics feel practical, accessible, and relevant.",
+      "Known for his interactive style, he helps participants connect the dots and leave with a clearer sense of what they are looking at, and why it matters."
+    ],
     "photo": ""
   }
 }
@@ -1219,7 +1230,12 @@
   var sp = S.speaker || {};
   set('[data-wb-sp-name]', sp.name || '');
   set('[data-wb-sp-role]', sp.role || '');
-  set('[data-wb-sp-bio]', sp.bio || '');
+  var bioEl = document.querySelector('[data-wb-sp-bio]');
+  if (bioEl) {
+    var paras = Array.isArray(sp.bio) ? sp.bio : (sp.bio ? String(sp.bio).split(/\n\s*\n/) : []);
+    bioEl.textContent = '';
+    paras.forEach(function (t) { var p = document.createElement('p'); p.textContent = t; bioEl.appendChild(p); });
+  }
   var img = document.querySelector('[data-wb-sp-img]');
   var mono = document.querySelector('[data-wb-sp-mono]');
   if (sp.photo && img) {
