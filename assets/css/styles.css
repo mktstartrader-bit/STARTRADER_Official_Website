@@ -6165,3 +6165,18 @@ html[lang="ar"]{--font:'Tajawal','Plus Jakarta Sans',system-ui,-apple-system,"Se
 @media (pointer:coarse),(max-width:1024px){.ec-chip{position:relative}.ec-chip::before{content:"";position:absolute;inset:-6px 0}}
 /* product-photo thumbnails (laptops) show the whole device, not a cover crop */
 .fx-more-media img[src*="laptop"]{object-fit:contain!important}
+
+/* ===== COOKIE LIQUID GLASS (appended batch) =====
+   The cookie banner wears Apple-style liquid glass (liquid-glass skill,
+   assets/js/vendor/liquid-glass.js): the module owns the refraction filter
+   and sets backdrop-filter inline; this is the material dressing. The tint
+   stays dark enough for the light text over white sections (contrast), so
+   the "liquid" reads from the bent rim, the specular top edge and the
+   inner glow rather than from a thinner tint. */
+.cookie.lg-on{
+  background:linear-gradient(180deg,rgba(16,22,40,.64),rgba(8,12,24,.76));
+  border-color:transparent;
+  box-shadow:0 24px 60px -18px rgba(0,0,0,.55),
+    inset 0 1px 1px rgba(255,255,255,.5),
+    inset 0 -8px 20px rgba(255,255,255,.06),
+    inset 0 0 0 1px rgba(255,255,255,.14)}

@@ -116,6 +116,10 @@ the shared layer must never shift under them.
   match the artwork's edge tone.
 - Heroes carry only heading, subline and one button — no background patterns.
   Cards are glassmorphic and share the one site-wide hover effect.
+- The cookie banner wears liquid glass (liquid-glass skill): main.js lazy-loads
+  `assets/js/vendor/liquid-glass.js` from `ROOT` only when the banner shows and
+  destroys it on dismiss; the dressing is the `.cookie.lg-on` appended batch.
+  Keep its tint ≥ .64/.76 so the light text stays readable over white sections.
 
 ## Verification workflow (before any handoff/deploy)
 

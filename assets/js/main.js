@@ -1489,12 +1489,33 @@
     var stored;
     try { stored = localStorage.getItem('st_cookie_consent'); } catch (e) { stored = null; }
     if (stored) return;
-    setTimeout(function () { el.classList.add('show'); document.body.classList.add('ck-open'); document.dispatchEvent(new Event('st:cookie')); }, 1300);
+    // Liquid glass on the banner (assets/js/vendor/liquid-glass.js, MIT,
+    // github.com/deepika-builds/liquid-glass). The module is fetched only when
+    // the banner actually shows, so visitors who already accepted pay nothing.
+    // Chromium gets real rim refraction; Safari/Firefox keep a frosted blur.
+    var glass = null;
+    function glassOn() {
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-transparency: reduce)').matches) return;
+      function apply() {
+        if (glass || !window.liquidGlass || !el.classList.contains('show')) return;
+        glass = window.liquidGlass(el, { scale: -70, chroma: 4, border: 0.1, mapBlur: 10, blur: 8, saturate: 1.6, fallbackBlur: 28 });
+        el.classList.add('lg-on');
+      }
+      if (window.liquidGlass) { apply(); return; }
+      var s = document.createElement('script');
+      s.src = ROOT + 'assets/js/vendor/liquid-glass.js';
+      s.async = true;
+      s.onload = apply;
+      document.head.appendChild(s);
+    }
+    setTimeout(function () { el.classList.add('show'); document.body.classList.add('ck-open'); document.dispatchEvent(new Event('st:cookie')); glassOn(); }, 1300);
     function dismiss() {
       try { localStorage.setItem('st_cookie_consent', 'accepted'); } catch (e) {}
       el.classList.remove('show');
       document.body.classList.remove('ck-open');
       document.dispatchEvent(new Event('st:cookie'));
+      // release the filter once the banner has slid away
+      setTimeout(function () { if (glass) { glass.destroy(); glass = null; } el.classList.remove('lg-on'); }, 600);
     }
     var x = document.getElementById('cookieClose');
     if (x) x.addEventListener('click', dismiss);
