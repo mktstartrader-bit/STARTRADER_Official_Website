@@ -37,114 +37,46 @@
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* =================================================================
-   WEB TERMINAL — the login, and nothing else.
-   The platform switch and the MetaQuotes connect panel, rebuilt as
-   one frosted cockpit on the dark mesh: a glass account card with
-   the entity band, the login pair, the server line and the connect
-   action. Premium, quiet, exactly the content the terminal shows.
+   WEB TERMINAL. The page is the terminal: one slim bar (title, the
+   MetaTrader 5 server menu, MetaTrader 4) over the MetaQuotes web
+   terminal in an iframe, as on the original page. The iframe sources
+   and the cookieService choice are the original page's.
    ================================================================= */
-.wt2-sec{position:relative;isolation:isolate;overflow:clip;color:#fff;
-  display:flex;align-items:center;min-height:calc(100vh - var(--chrome-h,114px));
-  padding:clamp(48px,6vw,88px) 0;
-  background:
-    radial-gradient(58% 50% at 82% -12%,rgba(42,114,255,.18),transparent 60%),
-    radial-gradient(40% 44% at 4% 100%,rgba(22,233,215,.08),transparent 58%),
-    linear-gradient(180deg,#04060e,#081020 58%,#04060e)}
-.wt2-sec>.container{position:relative;z-index:1}
-.wt2-head{text-align:center;max-width:640px;margin-inline:auto}
-.wt2-kicker{display:inline-flex;align-items:center;gap:9px;padding:7px 15px;border-radius:40px;
-  font-size:11px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:#9fc0ff;
-  background:rgba(90,150,255,.1);border:1px solid rgba(90,150,255,.24)}
-.wt2-kicker i{width:7px;height:7px;border-radius:50%;background:#16e9d7;
-  box-shadow:0 0 0 0 rgba(22,233,215,.4);animation:wt2Ping 2.2s ease-out infinite}
-@keyframes wt2Ping{70%{box-shadow:0 0 0 8px rgba(22,233,215,0)}100%{box-shadow:0 0 0 0 rgba(22,233,215,0)}}
-@media (prefers-reduced-motion:reduce){.wt2-kicker i{animation:none}}
-.wt2-h1{margin-top:14px;font-size:clamp(26px,3.4vw,42px);font-weight:800;letter-spacing:-.038em;line-height:1.08}
-.wt2-h1 span{color:#5b9dff}
-
-/* platform + server controls */
-.wt2-controls{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:clamp(22px,2.6vw,30px)}
-.wt2-seg{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;border-radius:14px;
-  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1)}
-.wt2-seg button{padding:11px 22px;border-radius:10px;font-size:13.5px;font-weight:700;color:#a9bcd8;
-  transition:background .25s,color .25s,box-shadow .25s}
-.wt2-seg button.is-on{background:var(--blue-bright);color:#fff;box-shadow:0 8px 20px -8px rgba(42,114,255,.7)}
-.wt2-field{position:relative;display:flex;align-items:center;gap:10px;padding:0 14px;
-  border-radius:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
-  transition:border-color .25s,box-shadow .25s}
-.wt2-field:focus-within{border-color:#5b9dff;box-shadow:0 0 0 3px rgba(42,114,255,.2)}
-.wt2-field>svg{flex:none;width:15px;height:15px;color:#8ea4c6}
-.wt2-field select{min-width:0;border:0;outline:0;background:transparent;font:inherit;
-  font-size:13px;font-weight:600;color:#eaf0fa;padding:12px 0;-webkit-appearance:none;appearance:none}
-.wt2-field select option{color:#101623}
-
-/* the account card */
-.wt2-card{max-width:600px;margin:clamp(26px,3.2vw,38px) auto 0;border-radius:24px;overflow:hidden;
-  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);
-  -webkit-backdrop-filter:blur(22px) saturate(1.35);backdrop-filter:blur(22px) saturate(1.35);
-  box-shadow:0 44px 90px -48px rgba(0,0,0,.85),inset 0 1px 0 rgba(255,255,255,.1)}
-.wt2-band{display:flex;align-items:center;gap:10px;padding:14px 22px;
-  font-size:12.5px;font-weight:700;letter-spacing:.02em;color:#eaf0fa;
-  background:linear-gradient(90deg,rgba(42,114,255,.4),rgba(42,114,255,.14));
-  border-bottom:1px solid rgba(255,255,255,.1)}
-.wt2-band svg{width:15px;height:15px;color:#9fc0ff}
-.wt2-band em{font-style:normal;color:#9fc0ff;font-weight:600}
-.wt2-form{padding:clamp(22px,2.8vw,32px)}
-.wt2-form h1,.wt2-form h2{display:flex;align-items:center;gap:11px;font-size:clamp(18px,1.9vw,22px);letter-spacing:-.024em;color:#fff}
-.wt2-link-ic{display:inline-grid;place-items:center;width:36px;height:36px;border-radius:11px;color:#9fc0ff;
-  background:rgba(90,150,255,.12);border:1px solid rgba(90,150,255,.24)}
-.wt2-link-ic svg{width:16px;height:16px}
-.wt2-row{margin-top:16px}
-.wt2-row label{display:block;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#8ea4c6;margin-bottom:8px}
-.wt2-in{display:flex;align-items:center;gap:10px;padding:0 15px;border-radius:14px;
-  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
-  transition:border-color .25s,box-shadow .25s}
-.wt2-in:focus-within{border-color:#5b9dff;box-shadow:0 0 0 3px rgba(42,114,255,.2)}
-.wt2-in svg{flex:none;width:16px;height:16px;color:#8ea4c6}
-.wt2-in input{flex:1;min-width:0;border:0;outline:0;background:transparent;font:inherit;
-  font-size:14px;color:#eaf0fa;padding:13px 0}
-.wt2-in input::placeholder{color:#7286a5}
-.wt2-below{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin-top:10px}
-.wt2-save{display:inline-flex;align-items:center;gap:9px;cursor:pointer;font-size:13px;color:#a9bcd8;text-transform:none;letter-spacing:0;font-weight:600;margin-bottom:0}
-.wt2-save input{position:absolute;opacity:0;width:0;height:0}
-.wt2-save i{display:inline-grid;place-items:center;width:19px;height:19px;border-radius:6px;
-  background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.24);color:transparent;
-  transition:background .2s,border-color .2s,color .2s}
-.wt2-save i svg{width:11px;height:11px}
-.wt2-save input:checked + i{background:var(--blue-bright);border-color:var(--blue-bright);color:#fff}
-.wt2-save input:focus-visible + i{outline:2px solid #5b9dff;outline-offset:2px}
-.wt2-forgot{font-size:12.5px;color:#8ea4c6}
-.wt2-forgot a{color:#9fc0ff;font-weight:600}
-.wt2-server{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:18px;
-  padding:13px 16px;border-radius:14px;background:rgba(22,233,215,.06);border:1px solid rgba(22,233,215,.18)}
-.wt2-server em{font-style:normal;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#8ea4c6}
-.wt2-server b{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;color:#bff5ef;font-weight:700}
-.wt2-server b i{width:7px;height:7px;border-radius:50%;background:#16e9d7;animation:wt2Ping 2.2s ease-out infinite}
-.wt2-connect{width:100%;justify-content:center;margin-top:20px}
-.wt2-note{margin-top:12px;font-size:12px;text-align:center;color:#8ea4c6}
-.wt2-note.is-ok{color:#16e9d7;font-weight:600}
-.wt2-eula{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;
-  padding:14px 22px;border-top:1px solid rgba(255,255,255,.09);font-size:12px;color:#7286a5}
-.wt2-eula a{color:#9fc0ff;font-weight:600}
-@media (max-width:560px){
-  .wt2-seg button{padding:11px 12px}
-  .wt2-below{flex-direction:column;align-items:flex-start}
-}
-/* The band's icon is a 15px square in a flex row with nothing to stop it
-   shrinking: from 420px down the row runs out of width and the icon is what
-   gives, coming out 12.7px wide at 420 and 9.8px at 350 against an unchanged
-   15px height. It holds its size and the label wraps instead. */
-.wt2-band svg{flex:none}
-.wt2-band{flex-wrap:wrap;row-gap:2px}
-
-/* The server row is a label and a value on one line with space-between. Below
-   400px the value has to give and "STARTRADERFinancial-Live" breaks at its
-   hyphen, which leaves the label floating against the middle of a two-line
-   value. The row stacks there instead: the label on its own line, the value
-   with the full width under it, which is enough for it to stay on one. */
-@media (max-width:400px){
-  .wt2-server{flex-direction:column;align-items:flex-start;gap:4px}
-  .wt2-server b{font-size:13px}
+.wt3{color:#fff;background:
+    radial-gradient(58% 120% at 82% -40%,rgba(42,114,255,.16),transparent 60%),
+    linear-gradient(180deg,#04060e,#081020)}
+.wt3-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px;
+  padding-block:16px}
+.wt3-h1{font-size:clamp(20px,2vw,24px);font-weight:800;letter-spacing:-.03em;line-height:1.2}
+.wt3-ctl{display:flex;flex-wrap:wrap;gap:10px}
+.wt3-mt5{position:relative}
+.wt3-btn{display:inline-flex;align-items:center;gap:10px;min-height:46px;padding:0 18px;border-radius:12px;
+  font:inherit;font-size:14px;font-weight:700;color:#cfdcf1;cursor:pointer;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);
+  transition:background .25s,border-color .25s,color .25s}
+.wt3-btn:hover{border-color:rgba(255,255,255,.3);color:#fff}
+.wt3-btn.is-on{background:var(--blue-bright,#2a72ff);border-color:transparent;color:#fff;box-shadow:0 8px 20px -8px rgba(42,114,255,.7)}
+.wt3-btn em{font-style:normal;font-weight:600;font-size:12.5px;opacity:.82;padding-left:10px;border-left:1px solid currentColor;border-left-color:rgba(255,255,255,.3)}
+.wt3-btn svg{width:14px;height:14px;flex:none;transition:transform .25s}
+.wt3-btn[aria-expanded="true"] svg{transform:rotate(180deg)}
+.wt3-btn:focus-visible,.wt3-menu button:focus-visible{outline:2px solid #5b9dff;outline-offset:2px}
+.wt3-menu{position:absolute;z-index:20;top:calc(100% + 6px);left:0;min-width:100%;padding:6px;border-radius:12px;
+  background:#0d1628;border:1px solid rgba(255,255,255,.14);box-shadow:0 18px 40px -12px rgba(0,0,0,.7)}
+.wt3-menu button{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;
+  padding:10px 12px;border-radius:8px;font:inherit;font-size:13.5px;font-weight:600;color:#cfdcf1;
+  text-align:left;white-space:nowrap;cursor:pointer;background:none;border:0}
+.wt3-menu button:hover{background:rgba(255,255,255,.07);color:#fff}
+.wt3-menu button svg{width:14px;height:14px;flex:none;opacity:0}
+.wt3-menu button[aria-checked="true"]{color:#fff}
+.wt3-menu button[aria-checked="true"] svg{opacity:1;color:#16e9d7}
+.wt3-frame{height:clamp(640px,calc(100svh - var(--chrome-h,110px) - 78px),1000px);background:#fff}
+.wt3-frame iframe{display:block;width:100%;height:100%;border:0}
+@media (max-width:640px){
+  .wt3-bar{flex-direction:column;align-items:stretch}
+  .wt3-ctl{display:grid;grid-template-columns:1fr 1fr}
+  .wt3-btn{width:100%;justify-content:center;padding:0 12px}
+  .wt3-mt5 .wt3-btn em{display:none}
+  .wt3-menu{min-width:240px}
 }
   </style>
 
@@ -458,129 +390,77 @@
 
 <main id="main">
 
-<!-- ============ TERMINAL LOGIN ============ -->
-<section class="wt2-sec" aria-labelledby="wt2-title">
-  <div class="container">
-    <div class="wt2-head">
-      <span class="wt2-kicker" data-aos="fade-up"><i aria-hidden="true"></i>Web terminal &middot; no download</span>
-      <h1 class="wt2-h1" id="wt2-title" data-aos="fade-up">Connect to <br><span>your account.</span></h1>
-
-      <div class="wt2-controls" data-aos="fade-up" data-aos-delay="100">
-        <div class="wt2-seg" role="tablist" aria-label="Choose platform">
-          <button type="button" class="is-on" role="tab" aria-selected="true" data-wt2-pf="mt5">MetaTrader 5</button>
-          <button type="button" role="tab" aria-selected="false" data-wt2-pf="mt4">MetaTrader 4</button>
-        </div>
-        <div class="wt2-field">
-          <svg aria-hidden="true"><use href="#i-globe"/></svg>
-          <label class="sr-only" for="wt2Server">Server</label>
-          <select id="wt2Server" data-wt2-server>
-            <option>STARTRADERFinancial-Live</option>
-            <option>STARTRADERFinancial-Demo</option>
-          </select>
-          <svg aria-hidden="true"><use href="#i-chevron-down"/></svg>
-        </div>
+<!-- ============ WEB TERMINAL ============ -->
+<section class="wt3" aria-labelledby="wt3-title">
+  <div class="container wt3-bar">
+    <h1 class="wt3-h1" id="wt3-title">Web Terminal</h1>
+    <div class="wt3-ctl">
+      <div class="wt3-mt5" data-wt3-mt5>
+        <button type="button" class="wt3-btn is-on" data-wt3-pick="mt5" aria-haspopup="true" aria-expanded="false" aria-controls="wt3Servers">MetaTrader 5 <em data-wt3-name>STARTRADERINTL-Live</em><svg aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
+        <ul class="wt3-menu" id="wt3Servers" role="menu" aria-label="MetaTrader 5 server" hidden>
+          <li><button type="button" role="menuitemradio" aria-checked="true" data-service="Live" data-iframe="https://www.stmt5web.com/terminal">STARTRADERINTL-Live<svg aria-hidden="true"><use href="#i-check"/></svg></button></li>
+          <li><button type="button" role="menuitemradio" aria-checked="false" data-service="Demo" data-iframe="https://www2.stmt5web.com/terminal">STARTRADERINTL-Demo<svg aria-hidden="true"><use href="#i-check"/></svg></button></li>
+          <li><button type="button" role="menuitemradio" aria-checked="false" data-service="FILive" data-iframe="https://www4.stmt5web.com/terminal">STARTRADERFinancial-Live 3<svg aria-hidden="true"><use href="#i-check"/></svg></button></li>
+          <li><button type="button" role="menuitemradio" aria-checked="false" data-service="Live4" data-iframe="https://www5.stmt5web.com/terminal">STARTRADERFinancial-Live 4<svg aria-hidden="true"><use href="#i-check"/></svg></button></li>
+          <li><button type="button" role="menuitemradio" aria-checked="false" data-service="Live5" data-iframe="https://www6.stmt5web.com/terminal">STARTRADERFinancial-Live 5<svg aria-hidden="true"><use href="#i-check"/></svg></button></li>
+          <li><button type="button" role="menuitemradio" aria-checked="false" data-service="Live6" data-iframe="https://www7.stmt5web.com/terminal">STARTRADERFinancial-Live 6<svg aria-hidden="true"><use href="#i-check"/></svg></button></li>
+        </ul>
       </div>
+      <button type="button" class="wt3-btn" data-wt3-pick="mt4" data-service="mt4service" data-iframe="https://metatraderweb.app/trade?version=4&amp;trade_server=STARTRADERFinancial-Demo&amp;servers=STARTRADERFinancial-Demo,STARTRADERFinancial-Live,STARTRADERFinancial-Live2,STARTRADERFinancial-Live4,STARTRADERFinancial-Live5,STARTRADERFinancial-Live6,STARTRADERFinancial-Live7&amp;startup_mode=create_demo&amp;lang=en&amp;color_scheme=black_on_white&amp;utm_source=www.startrader.com">MetaTrader 4</button>
     </div>
-
-    <div class="wt2-card" data-aos="fade-up" data-aos-delay="150">
-      <div class="wt2-band">
-        <svg aria-hidden="true"><use href="#i-id"/></svg>
-        Trading accounts <em>&middot; STARTRADER Financial Markets Limited</em>
-      </div>
-
-      <form class="wt2-form" id="wt2Form" novalidate>
-        <h2><span class="wt2-link-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.5 13.5a4 4 0 0 0 6 .5l2.5-2.5a4 4 0 1 0-5.7-5.7L12 7.1"/><path d="M13.5 10.5a4 4 0 0 0-6-.5L5 12.5a4 4 0 1 0 5.7 5.7L12 16.9"/></svg></span>Connect to account</h2>
-
-        <div class="wt2-row">
-          <label for="wt2Login">Login</label>
-          <div class="wt2-in">
-            <svg aria-hidden="true"><use href="#i-user"/></svg>
-            <input type="text" id="wt2Login" name="login" inputmode="numeric" autocomplete="username" placeholder="Enter Login" aria-describedby="wt2LoginErr">
-          </div>
-          <p class="ct-err" id="wt2LoginErr" hidden>Enter your account login.</p>
-        </div>
-
-        <div class="wt2-row">
-          <label for="wt2Pass">Password</label>
-          <div class="wt2-in">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2.5"/><path d="M8 10V7.5a4 4 0 0 1 8 0V10"/><circle cx="12" cy="15" r="1.4" fill="currentColor" stroke="none"/></svg>
-            <input type="password" id="wt2Pass" name="password" autocomplete="current-password" placeholder="Enter Password" aria-describedby="wt2PassErr">
-          </div>
-          <p class="ct-err" id="wt2PassErr" hidden>Enter your password.</p>
-          <div class="wt2-below">
-            <label class="wt2-save" for="wt2Save">
-              <input type="checkbox" id="wt2Save" name="save">
-              <i aria-hidden="true"><svg><use href="#i-check"/></svg></i>
-              Save password
-            </label>
-            <span class="wt2-forgot">Forgot Password? <a href="contact.html">Contact company</a></span>
-          </div>
-        </div>
-
-        <div class="wt2-server" aria-live="polite">
-          <em>Server</em>
-          <b><i aria-hidden="true"></i><span data-wt2-servername>STARTRADERFinancial-Live</span></b>
-        </div>
-
-        <button class="btn btn-primary btn-lg wt2-connect" type="submit">Connect to account <svg class="ico"><use href="#i-arrow-right"/></svg></button>
-        <p class="wt2-note" data-wt2-note hidden></p>
-      </form>
-
-      <div class="wt2-eula">
-        <span>&copy; 2000 &ndash; 2026, MetaQuotes Ltd.</span>
-        <a href="legal-documents.html">End-User License Agreement</a>
-      </div>
-    </div>
+  </div>
+  <div class="wt3-frame">
+    <iframe id="wt3Frame" title="STARTRADER MetaTrader web terminal" src="https://www.stmt5web.com/terminal" allow="fullscreen; clipboard-write" allowfullscreen></iframe>
   </div>
 </section>
 
 </main>
 
 <script>
-/* the terminal login — platform and server drive the connect target */
+/* web terminal: MT5 server menu + MT4, one iframe. Same sources and the same
+   cookieService cookie (365 days) as the original page; on phones a saved MT4
+   choice falls back to MT5, as before. */
 (function () {
-  var form = document.getElementById('wt2Form');
-  if (!form) return;
-  var segs = Array.prototype.slice.call(document.querySelectorAll('[data-wt2-pf]'));
-  var server = document.querySelector('[data-wt2-server]');
-  var servername = document.querySelector('[data-wt2-servername]');
-  var note = document.querySelector('[data-wt2-note]');
-  var targets = { mt5: '../trading/platforms/webtrader-mt5.html', mt4: '../trading/platforms/webtrader-mt4.html' };
-  var pf = 'mt5';
-  function sync() { servername.textContent = server.value; }
-  segs.forEach(function (b) {
-    b.addEventListener('click', function () {
-      pf = b.getAttribute('data-wt2-pf');
-      segs.forEach(function (x) {
-        var on = x === b;
-        x.classList.toggle('is-on', on);
-        x.setAttribute('aria-selected', on ? 'true' : 'false');
-      });
+  var frame = document.getElementById('wt3Frame');
+  if (!frame) return;
+  var box = document.querySelector('[data-wt3-mt5]');
+  var mt5 = box.querySelector('[data-wt3-pick="mt5"]');
+  var menu = document.getElementById('wt3Servers');
+  var name = box.querySelector('[data-wt3-name]');
+  var mt4 = document.querySelector('[data-wt3-pick="mt4"]');
+  var opts = Array.prototype.slice.call(menu.querySelectorAll('button'));
+  function getC() { var m = document.cookie.match(/(?:^|;\s*)cookieService=([^;]*)/); return m ? m[1] : ''; }
+  function setC(v) { var d = new Date(); d.setTime(d.getTime() + 365 * 864e5); document.cookie = 'cookieService=' + v + '; expires=' + d.toUTCString() + '; path=/'; }
+  function pick(el) {
+    var isMt4 = el === mt4;
+    opts.forEach(function (o) { o.setAttribute('aria-checked', o === el ? 'true' : 'false'); });
+    mt5.classList.toggle('is-on', !isMt4);
+    mt4.classList.toggle('is-on', isMt4);
+    if (!isMt4) name.textContent = el.textContent;
+    var src = el.getAttribute('data-iframe').replace(/&amp;/g, '&');
+    if (frame.getAttribute('src') !== src) frame.setAttribute('src', src);
+    setC(el.getAttribute('data-service'));
+  }
+  function open(on) {
+    menu.hidden = !on;
+    mt5.setAttribute('aria-expanded', on ? 'true' : 'false');
+    if (on) (menu.querySelector('[aria-checked="true"]') || opts[0]).focus();
+  }
+  var saved = getC();
+  var el = saved === 'mt4service' ? mt4 : opts.filter(function (o) { return o.getAttribute('data-service') === saved; })[0];
+  var phone = window.innerWidth < 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  if (!el || (el === mt4 && phone)) el = opts[0];
+  pick(el);
+  mt5.addEventListener('click', function () { open(menu.hidden); });
+  opts.forEach(function (o, i) {
+    o.addEventListener('click', function () { pick(o); open(false); mt5.focus(); });
+    o.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); opts[(i + (e.key === 'ArrowDown' ? 1 : opts.length - 1)) % opts.length].focus(); }
     });
   });
-  server.addEventListener('change', sync);
-  function err(id, bad) {
-    var el = document.getElementById(id);
-    if (el) el.hidden = !bad;
-    return !bad;
-  }
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var ok = true;
-    ok = err('wt2LoginErr', !document.getElementById('wt2Login').value.trim()) && ok;
-    ok = err('wt2PassErr', !document.getElementById('wt2Pass').value) && ok;
-    if (!ok) return;
-    note.hidden = false;
-    note.classList.add('is-ok');
-    note.textContent = 'Connecting to ' + server.value + '\u2026';
-    setTimeout(function () {
-      window.location.href = targets[pf] + '?server=' + encodeURIComponent(server.value);
-    }, 900);
-  });
-  ['wt2Login', 'wt2Pass'].forEach(function (id) {
-    document.getElementById(id).addEventListener('input', function () { err(id + 'Err', false); });
-  });
-  sync();
+  mt4.addEventListener('click', function () { open(false); pick(mt4); });
+  document.addEventListener('click', function (e) { if (!menu.hidden && !box.contains(e.target)) open(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !menu.hidden) { open(false); mt5.focus(); } });
 })();
 </script>
 
