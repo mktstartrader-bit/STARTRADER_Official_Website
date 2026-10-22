@@ -6180,3 +6180,53 @@ html[lang="ar"]{--font:'Tajawal','Plus Jakarta Sans',system-ui,-apple-system,"Se
     inset 0 1px 1px rgba(255,255,255,.5),
     inset 0 -8px 20px rgba(255,255,255,.06),
     inset 0 0 0 1px rgba(255,255,255,.14)}
+
+/* ===== STACKED HERO ART IS CROPPED, CENTRED AND FADED (2026-10-22, appended batch) =====
+   Dev feedback below 980px: the portrait art ran full width at its own
+   2:3 ratio, so on tablets the banner grew taller than the screen, its
+   lower half was empty ground, and the hard edges showed a seam against
+   the section colour. Every portrait banner keeps its object in the top
+   ~60% of the frame, so the stacked art now shows that window only
+   (10:9, top-anchored), centred and capped at 560px, and fades out on
+   all four sides into the section's own ground. Phones get the same
+   crop at full width. Index and the square campaign art are untouched. */
+@media (max-width:980px){
+  html body :is(.pf-hero,.pt-hero,.fx-hero,.co-hero,.cm-hero,.ct-hero,.pm-hero,.kc-hero,.ec-hero,.ma-hero,.wb-hero,.rg-hero) > picture{
+    -webkit-mask-image:none!important;mask-image:none!important;
+    padding:14px 0 30px!important;
+  }
+  html body :is(.pf-hero,.pt-hero,.fx-hero,.co-hero,.cm-hero,.ct-hero,.pm-hero,.kc-hero,.ec-hero,.ma-hero,.wb-hero,.rg-hero) > picture > img{
+    width:min(100%,560px)!important;height:auto!important;aspect-ratio:10/9!important;
+    margin:0 auto!important;object-fit:cover!important;object-position:center top!important;
+    -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 8%,#000 78%,transparent 100%),linear-gradient(90deg,transparent 0,#000 12%,#000 88%,transparent 100%)!important;
+    -webkit-mask-composite:source-in!important;
+    mask-image:linear-gradient(180deg,transparent 0,#000 8%,#000 78%,transparent 100%),linear-gradient(90deg,transparent 0,#000 12%,#000 88%,transparent 100%)!important;
+    mask-composite:intersect!important;
+  }
+}
+
+/* ===== THE PROMOTIONS FILM IS CROPPED TO ITS SAFE WHEN STACKED (2026-10-22, appended batch) =====
+   The promotions film is a 16:9 shot with the safe in its right third and
+   a third-party scheme mark in the lower right corner. Run full width
+   below 980px it read as a tall white field with the object pushed off
+   the edge. The film now sits in a .pm-hero-media window (display:contents
+   on desktop, so the desktop banner is unchanged) that shows only the
+   safe — 58-100% across, 18-80% down — centred, capped at 520px and faded
+   into the section's #f7f7f7 ground. */
+.pm-hero-media{display:contents}
+@media (max-width:980px){
+  .pm-hero-media{
+    display:block;position:relative;order:99;overflow:hidden;
+    width:min(calc(100% - 40px),520px);aspect-ratio:6/5;margin:20px auto 36px;
+    -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 16%,#000 80%,transparent 100%),linear-gradient(90deg,transparent 0,#000 22%,#000 80%,transparent 100%);
+    -webkit-mask-composite:source-in;
+    mask-image:linear-gradient(180deg,transparent 0,#000 16%,#000 80%,transparent 100%),linear-gradient(90deg,transparent 0,#000 22%,#000 80%,transparent 100%);
+    mask-composite:intersect;
+  }
+  .pm-hero-media > .pm-hero-video{
+    position:absolute!important;inset:auto!important;left:-138%!important;top:-29%!important;
+    width:238%!important;max-width:none!important;height:auto!important;aspect-ratio:16/9!important;
+    margin:0!important;border-radius:0!important;box-shadow:none!important;
+    object-fit:cover;object-position:center;
+  }
+}
