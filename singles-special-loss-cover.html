@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="assets/css/aos.min.css" />
   <link rel="preload" href="assets/img/pmt339-hero-1920.webp" imagesrcset="assets/img/pmt339-hero-1280.webp 1280w, assets/img/pmt339-hero-1920.webp 1920w" imagesizes="(min-width:981px) 90vw" as="image" type="image/webp" media="(min-width:981px)" fetchpriority="high" />
   <link rel="preload" href="assets/img/pmt339-hero-mobile.webp" as="image" type="image/webp" media="(max-width:980px)" fetchpriority="high" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb31" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb30" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* =================================================================
@@ -74,7 +74,7 @@
 .ssp-h1 span{display:block;background:var(--sp-silver);-webkit-background-clip:text;background-clip:text;color:transparent;
   filter:drop-shadow(0 6px 22px rgba(42,114,255,.45))}
 .ssp-lead{margin-top:18px;max-width:30em;font-size:clamp(16px,1.35vw,19px);line-height:1.6;color:#C9D7F2}
-.ssp-act{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;margin-top:30px}
+.ssp-act{display:flex;flex-direction:column;align-items:flex-start;gap:14px;margin-top:30px}
 .ssp-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 28px;border-radius:999px;
   font-size:16px;font-weight:800;color:#fff;text-align:center;
   background:linear-gradient(135deg,#4C8BFF 0%,var(--sp-ac) 45%,var(--sp-ac2) 100%);
@@ -108,7 +108,7 @@
 .ssp-v-big{font-size:clamp(84px,8vw,112px);font-weight:800;letter-spacing:-.06em;line-height:.9;
   background:var(--sp-silver);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 8px 18px rgba(0,8,60,.55))}
 .ssp-v-big small{font-size:.5em;letter-spacing:-.02em}
-.ssp-v-1111{font-size:13px;font-weight:800;letter-spacing:.42em;padding-left:.42em;color:var(--sp-ice);opacity:.9}
+.ssp-v-1111{max-width:220px;margin-top:6px;font-size:14px;font-weight:700;letter-spacing:.01em;line-height:1.42;text-align:center;color:var(--sp-ice)}
 .ssp-v-body{padding:clamp(26px,3.4vw,42px)}
 .ssp-v-title{font-size:clamp(22px,2.3vw,30px);font-weight:800;letter-spacing:-.03em;line-height:1.18;text-wrap:balance}
 .ssp-perks{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
@@ -210,7 +210,7 @@
   .ssp-v-stub::before,.ssp-v-stub::after{right:auto;top:auto;bottom:-19px;background:#030A44}
   .ssp-v-stub::before{left:-18px}
   .ssp-v-stub::after{right:-18px}
-  .ssp-v-1111{writing-mode:vertical-rl;letter-spacing:.3em;padding:0}
+  .ssp-v-1111{margin-top:0;text-align:left;font-size:13px}
   .ssp-perks{grid-template-columns:1fr}
 }
 @media (max-width:600px){
@@ -218,6 +218,7 @@
   .ssp-act{flex-direction:column;align-items:stretch}
   .ssp-btn{width:100%}
   .ssp-tc{align-self:center}
+  .ssp-act{align-items:stretch}
 }
 @media (prefers-reduced-motion:reduce){
   .ssp-pill i,.ssp-voucher::after{animation:none}
@@ -566,10 +567,10 @@
     <div class="ssp-voucher" data-aos="fade-up">
       <div class="ssp-v-stub" aria-hidden="true">
         <span class="ssp-v-big">50<small>%</small></span>
-        <span class="ssp-v-1111">11.11</span>
+        <span class="ssp-v-1111">11.11 Singles’ Special:<br>50% Loss Cover</span>
       </div>
       <div class="ssp-v-body">
-        <h2 class="ssp-v-title" id="ssp-v-title">The Perks of Being Single: Loss Protection Voucher</h2>
+        <h2 class="ssp-v-title" id="ssp-v-title">Loss Protection Voucher</h2>
         <ul class="ssp-perks">
           <li><span class="ssp-perk-ic"><svg aria-hidden="true"><use href="#i-percent"/></svg></span>50% of realised loss</li>
           <li><span class="ssp-perk-ic"><svg aria-hidden="true"><use href="#i-wallet"/></svg></span>Up to USD 50 back</li>
