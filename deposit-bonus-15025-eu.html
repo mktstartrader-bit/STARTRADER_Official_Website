@@ -248,13 +248,30 @@
 .pbx-elist li.is-time .pbx-eic{color:var(--bz);background:rgba(172,124,89,.13)}
 .pbx-elist p{font-size:14.5px;font-weight:600;line-height:1.55;color:var(--pbx-ink)}
 
-/* ---------- terms ---------- */
-.pbx-terms-sec{background:#fff;scroll-margin-top:calc(var(--nav-h) + 20px)}
-.pbx-terms-name{margin-top:12px;text-align:center;font-size:15px;font-weight:700;color:var(--rb-d)}
-.pbx-terms{position:relative;margin:clamp(26px,3vw,38px) auto 0;max-width:920px;border-radius:clamp(18px,2.2vw,28px);background:#f6f8fc;border:1px solid rgba(16,30,54,.08)}
-.pbx-terms-body{overflow:hidden;max-height:420px;padding:clamp(22px,2.8vw,38px) clamp(22px,2.8vw,38px) 0;transition:max-height .8s var(--ease-out);
-  -webkit-mask-image:linear-gradient(180deg,#000 62%,transparent);mask-image:linear-gradient(180deg,#000 62%,transparent)}
-.pbx-terms.is-open .pbx-terms-body{-webkit-mask-image:none;mask-image:none}
+/* ---------- eligibility actions ---------- */
+.pbx-elig-act{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,1.6vw,20px);margin-top:clamp(14px,1.6vw,20px)}
+.pbx-elig-act .pbx-btn{justify-content:center;padding:17px 24px}
+.pbx-btn--ghost{color:var(--rb-d);background:#fff;border:1.5px solid rgba(0,71,187,.25);box-shadow:0 18px 40px -26px rgba(16,30,54,.45)}
+.pbx-btn--ghost::after{background:linear-gradient(105deg,transparent 30%,rgba(42,114,255,.12) 48%,transparent 66%)}
+.pbx-btn--ghost:hover{border-color:var(--rb);box-shadow:0 22px 46px -24px rgba(0,71,187,.5)}
+.pbx-btn--ghost:hover svg{transform:translateY(-2px)}
+
+/* ---------- terms pop-up ---------- */
+.pbx-modal{position:fixed;inset:0;margin:auto;height:fit-content;width:min(880px,calc(100vw - 32px));max-height:min(86vh,900px);padding:0;border:0;border-radius:clamp(18px,2vw,26px);background:#fff;color:var(--pbx-ink);
+  box-shadow:0 40px 100px -30px rgba(0,8,30,.7);overflow:hidden;display:none;flex-direction:column}
+.pbx-modal[open]{display:flex;animation:pbxModalIn .45s var(--ease-out)}
+.pbx-modal::backdrop{background:rgba(1,6,29,.62);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);animation:pbxFade .3s ease}
+@keyframes pbxModalIn{from{opacity:0;transform:translateY(24px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes pbxFade{from{opacity:0}to{opacity:1}}
+.pbx-modal-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:clamp(20px,2.4vw,30px) clamp(20px,2.8vw,36px);border-bottom:1px solid rgba(16,30,54,.08)}
+.pbx-modal-h{font-size:clamp(22px,2.4vw,28px);font-weight:800;letter-spacing:-.03em}
+.pbx-terms-name{margin-top:6px;font-size:14px;font-weight:700;color:var(--rb-d)}
+.pbx-modal-x{flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;cursor:pointer;color:var(--pbx-ink);background:#f1f4f9;border:0;
+  transition:background .25s,transform .35s var(--ease-out)}
+.pbx-modal-x svg{width:18px;height:18px}
+.pbx-modal-x:hover{background:#e3e9f3;transform:rotate(90deg)}
+.pbx-modal-x:focus-visible{outline:2px solid var(--rb);outline-offset:2px}
+.pbx-terms{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:clamp(20px,2.4vw,30px) clamp(20px,2.8vw,36px) clamp(26px,3vw,40px);background:#f8fafd}
 .pbx-terms h3{margin-top:clamp(20px,2.4vw,28px);font-size:16.5px;font-weight:800;letter-spacing:-.02em;color:var(--pbx-ink)}
 .pbx-terms h3:first-child{margin-top:0}
 .pbx-terms p,.pbx-terms li{font-size:14px;line-height:1.72;color:var(--pbx-soft)}
@@ -268,12 +285,7 @@
 .pbx-ftd th,.pbx-ftd td{padding:10px 14px;text-align:left;border-bottom:1px solid rgba(16,30,54,.08);color:var(--pbx-soft);white-space:nowrap}
 .pbx-ftd th{font-weight:700;color:var(--pbx-ink);background:rgba(0,71,187,.06)}
 .pbx-ftd tr:last-child td{border-bottom:0}
-.pbx-more{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:18px;font:inherit;font-size:13.5px;font-weight:700;color:var(--rb-d);cursor:pointer;
-  background:none;border:0;border-top:1px solid rgba(16,30,54,.08)}
-.pbx-more svg{width:18px;height:18px;transition:transform .45s var(--ease-out)}
-.pbx-more:hover{color:var(--rb)}
-.pbx-terms.is-open .pbx-more svg{transform:rotate(180deg)}
-.pbx-more:focus-visible{outline:2px solid var(--rb);outline-offset:-4px;border-radius:12px}
+html.pbx-lock{overflow:hidden}
 
 /* ---------- closing CTA + countdown ---------- */
 .pbx-cta{position:relative;isolation:isolate;overflow:hidden;padding:clamp(80px,9vw,120px) 0;text-align:center;color:#fff;background:var(--pbx-bg)}
@@ -344,7 +356,9 @@
   .pbx-bar{display:none}
 }
 @media (max-width:600px){
-  .section.pbx-why,.section.pbx-how,.section.pbx-see,.section.pbx-elig,.section.pbx-terms-sec{padding:68px 0}
+  .section.pbx-why,.section.pbx-how,.section.pbx-see,.section.pbx-elig{padding:68px 0}
+  .pbx-elig-act{grid-template-columns:1fr}
+  .pbx-modal{max-height:calc(100svh - 32px)}
   .pbx-bento{grid-template-columns:1fr}
   .pbx-card--cap{grid-column:span 1}
   .pbx-card--150 .pbx-card-in,.pbx-card--25 .pbx-card-in{min-height:220px}
@@ -707,7 +721,7 @@
       <p class="pbx-lead" data-aos="fade-up" data-aos-delay="200">Opt in and receive 150% on your account&rsquo;s first deposit (150% credit capped at $1,000), then 25% on the remainder and on subsequent deposits of $50 or more &mdash; up to $50,000 credit per client at any time.</p>
       <div class="pbx-act" data-aos="fade-up" data-aos-delay="300">
         <a class="pbx-btn magnetic" href="https://myaccount.startrader.com/login"><span>Opt In Now</span> <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
-        <a class="pbx-tc" href="#terms">T&amp;Cs apply.</a>
+        <a class="pbx-tc" href="#terms" data-pbx-open>T&amp;Cs apply.</a>
       </div>
     </div>
   </div>
@@ -858,17 +872,46 @@
       <li class="is-out" data-aos="fade-up" data-aos-delay="300"><span class="pbx-eic"><svg aria-hidden="true"><use href="#i-close"/></svg></span><p>Excluded: Cent, Cryptocurrency, PAMM and MAM accounts.</p></li>
       <li class="is-time" data-aos="fade-up" data-aos-delay="400"><span class="pbx-eic"><svg aria-hidden="true"><use href="#i-clock"/></svg></span><p>Registration period: 23 May 2025 &ndash; 31 December 2026 (server time).</p></li>
     </ul>
+    <div class="pbx-elig-act" data-aos="fade-up">
+      <a class="pbx-btn magnetic" href="https://myaccount.startrader.com/login"><span>Opt In Now</span> <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+      <a class="pbx-btn pbx-btn--ghost" href="#terms" data-pbx-open><span>T&amp;Cs Apply</span> <svg aria-hidden="true"><use href="#i-doc"/></svg></a>
+    </div>
   </div>
 </section>
 
-<!-- ============ TERMS & CONDITIONS ============ -->
-<section class="section pbx-terms-sec" id="terms" aria-labelledby="pbx-terms-title">
-  <div class="container">
-    <h2 class="pbx-h2" id="pbx-terms-title" data-aos="fade-up">Terms and Conditions</h2>
-    <p class="pbx-terms-name" data-aos="fade-up">First deposit 150% + Subsequent Deposits 25% bonus up to $50,000</p>
 
-    <div class="pbx-terms" data-pbx-terms data-aos="fade-up">
-      <div class="pbx-terms-body" id="pbxTermsBody">
+
+<!-- ============ CLOSING CTA ============ -->
+<section class="pbx-cta" id="optin" aria-labelledby="pbx-cta-title" data-pbx-cta>
+  <div class="pbx-cta-glow" aria-hidden="true"></div>
+  <div class="container pbx-cta-in">
+    <h2 class="pbx-cta-h" id="pbx-cta-title" data-aos="fade-up">First deposit 150% + Subsequent Deposits 25% bonus <span class="pbx-lit">up to $50,000</span></h2>
+    <div class="pbx-count" data-pbx-count-down data-end="2026-12-31T23:59:00+02:00" data-aos="fade-up" aria-label="Time left in the registration period">
+      <div><b data-u="d">00</b><i>Days</i></div><div><b data-u="h">00</b><i>Hours</i></div><div><b data-u="m">00</b><i>Minutes</i></div><div><b data-u="s">00</b><i>Seconds</i></div>
+    </div>
+    <p class="pbx-cta-p" data-aos="fade-up">Registration period: 23 May 2025 &ndash; 31 December 2026 (server time).</p>
+    <div class="pbx-cta-act" data-aos="fade-up">
+      <a class="pbx-btn pbx-btn--lg magnetic" href="https://myaccount.startrader.com/login"><span>Opt In Now</span> <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+      <a class="pbx-tc" href="#terms" data-pbx-open>T&amp;Cs apply.</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RISK NOTE ============ -->
+<aside class="pbx-risk" aria-label="Risk note">
+  <div class="container"><p>Trading leveraged products such as Forex and CFDs carries a high level of risk and may result in losses exceeding your deposit. Bonus credit cannot be withdrawn. This promotion is not a recommendation to deposit or trade. Terms &amp; Conditions apply.</p></div>
+</aside>
+
+<!-- ============ TERMS & CONDITIONS (pop-up) ============ -->
+<dialog class="pbx-modal" id="terms" aria-labelledby="pbx-terms-title">
+  <div class="pbx-modal-head">
+    <div>
+      <h2 class="pbx-modal-h" id="pbx-terms-title">Terms and Conditions</h2>
+      <p class="pbx-terms-name">First deposit 150% + Subsequent Deposits 25% bonus up to $50,000</p>
+    </div>
+    <button class="pbx-modal-x" type="button" data-pbx-close aria-label="Close terms and conditions"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+  </div>
+  <div class="pbx-terms">
         <h3>Promotion Period</h3>
         <p>Registration period: From 00:00 23rd May, 2025 to 23:59 31st December, 2026 (based on server time).</p>
         <h3>Applicable regions</h3>
@@ -929,32 +972,8 @@
         <p>All trading decisions made by participants are entirely their own responsibility. Trading leveraged derivative products, such as Forex and CFDs, carries a high level of risk, and may result in losses that exceed the initial capital invested. Participants should carefully consider their financial situation, trading experience, and risk tolerance before engaging in any trading activity.</p>
         <p>Participation in the promotion does not reduce or eliminate the risks associated with trading leveraged financial products. Meeting the promotion&rsquo;s criteria should not be interpreted as a recommendation to increase exposure or trading activity. Participants are encouraged to seek independent financial or professional advice before participating.</p>
         <p>This promotion is open only to eligible clients who meet all conditions outlined in the terms and conditions above. Participation in this promotion is entirely voluntary, and by choosing to participate, participants acknowledge that they have reviewed, understood, and agreed to these terms. This promotion is not available to residents of jurisdictions where such promotions are prohibited, restricted, or require regulatory authorization, including but not limited to countries or territories with financial marketing restrictions. It is the sole responsibility of each participant to ensure that their participation complies with any applicable local laws or regulatory obligations.</p>
-      </div>
-      <button class="pbx-more" type="button" aria-expanded="false" aria-controls="pbxTermsBody" data-pbx-more><span data-l>Read the full terms</span><svg aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
-    </div>
   </div>
-</section>
-
-<!-- ============ CLOSING CTA ============ -->
-<section class="pbx-cta" id="optin" aria-labelledby="pbx-cta-title" data-pbx-cta>
-  <div class="pbx-cta-glow" aria-hidden="true"></div>
-  <div class="container pbx-cta-in">
-    <h2 class="pbx-cta-h" id="pbx-cta-title" data-aos="fade-up">First deposit 150% + Subsequent Deposits 25% bonus <span class="pbx-lit">up to $50,000</span></h2>
-    <div class="pbx-count" data-pbx-count-down data-end="2026-12-31T23:59:00+02:00" data-aos="fade-up" aria-label="Time left in the registration period">
-      <div><b data-u="d">00</b><i>Days</i></div><div><b data-u="h">00</b><i>Hours</i></div><div><b data-u="m">00</b><i>Minutes</i></div><div><b data-u="s">00</b><i>Seconds</i></div>
-    </div>
-    <p class="pbx-cta-p" data-aos="fade-up">Registration period: 23 May 2025 &ndash; 31 December 2026 (server time).</p>
-    <div class="pbx-cta-act" data-aos="fade-up">
-      <a class="pbx-btn pbx-btn--lg magnetic" href="https://myaccount.startrader.com/login"><span>Opt In Now</span> <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
-      <a class="pbx-tc" href="#terms">T&amp;Cs apply.</a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ RISK NOTE ============ -->
-<aside class="pbx-risk" aria-label="Risk note">
-  <div class="container"><p>Trading leveraged products such as Forex and CFDs carries a high level of risk and may result in losses exceeding your deposit. Bonus credit cannot be withdrawn. This promotion is not a recommendation to deposit or trade. Terms &amp; Conditions apply.</p></div>
-</aside>
+</dialog>
 
 <!-- sticky opt-in bar -->
 <div class="pbx-bar" data-pbx-bar aria-hidden="true">
@@ -1120,22 +1139,23 @@
     render();
   }
 
-  /* terms: expand / collapse */
-  var terms = $('[data-pbx-terms]');
-  if (terms) {
-    var body = $('.pbx-terms-body', terms), more = $('[data-pbx-more]', terms), lbl = $('[data-l]', more);
-    more.addEventListener('click', function () {
-      var open = !terms.classList.contains('is-open');
-      terms.classList.toggle('is-open', open);
-      more.setAttribute('aria-expanded', String(open));
-      lbl.textContent = open ? 'Show less' : 'Read the full terms';
-      body.style.maxHeight = open ? body.scrollHeight + 'px' : '';
-      if (!open) terms.scrollIntoView({ behavior: RM ? 'auto' : 'smooth', block: 'start' });
-    });
-    $$('a[href="#terms"]').forEach(function (a) {
-      a.addEventListener('click', function () {
-        if (!terms.classList.contains('is-open')) setTimeout(function () { more.click(); }, 350);
+  /* terms: pop-up dialog (the full document is not shown on the page) */
+  var dlg = $('#terms');
+  if (dlg && typeof dlg.showModal === 'function') {
+    var opener = null;
+    var close = function () { dlg.close(); };
+    $$('[data-pbx-open], a[href="#terms"]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        e.preventDefault(); opener = a;
+        dlg.showModal(); document.documentElement.classList.add('pbx-lock');
+        var sc = $('.pbx-terms', dlg); if (sc) sc.scrollTop = 0;
       });
+    });
+    $('[data-pbx-close]', dlg).addEventListener('click', close);
+    dlg.addEventListener('click', function (e) { if (e.target === dlg) close(); });
+    dlg.addEventListener('close', function () {
+      document.documentElement.classList.remove('pbx-lock');
+      if (opener) opener.focus();
     });
   }
 
