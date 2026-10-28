@@ -975,8 +975,9 @@
       showVolume: false, showMA: false, hideDateRanges: false, hideMarketStatus: true, hideSymbolLogo: false,
       scalePosition: 'right', scaleMode: 'Normal', noTimeScale: false, valuesTracking: '1', changeMode: 'price-and-percent',
       fontFamily: '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif', fontSize: '12', widgetFontColor: '#0E1524',
-      chartType: 'area', lineWidth: 2, lineType: 0, lineColor: '#2A72FF', topColor: 'rgba(42,114,255,0.20)', bottomColor: 'rgba(42,114,255,0)',
-      dateRanges: ['1d|5', '1m|60', '3m|1D', '12m|1D', '60m|1W', 'all|1M']
+      chartType: 'area', lineWidth: 2, lineType: 2, lineColor: '#2A72FF', topColor: 'rgba(42,114,255,0.20)', bottomColor: 'rgba(42,114,255,0)',
+      // curved line on coarser steps: a calm, rounded trend instead of tick-by-tick spikes
+      dateRanges: ['1d|60', '1m|1D', '3m|1D', '12m|1W', '60m|1M', 'all|1M']
     };
   }
   function initMarkets() {
