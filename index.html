@@ -309,6 +309,9 @@
 .mkx-note b{color:var(--text-soft);font-weight:700}
 .mkx-note svg{width:20px;height:20px;flex:none;color:var(--text-soft)}
 .mkx-footbar .btn{margin-left:auto;flex:none}
+/* the board foot is the button alone, centred under the chart (no note box) */
+.mkx-footbar{justify-content:center;padding:0;background:none;border:0;-webkit-backdrop-filter:none;backdrop-filter:none}
+.mkx-footbar .btn{margin-left:0}
 /* live TradingView chart: one glass card per category tab */
 .mkb-one{position:relative;border-radius:var(--radius-xl);padding:18px 18px 8px;
   background:rgba(255,255,255,.62);-webkit-backdrop-filter:blur(22px) saturate(1.7);backdrop-filter:blur(22px) saturate(1.7);
@@ -327,7 +330,7 @@
 }
 @media (max-width:640px){
   .mkx-minis{grid-template-columns:1fr}
-  .mkx-footbar{flex-direction:column;align-items:flex-start;padding:18px 20px}
+  .mkx-footbar{flex-direction:column;align-items:stretch;padding:0}
   .mkx-footbar .btn{margin-left:0;width:100%;justify-content:center}
 }
 /* ---------- Platforms ---------- */
@@ -1082,7 +1085,6 @@
     <div class="mkx-board" id="mkxBoard" data-aos="fade-up"><!-- cards by JS --></div>
     <p class="mkx-tvcredit">Live market data by <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">TradingView</a></p>
     <div class="mkx-footbar" data-aos="fade-up">
-      <p class="mkx-note"><svg aria-hidden="true"><use href="#i-shield"/></svg><span>The prices shown are indicative and delayed by up to <b>5 minutes</b>. Please refer to our trading platform for live prices before placing any trades.</span></p>
       <a href="#markets" class="btn btn-primary btn-lg magnetic">Browse All Markets <svg class="ico"><use href="#i-arrow-right"/></svg></a>
     </div>
   </div>
