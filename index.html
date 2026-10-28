@@ -309,6 +309,16 @@
 .mkx-note b{color:var(--text-soft);font-weight:700}
 .mkx-note svg{width:20px;height:20px;flex:none;color:var(--text-soft)}
 .mkx-footbar .btn{margin-left:auto;flex:none}
+/* live TradingView quotes inside the board cards (price, change and chart come from the widget) */
+.mkb-tv{position:relative;height:190px;margin:0 -6px 14px;border-radius:14px;overflow:hidden}
+.mkb-tv .tradingview-widget-container,.mkb-tv .tradingview-widget-container__widget,.mkb-tv iframe{width:100%!important;height:100%!important;display:block}
+.mkb-feat-tv{flex:1 1 auto;margin:0 -8px 18px}
+.mkb-feat-tv .mkb-tv{height:clamp(320px,30vw,420px);margin:0}
+.mkb-tv:empty::before{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(255,255,255,0) 30%,rgba(255,255,255,.65) 50%,rgba(255,255,255,0) 70%) 0 0/200% 100%,rgba(20,44,96,.05);animation:mkbShimmer 1.4s linear infinite}
+@keyframes mkbShimmer{to{background-position:-200% 0,0 0}}
+.mkx-tvcredit{margin:14px 0 0;text-align:center;font-size:11.5px;color:var(--text-mute)}
+.mkx-tvcredit a{color:var(--blue);font-weight:600}
+@media (prefers-reduced-motion:reduce){.mkb-tv:empty::before{animation:none}}
 @media (max-width:1080px){
   .mkx-board{grid-template-columns:1fr}
   .mkx-minis{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -1068,6 +1078,7 @@
       <button class="mkx-tab" type="button" role="tab" aria-selected="false" data-cat="shares"><svg class="mkx-tab-ic"><use href="#i-chart"/></svg>Shares</button>
     </div>
     <div class="mkx-board" id="mkxBoard" data-aos="fade-up"><!-- cards by JS --></div>
+    <p class="mkx-tvcredit">Live market data by <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">TradingView</a></p>
     <div class="mkx-footbar" data-aos="fade-up">
       <p class="mkx-note"><svg aria-hidden="true"><use href="#i-shield"/></svg><span>The prices shown are indicative and delayed by up to <b>5 minutes</b>. Please refer to our trading platform for live prices before placing any trades.</span></p>
       <a href="#markets" class="btn btn-primary btn-lg magnetic">Browse All Markets <svg class="ico"><use href="#i-arrow-right"/></svg></a>
@@ -1584,6 +1595,6 @@
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/swiper-bundle.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=pb31" defer></script>
+<script src="assets/js/main.min.js?v=pb32" defer></script>
 </body>
 </html>

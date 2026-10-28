@@ -919,67 +919,49 @@
 
   /* ---------------- Live market data (simulated) ---------------- */
   var mkxData = [
-    { s: 'GBPUSD', n: 'Great Britain Pound vs US Dollar', c: 'forex', ic: { t: 'flags', a: 'gb', b: 'us' }, p: 1.3355, d: 4, chg: 0.26, pop: true, po: 0 },
-    { s: 'EURUSD', n: 'Euro vs US Dollar', c: 'forex', ic: { t: 'flags', a: 'eu', b: 'us' }, p: 1.0842, d: 4, chg: 0.13, pop: true, po: 1 },
-    { s: 'USDCAD', n: 'US Dollar vs Canadian Dollar', c: 'forex', ic: { t: 'flags', a: 'us', b: 'ca' }, p: 1.40855, d: 5, chg: -0.08 },
-    { s: 'AUDUSD', n: 'Australian Dollar vs US Dollar', c: 'forex', ic: { t: 'flags', a: 'au', b: 'us' }, p: 0.6612, d: 4, chg: -0.08 },
-    { s: 'USDJPY', n: 'US Dollar vs Japanese Yen', c: 'forex', ic: { t: 'flags', a: 'us', b: 'jp' }, p: 156.82, d: 2, chg: 0.24 },
-    { s: 'NZDCHF', n: 'New Zealand Dollar vs Swiss Franc', c: 'forex', ic: { t: 'flags', a: 'nz', b: 'ch' }, p: 0.47272, d: 5, chg: 0.32 },
-    { s: 'USDCHF', n: 'US Dollar vs Swiss Franc', c: 'forex', ic: { t: 'flags', a: 'us', b: 'ch' }, p: 0.8842, d: 4, chg: 0.11 },
-    { s: 'US500', n: 'US 500 Cash Index', c: 'indices', ic: { t: 'flag', a: 'us' }, p: 5732.3, d: 1, chg: 0.90 },
-    { s: 'CAC40', n: 'France 40 Cash Index', c: 'indices', ic: { t: 'flag', a: 'fr' }, p: 8438.7, d: 1, chg: 0.93, pop: true, po: 2 },
-    { s: 'GER40', n: 'Germany 40 Cash Index', c: 'indices', ic: { t: 'flag', a: 'de' }, p: 18411, d: 0, chg: 0.34 },
-    { s: 'NAS100', n: 'US Tech 100 Cash Index', c: 'indices', ic: { t: 'flag', a: 'us' }, p: 29971.3, d: 1, chg: -0.62 },
-    { s: 'UK100', n: 'UK 100 Cash Index', c: 'indices', ic: { t: 'flag', a: 'gb' }, p: 8241.4, d: 1, chg: 0.42 },
-    { s: 'JP225', n: 'Japan 225 Cash Index', c: 'indices', ic: { t: 'flag', a: 'jp' }, p: 38614, d: 0, chg: -0.28 },
-    { s: 'HK50', n: 'Hong Kong 50 Cash Index', c: 'indices', ic: { t: 'flag', a: 'hk' }, p: 17492, d: 0, chg: 0.65 },
-    { s: 'AAPL', n: 'Apple Inc', c: 'shares', ic: { t: 'sym', v: 'A', bg: '#111418' }, p: 228.11, d: 2, chg: 0.63 },
-    { s: 'TSLA', n: 'Tesla Inc', c: 'shares', ic: { t: 'sym', v: 'T', bg: '#e82127' }, p: 334.09, d: 2, chg: -1.02 },
-    { s: 'NVDA', n: 'NVIDIA Corp', c: 'shares', ic: { t: 'sym', v: 'N', bg: '#76b900' }, p: 126.40, d: 2, chg: 2.18 },
-    { s: 'MSFT', n: 'Microsoft Corp', c: 'shares', ic: { t: 'sym', v: 'M', bg: '#0078d4' }, p: 428.2, d: 2, chg: 0.41 },
-    { s: 'AMZN', n: 'Amazon.com Inc', c: 'shares', ic: { t: 'sym', v: 'A', bg: '#ff9900' }, p: 186.3, d: 2, chg: 0.96 },
-    { s: 'META', n: 'Meta Platforms Inc', c: 'shares', ic: { t: 'sym', v: 'M', bg: '#0866ff' }, p: 512.4, d: 2, chg: -0.53 },
-    { s: 'GOOG', n: 'Alphabet Inc', c: 'shares', ic: { t: 'sym', v: 'G', bg: '#4285f4' }, p: 176.3, d: 2, chg: 0.72 },
-    { s: 'SPY.ETF', n: 'SPDR S&P 500 ETF Trust', c: 'etfs', ic: { t: 'etf' }, p: 571.28, d: 2, chg: 0.55 },
-    { s: 'LQD.ETF', n: 'iShares iBoxx IG Corp Bond ETF', c: 'etfs', ic: { t: 'etf' }, p: 106.35, d: 2, chg: 0.05, pop: true, po: 4 },
-    { s: 'RSP.ETF', n: 'Invesco S&P 500 Equal Weight ETF', c: 'etfs', ic: { t: 'etf' }, p: 213.7, d: 1, chg: 1.03, pop: true, po: 5 },
-    { s: 'SPXS.ETF', n: 'Direxion Daily S&P 500 Bear 3x Shares', c: 'etfs', ic: { t: 'etf' }, p: 27.61, d: 2, chg: -0.61, pop: true, po: 6 },
-    { s: 'QQQ.ETF', n: 'Invesco QQQ Trust', c: 'etfs', ic: { t: 'etf' }, p: 486.9, d: 2, chg: 0.88 },
-    { s: 'VOO.ETF', n: 'Vanguard S&P 500 ETF', c: 'etfs', ic: { t: 'etf' }, p: 526.4, d: 2, chg: 0.54 },
-    { s: 'GLD.ETF', n: 'SPDR Gold Shares', c: 'etfs', ic: { t: 'etf' }, p: 214.8, d: 2, chg: 0.29 },
-    { s: 'XAUUSD', n: 'Gold vs US Dollar', c: 'metals', ic: { t: 'inst', a: 'xau' }, p: 3241.80, d: 2, chg: 0.82, pop: true, po: 3 },
-    { s: 'XAGUSD', n: 'Silver vs US Dollar', c: 'metals', ic: { t: 'inst', a: 'xag' }, p: 38.42, d: 2, chg: 1.14 },
-    { s: 'WTI', n: 'US Crude Oil Spot', c: 'commodities', ic: { t: 'inst', a: 'xti' }, p: 71.28, d: 2, chg: -0.34 },
-    { s: 'UKOUSD', n: 'Brent Crude Oil Spot', c: 'commodities', ic: { t: 'inst', a: 'xbr' }, p: 75.6, d: 2, chg: -0.22 },
-    { s: 'NATGAS', n: 'US Natural Gas Spot', c: 'commodities', ic: { t: 'inst', a: 'xng' }, p: 2.84, d: 3, chg: 1.66 },
-    { s: 'COPPER', n: 'Copper Spot', c: 'metals', ic: { t: 'inst', a: 'copper' }, p: 4.32, d: 3, chg: 0.38 },
-    { s: 'XPTUSD', n: 'Platinum vs US Dollar', c: 'metals', ic: { t: 'inst', a: 'xpt' }, p: 978.4, d: 2, chg: -0.45 },
-    { s: 'XPDUSD', n: 'Palladium vs US Dollar', c: 'metals', ic: { t: 'inst', a: 'xpd' }, p: 1024.6, d: 2, chg: 0.58 },
-    { s: 'XAUAUD', n: 'Gold vs Australian Dollar', c: 'metals', ic: { t: 'inst', a: 'xau' }, p: 4903.2, d: 2, chg: 0.66 },
-    { s: 'WHEAT', n: 'US Wheat Futures', c: 'commodities', ic: { t: 'inst', a: 'wheat' }, p: 598.4, d: 1, chg: 0.72 },
-    { s: 'CORN', n: 'US Corn Futures', c: 'commodities', ic: { t: 'inst', a: 'corn' }, p: 442.6, d: 1, chg: -0.31 },
-    { s: 'COFFEE', n: 'Coffee C Futures', c: 'commodities', ic: { t: 'inst', a: 'coffee' }, p: 228.9, d: 1, chg: 1.24 },
-    { s: 'SUGAR', n: 'Sugar No. 11 Futures', c: 'commodities', ic: { t: 'inst', a: 'sugar' }, p: 19.42, d: 2, chg: 0.44 }
+    { s: 'GBPUSD', tv: 'FX:GBPUSD', n: 'Great Britain Pound vs US Dollar', c: 'forex', ic: { t: 'flags', a: 'gb', b: 'us' }, p: 1.3355, d: 4, chg: 0.26, pop: true, po: 0 },
+    { s: 'EURUSD', tv: 'FX:EURUSD', n: 'Euro vs US Dollar', c: 'forex', ic: { t: 'flags', a: 'eu', b: 'us' }, p: 1.0842, d: 4, chg: 0.13, pop: true, po: 1 },
+    { s: 'USDCAD', tv: 'FX:USDCAD', n: 'US Dollar vs Canadian Dollar', c: 'forex', ic: { t: 'flags', a: 'us', b: 'ca' }, p: 1.40855, d: 5, chg: -0.08 },
+    { s: 'AUDUSD', tv: 'FX:AUDUSD', n: 'Australian Dollar vs US Dollar', c: 'forex', ic: { t: 'flags', a: 'au', b: 'us' }, p: 0.6612, d: 4, chg: -0.08 },
+    { s: 'USDJPY', tv: 'FX:USDJPY', n: 'US Dollar vs Japanese Yen', c: 'forex', ic: { t: 'flags', a: 'us', b: 'jp' }, p: 156.82, d: 2, chg: 0.24 },
+    { s: 'NZDCHF', tv: 'OANDA:NZDCHF', n: 'New Zealand Dollar vs Swiss Franc', c: 'forex', ic: { t: 'flags', a: 'nz', b: 'ch' }, p: 0.47272, d: 5, chg: 0.32 },
+    { s: 'USDCHF', tv: 'FX:USDCHF', n: 'US Dollar vs Swiss Franc', c: 'forex', ic: { t: 'flags', a: 'us', b: 'ch' }, p: 0.8842, d: 4, chg: 0.11 },
+    { s: 'US500', tv: 'OANDA:SPX500USD', n: 'US 500 Cash Index', c: 'indices', ic: { t: 'flag', a: 'us' }, p: 5732.3, d: 1, chg: 0.90 },
+    { s: 'CAC40', tv: 'OANDA:FR40EUR', n: 'France 40 Cash Index', c: 'indices', ic: { t: 'flag', a: 'fr' }, p: 8438.7, d: 1, chg: 0.93, pop: true, po: 2 },
+    { s: 'GER40', tv: 'OANDA:DE30EUR', n: 'Germany 40 Cash Index', c: 'indices', ic: { t: 'flag', a: 'de' }, p: 18411, d: 0, chg: 0.34 },
+    { s: 'NAS100', tv: 'OANDA:NAS100USD', n: 'US Tech 100 Cash Index', c: 'indices', ic: { t: 'flag', a: 'us' }, p: 29971.3, d: 1, chg: -0.62 },
+    { s: 'UK100', tv: 'OANDA:UK100GBP', n: 'UK 100 Cash Index', c: 'indices', ic: { t: 'flag', a: 'gb' }, p: 8241.4, d: 1, chg: 0.42 },
+    { s: 'JP225', tv: 'OANDA:JP225USD', n: 'Japan 225 Cash Index', c: 'indices', ic: { t: 'flag', a: 'jp' }, p: 38614, d: 0, chg: -0.28 },
+    { s: 'HK50', tv: 'OANDA:HK33HKD', n: 'Hong Kong 50 Cash Index', c: 'indices', ic: { t: 'flag', a: 'hk' }, p: 17492, d: 0, chg: 0.65 },
+    { s: 'AAPL', tv: 'NASDAQ:AAPL', n: 'Apple Inc', c: 'shares', ic: { t: 'sym', v: 'A', bg: '#111418' }, p: 228.11, d: 2, chg: 0.63 },
+    { s: 'TSLA', tv: 'NASDAQ:TSLA', n: 'Tesla Inc', c: 'shares', ic: { t: 'sym', v: 'T', bg: '#e82127' }, p: 334.09, d: 2, chg: -1.02 },
+    { s: 'NVDA', tv: 'NASDAQ:NVDA', n: 'NVIDIA Corp', c: 'shares', ic: { t: 'sym', v: 'N', bg: '#76b900' }, p: 126.40, d: 2, chg: 2.18 },
+    { s: 'MSFT', tv: 'NASDAQ:MSFT', n: 'Microsoft Corp', c: 'shares', ic: { t: 'sym', v: 'M', bg: '#0078d4' }, p: 428.2, d: 2, chg: 0.41 },
+    { s: 'AMZN', tv: 'NASDAQ:AMZN', n: 'Amazon.com Inc', c: 'shares', ic: { t: 'sym', v: 'A', bg: '#ff9900' }, p: 186.3, d: 2, chg: 0.96 },
+    { s: 'META', tv: 'NASDAQ:META', n: 'Meta Platforms Inc', c: 'shares', ic: { t: 'sym', v: 'M', bg: '#0866ff' }, p: 512.4, d: 2, chg: -0.53 },
+    { s: 'GOOG', tv: 'NASDAQ:GOOG', n: 'Alphabet Inc', c: 'shares', ic: { t: 'sym', v: 'G', bg: '#4285f4' }, p: 176.3, d: 2, chg: 0.72 },
+    { s: 'SPY.ETF', tv: 'AMEX:SPY', n: 'SPDR S&P 500 ETF Trust', c: 'etfs', ic: { t: 'etf' }, p: 571.28, d: 2, chg: 0.55 },
+    { s: 'LQD.ETF', tv: 'AMEX:LQD', n: 'iShares iBoxx IG Corp Bond ETF', c: 'etfs', ic: { t: 'etf' }, p: 106.35, d: 2, chg: 0.05, pop: true, po: 4 },
+    { s: 'RSP.ETF', tv: 'AMEX:RSP', n: 'Invesco S&P 500 Equal Weight ETF', c: 'etfs', ic: { t: 'etf' }, p: 213.7, d: 1, chg: 1.03, pop: true, po: 5 },
+    { s: 'SPXS.ETF', tv: 'AMEX:SPXS', n: 'Direxion Daily S&P 500 Bear 3x Shares', c: 'etfs', ic: { t: 'etf' }, p: 27.61, d: 2, chg: -0.61, pop: true, po: 6 },
+    { s: 'QQQ.ETF', tv: 'NASDAQ:QQQ', n: 'Invesco QQQ Trust', c: 'etfs', ic: { t: 'etf' }, p: 486.9, d: 2, chg: 0.88 },
+    { s: 'VOO.ETF', tv: 'AMEX:VOO', n: 'Vanguard S&P 500 ETF', c: 'etfs', ic: { t: 'etf' }, p: 526.4, d: 2, chg: 0.54 },
+    { s: 'GLD.ETF', tv: 'AMEX:GLD', n: 'SPDR Gold Shares', c: 'etfs', ic: { t: 'etf' }, p: 214.8, d: 2, chg: 0.29 },
+    { s: 'XAUUSD', tv: 'OANDA:XAUUSD', n: 'Gold vs US Dollar', c: 'metals', ic: { t: 'inst', a: 'xau' }, p: 3241.80, d: 2, chg: 0.82, pop: true, po: 3 },
+    { s: 'XAGUSD', tv: 'OANDA:XAGUSD', n: 'Silver vs US Dollar', c: 'metals', ic: { t: 'inst', a: 'xag' }, p: 38.42, d: 2, chg: 1.14 },
+    { s: 'WTI', tv: 'OANDA:WTICOUSD', n: 'US Crude Oil Spot', c: 'commodities', ic: { t: 'inst', a: 'xti' }, p: 71.28, d: 2, chg: -0.34 },
+    { s: 'UKOUSD', tv: 'OANDA:BCOUSD', n: 'Brent Crude Oil Spot', c: 'commodities', ic: { t: 'inst', a: 'xbr' }, p: 75.6, d: 2, chg: -0.22 },
+    { s: 'NATGAS', tv: 'OANDA:NATGASUSD', n: 'US Natural Gas Spot', c: 'commodities', ic: { t: 'inst', a: 'xng' }, p: 2.84, d: 3, chg: 1.66 },
+    { s: 'COPPER', tv: 'OANDA:XCUUSD', n: 'Copper Spot', c: 'metals', ic: { t: 'inst', a: 'copper' }, p: 4.32, d: 3, chg: 0.38 },
+    { s: 'XPTUSD', tv: 'OANDA:XPTUSD', n: 'Platinum vs US Dollar', c: 'metals', ic: { t: 'inst', a: 'xpt' }, p: 978.4, d: 2, chg: -0.45 },
+    { s: 'XPDUSD', tv: 'OANDA:XPDUSD', n: 'Palladium vs US Dollar', c: 'metals', ic: { t: 'inst', a: 'xpd' }, p: 1024.6, d: 2, chg: 0.58 },
+    { s: 'XAUAUD', tv: 'OANDA:XAUAUD', n: 'Gold vs Australian Dollar', c: 'metals', ic: { t: 'inst', a: 'xau' }, p: 4903.2, d: 2, chg: 0.66 },
+    { s: 'WHEAT', tv: 'OANDA:WHEATUSD', n: 'US Wheat Futures', c: 'commodities', ic: { t: 'inst', a: 'wheat' }, p: 598.4, d: 1, chg: 0.72 },
+    { s: 'CORN', tv: 'OANDA:CORNUSD', n: 'US Corn Futures', c: 'commodities', ic: { t: 'inst', a: 'corn' }, p: 442.6, d: 1, chg: -0.31 },
+    { s: 'COFFEE', tv: 'PEPPERSTONE:COFFEE', n: 'Coffee C Futures', c: 'commodities', ic: { t: 'inst', a: 'coffee' }, p: 228.9, d: 1, chg: 1.24 },
+    { s: 'SUGAR', tv: 'OANDA:SUGARUSD', n: 'Sugar No. 11 Futures', c: 'commodities', ic: { t: 'inst', a: 'sugar' }, p: 19.42, d: 2, chg: 0.44 }
   ];
   var mkxFeat = { popular: 'GBPUSD', forex: 'GBPUSD', indices: 'US500', commodities: 'WTI', etfs: 'SPY.ETF', metals: 'XAUUSD', shares: 'AAPL' };
-  function mkxSpark(sym, up) {
-    var seed = 0, i;
-    for (i = 0; i < sym.length; i++) seed = (seed * 31 + sym.charCodeAt(i)) >>> 0;
-    function rnd() { seed = (seed * 1103515245 + 12345) >>> 0; return seed / 4294967296; }
-    var N = 13, W = 100, H = 40, pad = 6, vals = [], v = 0.5, drift = up ? 0.032 : -0.032;
-    for (i = 0; i < N; i++) { v += drift + (rnd() - 0.5) * 0.22; vals.push(v); }
-    var mn = Math.min.apply(null, vals), mx = Math.max.apply(null, vals), rng = (mx - mn) || 1, xs = [], ys = [];
-    for (i = 0; i < N; i++) { xs.push((i / (N - 1)) * W); ys.push(H - pad - ((vals[i] - mn) / rng) * (H - 2 * pad)); }
-    // smooth curve (Catmull-Rom -> cubic bezier) for a modern rounded look
-    var line = 'M' + xs[0].toFixed(1) + ' ' + ys[0].toFixed(1);
-    for (i = 0; i < N - 1; i++) {
-      var x0 = xs[i > 0 ? i - 1 : 0], y0 = ys[i > 0 ? i - 1 : 0], x1 = xs[i], y1 = ys[i];
-      var x2 = xs[i + 1], y2 = ys[i + 1], x3 = xs[i + 2 < N ? i + 2 : N - 1], y3 = ys[i + 2 < N ? i + 2 : N - 1];
-      var c1x = x1 + (x2 - x0) / 6, c1y = y1 + (y2 - y0) / 6, c2x = x2 - (x3 - x1) / 6, c2y = y2 - (y3 - y1) / 6;
-      line += ' C' + c1x.toFixed(1) + ' ' + c1y.toFixed(1) + ' ' + c2x.toFixed(1) + ' ' + c2y.toFixed(1) + ' ' + x2.toFixed(1) + ' ' + y2.toFixed(1);
-    }
-    return { line: line, area: line + ' L' + W + ' ' + H + ' L0 ' + H + ' Z', baseY: ys[0].toFixed(1), lx: xs[N - 1].toFixed(1), ly: ys[N - 1].toFixed(1) };
-  }
   function mkxIcon(m) {
     var ic = m.ic;
     if (ic.t === 'flags') return '<span class="mkx-ic mkx-ic-flags"><img src="' + ROOT + 'assets/img/flags/' + ic.a + '.svg" alt="" loading="lazy"><img src="' + ROOT + 'assets/img/flags/' + ic.b + '.svg" alt="" loading="lazy"></span>';
@@ -988,48 +970,43 @@
     if (ic.t === 'etf') return '<span class="mkx-ic mkx-ic-etf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l5-6 3.5 3.5L20 7"/><path d="M4 20h16"/></svg></span>';
     return '<span class="mkx-ic mkx-ic-sym" style="background:' + (ic.bg || '#0a2a6b') + '">' + ic.v + '</span>';
   }
-  function mkxPrice(m) { return m.p.toLocaleString('en-US', { minimumFractionDigits: m.d, maximumFractionDigits: m.d }); }
-  function mkbSvg(m, seedSuffix, big) {
-    var up = m.chg >= 0, col = up ? '#12b76a' : '#e5484d', sp = mkxSpark(m.s + (seedSuffix || ''), up);
-    var gid = 'gsp-' + (big ? 'f-' : '') + m.s.replace(/[^A-Za-z0-9]/g, '');
-    return '<svg viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">' +
-      '<defs><linearGradient id="' + gid + '" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="' + col + '" stop-opacity=".24"/><stop offset="1" stop-color="' + col + '" stop-opacity="0"/></linearGradient></defs>' +
-      (big ? '<line class="mkx-base" x1="0" y1="' + sp.baseY + '" x2="100" y2="' + sp.baseY + '"/>' : '') +
-      '<path d="' + sp.area + '" fill="url(#' + gid + ')"/>' +
-      '<path d="' + sp.line + '" fill="none" stroke="' + col + '" stroke-width="' + (big ? 1.6 : 1.4) + '" vector-effect="non-scaling-stroke"/>' +
-      (big ? '<circle cx="' + sp.lx + '" cy="' + sp.ly + '" r="1.6" fill="' + col + '"/>' : '') +
-      '</svg>';
+  /* Market board quotes are TradingView's live mini-symbol-overview widget (price, change and
+     chart in one), mounted through mountTradingView(); the card keeps the site's frame, icon and
+     Trade link. The featured card's range pills remount its widget with TradingView's dateRange. */
+  var MKB_RANGES = [['1D', '1D'], ['1M', '1M'], ['3M', '3M'], ['1Y', '12M'], ['5Y', '60M']];
+  function mkbTv(m, range, big) {
+    var cfg = { symbol: m.tv, width: '100%', height: '100%', dateRange: range || '1D', colorTheme: 'light', isTransparent: true, autosize: true, largeChartUrl: '', chartOnly: false, noTimeScale: !big };
+    return '<div class="mkb-tv' + (big ? ' mkb-tv--feat' : '') + '" data-tv-widget="mini-symbol-overview" data-tv-credit="none" data-tv-config=\'' + JSON.stringify(cfg).replace(/'/g, '&#39;') + '\'></div>';
   }
   function mkbMini(m) {
-    var up = m.chg >= 0;
-    return '<article class="mkb-card" data-sym="' + m.s + '">' +
-      '<div class="mkx-top">' + mkxIcon(m) + '<div class="mkx-name"><b>' + m.s + '</b><em>' + m.n + '</em></div></div>' +
-      '<div class="mkb-mid"><div class="mkb-nums"><span class="mkb-p">' + mkxPrice(m) + '</span><span class="mkx-chg ' + (up ? 'up' : 'down') + '">' + (up ? '+' : '') + m.chg.toFixed(2) + '%</span></div>' +
-      '<div class="mkb-spark">' + mkbSvg(m) + '</div></div>' +
-      '<a class="mkb-trade" href="#">Trade <svg><use href="#i-arrow-right"/></svg></a>' +
+    return '<article class="mkb-card" data-sym="' + m.s + '" aria-label="' + m.s + ' \u2014 ' + m.n + '">' +
+      mkbTv(m, '1D', false) +
+      '<a class="mkb-trade" href="https://www.startrader.com/live-account/">Trade <svg><use href="#i-arrow-right"/></svg></a>' +
       '</article>';
   }
   function mkbFeatCard(m) {
-    var up = m.chg >= 0;
-    var delta = (m.p * m.chg / 100), ds = (delta >= 0 ? '+' : '') + delta.toLocaleString('en-US', { minimumFractionDigits: m.d, maximumFractionDigits: m.d });
-    var tfs = ['1D', '1W', '1M', '3M', '1Y'].map(function (t, i) {
-      return '<button class="mkb-tf' + (i === 0 ? ' is-on' : '') + '" type="button">' + t + '</button>';
+    var tfs = MKB_RANGES.map(function (r, i) {
+      return '<button class="mkb-tf' + (i === 0 ? ' is-on' : '') + '" type="button" data-range="' + r[1] + '" aria-pressed="' + (i === 0) + '">' + r[0] + '</button>';
     }).join('');
-    return '<article class="mkb-feat" data-sym="' + m.s + '">' +
+    return '<article class="mkb-feat" data-sym="' + m.s + '" aria-label="' + m.s + ' \u2014 ' + m.n + '">' +
       '<span class="mkb-featchip"><svg><use href="#i-star"/></svg>Featured</span>' +
-      '<div class="mkx-top">' + mkxIcon(m) + '<div class="mkx-name"><b>' + m.s + '</b><em>' + m.n + '</em></div></div>' +
-      '<span class="mkb-price mkb-p">' + mkxPrice(m) + '</span>' +
-      '<span class="mkb-chgrow"><span class="mkx-chg ' + (up ? 'up' : 'down') + '">' + (up ? '+' : '') + m.chg.toFixed(2) + '%</span><em class="mkb-delta">(' + ds + ')</em></span>' +
-      '<div class="mkb-feat-spark" data-mkb-spark>' + mkbSvg(m, '', true) + '</div>' +
-      '<div class="mkb-feat-foot"><a class="mkb-trade mkb-trade--lg" href="#">Trade <svg><use href="#i-arrow-right"/></svg></a><div class="mkb-tfs">' + tfs + '</div></div>' +
+      '<div class="mkb-feat-tv" data-mkb-spark>' + mkbTv(m, '1D', true) + '</div>' +
+      '<div class="mkb-feat-foot"><a class="mkb-trade mkb-trade--lg" href="https://www.startrader.com/live-account/">Trade <svg><use href="#i-arrow-right"/></svg></a><div class="mkb-tfs" role="group" aria-label="Chart range">' + tfs + '</div></div>' +
       '</article>';
   }
-  var mkxLive = {};
   function initMarkets() {
     var board = document.getElementById('mkxBoard');
     if (!board) return;
-    mkxData.forEach(function (m) { if (!mkxLive[m.s]) mkxLive[m.s] = { base: m.p, cur: m.p, d: m.d }; });
     var tabs = Array.prototype.slice.call(document.querySelectorAll('.mkx-tab'));
+    var seen = false;
+    // mounted a beat apart: seven widgets opening their feeds in the same instant can leave some blank
+    var gen = 0;
+    function mountAll() {
+      var my = ++gen;
+      Array.prototype.forEach.call(board.querySelectorAll('[data-tv-widget]:not([data-tv-mounted])'), function (h, i) {
+        setTimeout(function () { if (my === gen && h.isConnected) mountTradingView(h); }, i * 220);
+      });
+    }
 
     function render(cat) {
       var items = mkxData.filter(function (m) { return cat === 'popular' ? m.pop : m.c === cat; });
@@ -1039,13 +1016,15 @@
       if (!feat) { feat = items[0]; minis = items.slice(1); }
       board.innerHTML = mkbFeatCard(feat) + '<div class="mkx-minis">' + minis.slice(0, 6).map(mkbMini).join('') + '</div>';
       var tfBtns = Array.prototype.slice.call(board.querySelectorAll('.mkb-tf'));
-      var sparkBox = board.querySelector('[data-mkb-spark]');
+      var tvBox = board.querySelector('[data-mkb-spark]');
       tfBtns.forEach(function (b) {
         b.addEventListener('click', function () {
-          tfBtns.forEach(function (x) { x.classList.toggle('is-on', x === b); });
-          if (sparkBox) sparkBox.innerHTML = mkbSvg(feat, b.textContent === '1D' ? '' : b.textContent, true);
+          if (b.classList.contains('is-on')) return;
+          tfBtns.forEach(function (x) { x.classList.toggle('is-on', x === b); x.setAttribute('aria-pressed', String(x === b)); });
+          if (tvBox) { tvBox.innerHTML = mkbTv(feat, b.getAttribute('data-range'), true); mountAll(); }
         });
       });
+      if (seen) mountAll();
     }
     tabs.forEach(function (t) {
       t.addEventListener('click', function () {
@@ -1054,26 +1033,14 @@
       });
     });
     render('popular');
-
-    // live prices tick across the board
-    if (!prefersReduced) {
-      setInterval(function () {
-        var cards = board.querySelectorAll('[data-sym]');
-        if (!cards.length) return;
-        Array.prototype.forEach.call(cards, function (c) {
-          var s = c.getAttribute('data-sym'), st = mkxLive[s];
-          if (!st || Math.random() > 0.5) return;
-          var step = st.base * 0.0009 * (Math.random() * 2 - 1);
-          st.cur = st.cur + step + (st.base - st.cur) * 0.05;
-          var chg = ((st.cur - st.base) / st.base) * 100;
-          var ps = st.cur.toLocaleString('en-US', { minimumFractionDigits: st.d, maximumFractionDigits: st.d });
-          var cs = (chg >= 0 ? '+' : '') + chg.toFixed(2) + '%';
-          var pe = c.querySelector('.mkb-p'), ce = c.querySelector('.mkx-chg');
-          if (pe) { pe.textContent = ps; pe.classList.remove('mkx-flash-up', 'mkx-flash-down'); void pe.offsetWidth; pe.classList.add(step >= 0 ? 'mkx-flash-up' : 'mkx-flash-down'); }
-          if (ce) { ce.textContent = cs; ce.classList.toggle('up', chg >= 0); ce.classList.toggle('down', chg < 0); }
-        });
-      }, 1600);
-    }
+    // the first set mounts as the board scrolls near, like every other TradingView host
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (es) {
+        if (!es[0].isIntersecting) return;
+        io.disconnect(); seen = true; mountAll();
+      }, { rootMargin: '480px 0px' });
+      io.observe(board);
+    } else { seen = true; mountAll(); }
   }
 
   function initLiveMarkets() {
