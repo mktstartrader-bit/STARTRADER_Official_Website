@@ -963,37 +963,77 @@
   ];
   var mkxFeat = { popular: 'GBPUSD', forex: 'GBPUSD', indices: 'US500', commodities: 'WTI', etfs: 'SPY.ETF', metals: 'XAUUSD', shares: 'AAPL' };
 
-  /* Market board: one live TradingView Symbol Overview per category tab — the tab's instruments
-     as chips, a large price and change, range pills and a brand-blue area chart, styled down to
-     the board (no market badge, light grid). One frame per tab keeps it calm and dependable;
-     the category tabs above remount it with their own instruments. */
-  function mkbConfig(items) {
-    return {
-      symbols: items.map(function (m) { return [m.s.replace('.ETF', ''), m.tv + '|1M']; }),
-      chartOnly: false, width: '100%', height: '100%', autosize: true,
-      colorTheme: 'light', isTransparent: true, backgroundColor: 'rgba(255,255,255,0)', gridLineColor: 'rgba(20,44,96,0.06)',
-      showVolume: false, showMA: false, hideDateRanges: false, hideMarketStatus: true, hideSymbolLogo: false,
-      scalePosition: 'right', scaleMode: 'Normal', noTimeScale: false, valuesTracking: '1', changeMode: 'price-and-percent',
-      fontFamily: '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif', fontSize: '12', widgetFontColor: '#0E1524',
-      chartType: 'area', lineWidth: 2, lineType: 2, lineColor: '#2A72FF', topColor: 'rgba(42,114,255,0.20)', bottomColor: 'rgba(42,114,255,0)',
-      // curved line on coarser steps: a calm, rounded trend instead of tick-by-tick spikes
-      dateRanges: ['1d|60', '1m|1D', '3m|1D', '12m|1W', '60m|1M', 'all|1M']
+  /* Market board (bento): a featured card and four smaller cards, each a live TradingView Symbol
+     Overview styled down to the board — brand-blue curved area line, no grid, logo, range bar or
+     market badge. The cards keep the site's glass frame and Trade link; the featured card's range
+     pills remount its widget. Widgets mount one after another (each waits for the previous frame
+     to load): opened all at once on this page, a few came up blank. */
+  var MKB_RANGES = [['1D', '1D', '1d|60'], ['1M', '1M', '1m|1D'], ['3M', '3M', '3m|1D'], ['1Y', '12M', '12m|1W'], ['5Y', '60M', '60m|1M']];
+  function mkbTv(m, range, big) {
+    var r = MKB_RANGES.filter(function (x) { return x[1] === range; })[0] || MKB_RANGES[1];
+    var cfg = {
+      symbols: [[m.s.replace('.ETF', ''), m.tv + '|' + r[1]]], dateRanges: [r[2]], chartOnly: false, width: '100%', height: '100%', autosize: true,
+      colorTheme: 'light', isTransparent: true, backgroundColor: 'rgba(255,255,255,0)', gridLineColor: 'rgba(255,255,255,0)',
+      showVolume: false, showMA: false, hideDateRanges: true, hideMarketStatus: true, hideSymbolLogo: false,
+      scalePosition: 'no', scaleMode: 'Normal', noTimeScale: !big, valuesTracking: '1', changeMode: big ? 'price-and-percent' : 'percent-only',
+      fontFamily: '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif', fontSize: big ? '14' : '12', widgetFontColor: '#0E1524',
+      chartType: 'area', lineWidth: 2, lineType: 2, lineColor: '#2A72FF', topColor: 'rgba(42,114,255,0.20)', bottomColor: 'rgba(42,114,255,0)'
     };
+    return '<div class="mkb-tv' + (big ? ' mkb-tv--feat' : '') + '" data-tv-widget="symbol-overview" data-tv-credit="none" data-tv-config=\'' + JSON.stringify(cfg).replace(/'/g, '&#39;') + '\'></div>';
+  }
+  function mkbMini(m) {
+    return '<article class="mkb-card" data-sym="' + m.s + '" aria-label="' + m.s + ' \u2014 ' + m.n + '">' +
+      mkbTv(m, '1M', false) +
+      '<a class="mkb-trade" href="https://www.startrader.com/live-account/">Trade <svg><use href="#i-arrow-right"/></svg></a>' +
+      '</article>';
+  }
+  function mkbFeatCard(m) {
+    var tfs = MKB_RANGES.map(function (r, i) {
+      return '<button class="mkb-tf' + (i === 1 ? ' is-on' : '') + '" type="button" data-range="' + r[1] + '" aria-pressed="' + (i === 1) + '">' + r[0] + '</button>';
+    }).join('');
+    return '<article class="mkb-feat" data-sym="' + m.s + '" aria-label="' + m.s + ' \u2014 ' + m.n + '">' +
+      '<span class="mkb-featchip"><svg><use href="#i-star"/></svg>Featured</span>' +
+      '<div class="mkb-feat-tv" data-mkb-spark>' + mkbTv(m, '1M', true) + '</div>' +
+      '<div class="mkb-feat-foot"><a class="mkb-trade mkb-trade--lg" href="https://www.startrader.com/live-account/">Trade <svg><use href="#i-arrow-right"/></svg></a><div class="mkb-tfs" role="group" aria-label="Chart range">' + tfs + '</div></div>' +
+      '</article>';
   }
   function initMarkets() {
     var board = document.getElementById('mkxBoard');
     if (!board) return;
     var tabs = Array.prototype.slice.call(document.querySelectorAll('.mkx-tab'));
-    var seen = false;
+    var seen = false, gen = 0;
+    // mount the board's widgets in turn: the next starts when the previous frame has loaded (or after 2.5s)
+    function mountAll() {
+      var my = ++gen;
+      var queue = Array.prototype.slice.call(board.querySelectorAll('[data-tv-widget]:not([data-tv-mounted])'));
+      (function next() {
+        if (my !== gen || !queue.length) return;
+        var h = queue.shift();
+        if (!h.isConnected) return next();
+        mountTradingView(h);
+        var done = false, go = function () { if (done) return; done = true; setTimeout(next, 150); };
+        var hook = setInterval(function () { var fr = h.querySelector('iframe'); if (fr) { clearInterval(hook); fr.addEventListener('load', go); } }, 60);
+        setTimeout(function () { clearInterval(hook); go(); }, 2500);
+      })();
+    }
 
     function render(cat) {
       var items = mkxData.filter(function (m) { return cat === 'popular' ? m.pop : m.c === cat; });
       if (cat === 'popular') items.sort(function (a, b) { return (a.po || 0) - (b.po || 0); });
-      var feat = mkxFeat[cat];
-      items.sort(function (a, b) { return (b.s === feat) - (a.s === feat); });
-      board.innerHTML = '<div class="mkb-one"><div class="mkb-tv" data-tv-widget="symbol-overview" data-tv-credit="none" data-tv-config=\'' +
-        JSON.stringify(mkbConfig(items.slice(0, 8))).replace(/'/g, '&#39;') + '\'></div></div>';
-      if (seen) mountTradingView(board.querySelector('[data-tv-widget]'));
+      var featSym = mkxFeat[cat], feat = null, minis = [];
+      items.forEach(function (m) { if (!feat && m.s === featSym) feat = m; else minis.push(m); });
+      if (!feat) { feat = items[0]; minis = items.slice(1); }
+      board.innerHTML = mkbFeatCard(feat) + '<div class="mkx-minis">' + minis.slice(0, 4).map(mkbMini).join('') + '</div>';
+      var tfBtns = Array.prototype.slice.call(board.querySelectorAll('.mkb-tf'));
+      var tvBox = board.querySelector('[data-mkb-spark]');
+      tfBtns.forEach(function (b) {
+        b.addEventListener('click', function () {
+          if (b.classList.contains('is-on')) return;
+          tfBtns.forEach(function (x) { x.classList.toggle('is-on', x === b); x.setAttribute('aria-pressed', String(x === b)); });
+          if (tvBox) { tvBox.innerHTML = mkbTv(feat, b.getAttribute('data-range'), true); mountTradingView(tvBox.firstChild); }
+        });
+      });
+      if (seen) mountAll();
     }
     tabs.forEach(function (t) {
       t.addEventListener('click', function () {
@@ -1002,14 +1042,13 @@
       });
     });
     render('popular');
-    // the first chart mounts as the board scrolls near, like every other TradingView host
     if ('IntersectionObserver' in window) {
       var io = new IntersectionObserver(function (es) {
         if (!es[0].isIntersecting) return;
-        io.disconnect(); seen = true; mountTradingView(board.querySelector('[data-tv-widget]'));
+        io.disconnect(); seen = true; mountAll();
       }, { rootMargin: '300px 0px' });
       io.observe(board);
-    } else { seen = true; mountTradingView(board.querySelector('[data-tv-widget]')); }
+    } else { seen = true; mountAll(); }
   }
 
   function initLiveMarkets() {

@@ -258,7 +258,7 @@
 .mkx-tab.is-active{background:#0d1420;color:#fff;box-shadow:0 12px 26px -14px rgba(13,20,32,.55)}
 .mkx-tab-ic{width:16px;height:16px;flex:none}
 .mkx-tab-btc{display:grid;place-items:center;width:17px;height:17px;flex:none;border-radius:50%;border:1.6px solid currentColor;font-size:10.5px;font-weight:800;line-height:1}
-.mkx-board{display:block}
+.mkx-board{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,9fr);gap:18px;align-items:stretch}
 .mkb-feat{display:flex;flex-direction:column;border-radius:var(--radius-xl);padding:26px 26px 24px;
   background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(22px) saturate(1.7);backdrop-filter:blur(22px) saturate(1.7);
   border:1px solid rgba(255,255,255,.85);transition:transform .4s var(--ease),border-color .3s,background .3s}
@@ -278,7 +278,7 @@
 .mkb-tf{font-size:12px;font-weight:700;color:var(--text-mute);padding:7px 11px;border-radius:60px;border:0;background:transparent;cursor:pointer;transition:background .25s,color .25s;font-variant-numeric:tabular-nums}
 .mkb-tf:hover{color:var(--text)}
 .mkb-tf.is-on{background:#fff;color:var(--text);box-shadow:0 4px 12px -6px rgba(20,44,96,.35)}
-.mkx-minis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.mkx-minis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
 .mkb-card{display:flex;flex-direction:column;border-radius:var(--radius-xl);padding:18px 18px 16px;
   background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(22px) saturate(1.7);backdrop-filter:blur(22px) saturate(1.7);
   border:1px solid rgba(255,255,255,.85);transition:transform .4s var(--ease),border-color .3s,background .3s}
@@ -312,15 +312,13 @@
 /* the board foot is the button alone, centred under the chart (no note box) */
 .mkx-footbar{justify-content:center;padding:0;background:none;border:0;-webkit-backdrop-filter:none;backdrop-filter:none}
 .mkx-footbar .btn{margin-left:0}
-/* live TradingView chart: one glass card per category tab */
-.mkb-one{position:relative;border-radius:var(--radius-xl);padding:18px 18px 8px;
-  background:rgba(255,255,255,.62);-webkit-backdrop-filter:blur(22px) saturate(1.7);backdrop-filter:blur(22px) saturate(1.7);
-  border:1px solid rgba(255,255,255,.9);box-shadow:0 30px 60px -44px rgba(20,44,96,.45)}
-.mkb-tv{position:relative;height:clamp(440px,42vw,540px);border-radius:16px;overflow:hidden}
+/* live TradingView quotes inside the bento cards (price, change and curved chart come from the widget) */
+.mkb-tv{position:relative;height:210px;margin:-6px -8px 12px;border-radius:14px;overflow:hidden}
 .mkb-tv .tradingview-widget-container,.mkb-tv .tradingview-widget-container__widget,.mkb-tv iframe{width:100%!important;height:100%!important;display:block}
+.mkb-feat-tv{flex:1 1 auto;margin:0 -8px 18px}
+.mkb-feat-tv .mkb-tv{height:clamp(340px,30vw,420px);margin:0}
 .mkb-tv:empty::before{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(255,255,255,0) 30%,rgba(255,255,255,.65) 50%,rgba(255,255,255,0) 70%) 0 0/200% 100%,rgba(20,44,96,.05);animation:mkbShimmer 1.4s linear infinite}
 @keyframes mkbShimmer{to{background-position:-200% 0,0 0}}
-@media (max-width:640px){.mkb-one{padding:12px 8px 4px}.mkb-tv{height:460px}}
 .mkx-tvcredit{margin:14px 0 0;text-align:center;font-size:11.5px;color:var(--text-mute)}
 .mkx-tvcredit a{color:var(--blue);font-weight:600}
 @media (prefers-reduced-motion:reduce){.mkb-tv:empty::before{animation:none}}
@@ -1599,6 +1597,6 @@
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/swiper-bundle.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=pb34" defer></script>
+<script src="assets/js/main.min.js?v=pb35" defer></script>
 </body>
 </html>
