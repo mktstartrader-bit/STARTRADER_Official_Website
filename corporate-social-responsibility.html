@@ -36,7 +36,7 @@
   <link rel="stylesheet" href="assets/css/aos.min.css" />
   <link rel="preload" as="image" type="image/webp" media="(min-width:981px)" fetchpriority="high" imagesrcset="assets/img/csr-hero-banner-v2-1920.webp 1920w, assets/img/csr-hero-banner-v2.webp 2560w" imagesizes="100vw" />
   <link rel="preload" href="assets/img/csr-hero-banner-portrait-v2.webp" as="image" type="image/webp" media="(max-width:980px)" fetchpriority="high" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb31" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb32" />
   <!-- Page-specific styles -->
   <style>
 /* ---- CSR stories ---- */
@@ -113,8 +113,8 @@
 }
 @media (max-width:980px){.pf-hero > .acct-hero-bg,.pf-hero > .pf-hero-bg,.pf-hero > .wb-hero-scrim,.pf-hero > .ct-hero-veil,.pf-hero > .hero-glow,.pf-hero > .hero-shape,.pf-hero > .pm-hero-video,.pf-hero > .wb-hero-video,.pf-hero > .acct-hero-video{display:none!important}}
 
-/* subject-trim: the portrait art keeps its whole subject; only the empty dark band above and below it is trimmed so the art sits close to the copy (QA 2026-10-12) */
-@media (max-width:980px){.pf-hero > picture{height:calc(0.550 * min(118vw,560px))!important;overflow:hidden!important;margin-top:0!important;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 9%,#000 88%,transparent 100%)!important;mask-image:linear-gradient(180deg,transparent 0,#000 9%,#000 88%,transparent 100%)!important}.pf-hero > picture img{margin-top:calc(-0.100 * min(118vw,560px))!important}}
+/* stacked hero art (<=980px): the phone art is a subject-tight crop made from the portrait render, shown whole at its own ratio on the CSS ground — no fixed-height window, nothing cut (IT QA batch 3, 2026-10-28) */
+@media (max-width:980px){.pf-hero > picture{height:auto!important;overflow:visible!important;margin:0 auto!important;width:min(100%,640px)!important;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 90%,transparent 100%)!important;mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 90%,transparent 100%)!important}.pf-hero > picture img{margin:0!important;width:100%!important;max-width:100%!important;height:auto!important;max-height:none!important;object-fit:contain!important}}
 </style>
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
@@ -700,7 +700,7 @@
 <!-- ============ BANNER ============ -->
 <section class="pf-hero" aria-labelledby="pg-hero-title">
   <picture>
-    <source media="(max-width:980px)" srcset="assets/img/csr-hero-banner-portrait-v2.webp" width="1200" height="1800">
+    <source media="(max-width:980px)" srcset="assets/img/csr-hero-banner-portrait-v2-stack.webp" width="1200" height="1194">
     <img class="csr-hero-banner" src="assets/img/csr-hero-banner-v2-1920.webp" srcset="assets/img/csr-hero-banner-v2-1920.webp 1920w, assets/img/csr-hero-banner-v2.webp 2560w" sizes="100vw" alt="Frosted glass hands on a black plinth cradling a titanium sapling, beside glass spheres holding a basketball, a home and a graduation cap" width="2560" height="1440" fetchpriority="high" decoding="async">
   </picture>
   <div class="pf-hero-bg" aria-hidden="true"></div>
@@ -1343,7 +1343,7 @@
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=pb30" defer></script>
+<script src="assets/js/main.min.js?v=pb31" defer></script>
 
 <!-- Company page: robust scroll reveals + hero parallax (self-contained, never leaves content hidden) -->
 <script>

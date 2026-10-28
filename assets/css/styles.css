@@ -6230,3 +6230,24 @@ html[lang="ar"]{--font:'Tajawal','Plus Jakarta Sans',system-ui,-apple-system,"Se
     object-fit:cover;object-position:center;
   }
 }
+
+/* ---------- stacked hero art, take 2 (IT QA batch 3, 2026-10-28) ----------
+   The 10:9 top-anchored window above assumed every portrait render keeps its
+   object in the top ~60% of the frame; many do not, so subjects were cut on
+   iPad and phones. Each stacked hero now loads a subject-tight phone render
+   (the *-stack.webp files, trimmed to the object from the portrait art), so
+   the art is shown whole at its own ratio: no fixed window, no cover crop.
+   The section's CSS ground carries the background; the art fades into it. */
+@media (max-width:980px){
+  html body :is(.pf-hero,.pt-hero,.fx-hero,.co-hero,.cm-hero,.ct-hero,.pm-hero,.kc-hero,.ec-hero,.ma-hero,.wb-hero,.rg-hero) > picture{
+    padding:8px 0 24px!important;height:auto!important;overflow:visible!important;
+  }
+  html body :is(.pf-hero,.pt-hero,.fx-hero,.co-hero,.cm-hero,.ct-hero,.pm-hero,.kc-hero,.ec-hero,.ma-hero,.wb-hero,.rg-hero) > picture > img{
+    width:min(100%,560px)!important;height:auto!important;max-height:none!important;aspect-ratio:auto!important;
+    margin:0 auto!important;object-fit:contain!important;object-position:center!important;
+    -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 90%,transparent 100%),linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%)!important;
+    -webkit-mask-composite:source-in!important;
+    mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 90%,transparent 100%),linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%)!important;
+    mask-composite:intersect!important;
+  }
+}

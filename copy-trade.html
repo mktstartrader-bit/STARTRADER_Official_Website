@@ -38,7 +38,7 @@
   <link rel="stylesheet" href="assets/css/aos.min.css" />
   <link rel="preload" href="assets/img/copy-trade-hero-banner-v1.webp" as="image" type="image/webp" media="(min-width:981px)" fetchpriority="high" />
   <link rel="preload" href="assets/img/copy-trade-hero-banner-portrait-v1.webp" as="image" type="image/webp" media="(max-width:980px)" fetchpriority="high" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb31" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb32" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* =================================================================
@@ -206,8 +206,8 @@
 }
 @media (max-width:980px){.pf-hero > .acct-hero-bg,.pf-hero > .pf-hero-bg,.pf-hero > .wb-hero-scrim,.pf-hero > .ct-hero-veil,.pf-hero > .hero-glow,.pf-hero > .hero-shape,.pf-hero > .pm-hero-video,.pf-hero > .wb-hero-video,.pf-hero > .acct-hero-video{display:none!important}}
 
-/* subject-trim: the portrait art keeps its whole subject; only the empty dark band above and below it is trimmed so the art sits close to the copy (QA 2026-10-12) */
-@media (max-width:980px){.pf-hero > picture{height:calc(0.540 * min(118vw,560px))!important;overflow:hidden!important;margin-top:0!important;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 9%,#000 88%,transparent 100%)!important;mask-image:linear-gradient(180deg,transparent 0,#000 9%,#000 88%,transparent 100%)!important}.pf-hero > picture img{margin-top:calc(-0.140 * min(118vw,560px))!important}}
+/* stacked hero art (<=980px): the phone art is a subject-tight crop made from the portrait render, shown whole at its own ratio on the CSS ground — no fixed-height window, nothing cut (IT QA batch 3, 2026-10-28) */
+@media (max-width:980px){.pf-hero > picture{height:auto!important;overflow:visible!important;margin:0 auto!important;width:min(100%,640px)!important;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 90%,transparent 100%)!important;mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 90%,transparent 100%)!important}.pf-hero > picture img{margin:0!important;width:100%!important;max-width:100%!important;height:auto!important;max-height:none!important;object-fit:contain!important}}
 </style>
 
   <script type="application/ld+json">
@@ -583,7 +583,7 @@
 <!-- ============ BANNER ============ -->
 <section class="pf-hero" aria-labelledby="pf-hero-title">
   <picture>
-    <source media="(max-width:980px)" srcset="assets/img/copy-trade-hero-banner-portrait-v1.webp" width="1200" height="1778">
+    <source media="(max-width:980px)" srcset="assets/img/copy-trade-hero-banner-portrait-v1-stack.webp" width="1200" height="1034">
     <img class="plf-hero-banner" src="assets/img/copy-trade-hero-banner-v1.webp" alt="Two titanium slabs engraved with the same rising chart, a beam of blue light passing from the leading slab to the one copying it" width="2560" height="1434" fetchpriority="high" decoding="async">
   </picture>
   <div class="pf-hero-bg" aria-hidden="true"></div>
@@ -1088,7 +1088,7 @@
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/swiper-bundle.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=pb30" defer></script>
+<script src="assets/js/main.min.js?v=pb31" defer></script>
 <script>
 /* Trade Ranking widget (rating.startrader.com) — lazy-loads near viewport,
    auto-sizes via iframeResizer. The widget IS the ranking: it owns its own

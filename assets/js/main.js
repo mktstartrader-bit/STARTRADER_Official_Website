@@ -6868,3 +6868,35 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();
 })();
+
+/* Art-directed <picture> swap (IT QA batch 3, 2026-10-28): when the viewport crosses a
+   <source media> breakpoint the browser keeps painting the previous file until the new one
+   loads, so a portrait phone render briefly fills the wide desktop frame (or the reverse).
+   Each affected image is held invisible across the swap and fades back in once it loads. */
+(function () {
+  if (!window.matchMedia) return;
+  var pics = Array.prototype.slice.call(document.querySelectorAll("picture"));
+  var byMedia = {};
+  pics.forEach(function (p) {
+    Array.prototype.forEach.call(p.querySelectorAll("source[media]"), function (s) {
+      var m = s.getAttribute("media"); (byMedia[m] = byMedia[m] || []).push(p);
+    });
+  });
+  Object.keys(byMedia).forEach(function (m) {
+    var mq = window.matchMedia(m);
+    var onChange = function () {
+      byMedia[m].forEach(function (p) {
+        var img = p.querySelector("img"); if (!img) return;
+        img.style.transition = "opacity .35s ease";
+        img.style.opacity = "0";
+        var was = img.currentSrc, shown = false;
+        var show = function () { if (shown) return; shown = true; img.style.opacity = ""; img.removeEventListener("load", show); };
+        img.addEventListener("load", show);
+        var poll = setInterval(function () { if (img.currentSrc !== was && img.complete && img.naturalWidth) { clearInterval(poll); show(); } }, 80);
+        setTimeout(function () { clearInterval(poll); }, 2600);
+        setTimeout(show, 2500);
+      });
+    };
+    if (mq.addEventListener) mq.addEventListener("change", onChange); else if (mq.addListener) mq.addListener(onChange);
+  });
+})();

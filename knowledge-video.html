@@ -34,7 +34,7 @@
   <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb31" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb32" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <!-- Structured data — page entity -->
 
@@ -126,7 +126,38 @@ a:hover>.kv-play,.kv-feat:hover .kv-play{transform:translate(-50%,-50%) scale(1.
   .kv-feat-media{min-height:0;aspect-ratio:16/9}
   .kv-grid{grid-template-columns:1fr}
 }
-  </style>
+  
+/* ---------- hero banner slot (placeholder art; IT QA batch 3, 2026-10-28) ---------- */
+.kc-hero{background:#040711}
+.kc-hero .kc-hero-aura{display:none}
+.kc-hero-banner{position:absolute;top:var(--nav-h);left:0;right:0;width:100%;height:calc(100% - var(--nav-h));object-fit:cover;object-position:62% center;z-index:-2}
+/* between 861 and 1280 the shared hero lets the copy run to (or past) the books;
+   held to 52% of the container it stays clear of their 61% start */
+@media (min-width:861px) and (max-width:1280px){.kc-hero .kc-hero-copy{max-width:52%}}
+@media (max-width:860px){
+  /* the art is the full-bleed background and the copy sits over its clear lower
+     half; sized by width, the copy starts where the books end (49.6% of the art's
+     height, 0.496 x 1807/1200 = 74.7% of the width, so 75vw plus a 28px breath) */
+  .kc-hero{background:#03040e;align-items:flex-start;min-height:0;
+    padding:calc(var(--nav-h) + 75vw + 28px) 0 56px}
+  .kc-hero-banner{bottom:auto;height:auto;aspect-ratio:1200/1807;object-position:center top}
+  .kc-hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+    background:linear-gradient(180deg,#03040e 0%,#03040e calc(var(--nav-h) + 2px),rgba(3,4,14,0) calc(var(--nav-h) + 40px)),
+               linear-gradient(0deg,#03040e 0%,rgba(3,4,14,.86) 20%,rgba(3,4,14,0) 46%)}
+}
+  /* mobile hero: copy first, art below (team rule 2026-10-07) */
+@media (max-width:980px){
+  .kc-hero{display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;min-height:0!important;height:auto!important;aspect-ratio:auto!important;padding:calc(var(--nav-h,70px) + 36px) 0 0!important;gap:6px}
+  .kc-hero::before,.kc-hero::after{display:none!important}
+  .kc-hero > picture{display:block!important;position:relative!important;inset:auto!important;top:auto!important;right:auto!important;bottom:auto!important;left:auto!important;order:2;width:100%!important;max-width:none!important;height:auto!important;aspect-ratio:auto!important;margin:0!important;transform:none!important;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 12%,#000 95%,transparent 100%)!important;mask-image:linear-gradient(180deg,transparent 0,#000 12%,#000 95%,transparent 100%)!important;z-index:auto!important;flex:none}
+  .kc-hero > picture::before,.kc-hero > picture::after{display:none!important}
+  .kc-hero > picture img,.kc-hero > picture video{display:block!important;position:static!important;width:100%!important;max-width:none!important;height:auto!important;aspect-ratio:auto!important;object-fit:cover;object-position:center top;transform:none!important;-webkit-mask-image:none!important;mask-image:none!important}
+  .kc-hero > .container{order:1;position:relative;z-index:2}
+}
+@media (max-width:980px){.kc-hero > .acct-hero-bg,.kc-hero > .pf-hero-bg,.kc-hero > .wb-hero-scrim,.kc-hero > .ct-hero-veil,.kc-hero > .hero-glow,.kc-hero > .hero-shape,.kc-hero > .pm-hero-video,.kc-hero > .wb-hero-video,.kc-hero > .acct-hero-video{display:none!important}}
+/* stacked hero art (<=980px): subject-tight phone art shown whole at its own ratio (IT QA batch 3, 2026-10-28) */
+@media (max-width:980px){.kc-hero > picture{height:auto!important;overflow:visible!important;margin:0 auto!important;width:min(100%,640px)!important;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 90%,transparent 100%)!important;mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 90%,transparent 100%)!important}.kc-hero > picture img{margin:0!important;width:100%!important;max-width:100%!important;height:auto!important;max-height:none!important;object-fit:contain!important}}
+</style>
 </head>
 
 <body>
@@ -435,6 +466,11 @@ a:hover>.kv-play,.kv-feat:hover .kv-play{transform:translate(-50%,-50%) scale(1.
 
 <!-- ============ HERO ============ -->
 <section class="kc-hero" aria-labelledby="kv-hero-title">
+  <!-- hero image slot (placeholder): swap knowledge-video-hero-banner-v1.webp and knowledge-video-hero-banner-stack-v1.webp to change it -->
+  <picture>
+    <source media="(max-width:980px)" srcset="assets/img/knowledge-video-hero-banner-stack-v1.webp" width="1200" height="795">
+    <img class="kc-hero-banner" src="assets/img/knowledge-video-hero-banner-v1.webp" alt="Three hardcover books stacked as steps, their metal spines engraved Basics, Intermediate and Advanced" width="2560" height="1432" fetchpriority="high" decoding="async">
+  </picture>
   <span class="kc-hero-aura a1" aria-hidden="true"></span>
   <span class="kc-hero-aura a2" aria-hidden="true"></span>
 
@@ -759,6 +795,6 @@ a:hover>.kv-play,.kv-feat:hover .kv-play{transform:translate(-50%,-50%) scale(1.
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=pb30" defer></script>
+<script src="assets/js/main.min.js?v=pb31" defer></script>
 </body>
 </html>

@@ -36,7 +36,7 @@
   <link rel="stylesheet" href="assets/css/aos.min.css" />
   <link rel="preload" href="assets/img/regulation-hero-banner-v1.webp" as="image" type="image/webp" media="(min-width:981px)" fetchpriority="high" />
   <link rel="preload" href="assets/img/regulation-hero-banner-portrait-v1.webp" as="image" type="image/webp" media="(max-width:980px)" fetchpriority="high" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb31" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb32" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* ================= REGULATION PAGE ================= */
@@ -258,8 +258,8 @@
 }
 @media (max-width:980px){.rg-hero > .acct-hero-bg,.rg-hero > .pf-hero-bg,.rg-hero > .wb-hero-scrim,.rg-hero > .ct-hero-veil,.rg-hero > .hero-glow,.rg-hero > .hero-shape,.rg-hero > .pm-hero-video,.rg-hero > .wb-hero-video,.rg-hero > .acct-hero-video{display:none!important}}
 
-/* subject-trim: the portrait art keeps its whole subject; only the empty dark band above and below it is trimmed so the art sits close to the copy (QA 2026-10-12) */
-@media (max-width:980px){.rg-hero > picture{height:calc(0.480 * min(118vw,560px))!important;overflow:hidden!important;margin-top:0!important;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 9%,#000 88%,transparent 100%)!important;mask-image:linear-gradient(180deg,transparent 0,#000 9%,#000 88%,transparent 100%)!important}.rg-hero > picture img{margin-top:calc(-0.180 * min(118vw,560px))!important}}
+/* stacked hero art (<=980px): the phone art is a subject-tight crop made from the portrait render, shown whole at its own ratio on the CSS ground — no fixed-height window, nothing cut (IT QA batch 3, 2026-10-28) */
+@media (max-width:980px){.rg-hero > picture{height:auto!important;overflow:visible!important;margin:0 auto!important;width:min(100%,640px)!important;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 90%,transparent 100%)!important;mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 90%,transparent 100%)!important}.rg-hero > picture img{margin:0!important;width:100%!important;max-width:100%!important;height:auto!important;max-height:none!important;object-fit:contain!important}}
 </style>
 
   <!-- Structured data — the group and each licensed entity -->
@@ -623,7 +623,7 @@
 <!-- ============ HEADER (compact, no banner artwork) ============ -->
 <section class="rg-hero" aria-labelledby="rg-title">
   <picture>
-    <source media="(max-width:980px)" srcset="assets/img/regulation-hero-banner-portrait-v1.webp" width="1200" height="1778">
+    <source media="(max-width:980px)" srcset="assets/img/regulation-hero-banner-portrait-v1-stack.webp" width="1200" height="954">
     <img class="rgn-hero-banner" src="assets/img/regulation-hero-banner-v1.webp" alt="Five titanium seals engraved with scales, a pillared building, a shield, a globe and a document, standing on a plinth lit by a seam of blue light" width="2560" height="1434" fetchpriority="high" decoding="async">
   </picture>
   <span class="gl-orb o1" aria-hidden="true"></span>
@@ -1009,6 +1009,6 @@
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=pb30" defer></script>
+<script src="assets/js/main.min.js?v=pb31" defer></script>
 </body>
 </html>

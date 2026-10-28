@@ -35,7 +35,7 @@
   <link rel="preload" href="assets/img/etf-hero-banner-portrait-v1.webp" as="image" type="image/webp" media="(max-width:980px)" fetchpriority="high" />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb31" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb32" />
 
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
@@ -80,8 +80,8 @@
 }
 @media (max-width:980px){.fx-hero > .acct-hero-bg,.fx-hero > .pf-hero-bg,.fx-hero > .wb-hero-scrim,.fx-hero > .ct-hero-veil,.fx-hero > .hero-glow,.fx-hero > .hero-shape,.fx-hero > .pm-hero-video,.fx-hero > .wb-hero-video,.fx-hero > .acct-hero-video{display:none!important}}
 
-/* subject-trim: the portrait art keeps its whole subject; only the empty dark band above and below it is trimmed so the art sits close to the copy (QA 2026-10-12) */
-@media (max-width:980px){.fx-hero > picture{height:calc(0.560 * min(118vw,560px))!important;overflow:hidden!important;margin-top:0!important;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 9%,#000 88%,transparent 100%)!important;mask-image:linear-gradient(180deg,transparent 0,#000 9%,#000 88%,transparent 100%)!important}.fx-hero > picture img{margin-top:calc(-0.010 * min(118vw,560px))!important}}
+/* stacked hero art (<=980px): the phone art is a subject-tight crop made from the portrait render, shown whole at its own ratio on the CSS ground — no fixed-height window, nothing cut (IT QA batch 3, 2026-10-28) */
+@media (max-width:980px){.fx-hero > picture{height:auto!important;overflow:visible!important;margin:0 auto!important;width:min(100%,640px)!important;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 90%,transparent 100%)!important;mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 90%,transparent 100%)!important}.fx-hero > picture img{margin:0!important;width:100%!important;max-width:100%!important;height:auto!important;max-height:none!important;object-fit:contain!important}}
 </style>
 
   <!-- Structured data -->
@@ -410,7 +410,7 @@
 <!-- ============ HERO ============ -->
 <section class="acct-hero fx-hero" aria-labelledby="pd-hero-title">
   <picture>
-    <source media="(max-width:980px)" srcset="assets/img/etf-hero-banner-portrait-v1.webp" width="1200" height="1807">
+    <source media="(max-width:980px)" srcset="assets/img/etf-hero-banner-portrait-v1-stack.webp" width="1200" height="1020">
     <img class="fx-hero-banner" src="assets/img/etf-hero-banner-v1.webp" alt="A clear glass cube holding a bar chart of metal blocks, one in blue, on a basalt plinth carved with the STARTRADER star" width="2560" height="1432" fetchpriority="high" decoding="async">
   </picture>
   <div class="acct-hero-bg" aria-hidden="true"></div>
@@ -806,6 +806,6 @@
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=pb30" defer></script>
+<script src="assets/js/main.min.js?v=pb31" defer></script>
 </body>
 </html>

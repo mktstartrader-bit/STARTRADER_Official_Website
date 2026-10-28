@@ -36,7 +36,7 @@
   <link rel="stylesheet" href="assets/css/aos.min.css" />
   <link rel="preload" href="assets/img/affiliate-registration-hero-banner-v1.webp" as="image" type="image/webp" media="(min-width:981px)" fetchpriority="high" />
   <link rel="preload" href="assets/img/affiliate-registration-hero-banner-portrait-v1.webp" as="image" type="image/webp" media="(max-width:980px)" fetchpriority="high" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb31" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb32" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* ---- tier country chips ---- */
@@ -86,8 +86,8 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
 }
 @media (max-width:980px){.pt-hero > .acct-hero-bg,.pt-hero > .pf-hero-bg,.pt-hero > .wb-hero-scrim,.pt-hero > .ct-hero-veil,.pt-hero > .hero-glow,.pt-hero > .hero-shape,.pt-hero > .pm-hero-video,.pt-hero > .wb-hero-video,.pt-hero > .acct-hero-video{display:none!important}}
 
-/* subject-trim: the portrait art keeps its whole subject; only the empty dark band above and below it is trimmed so the art sits close to the copy (QA 2026-10-12) */
-@media (max-width:980px){.pt-hero > picture{height:calc(0.470 * min(118vw,560px))!important;overflow:hidden!important;margin-top:0!important;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 9%,#000 88%,transparent 100%)!important;mask-image:linear-gradient(180deg,transparent 0,#000 9%,#000 88%,transparent 100%)!important}.pt-hero > picture img{margin-top:calc(-0.170 * min(118vw,560px))!important}}
+/* stacked hero art (<=980px): the phone art is a subject-tight crop made from the portrait render, shown whole at its own ratio on the CSS ground — no fixed-height window, nothing cut (IT QA batch 3, 2026-10-28) */
+@media (max-width:980px){.pt-hero > picture{height:auto!important;overflow:visible!important;margin:0 auto!important;width:min(100%,640px)!important;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 90%,transparent 100%)!important;mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 90%,transparent 100%)!important}.pt-hero > picture img{margin:0!important;width:100%!important;max-width:100%!important;height:auto!important;max-height:none!important;object-fit:contain!important}}
 </style>
 
   <!-- Structured data — the programme -->
@@ -443,7 +443,7 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
 <!-- ============ BANNER ============ -->
 <section class="pt-hero" aria-labelledby="af-title">
   <picture>
-    <source media="(max-width:980px)" srcset="assets/img/affiliate-registration-hero-banner-portrait-v1.webp" width="1200" height="1778">
+    <source media="(max-width:980px)" srcset="assets/img/affiliate-registration-hero-banner-portrait-v1-stack.webp" width="1200" height="1031">
     <img class="ptn-hero-banner" src="assets/img/affiliate-registration-hero-banner-v1.webp" alt="A titanium slab engraved with a check mark beside a row of identical titanium coins over a line of blue light, one fixed payout per qualified client" width="2560" height="1434" fetchpriority="high" decoding="async">
   </picture>
   <span class="gl-orb o1" aria-hidden="true"></span>
@@ -1526,6 +1526,6 @@ html.is-animate [data-pt-drop] .pt-cty{opacity:0}
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=pb30" defer></script>
+<script src="assets/js/main.min.js?v=pb31" defer></script>
 </body>
 </html>

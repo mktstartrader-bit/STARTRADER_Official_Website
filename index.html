@@ -42,7 +42,7 @@
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/swiper-bundle.min.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb31" />
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=pb32" />
   <!-- Page-specific styles (extracted from the shared stylesheet) -->
   <style>
 /* ---- welcome popup (dark glass) ---- */
@@ -155,6 +155,13 @@
   .hero > .container{order:1;position:relative;z-index:2}
 }
 @media (max-width:980px){.hero > .acct-hero-bg,.hero > .pf-hero-bg,.hero > .wb-hero-scrim,.hero > .ct-hero-veil,.hero > .hero-glow,.hero > .hero-shape,.hero > .pm-hero-video,.hero > .wb-hero-video,.hero > .acct-hero-video{display:none!important}}
+/* home hero (<=980px): the glass ribbons are a backdrop, not a subject — they stay behind the copy and stats, rising from the foot of the hero, so no empty band of art is stacked under the content (IT QA batch 3, 2026-10-28) */
+@media (max-width:980px){
+  .hero{padding-bottom:clamp(96px,22vw,180px)!important}
+  .hero > picture{position:absolute!important;inset:auto 0 0 0!important;height:clamp(300px,78vw,620px)!important;z-index:0!important;pointer-events:none;
+    -webkit-mask-image:linear-gradient(180deg,transparent 0,rgba(0,0,0,.55) 30%,#000 62%)!important;mask-image:linear-gradient(180deg,transparent 0,rgba(0,0,0,.55) 30%,#000 62%)!important}
+  .hero > picture img{width:100%!important;height:100%!important;object-fit:cover!important;object-position:50% 100%!important}
+}
 
 /* tools cards (homepage copy update 2026-10-15): text features instead of live figures */
 .tcard{display:flex;flex-direction:column}
@@ -1577,6 +1584,6 @@
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/swiper-bundle.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=pb30" defer></script>
+<script src="assets/js/main.min.js?v=pb31" defer></script>
 </body>
 </html>
