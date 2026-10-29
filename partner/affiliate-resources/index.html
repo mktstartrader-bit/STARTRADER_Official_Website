@@ -1,0 +1,927 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#05070E" />
+
+  <title>Affiliate Marketing Blog for CFD Partners | STARTRADER</title>
+  <meta name="description" content="Explore our affiliate blog for CFD trading partners. Get guides on affiliate marketing, strategies, and ways to maximise affiliate commissions." />
+  <meta name="keywords" content="affiliate marketing blog, affiliate blog, CFD affiliate, forex affiliate, introducing broker, PAMM account, affiliate commissions" />
+  <meta name="author" content="STARTRADER" />
+  <link rel="canonical" href="https://www.startrader.com/partner/affiliate-resources/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="STARTRADER" />
+  <meta property="og:title" content="Affiliate Marketing Blog for CFD Partners | STARTRADER" />
+  <meta property="og:description" content="Explore our affiliate blog for CFD trading partners. Get guides on affiliate marketing, strategies, and ways to maximise affiliate commissions." />
+  <meta property="og:url" content="https://www.startrader.com/partner/affiliate-resources/" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/affiliate-registration-hero-banner-v1.webp" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Affiliate Marketing Blog for CFD Partners | STARTRADER" />
+  <meta name="twitter:description" content="Explore our affiliate blog for CFD trading partners. Get guides on affiliate marketing, strategies, and ways to maximise affiliate commissions." />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/affiliate-registration-hero-banner-v1.webp" />
+
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="../../favicon.svg" />
+  <link rel="manifest" href="../../site.webmanifest" />
+
+  <!-- Fonts (self-hosted) -->
+  <link rel="preload" href="../../assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="../../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../../assets/css/aos.min.css" />
+  <link rel="preload" href="../../assets/img/affiliate-registration-hero-banner-v1.webp" as="image" type="image/webp" media="(min-width:981px)" fetchpriority="high" />
+  <link rel="preload" href="../../assets/img/affiliate-registration-hero-banner-portrait-v1.webp" as="image" type="image/webp" media="(max-width:980px)" fetchpriority="high" />
+  <link rel="stylesheet" href="../../assets/css/styles.min.css?v=pb32" />
+  <!-- Page-specific styles (extracted from the shared stylesheet) -->
+  <style>
+/* ---- "Why traders choose STARTRADER" bento holds together at 641–720px ----
+   The shared stylesheet declares .fx-mh twice for narrow screens: the market-
+   hours component stacks it at 640px (and releases .fx-mh--wide's `span 2`
+   there), while the forex page's later block collapses grid-template-columns
+   to a single `1fr` at 720px. The later declaration wins on source order, so
+   between 641px and 720px the grid had one explicit column but items still
+   spanning two — the browser fabricated an implicit `auto` column that took
+   its max-content width (380px copy + 56px padding = 438px) and left the
+   explicit `1fr` column with only what remained (222px at 720px, 143px at
+   641px). The narrow card's copy shredded to one word per line and its quote
+   tile was clipped by the card's overflow.
+   The two breakpoints are restated here in lock-step so the column count and
+   the spans can never disagree; minmax(0,1fr) also keeps a long translated
+   word from re-inflating a track. */
+@media (max-width:720px){
+  .pt-hours .fx-mh{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pt-hours .fx-mh--wide{grid-column:span 2}
+}
+@media (max-width:640px){
+  .pt-hours .fx-mh{grid-template-columns:minmax(0,1fr)}
+  .pt-hours .fx-mh--wide,.pt-hours .fx-mh--full{grid-column:auto}
+}
+
+/* ---- CTA labels keep their translation reserve ----
+   .btn in the shared stylesheet is white-space:nowrap, so a button's minimum
+   width is its whole label. Below 720px .htrade-btn stretches across the intro
+   panel and has nowhere to give: "Become a partner" fits, but at ~1.35x — well
+   inside the 130% reserve — it started running past the panel on a 350px
+   screen. The arrow disc is 32px tall and sets the button's height, so the
+   taller line-height leaves the one-line button at exactly 64px. */
+.htrade .htrade-btn{white-space:normal;line-height:1.25;min-width:0;max-width:100%;overflow-wrap:break-word}
+@media (max-width:720px){
+  .pt-hero .pt-hact .btn{white-space:normal;line-height:1.25;min-width:0;max-width:100%;overflow-wrap:break-word}
+}
+  
+/* banner: partnership family (the platform framing) - glossy titanium, engraved detail
+   and a blue beam, full-bleed under the bar with the subject on the right */
+.pt-hero{background:#03060F;min-height:min(780px,calc(100vh - var(--topbar-h,44px)))}
+.pt-hero .gl-orb{display:none}
+.ptn-hero-banner{position:absolute;top:var(--nav-h);left:0;right:0;width:100%;height:calc(100% - var(--nav-h));object-fit:cover;object-position:62% center;z-index:-2}
+/* desktop banner: whole art, anchored right, scaled so the subject clears the copy (QA 2026-10-09) */
+@media (min-width:981px){.ptn-hero-banner{left:auto!important;right:0!important;width:auto!important;max-width:none!important;height:min(calc(100% - var(--nav-h)),58vw)!important;object-fit:contain!important;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 20%),linear-gradient(0deg,transparent 0,#000 10%);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent 0,#000 20%),linear-gradient(0deg,transparent 0,#000 10%);mask-composite:intersect}}
+@media (min-width:981px){.pt-hero .pt-hero-in>*{max-width:min(600px,46%)}.pt-hero .pt-lead br{display:none}.pt-hero .pt-hero-in>.pt-h1{max-width:min(660px,50%);font-size:clamp(34px,4vw,58px)}}
+@media (max-width:980px){
+  .pt-hero{justify-content:flex-start;align-items:flex-start;min-height:0;padding:calc(var(--nav-h) + 76vw + 28px) 0 44px}
+  .ptn-hero-banner{bottom:auto;height:auto;aspect-ratio:1200/1778;object-position:center top}
+  .pt-hero::after{content:"";display:block;position:absolute;inset:0;z-index:-1;pointer-events:none;
+    background:linear-gradient(180deg,#03060F 0%,#03060F calc(var(--nav-h) + 2px),rgba(3,6,15,0) calc(var(--nav-h) + 40px)),
+               linear-gradient(0deg,#03060F 0%,rgba(3,6,15,.86) 20%,rgba(3,6,15,0) 46%)}
+}
+/* mobile hero: copy first, art below (team rule 2026-10-07) */
+@media (max-width:980px){
+  .pt-hero{display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;min-height:0!important;height:auto!important;aspect-ratio:auto!important;padding:calc(var(--nav-h,70px) + 36px) 0 0!important;gap:6px}
+  .pt-hero::before,.pt-hero::after{display:none!important}
+  .pt-hero > picture{display:block!important;position:relative!important;inset:auto!important;top:auto!important;right:auto!important;bottom:auto!important;left:auto!important;order:2;width:100%!important;max-width:none!important;height:auto!important;aspect-ratio:auto!important;margin:0!important;transform:none!important;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 12%,#000 95%,transparent 100%)!important;mask-image:linear-gradient(180deg,transparent 0,#000 12%,#000 95%,transparent 100%)!important;z-index:auto!important;flex:none}
+  .pt-hero > picture::before,.pt-hero > picture::after{display:none!important}
+  .pt-hero > picture img,.pt-hero > picture video{display:block!important;position:static!important;width:100%!important;max-width:none!important;width:auto!important;max-width:100%!important;height:auto!important;max-height:min(118vw,560px)!important;margin-inline:auto!important;aspect-ratio:auto!important;object-fit:contain!important;object-position:center!important;transform:none!important;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%)!important;mask-image:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%)!important}
+  .pt-hero > .container{order:1;position:relative;z-index:2}
+}
+@media (max-width:980px){.pt-hero > .acct-hero-bg,.pt-hero > .pf-hero-bg,.pt-hero > .wb-hero-scrim,.pt-hero > .ct-hero-veil,.pt-hero > .hero-glow,.pt-hero > .hero-shape,.pt-hero > .pm-hero-video,.pt-hero > .wb-hero-video,.pt-hero > .acct-hero-video{display:none!important}}
+
+/* stacked hero art (<=980px): the phone art is a subject-tight crop made from the portrait render, shown whole at its own ratio on the CSS ground — no fixed-height window, nothing cut (IT QA batch 3, 2026-10-28) */
+@media (max-width:980px){.pt-hero > picture{height:auto!important;overflow:visible!important;margin:0 auto!important;width:min(100%,640px)!important;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 90%,transparent 100%)!important;mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 90%,transparent 100%)!important}.pt-hero > picture img{margin:0!important;width:100%!important;max-width:100%!important;height:auto!important;max-height:none!important;object-fit:contain!important}}
+
+/* ---------- Affiliate blog hub (/partner/affiliate-resources/) ---------- */
+.ab-hero .pt-h1 .g{white-space:nowrap}
+.ab-hact{display:flex;flex-wrap:wrap;gap:12px}
+.ab-down{transform:rotate(90deg)}
+.ab-sec .head{max-width:680px;margin-bottom:34px}
+.ab-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.ab-card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s}
+.ab-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:rgba(0,71,187,.22)}
+.ab-media{display:block;aspect-ratio:16/10;overflow:hidden;background:var(--navy)}
+.ab-media img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.ab-card:hover .ab-media img{transform:scale(1.04)}
+.ab-body{display:flex;flex-direction:column;gap:10px;padding:20px 22px 22px;flex:1}
+.ab-tags{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.ab-tag{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--blue);background:rgba(0,71,187,.08);padding:4px 9px;border-radius:6px}
+.ab-lvl{font-size:12px;color:var(--text-mute)}
+.ab-h{font-size:18px;line-height:1.35;font-weight:700;color:var(--text);text-wrap:balance;margin:0}
+.ab-h a{color:inherit}
+.ab-h a::after{content:"";position:absolute;inset:0}
+.ab-card{position:relative}
+.ab-h a:focus-visible{outline:none}
+.ab-card:focus-within{outline:2px solid var(--blue);outline-offset:3px}
+.ab-ex{font-size:14.5px;line-height:1.6;color:var(--text-soft);margin:0}
+.ab-more{margin-top:auto;padding-top:6px;display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:var(--blue)}
+.ab-more .ico{width:15px;height:15px;transition:transform .3s var(--ease)}
+.ab-card:hover .ab-more .ico{transform:translateX(3px)}
+.ab-card--feat .ab-h{font-size:19px}
+.ab-tools{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;margin-bottom:28px}
+.ab-chips{display:flex;flex-wrap:wrap;gap:8px}
+.ab-chip{font:inherit;font-size:14px;font-weight:600;padding:9px 18px;border-radius:70px;border:1px solid var(--line);background:#fff;color:var(--text-soft);cursor:pointer;transition:background .25s,color .25s,border-color .25s}
+.ab-chip:hover{border-color:rgba(0,71,187,.35);color:var(--blue)}
+.ab-chip.is-on{background:var(--blue);border-color:var(--blue);color:#fff}
+.ab-search{position:relative;flex:0 1 300px;min-width:0}
+.ab-search input{width:100%;font:inherit;font-size:14px;padding:11px 42px 11px 16px;border-radius:70px;border:1px solid var(--line);background:#fff;color:var(--text)}
+.ab-search input:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,71,187,.12)}
+.ab-search .ico{position:absolute;right:15px;top:50%;width:17px;height:17px;transform:translateY(-50%);color:var(--text-mute);pointer-events:none}
+.ab-empty{text-align:center;color:var(--text-soft);padding:30px 0}
+.ab-morerow{display:flex;justify-content:center;margin-top:36px}
+.ab-morebtn{font:inherit;font-weight:600;font-size:15px;padding:13px 28px;border-radius:70px;border:1px solid var(--line);background:#fff;color:var(--text);cursor:pointer;transition:border-color .25s,color .25s}
+.ab-morebtn:hover{border-color:var(--blue);color:var(--blue)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media (max-width:980px){.ab-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){
+  .ab-grid{grid-template-columns:minmax(0,1fr);gap:18px}
+  .ab-search{flex:1 1 100%}
+  .ab-hact .btn{white-space:normal;line-height:1.25;min-width:0;max-width:100%}
+  .ab-hero .pt-h1 .g{white-space:normal}
+}
+</style>  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "CollectionPage",
+ "name": "Affiliate Marketing Blog for CFD Partners",
+ "description": "Explore our affiliate blog for CFD trading partners. Get guides on affiliate marketing, strategies, and ways to maximise affiliate commissions.",
+ "url": "https://www.startrader.com/partner/affiliate-resources/",
+ "isPartOf": {
+  "@type": "WebSite",
+  "name": "STARTRADER",
+  "url": "https://www.startrader.com/"
+ },
+ "mainEntity": {
+  "@type": "ItemList",
+  "itemListElement": [
+   {
+    "@type": "ListItem",
+    "position": 1,
+    "name": "What Is a Trading Affiliate Program? What Are Its Benefits?",
+    "url": "https://www.startrader.com/knowledge-basics/what-is-a-trading-affiliate-program-what-are-its-benefits/"
+   },
+   {
+    "@type": "ListItem",
+    "position": 2,
+    "name": "Forex IB vs Affiliates: What Is the Difference?",
+    "url": "https://www.startrader.com/knowledge-basics/forex-ib-vs-affiliates-what-is-the-difference/"
+   },
+   {
+    "@type": "ListItem",
+    "position": 3,
+    "name": "Forex Introducing Broker (IB): A Short Guide",
+    "url": "https://www.startrader.com/knowledge-basics/forex-introducing-broker-ib-a-short-guide/"
+   },
+   {
+    "@type": "ListItem",
+    "position": 4,
+    "name": "PAMM Trading Account: What It Is and How It Works",
+    "url": "https://www.startrader.com/knowledge-basics/pamm-trading-account-what-it-is-how-it-works/"
+   },
+   {
+    "@type": "ListItem",
+    "position": 5,
+    "name": "PAMM Account: How to Open a PAMM Account",
+    "url": "https://www.startrader.com/knowledge-basics/pamm-account-how-to-open-pamm-account/"
+   },
+   {
+    "@type": "ListItem",
+    "position": 6,
+    "name": "PAMM vs Copy Trading",
+    "url": "https://www.startrader.com/knowledge-basics/pamm-vs-copy-trading/"
+   },
+   {
+    "@type": "ListItem",
+    "position": 7,
+    "name": "What PAMM Account Managers Do: KPIs and Responsibilities",
+    "url": "https://www.startrader.com/knowledge-basics/what-pamm-account-managers-do-kpis-responsibilities/"
+   },
+   {
+    "@type": "ListItem",
+    "position": 8,
+    "name": "PAMM Investment: How It Works and the Risks",
+    "url": "https://www.startrader.com/knowledge-intermediate/pamm-investment-how-it-works-risks/"
+   },
+   {
+    "@type": "ListItem",
+    "position": 9,
+    "name": "PAMM Trading on MT4 and MT5: Setup and Risks",
+    "url": "https://www.startrader.com/knowledge-intermediate/pamm-trading-on-mt4-mt5-setup-risks/"
+   },
+   {
+    "@type": "ListItem",
+    "position": 10,
+    "name": "Best Forex Brokers for PAMM Accounts: What to Look For",
+    "url": "https://www.startrader.com/knowledge-intermediate/best-forex-brokers-for-pamm-accounts-what-to-look-for/"
+   },
+   {
+    "@type": "ListItem",
+    "position": 11,
+    "name": "PAMM Account Brokers",
+    "url": "https://www.startrader.com/knowledge-intermediate/pamm-account-brokers/"
+   },
+   {
+    "@type": "ListItem",
+    "position": 12,
+    "name": "PAMM Trading Review",
+    "url": "https://www.startrader.com/knowledge-intermediate/pamm-trading-review/"
+   }
+  ]
+ }
+}
+  </script>
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "name": "Home",
+   "item": "https://www.startrader.com/"
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "name": "Partner",
+   "item": "https://www.startrader.com/partner/"
+  },
+  {
+   "@type": "ListItem",
+   "position": 3,
+   "name": "Affiliate Resources",
+   "item": "https://www.startrader.com/partner/affiliate-resources/"
+  }
+ ]
+}
+  </script>
+</head>
+<body>
+
+
+
+<!-- ============ SVG ICON SPRITE ============ -->
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M4 12h15m0 0-6-6m6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-arrow-ur" viewBox="0 0 24 24"><path d="M7 17 17 7m0 0H8m9 0v9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z" fill="currentColor"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.4 3 8.4 7 9.5 4-1.1 7-5.1 7-9.5V6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><path d="M12 3 3 7.5v9L12 21l9-4.5v-9zM3 7.5 12 12l9-4.5M12 12v9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-headset" viewBox="0 0 24 24"><path d="M4 13a8 8 0 0 1 16 0M4 13v3a2 2 0 0 0 2 2h1v-6H6a2 2 0 0 0-2 2Zm16 0v3a2 2 0 0 1-2 2h-1v-6h1a2 2 0 0 1 2 2Zm-3 5a3 3 0 0 1-3 2.5h-2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10m5 10V4m5 16v-7m5 7V8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 2 2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.8 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z" fill="currentColor"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.7 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3Z" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 7v5l3.4 2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M4 18a8 8 0 1 1 16 0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M12 18l4.2-5.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="12" cy="18" r="1.5" fill="currentColor"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-facebook" viewBox="0 0 24 24"><path d="M14 8.5V7c0-.9.6-1 1-1h1.5V3H14c-2.2 0-3.5 1.5-3.5 3.7V8.5H8.5v3h2v8.5h3.5v-8.5h2.3l.4-3z" fill="currentColor"/></symbol>
+  <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="3.6" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="16.5" cy="7.5" r="1.1" fill="currentColor"/></symbol>
+  <symbol id="i-youtube" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m10.5 9.3 4.5 2.7-4.5 2.7z" fill="currentColor"/></symbol>
+  <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M6.5 9v9M6.5 6.2v.01M11 18v-5a2.5 2.5 0 0 1 5 0v5M11 12v6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+  <symbol id="i-caret-up" viewBox="0 0 12 12"><path d="M6 3 10 8H2z" fill="currentColor"/></symbol>
+  <symbol id="i-caret-down" viewBox="0 0 12 12"><path d="M6 9 2 4h8z" fill="currentColor"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M17.5 3h3.2l-7 8 8.2 10.9h-6.4l-5-6.6-5.8 6.6H1.5l7.5-8.6L1.6 3H8l4.5 6zM16.4 19.1h1.8L7.7 4.8H5.8z" fill="currentColor"/></symbol>
+  <symbol id="i-telegram" viewBox="0 0 24 24"><path d="M21.5 4.3 2.9 11.5c-.9.35-.9.9-.15 1.12l4.7 1.46 1.8 5.6c.23.63.4.86 1 .86.46 0 .66-.2.9-.45l2.28-2.2 4.72 3.5c.87.48 1.5.23 1.72-.8l3-14.1c.3-1.28-.5-1.86-1.34-1.5z" fill="currentColor"/></symbol>
+  <symbol id="i-tiktok" viewBox="0 0 24 24"><path d="M16.6 3c.3 1.6 1.3 3 2.7 3.8.6.4 1.4.6 2.2.7v3.1c-1.8 0-3.5-.6-4.9-1.6v6.6a6.3 6.3 0 1 1-6.3-6.3c.3 0 .7 0 1 .1v3.2a3.2 3.2 0 1 0 2.2 3V3z" fill="currentColor"/></symbol>
+  <symbol id="i-user-plus" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3 20a6 6 0 0 1 12 0M18.5 8v5M21 10.5h-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-id" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="8.5" cy="11" r="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M13.5 10h4M13.5 13.5h4M5.6 15.6c.4-1.2 1.6-1.9 2.9-1.9s2.5.7 2.9 1.9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 1 2-2h11.5A1.5 1.5 0 0 0 15 4H5.5" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="6" width="18" height="13" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="16.5" cy="12.5" r="1.3" fill="currentColor"/></symbol>
+  <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9 20h6M12 16v4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M5 15H4.6A1.6 1.6 0 0 1 3 13.4V5a2 2 0 0 1 2-2h8.4A1.6 1.6 0 0 1 15 4.6V5" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 3v5h5M8.5 13h7M8.5 16.5h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-window" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 9h18" stroke="currentColor" stroke-width="1.6"/><circle cx="6" cy="7" r=".7" fill="currentColor"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 18h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-plug" viewBox="0 0 24 24"><path d="M9 3v4M15 3v4M6.5 7h11v3.5a5.5 5.5 0 0 1-11 0zM12 16.5V21" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-swap" viewBox="0 0 24 24"><path d="M4 8h13l-3.5-3.5M20 16H7l3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-cfd" viewBox="0 0 24 24"><path d="M4 15l4.5-4.5 3 3L19 6M14.5 6H19v4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-droplet" viewBox="0 0 24 24"><path d="M12 3.5s6 6.2 6 10.5a6 6 0 0 1-12 0c0-4.3 6-10.5 6-10.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+  <symbol id="i-pie" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M12 3v9h9A9 9 0 0 0 12 3Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 11.5a7.5 7.5 0 0 1-10.9 6.7L4 20l1.8-5.1A7.5 7.5 0 1 1 21 11.5Z" fill="currentColor"/><circle cx="8.5" cy="11.5" r="1.15" fill="#0a2a6b"/><circle cx="12" cy="11.5" r="1.15" fill="#0a2a6b"/><circle cx="15.5" cy="11.5" r="1.15" fill="#0a2a6b"/></symbol>
+  <symbol id="i-bubble" viewBox="0 0 24 24"><path d="M20.5 11.6c0 4-3.8 7.2-8.5 7.2-.9 0-1.8-.12-2.6-.34L4.5 20l1.2-3.5A6.9 6.9 0 0 1 3.5 11.6c0-4 3.8-7.2 8.5-7.2s8.5 3.2 8.5 7.2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.8 11.6h6.4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-cookie" viewBox="0 0 24 24"><path d="M12 2.5a9.5 9.5 0 1 0 9.5 9.5 4 4 0 0 1-4-4 3.2 3.2 0 0 1-3.4-3.4A9.6 9.6 0 0 0 12 2.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="9" cy="12" r="1" fill="currentColor"/><circle cx="13" cy="15" r="1" fill="currentColor"/><circle cx="14.5" cy="10" r="1" fill="currentColor"/><circle cx="8.5" cy="16" r=".8" fill="currentColor"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M4 12 20 4l-6 16-3-6-7-2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8.2" r="3.8" fill="currentColor"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0Z" fill="currentColor"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3.2" y="5" width="17.6" height="15.5" rx="2.6" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3.2 9.6h17.6M8 3.4v3.2M16 3.4v3.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><rect x="6.8" y="12.4" width="3" height="2.6" rx=".7" fill="currentColor"/></symbol>
+  <symbol id="i-cm-bars" viewBox="0 0 24 24"><path d="M3.6 16.4h7.2l1.1 3.4H2.5l1.1-3.4Z" fill="currentColor"/><path d="M13.2 16.4h7.2l1.1 3.4h-9.4l1.1-3.4Z" fill="currentColor" opacity=".78"/><path d="M8.4 11.2h7.2l1.1 3.4H7.3l1.1-3.4Z" fill="currentColor" opacity=".9"/><path d="M8.4 6h7.2l1.1 3.4H7.3L8.4 6Z" fill="currentColor" opacity=".62"/></symbol>
+</svg>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============ TOP DISCLAIMER BAR ============ -->
+<div class="topbar" role="note">
+  <div class="container">
+    <p><strong>Disclaimer:</strong> CFDs are complex instruments and come with a high risk of losing money rapidly due to leverage. You should consider whether you understand how CFDs work and whether you can afford to take the high risk of losing your money.</p>
+  </div>
+</div>
+
+<!-- ============ HEADER / NAV ============ -->
+<header class="site-header" id="siteHeader">
+  <div class="container nav">
+    <div class="nav-brandwrap">
+      <a href="../../index.html" class="brand" aria-label="STARTRADER home">
+        <img src="../../assets/img/logo-startrader.svg" alt="STARTRADER" width="180" height="35" />
+      </a>
+      <span class="hp-divider" aria-hidden="true"></span>
+      <span class="header-partners">
+        <img class="hp-logo hp-nba" src="../../assets/img/nav-nba.svg" alt="NBA" width="156" height="92" loading="lazy">
+        <img class="hp-logo hp-porsche" src="../../assets/img/nav-porsche.svg" alt="Porsche Carrera Cup Middle East" width="121" height="34" loading="lazy">
+      </span>
+    </div>
+
+    <nav class="nav-menu" aria-label="Primary">
+      <div class="nav-item has-drop has-mega">
+        <button class="nav-link" aria-expanded="false">Trading <svg class="caret"><use href="#i-chevron-down"/></svg></button>
+        <div class="mega" role="menu">
+          <div class="mega-main">
+          <div class="mega-col">
+            <span class="mega-head">Getting Started</span>
+            <a href="../../getting-started.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-user-plus"/></svg></span><span class="mega-txt"><b>Account Opening</b></span></a>
+            <a href="../../accounts.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-id"/></svg></span><span class="mega-txt"><b>Trading Account</b></span></a>
+            <a href="../../prime-ecn-account.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-bolt"/></svg></span><span class="mega-txt"><b>Prime ECN</b></span></a>
+            <a href="../../funding.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>Funding &amp; Withdrawal</b></span></a>
+          </div>
+          <div class="mega-col">
+            <span class="mega-head">Platforms</span>
+            <a href="../../mt5.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-monitor"/></svg></span><span class="mega-txt"><b>MT5</b></span></a>
+            <a href="../../mt4.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-monitor"/></svg></span><span class="mega-txt"><b>MT4</b></span></a>
+            <a href="../../copy-trade.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-copy"/></svg></span><span class="mega-txt"><b>Copy Trade</b></span></a>
+            <a href="../../star-copy.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-doc"/></svg></span><span class="mega-txt"><b>STAR Copy <span class="mega-badge">New</span></b></span></a>
+            <a href="../../star-webtrader.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-cfd"/></svg></span><span class="mega-txt"><b>STAR Web Trading <span class="mega-badge">New</span></b></span></a>
+            <div class="mega-sub">
+              <a href="../../webtrader.html" class="mega-item mega-sub-toggle"><span class="mega-ico"><svg><use href="#i-window"/></svg></span><span class="mega-txt"><b>Web Trader</b></span><svg class="mega-subchev"><use href="#i-chevron-down"/></svg></a>
+              <div class="mega-subitems">
+                <a href="../../webtrader-mt4.html">MT4 WebTrader</a>
+                <a href="../../webtrader-mt5.html">MT5 WebTrader</a>
+              </div>
+            </div>
+            <a href="../../trading-app.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-phone"/></svg></span><span class="mega-txt"><b>Mobile Apps</b></span></a>
+            <a href="../../pamm-trade.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-plug"/></svg></span><span class="mega-txt"><b>Pro-Link</b></span></a>
+          </div>
+          <div class="mega-col">
+            <span class="mega-head">Products</span>
+            <a href="../../forex.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-swap"/></svg></span><span class="mega-txt"><b>Forex</b></span></a>
+            <a href="../../cfd.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-cfd"/></svg></span><span class="mega-txt"><b>CFD</b></span></a>
+            <a href="../../commodities.html" class="mega-item mega-item-parent" data-fly="commodities"><span class="mega-ico"><svg><use href="#i-droplet"/></svg></span><span class="mega-txt"><b>Commodities</b></span><svg class="mega-chev" aria-hidden="true"><use href="#i-chevron-right"/></svg></a>
+            <a href="../../indices.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>Indices</b></span></a>
+            <a href="../../shares.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-pie"/></svg></span><span class="mega-txt"><b>Shares</b></span></a>
+            <a href="../../etf.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-layers"/></svg></span><span class="mega-txt"><b>ETFs</b></span></a>
+          </div>
+          </div>
+          <div class="mega-flyout" aria-hidden="true"><div class="fly-inner" data-fly-panel="commodities">
+            <a class="fly-title fly-title-link" href="../../commodities.html">Commodities <svg class="fly-title-go"><use href="#i-arrow-right"/></svg></a>
+            <div class="fly-group">
+              <span class="fly-head"><a href="../../commodities/energies.html">Energies</a></span>
+              <a href="../../commodities/brent-oil.html">Brent Oil</a>
+              <a href="../../commodities/natural-gas.html">Natural Gas</a>
+              <a href="../../commodities/heating-oil.html">Heating Oil</a>
+            </div>
+            <div class="fly-group">
+              <span class="fly-head"><a href="../../metals.html">Metals</a></span>
+              <a href="../../commodities/gold-247.html">Gold 24/7 <span class="mega-badge">New</span></a>
+              <a href="../../commodities/silver.html">Silver</a>
+              <a href="../../commodities/copper.html">Copper</a>
+              <a href="../../commodities/platinum.html">Platinum</a>
+            <a href="../../commodities/palladium.html">Palladium</a>
+            </div>
+            <div class="fly-group">
+              <span class="fly-head"><a href="../../agriculture.html">Agriculture</a></span>
+              <a href="../../commodities/wheat.html">Wheat</a>
+              <a href="../../commodities/corn.html">Corn</a>
+              <a href="../../commodities/soybeans.html">Soybeans</a>
+              <a href="../../commodities/coffee.html">Coffee</a>
+              <a href="../../commodities/sugar.html">Sugar</a>
+              <a href="../../commodities/cocoa.html">Cocoa</a>
+              <a href="../../commodities/cotton.html">Cotton</a>
+            </div>
+          </div></div>
+        </div>
+      </div>
+            <div class="nav-item has-drop has-mega">
+        <button class="nav-link" aria-expanded="false">Education <svg class="caret"><use href="#i-chevron-down"/></svg></button>
+        <div class="mega mega--center" role="menu">
+          <div class="mega-main">
+            <div class="mega-col">
+              <span class="mega-head">Learn</span>
+              <a href="../../education.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-box"/></svg></span><span class="mega-txt"><b>Knowledge Center</b></span></a>
+              <a href="../../glossary.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-doc"/></svg></span><span class="mega-txt"><b>Glossary</b></span></a>
+              <a href="../../market-analysis.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>Financial Market Analysis</b></span></a>
+            </div>
+            <div class="mega-col">
+              <span class="mega-head">Analysis</span>
+              <a href="../../news.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-window"/></svg></span><span class="mega-txt"><b>News Room</b></span></a>
+              <a href="../../economiccalendar.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-clock"/></svg></span><span class="mega-txt"><b>Economic Calendar</b></span></a>
+            </div>
+            <div class="mega-col">
+              <span class="mega-head">Academy</span>
+              <a href="../../webinars.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-play"/></svg></span><span class="mega-txt"><b>Webinars</b></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+            <div class="nav-item has-drop has-mega">
+        <button class="nav-link" aria-expanded="false">Promotions <svg class="caret"><use href="#i-chevron-down"/></svg></button>
+        <div class="mega mega--promo mega--center" role="menu">
+          <div class="mega-main">
+            <div class="mega-col">
+              <span class="mega-head">Promotions</span>
+              <a href="../../promotions.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-send"/></svg></span><span class="mega-txt"><b>Our Promotions</b></span></a>
+              <a href="../../gold-cashback.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-clock"/></svg></span><span class="mega-txt"><b>Gold 24/7 Cashback</b></span></a>
+              <a href="../../point-mall.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>Point Mall</b></span></a>
+              <a href="../../star-loyalty.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-star"/></svg></span><span class="mega-txt"><b>STAR Loyalty</b></span></a>
+              <a href="../../deposit-bonus.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>Deposit Bonuses</b></span></a>
+              <a href="../../switch-allowance.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-swap"/></svg></span><span class="mega-txt"><b>1% Switch Allowance</b></span></a>
+              <a href="../../vps.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-plug"/></svg></span><span class="mega-txt"><b>VPS</b></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+            <div class="nav-item has-drop has-mega">
+        <button class="nav-link" aria-expanded="false">Company <svg class="caret"><use href="#i-chevron-down"/></svg></button>
+        <div class="mega mega--center" role="menu">
+          <div class="mega-main">
+            <div class="mega-col">
+              <span class="mega-head">About</span>
+              <a href="../../company.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-shield"/></svg></span><span class="mega-txt"><b>Why STARTRADER</b></span></a>
+              <a href="../../corporate-social-responsibility.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-user"/></svg></span><span class="mega-txt"><b>CSR</b></span></a>
+              <a href="../../events.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-clock"/></svg></span><span class="mega-txt"><b>Events</b></span></a>
+              <div class="mega-sub">
+                <a href="../../sponsorship.html" class="mega-item mega-item--tight mega-sub-toggle"><span class="mega-ico"><svg><use href="#i-star"/></svg></span><span class="mega-txt"><b>Sponsorship</b></span><svg class="mega-subchev"><use href="#i-chevron-down"/></svg></a>
+                <div class="mega-subitems">
+                  <a href="../../sponsorship/nba.html">Official Partner of the NBA</a>
+                  <a href="../../sponsorship/pccme.html">Official Partner of the PCCME</a>
+                  <a href="../../sponsorship/icc.html">ICC Men&rsquo;s T20 World Cup 2026</a>
+                  <a href="../../sponsorship/asia-cup-2025.html">UAE National Cricket Team</a>
+                  <a href="../../sponsorship/pfl-champions-series.html">PFL Champions Series</a>
+                  <a href="../../sponsorship/mena.html">MENA Investment Congress 2025</a>
+                </div>
+              </div>
+              <a href="../../media.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-doc"/></svg></span><span class="mega-txt"><b>Media Coverage</b></span></a>
+              <a href="../../achievement.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-globe"/></svg></span><span class="mega-txt"><b>Achievements</b></span></a>
+              <a href="../../announcements.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-send"/></svg></span><span class="mega-txt"><b>Announcements</b></span></a>
+              <a href="https://www.startrader-careers.com/" target="_blank" rel="noopener" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-user-plus"/></svg></span><span class="mega-txt"><b>Careers<svg class="mega-ext" aria-hidden="true"><use href="#i-arrow-ur"/></svg></b></span></a>
+              <a href="../../help-center.html" target="_blank" rel="noopener" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-headset"/></svg></span><span class="mega-txt"><b>Help Center<svg class="mega-ext" aria-hidden="true"><use href="#i-arrow-ur"/></svg></b></span></a>
+              <a href="../../contact.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-bubble"/></svg></span><span class="mega-txt"><b>Contact Us</b></span></a>
+            </div>
+            <div class="mega-col">
+              <span class="mega-head">Corporate</span>
+              <a href="../../regulation.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-id"/></svg></span><span class="mega-txt"><b>Regulation</b></span></a>
+              <a href="../../legal-documents.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-doc"/></svg></span><span class="mega-txt"><b>Legal Documents</b></span></a>
+              <div class="mega-sub">
+                <a href="../../insurance.html" class="mega-item mega-item--tight mega-sub-toggle"><span class="mega-ico"><svg><use href="#i-shield"/></svg></span><span class="mega-txt"><b>Insurance</b></span><svg class="mega-subchev"><use href="#i-chevron-down"/></svg></a>
+                <div class="mega-subitems">
+                  <a href="../../lloyd-insurance.html">Lloyd&rsquo;s Insurance</a>
+                  <a href="../../financial-commission.html">Financial Commission</a>
+                </div>
+              </div>
+              <a href="../../liquidity-providers.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-droplet"/></svg></span><span class="mega-txt"><b>Liquidity Providers</b></span></a>
+            </div>
+            <div class="mega-col">
+              <span class="mega-head">Partnership</span>
+              <a href="../../partner.html" class="mega-item mega-item--tight" aria-current="page"><span class="mega-ico"><svg><use href="#i-user"/></svg></span><span class="mega-txt"><b>Partner</b></span></a>
+              <a href="../../ib-register.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-user-plus"/></svg></span><span class="mega-txt"><b>Introducing Broker</b></span></a>
+              <a href="../../affiliate-registration.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-globe"/></svg></span><span class="mega-txt"><b>Affiliate</b></span></a>
+              <a href="../../money-manager.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>Money Manager</b></span></a>
+              <a href="../../institutional.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-box"/></svg></span><span class="mega-txt"><b>Institutional</b></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="nav-right">
+      <button class="lang" id="langBtn" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="langPop" aria-label="Select language">
+        <svg class="lang-globe" aria-hidden="true"><use href="#i-globe"/></svg>
+        <span class="lang-code" id="langCode">EN</span>
+        <svg class="lang-caret" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+      </button>
+      <div class="lang-pop" id="langPop" role="dialog" aria-label="Select language" aria-hidden="true">
+        <div class="lp-head">
+          <span class="lp-title">Languages</span>
+          <button class="lp-close" id="langClose" type="button" aria-label="Close language menu"><svg><use href="#i-close"/></svg></button>
+        </div>
+        <div class="lp-search">
+          <svg class="lp-search-ic" viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="6.4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M13.8 13.8L18 18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          <input type="text" id="langSearch" placeholder="Search Language" autocomplete="off" spellcheck="false">
+        </div>
+        <div class="lp-grid" id="langGrid">
+          <button class="lp-item is-active" type="button" data-code="EN"><b>English</b></button>
+          <button class="lp-item" type="button" data-code="ZH-CN"><b>简体中文</b> Simplified Chinese</button>
+          <button class="lp-item" type="button" data-code="KO"><b>한국어</b> Korean</button>
+          <button class="lp-item" type="button" data-code="MS"><b>Melayu</b> Malay</button>
+          <button class="lp-item" type="button" data-code="VI"><b>Việt</b> Vietnamese</button>
+          <button class="lp-item" type="button" data-code="TH"><b>ภาษาไทย</b> Thai</button>
+          <button class="lp-item" type="button" data-code="ID"><b>Indonesian</b> Indonesian</button>
+          <button class="lp-item" type="button" data-code="AR"><b>العربية</b> Arabic</button>
+          <button class="lp-item" type="button" data-code="JA"><b>日本語</b> Japanese</button>
+          <button class="lp-item" type="button" data-code="ZH-TW"><b>繁體中文</b> Traditional Chinese</button>
+          <button class="lp-item" type="button" data-code="FR"><b>Français</b> French</button>
+          <button class="lp-item" type="button" data-code="ES"><b>Español</b> Spanish</button>
+          <button class="lp-item" type="button" data-code="PT"><b>Português</b> Portuguese</button>
+          <button class="lp-item" type="button" data-code="DE"><b>Deutsch</b> German</button>
+          <button class="lp-item" type="button" data-code="FA"><b>فارسی</b> Persian</button>
+          <button class="lp-item" type="button" data-code="IT"><b>Italiano</b> Italian</button>
+          <button class="lp-item" type="button" data-code="RU"><b>Русский язык</b> Russian</button>
+          <button class="lp-item" type="button" data-code="TR"><b>Türkçe</b> Turkish</button>
+          <button class="lp-item" type="button" data-code="PL"><b>Polski</b> Polish</button>
+          <button class="lp-item" type="button" data-code="HI"><b>हिंदी</b> Hindi</button>
+          <button class="lp-item" type="button" data-code="NL"><b>Nederlands</b> Dutch</button>
+        </div>
+        <p class="lp-empty" hidden>No languages found</p>
+      </div>
+      <a href="https://myaccount.startrader.com/login" class="login">Login</a>
+      <a href="https://www.startrader.com/live-account/" class="btn btn-primary btn-sm nav-cta">Open Live Account</a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav aria-label="Mobile">
+    <a href="../../index.html#markets">Trading</a>
+    <a href="../../index.html#academy">Education</a>
+    <a href="../../promotions.html">Promotions</a>
+    <a href="../../index.html#why">Company</a>
+    <hr>
+    <a href="https://myaccount.startrader.com/login" class="login">Login</a>
+    <a href="https://www.startrader.com/live-account/" class="btn btn-primary">Open Live Account</a>
+  </nav>
+</div>
+
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<section class="pt-hero ab-hero" aria-labelledby="ab-title">
+  <picture>
+    <source media="(max-width:980px)" srcset="../../assets/img/affiliate-registration-hero-banner-portrait-v1-stack.webp" width="1200" height="1031">
+    <img class="ptn-hero-banner" src="../../assets/img/affiliate-registration-hero-banner-v1.webp" alt="A titanium slab engraved with a check mark beside a row of identical titanium coins over a line of blue light" width="2560" height="1434" fetchpriority="high" decoding="async">
+  </picture>
+  <div class="container pt-hero-in">
+    <nav class="ar-crumb ar-crumb--hero ar-crumb--dark" aria-label="Breadcrumb" data-aos="fade-up">
+      <a href="../../partner.html">Partner</a>
+      <span aria-hidden="true">/</span>
+      <span>Affiliate Resources</span>
+    </nav>
+    <span class="eyebrow eyebrow-blue" data-aos="fade-up">Affiliate Marketing Blog</span>
+    <h1 class="pt-h1" id="ab-title" data-aos="fade-up">Affiliate Marketing Blog for <span class="g">CFD Partners</span></h1>
+    <p class="pt-lead" data-aos="fade-up">Explore insights, strategies, and expert tips on affiliate marketing in the CFD trading industry. Learn how to grow traffic, improve conversions, and maximise your affiliate earnings through time-tested marketing approaches.</p>
+    <div class="pt-hact ab-hact" data-aos="fade-up">
+      <a href="../../affiliate-registration.html" class="btn btn-primary btn-lg magnetic">Join Affiliate Program <svg class="ico"><use href="#i-arrow-right"/></svg></a>
+      <a href="#articles" class="btn btn-ghost btn-lg">Explore Articles <svg class="ico ab-down"><use href="#i-arrow-right"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURED ============ -->
+<section class="section pt-sec pt-light-2 ab-sec" id="featured" aria-labelledby="ab-feat-title">
+  <div class="container">
+    <div class="head">
+      <h2 class="h2" id="ab-feat-title" data-aos="fade-up">Featured Affiliate Insights</h2>
+      <p class="head-sub" data-aos="fade-up">Hand-picked articles to help you get started, optimise your strategy, and grow your forex affiliate performance faster.</p>
+    </div>
+    <div class="ab-grid ab-grid--feat">
+      <article class="ab-card ab-card--feat" data-topic="aff" data-aos="fade-up">
+        <a class="ab-media" href="https://www.startrader.com/knowledge-basics/what-is-a-trading-affiliate-program-what-are-its-benefits/" tabindex="-1" aria-hidden="true"><img src="../../assets/img/ab-card-affiliate-program-v1.webp" alt="" width="800" height="500" loading="lazy" decoding="async"></a>
+        <div class="ab-body">
+          <div class="ab-tags"><span class="ab-tag">Affiliates &amp; IBs</span><span class="ab-lvl">Basics</span></div>
+          <h3 class="ab-h"><a href="https://www.startrader.com/knowledge-basics/what-is-a-trading-affiliate-program-what-are-its-benefits/">What Is a Trading Affiliate Program? What Are Its Benefits?</a></h3>
+          <p class="ab-ex">How trading affiliate programmes work, how partners are rewarded for referred clients, and what to weigh before you join one.</p>
+          <span class="ab-more">Read article <svg class="ico"><use href="#i-arrow-right"/></svg></span>
+        </div>
+      </article>
+      <article class="ab-card ab-card--feat" data-topic="aff" data-aos="fade-up" data-aos-delay="100">
+        <a class="ab-media" href="https://www.startrader.com/knowledge-basics/forex-ib-vs-affiliates-what-is-the-difference/" tabindex="-1" aria-hidden="true"><img src="../../assets/img/ab-card-ib-vs-affiliates-v1.webp" alt="" width="800" height="500" loading="lazy" decoding="async"></a>
+        <div class="ab-body">
+          <div class="ab-tags"><span class="ab-tag">Affiliates &amp; IBs</span><span class="ab-lvl">Basics</span></div>
+          <h3 class="ab-h"><a href="https://www.startrader.com/knowledge-basics/forex-ib-vs-affiliates-what-is-the-difference/">Forex IB vs Affiliates: What Is the Difference?</a></h3>
+          <p class="ab-ex">Introducing brokers and affiliates both refer clients, but they are paid and work differently. Compare the two models side by side.</p>
+          <span class="ab-more">Read article <svg class="ico"><use href="#i-arrow-right"/></svg></span>
+        </div>
+      </article>
+      <article class="ab-card ab-card--feat" data-topic="aff" data-aos="fade-up" data-aos-delay="200">
+        <a class="ab-media" href="https://www.startrader.com/knowledge-basics/forex-introducing-broker-ib-a-short-guide/" tabindex="-1" aria-hidden="true"><img src="../../assets/img/ab-card-ib-guide-v1.webp" alt="" width="800" height="500" loading="lazy" decoding="async"></a>
+        <div class="ab-body">
+          <div class="ab-tags"><span class="ab-tag">Affiliates &amp; IBs</span><span class="ab-lvl">Basics</span></div>
+          <h3 class="ab-h"><a href="https://www.startrader.com/knowledge-basics/forex-introducing-broker-ib-a-short-guide/">Forex Introducing Broker (IB): A Short Guide</a></h3>
+          <p class="ab-ex">What an introducing broker does, how IB rebates are typically structured and how to get started as an IB.</p>
+          <span class="ab-more">Read article <svg class="ico"><use href="#i-arrow-right"/></svg></span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LATEST ============ -->
+<section class="section pt-sec pt-light ab-sec" id="articles" aria-labelledby="ab-latest-title">
+  <div class="container">
+    <div class="head">
+      <h2 class="h2" id="ab-latest-title" data-aos="fade-up">Latest Affiliate Marketing Articles</h2>
+      <p class="head-sub" data-aos="fade-up">All guides, strategies, and updates from our affiliate marketing blog.</p>
+    </div>
+    <div class="ab-tools" data-aos="fade-up">
+      <div class="ab-chips" role="group" aria-label="Filter articles by topic">
+        <button type="button" class="ab-chip is-on" data-f="all" aria-pressed="true">All Articles</button>
+        <button type="button" class="ab-chip" data-f="aff" aria-pressed="false">Affiliates &amp; IBs</button>
+        <button type="button" class="ab-chip" data-f="pamm" aria-pressed="false">PAMM Accounts</button>
+      </div>
+      <label class="ab-search"><span class="sr-only">Search articles</span><input type="search" id="abSearch" placeholder="Search articles" autocomplete="off"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.2-4.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></label>
+    </div>
+    <div class="ab-grid" id="abGrid">
+      <article class="ab-card" data-topic="pamm" data-aos="fade-up">
+        <a class="ab-media" href="https://www.startrader.com/knowledge-basics/pamm-trading-account-what-it-is-how-it-works/" tabindex="-1" aria-hidden="true"><img src="../../assets/img/ab-card-pamm-account-v1.webp" alt="" width="800" height="500" loading="lazy" decoding="async"></a>
+        <div class="ab-body">
+          <div class="ab-tags"><span class="ab-tag">PAMM Accounts</span><span class="ab-lvl">Basics</span></div>
+          <h3 class="ab-h"><a href="https://www.startrader.com/knowledge-basics/pamm-trading-account-what-it-is-how-it-works/">PAMM Trading Account: What It Is and How It Works</a></h3>
+          <p class="ab-ex">A plain-language look at percentage allocation management accounts and how profits and losses are shared between investors.</p>
+          <span class="ab-more">Read article <svg class="ico"><use href="#i-arrow-right"/></svg></span>
+        </div>
+      </article>
+      <article class="ab-card" data-topic="pamm" data-aos="fade-up" data-aos-delay="100">
+        <a class="ab-media" href="https://www.startrader.com/knowledge-basics/pamm-account-how-to-open-pamm-account/" tabindex="-1" aria-hidden="true"><img src="../../assets/img/ab-card-pamm-open-v1.webp" alt="" width="800" height="500" loading="lazy" decoding="async"></a>
+        <div class="ab-body">
+          <div class="ab-tags"><span class="ab-tag">PAMM Accounts</span><span class="ab-lvl">Basics</span></div>
+          <h3 class="ab-h"><a href="https://www.startrader.com/knowledge-basics/pamm-account-how-to-open-pamm-account/">PAMM Account: How to Open a PAMM Account</a></h3>
+          <p class="ab-ex">The steps to open a PAMM account, from choosing a manager to funding and monitoring your allocation.</p>
+          <span class="ab-more">Read article <svg class="ico"><use href="#i-arrow-right"/></svg></span>
+        </div>
+      </article>
+      <article class="ab-card" data-topic="pamm" data-aos="fade-up" data-aos-delay="200">
+        <a class="ab-media" href="https://www.startrader.com/knowledge-basics/pamm-vs-copy-trading/" tabindex="-1" aria-hidden="true"><img src="../../assets/img/ab-card-pamm-vs-copy-v1.webp" alt="" width="800" height="500" loading="lazy" decoding="async"></a>
+        <div class="ab-body">
+          <div class="ab-tags"><span class="ab-tag">PAMM Accounts</span><span class="ab-lvl">Basics</span></div>
+          <h3 class="ab-h"><a href="https://www.startrader.com/knowledge-basics/pamm-vs-copy-trading/">PAMM vs Copy Trading</a></h3>
+          <p class="ab-ex">Two ways to follow another trader. See how PAMM and copy trading differ on control, allocation and risk.</p>
+          <span class="ab-more">Read article <svg class="ico"><use href="#i-arrow-right"/></svg></span>
+        </div>
+      </article>
+      <article class="ab-card" data-topic="pamm" data-aos="fade-up">
+        <a class="ab-media" href="https://www.startrader.com/knowledge-basics/what-pamm-account-managers-do-kpis-responsibilities/" tabindex="-1" aria-hidden="true"><img src="../../assets/img/ab-card-pamm-managers-v1.webp" alt="" width="800" height="500" loading="lazy" decoding="async"></a>
+        <div class="ab-body">
+          <div class="ab-tags"><span class="ab-tag">PAMM Accounts</span><span class="ab-lvl">Basics</span></div>
+          <h3 class="ab-h"><a href="https://www.startrader.com/knowledge-basics/what-pamm-account-managers-do-kpis-responsibilities/">What PAMM Account Managers Do: KPIs and Responsibilities</a></h3>
+          <p class="ab-ex">The responsibilities of a PAMM manager and the performance and risk metrics investors use to assess one.</p>
+          <span class="ab-more">Read article <svg class="ico"><use href="#i-arrow-right"/></svg></span>
+        </div>
+      </article>
+      <article class="ab-card" data-topic="pamm" data-aos="fade-up" data-aos-delay="100">
+        <a class="ab-media" href="https://www.startrader.com/knowledge-intermediate/pamm-investment-how-it-works-risks/" tabindex="-1" aria-hidden="true"><img src="../../assets/img/ab-card-pamm-investment-v1.webp" alt="" width="800" height="500" loading="lazy" decoding="async"></a>
+        <div class="ab-body">
+          <div class="ab-tags"><span class="ab-tag">PAMM Accounts</span><span class="ab-lvl">Intermediate</span></div>
+          <h3 class="ab-h"><a href="https://www.startrader.com/knowledge-intermediate/pamm-investment-how-it-works-risks/">PAMM Investment: How It Works and the Risks</a></h3>
+          <p class="ab-ex">How PAMM investing allocates returns, and the risks to understand before committing capital to a managed account.</p>
+          <span class="ab-more">Read article <svg class="ico"><use href="#i-arrow-right"/></svg></span>
+        </div>
+      </article>
+      <article class="ab-card" data-topic="pamm" data-aos="fade-up" data-aos-delay="200">
+        <a class="ab-media" href="https://www.startrader.com/knowledge-intermediate/pamm-trading-on-mt4-mt5-setup-risks/" tabindex="-1" aria-hidden="true"><img src="../../assets/img/ab-card-pamm-mt4-mt5-v1.webp" alt="" width="800" height="500" loading="lazy" decoding="async"></a>
+        <div class="ab-body">
+          <div class="ab-tags"><span class="ab-tag">PAMM Accounts</span><span class="ab-lvl">Intermediate</span></div>
+          <h3 class="ab-h"><a href="https://www.startrader.com/knowledge-intermediate/pamm-trading-on-mt4-mt5-setup-risks/">PAMM Trading on MT4 and MT5: Setup and Risks</a></h3>
+          <p class="ab-ex">How PAMM accounts are set up on MetaTrader 4 and MetaTrader 5, and the platform risks to keep in mind.</p>
+          <span class="ab-more">Read article <svg class="ico"><use href="#i-arrow-right"/></svg></span>
+        </div>
+      </article>
+      <article class="ab-card" data-topic="pamm" data-aos="fade-up">
+        <a class="ab-media" href="https://www.startrader.com/knowledge-intermediate/best-forex-brokers-for-pamm-accounts-what-to-look-for/" tabindex="-1" aria-hidden="true"><img src="../../assets/img/ab-card-pamm-best-brokers-v1.webp" alt="" width="800" height="500" loading="lazy" decoding="async"></a>
+        <div class="ab-body">
+          <div class="ab-tags"><span class="ab-tag">PAMM Accounts</span><span class="ab-lvl">Intermediate</span></div>
+          <h3 class="ab-h"><a href="https://www.startrader.com/knowledge-intermediate/best-forex-brokers-for-pamm-accounts-what-to-look-for/">Best Forex Brokers for PAMM Accounts: What to Look For</a></h3>
+          <p class="ab-ex">The criteria that matter when choosing a broker for PAMM accounts, from regulation to reporting and execution.</p>
+          <span class="ab-more">Read article <svg class="ico"><use href="#i-arrow-right"/></svg></span>
+        </div>
+      </article>
+      <article class="ab-card" data-topic="pamm" data-aos="fade-up" data-aos-delay="100">
+        <a class="ab-media" href="https://www.startrader.com/knowledge-intermediate/pamm-account-brokers/" tabindex="-1" aria-hidden="true"><img src="../../assets/img/ab-card-pamm-brokers-v1.webp" alt="" width="800" height="500" loading="lazy" decoding="async"></a>
+        <div class="ab-body">
+          <div class="ab-tags"><span class="ab-tag">PAMM Accounts</span><span class="ab-lvl">Intermediate</span></div>
+          <h3 class="ab-h"><a href="https://www.startrader.com/knowledge-intermediate/pamm-account-brokers/">PAMM Account Brokers</a></h3>
+          <p class="ab-ex">What PAMM account brokers provide to managers and investors, and how their offerings compare.</p>
+          <span class="ab-more">Read article <svg class="ico"><use href="#i-arrow-right"/></svg></span>
+        </div>
+      </article>
+      <article class="ab-card" data-topic="pamm" data-aos="fade-up" data-aos-delay="200">
+        <a class="ab-media" href="https://www.startrader.com/knowledge-intermediate/pamm-trading-review/" tabindex="-1" aria-hidden="true"><img src="../../assets/img/ab-card-pamm-review-v1.webp" alt="" width="800" height="500" loading="lazy" decoding="async"></a>
+        <div class="ab-body">
+          <div class="ab-tags"><span class="ab-tag">PAMM Accounts</span><span class="ab-lvl">Intermediate</span></div>
+          <h3 class="ab-h"><a href="https://www.startrader.com/knowledge-intermediate/pamm-trading-review/">PAMM Trading Review</a></h3>
+          <p class="ab-ex">A balanced review of PAMM trading: where it can fit in a portfolio, its limitations and its risks.</p>
+          <span class="ab-more">Read article <svg class="ico"><use href="#i-arrow-right"/></svg></span>
+        </div>
+      </article>
+      <article class="ab-card" data-topic="aff" data-aos="fade-up">
+        <a class="ab-media" href="https://www.startrader.com/knowledge-basics/what-is-a-trading-affiliate-program-what-are-its-benefits/" tabindex="-1" aria-hidden="true"><img src="../../assets/img/ab-card-affiliate-program-v1.webp" alt="" width="800" height="500" loading="lazy" decoding="async"></a>
+        <div class="ab-body">
+          <div class="ab-tags"><span class="ab-tag">Affiliates &amp; IBs</span><span class="ab-lvl">Basics</span></div>
+          <h3 class="ab-h"><a href="https://www.startrader.com/knowledge-basics/what-is-a-trading-affiliate-program-what-are-its-benefits/">What Is a Trading Affiliate Program? What Are Its Benefits?</a></h3>
+          <p class="ab-ex">How trading affiliate programmes work, how partners are rewarded for referred clients, and what to weigh before you join one.</p>
+          <span class="ab-more">Read article <svg class="ico"><use href="#i-arrow-right"/></svg></span>
+        </div>
+      </article>
+      <article class="ab-card" data-topic="aff" data-aos="fade-up" data-aos-delay="100">
+        <a class="ab-media" href="https://www.startrader.com/knowledge-basics/forex-ib-vs-affiliates-what-is-the-difference/" tabindex="-1" aria-hidden="true"><img src="../../assets/img/ab-card-ib-vs-affiliates-v1.webp" alt="" width="800" height="500" loading="lazy" decoding="async"></a>
+        <div class="ab-body">
+          <div class="ab-tags"><span class="ab-tag">Affiliates &amp; IBs</span><span class="ab-lvl">Basics</span></div>
+          <h3 class="ab-h"><a href="https://www.startrader.com/knowledge-basics/forex-ib-vs-affiliates-what-is-the-difference/">Forex IB vs Affiliates: What Is the Difference?</a></h3>
+          <p class="ab-ex">Introducing brokers and affiliates both refer clients, but they are paid and work differently. Compare the two models side by side.</p>
+          <span class="ab-more">Read article <svg class="ico"><use href="#i-arrow-right"/></svg></span>
+        </div>
+      </article>
+      <article class="ab-card" data-topic="aff" data-aos="fade-up" data-aos-delay="200">
+        <a class="ab-media" href="https://www.startrader.com/knowledge-basics/forex-introducing-broker-ib-a-short-guide/" tabindex="-1" aria-hidden="true"><img src="../../assets/img/ab-card-ib-guide-v1.webp" alt="" width="800" height="500" loading="lazy" decoding="async"></a>
+        <div class="ab-body">
+          <div class="ab-tags"><span class="ab-tag">Affiliates &amp; IBs</span><span class="ab-lvl">Basics</span></div>
+          <h3 class="ab-h"><a href="https://www.startrader.com/knowledge-basics/forex-introducing-broker-ib-a-short-guide/">Forex Introducing Broker (IB): A Short Guide</a></h3>
+          <p class="ab-ex">What an introducing broker does, how IB rebates are typically structured and how to get started as an IB.</p>
+          <span class="ab-more">Read article <svg class="ico"><use href="#i-arrow-right"/></svg></span>
+        </div>
+      </article>
+    </div>
+    <p class="ab-empty" id="abEmpty" hidden>No articles match your search. Try another keyword or topic.</p>
+    <div class="ab-morerow" id="abMoreRow"><button type="button" class="ab-morebtn" id="abMore">Load More Articles</button></div>
+  </div>
+</section>
+
+<!-- ============ CONVERSION BANNER ============ -->
+<section class="cta-banner cta-banner--emblem" aria-labelledby="ab-cta-title">
+  <div class="cta-glow" aria-hidden="true"></div>
+  <div class="container cta-inner">
+    <h2 id="ab-cta-title" data-aos="fade-up">Turn your audience into <br>affiliate earnings</h2>
+    <p data-aos="fade-up">Join the STARTRADER affiliate programme and earn commissions for qualified clients you refer, subject to the applicable programme terms and conditions.</p>
+    <div class="cta-actions" data-aos="fade-up">
+      <a href="../../affiliate-registration.html" class="btn btn-primary btn-lg">Join Affiliate Program <svg class="ico"><use href="#i-arrow-right"/></svg></a>
+      <a href="../../partner.html" class="btn btn-ghost btn-lg">Explore Partnerships</a>
+    </div>
+  </div>
+  <div class="cta-emblem" aria-hidden="true">
+    <img src="../../assets/img/footer-emblem.webp" alt="STARTRADER glass emblem" width="1254" height="657" loading="lazy" decoding="async" data-aos="fade-up" data-aos-delay="100">
+  </div>
+</section>
+
+<script>
+(function(){
+  var grid=document.getElementById('abGrid'); if(!grid) return;
+  var cards=[].slice.call(grid.querySelectorAll('.ab-card')), chips=[].slice.call(document.querySelectorAll('.ab-chip')),
+      q=document.getElementById('abSearch'), more=document.getElementById('abMore'), moreRow=document.getElementById('abMoreRow'),
+      empty=document.getElementById('abEmpty'), PAGE=6, shown=PAGE, f='all';
+  function render(){
+    var term=(q.value||'').trim().toLowerCase(), hits=cards.filter(function(c){
+      return (f==='all'||c.getAttribute('data-topic')===f) && (!term||c.textContent.toLowerCase().indexOf(term)>-1);
+    });
+    cards.forEach(function(c){ c.hidden=true; });
+    hits.forEach(function(c,i){ if(i<shown){ c.hidden=false; c.classList.add('aos-animate'); } });
+    moreRow.hidden=hits.length<=shown; empty.hidden=hits.length>0;
+  }
+  chips.forEach(function(b){ b.addEventListener('click',function(){
+    f=b.getAttribute('data-f'); shown=PAGE;
+    chips.forEach(function(x){ var on=x===b; x.classList.toggle('is-on',on); x.setAttribute('aria-pressed',on); });
+    render();
+  }); });
+  q.addEventListener('input',function(){ shown=PAGE; render(); });
+  more.addEventListener('click',function(){ shown+=PAGE; render(); });
+  render();
+})();
+</script>
+
+</main>
+
+
+
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer" id="footer">
+  <div class="container">
+    <div class="foot-cols">
+      <div class="foot-col">
+        <span class="foot-head">Conditions</span>
+        <a href="../../getting-started.html">Account Opening</a><a href="../../accounts.html">Trading Account</a><a href="../../prime-ecn-account.html">Prime ECN</a><a href="../../funding.html">Funding &amp; Withdrawal</a>
+        <span class="foot-head mt">Partnership</span>
+        <a href="../../ib-register.html">Introducing Broker</a><a href="../../affiliate-registration.html">Affiliate</a><a href="../../money-manager.html">Money Manager</a><a href="../../institutional.html">Institutional</a>
+      </div>
+      <div class="foot-col">
+        <span class="foot-head">Platforms</span>
+        <a href="../../mt5.html">MT5</a><a href="../../mt4.html">MT4</a><a href="../../copy-trade.html">Copy Trade</a><a href="../../star-webtrader.html">STAR Web Trading</a><a href="../../webtrader.html">Web Trader</a><a href="../../trading-app.html">Mobile Apps</a><a href="../../pamm-trade.html">Pro-Link</a>
+        <span class="foot-head mt">Products</span>
+        <a href="../../forex.html">Forex</a><a href="../../cfd.html">CFD</a><a href="../../commodities.html">Commodities</a><a href="../../indices.html">Indices</a><a href="../../shares.html">Shares</a><a href="../../etf.html">ETFs</a>
+      </div>
+      <div class="foot-col">
+        <span class="foot-head">Education</span>
+        <a href="../../education.html">Knowledge Center</a><a href="../../market-analysis.html">Market Analysis</a><a href="../../glossary.html">Glossary</a><a href="../../news.html">News Room</a><a href="../../economiccalendar.html">Economic Calendar</a><a href="../../webinars.html">Webinars</a>
+        <span class="foot-head mt">Corporate</span>
+        <a href="../../regulation.html">Regulation</a><a href="../../legal-documents.html">Legal Documents</a><a href="../../insurance.html">Insurance</a><a href="../../liquidity-providers.html">Liquidity Providers</a>
+      </div>
+      <div class="foot-col">
+        <span class="foot-head">About</span>
+        <a href="../../company.html">Why STARTRADER</a><a href="../../corporate-social-responsibility.html">CSR</a><a href="../../events.html">Events</a><a href="../../media.html">Media Coverage</a><a href="../../achievement.html">Achievements</a><a href="../../announcements.html">Announcements</a><a href="https://www.startrader-careers.com/" target="_blank" rel="noopener">Careers<svg class="foot-ext" aria-hidden="true"><use href="#i-arrow-ur"/></svg></a><a href="../../help-center.html" target="_blank" rel="noopener">Help Center<svg class="foot-ext" aria-hidden="true"><use href="#i-arrow-ur"/></svg></a>
+        <span class="foot-head mt">Contact us</span>
+        <div class="foot-contact"><span>Support enquiries</span><a href="mailto:support@startrader.com">support@startrader.com</a></div>
+        <div class="foot-contact"><span>Partnerships</span><a href="mailto:partners@startrader.com">partners@startrader.com</a></div>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <span class="foot-brand"><img class="foot-logo" src="../../assets/img/logo-startrader.svg" alt="STARTRADER" width="180" height="35"><span class="foot-tag">Built on trust. Driven by growth.</span></span>
+      <div class="foot-partners">
+        <img class="fp-nba" src="../../assets/img/partner-nba.svg" alt="Official Partner of the NBA" height="30" width="45">
+        <img class="fp-porsche" loading="lazy" decoding="async" src="../../assets/img/partner-porsche.webp" alt="Official Partner of Porsche Carrera Cup Middle East" height="26" width="165">
+      </div>
+    </div>
+
+    <div class="foot-legal-row">
+      <div class="foot-copy">
+        <span>© 2026 STARTRADER. All rights reserved</span>
+        <a href="../../privacy-policy-app.html">Privacy Policy</a><a href="../../legal-documents.html">Terms &amp; Conditions</a><a href="../../legal-documents.html">Cookie Policy</a>
+      </div>
+      <div class="socials">
+        <a href="https://www.facebook.com/Startrader.International/" target="_blank" rel="noopener" aria-label="Facebook"><svg><use href="#i-facebook"/></svg></a>
+        <a href="https://x.com/startrader_int/" target="_blank" rel="noopener" aria-label="X"><svg><use href="#i-x"/></svg></a>
+        <a href="https://www.instagram.com/startrader.official/" target="_blank" rel="noopener" aria-label="Instagram"><svg><use href="#i-instagram"/></svg></a>
+        <a href="https://www.linkedin.com/company/startrader-official/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg><use href="#i-linkedin"/></svg></a>
+        <a href="https://www.youtube.com/@Startrader.international" target="_blank" rel="noopener" aria-label="YouTube"><svg><use href="#i-youtube"/></svg></a>
+        <a href="https://www.tiktok.com/@startraderofficial/" target="_blank" rel="noopener" aria-label="TikTok"><svg><use href="#i-tiktok"/></svg></a>
+      </div>
+    </div>
+
+    <div class="risk">
+      <span class="risk-head">RISK WARNING</span>
+      <p>Trading in leveraged derivative products, such as Foreign Exchange (Forex) and Contracts for Difference (CFDs), involves a high level of risk and may result in losses that exceed your initial deposit. These products may not be suitable for all investors. Leverage amplifies both potential profits and losses. When trading these instruments, you do not own or have any rights to the underlying assets. Past performance is not indicative of future results.</p>
+      <p>Before making any investment decisions, you should carefully assess your investment objectives, knowledge, experience, and financial situation. You should only engage in Forex and CFD trading if you possess sufficient knowledge and experience. STARTRADER assumes no liability for any losses incurred from trading, and all trading activities are undertaken at your own risk.</p>
+      <p>The content provided on this website is for general informational purposes only and does not take into account your individual financial circumstances, investment goals, or risk tolerance. You should review the legal documents available on our website to ensure a full understanding of the risks associated with CFD trading. If necessary, seek independent advice from qualified professionals before proceeding.</p>
+
+      <span class="risk-head">REGIONAL RESTRICTIONS</span>
+      <p>This website is not intended for distribution to, or use by, any person or entity who is a citizen or resident of certain jurisdictions, including, but not limited to the United States, and jurisdictions listed on the FATF "blacklist" or other major global sanctions lists. It is also not intended for distribution or use in any jurisdiction where such distribution or use would violate local laws or regulations.</p>
+
+      <span class="risk-head">REGULATOR INFORMATION</span>
+      <p>STARTRADER is the brand representing a network of regulated and licensed entities across various jurisdictions, each authorised to provide specific financial services in compliance with local regulations. Upon registration, you will be assigned to the appropriate entity based on your location, ensuring that all trading activities are governed by the applicable regulatory authority. While the relevant authorities have granted securities or investment dealer licenses to the licensees, they do not endorse the products or services offered by STARTRADER.</p>
+      <p><strong>STARTRADER</strong> Global Financial Consultation &amp; Financial Analysis L.L.C is a Category 5 licensee regulated by the Capital Market Authority (CMA) of the United Arab Emirates, with License No. 20200000241, authorised to carry out regulated activities of Introduction and Promotion in the UAE. Its registered office is located at Office 815, Al Manara Tower, Business Bay, Dubai, UAE. It is not authorised to provide brokerage services or execute client trades.</p>
+      <p><strong>STARTRADER</strong> Prime Global Pty Ltd is regulated by the Australian Securities and Investments Commission (ASIC), with ACN 156005668 and AFSL No. 421210. Its registered office is located at Level 35, 31 Market Street, Sydney, NSW 2000, Australia.</p>
+      <p><strong>STARTRADER</strong> International Pty Ltd is regulated by the Financial Sector Conduct Authority (FSCA) of South Africa, with FSP No. 52464 and Registration No. 2022/435897/07. Its registered office is located at 18 Cavendish Road, Claremont, Cape Town, Western Cape, 7708, South Africa.</p>
+      <p><strong>STARTRADER</strong> Limited is regulated by the Financial Services Authority (FSA) of Seychelles, with License No. SD049 and Registration No. 8427362-1. Its registered office is located at Suite 3, Global Village, Jivan's Complex, Mont Fleuri, Mahe, Seychelles.</p>
+      <p><strong>STARTRADER</strong> Financial Markets Limited is regulated by the Financial Services Commission (FSC) of Mauritius, with Company No. 212229 GBC and License No. GB24203371. Its registered office is located at Suite 201, 2nd Floor, The Catalyst, 40 Silicon Avenue, Ebene Cybercity, Mauritius.</p>
+      <p><strong>STARTRADER</strong> (CY) Limited, registered in the Republic of Cyprus under registration number HE421001 with its registered address at 160 Archiepiskopou Makariou III, 1st Floor, 3026 Limassol, Cyprus. This entity does not offer regulated financial products or provide trading services.</p>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Back to top"><svg><use href="#i-caret-up"/></svg></button>
+
+<!-- ============ CHAT WIDGET ============ -->
+<button class="chat-fab" id="chatFab" aria-label="Chat with support" aria-expanded="false">
+  <img class="chat-fab-ico" src="../../assets/img/chat-icon.svg" alt="Open live chat with STARTRADER support" width="27" height="27">
+</button>
+<div class="chat-panel" id="chatPanel" role="dialog" aria-label="Support chat" aria-hidden="true">
+  <div class="chat-head">
+    <span class="chat-avatar"><svg><use href="#i-headset"/></svg><i class="chat-online"></i></span>
+    <div class="chat-head-txt"><b>STARTRADER Support</b><em>Typically replies in a few minutes</em></div>
+    <button class="chat-close" id="chatClose" aria-label="Close chat"><svg><use href="#i-close"/></svg></button>
+  </div>
+  <div class="chat-body">
+    <div class="chat-msg">👋 Hi there! Welcome to STARTRADER. How can we help you today?</div>
+    <div class="chat-quick">
+      <a href="https://www.startrader.com/live-account/" class="chat-chip">Open a live account</a>
+      <a href="../../trading-app.html" class="chat-chip">Download a platform</a>
+      <a href="#form" class="chat-chip">Send us a message</a>
+      <a href="#footer" class="chat-chip">Contact us</a>
+    </div>
+  </div>
+  <form class="chat-input" id="chatForm">
+    <input type="text" id="chatText" placeholder="Type your message…" aria-label="Message" autocomplete="off">
+    <button type="submit" class="chat-send" aria-label="Send"><svg><use href="#i-send"/></svg></button>
+  </form>
+</div>
+
+<!-- ============ COOKIE CONSENT ============ -->
+<div class="cookie" id="cookie" role="dialog" aria-label="Cookie notice">
+  <span class="cookie-ic"><svg><use href="#i-cookie"/></svg></span>
+  <span class="cookie-text">We use cookies to enhance your experience on this website.</span>
+  <a href="../../legal-documents.html" class="cookie-more">More details</a>
+  <button class="cookie-x" id="cookieClose" aria-label="Accept and close"><svg><use href="#i-close"/></svg></button>
+</div>
+
+<script src="../../assets/js/vendor/gsap.min.js" defer></script>
+<script src="../../assets/js/vendor/ScrollTrigger.min.js" defer></script>
+<script src="../../assets/js/vendor/lenis.min.js" defer></script>
+<script src="../../assets/js/vendor/aos.min.js" defer></script>
+<script src="../../assets/js/main.min.js?v=pb35" defer></script>
+</body>
+</html>
