@@ -303,6 +303,76 @@
   .ab-pts{grid-template-columns:1fr}
   .ab-band-act .ot-btn,.ab-morerow .ot-btn{width:100%}
 }
+
+/* ---------- live startrader.com header + footer (classic chrome, from the Partner revamp) ---------- */
+.lv{--lv-navy:#0d0d4b;--lv-navy-h:#16166a;--lv-cyan:#11e9d7;--lv-cyan-soft:#d9f8f5;--lv-mint:#ecfafe;--lv-mint-2:#f1fbfd;--lv-text:#1c1f2a}
+.lv-wrap{width:min(1180px,calc(100% - 40px));margin-inline:auto}
+.lv-btn{display:inline-flex;align-items:center;justify-content:center;height:38px;padding:0 18px;border-radius:5px;font-size:12px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;white-space:nowrap;text-decoration:none;transition:background .2s,transform .2s}
+.lv-btn:hover{transform:translateY(-1px)}
+.lv-btn-cyan{background:var(--lv-cyan);color:var(--lv-navy)}.lv-btn-cyan:hover{background:#2ff0e0}
+.lv-btn-navy{background:var(--lv-navy);color:var(--lv-cyan)}.lv-btn-navy:hover{background:var(--lv-navy-h)}
+.lv-topbar{background:var(--lv-navy);color:#fff;text-align:center;font-size:11px;line-height:1.5;padding:7px 12px}
+.lv-topbar p{margin:0}.lv-topbar strong{font-weight:700}
+.lv-util{background:#fff;border-bottom:1px solid #eef3f6}
+.lv-util-in{display:flex;align-items:center;justify-content:space-between;min-height:58px;gap:16px}
+.lv-tabs{display:flex;gap:18px}
+.lv-tabs a{font-size:12.5px;font-weight:600;letter-spacing:.02em;text-transform:uppercase;color:var(--lv-navy);padding:6px 0;border-bottom:2px solid transparent;text-decoration:none}
+.lv-tabs a[aria-current="page"]{border-bottom-color:var(--lv-cyan)}
+.lv-acts{display:flex;gap:10px}
+.lv-header{position:relative;z-index:30;background:var(--lv-mint)}
+.lv-header-in{display:flex;align-items:center;gap:28px;min-height:70px}
+.lv-brand img{display:block;height:34px;width:auto}
+.lv-partners{display:flex;align-items:center;gap:18px;padding-left:22px;border-left:1px solid rgba(13,13,75,.14);margin-left:6px}
+.lv-partners img{height:30px;width:auto}.lv-partners img.lv-porsche{height:24px}
+.lv-nav{display:flex;gap:30px;margin-left:auto}
+.lv-nav a{font-size:13px;font-weight:600;letter-spacing:.03em;text-transform:uppercase;color:var(--lv-navy);padding:8px 0;border-bottom:2px solid transparent;text-decoration:none}
+.lv-nav a:hover{border-bottom-color:var(--lv-cyan)}
+.lv-right{display:flex;align-items:center;gap:18px}
+.lv-lang{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.03em;color:var(--lv-navy);text-decoration:none}
+.lv-lang img{width:18px;height:18px}
+.lv-burger{display:none;width:42px;height:42px;border:0;background:none;cursor:pointer;flex-direction:column;justify-content:center;gap:5px;padding:8px}
+.lv-burger span{display:block;height:2px;background:var(--lv-navy);border-radius:2px}
+.lv-footer{background:#fff;padding:60px 0 44px;color:var(--lv-text)}
+.lv-foot-top{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:36px}
+.lv-foot-top img{height:52px;width:auto}.lv-foot-top img.lv-porsche{height:44px}
+.lv-foot-cols{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:22px}
+.lv-foot-col h4{font-size:12.5px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;color:var(--lv-navy);margin:0 0 8px}
+.lv-foot-col a{display:block;padding:5px 0;font-size:13px;color:var(--lv-text);text-decoration:none}
+.lv-foot-col a:hover{color:var(--lv-navy);text-decoration:underline;text-underline-offset:3px}
+.lv-foot-social{margin-top:44px}
+.lv-foot-social h4{font-size:13px;font-weight:700;color:var(--lv-navy);margin:0}
+.lv-socials{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.lv-socials a{width:40px;height:40px;border-radius:8px;background:var(--lv-mint-2);display:grid;place-items:center;transition:background .2s}
+.lv-socials a:hover{background:var(--lv-cyan-soft)}
+.lv-socials img{width:18px;height:18px}
+.lv-risk{background:var(--lv-navy);color:#dfe3f3;padding:48px 0 40px;font-size:12px;line-height:1.75}
+.lv-risk h5{font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--lv-cyan);margin:20px 0 8px}
+.lv-risk h5:first-child{margin-top:0}
+.lv-risk p{margin:0 0 10px}.lv-risk strong{color:#fff}
+.lv-risk .lv-copy{margin-top:18px;font-weight:700;color:#fff}
+/* the shell's fixed dark header is replaced, so the hero no longer clears it */
+.lv .ot-hero{padding-top:clamp(40px,5vw,64px)}
+@media (max-width:1080px){
+  .lv-nav{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;gap:0;padding:8px 0 12px;background:var(--lv-mint);border-top:1px solid rgba(13,13,75,.08)}
+  .lv-nav.is-open{display:flex}
+  .lv-nav a{padding:12px 20px;border:0}
+  .lv-header-in{gap:16px}.lv-right{margin-left:auto}
+  .lv-burger{display:flex}.lv-partners{display:none}
+  .lv-foot-cols{grid-template-columns:repeat(4,minmax(0,1fr));gap:26px 20px}
+}
+@media (max-width:720px){
+  .lv-topbar{font-size:10.5px}.lv-topbar br{display:none}
+  .lv-util-in{min-height:52px}
+  .lv-acts .lv-btn{height:34px;padding:0 12px;font-size:11px}
+  .lv-lang{display:none}
+  .lv-header-in{min-height:62px}.lv-brand img{height:28px}
+  .lv-foot-top{flex-direction:column;align-items:flex-start}
+  .lv-foot-cols{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:480px){
+  .lv-util-in{flex-wrap:wrap;row-gap:6px;padding:8px 0;min-height:0}
+  .lv-acts{width:100%;justify-content:flex-end;gap:6px}
+}
 </style>
   <script type="application/ld+json">
 {
@@ -422,7 +492,7 @@
 }
   </script>
 </head>
-<body class="prx light-top ot">
+<body class="prx light-top ot lv">
 
 
 
@@ -485,235 +555,46 @@
 
 <a class="skip-link" href="#main">Skip to content</a>
 
-<!-- ============ TOP DISCLAIMER BAR ============ -->
-<div class="topbar" role="note">
-  <div class="container">
-    <p><strong>Disclaimer:</strong> CFDs are complex instruments and come with a high risk of losing money rapidly due to leverage. You should consider whether you understand how CFDs work and whether you can afford to take the high risk of losing your money.</p>
+<!-- ============ LIVE-SITE HEADER (classic startrader.com) ============ -->
+<div class="lv-topbar" role="note">
+  <p><strong>Disclaimer:</strong> CFDs are complex instruments and come with a high risk of losing money rapidly due to leverage.<br>You should consider whether you understand how CFDs work and whether you can afford to take the high risk of losing your money.</p>
+</div>
+<div class="lv-util">
+  <div class="lv-wrap lv-util-in">
+    <nav class="lv-tabs" aria-label="Site switch">
+      <a href="https://www.startrader.com/">Trader</a>
+      <a href="https://www.startrader.com/partner/" aria-current="page">Partner</a>
+    </nav>
+    <div class="lv-acts">
+      <a class="lv-btn lv-btn-cyan" href="https://www.startrader.com/live-account/">Open Live Account</a>
+      <a class="lv-btn lv-btn-navy" href="https://myaccount.startrader.com/login">Login</a>
+    </div>
   </div>
 </div>
-
-<!-- ============ HEADER / NAV ============ -->
-<header class="site-header" id="siteHeader">
-  <div class="container nav">
-    <div class="nav-brandwrap">
-      <a href="../../index.html" class="brand" aria-label="STARTRADER home">
-        <img src="../../assets/img/logo-startrader.svg" alt="STARTRADER" width="180" height="35" />
-      </a>
-      <span class="hp-divider" aria-hidden="true"></span>
-      <span class="header-partners">
-        <img class="hp-logo hp-nba" src="../../assets/img/nav-nba.svg" alt="NBA" width="156" height="92" loading="lazy">
-        <img class="hp-logo hp-porsche" src="../../assets/img/nav-porsche.svg" alt="Porsche Carrera Cup Middle East" width="121" height="34" loading="lazy">
-      </span>
-    </div>
-
-    <nav class="nav-menu" aria-label="Primary">
-      <div class="nav-item has-drop has-mega">
-        <button class="nav-link" aria-expanded="false">Trading <svg class="caret"><use href="#i-chevron-down"/></svg></button>
-        <div class="mega" role="menu">
-          <div class="mega-main">
-          <div class="mega-col">
-            <span class="mega-head">Getting Started</span>
-            <a href="../../getting-started.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-user-plus"/></svg></span><span class="mega-txt"><b>Account Opening</b></span></a>
-            <a href="../../accounts.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-id"/></svg></span><span class="mega-txt"><b>Trading Account</b></span></a>
-            <a href="../../prime-ecn-account.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-bolt"/></svg></span><span class="mega-txt"><b>Prime ECN</b></span></a>
-            <a href="../../funding.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>Funding &amp; Withdrawal</b></span></a>
-          </div>
-          <div class="mega-col">
-            <span class="mega-head">Platforms</span>
-            <a href="../../mt5.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-monitor"/></svg></span><span class="mega-txt"><b>MT5</b></span></a>
-            <a href="../../mt4.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-monitor"/></svg></span><span class="mega-txt"><b>MT4</b></span></a>
-            <a href="../../copy-trade.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-copy"/></svg></span><span class="mega-txt"><b>Copy Trade</b></span></a>
-            <a href="../../star-copy.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-doc"/></svg></span><span class="mega-txt"><b>STAR Copy <span class="mega-badge">New</span></b></span></a>
-            <a href="../../star-webtrader.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-cfd"/></svg></span><span class="mega-txt"><b>STAR Web Trading <span class="mega-badge">New</span></b></span></a>
-            <div class="mega-sub">
-              <a href="../../webtrader.html" class="mega-item mega-sub-toggle"><span class="mega-ico"><svg><use href="#i-window"/></svg></span><span class="mega-txt"><b>Web Trader</b></span><svg class="mega-subchev"><use href="#i-chevron-down"/></svg></a>
-              <div class="mega-subitems">
-                <a href="../../webtrader-mt4.html">MT4 WebTrader</a>
-                <a href="../../webtrader-mt5.html">MT5 WebTrader</a>
-              </div>
-            </div>
-            <a href="../../trading-app.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-phone"/></svg></span><span class="mega-txt"><b>Mobile Apps</b></span></a>
-            <a href="../../pamm-trade.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-plug"/></svg></span><span class="mega-txt"><b>Pro-Link</b></span></a>
-          </div>
-          <div class="mega-col">
-            <span class="mega-head">Products</span>
-            <a href="../../forex.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-swap"/></svg></span><span class="mega-txt"><b>Forex</b></span></a>
-            <a href="../../cfd.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-cfd"/></svg></span><span class="mega-txt"><b>CFD</b></span></a>
-            <a href="../../commodities.html" class="mega-item mega-item-parent" data-fly="commodities"><span class="mega-ico"><svg><use href="#i-droplet"/></svg></span><span class="mega-txt"><b>Commodities</b></span><svg class="mega-chev" aria-hidden="true"><use href="#i-chevron-right"/></svg></a>
-            <a href="../../indices.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>Indices</b></span></a>
-            <a href="../../shares.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-pie"/></svg></span><span class="mega-txt"><b>Shares</b></span></a>
-            <a href="../../etf.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-layers"/></svg></span><span class="mega-txt"><b>ETFs</b></span></a>
-          </div>
-          </div>
-          <div class="mega-flyout" aria-hidden="true"><div class="fly-inner" data-fly-panel="commodities">
-            <a class="fly-title fly-title-link" href="../../commodities.html">Commodities <svg class="fly-title-go"><use href="#i-arrow-right"/></svg></a>
-            <div class="fly-group">
-              <span class="fly-head"><a href="../../commodities/energies.html">Energies</a></span>
-              <a href="../../commodities/brent-oil.html">Brent Oil</a>
-              <a href="../../commodities/natural-gas.html">Natural Gas</a>
-              <a href="../../commodities/heating-oil.html">Heating Oil</a>
-            </div>
-            <div class="fly-group">
-              <span class="fly-head"><a href="../../metals.html">Metals</a></span>
-              <a href="../../commodities/gold-247.html">Gold 24/7 <span class="mega-badge">New</span></a>
-              <a href="../../commodities/silver.html">Silver</a>
-              <a href="../../commodities/copper.html">Copper</a>
-              <a href="../../commodities/platinum.html">Platinum</a>
-            <a href="../../commodities/palladium.html">Palladium</a>
-            </div>
-            <div class="fly-group">
-              <span class="fly-head"><a href="../../agriculture.html">Agriculture</a></span>
-              <a href="../../commodities/wheat.html">Wheat</a>
-              <a href="../../commodities/corn.html">Corn</a>
-              <a href="../../commodities/soybeans.html">Soybeans</a>
-              <a href="../../commodities/coffee.html">Coffee</a>
-              <a href="../../commodities/sugar.html">Sugar</a>
-              <a href="../../commodities/cocoa.html">Cocoa</a>
-              <a href="../../commodities/cotton.html">Cotton</a>
-            </div>
-          </div></div>
-        </div>
-      </div>
-            <div class="nav-item has-drop has-mega">
-        <button class="nav-link" aria-expanded="false">Education <svg class="caret"><use href="#i-chevron-down"/></svg></button>
-        <div class="mega mega--center" role="menu">
-          <div class="mega-main">
-            <div class="mega-col">
-              <span class="mega-head">Learn</span>
-              <a href="../../education.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-box"/></svg></span><span class="mega-txt"><b>Knowledge Center</b></span></a>
-              <a href="../../glossary.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-doc"/></svg></span><span class="mega-txt"><b>Glossary</b></span></a>
-              <a href="../../market-analysis.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>Financial Market Analysis</b></span></a>
-            </div>
-            <div class="mega-col">
-              <span class="mega-head">Analysis</span>
-              <a href="../../news.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-window"/></svg></span><span class="mega-txt"><b>News Room</b></span></a>
-              <a href="../../economiccalendar.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-clock"/></svg></span><span class="mega-txt"><b>Economic Calendar</b></span></a>
-            </div>
-            <div class="mega-col">
-              <span class="mega-head">Academy</span>
-              <a href="../../webinars.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-play"/></svg></span><span class="mega-txt"><b>Webinars</b></span></a>
-            </div>
-          </div>
-        </div>
-      </div>
-            <div class="nav-item has-drop has-mega">
-        <button class="nav-link" aria-expanded="false">Promotions <svg class="caret"><use href="#i-chevron-down"/></svg></button>
-        <div class="mega mega--promo mega--center" role="menu">
-          <div class="mega-main">
-            <div class="mega-col">
-              <span class="mega-head">Promotions</span>
-              <a href="../../promotions.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-send"/></svg></span><span class="mega-txt"><b>Our Promotions</b></span></a>
-              <a href="../../gold-cashback.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-clock"/></svg></span><span class="mega-txt"><b>Gold 24/7 Cashback</b></span></a>
-              <a href="../../point-mall.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>Point Mall</b></span></a>
-              <a href="../../star-loyalty.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-star"/></svg></span><span class="mega-txt"><b>STAR Loyalty</b></span></a>
-              <a href="../../deposit-bonus.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-chart"/></svg></span><span class="mega-txt"><b>Deposit Bonuses</b></span></a>
-              <a href="../../switch-allowance.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-swap"/></svg></span><span class="mega-txt"><b>1% Switch Allowance</b></span></a>
-              <a href="../../vps.html" class="mega-item"><span class="mega-ico"><svg><use href="#i-plug"/></svg></span><span class="mega-txt"><b>VPS</b></span></a>
-            </div>
-          </div>
-        </div>
-      </div>
-            <div class="nav-item has-drop has-mega">
-        <button class="nav-link" aria-expanded="false">Company <svg class="caret"><use href="#i-chevron-down"/></svg></button>
-        <div class="mega mega--center" role="menu">
-          <div class="mega-main">
-            <div class="mega-col">
-              <span class="mega-head">About</span>
-              <a href="../../company.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-shield"/></svg></span><span class="mega-txt"><b>Why STARTRADER</b></span></a>
-              <a href="../../corporate-social-responsibility.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-user"/></svg></span><span class="mega-txt"><b>CSR</b></span></a>
-              <a href="../../events.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-clock"/></svg></span><span class="mega-txt"><b>Events</b></span></a>
-              <div class="mega-sub">
-                <a href="../../sponsorship.html" class="mega-item mega-item--tight mega-sub-toggle"><span class="mega-ico"><svg><use href="#i-star"/></svg></span><span class="mega-txt"><b>Sponsorship</b></span><svg class="mega-subchev"><use href="#i-chevron-down"/></svg></a>
-                <div class="mega-subitems">
-                  <a href="../../sponsorship/nba.html">Official Partner of the NBA</a>
-                  <a href="../../sponsorship/pccme.html">Official Partner of the PCCME</a>
-                  <a href="../../sponsorship/icc.html">ICC Men&rsquo;s T20 World Cup 2026</a>
-                  <a href="../../sponsorship/asia-cup-2025.html">UAE National Cricket Team</a>
-                  <a href="../../sponsorship/pfl-champions-series.html">PFL Champions Series</a>
-                  <a href="../../sponsorship/mena.html">MENA Investment Congress 2025</a>
-                </div>
-              </div>
-              <a href="../../media.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-doc"/></svg></span><span class="mega-txt"><b>Media Coverage</b></span></a>
-              <a href="../../achievement.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-globe"/></svg></span><span class="mega-txt"><b>Achievements</b></span></a>
-              <a href="../../announcements.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-send"/></svg></span><span class="mega-txt"><b>Announcements</b></span></a>
-              <a href="https://www.startrader-careers.com/" target="_blank" rel="noopener" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-user-plus"/></svg></span><span class="mega-txt"><b>Careers<svg class="mega-ext" aria-hidden="true"><use href="#i-arrow-ur"/></svg></b></span></a>
-              <a href="../../help-center.html" target="_blank" rel="noopener" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-headset"/></svg></span><span class="mega-txt"><b>Help Center<svg class="mega-ext" aria-hidden="true"><use href="#i-arrow-ur"/></svg></b></span></a>
-              <a href="../../contact.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-bubble"/></svg></span><span class="mega-txt"><b>Contact Us</b></span></a>
-            </div>
-            <div class="mega-col">
-              <span class="mega-head">Corporate</span>
-              <a href="../../regulation.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-id"/></svg></span><span class="mega-txt"><b>Regulation</b></span></a>
-              <a href="../../legal-documents.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-doc"/></svg></span><span class="mega-txt"><b>Legal Documents</b></span></a>
-              <div class="mega-sub">
-                <a href="../../insurance.html" class="mega-item mega-item--tight mega-sub-toggle"><span class="mega-ico"><svg><use href="#i-shield"/></svg></span><span class="mega-txt"><b>Insurance</b></span><svg class="mega-subchev"><use href="#i-chevron-down"/></svg></a>
-                <div class="mega-subitems">
-                  <a href="../../lloyd-insurance.html">Lloyd&rsquo;s Insurance</a>
-                  <a href="../../financial-commission.html">Financial Commission</a>
-                </div>
-              </div>
-              <a href="../../liquidity-providers.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-droplet"/></svg></span><span class="mega-txt"><b>Liquidity Providers</b></span></a>
-            </div>
-            <div class="mega-col">
-              <span class="mega-head">Partnership</span>
-              <a href="../../partner.html" class="mega-item mega-item--tight" aria-current="page"><span class="mega-ico"><svg><use href="#i-user"/></svg></span><span class="mega-txt"><b>Partner</b></span></a>
-              <a href="../../ib-register.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-user-plus"/></svg></span><span class="mega-txt"><b>Introducing Broker</b></span></a>
-              <a href="../../affiliate-registration.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-globe"/></svg></span><span class="mega-txt"><b>Affiliate</b></span></a>
-              <a href="../../money-manager.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-wallet"/></svg></span><span class="mega-txt"><b>Money Manager</b></span></a>
-              <a href="../../institutional.html" class="mega-item mega-item--tight"><span class="mega-ico"><svg><use href="#i-box"/></svg></span><span class="mega-txt"><b>Institutional</b></span></a>
-            </div>
-          </div>
-        </div>
-      </div>
+<header class="lv-header">
+  <div class="lv-wrap lv-header-in">
+    <a class="lv-brand" href="https://www.startrader.com/" aria-label="STARTRADER home"><img src="../../assets/img/live/logo_black.webp" alt="STARTRADER" width="310" height="41"></a>
+    <span class="lv-partners">
+      <img src="../../assets/img/live/logo-nba-header.webp" alt="NBA" width="131" height="87">
+      <img class="lv-porsche" src="../../assets/img/live/logo-porsche-header.webp" alt="Porsche Carrera Cup Middle East" width="225" height="87">
+    </span>
+    <nav class="lv-nav" id="lvNav" aria-label="Primary">
+      <a href="https://www.startrader.com/forex/">Trading</a>
+      <a href="https://www.startrader.com/education/">Education</a>
+      <a href="https://www.startrader.com/promotions/">Promotions</a>
+      <a href="https://www.startrader.com/company/">Company</a>
     </nav>
-
-    <div class="nav-right">
-      <button class="lang" id="langBtn" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="langPop" aria-label="Select language">
-        <svg class="lang-globe" aria-hidden="true"><use href="#i-globe"/></svg>
-        <span class="lang-code" id="langCode">EN</span>
-        <svg class="lang-caret" aria-hidden="true"><use href="#i-chevron-down"/></svg>
-      </button>
-      <div class="lang-pop" id="langPop" role="dialog" aria-label="Select language" aria-hidden="true">
-        <div class="lp-head">
-          <span class="lp-title">Languages</span>
-          <button class="lp-close" id="langClose" type="button" aria-label="Close language menu"><svg><use href="#i-close"/></svg></button>
-        </div>
-        <div class="lp-search">
-          <svg class="lp-search-ic" viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="6.4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M13.8 13.8L18 18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
-          <input type="text" id="langSearch" placeholder="Search Language" autocomplete="off" spellcheck="false">
-        </div>
-        <div class="lp-grid" id="langGrid">
-          <button class="lp-item is-active" type="button" data-code="EN"><b>English</b></button>
-          <button class="lp-item" type="button" data-code="ZH-CN"><b>简体中文</b> Simplified Chinese</button>
-          <button class="lp-item" type="button" data-code="KO"><b>한국어</b> Korean</button>
-          <button class="lp-item" type="button" data-code="MS"><b>Melayu</b> Malay</button>
-          <button class="lp-item" type="button" data-code="VI"><b>Việt</b> Vietnamese</button>
-          <button class="lp-item" type="button" data-code="TH"><b>ภาษาไทย</b> Thai</button>
-          <button class="lp-item" type="button" data-code="ID"><b>Indonesian</b> Indonesian</button>
-          <button class="lp-item" type="button" data-code="AR"><b>العربية</b> Arabic</button>
-          <button class="lp-item" type="button" data-code="JA"><b>日本語</b> Japanese</button>
-          <button class="lp-item" type="button" data-code="ZH-TW"><b>繁體中文</b> Traditional Chinese</button>
-          <button class="lp-item" type="button" data-code="FR"><b>Français</b> French</button>
-          <button class="lp-item" type="button" data-code="ES"><b>Español</b> Spanish</button>
-          <button class="lp-item" type="button" data-code="PT"><b>Português</b> Portuguese</button>
-          <button class="lp-item" type="button" data-code="DE"><b>Deutsch</b> German</button>
-          <button class="lp-item" type="button" data-code="FA"><b>فارسی</b> Persian</button>
-          <button class="lp-item" type="button" data-code="IT"><b>Italiano</b> Italian</button>
-          <button class="lp-item" type="button" data-code="RU"><b>Русский язык</b> Russian</button>
-          <button class="lp-item" type="button" data-code="TR"><b>Türkçe</b> Turkish</button>
-          <button class="lp-item" type="button" data-code="PL"><b>Polski</b> Polish</button>
-          <button class="lp-item" type="button" data-code="HI"><b>हिंदी</b> Hindi</button>
-          <button class="lp-item" type="button" data-code="NL"><b>Nederlands</b> Dutch</button>
-        </div>
-        <p class="lp-empty" hidden>No languages found</p>
-      </div>
-      <a href="https://myaccount.startrader.com/login" class="login">Login</a>
-      <a href="https://www.startrader.com/live-account/" class="btn btn-primary btn-sm nav-cta">Open Live Account</a>
-      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+    <div class="lv-right">
+      <a class="lv-lang" href="https://www.startrader.com/partner/"><img src="../../assets/img/live/change_language_icon_new_v2.svg" alt="" width="18" height="18">English</a>
+      <a class="lv-btn lv-btn-navy" href="https://www.startrader.com/prime-ecn-account/">Starprime</a>
+      <button class="lv-burger" id="lvBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="lvNav"><span></span><span></span><span></span></button>
     </div>
   </div>
 </header>
+<script>
+(function(){var b=document.getElementById('lvBurger'),n=document.getElementById('lvNav');if(b&&n)b.addEventListener('click',function(){var o=n.classList.toggle('is-open');b.setAttribute('aria-expanded',o?'true':'false');});})();
+</script>
+
 
 <!-- Mobile menu -->
 <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
@@ -963,80 +844,54 @@
 
 
 
-<!-- ============ FOOTER ============ -->
-<footer class="site-footer" id="footer">
-  <div class="container">
-    <div class="foot-cols">
-      <div class="foot-col">
-        <span class="foot-head">Conditions</span>
-        <a href="../../getting-started.html">Account Opening</a><a href="../../accounts.html">Trading Account</a><a href="../../prime-ecn-account.html">Prime ECN</a><a href="../../funding.html">Funding &amp; Withdrawal</a>
-        <span class="foot-head mt">Partnership</span>
-        <a href="../../ib-register.html">Introducing Broker</a><a href="../../affiliate-registration.html">Affiliate</a><a href="../../money-manager.html">Money Manager</a><a href="../../institutional.html">Institutional</a>
-      </div>
-      <div class="foot-col">
-        <span class="foot-head">Platforms</span>
-        <a href="../../mt5.html">MT5</a><a href="../../mt4.html">MT4</a><a href="../../copy-trade.html">Copy Trade</a><a href="../../star-webtrader.html">STAR Web Trading</a><a href="../../webtrader.html">Web Trader</a><a href="../../trading-app.html">Mobile Apps</a><a href="../../pamm-trade.html">Pro-Link</a>
-        <span class="foot-head mt">Products</span>
-        <a href="../../forex.html">Forex</a><a href="../../cfd.html">CFD</a><a href="../../commodities.html">Commodities</a><a href="../../indices.html">Indices</a><a href="../../shares.html">Shares</a><a href="../../etf.html">ETFs</a>
-      </div>
-      <div class="foot-col">
-        <span class="foot-head">Education</span>
-        <a href="../../education.html">Knowledge Center</a><a href="../../market-analysis.html">Market Analysis</a><a href="../../glossary.html">Glossary</a><a href="../../news.html">News Room</a><a href="../../economiccalendar.html">Economic Calendar</a><a href="../../webinars.html">Webinars</a>
-        <span class="foot-head mt">Corporate</span>
-        <a href="../../regulation.html">Regulation</a><a href="../../legal-documents.html">Legal Documents</a><a href="../../insurance.html">Insurance</a><a href="../../liquidity-providers.html">Liquidity Providers</a>
-      </div>
-      <div class="foot-col">
-        <span class="foot-head">About</span>
-        <a href="../../company.html">Why STARTRADER</a><a href="../../corporate-social-responsibility.html">CSR</a><a href="../../events.html">Events</a><a href="../../media.html">Media Coverage</a><a href="../../achievement.html">Achievements</a><a href="../../announcements.html">Announcements</a><a href="https://www.startrader-careers.com/" target="_blank" rel="noopener">Careers<svg class="foot-ext" aria-hidden="true"><use href="#i-arrow-ur"/></svg></a><a href="../../help-center.html" target="_blank" rel="noopener">Help Center<svg class="foot-ext" aria-hidden="true"><use href="#i-arrow-ur"/></svg></a>
-        <span class="foot-head mt">Contact us</span>
-        <div class="foot-contact"><span>Support enquiries</span><a href="mailto:support@startrader.com">support@startrader.com</a></div>
-        <div class="foot-contact"><span>Partnerships</span><a href="mailto:partners@startrader.com">partners@startrader.com</a></div>
-      </div>
+<footer class="lv-footer" id="footer">
+  <div class="lv-wrap">
+    <div class="lv-foot-top">
+      <img src="../../assets/img/live/logo-nba-footer.webp" alt="Official Partner of the NBA" width="293" height="212">
+      <img class="lv-porsche" src="../../assets/img/live/logo-porsche-footer.webp" alt="Official Partner of Porsche Carrera Cup Middle East" width="605" height="175">
     </div>
-
-    <div class="foot-bottom">
-      <span class="foot-brand"><img class="foot-logo" src="../../assets/img/logo-startrader.svg" alt="STARTRADER" width="180" height="35"><span class="foot-tag">Built on trust. Driven by growth.</span></span>
-      <div class="foot-partners">
-        <img class="fp-nba" src="../../assets/img/partner-nba.svg" alt="Official Partner of the NBA" height="30" width="45">
-        <img class="fp-porsche" loading="lazy" decoding="async" src="../../assets/img/partner-porsche.webp" alt="Official Partner of Porsche Carrera Cup Middle East" height="26" width="165">
-      </div>
+    <div class="lv-foot-cols">
+      <div class="lv-foot-col"><h4>Conditions</h4><a href="https://www.startrader.com/getting-started/">Account Opening</a><a href="https://www.startrader.com/accounts/">Trading Account</a><a href="https://www.startrader.com/prime-ecn-account/">Prime ECN</a><a href="https://www.startrader.com/funding/">Funding &amp; Withdrawal</a></div>
+      <div class="lv-foot-col"><h4>Platforms</h4><a href="https://www.startrader.com/mt5/">MT5</a><a href="https://www.startrader.com/mt4/">MT4</a><a href="https://www.startrader.com/star-copy/">STAR Copy</a><a href="https://www.startrader.com/star-webtrader/">STAR Web Trading</a><a href="https://www.startrader.com/webtrader/">Web Trader</a><a href="https://www.startrader.com/trading-app/">Mobile Apps</a><a href="https://www.startrader.com/pamm-trade/">Pro-Link</a></div>
+      <div class="lv-foot-col"><h4>Products</h4><a href="https://www.startrader.com/forex/">Forex</a><a href="https://www.startrader.com/commodities/">Commodities</a><a href="https://www.startrader.com/indices/">Indices</a><a href="https://www.startrader.com/shares/">Shares</a><a href="https://www.startrader.com/etf/">ETFs</a></div>
+      <div class="lv-foot-col"><h4>Education</h4><a href="https://www.startrader.com/education/">Knowledge Center</a><a href="https://www.startrader.com/news/">News Room</a><a href="https://www.startrader.com/economic-calendar/">Economic Calendar</a><a href="https://www.startrader.com/webinars/">Webinars</a></div>
+      <div class="lv-foot-col"><h4>About</h4><a href="https://www.startrader.com/company/">Why STARTRADER</a><a href="https://www.startrader.com/corporate-social-responsibility/">CSR</a><a href="https://www.startrader.com/events/">Events</a><a href="https://www.startrader.com/media/">Media Coverage</a><a href="https://www.startrader.com/achievement/">Achievements</a><a href="https://www.startrader.com/announcements/">Announcements</a><a href="https://www.startrader-careers.com/" target="_blank" rel="noopener">Careers</a><a href="https://www.startrader.com/help-center/">Help Center</a><a href="https://www.startrader.com/contact/">Contact Us</a></div>
+      <div class="lv-foot-col"><h4>Corporate</h4><a href="https://www.startrader.com/regulation/">Regulation</a><a href="https://www.startrader.com/legal-documents/">Legal Documents</a><a href="https://www.startrader.com/insurance/">Insurance</a><a href="https://www.startrader.com/liquidity-providers/">Liquidity Providers</a></div>
+      <div class="lv-foot-col"><h4>Partnership</h4><a href="https://www.startrader.com/ib-register/">Introducing Broker</a><a href="https://www.startrader.com/affiliate-registration/">Affiliate</a><a href="https://www.startrader.com/money-manager/">Money Manager</a><a href="https://www.startrader.com/institutional/">Institutional</a></div>
     </div>
-
-    <div class="foot-legal-row">
-      <div class="foot-copy">
-        <span>© 2026 STARTRADER. All rights reserved</span>
-        <a href="../../privacy-policy-app.html">Privacy Policy</a><a href="../../legal-documents.html">Terms &amp; Conditions</a><a href="../../legal-documents.html">Cookie Policy</a>
+    <div class="lv-foot-social">
+      <h4>Social Links</h4>
+      <div class="lv-socials">
+        <a href="https://www.facebook.com/Startrader.International/" target="_blank" rel="noopener" aria-label="Facebook"><img src="../../assets/img/live/facebook-black-icon.svg" alt="" width="18" height="18"></a>
+        <a href="https://www.instagram.com/startrader.official/" target="_blank" rel="noopener" aria-label="Instagram"><img src="../../assets/img/live/instagram-black-icon.svg" alt="" width="18" height="18"></a>
+        <a href="https://www.linkedin.com/company/startrader-official/" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="../../assets/img/live/linkedin-black-icon.svg" alt="" width="18" height="18"></a>
+        <a href="https://x.com/startrader_int/" target="_blank" rel="noopener" aria-label="X"><img src="../../assets/img/live/twitter-black-icon.svg" alt="" width="18" height="18"></a>
+        <a href="https://www.youtube.com/@Startrader.international" target="_blank" rel="noopener" aria-label="YouTube"><img src="../../assets/img/live/youtube-black-icon.svg" alt="" width="18" height="18"></a>
+        <a href="https://www.tiktok.com/@startraderofficial/" target="_blank" rel="noopener" aria-label="TikTok"><img src="../../assets/img/live/tiktok-black-icon.svg" alt="" width="18" height="18"></a>
       </div>
-      <div class="socials">
-        <a href="https://www.facebook.com/Startrader.International/" target="_blank" rel="noopener" aria-label="Facebook"><svg><use href="#i-facebook"/></svg></a>
-        <a href="https://x.com/startrader_int/" target="_blank" rel="noopener" aria-label="X"><svg><use href="#i-x"/></svg></a>
-        <a href="https://www.instagram.com/startrader.official/" target="_blank" rel="noopener" aria-label="Instagram"><svg><use href="#i-instagram"/></svg></a>
-        <a href="https://www.linkedin.com/company/startrader-official/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg><use href="#i-linkedin"/></svg></a>
-        <a href="https://www.youtube.com/@Startrader.international" target="_blank" rel="noopener" aria-label="YouTube"><svg><use href="#i-youtube"/></svg></a>
-        <a href="https://www.tiktok.com/@startraderofficial/" target="_blank" rel="noopener" aria-label="TikTok"><svg><use href="#i-tiktok"/></svg></a>
-      </div>
-    </div>
-
-    <div class="risk">
-      <span class="risk-head">RISK WARNING</span>
-      <p>Trading in leveraged derivative products, such as Foreign Exchange (Forex) and Contracts for Difference (CFDs), involves a high level of risk and may result in losses that exceed your initial deposit. These products may not be suitable for all investors. Leverage amplifies both potential profits and losses. When trading these instruments, you do not own or have any rights to the underlying assets. Past performance is not indicative of future results.</p>
-      <p>Before making any investment decisions, you should carefully assess your investment objectives, knowledge, experience, and financial situation. You should only engage in Forex and CFD trading if you possess sufficient knowledge and experience. STARTRADER assumes no liability for any losses incurred from trading, and all trading activities are undertaken at your own risk.</p>
-      <p>The content provided on this website is for general informational purposes only and does not take into account your individual financial circumstances, investment goals, or risk tolerance. You should review the legal documents available on our website to ensure a full understanding of the risks associated with CFD trading. If necessary, seek independent advice from qualified professionals before proceeding.</p>
-
-      <span class="risk-head">REGIONAL RESTRICTIONS</span>
-      <p>This website is not intended for distribution to, or use by, any person or entity who is a citizen or resident of certain jurisdictions, including, but not limited to the United States, and jurisdictions listed on the FATF "blacklist" or other major global sanctions lists. It is also not intended for distribution or use in any jurisdiction where such distribution or use would violate local laws or regulations.</p>
-
-      <span class="risk-head">REGULATOR INFORMATION</span>
-      <p>STARTRADER is the brand representing a network of regulated and licensed entities across various jurisdictions, each authorised to provide specific financial services in compliance with local regulations. Upon registration, you will be assigned to the appropriate entity based on your location, ensuring that all trading activities are governed by the applicable regulatory authority. While the relevant authorities have granted securities or investment dealer licenses to the licensees, they do not endorse the products or services offered by STARTRADER.</p>
-      <p><strong>STARTRADER</strong> Global Financial Consultation &amp; Financial Analysis L.L.C is a Category 5 licensee regulated by the Capital Market Authority (CMA) of the United Arab Emirates, with License No. 20200000241, authorised to carry out regulated activities of Introduction and Promotion in the UAE. Its registered office is located at Office 815, Al Manara Tower, Business Bay, Dubai, UAE. It is not authorised to provide brokerage services or execute client trades.</p>
-      <p><strong>STARTRADER</strong> Prime Global Pty Ltd is regulated by the Australian Securities and Investments Commission (ASIC), with ACN 156005668 and AFSL No. 421210. Its registered office is located at Level 35, 31 Market Street, Sydney, NSW 2000, Australia.</p>
-      <p><strong>STARTRADER</strong> International Pty Ltd is regulated by the Financial Sector Conduct Authority (FSCA) of South Africa, with FSP No. 52464 and Registration No. 2022/435897/07. Its registered office is located at 18 Cavendish Road, Claremont, Cape Town, Western Cape, 7708, South Africa.</p>
-      <p><strong>STARTRADER</strong> Limited is regulated by the Financial Services Authority (FSA) of Seychelles, with License No. SD049 and Registration No. 8427362-1. Its registered office is located at Suite 3, Global Village, Jivan's Complex, Mont Fleuri, Mahe, Seychelles.</p>
-      <p><strong>STARTRADER</strong> Financial Markets Limited is regulated by the Financial Services Commission (FSC) of Mauritius, with Company No. 212229 GBC and License No. GB24203371. Its registered office is located at Suite 201, 2nd Floor, The Catalyst, 40 Silicon Avenue, Ebene Cybercity, Mauritius.</p>
-      <p><strong>STARTRADER</strong> (CY) Limited, registered in the Republic of Cyprus under registration number HE421001 with its registered address at 160 Archiepiskopou Makariou III, 1st Floor, 3026 Limassol, Cyprus. This entity does not offer regulated financial products or provide trading services.</p>
     </div>
   </div>
 </footer>
+<div class="lv-risk">
+  <div class="lv-wrap">
+    <h5>Risk Warning</h5>
+    <p>Trading in leveraged derivative products, such as Foreign Exchange (Forex) and Contracts for Difference (CFDs), involves a high level of risk and may result in losses that exceed your initial deposit. These products may not be suitable for all investors. Leverage amplifies both potential profits and losses. When trading these instruments, you do not own or have any rights to the underlying assets. Past performance is not indicative of future results.</p>
+    <p>Before making any investment decisions, you should carefully assess your investment objectives, knowledge, experience, and financial situation. You should only engage in Forex and CFD trading if you possess sufficient knowledge and experience. STARTRADER assumes no liability for any losses incurred from trading, and all trading activities are undertaken at your own risk.</p>
+    <p>The content provided on this website is for general informational purposes only and does not take into account your individual financial circumstances, investment goals, or risk tolerance. You should review the legal documents available on our website to ensure a full understanding of the risks associated with CFD trading. If necessary, seek independent advice from qualified professionals before proceeding.</p>
+    <h5>Regional Restrictions</h5>
+    <p>This website is not intended for distribution to, or use by, any person or entity who is a citizen or resident of certain jurisdictions, including, but not limited to the United States, and jurisdictions listed on the FATF "blacklist" or other major global sanctions lists. It is also not intended for distribution or use in any jurisdiction where such distribution or use would violate local laws or regulations.</p>
+    <h5>Regulator Information</h5>
+    <p>STARTRADER is the brand representing a network of regulated and licensed entities across various jurisdictions, each authorised to provide specific financial services in compliance with local regulations. Upon registration, you will be assigned to the appropriate entity based on your location, ensuring that all trading activities are governed by the applicable regulatory authority. While the relevant authorities have granted securities or investment dealer licenses to the licensees, they do not endorse the products or services offered by STARTRADER.</p>
+    <p><strong>STARTRADER</strong> Global Financial Consultation &amp; Financial Analysis L.L.C is a Category 5 licensee regulated by the Capital Market Authority (CMA) of the United Arab Emirates, with License No. 20200000241, authorised to carry out regulated activities of Introduction and Promotion in the UAE. Its registered office is located at Office 815, Al Manara Tower, Business Bay, Dubai, UAE. It is not authorised to provide brokerage services or execute client trades.</p>
+    <p><strong>STARTRADER</strong> Prime Global Pty Ltd is regulated by the Australian Securities and Investments Commission (ASIC), with ACN 156005668 and AFSL No. 421210. Its registered office is located at Level 35, 31 Market Street, Sydney, NSW 2000, Australia.</p>
+    <p><strong>STARTRADER</strong> International Pty Ltd is regulated by the Financial Sector Conduct Authority (FSCA) of South Africa, with FSP No. 52464 and Registration No. 2022/435897/07. Its registered office is located at 18 Cavendish Road, Claremont, Cape Town, Western Cape, 7708, South Africa.</p>
+    <p><strong>STARTRADER</strong> Limited is regulated by the Financial Services Authority (FSA) of Seychelles, with License No. SD049 and Registration No. 8427362-1. Its registered office is located at Suite 3, Global Village, Jivan's Complex, Mont Fleuri, Mahe, Seychelles.</p>
+    <p><strong>STARTRADER</strong> Financial Markets Limited is regulated by the Financial Services Commission (FSC) of Mauritius, with Company No. 212229 GBC and License No. GB24203371. Its registered office is located at Suite 201, 2nd Floor, The Catalyst, 40 Silicon Avenue, Ebene Cybercity, Mauritius.</p>
+    <p><strong>STARTRADER</strong> (CY) Limited, registered in the Republic of Cyprus under registration number HE421001 with its registered address at 160 Archiepiskopou Makariou III, 1st Floor, 3026 Limassol, Cyprus. This entity does not offer regulated financial products or provide trading services.</p>
+    <p class="lv-copy">©2026 STARTRADER. All rights reserved.</p>
+  </div>
+</div>
+
 
 <button class="to-top" id="toTop" aria-label="Back to top"><svg><use href="#i-caret-up"/></svg></button>
 
