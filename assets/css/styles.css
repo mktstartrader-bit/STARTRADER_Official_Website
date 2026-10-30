@@ -6251,3 +6251,22 @@ html[lang="ar"]{--font:'Tajawal','Plus Jakarta Sans',system-ui,-apple-system,"Se
     mask-composite:intersect!important;
   }
 }
+
+/* ===== BRAND FONT PER LANGUAGE (appended batch, 2026-10-30) ===== */
+/* Brand font list: Latin languages (EN, MS, VI, ID, FR, ES, PT, DE, IT, RU, TR, PL, NL) use
+   Plus Jakarta Sans; Arabic Tajawal (above); Chinese Noto Sans SC; Korean Noto Sans KR;
+   Japanese Noto Sans JP; Thai Prompt; Hindi Mukta; Persian Estedad. Each script face is
+   self-hosted in assets/fonts (fonts-<lang>.css, linked only by that language's pages) and split
+   by unicode-range, so a page only downloads the glyph slices it shows. Plus Jakarta Sans stays
+   first in the stack: Latin words, numbers and the shared English header keep the brand Latin face,
+   and the script face fills everything Plus Jakarta Sans does not cover. */
+html:is([lang^="zh"]){--font:'Plus Jakarta Sans','Noto Sans SC',"PingFang SC","Microsoft YaHei",system-ui,sans-serif}
+html[lang="ko"]{--font:'Plus Jakarta Sans','Noto Sans KR',"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif}
+html[lang="ja"]{--font:'Plus Jakarta Sans','Noto Sans JP',"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif}
+html[lang="th"]{--font:'Plus Jakarta Sans','Prompt',"Leelawadee UI",Tahoma,system-ui,sans-serif}
+html[lang="hi"]{--font:'Plus Jakarta Sans','Mukta',"Nirmala UI",system-ui,sans-serif}
+html[lang="fa"]{--font:'Estedad','Plus Jakarta Sans',Tahoma,system-ui,sans-serif}
+[lang="fa"] *{letter-spacing:0!important}
+/* the promo hero keeps its first line on one line for the short English headline; the Japanese one is
+   twice as long and ran out of the copy column into the art (ja/gold-cashback at 1280px) */
+html[lang="ja"] .pm-h1 span:first-child{white-space:normal;line-break:strict}
