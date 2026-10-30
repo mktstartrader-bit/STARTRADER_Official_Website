@@ -322,6 +322,9 @@
 .mkx-tvcredit{margin:14px 0 0;text-align:center;font-size:11.5px;color:var(--text-mute)}
 .mkx-tvcredit a{color:var(--blue);font-weight:600}
 @media (prefers-reduced-motion:reduce){.mkb-tv:empty::before{animation:none}}
+/* TradingView sets the widget's price text itself (fontSize has no effect on it), so the widget is laid
+   out 25% larger and scaled back to the card: price, name and change read at a standard size (QA 2026-10-30) */
+.mkb-tv>.tradingview-widget-container{width:125%!important;height:125%!important;transform:scale(.8);transform-origin:0 0}
 @media (max-width:1080px){
   .mkx-board{grid-template-columns:1fr}
   .mkx-minis{grid-template-columns:repeat(2,minmax(0,1fr))}
