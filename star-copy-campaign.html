@@ -340,6 +340,14 @@
 .scc-stop{position:relative}
 .scc-stop:not(:last-child)::after{content:"";position:absolute;left:29px;top:64px;bottom:-12px;width:2px;background:repeating-linear-gradient(180deg,rgba(47,107,255,.55) 0 10px,transparent 10px 18px)}
 @media (max-width:560px){.scc-stop:not(:last-child)::after{left:22px;top:50px}}
+
+/* promotion card on tablet/phone: the $50 artwork sits above the copy instead of behind it */
+@media (max-width:900px){
+  .scc-promo-card{flex-direction:column;align-items:stretch}
+  .scc-promo-card>img{position:relative;inset:auto;z-index:0;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;object-position:84% 60%}
+  .scc-promo-card::after{display:none}
+  .scc-promo-in{padding:8px clamp(22px,5vw,36px) clamp(26px,6vw,40px);max-width:none}
+}
 </style>
 </head>
 <body class="prx scc">
@@ -796,7 +804,7 @@
 <section class="scc-sec scc-promo" id="promotion" aria-labelledby="scc-promo-title">
   <div class="container">
     <div class="scc-promo-card" data-aos="fade-up">
-      <img src="assets/img/scc-promo-v3.webp" alt="A frosted-glass STAR Copy reward card on a stack of titanium dollar coins in royal-blue light" width="2560" height="1447" loading="lazy" decoding="async">
+      <img src="assets/img/scc-promo-v4.webp" alt="A large crystal-glass $50 on a smoked-blue glass pedestal beneath two glass trader cards linked by sync arrows, one trader copying another" width="2560" height="1447" loading="lazy" decoding="async">
       <div class="scc-promo-in">
         <span class="scc-eyebrow">Promotion</span>
         <h2 class="scc-h2" id="scc-promo-title">Kickstart Your <em>STAR COPY Journey</em></h2>
