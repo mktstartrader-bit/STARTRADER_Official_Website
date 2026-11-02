@@ -308,6 +308,32 @@
   .scc-hero > .container{order:1;position:relative;z-index:2}
 }
 @media (max-width:980px){.scc-hero > .acct-hero-bg,.scc-hero > .pf-hero-bg,.scc-hero > .wb-hero-scrim,.scc-hero > .ct-hero-veil,.scc-hero > .hero-glow,.scc-hero > .hero-shape,.scc-hero > .pm-hero-video,.scc-hero > .wb-hero-video,.scc-hero > .acct-hero-video{display:none!important}}
+
+/* ---- "Copy top traders" section v2: step rail + image-top cards with a track / trading split ---- */
+.scc-rail2{list-style:none;margin:clamp(36px,4vw,56px) 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,1.6vw,22px);position:relative}
+.scc-rail2::before{content:"";position:absolute;left:18px;right:calc(33.33% - 18px);top:17px;height:2px;background:linear-gradient(90deg,var(--scc-cyan2),var(--scc-cyan) 60%,rgba(76,141,255,.15))}
+.scc-rail2 li{position:relative;display:flex;align-items:center;gap:12px}
+.scc-rail2 b{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;font-size:13px;font-weight:800;color:#fff;background:linear-gradient(145deg,#2F6BFF,#0047BB);box-shadow:0 0 0 6px var(--scc-bg),0 10px 24px -10px rgba(47,107,255,.9);position:relative;z-index:1}
+.scc-rail2 span{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--scc-txt);background:var(--scc-bg);padding-right:10px;position:relative;z-index:1}
+.scc-intro .scc-trio{margin-top:22px}
+.scc-intro .scc-card{display:flex;flex-direction:column;min-height:0;aspect-ratio:auto;border-radius:22px;overflow:hidden;background:linear-gradient(180deg,rgba(18,28,56,.85),rgba(8,13,26,.95));border:1px solid rgba(255,255,255,.08)}
+.scc-intro .scc-card::after{display:none}
+.scc-card-media{position:relative;aspect-ratio:4/3;overflow:hidden}
+.scc-intro .scc-card-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 12%}
+.scc-card-media::after{content:"";position:absolute;inset:auto 0 0 0;height:45%;background:linear-gradient(180deg,transparent,rgba(8,13,26,.95))}
+.scc-intro .scc-card-n{position:absolute;right:18px;top:14px;z-index:2;font-size:13px;font-weight:800;letter-spacing:.08em;color:#fff;padding:6px 12px;border-radius:999px;background:rgba(8,13,26,.55);border:1px solid rgba(255,255,255,.18);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);-webkit-text-stroke:0}
+.scc-intro .scc-card-in{position:relative;inset:auto;padding:4px clamp(20px,2vw,26px) clamp(22px,2.2vw,28px);display:flex;flex-direction:column;gap:16px;flex:1}
+.scc-intro .scc-card h3{font-size:clamp(20px,1.7vw,24px)}
+.scc-pair{margin:0;display:grid;gap:10px}
+.scc-pair div{padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07)}
+.scc-pair div.is-trade{background:rgba(47,107,255,.10);border-color:rgba(76,141,255,.35)}
+.scc-pair dt{display:flex;align-items:center;gap:8px;font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--scc-mute)}
+.scc-pair .is-trade dt{color:var(--scc-cyan)}
+.scc-pair dt svg{width:15px;height:15px;flex:none}
+.scc-pair dd{margin:6px 0 0;font-size:14.5px;line-height:1.55;color:var(--scc-txt)}
+.scc-pair .is-trade dd{color:#E6EDFB}
+.scc-intro .scc-card:hover img{transform:scale(1.05)}
+@media (max-width:980px){.scc-rail2{display:none}.scc-intro .scc-trio{margin-top:clamp(28px,4vw,40px)}.scc-intro .scc-card{min-height:0}}
 </style>
 </head>
 <body class="prx scc">
@@ -638,24 +664,37 @@
       </div>
       <a class="scc-btn" href="https://www.startrader.com/live-account/" rel="noopener" data-aos="fade-up">Copy now <svg><use href="#i-arrow-right"/></svg></a>
     </div>
+    <ol class="scc-rail2" aria-hidden="true"><li><b>01</b><span>Strategy</span></li><li><b>02</b><span>Execution</span></li><li><b>03</b><span>Control</span></li></ol>
     <div class="scc-trio">
       <article class="scc-card" data-aos="fade-up">
-        <span class="scc-card-bar" aria-hidden="true"></span>
-        <img src="assets/img/scc-strategy-v6.webp" alt="A titanium race-strategy tablet whose glowing racing line on the circuit map turns into a rising trading chart" width="900" height="1202" loading="lazy" decoding="async">
-        <div class="scc-card-in"><span class="scc-card-n" aria-hidden="true">01</span><h3>Strategy sets the direction.</h3>
-          <p><span>On the track, every race begins with a plan.</span><span>In trading, a strategy defines your approach and sets your direction.</span></p></div>
+        <div class="scc-card-media"><img src="assets/img/scc-strategy-v6.webp" alt="A titanium race-strategy tablet whose glowing racing line on the circuit map turns into a rising trading chart" width="900" height="1202" loading="lazy" decoding="async"><span class="scc-card-n" aria-hidden="true">01</span></div>
+        <div class="scc-card-in">
+          <h3>Strategy sets the direction.</h3>
+          <dl class="scc-pair">
+            <div><dt><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4m0 0h11l-2 4 2 4H5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>On the track</dt><dd>Every race begins with a plan.</dd></div>
+            <div class="is-trade"><dt><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19h16M6 15l4-4 3 3 5-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>In trading</dt><dd>A strategy defines your approach and sets your direction.</dd></div>
+          </dl>
+        </div>
       </article>
       <article class="scc-card" data-aos="fade-up" data-aos-delay="100">
-        <span class="scc-card-bar" aria-hidden="true"></span>
-        <img src="assets/img/scc-execution-v6.webp" alt="The STARTRADER race car on track followed by two glass copies of itself on the same racing line, its moves replicated" width="900" height="1202" loading="lazy" decoding="async">
-        <div class="scc-card-in"><span class="scc-card-n" aria-hidden="true">02</span><h3>Execution puts it into motion.</h3>
-          <p><span>On the track, the plan comes to life through every move.</span><span>In trading, STAR Copy automatically replicates trades and turns the strategy into action.</span></p></div>
+        <div class="scc-card-media"><img src="assets/img/scc-execution-v6.webp" alt="The STARTRADER race car on track followed by two glass copies of itself on the same racing line, its moves replicated" width="900" height="1202" loading="lazy" decoding="async"><span class="scc-card-n" aria-hidden="true">02</span></div>
+        <div class="scc-card-in">
+          <h3>Execution puts it into motion.</h3>
+          <dl class="scc-pair">
+            <div><dt><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4m0 0h11l-2 4 2 4H5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>On the track</dt><dd>The plan comes to life through every move.</dd></div>
+            <div class="is-trade"><dt><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19h16M6 15l4-4 3 3 5-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>In trading</dt><dd>STAR Copy automatically replicates trades and turns the strategy into action.</dd></div>
+          </dl>
+        </div>
       </article>
       <article class="scc-card" data-aos="fade-up" data-aos-delay="200">
-        <span class="scc-card-bar" aria-hidden="true"></span>
-        <img src="assets/img/scc-control-v6.webp" alt="A titanium racing steering wheel whose display shows trading controls: a slider, a risk shield gauge and pause" width="900" height="1202" loading="lazy" decoding="async">
-        <div class="scc-card-in"><span class="scc-card-n" aria-hidden="true">03</span><h3>Control keeps you on course.</h3>
-          <p><span>On the track, the driver stays in control, adapting to every condition.</span><span>In trading, you stay in control of what you follow and how you manage risk.</span></p></div>
+        <div class="scc-card-media"><img src="assets/img/scc-control-v6.webp" alt="A titanium racing steering wheel whose display shows trading controls: a slider, a risk shield gauge and pause" width="900" height="1202" loading="lazy" decoding="async"><span class="scc-card-n" aria-hidden="true">03</span></div>
+        <div class="scc-card-in">
+          <h3>Control keeps you on course.</h3>
+          <dl class="scc-pair">
+            <div><dt><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4m0 0h11l-2 4 2 4H5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>On the track</dt><dd>The driver stays in control, adapting to every condition.</dd></div>
+            <div class="is-trade"><dt><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19h16M6 15l4-4 3 3 5-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>In trading</dt><dd>You stay in control of what you follow and how you manage risk.</dd></div>
+          </dl>
+        </div>
       </article>
     </div>
   </div>
