@@ -411,6 +411,9 @@
 .scc-rail,.scc-rail .swiper-wrapper{direction:ltr}
 .scc-mv{direction:rtl;text-align:right}
 .skip-link:not(:focus){left:auto!important;right:-9999px!important}
+/* journey connector runs under the numbered circles, which sit on the right in RTL */
+.scc-stop:not(:last-child)::after{left:auto;right:29px}
+@media (max-width:560px){.scc-stop:not(:last-child)::after{left:auto;right:22px}}
 </style>
 </head>
 <body class="prx scc">
