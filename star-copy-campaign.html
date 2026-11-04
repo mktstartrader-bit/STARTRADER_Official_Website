@@ -354,6 +354,14 @@
 .scc-player button.scc-play{border:0;cursor:pointer;z-index:2}
 .scc-player.is-playing::after,.scc-player.is-playing .scc-play{display:none}
 .scc-player.is-playing video{object-fit:contain}
+
+/* promotion: "Coming Soon" badge beside Join now */
+.scc-promo-act{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:30px}
+.scc-promo-in .scc-promo-act .scc-btn{margin-top:0}
+.scc-soon{display:inline-flex;align-items:center;gap:9px;padding:11px 18px;border-radius:999px;font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#DCE8FF;background:rgba(47,107,255,.14);border:1px solid rgba(127,178,255,.45);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.scc-soon i{width:8px;height:8px;border-radius:50%;background:#4C8DFF;box-shadow:0 0 10px #4C8DFF;animation:sccBeat 1.6s ease-in-out infinite}
+@media (max-width:560px){.scc-promo-act{flex-direction:column;align-items:stretch}.scc-soon{justify-content:center}}
+@media (prefers-reduced-motion:reduce){.scc-soon i{animation:none}}
 </style>
 </head>
 <body class="prx scc">
@@ -815,7 +823,10 @@
         <span class="scc-eyebrow">Promotion</span>
         <h2 class="scc-h2" id="scc-promo-title">Kickstart Your <em>STAR COPY Journey</em></h2>
         <p class="scc-promo-amt">Earn up to <strong>US$50</strong> CASH REWARDS</p>
-        <a class="scc-btn" href="https://www.startrader.com/live-account/" rel="noopener">Join now <svg><use href="#i-arrow-right"/></svg></a>
+        <div class="scc-promo-act">
+          <a class="scc-btn" href="https://www.startrader.com/live-account/" rel="noopener">Join now <svg><use href="#i-arrow-right"/></svg></a>
+          <span class="scc-soon"><i aria-hidden="true"></i>Coming Soon</span>
+        </div>
       </div>
     </div>
   </div>
