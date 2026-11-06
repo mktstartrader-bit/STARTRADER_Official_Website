@@ -36,329 +36,210 @@
   <style>
 /* =================================================================
    PMT340 · BLACK FRIDAY POWER PLAY
-   Black-glass campaign page: near-black stage, royal-blue power light,
-   a champagne accent reserved for the prizes, and light paper sections
-   for the reading-heavy parts. Copy comes from the PMT340 sheet (LP tab,
-   EN PROOFREAD); numbers follow the Promo T&C.
+   Editorial and quiet: black for the hero, prizes and closing call,
+   white for everything you read. One accent (STARTRADER royal blue),
+   hairline rules instead of boxes, type does the work.
    ================================================================= */
-.bfp{--bk:#04050A;--bk2:#080B14;--bk3:#0D1220;--line:rgba(255,255,255,.09);--line2:rgba(255,255,255,.16);
-  --blue:#0047BB;--blue2:#2F6BFF;--glow:#4C8DFF;--ice:#A9C8FF;--gold:#E9C987;--gold2:#B8914B;
-  --txt:#C5CEDD;--mute:#8590A6;--paper:#F3F5F9;--ink:#0B1020;--ink2:#4A5468;--card:#fff;--rule:#E1E6EE;
-  background:var(--bk);color:#fff}
+.bfp{--ink:#0A0B10;--ink2:#555B68;--ink3:#8A909C;--rule:#E4E6EB;--paper:#fff;--mist:#F5F6F8;
+  --night:#050608;--night2:#0C0E14;--nrule:rgba(255,255,255,.12);--ntxt:#A7ADB9;--blue:#0047BB;--blue2:#2563EB;--sky:#8DB4FF;
+  background:var(--paper);color:var(--ink)}
 .bfp .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .bfp main{overflow:clip}
+.bfp-n{font-variant-numeric:tabular-nums}
 
 /* ---------- shared ---------- */
-.bfp-sec{position:relative;isolation:isolate;padding-block:clamp(76px,8.5vw,136px)}
-.bfp-sec>.container{position:relative;z-index:2}
-.bfp-light{background:var(--paper);color:var(--ink)}
-.bfp-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--glow)}
-.bfp-eyebrow::before{content:"";width:22px;height:2px;border-radius:2px;background:linear-gradient(90deg,currentColor,transparent)}
-.bfp-light .bfp-eyebrow{color:var(--blue)}
-.bfp-h2{margin-top:14px;font-size:clamp(32px,4vw,56px);font-weight:800;line-height:1.05;letter-spacing:-.035em;text-wrap:balance}
-.bfp-h2 em{font-style:normal;background:linear-gradient(92deg,#DCE8FF,#7FAEFF 45%,#2F6BFF);-webkit-background-clip:text;background-clip:text;color:transparent}
-.bfp-light .bfp-h2 em{background:linear-gradient(92deg,#0047BB,#2F6BFF);-webkit-background-clip:text;background-clip:text}
-.bfp-sub{margin-top:16px;max-width:60ch;font-size:clamp(15.5px,1.2vw,18px);line-height:1.65;color:var(--txt)}
-.bfp-light .bfp-sub{color:var(--ink2)}
-.bfp-head{max-width:760px}
-.bfp-head.center{margin-inline:auto;text-align:center}
-.bfp-head.center .bfp-sub{margin-inline:auto}
-.bfp-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 30px;border-radius:999px;
-  font-weight:800;font-size:16px;letter-spacing:-.01em;color:#fff;background:linear-gradient(180deg,#3A78FF,#0047BB);
-  box-shadow:0 0 0 1px rgba(255,255,255,.18) inset,0 14px 40px -12px rgba(47,107,255,.85);overflow:hidden;transition:transform .25s,box-shadow .25s}
-.bfp-btn::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.38) 50%,transparent 70%);transform:translateX(-120%);animation:bfpShine 3.6s 1.2s infinite}
-.bfp-btn svg{width:18px;height:18px;transition:transform .25s}
-.bfp-btn:hover{transform:translateY(-2px);box-shadow:0 0 0 1px rgba(255,255,255,.25) inset,0 20px 50px -12px rgba(47,107,255,1)}
+.bfp-sec{padding-block:clamp(80px,9vw,140px)}
+.bfp-dark{background:var(--night);color:#fff}
+.bfp-mist{background:var(--mist)}
+.bfp-grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(32px,5vw,96px)}
+.bfp-label{font-size:13px;font-weight:600;color:var(--ink3);font-variant-numeric:tabular-nums}
+.bfp-dark .bfp-label{color:var(--ntxt)}
+.bfp-h2{margin-top:14px;font-size:clamp(34px,4.2vw,60px);font-weight:700;line-height:1.02;letter-spacing:-.04em;text-wrap:balance}
+.bfp-lede{margin-top:20px;font-size:clamp(17px,1.35vw,20px);font-weight:600;letter-spacing:-.015em;line-height:1.4}
+.bfp-p{margin-top:12px;max-width:46ch;font-size:16px;line-height:1.65;color:var(--ink2)}
+.bfp-dark .bfp-p{color:var(--ntxt)}
+.bfp-btn{display:inline-flex;align-items:center;gap:12px;min-height:54px;padding:0 26px;border-radius:10px;background:var(--blue);color:#fff;font-size:16px;font-weight:700;letter-spacing:-.01em;transition:background .2s}
+.bfp-btn svg{width:17px;height:17px;transition:transform .2s}
+.bfp-btn:hover{background:var(--blue2)}
 .bfp-btn:hover svg{transform:translateX(3px)}
-.bfp-ghost{display:inline-flex;align-items:center;gap:8px;min-height:56px;padding:0 24px;border-radius:999px;font-weight:700;font-size:15px;color:#fff;
-  border:1px solid var(--line2);background:rgba(255,255,255,.04);backdrop-filter:blur(10px);transition:background .25s,border-color .25s}
-.bfp-ghost:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.3)}
-.bfp-light .bfp-ghost{color:var(--ink);border-color:#CBD3E0;background:#fff}
-@keyframes bfpShine{0%,60%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
-.bfp-glass{background:linear-gradient(160deg,rgba(255,255,255,.085),rgba(255,255,255,.02));border:1px solid var(--line2);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 30px 60px -30px rgba(0,0,0,.7)}
-.bfp-tnum{font-variant-numeric:tabular-nums}
+.bfp-link{font:inherit;font-weight:600;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+.bfp-link:hover{color:var(--blue)}
+.bfp-dark .bfp-link:hover{color:var(--sky)}
 
 /* ---------- hero ---------- */
-.bfp-hero{position:relative;isolation:isolate;min-height:clamp(640px,88vh,860px);display:flex;align-items:center;padding-block:clamp(80px,7vw,110px) 90px;background:var(--bk)}
-.bfp-hero-art{position:absolute;inset:0;z-index:-2}
-.bfp-hero-art img{width:100%;height:100%;object-fit:cover;object-position:85% 45%}
-.bfp-hero::before{content:"";position:absolute;inset:0;z-index:-1;background:
-  linear-gradient(90deg,rgba(4,5,10,.97) 0%,rgba(4,5,10,.92) 34%,rgba(4,5,10,.55) 50%,rgba(4,5,10,0) 66%),
-  linear-gradient(0deg,var(--bk) 0%,rgba(4,5,10,0) 22%)}
-.bfp-hero-copy{max-width:620px}
-.bfp-kicker{display:inline-flex;align-items:center;gap:10px;padding:8px 16px 8px 10px;border-radius:999px;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#DCE7FF;
-  border:1px solid rgba(127,174,255,.35);background:rgba(47,107,255,.12)}
-.bfp-kicker i{width:8px;height:8px;border-radius:50%;background:var(--glow);box-shadow:0 0 0 0 rgba(76,141,255,.7);animation:bfpPulse 1.8s infinite}
-@keyframes bfpPulse{0%{box-shadow:0 0 0 0 rgba(76,141,255,.7)}70%{box-shadow:0 0 0 10px rgba(76,141,255,0)}100%{box-shadow:0 0 0 0 rgba(76,141,255,0)}}
-.bfp-h1{margin-top:22px;font-size:clamp(48px,7vw,104px);font-weight:800;line-height:.94;letter-spacing:-.045em}
+.bfp-hero{position:relative;isolation:isolate;background:var(--night);color:#fff;padding-top:clamp(90px,9vw,140px)}
+.bfp-hero-art{position:absolute;inset:0 0 auto 0;height:100%;z-index:-2}
+.bfp-hero-art img{width:100%;height:100%;object-fit:cover;object-position:85% 40%}
+.bfp-hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,var(--night) 0%,rgba(5,6,8,.94) 36%,rgba(5,6,8,.4) 54%,rgba(5,6,8,0) 68%),linear-gradient(0deg,var(--night) 0%,rgba(5,6,8,0) 26%)}
+.bfp-hero-copy{max-width:600px;padding-bottom:clamp(70px,7vw,110px)}
+.bfp-date{font-size:14px;font-weight:600;color:var(--ntxt);font-variant-numeric:tabular-nums}
+.bfp-h1{margin-top:20px;font-size:clamp(52px,7.4vw,112px);font-weight:700;line-height:.92;letter-spacing:-.055em}
 .bfp-h1 span{display:block}
-.bfp-h1 .b{background:linear-gradient(95deg,#FFFFFF 0%,#BFD6FF 30%,#4C8DFF 70%,#2F6BFF 100%);-webkit-background-clip:text;background-clip:text;color:transparent;padding-bottom:.06em}
-.bfp-lead{margin-top:22px;font-size:clamp(18px,1.6vw,23px);font-weight:700;letter-spacing:-.015em;line-height:1.35;color:#fff}
-.bfp-support{margin-top:12px;max-width:52ch;font-size:16px;line-height:1.65;color:var(--txt)}
-.bfp-act{margin-top:30px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
-.bfp-meta{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;color:var(--mute)}
-.bfp-meta span{display:inline-flex;align-items:center;gap:8px}
-.bfp-meta span+span::before{content:"";width:4px;height:4px;border-radius:50%;background:#3A4458}
-.bfp-meta button{font:inherit;color:var(--ice);text-decoration:underline;text-underline-offset:3px;background:none;border:0;padding:0;cursor:pointer}
-
-/* countdown */
-.bfp-cd{margin-top:34px;display:inline-flex;flex-wrap:wrap;align-items:center;gap:18px 22px;padding:16px 20px;border-radius:20px}
-.bfp-cd-lb{display:flex;flex-direction:column;gap:3px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ice)}
-.bfp-cd-lb small{font-size:11px;font-weight:500;letter-spacing:.02em;text-transform:none;color:var(--mute)}
-.bfp-cd-t{display:flex;gap:8px}
-.bfp-cd-t div{min-width:62px;padding:10px 6px 8px;border-radius:12px;background:rgba(0,0,0,.35);border:1px solid var(--line);text-align:center}
-.bfp-cd-t b{display:block;font-size:26px;font-weight:800;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
-.bfp-cd-t span{display:block;margin-top:5px;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.bfp-hero .bfp-lede{margin-top:28px;color:#fff}
+.bfp-hero .bfp-p{max-width:44ch}
+.bfp-act{margin-top:34px;display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px}
+.bfp-act .bfp-link{font-size:15px;color:#fff}
+.bfp-cd{margin-top:44px;display:flex;align-items:baseline;gap:20px;flex-wrap:wrap}
+.bfp-cd-lb{font-size:13px;font-weight:600;color:var(--ntxt)}
+.bfp-cd-t{display:flex;gap:18px}
+.bfp-cd-t div{display:flex;align-items:baseline;gap:5px}
+.bfp-cd-t b{font-size:30px;font-weight:600;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.bfp-cd-t span{font-size:13px;color:var(--ntxt)}
 .bfp-cd.is-done .bfp-cd-t{display:none}
-
-/* marquee */
-.bfp-band{position:relative;z-index:3;border-block:1px solid var(--line);background:linear-gradient(90deg,#060914,#0A1430,#060914);overflow:hidden}
-.bfp-band-tr{display:flex;width:max-content;animation:bfpMarq 38s linear infinite}
-.bfp-band:hover .bfp-band-tr{animation-play-state:paused}
-.bfp-band ul{display:flex;align-items:center;gap:34px;padding:18px 17px;margin:0;list-style:none}
-.bfp-band li{display:flex;align-items:center;gap:34px;font-size:14px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;color:#DCE7FF}
-.bfp-band li::after{content:"";width:9px;height:9px;transform:rotate(45deg);background:linear-gradient(135deg,var(--glow),var(--blue))}
-.bfp-band li.gold{color:var(--gold)}
-@keyframes bfpMarq{to{transform:translateX(-50%)}}
-
-/* ---------- key info ---------- */
-.bfp-key{padding-block:clamp(64px,6vw,96px);background:radial-gradient(70% 120% at 50% 0%,#0B1A3D 0%,var(--bk) 60%)}
-.bfp-key-grid{margin-top:34px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-.bfp-tile{position:relative;padding:28px 26px;border-radius:24px;overflow:hidden;transition:transform .35s,border-color .35s}
-.bfp-tile:hover{transform:translateY(-4px);border-color:rgba(127,174,255,.4)}
-.bfp-tile-ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;color:#fff;background:linear-gradient(160deg,#2F6BFF,#0047BB);box-shadow:0 10px 30px -10px rgba(47,107,255,.9)}
-.bfp-tile-ic svg{width:22px;height:22px}
-.bfp-tile h3{margin-top:22px;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
-.bfp-tile p{margin-top:8px;font-size:clamp(20px,1.8vw,25px);font-weight:800;letter-spacing:-.025em;line-height:1.2}
-.bfp-tile small{display:block;margin-top:6px;font-size:13px;color:var(--mute)}
-.bfp-chips{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px}
-.bfp-chips span{padding:7px 13px;border-radius:999px;font-size:13px;font-weight:700;background:rgba(76,141,255,.14);border:1px solid rgba(127,174,255,.28);color:#E3ECFF}
+.bfp-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--nrule)}
+.bfp-facts div{padding:26px 28px 34px 0}
+.bfp-facts div+div{padding-left:28px;border-left:1px solid var(--nrule)}
+.bfp-facts dt{font-size:13px;color:var(--ntxt)}
+.bfp-facts dd{margin:8px 0 0;font-size:17px;font-weight:600;letter-spacing:-.01em}
 
 /* ---------- two ways ---------- */
-.bfp-ways{margin-top:clamp(40px,4vw,56px);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
-.bfp-way{position:relative;display:flex;flex-direction:column;padding:clamp(28px,3vw,40px);border-radius:30px;overflow:hidden;background:#fff;border:1px solid var(--rule);
-  box-shadow:0 30px 70px -40px rgba(11,16,32,.35);transition:transform .4s,box-shadow .4s}
-.bfp-way:hover{transform:translateY(-6px);box-shadow:0 40px 80px -40px rgba(11,16,32,.45)}
-.bfp-way--dark{background:radial-gradient(120% 90% at 100% 0%,#13285A 0%,#070A14 55%);border-color:#1B2540;color:#fff}
-.bfp-way-top{display:flex;align-items:center;justify-content:space-between;gap:16px}
-.bfp-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:#E8EFFD;color:var(--blue)}
-.bfp-way--dark .bfp-badge{background:rgba(233,201,135,.14);color:var(--gold);border:1px solid rgba(233,201,135,.3)}
-.bfp-way-n{font-size:clamp(56px,6vw,84px);font-weight:800;letter-spacing:-.05em;line-height:.9;color:transparent;-webkit-text-stroke:1.5px #C9D4E6}
-.bfp-way--dark .bfp-way-n{-webkit-text-stroke-color:rgba(233,201,135,.55)}
-.bfp-way h3{margin-top:22px;font-size:clamp(26px,2.5vw,36px);font-weight:800;letter-spacing:-.03em;line-height:1.08}
-.bfp-specs{margin:26px 0 0;display:grid;gap:0}
-.bfp-specs div{display:flex;justify-content:space-between;align-items:baseline;gap:18px;padding:15px 0;border-top:1px solid var(--rule)}
-.bfp-way--dark .bfp-specs div{border-color:rgba(255,255,255,.1)}
-.bfp-specs dt{font-size:14.5px;color:var(--ink2)}
-.bfp-way--dark .bfp-specs dt{color:var(--txt)}
-.bfp-specs dd{margin:0;font-size:15.5px;font-weight:800;text-align:right;font-variant-numeric:tabular-nums}
-.bfp-way-note{margin-top:22px;font-size:14.5px;line-height:1.6;color:var(--ink2)}
-.bfp-way--dark .bfp-way-note{color:var(--txt)}
-.bfp-way-art{position:absolute;right:-30px;top:-30px;width:220px;height:220px;pointer-events:none;opacity:.9}
-/* ticket stack */
-.bfp-tix{position:relative;height:120px;margin-top:26px}
-.bfp-tix i{position:absolute;left:0;top:0;width:min(300px,78%);height:84px;border-radius:14px;background:linear-gradient(120deg,#0047BB,#2F6BFF 60%,#7FAEFF);
-  -webkit-mask:radial-gradient(circle 12px at 0 50%,#0000 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 12px at 100% 50%,#0000 98%,#000) right/51% 100% no-repeat;
-  mask:radial-gradient(circle 12px at 0 50%,#0000 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 12px at 100% 50%,#0000 98%,#000) right/51% 100% no-repeat;
-  box-shadow:0 18px 30px -16px rgba(0,71,187,.6);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
-.bfp-tix i:nth-child(1){transform:translate(28px,26px) rotate(-5deg);opacity:.35}
-.bfp-tix i:nth-child(2){transform:translate(14px,13px) rotate(-2.5deg);opacity:.6}
-.bfp-tix i:nth-child(3){display:flex;align-items:center;justify-content:space-between;padding:0 30px;color:#fff}
-.bfp-tix i:nth-child(3) b{font-size:13px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;font-style:normal}
-.bfp-tix i:nth-child(3) em{font-style:normal;font-size:30px;font-weight:800;letter-spacing:-.03em}
-.bfp-way:hover .bfp-tix i:nth-child(1){transform:translate(48px,34px) rotate(-8deg)}
-.bfp-way:hover .bfp-tix i:nth-child(2){transform:translate(24px,17px) rotate(-4deg)}
-/* leaderboard */
-.bfp-lb{margin-top:26px;display:grid;gap:8px}
-.bfp-lb div{display:grid;grid-template-columns:28px 1fr;align-items:center;gap:12px;font-size:12px;font-weight:800;color:var(--mute)}
-.bfp-lb s{display:block;height:10px;border-radius:99px;text-decoration:none;background:linear-gradient(90deg,var(--gold2),var(--gold));width:0;transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
-.bfp-lb div:nth-child(n+2) s{background:linear-gradient(90deg,#1C3B86,#4C8DFF)}
-.bfp-lb.is-in div:nth-child(1) s{width:96%}.bfp-lb.is-in div:nth-child(2) s{width:78%}.bfp-lb.is-in div:nth-child(3) s{width:61%}.bfp-lb.is-in div:nth-child(4) s{width:47%}
+.bfp-ways{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(28px,4vw,64px)}
+.bfp-way{border-top:2px solid var(--ink);padding-top:22px}
+.bfp-way-k{display:flex;justify-content:space-between;font-size:13px;font-weight:600;color:var(--ink3)}
+.bfp-big{display:block;margin-top:18px;font-size:clamp(96px,11vw,168px);font-weight:700;line-height:.82;letter-spacing:-.07em;font-variant-numeric:tabular-nums}
+.bfp-big-c{display:block;margin-top:14px;font-size:15px;font-weight:600;color:var(--ink3)}
+.bfp-way h3{margin-top:28px;font-size:clamp(22px,1.9vw,27px);font-weight:700;letter-spacing:-.03em}
+.bfp-specs{margin:20px 0 0}
+.bfp-specs div{display:flex;justify-content:space-between;gap:20px;padding:14px 0;border-top:1px solid var(--rule)}
+.bfp-specs dt{flex:1 1 auto;min-width:0;font-size:15px;color:var(--ink2)}
+.bfp-specs dd{flex:0 1 auto;max-width:60%;white-space:nowrap;margin:0;font-size:15px;font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
+.bfp-way .bfp-p{margin-top:18px}
 
-/* ---------- prize ladder ---------- */
-.bfp-prize-sec{background:radial-gradient(60% 70% at 50% 0%,#0E1E48 0%,var(--bk) 62%)}
-.bfp-prize-sec::before{content:"";position:absolute;left:50%;top:0;width:min(900px,90vw);height:420px;transform:translateX(-50%);z-index:0;
-  background:conic-gradient(from 180deg at 50% 0%,transparent 160deg,rgba(76,141,255,.22) 180deg,transparent 200deg);filter:blur(30px);pointer-events:none}
-.bfp-prizes{margin-top:clamp(40px,4vw,60px);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;align-items:end}
-.bfp-prize{position:relative;border-radius:26px;overflow:hidden;padding:0 0 24px;background:linear-gradient(180deg,#0B1022,#06080F);border:1px solid #1A2238;
-  transition:transform .45s cubic-bezier(.2,.8,.2,1),border-color .4s,box-shadow .4s}
-.bfp-prize::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
-  background:radial-gradient(260px circle at var(--mx,50%) var(--my,30%),rgba(127,174,255,.16),transparent 60%);opacity:0;transition:opacity .3s}
-.bfp-prize:hover{transform:translateY(-8px);border-color:rgba(127,174,255,.45);box-shadow:0 40px 80px -40px rgba(47,107,255,.6)}
-.bfp-prize:hover::after{opacity:1}
-.bfp-prize figure{margin:0;aspect-ratio:1/1;max-width:100%;overflow:hidden}
-.bfp-prize img{width:100%;height:100%;object-fit:cover;transform:scale(1.04);transition:transform .8s cubic-bezier(.2,.8,.2,1)}
-.bfp-prize:hover img{transform:scale(1.1)}
-.bfp-prize-in{padding:0 22px}
-.bfp-rank{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:-6px}
-.bfp-rank b{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--ice)}
-.bfp-rank i{font-style:normal;font-size:44px;font-weight:800;letter-spacing:-.05em;line-height:1;color:transparent;-webkit-text-stroke:1.2px rgba(169,200,255,.45)}
-.bfp-prize h3{margin-top:10px;font-size:clamp(19px,1.6vw,23px);font-weight:800;letter-spacing:-.025em;line-height:1.15}
-.bfp-prize--1{border-color:rgba(233,201,135,.45);background:linear-gradient(180deg,#151324,#08070D);box-shadow:0 0 0 1px rgba(233,201,135,.12),0 40px 90px -40px rgba(233,201,135,.45)}
-.bfp-prize--1 .bfp-rank b{color:var(--gold)}
-.bfp-prize--1 .bfp-rank i{-webkit-text-stroke-color:rgba(233,201,135,.7)}
-.bfp-prize--1 figure{aspect-ratio:1/1.12}
-.bfp-crown{position:absolute;top:16px;left:16px;z-index:2;display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
-  color:#1A1408;background:linear-gradient(135deg,#F6E2B0,#D9B46A)}
-.bfp-crown svg{width:13px;height:13px}
-.bfp-foot{margin-top:26px;display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px;text-align:center;font-size:13.5px;color:var(--mute)}
+.bfp-specs dd.w{white-space:normal}
+
+/* ---------- prizes ---------- */
+.bfp-prize-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
+.bfp-prize-head .bfp-p{margin:0;max-width:38ch}
+.bfp-prizes{margin-top:clamp(44px,5vw,72px);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,1.6vw,24px);list-style:none;padding:0}
+.bfp-prize figure{margin:0;aspect-ratio:1/1;max-width:100%;overflow:hidden;border-radius:6px;background:#000}
+.bfp-prize img{width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.2,.8,.2,1)}
+.bfp-prize:hover img{transform:scale(1.045)}
+.bfp-prize-k{margin-top:18px;padding-top:14px;border-top:1px solid var(--nrule);display:flex;justify-content:space-between;font-size:13px;color:var(--ntxt);font-variant-numeric:tabular-nums}
+.bfp-prize h3{margin-top:6px;font-size:clamp(18px,1.5vw,22px);font-weight:600;letter-spacing:-.02em}
+.bfp-prize:first-child .bfp-prize-k{border-top-color:#fff;color:#fff}
+.bfp-fine{margin-top:34px;font-size:13px;color:var(--ink3)}
+.bfp-dark .bfp-fine{color:#6E7480}
 
 /* ---------- steps ---------- */
-.bfp-steps{list-style:none;padding:0;margin-bottom:0;margin-top:clamp(40px,4vw,60px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;position:relative;counter-reset:s}
-.bfp-steps::before{content:"";position:absolute;left:calc(16.66% + 24px);right:calc(16.66% + 24px);top:34px;height:2px;
-  background:repeating-linear-gradient(90deg,#B9C7DE 0 8px,transparent 8px 16px)}
-.bfp-step{position:relative;padding:0 6px;text-align:center}
-.bfp-step-n{position:relative;z-index:1;width:68px;height:68px;margin:0 auto;border-radius:50%;display:grid;place-items:center;font-size:22px;font-weight:800;color:#fff;
-  background:linear-gradient(160deg,#2F6BFF,#0047BB);box-shadow:0 0 0 8px var(--paper),0 16px 36px -12px rgba(0,71,187,.8)}
-.bfp-step-c{margin-top:26px;padding:28px 24px;border-radius:24px;background:#fff;border:1px solid var(--rule);height:calc(100% - 94px);transition:transform .35s,box-shadow .35s}
-.bfp-step:hover .bfp-step-c{transform:translateY(-4px);box-shadow:0 30px 60px -36px rgba(11,16,32,.4)}
-.bfp-step h3{font-size:20px;font-weight:800;letter-spacing:-.02em}
+.bfp-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,3vw,44px);list-style:none;padding:0;margin:0}
+.bfp-step{border-top:1px solid var(--ink);padding-top:20px}
+.bfp-step b{font-size:13px;font-weight:600;color:var(--blue);font-variant-numeric:tabular-nums}
+.bfp-step h3{margin-top:28px;font-size:20px;font-weight:700;letter-spacing:-.025em;line-height:1.2}
 .bfp-step p{margin-top:10px;font-size:15px;line-height:1.65;color:var(--ink2)}
-.bfp-note{margin-top:30px;display:flex;gap:14px;align-items:flex-start;padding:20px 22px;border-radius:18px;background:#FFF8EA;border:1px solid #F1DDB0;color:#5B4515;font-size:14.5px;line-height:1.6}
-.bfp-note svg{flex:none;width:22px;height:22px;margin-top:1px;color:#B8862B}
-.bfp-note b{color:#3E2E08}
+.bfp-note{margin-top:clamp(40px,4vw,56px);padding-left:18px;border-left:2px solid var(--blue);max-width:70ch;font-size:15px;line-height:1.65;color:var(--ink2)}
+.bfp-note b{color:var(--ink)}
 
-/* ---------- adds up / estimator ---------- */
-.bfp-add{background:linear-gradient(180deg,var(--bk) 0%,#071233 100%)}
-.bfp-add-grid{margin-top:clamp(40px,4vw,56px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(24px,3vw,44px);align-items:start}
-.bfp-stages{list-style:none;margin:0;padding:0;display:grid;gap:14px;position:relative}
-.bfp-stage{position:relative;display:grid;grid-template-columns:52px 1fr;gap:18px;padding:22px 22px;border-radius:22px;border:1px solid var(--line);background:rgba(255,255,255,.025);transition:border-color .35s,background .35s}
-.bfp-stage.is-on{border-color:rgba(127,174,255,.45);background:rgba(47,107,255,.08)}
-.bfp-stage-n{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;font-weight:800;font-size:18px;color:var(--ice);border:1px solid rgba(127,174,255,.3);background:rgba(47,107,255,.1)}
-.bfp-stage.is-on .bfp-stage-n{color:#fff;background:linear-gradient(160deg,#2F6BFF,#0047BB);border-color:transparent}
-.bfp-stage h3{font-size:19px;font-weight:800;letter-spacing:-.02em}
-.bfp-stage p{margin-top:6px;font-size:14.5px;line-height:1.6;color:var(--txt)}
-.bfp-calc{padding:clamp(24px,2.6vw,34px);border-radius:28px;position:sticky;top:110px}
-.bfp-calc h3{font-size:22px;font-weight:800;letter-spacing:-.02em}
-.bfp-calc>p{margin-top:6px;font-size:14px;color:var(--mute)}
-.bfp-field{margin-top:24px}
-.bfp-field label{display:flex;justify-content:space-between;gap:12px;font-size:13px;font-weight:700;letter-spacing:.02em;color:var(--txt)}
-.bfp-field output{font-size:15px;font-weight:800;color:#fff;font-variant-numeric:tabular-nums}
-.bfp-range{-webkit-appearance:none;appearance:none;width:100%;height:8px;margin-top:14px;border-radius:99px;outline:none;cursor:pointer;
-  background:linear-gradient(90deg,#2F6BFF var(--p,0%),rgba(255,255,255,.12) var(--p,0%))}
-.bfp-range::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:#fff;border:6px solid #2F6BFF;box-shadow:0 4px 16px rgba(47,107,255,.7)}
-.bfp-range::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:#fff;border:6px solid #2F6BFF}
-.bfp-range:focus-visible{box-shadow:0 0 0 3px rgba(127,174,255,.6)}
-.bfp-ticks{display:flex;justify-content:space-between;margin-top:8px;font-size:11px;color:var(--mute);font-variant-numeric:tabular-nums}
-.bfp-out{margin-top:26px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.bfp-out>div{padding:18px;border-radius:18px;background:rgba(0,0,0,.3);border:1px solid var(--line)}
-.bfp-out small{display:block;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
-.bfp-out b{display:block;margin-top:8px;font-size:40px;font-weight:800;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
-.bfp-pill{display:inline-flex;align-items:center;gap:8px;margin-top:12px;padding:7px 12px;border-radius:999px;font-size:13px;font-weight:800;background:rgba(255,255,255,.08);color:var(--txt)}
-.bfp-pill i{width:8px;height:8px;border-radius:50%;background:#59627A}
-.bfp-pill.ok{background:rgba(52,211,153,.14);color:#7EF0C3}.bfp-pill.ok i{background:#34D399}
-.bfp-pill.gold{background:rgba(233,201,135,.16);color:var(--gold)}.bfp-pill.gold i{background:var(--gold)}
-.bfp-calc-hint{margin-top:12px;font-size:13px;line-height:1.55;color:var(--mute);min-height:2.6em}
-.bfp-fine{margin-top:22px;font-size:12.5px;line-height:1.6;color:var(--mute)}
+/* ---------- example + estimator ---------- */
+.bfp-stages{list-style:none;padding:0;margin:0}
+.bfp-stage{display:grid;grid-template-columns:44px 1fr;gap:16px;padding:22px 0;border-top:1px solid var(--rule);transition:opacity .3s}
+.bfp-stage:last-child{border-bottom:1px solid var(--rule)}
+.bfp-stage b{font-size:13px;font-weight:600;color:var(--ink3);padding-top:4px;font-variant-numeric:tabular-nums}
+.bfp-stage.is-on b{color:var(--blue)}
+.bfp-stage h3{font-size:18px;font-weight:700;letter-spacing:-.02em}
+.bfp-stage p{margin-top:6px;font-size:15px;line-height:1.6;color:var(--ink2)}
+.bfp-add{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4vw,64px);align-items:start}
+.bfp-calc{padding:clamp(24px,2.6vw,36px);border-radius:12px;background:#fff;border:1px solid var(--rule)}
+.bfp-calc h3{font-size:18px;font-weight:700;letter-spacing:-.02em}
+.bfp-field{margin-top:26px}
+.bfp-field label{display:flex;justify-content:space-between;gap:12px;font-size:14px;color:var(--ink2)}
+.bfp-field output{font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}
+.bfp-range{-webkit-appearance:none;appearance:none;width:100%;height:4px;margin-top:16px;border-radius:4px;outline:none;cursor:pointer;background:linear-gradient(90deg,var(--ink) var(--p,0%),var(--rule) var(--p,0%))}
+.bfp-range::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#fff;border:1px solid #C9CDD5;box-shadow:0 2px 8px rgba(10,11,16,.18)}
+.bfp-range::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:#fff;border:1px solid #C9CDD5}
+.bfp-range:focus-visible::-webkit-slider-thumb{outline:2px solid var(--blue);outline-offset:2px}
+.bfp-out{margin-top:30px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--rule)}
+.bfp-out div{padding-top:18px}
+.bfp-out div+div{padding-left:22px;border-left:1px solid var(--rule)}
+.bfp-out small{display:block;font-size:13px;color:var(--ink3)}
+.bfp-out b{display:block;margin-top:6px;font-size:52px;font-weight:700;letter-spacing:-.05em;line-height:1;font-variant-numeric:tabular-nums}
+.bfp-out em{display:block;margin-top:8px;font-style:normal;font-size:14px;font-weight:600;color:var(--ink3)}
+.bfp-out em.ok{color:var(--blue)}
+.bfp-hint{margin-top:20px;font-size:14px;line-height:1.55;color:var(--ink2);min-height:3.1em}
+.bfp-calc .bfp-fine{margin-top:16px}
 
 /* ---------- calendar ---------- */
-.bfp-cal{background:radial-gradient(70% 80% at 50% 100%,#0C1E4D 0%,var(--bk) 65%);text-align:center}
-.bfp-line{margin:clamp(44px,4vw,64px) auto 0;max-width:980px;display:grid;grid-template-columns:repeat(3,1fr);position:relative}
-.bfp-line::before{content:"";position:absolute;left:16.66%;right:16.66%;top:27px;height:2px;background:linear-gradient(90deg,#2F6BFF,#7FAEFF,var(--gold))}
-.bfp-node{display:flex;flex-direction:column;align-items:center;gap:12px;padding:0 10px}
-.bfp-node i{position:relative;z-index:1;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:var(--bk2);border:2px solid #2F6BFF;color:#fff}
-.bfp-node i svg{width:22px;height:22px}
-.bfp-node:last-child i{border-color:var(--gold);color:var(--gold);box-shadow:0 0 30px rgba(233,201,135,.35)}
-.bfp-node b{font-size:clamp(22px,2.2vw,30px);font-weight:800;letter-spacing:-.03em}
-.bfp-node span{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
-.bfp-cal-txt{margin:clamp(36px,3.4vw,52px) auto 0;max-width:640px;display:grid;gap:10px;font-size:16px;line-height:1.65;color:var(--txt)}
-.bfp-cal-txt strong{color:#fff}
-.bfp-cal .bfp-act{justify-content:center}
-.bfp-cal-fine{margin-top:16px;font-size:13px;color:var(--mute)}
+.bfp-dates{margin-top:clamp(48px,5vw,80px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));list-style:none;padding:0}
+.bfp-dates li{padding:22px 24px 0 0;border-top:1px solid var(--nrule)}
+.bfp-dates li+li{padding-left:24px}
+.bfp-dates li:last-child{border-top-color:#fff}
+.bfp-dates span{font-size:13px;color:var(--ntxt)}
+.bfp-dates b{display:block;margin-top:10px;font-size:clamp(40px,5vw,72px);font-weight:700;letter-spacing:-.05em;line-height:1;font-variant-numeric:tabular-nums}
+.bfp-close{margin-top:clamp(48px,5vw,72px);display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap}
+.bfp-close .bfp-p{margin:0;max-width:52ch}
+.bfp-close .bfp-p+.bfp-p{margin-top:8px}
 
-/* ---------- faq + terms ---------- */
-.bfp-faq-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.6fr);gap:clamp(30px,4vw,70px);align-items:start}
-.bfp-faq-side{position:sticky;top:110px}
-.bfp-tabs{margin-top:26px;display:flex;flex-wrap:wrap;gap:8px}
-.bfp-tabs button{padding:10px 16px;border-radius:999px;border:1px solid #CFD7E4;background:#fff;font:inherit;font-size:13.5px;font-weight:700;color:var(--ink2);cursor:pointer;transition:all .25s}
-.bfp-tabs button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
-.bfp-faq{display:grid;gap:10px}
-.bfp-q{border-radius:18px;background:#fff;border:1px solid var(--rule);transition:box-shadow .3s,border-color .3s}
-.bfp-q[open]{border-color:#BFD0EE;box-shadow:0 24px 50px -34px rgba(11,16,32,.4)}
-.bfp-q summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:16px;padding:20px 22px}
+/* ---------- FAQ ---------- */
+.bfp-faq-g+.bfp-faq-g{margin-top:44px}
+.bfp-faq-g>h3{font-size:13px;font-weight:600;color:var(--ink3);padding-bottom:12px}
+.bfp-q{border-top:1px solid var(--rule)}
+.bfp-faq-g .bfp-q:last-child{border-bottom:1px solid var(--rule)}
+.bfp-q summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:20px 0}
 .bfp-q summary::-webkit-details-marker{display:none}
-.bfp-q summary i{flex:none;font-style:normal;font-size:12px;font-weight:800;color:var(--blue);font-variant-numeric:tabular-nums}
-.bfp-q summary h3{flex:1;margin:0;font-size:16.5px;font-weight:700;letter-spacing:-.01em;line-height:1.4;color:var(--ink)}
-.bfp-q summary svg{flex:none;width:30px;height:30px;padding:7px;border-radius:50%;border:1px solid #CFD7E4;color:var(--ink2);transition:transform .3s,background .3s,color .3s}
-.bfp-q[open] summary svg{transform:rotate(45deg);background:var(--blue);border-color:var(--blue);color:#fff}
-.bfp-q-a{padding:0 22px 22px 52px;font-size:15px;line-height:1.7;color:var(--ink2)}
+.bfp-q summary h4{margin:0;font-size:17px;font-weight:600;letter-spacing:-.015em;line-height:1.4}
+.bfp-q summary:hover h4{color:var(--blue)}
+.bfp-q summary svg{flex:none;width:18px;height:18px;color:var(--ink3);transition:transform .3s}
+.bfp-q[open] summary svg{transform:rotate(45deg);color:var(--ink)}
+.bfp-q-a{padding:0 40px 24px 0;font-size:15.5px;line-height:1.7;color:var(--ink2)}
 .bfp-q-a p+p{margin-top:10px}
 .bfp-q-a ul{margin:10px 0 0;padding-left:18px}
-.bfp-terms{margin-top:clamp(50px,5vw,80px);padding:clamp(26px,3vw,40px);border-radius:28px;background:#fff;border:1px solid var(--rule)}
-.bfp-terms h2{font-size:clamp(22px,2vw,28px);font-weight:800;letter-spacing:-.02em}
-.bfp-terms ul{margin:20px 0 0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 30px}
-.bfp-terms li{position:relative;padding-left:22px;font-size:14.5px;line-height:1.6;color:var(--ink2)}
-.bfp-terms li::before{content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;border-radius:2px;transform:rotate(45deg);background:var(--blue)}
-.bfp-terms li b{color:var(--ink)}
-.bfp-terms .bfp-act{margin-top:26px}
+.bfp-terms{margin-top:clamp(64px,6vw,96px);padding-top:28px;border-top:2px solid var(--ink)}
+.bfp-terms dl{margin:22px 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 48px}
+.bfp-terms dt{font-size:14px;font-weight:700}
+.bfp-terms dd{margin:4px 0 0;font-size:14px;line-height:1.65;color:var(--ink2)}
+.bfp-terms .bfp-act{margin-top:32px}
+.bfp-terms .bfp-act .bfp-link{color:var(--ink)}
 
 /* ---------- T&C dialog ---------- */
-.bfp-tc{width:min(880px,calc(100vw - 32px));max-height:min(86vh,900px);padding:0;border:0;border-radius:24px;background:#fff;color:var(--ink);box-shadow:0 40px 120px rgba(0,0,0,.5)}
-.bfp-tc::backdrop{background:rgba(4,5,10,.72);backdrop-filter:blur(6px)}
+.bfp-tc{width:min(860px,calc(100vw - 32px));max-height:min(86vh,900px);padding:0;border:0;border-radius:14px;background:#fff;color:var(--ink);box-shadow:0 40px 120px rgba(0,0,0,.45)}
+.bfp-tc::backdrop{background:rgba(5,6,8,.7)}
 .bfp-tc-in{display:flex;flex-direction:column;max-height:min(86vh,900px)}
-.bfp-tc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:24px 28px;border-bottom:1px solid var(--rule)}
-.bfp-tc-top small{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--blue)}
-.bfp-tc-top h2{margin-top:4px;font-size:24px;font-weight:800;letter-spacing:-.02em}
-.bfp-tc-x{flex:none;width:42px;height:42px;border-radius:50%;border:1px solid var(--rule);background:#fff;display:grid;place-items:center;cursor:pointer;color:var(--ink)}
-.bfp-tc-x svg{width:18px;height:18px}
-.bfp-tc-body{overflow:auto;padding:8px 28px 30px;font-size:14.5px;line-height:1.7;color:var(--ink2)}
-.bfp-tc-body h3{margin-top:24px;font-size:16px;font-weight:800;color:var(--ink)}
+.bfp-tc-top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 28px;border-bottom:1px solid var(--rule)}
+.bfp-tc-top small{font-size:13px;color:var(--ink3)}
+.bfp-tc-top h2{margin-top:2px;font-size:22px;font-weight:700;letter-spacing:-.02em}
+.bfp-tc-x{flex:none;width:40px;height:40px;border-radius:50%;border:1px solid var(--rule);background:#fff;display:grid;place-items:center;cursor:pointer;color:var(--ink)}
+.bfp-tc-x svg{width:16px;height:16px}
+.bfp-tc-body{overflow:auto;padding:6px 28px 30px;font-size:14.5px;line-height:1.7;color:var(--ink2)}
+.bfp-tc-body h3{margin-top:24px;font-size:15.5px;font-weight:700;color:var(--ink)}
 .bfp-tc-body p{margin-top:10px}
 .bfp-tc-body ul{margin:8px 0 0;padding-left:20px}
-.bfp-tc-body table{width:100%;margin-top:12px;border-collapse:collapse;font-size:14px}
-.bfp-tc-body th,.bfp-tc-body td{padding:10px 12px;border:1px solid var(--rule);text-align:left}
-.bfp-tc-body th{background:var(--paper);color:var(--ink)}
 .bfp-tc-tw{overflow-x:auto}
+.bfp-tc-body table{width:100%;margin-top:12px;border-collapse:collapse;font-size:14px}
+.bfp-tc-body th,.bfp-tc-body td{padding:10px 12px;border-bottom:1px solid var(--rule);text-align:left}
+.bfp-tc-body th{color:var(--ink);font-weight:700}
 
-/* ---------- sticky mobile CTA ---------- */
-.bfp-dock{position:fixed;left:12px;right:88px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:60;display:none;align-items:center;justify-content:space-between;gap:12px;padding:10px 10px 10px 18px;border-radius:999px;
-  transform:translateY(140%);transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+/* ---------- mobile CTA bar ---------- */
+.bfp-dock{position:fixed;left:12px;right:88px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:60;display:none;transform:translateY(160%);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
 .bfp-dock.is-on{transform:none}
-.bfp-dock span{font-size:13px;font-weight:700;color:#fff;line-height:1.3}
-.bfp-dock span small{display:block;font-weight:500;color:var(--mute);font-size:11.5px}
-.bfp-dock .bfp-btn{min-height:46px;padding:0 20px;font-size:14.5px}
-
+.bfp-dock .bfp-btn{width:100%;justify-content:center;box-shadow:0 12px 30px -10px rgba(0,0,0,.5)}
 body.ck-open .bfp-dock{visibility:hidden}
-.bfp-dock span{min-width:0}
 
 /* ---------- responsive ---------- */
-@media (max-width:1100px){
-  .bfp-prizes{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .bfp-prize--1 figure{aspect-ratio:1/1}
-}
+@media (max-width:1100px){.bfp-prizes{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:40px}}
 @media (max-width:980px){
-  .bfp-hero{min-height:0;flex-direction:column;align-items:stretch;padding-block:96px 0}
-  .bfp-hero::before{background:linear-gradient(180deg,var(--bk) 0%,rgba(4,5,10,.0) 30%)}
-  .bfp-hero-art{position:relative;inset:auto;order:2;margin-top:10px}
-  .bfp-hero-art img{height:auto;aspect-ratio:auto;object-fit:contain}
+  .bfp-hero{padding-top:84px;display:flex;flex-direction:column}
   .bfp-hero>.container{order:1}
-  .bfp-key-grid,.bfp-ways,.bfp-add-grid,.bfp-faq-grid{grid-template-columns:1fr}
-  .bfp-calc,.bfp-faq-side{position:static}
-  .bfp-steps{grid-template-columns:1fr;gap:16px}
-  .bfp-steps::before{left:33px;right:auto;top:34px;bottom:34px;width:2px;height:auto;background:repeating-linear-gradient(180deg,#B9C7DE 0 8px,transparent 8px 16px)}
-  .bfp-step{display:grid;grid-template-columns:68px 1fr;gap:16px;text-align:left;padding:0}
-  .bfp-step-c{margin-top:0;height:auto}
-  .bfp-terms ul{grid-template-columns:1fr}
-  .bfp-dock{display:flex}
+  .bfp-hero-art{order:2}
+  .bfp-hero>.bfp-facts-wrap{order:3}
+  .bfp-hero::before{background:linear-gradient(180deg,var(--night) 0%,rgba(5,6,8,0) 24%,rgba(5,6,8,0) 80%,var(--night) 100%)}
+  .bfp-hero-art{position:relative;height:auto}
+  .bfp-hero-art img{height:auto;object-fit:contain}
+  .bfp-hero-copy{padding-bottom:20px}
+  .bfp-grid,.bfp-add{grid-template-columns:1fr}
+  .bfp-ways{grid-template-columns:1fr;gap:56px}
+  .bfp-steps{grid-template-columns:1fr;gap:32px}
+  .bfp-dock{display:block}
 }
-@media (max-width:620px){
-  .bfp-prizes{gap:12px}
-  .bfp-prize-in{padding:0 14px}
-  .bfp-rank i{font-size:32px}
-  .bfp-line{grid-template-columns:1fr;gap:26px}
-  .bfp-line::before{left:50%;right:auto;top:28px;bottom:28px;width:2px;height:auto;transform:translateX(-1px);background:linear-gradient(180deg,#2F6BFF,#7FAEFF,var(--gold))}
-  .bfp-node b,.bfp-node span{background:var(--bk);position:relative;z-index:1;padding:0 8px}
-  .bfp-cd{display:flex}
-  .bfp-cd-t div{min-width:0;flex:1}
-  .bfp-out b{font-size:32px}
-  .bfp-q-a{padding-left:22px}
-  .bfp-act .bfp-btn,.bfp-act .bfp-ghost{flex:1 1 100%}
+@media (max-width:700px){
+  .bfp-facts{grid-template-columns:1fr}
+  .bfp-facts div,.bfp-facts div+div{padding:18px 0;border-left:0}
+  .bfp-facts div+div{border-top:1px solid var(--nrule)}
+  .bfp-dates{grid-template-columns:1fr}
+  .bfp-dates li,.bfp-dates li+li{padding:20px 0 26px}
+  .bfp-terms dl{grid-template-columns:1fr}
+  .bfp-cd-t{gap:14px}.bfp-cd-t b{font-size:26px}
+  .bfp-q-a{padding-right:0}
 }
-@media (prefers-reduced-motion:reduce){
-  .bfp-band-tr,.bfp-btn::after,.bfp-kicker i{animation:none}
-  .bfp *{transition-duration:.01ms!important}
-}
+@media (prefers-reduced-motion:reduce){.bfp *{transition-duration:.01ms!important}}
 
   </style>
   <script type="application/ld+json">
@@ -670,148 +551,132 @@ body.ck-open .bfp-dock{visibility:hidden}
 <section class="bfp-hero" aria-labelledby="bfp-title">
   <picture class="bfp-hero-art">
     <source media="(max-width:980px)" srcset="assets/img/bfp-hero-stack.webp">
-    <img src="assets/img/bfp-hero.webp" srcset="assets/img/bfp-hero-1920.webp 1920w, assets/img/bfp-hero.webp 2560w" sizes="100vw" alt="A black gift box bursting open with royal-blue light, glass raffle tickets and chrome coins rising beside a glowing market chart" width="2560" height="1432" fetchpriority="high" decoding="async">
+    <img src="assets/img/bfp-hero.webp" srcset="assets/img/bfp-hero-1920.webp 1920w, assets/img/bfp-hero.webp 2560w" sizes="100vw" alt="A black gift box bursting open with royal-blue light, glass raffle tickets and chrome coins rising beside a glowing market chart" width="2560" height="1434" fetchpriority="high" decoding="async">
   </picture>
   <div class="container">
     <div class="bfp-hero-copy">
-      <span class="bfp-kicker" data-aos="fade-up"><i aria-hidden="true"></i>Black Friday · 23 Nov – 4 Dec 2026</span>
-      <h1 class="bfp-h1" id="bfp-title" data-aos="fade-up"><span>Black Friday</span> <span class="b">Power Play</span></h1>
-      <p class="bfp-lead" data-aos="fade-up">100 Credit Bonuses. 4 Top Prizes. Your Chance to Win.</p>
-      <p class="bfp-support" data-aos="fade-up">Trade for a chance to win one of 100 USD 20 credit bonuses or compete for a MacBook Air and other top prizes.</p>
-      <div class="bfp-act" data-aos="fade-up">
+      <p class="bfp-date">23 Nov – 4 Dec 2026 (Server Time) · New &amp; Existing Clients</p>
+      <h1 class="bfp-h1" id="bfp-title"><span>Black Friday</span> <span>Power Play</span></h1>
+      <p class="bfp-lede">100 Credit Bonuses. 4 Top Prizes. Your Chance to Win.</p>
+      <p class="bfp-p">Trade for a chance to win one of 100 USD 20 credit bonuses or compete for a MacBook Air and other top prizes.</p>
+      <div class="bfp-act">
         <a class="bfp-btn" href="https://myaccount.startrader.com/login" rel="noopener">Opt In Now <svg><use href="#i-arrow-right"/></svg></a>
-        <a class="bfp-ghost" href="#prizes">100 × USD 20 Credit Bonuses | 4 Top Prizes</a>
+        <button type="button" class="bfp-link" data-tc-open>T&amp;Cs apply</button>
       </div>
-      <p class="bfp-meta" data-aos="fade-up"><span>23 Nov – 4 Dec 2026 (Server Time)</span><span>New &amp; Existing Clients</span><span><button type="button" data-tc-open>T&amp;Cs Apply</button></span></p>
-      <div class="bfp-cd bfp-glass" data-aos="fade-up" data-bfp-cd role="timer" aria-live="off">
-        <div class="bfp-cd-lb"><span data-cd-label>Power Play starts in</span><small>Server time</small></div>
-        <div class="bfp-cd-t"><div><b data-cd="d">00</b><span>Days</span></div><div><b data-cd="h">00</b><span>Hrs</span></div><div><b data-cd="m">00</b><span>Min</span></div><div><b data-cd="s">00</b><span>Sec</span></div></div>
+      <div class="bfp-cd" data-bfp-cd role="timer" aria-live="off">
+        <span class="bfp-cd-lb" data-cd-label>Starts in</span>
+        <div class="bfp-cd-t"><div><b data-cd="d">00</b><span>days</span></div><div><b data-cd="h">00</b><span>hrs</span></div><div><b data-cd="m">00</b><span>min</span></div><div><b data-cd="s">00</b><span>sec</span></div></div>
       </div>
     </div>
   </div>
-</section>
-
-<div class="bfp-band" aria-hidden="true"><div class="bfp-band-tr"><ul><li>Black Friday Power Play</li><li class="gold">100 × USD 20 Credit Bonuses</li><li>4 Top Prizes</li><li>Forex</li><li>Gold</li><li>Silver</li><li>Oil</li><li>BTC</li><li class="gold">MacBook Air</li><li>Leica D-Lux 8</li><li>Nintendo Switch 2</li><li>Ray-Ban Meta Gen 2</li></ul><ul><li>Black Friday Power Play</li><li class="gold">100 × USD 20 Credit Bonuses</li><li>4 Top Prizes</li><li>Forex</li><li>Gold</li><li>Silver</li><li>Oil</li><li>BTC</li><li class="gold">MacBook Air</li><li>Leica D-Lux 8</li><li>Nintendo Switch 2</li><li>Ray-Ban Meta Gen 2</li></ul></div></div>
-
-<!-- ============ KEY INFO ============ -->
-<section class="bfp-key" aria-labelledby="bfp-key-title">
-  <div class="container">
-    <div class="bfp-head" data-aos="fade-up"><span class="bfp-eyebrow">Key Info</span><h2 class="sr-only" id="bfp-key-title">Key Info</h2></div>
-    <div class="bfp-key-grid">
-      <div class="bfp-tile bfp-glass" data-aos="fade-up"><span class="bfp-tile-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 10h17M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><h3>Promotion Period</h3><p>23 Nov – 4 Dec 2026</p><small>Server time</small></div>
-      <div class="bfp-tile bfp-glass" data-aos="fade-up" data-aos-delay="100"><span class="bfp-tile-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19h16M6 15l4-4 3 3 5-6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h3>Eligible Products</h3><div class="bfp-chips"><span>Forex</span><span>Gold</span><span>Silver</span><span>Oil</span><span>BTC</span></div></div>
-      <div class="bfp-tile bfp-glass" data-aos="fade-up" data-aos-delay="200"><span class="bfp-tile-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 20a6 6 0 0 1 12 0M16 4.6a3.4 3.4 0 0 1 0 6.8M18 14.4A6 6 0 0 1 21 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><h3>Eligible Clients</h3><p>New &amp; Existing</p></div>
-    </div>
+  <div class="container bfp-facts-wrap">
+    <dl class="bfp-facts" aria-label="Key Info">
+      <div><dt>Promotion Period</dt><dd>23 Nov – 4 Dec 2026 (server time)</dd></div>
+      <div><dt>Eligible Products</dt><dd>Forex, Gold, Silver, Oil, BTC</dd></div>
+      <div><dt>Eligible Clients</dt><dd>New &amp; Existing</dd></div>
+    </dl>
   </div>
 </section>
 
 <!-- ============ TWO WAYS TO WIN ============ -->
-<section class="bfp-sec bfp-light" id="ways" aria-labelledby="bfp-ways-title">
-  <div class="container">
-    <div class="bfp-head center" data-aos="fade-up">
-      <span class="bfp-eyebrow">Two Ways to Win</span>
-      <h2 class="bfp-h2" id="bfp-ways-title">More Ways to Trade. <em>More Chances to Win.</em></h2>
-      <p class="bfp-sub">Whether you're aiming for the lucky draw or climbing the leaderboard, your eligible trading volume could bring you closer to a reward.</p>
+<section class="bfp-sec" id="ways" aria-labelledby="bfp-ways-title">
+  <div class="container bfp-grid">
+    <div>
+      <p class="bfp-label">01</p>
+      <h2 class="bfp-h2" id="bfp-ways-title">Two Ways to Win</h2>
+      <p class="bfp-lede">More Ways to Trade. More Chances to Win.</p>
+      <p class="bfp-p">Whether you're aiming for the lucky draw or climbing the leaderboard, your eligible trading volume could bring you closer to a reward.</p>
     </div>
     <div class="bfp-ways">
-      <article class="bfp-way" data-aos="fade-up">
-        <div class="bfp-way-top"><span class="bfp-badge">Lucky Draw | 100 Winners</span><span class="bfp-way-n" aria-hidden="true">100</span></div>
+      <article class="bfp-way">
+        <p class="bfp-way-k"><span>Lucky Draw</span><span>100 Winners</span></p>
+        <span class="bfp-big bfp-n" aria-hidden="true">100</span><span class="bfp-big-c" aria-hidden="true">× USD 20 Credit Bonus</span>
         <h3>Your Volume. Your Tickets.</h3>
-        <div class="bfp-tix" aria-hidden="true"><i></i><i></i><i><b>Draw ticket</b><em>USD 20</em></i></div>
         <dl class="bfp-specs">
-          <div><dt>Prize</dt><dd>USD 20 Credit Bonus per winner</dd></div>
+          <div><dt>Prize</dt><dd class="w">USD 20 Credit Bonus per winner</dd></div>
           <div><dt>Minimum Net Deposit</dt><dd>USD 500</dd></div>
           <div><dt>Every 1,000,000 in Notional Volume</dt><dd>1 Draw Ticket</dd></div>
           <div><dt>Ticket Limit</dt><dd>Unlimited</dd></div>
         </dl>
       </article>
-      <article class="bfp-way bfp-way--dark" data-aos="fade-up" data-aos-delay="120">
-        <div class="bfp-way-top"><span class="bfp-badge">Top Prizes | 4 Winners</span><span class="bfp-way-n" aria-hidden="true">04</span></div>
+      <article class="bfp-way">
+        <p class="bfp-way-k"><span>Top Prizes</span><span>4 Winners</span></p>
+        <span class="bfp-big bfp-n" aria-hidden="true">4</span><span class="bfp-big-c" aria-hidden="true">Top Prizes</span>
         <h3>Trade Your Way to the Top.</h3>
-        <div class="bfp-lb" data-bfp-lb aria-hidden="true"><div>01<s></s></div><div>02<s></s></div><div>03<s></s></div><div>04<s></s></div></div>
         <dl class="bfp-specs">
           <div><dt>Minimum Net Deposit</dt><dd>USD 1,000</dd></div>
           <div><dt>Minimum Notional Volume</dt><dd>2,000,000</dd></div>
-          <div><dt>Ranking</dt><dd>Total Qualifying Notional Trading Volume</dd></div>
-          <div><dt>Prizes</dt><dd>Awarded to the Top 4 Ranked Traders</dd></div>
+          <div><dt>Ranking</dt><dd class="w">Total Qualifying Notional Trading Volume</dd></div>
+          <div><dt>Prizes</dt><dd class="w">Awarded to the Top 4 Ranked Traders</dd></div>
         </dl>
-        <p class="bfp-way-note">Meet the requirements, climb the leaderboard, and compete for the campaign's biggest prizes.</p>
+        <p class="bfp-p">Meet the requirements, climb the leaderboard, and compete for the campaign's biggest prizes.</p>
       </article>
     </div>
   </div>
 </section>
 
 <!-- ============ PRIZE LADDER ============ -->
-<section class="bfp-sec bfp-prize-sec" id="prizes" aria-labelledby="bfp-prize-title">
+<section class="bfp-sec bfp-dark" id="prizes" aria-labelledby="bfp-prize-title">
   <div class="container">
-    <div class="bfp-head center" data-aos="fade-up">
-      <span class="bfp-eyebrow">The Top Prize Ladder</span>
-      <h2 class="bfp-h2" id="bfp-prize-title">Four Ranks. <em>Four Prizes.</em></h2>
+    <div class="bfp-prize-head">
+      <div>
+        <p class="bfp-label">02 · The Top Prize Ladder</p>
+        <h2 class="bfp-h2" id="bfp-prize-title">Four Ranks. Four Prizes.</h2>
+      </div>
+      <p class="bfp-p">Ranking is based on total qualifying notional trading volume. One top prize per client.</p>
     </div>
-    <div class="bfp-prizes">
-<article class="bfp-prize bfp-prize--1" data-aos="fade-up" data-aos-delay="0"><span class="bfp-crown"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8l4.5 4L12 5l4.5 7L21 8l-2 11H5z" fill="currentColor"/></svg>Grand prize</span>
-        <figure><img src="assets/img/bfp-prize-macbook.webp" alt="An illustrative silver ultraportable laptop on a black pedestal" width="900" height="900" loading="lazy" decoding="async"></figure>
-        <div class="bfp-prize-in"><div class="bfp-rank"><b>1st Place</b><i>01</i></div><h3>MacBook Air</h3></div>
-      </article>
-<article class="bfp-prize" data-aos="fade-up" data-aos-delay="90">
-        <figure><img src="assets/img/bfp-prize-camera.webp" alt="An illustrative premium compact camera on a black pedestal" width="900" height="900" loading="lazy" decoding="async"></figure>
-        <div class="bfp-prize-in"><div class="bfp-rank"><b>2nd Place</b><i>02</i></div><h3>Leica D-Lux 8</h3></div>
-      </article>
-<article class="bfp-prize" data-aos="fade-up" data-aos-delay="180">
-        <figure><img src="assets/img/bfp-prize-console.webp" alt="An illustrative handheld games console on a black pedestal" width="900" height="900" loading="lazy" decoding="async"></figure>
-        <div class="bfp-prize-in"><div class="bfp-rank"><b>3rd Place</b><i>03</i></div><h3>Nintendo Switch 2</h3></div>
-      </article>
-<article class="bfp-prize" data-aos="fade-up" data-aos-delay="270">
-        <figure><img src="assets/img/bfp-prize-glasses.webp" alt="Illustrative black smart glasses on a black pedestal" width="900" height="900" loading="lazy" decoding="async"></figure>
-        <div class="bfp-prize-in"><div class="bfp-rank"><b>4th Place</b><i>04</i></div><h3>Ray-Ban Meta Gen 2</h3></div>
-      </article>
-    </div>
-    <p class="bfp-foot"><span>Ranking is based on total qualifying notional trading volume. One top prize per client.</span><span>Images are for illustration only.</span></p>
+    <ol class="bfp-prizes">
+      <li class="bfp-prize"><figure><img src="assets/img/bfp-prize-macbook.webp" alt="An illustrative silver ultraportable laptop on a black pedestal" width="900" height="900" loading="lazy" decoding="async"></figure><p class="bfp-prize-k"><span>1st Place</span><span>01</span></p><h3>MacBook Air</h3></li>
+      <li class="bfp-prize"><figure><img src="assets/img/bfp-prize-camera.webp" alt="An illustrative premium compact camera on a black pedestal" width="900" height="900" loading="lazy" decoding="async"></figure><p class="bfp-prize-k"><span>2nd Place</span><span>02</span></p><h3>Leica D-Lux 8</h3></li>
+      <li class="bfp-prize"><figure><img src="assets/img/bfp-prize-console.webp" alt="An illustrative handheld games console on a black pedestal" width="900" height="900" loading="lazy" decoding="async"></figure><p class="bfp-prize-k"><span>3rd Place</span><span>03</span></p><h3>Nintendo Switch 2</h3></li>
+      <li class="bfp-prize"><figure><img src="assets/img/bfp-prize-glasses.webp" alt="Illustrative black smart glasses on a black pedestal" width="900" height="900" loading="lazy" decoding="async"></figure><p class="bfp-prize-k"><span>4th Place</span><span>04</span></p><h3>Ray-Ban Meta Gen 2</h3></li>
+    </ol>
+    <p class="bfp-fine">Images are for illustration only.</p>
   </div>
 </section>
 
 <!-- ============ HOW TO JOIN ============ -->
-<section class="bfp-sec bfp-light" id="join" aria-labelledby="bfp-join-title">
-  <div class="container">
-    <div class="bfp-head center" data-aos="fade-up">
-      <span class="bfp-eyebrow">How to Join the Power Play</span>
-      <h2 class="bfp-h2" id="bfp-join-title">Three Steps. <em>Two Ways to Win.</em></h2>
+<section class="bfp-sec" id="join" aria-labelledby="bfp-join-title">
+  <div class="container bfp-grid">
+    <div>
+      <p class="bfp-label">03</p>
+      <h2 class="bfp-h2" id="bfp-join-title">How to Join the Power Play</h2>
+      <p class="bfp-lede">Three Steps. Two Ways to Win.</p>
     </div>
-    <ol class="bfp-steps" role="list">
-      <li class="bfp-step" data-aos="fade-up"><span class="bfp-step-n">01</span><div class="bfp-step-c"><h3>Opt In &amp; Start Trading</h3><p>Join through the Client Portal or STARTRADER app and trade eligible Forex, Gold, Silver, Oil, or BTC products.</p></div></li>
-      <li class="bfp-step" data-aos="fade-up" data-aos-delay="100"><span class="bfp-step-n">02</span><div class="bfp-step-c"><h3>Unlock Lucky Draw Tickets</h3><p>Maintain a minimum USD 500 net deposit and earn one draw ticket for every 1,000,000 in qualifying notional trading volume.</p></div></li>
-      <li class="bfp-step" data-aos="fade-up" data-aos-delay="200"><span class="bfp-step-n">03</span><div class="bfp-step-c"><h3>Compete for the Top Prizes</h3><p>Reach a minimum USD 1,000 net deposit and 2,000,000 in qualifying notional volume to enter the top prize ranking.</p></div></li>
-    </ol>
-    <p class="bfp-note" data-aos="fade-up"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 11v5M12 7.6v.1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span><b>Important:</b> Only fully closed positions held for at least 10 minutes count. Trading volume before opt-in is excluded. Maintain the required net deposit threshold until the promotion ends.</span></p>
+    <div>
+      <ol class="bfp-steps">
+        <li class="bfp-step"><b>Step 1</b><h3>Opt In &amp; Start Trading</h3><p>Join through the Client Portal or STARTRADER app and trade eligible Forex, Gold, Silver, Oil, or BTC products.</p></li>
+        <li class="bfp-step"><b>Step 2</b><h3>Unlock Lucky Draw Tickets</h3><p>Maintain a minimum USD 500 net deposit and earn one draw ticket for every 1,000,000 in qualifying notional trading volume.</p></li>
+        <li class="bfp-step"><b>Step 3</b><h3>Compete for the Top Prizes</h3><p>Reach a minimum USD 1,000 net deposit and 2,000,000 in qualifying notional volume to enter the top prize ranking.</p></li>
+      </ol>
+      <p class="bfp-note"><b>Important:</b> Only fully closed positions held for at least 10 minutes count. Trading volume before opt-in is excluded. Maintain the required net deposit threshold until the promotion ends.</p>
+    </div>
   </div>
 </section>
 
 <!-- ============ ADDS UP ============ -->
-<section class="bfp-sec bfp-add" id="example" aria-labelledby="bfp-add-title">
+<section class="bfp-sec bfp-mist" id="example" aria-labelledby="bfp-add-title">
   <div class="container">
-    <div class="bfp-head" data-aos="fade-up">
-      <span class="bfp-eyebrow">Illustrative example</span>
-      <h2 class="bfp-h2" id="bfp-add-title">See How Your Trading <em>Adds Up</em></h2>
-      <p class="bfp-sub">Here's how a qualifying client's participation could progress.</p>
-    </div>
-    <div class="bfp-add-grid">
+    <p class="bfp-label">04</p>
+    <h2 class="bfp-h2" id="bfp-add-title">See How Your Trading Adds Up</h2>
+    <p class="bfp-p">Here's how a qualifying client's participation could progress.</p>
+    <div class="bfp-add" style="margin-top:clamp(40px,4vw,64px)">
       <ol class="bfp-stages" data-bfp-stages>
-        <li class="bfp-stage is-on" data-aos="fade-up"><span class="bfp-stage-n">1</span><div><h3>Opt In &amp; Trade</h3><p>Join the promotion and begin trading eligible products. Participation alone does not guarantee a reward.</p></div></li>
-        <li class="bfp-stage" data-aos="fade-up" data-aos-delay="100"><span class="bfp-stage-n">2</span><div><h3>Earn 3 Draw Tickets</h3><p>Maintain a USD 500 net deposit and complete 3,000,000 in qualifying notional volume to earn three chances in the lucky draw.</p></div></li>
-        <li class="bfp-stage" data-aos="fade-up" data-aos-delay="200"><span class="bfp-stage-n">3</span><div><h3>Enter the Top Prize Ranking</h3><p>Reach USD 1,000 in net deposits and 2,000,000 in total qualifying notional volume to compete for one of four top prizes.</p></div></li>
+        <li class="bfp-stage is-on"><b>01</b><div><h3>Opt In &amp; Trade</h3><p>Join the promotion and begin trading eligible products. Participation alone does not guarantee a reward.</p></div></li>
+        <li class="bfp-stage"><b>02</b><div><h3>Earn 3 Draw Tickets</h3><p>Maintain a USD 500 net deposit and complete 3,000,000 in qualifying notional volume to earn three chances in the lucky draw.</p></div></li>
+        <li class="bfp-stage"><b>03</b><div><h3>Enter the Top Prize Ranking</h3><p>Reach USD 1,000 in net deposits and 2,000,000 in total qualifying notional volume to compete for one of four top prizes.</p></div></li>
       </ol>
-      <div class="bfp-calc bfp-glass" data-aos="fade-up" data-bfp-calc>
-        <h3>Try your numbers</h3>
-        <p>Move the sliders to see tickets and ranking eligibility.</p>
+      <div class="bfp-calc">
+        <h3>Try your own numbers</h3>
         <div class="bfp-field"><label for="bfpDep">Net deposit <output id="bfpDepO" for="bfpDep">USD 500</output></label>
-          <input class="bfp-range" id="bfpDep" type="range" min="0" max="5000" step="100" value="500"><div class="bfp-ticks"><span>0</span><span>USD 5,000</span></div></div>
+          <input class="bfp-range" id="bfpDep" type="range" min="0" max="5000" step="100" value="500"></div>
         <div class="bfp-field"><label for="bfpVol">Qualifying notional volume <output id="bfpVolO" for="bfpVol">3,000,000</output></label>
-          <input class="bfp-range" id="bfpVol" type="range" min="0" max="10000000" step="100000" value="3000000"><div class="bfp-ticks"><span>0</span><span>10,000,000</span></div></div>
+          <input class="bfp-range" id="bfpVol" type="range" min="0" max="10000000" step="100000" value="3000000"></div>
         <div class="bfp-out">
-          <div><small>Lucky draw tickets</small><b id="bfpTix">3</b><span class="bfp-pill" id="bfpTixP"><i></i><span>Eligible</span></span></div>
-          <div><small>Top prize ranking</small><b id="bfpTop">—</b><span class="bfp-pill" id="bfpTopP"><i></i><span>Not yet</span></span></div>
+          <div><small>Lucky draw tickets</small><b id="bfpTix">3</b><em id="bfpTixP">Eligible</em></div>
+          <div><small>Top prize ranking</small><b id="bfpTop">No</b><em id="bfpTopP">Not yet</em></div>
         </div>
-        <p class="bfp-calc-hint" id="bfpHint" aria-live="polite"></p>
+        <p class="bfp-hint" id="bfpHint" aria-live="polite"></p>
         <p class="bfp-fine">Illustrative example only. Rewards are not guaranteed and remain subject to the Promotion Terms and Conditions.</p>
       </div>
     </div>
@@ -819,66 +684,69 @@ body.ck-open .bfp-dock{visibility:hidden}
 </section>
 
 <!-- ============ CALENDAR ============ -->
-<section class="bfp-sec bfp-cal" id="calendar" aria-labelledby="bfp-cal-title">
+<section class="bfp-sec bfp-dark" id="calendar" aria-labelledby="bfp-cal-title">
   <div class="container">
-    <div class="bfp-head center" data-aos="fade-up">
-      <span class="bfp-eyebrow">Mark Your Calendar</span>
-      <h2 class="bfp-h2" id="bfp-cal-title">The Power Play Ends. <em>The Winners Take the Spotlight.</em></h2>
+    <p class="bfp-label">05 · Mark Your Calendar</p>
+    <h2 class="bfp-h2" id="bfp-cal-title">The Power Play Ends.<br>The Winners Take the Spotlight.</h2>
+    <ol class="bfp-dates">
+      <li><span>Promotion starts</span><b>23 Nov</b></li>
+      <li><span>Promotion ends</span><b>4 Dec</b></li>
+      <li><span>Winner Announcement</span><b>9 Dec</b></li>
+    </ol>
+    <div class="bfp-close">
+      <div>
+        <p class="bfp-p">Lucky draw results and the final top prize rankings will be announced on 9 December 2026.</p>
+        <p class="bfp-p">Opt in before 4 December and make your qualifying trading volume count toward the lucky draw and leaderboard.</p>
+      </div>
+      <a class="bfp-btn" href="https://myaccount.startrader.com/login" rel="noopener">Opt In Now <svg><use href="#i-arrow-right"/></svg></a>
     </div>
-    <div class="bfp-line" data-aos="fade-up">
-      <div class="bfp-node"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4m0 0h11l-2 4 2 4H5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></i><b>23 Nov</b><span>Promotion starts</span></div>
-      <div class="bfp-node"><i><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 7.5v5l3 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></i><b>4 Dec</b><span>Promotion ends</span></div>
-      <div class="bfp-node"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4h8v5a4 4 0 0 1-8 0zM8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4M12 13v4M8.5 20h7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></i><b>9 Dec</b><span>Winner Announcement</span></div>
-    </div>
-    <div class="bfp-cal-txt" data-aos="fade-up">
-      <p><strong>Promotion Period: 23 Nov – 4 Dec 2026</strong> · <strong>Winner Announcement: 9 Dec 2026</strong></p>
-      <p>Lucky draw results and the final top prize rankings will be announced on 9 December 2026.</p>
-      <p>Opt in before 4 December and make your qualifying trading volume count toward the lucky draw and leaderboard.</p>
-    </div>
-    <div class="bfp-act" data-aos="fade-up"><a class="bfp-btn" href="https://myaccount.startrader.com/login" rel="noopener">Opt In Now <svg><use href="#i-arrow-right"/></svg></a></div>
-    <p class="bfp-cal-fine">Promotion ends 4 Dec 2026 (Server Time). <button type="button" class="bfp-link" data-tc-open style="font:inherit;color:var(--ice);background:none;border:0;padding:0;text-decoration:underline;cursor:pointer">T&amp;Cs apply.</button></p>
+    <p class="bfp-fine">Promotion ends 4 Dec 2026 (Server Time). <button type="button" class="bfp-link" data-tc-open>T&amp;Cs apply.</button></p>
   </div>
 </section>
 
-<!-- ============ FAQ + TERMS ============ -->
-<section class="bfp-sec bfp-light" id="faq" aria-labelledby="bfp-faq-title">
+<!-- ============ FAQ + KEY TERMS ============ -->
+<section class="bfp-sec" id="faq" aria-labelledby="bfp-faq-title">
   <div class="container">
-    <div class="bfp-faq-grid">
-      <div class="bfp-faq-side" data-aos="fade-up">
-        <span class="bfp-eyebrow">FAQ</span>
-        <h2 class="bfp-h2" id="bfp-faq-title">Black Friday Power Play <em>FAQ</em></h2>
-        <div class="bfp-tabs" data-bfp-tabs role="group" aria-label="Filter questions"><button type="button" data-g="all" aria-pressed="true">All</button><button type="button" data-g="0" aria-pressed="false">General &amp; Participation</button><button type="button" data-g="1" aria-pressed="false">Lucky Draw Rewards</button><button type="button" data-g="2" aria-pressed="false">Top Prize Ranking</button><button type="button" data-g="3" aria-pressed="false">Deposits &amp; Prize Distribution</button></div>
+    <div class="bfp-grid">
+      <div>
+        <p class="bfp-label">06</p>
+        <h2 class="bfp-h2" id="bfp-faq-title">Black Friday Power Play FAQ</h2>
+        <p class="bfp-p">Participation and rewards are subject to the full Promotion Terms &amp; Conditions.</p>
       </div>
-      <div class="bfp-faq" data-bfp-faq>
-<details class="bfp-q" data-g="0" open><summary><i>01</i><h3>What is Black Friday Power Play?</h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary><div class="bfp-q-a"><p>It&#x27;s a limited-time STARTRADER promotion where eligible clients can earn lucky draw tickets for 100 USD 20 credit bonuses and compete for four top prizes by meeting the required deposit and trading volume thresholds.</p></div></details>
-<details class="bfp-q" data-g="0"><summary><i>02</i><h3>Who can join Black Friday Power Play?</h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary><div class="bfp-q-a"><p>The promotion is open to new and existing STARTRADER clients residing in eligible countries or regions, subject to the Terms &amp; Conditions. Cent, STAR Copy, PAMM, and MAM accounts are excluded.</p></div></details>
-<details class="bfp-q" data-g="0"><summary><i>03</i><h3>When does the promotion run?</h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary><div class="bfp-q-a"><p>From 23 November to 4 December 2026, based on server time.</p></div></details>
-<details class="bfp-q" data-g="0"><summary><i>04</i><h3>How do I participate?</h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary><div class="bfp-q-a"><p>Opt in through the Client Portal or STARTRADER app, meet the applicable net deposit requirement, and trade eligible products. Only trading volume generated after opting in counts.</p></div></details>
-<details class="bfp-q" data-g="0"><summary><i>05</i><h3>Which products and trades qualify?</h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary><div class="bfp-q-a"><p>Forex, Gold, Silver, Oil, and BTC are eligible. Only fully closed positions held for at least 10 minutes count toward qualifying trading volume.</p></div></details>
-<details class="bfp-q" data-g="1"><summary><i>06</i><h3>How do I earn lucky draw tickets?</h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary><div class="bfp-q-a"><p>Maintain a minimum net deposit of USD 500 (or equivalent) and earn one ticket for every USD 1,000,000 in qualifying notional trading volume. There is no ticket limit.</p></div></details>
-<details class="bfp-q" data-g="1"><summary><i>07</i><h3>How is notional trading volume calculated?</h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary><div class="bfp-q-a"><p>Notional volume is the USD value of your closed positions, calculated as:</p><p>Trading Volume (Lots) × Contract Size × Opening Price</p><p>Only complete USD 1,000,000 increments earn tickets. For example, USD 3,500,000 in qualifying volume earns three tickets.</p></div></details>
-<details class="bfp-q" data-g="1"><summary><i>08</i><h3>What can I win in the lucky draw?</h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary><div class="bfp-q-a"><p>100 winners will each receive a USD 20 credit bonus. Winners are selected randomly, and each client can win only once. More tickets increase your chances but do not guarantee a prize.</p></div></details>
-<details class="bfp-q" data-g="1"><summary><i>09</i><h3>Can I withdraw my credit bonus?</h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary><div class="bfp-q-a"><p>No. The USD 20 credit bonus is non-withdrawable and can only be used for trading. Trading profits may be withdrawn under standard withdrawal procedures. Withdrawals may result in the credit bonus being deducted.</p></div></details>
-<details class="bfp-q" data-g="2"><summary><i>10</i><h3>How do I qualify for the top prizes?</h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary><div class="bfp-q-a"><p>Maintain a minimum net deposit of USD 1,000 and complete at least USD 2,000,000 in qualifying notional trading volume during the promotion.</p></div></details>
-<details class="bfp-q" data-g="2"><summary><i>11</i><h3>How are the top four winners selected?</h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary><div class="bfp-q-a"><p>Qualified clients are ranked by total eligible notional trading volume. If two clients achieve the same volume, the client who reaches it first ranks higher.</p></div></details>
-<details class="bfp-q" data-g="2"><summary><i>12</i><h3>What are the top prizes?</h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary><div class="bfp-q-a"><ul><li>1st Place: MacBook Air</li><li>2nd Place: Leica D-Lux 8</li><li>3rd Place: Nintendo Switch 2</li><li>4th Place: Ray-Ban Meta Gen 2</li></ul><p>Physical prizes are non-transferable and cannot be exchanged for cash. If a prize is unavailable or cannot be delivered, STARTRADER may substitute an item or credit of equivalent value.</p></div></details>
-<details class="bfp-q" data-g="2"><summary><i>13</i><h3>Can I qualify for both reward categories?</h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary><div class="bfp-q-a"><p>Yes. Clients who qualify for the top prize ranking remain eligible for the lucky draw using their accumulated tickets.</p></div></details>
-<details class="bfp-q" data-g="3"><summary><i>14</i><h3>How is my net deposit calculated, and what happens if I withdraw?</h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary><div class="bfp-q-a"><p>Net deposit equals total deposits minus withdrawals and outgoing internal transfers during the promotion. Credit bonuses, rebates, and incoming internal transfers are excluded.</p><p>Your net deposit must remain at or above USD 500 for lucky draw eligibility or USD 1,000 for top prize ranking eligibility until the promotion ends. Falling below the applicable threshold will result in disqualification from that reward category.</p></div></details>
-<details class="bfp-q" data-g="3"><summary><i>15</i><h3>When will winners be announced?</h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary><div class="bfp-q-a"><p>Lucky draw winners and the final top prize rankings will be announced on 9 December 2026. Winners will also be notified by email.</p></div></details>
-<details class="bfp-q" data-g="3"><summary><i>16</i><h3>How and when will prizes be delivered?</h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary><div class="bfp-q-a"><p>Lucky draw credit bonuses will be credited to participating trading accounts within 24 hours following the announcement.</p><p>Top prize winners will be contacted to arrange delivery and must provide their delivery details within 14 calendar days of notification to avoid potential forfeiture. Any applicable taxes, duties, or fees are the winner&#x27;s responsibility.</p></div></details>
+      <div>
+<div class="bfp-faq-g"><h3>General &amp; Participation</h3><details class="bfp-q"><summary><h4>What is Black Friday Power Play?</h4><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M4 12h16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></summary><div class="bfp-q-a"><p>It&#x27;s a limited-time STARTRADER promotion where eligible clients can earn lucky draw tickets for 100 USD 20 credit bonuses and compete for four top prizes by meeting the required deposit and trading volume thresholds.</p></div></details>
+<details class="bfp-q"><summary><h4>Who can join Black Friday Power Play?</h4><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M4 12h16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></summary><div class="bfp-q-a"><p>The promotion is open to new and existing STARTRADER clients residing in eligible countries or regions, subject to the Terms &amp; Conditions. Cent, STAR Copy, PAMM, and MAM accounts are excluded.</p></div></details>
+<details class="bfp-q"><summary><h4>When does the promotion run?</h4><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M4 12h16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></summary><div class="bfp-q-a"><p>From 23 November to 4 December 2026, based on server time.</p></div></details>
+<details class="bfp-q"><summary><h4>How do I participate?</h4><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M4 12h16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></summary><div class="bfp-q-a"><p>Opt in through the Client Portal or STARTRADER app, meet the applicable net deposit requirement, and trade eligible products. Only trading volume generated after opting in counts.</p></div></details>
+<details class="bfp-q"><summary><h4>Which products and trades qualify?</h4><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M4 12h16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></summary><div class="bfp-q-a"><p>Forex, Gold, Silver, Oil, and BTC are eligible. Only fully closed positions held for at least 10 minutes count toward qualifying trading volume.</p></div></details>
+</div>
+<div class="bfp-faq-g"><h3>Lucky Draw Rewards</h3><details class="bfp-q"><summary><h4>How do I earn lucky draw tickets?</h4><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M4 12h16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></summary><div class="bfp-q-a"><p>Maintain a minimum net deposit of USD 500 (or equivalent) and earn one ticket for every USD 1,000,000 in qualifying notional trading volume. There is no ticket limit.</p></div></details>
+<details class="bfp-q"><summary><h4>How is notional trading volume calculated?</h4><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M4 12h16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></summary><div class="bfp-q-a"><p>Notional volume is the USD value of your closed positions, calculated as:</p><p>Trading Volume (Lots) × Contract Size × Opening Price</p><p>Only complete USD 1,000,000 increments earn tickets. For example, USD 3,500,000 in qualifying volume earns three tickets.</p></div></details>
+<details class="bfp-q"><summary><h4>What can I win in the lucky draw?</h4><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M4 12h16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></summary><div class="bfp-q-a"><p>100 winners will each receive a USD 20 credit bonus. Winners are selected randomly, and each client can win only once. More tickets increase your chances but do not guarantee a prize.</p></div></details>
+<details class="bfp-q"><summary><h4>Can I withdraw my credit bonus?</h4><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M4 12h16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></summary><div class="bfp-q-a"><p>No. The USD 20 credit bonus is non-withdrawable and can only be used for trading. Trading profits may be withdrawn under standard withdrawal procedures. Withdrawals may result in the credit bonus being deducted.</p></div></details>
+</div>
+<div class="bfp-faq-g"><h3>Top Prize Ranking</h3><details class="bfp-q"><summary><h4>How do I qualify for the top prizes?</h4><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M4 12h16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></summary><div class="bfp-q-a"><p>Maintain a minimum net deposit of USD 1,000 and complete at least USD 2,000,000 in qualifying notional trading volume during the promotion.</p></div></details>
+<details class="bfp-q"><summary><h4>How are the top four winners selected?</h4><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M4 12h16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></summary><div class="bfp-q-a"><p>Qualified clients are ranked by total eligible notional trading volume. If two clients achieve the same volume, the client who reaches it first ranks higher.</p></div></details>
+<details class="bfp-q"><summary><h4>What are the top prizes?</h4><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M4 12h16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></summary><div class="bfp-q-a"><ul><li>1st Place: MacBook Air</li><li>2nd Place: Leica D-Lux 8</li><li>3rd Place: Nintendo Switch 2</li><li>4th Place: Ray-Ban Meta Gen 2</li></ul><p>Physical prizes are non-transferable and cannot be exchanged for cash. If a prize is unavailable or cannot be delivered, STARTRADER may substitute an item or credit of equivalent value.</p></div></details>
+<details class="bfp-q"><summary><h4>Can I qualify for both reward categories?</h4><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M4 12h16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></summary><div class="bfp-q-a"><p>Yes. Clients who qualify for the top prize ranking remain eligible for the lucky draw using their accumulated tickets.</p></div></details>
+</div>
+<div class="bfp-faq-g"><h3>Deposits &amp; Prize Distribution</h3><details class="bfp-q"><summary><h4>How is my net deposit calculated, and what happens if I withdraw?</h4><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M4 12h16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></summary><div class="bfp-q-a"><p>Net deposit equals total deposits minus withdrawals and outgoing internal transfers during the promotion. Credit bonuses, rebates, and incoming internal transfers are excluded.</p><p>Your net deposit must remain at or above USD 500 for lucky draw eligibility or USD 1,000 for top prize ranking eligibility until the promotion ends. Falling below the applicable threshold will result in disqualification from that reward category.</p></div></details>
+<details class="bfp-q"><summary><h4>When will winners be announced?</h4><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M4 12h16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></summary><div class="bfp-q-a"><p>Lucky draw winners and the final top prize rankings will be announced on 9 December 2026. Winners will also be notified by email.</p></div></details>
+<details class="bfp-q"><summary><h4>How and when will prizes be delivered?</h4><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M4 12h16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></summary><div class="bfp-q-a"><p>Lucky draw credit bonuses will be credited to participating trading accounts within 24 hours following the announcement.</p><p>Top prize winners will be contacted to arrange delivery and must provide their delivery details within 14 calendar days of notification to avoid potential forfeiture. Any applicable taxes, duties, or fees are the winner&#x27;s responsibility.</p></div></details>
+</div>
       </div>
     </div>
-    <div class="bfp-terms" data-aos="fade-up">
-      <h2>Key terms</h2>
-      <ul>
-        <li><b>Eligible Clients:</b> New and existing clients, subject to the Promotion Terms and Conditions.</li>
-        <li><b>Eligible Products:</b> Forex, Gold, Silver, Oil and BTC.</li>
-        <li><b>Qualifying Trades:</b> Fully closed positions held for at least 10 minutes, with volume counted only after opt-in.</li>
-        <li><b>Net Deposit Requirements:</b> Maintain at least USD 500 for lucky draw eligibility or USD 1,000 for top prize ranking eligibility until the promotion ends.</li>
-        <li><b>Reward Allocation:</b> Lucky draw winners are selected through the draw, while top prizes are determined by qualifying notional trading volume rankings.</li>
-        <li><b>Risk Warning:</b> Forex and CFD trading involves significant risk. Leveraged trading may result in substantial losses. Please consider your financial circumstances and risk tolerance before trading.</li>
-      </ul>
-      <div class="bfp-act"><button type="button" class="bfp-ghost" data-tc-open>View Full Terms &amp; Conditions</button><a class="bfp-btn" href="https://myaccount.startrader.com/login" rel="noopener">Opt In Now <svg><use href="#i-arrow-right"/></svg></a></div>
+    <div class="bfp-terms">
+      <h2 class="bfp-h2" style="font-size:clamp(24px,2.2vw,32px);margin:0">Key terms</h2>
+      <dl>
+        <div><dt>Eligible Clients</dt><dd>New and existing clients, subject to the Promotion Terms and Conditions.</dd></div>
+        <div><dt>Eligible Products</dt><dd>Forex, Gold, Silver, Oil and BTC.</dd></div>
+        <div><dt>Qualifying Trades</dt><dd>Fully closed positions held for at least 10 minutes, with volume counted only after opt-in.</dd></div>
+        <div><dt>Net Deposit Requirements</dt><dd>Maintain at least USD 500 for lucky draw eligibility or USD 1,000 for top prize ranking eligibility until the promotion ends.</dd></div>
+        <div><dt>Reward Allocation</dt><dd>Lucky draw winners are selected through the draw, while top prizes are determined by qualifying notional trading volume rankings.</dd></div>
+        <div><dt>Risk Warning</dt><dd>Forex and CFD trading involves significant risk. Leveraged trading may result in substantial losses. Please consider your financial circumstances and risk tolerance before trading.</dd></div>
+      </dl>
+      <div class="bfp-act"><a class="bfp-btn" href="https://myaccount.startrader.com/login" rel="noopener">Opt In Now <svg><use href="#i-arrow-right"/></svg></a><button type="button" class="bfp-link" data-tc-open>View Full Terms &amp; Conditions</button></div>
     </div>
   </div>
 </section>
@@ -891,26 +759,24 @@ body.ck-open .bfp-dock{visibility:hidden}
   </div>
 </dialog>
 
-<div class="bfp-dock bfp-glass" data-bfp-dock><span>Black Friday Power Play<small>23 Nov – 4 Dec 2026</small></span><a class="bfp-btn" href="https://myaccount.startrader.com/login" rel="noopener">Opt In Now <svg><use href="#i-arrow-right"/></svg></a></div>
+<div class="bfp-dock" data-bfp-dock><a class="bfp-btn" href="https://myaccount.startrader.com/login" rel="noopener">Opt In Now <svg><use href="#i-arrow-right"/></svg></a></div>
 
 </main>
 
 <script>
-/* Black Friday Power Play: countdown, estimator, FAQ filter, T&C dialog, dock */
+/* Black Friday Power Play: countdown, estimator, T&C dialog, mobile CTA */
 (function () {
-  // Promotion clock (server time, GMT+2)
-  var START = Date.UTC(2026,10,22,22,0,0), END = Date.UTC(2026,11,4,21,59,59), WIN = Date.UTC(2026,11,8,22,0,0);
+  var START = Date.UTC(2026,10,22,22,0,0), END = Date.UTC(2026,11,4,21,59,59), WIN = Date.UTC(2026,11,8,22,0,0); // server time GMT+2
   var cd = document.querySelector('[data-bfp-cd]');
   if (cd) {
     var lb = cd.querySelector('[data-cd-label]'), f = {};
     ['d','h','m','s'].forEach(function (k) { f[k] = cd.querySelector('[data-cd="' + k + '"]'); });
     var tick = function () {
-      var now = Date.now(), to, label;
-      if (now < START) { to = START; label = 'Power Play starts in'; }
-      else if (now <= END) { to = END; label = 'Power Play ends in'; }
-      else if (now < WIN) { to = WIN; label = 'Winners announced in'; }
+      var now = Date.now(), to;
+      if (now < START) { to = START; lb.textContent = 'Starts in'; }
+      else if (now <= END) { to = END; lb.textContent = 'Ends in'; }
+      else if (now < WIN) { to = WIN; lb.textContent = 'Winners announced in'; }
       else { cd.classList.add('is-done'); lb.textContent = 'Winners announced 9 Dec 2026'; return; }
-      lb.textContent = label;
       var s = Math.max(0, Math.floor((to - now) / 1000));
       var v = { d: Math.floor(s / 86400), h: Math.floor(s % 86400 / 3600), m: Math.floor(s % 3600 / 60), s: s % 60 };
       for (var k in v) f[k].textContent = (v[k] < 10 ? '0' : '') + v[k];
@@ -918,23 +784,21 @@ body.ck-open .bfp-dock{visibility:hidden}
     tick(); setInterval(tick, 1000);
   }
 
-  // Estimator — rules from the Promo T&C (6.1–6.3, 7.1)
+  // Estimator: Promo T&C 6.1–6.3 and 7.1
   var dep = document.getElementById('bfpDep'), vol = document.getElementById('bfpVol');
   if (dep && vol) {
     var fmt = function (n) { return n.toLocaleString('en-US'); };
     var stages = [].slice.call(document.querySelectorAll('[data-bfp-stages] .bfp-stage'));
-    var pill = function (el, cls, txt) { el.className = 'bfp-pill' + (cls ? ' ' + cls : ''); el.lastChild.textContent = txt; };
     var upd = function () {
       var d = +dep.value, v = +vol.value;
       [dep, vol].forEach(function (r) { r.style.setProperty('--p', (r.value - r.min) / (r.max - r.min) * 100 + '%'); });
       document.getElementById('bfpDepO').textContent = 'USD ' + fmt(d);
       document.getElementById('bfpVolO').textContent = fmt(v);
-      var drawOk = d >= 500 && v >= 1000000, tix = drawOk ? Math.floor(v / 1000000) : 0;
-      var topOk = d >= 1000 && v >= 2000000;
+      var drawOk = d >= 500 && v >= 1000000, tix = drawOk ? Math.floor(v / 1000000) : 0, topOk = d >= 1000 && v >= 2000000;
       document.getElementById('bfpTix').textContent = tix;
-      pill(document.getElementById('bfpTixP'), drawOk ? 'ok' : '', drawOk ? 'Eligible' : 'Not yet');
-      document.getElementById('bfpTop').textContent = topOk ? 'In' : '—';
-      pill(document.getElementById('bfpTopP'), topOk ? 'gold' : '', topOk ? 'Ranked by volume' : 'Not yet');
+      var tp = document.getElementById('bfpTixP'); tp.textContent = drawOk ? 'Eligible' : 'Not yet'; tp.className = drawOk ? 'ok' : '';
+      document.getElementById('bfpTop').textContent = topOk ? 'Yes' : 'No';
+      var op = document.getElementById('bfpTopP'); op.textContent = topOk ? 'Ranked by volume' : 'Not yet'; op.className = topOk ? 'ok' : '';
       var hint = [];
       if (d < 500) hint.push('USD ' + fmt(500 - d) + ' more net deposit for the lucky draw.');
       else if (v < 1000000) hint.push(fmt(1000000 - v) + ' more volume for your first ticket.');
@@ -946,27 +810,6 @@ body.ck-open .bfp-dock{visibility:hidden}
     dep.addEventListener('input', upd); vol.addEventListener('input', upd); upd();
   }
 
-  // Leaderboard bars animate in view
-  var lbEl = document.querySelector('[data-bfp-lb]');
-  if (lbEl && 'IntersectionObserver' in window) {
-    new IntersectionObserver(function (es, o) { es.forEach(function (e) { if (e.isIntersecting) { lbEl.classList.add('is-in'); o.disconnect(); } }); }, { threshold: .4 }).observe(lbEl);
-  } else if (lbEl) lbEl.classList.add('is-in');
-
-  // Prize spotlight follows the pointer
-  [].forEach.call(document.querySelectorAll('.bfp-prize'), function (c) {
-    c.addEventListener('pointermove', function (e) { var r = c.getBoundingClientRect(); c.style.setProperty('--mx', (e.clientX - r.left) + 'px'); c.style.setProperty('--my', (e.clientY - r.top) + 'px'); });
-  });
-
-  // FAQ filter
-  var tabs = document.querySelector('[data-bfp-tabs]');
-  if (tabs) tabs.addEventListener('click', function (e) {
-    var b = e.target.closest('button'); if (!b) return;
-    var g = b.getAttribute('data-g');
-    [].forEach.call(tabs.children, function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
-    [].forEach.call(document.querySelectorAll('[data-bfp-faq] .bfp-q'), function (q) { q.hidden = g !== 'all' && q.getAttribute('data-g') !== g; });
-  });
-
-  // T&C dialog
   var d = document.getElementById('bfp-tc');
   if (d) {
     [].forEach.call(document.querySelectorAll('[data-tc-open]'), function (b) { b.addEventListener('click', function (e) { e.preventDefault(); d.showModal(); }); });
@@ -974,15 +817,15 @@ body.ck-open .bfp-dock{visibility:hidden}
     d.addEventListener('click', function (e) { if (e.target === d) d.close(); });
   }
 
-  // Mobile dock after the hero
   var dock = document.querySelector('[data-bfp-dock]'), hero = document.querySelector('.bfp-hero'), cal = document.getElementById('calendar');
   if (dock && hero && 'IntersectionObserver' in window) {
-    var past = false, nearEnd = false, set = function () { dock.classList.toggle('is-on', past && !nearEnd); };
+    var past = false, end = false, set = function () { dock.classList.toggle('is-on', past && !end); };
     new IntersectionObserver(function (es) { past = !es[0].isIntersecting; set(); }).observe(hero);
-    new IntersectionObserver(function (es) { nearEnd = es[0].isIntersecting; set(); }).observe(document.querySelector('.site-footer') || cal);
+    new IntersectionObserver(function (es) { end = es[0].isIntersecting; set(); }).observe(cal);
   }
 })();
 </script>
+
 
 <!-- ============ FOOTER ============ -->
 <footer class="site-footer" id="footer">
