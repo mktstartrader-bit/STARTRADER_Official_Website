@@ -35,143 +35,119 @@
   <link rel="stylesheet" href="assets/css/styles.min.css?v=pb37" />
   <style>
 /* =================================================================
-   PMT340 · BLACK FRIDAY POWER PLAY — bento + glass
-   Near-black page with the key visual blurred behind everything, so
-   the frosted tiles have something to refract. Solid colours only
-   (no gradient text or buttons); one accent, STARTRADER royal blue.
+   PMT340 · BLACK FRIDAY POWER PLAY
+   Standard premium campaign page: full-width banner, then stacked
+   sections with centred headings. Dark ground, light glass cards,
+   solid royal-blue accent, no gradient type.
    ================================================================= */
-.bfp{--bg:#06070B;--tile:rgba(255,255,255,.055);--tile2:rgba(255,255,255,.085);--edge:rgba(255,255,255,.12);--edge2:rgba(255,255,255,.22);
-  --txt:#fff;--sub:#AEB4C2;--mute:#7C8394;--blue:#2F6BFF;--blue-d:#0047BB;--sky:#9DBDFF;--ok:#4ADE9A;--r:28px;--gap:16px;
-  background:var(--bg);color:var(--txt)}
+.bfp{--bg:#06070B;--bg2:#0A0C12;--card:rgba(255,255,255,.045);--card2:rgba(255,255,255,.075);--edge:rgba(255,255,255,.1);--edge2:rgba(255,255,255,.2);
+  --sub:#B0B6C3;--mute:#7E8596;--blue:#2F6BFF;--blue-d:#0047BB;--ok:#4ADE9A;background:var(--bg);color:#fff}
 .bfp .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.bfp main{position:relative;isolation:isolate;overflow:clip}
+.bfp main{overflow:clip}
 .bfp-n{font-variant-numeric:tabular-nums}
-/* page backdrop: the key visual, heavily blurred, gives the glass depth */
-.bfp-backdrop{position:fixed;inset:-10%;z-index:-1;pointer-events:none;background:url(assets/img/bfp-hero-1920.webp) 70% 40%/cover no-repeat;filter:blur(90px) saturate(120%);opacity:.32;transform:translateZ(0)}
 
-/* ---------- tiles ---------- */
-.bfp-glass{position:relative;border-radius:var(--r);background:var(--tile);border:1px solid var(--edge);
-  -webkit-backdrop-filter:blur(26px) saturate(150%);backdrop-filter:blur(26px) saturate(150%);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 24px 60px -32px rgba(0,0,0,.8);overflow:hidden;transition:transform .5s cubic-bezier(.2,.8,.2,1),border-color .35s,background .35s}
-.bfp-glass:hover{border-color:var(--edge2);background:var(--tile2)}
-.bfp-lift:hover{transform:translateY(-4px)}
-.bfp-pad{padding:clamp(22px,2.2vw,32px)}
-.bfp-k{font-size:13px;font-weight:600;color:var(--sub)}
-.bfp-v{margin-top:8px;font-size:clamp(19px,1.6vw,23px);font-weight:700;letter-spacing:-.02em;line-height:1.25}
-
-/* ---------- sections ---------- */
-.bfp-sec{padding-block:clamp(56px,6vw,96px)}
-.bfp-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:clamp(26px,3vw,40px)}
-.bfp-h2{font-size:clamp(32px,3.8vw,54px);font-weight:700;letter-spacing:-.04em;line-height:1.04;text-wrap:balance}
-.bfp-sub{max-width:52ch;font-size:16.5px;line-height:1.6;color:var(--sub)}
-.bfp-sub b{display:block;color:#fff;font-weight:700;margin-bottom:4px}
-
-/* ---------- buttons ---------- */
-.bfp-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 26px;border-radius:999px;background:var(--blue);color:#fff;font-size:16px;font-weight:700;
-  box-shadow:0 12px 30px -12px rgba(47,107,255,.9);transition:background .2s,transform .2s}
+/* shared */
+.bfp-sec{padding-block:clamp(72px,8vw,120px)}
+.bfp-alt{background:var(--bg2);border-block:1px solid rgba(255,255,255,.05)}
+.bfp-head{max-width:720px;margin:0 auto clamp(40px,4vw,60px);text-align:center}
+.bfp-k{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
+.bfp-h2{margin-top:12px;font-size:clamp(32px,3.6vw,50px);font-weight:700;letter-spacing:-.035em;line-height:1.08;text-wrap:balance}
+.bfp-sub{margin:16px auto 0;max-width:60ch;font-size:17px;line-height:1.65;color:var(--sub)}
+.bfp-card{border-radius:24px;background:var(--card);border:1px solid var(--edge);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);
+  transition:transform .4s cubic-bezier(.2,.8,.2,1),border-color .3s,background .3s}
+.bfp-card:hover{transform:translateY(-4px);border-color:var(--edge2);background:var(--card2)}
+.bfp-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 28px;border-radius:999px;background:var(--blue);color:#fff;font-size:16px;font-weight:700;
+  box-shadow:0 14px 34px -14px rgba(47,107,255,.95);transition:background .2s,transform .2s}
 .bfp-btn svg{width:17px;height:17px;transition:transform .2s}
 .bfp-btn:hover{background:#4A7DFF;transform:translateY(-1px)}
 .bfp-btn:hover svg{transform:translateX(3px)}
-.bfp-btn--glass{background:rgba(255,255,255,.08);border:1px solid var(--edge2);box-shadow:none;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
-.bfp-btn--glass:hover{background:rgba(255,255,255,.16)}
+.bfp-btn--line{background:transparent;border:1px solid var(--edge2);box-shadow:none}
+.bfp-btn--line:hover{background:rgba(255,255,255,.08)}
+.bfp-center{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:clamp(36px,4vw,52px)}
 
-/* ---------- HERO BENTO ---------- */
-.bfp-hero{padding-top:clamp(28px,3vw,44px)}
-.bfp-bento{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:minmax(150px,auto);gap:var(--gap)}
-.bfp-main{grid-column:1/4;grid-row:1/3;min-height:clamp(520px,44vw,640px);display:flex;align-items:flex-end;background:#05060A}
-.bfp-main>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:100% 45%;transform:scale(1.04);animation:bfpDrift 18s ease-in-out infinite alternate}
-@keyframes bfpDrift{to{transform:scale(1.1) translate(-1.5%,-1%)}}
-.bfp-main::after{content:"";position:absolute;inset:0;background:rgba(5,6,10,.35);pointer-events:none}
-.bfp-main-copy{position:relative;z-index:2;margin:clamp(14px,1.6vw,22px);max-width:540px;padding:clamp(24px,2.6vw,36px);border-radius:22px;
-  background:rgba(8,10,16,.42);border:1px solid var(--edge);-webkit-backdrop-filter:blur(22px) saturate(140%);backdrop-filter:blur(22px) saturate(140%)}
-.bfp-tag{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--sub)}
+/* ---------- HERO BANNER ---------- */
+.bfp-hero{position:relative;isolation:isolate;min-height:clamp(620px,86vh,840px);display:flex;flex-direction:column;justify-content:center;padding-top:clamp(70px,7vw,110px)}
+.bfp-hero-art{position:absolute;inset:0;z-index:-2}
+.bfp-hero-art img{width:100%;height:100%;object-fit:cover;object-position:85% 45%;animation:bfpZoom 20s ease-out both}
+@keyframes bfpZoom{from{transform:scale(1.08)}to{transform:scale(1)}}
+.bfp-hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(6,7,11,.96) 0%,rgba(6,7,11,.85) 34%,rgba(6,7,11,.25) 58%,rgba(6,7,11,0) 72%),linear-gradient(0deg,var(--bg) 0%,rgba(6,7,11,0) 30%)}
+.bfp-hero-copy{max-width:600px}
+.bfp-tag{display:inline-flex;align-items:center;gap:10px;padding:8px 16px;border-radius:999px;font-size:13px;font-weight:600;color:#DCE4F5;background:rgba(255,255,255,.07);border:1px solid var(--edge);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
 .bfp-tag i{width:7px;height:7px;border-radius:50%;background:var(--blue)}
-.bfp-h1{margin-top:14px;font-size:clamp(42px,4.6vw,68px);font-weight:700;line-height:.95;letter-spacing:-.05em}
-.bfp-lead{margin-top:16px;font-size:clamp(17px,1.4vw,20px);font-weight:600;letter-spacing:-.015em;line-height:1.4}
-.bfp-main-copy p.s{margin-top:8px;font-size:15px;line-height:1.6;color:var(--sub)}
-.bfp-act{margin-top:24px;display:flex;flex-wrap:wrap;gap:10px}
-/* countdown tile */
-.bfp-cd{grid-column:4;grid-row:1;display:flex;flex-direction:column;justify-content:space-between}
-.bfp-cd-t{margin-top:18px;display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
-.bfp-cd-t div{padding:12px 0 10px;border-radius:14px;background:rgba(0,0,0,.28);border:1px solid var(--edge);text-align:center}
-.bfp-cd-t b{display:block;font-size:clamp(22px,1.9vw,28px);font-weight:700;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1}
-.bfp-cd-t span{display:block;margin-top:6px;font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.bfp-h1{margin-top:22px;font-size:clamp(50px,6.6vw,96px);font-weight:700;line-height:.95;letter-spacing:-.05em}
+.bfp-lead{margin-top:22px;font-size:clamp(18px,1.6vw,22px);font-weight:600;letter-spacing:-.015em;line-height:1.4}
+.bfp-hero-copy .s{margin-top:10px;max-width:50ch;font-size:16px;line-height:1.65;color:var(--sub)}
+.bfp-act{margin-top:30px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.bfp-cd{margin-top:30px;display:inline-flex;flex-wrap:wrap;align-items:center;gap:14px 20px;padding:14px 18px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid var(--edge);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
+.bfp-cd-lb{font-size:13px;font-weight:600;color:var(--sub);line-height:1.4}
+.bfp-cd-lb b{display:block;color:#fff;font-size:14px}
+.bfp-cd-t{display:flex;gap:8px}
+.bfp-cd-t div{min-width:58px;padding:8px 6px;border-radius:12px;background:rgba(0,0,0,.35);text-align:center}
+.bfp-cd-t b{display:block;font-size:24px;font-weight:700;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+.bfp-cd-t span{display:block;margin-top:4px;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
 .bfp-cd.is-done .bfp-cd-t{display:none}
-.bfp-cd-f{margin-top:14px;font-size:12.5px;color:var(--mute)}
-/* stat tile */
-.bfp-stat{grid-column:4;grid-row:2;display:flex;flex-direction:column;justify-content:space-between;background:var(--blue-d);border-color:rgba(255,255,255,.18)}
-.bfp-stat:hover{background:#0A52CC}
-.bfp-stat b{font-size:clamp(64px,6vw,92px);font-weight:700;letter-spacing:-.06em;line-height:.85}
-.bfp-stat p{font-size:15px;font-weight:600;line-height:1.35}
-.bfp-stat p span{display:block;font-weight:500;color:rgba(255,255,255,.75)}
-/* fact tiles */
-.bfp-fact{display:flex;flex-direction:column;justify-content:space-between;gap:18px;min-height:150px}
-.bfp-ic{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:rgba(255,255,255,.08);border:1px solid var(--edge);color:#fff}
-.bfp-ic svg{width:20px;height:20px}
-.bfp-chips{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px}
-.bfp-chips span{padding:6px 11px;border-radius:999px;font-size:13px;font-weight:600;background:rgba(255,255,255,.08);border:1px solid var(--edge)}
-.bfp-mini{display:flex;align-items:center;gap:14px}
-.bfp-mini img{width:84px;height:84px;object-fit:cover;border-radius:16px;flex:none;animation:bfpFloat 6s ease-in-out infinite}
-@keyframes bfpFloat{50%{transform:translateY(-6px)}}
+/* key facts bar */
+.bfp-facts{position:relative;z-index:2;margin-top:clamp(48px,5vw,72px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-radius:22px;background:rgba(255,255,255,.05);border:1px solid var(--edge);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px)}
+.bfp-facts>div{display:flex;align-items:center;gap:16px;padding:22px 26px}
+.bfp-facts>div+div{border-left:1px solid var(--edge)}
+.bfp-ic{flex:none;width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:rgba(47,107,255,.16);color:#9DBDFF}
+.bfp-ic svg{width:21px;height:21px}
+.bfp-facts dt{font-size:13px;color:var(--mute)}
+.bfp-facts dd{margin:3px 0 0;font-size:16px;font-weight:700;letter-spacing:-.01em}
 
 /* ---------- TWO WAYS ---------- */
-.bfp-ways{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gap)}
-.bfp-way{display:grid;grid-template-rows:auto 1fr}
-.bfp-way-img{position:relative;aspect-ratio:16/9;max-width:100%;overflow:hidden;background:#000}
+.bfp-ways{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.bfp-way{overflow:hidden}
+.bfp-way-img{position:relative;aspect-ratio:16/8;max-width:100%;overflow:hidden;background:#000}
 .bfp-way-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
-.bfp-way:hover .bfp-way-img img{transform:scale(1.06)}
-.bfp-way-badge{position:absolute;left:18px;top:18px;display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;font-size:13px;font-weight:700;
-  background:rgba(8,10,16,.45);border:1px solid var(--edge2);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
-.bfp-way-big{position:absolute;right:20px;bottom:10px;font-size:clamp(70px,7vw,112px);font-weight:700;letter-spacing:-.06em;line-height:1;color:#fff;text-shadow:0 10px 40px rgba(0,0,0,.6)}
-.bfp-way-body{padding:clamp(22px,2.4vw,32px)}
-.bfp-way h3{font-size:clamp(22px,2vw,28px);font-weight:700;letter-spacing:-.03em}
-.bfp-specs{margin:18px 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.bfp-specs div{padding:14px 16px;border-radius:16px;background:rgba(255,255,255,.045);border:1px solid var(--edge)}
-.bfp-specs dt{font-size:12.5px;color:var(--mute)}
-.bfp-specs dd{margin:6px 0 0;font-size:15.5px;font-weight:700;letter-spacing:-.01em;line-height:1.3}
+.bfp-way:hover .bfp-way-img img{transform:scale(1.05)}
+.bfp-way-body{padding:clamp(24px,2.6vw,36px)}
+.bfp-way-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.bfp-pill{padding:7px 14px;border-radius:999px;font-size:13px;font-weight:700;background:rgba(47,107,255,.16);color:#B5CBFF}
+.bfp-way-top b{font-size:15px;font-weight:700;color:var(--sub)}
+.bfp-way h3{margin-top:18px;font-size:clamp(23px,2vw,28px);font-weight:700;letter-spacing:-.03em}
+.bfp-specs{margin:20px 0 0}
+.bfp-specs div{display:flex;justify-content:space-between;gap:20px;padding:14px 0;border-top:1px solid var(--edge)}
+.bfp-specs dt{font-size:15px;color:var(--sub)}
+.bfp-specs dd{margin:0;max-width:58%;font-size:15px;font-weight:700;text-align:right}
 .bfp-way-note{margin-top:16px;font-size:15px;line-height:1.6;color:var(--sub)}
 
-/* ---------- PRIZES BENTO ---------- */
-.bfp-prizes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:var(--gap);list-style:none;margin:0;padding:0}
-.bfp-prize{position:relative;min-height:300px;background:#000}
-.bfp-prize:first-child{grid-column:1/3;grid-row:1/3;min-height:616px}
-.bfp-prize:nth-child(2){grid-column:3/5}
-.bfp-prize img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
-.bfp-prize:nth-child(2) img{object-fit:cover!important;object-position:50% 44%!important}
-.bfp-prize:not(:first-child) img{inset:0 0 92px 0;height:calc(100% - 92px);object-fit:contain;object-position:50% 60%}
+/* ---------- PRIZES ---------- */
+.bfp-prizes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;list-style:none;padding:0;margin:0}
+.bfp-prize{overflow:hidden;text-align:center}
+.bfp-prize figure{margin:0;aspect-ratio:1/1;max-width:100%;overflow:hidden;background:#000}
+.bfp-prize img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
 .bfp-prize:hover img{transform:scale(1.06)}
-.bfp-prize-cap{position:absolute;left:14px;right:14px;bottom:14px;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 18px;border-radius:18px;
-  background:rgba(8,10,16,.5);border:1px solid var(--edge);-webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%)}
-.bfp-prize-cap small{display:block;font-size:12.5px;color:var(--sub)}
-.bfp-prize-cap h3{margin-top:2px;font-size:clamp(17px,1.4vw,21px);font-weight:700;letter-spacing:-.02em}
-.bfp-prize-cap b{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-size:15px;font-weight:700;background:rgba(255,255,255,.1);border:1px solid var(--edge2)}
-.bfp-prize:first-child .bfp-prize-cap{left:20px;right:20px;bottom:20px;padding:20px 22px}
-.bfp-prize:first-child .bfp-prize-cap h3{font-size:clamp(24px,2.2vw,32px)}
-.bfp-prize:first-child .bfp-prize-cap b{width:54px;height:54px;background:var(--blue);border-color:transparent}
-.bfp-foot{margin-top:16px;display:flex;flex-wrap:wrap;gap:6px 22px;font-size:13.5px;color:var(--mute)}
+.bfp-prize-in{padding:20px 18px 24px}
+.bfp-rank{display:inline-flex;align-items:center;justify-content:center;min-width:92px;padding:6px 14px;border-radius:999px;font-size:13px;font-weight:700;background:rgba(255,255,255,.08);color:var(--sub)}
+.bfp-prize h3{margin-top:12px;font-size:clamp(18px,1.5vw,21px);font-weight:700;letter-spacing:-.02em}
+.bfp-prize.is-top{border-color:rgba(47,107,255,.6);box-shadow:0 30px 70px -40px rgba(47,107,255,.8)}
+.bfp-prize.is-top .bfp-rank{background:var(--blue);color:#fff}
+.bfp-foot{margin-top:24px;text-align:center;font-size:14px;color:var(--mute)}
 
 /* ---------- STEPS ---------- */
-.bfp-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gap);list-style:none;padding:0;margin:0}
-.bfp-step{display:flex;flex-direction:column;gap:18px;min-height:250px}
-.bfp-step-n{display:flex;align-items:center;justify-content:space-between}
-.bfp-step-n b{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-size:16px;font-weight:700;background:#fff;color:#06070B}
-.bfp-step-n i{flex:1;height:1px;margin-left:14px;background:var(--edge2);transform-origin:left;transform:scaleX(0);transition:transform 1s .3s cubic-bezier(.2,.8,.2,1)}
-.bfp-step.is-in .bfp-step-n i{transform:scaleX(1)}
-.bfp-step:last-child .bfp-step-n i{display:none}
-.bfp-step h3{margin-top:auto;font-size:20px;font-weight:700;letter-spacing:-.025em}
-.bfp-step p{font-size:15px;line-height:1.6;color:var(--sub)}
-.bfp-note{grid-column:1/-1;display:flex;gap:14px;align-items:flex-start;font-size:15px;line-height:1.6;color:var(--sub)}
-.bfp-note svg{flex:none;width:22px;height:22px;color:var(--sky);margin-top:1px}
+.bfp-steps{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;list-style:none;padding:0;margin:0}
+.bfp-steps::before{content:"";position:absolute;top:31px;left:16.6%;right:16.6%;height:1px;background:var(--edge2);transform-origin:left;transform:scaleX(0);transition:transform 1.4s .2s cubic-bezier(.2,.8,.2,1)}
+.bfp-steps.is-in::before{transform:scaleX(1)}
+.bfp-step{text-align:center}
+.bfp-step-n{position:relative;z-index:1;width:62px;height:62px;margin:0 auto;border-radius:50%;display:grid;place-items:center;font-size:20px;font-weight:700;background:var(--blue);box-shadow:0 0 0 8px var(--bg)}
+.bfp-step-c{margin-top:24px;padding:26px 24px}
+.bfp-step h3{font-size:20px;font-weight:700;letter-spacing:-.025em}
+.bfp-step p{margin-top:10px;font-size:15px;line-height:1.65;color:var(--sub)}
+.bfp-note{margin:28px auto 0;max-width:880px;display:flex;gap:14px;align-items:flex-start;padding:18px 22px;border-radius:18px;background:rgba(47,107,255,.08);border:1px solid rgba(47,107,255,.25);font-size:15px;line-height:1.6;color:var(--sub)}
+.bfp-note svg{flex:none;width:22px;height:22px;color:#9DBDFF;margin-top:1px}
 .bfp-note b{color:#fff}
 
 /* ---------- ESTIMATOR ---------- */
-.bfp-add{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:var(--gap)}
-.bfp-stages{list-style:none;padding:0;margin:0;display:grid;gap:var(--gap)}
-.bfp-stage{display:grid;grid-template-columns:46px 1fr;gap:16px;align-items:start}
-.bfp-stage>b{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-size:15px;font-weight:700;background:rgba(255,255,255,.08);border:1px solid var(--edge);transition:background .3s,color .3s}
-.bfp-stage.is-on>b{background:var(--blue);border-color:transparent}
+.bfp-add{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:24px;align-items:start}
+.bfp-stages{list-style:none;padding:0;margin:0;display:grid;gap:14px}
+.bfp-stage{display:grid;grid-template-columns:46px 1fr;gap:16px;padding:22px}
+.bfp-stage>b{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-size:15px;font-weight:700;background:rgba(255,255,255,.08);transition:background .3s}
+.bfp-stage.is-on>b{background:var(--blue)}
 .bfp-stage h3{font-size:18px;font-weight:700;letter-spacing:-.02em}
 .bfp-stage p{margin-top:6px;font-size:14.5px;line-height:1.6;color:var(--sub)}
+.bfp-calc{padding:clamp(24px,2.6vw,34px)}
+.bfp-calc:hover{transform:none}
 .bfp-calc h3{font-size:20px;font-weight:700;letter-spacing:-.02em}
 .bfp-field{margin-top:24px}
 .bfp-field label{display:flex;justify-content:space-between;gap:12px;font-size:14px;color:var(--sub)}
@@ -179,54 +155,58 @@
 .bfp-range{-webkit-appearance:none;appearance:none;width:100%;height:6px;margin-top:14px;border-radius:6px;outline:none;cursor:pointer;background:linear-gradient(90deg,var(--blue) var(--p,0%),rgba(255,255,255,.12) var(--p,0%))}
 .bfp-range::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 0 0 6px rgba(47,107,255,.25),0 4px 12px rgba(0,0,0,.4)}
 .bfp-range::-moz-range-thumb{width:22px;height:22px;border:0;border-radius:50%;background:#fff}
-.bfp-range:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 6px rgba(157,189,255,.6)}
-.bfp-out{margin-top:24px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.bfp-out>div{padding:18px;border-radius:18px;background:rgba(0,0,0,.28);border:1px solid var(--edge)}
-.bfp-out small{display:block;font-size:12.5px;color:var(--mute)}
-.bfp-out b{display:block;margin-top:8px;font-size:48px;font-weight:700;letter-spacing:-.05em;line-height:1;font-variant-numeric:tabular-nums}
+.bfp-out{margin-top:24px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.bfp-out>div{padding:18px;border-radius:18px;background:rgba(0,0,0,.3);border:1px solid var(--edge)}
+.bfp-out small{display:block;font-size:13px;color:var(--mute)}
+.bfp-out b{display:block;margin-top:8px;font-size:46px;font-weight:700;letter-spacing:-.05em;line-height:1;font-variant-numeric:tabular-nums}
 .bfp-out em{display:inline-flex;align-items:center;gap:7px;margin-top:10px;font-style:normal;font-size:13px;font-weight:600;color:var(--mute)}
 .bfp-out em::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
 .bfp-out em.ok{color:var(--ok)}
 .bfp-hint{margin-top:16px;font-size:14px;line-height:1.55;color:var(--sub);min-height:3.1em}
 .bfp-fine{margin-top:12px;font-size:12.5px;line-height:1.6;color:var(--mute)}
 
-/* ---------- CALENDAR ---------- */
-.bfp-cal{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--gap)}
-.bfp-date{display:flex;flex-direction:column;justify-content:space-between;gap:30px;min-height:200px}
-.bfp-date b{font-size:clamp(40px,4vw,60px);font-weight:700;letter-spacing:-.05em;line-height:1}
-.bfp-date b small{display:block;margin-top:6px;font-size:14px;letter-spacing:0;font-weight:600;color:var(--sub)}
-.bfp-date.is-win{background:#fff;color:#06070B;border-color:#fff}
-.bfp-date.is-win .bfp-k,.bfp-date.is-win b small{color:#555B68}
-.bfp-date.is-win .bfp-ic{background:#06070B;color:#fff;border-color:#06070B}
-.bfp-cta{display:flex;flex-direction:column;justify-content:space-between;gap:20px}
-.bfp-cta p{font-size:15px;line-height:1.55;color:var(--sub)}
-.bfp-cta small{font-size:12.5px;color:var(--mute)}
+/* ---------- CALENDAR + CTA ---------- */
+.bfp-time{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));list-style:none;padding:0;margin:0 auto;max-width:960px;text-align:center}
+.bfp-time::before{content:"";position:absolute;top:28px;left:16.6%;right:16.6%;height:2px;background:linear-gradient(90deg,var(--blue),#fff)}
+.bfp-time li{display:flex;flex-direction:column;align-items:center;gap:10px}
+.bfp-time i{position:relative;z-index:1;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:var(--bg);border:2px solid var(--blue);color:#fff}
+.bfp-time li:last-child i{background:#fff;border-color:#fff;color:var(--bg)}
+.bfp-time i svg{width:22px;height:22px}
+.bfp-time b{margin-top:6px;font-size:clamp(28px,3vw,40px);font-weight:700;letter-spacing:-.04em}
+.bfp-time span{font-size:14px;color:var(--sub)}
+.bfp-band{margin-top:clamp(48px,5vw,72px);display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap;padding:clamp(28px,3vw,44px);border-radius:28px;background:var(--blue-d);position:relative;overflow:hidden}
+.bfp-band::after{content:"";position:absolute;right:-60px;top:-60px;width:260px;height:260px;border-radius:50%;border:1px solid rgba(255,255,255,.15)}
+.bfp-band h3{font-size:clamp(22px,2.2vw,30px);font-weight:700;letter-spacing:-.03em;max-width:24ch}
+.bfp-band p{margin-top:8px;max-width:56ch;font-size:15px;line-height:1.6;color:rgba(255,255,255,.82)}
+.bfp-band .bfp-btn{background:#fff;color:#06070B;box-shadow:none;position:relative;z-index:1}
+.bfp-band .bfp-btn:hover{background:#E8EEFF}
+.bfp-band small{display:block;margin-top:10px;font-size:13px;color:rgba(255,255,255,.7)}
 
 /* ---------- FAQ ---------- */
-.bfp-faq-wrap{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:var(--gap);align-items:start}
-.bfp-faq{padding:clamp(10px,1.4vw,18px) clamp(20px,2.4vw,32px)}
-.bfp-faq-g{padding-block:14px}
-.bfp-faq-g+.bfp-faq-g{border-top:1px solid var(--edge)}
-.bfp-faq-g>h3{font-size:12.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);padding:10px 0 4px}
-.bfp-q summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:15px 0}
+.bfp-faq{max-width:880px;margin:0 auto}
+.bfp-faq-g+.bfp-faq-g{margin-top:28px}
+.bfp-faq-g>h3{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-bottom:12px}
+.bfp-q{margin-top:10px;border-radius:18px;background:var(--card);border:1px solid var(--edge);transition:border-color .3s,background .3s}
+.bfp-q[open]{background:var(--card2);border-color:var(--edge2)}
+.bfp-q summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:18px 22px}
 .bfp-q summary::-webkit-details-marker{display:none}
 .bfp-q summary h4{margin:0;font-size:16.5px;font-weight:600;letter-spacing:-.01em;line-height:1.4}
-.bfp-q summary svg{flex:none;width:30px;height:30px;padding:7px;border-radius:50%;background:rgba(255,255,255,.07);border:1px solid var(--edge);transition:transform .3s,background .3s}
-.bfp-q[open] summary svg{transform:rotate(45deg);background:var(--blue);border-color:transparent}
-.bfp-q-a{padding:0 44px 16px 0;font-size:15px;line-height:1.7;color:var(--sub)}
+.bfp-q summary svg{flex:none;width:32px;height:32px;padding:8px;border-radius:50%;background:rgba(255,255,255,.07);transition:transform .3s,background .3s}
+.bfp-q[open] summary svg{transform:rotate(45deg);background:var(--blue)}
+.bfp-q-a{padding:0 22px 20px;font-size:15px;line-height:1.7;color:var(--sub)}
 .bfp-q-a p+p{margin-top:8px}
 .bfp-q-a ul{margin:8px 0 0;padding-left:18px}
-.bfp-terms{position:sticky;top:110px}
+.bfp-terms{max-width:880px;margin:clamp(48px,5vw,72px) auto 0;padding:clamp(24px,3vw,36px)}
+.bfp-terms:hover{transform:none}
 .bfp-terms h2{font-size:22px;font-weight:700;letter-spacing:-.02em}
-.bfp-terms dl{margin:16px 0 0;display:grid;gap:14px}
+.bfp-terms dl{margin:18px 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 36px}
 .bfp-terms dt{font-size:14px;font-weight:700}
-.bfp-terms dd{margin:3px 0 0;font-size:14px;line-height:1.6;color:var(--sub)}
-.bfp-terms .bfp-act{margin-top:22px}
+.bfp-terms dd{margin:4px 0 0;font-size:14px;line-height:1.6;color:var(--sub)}
+.bfp-terms .bfp-act{margin-top:26px}
 
 /* ---------- T&C dialog ---------- */
-.bfp-tc{width:min(860px,calc(100vw - 32px));max-height:min(86vh,900px);padding:0;border:1px solid var(--edge2);border-radius:24px;color:#fff;
-  background:rgba(14,16,24,.82);-webkit-backdrop-filter:blur(30px);backdrop-filter:blur(30px);box-shadow:0 40px 120px rgba(0,0,0,.6)}
-.bfp-tc::backdrop{background:rgba(3,4,8,.6);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.bfp-tc{width:min(860px,calc(100vw - 32px));max-height:min(86vh,900px);padding:0;border:1px solid var(--edge2);border-radius:24px;color:#fff;background:rgba(14,16,24,.92);-webkit-backdrop-filter:blur(30px);backdrop-filter:blur(30px);box-shadow:0 40px 120px rgba(0,0,0,.6)}
+.bfp-tc::backdrop{background:rgba(3,4,8,.65)}
 .bfp-tc-in{display:flex;flex-direction:column;max-height:min(86vh,900px)}
 .bfp-tc-top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 28px;border-bottom:1px solid var(--edge)}
 .bfp-tc-top small{font-size:13px;color:var(--mute)}
@@ -243,7 +223,7 @@
 .bfp-tc-body th{color:#fff}
 
 /* ---------- reveal ---------- */
-.bfp-rv{opacity:0;transform:translateY(22px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
+.bfp-rv{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
 .bfp-rv.is-in{opacity:1;transform:none}
 
 /* ---------- mobile CTA ---------- */
@@ -253,42 +233,35 @@
 body.ck-open .bfp-dock{visibility:hidden}
 
 /* ---------- responsive ---------- */
-@media (max-width:1100px){
-  .bfp-bento{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .bfp-main{grid-column:1/-1;grid-row:auto}
-  .bfp-cd,.bfp-stat{grid-column:auto;grid-row:auto}
-  .bfp-cal{grid-template-columns:repeat(2,minmax(0,1fr))}
-}
+@media (max-width:1100px){.bfp-prizes{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:980px){
-  .bfp-ways,.bfp-add,.bfp-faq-wrap{grid-template-columns:1fr}
+  .bfp-hero{min-height:0;justify-content:flex-start;padding-top:84px}
+  .bfp-hero::before{background:linear-gradient(180deg,var(--bg) 0%,rgba(6,7,11,0) 22%,rgba(6,7,11,0) 82%,var(--bg) 100%)}
+  .bfp-hero>.container:first-of-type{order:1}
+  .bfp-hero{display:flex;flex-direction:column}
+  .bfp-hero-art{position:relative;order:2;margin-top:12px}
+  .bfp-hero-art img{height:auto;animation:none}
+  .bfp-hero>.bfp-facts-wrap{order:3}
+  .bfp-facts{margin-top:0;grid-template-columns:1fr}
+  .bfp-facts>div+div{border-left:0;border-top:1px solid var(--edge)}
+  .bfp-ways,.bfp-add{grid-template-columns:1fr}
   .bfp-steps{grid-template-columns:1fr}
-  .bfp-step{min-height:0}.bfp-step h3{margin-top:0}
-  .bfp-step-n i{display:none}
-  .bfp-terms{position:static}
-  .bfp-prizes{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:auto}
-  .bfp-prize:first-child{grid-column:1/-1;grid-row:auto;min-height:0;aspect-ratio:1/1}
-  .bfp-prize:nth-child(2){grid-column:auto}
-  .bfp-prize{min-height:0;aspect-ratio:1/1.1}
+  .bfp-steps::before{display:none}
+  .bfp-terms dl{grid-template-columns:1fr}
   .bfp-dock{display:block}
 }
 @media (max-width:640px){
-  :root{--gap:12px}
-  .bfp-bento,.bfp-cal{grid-template-columns:1fr}
-  .bfp-main{display:flex;flex-direction:column;align-items:stretch;min-height:0}
-  .bfp-main>img{position:relative;inset:auto;height:auto;aspect-ratio:1200/1132;object-fit:cover;order:2;animation:none;transform:none}
-  .bfp-main::after{display:none}
-  .bfp-main-copy{order:1;margin:0;border-radius:0;border:0;background:transparent;-webkit-backdrop-filter:none;backdrop-filter:none}
-  .bfp-specs{grid-template-columns:1fr}
-  .bfp-prizes{grid-template-columns:1fr}
-  .bfp-prize-cap{padding:12px 14px}
-  .bfp-q-a{padding-right:0}
+  .bfp-prizes{gap:12px}
+  .bfp-prize-in{padding:14px 10px 18px}
+  .bfp-rank{min-width:0}
+  .bfp-time{grid-template-columns:1fr;gap:26px}
+  .bfp-time::before{display:none}
+  .bfp-cd{display:flex}
+  .bfp-cd-t div{min-width:0;flex:1}
   .bfp-act .bfp-btn{flex:1 1 100%}
+  .bfp-band .bfp-btn{width:100%}
 }
-@media (prefers-reduced-motion:reduce){
-  .bfp-main>img,.bfp-mini img{animation:none}
-  .bfp-rv{opacity:1;transform:none}
-  .bfp *{transition-duration:.01ms!important}
-}
+@media (prefers-reduced-motion:reduce){.bfp-hero-art img{animation:none}.bfp-rv{opacity:1;transform:none}.bfp *{transition-duration:.01ms!important}}
 
   </style>
   <script type="application/ld+json">
@@ -595,48 +568,48 @@ body.ck-open .bfp-dock{visibility:hidden}
 
 
 <main id="main">
-<div class="bfp-backdrop" aria-hidden="true"></div>
 
-<!-- ============ HERO BENTO ============ -->
+<!-- ============ HERO BANNER ============ -->
 <section class="bfp-hero" aria-labelledby="bfp-title">
-  <div class="container bfp-bento">
-    <div class="bfp-glass bfp-main bfp-rv">
-      <img src="assets/img/bfp-hero.webp" srcset="assets/img/bfp-hero-1920.webp 1920w, assets/img/bfp-hero.webp 2560w" sizes="(max-width:1100px) 100vw, 75vw" alt="A black gift box bursting open with royal-blue light, glass raffle tickets and chrome coins rising beside a glowing market chart" width="2560" height="1434" fetchpriority="high" decoding="async">
-      <div class="bfp-main-copy">
-        <span class="bfp-tag"><i aria-hidden="true"></i>23 Nov – 4 Dec 2026 (Server Time) · New &amp; Existing Clients</span>
-        <h1 class="bfp-h1" id="bfp-title">Black Friday Power Play</h1>
-        <p class="bfp-lead">100 Credit Bonuses. 4 Top Prizes. Your Chance to Win.</p>
-        <p class="s">Trade for a chance to win one of 100 USD 20 credit bonuses or compete for a MacBook Air and other top prizes.</p>
-        <div class="bfp-act"><a class="bfp-btn" href="https://myaccount.startrader.com/login" rel="noopener">Opt In Now <svg><use href="#i-arrow-right"/></svg></a><button type="button" class="bfp-btn bfp-btn--glass" data-tc-open>T&amp;Cs Apply</button></div>
+  <picture class="bfp-hero-art">
+    <source media="(max-width:980px)" srcset="assets/img/bfp-hero-stack.webp">
+    <img src="assets/img/bfp-hero.webp" srcset="assets/img/bfp-hero-1920.webp 1920w, assets/img/bfp-hero.webp 2560w" sizes="100vw" alt="A black gift box bursting open with royal-blue light, glass raffle tickets and chrome coins rising beside a glowing market chart" width="2560" height="1434" fetchpriority="high" decoding="async">
+  </picture>
+  <div class="container">
+    <div class="bfp-hero-copy">
+      <span class="bfp-tag"><i aria-hidden="true"></i>Black Friday · 23 Nov – 4 Dec 2026</span>
+      <h1 class="bfp-h1" id="bfp-title">Black Friday Power Play</h1>
+      <p class="bfp-lead">100 Credit Bonuses. 4 Top Prizes. Your Chance to Win.</p>
+      <p class="s">Trade for a chance to win one of 100 USD 20 credit bonuses or compete for a MacBook Air and other top prizes.</p>
+      <div class="bfp-act"><a class="bfp-btn" href="https://myaccount.startrader.com/login" rel="noopener">Opt In Now <svg><use href="#i-arrow-right"/></svg></a><button type="button" class="bfp-btn bfp-btn--line" data-tc-open>T&amp;Cs Apply</button></div>
+      <div class="bfp-cd" data-bfp-cd role="timer" aria-live="off">
+        <span class="bfp-cd-lb"><b data-cd-label>Starts in</b>Server time</span>
+        <div class="bfp-cd-t"><div><b data-cd="d">00</b><span>Days</span></div><div><b data-cd="h">00</b><span>Hrs</span></div><div><b data-cd="m">00</b><span>Min</span></div><div><b data-cd="s">00</b><span>Sec</span></div></div>
       </div>
     </div>
-    <div class="bfp-glass bfp-pad bfp-cd bfp-rv" style="--d:.08s" data-bfp-cd role="timer" aria-live="off">
-      <p class="bfp-k" data-cd-label>Starts in</p>
-      <div class="bfp-cd-t"><div><b data-cd="d">00</b><span>Days</span></div><div><b data-cd="h">00</b><span>Hrs</span></div><div><b data-cd="m">00</b><span>Min</span></div><div><b data-cd="s">00</b><span>Sec</span></div></div>
-      <p class="bfp-cd-f">Server time</p>
-    </div>
-    <div class="bfp-glass bfp-pad bfp-stat bfp-lift bfp-rv" style="--d:.16s">
-      <b class="bfp-n" data-count="100">100</b>
-      <p>× USD 20 Credit Bonuses<span>4 Top Prizes</span></p>
-    </div>
-    <div class="bfp-glass bfp-pad bfp-fact bfp-lift bfp-rv" style="--d:.1s"><span class="bfp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 10h17M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><div><p class="bfp-k">Promotion Period</p><p class="bfp-v">23 Nov – 4 Dec 2026</p></div></div>
-    <div class="bfp-glass bfp-pad bfp-fact bfp-lift bfp-rv" style="--d:.18s"><span class="bfp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19h16M6 15l4-4 3 3 5-6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><p class="bfp-k">Eligible Products</p><div class="bfp-chips"><span>Forex</span><span>Gold</span><span>Silver</span><span>Oil</span><span>BTC</span></div></div></div>
-    <div class="bfp-glass bfp-pad bfp-fact bfp-lift bfp-rv" style="--d:.26s"><span class="bfp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 20a6 6 0 0 1 12 0M16 4.6a3.4 3.4 0 0 1 0 6.8M18 14.4A6 6 0 0 1 21 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><div><p class="bfp-k">Eligible Clients</p><p class="bfp-v">New &amp; Existing</p></div></div>
-    <a class="bfp-glass bfp-pad bfp-fact bfp-lift bfp-rv" style="--d:.34s" href="#prizes"><div class="bfp-mini"><img src="assets/img/bfp-prize-macbook.webp" alt="" width="900" height="900"><div><p class="bfp-k">1st Place</p><p class="bfp-v">MacBook Air</p></div></div><p class="bfp-k">See all 4 top prizes →</p></a>
+  </div>
+  <div class="container bfp-facts-wrap">
+    <dl class="bfp-facts" aria-label="Key Info">
+      <div><span class="bfp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 10h17M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><div><dt>Promotion Period</dt><dd>23 Nov – 4 Dec 2026 (server time)</dd></div></div>
+      <div><span class="bfp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19h16M6 15l4-4 3 3 5-6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><dt>Eligible Products</dt><dd>Forex, Gold, Silver, Oil, BTC</dd></div></div>
+      <div><span class="bfp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 20a6 6 0 0 1 12 0M16 4.6a3.4 3.4 0 0 1 0 6.8M18 14.4A6 6 0 0 1 21 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><div><dt>Eligible Clients</dt><dd>New &amp; Existing</dd></div></div>
+    </dl>
   </div>
 </section>
 
-<!-- ============ TWO WAYS ============ -->
+<!-- ============ TWO WAYS TO WIN ============ -->
 <section class="bfp-sec" id="ways" aria-labelledby="bfp-ways-title">
   <div class="container">
     <div class="bfp-head bfp-rv">
-      <h2 class="bfp-h2" id="bfp-ways-title">Two Ways to Win</h2>
-      <p class="bfp-sub"><b>More Ways to Trade. More Chances to Win.</b>Whether you're aiming for the lucky draw or climbing the leaderboard, your eligible trading volume could bring you closer to a reward.</p>
+      <p class="bfp-k">Two Ways to Win</p>
+      <h2 class="bfp-h2" id="bfp-ways-title">More Ways to Trade. More Chances to Win.</h2>
+      <p class="bfp-sub">Whether you're aiming for the lucky draw or climbing the leaderboard, your eligible trading volume could bring you closer to a reward.</p>
     </div>
     <div class="bfp-ways">
-      <article class="bfp-glass bfp-way bfp-lift bfp-rv">
-        <div class="bfp-way-img"><img src="assets/img/bfp-way-tickets.webp" alt="Frosted-glass raffle tickets floating in royal-blue light" width="1200" height="900" loading="lazy" decoding="async"><span class="bfp-way-badge">Lucky Draw | 100 Winners</span><span class="bfp-way-big bfp-n" aria-hidden="true">100</span></div>
+      <article class="bfp-card bfp-way bfp-rv">
+        <div class="bfp-way-img"><img src="assets/img/bfp-way-tickets.webp" alt="Frosted-glass raffle tickets floating in royal-blue light" width="1200" height="904" loading="lazy" decoding="async"></div>
         <div class="bfp-way-body">
+          <div class="bfp-way-top"><span class="bfp-pill">Lucky Draw</span><b>100 Winners</b></div>
           <h3>Your Volume. Your Tickets.</h3>
           <dl class="bfp-specs">
             <div><dt>Prize</dt><dd>USD 20 Credit Bonus per winner</dd></div>
@@ -646,9 +619,10 @@ body.ck-open .bfp-dock{visibility:hidden}
           </dl>
         </div>
       </article>
-      <article class="bfp-glass bfp-way bfp-lift bfp-rv" style="--d:.1s">
-        <div class="bfp-way-img"><img src="assets/img/bfp-way-podium.webp" alt="A frosted-glass winners podium with a chrome trophy lit in royal blue" width="1200" height="900" loading="lazy" decoding="async"><span class="bfp-way-badge">Top Prizes | 4 Winners</span><span class="bfp-way-big bfp-n" aria-hidden="true">4</span></div>
+      <article class="bfp-card bfp-way bfp-rv" style="--d:.1s">
+        <div class="bfp-way-img"><img src="assets/img/bfp-way-podium.webp" alt="A frosted-glass winners podium with a chrome trophy lit in royal blue" width="1200" height="904" loading="lazy" decoding="async"></div>
         <div class="bfp-way-body">
+          <div class="bfp-way-top"><span class="bfp-pill">Top Prizes</span><b>4 Winners</b></div>
           <h3>Trade Your Way to the Top.</h3>
           <dl class="bfp-specs">
             <div><dt>Minimum Net Deposit</dt><dd>USD 1,000</dd></div>
@@ -663,20 +637,16 @@ body.ck-open .bfp-dock{visibility:hidden}
   </div>
 </section>
 
-<!-- ============ PRIZES ============ -->
-<section class="bfp-sec" id="prizes" aria-labelledby="bfp-prize-title">
+<!-- ============ PRIZE LADDER ============ -->
+<section class="bfp-sec bfp-alt" id="prizes" aria-labelledby="bfp-prize-title">
   <div class="container">
     <div class="bfp-head bfp-rv">
-      <h2 class="bfp-h2" id="bfp-prize-title">The Top Prize Ladder</h2>
-      <p class="bfp-sub"><b>Four Ranks. Four Prizes.</b>Ranking is based on total qualifying notional trading volume. One top prize per client.</p>
+      <p class="bfp-k">The Top Prize Ladder</p>
+      <h2 class="bfp-h2" id="bfp-prize-title">Four Ranks. Four Prizes.</h2>
+      <p class="bfp-sub">Ranking is based on total qualifying notional trading volume. One top prize per client.</p>
     </div>
-    <ol class="bfp-prizes">
-      <li class="bfp-glass bfp-prize bfp-rv"><img src="assets/img/bfp-prize-macbook.webp" alt="An illustrative silver ultraportable laptop on a black pedestal" width="900" height="900" loading="lazy" decoding="async"><div class="bfp-prize-cap"><div><small>1st Place</small><h3>MacBook Air</h3></div><b>1</b></div></li>
-      <li class="bfp-glass bfp-prize bfp-rv" style="--d:.08s"><img src="assets/img/bfp-prize-camera.webp" alt="An illustrative premium compact camera on a black pedestal" width="900" height="900" loading="lazy" decoding="async"><div class="bfp-prize-cap"><div><small>2nd Place</small><h3>Leica D-Lux 8</h3></div><b>2</b></div></li>
-      <li class="bfp-glass bfp-prize bfp-rv" style="--d:.16s"><img src="assets/img/bfp-prize-console.webp" alt="An illustrative handheld games console on a black pedestal" width="900" height="900" loading="lazy" decoding="async"><div class="bfp-prize-cap"><div><small>3rd Place</small><h3>Nintendo Switch 2</h3></div><b>3</b></div></li>
-      <li class="bfp-glass bfp-prize bfp-rv" style="--d:.24s"><img src="assets/img/bfp-prize-glasses.webp" alt="Illustrative black smart glasses on a black pedestal" width="900" height="900" loading="lazy" decoding="async"><div class="bfp-prize-cap"><div><small>4th Place</small><h3>Ray-Ban Meta Gen 2</h3></div><b>4</b></div></li>
-    </ol>
-    <p class="bfp-foot"><span>Images are for illustration only.</span></p>
+    <ol class="bfp-prizes"><li class="bfp-card bfp-prize is-top bfp-rv" style="--d:0.00s"><figure><img src="assets/img/bfp-prize-macbook.webp" alt="An illustrative silver ultraportable laptop on a black pedestal" width="900" height="900" loading="lazy" decoding="async"></figure><div class="bfp-prize-in"><span class="bfp-rank">1st Place</span><h3>MacBook Air</h3></div></li><li class="bfp-card bfp-prize bfp-rv" style="--d:0.08s"><figure><img src="assets/img/bfp-prize-camera.webp" alt="An illustrative premium compact camera on a black pedestal" width="900" height="900" loading="lazy" decoding="async"></figure><div class="bfp-prize-in"><span class="bfp-rank">2nd Place</span><h3>Leica D-Lux 8</h3></div></li><li class="bfp-card bfp-prize bfp-rv" style="--d:0.16s"><figure><img src="assets/img/bfp-prize-console.webp" alt="An illustrative handheld games console on a black pedestal" width="900" height="900" loading="lazy" decoding="async"></figure><div class="bfp-prize-in"><span class="bfp-rank">3rd Place</span><h3>Nintendo Switch 2</h3></div></li><li class="bfp-card bfp-prize bfp-rv" style="--d:0.24s"><figure><img src="assets/img/bfp-prize-glasses.webp" alt="Illustrative black smart glasses on a black pedestal" width="900" height="900" loading="lazy" decoding="async"></figure><div class="bfp-prize-in"><span class="bfp-rank">4th Place</span><h3>Ray-Ban Meta Gen 2</h3></div></li></ol>
+    <p class="bfp-foot">Images are for illustration only.</p>
   </div>
 </section>
 
@@ -684,32 +654,34 @@ body.ck-open .bfp-dock{visibility:hidden}
 <section class="bfp-sec" id="join" aria-labelledby="bfp-join-title">
   <div class="container">
     <div class="bfp-head bfp-rv">
-      <h2 class="bfp-h2" id="bfp-join-title">How to Join the Power Play</h2>
-      <p class="bfp-sub"><b>Three Steps. Two Ways to Win.</b></p>
+      <p class="bfp-k">How to Join the Power Play</p>
+      <h2 class="bfp-h2" id="bfp-join-title">Three Steps. Two Ways to Win.</h2>
     </div>
     <ol class="bfp-steps">
-      <li class="bfp-glass bfp-pad bfp-step bfp-lift bfp-rv"><div class="bfp-step-n"><b>1</b><i aria-hidden="true"></i></div><h3>Opt In &amp; Start Trading</h3><p>Join through the Client Portal or STARTRADER app and trade eligible Forex, Gold, Silver, Oil, or BTC products.</p></li>
-      <li class="bfp-glass bfp-pad bfp-step bfp-lift bfp-rv" style="--d:.1s"><div class="bfp-step-n"><b>2</b><i aria-hidden="true"></i></div><h3>Unlock Lucky Draw Tickets</h3><p>Maintain a minimum USD 500 net deposit and earn one draw ticket for every 1,000,000 in qualifying notional trading volume.</p></li>
-      <li class="bfp-glass bfp-pad bfp-step bfp-lift bfp-rv" style="--d:.2s"><div class="bfp-step-n"><b>3</b><i aria-hidden="true"></i></div><h3>Compete for the Top Prizes</h3><p>Reach a minimum USD 1,000 net deposit and 2,000,000 in qualifying notional volume to enter the top prize ranking.</p></li>
-      <li class="bfp-glass bfp-pad bfp-note bfp-rv"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 11v5M12 7.6v.1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span><b>Important:</b> Only fully closed positions held for at least 10 minutes count. Trading volume before opt-in is excluded. Maintain the required net deposit threshold until the promotion ends.</span></li>
+      <li class="bfp-step bfp-rv"><span class="bfp-step-n">1</span><div class="bfp-card bfp-step-c"><h3>Opt In &amp; Start Trading</h3><p>Join through the Client Portal or STARTRADER app and trade eligible Forex, Gold, Silver, Oil, or BTC products.</p></div></li>
+      <li class="bfp-step bfp-rv" style="--d:.12s"><span class="bfp-step-n">2</span><div class="bfp-card bfp-step-c"><h3>Unlock Lucky Draw Tickets</h3><p>Maintain a minimum USD 500 net deposit and earn one draw ticket for every 1,000,000 in qualifying notional trading volume.</p></div></li>
+      <li class="bfp-step bfp-rv" style="--d:.24s"><span class="bfp-step-n">3</span><div class="bfp-card bfp-step-c"><h3>Compete for the Top Prizes</h3><p>Reach a minimum USD 1,000 net deposit and 2,000,000 in qualifying notional volume to enter the top prize ranking.</p></div></li>
     </ol>
+    <p class="bfp-note bfp-rv"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 11v5M12 7.6v.1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span><b>Important:</b> Only fully closed positions held for at least 10 minutes count. Trading volume before opt-in is excluded. Maintain the required net deposit threshold until the promotion ends.</span></p>
+    <div class="bfp-center"><a class="bfp-btn" href="https://myaccount.startrader.com/login" rel="noopener">Opt In Now <svg><use href="#i-arrow-right"/></svg></a></div>
   </div>
 </section>
 
 <!-- ============ ADDS UP ============ -->
-<section class="bfp-sec" id="example" aria-labelledby="bfp-add-title">
+<section class="bfp-sec bfp-alt" id="example" aria-labelledby="bfp-add-title">
   <div class="container">
     <div class="bfp-head bfp-rv">
+      <p class="bfp-k">Illustrative example</p>
       <h2 class="bfp-h2" id="bfp-add-title">See How Your Trading Adds Up</h2>
       <p class="bfp-sub">Here's how a qualifying client's participation could progress.</p>
     </div>
     <div class="bfp-add">
       <ol class="bfp-stages" data-bfp-stages>
-        <li class="bfp-glass bfp-pad bfp-stage is-on bfp-rv"><b>1</b><div><h3>Opt In &amp; Trade</h3><p>Join the promotion and begin trading eligible products. Participation alone does not guarantee a reward.</p></div></li>
-        <li class="bfp-glass bfp-pad bfp-stage bfp-rv" style="--d:.08s"><b>2</b><div><h3>Earn 3 Draw Tickets</h3><p>Maintain a USD 500 net deposit and complete 3,000,000 in qualifying notional volume to earn three chances in the lucky draw.</p></div></li>
-        <li class="bfp-glass bfp-pad bfp-stage bfp-rv" style="--d:.16s"><b>3</b><div><h3>Enter the Top Prize Ranking</h3><p>Reach USD 1,000 in net deposits and 2,000,000 in total qualifying notional volume to compete for one of four top prizes.</p></div></li>
+        <li class="bfp-card bfp-stage is-on bfp-rv"><b>1</b><div><h3>Opt In &amp; Trade</h3><p>Join the promotion and begin trading eligible products. Participation alone does not guarantee a reward.</p></div></li>
+        <li class="bfp-card bfp-stage bfp-rv" style="--d:.08s"><b>2</b><div><h3>Earn 3 Draw Tickets</h3><p>Maintain a USD 500 net deposit and complete 3,000,000 in qualifying notional volume to earn three chances in the lucky draw.</p></div></li>
+        <li class="bfp-card bfp-stage bfp-rv" style="--d:.16s"><b>3</b><div><h3>Enter the Top Prize Ranking</h3><p>Reach USD 1,000 in net deposits and 2,000,000 in total qualifying notional volume to compete for one of four top prizes.</p></div></li>
       </ol>
-      <div class="bfp-glass bfp-pad bfp-calc bfp-rv" style="--d:.1s">
+      <div class="bfp-card bfp-calc bfp-rv" style="--d:.1s">
         <h3>Try your own numbers</h3>
         <div class="bfp-field"><label for="bfpDep">Net deposit <output id="bfpDepO" for="bfpDep">USD 500</output></label>
           <input class="bfp-range" id="bfpDep" type="range" min="0" max="5000" step="100" value="500"></div>
@@ -730,24 +702,32 @@ body.ck-open .bfp-dock{visibility:hidden}
 <section class="bfp-sec" id="calendar" aria-labelledby="bfp-cal-title">
   <div class="container">
     <div class="bfp-head bfp-rv">
-      <h2 class="bfp-h2" id="bfp-cal-title">Mark Your Calendar</h2>
-      <p class="bfp-sub"><b>The Power Play Ends. The Winners Take the Spotlight.</b>Lucky draw results and the final top prize rankings will be announced on 9 December 2026.</p>
+      <p class="bfp-k">Mark Your Calendar</p>
+      <h2 class="bfp-h2" id="bfp-cal-title">The Power Play Ends. The Winners Take the Spotlight.</h2>
     </div>
-    <div class="bfp-cal">
-      <div class="bfp-glass bfp-pad bfp-date bfp-lift bfp-rv"><span class="bfp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4m0 0h11l-2 4 2 4H5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><p class="bfp-k">Promotion starts</p><b>23 Nov<small>2026 · 00:00 server time</small></b></div></div>
-      <div class="bfp-glass bfp-pad bfp-date bfp-lift bfp-rv" style="--d:.08s"><span class="bfp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 7.5v5l3 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><div><p class="bfp-k">Promotion ends</p><b>4 Dec<small>2026 · 23:59 server time</small></b></div></div>
-      <div class="bfp-glass bfp-pad bfp-date is-win bfp-lift bfp-rv" style="--d:.16s"><span class="bfp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4h8v5a4 4 0 0 1-8 0zM8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4M12 13v4M8.5 20h7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><p class="bfp-k">Winner Announcement</p><b>9 Dec<small>2026</small></b></div></div>
-      <div class="bfp-glass bfp-pad bfp-cta bfp-rv" style="--d:.24s"><p>Opt in before 4 December and make your qualifying trading volume count toward the lucky draw and leaderboard.</p><a class="bfp-btn" href="https://myaccount.startrader.com/login" rel="noopener">Opt In Now <svg><use href="#i-arrow-right"/></svg></a><small>Promotion ends 4 Dec 2026 (Server Time). T&amp;Cs apply.</small></div>
+    <ol class="bfp-time bfp-rv">
+      <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4m0 0h11l-2 4 2 4H5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></i><b>23 Nov</b><span>Promotion starts</span></li>
+      <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 7.5v5l3 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></i><b>4 Dec</b><span>Promotion ends</span></li>
+      <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4h8v5a4 4 0 0 1-8 0zM8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4M12 13v4M8.5 20h7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></i><b>9 Dec</b><span>Winner Announcement</span></li>
+    </ol>
+    <div class="bfp-band bfp-rv">
+      <div>
+        <h3>Opt in before 4 December</h3>
+        <p>Lucky draw results and the final top prize rankings will be announced on 9 December 2026. Opt in before 4 December and make your qualifying trading volume count toward the lucky draw and leaderboard.</p>
+      </div>
+      <div><a class="bfp-btn" href="https://myaccount.startrader.com/login" rel="noopener">Opt In Now <svg><use href="#i-arrow-right"/></svg></a><small>Promotion ends 4 Dec 2026 (Server Time). T&amp;Cs apply.</small></div>
     </div>
   </div>
 </section>
 
 <!-- ============ FAQ ============ -->
-<section class="bfp-sec" id="faq" aria-labelledby="bfp-faq-title">
+<section class="bfp-sec bfp-alt" id="faq" aria-labelledby="bfp-faq-title">
   <div class="container">
-    <div class="bfp-head bfp-rv"><h2 class="bfp-h2" id="bfp-faq-title">Black Friday Power Play FAQ</h2></div>
-    <div class="bfp-faq-wrap">
-      <div class="bfp-glass bfp-faq bfp-rv">
+    <div class="bfp-head bfp-rv">
+      <p class="bfp-k">FAQ</p>
+      <h2 class="bfp-h2" id="bfp-faq-title">Black Friday Power Play FAQ</h2>
+    </div>
+    <div class="bfp-faq">
 <div class="bfp-faq-g"><h3>General &amp; Participation</h3><details class="bfp-q"><summary><h4>What is Black Friday Power Play?</h4><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M4 12h16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></summary><div class="bfp-q-a"><p>It&#x27;s a limited-time STARTRADER promotion where eligible clients can earn lucky draw tickets for 100 USD 20 credit bonuses and compete for four top prizes by meeting the required deposit and trading volume thresholds.</p></div></details>
 <details class="bfp-q"><summary><h4>Who can join Black Friday Power Play?</h4><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M4 12h16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></summary><div class="bfp-q-a"><p>The promotion is open to new and existing STARTRADER clients residing in eligible countries or regions, subject to the Terms &amp; Conditions. Cent, STAR Copy, PAMM, and MAM accounts are excluded.</p></div></details>
 <details class="bfp-q"><summary><h4>When does the promotion run?</h4><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M4 12h16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></summary><div class="bfp-q-a"><p>From 23 November to 4 December 2026, based on server time.</p></div></details>
@@ -768,19 +748,18 @@ body.ck-open .bfp-dock{visibility:hidden}
 <details class="bfp-q"><summary><h4>When will winners be announced?</h4><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M4 12h16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></summary><div class="bfp-q-a"><p>Lucky draw winners and the final top prize rankings will be announced on 9 December 2026. Winners will also be notified by email.</p></div></details>
 <details class="bfp-q"><summary><h4>How and when will prizes be delivered?</h4><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M4 12h16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></summary><div class="bfp-q-a"><p>Lucky draw credit bonuses will be credited to participating trading accounts within 24 hours following the announcement.</p><p>Top prize winners will be contacted to arrange delivery and must provide their delivery details within 14 calendar days of notification to avoid potential forfeiture. Any applicable taxes, duties, or fees are the winner&#x27;s responsibility.</p></div></details>
 </div>
-      </div>
-      <aside class="bfp-glass bfp-pad bfp-terms bfp-rv" style="--d:.1s">
-        <h2>Key terms</h2>
-        <dl>
-          <div><dt>Eligible Clients</dt><dd>New and existing clients, subject to the Promotion Terms and Conditions.</dd></div>
-          <div><dt>Eligible Products</dt><dd>Forex, Gold, Silver, Oil and BTC.</dd></div>
-          <div><dt>Qualifying Trades</dt><dd>Fully closed positions held for at least 10 minutes, with volume counted only after opt-in.</dd></div>
-          <div><dt>Net Deposit Requirements</dt><dd>Maintain at least USD 500 for lucky draw eligibility or USD 1,000 for top prize ranking eligibility until the promotion ends.</dd></div>
-          <div><dt>Reward Allocation</dt><dd>Lucky draw winners are selected through the draw, while top prizes are determined by qualifying notional trading volume rankings.</dd></div>
-          <div><dt>Risk Warning</dt><dd>Forex and CFD trading involves significant risk. Leveraged trading may result in substantial losses. Please consider your financial circumstances and risk tolerance before trading.</dd></div>
-        </dl>
-        <div class="bfp-act"><a class="bfp-btn" href="https://myaccount.startrader.com/login" rel="noopener">Opt In Now <svg><use href="#i-arrow-right"/></svg></a><button type="button" class="bfp-btn bfp-btn--glass" data-tc-open>View Full Terms &amp; Conditions</button></div>
-      </aside>
+    </div>
+    <div class="bfp-card bfp-terms bfp-rv">
+      <h2>Key terms</h2>
+      <dl>
+        <div><dt>Eligible Clients</dt><dd>New and existing clients, subject to the Promotion Terms and Conditions.</dd></div>
+        <div><dt>Eligible Products</dt><dd>Forex, Gold, Silver, Oil and BTC.</dd></div>
+        <div><dt>Qualifying Trades</dt><dd>Fully closed positions held for at least 10 minutes, with volume counted only after opt-in.</dd></div>
+        <div><dt>Net Deposit Requirements</dt><dd>Maintain at least USD 500 for lucky draw eligibility or USD 1,000 for top prize ranking eligibility until the promotion ends.</dd></div>
+        <div><dt>Reward Allocation</dt><dd>Lucky draw winners are selected through the draw, while top prizes are determined by qualifying notional trading volume rankings.</dd></div>
+        <div><dt>Risk Warning</dt><dd>Forex and CFD trading involves significant risk. Leveraged trading may result in substantial losses. Please consider your financial circumstances and risk tolerance before trading.</dd></div>
+      </dl>
+      <div class="bfp-act"><a class="bfp-btn" href="https://myaccount.startrader.com/login" rel="noopener">Opt In Now <svg><use href="#i-arrow-right"/></svg></a><button type="button" class="bfp-btn bfp-btn--line" data-tc-open>View Full Terms &amp; Conditions</button></div>
     </div>
   </div>
 </section>
@@ -846,7 +825,7 @@ body.ck-open .bfp-dock{visibility:hidden}
 
 
   // Scroll reveal, step connectors and count-up
-  var rv = [].slice.call(document.querySelectorAll('.bfp-rv, .bfp-step'));
+  var rv = [].slice.call(document.querySelectorAll('.bfp-rv, .bfp-steps'));
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }); }, { threshold: .15, rootMargin: '0px 0px -40px 0px' });
     rv.forEach(function (el) { io.observe(el); });
