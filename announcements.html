@@ -796,6 +796,7 @@
         <div class="an-group-h">Month</div>
         <div class="an-filters an-filters--row" role="group" aria-label="Filter by month">
           <button class="an-f is-on" type="button" data-an-month="all" aria-pressed="true">All</button>
+          <button class="an-f" type="button" data-an-month="2026-11" aria-pressed="false">November</button>
           <button class="an-f" type="button" data-an-month="2026-07" aria-pressed="false">July</button>
           <button class="an-f" type="button" data-an-month="2026-06" aria-pressed="false">June</button>
           <button class="an-f" type="button" data-an-month="2026-05" aria-pressed="false">May</button>
@@ -915,6 +916,80 @@
               <p>If you encounter an impersonation attempt, report it to <a href="mailto:support@startrader.com">support@startrader.com</a>. We pursue legal action against parties misusing our name.</p>
               <p>STARTRADER Team</p>
               <p class="an-share"><a href="#counterfeit-declaration" data-an-link>Copy link to this notice</a></p>
+            </div>
+          </details>
+        </article>
+
+        <article class="an-item glass" data-an-item data-date="2026-11-01" data-cat="closure" data-month="2026-11" id="market-closure-november" data-aos="fade-up" data-aos-delay="400">
+          <details>
+            <summary>
+              <time class="an-date" datetime="2026-11-01"><b>1</b><em>Nov</em><i>2026</i></time>
+              <h3 class="an-title">Market closure in November</h3>
+              <span class="an-meta"><span class="an-open">Read notice</span></span>
+              <span class="an-acts">
+                <button class="an-share-btn" type="button" data-an-share aria-label="Copy a link to this notice"><svg aria-hidden="true"><use href="#i-copy"/></svg></button>
+                <span class="an-chev" aria-hidden="true"><svg><use href="#i-chevron-down"/></svg></span>
+              </span>
+            </summary>
+            <div class="an-body">
+              <p>Dear valued client,</p>
+              <p>Please be advised that the following instruments&rsquo; trading hours and market session times will be affected by the upcoming November holidays. Please refer to the table below outlining the affected instruments:</p>
+
+              <div class="an-tablewrap">
+                <table class="an-table">
+                  <caption class="sr-only">Affected instruments and trading status by date</caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Date</th>
+                      <th scope="col">2 November 2026</th><th scope="col">10 November 2026</th><th scope="col">11 November 2026</th><th scope="col">16 November 2026</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Holiday</th>
+                      <td>All Souls&rsquo; Day</td><td>Diwali Amavasya</td><td>Veterans Day</td><td>Independence of Cartagena</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">BVSPX</th>
+                      <td class="an-closed">Closed</td><td>Normal</td><td>Normal</td><td>Normal</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">USDBRL</th>
+                      <td class="an-closed">Closed</td><td>Normal</td><td class="an-closed">Closed</td><td>Normal</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">USDCLP</th>
+                      <td>Normal</td><td>Normal</td><td class="an-closed">Closed</td><td>Normal</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">USDCOP</th>
+                      <td class="an-closed">Closed</td><td>Normal</td><td class="an-closed">Closed</td><td class="an-closed">Closed</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">USDINR</th>
+                      <td>Normal</td><td class="an-closed">Closed</td><td class="an-closed">Closed</td><td>Normal</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">USDTWD</th>
+                      <td>Normal</td><td>Normal</td><td class="an-closed">Closed</td><td>Normal</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">USDIDR</th>
+                      <td>Normal</td><td>Normal</td><td class="an-closed">Closed</td><td>Normal</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">USDKRW</th>
+                      <td>Normal</td><td>Normal</td><td class="an-closed">Closed</td><td>Normal</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <p class="an-fine">*All dates and times are provided in GMT+2.</p>
+              <p>Please note that in the event of reduced liquidity in the market, spreads might significantly increase from their normal average level. We recommend clients manage their positions to ensure sufficient funds in the account and trade cautiously.</p>
+              <p>If you have any questions or require assistance, please email <a href="mailto:info@startrader.com">info@startrader.com</a> or use live chat on our website.</p>
+              <p>Thank you for your support! <br>STARTRADER Team</p>
+              <p class="an-share"><a href="#market-closure-november" data-an-link>Copy link to this notice</a></p>
             </div>
           </details>
         </article>
@@ -1383,6 +1458,8 @@
   var monthsKept = {};
   Array.prototype.slice.call(root.querySelectorAll('[data-an-item]')).forEach(function (el) {
     var d = el.getAttribute('data-date') || '';
+    /* pinned notices (standing declarations) stay up regardless of age, as on the live site */
+    if (el.classList.contains('an-item--pin')) return;
     if (d && d < min) { el.parentNode.removeChild(el); return; }
     monthsKept[el.getAttribute('data-month') || d.slice(0, 7)] = true;
   });
