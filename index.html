@@ -144,6 +144,8 @@
 @media (min-width:481px) and (max-width:900px){.plat-app .plat-hand{height:440px;width:auto}}
 @media (max-width:480px){.plat-app{min-height:0;height:540px}.plat-app .plat-hand{height:410px;width:auto}}
 .plat-app .plat-hand{max-width:none!important;object-position:50% 0}
+/* keep the phone clear of a two-line standfirst (desktop card ~460px wide wraps it) */
+@media (min-width:901px){.plat-app .plat-hand{height:min(500px,calc(100% - 130px))}}
 .plat-mt .plat-mt-ico{bottom:-22px}
 /* mobile hero: copy first, art below (team rule 2026-10-07) */
 @media (max-width:980px){
