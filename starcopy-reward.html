@@ -121,6 +121,8 @@
 .scr-steps{list-style:none;padding:0;margin:0;position:relative}
 .scr-step{position:relative;display:grid;grid-template-columns:48px 1fr;gap:20px;padding:0 0 30px}
 .scr-step:last-child{padding-bottom:0}
+.scr-step:not(:last-child)::before{content:"";position:absolute;left:23px;top:48px;bottom:0;width:1px;background:var(--edge2);transform-origin:top;transform:scaleY(0);transition:transform 1s .3s cubic-bezier(.2,.8,.2,1)}
+.scr-steps.is-in .scr-step::before{transform:scaleY(1)}
 .scr-step-n{position:relative;z-index:1;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-size:17px;font-weight:700;background:var(--bg2);border:1px solid var(--edge2);transition:background .4s,border-color .4s}
 .scr-steps.is-in .scr-step-n{background:var(--blue);border-color:var(--blue)}
 .scr-step h3{margin-top:10px;font-size:20px;font-weight:700;letter-spacing:-.02em}
@@ -220,7 +222,7 @@
   .scr-act .scr-btn{flex:1 1 auto}
   .scr-tc-top,.scr-tc-body{padding-inline:20px}
 }
-@media (prefers-reduced-motion:reduce){.scr-rv{opacity:1;transform:none;transition:none}.scr-hero-art img{animation:none}}
+@media (prefers-reduced-motion:reduce){.scr-rv{opacity:1;transform:none;transition:none}.scr-hero-art img{animation:none}.scr-step::before{transform:none!important}}
   </style>
 </head>
 <body class="prx scr">
