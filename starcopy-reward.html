@@ -31,7 +31,7 @@
   <link rel="manifest" href="site.webmanifest" />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
-  <link rel="preload" as="image" href="assets/img/scr-hero.webp" imagesrcset="assets/img/scr-hero-1600.webp 1600w, assets/img/scr-hero.webp 2560w" imagesizes="100vw" media="(min-width:981px)" fetchpriority="high" />
+  <link rel="preload" as="image" href="assets/img/scr-hero.webp" imagesrcset="assets/img/scr-hero-1600.webp?v=3 1600w, assets/img/scr-hero.webp?v=3 2560w" imagesizes="100vw" media="(min-width:981px)" fetchpriority="high" />
   <link rel="stylesheet" href="assets/css/styles.min.css?v=pb39" />
   <style>
 /* =================================================================
@@ -66,7 +66,7 @@
 /* ---------- HERO ---------- */
 .scr-hero{position:relative;isolation:isolate;min-height:clamp(640px,88vh,860px);display:flex;align-items:center;padding-block:clamp(90px,8vw,120px) clamp(60px,6vw,90px)}
 .scr-hero-art{position:absolute;inset:0;z-index:-2}
-.scr-hero-art img{width:100%;height:100%;object-fit:cover;object-position:72% 40%;animation:scrZoom 18s ease-out both}
+.scr-hero-art img{width:100%;height:100%;object-fit:cover;object-position:70% 50%;animation:scrZoom 18s ease-out both}
 @keyframes scrZoom{from{transform:scale(1.06)}to{transform:scale(1)}}
 .scr-hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(7,8,12,.97) 0%,rgba(7,8,12,.86) 32%,rgba(7,8,12,.3) 56%,rgba(7,8,12,0) 70%),linear-gradient(0deg,var(--bg) 0%,rgba(7,8,12,0) 26%)}
 .scr-hero-copy{max-width:580px}
@@ -112,7 +112,7 @@
 /* ---------- HOW IT WORKS ---------- */
 .scr-how{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1fr);gap:clamp(32px,5vw,72px);align-items:center}
 .scr-photo{position:relative;margin:0;border-radius:28px;overflow:hidden;aspect-ratio:4/5;max-width:100%;background:#000}
-.scr-photo img{width:100%;height:100%;object-fit:cover;object-position:68% 50%;transition:transform 1.4s cubic-bezier(.2,.8,.2,1)}
+.scr-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;transition:transform 1.4s cubic-bezier(.2,.8,.2,1)}
 .scr-photo:hover img{transform:scale(1.04)}
 .scr-photo figcaption{position:absolute;left:18px;right:18px;bottom:18px;display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:18px;background:rgba(10,12,18,.55);border:1px solid rgba(255,255,255,.14);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);font-size:14px;line-height:1.45;color:#E6EBF5}
 .scr-photo figcaption b{display:block;font-size:15px;color:#fff}
@@ -542,8 +542,8 @@
     </div>
   </div>
   <picture class="scr-hero-art">
-    <source media="(max-width:980px)" srcset="assets/img/scr-hero-stack.webp">
-    <img src="assets/img/scr-hero.webp" srcset="assets/img/scr-hero-1600.webp 1600w, assets/img/scr-hero.webp 2560w" sizes="100vw" alt="A woman relaxing by a window at dusk, smiling at her phone, city lights behind her" width="2560" height="1434" fetchpriority="high" decoding="async">
+    <source media="(max-width:980px)" srcset="assets/img/scr-hero-stack.webp?v=2">
+    <img src="assets/img/scr-hero.webp?v=3" srcset="assets/img/scr-hero-1600.webp?v=3 1600w, assets/img/scr-hero.webp?v=3 2560w" sizes="100vw" alt="A frosted glass cashback voucher glowing blue, with two mirrored glass trading charts and glass coins behind it" width="2560" height="1446" fetchpriority="high" decoding="async">
   </picture>
 </section>
 
@@ -572,7 +572,7 @@
 <section class="scr-sec scr-alt" id="how" aria-labelledby="scr-how-title">
   <div class="container scr-how">
     <figure class="scr-photo scr-rv">
-      <img src="assets/img/scr-how.webp" alt="A man on a balcony at blue hour, smiling as he checks his phone" width="1600" height="896" loading="lazy" decoding="async">
+      <img src="assets/img/scr-how.webp?v=2" alt="Three frosted glass steps holding an account badge, a coin and a rising chart, with a blue glass voucher floating above" width="1280" height="1711" loading="lazy" decoding="async">
       <figcaption><span class="scr-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h16v3H4zM5.5 12.5V20h13v-7.5M12 9.5V20M12 9.5c-1.5-3.5-5.5-4-5.5-1.5S10 9.5 12 9.5c2 0 5.5 0 5.5-1.5s-4-2-5.5 1.5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><span><b>Earn USD 5 Cashback Voucher per qualifying week</b>No opt-in required.</span></figcaption>
     </figure>
     <div>
