@@ -263,6 +263,44 @@ body.ck-open .bfp-dock{visibility:hidden}
 }
 @media (prefers-reduced-motion:reduce){.bfp-hero-art img{animation:none}.bfp-rv{opacity:1;transform:none}.bfp *{transition-duration:.01ms!important}}
 
+
+/* ---------- OPEN LIVE ACCOUNT (site sign-up form, as on the deposit bonus page) ---------- */
+.bfp-acct{width:min(100%,480px);margin:clamp(28px,3vw,40px) auto 0;padding:28px 26px 24px;border-radius:22px;background:#F4F8FF;
+  border:1px solid rgba(0,71,187,.14);box-shadow:0 40px 80px -48px rgba(1,6,29,.45)}
+.bfp-acct .ar-tabs{background:rgba(0,71,187,.06);border-color:rgba(0,71,187,.12)}
+.ar-cta-form{display:flex;flex-direction:column;gap:14px}
+.ar-f{display:flex;flex-direction:column;gap:6px}
+.ar-f label{font-size:12.5px;font-weight:700;color:var(--text)}
+.ar-f label i{font-style:normal;color:var(--red)}
+.ar-cta-form input:not([type=checkbox]):not([type=radio]),.ar-cta-form select{
+  width:100%;font:inherit;font-size:15px;color:var(--text);padding:10px 2px;
+  background:transparent;border:0;border-bottom:1px solid rgba(20,44,96,.2);border-radius:0;
+  outline:none;appearance:none;-webkit-appearance:none;transition:border-color .25s;box-shadow:none}
+.ar-cta-form input::placeholder{color:var(--text-mute)}
+.ar-cta-form input:hover,.ar-cta-form select:hover{border-bottom-color:rgba(20,44,96,.4)}
+.ar-cta-form input:focus,.ar-cta-form select:focus{border-bottom-color:var(--blue);background:transparent;box-shadow:none}
+.bfp-acct .wb-selwrap .wb-selchev{position:absolute;right:2px;top:50%;transform:translateY(-50%);width:15px;height:15px;color:var(--text-mute);pointer-events:none}
+.ar-pass-row{position:relative}
+.ar-pass-row input{padding-right:40px}
+.ar-eye{position:absolute;right:0;top:50%;transform:translateY(-50%);width:34px;height:34px;display:grid;place-items:center;
+  border:0;border-radius:10px;background:none;color:var(--text-mute);cursor:pointer;transition:color .25s}
+.ar-eye:hover{color:var(--text)}
+.ar-eye[aria-pressed="true"]{color:var(--blue)}
+.ar-eye svg{width:19px;height:19px}
+.ar-kind{display:flex;gap:8px}
+.ar-kind-pill{flex:1;position:relative}
+.ar-kind-pill input{position:absolute;opacity:0;width:0;height:0}
+.ar-kind-pill span{display:flex;align-items:center;justify-content:center;height:40px;border-radius:12px;
+  border:1px solid var(--line);font-size:13px;font-weight:700;color:var(--text-soft);cursor:pointer;transition:background .25s,color .25s,border-color .25s}
+.ar-kind-pill input:checked + span{background:var(--blue);border-color:transparent;color:#fff}
+.ar-kind-pill input:focus-visible + span{outline:2px solid rgba(0,71,187,.5);outline-offset:2px}
+.bfp-acct .ar-check{margin-top:0;font-size:12.5px;line-height:1.5}
+.bfp-acct .an-box{background:#fff}
+.ar-cta-form .bfp-btn{width:100%;justify-content:center;margin-top:4px}
+.ar-cta-note{margin-top:12px;font-size:11px;color:var(--text-mute);text-align:center}
+@media (max-width:600px){.bfp-acct{padding:22px 16px 20px;border-radius:18px}}
+.bfp-acct{color:var(--text)}
+.bfp-acct .ar-cta-alt a{color:var(--blue)}
   </style>
   <script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is Black Friday Power Play?", "acceptedAnswer": {"@type": "Answer", "text": "It's a limited-time STARTRADER promotion where eligible clients can earn lucky draw tickets for 100 USD 20 credit bonuses and compete for four top prizes by meeting the required deposit and trading volume thresholds."}}, {"@type": "Question", "name": "Who can join Black Friday Power Play?", "acceptedAnswer": {"@type": "Answer", "text": "The promotion is open to new and existing STARTRADER clients residing in eligible countries or regions, subject to the Terms & Conditions. Cent, STAR Copy, PAMM, and MAM accounts are excluded."}}, {"@type": "Question", "name": "When does the promotion run?", "acceptedAnswer": {"@type": "Answer", "text": "From 23 November to 4 December 2026, based on server time."}}, {"@type": "Question", "name": "How do I participate?", "acceptedAnswer": {"@type": "Answer", "text": "Opt in through the Client Portal or STARTRADER app, meet the applicable net deposit requirement, and trade eligible products. Only trading volume generated after opting in counts."}}, {"@type": "Question", "name": "Which products and trades qualify?", "acceptedAnswer": {"@type": "Answer", "text": "Forex, Gold, Silver, Oil, and BTC are eligible. Only fully closed positions held for at least 10 minutes count toward qualifying trading volume."}}, {"@type": "Question", "name": "How do I earn lucky draw tickets?", "acceptedAnswer": {"@type": "Answer", "text": "Maintain a minimum net deposit of USD 500 (or equivalent) and earn one ticket for every USD 1,000,000 in qualifying notional trading volume. There is no ticket limit."}}, {"@type": "Question", "name": "How is notional trading volume calculated?", "acceptedAnswer": {"@type": "Answer", "text": "Notional volume is the USD value of your closed positions, calculated as: Trading Volume (Lots) × Contract Size × Opening Price Only complete USD 1,000,000 increments earn tickets. For example, USD 3,500,000 in qualifying volume earns three tickets."}}, {"@type": "Question", "name": "What can I win in the lucky draw?", "acceptedAnswer": {"@type": "Answer", "text": "100 winners will each receive a USD 20 credit bonus. Winners are selected randomly, and each client can win only once. More tickets increase your chances but do not guarantee a prize."}}, {"@type": "Question", "name": "Can I withdraw my credit bonus?", "acceptedAnswer": {"@type": "Answer", "text": "No. The USD 20 credit bonus is non-withdrawable and can only be used for trading. Trading profits may be withdrawn under standard withdrawal procedures. Withdrawals may result in the credit bonus being deducted."}}, {"@type": "Question", "name": "How do I qualify for the top prizes?", "acceptedAnswer": {"@type": "Answer", "text": "Maintain a minimum net deposit of USD 1,000 and complete at least USD 2,000,000 in qualifying notional trading volume during the promotion."}}, {"@type": "Question", "name": "How are the top four winners selected?", "acceptedAnswer": {"@type": "Answer", "text": "Qualified clients are ranked by total eligible notional trading volume. If two clients achieve the same volume, the client who reaches it first ranks higher."}}, {"@type": "Question", "name": "What are the top prizes?", "acceptedAnswer": {"@type": "Answer", "text": "1st Place: MacBook Air 2nd Place: Leica D-Lux 8 3rd Place: Nintendo Switch 2 4th Place: Ray-Ban Meta Gen 2 Physical prizes are non-transferable and cannot be exchanged for cash. If a prize is unavailable or cannot be delivered, STARTRADER may substitute an item or credit of equivalent value."}}, {"@type": "Question", "name": "Can I qualify for both reward categories?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Clients who qualify for the top prize ranking remain eligible for the lucky draw using their accumulated tickets."}}, {"@type": "Question", "name": "How is my net deposit calculated, and what happens if I withdraw?", "acceptedAnswer": {"@type": "Answer", "text": "Net deposit equals total deposits minus withdrawals and outgoing internal transfers during the promotion. Credit bonuses, rebates, and incoming internal transfers are excluded. Your net deposit must remain at or above USD 500 for lucky draw eligibility or USD 1,000 for top prize ranking eligibility until the promotion ends. Falling below the applicable threshold will result in disqualification from that reward category."}}, {"@type": "Question", "name": "When will winners be announced?", "acceptedAnswer": {"@type": "Answer", "text": "Lucky draw winners and the final top prize rankings will be announced on 9 December 2026. Winners will also be notified by email."}}, {"@type": "Question", "name": "How and when will prizes be delivered?", "acceptedAnswer": {"@type": "Answer", "text": "Lucky draw credit bonuses will be credited to participating trading accounts within 24 hours following the announcement. Top prize winners will be contacted to arrange delivery and must provide their delivery details within 14 calendar days of notification to avoid potential forfeiture. Any applicable taxes, duties, or fees are the winner's responsibility."}}]}
@@ -764,6 +802,149 @@ body.ck-open .bfp-dock{visibility:hidden}
   </div>
 </section>
 
+<!-- ============ OPEN LIVE ACCOUNT ============ -->
+<section class="bfp-sec" id="open-account" aria-labelledby="bfp-open-title">
+  <div class="container">
+    <div class="bfp-head">
+      <span class="bfp-k">New to STARTRADER?</span>
+      <h2 class="bfp-h2" id="bfp-open-title">Open Live Account</h2>
+      <p class="bfp-sub">Create your account in minutes, then opt in to Black Friday Power Play from the Client Portal or the STARTRADER app.</p>
+    </div>
+    <div class="bfp-acct">
+      <form class="ar-cta-form" data-ar-open novalidate>
+        <div class="ar-tabs" role="tablist" aria-label="Sign up with">
+          <button class="ar-tab is-on" type="button" role="tab" aria-selected="true" data-ar-tab="email">Email address</button>
+          <button class="ar-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-ar-tab="phone">Phone number</button>
+        </div>
+
+        <div class="ar-f" data-ar-pane="email">
+          <label for="bfpAoEmail">Email <i>*</i></label>
+          <input type="email" id="bfpAoEmail" name="email" placeholder="you@example.com" inputmode="email" autocomplete="email" required>
+        </div>
+
+        <div class="ar-f" data-ar-pane="phone" hidden>
+          <label for="bfpAoPhone">Phone number <i>*</i></label>
+          <input type="tel" id="bfpAoPhone" name="phone" placeholder="+971 50 000 0000" inputmode="tel" autocomplete="tel" disabled>
+        </div>
+
+        <div class="ar-f">
+          <label for="bfpAoCountry">Country <i>*</i></label>
+          <div class="wb-selwrap">
+            <!-- illustrative list — the CMS supplies the licensed country set -->
+            <select id="bfpAoCountry" name="country" required>
+              <option value="">Select your country&hellip;</option>
+              <option>United Arab Emirates</option>
+              <option>United Kingdom</option>
+              <option>Australia</option>
+              <option>Austria</option>
+              <option>Bahrain</option>
+              <option>Bangladesh</option>
+              <option>Belgium</option>
+              <option>Brazil</option>
+              <option>Brunei</option>
+              <option>Cambodia</option>
+              <option>Chile</option>
+              <option>China</option>
+              <option>Colombia</option>
+              <option>Cyprus</option>
+              <option>Czechia</option>
+              <option>Denmark</option>
+              <option>Egypt</option>
+              <option>Finland</option>
+              <option>France</option>
+              <option>Germany</option>
+              <option>Greece</option>
+              <option>Hong Kong</option>
+              <option>Hungary</option>
+              <option>India</option>
+              <option>Indonesia</option>
+              <option>Ireland</option>
+              <option>Italy</option>
+              <option>Japan</option>
+              <option>Jordan</option>
+              <option>Kenya</option>
+              <option>Kuwait</option>
+              <option>Laos</option>
+              <option>Lebanon</option>
+              <option>Malaysia</option>
+              <option>Maldives</option>
+              <option>Mexico</option>
+              <option>Morocco</option>
+              <option>Nepal</option>
+              <option>Netherlands</option>
+              <option>New Zealand</option>
+              <option>Nigeria</option>
+              <option>Norway</option>
+              <option>Oman</option>
+              <option>Pakistan</option>
+              <option>Peru</option>
+              <option>Philippines</option>
+              <option>Poland</option>
+              <option>Portugal</option>
+              <option>Qatar</option>
+              <option>Saudi Arabia</option>
+              <option>Singapore</option>
+              <option>South Africa</option>
+              <option>South Korea</option>
+              <option>Spain</option>
+              <option>Sri Lanka</option>
+              <option>Sweden</option>
+              <option>Switzerland</option>
+              <option>Taiwan</option>
+              <option>Thailand</option>
+              <option>Türkiye</option>
+              <option>Vietnam</option>
+              <option>Other</option>
+            </select>
+            <svg class="wb-selchev" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+          </div>
+        </div>
+
+        <div class="ar-f">
+          <label for="bfpAoPass">Password <i>*</i></label>
+          <div class="ar-pass-row">
+            <input type="password" id="bfpAoPass" name="password" autocomplete="new-password" minlength="8" placeholder="Minimum 8 characters" required>
+            <button class="ar-eye" type="button" data-ar-eye aria-label="Show password" aria-pressed="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="2.8" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="ar-f">
+          <label for="bfpAoRef">Referred by</label>
+          <input type="text" id="bfpAoRef" name="referral" placeholder="Referral code (optional)" autocomplete="off">
+        </div>
+
+        <div class="ar-kind" role="radiogroup" aria-label="Account type">
+          <label class="ar-kind-pill"><input type="radio" name="kind" value="individual" checked><span>Individual</span></label>
+          <label class="ar-kind-pill"><input type="radio" name="kind" value="company"><span>Company</span></label>
+        </div>
+
+        <label class="ct-check ar-check" for="bfpAoUs">
+          <input type="checkbox" id="bfpAoUs" required>
+          <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+          <span>I confirm that I am not a U.S. person, including a U.S. citizen or resident.</span>
+        </label>
+        <label class="ct-check ar-check" for="bfpAoMk">
+          <input type="checkbox" id="bfpAoMk">
+          <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+          <span>I consent to STARTRADER processing my personal data for marketing and application support. I may withdraw my consent at any time.</span>
+        </label>
+        <label class="ct-check ar-check" for="bfpAoTc">
+          <input type="checkbox" id="bfpAoTc" required>
+          <span class="an-box" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+          <span>I have read, understood, and agree to the <a href="legal-documents.html">Client Agreement</a>, <a href="legal-documents.html">Risk Disclosure</a>, <a href="privacy-policy-app.html">Privacy Policy</a>, and all other applicable terms and policies.</span>
+        </label>
+
+        <button class="bfp-btn" type="submit">Create Account <svg><use href="#i-arrow-right"/></svg></button>
+        <p class="ar-cta-alt"><a href="getting-started.html">Practice Trading</a><span aria-hidden="true">&middot;</span><a href="https://myaccount.startrader.com/login">Login</a></p>
+      </form>
+      <p class="ar-cta-note">Regulated broker &middot; Segregated client funds</p>
+    </div>
+  
+  </div>
+</section>
+
 <dialog class="bfp-tc" id="bfp-tc" aria-labelledby="bfp-tc-h">
   <div class="bfp-tc-in">
     <div class="bfp-tc-top"><div><small>Black Friday Power Play</small><h2 id="bfp-tc-h">Terms and Conditions</h2></div>
@@ -849,6 +1030,38 @@ body.ck-open .bfp-dock{visibility:hidden}
     var past = false, end = false, set = function () { dock.classList.toggle('is-on', past && !end); };
     new IntersectionObserver(function (es) { past = !es[0].isIntersecting; set(); }).observe(hero);
     new IntersectionObserver(function (es) { end = es[0].isIntersecting; set(); }).observe(cal);
+  }
+
+  /* open live account: the site's default sign-up form (email or phone, then hand over) */
+  var af = document.querySelector('[data-ar-open]');
+  if (af) {
+    var tabs = [].slice.call(af.querySelectorAll('[data-ar-tab]'));
+    var panes = { email: af.querySelector('[data-ar-pane="email"]'), phone: af.querySelector('[data-ar-pane="phone"]') };
+    var showPane = function (which) {
+      tabs.forEach(function (t) {
+        var on = t.getAttribute('data-ar-tab') === which;
+        t.classList.toggle('is-on', on); t.setAttribute('aria-selected', on ? 'true' : 'false'); t.tabIndex = on ? 0 : -1;
+      });
+      Object.keys(panes).forEach(function (k) {
+        var pane = panes[k], on = k === which, input = pane && pane.querySelector('input');
+        if (!pane) return;
+        pane.hidden = !on;
+        if (input) { input.disabled = !on; input.required = on; }
+      });
+    };
+    tabs.forEach(function (t) { t.addEventListener('click', function () { showPane(t.getAttribute('data-ar-tab')); }); });
+    af.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!af.checkValidity()) { af.reportValidity(); return; }
+      window.location.href = 'https://www.startrader.com/live-account/';
+    });
+    var eye = af.querySelector('[data-ar-eye]'), pass = af.querySelector('#bfpAoPass');
+    if (eye && pass) eye.addEventListener('click', function () {
+      var on = pass.type === 'password';
+      pass.type = on ? 'text' : 'password';
+      eye.setAttribute('aria-pressed', on ? 'true' : 'false');
+      eye.setAttribute('aria-label', on ? 'Hide password' : 'Show password');
+    });
   }
 })();
 </script>
