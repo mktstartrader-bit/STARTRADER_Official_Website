@@ -181,6 +181,14 @@
 .ev-risk{margin:34px auto 0;max-width:60ch;font-size:12.5px;color:#9aa6bb}
 @media (max-width:1080px){.ev-reasons--4{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:640px){.ev-reasons--4{grid-template-columns:1fr}}
+/* value cards: 3D frosted-glass icons */
+.ev-reasons--4 .ev-reason{text-align:left}
+.ev-reason-ic{position:relative;display:grid;place-items:center;width:96px;height:96px;margin:-6px 0 6px -8px}
+.ev-reason-ic::before{content:"";position:absolute;inset:14px;border-radius:50%;background:radial-gradient(closest-side,rgba(47,107,255,.18),transparent);filter:blur(6px)}
+.ev-reason-ic img{position:relative;width:88px;height:88px;object-fit:contain;transition:transform .5s var(--ease)}
+.ev-reason:hover .ev-reason-ic img{transform:translateY(-4px) rotate(-4deg)}
+.ev-reasons--4 .ev-reason h3{margin-top:8px}
+@media (max-width:640px){.ev-reason-ic{width:84px;height:84px}.ev-reason-ic img{width:76px;height:76px}}
   </style>
 </head>
 <body class="evx-page">
@@ -520,7 +528,7 @@
     <div class="ev-lockup" data-aos="fade-up">
       <img src="../assets/img/startrader-x-eiev-pulse.svg" alt="STARTRADER and EIEV Pulse logo lockup" width="1155" height="456">
     </div>
-    <div class="ev-reasons ev-reasons--4"><article class="ev-reason" data-aos="fade-up"><span class="ev-reason-n">01</span><h3>Strength</h3><p>In endurance racing, horses and riders build strength through conditioning before they compete. At STARTRADER, we build strength by investing in the technology behind our trading platforms.</p></article><article class="ev-reason" data-aos="fade-up" data-aos-delay="100"><span class="ev-reason-n">02</span><h3>Trust</h3><p>The trust between horse and rider is one of the qualities we value in endurance racing. In our own work, we earn trust by being transparent about how our services work and providing consistent client support.</p></article><article class="ev-reason" data-aos="fade-up" data-aos-delay="200"><span class="ev-reason-n">03</span><h3>Ambition</h3><p>Competitors aim to improve and take on new challenges in every race. We apply the same ambition to helping traders build their knowledge and access global markets.</p></article><article class="ev-reason" data-aos="fade-up" data-aos-delay="300"><span class="ev-reason-n">04</span><h3>Resilience</h3><p>Endurance racing tests the ability of horse and rider to maintain a steady effort over long distances. At STARTRADER, we focus on keeping our trading tools reliable through periods of market volatility.</p></article></div>
+    <div class="ev-reasons ev-reasons--4"><article class="ev-reason" data-aos="fade-up"><span class="ev-reason-ic"><img src="../assets/img/eiev-ic-strength.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><h3>Strength</h3><p>In endurance racing, horses and riders build strength through conditioning before they compete. At STARTRADER, we build strength by investing in the technology behind our trading platforms.</p></article><article class="ev-reason" data-aos="fade-up" data-aos-delay="100"><span class="ev-reason-ic"><img src="../assets/img/eiev-ic-trust.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><h3>Trust</h3><p>The trust between horse and rider is one of the qualities we value in endurance racing. In our own work, we earn trust by being transparent about how our services work and providing consistent client support.</p></article><article class="ev-reason" data-aos="fade-up" data-aos-delay="200"><span class="ev-reason-ic"><img src="../assets/img/eiev-ic-ambition.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><h3>Ambition</h3><p>Competitors aim to improve and take on new challenges in every race. We apply the same ambition to helping traders build their knowledge and access global markets.</p></article><article class="ev-reason" data-aos="fade-up" data-aos-delay="300"><span class="ev-reason-ic"><img src="../assets/img/eiev-ic-resilience.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><h3>Resilience</h3><p>Endurance racing tests the ability of horse and rider to maintain a steady effort over long distances. At STARTRADER, we focus on keeping our trading tools reliable through periods of market volatility.</p></article></div>
   </div>
 </section>
 
