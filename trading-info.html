@@ -206,14 +206,32 @@
 .ti-viz--net .ti-viz-tag{background:#e4f8f1;border-color:rgba(18,184,134,.5)}
 .ti-viz--scan .ti-viz-tag{background:#edeafd;border-color:rgba(122,92,255,.5)}
   
-/* live TradingView chart inside the panel: TradingView's official embed snippet, sized by
-   the .ti-live box (no entrance animation here, so TradingView measures the final size) */
-.ti-panel--live{padding:14px;transform:none}
-.ti-live{width:100%;height:470px;border-radius:14px;overflow:hidden;background:#060912}
-.ti-live .tv-credit{padding:8px 4px 0;font-size:11px;text-align:center}
-.ti-live .tv-credit a{color:#8fa3c8}
-.ti-panel--live .ti-tools{margin-top:12px}
-@media (max-width:640px){.ti-live{height:430px}}
+/* in-house chart panel (Lightweight Charts, fed by our market-data API) */
+.ti-panel--api{transform:none}
+.mc-syms{display:flex;gap:6px;padding:12px clamp(14px,2vw,20px) 0;overflow-x:auto;scrollbar-width:none}
+.mc-syms::-webkit-scrollbar{display:none}
+.mc-sym{flex:none;padding:6px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.1);background:transparent;color:#9fb0cf;font:600 12px/1 inherit;letter-spacing:.02em;cursor:pointer;transition:all .2s}
+.mc-sym:hover{color:#fff;border-color:rgba(255,255,255,.22)}
+.mc-sym.is-on{background:rgba(42,114,255,.18);border-color:rgba(91,157,255,.5);color:#fff}
+.mc-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;padding:12px clamp(14px,2vw,20px) 0}
+.mc-bar .ti-tfs{padding:0;margin:0}
+.mc-opts{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.mc-seg{display:flex;padding:3px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)}
+.mc-seg button{width:30px;height:26px;display:grid;place-items:center;border:0;border-radius:7px;background:transparent;color:#8395b6;cursor:pointer}
+.mc-seg button svg{width:16px;height:16px}
+.mc-seg button.is-on{background:rgba(42,114,255,.25);color:#fff}
+.mc-tog{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:9px;border:1px solid rgba(255,255,255,.1);background:transparent;color:#8395b6;font:600 11.5px/1 inherit;cursor:pointer}
+.mc-tog i{width:8px;height:8px;border-radius:50%;background:#4a5876}
+.mc-tog[data-tog="ma"].is-on i{background:#f5a623}
+.mc-tog[data-tog="vol"].is-on i{background:#5b9dff}
+.mc-tog.is-on{color:#e6ecf8;border-color:rgba(255,255,255,.2)}
+.mc-chart{position:relative;height:330px;margin:12px clamp(8px,1.2vw,12px) 0}
+.mc-foot{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;padding:10px clamp(14px,2vw,20px) 14px;font-size:11.5px;color:#7f8fae;font-variant-numeric:tabular-nums}
+.mc-live{display:inline-flex;align-items:center;gap:6px;color:#2ee6a8;font-weight:700}
+.mc-live i{width:7px;height:7px;border-radius:50%;background:#2ee6a8;box-shadow:0 0 0 3px rgba(46,230,168,.18);animation:mcPulse 1.6s ease-in-out infinite}
+@keyframes mcPulse{50%{box-shadow:0 0 0 6px rgba(46,230,168,0)}}
+.mc-note{margin-left:auto;color:#5f6e8c}
+@media (max-width:640px){.mc-chart{height:290px}.mc-note{margin-left:0;width:100%}}
 </style>
 </head>
 <body class="prx light-top">
@@ -540,22 +558,37 @@
           <span class="ti-point" data-aos="fade-up" data-aos-delay="300"><svg aria-hidden="true"><use href="#i-gauge"/></svg>Smarter, backtested market decisions</span>
         </div>
       </div>
-      <div class="ti-panel ti-panel--live">
-        <div class="ti-live">
-          <div class="tradingview-widget-container" style="height:100%;width:100%">
-            <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
-            <div class="tradingview-widget-copyright tv-credit"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">Live market data by TradingView</a></div>
-            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-            {"symbol": "OANDA:XAUUSD", "interval": "60", "timezone": "Etc/UTC", "theme": "dark", "style": "3", "backgroundColor": "rgba(6,9,18,1)", "gridColor": "rgba(255,255,255,0.05)", "hide_top_toolbar": false, "hide_side_toolbar": false, "hide_legend": false, "allow_symbol_change": true, "save_image": false, "calendar": false, "withdateranges": true, "studies": ["STD;SMA"], "support_host": "https://www.tradingview.com", "autosize": true, "locale": "en"}
-            </script>
+      <div class="ti-panel ti-panel--api" data-mc>
+        <div class="mc-syms" role="tablist" aria-label="Instrument">
+          <button type="button" class="mc-sym is-on" data-sym="XAUUSD">XAUUSD</button>
+          <button type="button" class="mc-sym" data-sym="EURUSD">EURUSD</button>
+          <button type="button" class="mc-sym" data-sym="US500">US500</button>
+          <button type="button" class="mc-sym" data-sym="BTCUSD">BTCUSD</button>
+        </div>
+        <div class="ti-panel-top">
+          <div class="ti-sym"><i aria-hidden="true" data-mc-badge>Au</i><span><b data-mc-name>XAUUSD</b><small data-mc-desc>Gold vs US Dollar</small></span></div>
+          <div class="ti-quote"><b data-mc-price>&ndash;</b><small data-mc-chg>&ndash;</small></div>
+        </div>
+        <div class="mc-bar">
+          <div class="ti-tfs" role="group" aria-label="Timeframe">
+            <button type="button" class="ti-tf" data-tf="5m">5m</button>
+            <button type="button" class="ti-tf" data-tf="15m">15m</button>
+            <button type="button" class="ti-tf is-on" data-tf="1h">1H</button>
+            <button type="button" class="ti-tf" data-tf="4h">4H</button>
+            <button type="button" class="ti-tf" data-tf="1d">1D</button>
+          </div>
+          <div class="mc-opts">
+            <div class="mc-seg" role="group" aria-label="Chart type">
+              <button type="button" class="is-on" data-type="candles" aria-label="Candles" title="Candles"><svg viewBox="0 0 24 24"><path d="M7 4v16M17 4v16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><rect x="4.5" y="8" width="5" height="8" rx="1" fill="currentColor"/><rect x="14.5" y="6" width="5" height="9" rx="1" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+              <button type="button" data-type="line" aria-label="Line" title="Line"><svg viewBox="0 0 24 24"><path d="M3 17l5-6 4 3 4-7 5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              <button type="button" data-type="area" aria-label="Area" title="Area"><svg viewBox="0 0 24 24"><path d="M3 18l5-6 4 3 4-7 5 5v6H3z" fill="currentColor" opacity=".45"/><path d="M3 18l5-6 4 3 4-7 5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
+            <button type="button" class="mc-tog is-on" data-tog="ma" aria-pressed="true"><i></i>MA 20</button>
+            <button type="button" class="mc-tog is-on" data-tog="vol" aria-pressed="true"><i></i>Volume</button>
           </div>
         </div>
-        <div class="ti-tools">
-          <span class="ti-tool"><i></i>Technical indicators</span>
-          <span class="ti-tool ti-tool--amber"><i></i>MA &middot; overlay</span>
-          <span class="ti-tool ti-tool--mint"><i></i>Drawing tools</span>
-          <span class="ti-tool ti-tool--violet"><i></i>Multiple chart types</span>
-        </div>
+        <div class="mc-chart" data-mc-chart aria-label="Price chart"></div>
+        <div class="mc-foot"><span class="mc-live"><i></i><span data-mc-status>Live</span></span><span data-mc-ohlc></span><span class="mc-note">Sample data for design reference</span></div>
       </div>
     </div>
   </div>
@@ -767,6 +800,134 @@
   <button class="cookie-x" id="cookieClose" aria-label="Accept and close"><svg><use href="#i-close"/></svg></button>
 </div>
 
+<script src="assets/js/vendor/lightweight-charts.standalone.production.js"></script>
+<script>
+/* =====================================================================
+   Trading Info chart: in-house panel, no iframe.
+   FOR DEV: replace the two functions in MarketData with calls to the market
+   team API. Everything else (rendering, toggles, live updates) stays as is.
+
+   Expected contract
+   - MarketData.candles(symbol, tf)  -> Promise<Array<{ time, open, high, low, close, volume }>>
+       time = UNIX seconds (UTC), oldest first, ~150-300 bars.  tf: 5m | 15m | 1h | 4h | 1d
+       e.g. GET /api/market/candles?symbol=XAUUSD&interval=1h&limit=200
+   - MarketData.subscribe(symbol, onTick) -> unsubscribe()
+       onTick({ time, price, volume }) on every quote update (WebSocket or polling).
+       e.g. wss://.../quotes?symbol=XAUUSD, or poll GET /api/market/quote?symbol=XAUUSD every 1-2 s
+   ===================================================================== */
+var MarketData = (function () {
+  var BASE = { XAUUSD: 3962.4, EURUSD: 1.0842, US500: 6012.5, BTCUSD: 96350 };
+  var VOL = { XAUUSD: 0.0016, EURUSD: 0.0007, US500: 0.0011, BTCUSD: 0.0045 };
+  var SEC = { '5m': 300, '15m': 900, '1h': 3600, '4h': 14400, '1d': 86400 };
+  var last = {};
+  function seeded(seed) { return function () { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }; }
+  // SAMPLE DATA: deterministic random walk ending at the base price
+  function candles(symbol, tf) {
+    var n = 200, step = SEC[tf], rnd = seeded(symbol.length * 97 + step), v = VOL[symbol] * Math.sqrt(step / 3600);
+    var now = Math.floor(Date.now() / 1000 / step) * step, p = BASE[symbol], out = [];
+    for (var i = 0; i < n; i++) {
+      var o = p, c = o * (1 + (rnd() - 0.5) * 2 * v), h = Math.max(o, c) * (1 + rnd() * v * 0.6), l = Math.min(o, c) * (1 - rnd() * v * 0.6);
+      out.unshift({ time: now - i * step, open: c, high: h, low: l, close: o, volume: Math.round(400 + rnd() * 1600) });
+      p = c;
+    }
+    last[symbol] = out[out.length - 1].close;
+    return Promise.resolve(out);
+  }
+  // SAMPLE DATA: small random ticks every 1.5 s
+  function subscribe(symbol, onTick) {
+    var id = setInterval(function () {
+      var p = last[symbol] || BASE[symbol];
+      p = p * (1 + (Math.random() - 0.5) * VOL[symbol] * 0.35);
+      last[symbol] = p;
+      onTick({ time: Math.floor(Date.now() / 1000), price: p, volume: Math.round(5 + Math.random() * 40) });
+    }, 1500);
+    return function () { clearInterval(id); };
+  }
+  return { candles: candles, subscribe: subscribe };
+})();
+
+(function () {
+  var root = document.querySelector('[data-mc]');
+  if (!root || !window.LightweightCharts) return;
+  var LC = window.LightweightCharts;
+  var META = {
+    XAUUSD: { badge: 'Au', desc: 'Gold vs US Dollar', dp: 2 },
+    EURUSD: { badge: '€$', desc: 'Euro vs US Dollar', dp: 5 },
+    US500: { badge: 'US', desc: 'US 500 Index', dp: 1 },
+    BTCUSD: { badge: '₿', desc: 'Bitcoin vs US Dollar', dp: 1 }
+  };
+  var SEC = { '5m': 300, '15m': 900, '1h': 3600, '4h': 14400, '1d': 86400 };
+  var state = { sym: 'XAUUSD', tf: '1h', type: 'candles', ma: true, vol: true }, bars = [], unsub = null, series = null;
+  var box = root.querySelector('[data-mc-chart]');
+  var chart = LC.createChart(box, {
+    autoSize: true,
+    layout: { background: { type: 'solid', color: 'transparent' }, textColor: '#8395b6', fontFamily: 'Plus Jakarta Sans, system-ui, sans-serif', fontSize: 11 },
+    grid: { vertLines: { color: 'rgba(255,255,255,.04)' }, horzLines: { color: 'rgba(255,255,255,.05)' } },
+    rightPriceScale: { borderColor: 'rgba(255,255,255,.08)', scaleMargins: { top: 0.08, bottom: 0.22 } },
+    timeScale: { borderColor: 'rgba(255,255,255,.08)', timeVisible: true, secondsVisible: false, rightOffset: 4 },
+    crosshair: { mode: LC.CrosshairMode.Normal, vertLine: { color: 'rgba(143,170,220,.4)', labelBackgroundColor: '#1b2a4a' }, horzLine: { color: 'rgba(143,170,220,.4)', labelBackgroundColor: '#1b2a4a' } },
+    handleScroll: true, handleScale: true
+  });
+  var volS = chart.addHistogramSeries({ priceScaleId: 'vol', priceFormat: { type: 'volume' }, lastValueVisible: false, priceLineVisible: false });
+  chart.priceScale('vol').applyOptions({ scaleMargins: { top: 0.82, bottom: 0 } });
+  var maS = chart.addLineSeries({ color: '#f5a623', lineWidth: 1.5, lastValueVisible: false, priceLineVisible: false, crosshairMarkerVisible: false });
+  function makeSeries() {
+    if (series) chart.removeSeries(series);
+    var dp = META[state.sym].dp, pf = { type: 'price', precision: dp, minMove: Math.pow(10, -dp) };
+    maS.applyOptions({ priceFormat: pf });
+    if (state.type === 'candles') series = chart.addCandlestickSeries({ upColor: '#2ee6a8', downColor: '#ff6b81', borderVisible: false, wickUpColor: '#2ee6a8', wickDownColor: '#ff6b81', priceFormat: pf });
+    else if (state.type === 'line') series = chart.addLineSeries({ color: '#5b9dff', lineWidth: 2, priceFormat: pf });
+    else series = chart.addAreaSeries({ lineColor: '#5b9dff', topColor: 'rgba(42,114,255,.35)', bottomColor: 'rgba(42,114,255,0)', lineWidth: 2, priceFormat: pf });
+  }
+  function sma(n) { var out = [], sum = 0; bars.forEach(function (b, i) { sum += b.close; if (i >= n) sum -= bars[i - n].close; if (i >= n - 1) out.push({ time: b.time, value: sum / n }); }); return out; }
+  function volData() { return bars.map(function (b) { return { time: b.time, value: b.volume, color: b.close >= b.open ? 'rgba(46,230,168,.35)' : 'rgba(255,107,129,.35)' }; }); }
+  function paint() {
+    series.setData(state.type === 'candles' ? bars : bars.map(function (b) { return { time: b.time, value: b.close }; }));
+    maS.setData(state.ma ? sma(20) : []); volS.setData(state.vol ? volData() : []);
+  }
+  var fmt = function (v) { var dp = META[state.sym].dp; return v.toLocaleString('en-US', { minimumFractionDigits: dp, maximumFractionDigits: dp }); };
+  function quote() {
+    if (!bars.length) return;
+    var lastB = bars[bars.length - 1], first = bars[0].open, chg = (lastB.close - first) / first * 100;
+    root.querySelector('[data-mc-price]').textContent = fmt(lastB.close);
+    var c = root.querySelector('[data-mc-chg]'); c.textContent = (chg >= 0 ? '+' : '') + chg.toFixed(2) + '%'; c.style.color = chg >= 0 ? '#2ee6a8' : '#ff6b81';
+  }
+  function ohlc(b) { root.querySelector('[data-mc-ohlc]').textContent = b ? 'O ' + fmt(b.open) + '  H ' + fmt(b.high) + '  L ' + fmt(b.low) + '  C ' + fmt(b.close) : ''; }
+  chart.subscribeCrosshairMove(function (p) { var b = p && p.time ? bars.filter(function (x) { return x.time === p.time; })[0] : null; ohlc(b || bars[bars.length - 1]); });
+  function load() {
+    if (unsub) { unsub(); unsub = null; }
+    var m = META[state.sym];
+    root.querySelector('[data-mc-badge]').textContent = m.badge; root.querySelector('[data-mc-name]').textContent = state.sym; root.querySelector('[data-mc-desc]').textContent = m.desc;
+    root.querySelector('[data-mc-status]').textContent = 'Loading';
+    MarketData.candles(state.sym, state.tf).then(function (data) {
+      bars = data.map(function (b) { return { time: b.time, open: b.open, high: b.high, low: b.low, close: b.close, volume: b.volume }; });
+      makeSeries(); paint(); chart.timeScale().fitContent(); quote(); ohlc(bars[bars.length - 1]);
+      root.querySelector('[data-mc-status]').textContent = 'Live';
+      var step = SEC[state.tf], sym = state.sym, tf = state.tf;
+      unsub = MarketData.subscribe(sym, function (t) {
+        if (sym !== state.sym || tf !== state.tf || !bars.length) return;
+        var lastB = bars[bars.length - 1], bucket = Math.floor(t.time / step) * step;
+        if (bucket > lastB.time) bars.push({ time: bucket, open: lastB.close, high: t.price, low: t.price, close: t.price, volume: t.volume });
+        else { lastB.close = t.price; lastB.high = Math.max(lastB.high, t.price); lastB.low = Math.min(lastB.low, t.price); lastB.volume += t.volume; }
+        var b = bars[bars.length - 1];
+        series.update(state.type === 'candles' ? b : { time: b.time, value: b.close });
+        if (state.vol) volS.update({ time: b.time, value: b.volume, color: b.close >= b.open ? 'rgba(46,230,168,.35)' : 'rgba(255,107,129,.35)' });
+        if (state.ma) { var m20 = sma(20); if (m20.length) maS.update(m20[m20.length - 1]); }
+        quote(); ohlc(b);
+      });
+    }).catch(function () { root.querySelector('[data-mc-status]').textContent = 'Data unavailable'; });
+  }
+  function group(sel, attr, key) {
+    var btns = [].slice.call(root.querySelectorAll(sel));
+    btns.forEach(function (b) { b.addEventListener('click', function () { btns.forEach(function (x) { x.classList.toggle('is-on', x === b); }); state[key] = b.getAttribute(attr); key === 'type' ? (makeSeries(), paint()) : load(); }); });
+  }
+  group('.mc-sym', 'data-sym', 'sym'); group('.ti-tf', 'data-tf', 'tf'); group('.mc-seg button', 'data-type', 'type');
+  [].forEach.call(root.querySelectorAll('.mc-tog'), function (b) {
+    b.addEventListener('click', function () { var k = b.getAttribute('data-tog'); state[k] = !state[k]; b.classList.toggle('is-on', state[k]); b.setAttribute('aria-pressed', state[k]); paint(); });
+  });
+  load();
+})();
+</script>
 <script src="assets/js/vendor/gsap.min.js" defer></script>
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
