@@ -593,7 +593,7 @@ html:not([lang="en"]) .scr-h1 span{white-space:normal}
   <div class="container scr-how">
     <figure class="scr-photo scr-rv">
       <img src="../assets/img/scr-how.webp?v=2" alt="" width="1280" height="1711" loading="lazy" decoding="async">
-      <figcaption><span class="scr-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h16v3H4zM5.5 12.5V20h13v-7.5M12 9.5V20M12 9.5c-1.5-3.5-5.5-4-5.5-1.5S10 9.5 12 9.5c2 0 5.5 0 5.5-1.5s-4-2-5.5 1.5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><span><b>자격을 충족한 주마다 USD 5 캐시백 바우처 획득</b>별도 신청은 필요하지 않습니다. 조건을 충족한 활동은 자동으로 집계됩니다.</span></figcaption>
+      <figcaption><span class="scr-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h16v3H4zM5.5 12.5V20h13v-7.5M12 9.5V20M12 9.5c-1.5-3.5-5.5-4-5.5-1.5S10 9.5 12 9.5c2 0 5.5 0 5.5-1.5s-4-2-5.5 1.5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><span><b>자격을 충족한 주마다 USD 5 캐시백 바우처 획득</b>별도 신청은 필요하지 않습니다.</span></figcaption>
     </figure>
     <div>
       <div class="scr-head scr-rv"><span class="scr-k">참여 방법</span><h2 class="scr-h2" id="scr-how-title">간단한 3단계</h2></div>
@@ -650,6 +650,7 @@ html:not([lang="en"]) .scr-h1 span{white-space:normal}
 <script>
 /* STARcopy Reward: countdown, weekly windows, reveal, T&C dialog */
 (function () {
+  var CUR = function (v) { return LANG === 'ar' ? v + ' دولار أمريكي' : 'USD ' + v; };
   var U = {"starts": "시작까지", "ends": "종료까지", "ended": "프로모션 종료", "server": "서버 시간", "of10": "바우처 {n} / 10장"}, LANG = document.documentElement.lang || 'en';
   var START = Date.UTC(2026,10,15,22,0,0), END = Date.UTC(2027,0,21,21,59,59); // server time GMT+2
   var fmt = function (iso, o) { try { return new Intl.DateTimeFormat(LANG + '-u-ca-gregory', Object.assign({timeZone:'UTC'}, o)).format(new Date(iso + 'T00:00:00Z')); } catch (e) { return iso; } };
@@ -674,7 +675,7 @@ html:not([lang="en"]) .scr-h1 span{white-space:normal}
   var amt = document.querySelector('[data-scr-amt]'), cnt = document.querySelector('[data-scr-cnt]'), bar = document.querySelector('[data-scr-bar]');
   var sum = function () {
     var n = wk.filter(function (b) { return b.getAttribute('aria-pressed') === 'true'; }).length;
-    amt.textContent = 'USD ' + n * 5; cnt.textContent = U.of10.replace('{n}', n); bar.style.width = n * 10 + '%';
+    amt.textContent = CUR(n * 5); cnt.textContent = U.of10.replace('{n}', n); bar.style.width = n * 10 + '%';
   };
   wk.forEach(function (b) { b.addEventListener('click', function () { b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') === 'true' ? 'false' : 'true'); sum(); }); });
   var rv = [].slice.call(document.querySelectorAll('.scr-rv, .scr-steps'));

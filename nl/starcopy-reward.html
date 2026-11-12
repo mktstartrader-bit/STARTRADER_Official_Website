@@ -592,7 +592,7 @@ html:not([lang="en"]) .scr-h1 span{white-space:normal}
   <div class="container scr-how">
     <figure class="scr-photo scr-rv">
       <img src="../assets/img/scr-how.webp?v=2" alt="" width="1280" height="1711" loading="lazy" decoding="async">
-      <figcaption><span class="scr-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h16v3H4zM5.5 12.5V20h13v-7.5M12 9.5V20M12 9.5c-1.5-3.5-5.5-4-5.5-1.5S10 9.5 12 9.5c2 0 5.5 0 5.5-1.5s-4-2-5.5 1.5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><span><b>Verdien een Cashback Voucher van USD 5 per kwalificerende week</b>Geen aanmelding vereist. In aanmerking komende activiteit telt automatisch mee.</span></figcaption>
+      <figcaption><span class="scr-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h16v3H4zM5.5 12.5V20h13v-7.5M12 9.5V20M12 9.5c-1.5-3.5-5.5-4-5.5-1.5S10 9.5 12 9.5c2 0 5.5 0 5.5-1.5s-4-2-5.5 1.5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><span><b>Verdien een Cashback Voucher van USD 5 per kwalificerende week</b>Geen aanmelding vereist.</span></figcaption>
     </figure>
     <div>
       <div class="scr-head scr-rv"><span class="scr-k">Zo werkt het</span><h2 class="scr-h2" id="scr-how-title">Drie eenvoudige stappen</h2></div>
@@ -649,6 +649,7 @@ html:not([lang="en"]) .scr-h1 span{white-space:normal}
 <script>
 /* STARcopy Reward: countdown, weekly windows, reveal, T&C dialog */
 (function () {
+  var CUR = function (v) { return LANG === 'ar' ? v + ' دولار أمريكي' : 'USD ' + v; };
   var U = {"starts": "Begint over", "ends": "Eindigt over", "ended": "Actie beëindigd", "server": "servertijd", "of10": "{n} van 10 vouchers"}, LANG = document.documentElement.lang || 'en';
   var START = Date.UTC(2026,10,15,22,0,0), END = Date.UTC(2027,0,21,21,59,59); // server time GMT+2
   var fmt = function (iso, o) { try { return new Intl.DateTimeFormat(LANG + '-u-ca-gregory', Object.assign({timeZone:'UTC'}, o)).format(new Date(iso + 'T00:00:00Z')); } catch (e) { return iso; } };
@@ -673,7 +674,7 @@ html:not([lang="en"]) .scr-h1 span{white-space:normal}
   var amt = document.querySelector('[data-scr-amt]'), cnt = document.querySelector('[data-scr-cnt]'), bar = document.querySelector('[data-scr-bar]');
   var sum = function () {
     var n = wk.filter(function (b) { return b.getAttribute('aria-pressed') === 'true'; }).length;
-    amt.textContent = 'USD ' + n * 5; cnt.textContent = U.of10.replace('{n}', n); bar.style.width = n * 10 + '%';
+    amt.textContent = CUR(n * 5); cnt.textContent = U.of10.replace('{n}', n); bar.style.width = n * 10 + '%';
   };
   wk.forEach(function (b) { b.addEventListener('click', function () { b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') === 'true' ? 'false' : 'true'); sum(); }); });
   var rv = [].slice.call(document.querySelectorAll('.scr-rv, .scr-steps'));
