@@ -316,7 +316,8 @@ body.ck-open .bfp-dock{visibility:hidden}
 .bfp-lb-t tr.r2 .bfp-lb-n{background:linear-gradient(140deg,#eef1f6,#a9b1bf);color:#14181f}
 .bfp-lb-t tr.r3 .bfp-lb-n{background:linear-gradient(140deg,#e9a46b,#a85f2c);color:#1d0d02}
 .bfp-lb-t tr.r1 td,.bfp-lb-t tr.r2 td,.bfp-lb-t tr.r3 td{font-weight:700}
-.bfp-lb-t td.vol{font-weight:700;color:#fff}
+.bfp-lb-t td.vol{font-weight:700;color:#fff;white-space:nowrap}
+.bfp-lb-t td:nth-child(2){white-space:nowrap}
 .bfp-lb-empty td{padding:34px 26px;text-align:center!important;color:var(--sub);font-size:15px}
 .bfp-lb-disc{max-width:880px;margin:16px auto 0;font-size:13.5px;line-height:1.6;color:var(--mute);text-align:center}
 @media (max-width:640px){.bfp-lb-t th,.bfp-lb-t td{padding-inline:14px}.bfp-lb-t td:first-child{width:56px}.bfp-lb-t td{font-size:14px}.bfp-lb-t th{font-size:10.5px;letter-spacing:.08em}}
@@ -1008,7 +1009,17 @@ body.ck-open .bfp-dock{visibility:hidden}
 
   // Leaderboard: update this list during the promotion (rank order). Names should be masked, e.g. 'J***n S***h'.
   var LEADERBOARD = [
-    /* { name: 'J***n S***h', volume: 12500000 } */
+    /* DUMMY DATA for design approval: replace with real rankings before launch */
+    { name: 'J***n S***h', volume: 18450000 },
+    { name: 'A***d K***n', volume: 15270000 },
+    { name: 'M***a L***i', volume: 12930000 },
+    { name: 'R***i T***o', volume: 9860000 },
+    { name: 'S***h P***l', volume: 7640000 },
+    { name: 'D***d W***g', volume: 5980000 },
+    { name: 'F***a H***n', volume: 4720000 },
+    { name: 'K***o N***e', volume: 3510000 },
+    { name: 'L***s M***r', volume: 2840000 },
+    { name: 'N***r A***i', volume: 2160000 },
   ];
   var lbBody = document.querySelector('[data-bfp-lb]');
   if (lbBody) {
