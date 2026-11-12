@@ -205,7 +205,16 @@
 .ti-viz--dots .ti-viz-tag{background:#fff4e0;border-color:rgba(245,166,35,.5)}
 .ti-viz--net .ti-viz-tag{background:#e4f8f1;border-color:rgba(18,184,134,.5)}
 .ti-viz--scan .ti-viz-tag{background:#edeafd;border-color:rgba(122,92,255,.5)}
-  </style>
+  
+/* live TradingView chart inside the panel: TradingView's official embed snippet, sized by
+   the .ti-live box (no entrance animation here, so TradingView measures the final size) */
+.ti-panel--live{padding:14px;transform:none}
+.ti-live{width:100%;height:470px;border-radius:14px;overflow:hidden;background:#060912}
+.ti-live .tv-credit{padding:8px 4px 0;font-size:11px;text-align:center}
+.ti-live .tv-credit a{color:#8fa3c8}
+.ti-panel--live .ti-tools{margin-top:12px}
+@media (max-width:640px){.ti-live{height:430px}}
+</style>
 </head>
 <body class="prx light-top">
 
@@ -531,29 +540,15 @@
           <span class="ti-point" data-aos="fade-up" data-aos-delay="300"><svg aria-hidden="true"><use href="#i-gauge"/></svg>Smarter, backtested market decisions</span>
         </div>
       </div>
-      <div class="ti-panel" data-aos="fade-up" data-aos-delay="150" role="img" aria-label="Illustrative TradingView-style chart of gold, XAUUSD, with timeframe and indicator controls">
-        <div class="ti-panel-top">
-          <div class="ti-sym"><i aria-hidden="true">Au</i><span><b>XAUUSD</b><small>Gold vs US Dollar &middot; illustrative</small></span></div>
-          <div class="ti-quote"><b id="tiQuote">2,412.35</b><small id="tiDelta">+0.42%</small></div>
-        </div>
-        <div class="ti-tfs" role="group" aria-label="Timeframe">
-          <button type="button" class="ti-tf" data-tf="0">5m</button>
-          <button type="button" class="ti-tf" data-tf="1">15m</button>
-          <button type="button" class="ti-tf is-on" data-tf="2">1H</button>
-          <button type="button" class="ti-tf" data-tf="3">4H</button>
-          <button type="button" class="ti-tf" data-tf="4">1D</button>
-        </div>
-        <div class="ti-chart">
-          <svg viewBox="0 0 300 150" preserveAspectRatio="none" aria-hidden="true">
-            <defs><linearGradient id="tiG" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#2a72ff" stop-opacity=".3"/>
-              <stop offset="100%" stop-color="#2a72ff" stop-opacity="0"/>
-            </linearGradient></defs>
-            <g class="grid"><line x1="0" y1="37" x2="300" y2="37"/><line x1="0" y1="75" x2="300" y2="75"/><line x1="0" y1="112" x2="300" y2="112"/></g>
-            <polygon id="tiFill" points="" fill="url(#tiG)"/>
-            <polyline id="tiLine" points="" fill="none" stroke="#5b9dff" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
-            <polyline id="tiMA" points="" fill="none" stroke="#f5a623" stroke-width="1.4" stroke-dasharray="1 0" opacity=".85"/>
-          </svg>
+      <div class="ti-panel ti-panel--live">
+        <div class="ti-live">
+          <div class="tradingview-widget-container" style="height:100%;width:100%">
+            <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
+            <div class="tradingview-widget-copyright tv-credit"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">Live market data by TradingView</a></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+            {"symbol": "OANDA:XAUUSD", "interval": "60", "timezone": "Etc/UTC", "theme": "dark", "style": "3", "backgroundColor": "rgba(6,9,18,1)", "gridColor": "rgba(255,255,255,0.05)", "hide_top_toolbar": false, "hide_side_toolbar": false, "hide_legend": false, "allow_symbol_change": true, "save_image": false, "calendar": false, "withdateranges": true, "studies": ["STD;SMA"], "support_host": "https://www.tradingview.com", "autosize": true, "locale": "en"}
+            </script>
+          </div>
         </div>
         <div class="ti-tools">
           <span class="ti-tool"><i></i>Technical indicators</span>
@@ -660,68 +655,6 @@
 
 </main>
 
-<script>
-/* illustrative XAUUSD panel — timeframe pills redraw the line */
-(function () {
-  var root = document.querySelector('[data-ti]');
-  if (!root) return;
-  var line = document.getElementById('tiLine');
-  var fill = document.getElementById('tiFill');
-  var ma = document.getElementById('tiMA');
-  var quote = document.getElementById('tiQuote');
-  var delta = document.getElementById('tiDelta');
-  if (!line || !fill) return;
-  var N = 64, W = 300, H = 150, PAD = 14;
-  var ROUGH = [4.2, 3.4, 2.6, 2.0, 1.5];
-  function build(rough) {
-    var v = H * 0.62, out = [];
-    for (var i = 0; i < N; i++) {
-      v += (Math.random() * 2 - 1) * rough - 0.35;
-      v = Math.max(PAD, Math.min(H - PAD, v));
-      out.push(v);
-    }
-    return out;
-  }
-  function toPts(data) {
-    return data.map(function (v, i) {
-      return ((i / (N - 1)) * W).toFixed(1) + ',' + v.toFixed(1);
-    }).join(' ');
-  }
-  function smooth(data) {
-    var out = [], k = 7;
-    for (var i = 0; i < data.length; i++) {
-      var a = Math.max(0, i - k + 1), s = 0;
-      for (var j = a; j <= i; j++) s += data[j];
-      out.push(s / (i - a + 1));
-    }
-    return out;
-  }
-  function render(tf) {
-    var data = build(ROUGH[tf] || 2);
-    var pts = toPts(data);
-    line.setAttribute('points', pts);
-    fill.setAttribute('points', pts + ' ' + W + ',' + H + ' 0,' + H);
-    if (ma) ma.setAttribute('points', toPts(smooth(data)));
-    if (quote && delta) {
-      var last = data[N - 1], first = data[0];
-      var px = 2380 + (H - last) * 1.9;
-      var pct = ((first - last) / H) * 3;
-      quote.textContent = px.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-      delta.textContent = (pct >= 0 ? '+' : '') + pct.toFixed(2) + '%';
-      delta.style.color = pct >= 0 ? '#2ee6a8' : '#ff6b81';
-    }
-  }
-  var tfs = Array.prototype.slice.call(root.querySelectorAll('.ti-tf'));
-  tfs.forEach(function (b) {
-    b.addEventListener('click', function () {
-      tfs.forEach(function (x) { x.classList.remove('is-on'); });
-      b.classList.add('is-on');
-      render(parseInt(b.getAttribute('data-tf'), 10));
-    });
-  });
-  render(2);
-})();
-</script>
 
 <!-- ============ FOOTER ============ -->
 <footer class="site-footer" id="footer">
