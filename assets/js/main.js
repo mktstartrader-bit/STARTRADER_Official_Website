@@ -3504,11 +3504,16 @@
 
     var CATS = { closure: 'market closure', rollover: 'rollover', leverage: 'leverage',
                  system: 'system', product: 'product', other: 'other' };
-    var MONTHS = { '2026-07': 'July', '2026-06': 'June', '2026-05': 'May' };
+    var PER_PAGE = 5;
 
     var items = Array.prototype.slice.call(root.querySelectorAll('[data-an-item]'));
     var catBtns = Array.prototype.slice.call(root.querySelectorAll('[data-an-cat]'));
     var monthBtns = Array.prototype.slice.call(root.querySelectorAll('[data-an-month]'));
+    // month labels come from the buttons themselves, so a new month never shows an empty chip
+    var MONTHS = {};
+    monthBtns.forEach(function (b) { MONTHS[b.getAttribute('data-an-month')] = b.textContent.trim(); });
+    var pagerEl = root.querySelector('[data-an-pager]');
+    var page = 1;
     var input = document.getElementById('anSearch');
     var clear = document.getElementById('anClear');
     var statusEl = root.querySelector('[data-an-status]');
@@ -3571,19 +3576,35 @@
       rows.forEach(function (el) { list.appendChild(el); });
     }
 
-    function apply() {
+    function matches(el, q) {
+      return catOk(el) &&
+        (month === 'all' || el.getAttribute('data-month') === month) && dateOk(el) &&
+        (!q || el._hay.indexOf(q) > -1);
+    }
+    function sortedMatches() {
       var q = query.trim().toLowerCase();
-      var shown = 0;
+      var list = root.querySelector('.an-list');
+      return Array.prototype.slice.call(list ? list.querySelectorAll('[data-an-item]') : items)
+        .filter(function (el) { return matches(el, q); });
+    }
+
+    // any filter change goes back to page 1; only the pager (and deep links) keep the page
+    function apply(keepPage) {
+      var q = query.trim().toLowerCase();
+      if (!keepPage) page = 1;
 
       order();
+      var hits = sortedMatches();
+      var shown = hits.length;
+      var pages = Math.max(1, Math.ceil(shown / PER_PAGE));
+      if (page > pages) page = pages;
+      var first = (page - 1) * PER_PAGE, last = first + PER_PAGE;
       items.forEach(function (el) {
-        var on = catOk(el) &&
-          (month === 'all' || el.getAttribute('data-month') === month) && dateOk(el) &&
-          (!q || el._hay.indexOf(q) > -1);
-        el.hidden = !on;
-        if (on) shown++;
+        var i = hits.indexOf(el);
+        el.hidden = i < first || i >= last;
         mark(el._t, el._tRaw, q);
       });
+      renderPager(pages);
 
       catBtns.forEach(function (b) {
         var c = b.getAttribute('data-an-cat');
@@ -3625,7 +3646,47 @@
         apply();
       });
     });
-    monthBtns.forEach(function (b) { b.addEventListener('click', function () { month = b.getAttribute('data-an-month'); apply(); }); });
+    // no "All" button: pressing the active month again clears it and shows every month
+    monthBtns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var m = b.getAttribute('data-an-month');
+        month = month === m ? 'all' : m;
+        syncModal();
+        apply();
+      });
+    });
+
+    function renderPager(pages) {
+      if (!pagerEl) return;
+      pagerEl.innerHTML = '';
+      pagerEl.hidden = pages < 2;
+      if (pages < 2) return;
+      function btn(label, target, cls, aria, disabled) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'an-pg' + (cls ? ' ' + cls : '');
+        b.innerHTML = label;
+        if (aria) b.setAttribute('aria-label', aria);
+        if (disabled) b.disabled = true;
+        if (target === page && !cls) { b.classList.add('is-on'); b.setAttribute('aria-current', 'page'); }
+        b.addEventListener('click', function () {
+          if (b.disabled || target === page) return;
+          page = target;
+          apply(true);
+          var head = root.querySelector('.an-head');
+          if (head) {
+            var tb = document.querySelector('.topbar'), hd = document.getElementById('siteHeader');
+            var off = (tb ? tb.offsetHeight : 0) + (hd ? hd.offsetHeight : 0) + 14;
+            scrollToTarget(Math.max(0, head.getBoundingClientRect().top + (window.pageYOffset || 0) - off));
+          }
+        });
+        pagerEl.appendChild(b);
+      }
+      var arrow = '<svg aria-hidden="true"><use href="#i-arrow-right"/></svg>';
+      btn(arrow, page - 1, 'an-pg--prev', 'Previous page', page === 1);
+      for (var i = 1; i <= pages; i++) btn(String(i), i, '', 'Page ' + i);
+      btn(arrow, page + 1, 'an-pg--next', 'Next page', page === pages);
+    }
 
     if (input) {
       var t;
@@ -3649,6 +3710,9 @@
       if (!id) return;
       var el = document.getElementById(id);
       if (!el || !el.hasAttribute('data-an-item')) return;
+      // jump to the page that holds the linked notice
+      var at = sortedMatches().indexOf(el);
+      if (at > -1) { page = Math.floor(at / PER_PAGE) + 1; apply(true); }
       var d = el.querySelector('details');
       if (d) d.open = true;
       el.hidden = false;

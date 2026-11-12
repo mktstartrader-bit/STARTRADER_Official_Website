@@ -165,6 +165,13 @@
 /* the content slides in rather than snapping when a notice opens */
 @media (prefers-reduced-motion:no-preference){.an-item details[open] .an-body{animation:anOpen .4s var(--ease-out)}}
 .an-closed{color:#c0392f;font-weight:700}
+.an-pager{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:22px;flex-wrap:wrap}
+.an-pg{min-width:38px;height:38px;padding:0 12px;border-radius:70px;border:1px solid var(--line);background:rgba(255,255,255,.6);font:inherit;font-size:14px;font-weight:600;color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;transition:background .2s,color .2s,border-color .2s}
+.an-pg:hover:not(:disabled):not(.is-on){border-color:var(--blue);color:var(--blue)}
+.an-pg.is-on{background:var(--blue);border-color:var(--blue);color:#fff;cursor:default}
+.an-pg:disabled{opacity:.4;cursor:default}
+.an-pg svg{width:14px;height:14px}
+.an-pg--prev svg{transform:rotate(180deg)}
 .an-empty{text-align:center;padding:54px 20px 8px}
 .an-empty .an-empty-h{font-size:20px;font-weight:700;line-height:1.1;color:var(--text);letter-spacing:-.02em;text-wrap:balance;overflow-wrap:break-word}
 .an-empty .an-empty-h span{color:var(--blue)}
@@ -784,7 +791,7 @@
       <div class="an-group glass">
         <div class="an-group-h">Type</div>
         <div class="an-filters" role="group" aria-label="Filter by type">
-          <button class="an-f is-on" type="button" data-an-cat="all" aria-pressed="true">All<span class="an-n" data-an-count="all">12</span></button>
+          <button class="an-f is-on" type="button" data-an-cat="all" aria-pressed="true">All<span class="an-n" data-an-count="all">17</span></button>
           <button class="an-f" type="button" data-an-cat="closure" aria-pressed="false">Market closure<span class="an-n" data-an-count="closure">4</span></button>
           <button class="an-f" type="button" data-an-cat="rollover" aria-pressed="false">Rollover<span class="an-n" data-an-count="rollover">1</span></button>
           <button class="an-f" type="button" data-an-cat="leverage" aria-pressed="false">Leverage<span class="an-n" data-an-count="leverage">1</span></button>
@@ -797,8 +804,9 @@
       <div class="an-group glass">
         <div class="an-group-h">Month</div>
         <div class="an-filters an-filters--row" role="group" aria-label="Filter by month">
-          <button class="an-f is-on" type="button" data-an-month="all" aria-pressed="true">All</button>
           <button class="an-f" type="button" data-an-month="2026-11" aria-pressed="false">November</button>
+          <button class="an-f" type="button" data-an-month="2026-10" aria-pressed="false">October</button>
+          <button class="an-f" type="button" data-an-month="2026-09" aria-pressed="false">September</button>
           <button class="an-f" type="button" data-an-month="2026-07" aria-pressed="false">July</button>
           <button class="an-f" type="button" data-an-month="2026-06" aria-pressed="false">June</button>
           <button class="an-f" type="button" data-an-month="2026-05" aria-pressed="false">May</button>
@@ -992,6 +1000,121 @@
               <p>If you have any questions or require assistance, please email <a href="mailto:info@startrader.com">info@startrader.com</a> or use live chat on our website.</p>
               <p>Thank you for your support! <br>STARTRADER Team</p>
               <p class="an-share"><a href="#market-closure-november" data-an-link>Copy link to this notice</a></p>
+            </div>
+          </details>
+        </article>
+
+        <!-- sample notices (Sep–Nov 2026) for Dev functionality testing; replace with real notices -->
+        <article class="an-item glass" data-an-item data-date="2026-11-09" data-cat="product" data-month="2026-11" id="new-index-cfds-november" data-aos="fade-up" data-aos-delay="400">
+          <details>
+            <summary>
+              <time class="an-date" datetime="2026-11-09"><b>9</b><em>Nov</em><i>2026</i></time>
+              <h3 class="an-title">New instruments: index CFDs added</h3>
+              <span class="an-meta"><span class="an-open">Read notice</span></span>
+              <span class="an-acts">
+                <button class="an-share-btn" type="button" data-an-share aria-label="Copy a link to this notice"><svg aria-hidden="true"><use href="#i-copy"/></svg></button>
+                <span class="an-chev" aria-hidden="true"><svg><use href="#i-chevron-down"/></svg></span>
+              </span>
+            </summary>
+            <div class="an-body">
+              <p>Dear valued client,</p>
+              <p>Four additional index CFDs are now available, covering markets in Europe and Asia-Pacific. The new symbols are live on MT4, MT5 and the STAR platforms.</p>
+              <p>Margin requirements and trading hours for each symbol are shown in the platform&rsquo;s contract specifications.</p>
+              <p>STARTRADER Team</p>
+              <p class="an-share"><a href="#new-index-cfds-november" data-an-link>Copy link to this notice</a></p>
+            </div>
+          </details>
+        </article>
+
+        <article class="an-item glass" data-an-item data-date="2026-10-26" data-cat="leverage" data-month="2026-10" id="leverage-us-midterms" data-aos="fade-up" data-aos-delay="400">
+          <details>
+            <summary>
+              <time class="an-date" datetime="2026-10-26"><b>26</b><em>Oct</em><i>2026</i></time>
+              <h3 class="an-title">Temporary leverage adjustment around the US midterm elections</h3>
+              <span class="an-meta"><span class="an-open">Read notice</span></span>
+              <span class="an-acts">
+                <button class="an-share-btn" type="button" data-an-share aria-label="Copy a link to this notice"><svg aria-hidden="true"><use href="#i-copy"/></svg></button>
+                <span class="an-chev" aria-hidden="true"><svg><use href="#i-chevron-down"/></svg></span>
+              </span>
+            </summary>
+            <div class="an-body">
+              <p>Dear valued client,</p>
+              <p>To protect client accounts through an expected volatility spike, maximum leverage on affected instruments will be temporarily reduced around the US midterm elections.</p>
+              <ul class="an-ul">
+                <li>In force from <b>00:00 on 3 November</b> until <b>23:59 on 4 November (GMT+3)</b></li>
+                <li>Applies to USD pairs, gold and US indices</li>
+                <li>Existing positions are not closed, but additional margin may be required to keep them open</li>
+              </ul>
+              <p>Please check your free margin before the window opens. Normal leverage is restored automatically afterwards.</p>
+              <p>STARTRADER Team</p>
+              <p class="an-share"><a href="#leverage-us-midterms" data-an-link>Copy link to this notice</a></p>
+            </div>
+          </details>
+        </article>
+
+        <article class="an-item glass" data-an-item data-date="2026-10-05" data-cat="system" data-month="2026-10" id="mt4-maintenance-october" data-aos="fade-up" data-aos-delay="400">
+          <details>
+            <summary>
+              <time class="an-date" datetime="2026-10-05"><b>5</b><em>Oct</em><i>2026</i></time>
+              <h3 class="an-title">Scheduled maintenance: MT4 server</h3>
+              <span class="an-meta"><span class="an-open">Read notice</span></span>
+              <span class="an-acts">
+                <button class="an-share-btn" type="button" data-an-share aria-label="Copy a link to this notice"><svg aria-hidden="true"><use href="#i-copy"/></svg></button>
+                <span class="an-chev" aria-hidden="true"><svg><use href="#i-chevron-down"/></svg></span>
+              </span>
+            </summary>
+            <div class="an-body">
+              <p>Dear valued client,</p>
+              <p>Our MetaTrader 4 servers will undergo scheduled maintenance on <b>Saturday 17 October</b>, while markets are closed. Trading is not affected.</p>
+              <p>During the maintenance window you may be unable to log in or view your account history for a short period. No action is needed on your side.</p>
+              <p>STARTRADER Team</p>
+              <p class="an-share"><a href="#mt4-maintenance-october" data-an-link>Copy link to this notice</a></p>
+            </div>
+          </details>
+        </article>
+
+        <article class="an-item glass" data-an-item data-date="2026-09-22" data-cat="rollover" data-month="2026-09" id="rollover-september" data-aos="fade-up" data-aos-delay="400">
+          <details>
+            <summary>
+              <time class="an-date" datetime="2026-09-22"><b>22</b><em>Sep</em><i>2026</i></time>
+              <h3 class="an-title">Rollover adjustment notice</h3>
+              <span class="an-meta"><span class="an-open">Read notice</span></span>
+              <span class="an-acts">
+                <button class="an-share-btn" type="button" data-an-share aria-label="Copy a link to this notice"><svg aria-hidden="true"><use href="#i-copy"/></svg></button>
+                <span class="an-chev" aria-hidden="true"><svg><use href="#i-chevron-down"/></svg></span>
+              </span>
+            </summary>
+            <div class="an-body">
+              <p>Dear valued client,</p>
+              <p>Futures-based CFDs on crude oil, natural gas and selected indices roll to the next contract month this week. Positions held through the roll are adjusted so that their economic value is unchanged: the price gap between contracts is offset by a cash adjustment to your account.</p>
+              <ul class="an-ul">
+                <li>Roll window: <b>23&ndash;25 September 2026</b>, at the close of each instrument&rsquo;s session</li>
+                <li>Pending orders on affected instruments may be cancelled &mdash; please re-place them after the roll</li>
+                <li>Stop-loss and take-profit levels are <b>not</b> adjusted automatically; review them before the roll</li>
+              </ul>
+              <p>STARTRADER Team</p>
+              <p class="an-share"><a href="#rollover-september" data-an-link>Copy link to this notice</a></p>
+            </div>
+          </details>
+        </article>
+
+        <article class="an-item glass" data-an-item data-date="2026-09-03" data-cat="closure" data-month="2026-09" id="market-closure-september" data-aos="fade-up" data-aos-delay="400">
+          <details>
+            <summary>
+              <time class="an-date" datetime="2026-09-03"><b>3</b><em>Sep</em><i>2026</i></time>
+              <h3 class="an-title">Market closure in September</h3>
+              <span class="an-meta"><span class="an-open">Read notice</span></span>
+              <span class="an-acts">
+                <button class="an-share-btn" type="button" data-an-share aria-label="Copy a link to this notice"><svg aria-hidden="true"><use href="#i-copy"/></svg></button>
+                <span class="an-chev" aria-hidden="true"><svg><use href="#i-chevron-down"/></svg></span>
+              </span>
+            </summary>
+            <div class="an-body">
+              <p>Dear valued client,</p>
+              <p>Several markets observe public holidays in September, including US Labor Day on <b>7 September</b>. Instruments listed on the affected exchanges will be closed or on a shortened session for the dates shown in the platform&rsquo;s contract specifications.</p>
+              <p>Where an instrument is closed, pending orders remain in place and are executed when trading resumes. Spreads may widen either side of a holiday session.</p>
+              <p>Thank you for your support! <br>STARTRADER Team</p>
+              <p class="an-share"><a href="#market-closure-september" data-an-link>Copy link to this notice</a></p>
             </div>
           </details>
         </article>
@@ -1217,6 +1340,8 @@
         </article>
 
       </div>
+
+      <nav class="an-pager" data-an-pager aria-label="Notice pages" hidden></nav>
 
       <div class="an-empty" data-an-empty hidden>
         <span class="gl-empty-ic" aria-hidden="true"><svg><use href="#i-send"/></svg></span>
@@ -1524,6 +1649,6 @@
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/vendor/aos.min.js" defer></script>
-<script src="assets/js/main.min.js?v=pb35" defer></script>
+<script src="assets/js/main.min.js?v=pb41" defer></script>
 </body>
 </html>
