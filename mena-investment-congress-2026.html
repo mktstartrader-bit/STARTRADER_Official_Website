@@ -475,6 +475,32 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
 .xp-eco-card b{color:#dbe7ff}
 .xp-sig span{color:#a9c8ff}
 .xp-about .xp-sic{color:#fff;background:linear-gradient(135deg,#4f8dff,#0047bb);border-color:transparent}
+
+/* ---- v6: refined glass tiles (stats + ecosystem) ---- */
+.xp-about .xp-stat.xp-gs,.xp-eco-card.xp-gs{
+  background:
+    radial-gradient(120% 80% at 0% 0%,rgba(127,178,255,.16),transparent 55%) padding-box,
+    linear-gradient(180deg,rgba(8,16,52,.72),rgba(6,12,40,.6)) padding-box,
+    linear-gradient(150deg,rgba(186,212,255,.75),rgba(42,114,255,.14) 40%,rgba(42,114,255,.08) 60%,rgba(127,178,255,.55)) border-box!important;
+  -webkit-backdrop-filter:blur(18px) saturate(1.35);backdrop-filter:blur(18px) saturate(1.35);
+  box-shadow:0 24px 48px -28px rgba(0,8,40,.85),inset 0 1px 0 rgba(255,255,255,.08)!important}
+.xp-about .xp-stat::before,.xp-eco-card::before{content:"";position:absolute;left:18%;right:18%;top:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(170,200,255,.95),transparent)!important}
+.xp-about .xp-stat:hover,.xp-eco-card:hover{transform:translateY(-6px)}
+/* stats */
+.xp-about .xp-stat{padding:clamp(18px,2vw,24px)}
+.xp-about .xp-sic{width:40px;height:40px;border-radius:12px;color:#fff;margin-bottom:16px;border:0;
+  background:linear-gradient(135deg,#5b95ff,#0047bb);box-shadow:0 0 0 4px rgba(42,114,255,.18),0 10px 22px -8px rgba(42,114,255,.9)}
+.xp-about .xp-stat b{background:linear-gradient(180deg,#fff 30%,#a9c8ff);-webkit-background-clip:text;background-clip:text}
+.xp-about .xp-stat span{position:relative;margin-top:12px;padding-top:12px;font-size:12.5px;color:#c9d8f5}
+.xp-about .xp-stat span::before{content:"";position:absolute;left:0;top:0;width:28px;height:2px;border-radius:2px;background:linear-gradient(90deg,#7fb2ff,transparent)}
+/* ecosystem */
+.xp-eco-card{padding:clamp(22px,2.4vw,28px);gap:0}
+.xp-eco-top{display:flex;align-items:center;gap:14px}
+.xp-eco-ic{width:48px;height:48px;border-radius:14px;flex:none;
+  background:linear-gradient(135deg,#5b95ff,#0047bb);box-shadow:0 0 0 5px rgba(42,114,255,.16),0 12px 24px -10px rgba(42,114,255,.9)}
+.xp-eco-card b{font-size:15px;letter-spacing:.14em;color:#fff}
+.xp-eco-card p{margin-top:16px;padding-top:16px;border-top:1px solid rgba(170,200,255,.16);font-size:15px;line-height:1.65;color:#d3def4}
 </style>
 
   <!-- Structured data — the congress as an event -->
@@ -635,9 +661,9 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
       <p class="xp-body" data-aos="fade-up">The STARTRADER ecosystem reaches beyond trading.</p>
     </div>
     <div class="xp-eco-grid">
-      <article class="xp-eco-card xp-gs" data-aos="fade-up"><span class="xp-eco-ic"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9 12 4.5 21.5 9 12 13.5Z"/><path d="M6.5 11v4.5c1.5 1.6 3.4 2.5 5.5 2.5s4-.9 5.5-2.5V11M21.5 9v5"/></svg></span><b>STARACADEMY</b><p>STARACADEMY supports financial education.</p></article>
-      <article class="xp-eco-card xp-gs" data-aos="fade-up" data-aos-delay="100"><span class="xp-eco-ic"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5Z"/><path d="m3 13 9 5 9-5"/></svg></span><b>STARPRIME</b><p>STARPRIME focuses on institutional liquidity and technology solutions.</p></article>
-      <article class="xp-eco-card xp-gs" data-aos="fade-up" data-aos-delay="200"><span class="xp-eco-ic"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.2a4.3 4.3 0 0 1 7.5 2.6C19.5 15.4 12 20 12 20Z"/></svg></span><b>STARCARES</b><p>STARCARES brings the company’s community initiatives to life.</p></article>
+      <article class="xp-eco-card xp-gs" data-aos="fade-up"><div class="xp-eco-top"><span class="xp-eco-ic"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9 12 4.5 21.5 9 12 13.5Z"/><path d="M6.5 11v4.5c1.5 1.6 3.4 2.5 5.5 2.5s4-.9 5.5-2.5V11M21.5 9v5"/></svg></span><b>STARACADEMY</b></div><p>STARACADEMY supports financial education.</p></article>
+      <article class="xp-eco-card xp-gs" data-aos="fade-up" data-aos-delay="100"><div class="xp-eco-top"><span class="xp-eco-ic"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5Z"/><path d="m3 13 9 5 9-5"/></svg></span><b>STARPRIME</b></div><p>STARPRIME focuses on institutional liquidity and technology solutions.</p></article>
+      <article class="xp-eco-card xp-gs" data-aos="fade-up" data-aos-delay="200"><div class="xp-eco-top"><span class="xp-eco-ic"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.2a4.3 4.3 0 0 1 7.5 2.6C19.5 15.4 12 20 12 20Z"/></svg></span><b>STARCARES</b></div><p>STARCARES brings the company’s community initiatives to life.</p></article>
     </div>
     <p class="xp-eco-close" data-aos="fade-up">Together, they reflect a wider ambition: growth with knowledge, collaboration, and purpose.</p>
   </div>
