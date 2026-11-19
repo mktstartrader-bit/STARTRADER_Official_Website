@@ -17,22 +17,20 @@
   <meta property="og:title" content="MENA Investment Congress 2026 | Meet STARTRADER, Silver Sponsor" />
   <meta property="og:description" content="The next big idea could start with a simple hello. STARTRADER joins MENA Investment Congress 2026 as a Silver Sponsor — 24 November 2026, The Ritz-Carlton, Dubai." />
   <meta property="og:url" content="https://www.startrader.com/mena-investment-congress-2026.html" />
-  <meta property="og:image" content="https://www.startrader.com/assets/img/mena-congress-hero.webp" />
+  <meta property="og:image" content="https://www.startrader.com/assets/img/mena-congress-globe.webp" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="MENA Investment Congress 2026 | Meet STARTRADER, Silver Sponsor" />
   <meta name="twitter:description" content="The next big idea could start with a simple hello. STARTRADER joins MENA Investment Congress 2026 as a Silver Sponsor — 24 November 2026, The Ritz-Carlton, Dubai." />
-  <meta name="twitter:image" content="https://www.startrader.com/assets/img/mena-congress-hero.webp" />
+  <meta name="twitter:image" content="https://www.startrader.com/assets/img/mena-congress-globe.webp" />
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
 
   <link rel="preload" href="assets/fonts/pjs-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/img/mena-congress-hero.webp" as="image" type="image/webp" fetchpriority="high" media="(min-width:1025px)"
         imagesrcset="assets/img/mena-congress-hero-768w.webp 768w, assets/img/mena-congress-hero-1152w.webp 1152w, assets/img/mena-congress-hero-1536w.webp 1536w, assets/img/mena-congress-hero.webp 1920w" imagesizes="100vw" />
-  <link rel="preload" href="assets/img/mena-congress-hero-tall.webp" as="image" type="image/webp" fetchpriority="high" media="(max-width:1024px)"
-        imagesrcset="assets/img/mena-congress-hero-tall-480w.webp 480w, assets/img/mena-congress-hero-tall-720w.webp 720w, assets/img/mena-congress-hero-tall.webp 980w" imagesizes="100vw" />
   <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="assets/css/aos.min.css" />
   <link rel="stylesheet" href="assets/css/styles.min.css?v=pb41" />
@@ -266,96 +264,155 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
 @media (max-width:980px){.xp-hero > .acct-hero-bg,.xp-hero > .pf-hero-bg,.xp-hero > .wb-hero-scrim,.xp-hero > .ct-hero-veil,.xp-hero > .hero-glow,.xp-hero > .hero-shape,.xp-hero > .pm-hero-video,.xp-hero > .wb-hero-video,.xp-hero > .acct-hero-video{display:none!important}}
 
 /* =================================================================
-   MENA INVESTMENT CONGRESS 2026 — section additions on the expo shell
-   (event, about stats, offering cards, ecosystem, final CTA)
+   MENA INVESTMENT CONGRESS 2026 — v2: no top logo (the site footer
+   carries the brand), icon chips, gradient strokes, globe band
    ================================================================= */
-.xp-hero-bg{object-position:70% 50%}
-.xp-hero-sub{margin-top:12px;max-width:52ch;font-size:clamp(14px,1.35vw,15.5px);line-height:1.72;color:#a9bcdb}
-.xp-meta-row--stack .xp-meta-spon{display:inline-flex;align-items:center;gap:12px;margin-left:-29px}
-.xp-meta-row--stack .xp-meta-spon svg{width:17px;height:17px;margin-top:0}
+/* gradient stroke helper: 1px gradient border on a dark glass fill */
+.xp-gs{border:1px solid transparent!important;
+  background:linear-gradient(rgba(10,16,40,.78),rgba(10,16,40,.78)) padding-box,
+             linear-gradient(135deg,rgba(156,194,255,.85),rgba(42,114,255,.18) 45%,rgba(127,178,255,.55)) border-box!important}
+.xp-gs-l{border:1px solid transparent!important;
+  background:linear-gradient(#fff,#fff) padding-box,
+             linear-gradient(135deg,rgba(42,114,255,.75),rgba(0,71,187,.08) 50%,rgba(127,178,255,.6)) border-box!important}
+
+/* ---- hero: copy left, form right, both vertically centred; art clear of the form ---- */
+.xp-hero{padding:clamp(56px,7vw,104px) 0 clamp(56px,6vw,88px)}
+.xp-hero-bg{object-position:50% 70%}
+.xp-hero::before{background:
+    radial-gradient(60% 60% at 10% 0%,rgba(0,71,187,.32),transparent 62%),
+    radial-gradient(40% 50% at 92% 20%,rgba(42,114,255,.18),transparent 65%),
+    linear-gradient(180deg,rgba(4,6,14,.55) 0%,rgba(4,6,14,.35) 45%,rgba(4,6,14,.15) 80%,rgba(4,6,14,.6) 100%)}
+.xp-hero-grid{position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.5;
+  background-image:linear-gradient(rgba(127,178,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(127,178,255,.07) 1px,transparent 1px);
+  background-size:56px 56px;-webkit-mask-image:radial-gradient(80% 70% at 30% 30%,#000,transparent 75%);mask-image:radial-gradient(80% 70% at 30% 30%,#000,transparent 75%)}
+.xp-hero-in{align-items:center}
+.xp-form{margin-top:0!important}
+.xp-kicker{padding:7px 14px 7px 7px;border-radius:40px;letter-spacing:.14em;font-size:10.5px;color:#cfe0ff}
+.xp-kicker::before{display:none}
+.xp-kic{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;color:#fff;background:linear-gradient(135deg,#2a72ff,#0047bb);box-shadow:0 6px 14px -6px rgba(42,114,255,.9)}
+.xp-kic svg{width:14px;height:14px}
+.xp-h1{margin-top:22px}
+.xp-lead{font-size:clamp(17px,1.8vw,21px);font-weight:700;color:#fff;line-height:1.5;margin-top:22px}
+.xp-hero-sub{margin-top:10px;max-width:54ch;font-size:clamp(14px,1.35vw,15.5px);line-height:1.72;color:#b6c5de}
+.xp-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:clamp(22px,2.8vw,30px)}
+.xp-chip{display:inline-flex;align-items:center;gap:11px;padding:9px 16px 9px 9px;border-radius:16px;
+  -webkit-backdrop-filter:blur(16px) saturate(1.3);backdrop-filter:blur(16px) saturate(1.3)}
+.xp-cic{flex:none;display:grid;place-items:center;width:34px;height:34px;border-radius:11px;color:#9cc2ff;
+  background:linear-gradient(135deg,rgba(42,114,255,.35),rgba(0,71,187,.15));border:1px solid rgba(127,178,255,.35)}
+.xp-cic svg{width:17px;height:17px}
+.xp-chip em{display:block;font-style:normal;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#7f95bb}
+.xp-chip b{display:block;font-size:13.5px;font-weight:700;color:#fff;letter-spacing:-.01em}
 .xp-cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(22px,2.6vw,30px)}
+.xp-cta-row .btn{box-shadow:0 14px 30px -12px rgba(42,114,255,.85)}
 .xp-btn-ghost{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 24px;border-radius:70px;
   font-size:15px;font-weight:700;color:#fff;border:1px solid rgba(255,255,255,.32);background:rgba(255,255,255,.06);
   -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);transition:background .25s,border-color .25s}
 .xp-btn-ghost:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.5)}
-.xp-btn-ghost svg,.xp-cta-row .btn svg{width:18px;height:18px}
-.xp-btn-ghost--dark{color:#0b1530;border-color:rgba(11,21,48,.22);background:rgba(255,255,255,.7)}
-.xp-btn-ghost--dark:hover{background:#fff;border-color:rgba(11,21,48,.4)}
+.xp-btn-ghost svg{width:18px;height:18px}
+.xp-form{border:1px solid transparent!important;
+  background:linear-gradient(rgba(6,10,26,.72),rgba(6,10,26,.72)) padding-box,
+             linear-gradient(160deg,rgba(156,194,255,.9),rgba(42,114,255,.2) 40%,rgba(127,178,255,.5)) border-box!important}
 
-/* shared section heads */
-.xp-eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--blue,#0047BB)}
-.xp-eyebrow::before{content:"";width:24px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--blue),#7fb2ff)}
-.xp-dark .xp-eyebrow{color:#7fb2ff}
-.xp-h2{margin-top:14px;font-size:clamp(28px,3.6vw,46px);font-weight:800;letter-spacing:-.04em;line-height:1.06}
+/* ---- globe band ---- */
+.xp-band{position:relative;background:#04060e;overflow:hidden}
+.xp-band-in{position:relative;max-width:2400px;margin-inline:auto}
+.xp-band img{display:block;width:100%;height:auto;
+  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 14%,#000 86%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 14%,#000 86%,transparent 100%)}
+.xp-pins{position:absolute;inset:0}
+.xp-pin{position:absolute;display:flex;flex-direction:column;gap:1px;padding:5px 10px;border-radius:10px;white-space:nowrap;
+  font-size:clamp(10px,.95vw,13px);line-height:1.25;color:#fff;border:1px solid transparent;
+  background:linear-gradient(rgba(6,10,40,.72),rgba(6,10,40,.72)) padding-box,linear-gradient(135deg,rgba(242,196,107,.85),rgba(242,196,107,.15)) border-box;
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.xp-pin b{font-weight:700}
+.xp-pin i{font-style:normal;font-weight:800;letter-spacing:.14em;font-size:.82em;color:#F2C46B}
+.xp-pin--l{transform:translate(calc(-100% - 14px),-50%);text-align:right}
+.xp-pin--r{transform:translate(14px,-50%)}
+.xp-pin--b{transform:translate(-50%,14px);text-align:center}
+.xp-pin--bl{transform:translate(calc(-100% + 8px),14px);text-align:right}
+.xp-pin--br{transform:translate(-8px,14px)}
+
+/* ---- shared section heads ---- */
+.xp-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--blue,#0047BB)}
+.xp-eyebrow i{display:grid;place-items:center;width:28px;height:28px;border-radius:9px;color:#fff;background:linear-gradient(135deg,#2a72ff,#0047bb);box-shadow:0 8px 16px -8px rgba(0,71,187,.8)}
+.xp-eyebrow i svg{width:15px;height:15px}
+.xp-dark .xp-eyebrow{color:#9cc2ff}
+.xp-h2{margin-top:16px;font-size:clamp(28px,3.6vw,46px);font-weight:800;letter-spacing:-.04em;line-height:1.06}
 .xp-h2 span{display:block}
 .xp-h2 .alt{color:transparent;background:linear-gradient(92deg,#2a72ff,#0047bb 55%,#4f8dff);-webkit-background-clip:text;background-clip:text;padding-bottom:.14em;margin-bottom:-.14em}
 .xp-dark .xp-h2 .alt{background:linear-gradient(92deg,#9cc2ff,#2a72ff 60%,#7fb2ff);-webkit-background-clip:text;background-clip:text}
 .xp-body{margin-top:18px;font-size:clamp(15px,1.4vw,16.5px);line-height:1.75;color:#4a5875}
 .xp-dark .xp-body{color:#c4cedf}
 
-/* ---- the congress (light) ---- */
+/* ---- the congress ---- */
 .xp-event{padding:clamp(56px,8vw,110px) 0;background:var(--bg-light-2,#F8FAFC)}
 .xp-event-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(28px,5vw,72px);align-items:center}
-.xp-bridge{margin-top:22px;padding:16px 20px;border-left:3px solid var(--blue,#0047BB);border-radius:0 14px 14px 0;
-  background:rgba(0,71,187,.06);font-size:15.5px;font-weight:700;line-height:1.6;color:#0b1530}
-.xp-event-media{position:relative;overflow:hidden;border-radius:clamp(22px,2.6vw,30px);aspect-ratio:4/3;
+.xp-bridge{display:flex;gap:14px;align-items:flex-start;margin-top:24px;padding:18px 20px;border-radius:18px;font-size:15.5px;font-weight:700;line-height:1.6;color:#0b1530;
+  border:1px solid transparent;background:linear-gradient(135deg,#eef4ff,#fff) padding-box,linear-gradient(135deg,rgba(42,114,255,.7),rgba(42,114,255,.1)) border-box}
+.xp-bridge i{flex:none;display:grid;place-items:center;width:34px;height:34px;border-radius:11px;color:#fff;background:linear-gradient(135deg,#2a72ff,#0047bb)}
+.xp-bridge i svg{width:17px;height:17px}
+.xp-event-media{position:relative;overflow:hidden;border-radius:clamp(22px,2.6vw,30px);aspect-ratio:4/3;padding:0;margin:0;
   box-shadow:0 40px 80px -40px rgba(4,10,26,.55)}
-.xp-event-photo{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 62%}
-.xp-event-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,6,14,.72) 0%,rgba(4,6,14,.12) 42%,transparent 60%,rgba(4,6,14,.25) 100%)}
-.xp-event-logo{position:absolute;z-index:1;left:clamp(18px,2.4vw,28px);top:clamp(18px,2.4vw,26px);width:min(62%,320px);height:auto}
-.xp-event-tag{position:absolute;z-index:1;left:clamp(18px,2.4vw,28px);bottom:clamp(16px,2vw,22px);display:inline-flex;align-items:center;gap:8px;
+.xp-event-photo{position:relative;z-index:0;display:block;width:100%;height:100%;object-fit:cover;object-position:50% 62%;border-radius:inherit}
+.xp-event-shade{position:absolute;inset:0;z-index:1;border-radius:inherit;pointer-events:none;background:linear-gradient(180deg,rgba(4,6,14,.72) 0%,rgba(4,6,14,.12) 42%,transparent 60%,rgba(4,6,14,.25) 100%)}
+.xp-event-logo{position:absolute;z-index:2;left:clamp(18px,2.4vw,28px);top:clamp(18px,2.4vw,26px);width:min(62%,320px);height:auto}
+.xp-event-tag{position:absolute;z-index:2;left:clamp(18px,2.4vw,28px);bottom:clamp(16px,2vw,22px);display:inline-flex;align-items:center;gap:8px;
   padding:9px 14px;border-radius:40px;font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#fff;
-  background:rgba(4,6,14,.55);border:1px solid rgba(255,255,255,.22);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
-.xp-event-tag svg{width:15px;height:15px;color:#7fb2ff}
+  border:1px solid transparent;background:linear-gradient(rgba(4,6,14,.6),rgba(4,6,14,.6)) padding-box,linear-gradient(135deg,#F2C46B,rgba(242,196,107,.2)) border-box;
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+.xp-event-tag svg{width:15px;height:15px;color:#F2C46B}
 
-/* ---- meet startrader: dark billboard with proof points ---- */
+/* ---- meet startrader ---- */
 .xp-about{padding:0 0 clamp(56px,8vw,110px);background:var(--bg-light-2,#F8FAFC)}
 .xp-about .xp-adv-panel{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(26px,4vw,56px);align-items:center}
 .xp-stats{position:relative;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,1.6vw,18px)}
-.xp-stat{position:relative;overflow:hidden;padding:clamp(18px,2.2vw,26px);border-radius:20px;
-  background:radial-gradient(220px circle at 0% 0%,rgba(127,178,255,.16),transparent 70%),rgba(255,255,255,.055);
-  border:1px solid rgba(255,255,255,.13);box-shadow:inset 0 1px 0 rgba(255,255,255,.1);
-  transition:transform .4s var(--ease),border-color .3s}
-.xp-stat:hover{transform:translateY(-5px);border-color:rgba(127,178,255,.45)}
+.xp-stat{position:relative;overflow:hidden;padding:clamp(18px,2.2vw,26px);border-radius:20px;transition:transform .4s var(--ease)}
+.xp-stat:hover{transform:translateY(-5px)}
+.xp-sic{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;color:#9cc2ff;margin-bottom:14px;
+  background:linear-gradient(135deg,rgba(42,114,255,.35),rgba(0,71,187,.12));border:1px solid rgba(127,178,255,.35)}
+.xp-sic svg{width:19px;height:19px}
 .xp-stat b{display:block;font-size:clamp(32px,3.6vw,48px);font-weight:800;letter-spacing:-.045em;line-height:1;
   color:transparent;background:linear-gradient(92deg,#fff,#9cc2ff 70%);-webkit-background-clip:text;background-clip:text}
 .xp-stat span{display:block;margin-top:10px;font-size:13px;font-weight:700;letter-spacing:.02em;color:#a9bcdb}
 
-/* ---- what we bring: light glass cards ---- */
+/* ---- what we bring ---- */
 .xp-offer{padding:clamp(56px,8vw,110px) 0;background:var(--bg-light,#F4F7FA)}
 .xp-offer-head{max-width:760px}
 .xp-offer-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,22px);margin-top:clamp(28px,4vw,46px)}
-.xp-offer-card{position:relative;overflow:hidden;display:flex;flex-direction:column;gap:14px;padding:clamp(22px,2.6vw,30px);border-radius:22px;
-  background:linear-gradient(180deg,#fff,rgba(255,255,255,.82));border:1px solid rgba(11,21,48,.08);
-  box-shadow:0 30px 60px -40px rgba(11,21,48,.35);transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s}
-.xp-offer-card::before{content:"";position:absolute;left:14%;right:14%;top:0;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,#2a72ff,transparent);opacity:.7}
-.xp-offer-card:hover{transform:translateY(-6px);border-color:rgba(42,114,255,.35);box-shadow:0 36px 70px -40px rgba(0,71,187,.45)}
-.xp-offer-ic{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;color:#fff;
-  background:linear-gradient(135deg,#2a72ff,#0047bb);box-shadow:0 14px 26px -12px rgba(0,71,187,.7)}
-.xp-offer-ic svg{width:22px;height:22px}
+.xp-offer-card{position:relative;overflow:hidden;display:flex;flex-direction:column;gap:14px;padding:clamp(24px,2.8vw,32px);border-radius:22px;
+  box-shadow:0 30px 60px -40px rgba(11,21,48,.35);transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+.xp-offer-card:hover{transform:translateY(-6px);box-shadow:0 36px 70px -36px rgba(0,71,187,.45)}
+.xp-num{position:absolute;right:20px;top:14px;font-size:54px;font-weight:800;letter-spacing:-.05em;line-height:1;
+  color:transparent;background:linear-gradient(180deg,rgba(42,114,255,.22),rgba(42,114,255,0));-webkit-background-clip:text;background-clip:text}
+.xp-offer-ic{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;color:#fff;
+  background:linear-gradient(135deg,#4f8dff,#0047bb);box-shadow:0 16px 28px -12px rgba(0,71,187,.75),inset 0 1px 0 rgba(255,255,255,.35)}
+.xp-offer-ic svg{width:25px;height:25px}
 .xp-offer-card b{font-size:18px;font-weight:800;letter-spacing:-.025em;line-height:1.3;color:#0b1530}
 .xp-offer-card p{font-size:14px;line-height:1.7;color:#4a5875}
-.xp-foot{margin-top:clamp(20px,2.6vw,28px);font-size:12px;line-height:1.7;color:#6b7a96}
+.xp-foot{display:flex;gap:8px;align-items:flex-start;margin-top:clamp(20px,2.6vw,28px);font-size:12px;line-height:1.7;color:#6b7a96}
 
-/* ---- beyond the platform (dark) ---- */
-.xp-eco{position:relative;overflow:hidden;padding:clamp(56px,8vw,110px) 0;color:#fff;
+/* ---- beyond the platform ---- */
+.xp-eco{position:relative;overflow:hidden;isolation:isolate;padding:clamp(56px,8vw,110px) 0;color:#fff;
   background:radial-gradient(56% 50% at 88% 0%,rgba(0,71,187,.3),transparent 60%),radial-gradient(40% 44% at 6% 100%,rgba(42,114,255,.12),transparent 60%),#04060e}
+.xp-eco .xp-hero-grid{z-index:-1}
 .xp-eco-head{max-width:780px}
 .xp-eco-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,22px);margin-top:clamp(28px,4vw,44px)}
 .xp-eco-card{position:relative;overflow:hidden;display:flex;flex-direction:column;gap:12px;padding:clamp(22px,2.6vw,30px);border-radius:22px;
-  background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.13);
   -webkit-backdrop-filter:blur(18px) saturate(1.3);backdrop-filter:blur(18px) saturate(1.3);
-  box-shadow:0 40px 84px -44px rgba(0,0,0,.85),inset 0 1px 0 rgba(255,255,255,.12);transition:transform .4s var(--ease),border-color .3s}
-.xp-eco-card:hover{transform:translateY(-6px);border-color:rgba(127,178,255,.4)}
-.xp-eco-card::before{content:"";position:absolute;left:14%;right:14%;top:0;height:1px;background:linear-gradient(90deg,transparent,rgba(127,178,255,.8),rgba(127,178,255,.4),transparent)}
-.xp-eco-card .xp-adv-ic{width:46px;height:46px}
-.xp-eco-card b{font-size:13px;font-weight:800;letter-spacing:.16em;color:#7fb2ff}
+  box-shadow:0 40px 84px -44px rgba(0,0,0,.85);transition:transform .4s var(--ease)}
+.xp-eco-card:hover{transform:translateY(-6px)}
+.xp-eco-ic{width:50px;height:50px;border-radius:15px;display:grid;place-items:center;color:#fff;
+  background:linear-gradient(135deg,#4f8dff,#0047bb);box-shadow:0 14px 26px -12px rgba(42,114,255,.8),inset 0 1px 0 rgba(255,255,255,.3)}
+.xp-eco-ic svg{width:23px;height:23px}
+.xp-eco-card b{font-size:13px;font-weight:800;letter-spacing:.16em;color:#9cc2ff}
 .xp-eco-card p{font-size:15px;line-height:1.65;color:#e3eaf8}
 .xp-eco-close{margin-top:clamp(24px,3vw,34px);max-width:70ch;font-size:clamp(16px,1.6vw,19px);font-weight:700;line-height:1.55;color:#fff}
 
-/* ---- let's connect (light ground, dark panel) ---- */
+/* ---- let's connect ---- */
 .xp-final{padding:clamp(56px,8vw,110px) 0;background:var(--bg-light-2,#F8FAFC)}
-.xp-final .xp-adv-panel{text-align:center;padding:clamp(36px,6vw,76px) clamp(24px,5vw,64px)}
+.xp-final .xp-adv-panel{text-align:center;padding:clamp(40px,6vw,80px) clamp(24px,5vw,64px)}
+.xp-final-ic{display:grid;place-items:center;width:64px;height:64px;margin:0 auto 20px;border-radius:20px;color:#fff;
+  background:linear-gradient(135deg,#4f8dff,#0047bb);box-shadow:0 20px 40px -16px rgba(42,114,255,.9),inset 0 1px 0 rgba(255,255,255,.35)}
+.xp-final-ic svg{width:30px;height:30px}
 .xp-final .xp-eyebrow{justify-content:center}
 .xp-final .xp-h2{max-width:22ch;margin-inline:auto}
 .xp-final .xp-body{max-width:60ch;margin-inline:auto}
@@ -368,10 +425,18 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
   .xp-event-in,.xp-about .xp-adv-panel{grid-template-columns:1fr}
   .xp-offer-grid,.xp-eco-grid{grid-template-columns:1fr}
   .xp-offer-grid{max-width:620px}
+  .xp-hero{padding-top:clamp(40px,8vw,64px)!important}
+}
+@media (max-width:980px){ .xp-hero > picture{display:none!important} .xp-hero{background:radial-gradient(80% 50% at 20% 0%,rgba(0,71,187,.35),transparent 60%),#04060e!important;padding-bottom:48px!important} }
+@media (max-width:760px){
+  .xp-band-in{overflow-x:hidden}
+  .xp-band img{width:170%;max-width:none;margin-left:-35%}
+  .xp-pins{left:-35%;width:170%}
 }
 @media (max-width:480px){
   .xp-stats{grid-template-columns:1fr 1fr}
   .xp-cta-row .btn,.xp-cta-row .xp-btn-ghost{width:100%;justify-content:center}
+  .xp-chip{width:100%}
 }
 </style>
 
@@ -401,35 +466,30 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
 <!-- ============ HERO ============ -->
 <section class="xp-hero" aria-labelledby="xp-h1">
   <picture>
-    <!-- the portrait cut: the regulator globe (UAE · South Africa · Seychelles · Mauritius · Australia) over Dubai -->
-    <source media="(max-width:1024px)" srcset="assets/img/mena-congress-hero-tall-480w.webp 480w, assets/img/mena-congress-hero-tall-720w.webp 720w, assets/img/mena-congress-hero-tall.webp 980w" sizes="100vw" width="980" height="1200">
     <img class="xp-hero-bg" src="assets/img/mena-congress-hero.webp"
          srcset="assets/img/mena-congress-hero-768w.webp 768w, assets/img/mena-congress-hero-1152w.webp 1152w, assets/img/mena-congress-hero-1536w.webp 1536w, assets/img/mena-congress-hero.webp 1920w" sizes="100vw"
-         alt="A glass globe linking Dubai to South Africa, the Seychelles, Mauritius and Australia, floating above the Dubai skyline at night" width="1920" height="1080" fetchpriority="high">
+         alt="The Dubai skyline at night under a deep blue sky traced with thin golden arcs" width="1920" height="1080" fetchpriority="high">
   </picture>
+  <i class="xp-hero-grid" aria-hidden="true"></i>
   <div class="xp-wrap">
-    <a class="xp-brand" href="index.html" aria-label="STARTRADER home">
-      <img src="assets/img/logo-startrader.svg" alt="STARTRADER" width="170" height="33">
-    </a>
     <div class="xp-hero-in">
-      <div>
-        <span class="xp-kicker" data-aos="fade-up">STARTRADER × MENA INVESTMENT CONGRESS 2026</span>
+      <div class="xp-hero-copy">
+        <span class="xp-kicker xp-gs" data-aos="fade-up"><i class="xp-kic"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m11 17 2 2a1.4 1.4 0 0 0 2-2M14 14l2.5 2.5a1.4 1.4 0 0 0 2-2l-3.9-3.9a2.8 2.8 0 0 0-4 0l-.9.9a1.4 1.4 0 0 1-2-2l2.8-2.8a5 5 0 0 1 6.2-.7l.5.3a3 3 0 0 0 2 .4H21v8M3 4h1.2a3 3 0 0 1 2 .8l.5.4M3 13V4M5 13l4.5 4.5a1.4 1.4 0 0 0 2-2"/></svg></i>STARTRADER × MENA INVESTMENT CONGRESS 2026</span>
         <h1 class="xp-h1" id="xp-h1" data-aos="fade-up">
           <span>Big Markets.</span>
           <span class="alt">Bigger Conversations.</span>
         </h1>
         <p class="xp-lead" data-aos="fade-up">The next big idea could start with a simple hello.</p>
         <p class="xp-hero-sub" data-aos="fade-up">STARTRADER joins MENA Investment Congress 2026 as a Silver Sponsor to connect with the people and ideas driving financial progress.</p>
-        <div class="xp-meta" data-aos="fade-up">
-          <div class="xp-meta-row xp-meta-row--stack">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 9.5h17M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-            <div><b>24 November 2026</b><br><em>The Ritz-Carlton, Dubai</em><br><b class="xp-meta-spon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="5.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m8.6 13.4-1.6 7.1 5-2.6 5 2.6-1.6-7.1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>Silver Sponsor</b></div>
-          </div>
+        <div class="xp-chips" data-aos="fade-up">
+          <span class="xp-chip xp-gs"><i class="xp-cic"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg></i><span><em>Date</em><b>24 November 2026</b></span></span>
+          <span class="xp-chip xp-gs"><i class="xp-cic"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.1 7-11a7 7 0 1 0-14 0c0 5.9 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg></i><span><em>Venue</em><b>The Ritz-Carlton, Dubai</b></span></span>
+          <span class="xp-chip xp-gs"><i class="xp-cic"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5.5"/><path d="m8.6 13.4-1.6 7.1 5-2.6 5 2.6-1.6-7.1"/></svg></i><span><em>Partnership</em><b>Silver Sponsor</b></span></span>
         </div>
         <div class="xp-cta-row" data-aos="fade-up">
           <!-- Primary CTA per sheet: "Meet STARTRADER / Visit Booth N***" — booth number pending from MKT -->
           <a class="btn btn-primary" href="#connect">Meet STARTRADER <svg class="ico"><use href="#xp-arrow"/></svg></a>
-          <a class="xp-btn-ghost" href="https://www.startrader.com/" target="_blank" rel="noopener">Explore STARTRADER <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a class="xp-btn-ghost" href="https://www.startrader.com/" target="_blank" rel="noopener">Explore STARTRADER <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a>
         </div>
       </div>
 
@@ -473,19 +533,29 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
   </div>
 </section>
 
+<!-- ============ GLOBE BAND: where STARTRADER is regulated ============ -->
+<section class="xp-band" aria-label="STARTRADER regulated jurisdictions">
+  <div class="xp-band-in">
+    <img src="assets/img/mena-congress-globe.webp" srcset="assets/img/mena-congress-globe-1280w.webp 1280w, assets/img/mena-congress-globe.webp 2400w" sizes="100vw"
+         alt="A glass globe linking Dubai to South Africa, the Seychelles, Mauritius and Australia, above the Dubai skyline" width="2400" height="1029" loading="lazy" decoding="async">
+    <div class="xp-pins" aria-hidden="true"><span class="xp-pin xp-pin--l" style="left:45.7%;top:33.4%"><b>UAE</b><i>CMA</i></span><span class="xp-pin xp-pin--l" style="left:41.3%;top:57.0%"><b>South Africa</b><i>FSCA</i></span><span class="xp-pin xp-pin--bl" style="left:45.6%;top:57.2%"><b>Seychelles</b><i>FSA</i></span><span class="xp-pin xp-pin--br" style="left:52.2%;top:58.6%"><b>Mauritius</b><i>FSC</i></span><span class="xp-pin xp-pin--r" style="left:59.4%;top:60.4%"><b>Australia</b><i>ASIC</i></span></div>
+  </div>
+</section>
+
 <!-- ============ THE CONGRESS ============ -->
 <section class="xp-event" aria-labelledby="xp-event-h">
   <div class="xp-wrap xp-event-in">
     <div>
-      <span class="xp-eyebrow" data-aos="fade-up">THE CONGRESS</span>
+      <span class="xp-eyebrow" data-aos="fade-up"><i><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></i>THE CONGRESS</span>
       <h2 class="xp-h2" id="xp-event-h" data-aos="fade-up"><span>One City. Hundreds of Minds.</span><span class="alt">New Perspectives.</span></h2>
       <p class="xp-body" data-aos="fade-up">Making its Dubai debut, the eighth MENA Investment Congress is set to bring together more than 500 participants to discuss global markets, geopolitics, private markets, artificial intelligence, and the future of investment.</p>
-      <p class="xp-bridge" data-aos="fade-up">STARTRADER is proud to support the conversations that move the industry forward.</p>
+      <p class="xp-bridge" data-aos="fade-up"><i><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/></svg></i><span>STARTRADER is proud to support the conversations that move the industry forward.</span></p>
     </div>
-    <figure class="xp-event-media" data-aos="fade-up" data-aos-delay="100">
-      <img class="xp-event-photo" src="assets/img/mena-congress-dubai.webp" alt="Dubai Marina and Jumeirah Beach Residence at blue hour" width="1200" height="900" loading="lazy" decoding="async">
-      <img class="xp-event-logo" src="assets/img/mena-congress-logo.webp" alt="MENA Investment Congress 2026, 8th Edition, 24 November 2026" width="981" height="278" loading="lazy" decoding="async">
-      <span class="xp-event-tag"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="5.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m8.6 13.4-1.6 7.1 5-2.6 5 2.6-1.6-7.1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>Silver Sponsor</span>
+    <figure class="xp-event-media xp-gs" data-aos="fade-up" data-aos-delay="100">
+      <img class="xp-event-photo" src="assets/img/mena-congress-dubai.webp" alt="Dubai Marina and Jumeirah Beach Residence at blue hour" width="1200" height="900" decoding="async">
+      <i class="xp-event-shade" aria-hidden="true"></i>
+      <img class="xp-event-logo" src="assets/img/mena-congress-logo.webp" alt="MENA Investment Congress 2026, 8th Edition, 24 November 2026" width="981" height="278" decoding="async">
+      <span class="xp-event-tag"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5.5"/><path d="m8.6 13.4-1.6 7.1 5-2.6 5 2.6-1.6-7.1"/></svg>Silver Sponsor</span>
     </figure>
   </div>
 </section>
@@ -496,15 +566,15 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
     <div class="xp-adv-panel xp-dark" data-aos="fade-up">
       <i class="xp-adv-aur" aria-hidden="true"></i>
       <div style="position:relative">
-        <span class="xp-eyebrow">MEET STARTRADER</span>
+        <span class="xp-eyebrow"><i><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9s-1.3 6.4-3.9 9c-2.6-2.6-3.9-5.6-3.9-9S9.4 5.6 12 3Z"/></svg></i>MEET STARTRADER</span>
         <h2 class="xp-h2" id="xp-about-h"><span>Global Markets.</span><span class="alt">One Connected Vision.</span></h2>
         <p class="xp-body">Founded in 2019, STARTRADER is a global multi-asset broker bringing together trading technology, market resources, and support for retail traders and industry partners. The STARTRADER brand operates through separate entities licensed and regulated by financial authorities in five jurisdictions, with services provided according to each entity’s permissions.</p>
       </div>
       <div class="xp-stats">
-        <div class="xp-stat" data-aos="fade-up"><b>2019</b><span>Established</span></div>
-        <div class="xp-stat" data-aos="fade-up" data-aos-delay="100"><b>5</b><span>Regulated jurisdictions</span></div>
-        <div class="xp-stat" data-aos="fade-up" data-aos-delay="200"><b>1,000+</b><span>CFD instruments</span></div>
-        <div class="xp-stat" data-aos="fade-up" data-aos-delay="300"><b>7</b><span>Asset classes</span></div>
+        <div class="xp-stat xp-gs" data-aos="fade-up"><i class="xp-sic"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 9.5h17M8 3v4M16 3v4M9 14.5l2 2 4-4"/></svg></i><b>2019</b><span>Established</span></div>
+        <div class="xp-stat xp-gs" data-aos="fade-up" data-aos-delay="100"><i class="xp-sic"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v5c0 4.4 3 8.4 7 9.5 4-1.1 7-5.1 7-9.5V6z"/><path d="m9 12 2 2 4-4"/></svg></i><b>5</b><span>Regulated jurisdictions</span></div>
+        <div class="xp-stat xp-gs" data-aos="fade-up" data-aos-delay="200"><i class="xp-sic"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="m7 13 3-3 2.5 2L17 8M8 21h8M12 17v4"/></svg></i><b>1,000+</b><span>CFD instruments</span></div>
+        <div class="xp-stat xp-gs" data-aos="fade-up" data-aos-delay="300"><i class="xp-sic"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 4.5-9 4.5-9-4.5Z"/><path d="m3 12 9 4.5 9-4.5M3 16.5 12 21l9-4.5"/></svg></i><b>7</b><span>Asset classes</span></div>
       </div>
     </div>
   </div>
@@ -514,14 +584,14 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
 <section class="xp-offer" aria-labelledby="xp-offer-h">
   <div class="xp-wrap">
     <div class="xp-offer-head">
-      <span class="xp-eyebrow" data-aos="fade-up">WHAT WE BRING</span>
+      <span class="xp-eyebrow" data-aos="fade-up"><i><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/></svg></i>WHAT WE BRING</span>
       <h2 class="xp-h2" id="xp-offer-h" data-aos="fade-up"><span>More Markets. Smarter Tools.</span><span class="alt">Support That Stays.</span></h2>
       <p class="xp-body" data-aos="fade-up">Different goals call for different tools. Here is what sits inside the STARTRADER experience.</p>
     </div>
     <div class="xp-offer-grid">
-      <article class="xp-offer-card" data-aos="fade-up"><span class="xp-offer-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9s-1.3 6.4-3.9 9c-2.6-2.6-3.9-5.6-3.9-9S9.4 5.6 12 3Z" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></span><b>Markets Without the Narrow View</b><p>Explore CFDs across forex, metals, shares, indices, commodities, ETFs, and cryptocurrencies.</p></article>
-      <article class="xp-offer-card" data-aos="fade-up" data-aos-delay="100"><span class="xp-offer-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m7 13 3-3 2.5 2L17 8M8 21h8M12 17v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b>Technology That Keeps Up</b><p>Trade through MetaTrader 4, MetaTrader 5, STAR Web Trader, or the STARTRADER App, with analytical resources to support informed decisions.</p></article>
-      <article class="xp-offer-card" data-aos="fade-up" data-aos-delay="200"><span class="xp-offer-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13a8 8 0 0 1 16 0M4 13v3a2 2 0 0 0 2 2h1v-6H6a2 2 0 0 0-2 2Zm16 0v3a2 2 0 0 1-2 2h-1v-6h1a2 2 0 0 1 2 2Zm-3 5a3 3 0 0 1-3 2.5h-2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b>Support Beyond the Screen</b><p>Access multilingual assistance, educational resources, and dedicated solutions for traders and business partners.</p></article>
+      <article class="xp-offer-card xp-gs-l" data-aos="fade-up"><span class="xp-num">01</span><span class="xp-offer-ic"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9s-1.3 6.4-3.9 9c-2.6-2.6-3.9-5.6-3.9-9S9.4 5.6 12 3Z"/></svg></span><b>Markets Without the Narrow View</b><p>Explore CFDs across forex, metals, shares, indices, commodities, ETFs, and cryptocurrencies.</p></article>
+      <article class="xp-offer-card xp-gs-l" data-aos="fade-up" data-aos-delay="100"><span class="xp-num">02</span><span class="xp-offer-ic"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="m7 13 3-3 2.5 2L17 8M8 21h8M12 17v4"/></svg></span><b>Technology That Keeps Up</b><p>Trade through MetaTrader 4, MetaTrader 5, STAR Web Trader, or the STARTRADER App, with analytical resources to support informed decisions.</p></article>
+      <article class="xp-offer-card xp-gs-l" data-aos="fade-up" data-aos-delay="200"><span class="xp-num">03</span><span class="xp-offer-ic"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13a8 8 0 0 1 16 0M4 13v3a2 2 0 0 0 2 2h1v-6H6a2 2 0 0 0-2 2Zm16 0v3a2 2 0 0 1-2 2h-1v-6h1a2 2 0 0 1 2 2Zm-3 5a3 3 0 0 1-3 2.5h-2"/></svg></span><b>Support Beyond the Screen</b><p>Access multilingual assistance, educational resources, and dedicated solutions for traders and business partners.</p></article>
     </div>
     <p class="xp-foot" data-aos="fade-up">Products, features, and services depend on jurisdiction, eligibility, and the relevant authorised entity.</p>
   </div>
@@ -529,16 +599,17 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
 
 <!-- ============ BEYOND THE PLATFORM ============ -->
 <section class="xp-eco xp-dark" aria-labelledby="xp-eco-h">
+  <i class="xp-hero-grid" aria-hidden="true"></i>
   <div class="xp-wrap">
     <div class="xp-eco-head">
-      <span class="xp-eyebrow" data-aos="fade-up">BEYOND THE PLATFORM</span>
+      <span class="xp-eyebrow" data-aos="fade-up"><i><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5Z"/><path d="m3 13 9 5 9-5"/></svg></i>BEYOND THE PLATFORM</span>
       <h2 class="xp-h2" id="xp-eco-h" data-aos="fade-up"><span>Markets Connect Capital.</span><span class="alt">People Create Progress.</span></h2>
       <p class="xp-body" data-aos="fade-up">The STARTRADER ecosystem reaches beyond trading.</p>
     </div>
     <div class="xp-eco-grid">
-      <article class="xp-eco-card" data-aos="fade-up"><span class="xp-adv-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 9 12 4.5 21.5 9 12 13.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M6.5 11v4.5c1.5 1.6 3.4 2.5 5.5 2.5s4-.9 5.5-2.5V11M21.5 9v5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><b>STARACADEMY</b><p>STARACADEMY supports financial education.</p></article>
-      <article class="xp-eco-card" data-aos="fade-up" data-aos-delay="100"><span class="xp-adv-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m3 13 9 5 9-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b>STARPRIME</b><p>STARPRIME focuses on institutional liquidity and technology solutions.</p></article>
-      <article class="xp-eco-card" data-aos="fade-up" data-aos-delay="200"><span class="xp-adv-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.2a4.3 4.3 0 0 1 7.5 2.6C19.5 15.4 12 20 12 20Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span><b>STARCARES</b><p>STARCARES brings the company’s community initiatives to life.</p></article>
+      <article class="xp-eco-card xp-gs" data-aos="fade-up"><span class="xp-eco-ic"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9 12 4.5 21.5 9 12 13.5Z"/><path d="M6.5 11v4.5c1.5 1.6 3.4 2.5 5.5 2.5s4-.9 5.5-2.5V11M21.5 9v5"/></svg></span><b>STARACADEMY</b><p>STARACADEMY supports financial education.</p></article>
+      <article class="xp-eco-card xp-gs" data-aos="fade-up" data-aos-delay="100"><span class="xp-eco-ic"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5Z"/><path d="m3 13 9 5 9-5"/></svg></span><b>STARPRIME</b><p>STARPRIME focuses on institutional liquidity and technology solutions.</p></article>
+      <article class="xp-eco-card xp-gs" data-aos="fade-up" data-aos-delay="200"><span class="xp-eco-ic"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.2a4.3 4.3 0 0 1 7.5 2.6C19.5 15.4 12 20 12 20Z"/></svg></span><b>STARCARES</b><p>STARCARES brings the company’s community initiatives to life.</p></article>
     </div>
     <p class="xp-eco-close" data-aos="fade-up">Together, they reflect a wider ambition: growth with knowledge, collaboration, and purpose.</p>
   </div>
@@ -547,15 +618,16 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
 <!-- ============ LET'S CONNECT ============ -->
 <section class="xp-final" aria-labelledby="xp-final-h">
   <div class="xp-wrap">
-    <div class="xp-adv-panel xp-dark" data-aos="fade-up">
+    <div class="xp-adv-panel xp-dark xp-final-panel" data-aos="fade-up">
       <i class="xp-adv-aur" aria-hidden="true"></i>
       <div style="position:relative">
-        <span class="xp-eyebrow">LET’S CONNECT</span>
+        <span class="xp-final-ic"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m11 17 2 2a1.4 1.4 0 0 0 2-2M14 14l2.5 2.5a1.4 1.4 0 0 0 2-2l-3.9-3.9a2.8 2.8 0 0 0-4 0l-.9.9a1.4 1.4 0 0 1-2-2l2.8-2.8a5 5 0 0 1 6.2-.7l.5.3a3 3 0 0 0 2 .4H21v8M3 4h1.2a3 3 0 0 1 2 .8l.5.4M3 13V4M5 13l4.5 4.5a1.4 1.4 0 0 0 2-2"/></svg></span>
+        <span class="xp-eyebrow"><i><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.6a3.5 3.5 0 0 1 0 6.8M21.5 20a6.5 6.5 0 0 0-4-6"/></svg></i>LET’S CONNECT</span>
         <h2 class="xp-h2" id="xp-final-h"><span>The Best Conversations</span><span class="alt">Don’t End at the Congress.</span></h2>
         <p class="xp-body">Meet the STARTRADER team at MENA Investment Congress 2026 and discover the ideas, tools, and people behind the brand.</p>
         <div class="xp-cta-row">
           <a class="btn btn-primary" href="#connect">Connect With STARTRADER <svg class="ico"><use href="#xp-arrow"/></svg></a>
-          <a class="xp-btn-ghost" href="https://www.startrader.com/" target="_blank" rel="noopener">Visit STARTRADER <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a class="xp-btn-ghost" href="https://www.startrader.com/" target="_blank" rel="noopener">Visit STARTRADER <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a>
         </div>
         <p class="xp-sig">Built on Trust. <span>Driven by Growth.</span></p>
       </div>
@@ -564,7 +636,7 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
 </section>
 
 <!-- ============ LEGAL ============ -->
-<section class="xp-risk" aria-label="Regulatory information and risk disclosure">
+<section class="xp-risk" aria-label="Disclaimer">
   <div class="xp-wrap">
     <h2>Disclaimer:</h2>
     <p>STARTRADER Global Financial Consultation &amp; Financial Analysis L.L.C is a Category 5 licensee regulated by the Capital Market Authority (CMA) of the United Arab Emirates (License No. 20200000241). It is authorised for Financial Consultation, Introduction and Promotion activities only and does not provide brokerage services or execute client trades.</p>
@@ -611,9 +683,9 @@ document.addEventListener('DOMContentLoaded', function () {
     aosMo.observe(document.body, { attributes: true, attributeFilter: ['class'], subtree: true });
   }
 
-  // glass cards: a soft spotlight follows the cursor
+  // advantages: a soft spotlight follows the cursor across each card
   (function () {
-    var cards = document.querySelectorAll('.xp-adv-card');
+    var cards = document.querySelectorAll('.xp-adv-card,.xp-offer-card,.xp-eco-card,.xp-stat,.xp-chip');
     if (!cards.length) return;
     function bind(card) {
       card.addEventListener('mousemove', function (e) {
