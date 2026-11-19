@@ -452,6 +452,30 @@ body{background:var(--bg-light-2,#F8FAFC);color:var(--text,#101623)}
 .xp-eco-close{margin-top:clamp(20px,2.4vw,28px)}
 .xp-sig{margin-top:clamp(20px,2.6vw,30px)}
 .xp-risk{padding:clamp(24px,3vw,36px) 0 clamp(28px,3.6vw,44px)}
+
+/* ---- v4: richer dark surfaces — navy → royal-blue gradient + subtle STARTRADER pattern ---- */
+.xp-about .xp-adv-panel,.xp-final .xp-adv-panel,.xp-eco{
+  background:
+    url(assets/img/mena-congress-pattern.webp) 0 0/600px 300px repeat,
+    radial-gradient(60% 70% at 100% 100%,rgba(42,114,255,.45),transparent 62%),
+    radial-gradient(55% 60% at 0% 0%,rgba(0,71,187,.55),transparent 60%),
+    linear-gradient(135deg,#081236 0%,#0B1E5C 45%,#0F3A9E 100%)!important}
+.xp-eco{border-top:1px solid rgba(127,178,255,.18);border-bottom:1px solid rgba(127,178,255,.18)}
+.xp-eco .xp-hero-grid{display:none}
+.xp-about .xp-adv-panel,.xp-final .xp-adv-panel{border-color:rgba(127,178,255,.35)}
+/* glass tiles read lighter on the brighter ground */
+.xp-about .xp-stat.xp-gs,.xp-eco-card.xp-gs{
+  background:linear-gradient(160deg,rgba(255,255,255,.12),rgba(255,255,255,.04)) padding-box,
+             linear-gradient(135deg,rgba(186,212,255,.9),rgba(42,114,255,.2) 45%,rgba(127,178,255,.6)) border-box!important;
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.xp-dark .xp-body{color:#d6e0f3}
+.xp-btn-ghost{background:rgba(255,255,255,.1)}
+.xp-about .xp-h2 .alt,.xp-eco .xp-h2 .alt,.xp-final .xp-h2 .alt{background:linear-gradient(92deg,#e6efff,#a9c8ff 55%,#7fb2ff);-webkit-background-clip:text;background-clip:text}
+.xp-about .xp-eyebrow,.xp-eco .xp-eyebrow,.xp-final .xp-eyebrow{color:#dbe7ff}
+.xp-about .xp-stat span{color:#dbe7ff}
+.xp-eco-card b{color:#dbe7ff}
+.xp-sig span{color:#a9c8ff}
+.xp-about .xp-sic{color:#fff;background:linear-gradient(135deg,#4f8dff,#0047bb);border-color:transparent}
 </style>
 
   <!-- Structured data — the congress as an event -->
