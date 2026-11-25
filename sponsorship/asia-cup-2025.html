@@ -102,7 +102,25 @@
     linear-gradient(90deg,rgba(3,8,20,.9) 0%,rgba(3,8,20,.72) 32%,rgba(3,8,20,.3) 56%,transparent 84%),
     linear-gradient(180deg,rgba(3,8,20,.5),transparent 24%,rgba(3,8,20,.86));
 }
-  </style>
+  
+/* hero art: batch 1 banner (2026-11-25), anchored right on desktop, shown whole below the copy on phones */
+.hb26{position:relative;isolation:isolate;overflow:hidden;background:#03060F!important}
+.hb26 > :not(.container):not(.hb26-art):not(.nb-ticker){display:none!important}
+.hb26::before,.hb26::after{display:none!important}
+.hb26 > .hb26-art img{position:absolute;top:var(--hb-top,0px);right:0;left:auto;width:auto;max-width:none;height:calc(100% - var(--hb-top,0px));object-fit:cover;object-position:62% center;z-index:-1}
+.hb26 > .container{position:relative;z-index:2}
+@media (min-width:981px){.hb26 > .hb26-art img{width:52%;object-position:right center;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 18%);mask-image:linear-gradient(90deg,transparent 0,#000 18%)}}
+@media (min-width:981px) and (max-width:1279px){.hb26 > .hb26-art img{width:60%;top:auto;bottom:0;height:86%}}
+@media (min-width:981px){.hb26 > .container > *,.hb26 > .container > div > *{max-width:min(600px,calc(50vw - max(24px,(100vw - 1152px)/2) - 24px))}}
+
+@media (max-width:980px){
+  .hb26{display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;min-height:0!important;height:auto!important;aspect-ratio:auto!important;padding-bottom:0!important;gap:6px}
+  .hb26 > .container{order:1}
+  .hb26 > .hb26-art{display:block;order:2;position:relative;width:min(100%,640px);margin:0 auto;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 90%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 90%,transparent 100%)}
+  .hb26 > .hb26-art img{position:static;display:block;width:100%;max-width:100%;height:auto;object-fit:contain;-webkit-mask-image:none;mask-image:none}
+  .hb26 > .nb-ticker{order:3}
+}
+</style>
 
   <script type="application/ld+json">
 {
@@ -192,7 +210,8 @@
 }
   </script>
 
-  <link rel="preload" as="image" fetchpriority="high" href="../assets/img/ac-banner.webp" fetchpriority="high">
+  <link rel="preload" href="../assets/img/uae-cricket-hero-banner-v2.webp" as="image" type="image/webp" media="(min-width:981px)" fetchpriority="high" />
+  <link rel="preload" href="../assets/img/uae-cricket-hero-banner-v2-stack.webp" as="image" type="image/webp" media="(max-width:980px)" fetchpriority="high" />
 
 </head>
 <body class="ckt">
@@ -497,7 +516,11 @@
 <main id="main">
 
 <!-- ============ BANNER ============ -->
-<section class="ck-hero ck-hero--ac" aria-labelledby="pg-hero-title">
+<section class="ck-hero ck-hero--ac hb26" aria-labelledby="pg-hero-title">
+  <picture class="hb26-art">
+    <source media="(max-width:980px)" srcset="../assets/img/uae-cricket-hero-banner-v2-stack.webp" width="1000" height="1211">
+    <img src="../assets/img/uae-cricket-hero-banner-v2.webp" alt="A titanium cricket helmet and bat on a fluted pedestal with a royal-blue glass ball" width="1920" height="1080" fetchpriority="high" decoding="async">
+  </picture>
   <span class="ck-hero-bg" data-ck-bg aria-hidden="true"></span>
   <div class="container ck-hero-in">
     <div class="ck-hero-copy">

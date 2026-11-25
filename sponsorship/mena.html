@@ -229,7 +229,26 @@
 .mn-fig:nth-child(3),.mn-fig:nth-child(4){border-top:1px solid rgba(20,44,96,.12)}}
 @media (max-width:640px){.mn-hero{min-height:0;padding-bottom:64px}
 .mn-stage-shot{aspect-ratio:4/3}}
-  </style>
+  
+/* hero art: batch 1 banner (2026-11-25), anchored right on desktop, shown whole below the copy on phones */
+.hb26{position:relative;isolation:isolate;overflow:hidden;background:#03060F!important}
+.hb26 > :not(.container):not(.hb26-art):not(.nb-ticker){display:none!important}
+.hb26::before,.hb26::after{display:none!important}
+.hb26 > .hb26-art img{position:absolute;top:var(--hb-top,0px);right:0;left:auto;width:auto;max-width:none;height:calc(100% - var(--hb-top,0px));object-fit:cover;object-position:62% center;z-index:-1}
+.hb26 > .container{position:relative;z-index:2}
+@media (min-width:981px){.hb26 > .hb26-art img{width:52%;object-position:right center;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 18%);mask-image:linear-gradient(90deg,transparent 0,#000 18%)}}
+@media (min-width:981px) and (max-width:1279px){.hb26 > .hb26-art img{width:60%;top:auto;bottom:0;height:86%}}
+@media (min-width:981px){.mn-hero.hb26 .mn-h1 span{white-space:normal}}
+@media (min-width:981px){.hb26 > .container > *,.hb26 > .container > div > *{max-width:min(600px,calc(50vw - max(24px,(100vw - 1152px)/2) - 24px))}}
+
+@media (max-width:980px){
+  .hb26{display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;min-height:0!important;height:auto!important;aspect-ratio:auto!important;padding-bottom:0!important;gap:6px}
+  .hb26 > .container{order:1}
+  .hb26 > .hb26-art{display:block;order:2;position:relative;width:min(100%,640px);margin:0 auto;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 90%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 90%,transparent 100%)}
+  .hb26 > .hb26-art img{position:static;display:block;width:100%;max-width:100%;height:auto;object-fit:contain;-webkit-mask-image:none;mask-image:none}
+  .hb26 > .nb-ticker{order:3}
+}
+</style>
 
   <script type="application/ld+json">
 {
@@ -278,7 +297,8 @@
 }
   </script>
 
-  <link rel="preload" as="image" fetchpriority="high" href="../assets/img/mn-banner.webp" fetchpriority="high">
+  <link rel="preload" href="../assets/img/mena-hero-banner-v2.webp" as="image" type="image/webp" media="(min-width:981px)" fetchpriority="high" />
+  <link rel="preload" href="../assets/img/mena-hero-banner-v2-stack.webp" as="image" type="image/webp" media="(max-width:980px)" fetchpriority="high" />
 
 </head>
 <body class="mnx">
@@ -583,7 +603,11 @@
 <main id="main">
 
 <!-- ============ BANNER ============ -->
-<section class="mn-hero" aria-labelledby="pg-hero-title">
+<section class="mn-hero hb26" aria-labelledby="pg-hero-title">
+  <picture class="hb26-art">
+    <source media="(max-width:980px)" srcset="../assets/img/mena-hero-banner-v2-stack.webp" width="1000" height="953">
+    <img src="../assets/img/mena-hero-banner-v2.webp" alt="A titanium and royal-blue glass congress badge on a lanyard, on a fluted pedestal" width="1920" height="1080" fetchpriority="high" decoding="async">
+  </picture>
   <span class="mn-hero-bg" data-mn-bg aria-hidden="true"></span>
   <div class="container mn-hero-in">
     <div class="mn-hero-copy">
